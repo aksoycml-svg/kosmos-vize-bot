@@ -20,3 +20,9 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 - Aldığım kararlar ve gerekçeleri:
 - Uyguladığım kurallar / yakaladığım kural ihlalleri:
 - Açık sorular / bir sonraki ajana notlar:
+
+## Dersler (Blanc Bölüm 1)
+- "[G] genel bilgi" diye yazdığın dönem iddialarından birkaçı yanlış çıktı (siyah direk, elde dürbün, çatı oranı, borsada bayrak). Kaynağı olmayan dönem detayını "doğrulanmalı" işaretle, araştırmacıya sor.
+- Mevcut görsellerde dönem hatası tara (kâğıt para, yel değirmeni/pilon kule, arma).
+- Kompars ana kadrodan ayrışır; kırmızı yalnız mühür/hata/vurgu (sardunya bile değil).
+- Hikâye nesnesinin dönem biçimi (paket = kâğıt+ip, koli değil) tanımda net olmalı; motion "kutu" çizdi.

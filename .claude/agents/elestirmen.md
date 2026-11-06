@@ -28,3 +28,9 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 - Aldığım kararlar ve gerekçeleri:
 - Uyguladığım kurallar / yakaladığım kural ihlalleri:
 - Açık sorular / bir sonraki ajana notlar:
+
+## Dersler (Blanc Bölüm 1)
+- Stil karesiyle yetinme: ilk/temas/kapanış karelerini render et (kod değiştirmeden); hatalar oradan çıktı.
+- Renk denetimi ton (hue) dahil; yalnız parlaklık yanıltır.
+- Dönem kontrolü: mimari tip (kemer, cephe), ambalaj/nesne biçimi, kurum nesneleri (bayrak, tokmak) — şüphede araştırmacıya soru yaz.
+- Kullanıcının yakaladığı her hata süreç hatasıdır: kullanıcı geri bildirimlerini kendi kontrol listene ekle (Blanc: anlamsız konumlu eşya, ölü alan, okunmayan göz kırpma, dönem mimarisi).

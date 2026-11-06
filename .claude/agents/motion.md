@@ -31,3 +31,12 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 - Aldığım kararlar ve gerekçeleri:
 - Uyguladığım kurallar / yakaladığım kural ihlalleri:
 - Açık sorular / bir sonraki ajana notlar:
+
+## Dersler (Blanc Bölüm 1) — teslim öncesi kontrol listesi
+- Kontrol protokolü: her plan için ilk kare + temas/dokunuş karesi + kapanış karesi; tam boy + 360x640 + güvenli alan bindirmeli (`src/doku/GuvenliAlan.tsx`), renk ölçümü **parlaklık + ton** (`tools/sb2_kontrol.py`). Sadece stil karesi yetmez (eldiven kapanışta hâlâ elde, tebeşir görünmüyordu).
+- Işık tek kaynaktan (`src/doku/Isik.tsx`); elle gölge/huzme koyma. Sahneye karartma katmanı ekleme (şehir renkleri ölüyor).
+- Hikâye nesnesini dönem biçimiyle çiz (paket = kâğıt + ip; kol = kıvrımlı ceket + manşet + el); 360 px'te ne olduğu okunmalı.
+- Mimari modül varsayılanları klasik (yarım daire kemer); dönem dışı süs (gotik çıta) yok.
+- Şartnamede olmayan öğe (etiket, bayrak, mobilya) eklersen raporda "onay bekliyor" diye işaretle; işlevsiz nesne koyma.
+- Kareye uyarlarken değiştirdiğin değerleri (z, oda, konum) raporda tablo halinde ver; yönetmen plana işler.
+- Öz puanın eleştirmenden ~1–1.5 yüksek çıktı; kritik maddeleri kendin ara, puanı ona göre ver.

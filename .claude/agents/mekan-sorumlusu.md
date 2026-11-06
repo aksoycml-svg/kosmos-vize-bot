@@ -38,3 +38,9 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 - Aldığım kararlar ve gerekçeleri:
 - Uyguladığım kurallar / yakaladığım kural ihlalleri:
 - Açık sorular / bir sonraki ajana notlar:
+
+## Dersler (Blanc Bölüm 1)
+- Mimari öğelerin **tipini** açıkça yaz (kemer: yarım daire / basık / sivri; pencere başı, kilit taşı, kat düzeni, saçak). Yazılmadığında motion sivri (gotik) kemer çizdi.
+- Cepheler tek duvar değil ayrı evler: farklı saçak yükseklikleri, kat oranları, pencere ritmi.
+- Kamera yüksekliğine göre görünenleri yaz (alçak kameradan çatı yüzeyi görünmez).
+- Her eşyanın işlevi ve yeri (CLAUDE.md "Her nesnenin yeri anlamlı"); alt üçte biri dolduracak öğeyi öner.
