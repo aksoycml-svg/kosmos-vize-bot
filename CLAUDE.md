@@ -61,6 +61,7 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - Her plana **en az bir** dokunuş; filmde **hiçbiri tekrar etmez**; dokunuş **kendi planında başlar ve biter**.
 - **Okunabilir:** telefonda fark edilir — ekran yüksekliğinin ≥%10'u ya da yakın plan/insert, ≥1 sn net; göz oraya yönlendirilir.
 - **Küçük jest = yakın kamera:** göz kırpma, kaş, dudak, parmak gibi küçük jestler okunacaksa yüz/el ekran yüksekliğinin ≥%12'si (~230 px) olur. Değilse kamera o ana push-in yapar, yakın plana keser ya da karakter kameraya daha yakın konumlanır. Uzak planda küçük jest oynanmaz.
+- **Önemli oyunculuk = yakın plan:** duygu, karar, ifade değişimi, replik sonu gibi oyunculuk anları yakın plan (yüz) ya da bel plan ile çekilir; geniş/boy plan mekânı kurmak ve fiziksel eylem için kullanılır. Yönetmen her plan için çekim ölçeği (geniş · boy · bel · göğüs · yakın · insert) ve ölçek değişimlerini yazar. Rig yüzü yakın planda da detaylı (göz kapağı, kaş, ağız) olmalıdır.
 - **Katkı:** bir karakter eylemine sebep-sonuç ile bağlanır, mümkünse karakteri anlatır.
 - Ses gerektiren dokunuşun foley'i atlanmaz.
 
