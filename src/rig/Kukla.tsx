@@ -188,14 +188,15 @@ const Kafa: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }
   );
 };
 
-export const Kukla: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }) => {
+// golgesiz: yerleşik siyah elips yerine sahne kendi TemasGolgesi'ni çizer (doku sistemi, ışık yönüne göre)
+export const Kukla: React.FC<{ pz: Poz; p: Palet; louis?: boolean; golgesiz?: boolean }> = ({ pz, p, louis, golgesiz }) => {
   const s = pz.scale ?? 1;
   const f = pz.facing ?? 1;
   const br = 1 + (pz.breathe ?? 0) * 0.012;
   const c = p.coat;
   return (
     <g transform={`translate(${pz.x},${pz.y}) scale(${s * f},${s})`}>
-      <ellipse cx={6} cy={8} rx={96} ry={15} fill="#000" opacity={0.4} />
+      {!golgesiz && <ellipse cx={6} cy={8} rx={96} ry={15} fill="#000" opacity={0.4} />}
       <g transform={`translate(0,${pz.bodyY ?? 0}) rotate(${pz.lean ?? 0},0,-226)`}>
         <Kol x={-30 - (pz.sway ?? 0) * 3} sh={pz.shB} el={pz.elB} p={p} arka />
         <Bacak x={-10} thigh={pz.thighB} knee={pz.kneeB} foot={pz.footB ?? 0} p={p} arka />
