@@ -5,6 +5,7 @@ const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); if (i < 0) return d; const v = args[i + 1]; args.splice(i, 2); return v; };
 const ar = opt("--ar", "9:16");
 const model = opt("--model", "gemini-3-pro-image");
+const size = opt("--size", null);
 const [promptFile, out, ...refs] = args;
 const key = process.env.GEMINI_API_KEY || process.env.Value;
 if (!key) { console.error("Anahtar bulunamadı"); process.exit(1); }
@@ -13,7 +14,7 @@ for (const r of refs) parts.push({ inline_data: { mime_type: r.endsWith(".jpg") 
 const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
   method: "POST",
   headers: { "x-goog-api-key": key, "Content-Type": "application/json" },
-  body: JSON.stringify({ contents: [{ parts }], generationConfig: { responseModalities: ["IMAGE", "TEXT"], imageConfig: { aspectRatio: ar } } }),
+  body: JSON.stringify({ contents: [{ parts }], generationConfig: { responseModalities: ["IMAGE", "TEXT"], imageConfig: size ? { aspectRatio: ar, imageSize: size } : { aspectRatio: ar } } }),
 });
 const d = await res.json();
 if (!res.ok) { console.error("HTTP", res.status, d.error?.status, (d.error?.message || "").slice(0, 300)); process.exit(1); }
