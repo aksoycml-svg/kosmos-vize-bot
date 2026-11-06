@@ -1,4 +1,4 @@
-# Blanc Kardeşler · Storyboard v2 · Sahne Planı (v2.5: oyunculuk = yakın plan, motion değerleri, Eleştiri B, mekanlar.md R2, Borsa açık portikli avlu)
+# Blanc Kardeşler · Storyboard v2 · Sahne Planı (v2.6: Eleştiri C, dokunuş ölçeği, eldiven kararı, motion A3 değerleri; v2.5: oyunculuk = yakın plan, motion değerleri, Eleştiri B, mekanlar.md R2, Borsa açık portikli avlu)
 
 Girdi: `senaryo-v2.md` (v2.1), `arastirma.md`, `dokunuslar.md` (v2.1 dönem), `donem-dogrulama.md` (Ek 2, Ek 3), `mekanlar.md` (R1/R2, bölüm 9–12), `elestiri-B.md`, motion A2 raporu (katki-raporu.md), kullanıcı geri bildirimi (A2 kareleri `kareler/SB2-{TOURS,SOKAK,BORSA}.png`) ve CLAUDE.md kuralları. Kullanıcı kararları: süre 60.0 sn tam kesim (3600 kare), "kardeşler", P14 maskesiz, P22 kukla/tahta (neon yok), 8 yeni mekân tam detay, **göz kırpma (P04) kalsın, kamera yaklaşsın**. Ses: ElevenLabs Umut Canbay (TR). 1080x1920 @ 60 fps.
 
@@ -7,6 +7,15 @@ Girdi: `senaryo-v2.md` (v2.1), `arastirma.md`, `dokunuslar.md` (v2.1 dönem), `d
 - **Ölü alan yok:** dikey kadrajın hiçbir üçte biri (0–640, 640–1280, 1280–1920) boş kalmaz; ufuk–ölçek kuralına uyulur.
 - **Önemli oyunculuk = yakın plan:** duygu, karar, ifade değişimi, replik sonu yakın plan (yüz) ya da bel plan; geniş/boy plan yalnız mekân kurulumu ve fiziksel eylem. Çekim ölçeği Bölüm 1 sütunu + her planda; oyunculuk anları Bölüm 9; rig yüz kalitesi Bölüm 10.
 - Plan süreleri ve toplam **3600 kare değişmedi**; zaman ve temas kareleri R2 ve Borsa güncellemelerinde de değişmedi.
+
+**v2.6 değişiklikleri (Eleştiri C + motion A3 + tasarım v2.3; toplam 3600 ve TÜM temas kareleri değişmedi):**
+- **Dokunuş ölçeği** (Bölüm 1b): her plana dokunuş nesnesinin ekran boyutu (px, %), net süre (kare, sn) ve 360×640 karşılığı. Kural: ≥%10 (192 px) ya da yakın/insert, ≥1 sn net. Altında kalanlar düzeltildi: **P02** tebeşir (tahta %11, parça telefonda ~5 px → **tahta insert p+78–114 + geri çekilme p+114–150**), **P07** çekmece (%7.8 → push-in ile %10.5), **P17** kum (0.43 → 1.1 sn), **P20** güve (0.93 → 1.2 sn), **P01** kol B (pencere genişler).
+- **Eldiven kararı (imza nesnesi tekildir):** beyaz eldiven yalnız **kahraman eldiveni** (memur, P01…P23) + **Louis'nin cep eldiveni**. **Louis P02–P18 çıplak el**, cebinde beyaz eldiven köşesi (P02'den, yakın planda ≥50×30 px), **P19'da ilk kez giyer**. **François tüm planlarda taba deri eldiven `#8a6a48`** (P19 dahil, Louis'nin beyazıyla kontrast). **Kompars eldiveni koyu ya da ten.** **Memurun cebinde kahraman eldiven köşesi yalnız P11'de** (P07/P08'de YOK: eldivenler Paris'ten ancak P09'dan sonra gelir; P01 kanca flash-forward, cepte köşe yok). Süreklilik tablosu Bölüm 3'te.
+- **P01:** eldiven ölçüsü bir el boyu (`ELDIVEN_OLCEK` = el boyu × 1.05, ≈350 px toplam); **pencere A cam 360×370 (x 600–960, y 420–790)**, direk x 780, kol B'nin tüm uçları camdan ≥25 px içeride; fener ışık havuzunun üstünde.
+- **P02:** tahta insert + geri çekilme; Louis yazan el (kaz tüyü elde, göğüs cs≈3.0, el ≥230 px); etiketler p0–42; katip açık manşet/kenar ışık; motion z 1.45/1.45/1.52.
+- **P04:** push-in kamerası cx −80, cy +40 (Louis yüzü x ≤1000, botlar kadraj dışı); fener/etiket çakışması; fare insert protokol kareleri; Louis eli çıplak, François taba eldiven.
+- **Bölüm 11 (yeni):** kontrol karesi protokol listesi (P04 fare insert p78/p87/p108/p138/p143 dahil).
+- **Motion A3 "onay bekliyor" kararları:** Bölüm 4, madde 16 tablosu.
 
 **v2.5 değişiklikleri (özet):**
 - **P02 BORSA artık kapalı salon değil, AÇIK PORTİKLİ AVLU** (donem-dogrulama Ek 3: 1749'da avlu açıktı, arcade'lar yarım daire/plein cintre; tek kaynak, olası): gündüz **tepeden altın güneş ışığı**, **tahta arcade'ın altında** (galeri duvarına dayalı), pencere/pilastr-salon dili kalktı. Zaman/temas kareleri aynı.
@@ -48,12 +57,12 @@ Girdi: `senaryo-v2.md` (v2.1), `arastirma.md`, `dokunuslar.md` (v2.1 dönem), `d
 | Plan | start–end (kare) | sn | Mekân | Tip | Dokunuş | Çekim ölçeği (plan içi) | Çıkış geçişi |
 |---|---|---|---|---|---|---|---|
 | P01 | 0–156 | 2.60 | TOURS-KULUBE-IC (masa) | kinetic | kol "şak" | insert/yakın (el+eldiven), tek çekim, cs 1.14→1.06 | SERT |
-| P02 | 156–360 | 3.40 | BORSA (açık portikli avlu) | character | tebeşir kırılır | geniş (0–90) → boy/orta tebeşir (90–150) → **göğüs Louis (150–186, kesme)** → boy (186–204) | MATCH (PARIS yazısı) |
+| P02 | 156–360 | 3.40 | BORSA (açık portikli avlu) | character | tebeşir kırılır | geniş (0–78) → **tahta insert (78–114, kesme)** → geri çekilme orta (114–150) → **göğüs Louis, yazan el (150–186, kesme)** → boy (186–204) | MATCH (PARIS yazısı) |
 | P03 | 360–564 | 3.40 | HARITA | map | gün-gece + at yorgunluğu | harita (grafik) → at **yakın** (132–204) | SERT (ses köprüsü) |
 | P04 | 564–780 | 3.60 | SOKAK-BORDEAUX | character | baston–fare | boy (0–78) → insert (78–144) → **bel (144) → push-in göğüs → yakın (180–216)** | SERT |
 | P05 | 780–996 | 3.60 | HARITA | map | sollama + mühür | harita (grafik) | MATCH (mühür→güneş) |
 | P06 | 996–1128 | 2.20 | CATI-BORDEAUX | character | tüy + fiske | boy→bel push-in (0–44) → insert (44–104) → **bel/göğüs (104–132)** | SERT |
-| P07 | 1128–1284 | 2.60 | TOURS-KULUBE-IC | character | çekmece çarpması | orta/boy (0–30) → **bel müdür (30–66, kesme)** → orta/boy (66–156) | SAME |
+| P07 | 1128–1284 | 2.60 | TOURS-KULUBE-IC | character | çekmece çarpması | orta/boy (0–30) → **bel müdür (30–66, kesme)** → orta/boy + push-in (66–96, `cs 1.08→1.45`) → sabit (96–156) | SAME |
 | P08 | 1284–1440 | 2.60 | TOURS-KULUBE-IC | character | parmak tiki + duvar gölgesi | **yakın** Louis (0–60) → **yakın→göğüs** memur (60–156), el alt kadranda | SERT |
 | P09 | 1440–1560 | 2.00 | PARIS-AVLU | character | paket kayar, çizme | orta/boy (fiziksel eylem) | MATCH (paket) |
 | P10 | 1560–1692 | 2.20 | TOURS-KULUBE-IC (masa) | document | çorabı kaldıran el | insert/orta (eğik masa) | SERT |
@@ -73,19 +82,51 @@ Girdi: `senaryo-v2.md` (v2.1), `arastirma.md`, `dokunuslar.md` (v2.1 dönem), `d
 
 Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4, P15 2.4 sn.
 
+### 1b. Dokunuş ölçeği (Bölüm 1 tablosuna sütun olarak eklenen ikinci tablo)
+
+Ölçüt: dokunuş nesnesi ≥%10 (192 px) ya da yakın/insert **ve** ≥1 sn net (60 kare). 360×640 = ekranın 1/3'ü. "Net" = dokunuşun okunur olduğu ardışık kare.
+
+| Plan | Dokunuş nesnesi | Ekran boyutu (px · %) | Net süre (plan içi kare · sn) | Plan / ölçek | 360×640'ta | Durum |
+|---|---|---|---|---|---|---|
+| P01 | kol A→B (T/"7" silueti), eldiven | silüet 216×300 (%15.7); pencere cam 360×370 (%19); eldiven ≈350 (%18) | B: p54–156 = 102 · 1.7 | insert/yakın | B ≈72×100 | ✓ (TC2 kuralıyla) |
+| P02 | tebeşir kırılma + toz + parça | **tahta 836×576 (%30)**; toz ≥240 (%12.5); parça ≥43×19 | p90–150 = 60 · 1.0 (insert 90–114 + geri çekilme 114–150) | tahta insert → orta | tahta 192; parça 14; toz 80 | ✓ düzeltildi (önce tahta %11, parça telefonda ~5 px) |
+| P03 | gün-gece diski, at yorgunluğu | disk 200 (%10.4); at 250 (%13) | at p132–204 = 72 · 1.2 | harita → at yakın | at 83 | ✓ |
+| P04 | baston–fare | fare ≥230 (%12) | insert p78–144 = 66 · 1.1; fare hareketi p87–138 = 51 · 0.85 | insert | fare 77 | ✓ sınır (pencere = paça girişi tetikleyici dahil insert bütünü; temas kareleri sabit) |
+| P05 | mühür; sollama | mühür 300 (%16); sollama ekranı boydan boya | mühür p132–216 = 84 · 1.4; sollama p24–108 · 1.4 | harita | mühür 100 | ✓ |
+| P06 | tüy + fiske | tüy ≥190; sol önkol ≈500 (%26) | p44–104 = 60 · 1.0 | insert | tüy 63 | ✓ |
+| P07 | çekmece BAM | önce 150 (%7.8) ✗ → **cs 1.08→1.45 push-in: 201 (%10.5)** | p90–156 = 66 · 1.1 (süpür → BAM → hold) | orta/boy + push-in | 67 | ✓ düzeltildi |
+| P08 | parmak tiki + duvar gölgesi | el ≥330 (%17); gölge %22 | p96–156 = 60 · 1.0 | yakın→göğüs | el 110 | ✓ |
+| P09 | kayan paket + çizme | ≈345 (%18) | p46–120 = 74 · 1.2 | orta/boy | 115 | ✓ |
+| P10 | sarkan çorap | %30 | p36–132 = 96 · 1.6 | insert/orta | 192 | ✓ |
+| P11 | ter damlası + sap | %25 | p90–170 = 80 · 1.3 | insert | 160 | ✓ |
+| P12 | tek kaş | bölge 460 (%24); kaş ≥230 | p70–144 = 74 · 1.2 | aşırı yakın | 153 | ✓ |
+| P13 | esneme | yüz ≥300 (%16) | göğüs p0–68 = 68 · 1.1 (esneme 36–66 = 0.5; doğal jest süresi) | göğüs/yakın | 100 | ✓ |
+| P14 | pervaza çentik | ≈420 (%22) | p0–62 = 62 · 1.03 | omuz üstü + pervaz | 140 | ✓ sınır |
+| P15 | "1835" yaprağı | ≈210 (%11) | p22–112 = 90 · 1.5 | bölünmüş | 70 | ✓ |
+| P16 | düşen eldiven | ≥380 (%20) | p48–168 = 120 · 2.0 | insert | 127 | ✓ |
+| P17 | kurutma kumu | el ≥240 (%12.5) | **p60–126 = 66 · 1.1** (yazı bitişi 60–84, kum 84–110, kum yatışır 110–126) | yakın + el | 80 | ✓ düzeltildi (önce 0.43 sn) |
+| P18 | saat TIK | ≥280 (%15; ≈315) | p60–132 = 72 · 1.2 | geniş + push-in | 105 | ✓ |
+| P19 | eldiven giyme | ≥380 (%20) | p52–120 = 68 · 1.13 | insert | 127 | ✓ |
+| P20 | güve kanadı | 240 (%12.5) | **p84–156 = 72 · 1.2** (p84 anten titrer, p100 kanat) | insert | 80 | ✓ düzeltildi (önce 0.93 sn) |
+| P21 | sürgü | 270 (%14) | p66–132 = 66 · 1.1 | push-in | 90 | ✓ |
+| P22 | Wi-Fi morfu | ≥600 (%31) | p60–144 = 84 · 1.4 | geniş→yakın | 200 | ✓ |
+| P23 | parmak kabartısı | ≈%30 (576) | p54–120 = 66 · 1.1 | insert | 192 | ✓ |
+
+Not: P13 esneme ve P04 göz kırpma (0.23 sn) oyunculuk jestidir; doğal süreleri kısa, planın yakın çekimi ≥1 sn. Telefon sütunu = px/3.
+
 ---
 
 ## 2. Planlar
 
 ### P01 · kare 0–156 · TOURS-KULUBE-IC (masa varyantı) · KANCA
-- **Çekim ölçeği:** insert/yakın (el + eldiven + paket), tek çekim, tepe-önden; el ≥%12 (A2'de eldiven ~330 px ✔).
+- **Çekim ölçeği:** insert/yakın (el + eldiven + paket), tek çekim, tepe-önden; el ≥%12 . **Eldiven ölçüsü = bir el boyu (Eleştiri C TC1):** tutan elin boyu ≈270 px, eldiven el kısmı ≈285 px (`ELDIVEN_OLCEK` = el boyu × 1.05), manşet +65 px (toplam ≈350 px, %18), avuç ≈130 px, parmaklar dolgun ve uçları yuvarlak, manşet ağzı açık, yassı kumaş (avuçta tek kırışık, kenar hafif dalgalı). Aynı ölçek P10/P15/P16/P23. Memurun eli çıplak. Cepte eldiven köşesi yok (flash-forward kanca).
 - **Mekân (R2):** Tours çatı katı bürosu; **pencere A = çatı penceresi**, dışında 10–12 m ötede yuvarlak taş kule üstünde direk (kent çatıları arka planda).
-- **Kadraj/kamera:** `cs 1.14→1.06, cy +40→0` (alt koyu şerit ve üst kiriş dışarıda; masa ön yüzü ≈120 px ahşap pah). Işık geç gün ışığı / erken akşam (+ küçük fener). Çatı penceresi kanca yazısının altında x 560–1000, y 450–770; **kule konumu f0 = A/BEKLE (düz T çubuğu), f54 sonrası = B**. Manipulateur kadraj dışı sağda (makara ipi kirişten iner).
+- **Kadraj/kamera:** `cs 1.14→1.06, cy +40→0` (alt koyu şerit ve üst kiriş dışarıda; masa ön yüzü ≈120 px ahşap pah). Işık geç gün ışığı / erken akşam (+ küçük fener). **Pencere A (çatı penceresi) cam x 600–960, y 420–790 (360×370, kanca yazısı ÜST-BANT y≤400'ün altında):** direk x 780; regülatör R ≈165 px, gösterge ≈72 px (2.3:1). **A/BEKLE (f0):** düz T, uçlar x 626–934. **B (f54 sonrası):** sol gösterge dikey (regülatör y 560, ucu y 488), sağ gösterge 45° dışa-yukarı (ucu x 913, y ≈509). **Kural (TC2): B'nin tüm uçları cam kenarından ≥25 px içeride;** karşı ağırlık kısa ve kola hizalı (ip gibi sarkmaz); B net f54–156 (1.7 sn); 360×640 testinde B "7"/iki kolu kalkık T okunmalı, "darağacı" okunmamalı. **Pencere dışı (TC4):** dağ yok, 1–2 alçak yuvarlak sırt (`#a9a596`) ya da arduvaz çatı + baca; direğin altında yuvarlak taş kule üstü (elips parapet + 1 pencere, tuffeau), eşikte düz döşeme yok. Kâğıt paket kanatları yumuşak (kavisli kenar, yuvarlak köşe; TC6); eldiven yatağı yeni ölçeğe göre büyür. Manipulateur kadraj dışı sağda (makara ipi kirişten iner).
 - **Paket (TB1/TB2):** yumuşak açılmış **kâğıt paket** (düz yatan kahverengi paket kâğıdı, dört kanat masaya yatık, eldiven yatağı sığ kırışık); karton koli yok. **İp çözülmüş** (iki ucu masada gevşek, kâğıtta fiyonk izi). "TOURS" kart etiketi x ≤ 880.
-- **Kol/el (TB3/TB4):** memurun kolu sol kenardan (y ≈1250–1400) girer; kameraya doğru genişleyen koni (bilek ≈90 px → kenarda ≈200 px), dirsekte 25–35° kırılma, 3–4 kumaş kırışığı, manşet ve yama; ince kemikli el. Eldiven tutuluşu: işaret parmağı manşette, başparmak dışta.
+- **Kol/el (TB3/TB4):** memurun kolu sol kenardan (y ≈1250–1400) girer; kameraya doğru genişleyen koni (bilek ≈90 px → kenarda ≈200 px), dirsekte 25–35° kırılma, 3–4 kumaş kırışığı, manşet ve yama; ince kemikli el. Eldiven tutuluşu: işaret parmağı manşette, **başparmak manşetin önünde net** (TC8), diğer üç parmak kıvrık-geride.
 - **Karakterler:** Memurun eli (gri ceket kolu, sol el). Yüz yok.
 - **Giriş/çıkış:** El sol kenardan girer (kare açılırken içeride).
-- **Zaman çizelgesi (p+N):** 0 eldiven kâğıttan yarı çıkmış, el çekiyor · 0–54 eldiven yükselir · **54 eldiven kâğıttan tamamen ayrılır; aynı karede** direkte kol A→B "şak" · 60 kâğıt masaya yatar · 62–134 el eldiveni havada tutar, titreme sönümlenir (kol B'de net 1.7 sn) · **134–142 eldiveni sol-alttaki fener ışık havuzuna (≈ (180,1120)) bırakır** · 142–156 hareketsiz.
+- **Zaman çizelgesi (p+N):** 0 eldiven kâğıttan yarı çıkmış, el çekiyor · 0–54 eldiven yükselir · **54 eldiven kâğıttan tamamen ayrılır; aynı karede** direkte kol A→B "şak" · 60 kâğıt masaya yatar · 62–134 el eldiveni havada tutar, titreme sönümlenir (kol B'de net 1.7 sn) · **134–142 eldiveni sol-alttaki fener ışık havuzuna (merkez ≈ (430,1170); fener x 430, tabanı y ≈1090; havuz fener tabanından türer, TC3) bırakır** (kol hafif geri çekilir: dirsek 40–50°, bilek 20–30°, TC7) · 142–156 hareketsiz.
 - **Temas:** 0 (süren) kâğıt sürtünmesi (0–54) · **54** direk kolu "klak" (−3) · 60 kâğıt masaya yatar · **140** eldiven "tap" (ORTA).
 - **Süreklilik:** Kurulum → P08/P11/P17/P21/P22 (aynı direk, çatı penceresi). Kol A = P23 son kare; P23 son karesi P01 f0 kamerasına (cs 1.14, cy +40) eşleşir.
 - **Fizik:** Direk pencerenin 10–12 m dışında (yuvarlak kule üstünde); kablo/makara ipi kirişten manipulateur'e. Kolu oynatan ikinci el kadraj dışında.
@@ -94,16 +135,16 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 - **Anlatım:** "Bu eldiven, Fransız devletinin ağını hackledi." **Dokunuş:** kol "şak".
 
 ### P02 · kare 156–360 · BORSA (açık portikli avlu)
-- **Çekim ölçeği:** geniş (p+0–90, dolly cs 1.00→1.15) → boy/orta tebeşir (p+90–150) → **göğüs Louis (p+150–186, kesme)** → boy (p+186–204).
+- **Çekim ölçeği:** geniş (p+0–78, dolly cs 1.00→1.13) → **tahta insert (p+78–114, kesme; tahta ≥%30)** → geri çekilme orta (p+114–150; tahta ≥%15, kalabalık donmuş) → **göğüs Louis, yazan el (p+150–186, kesme; yüz ≈295 px, el ≥230 px)** → boy (p+186–204). Dokunuş ölçeği: Bölüm 1b (tebeşir p+90–150 = 60 kare, 1.0 sn; eski kurgu tahtayı %11, parçayı telefonda ~5 px bırakıyordu, Eleştiri C BC2).
 - **Mekân (Ek 3 + kullanıcı/koordinatör kararı):** **Palais de la Bourse'un açık portikli avlusu** (1749'da avlu açıktı; tek kaynak, olası; kapatma tarihi yok). Üç yandan **yarım daire (plein cintre) arcade'lar**, ince sütunlar/pilastrlar, tympanum'larda ticaret amblemleri (okunmaz, nötr), taş avlu zemini (güneş yamalarıyla); **gök, avlunun üstünde açık**, **gündüz tepeden altın güneş ışığı** (yüksek açı: gölgeler sütunlardan kısa ve zemine, bal rengi; tek ışık kaynağı = güneş). **Tahta arcade'ın altında** (galeri duvarına dayalı, gölgeli, ışık sınırı tahtanın hemen önünde; katip arcade altındaki platformda). Kapalı salon unsurları (yan duvar pencereleri, tavan, korniş-tavan, estrad merdiveni) **kalktı**; pencere ışık yamaları yerine **sütun gölgeleri + açık gökten düşen güneş yaması**. Sivri kemer yok; tricolore yok. Oda parametreleri (motion A2: xFar 230–850, yFar 1030, efektif ufuk ≈280, kamera ≈3.5 m) avlu ölçüsüne uyarlanır (ufuk–ölçek kuralı korunur).
-- **Karakter z (motion):** François **z 1.65**, Tüccar **z 1.65**, Louis **z 1.75** (ayak y ≈1420). Yüz ≈80 px (geniş/boy); yakın plan için Louis göğüs çekimi.
-- **Kadraj/kamera:** p+0–90 `cs 1.00→1.15, cy +100→+40`; p+90–150 `cs 1.15→1.22, cy +40→+10, cx 0→+20` (tahta/arcade, katip, toz, kalabalık ve ön üçlü); **p+150–186 kesme: Louis göğüs, `cs 2.8, cx −392, cy −188`, yüz ≈(540,800), ≥240 px**, defter, kalem, el kadrajda; üstten güneş yüz ve defter üzerinde (şapka gölgesi alt yüze), arkada kalabalık siluetler arcade altında bulanık; p+186–204 kesme: boy `cs 1.30, cy −40`. **Ölü alan:** ayaklar ≈1420–1560 taş zemin üzerinde; alt üçte bir: taş avlu zemini **güneş yamaları + sütun gölge şeritleri** (boş dama değil), sol kenarda bulanık sütun gövdesi (x 0–90, y 900–1920), iki ön kenar siluet figürü (z ~1.2, **başları y ≈1000–1100**, gövde alt üçte biri doldurur, ayaklar kadraj dışı). Üst üçte bir: arcade üst kuşağı, tympanum amblemleri, korniş ve **gök şeridi**/güneş parlaması (tahta başlığı ve ÜST-BANT yazısı bu bölgede).
-- **Karakterler:** François u 0.40 (lacivert frak, silindir; sağ eliyle Tüccar'ın omzunu tutar, gülerek konuşur), Tüccar u 0.24 (kır sakal, bıyıksız, geniş kenarlı şapka, tıknaz), Louis u 0.62 (bordo frak, gri şapka; ciltli defter pupitrde; sağ göğüs cebinde beyaz eldiven köşesi). Katip arcade altındaki platformda (z 5.5, u 0.50). Kalabalık 12 + 2 ön kenar siluet (yüzsüz, iki tonlu).
-- **İsim etiketleri (BB2):** her biri kendi karakterinin şapkasının üstünde (bağlantı çizgisi 30 px). **Görünür p+0–78, p+78–86 yukarı kayarak çıkar (p+86'da yok); tebeşir kırılması p+90.** Louis etiketi x ≥720, y 560–650; kırılma noktasının ≥150 px dışında; toz/düşen parçanın üzerinde değil; sonra bir daha gelmez.
+- **Karakter z (motion A3, kabul):** François **z 1.45** (xm −0.25), Tüccar **z 1.45** (xm −0.95), Louis **z 1.52** (xm +0.6), pupitr z 1.47 (xm +0.25). Yüz ≈90 px (geniş/boy). Ayaklar güvenli alanda (A3 kilit denetimi 0 ihlal). Ufuk–ölçek: Kukla boy katsayısı ≈1.07 ya da ufuk ≈840 (BC8, biri yeter; motion seçer).
+- **Kadraj/kamera:** p+0–78 `cs 1.00→1.13, cy +30→−8` (motion A3 kabul: ayaklar alt bantta kalıyordu); **p+78 kesme: tahta insert** (hareket ortasında değil: katip yazma döngüsü sürerken): tahta merkezi ekran (540,650), tahta ≈836×576 (cs ≈3.1; baz tahta 184 px @cs 1.0), cx 0, cy = 650−960−cs·(yTahtaMerkez−960) (motion hesaplar, değeri plana geri yazar); tahta galeri duvarında xm −1.5…+1.5, 1.75–3.75 m. **Kırılma p+90** (kırılma noktası ≈2.0 m: ekran y ≈880–920), parça düşüşü: sekme-1 p+102 estrad kenarı (y ≈1380), sekme-2 p+114 avlu taşı (y ≈1430); tüm olay y ≤1500. Toz ≥240 px, tahtanın önünde güneşte asılı. **Katip (BC2):** koyu siluet değil; `KATIP` paleti açık manşet (`#d9ccae`) + açık kum yelek, kol/el L ≥ tahta L +35, tahta önündeki ışık sınırı katibi 3 px sıcak kenar ışıkla ayırır; kol ve el insertte tam görünür (el + tebeşir ≥70 px). **p+114–150 geri çekilme:** cs ≈3.1→1.60 (ease-out), tahta ≥294 px (%15); toz hâlâ görünür, sekmeler tamamlanmış, kalabalık donmuş. **p+150–186 kesme: Louis göğüs, `cs ≈3.0` (z 1.52'de yüz ≈295 px), yüz merkezi (540,760), yazan el merkezi ≈(440–470,1160)**; defter, kalem, el kadrajda (el alt sınırı ≤1400); cx/cy motion hesaplar. **Yazan el (BC3):** `KolEl` ile çıplak el (yüz yüksekliğinin ≈0.8'i = ≥230 px; gerekirse yalnız bu planda hafif abartı), kaz tüyü başparmak + işaret + orta parmak arasında, ucu kâğıtta, sayfada mürekkep satırı ≈40 px ilerler (0.6 sn); tüy kendi başına durmaz. Louis'nin burnundaki/defter üstündeki gözlük karakter kartında yoksa kalkar. **Cep köşesi (BC7):** sağ göğüs cebinde beyaz eldiven ucu, ekranda ≥50×30 px, iki parmak ucu ayrı (yuvarlak), cep ağzı çizgisi, hafif sarkık; yazan kolun ÜSTÜNDE (kol cebi örtmez; cep tarafı kameraya dönük). Defter üstü gri ek yok; üstten güneş yüz ve defter üzerinde (şapka gölgesi alt yüze), arkada kalabalık siluetler arcade altında bulanık; p+186–204 kesme: boy `cs 1.30, cx +70, cy −110` (motion A3 kabul: tüccar ayağı yan 80 px içine düşüyordu; PARIS başlığı ≈ y 430). **Mimari/gravür notları (Eleştiri C):** yan arcade'larda parmaklık **seyrek dikey demir çubuk** (≈18–22 cm aralık, mızrak uçlu, alt+üst kuşak, lunette'te ışınsal çubuk), arkası III tek yön tarama; tel örgü/çapraz IV yok (BC1); ön portik ayakları pah + imposte + kemer başlangıcı, portik eşiğinde sert gölge kenarı; tezgâh tam görünür (defter + hokka) ya da kalkar (BC5); gölgeler net kenarlı taramalı çokgen (BC6). **Ölü alan:** ayaklar ≈1420–1560 taş zemin üzerinde; alt üçte bir: taş avlu zemini **güneş yamaları + sütun gölge şeritleri** (boş dama değil), sol kenarda bulanık sütun gövdesi (x 0–90, y 900–1920), iki ön kenar siluet figürü (z ~1.2, **başları y ≈1000–1100**, gövde alt üçte biri doldurur, ayaklar kadraj dışı). Üst üçte bir: arcade üst kuşağı, tympanum amblemleri, korniş ve **gök şeridi**/güneş parlaması (tahta başlığı ve ÜST-BANT yazısı bu bölgede).
+- **Karakterler:** François u 0.40 (lacivert frak, silindir; **taba deri eldiven `#8a6a48`**; sağ eliyle Tüccar'ın omzunu tutar, gülerek konuşur), Tüccar u 0.24 (kır sakal, bıyıksız, geniş kenarlı şapka, tıknaz; eldiven koyu ya da ten), Louis u 0.62 (bordo frak, gri şapka; **çıplak el**; ciltli defter pupitrde; sağ göğüs cebinde beyaz eldiven köşesi, yukarıdaki BC7 ölçüsüyle). Katip arcade altındaki platformda (z 5.5, u 0.50). Kalabalık 12 + 2 ön kenar siluet (yüzsüz, iki tonlu).
+- **İsim etiketleri (BB2):** her biri kendi karakterinin şapkasının üstünde (bağlantı çizgisi 30 px). **Görünür p+0–42, p+42–50 yukarı kayarak çıkar (p+50'de yok); insert kesmesi p+78, tebeşir kırılması p+90** (etiket dokunuşla ve katibin yazma kurulumuyla çakışmaz). François etiketi sağ kenarı x ≤380, Louis etiketi sol kenarı x ≥720 (ikisi de tahtayı x 385–695 örtmez), her biri kendi şapka tepesine inen 30 px bağlantı çizgisiyle; toz/düşen parçanın üzerinde değil; sonra bir daha gelmez (BC4).
 - **Giriş/çıkış:** Hepsi kare açılırken içeride (avlu arcade geçitleri kullanılmaz).
-- **Zaman çizelgesi:** 0 dolly · 30–88 katip rakam yazar · 78–86 etiketler çıkar · **90 tebeşir kırılır** (toz ≥240 px, tahtanın önünde güneş ışığında asılı kalır; parça ≥14 px, açık renk koyu kontur) · 90–114 parça platformdan düşer, iki sekme (taşa) · 96–126 kalabalık döner, **donar** (126–150; p+90–150 = 1.0 sn net) · **150 kesme: Louis göğüs** (kafası kalkmaz, yazar) · 186 kesme: boy, dolly sonu · **192 katip yarım tebeşirle ilk çizgi**.
-- **Temas:** süren tebeşir cızırtısı (186–244) · **246 (p+90)** tebeşir "çıt" · **258 (p+102)** sekme-1 · **270 (p+114)** sekme-2 · **348 (p+192)** yarım tebeşir "cız" · kalem cızırtısı (Louis göğüs çekiminde yakın, −8) · kalabalık uğultusu p+90–168 0.5 sn kısılır (açık avlu: hafif yankı, kuş sesi yok).
-- **Süreklilik:** Louis cep eldiven köşesi (→P19); ciltli defteri (→P15). François solda, Louis sağda.
+- **Zaman çizelgesi:** 0 dolly · 30–88 katip rakam yazar · 42–50 etiketler çıkar · **78 kesme: tahta insert** · **90 tebeşir kırılır** (toz ≥240 px, tahtanın önünde güneş ışığında asılı kalır; parça insertte ≥43×19 px, açık renk koyu kontur) · 90–114 parça platformdan düşer, iki sekme (estrad kenarı p102, avlu taşı p114) · 96–126 kalabalık döner, **donar** (126–150; p+90–150 = 1.0 sn net) · 114–150 geri çekilme · **150 kesme: Louis göğüs** (kafası kalkmaz, yazar; tüy elde, mürekkep satırı ilerler) · 186 kesme: boy, dolly sonu · **192 katip yarım tebeşirle ilk çizgi**.
+- **Temas:** süren tebeşir cızırtısı (186–244) · **246 (p+90)** tebeşir "çıt" · **258 (p+102)** sekme-1 · **270 (p+114)** sekme-2 · **348 (p+192)** yarım tebeşir "cız" · kalem cızırtısı (Louis göğüs çekiminde yakın, −5; el ≥230 px ve yazma görünür) · insertte çıt/sekme sesleri YAKIN (−3/−4), tarih ve kare değişmez · kalabalık uğultusu p+90–168 0.5 sn kısılır (açık avlu: hafif yankı, kuş sesi yok).
+- **Süreklilik:** Louis cep eldiven köşesi (→P19; Louis çıplak el); ciltli defteri (→P15); François taba eldiven. François solda, Louis sağda.
 - **Fizik:** Katip platformda; ön plan siluetler zemine basar (ayaklar kadraj dışı). Gölgeler güneşin tersine (tepeden, kısa). Ölçek efektif ufka göre.
 - **Geçiş (çıkış):** MATCH ("PARIS" (540,430)).
 - **Ekran yazısı:** "Oyun: Paris'teki tahvil fiyatı" ÜST-BANT, 162–354.
@@ -123,34 +164,35 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 - **Çekim ölçeği:** boy (p+0–78) → insert (p+78–144) → **bel (p+144, kesme) → push-in göğüs → yakın (p+180–216)**. "kazanır" (replik sonu) göğüs→yakın; göz kırpma ve sırıtış yakın (yüz ≈240 px).
 - **Motion değerleri (A2):** durduklarında François **z 2.4**, Louis **z 2.45** (ayaklar y ≈1420); **ızgara z 2.6, u 0.32** (ekran ≈ (440,1390), plan başından görünür, ay kenar ışığıyla biraz parlatılır). Replik **ÜST-BANT**. Saint-Michel silik siluet (sol-arka, çatıların arkasında; tepe y ≥410). François p150'den bakışını kameraya çevirir.
 - **Kadraj/kamera:**
-  - **p+0–78 boy/orta** (alçak açı): `cs 1.00→1.10, cy 0→−20`. François z 3.2→2.4 (u 0.46), Louis z 3.3→2.45 (u 0.70; ekran sağında, gövdeler birbirini örtmez). **Alt üçte bir ön plan:** TONNELIER fıçısı + eşik, CHAPELIER basamağı + chasse-roue, ön birikinti ve ıslak taş yansımaları (y 1560–1900, k 1.3). Sol cephede küçük resmî yapıda tricolore (isteğe bağlı [T]; x 150–390, y 480–700). Ayaklar y ≈1420.
+  - **p+0–78 boy/orta** (alçak açı): `cs 1.00→1.10, cy 0→−20`. François z 3.2→2.4 (u 0.46), Louis z 3.3→2.45 (u 0.70; ekran sağında, gövdeler birbirini örtmez). **Alt üçte bir ön plan:** TONNELIER fıçısı + eşik, CHAPELIER basamağı + chasse-roue, ön birikinti ve ıslak taş yansımaları (y 1560–1900, k 1.3). Sol cephede küçük resmî yapıda tricolore (isteğe bağlı [T]; kullanıcı isteği olduğu için kalır, **gece paleti** mavi `#2b3550` / beyaz `#8a8676` / kırmızı `#5a2a28`, boyut ≈%60, sarkık; p+144 sonrası kadraja girmez; SC5 kaldırma önerisi kullanıcıya soruldu). **Birikintiler (SC4):** yassı perspektif elipsi (en/boy ≥3:1), yumuşak kenar, gök bandı `#2a3352` + réverbère'in kısa amber dikey yansıması + 1 px ay konturu; koyu dolgu yok. **Yürüyüş (SC11):** p0'da `yuru` fazı temas/geçiş pozunda başlar (sallanan ayak havada tekme gibi durmaz). Ayaklar y ≈1420.
   - **p+78–144 INSERT** (kaldırım hizası, statik; **fare insert yeniden kadraj:** ızgara sol-orta **(300,1130)**, ufuk y 700; Louis'nin bordo paçası + baston ucu sağdan girer, x ≈800–900). Fare boyu %12 (≥230 px). **Fare ızgaradan çıkar, Louis'nin ayağına doğru ~200 px yürür; baston fare'nin önüne iner; fare aynı ızgaraya koşarak döner.**
-  - **p+144–216 bel → göğüs → yakın** (kesme sonrası tek kesintisiz push-in). François yüz merkezi dünya ≈ (492,1070), yüz ≈75 px @cs 1 → ≥230 px için `cs 3.2` (≈240 px). `e = easeInOutCubic(t)`, `t=(f−144)/36`, `cs = 1.70+1.50e`, `cx = 81.6+72e`, `cy = −247−265e`. Kare kare:
+  - **p+144–216 bel → göğüs → yakın** (kesme sonrası tek kesintisiz push-in). François yüz merkezi dünya ≈ (492,1070), yüz ≈75 px @cs 1 → ≥230 px için `cs 3.2` (≈240 px). `e = easeInOutCubic(t)`, `t=(f−144)/36`, `cs = 1.70+1.50e`, **`cx = 81.6−8e`, `cy = −247−225e`** (v2.6: eski `cx = 81.6+72e`, `cy = −247−265e`; SC3: Louis'nin yüzü x ≤1000'e ve baston eli IG sağ sütunu x 920–1080 dışına, SC9: botlar tamamen kadraj dışına). Kare kare (cs değişmedi, cx/cy güncellendi):
 
 | p+N | t | cs | cx | cy |
 |---|---|---|---|---|
 | 144 | 0.000 | 1.700 | 81.6 | −247.0 |
-| 148 | 0.111 | 1.708 | 82.0 | −248.5 |
-| 152 | 0.222 | 1.766 | 84.8 | −258.6 |
-| 156 | 0.333 | 1.922 | 92.3 | −286.2 |
-| 160 | 0.444 | 2.227 | 106.9 | −340.0 |
-| 164 | 0.556 | 2.673 | 128.3 | −418.9 |
-| 168 | 0.667 | 2.978 | 142.9 | −472.8 |
-| 172 | 0.778 | 3.134 | 150.4 | −500.3 |
-| 176 | 0.889 | 3.192 | 153.2 | −510.6 |
-| 180 | 1.000 | 3.200 | 153.6 | −512.0 |
-| 198 | – | 3.260 | 156 | −517 |
-| 216 | – | 3.300 | 158 | −522 |
+| 148 | 0.111 | 1.708 | 81.6 | −248.3 |
+| 152 | 0.222 | 1.766 | 81.2 | −256.8 |
+| 156 | 0.333 | 1.922 | 80.4 | −280.3 |
+| 160 | 0.444 | 2.227 | 78.8 | −326.0 |
+| 164 | 0.556 | 2.673 | 76.4 | −393.0 |
+| 168 | 0.667 | 2.978 | 74.8 | −438.7 |
+| 172 | 0.778 | 3.134 | 74.0 | −462.1 |
+| 176 | 0.889 | 3.192 | 73.6 | −470.8 |
+| 180 | 1.000 | 3.200 | 73.6 | −472.0 |
+| 198 | – | 3.260 | 76.0 | −477.0 |
+| 216 | – | 3.300 | 78.0 | −482.0 |
 
-  (180–216 doğrusal yavaş sürüklenme; aradaki kareler formülle üretilir.) Paralaks k: gök 0.25, uzak 0.55, karakter 1, ön plan 1.3.
-- **Baston ve el (SK1, kritik):** Baston **Louis'nin dış (ekran sağı) elinde, gövdesinin sağında**; kavrayan el ve parmaklar bel planda (p+144–168) tam görünür; baston ucu dış ayağın önünde, taşa değer (`bastonAcisi`/`kolIK`). François'nın bacaklarının önünden geçmez; kardeşe dokunan kol boş.
+  (180–216 doğrusal yavaş sürüklenme; aradaki kareler formülle üretilir. Yüz dikeyde ≈40 px aşağı iner; yüz ≥230 px korunur, ölçümü motion doğrular.) Paralaks k: gök 0.25, uzak 0.55, karakter 1, ön plan 1.3.
+- **Baston ve el (SK1, kritik):** Baston **Louis'nin dış (ekran sağı) elinde, gövdesinin sağında**; kavrayan el ve parmaklar bel planda (p+144–168) tam görünür; baston ucu dış ayağın önünde, taşa değer (`bastonAcisi`/`kolIK`). François'nın bacaklarının önünden geçmez; kardeşe dokunan kol boş. **Eldiven (SC1, kesin):** Louis'nin baston eli ve tüm elleri **çıplak** (parmaklar görünür); sağ göğüs cebinde beyaz eldiven köşesi (bel planda p+144–168 ≥29×17 px, kurulum tekrarı); **François taba deri eldiven `#8a6a48`** (şapkayı kaldıran el); krem/gri eldiven yok. **SC6:** şapkayı kaldıran kol yüzün dışından yükselir (omuzdan yana-yukarı, dirsek yüzden ≥40 px uzakta); favori ≈%50 dar, saçla aynı ton, kulak önünde biter.
+- **Fare insert protokolü (SC7):** insert, ızgara (300,1130) kadrajında yeniden kurulmuş sayılır; kontrol kareleri p78, p87, p108, p138, p143 (Bölüm 11). Kapanışta ızgarada kuyruk ucu kaybolur, p138–144 boş ızgara.
 - **Giriş/çıkış:** Karakterler kare açılırken sokak ortasında. Fare ızgaradan çıkar ve aynı ızgaraya girer.
 - **Zaman çizelgesi:** 4–74 "Herkesten önce bilen" · **78 kesme: insert** (müzik 1.1 sn sessiz) · 78–87 boş ızgara, paça yaklaşır · **87–96 fare çıkar** · 96–104 fare Louis'ye iki adım · 100–108 baston iner · **108 TAK** · 110 fare irkilir · **112–130 fare ızgaraya koşar**, 128 dalış · **138 kuyruk ucu "tink"** · 138–144 boş ızgara · **144 kesme: bel plan, push-in başlar** · 144–162 François şapkasını kaldırır · 146–176 "kazanır" (replik sonu) · 150 Louis durur, baston ucu taşa · 180–186 François kameraya bakar · **186–200 göz kırpma (yakın, ≈240 px)** · 200–216 sırıtış (yakın).
 - **Temas:** adımlar `yuru()` fazından (~564+6, +20, +34, +48, +62, +72) · **651 (p+87)** fare pençesi ızgara demirine · 660–668 fare adımları · **662 (p+98)** Louis'nin çizmesi (insert) · **672 (p+108)** baston ucu taşa "TAK" (−2) · **674 (p+110)** fare irkilme · **692 (p+128)** fare kafese dalış · **702 (p+138)** kuyruk ucu "tink" · **714 (p+150)** Louis durur, baston ucu "tık" · 750–764 (p+186–200) göz kırpma sessiz.
 - **Süreklilik:** Izgara p+0'dan kurulu. Şapka kalkık elde biter. Louis cep eldiven köşesi.
 - **Fizik:** Baston ucu `zemin(z,u).y`'de. Cut yürüyüş döngüsü sürerken. Push-in'de François'nın ayakları kadraj dışına çıkar.
 - **Geçiş (çıkış):** SERT.
-- **Ekran yazısı:** **ÜST-BANT**: "FRANÇOIS" etiketi + "Herkesten önce bilen… kazanır." (okunan kelime kırmızı), 568–760.
+- **Ekran yazısı:** **ÜST-BANT**: "FRANÇOIS" etiketi + "Herkesten önce bilen… kazanır." (okunan kelime kırmızı), 568–760. **SC2:** etiket rengi `#e7c37a` + 0 2px 0 koyu gölge, 34 px (sis üstünde ≥3:1); etiket François'nın başı üstünde, sağ kenarı fenerden ≥20 px uzak. **Réverbère** push-in sonunda (p+180–216) yazı bandında olmaz: ip noktası dünyada sağa/ileri kaydırılır; fener gövdesi ekranda ya x ≥1010 (kadraj dışı) ya y ≤200 (motion cx −80/cy +40 eğrisine göre hesaplar; ışık yönü sabit kalır).
 - **Anlatım:** FRANÇOIS (alçak, sinsi). **Dokunuş:** baston–fare. Göz kırpma oyunculuk (kalır).
 
 ### P05 · kare 780–996 · HARITA
@@ -180,7 +222,7 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 - **Çekim ölçeği:** orta/boy profil (p+0–30, pan) → **bel müdür (p+30–66, plan içi kesme; yüz ≥230 px)** → orta/boy (p+66–156, `cs 1.08, cx +110` sabit).
 - **Mekân (R2):** Tours çatı katı bürosu (ahşap kiriş, ahşap döşeme, merdiven sahanlığına açılan kapı arka-solda; çatı penceresi A arka-sağda). **Gece: kule kolları DINLEN dikey çubuk, hareketsiz.**
 - **Kadraj:** Çekmece ön yüzü y 1250–1400. **Ölü alan:** alt üçte bir masa ön yüzü, çekmece, zemin döşemesi, sandalye bacakları, Louis'nin botları; üst üçte bir kapı, duvar, çatı penceresi, mum yansıması. Tek mum masada.
-- **Karakterler:** Louis z 2.0, u 0.22 (baston masa kenarına dayalı; önünde **iki** altın kesesi). Müdür z 2.0, u 0.60. Memur z 2.8, u 0.78. François z 3.4, u 0.08 (kapı aralığında/sahanlıkta gölgede, gülümser).
+- **Karakterler:** Louis z 2.0, u 0.22 (baston masa kenarına dayalı; önünde **iki** altın kesesi). Müdür z 2.0, u 0.60. Memur z 2.8, u 0.78 (**cebinde eldiven köşesi YOK:** eldivenler Paris'ten ancak P09'dan sonra gelir). **Çekmece (dokunuş ölçeği):** ön yüz 150 px (%7.8) idi; p+66–96 `cs 1.08→1.45` push-in ile 201 px (%10.5), BAM'dan (p+98) önce biter, p+96–156 kamera sabit; memur ve irkilme gövde jesti kadrajda kalır (gerekirse cx +110→+160, motion ölçer). François z 3.4, u 0.08 (kapı aralığında/sahanlıkta gölgede, gülümser).
 - **Giriş/çıkış:** Kapı (sahanlığa) arka-solda; çatı penceresi arka-sağda. Kimse girip çıkmaz.
 - **Zaman çizelgesi:** çekmece **plan başında yarı açık** · 0–30 orta: Louis keseyi müdüre kaydırır · **30 kesme: müdür bel** (gözleri keseye, uzanır, kese avucunda; açgözlülük) · 40 kese durur · 54 kese avucunda · 62 sikkeler masaya · **66 kesme: orta/boy** · 76–90 süpürür, sikkeler çekmeceye · **98 çekmece BAM**, kamera sabit (hold 98–156) · **102 memur irkilir** (gövde jesti) · François gülümser.
 - **Temas:** 1134–1158 kese sürtünmesi · **1168 (p+40)** kese "tok" · **1190** sikkeler · **1216** sikkeler çekmeceye · **1226 (p+98)** çekmece "BAM" (ahşap-içi dolu, −2) · 1230 memur irkilme (kumaş).
@@ -192,7 +234,7 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 ### P08 · kare 1284–1440 · TOURS-KULUBE-IC
 - **Çekim ölçeği:** **yakın** Louis OTS (p+0–60, yüz ≥300 px) → **yakın→göğüs** memur (p+60–156, push-in `cs 1.00→1.18`); el alt kadranda ≥330 px.
 - **Kadraj:** p+60–156 memurun yüzü sert mum ışığında (alttan), **sağ el masada y 1000–1330**, duvarda gölge (sol-üst x 100–520, y 430–860, %22), **çatı penceresi A** (gece: kollar DINLEN dikey çubuk) sağda. Ölü alan: alt masa + kese + mum; üst duvar + gölge + pencere.
-- **Karakterler:** Louis z 1.5, u 0.30 (baston sağ yanında). Memur z 1.7, u 0.62.
+- **Karakterler:** Louis z 1.5, u 0.30 (baston sağ yanında). Memur z 1.7, u 0.62 (cebinde eldiven köşesi YOK; çıplak el).
 - **Zaman çizelgesi:** 0–20 Louis öne eğilir · 6–48 "Tek bir hata.", 50–60 "Fazlası..." · **60 kesme** · 60–72 Louis'nin eli ikinci keseyi memurun önüne kaydırır · 72–100 memurun gözü kese ↔ pencere (korku + açgözlülük, yakın) · **102, 117, 132 üç parmak tiki (manipulateur itme/çekme)** · mum gölgesi T biçimli kol silueti · 132–156 hold.
 - **Temas:** **1356 (p+72)** kese "tok" · **1386, 1401, 1416** parmak "tık" (−6) · mum cızırtısı −12.
 - **Süreklilik:** İkinci kese P07'den. Direk kolları DINLEN dikey çubuk (gece).
@@ -225,7 +267,7 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 ### P11 · kare 1692–1884 · TOURS-KULUBE-IC → INSERT (gündüz)
 - **Çekim ölçeği:** **bel** memur profil (p+0–64, yüz ≥230 px) → insert (p+64–192, sap+damla %25).
 - **Kadraj:** `cs 1.00→1.04` bel; insert 45°, üst köşede **çatı penceresi A'nın alt kenarı** ve bulanık direk kolu. Ölü alan: orta plan alt üçte bir tezgâh + manipulateur gövdesi + zemin.
-- **Karakterler:** Memur z 1.8, u 0.50 (profil, gri ceket, şakağı terli); sapı iki elle iter-çeker. Pencere B'de uzak kule.
+- **Karakterler:** Memur z 1.8, u 0.50 (profil, gri ceket, şakağı terli; **ceket cebinde kahraman eldiven köşesi** = sakladığı sır, bel planda kameraya dönük cepte ≥50×30 px, iki parmak ucu ayrı); sapı iki elle iter-çeker. Pencere B'de uzak kule.
 - **Zaman çizelgesi:** 10–24 sapı kavrar · 24–52 pencere B'ye bakar (gerginlik, bel) · **64 kesme: insert** · 72–84 itme, çekme · **96 fazladan çentik TIK**, kırmızı halo · **102 direk karşılık** · 90–120 çenede damla · 120–132 düşer · **132 sapa "tıp"** · 150, 166 tık, tık · 170–192 sap durur.
 - **Temas:** **1704, 1764, 1776, 1788** TIK, **1794** direk karşılık (−10, kol görünürken), **1824** damla (−3), **1842, 1858** · Müzik 1788–1832 kısılır.
 - **Süreklilik:** Manipulateur düzeni (→P12, P13). Çentik X (→P12–P14). Ter damlası yalnız burada.
@@ -272,7 +314,7 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 - **Kadraj:** Dikey bölünmüş, ayraç y 948–972, `cs 1.00→1.04`; her iki yarı uca kadar dolu. ÜST: üst 0–220 perde/pencere/şamdan, **defter pupitrde x 120–520, y 540–840**, altın yığını x 540–760, y 800–940, François eli x 780–1000, y 540–780. ALT (Tours çatı katı bürosu) y 972–1920: memur masa başında y 1050–1500, alt 1500–1920 masa ön yüzü, manipulateur, zemin, ön plan sandalye sırtı.
 - **Eylem:** 6–36 sikke · 20–70 François kadeh · **22–40 Louis "1835" yazar** · **40–54 sayfayı koparır** (~210 px) · 54–110 yaprak ayracın önünden süzülür · **112 memurun omzuna konar** · 118–132 Louis boş sayfaya geçer · 52, 124 öksürük · 132–144 hold.
 - **Temas:** **2336, 2344, 2354** sikke · 2350–2368 tüy cızırtısı · **2370** sayfa yırtılması · **2380** öksürük · **2398** kadeh · **2440** yaprak omza · **2452** öksürük.
-- **Süreklilik:** Defter P02'den. Memur eldiven elinde (→P16).
+- **Süreklilik:** Defter P02'den. Memur eldiven elinde = kahraman eldiven (→P16); P11'de cepteki köşe buradan elde (aynı nesne, cep boş; imza nesnesi tekildir). François taba deri eldivenli elle kadeh tutar; Louis'nin yazan eli çıplak, cebinde beyaz köşe.
 - **Geçiş (çıkış):** MATCH (memur omuz silueti).
 - **Ekran yazısı:** "1834 → 1836" ÜST-BANT, 2334–2466.
 - **Anlatım:** "İki yıl boyunca... herkesten önce bildiler." **Dokunuş:** elle yazılmış "1835" sayfası.
@@ -292,8 +334,8 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 ### P17 · kare 2640–2784 · YATAK-ODASI
 - **Çekim ölçeği:** **yakın** memur yüzü (y 520–1100 sol-üst, yüz ≥%12) + alt-sağda el/saçak (≥240 px).
 - **Kadraj:** `cs 1.00→1.05`; pencerede kule **DINLEN dikey çubuk, statik** (x 640–960, y 300–620). Ahşap yatak başlığı kadrajda. Ölü alan: alt sehpa, yorgan, kâğıt, hokka.
-- **Eylem:** 0–20 başını çevirir · 10–60 fısıltı (itiraf; dudak) · el yazar (0–70) · 66–108 "Ve anlattı." · **84–110 kurutma kumu** · 126–144 sessizlik, memur gözlerini kapatır.
-- **Temas:** **2648** yastık · kalem (2640–2710) · **2724** kum (−5).
+- **Eylem:** 0–20 başını çevirir · 10–60 fısıltı (itiraf; dudak) · el yazar (0–70) · 66–108 "Ve anlattı." · **84–110 kurutma kumu** · **110–126 sayfa hafif eğilir, fazla kum sehpaya akar/yatışır** (dokunuş net 1.1 sn: p60–126) · 126–144 sessizlik, memur gözlerini kapatır.
+- **Temas:** **2648** yastık · kalem (2640–2710) · **2724** kum (−5) · 2750–2766 fazla kum sehpaya akar (−10).
 - **Süreklilik:** Sandalye silüeti + sehpa (P16). Kule DINLEN → P21'de gündüz BEKLE (yatay çubuk).
 - **Geçiş (çıkış):** SERT.
 - **Ekran yazısı:** Altyazı (Memur) ALT-BANT, 2660–2706.
@@ -313,10 +355,10 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 ### P19 · kare 2916–3036 · MAHKEME
 - **Çekim ölçeği:** insert dosya + başkanın eli (p+0–26) → **göğüs/yakın sanık sırası, ters açı (p+26–52; yüzler ≥240 px, z 1.3)** → insert eller (p+52–120, ≥380 px).
 - **Kadraj:** Ölü alan: orta plan alt üçte bir sıra korkuluğu + şapkalar + paneller; üst arka duvar paneli + huzme.
-- **Karakterler:** Başkanın eli (koyu cübbe kolu). Sanık sırası önden: **Louis ekran solu** z 1.3, u 0.34; **François ekran sağı** z 1.3, u 0.62; şapkalar dizde.
+- **Karakterler:** Başkanın eli (koyu cübbe kolu). Sanık sırası önden: **Louis ekran solu** z 1.3, u 0.34; **François ekran sağı** z 1.3, u 0.62 (**taba deri eldivenli**, Louis'nin beyazıyla kontrast; kenetli elleri p+108–120'de kadrajda); şapkalar dizde. Louis eli giyme öncesi çıplak.
 - **Zaman çizelgesi:** 0–6 başkan karar kâğıdını bırakır · 6–9 dosya kapağını kapatır · **9 TOK** + "BERAAT" aynı karede · 26 kesme · **30–60 François'nın gülümsemesi yayılır (göğüs/yakın)** · 38–50 Louis cebinden eldivenleri çıkarır (kımıldamaz, soğuk) · **52 insert** · 54–70 sol eldiven · **72–104 sağ eldiven parmak parmak** · **108 bilek düğmesi** · 108–120 eller kenetli.
 - **Temas:** **2925 (p+9)** dosya kapağı "TOK" (−2) · **2960** cep kumaşı · **2982** sol eldiven · **2994, 3001, 3008, 3015** sağ eldiven (−5) · **3024** bilek düğmesi.
-- **Süreklilik:** Louis cep eldivenleri (P02…P18).
+- **Süreklilik:** Louis cep eldiveni (P02…P18 cepte, el çıplak; **P19'da ilk kez giyilir**; cep ön yüzü kameraya dönük çıkarma anı, p+38–50).
 - **Geçiş (çıkış):** KÂĞIT.
 - **Ekran yazısı:** "BERAAT" ALT-BANT, 2925–3012, kırmızı, −4°, 180 px, animasyonsuz.
 - **Anlatım:** "Beraat." **Dokunuş:** Louis'nin eldiven giymesi.
@@ -324,7 +366,7 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 ### P20 · kare 3036–3192 · KANUN-INSERT
 - **Çekim ölçeği:** insert (tepe), güve kanadı ≥240 px.
 - **Kadraj:** kitap x 140–940, y 560–1380, `cs 1.00→1.05`. Üst üçte bir cübbe kolu + hokka + kalem + huzme; alt üçte bir masa, dosya yığını, alt-sol küçük mühür.
-- **Eylem:** 0–70 sayfa çevirme · 72 bomboş, parmak basar · güve p+0'dan cilt oluğunda · **100 kanat açar (~240 px)** · 108–150 kalkar, çıkar · 150–156 yatışır.
+- **Eylem:** 0–70 sayfa çevirme · 72 bomboş, parmak basar · güve p+0'dan cilt oluğunda · **84 parmağın basmasının sarsıntısıyla güve antenleri titrer, ayak değiştirir** (dokunuş net p84–156 = 1.2 sn) · **100 kanat açar (~240 px)** · 108–150 kalkar, çıkar · 150–156 yatışır.
 - **Temas:** **3042…3082** sayfa "fışt" ×6 · **3108** · **3136** · 3144–3186 pırpır.
 - **Süreklilik:** Güve p+0'dan görünür.
 - **Geçiş (çıkış):** SERT.
@@ -370,8 +412,10 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 
 | Öğe | Durum plan plan |
 |---|---|
-| **Beyaz eldiven** | P01 memurun elinde, ışık havuzuna bırakılır · P10 pakette · P15 memurun elinde buruşuk · P16 elinde → yere düşer · P23 Paris'te pakete konur |
-| **Louis'nin eldivenleri** | P02, P04, P06, P07: sağ göğüs cebinden beyaz köşe · P19 çıkarılıp giyilir |
+| **Beyaz eldiven (kahraman, imza nesnesi tekil)** | P01 memurun elinde (bir el boyu ≈350 px), ışık havuzuna bırakılır · P09 pakette · P10 pakette · **P11 memurun ceket cebinde köşe (sakladığı sır)** · P15 memurun elinde buruşuk (cep boş) · P16 elinde → yere düşer · P23 Paris'te pakete konur. **P07/P08'de memur cebinde YOK** (eldivenler P09'dan sonra); P01 flash-forward, cepte köşe yok. Beyaz (`#e5d9be`–`#f4efe2`) yalnız bu eldiven + Louis'nin cep eldiveni |
+| **Louis'nin eldiveni (cepte, beyaz)** | **Louis P02–P18 çıplak el** (baston eli, saat tutan el, yazan el dahil). P02, P04, P06, P07: sağ göğüs cebinde beyaz köşe (P02 göğüs ≥50×30 px; P04 bel ≥29×17 px) · **P19 çıkarılıp ilk kez giyilir** |
+| **François eldiveni** | **Tüm planlarda taba deri `#8a6a48`** (P02, P04, P07 sahanlık, P15 kadeh, P18 dizde şapkayla, P19 sanık sırası: taba eldivenli, Louis'nin beyazıyla kontrast). Krem/beyaz/gri eldiven yok |
+| **Kompars eldiveni** | Koyu ya da ten; beyaz/krem yok (Borsa kalabalık, Tüccar, katip, Paris adamı: koyu/ten; Paris adamı P23'te çıplak el + gri manşet) |
 | **Louis'nin ciltli defteri** | P02 pupitrde (açık avlu, arcade altı) → P15 "1835" |
 | **Gri manşet** | P09 + P23: gri manşet, sağ mansette altın düğme. P21: beyaz manşet |
 | **Louis'nin bastonu** | P04 **dış (ekran sağı) elde, el görünür** · P06 korkuluğa dayalı · P07, P08 masaya dayalı · P14 masada · P18–P19 sırada |
@@ -408,7 +452,30 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 12. **v2.3:** P04 yüz ölçeği yeniden hesaplandı (75 px → cs 3.2); P04 baston eli (SK1); P04 ızgara u 0.32'ye karşı baston ulaşamıyordu → fare Louis'ye yürür; P02 ön plan siluet ufuk kuralı; P02 etiket–tebeşir çakışması; tricolore/sivri kemer kaldırıldı; P01 paket/ip/kol, eldiven bırakma, kol konumu; P07 müdür bel plana, memur göz kırpması gövde irkilmesine; P13/P16/P11 yakın ölçek.
 13. **v2.4 (R2):** gece kol konumu DINLEN (önceki "B sabit" hatası düzeltildi); P21/P22 BEKLE; dormer → attique; P14 düz kirişli tavan; Tours çatı katı + çatı penceresi + kent içi yuvarlak kule (olası, tek kaynak: kesin iddia olarak anlatıma girmez); ara kule yuvarlak taş kule; P05 iki ayrı çizgi.
 14. **v2.5 (Borsa):** P02 kapalı salon yerine **açık portikli avlu** (Ek 3: 1749'da avlu açıktı, yarım daire arcade; tek kaynak, olası). Kadraj: gündüz tepeden altın güneş, tahta arcade altında; salon pencereleri/estrad kalktı. **Dikkat:** motion A2/R1 değerleri (`ODALAR.borsa` salon parametreleri, pencereli salon kodu) avlu için uyarlanmalı; z 1.65/1.75 ve ufuk kuralı aynı kalır. Kapatılma tarihi bilinmediğinden 1834'te hâlâ açık olup olmadığı kesin değil: kullanıcı kararıyla açık avlu çiziliyor, açıklamada "dramatizasyon/mekân yorumu" notu uygun olur.
-15. **Dönem:** %3 rente, ipe asılı réverbère [T], Notre-Dame yok, T regülatör, sarkaçlı saat, kurutma kumu, arma/taç yok.
+16. **v2.6 (Eleştiri C + motion A3 "onay bekliyor" değerleri + tasarım v2.3):** kararlar tablosu:
+
+| Plan | Öğe | Motion A3 | Karar |
+|---|---|---|---|
+| P01 | ışık havuzu | (430,1170), fener x 290 | **Kabul, düzeltmeyle:** fener x 430'a taşınır, havuz fener tabanından türer (TC3); bırakma havuz içinde |
+| P01 | pencere | x 640, y 420, 300×370 | **Kabul, genişletildi:** 360×370 (x 600–960); direk x 780; B uçları ≥25 px içeride (TC2) |
+| P01 | direk L 174, paket (670,1270) | bilgi | Kabul; eldiven büyüdüğü için paket yatağı büyür |
+| P04 | bayrak (sol 2. ev, 9.6 m) | onay bekliyor | Kabul (kullanıcı isteği), gece paleti %60 sarkık; kaldırma önerisi kullanıcıya soruldu |
+| P04 | Saint-Michel x 470, y 880, h 320 | onay bekliyor | **Kabul:** sol-arka, çatıların arkasında, direklerin önünde değil (SC10); tepe y ≥410 |
+| P04 | SokakOnPlan paralaks k 1.3→1 | onay bekliyor | Kabul (zemin teması); derinlik dolly ile |
+| P04 | AVIS ilanı yok | bilgi | Kabul (kanıtsız metin) |
+| P02 | cy +30→−10→−40 | onay bekliyor | **Kabul:** p0–78 cy +30→−8 (ayak alt bantta kalmasın) |
+| P02 | kapanış cs 1.30, cx +70, cy −110 | onay bekliyor | **Kabul** |
+| P02 | tahta galeri duvarı, 1.75–3.75 m | onay bekliyor | Kabul; insert hesabı bunun üstüne |
+| P02 | üçlü z 1.45/1.45/1.52 | bilgi | **Kabul**, plan z değerleri güncellendi |
+| P02 | kadran, amblemler (çapa, Merkür asası, terazi, bereket boynuzu) | onay bekliyor | Kabul (nötr, okunmaz) |
+| P02 | tezgâh + demir kapı kanadı | bilgi | Kabul; kapı dikey çubuk (BC1), tezgâh tam görünür ya da kalkar (BC5) |
+| Tümü | ortak `ToursEtiketi` | onay bekliyor | Kabul |
+| P04 | push-in cx/cy | – | **Değişti:** cx −80e, cy +40e (SC3, SC9); kare tablosu güncel; kare sayısı aynı |
+| P02 | etiket süresi p0–78 → p0–50, insert p+78 | – | **Değişti:** tebeşir p+90 ve tüm temas kareleri aynı |
+| P07 | p66–96 push-in 1.08→1.45 | – | **Değişti:** BAM p98 ve kareler aynı |
+
+Kare/temas değişimi yok: yalnız kamera, kadraj ve etiket zamanı. Toplam 3600.
+17. **Dönem:** %3 rente, ipe asılı réverbère [T], Notre-Dame yok, T regülatör, sarkaçlı saat, kurutma kumu, arma/taç yok.
 
 ---
 
@@ -471,7 +538,7 @@ Temas kareleri her planda ve `sahne-plani.json` `temaslar[]` içinde mutlak kare
 | Plan | Küçük jest | Boyut / çözüm | Ölü alan çözümü |
 |---|---|---|---|
 | P01 | eldiven+el | ~330 px ✔ | cs 1.14→1.06; masa ön yüzü ≈120 px ahşap |
-| P02 | Louis yazması, tebeşir | Louis göğüs cs 2.8 (≥240); toz ≥240 | z 1.65/1.75; açık avlu: alt zemin güneş yamaları + sütun gölgeleri, ön plan siluet (baş y ≈1000–1100), sol sütun; üst arcade kuşağı + gök şeridi |
+| P02 | Louis yazması, tebeşir | Louis göğüs cs≈3.0 (yüz ≈295, yazan el ≥230); tahta insert %30, toz ≥240, parça ≥43 px | z 1.65/1.75; açık avlu: alt zemin güneş yamaları + sütun gölgeleri, ön plan siluet (baş y ≈1000–1100), sol sütun; üst arcade kuşağı + gök şeridi |
 | P03 | at başı | cs 2.60, %13 | harita tam |
 | P04 | göz kırpma, sırıtış | yüz ≈240 px (cs 3.2) | fıçı, basamak, birikinti ön planı |
 | P05 | – | mühür 300 px ✔ | harita tam |
@@ -532,7 +599,7 @@ Yüz ≥230 px'te çizilecek, kontur kalınlığı ölçeğe göre yeniden hesap
 
 | Plan | Kimin yüzü | Ölçek | Gereken |
 |---|---|---|---|
-| P02 | Louis | göğüs (≥240 px) | aşağı bakış, kaş düz, ifadesiz; defter/kalem eli; tepeden güneş, şapka gölgesi |
+| P02 | Louis | göğüs (yüz ≈295 px) | aşağı bakış, kaş düz, ifadesiz; **`KolEl` yazan çıplak el ≥230 px, tüy 3 parmak arasında, mürekkep satırı**; cep eldiven köşesi ≥50×30 px; tepeden güneş, şapka gölgesi |
 | P04 | François | bel→yakın (≈240 px) | `visem` "kazanır", kameraya bakış, **göz kırpma**, **sırıtış**, şapkalı el |
 | P06 | Louis | bel/göğüs (≥260 px) | yukarı bakış, sabırsız kaş |
 | P07 | Müdür | bel (≥230 px) | açgözlü bakış, yaşlı/iri yüz; memur gövde jesti |
@@ -547,3 +614,44 @@ Yüz ≥230 px'te çizilecek, kontur kalınlığı ölçeğe göre yeniden hesap
 | P14, P09, P18, P21, P23 | – | yüzsüz/kompars/sırt | yüz gerekmez |
 
 Ek: P08 ve P17'de alttan ışık; P07/P08 memur farklı ölçekte tutarlı; P13 (geri yaslan) ve P14 (öne eğil) farklı klip.
+
+---
+
+## 11. Kontrol karesi protokol listesi (Eleştiri C bölüm 8, A4 için)
+
+Her kare: tam boy + 360×640 + güvenli alan bindirmeli (IG sağ sütun x 920–1080, y 1100–1700 ayrı kilit bölgesi). Her plan: ilk + dokunuş/temas + kapanış. Mutlak = start + p.
+
+**Zorunlu kalibrasyon planları**
+
+| Plan | Plan içi kare (mutlak) | Rolü |
+|---|---|---|
+| P01 | 0 (0) · 54 (54) · 60 (60) · 100 (100) · 140 (140) · 155 (155) | ilk/kapak (A) · kol B ilk · eldiven en yüksek, kâğıt yatar · B 360 testi · eldiven havuza "tap" · kapanış |
+| P02 | 0 (156) · 30 (186) · 50 (206) · 78 (234) · 90 (246) · 102 (258) · 114 (270) · 126 (282) · 150 (306) · 168 (324) · 203 (359) | ilk · etiketler görünür/katip yazıyor · etiket çıkmış · insert ilk kare · tebeşir kırılır · sekme-1 · sekme-2 (parça yerde) · geri çekilme sonu · göğüs ilk · yazan el + cep köşesi · kapanış |
+| P04 | 0 (564) · 78 (642) · **87 (651)** · **108 (672)** · **138 (702)** · **143 (707)** · 144 (708) · 150 (714) · 189 (753) · 215 (779) | ilk · **fare insert ilk kare (boş ızgara)** · **fare pençesi ızgara demirine** · **baston ucu TAK** · **kuyruk ucu tink** · **kapanış, boş ızgara** · bel ilk · Louis durur · göz kırpma · kapanış |
+
+**Diğer planlar (ilk · dokunuş · kapanış, mutlak)**
+
+| Plan | İlk | Dokunuş | Kapanış |
+|---|---|---|---|
+| P03 | 360 | 492 (gün sonu), 510 (at nefesi) | 563 |
+| P05 | 780 | 844 (sollama), 930 (mühür tok) | 995 |
+| P06 | 996 | 1036 (tüy konar), 1080 (fiske) | 1127 |
+| P07 | 1128 | 1168 (kese tok), 1226 (BAM, çekmece ≥%10) | 1283 |
+| P08 | 1284 | 1356, 1386–1416 (tik) | 1439 |
+| P09 | 1440 | 1506 (çizme) | 1559 |
+| P10 | 1560 | 1620 (çorap sarkar), 1664 (flop) | 1691 |
+| P11 | 1692 | 1788 (çentik), 1824 (damla) | 1883 |
+| P12 | 1884 | 1906, 1998 (kaş tepede) | 2027 |
+| P13 | 2028 | 2094 (esneme tepede), 2142 | 2183 |
+| P14 | 2184 | 2214 (bıçak), 2274 (T kol) | 2327 |
+| P15 | 2328 | 2370 (yaprak), 2440 (omza) | 2471 |
+| P16 | 2472 | 2586 (tok) | 2639 |
+| P17 | 2640 | 2724 (kum), 2760 (kum yatışmış) | 2783 |
+| P18 | 2784 | 2892 (TIK) | 2915 |
+| P19 | 2916 | 2925 (TOK), 3008 (parmaklar) | 3035 |
+| P20 | 3036 | 3120 (anten p84), 3136 (kanat) | 3191 |
+| P21 | 3192 | 3258 (sürgü) | 3323 |
+| P22 | 3324 | 3438 (üç yay dolu) | 3467 |
+| P23 | 3468 | 3558 (ip gerilir), 3582 (düğüm) | 3599 |
+
+Ek denetimler: "eldiven beyazı yalnız kahraman + Louis cep eldiveni", Louis elleri P02–P18 çıplak, François taba `#8a6a48`, dokunuş ölçeği tablosu (Bölüm 1b) px ölçümü.
