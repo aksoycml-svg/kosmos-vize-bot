@@ -6,6 +6,8 @@ Bu belge **tasarımdır, kod değildir.** Kod bloğundaki sabitler motion'a öne
 
 **v2.2 (eleştiri B + CLAUDE.md yeni kuralları):** Yeni bölümler: **3.1 PaketKagidi modülü** (yumuşak kâğıt paket; kutu/koli değil; kapalı/yarı açık/açık/kabartılı), **3.2 Bayrak (tricolore) çizim tanımı**, **2.11 Tüccar kartı** (motion'ın uyguladığı hâl), **2.12 Memur kolu + eli (`KolEl` modülü)**. Borsa salonundan tricolore kalktı (1.1). Paletlere `MEMUR_EL` genişletildi, `TUCCAR` güncellendi (bölüm 6).
 
+**v2.3 DEĞİŞİKLİK NOTU (eldiven sürekliliği, eleştiri C SÜ1/SC1/TC1 + CLAUDE.md "İmza nesnesi tekildir"):** Beyaz eldiven filmin **imza nesnesidir**, beyaz yalnız 3 yerde: (1) kahraman eldiven (P01/P10/P15*/P16/P23), (2) Louis'nin cebindeki eldiven (P02–P18 cep köşesi), (3) P19'da Louis'nin giydiği eldiven. Louis P02–P18 **çıplak el**; François **taba deri eldiven** `#8a6a48`; kompars/rig varsayılan eldiveni krem/beyaz/açık gri olamaz; eldiven ölçüsü = yetişkin eli. İşlenen yerler: yeni **bölüm 0.6**, kartlar 2.1, 2.2, 2.3, 2.8, 2.10, 2.12 notu, prop tablosu (eldiven + yeni "cep eldiveni" satırı), bölüm 6 kod bloğu (`GLOVE`, `FRANCOIS_TABA`, `LOUIS_ELDIVENLI`, `ELDIVEN_OLCEK`, `KOMPARS_ELDIVEN`), 0.4 P18 satırı, 1.10 notu. (*P15: memurun elindeki buruşuk eldiven = aynı kahraman eldiven, 4. eldiven değil; orkestra teyit etsin.) **Memurun sol göğüs cebindeki beyaz köşe KALDIRILDI** (ikinci cep eldiveni = imza nesnesi tekrarı); sahne-plani/motion bu cep köşesini çizmesin.
+
 **Kapsam notu:** Mekân kartlarının derinleştirmesini artık mekan-sorumlusu ajan `storyboard-v2/mekanlar.md` içinde yapıyor. Bu dosyada **karakter, prop, tipografi ve kimlik** bölümleri güncel; **mekân kartları (Bölüm 1) için yalnız yanlışlar düzeltildi.** Her kart (1.1–1.12) için **ayrıntı: mekanlar.md**; çakışırsa mekanlar.md önceliklidir, dönem doğruluğu sorularında `donem-dogrulama.md`.
 
 Etiketler (her dönem iddiasının yanında):
@@ -82,7 +84,7 @@ Güncel `dokunuslar.md` v2.1 ve `sahne-plani.md` okundu; önceki çakışmaları
 | Bordeaux kulesi | **Saint-Michel çan kulesi üstünde T kol** (P06 kurulum, P14) | 1.7, 1.8 |
 | P03 disk tarafı | Yönetmen sağ-üst, yaratıcı sol | Disk 200 px; tarafı yönetmen/yaratıcı seçer |
 | Telgrafçı rengi | Yönetmen "kahve frak" (hâlâ), suç ortağı da kahve | **Zeytin yeşili** önerim; yönetmen onaylamalı |
-| P18 cep | Yaratıcı: eldiven ucu görünür; yönetmen: "sırttan görünmüyorsa yan kesitten" | Yan kesit/omuz üstü çözüm yönetmende |
+| P18 cep | Yaratıcı: eldiven ucu görünür; yönetmen: "sırttan görünmüyorsa yan kesitten" | Yan kesit/omuz üstü çözüm yönetmende. **v2.3:** cep köşesi 0.6'daki biçimle (kumaş kıvrımı + iki parmak ucu, ≥ 30×18 px) görünür; P18'de Louis çıplak el |
 
 ### 0.5 Oda zemin parametreleri (`Sokak.tsx zemin(z,u)` sözleşmesi)
 İç mekânlarda `zemin()` ile aynı formül: `y = yNear + (yFar − yNear)·sz(z)`, `x = lerp(xNear, xFar, sz(z))` (sol/sağ ayrı), ölçek `sNear → sFar` doğrusal.
@@ -99,6 +101,45 @@ Güncel `dokunuslar.md` v2.1 ve `sahne-plani.md` okundu; önceki çakışmaları
 | SOKAK-BORDEAUX | mevcut `zemin()` / `sokakGenislik()` | | | | bkz. 1.3 |
 
 Ayak ve baston ucu daima `zemin(z,u).y` değerine basar.
+
+### 0.6 İmza nesnesi: beyaz eldiven (v2.3, KARAR)
+**Kural (CLAUDE.md "İmza nesnesi tekildir"):** filmde "eldiven beyazı" yalnız aşağıdaki 3 yerde görünür. Bunun dışında hiçbir eldiven, manşet-eldiven, el örtüsü beyaz/krem/açık gri olamaz. Gerekçe: P19 "çıplak el → eldiven = yükseliş" okunsun; sesi kapalı izleyen "beyaz eldiven" ile tek bir nesneyi (memurun sırrı) bağlasın.
+
+| Yer | Planlar | Biçim | Renk |
+|---|---|---|---|
+| **A. Kahraman eldiven** (paketin içi) | P01, P10, P15 (memurun elinde buruşuk), P16, P23 | glacé erkek eldiveni, üç çizgili dikiş, ağzı açık manşet | `GLOVE.hero #f4efe2` |
+| **B. Louis'nin cep eldiveni** | P02'den P18'e (sağ göğüs cebi) | cep ağzından **kumaş kıvrımı + iki parmak ucu**; kart/bilet/rozet gibi okunmaz (aşağıda) | `GLOVE.hero`, kıvrım gölgesi `GLOVE.heroGolge` |
+| **C. Louis'nin giydiği eldiven** | P19 (EldivenEl insert + sonrası) | B'deki eldivenin aynısı elde; çıplak elden parmak parmak giyilir | `GLOVE.hero` |
+
+**Yasaklar:** François beyaz/krem eldiven giymez. Memurun ceket cebinde beyaz köşe yok (v2.3). Kompars/yargıç/jüri/arabacı/Paris elleri/görevli eldiven giymez ya da koyu eldiven giyer. Görevli (P21) beyaz **manşet** eldiven değildir ama kayma olmasın diye `#e0d9c6` (L\* ≈ 87) olarak koyultuldu, "eldiven beyazı bandı" dışında. "Eldiven beyazı bandı" = L\* ≥ 90 ve C\* < 12 (hero: L\* 94.5, a\* −0.6, b\* 6.9).
+
+**Karakter eldiven özeti**
+| Karakter | P02–P18 | P19 | Not |
+|---|---|---|---|
+| François | taba deri eldiven `#8a6a48` (P02, P04; mahkemede çıplak: `FRANCOIS_ELSIZ`) | çıplak | beyazla karışmaz |
+| Louis | **çıplak el** (`LOUIS_ELSIZ` P02'den P18'e genişledi) | hero eldiveni giyer (`LOUIS_ELDIVENLI`) | eldiven yalnız cepte |
+| Memur | çıplak el (cep köşesi yok) | — | eldiveni **paketten** çıkarır (P01), elinde taşır (P15/P16) |
+| Kompars (silüet) | eldiven yok (siluet filtresi eli kaybeder) | | yüzlü kompars (tüccar) çıplak el |
+
+**Ton ayrışması (ΔE; hesap D65, sRGB→Lab, motion ışık altında `sb2_kontrol.py` ile doğrulayacak)**
+| Çift | Lab (nötr ışık) | ΔE76 nötr | Işık altı hedef |
+|---|---|---|---|
+| hero `#f4efe2` | L 94.5 a −0.6 b 6.9 | referans | — |
+| François taba `#8a6a48` | L 47.2 a 8.2 b 23.9 | **≈ 51** | ΔE2000 ≥ **20** her ışık varyantında (gün altın, fener amber, ay mavisi) |
+| François taba vurgu `#a88660` (en açık) | L 58.2 a 7.8 b 25.5 | ≈ 42 | aynı |
+| çıplak ten `#d9b190` (Louis eli) | L ≈ 73.6 a ≈ 12 b ≈ 24 | ≈ 30 | ΔE2000 ≥ **15** (P19'da çıplak → hero geçişi okunsun) |
+| eski Louis gri eldiven `#cfc9b8` (KALDIRILDI) | L ≈ 80 | ≈ 16 | eşik altı: hata kaynağıydı |
+| eski François krem `#e8dcc0` (KALDIRILDI) | L ≈ 88 | ≈ 9 | eşik altı |
+**Işık altı kuralı:** taba eldiven amber ışıkta ısınır (kızıl-kahve), ay ışığında soğuk-koyu kahve olur; **L\* hiçbir zaman 70'i geçmez**, hero hiçbir zaman 80'in altına düşmez (kaynağı fener/pencere olan planlarda). Ölçüm aracı: "eldiven beyazı yalnız A/B/C" kontrolü (bölge ton + L\* eşiği) her kare protokolünde.
+
+**Eldiven ölçüsü (eleştiri C TC1: eldiven elin %70'iydi):** `ELDIVEN_OLCEK` = bir yetişkin eli. Eldivenin el kısmı (manşetsiz) = çıplak el boyunun **×1.05**'i; P01'de el ≈ 270 px ise eldiven el kısmı ≈ 285 px, **avuç genişliği ≈ 130 px** (elin ≈ %48'i), parmaklar dolgun, uçları yuvarlak, manşet ağzı açık (kıstırılan kenar), bilek üstüne ≈ 60–70 px taşar. Yassı boş eldiven: kenar hafif dalgalı, avuçta tek kırışık. **Tutan elden küçük olamaz**; P10, P15, P16, P23, P19 aynı tabloya bağlı (hepsi el boyuna göre ×1.05; sabit px değil).
+
+**Cep eldiveni (B) çizim tanımı (eleştiri C SÜ1 "rozet okunmasın"):**
+- Ölçek: yakın/göğüs planda **≈ 50×30 px** ekranda (eski 24×14 → telefonda bilet/rozet okunuyordu); orta planda ≥ 30×18 px, geniş planda (Louis boyu < 400 px) köşe **çizilmez** (okunmayan minik beyaz leke de rozet gibi okunur).
+- Biçim: dikdörtgen/kart **değil**. Cep ağzından yukarı sarkan **iki parmak ucu** (yuvarlak, biri öbüründen ≈ 8 px yüksek), aralarında kumaş kıvrımı çizgisi, ağız çizgisi eldiven kumaşının üstünden geçmez (kumaş cepten taşar), hafif öne sarkma (−12° eğim korunur), üst kenar eğri. Parmak ucu boğumu için 1 ışık + 1 gölge çizgisi.
+- Renk: `GLOVE.hero #f4efe2`, cep içine giren kısım `GLOVE.heroGolge #d9d2c0`, cep ağzı gölgesi `#b5ad98`. Bordo frak üstünde tek beyaz leke: kontrast yüksek, **vurgu olarak yeter**, ikinci beyaz öğe (mendil, gömlek köşesi) aynı göğüste yok.
+- Konum: **sağ göğüs cebi**, kamera tarafında. Louis'nin kolu göğsü örtüyorsa (P02 p168) cep tarafı kameraya dönük kurulur ya da köşe kolun üstünde kalır (eleştiri C BC7). Kurulum → karşılık: P02'de en az bir kare ≥ 50×30 px görünür.
+- Rig yerel: x ≈ 40, y ≈ −325 (eski) → yeni boyut rig'de ≈ ×2.1; motion `Louis.cepEldiven` overlay'i `EldivenKose` (ayrı SVG, parmak uçları iki yuvarlak) olarak yazsın.
 
 ---
 
@@ -201,7 +242,7 @@ Ayak ve baston ucu daima `zemin(z,u).y` değerine basar.
 - **Düzen [T]:** başkan + 2 yargıç (3) ve **12 kişilik sivil jüri siluet sırası solda** [D~ 1d: sayı güvenli, yerleşim tasarım kararı, tarihî iddia olarak sunulmaz]. Salon tarifi araştırmada yok.
 - **İki kamera yönü:** MAHKEME-A (kürsü yönü, P18, pencereler solda; **sarkaçlı saat x 760–960, y 470–680, ≥ 210 px**, sarkaç görünür) ve MAHKEME-B (sanık sırası yönü, P19; pencereler sağda, huzmeler sağdan, Louis ekran solu, François sağı).
 - Palet: lambri `#3b2818 / #5b3d25`, zemin `#2d2118`, kürsü `#2f2016`, cübbe `#2a1c1e`, rabat `#efe9d8`, toque `#1a1418`, huzme `#fff1c8` α .22, dosya kapağı `#3a2c24`, karar kâğıdı `#e9dfc9`. Alçak açı, kaçış (540, 1150). Karakterler pencereye bakar.
-- Yargıçlar Kukla dışı statik siluet; iki kardeş Kukla (`FRANCOIS_ELSIZ`, `LOUIS_ELSIZ`, şapkalar dizde). P19: Louis çıplak elle başlar, cepten beyaz eldiveni çıkarır, parmak parmak giyer (EldivenEl insert).
+- Yargıçlar Kukla dışı statik siluet; iki kardeş Kukla (`FRANCOIS_ELSIZ`, `LOUIS_ELSIZ`, şapkalar dizde). P19: Louis çıplak elle başlar (P02–P18'in devamı, `LOUIS_ELSIZ`), cepten beyaz eldiveni çıkarır, parmak parmak giyer (EldivenEl insert, `LOUIS_ELDIVENLI`, imza nesnesi C); François bu planda **çıplak el** (taba eldiven yok, beyaz hero eldiven tek başına parlasın).
 
 ### 1.11 KANUN-INSERT (P20) — ayrıntı: mekanlar.md
 **Düzeltme:** yargıç kolu **tek koyu ton cübbe** (kırmızı/siyah iddiası yok), rabat manşet `#efe9d8`. Code pénal (1810) cilt, yeşil çuha `#2f4a40`, "bomboş sayfa" dramatizasyon; güve p+0'dan oluğunda kapalı (~110 px) → açık ~220 px, üst-sağdan çıkar. Tek çapraz huzme.
@@ -217,22 +258,22 @@ Ahşap dokulu, neon yok; yaylar `boyaKrem #e6c88c` ile **alttan yukarı dolar**;
 **Yakalanan tutarsızlıklar**
 - `karakter/louis-kart.png`: sağ alt portrede **yeşil dolar benzeri kâğıt para** (kural: yok). Yalnız yüz/kıyafet referansı; para sahnesinde altın/gümüş frank.
 - `karakter/francois-kart.png`: yelek gri desenli; rig `#6e5a3a` kahve-altın. Şapka kartta lacivert, rig/senaryo siyah. **Rig/senaryo kanon.**
-- Rig tüm karakterlere eldiven çizer; çıplak el için `glove = skin`.
+- Rig tüm karakterlere eldiven çizer; çıplak el için `glove = skin`. **v2.3:** rig varsayılan eldiveni artık krem/gri **olamaz** (François krem `#e8dcc0` ve Louis gri `#cfc9b8` kaldırıldı; bölüm 0.6). Rig'de `Palet.glove` verilmezse `KOMPARS_ELDIVEN` (koyu) ya da `skin` kullanılır.
 
 ### 2.1 François Blanc
-- **Kostüm (rig kanon):** lacivert frak `#24407a`, kahve-altın yelek `#6e5a3a` + altın zincir, krem kravat `#f1e8d2`, pantolon `#3a3530`, siyah silindir `#141317`, krem eldiven `#e8dcc0`.
+- **Kostüm (rig kanon):** lacivert frak `#24407a`, kahve-altın yelek `#6e5a3a` + altın zincir, krem kravat `#f1e8d2`, pantolon `#3a3530`, siyah silindir `#141317`, **taba/kahverengi deri eldiven `#8a6a48`** (gölge `#5e4630`, vurgu `#a88660`; v2.3, eski krem `#e8dcc0` beyazla karıştığı için kalktı). Taba eldiven L\* ≈ 47 (hero beyazından ΔE76 ≈ 51; ışık altında bile ΔE2000 ≥ 20, bölüm 0.6), yelek `#6e5a3a` ve ten ile de ayrışsın diye eldiven yelekten **daha kızıl-açık** çizilir, dikişi `#5e4630`. Mahkemede (P18–P19) çıplak el.
 - **Silüet farkı:** normal boy silindir, **kıvrık bıyık uçları**, bastonsuz, **parlak krem kravat**, favori 1, kaş 1. Varyant `FRANCOIS_ELSIZ` (mahkeme, şapka dizde). P04'te filmdeki tek göz kırpma.
 
 ### 2.2 Louis Blanc
-- **Kostüm (rig kanon):** bordo frak `#74222f`, gri yelek `#85878e`, siyah kravat `#16141a`, pantolon `#46464c`, **uzun gri şapka** (`tall = 1.15`), gri eldiven `#cfc9b8`, altın topuzlu baston.
+- **Kostüm (rig kanon):** bordo frak `#74222f`, gri yelek `#85878e`, siyah kravat `#16141a`, pantolon `#46464c`, **uzun gri şapka** (`tall = 1.15`), **ÇIPLAK EL P02–P18** (v2.3; eski gri eldiven `#cfc9b8` kaldırıldı), altın topuzlu baston. Eldiven yalnız cepte (P02–P18) ve P19'da elinde.
 - **Silüet farkı:** şapka %15 uzun ve açık değerli, dikey baston, kısa düz bıyık, favori 1.35, kaş 1.2, siyah boyun.
-- **Cep eldiveni (süreklilik):** P02, P04, P06, P07'de **sağ göğüs cebinden beyaz köşe** (overlay `#f4efe2`, ≈ 24×14 px, −12°, rig yerel x ≈ 40, y ≈ −325); P18'de görünür olması istenir; P19'da cepten çıkarılır.
-- **Elsiz varyant:** `LOUIS_ELSIZ` (P18–P19). Giydikten sonra eldiven **kahraman beyazı `#f4efe2`**; giyme insert'i rig dışı **EldivenEl** vektör çizimi. P02'de **kaz tüyü + defter**, P15'te kaz tüyüyle defter sayfasına "1835" yazar ve sayfayı koparır.
+- **Cep eldiveni (süreklilik, v2.3 yeniden):** P02, P04, P06, P07, P18'de **sağ göğüs cebinden eldiven köşesi** (`GLOVE.hero #f4efe2`, **≈ 50×30 px yakında**, iki yuvarlak parmak ucu + kumaş kıvrımı + cep ağzı çizgisi, −12° sarkma; eski 24×14 px "bilet/rozet" okunuyordu). Tam tanım ve ölçek tablosu: **bölüm 0.6**. P19'da cepten çıkarılır, parmak parmak giyilir. Cepte **başka beyaz öğe yok**.
+- **Elsiz varyant:** `LOUIS_ELSIZ` artık **P02–P18'in tamamında** (eskiden P18–P19) — Louis P04'te beyaz eldivenli çiziliyordu, hata. Giydikten sonra (P19) eldiven **kahraman beyazı `#f4efe2`** (`LOUIS_ELDIVENLI`, eldiven boyu = el ×1.05); giyme insert'i rig dışı **EldivenEl** vektör çizimi (`KolEl` iskeleti). P02'de **kaz tüyü + defter**, P15'te kaz tüyüyle defter sayfasına "1835" yazar ve sayfayı koparır.
 - **Baston:** P04 sağ elde; P06 sol kola asılı (cane yatay ya da korkuluğa dayalı); P07–P08 masaya dayalı; P18–P19 sıraya dayalı.
 
 ### 2.3 Memur (Tours müdür yardımcısı)
 - **Rol:** riski taşıyan. **Zayıf, yıpranmış gri ceket, şapkasız** [S]. İstasyonda iki görevli (müdür + yardımcı) tarihe uygun [D✓ 2f]; terim farkı: kaynaklarda "directeur + assistant" ve "2 stationnaire"; anlatımda yumuşak.
-- **Kostüm:** gri redingot `#6b6a66`, dirsek/manşet yama (`#5a5953`), soluk yelek `#5a5347`, eski keten kravat `#b9b29d`, pantolon `#4b4741`; çıplak eller; **sol göğüs cebinde beyaz eldiven köşesi** (P01 kol, P07, P08, P11, P15).
+- **Kostüm:** gri redingot `#6b6a66`, dirsek/manşet yama (`#5a5953`), soluk yelek `#5a5347`, eski keten kravat `#b9b29d`, pantolon `#4b4741`; çıplak eller; ~~sol göğüs cebinde beyaz eldiven köşesi~~ **KALDIRILDI (v2.3)**: ikinci cep eldiveni imza nesnesini tekrarlıyordu. Memurun eldiveni paketten çıkan **tek** kahraman eldivendir (P01 çeker, P15/P16 elinde buruşuk taşır); ceket cebi düz.
 - **Silüet farkı:** tek şapkasız ana karakter, **dar** (`scaleX 0.86`, `scaleY 1.02`), hafif öne eğik, seyrek saç.
 - **Rig:** `MEMUR`; şapkasız için `sapkaTip: "yok"` (öneri). **Evrim:** `MEMUR` → `MEMUR_HASTA` (P15 alt) → `MEMUR_YATAK` (P16–P17: gece gömleği, takke, terli parlama; ceket askıda).
 - **Kol ve el çizimi:** bölüm **2.12** (`KolEl`); P01'de kol "tek parça kalas" okunuyordu (eleştirmen B TB3), koni + dirsek + kırışık + manşet ile yeniden tanımlandı.
@@ -261,13 +302,14 @@ Siyah redingot `#2d2b28`, gri yelek `#8a8a80`, **siyah kol koruyucuları** overl
 - Yüzü hiç görünmez [S]. **Gri manşet + sağ manşette tek altın düğme**, P09 ve P23'te aynı.
 - **P09:** Kukla `PARIS_ADAM` (koyu redingot `#2b2a30`, başı kadrajın üstünde kesik) + gri manşet overlay (`Palet.cuff` önerisi).
 - **P23:** yalnız eller (sprite seti): çıplak el `#d3a784`, koyu kol `#2b2a30`, manşet `#7c7f87`, altın düğme `#d4ad52`; 3 poz: eldiveni koy, katla, ip çek; kâğıt altında eldivenin beş parmağı **kabartı**.
-- Resmî görevli (P21) manşeti **beyaz**.
+- Paris elleri **çıplak** (eldiven yok); P23'te elleri tutan nesne = kahraman eldiven (A), kâğıt altında kabaran beş parmak da aynı eldiven ölçüsünde (el boyu ×1.05, bölüm 0.6). Gri manşet `#7c7f87` eldiven değil, L\* ≈ 53.
+- Resmî görevli (P21) manşeti **kirli beyaz** `#e0d9c6` (v2.3: `#efe9d8` eldiven beyazı bandına yaklaşıyordu), çıplak el `#d8ae8b`, eldiven yok.
 
 ### 2.9 Arabacı (P09)
 Keten bluz `#b8a882`, deri yelek `#5a3f28`, pantolon `#4a3b2c`, geniş kenarlı yağmurluk şapka `#2b2420`, diz üstü çizme `#2a1d14`. **Özel statik oturan figür** (yüzsüz), yalnız sağ bacak/çizme animasyonlu; **sağ ayağı kutu korkuluğunda**; paketi **topuğuyla** durdurur; plan başından kadrajda.
 
 ### 2.10 Kompars seti (isimsiz)
-Borsa kalabalığı (10–12 siluet, 3 animasyonlu), **tüccar** (yüzlü, bkz. 2.11), seyirci (8–10 siluet), **12 kişilik sivil jüri** (siluet, [T]), **yargıçlar** (3, tek koyu ton cübbe, statik). Jandarma yok. Yüzsüz siluet filtresi, ayak temas gölgesi.
+Borsa kalabalığı (10–12 siluet, 3 animasyonlu), **tüccar** (yüzlü, bkz. 2.11), seyirci (8–10 siluet), **12 kişilik sivil jüri** (siluet, [T]), **yargıçlar** (3, tek koyu ton cübbe, statik). Jandarma yok. Yüzsüz siluet filtresi, ayak temas gölgesi. **Eldiven (v2.3):** kompars/yargıç/jüri/arabacı/katip/müdür/telgrafçı/suç ortağı/tüccar eldiven giymez (`glove = skin`) ya da gerekiyorsa `KOMPARS_ELDIVEN #3a3530` (koyu, L\* ≈ 22); **beyaz/krem/açık gri eldiven yasak** (imza nesne tekdir). Silüet filtresi elleri zaten kaybettirir; yüzlü kompars (tüccar) çıplak elle çizilir. Rig `Palet.glove` boş kalırsa varsayılan `skin`.
 
 ### 2.11 Tüccar (P02) — motion'ın uyguladığı hâl
 - **Rol:** François'nın gülerek omzundan tuttuğu Bordeaux tüccarı; kalabalığın tek **yüzlü** isimsiz figürü. Tebeşir kırılınca kalabalıkla birlikte tahtaya bakar (kaş kalkık, ağız "O").
@@ -311,7 +353,10 @@ Borsa kalabalığı (10–12 siluet, 3 animasyonlu), **tüccar** (yüzlü, bkz. 
 
 | Prop | Dönem notu | Boyut / renk | Planlar | Temas yüzeyi ve ses |
 |---|---|---|---|---|
-| **Eldiven (kahraman)** | Glacé (kuzu/dana) erkek eldiveni, beyaz [G]; ön yüzde üç çizgili dikiş | `#f4efe2`, dikiş `#b9ad92` | P01, P10, P15, P16, P19, P23 | kâğıt hışırtı, masa "tap", P16 parke "tok" |
+| **Eldiven (kahraman) · İMZA NESNESİ A** | Glacé (kuzu/dana) erkek eldiveni, beyaz [G]; ön yüzde üç çizgili dikiş. **Ölçü = yetişkin eli:** el kısmı = el boyu ×1.05 (P01'de ≈ 285 px), avuç ≈ 130 px, parmak uçları yuvarlak dolgun, manşet ağzı açık, yassıyken kenar dalgalı, avucta tek kırışık (tutan elden küçük olamaz; eleştiri C TC1) | `#f4efe2`, gölge `#d9d2c0`, dikiş `#b9ad92` | P01, P10, P15 (memurun elinde buruşuk), P16, P23 | kâğıt hışırtı, masa "tap", P16 parke "tok" |
+| **Cep eldiveni · İMZA NESNESİ B** (Louis, sağ göğüs cebi) | Aynı eldivenin cepten sarkan köşesi: **iki yuvarlak parmak ucu + kumaş kıvrımı + cep ağzı çizgisi**, −12° sarkma; kart/bilet/rozet değil. Yakında ≈ 50×30 px, orta ≥ 30×18, geniş planda çizilmez. Tam tanım: 0.6 | `#f4efe2`, kıvrım `#d9d2c0`, cep ağzı gölgesi `#b5ad98` | P02–P18 (P02 p168, P04, P06, P07, P18 görünür) | sessiz (cepte); P19'da çıkarken kumaş "fış" |
+| **Giyilen eldiven · İMZA NESNESİ C** (Louis, P19) | B'nin aynısı elde; çıplak elden **parmak parmak** giyilir (EldivenEl/KolEl iskeleti), ölçü A ile aynı | `#f4efe2`, gölge `#d9d2c0` | P19 | `p19_eldiven-gerilme.wav` (deri gerilme) |
+| **François'nın eldiveni** (beyaz DEĞİL) | Taba/kahverengi deri erkek eldiveni; beyazla karışmaz (ΔE76 ≈ 51, ışık altında ΔE2000 ≥ 20) | `#8a6a48`, gölge `#5e4630`, vurgu `#a88660`, dikiş `#5e4630` | P02, P04 (mahkemede çıplak) | sessiz |
 | **Yün çorap** | El örgü koyu yün, topuk yamalı [G] | `#4b3a2c`, yama `#6a5340` | P10 | kenardan sarkar "flop" |
 | **Ok etiketi** (↑ yeşil / ↓ kırmızı) | İple bağlı kâğıt kart [T]; oklar SVG | `#efe9d8`, `#5f9f6e`, `#e5483c` | P10 | kâğıt hışırtı |
 | **Paket kâğıdı + ip (`PaketKagidi`, 3.1)** | **Eldivene doğrudan sarılan yumuşak kahverengi paket kâğıdı + kenevir ip [S]; kutu/koli/mukavva DEĞİL** (modern, anakronik); "TOURS" etiketi 380×110 | kâğıt `#b08a5a`, ip `#d8c9a0` | P01, P09, P10, P23 | kâğıt hışırtı, ip "zıııt", çatıda "tok" |
@@ -436,7 +481,7 @@ export const BL = {
   redLit: "#e5483c",     // altyazı/vurgu, koyu zeminde
   up: "#5f9f6e",         // yalnız P10 ↑
   boyaKrem: "#e6c88c",   // yalnız P22 yay dolgusu
-  gloveHero: "#f4efe2",  // kahraman eldiven
+  gloveHero: "#f4efe2",  // kahraman eldiven (= GLOVE.hero; geriye uyum)
   // Chappe kulesi [donem-dogrulama 2a–c]
   direkMavi: "#8fb2d8", kolSiyah: "#1c1915", karsiAgirlik: "#8a8d94",
   // posta arabası (gris puce / kahve; arma yok)
@@ -451,9 +496,31 @@ export const BL = {
   cubbe: "#2a1c1e",      // mahkeme cübbesi, tek koyu ton (renk okunmaz)
 };
 
+// ELDİVEN = İMZA NESNESİ (v2.3, bölüm 0.6). Beyaz ("eldiven beyazı" L*>=90, C*<12) YALNIZ hero-eldiven (A),
+// Louis cep eldiveni (B), Louis P19 giydiği (C). Başka hiçbir palette glove bu bantta olamaz.
+export const GLOVE = {
+  hero: "#f4efe2",       // Lab ≈ L94.5 a-0.6 b6.9 — A, B, C
+  heroGolge: "#d9d2c0",  // kıvrım/avuç gölgesi (L≈84.5) — hâlâ eldiven ailesi, ten değil
+  cepAgzi: "#b5ad98",    // cep ağzı gölgesi (B)
+  dikis: "#b9ad92",
+  // François: taba deri (beyazla karışmaz). ΔE76 hero'ya ≈ 51, tene ≈ 27; ışık altında ΔE2000 >= 20
+  taba: "#8a6a48",       // Lab ≈ L47.2 a8.2 b23.9
+  tabaGolge: "#5e4630",
+  tabaIsik: "#a88660",   // Lab ≈ L58.2 a7.8 b25.5 (en açık; L* 70'i geçmez)
+  // kompars/rig varsayılanı: koyu ya da ten; krem/beyaz/açık gri YASAK
+  kompars: "#3a3530",    // L* ≈ 22
+} as const;
+// Ölçü: eldiven el kısmı = çıplak el boyu × 1.05 (P01: el ≈ 270 px ⇒ ≈ 285 px, avuç ≈ 130 px). Sabit px değil, orana bağlı.
+export const ELDIVEN_OLCEK = 1.05;
+export const ELDIVEN_BANDI = { LMin: 90, CMax: 12 }; // sb2_kontrol: bu bantta ölçülen nesne yalnız A/B/C olmalı
+
 const bare = (p: Palet): Palet => ({ ...p, glove: p.skin });
-export const FRANCOIS_ELSIZ = bare(FRANCOIS);
-export const LOUIS_ELSIZ = bare(LOUIS);
+export const FRANCOIS_TABA = { ...FRANCOIS, glove: GLOVE.taba } as Palet;   // P02, P04 (+ sokak/borsa planları)
+export const FRANCOIS_ELSIZ = bare(FRANCOIS);                                 // mahkeme P18–P19
+export const LOUIS_ELSIZ = bare(LOUIS);                                       // P02–P18 TAMAMI (eskiden P18–P19)
+export const LOUIS_ELDIVENLI = { ...LOUIS, glove: GLOVE.hero } as Palet;      // yalnız P19 (giyme sonrası)
+// Louis cep eldiveni (B): overlay `EldivenKose`, rig yerel x≈40 y≈-325, ekran ≈ 50×30 px (yakın). Dikdörtgen değil: iki yuvarlak parmak ucu + kıvrım.
+export const CEP_ELDIVEN = { renk: GLOVE.hero, golge: GLOVE.heroGolge, agiz: GLOVE.cepAgzi, aci: -12, yakinPx: [50, 30], ortaPx: [30, 18], genisPx: null } as const;
 
 export const MEMUR: Palet = { coat: "#6b6a66", coatDark: "#46453f", coatLight: "#8a8983", vest: "#5a5347", vestDark: "#3d382f", vestDesen: "#5a5347", cravat: "#b9b29d", shirt: "#d8d0bb", pants: "#4b4741", shoe: "#1a1512", glove: "#d9b190", skin: "#d9b190", skinDark: "#a9806a", hair: "#5e5144", hat: "#2c2a26", hatBand: "#1c1b18", sideburn: 0.6, browHeavy: 0.8 };
 export const MEMUR_HASTA: Palet = { ...MEMUR, glove: "#cdb7a2", skin: "#cdb7a2", skinDark: "#9a8573", hair: "#6a5f55" };
@@ -475,7 +542,7 @@ export const YARGIC = { cubbe: "#2a1c1e", cubbeGolge: "#150d0f", rabat: "#efe9d8
 export const DOSYA = { kapak: "#3a2c24", bag: "#8a2c24", karar: "#e9dfc9" };
 export const ARABACI = { bluz: "#b8a882", yelek: "#5a3f28", pantolon: "#4a3b2c", sapka: "#2b2420", cizme: "#2a1d14" };
 export const PARIS_EL = { ten: "#d3a784", tenGolge: "#a77b5f", kol: "#2b2a30", manset: "#7c7f87", mansetKoyu: "#55575e", altinDugme: "#d4ad52", gomlek: "#e9e3d2" };
-export const GOREVLI_EL = { kol: "#1c1915", manset: "#efe9d8", ten: "#d8ae8b" };
+export const GOREVLI_EL = { kol: "#1c1915", manset: "#e0d9c6", ten: "#d8ae8b" }; // v2.3: manşet eldiven beyazı bandının altında (L*≈87), eldiven yok
 export const YAZICI_EL = { kol: "#1c1915", ten: "#d3a784" };
 ```
 

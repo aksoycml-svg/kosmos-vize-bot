@@ -580,3 +580,20 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
     - `sb2_kontrol.py` IG sağ-alt düğme sütunu kilidi + dokunuş ölçüsü tablosu.
     - Kabul ölçütleri elestiri-C.md bölüm 8'de.
   - **Teknisyen:** numarasız `SB2-{TOURS,SOKAK,BORSA}{,-360,-guvenli}.png` → `kareler/arsiv-A2/`.
+
+## tasarimci · 2026-11-06 · tasarim.md v2.3: eldiven sürekliliği (imza nesnesi tekildir)
+- Ne yaptım: Orkestra kararını (eleştiri C SÜ1/SC1/TC1) `tasarim.md`ye işledim. Yeni **bölüm 0.6** (üç izinli beyaz eldiven yeri A/B/C tablosu, yasaklar, karakter eldiven özeti, ΔE tablosu, ışık altı kuralı, eldiven ölçüsü, cep eldiveni çizim tanımı); karakter kartları (François taba deri, Louis çıplak P02–P18, memur cep köşesi kaldırıldı, Paris elleri çıplak, kompars eldiven kuralı); prop tablosu (eldiven ölçülü + yeni cep eldiveni, giyilen eldiven, François'nın taba eldiveni satırları); 0.4 P18 cep satırı, 1.10 P19 notu; palet kod bloğu (`GLOVE`, `ELDIVEN_OLCEK`, `ELDIVEN_BANDI`, `FRANCOIS_TABA`, `LOUIS_ELSIZ` genişletildi, `LOUIS_ELDIVENLI`, `CEP_ELDIVEN`, `GOREVLI_EL` manşet). Başa v2.3 değişiklik notu.
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/storyboard-v2/tasarim.md, bolumler/blanc-kardesler/katki-raporu.md. Kod ve elestiri-C.md'ye dokunmadım.
+- Aldığım kararlar ve gerekçeleri:
+  - François: taba deri `#8a6a48` (Lab L 47.2 a 8.2 b 23.9; hero'ya ΔE76 ≈ 51, çıplak tene ≈ 27). Eleştirmenin önerdiği ton; çıplak el alternatifi yerine eldiven korundu çünkü kostümün dönem silüetini taşıyor. Hedef: ışık altında ΔE2000 ≥ 20; eldiven beyazı bandı tanımı L\* ≥ 90 ve C\* < 12 ölçüm aracına girsin.
+  - Louis eldiveni A/B/C aynı nesne: tek renk `#f4efe2` (cep köşesi ayrı bir beyaz üretmesin). Cep köşesi 50×30 px, iki yuvarlak parmak ucu + kumaş kıvrımı + cep ağzı çizgisi; geniş planda hiç çizilmez (küçük beyaz leke de rozet okunur).
+  - Memurun sol göğüs cebi köşesi **kaldırıldı**: orkestranın "yalnız şu yerlerde" listesinde yok, ikinci cep eldiveni olurdu. Dokunuşlar/sahne planı ve eski kart bunu P01/P07/P08/P11/P15 için istiyordu; çatışma bilerek bu yönde çözüldü.
+  - Görevli (P21) manşeti `#efe9d8` → `#e0d9c6`: eldiven değil ama bantta (L\* ≈ 92) yaklaşıyordu. Yargıç rabatı (`#efe9d8`) eldivenle karışmadığı için dokunulmadı.
+  - Eldiven ölçüsü piksel değil oran: el kısmı = el boyu × 1.05 (P01'de ≈ 285 px, avuç ≈ 130 px); P10/P15/P16/P19/P23 aynı orana bağlı.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: CLAUDE.md "İmza nesnesi tekildir" (bu görevde CLAUDE.md'nin okuduğum sürümünde bu madde yoktu, görev metnindeki kararı esas aldım; madde geri alınmışsa/başka dosyadaysa kontrol edilmeli). Yakaladığım ihlaller (kendi eski kartlarımdan): François krem + Louis gri eldiven kanonu (üç beyaz rolü yaratıyordu), cep köşesi 24×14 px (rozet), memur cebi ikinci eldiven, görevli manşeti bantta. ΔE değerleri elle hesaplandı (sRGB→Lab D65, yaklaşık); kesin değerler `sb2_kontrol.py` ile ölçülmeli. "kaldırıldı" ifadesi için ~~üstü çizili~~ memur satırı bırakıldı (izleme).
+- Açık sorular / bir sonraki ajana notlar:
+  - ORKESTRA: P15'teki memurun elinde buruşuk eldiven = kahraman eldiven (A) sayıldı; orkestranın listesinde P15 yoktu, yanlışsa teyit.
+  - YÖNETMEN: sahne-plani.md/.json'da memur cep köşesi (P01/P07/P08/P11/P15) ve François eldiven rengi varsa güncelle; P19'da François çıplak el (taba eldiven yok) yazıldı, onay; P02 p168 cep tarafının kameraya dönük kurulumu (BC7).
+  - YARATICI YÖNETMEN: dokunuslar.md P19 ve süreklilik notu (memur cep köşesi yok) güncellensin; P18 cep köşesi ≥ 30×18 px.
+  - MOTION: `palet.ts` (FRANCOIS_TABA, LOUIS_ELSIZ P02–P18, LOUIS_ELDIVENLI, GLOVE), `Louis.cepEldiven` → `EldivenKose` overlay, `Eldiven.tsx` ölçek ×1.35–1.45 (TC1), rig varsayılan `glove` değerini koyu/ten yap, `sb2_kontrol.py`'ye "eldiven beyazı yalnız A/B/C" + taba ΔE2000 ≥ 20 kontrolü. `louis-kart.png`/`francois-kart.png` eldiven rengi referans olarak kullanılmasın.
+  - ELEŞTİRMEN: protokolde cep köşesinin telefon (360) okunurluğu ve P19 çıplak → hero karşıtlığı satır olarak girsin.
