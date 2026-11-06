@@ -127,7 +127,7 @@ Not: Birkaç sayfa açılamadı (Justice.fr bakımda, laposte.fr tretsch_eng.pdf
 - **Cevap:** Pont de Pierre (inşa 1811–1821, 1822'de açıldı) limanı ikiye böldü; **büyük gemiler yalnız köprünün aşağısına** girebiliyordu (köprünün yukarısındaki deniz ticareti 1822'den itibaren bitti). Küçük **vapur "gondoles"** Garonne'da seyrediyordu (tarih arama özetinde belirsiz). Bordeaux 18. yy'da Fransa'nın birinci limanıydı; gabare (düz tabanlı) tekneler büyük gemilere yük aktarırdı. "Yelkenlilerin son altın çağı vapurun gelişine rağmen" ifadesi bir tablo anlatımında geçiyor.
 - **Güven:** köprü ve yelkenli hâkimiyeti olası; 1830'larda vapurun varlığı olası (tarihi net değil).
 - **Kaynak:** Atlas des ports (arama sonucu): [beta-omk.manioc.org PDF](https://beta-omk.manioc.org/files/original/21629/ADG18245.pdf) (içerik okunmadı, özet); [Cirkwi, La Garonne](https://www.cirkwi.com/en/point-interet/3544077-la-garonne) (turistik).
-- **Tasarıma etkisi:** `tasarim.md` 1.3: "buharlı gemi/baca dumanı yok [G]" iddiası **kanıtlanamadı, tersi mümkün**. P04 sokak ucu manzarasında direkler sis içinde ve çok uzak; **baca dumanı koymamak** hâlâ güvenli (hata riski yok), ama "tarihî olarak vapur yoktu" iddiası yapılmasın. Direkler yalnız köprü **aşağısında** (köprü silueti uzaktan çizilirse tutarlı). Pont de Pierre (1822) silüeti P06'da kullanılabilir; açılış 1822 olduğundan 1834-36 için doğru.
+- **Tasarıma etkisi:** `tasarim.md` 1.3: "buharlı gemi/baca dumanı yok [G]" iddiası **kanıtlanamadı, tersi mümkün**. P04 sokak ucu manzarasında direkler sis içinde ve çok uzak; **baca dumanı koymamak** hâlâ güvenli (hata riski yok), ama "tarihi olarak vapur yoktu" iddiası yapılmasın. Direkler yalnız köprü **aşağısında** (köprü silueti uzaktan çizilirse tutarlı). Pont de Pierre (1822) silüeti P06'da kullanılabilir; açılış 1822 olduğundan 1834-36 için doğru.
 
 ### 3f. Bordeaux Borsası ve fiyat ilanı
 - **Cevap:** Palais de la Bourse (mimar Ange-Jacques Gabriel, 1742–1749); "bourse des marchands" (önceden Place du Palais'de) 1749'da buraya taşındı. Aynı bina bugün **ticaret odası (CCI) + ticaret mahkemesi**. Portiklerde eskiden "comptoirs, bureaux de change, magasins, boutiques". 1750 tarihli kadran rüzgâr yönünü gösterirdi (kargo gelişini tahmin için). Bordeaux borsası "kotasyon yeri" olarak 1990'da kapandı. Bordeaux'da 1835 tarihli bir madalyada **"Compagnie des agens de change de Bordeaux"** yazıyor, arkasında Bordeaux Borsası binaları (arama özeti, madalya kataloğu). **1830'larda Paris rente'sinin Bordeaux'da hangi salonda, nasıl ilan edildiği (tebeşirli tahta, el yazısı liste vb.) bulunamadı.** Meydan "Place de la Bourse" adını 1848'de aldı (öncesi: Place Royale).
@@ -226,3 +226,167 @@ Not: Birkaç sayfa açılamadı (Justice.fr bakımda, laposte.fr tretsch_eng.pdf
 6. P15 günlük koparılan yaprak yerine almanak/yıllık levha/elle yazılan tarih.
 7. "Garonne'da vapur yok" iddiasını kaldır (kanıt yok; çizmemek serbest).
 8. Posta arabası: arma çizme, "ROYALES" yazısı kısalt; renk "gri-puce/kahve" tonu.
+
+---
+
+# Ek 2 — mekân soruları
+
+Hazırlayan: arastirmaci · 2026-11-06 · Girdi: `mekanlar.md` bölüm 7 (14 soru).
+Yöntem: fr.wikipedia (Basilique Saint-Michel de Bordeaux, Télégraphe Chappe, Liste des tours Chappe de la ligne Paris-Bayonne, Piratage du télégraphe Chappe, Palais de justice de Tours) doğrudan açıldı; geri kalanı arama özetleri. Wikimedia 429 vermedi. Birincil (dönem) belge bu turda hiçbir soruda bulunamadı; "kesin" etiketi yalnız birden çok bağımsız modern kaynağın birleştiği yerde kullanıldı.
+Açılamayan kaynaklar: laposte.fr/Musée de la Poste PDF (403), Tours şehir arşivi kaydı (403), ENAP Gazette des Tribunaux 16 Mart 1837 URL tahmini (404), parc-loire-anjou-touraine.fr PDF'leri ve academiesavoie.org PDF'i (sıkıştırılmış, okunamadı; bilgi yalnız arama özetinden).
+
+## Ek 2 özet tablo
+
+| # | Soru | Cevap (kısa) | Güven |
+|---|---|---|---|
+| 1 | Saint-Michel 1834–36'da külahsız mı, telgraf nasıl kurulu | **Külahsız: evet.** Külah Eylül 1768 kasırgasında uçtu, 1860'ta yeniden yapımına karar verildi, 1861–1869 Abadie. Telgraf kulenin tepesindeydi (1823–1853); **kurulum biçimi (platform, direk boyu) bulunamadı** | külahsızlık: olası-kesin (tek makale, iç tutarlı); kurulum: bulunamadı |
+| 2 | Paris–Bordeaux güzergâhı | Paris – Orléans – **Tours – Poitiers – Angoulême** – Bordeaux. **Blois istasyon listesinde yok.** 81 (metin) ya da 85 (tablo) kule | olası (tek liste, Vikipedi) |
+| 3 | Gece/sis çalışmaz | Birden çok modern kaynak teyit; **birincil metin bulunamadı** | kesin (olgu) / bulunamadı (birincil) |
+| 4 | Tours çatıları | 1830'lar için **bulunamadı**; Touraine'de tuile plate ve arduvaz karışık, arduvaz 19. yy'da yayılıyor | bulunamadı (1830'lar) / olası (karışık) |
+| 5 | Dinlenme (kapalı) konumu | **Regülatör dikey, göstergeler katlı** ("repos ou inertie"). Tek kaynak | olası |
+| 6 | 1837 Tours mahkeme binası | Bugünkü Palais **1840–1843**'te yapıldı, yani duruşma **o binada değil**. Eski bina için yalnız dolaylı iz: "rue Royale'deki eski palais de justice" | bugünkü bina yok: kesin; eski bina: bulunamadı (iz: olası, doğrulanamadı) |
+| 7 | Mahkeme ögeleri (tricolore, büst, haç) | Bu turda **araştırılmadı**; haç için yukarıdaki 1c geçerli | bulunamadı |
+| 8 | Bordeaux kaldırım/oluk | Yalnız zayıf iz: "eski Bordeaux sokaklarında merkezde oluk"; tarih yok | bulunamadı |
+| 9–11, 13, 14 | Kireçtaşı kararması, ara kule gövdesi, kum kabı biçimi, borsa ilanı, tricolore bant | Bu turda **araştırılmadı** | — |
+| 12 | Malle-poste "gris puce" ikinci kaynak, levha yazısı | İkinci kaynak **bulunamadı**; levha yazısı bulunamadı | bulunamadı |
+
+---
+
+### Ek 2 · Soru 1 — Saint-Michel çan kulesi, 1830'lardaki tepesi ve telgrafın kuruluşu
+
+- **Cevap:**
+  - Külah 1768'de gitti: fr.wikipedia metni "la flèche du campanile est emportée par un ouragan en septembre 1768" der; kuleye birkaç kez yıldırım düşmüş ve paratoneri yokmuş. 1755 restorasyon projesi sonuçsuz kalmış; Ocak 1769'da Hardouin-Mansart de Sagonne görevlendirilmiş ama para olmadığı için (tahmini 50.000 livre) yapılamamış; 1811'de Louis Combes'in projesi benimsenmiş (yapıldığına dair satır yok). [fr.wikipedia, Basilique Saint-Michel de Bordeaux](https://fr.wikipedia.org/wiki/Basilique_Saint-Michel_de_Bordeaux)
+  - Aynı sayfa: "Le clocher, toujours en attente de restauration, présente toujours un aspect tronqué" ve Victor Hugo'nun 1843 ziyaretinde "décapitée et morte" dediği aktarılır. Yani 1834–1836 için **kesik (külahsız) tepe doğrulanıyor**; 1843 tanığı bu aralığın hemen sonrası, 1768'den 1860'a kadar yapılaşma olmadığı açık. [fr.wikipedia, Basilique Saint-Michel de Bordeaux](https://fr.wikipedia.org/wiki/Basilique_Saint-Michel_de_Bordeaux)
+  - Yeniden yapım: 1860'ta karar, Paul Abadie, gotik üslup; sayfa inşa tarihini bir yerde 1861–1869, başka yerde "1869'da tamamlandı" olarak veriyor (bir iç çelişki yok, yalnız 1860 karar / 1861 başlangıç). Yükseklik 114,60 m (külahla). [fr.wikipedia, Basilique Saint-Michel de Bordeaux](https://fr.wikipedia.org/wiki/Basilique_Saint-Michel_de_Bordeaux)
+  - Telgraf: aynı makale Chappe telgrafının kulede "De 1823 à 1853" bulunduğunu söyler; 1830 tarihli resim yazısı telgrafı "au sommet de la tour" diye yerleştirir. [fr.wikipedia, Basilique Saint-Michel de Bordeaux](https://fr.wikipedia.org/wiki/Basilique_Saint-Michel_de_Bordeaux)
+  - Kule listesinde Bordeaux istasyonu "Clocher de la Basilique Saint-Michel de Bordeaux", tip "clocher" (çan kulesi), durum "Détruit" (telgraf yapısı yok). [fr.wikipedia, Liste des tours Chappe de la ligne Paris - Bayonne](https://fr.wikipedia.org/wiki/Liste_des_tours_Chappe_de_la_ligne_Paris_-_Bayonne)
+  - Piratage makalesi: Bordeaux'daki son çözücü "Chappe kulesine bakan" kiralık bir oda tutmuş; resim yazısı "Le télégraphe Chappe installé sur la Tour Saint-Michel de Bordeaux". [fr.wikipedia, Piratage du télégraphe Chappe](https://fr.wikipedia.org/wiki/Piratage_du_télégraphe_Chappe)
+  - **Bulunamadı:** platform, direk yüksekliği, mekanizma odasının kule içinde nerede olduğu. Mérimée'deki Gradignan notu (yuvarlak kule, ~10 m, 5 m çap) bir ara kuleyi anlatıyor, Saint-Michel'i değil. [POP / Mérimée PA33000160](https://pop.culture.gouv.fr/notice/merimee/PA33000160)
+- **Güven:** külahsızlık **olası-kesin** (tek kaynak makale; ancak içinde 1768 olayı, 1811 plan, Hugo 1843 ve 1860 karar birbirini tutarlı destekliyor; ikinci bağımsız kaynak okunmadı). Telgrafın kulede olduğu: **kesin** (iki fr.wikipedia makalesi + liste). Kurulum ayrıntısı: **bulunamadı**.
+- **Küçük çelişki / uyarı:** Kulenin külahsız hâlinin **yüksekliği** (kesik kulenin yaklaşık m'si) bulunamadı; 114,60 m külahlı toplam. `mekanlar.md` P04 siluet koordinatları (y 520–760) bir tahmindir, kaynak desteği yok. Ayrıca fr.wikipedia metninde "campanile" dendiğinden kulenin kiliseden **ayrı, bağımsız çan kulesi** olduğu anlaşılıyor (Pey-Berland gibi); tam ayrıklık için ikinci kaynak bakılmadı.
+- **Tasarıma etkisi:** `mekanlar.md` 0-tablosu #2'deki "[G ◐ doğrulanmalı]" işaretini **kaldır, "olası-kesin" yap**. Kesik tepe çiz (düz/yassı üst, külah yok); T kol kulenin üst platformunda, kulenin gövdesine göre küçük. Telgraf direği kule üstünde tek bir yapı; kurulumun ayrıntısı (korkuluk, kulübe, kablo) çizilmesin ya da çok sade/siluet kalsın, kaynak yok. Çizim "gotik kesik kule" genel kalsın.
+- **Bonus (hikâye altını, kaynaklı):** Victor Hugo 1836'da Normandiya'da Mont Saint-Michel'deki başmelek heykelinin yerine bir Chappe telgrafı konduğunu görüp dehşete düşmüş. [en.wikipedia, Chappe telegraph](https://en.wikipedia.org/wiki/Chappe_telegraph)
+
+### Ek 2 · Soru 2 — Paris–Bordeaux Chappe hattının güzergâhı (P05 harita kule sırası)
+
+- **Cevap:** Hat Vikipedi'deki ağ listesinde "Paris - Tours - Poitiers - Angoulême - Bordeaux - Bayonne : 1822 -" diye geçer (bitiş tarihi yok). [fr.wikipedia, Télégraphe Chappe](https://fr.wikipedia.org/wiki/Télégraphe_Chappe). Kule kule liste (Paris Bayonne ayrımıyla): [fr.wikipedia, Liste des tours Chappe de la ligne Paris - Bayonne](https://fr.wikipedia.org/wiki/Liste_des_tours_Chappe_de_la_ligne_Paris_-_Bayonne). Sıra:
+  - **Paris:** Tour centrale (103 rue de Grenelle) → Hôtel de Villeroy → Saint-Sulpice → Fontenay-aux-Roses → Saulx-les-Chartreux → Montlhéry → Torfou → **Étampes** → Montdésir → Angerville → Arbouville → Boisseaux → Toury → Santilly → **Artenay** → Chevilly → Saran → **Orléans** (Hôtel Groslot)
+  - **Orléans → Tours:** Ingré → Bucy → Baccon → Cravant → Séris → Mer → Mulsans → Averdon → Saint-Bohaire → Herbault → Santenay → Saint-Ouen → Pocé → Vouvray → Saint-Georges → La Tranchée → **Tours n°1 → Tours n°2**
+  - **Tours → Poitiers:** Chambray → Montbazon → Sorigny → Saint-Épain → **Sainte-Maure** → Maillé → Ports-la-Plaine → Nancré → Saint-Gervais → Clairvaux → Beaumont → Montamisé → **Poitiers n°1, n°2, n°3**
+  - **Poitiers → Angoulême:** Croutelle → Iteuil → Marnay → Sommières → Romagne → Savigné → **Civray** → Taizé-Aizie → Villegats → Lonnes → Fontclaireau → Aussac → Vars → Champniers → **Angoulême n°1, n°2, n°3**
+  - **Angoulême → Bordeaux:** La Couronne → Plassac → Blanzac → Bessac → Oriolles → Chevanceaux → Belair-Saint-Vivien → La Ruscade → Marsas → Salignac → Cadillac → Sainte-Eulalie → **Lormont (La Poudrière)** → **Bordeaux n°1–n°4** (liste numaralı değil; Saint-Michel bunlardan biri).
+  - Bordeaux'dan sonra: Laburthe (Gradignan), La House, Grand Puch ... Bayonne (Saint-Esprit).
+  - **Blois bu listede yoktur.** Orléans–Tours arasında kuleler Ingré, Bucy, Baccon, Cravant, Séris, Mer, Mulsans, Averdon, Saint-Bohaire, Herbault... şeklinde; Chartres, Châteaudun, Vendôme de listede **yok**. `mekanlar.md` 3.2'deki "posta yoluyla aynı çizgi (Chartres, Châteaudun, Vendôme)" notu telgraf hattı için **yanlış**, posta yolu bu görevde doğrulanmadı.
+  - **Tours'ta iki istasyon:** liste hem Tours n°1'i hem n°2'yi "Sur tour ronde" ve "Ancien Hôtel de ville de Tours" olarak veriyor, ikisi de "Détruit". Yani Tours'un telgrafı **şehir içinde, eski belediye sarayı (hôtel de ville) binasının üstünde** yuvarlak bir kuleydi, tepede bağımsız kulübe değil. Tek kaynak (Vikipedi listesi), eski belediye binasının tam yeri ve bu iki numaranın ne olduğu (iki ayrı ünite mi, aktarma çifti mi) doğrulanmadı.
+  - **Poitiers:** yuvarlak kule, "Toit du Palais des ducs d'Aquitaine", yıkılmış. **Lormont:** piramit biçimli kule. [fr.wikipedia, Liste des tours Chappe](https://fr.wikipedia.org/wiki/Liste_des_tours_Chappe_de_la_ligne_Paris_-_Bayonne)
+  - Sayım uyarısı (çelişki): sayfa metni "Paris–Bordeaux 81, Bordeaux–Bayonne 29 istasyon" der; tablodaki satırlar 85 + 28 = 113 çıkar. Fark, aynı şehirde birden çok ünite (Poitiers 3, Angoulême 3, Bordeaux 4) sayılmasından olabilir ama doğrulanmadı. P05 haritası için kesin kule sayısı **söylenmemeli**.
+- **Açılış tarihi (çelişki):** ağ listesi **1822**; kule listesinin bölüm başlıkları (Paris–Tours, Tours–Bordeaux, Bordeaux–Bayonne) **1823**; Gradignan kulesi için Mérimée **1825'te inşa** der, Radiomuseum notu **1823** diyor (arama özeti). [POP / Mérimée PA33000160](https://pop.culture.gouv.fr/notice/merimee/PA33000160), [Radiomuseum, Tour Chappe de Laburthe](https://radiomuseum.org/museum/f/tour-chappe-de-laburthe-gradignan). **Hangisi doğru:** hat 1834–36'dan önce çalışıyor, bu hikâye için yeter; açılış yılı **"1820'lerin başı"** gibi yumuşak söylenmeli. Son sinyal 24 Mart 1853 (Bayonne), "trente années d'exploitation ininterrompue". [fr.wikipedia, Liste des tours Chappe](https://fr.wikipedia.org/wiki/Liste_des_tours_Chappe_de_la_ligne_Paris_-_Bayonne)
+- **Güven:** sıra **olası** (tek Vikipedi listesi; iç sayım tutarsız); Orléans–Tours–Poitiers–Angoulême ana şehir sırası **kesin** (ağ listesi + kule listesi + piratage makalesindeki Paris–Tours–Bordeaux).
+- **Tasarıma etkisi (P05):** Harita ikonları için güvenli büyük duraklar: **Paris – Étampes – Orléans – Tours – Poitiers – Angoulême – Bordeaux** (7 durak; arada yüzlerce kule olduğu için ikon sayısı sembolik, "yaklaşık 80 kule" gibi sayı söyleme). Bordeaux ucu: **Lormont (karşı yaka) → Saint-Michel**. Blois, Chartres, Châteaudun, Vendôme **telgraf hattı olarak çizilmesin**; posta yolundan ayrı, daha doğrusal ikinci bir çizgi. `Harita.tsx` posta yolu (Chartres–Châteaudun–Vendôme) ayrıca doğrulanmalı (bu turda posta güzergâhı araştırılmadı). Kule ikonlarını T siluet yapmaya devam edebilirsin.
+- **Ek uyarı (Tours):** Tours'ta telgrafın şehir merkezinde eski belediye sarayı üstünde olduğu bulgusu (olası) `mekanlar.md` 3.4 TOURS-KULUBE-IC "tuffeau kulübe, direk ana gövdenin çatısında" kurgusuyla çelişmez, hatta destekler: oda binanın üst katı, direk çatıda. Ama "tepede tek başına kulübe" imgesi (şehir ayrışma tablosu, "düz ova, kavaklar, tepede tek mavi direkli kulübe") Tours için **tarihle uyuşmayabilir**; Tours kentsel bir istasyon, kavaklı ova Tours sonrasındaki ara kuleler (Chambray, Montbazon) için daha uygun.
+
+### Ek 2 · Soru 3 — "Telgraf geceleyin ve sisli havada çalışmaz": kaynak
+
+- **Cevap:** Olgu birden çok modern kaynakta tekrarlanıyor:
+  - fr.wikipedia (Télégraphe Chappe): sistem "ne pouvait fonctionner ni la nuit ni par mauvaise visibilité". [fr.wikipedia, Télégraphe Chappe](https://fr.wikipedia.org/wiki/Télégraphe_Chappe)
+  - fr.wikipedia (Piratage): "Les messages ne peuvent être expédiés pendant la nuit ou lorsque la météo ne permet pas une visibilité suffisante." Yani **doğrudan bu hikâyenin makalesi** de söylüyor. [fr.wikipedia, Piratage du télégraphe Chappe](https://fr.wikipedia.org/wiki/Piratage_du_télégraphe_Chappe)
+  - Musée de La Poste bilgi notu (arama özeti; PDF 403 verdiği için doğrudan açılamadı): "brouillard, pluies abondantes et bien sûr la nuit rendent impossible toute transmission". [Musée de La Poste, fp_ptt.pdf](https://www.museedelaposte-lcl.net.extra.laposte.fr/system/files/fp_ptt.pdf)
+  - Evous.fr notu (Arts et Métiers'e atıfla, arama özeti): Napolyon'un dönüşü Paris'e **5 Mart 1815'te** ancak sis yüzünden geç ulaştı. [evous.fr, Metro Télégraphe](https://www.evous.fr/Metro-Telegraphe,204217.html) (ikincil)
+  - Eğitim sitesi (mathsmagiques): "difficile de communiquer par temps de pluie ou de brouillard et la nuit". [mathsmagiques.fr, Chappe](https://mathsmagiques.fr/pages/truc_mat/textes/chappe.htm)
+  - Vardiya: fr.wikipedia dinlenme odasının "un quart d'heure après le coucher du soleil" ile ilgili kullanıldığını söyler (cümlenin yarısı okundu; yatış/kalkış saatleri tam teyit edilmedi). Arama özetinde "servis gün doğumunda başlar, geceyle biter" ve öğlen nöbet değişimi geçiyor. [fr.wikipedia, Télégraphe Chappe](https://fr.wikipedia.org/wiki/Télégraphe_Chappe)
+  - **Birincil kaynak (dönemin yönetmeliği, Chappe'in kendi metni, müfettiş raporu) bulunamadı.** Evous/Musée gibi kaynaklar 20-21. yy derlemesi.
+- **Güven:** olgu **kesin** (≥4 modern kaynak aynı şeyi söylüyor, ikisi doğrudan açılan Vikipedi makalesi); **birincil kaynak bulunamadı**.
+- **Tasarıma etkisi:** P01 "geç gün ışığı" kararı güvenli. Ek not: ışık "güneş batmadan önce" olmalı; vardiya kuralında "gün batımından sonra çeyrek saat" ifadesi geçtiği için **günbatımı anına çok yakın** (güneş ufukta, kol hâlâ oynuyor) planlar savunulabilir ama kanıt zayıf: kolu en az **güneş ufkun üstündeyken** göster. P03 gün–ay döngüsü, P05 gündüz haritası ve gece planlarında kolların sabit kalması doğrulandı. Sis varsa kol oynamaz: P04'ün (gece, sis) tek T silüeti zaten DINLEN.
+
+### Ek 2 · Soru 4 — Tours çatıları 1830'larda arduvaz mı
+
+- **Cevap:** **1830'lar için kaynak bulunamadı.** Dolaylı izler (hepsi arama özeti; Parc Loire-Anjou-Touraine PDF'leri sıkıştırılmış olduğu için doğrudan okunamadı):
+  - Parc Loire-Anjou-Touraine konut fişi: Anjou'da sistematik kullanılan arduvaz, Touraine tarafında **düz kiremidin (tuile plate) yerini aldı** (tarih verilmiyor). [PNR Loire-Anjou-Touraine, maison de bourg](https://www.parc-loire-anjou-touraine.fr/sites/default/files/2020-04/fiche-3-maison-de-bourg.pdf)
+  - Tours şehir belgesi: tipik taş ev "iki yamaçlı, **tuile ya da arduvaz** kaplı". [Tours şehri, Parcours Tours la Demeure urbaine](https://www.tours.fr/app/uploads/2023/05/Parcours-Tours-la-Demeure-urbaine.pdf)
+  - Poitou rehberi (Grand Poitiers, Touraine değil): arduvaz zengin evlerde **yüzyılın ortasından** itibaren yaygın. [Grand Poitiers, Fiche conseil 3 (fin XVIIIe-mi-XIXe)](https://www.grandpoitiers.fr/fileadmin/M%C3%A9dias_par_groupes_de_contributeurs/Habitat_et_urbanisme/Patrimoine_architectural/Fiche_conseil_3_Constructions_datees_fin_XVIIIe_mi-XIXe_siecle.pdf)
+- **Güven:** 1830'larda arduvaz oranı: **bulunamadı**. "Karışık (tuile plate + arduvaz)": **olası**, 19. yy arduvaz payının ortaya doğru arttığı izlenimi.
+- **Çelişki:** `mekanlar.md` "TUFFEAU Tours: koyu mavi-gri arduvaz, dik çatı" baskın alır; kaynaklar tuile plate'i de eşit düzeyde sayıyor ve Poitou kaynağı arduvazı daha geç tarihliyor. Hangisi baskın: **doğrulanamadı**.
+- **Tasarıma etkisi:** Tours çatı paletini tek tipe (yalnız arduvaz) bağlama. Önerilen: kadrajda görünen çatıların çoğunda koyu mavi-gri arduvaz (siluet olarak güvenli, Loire'ın imgesi), bir ya da iki çatıda **küçük, düz, kırmızı-kahve tuile plate** karışımı; yakın plan çatı dokusu gerektiren bir dokunuş yok. Bordeaux'daki tuile canal (oluklu, turuncu) ile Tours'un tuile plate'i (küçük düz kiremit, kahverengimsi) karıştırılmasın: şehir ayrışması için Tours = ağırlık arduvaz ve dik eğim kalsın. Kesinlik iddiası yok; "karışık" ifade açıklamada gerekmez.
+
+### Ek 2 · Soru 5 — Chappe kulesinin dinlenme (kapalı) konumu
+
+- **Cevap:** Eğitim sitesi mathsmagiques, "position de repos ou inertie" olarak şunu veriyor: **"position verticale, indicateurs repliés"** (regülatör dikey, iki gösterge katlı/regülatöre paralel) ve bunun "gece ya da sis" için kullanıldığını söylüyor. Aynı kaynak altı servis sinyalini sayar (mesaj sonu, hata, "suspension de brumaire" = muhtemelen sis, "suspension d'absence" = muhtemelen işe dönüş). [mathsmagiques.fr, Chappe](https://mathsmagiques.fr/pages/truc_mat/textes/chappe.htm)
+  - Başka bir arama özeti de regülatörün dört konum aldığını (yatay, dikey, ±45°) ve göstergelerin yedi konum aldığını söylüyor, ama **hangisinin kapanışta kullanıldığını söylemiyor**. [fr.wikipedia, Télégraphe Chappe](https://fr.wikipedia.org/wiki/Télégraphe_Chappe)
+  - Fırtına/rüzgâr için ayrı "güvenlik konumu" bulunamadı; fr.wikipedia'da yalnız resim yazısı "Position de sécurité" var, açıklaması yok. [fr.wikipedia, Télégraphe Chappe](https://fr.wikipedia.org/wiki/Télégraphe_Chappe)
+  - Not: Foy–Breguet (elektrikli) ve İngiliz kepenk telgrafında "yatay=pasif" kuralı farklı sistemler, Chappe için kanıt değil.
+- **Güven:** **olası, zayıf** (tek derleme sitesi, akademik ya da dönem kaynağı değil; cümle "juste avant l'envoi d'un message" bağlamında geçiyor, yani "hazırlık/bekleme" anlamı da taşıyabilir).
+- **Tasarıma etkisi:** `ChappeKule` DINLEN konumu için: **regülatör dikey (direğin devamı), iki gösterge ona paralel yapışık**; siluet "ince dikey çubuk", **T değil**. Bu P22'de morf başlangıcı için de yarar: sönmüş kule = dikey çubuk, açılınca T. Ancak kesinlik iddiası yapma: anlatıma "gece kollar dinlenme konumuna iner" yazılacaksa "kollar sabit kalır/hareketsiz" daha güvenli. Gece planlarında (P04 uzak silüet, P07-P08 pencere, P16-P17) kol sabit kalırsa hangi konum olduğu tartışma konusu olmaz; T hâlinde donmuş kol "sabit" okunur. En az riskli: gece planlarında kolu **dikey çubuk** (DINLEN) çiz ve açıklamada konum iddiası yapma, ya da hiç görünür kılma.
+
+### Ek 2 · Soru 6 — 1837 Tours ağır ceza duruşmasının binası
+
+- **Cevap:**
+  - Bugünkü Tours Palais de justice **1840–1843** arasında Jean-Bernard Toussaint Jacquemin-Bellisle ve oğlu Jean-Charles tarafından inşa edildi; Hôtel de ville'e rue Nationale üzerinden bakıyor. **Dolayısıyla Mart 1837 duruşması bu binada olamaz.** [fr.wikipedia, Palais de justice de Tours](https://fr.wikipedia.org/wiki/Palais_de_justice_de_Tours)
+  - Duruşma "cour d'assises de Tours" önünde, 1837'de, 11–14 Mart; mahkeme binasının tarifi makalede yok. [fr.wikipedia, Piratage du télégraphe Chappe](https://fr.wikipedia.org/wiki/Piratage_du_télégraphe_Chappe)
+  - Dolaylı iz: bir arama özeti, Tours şehir arşivinde 1844 tarihli bir çizim kaydı gördüğünü bildiriyor: "palais de justice (avant 1843)", başlık "l'ancien palais de justice, rue Royale à Tours". **Kayıt 403 verdiği için doğrudan okunmadı**, rue Royale'in bugünkü hangi sokak olduğu doğrulanmadı (Tours'un ana caddesi rue Nationale'in eski adı olabilir; bu **tahmin**, kaynaksız). [Tours şehir arşivi, FRAC037261_IR200000216](https://archives-interne.tours.fr/printDoc/FRAC037261_IR200000216_de-224) (açılamadı)
+  - Gazette des Tribunaux Mart 1837 raporları: ENAP arşivinde günlük PDF'ler "…/ARCHIVE/AAAAGGAA.pdf" kalıbında yayınlanıyor (arama özeti); tahmin ettiğim 16 Mart 1837 adresi 404 verdi. Doğru tarih kalıbı/endeks bulunamadı. [ENAP, La Gazette des Tribunaux](https://www.enap.justice.fr/histoire/la-gazette-des-tribunaux-1825-1832) (ana sayfa; 1837 kapsamda mı belirsiz)
+- **Güven:** bugünkü Palais'in 1837'den sonra olduğu: **kesin** (fr.wikipedia + ikinci arama özeti aynı tarih). Eski binanın kimliği/konumu: **bulunamadı**; "rue Royale" izi **olası, doğrulanamadı**. Salonun içi: **bulunamadı**.
+- **Tasarıma etkisi:** MAHKEME mekânı zaten "genel" ve boş lambri; **1840'ların neoklasik Palais cephesi (P21/P22 dışı) hiçbir planda kullanılmasın**. Salon içi için "alçak-orta boy, ahşap panelli, eski rejimden kalma bir sivil/adli salon" yeterli; Gazette'te salon tarifi bulunursa (Gallica/ENAP) kontrol edilmeli. `mekanlar.md` bölüm 7 soru 6'daki "[G ◐] 1840'larda yapıldı" bilgisi **doğrulandı** (1840–1843).
+
+### Ek 2 · Soru 7 — Mahkeme ögeleri 1837 (tricolore, kral büstü, haç)
+
+- **Cevap:** Bu turda **araştırılmadı** (öncelik 1–6). Mevcut bulgu: haç için yukarıdaki 1c (Bordeaux 1816'da haç; 1830 sonrası kaldırılıp kaldırılmadığı bulunamadı). Tricolore ve büst için kaynak yok. CLAUDE.md'deki "tricolore 1830'dan beri" kuralı ulusal bayrak için; mahkeme salonunda bayrak bulunduğuna dair kaynak yok.
+- **Güven:** bulunamadı.
+- **Tasarıma etkisi:** `mekanlar.md`'deki "boş lambri + saat" kararı korunmalı, değişiklik gerektirecek yeni kanıt yok.
+
+### Ek 2 · Soru 8 — Bordeaux sokakları: kaldırım tipi, caniveau
+
+- **Cevap:** Güvenilir kaynak **bulunamadı**. Zayıf izler: JDS (Bordeaux sokak adları sitesi) "eski Bordeaux sokaklarında su akışı için merkezî oluk" bilgisini tarihsiz veriyor. Paris için kaynaklar (pariszigzag) 19. yy başında bombeli yol/kaldırımlara geçişi söylüyor, ama Bordeaux'ya aktarılamaz. Sylvain Schoonbaert, *La voirie bordelaise au XIXe siècle* (2007) konunun ana kaynağı gibi görünüyor, erişilemedi. [JDS, Rue du Muguet](https://www.jds.fr/bordeaux/place/rue-du-muguet-29517_L) ve [Société archéologique de Bordeaux, Schoonbaert 2009](https://www.societe-archeologique-bordeaux.fr/images/stories/PDF/Revue2009/RAB100_2009_143-176_Schoonbaert.pdf) (özet okundu; caniveau/pavaj yok)
+- **Güven:** bulunamadı. Maskaron ve dövme balkonun 1830'lardaki yaygınlığı da araştırılmadı; 18. yy neoklasik cepheler zaten doğrulanmıştı (3c-d).
+- **Tasarıma etkisi:** P04'te sokak ortasında hafif çukur oluk + iri kaldırım taşı **güvenli ve makul** ([T] etiketli bırak); kaldırım (trottoir) bandı çizilecekse dar ve düzensiz; "caniveau tarihîdir" gibi iddia yok. Bordeaux'daki 1830'lar sokak kaldırımı için kesin bir görüntü sınırlaması yok.
+
+### Ek 2 · Sorular 9, 10, 11, 13, 14 — bu turda araştırılmadı
+
+- **9** Bordeaux kireçtaşı kararması/is: araştırılmadı. Mevcut bilgi 3c ("sarımsı ve gözenekli"). 1830'larda cephelerin temizlenmediği bir kaynakta yazılı bulunmadı; paleti koyulaştırmak için kanıt yok.
+- **10** Ara kule gövdesi (Tours–Poitiers): kule listesinde Tours sonrası kulelerin tipi bölümünde "tour ronde / pyramidale / clocher" ayrımı var (örnekler: Tours n°1-2 yuvarlak kule, Poitiers yuvarlak kule, Lormont piramit kule, Bordeaux çan kulesi). **Montbazon, Sainte-Maure, Sorigny** vb. her kulenin tipi okunan sayfa kısmında çıkmadı (liste uzun, yalnız bir bölümü işlendi). Kaynak: [fr.wikipedia, Liste des tours Chappe](https://fr.wikipedia.org/wiki/Liste_des_tours_Chappe_de_la_ligne_Paris_-_Bayonne). Ek kullanılabilecek bulgu: listede **yuvarlak ve piramidal kule** türleri var; "kare taş kule ya da ahşap kulübe" ikilisi kaynakta geçmiyor. **Tours istasyonunun yeri:** şehir içinde, eski belediye sarayı binasının üstünde (Soru 2 notu).
+- **11** Kurutma kumu kabı biçimi ve yazı pulpitri: araştırılmadı. Mevcut bilgi bölüm 7 (kum/pounce 19. yy boyunca, sığ tablalı pounce kapları, c.1840 cam kum saçağı).
+- **13** Borsa fiyat ilanı: araştırılmadı; mevcut 3f geçerli (bulunamadı; tahta dramatizasyon).
+- **14** Tricolore'un ilan kâğıdında bant olarak basılması: araştırılmadı; kaynak yoksa bant kalkar, yalnız mühür (mekânlar.md kuralı).
+
+### Ek 2 · Soru 12 — Malle-poste "gris puce" ikinci kaynak, levha yazısı
+
+- **Cevap:** Posta arabası boyası için ikinci kaynak aranıp **bulunamadı** (fr/en arama; Monarchie de Juillet genel sayfaları ve Thurn und Taxis sarısı, Fransa'ya özgü değil). Levha yazısı ("POSTES" / "POSTE AUX LETTRES" / "MALLE-POSTE") için kaynak **bulunamadı**. Aday kaynaklar: Musée de La Poste (malle-poste koleksiyonu), Gallica'da dönem litografileri. [fr.wikipedia, Malle-poste](https://fr.wikipedia.org/wiki/Malle-poste) (tek kaynak, 4a'daki gibi)
+- **Güven:** "gris puce" olası (tek kaynak); levha yazısı bulunamadı.
+- **Tasarıma etkisi:** 4a/4b kararları değişmez: üst gövde gri-puce, arma yok, levhada yalnız "POSTES" (okunmaz, küçük).
+
+---
+
+## Ek 2 — çelişkiler (yeni)
+
+| Konu | Kaynak A | Kaynak B | Hangisi daha güvenilir |
+|---|---|---|---|
+| Hat açılış yılı | fr.wikipedia ağ listesi: Paris–Bayonne **1822** | Kule listesi bölüm başlıkları **1823**; Gradignan için Mérimée **1825 inşa**, Radiomuseum **1823** | Belirsiz. Her ikisi de 1834–36'dan önce. Yumuşak: "1820'lerin başı" |
+| İstasyon sayısı | Sayfa metni: Paris–Bordeaux **81**, Bordeaux–Bayonne 29 | Tablo satırları: **85** + 28 | Tablo satırları sayılabilir ama aynı şehirdeki birden çok ünite sayımı farkı yaratıyor olabilir; kesin sayı söylenmemeli |
+| Telgraf güzergâhı / posta yolu | `mekanlar.md` 3.2: posta yolu ile aynı çizgi, Chartres–Châteaudun–Vendôme | Kule listesi: Étampes–Artenay–Orléans–Tours, Chartres/Châteaudun/Vendôme yok | Kule listesi (telgraf için); posta yolu bu turda doğrulanmadı |
+| Tours istasyonu | `mekanlar.md`/şehir ayrışma: "tepede tek mavi direkli kulübe, düz ova" | Kule listesi: Tours n°1/n°2 şehirde, eski belediye sarayı üstünde yuvarlak kule | Kule listesi (tek kaynak, olası). Tours sonrası ara kuleler ova imgesine uyar |
+| Saint-Michel inşa takvimi | Aynı makale: 1861–1869 | Aynı makale: 1860'ta karar | Çelişki değil, karar/başlangıç farkı |
+| Gece/sis "dinlenme" konumu | mathsmagiques: dikey regülatör + katlı göstergeler | Başka kaynakta konum belirtilmiyor | Tek kaynak, zayıf; kesin iddia yok |
+
+## Ek 2 — Görsel potansiyel
+
+- **Saint-Michel kulesi (kesik tepe) + üstünde Chappe:** Hugo'nun 1843 "décapitée et morte" betimlemesi bu kule için doğrudan bir görsel kanca. fr.wikipedia'daki 1830 tarihli resim (litografi) Commons'ta; **Commons araması bu turda başarısız** (arama motoru dosya sayfasını bulmadı), kiwix aynasında denenmedi.
+- **Tours telgrafı eski belediye sarayı üstünde:** şehir içinde bir yuvarlak kule ve direk; cephe çiziminde "beyaz tuffeau + koyu çatı + direk" şehir ayrışması kalır.
+- **Poitiers'de Palais des ducs d'Aquitaine çatısında telgraf, Lormont'ta piramit kule:** harita ikonlarına özel şekiller (yuvarlak / piramit / çan kulesi) eklenerek "kule çeşitliliği" ve Bordeaux'ya yaklaşma hissi verilebilir (P05).
+- **Gazette des Tribunaux Mart 1837:** ENAP arşivi PDF'leri (kamu malı, Fransa devleti) salon betimlemesi için kontrol edilmeli; erişilebilirlik bu turda doğrulanmadı.
+- Telifsiz arşiv: görsel indirilmedi; varlık doğrulanmadı (Gallica, Commons, Library of Congress).
+
+## Ek 2 — Hikâye altınları (doğrulananlardan)
+
+- Saint-Michel'in külahı **Eylül 1768'de bir kasırgada uçtu** ve kule 1860'a kadar kesik kaldı; yani sahte sinyaller **başı kesilmiş bir kulenin** tepesinden okundu. Hugo 1843'te kuleyi "başı kesilmiş ve ölü" diye anmış. [fr.wikipedia, Basilique Saint-Michel de Bordeaux](https://fr.wikipedia.org/wiki/Basilique_Saint-Michel_de_Bordeaux)
+- Hugo 1836'da Mont Saint-Michel'in tepesindeki başmelek heykelinin yerine Chappe telgrafı konduğunu görüp dehşete düşmüş. [en.wikipedia, Chappe telegraph](https://en.wikipedia.org/wiki/Chappe_telegraph)
+- 1815'te Napolyon'un dönüşü Paris'e sis yüzünden geç ulaştı: telgraf havaya muhtaçtı. [evous.fr](https://www.evous.fr/Metro-Telegraphe,204217.html) (ikincil, tek kaynak: yumuşak ifade)
+- Tours'un telgrafı bir **belediye sarayının** üstündeydi (olası, tek kaynak): rüşvet verilen müdür kentin tam ortasında çalışıyordu. [fr.wikipedia, Liste des tours Chappe](https://fr.wikipedia.org/wiki/Liste_des_tours_Chappe_de_la_ligne_Paris_-_Bayonne)
+- Tours'taki bugünkü adalet sarayı davadan **3 yıl sonra** yapılmaya başlandı (1840): duruşma, yıkılmış eski bir binada oldu. [fr.wikipedia, Palais de justice de Tours](https://fr.wikipedia.org/wiki/Palais_de_justice_de_Tours)
+
+## Ek 2 — Tasarım dosyalarına öneri düzeltmeler
+
+1. `mekanlar.md` 0-tablosu #2: Saint-Michel "külahsız" için [G ◐ doğrulanmalı] işaretini kaldır, "olası-kesin (fr.wikipedia)" yaz.
+2. `mekanlar.md` 3.2 "Doğrulanmalı" notu: telgraf hattı Orléans–Tours–Poitiers–Angoulême üzerinden (Chartres/Châteaudun/Vendôme yok); kule ikonları posta yolundan ayrı bir çizgide; kesin kule sayısı söyleme.
+3. Tours: "tepede tek kulübe" yerine **şehir içinde eski belediye sarayı üstünde yuvarlak kule** olasılığını not et (tek kaynak); kavaklı ova imgesi Tours dışındaki ara kuleler için.
+4. Tours çatısı: arduvaz baskın ama bir-iki çatıda düz tuile; 1830'lar oranı doğrulanamadı.
+5. Gece kol konumu: DINLEN = dikey çubuk (zayıf kaynak); kesin iddia olmadan kullan.
+6. MAHKEME: 1840–43 Palais cephesi kullanma; salon içi genel.
