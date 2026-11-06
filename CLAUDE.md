@@ -11,6 +11,7 @@ Kullanıcı ile **Türkçe** konuş. Kullanıcı yapımcıdır; kurguyu **Adobe 
 | yaratici-yonetmen | sonnet | Her plana benzersiz dokunuş |
 | yonetmen | sonnet | Sahne planı, kadraj, ritim, fizik ve süreklilik kontrolü |
 | tasarimci | sonnet | Görsel kimlik, karakter/mekân tasarımı, dönem doğruluğu |
+| mekan-sorumlusu | **opus** | Mekân dokusu ve görsel dili; şehir/dönem uygunluğu; her mekânın kendi estetiği; motion'a çizilebilir spesifikasyon |
 | motion | **opus** | Remotion kodu, rig, animasyon, fizik |
 | kurgucu | sonnet | Ritim, kesmeler, müzik (bulma + lisans + düzenleme), ses miksi |
 | elestirmen | **opus** | Kalite kapısı — her teslimden önce |
