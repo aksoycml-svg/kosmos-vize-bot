@@ -171,7 +171,7 @@ Not: P13 esneme ve P04 göz kırpma (0.23 sn) oyunculuk jestidir; doğal sürele
 - **Motion değerleri (A2):** durduklarında François **z 2.4**, Louis **z 2.45** (ayaklar y ≈1420); **ızgara z 2.6, u 0.32** (ekran ≈ (440,1390), plan başından görünür, ay kenar ışığıyla biraz parlatılır). Replik **ÜST-BANT**. Saint-Michel silik siluet (sol-arka, çatıların arkasında; tepe y ≥410). François p150'den bakışını kameraya çevirir.
 - **Kadraj/kamera:**
   - **p+0–78 boy/orta** (alçak açı): `cs 1.00→1.10, cy 0→−20`. François z 3.2→2.4 (u 0.46), Louis z 3.3→2.45 (u 0.70; ekran sağında, gövdeler birbirini örtmez). **Alt üçte bir ön plan:** TONNELIER fıçısı + eşik, CHAPELIER basamağı + chasse-roue, ön birikinti ve ıslak taş yansımaları (y 1560–1900, k 1.3). Sol cephede küçük resmî yapıda tricolore (isteğe bağlı [T]; kullanıcı isteği olduğu için kalır, **gece paleti** mavi `#2b3550` / beyaz `#8a8676` / kırmızı `#5a2a28`, boyut ≈%60, sarkık; p+144 sonrası kadraja girmez; SC5 kaldırma önerisi kullanıcıya soruldu). **Birikintiler (SC4):** yassı perspektif elipsi (en/boy ≥3:1), yumuşak kenar, gök bandı `#2a3352` + réverbère'in kısa amber dikey yansıması + 1 px ay konturu; koyu dolgu yok. **Yürüyüş (SC11):** p0'da `yuru` fazı temas/geçiş pozunda başlar (sallanan ayak havada tekme gibi durmaz). Ayaklar y ≈1420.
-  - **p+78–144 INSERT** (kaldırım hizası, statik; **fare insert yeniden kadraj:** ızgara sol-orta **(300,1130)**, ufuk y 700; Louis'nin bordo paçası + baston ucu sağdan girer, x ≈800–900). Fare boyu %12 (≥230 px). **Fare ızgaradan çıkar, Louis'nin ayağına doğru ~200 px yürür; baston fare'nin önüne iner; fare aynı ızgaraya koşarak döner.**
+  - **p+78–144 INSERT** (kaldırım hizası, statik; **fare insert yeniden kadraj:** ızgara sol-orta **(300,1130)**, ufuk y 700; Louis'nin bordo paçası + baston ucu sağdan girer, x ≈800–900). Fare boyu ≈300 px (%15.6; motion A4b `Sb2SokakFare`, v2.6: ≥230 px). **Akış (motion A4b, kayıt `SB2-SOKAK-FARE`):** pençe ızgara demirine p87 → yürüyüş → Louis çizmesi p98 → baston TAK p108 → irkilme p110 → dönüş → dalış p128 → kuyruk ucu p138 → p138–144 boş ızgara. **Fare ızgaradan çıkar, Louis'nin ayağına doğru ~200 px yürür; baston fare'nin önüne iner; fare aynı ızgaraya koşarak döner.**
   - **p+144–216 bel → göğüs → yakın** (kesme sonrası tek kesintisiz push-in). François yüz merkezi dünya ≈ (492,1070), yüz ≈75 px @cs 1 → ≥230 px için `cs 3.2` (≈240 px). `e = easeInOutCubic(t)`, `t=(f−144)/36`, `cs = 1.70+1.50e`, **`cx = 81.6−88e`, `cy = −247−225e`** (**v2.7, motion A4b ölçtü:** v2.6 `cx = 81.6−8e` ile Louis yüzü x ≈1065 kalıyordu; −88e ile x ≤1000; cs ve cy aynı. Tarihçe: v2.5 `81.6+72e`, `−247−265e`; SC3: Louis'nin yüzü x ≤1000'e, SC9: botlar tamamen kadraj dışına). Kare kare (cs ve cy değişmedi, **cx v2.7**):
 
 | p+N | t | cs | cx | cy |
@@ -189,7 +189,8 @@ Not: P13 esneme ve P04 göz kırpma (0.23 sn) oyunculuk jestidir; doğal sürele
 | 198 | – | 3.260 | −4.2 | −477.0 |
 | 216 | – | 3.300 | −2.0 | −482.0 |
 
-  (v2.6 cx sütunu: 81.6 · 81.6 · 81.2 · 80.4 · 78.8 · 76.4 · 74.8 · 74.0 · 73.6 · 73.6 · 76.0 · 78.0. 180–216 doğrusal yavaş sürüklenme, cx −6.4→−2.0; aradaki kareler formülle üretilir. Yüz dikeyde ≈40 px aşağı iner; yüz ≥230 px korunur, ölçümü motion doğrular.) Paralaks k: gök 0.25, uzak 0.55, karakter 1, ön plan 1.3.
+  (v2.6 cx sütunu: 81.6 · 81.6 · 81.2 · 80.4 · 78.8 · 76.4 · 74.8 · 74.0 · 73.6 · 73.6 · 76.0 · 78.0. 180–216 doğrusal yavaş sürüklenme, cx −6.4→−2.0; aradaki kareler formülle üretilir. Yüz dikeyde ≈40 px aşağı iner; yüz ≥230 px korunur, ölçümü motion doğrular.) Paralaks k: gök 0.25, uzak 0.55, karakter 1, ön plan 1 (motion A3 değişikliği, Bölüm 4 madde 16'da kabul edildi: ön plan nesneleri ayaklarla kaymasın; önceki "ön plan 1.3" kalktı).
+  - **AÇIK (motion A4b, v2.7; uygulanmadı) — p189 Louis cep köşesi IG sütununda (x ≈1000, y ≈1170; sütun x 920–1080, y 900–1700):** cep köşesi p150 bel planında (≈35×22 px) temiz görünüp kuruldu, p189'da kurulum işlevi bitmiş ama kilit denetimi bu noktayı taramıyor ve sütuna giriyor. **Kadraj önerisi (tercih sırası):** (1) **push-in yanal bitişini sola kaydır:** `cx = 81.6 − 88e` yerine bitiş ≈ −100 (örn. `cx = 81.6 − 182e`; p180–216 −100 → −96 doğrusal): Louis ≈95 px sola gelir, cep ≈905 (sütun dışı), yüzü de aynı kadar sola (x ≤ ≈905); François yüzü ≈380→≈285 (kenar payı ≥160 px, 80 px kuralının içinde), ayrıca composition sağa yaslı Louis'ye alan açar. Etkiler: p160–172 aralığında yanal hız artar (cs hızı ile birlikte tek push-in algısı korunur, yan pan ayrı hareket gibi okunmasın diye aynı `e` eğrisi kullanılır); réverbère ip noktası (fener y ≤200) ve yüz ≥230 px yeniden ölçülür. (2) Louis'nin p144 sonrası duruşunu hafif sola al (u 0.70 → ≈0.66): kadraj aynı kalır, cep ≈950'ye gelir (tek başına yetmez, (1) ile birleştirilebilir; François'nın omzuyla örtüşmeyi motion denetler). (3) Kabul: cep p189'da sütunda kalır; yalnızca eleştirmen "kurulum nesnesi bu karede aranmaz" derse. Motion `kilitKontrol`'a cep köşesini kilit nokta olarak ekler.
 - **Baston ve el (SK1, kritik):** Baston **Louis'nin dış (ekran sağı) elinde, gövdesinin sağında**; kavrayan el ve parmaklar bel planda (p+144–168) tam görünür; baston ucu dış ayağın önünde, taşa değer (`bastonAcisi`/`kolIK`). François'nın bacaklarının önünden geçmez; kardeşe dokunan kol boş. **Eldiven (SC1, kesin):** Louis'nin baston eli ve tüm elleri **çıplak** (parmaklar görünür); sağ göğüs cebinde beyaz eldiven köşesi (bel planda p+144–168 ≥29×17 px, kurulum tekrarı); **François taba deri eldiven `#8a6a48`** (şapkayı kaldıran el); krem/gri eldiven yok. **SC6:** şapkayı kaldıran kol yüzün dışından yükselir (omuzdan yana-yukarı, dirsek yüzden ≥40 px uzakta); favori ≈%50 dar, saçla aynı ton, kulak önünde biter.
 - **Fare insert protokolü (SC7):** insert, ızgara (300,1130) kadrajında yeniden kurulmuş sayılır; kontrol kareleri p78, p87, p108, p138, p143 (Bölüm 11). Kapanışta ızgarada kuyruk ucu kaybolur, p138–144 boş ızgara.
 - **Giriş/çıkış:** Karakterler kare açılırken sokak ortasında. Fare ızgaradan çıkar ve aynı ızgaraya girer.
@@ -198,7 +199,7 @@ Not: P13 esneme ve P04 göz kırpma (0.23 sn) oyunculuk jestidir; doğal sürele
 - **Süreklilik:** Izgara p+0'dan kurulu. Şapka kalkık elde biter. Louis cep eldiven köşesi.
 - **Fizik:** Baston ucu `zemin(z,u).y`'de. Cut yürüyüş döngüsü sürerken. Push-in'de François'nın ayakları kadraj dışına çıkar.
 - **Geçiş (çıkış):** SERT.
-- **Ekran yazısı:** **ÜST-BANT**: "FRANÇOIS" etiketi + "Herkesten önce bilen… kazanır." (okunan kelime kırmızı), 568–760. **SC2:** etiket rengi `#e7c37a` + 0 2px 0 koyu gölge, 34 px (sis üstünde ≥3:1); etiket François'nın başı üstünde, sağ kenarı fenerden ≥20 px uzak. **Réverbère** push-in sonunda (p+180–216) yazı bandında olmaz: ip noktası dünyada sağa/ileri kaydırılır; fener gövdesi ekranda ya x ≥1010 (kadraj dışı) ya y ≤200 (motion cx −80/cy +40 eğrisine göre hesaplar; ışık yönü sabit kalır).
+- **Ekran yazısı:** **ÜST-BANT**: "FRANÇOIS" etiketi + "Herkesten önce bilen… kazanır." (okunan kelime kırmızı), 568–760. **SC2:** etiket rengi `#e7c37a` + 0 2px 0 koyu gölge, 34 px (sis üstünde ≥3:1); etiket François'nın başı üstünde, sağ kenarı fenerden ≥20 px uzak. **Réverbère** push-in sonunda (p+180–216) yazı bandında olmaz: ip noktası dünyada sağa/ileri kaydırılır; **v2.7: réverbère sarkması 60 → 15 px (daha yukarıda asılı), push-in sonunda fener gövdesi y ≤200** (motion ölçtü ✓; ışık yönü sabit kalır; Proto varsayılanı değişmedi).
 - **Anlatım:** FRANÇOIS (alçak, sinsi). **Dokunuş:** baston–fare. Göz kırpma oyunculuk (kalır).
 
 ### P05 · kare 780–996 · HARITA
@@ -430,7 +431,7 @@ Not: P13 esneme ve P04 göz kırpma (0.23 sn) oyunculuk jestidir; doğal sürele
 | **Memur** | gri ceket, şapkasız: P01 (kol), P07, P08, P10 (kol), P11, P15 · P16–P17 gömlek |
 | **Müdür / telgrafçı / suç ortağı** | Müdür yalnız P07 · telgrafçı (zeytin yeşili) P12–P13 · suç ortağı P14 |
 | **Dürbün** | sabit tüp (P12–P13), pervaza kurulu teleskop (P14) |
-| **Kule kol konumları** | A/BEKLE (yatay çubuk, gündüz) = P01 f0, P21, P22 başı, P23 · B (asimetrik "7") = yalnız P01 f54 sonrası · X = P11→P14 · **DINLEN (dikey çubuk, gece/sis) = P07, P08, P16, P17** |
+| **Kule kol konumları** | A/BEKLE (yatay çubuk, gündüz) = P01 f0, P21, P22 başı, P23 · B (asimetrik "7") = yalnız P01 f54 sonrası (A katlı göstergeli, uçlar x 673–887) · X = P11→P14 · **DINLEN (dikey çubuk, gece/sis) = P07, P08, P16, P17** |
 | **Kule/mekân** | Tours: kent içi, yuvarlak taş kule (eski belediye sarayı üstü, olası) → P01, P07, P08, P10, P11, P15 alt, P21, P22 · ara kule: yuvarlak taş kule (P12, P13) · Bordeaux: Saint-Michel + T kol (P04 silik, P06, P14) |
 | **Pencere** | Tours: çatı penceresi A (kule 10–12 m ötede) + pencere B · Bordeaux: **attique cephe penceresi** (soldan 2., P06 dışarıdan → P14 içeriden) |
 | **Işık** | P01, P10 geç gün ışığı + fener · P02 gündüz tepeden altın güneş (açık avlu) · P07, P08, P16 gece mum |
@@ -476,12 +477,36 @@ Not: P13 esneme ve P04 göz kırpma (0.23 sn) oyunculuk jestidir; doğal sürele
 | P02 | kadran, amblemler (çapa, Merkür asası, terazi, bereket boynuzu) | onay bekliyor | Kabul (nötr, okunmaz) |
 | P02 | tezgâh + demir kapı kanadı | bilgi | Kabul; kapı dikey çubuk (BC1), tezgâh tam görünür ya da kalkar (BC5) |
 | Tümü | ortak `ToursEtiketi` | onay bekliyor | Kabul |
-| P04 | push-in cx/cy | – | **Değişti:** cx −80e, cy +40e (SC3, SC9); kare tablosu güncel; kare sayısı aynı |
+| P04 | push-in cx/cy | – | **Değişti (v2.7 ile geçersiz kılındı):** v2.6 `cx = 81.6−8e` yetmedi; geçerli `cx = 81.6−88e`, `cy = −247−225e` (bkz. madde 18) |
 | P02 | etiket süresi p0–78 → p0–50, insert p+78 | – | **Değişti:** tebeşir p+90 ve tüm temas kareleri aynı |
 | P07 | p66–96 push-in 1.08→1.45 | – | **Değişti:** BAM p98 ve kareler aynı |
 
 Kare/temas değişimi yok: yalnız kamera, kadraj ve etiket zamanı. Toplam 3600.
 17. **Dönem:** %3 rente, ipe asılı réverbère [T], Notre-Dame yok, T regülatör, sarkaçlı saat, kurutma kumu, arma/taç yok.
+18. **v2.7 (motion A4b "değişen değerler" + orkestra kararları):** kararlar tablosu:
+
+| Plan | Öğe | Motion A4b | Karar |
+|---|---|---|---|
+| P01 | A (BEKLE) uçları | x 673–887, göstergeler katlı | **Kabul** (orkestra); v2.6 "açık düz T x 626–934" kalktı |
+| P01 | TOURS etiketi | x ≈ 640 | **Kabul** (orkestra) |
+| P01 | eldiven / havuz / bırakma | el 266 → toplam 353; havuz fener tabanı (430,1100) rx 300 ry 160; iniş p122–140, gevşeme p141–152 | Bilgi, plana işlendi (temas p140 aynı) |
+| P01 | lucarne kanatları açık, kule terası parapet (y 728, r 78), paket (690,1340) ×1.15 | – | Bilgi (mekân/motion); kanat tipi mekân sorumlusu onayı bekliyor |
+| P02 | insert | zoom yerine dolly (`KZ` 4.645 m), tahta 864×576, merkez y 700 | **Kabul** (orkestra); cs ≈3.1 değeri kalktı |
+| P02 | geri çekilme | `KZ` 4.645→2.7, tahta ≈289 px, merkez y 700→620 | Kabul (tahta ≥ %15 = 288 px sınırda) |
+| P02 | sekme-1 / sekme-2 | tahta altı tebeşir rafı (y ≈1000) / estrad üst basamağı (y ≈1360–1480) | **Kabul** (orkestra); kareler 102/114 aynı |
+| P02 | kırılma | xm 0.85, h 2.03 (y ≈906); katip xm 0.55→0.3 | Kabul |
+| P02 | tezgâh | kalktı | **Kabul** (orkestra, BC5) |
+| P02 | katip kıyafeti | açık gömlek kolu `#d9ccae` + kum yelek | Plan zaten KATIP açık (BC2); tasarim.md 2.7 sahibi tasarımcı |
+| Tümü | cep köşesi rig yerel | (−40,−318); göğüste ≈80×50, orta ≈30×18, P04 p150 ≈35×22 | Bilgi: planın ≥50×30 (P02) ve ≥29×17 (P04) ölçülerini sağlıyor; tasarım 0.6 teyidi bekliyor |
+| P04 | push-in cx | 81.6−88e (180–216: −6.4→−2.0) | **Kabul** (orkestra); cs/cy aynı; kare tablosu yenilendi |
+| P04 | réverbère | sarkma 60→15 px, p180–216 fener y ≤200 | **Kabul** (orkestra) |
+| P04 | fare insert | `Sb2SokakFare`: pençe p87, çizme p98, TAK p108, dalış p128, kuyruk p138; fare ≈300 px | **Kabul** (orkestra); temas kareleri aynı |
+| P04 | insert "bordo paça" | gri pantolon (rig) + bordo frak eteği üstte | **AÇIK:** orkestra listesinde yok; plan metni "bordo paça" kalır, rig kanonu için karar bekliyor |
+| P04 | şapka kolu | shF −168 / elF −14 | Bilgi (SC6) |
+| P04 | **p189 Louis cep köşesi IG sütununda** (x ≈1000, y ≈1170) | motion açığı | **AÇIK, öneri:** push-in bitişini sola kaydır (`cx ≈ −100` bitiş), alternatif Louis u 0.66; ayrıntı P04 bölümünde |
+| P02 | **p203 Louis sağ kenarda kırpık** | motion açığı | **AÇIK, öneri:** kapanış `cs ≈1.18, cx ≈+85, cy −110`; ayrıntı P02 bölümünde |
+
+Kare/temas değişimi yok: toplam 3600; temas kareleri (P02 246/258/270, P04 651/662/672/674/692/702) aynı.
 
 ---
 
@@ -632,8 +657,10 @@ Her kare: tam boy + 360×640 + güvenli alan bindirmeli (IG sağ sütun x 920–
 | Plan | Plan içi kare (mutlak) | Rolü |
 |---|---|---|
 | P01 | 0 (0) · 54 (54) · 60 (60) · 100 (100) · 140 (140) · 155 (155) | ilk/kapak (A) · kol B ilk · eldiven en yüksek, kâğıt yatar · B 360 testi · eldiven havuza "tap" · kapanış |
-| P02 | 0 (156) · 30 (186) · 50 (206) · 78 (234) · 90 (246) · 102 (258) · 114 (270) · 126 (282) · 150 (306) · 168 (324) · 203 (359) | ilk · etiketler görünür/katip yazıyor · etiket çıkmış · insert ilk kare · tebeşir kırılır · sekme-1 · sekme-2 (parça yerde) · geri çekilme sonu · göğüs ilk · yazan el + cep köşesi · kapanış |
-| P04 | 0 (564) · 78 (642) · **87 (651)** · **108 (672)** · **138 (702)** · **143 (707)** · 144 (708) · 150 (714) · 189 (753) · 215 (779) | ilk · **fare insert ilk kare (boş ızgara)** · **fare pençesi ızgara demirine** · **baston ucu TAK** · **kuyruk ucu tink** · **kapanış, boş ızgara** · bel ilk · Louis durur · göz kırpma · kapanış |
+| P02 | 0 (156) · 30 (186) · 50 (206) · 78 (234) · 90 (246) · 102 (258) · 114 (270) · 126 (282) · 150 (306) · 168 (324) · 203 (359) | ilk · etiketler görünür/katip yazıyor · etiket çıkmış · insert ilk kare · tebeşir kırılır · sekme-1 (tahta altı raf) · sekme-2 (estrad basamağı, parça durdu) · geri çekilme sonu · göğüs ilk · yazan el + cep köşesi · kapanış |
+| P04 | 0 (564) · 78 (642) · **87 (651)** · **108 (672)** · **138 (702)** · **143 (707)** · 144 (708) · 150 (714) · 189 (753) · 215 (779) | ilk · **fare insert ilk kare (boş ızgara)** · **fare pençesi ızgara demirine** · **baston ucu TAK** · **kuyruk ucu tink** · **kapanış, boş ızgara** · bel ilk · Louis durur · göz kırpma (+ **p189 cep köşesi IG sütunu denetimi**, açık not) · kapanış |
+
+Ek (v2.7): P04 fare insert akışında isteğe bağlı p98 (mutlak **662**, Louis çizmesi) ve p128 (mutlak **692**, dalış) kareleri; P02 p203 (**359**) kapanışında Louis kırpık denetimi (açık not).
 
 **Diğer planlar (ilk · dokunuş · kapanış, mutlak)**
 

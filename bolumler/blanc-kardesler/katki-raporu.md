@@ -970,6 +970,22 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
     - P02 kalem cızırtısı 152–184.
   - **Teknisyen:** commit yapılmadı.
 
+## yönetmen · 2026-11-06 · Sahne planı v2.7 (motion A4b "değişen değerler" + orkestra kararları)
+- Ne yaptım: Motion A4b bölüm 2 tablosunu `sahne-plani.md/.json`'a işledim (v2.7 başlık notu, Bölüm 4 madde 18 karar tablosu, P01/P02/P04 plan metinleri, Bölüm 1b, Bölüm 3 kol konumu, Bölüm 11). P04 push-in kare tablosunu `cx = 81.6 − 88e` ile yeniden hesapladım (e = easeInOutCubic; 144–176 aralığı 8 kare, 180–216 doğrusal −6.4→−2.0). İki açık kalanı plan notu olarak yazdım ve kadraj önerisi verdim (uygulanmadı).
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/storyboard-v2/sahne-plani.md, sahne-plani.json (`surum` 2.7, `v27_ozet`, `acik_notlar_v27`), bolumler/blanc-kardesler/katki-raporu.md.
+- Aldığım kararlar ve gerekçeleri:
+  - Orkestra kararları aynen: P02 sekme-1 tahta altı tebeşir rafı / sekme-2 estrad basamağı (kareler 102/114), insert dolly (zoom değil), tezgâh kalktı; P04 cx −88e, réverbère sarkması 60→15 (fener y ≤200), fare insert akışı (p87/p98/p108/p128/p138); P01 TOURS etiketi x≈640, A katlı uçlar 673–887.
+  - Tahta insert merkezi 650 → 700 ve geri çekilme tahtası 294 → ≈289 px (%15 sınırı 288 px): motion ölçümü esas alındı, sınırda olduğu yazıldı.
+  - Açık not P04 p189 (cep x≈1000, IG sütunu): önerim push-in yanal bitişini sola kaydırmak (`cx = 81.6 − 182e`, bitiş ≈ −100): cep ≈905'e (sütun dışı), François yüzü ≈285'te kenar payını korur. Alternatif Louis u 0.70→0.66 tek başına yetmez. Ekran formülünden elle tahmin; motion yüz ≥230 px, fener y ≤200 ve kenar payını ölçmeli.
+  - Açık not P02 p203 (Louis kırpık): cs 1.30'da tüccar–Louis arası ≈770 px, gövdelerle ≈950 px > 920 px güvenli genişlik; öneri kapanış `cs ≈1.18, cx ≈+85, cy −110`. Tahmindir (z ve xm'den hesap); PARIS başlığı x'i `540+cx` ile kaydığı için MATCH (540,430) ±40 px kontrolü ve alt üçte bir doluluk motion'da ölçülmeli.
+  - Orkestra listesinde olmayan A4b satırları (P01 lucarne kanatları, P04 "bordo paça" ↔ gri pantolon, cep rig yerel konumu, katip kıyafeti) "bilgi/açık" olarak işaretlendi; "bordo paça" plan metninde değişmedi.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: toplam 3600 ve temas kareleri değişmedi (P02 246/258/270, P04 651/662/672/674/692/702); plan tek gerçek kaynak (motion değerleri geri yazıldı); IG sütunu/yan 80 px güvenli alan (p189, p203); dokunuş ölçeği (fare ≈300 px, tahta %30). Yakaladığım: v2.6 P04 cx −8e ile Louis yüzü x≈1065 (SC3 ihlali, motion tespiti); v2.6 sekme yerleri insertte kamera arkasında kalıyordu; Bölüm 4 madde 16'daki "cx −80e, cy +40e" satırı plan tablosuyla zaten çelişiyordu, v2.7 ile geçersiz işaretlendi.
+- Açık sorular / bir sonraki ajana notlar:
+  - Orkestra: p189 ve p203 önerilerinden hangisi uygulansın; "bordo paça" kararı (rig kanonu gri pantolon + bordo frak eteği).
+  - Motion: JSON'un geçerliliğini araçla doğrulayamadım (bu ortamda Bash yok); `python -m json.tool` ya da `node -e` ile bir kez çalıştırın. P04 kare tablosunun ara kareleri formülle üretilir (cx = 81.6 − 88e).
+  - Kurgucu: P02 sekme-1 ahşap raf (tok), sekme-2 estrad basamağı; temas kareleri aynı. P04 `P04_FARE_TEMAS` p87/p98/p108/p110/p128/p138.
+  - Tasarımcı/mekân sorumlusu: katip kıyafeti (tasarım 2.7), cep rig yerel (0.6), P01 açık lucarne kanatları onayı.
+
 ## tasarimci · 2026-11-06 · tasarim.md v2.4 (motion A4b bölüm 2 + eleştiri D)
 - Ne yaptım: Orkestra kararlarını `tasarim.md`ye işledim: cep eldiveni rig yerel (−40, −318) ve ekrana göre boyut (göğüs ~80×50, orta ~35×22, geniş çizilmez) + güçlendirilmiş çizim tanımı (iki yuvarlak parmak ucu, çentik, 2 kumaş kıvrımı, cep ağzı ve frak gölgesi, hiçbir kenar düz değil); eldiven beyazı ölçüm eşiği (gündüz L* ≥ 80, gece L* ≥ 70, C* < 12); katip açık gömlek kolu + kum yelek + kenar ışığı; gömlek manşeti %20 koyu; tüccar paltosu `#7a5a2e` → `#4a4f42`.
 - Dokunduğum dosyalar: bolumler/blanc-kardesler/storyboard-v2/tasarim.md, bolumler/blanc-kardesler/katki-raporu.md. Kod ve renk ölçümüne dokunmadım.
