@@ -1,17 +1,17 @@
-# Blanc Kardeşler · Storyboard v2 · Sahne Planı (v2.4: oyunculuk = yakın plan, motion değerleri, Eleştiri B, mekanlar.md R2)
+# Blanc Kardeşler · Storyboard v2 · Sahne Planı (v2.5: oyunculuk = yakın plan, motion değerleri, Eleştiri B, mekanlar.md R2, Borsa açık portikli avlu)
 
-Girdi: `senaryo-v2.md` (v2.1), `arastirma.md`, `dokunuslar.md` (v2.1 dönem), `donem-dogrulama.md`, `mekanlar.md` (R1/R2, bölüm 9–12), `elestiri-B.md`, motion A2 raporu (katki-raporu.md), kullanıcı geri bildirimi (A2 kareleri `kareler/SB2-{TOURS,SOKAK,BORSA}.png`) ve CLAUDE.md kuralları. Kullanıcı kararları: süre 60.0 sn tam kesim (3600 kare), "kardeşler", P14 maskesiz, P22 kukla/tahta (neon yok), 8 yeni mekân tam detay, **göz kırpma (P04) kalsın, kamera yaklaşsın**. Ses: ElevenLabs Umut Canbay (TR). 1080x1920 @ 60 fps.
+Girdi: `senaryo-v2.md` (v2.1), `arastirma.md`, `dokunuslar.md` (v2.1 dönem), `donem-dogrulama.md` (Ek 2, Ek 3), `mekanlar.md` (R1/R2, bölüm 9–12), `elestiri-B.md`, motion A2 raporu (katki-raporu.md), kullanıcı geri bildirimi (A2 kareleri `kareler/SB2-{TOURS,SOKAK,BORSA}.png`) ve CLAUDE.md kuralları. Kullanıcı kararları: süre 60.0 sn tam kesim (3600 kare), "kardeşler", P14 maskesiz, P22 kukla/tahta (neon yok), 8 yeni mekân tam detay, **göz kırpma (P04) kalsın, kamera yaklaşsın**. Ses: ElevenLabs Umut Canbay (TR). 1080x1920 @ 60 fps.
 
 **Kurallar (bu planın uyduğu):**
 - **Küçük jest = yakın kamera:** göz kırpma, kaş, esneme, el gibi jestlerde yüz/el ≥ %12 (~230 px).
 - **Ölü alan yok:** dikey kadrajın hiçbir üçte biri (0–640, 640–1280, 1280–1920) boş kalmaz; ufuk–ölçek kuralına uyulur.
 - **Önemli oyunculuk = yakın plan:** duygu, karar, ifade değişimi, replik sonu yakın plan (yüz) ya da bel plan; geniş/boy plan yalnız mekân kurulumu ve fiziksel eylem. Çekim ölçeği Bölüm 1 sütunu + her planda; oyunculuk anları Bölüm 9; rig yüz kalitesi Bölüm 10.
-- Plan süreleri ve toplam **3600 kare değişmedi**; zaman ve temas kareleri R2 güncellemesinde de değişmedi.
+- Plan süreleri ve toplam **3600 kare değişmedi**; zaman ve temas kareleri R2 ve Borsa güncellemelerinde de değişmedi.
 
-**v2.4 değişiklikleri (özet):**
-- (R2, mekanlar.md bölüm 10–12) **Tours istasyonu kent içinde** (eski belediye sarayı üstünde yuvarlak kule, *olası*, tek kaynak): Tours odası **çatı katı bürosu**, pencere A **çatı penceresi**, direk/kule 10–12 m ötede; **ara kule (P12/P13) yuvarlak taş kule**; P06/P14'te dormer yerine **attique (çatı katı) cephe penceresi** (konum aynı, soldan 2.); **P14 odası düz alçak kirişli tavan**; **P16–P17 ahşap yatak**; kol konumları: **gece/sis DINLEN = dikey çubuk, gündüz BEKLE = yatay çubuk (P21, P22 başı)**; **P05 telgraf hattı posta yolundan ayrı çizgi**.
-- Gece planlarında (P07, P08, P16, P17) kollar **DINLEN dikey çubuk** (önceki taslakta "B sabit" yazıyordu; B yalnız P01 gündüz sonrası).
-- (v2.3) P02 oda ve z, P04 z/ızgara/replik/fare insert, göz kırpma yakın plan (cs 3.2), P01 f0 kol konumu, P02 etiket çıkışı, P04 baston eli; oyunculuk = yakın plan (P02, P07, P13, P16 plan içi kesmeler).
+**v2.5 değişiklikleri (özet):**
+- **P02 BORSA artık kapalı salon değil, AÇIK PORTİKLİ AVLU** (donem-dogrulama Ek 3: 1749'da avlu açıktı, arcade'lar yarım daire/plein cintre; tek kaynak, olası): gündüz **tepeden altın güneş ışığı**, **tahta arcade'ın altında** (galeri duvarına dayalı), pencere/pilastr-salon dili kalktı. Zaman/temas kareleri aynı.
+- (R2, mekanlar.md 10–12) **Tours istasyonu kent içinde** (eski belediye sarayı üstünde yuvarlak kule, *olası*): Tours odası **çatı katı bürosu**, pencere A **çatı penceresi**, direk/kule 10–12 m ötede; **ara kule (P12/P13) yuvarlak taş kule**; P06/P14'te dormer yerine **attique (çatı katı) cephe penceresi** (konum aynı); **P14 odası düz alçak kirişli tavan**; **P16–P17 ahşap yatak**; kol konumları **gece/sis DINLEN = dikey çubuk, gündüz BEKLE = yatay çubuk (P21, P22 başı)**; **P05 telgraf hattı posta yolundan ayrı çizgi**. Gece planlarında (P07, P08, P16, P17) kollar DINLEN; B yalnız P01 gündüz.
+- (v2.3) P02 z, P04 z/ızgara/replik/fare insert, göz kırpma yakın plan (cs 3.2), P01 f0 kol konumu, P02 etiket çıkışı, P04 baston eli; oyunculuk = yakın plan (P02, P07, P13, P16 plan içi kesmeler).
 
 **Dönem revizyonu (varsayılan kararlar):** P15 = Alt-1 (elle yazılmış "1835" defter sayfası); P19 = (a) tokmaksız, dosya kapağı TOK; P01 geç gün ışığı; dürbünler sabit; manipulateur itme/çekme; Bordeaux sinyali Saint-Michel çan kulesi üstünde.
 
@@ -33,13 +33,13 @@ Girdi: `senaryo-v2.md` (v2.1), `arastirma.md`, `dokunuslar.md` (v2.1 dönem), `d
 
 **Geçiş sözlüğü.** SERT · MATCH · KÂĞIT · SAME. Fade/çapraz çözülme yok.
 
-**Mekân sözlüğü.** BORSA, TOURS-KULUBE-IC, KULE-DIS, PARIS-AVLU, CATI-BORDEAUX, CATI-KATI, YATAK-ODASI, MAHKEME; HARITA, SOKAK-BORDEAUX; varyant: PARIS-MASA, TOURS-KAPI, KANUN-INSERT, MONTAJ-15, WIFI-MORF.
+**Mekân sözlüğü.** BORSA (açık portikli avlu), TOURS-KULUBE-IC (çatı katı bürosu), KULE-DIS (yuvarlak taş ara kule), PARIS-AVLU, CATI-BORDEAUX, CATI-KATI, YATAK-ODASI, MAHKEME; HARITA, SOKAK-BORDEAUX; varyant: PARIS-MASA, TOURS-KAPI, KANUN-INSERT, MONTAJ-15, WIFI-MORF.
 
 **Ses zamanı notu.** `zamanlama.json` yok; anlatım kareleri tahmini; foley görüntüye kilitli.
 
-**Tours istasyonu (R2, mekanlar.md 10–12).** İstasyon **kent içinde**: eski belediye sarayı (Ancien Hôtel de ville) üstünde **yuvarlak taş kule** (olası, tek kaynak; kesin iddia değil). **Tours odası = çatı katı bürosu** (ahşap kiriş, eğimli tavan, ahşap döşeme, merdiven sahanlığına açılan kapı). **Pencere A = çatı penceresi** (lucarne); direk/kule **10–12 m ötede** (12 m: tam T siluet, P01 kancası ve P22 morfu için). Pencere B (Paris yönü) sol duvarda. Manipulateur içeride, direk dibindeki odada (kablo + makara), kumanda itme/çekme; dürbünler sabit kutuda. Kule kolu dokunuşu yalnız P01. **Ara kule (KULE-DIS, P12/P13) yuvarlak taş kule** (üst oda penceresi, direk tepede). **Bordeaux:** P06/P14'te dormer yerine **attique (çatı katı) cephe penceresi**, konum aynı (soldan 2.), Saint-Michel çan kulesi + T kol ufukta.
+**Tours istasyonu (R2, mekanlar.md 10–12).** İstasyon **kent içinde**: eski belediye sarayı (Ancien Hôtel de ville) üstünde **yuvarlak taş kule** (olası, tek kaynak; kesin iddia değil). **Tours odası = çatı katı bürosu** (ahşap kiriş, eğimli tavan, ahşap döşeme, merdiven sahanlığına açılan kapı). **Pencere A = çatı penceresi** (lucarne); direk/kule **10–12 m ötede** (12 m: tam T siluet, P01 kancası ve P22 morfu için). Pencere B (Paris yönü) sol duvarda. Manipulateur içeride, direk dibindeki odada (kablo + makara), itme/çekme; dürbünler sabit kutuda. Kule kolu dokunuşu yalnız P01. **Ara kule (KULE-DIS, P12/P13) yuvarlak taş kule** (üst oda penceresi, direk tepede). **Bordeaux:** P06/P14'te **attique (çatı katı) cephe penceresi**, konum aynı (soldan 2.), Saint-Michel çan kulesi + T kol ufukta.
 
-**Kule kol konumları (R2 + v2.3).** **A / BEKLE (gündüz, yatay çubuk):** iki gösterge regülatörle aynı doğrultuda dışa, **düz T çubuğu**; P01 f0, P23 son kare, **P21 ve P22 başı** (gündüz/gün sonu BEKLE). **B (SAK, yalnız P01 f54 sonrası, gündüz):** sol gösterge dikey yukarı 90°, sağ gösterge dışa-yukarı +45° (asimetrik "7"; direkle üçgen kurmaz). **X:** fazladan çentik (P11→P14). **DINLEN (gece/sis, dikey çubuk):** P07, P08, P16, P17 (telgraf gece çalışmaz; kollar dikey çubuk, hareket yok). Kod eşlemesi motion'da (ChappeKule açı sözleşmesi); DINLEN dikey çubuk ve BEKLE yatay çubuk araştırmacı teyidi bekler (zayıf kaynak).
+**Kule kol konumları.** **A / BEKLE (gündüz, yatay çubuk, düz T):** P01 f0, P23 son kare, **P21 ve P22 başı**. **B (SAK, yalnız P01 f54 sonrası, gündüz):** sol gösterge dikey yukarı 90°, sağ gösterge dışa-yukarı +45° (asimetrik "7"; direkle üçgen kurmaz). **X:** fazladan çentik (P11→P14). **DINLEN (gece/sis, dikey çubuk):** P07, P08, P16, P17 (hareketsiz). Kod eşlemesi motion'da; DINLEN/BEKLE araştırmacı teyidi bekler (zayıf kaynak).
 
 ---
 
@@ -48,7 +48,7 @@ Girdi: `senaryo-v2.md` (v2.1), `arastirma.md`, `dokunuslar.md` (v2.1 dönem), `d
 | Plan | start–end (kare) | sn | Mekân | Tip | Dokunuş | Çekim ölçeği (plan içi) | Çıkış geçişi |
 |---|---|---|---|---|---|---|---|
 | P01 | 0–156 | 2.60 | TOURS-KULUBE-IC (masa) | kinetic | kol "şak" | insert/yakın (el+eldiven), tek çekim, cs 1.14→1.06 | SERT |
-| P02 | 156–360 | 3.40 | BORSA | character | tebeşir kırılır | geniş (0–90) → boy/orta tebeşir (90–150) → **göğüs Louis (150–186, kesme)** → boy (186–204) | MATCH (PARIS yazısı) |
+| P02 | 156–360 | 3.40 | BORSA (açık portikli avlu) | character | tebeşir kırılır | geniş (0–90) → boy/orta tebeşir (90–150) → **göğüs Louis (150–186, kesme)** → boy (186–204) | MATCH (PARIS yazısı) |
 | P03 | 360–564 | 3.40 | HARITA | map | gün-gece + at yorgunluğu | harita (grafik) → at **yakın** (132–204) | SERT (ses köprüsü) |
 | P04 | 564–780 | 3.60 | SOKAK-BORDEAUX | character | baston–fare | boy (0–78) → insert (78–144) → **bel (144) → push-in göğüs → yakın (180–216)** | SERT |
 | P05 | 780–996 | 3.60 | HARITA | map | sollama + mühür | harita (grafik) | MATCH (mühür→güneş) |
@@ -93,18 +93,18 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 - **Ekran yazısı:** "1834. Bilgisayar yok." ÜST-BANT, f0'dan itibaren tam görünür, 0–156. Kapak ayrı: "ELDİVENLE DEVLETİ HACKLEDİLER".
 - **Anlatım:** "Bu eldiven, Fransız devletinin ağını hackledi." **Dokunuş:** kol "şak".
 
-### P02 · kare 156–360 · BORSA
+### P02 · kare 156–360 · BORSA (açık portikli avlu)
 - **Çekim ölçeği:** geniş (p+0–90, dolly cs 1.00→1.15) → boy/orta tebeşir (p+90–150) → **göğüs Louis (p+150–186, kesme)** → boy (p+186–204).
-- **Oda (motion A2 değerleri):** `ODALAR.borsa` xFar 230–850, yFar 1030; **efektif ufuk ≈ 280, efektif kamera ≈ 3.5 m**. Yuvarlak (plein cintre) kemerli pencereler, iyonik pilastr, dentilli korniş, estrad + merdiven; **sivri kemer yok**; **tricolore yok**. En az bir pencere tam görünür. Tahta 400×228, başlık "PARIS · RENTE 3%" (dünya y≈562, dolly sonunda ekran y≈430; MATCH).
-- **Karakter z:** François **z 1.65**, Tüccar **z 1.65**, Louis **z 1.75** (ayak y ≈1420). Yüz ≈80 px (geniş/boy); yakın plan için Louis göğüs çekimi.
-- **Kadraj/kamera:** p+0–90 `cs 1.00→1.15, cy +100→+40`; p+90–150 `cs 1.15→1.22, cy +40→+10, cx 0→+20`; **p+150–186 kesme: Louis göğüs, `cs 2.8, cx −392, cy −188` (A2 temel kadrajına göre), yüz ≈(540,800), ≥240 px**, defter, kalem ve el kadrajda, arkada kalabalık siluetler bulanık; p+186–204 kesme: boy `cs 1.30, cy −40`. **Ölü alan:** ayaklar ≈1420–1560; alt üçte bir: sol kenarda bulanık sütun gövdesi (x 0–90, y 900–1920), sağ-altta pencere ışık yaması, iki ön kenar siluet figürü (z ~1.2, **başları y ≈1000–1100**, gövde alt üçte biri doldurur, ayaklar kadraj dışı; efektif ufuk 280/kamera 3.5 m). Üst üçte bir: sütun başlıkları, korniş, tahta başlığı.
-- **Karakterler:** François u 0.40 (lacivert frak, silindir; sağ eliyle Tüccar'ın omzunu tutar, gülerek konuşur), Tüccar u 0.24 (kır sakal, bıyıksız, geniş kenarlı şapka, tıknaz), Louis u 0.62 (bordo frak, gri şapka; ciltli defter pupitrde; sağ göğüs cebinde beyaz eldiven köşesi). Katip platformda (z 5.5, u 0.50). Kalabalık 12 + 2 ön kenar siluet (yüzsüz, iki tonlu).
+- **Mekân (Ek 3 + kullanıcı/koordinatör kararı):** **Palais de la Bourse'un açık portikli avlusu** (1749'da avlu açıktı; tek kaynak, olası; kapatma tarihi yok). Üç yandan **yarım daire (plein cintre) arcade'lar**, ince sütunlar/pilastrlar, tympanum'larda ticaret amblemleri (okunmaz, nötr), taş avlu zemini (güneş yamalarıyla); **gök, avlunun üstünde açık**, **gündüz tepeden altın güneş ışığı** (yüksek açı: gölgeler sütunlardan kısa ve zemine, bal rengi; tek ışık kaynağı = güneş). **Tahta arcade'ın altında** (galeri duvarına dayalı, gölgeli, ışık sınırı tahtanın hemen önünde; katip arcade altındaki platformda). Kapalı salon unsurları (yan duvar pencereleri, tavan, korniş-tavan, estrad merdiveni) **kalktı**; pencere ışık yamaları yerine **sütun gölgeleri + açık gökten düşen güneş yaması**. Sivri kemer yok; tricolore yok. Oda parametreleri (motion A2: xFar 230–850, yFar 1030, efektif ufuk ≈280, kamera ≈3.5 m) avlu ölçüsüne uyarlanır (ufuk–ölçek kuralı korunur).
+- **Karakter z (motion):** François **z 1.65**, Tüccar **z 1.65**, Louis **z 1.75** (ayak y ≈1420). Yüz ≈80 px (geniş/boy); yakın plan için Louis göğüs çekimi.
+- **Kadraj/kamera:** p+0–90 `cs 1.00→1.15, cy +100→+40`; p+90–150 `cs 1.15→1.22, cy +40→+10, cx 0→+20` (tahta/arcade, katip, toz, kalabalık ve ön üçlü); **p+150–186 kesme: Louis göğüs, `cs 2.8, cx −392, cy −188`, yüz ≈(540,800), ≥240 px**, defter, kalem, el kadrajda; üstten güneş yüz ve defter üzerinde (şapka gölgesi alt yüze), arkada kalabalık siluetler arcade altında bulanık; p+186–204 kesme: boy `cs 1.30, cy −40`. **Ölü alan:** ayaklar ≈1420–1560 taş zemin üzerinde; alt üçte bir: taş avlu zemini **güneş yamaları + sütun gölge şeritleri** (boş dama değil), sol kenarda bulanık sütun gövdesi (x 0–90, y 900–1920), iki ön kenar siluet figürü (z ~1.2, **başları y ≈1000–1100**, gövde alt üçte biri doldurur, ayaklar kadraj dışı). Üst üçte bir: arcade üst kuşağı, tympanum amblemleri, korniş ve **gök şeridi**/güneş parlaması (tahta başlığı ve ÜST-BANT yazısı bu bölgede).
+- **Karakterler:** François u 0.40 (lacivert frak, silindir; sağ eliyle Tüccar'ın omzunu tutar, gülerek konuşur), Tüccar u 0.24 (kır sakal, bıyıksız, geniş kenarlı şapka, tıknaz), Louis u 0.62 (bordo frak, gri şapka; ciltli defter pupitrde; sağ göğüs cebinde beyaz eldiven köşesi). Katip arcade altındaki platformda (z 5.5, u 0.50). Kalabalık 12 + 2 ön kenar siluet (yüzsüz, iki tonlu).
 - **İsim etiketleri (BB2):** her biri kendi karakterinin şapkasının üstünde (bağlantı çizgisi 30 px). **Görünür p+0–78, p+78–86 yukarı kayarak çıkar (p+86'da yok); tebeşir kırılması p+90.** Louis etiketi x ≥720, y 560–650; kırılma noktasının ≥150 px dışında; toz/düşen parçanın üzerinde değil; sonra bir daha gelmez.
-- **Giriş/çıkış:** Hepsi kare açılırken içeride.
-- **Zaman çizelgesi:** 0 dolly · 30–88 katip rakam yazar · 78–86 etiketler çıkar · **90 tebeşir kırılır** (toz ≥240 px; parça ≥14 px, açık renk koyu kontur) · 90–114 parça düşer, iki sekme · 96–126 kalabalık döner, **donar** (126–150; p+90–150 = 1.0 sn net) · **150 kesme: Louis göğüs** (kafası kalkmaz, yazar) · 186 kesme: boy, dolly sonu · **192 katip yarım tebeşirle ilk çizgi**.
-- **Temas:** süren tebeşir cızırtısı (186–244) · **246 (p+90)** tebeşir "çıt" · **258 (p+102)** sekme-1 · **270 (p+114)** sekme-2 · **348 (p+192)** yarım tebeşir "cız" · kalem cızırtısı (Louis göğüs çekiminde yakın, −8) · kalabalık uğultusu p+90–168 0.5 sn kısılır.
+- **Giriş/çıkış:** Hepsi kare açılırken içeride (avlu arcade geçitleri kullanılmaz).
+- **Zaman çizelgesi:** 0 dolly · 30–88 katip rakam yazar · 78–86 etiketler çıkar · **90 tebeşir kırılır** (toz ≥240 px, tahtanın önünde güneş ışığında asılı kalır; parça ≥14 px, açık renk koyu kontur) · 90–114 parça platformdan düşer, iki sekme (taşa) · 96–126 kalabalık döner, **donar** (126–150; p+90–150 = 1.0 sn net) · **150 kesme: Louis göğüs** (kafası kalkmaz, yazar) · 186 kesme: boy, dolly sonu · **192 katip yarım tebeşirle ilk çizgi**.
+- **Temas:** süren tebeşir cızırtısı (186–244) · **246 (p+90)** tebeşir "çıt" · **258 (p+102)** sekme-1 · **270 (p+114)** sekme-2 · **348 (p+192)** yarım tebeşir "cız" · kalem cızırtısı (Louis göğüs çekiminde yakın, −8) · kalabalık uğultusu p+90–168 0.5 sn kısılır (açık avlu: hafif yankı, kuş sesi yok).
 - **Süreklilik:** Louis cep eldiven köşesi (→P19); ciltli defteri (→P15). François solda, Louis sağda.
-- **Fizik:** Katip platformda; ön plan siluetler zemine basar (ayaklar kadraj dışı). Ölçek efektif ufka göre.
+- **Fizik:** Katip platformda; ön plan siluetler zemine basar (ayaklar kadraj dışı). Gölgeler güneşin tersine (tepeden, kısa). Ölçek efektif ufka göre.
 - **Geçiş (çıkış):** MATCH ("PARIS" (540,430)).
 - **Ekran yazısı:** "Oyun: Paris'teki tahvil fiyatı" ÜST-BANT, 162–354.
 - **Anlatım:** "Bordeaux'lu kardeşler François ve Louis Blanc, devlet tahviline oynuyor." **Dokunuş:** tebeşir kırılması + Louis'nin soğukluğu.
@@ -123,7 +123,7 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 - **Çekim ölçeği:** boy (p+0–78) → insert (p+78–144) → **bel (p+144, kesme) → push-in göğüs → yakın (p+180–216)**. "kazanır" (replik sonu) göğüs→yakın; göz kırpma ve sırıtış yakın (yüz ≈240 px).
 - **Motion değerleri (A2):** durduklarında François **z 2.4**, Louis **z 2.45** (ayaklar y ≈1420); **ızgara z 2.6, u 0.32** (ekran ≈ (440,1390), plan başından görünür, ay kenar ışığıyla biraz parlatılır). Replik **ÜST-BANT**. Saint-Michel silik siluet (sol-arka, çatıların arkasında; tepe y ≥410). François p150'den bakışını kameraya çevirir.
 - **Kadraj/kamera:**
-  - **p+0–78 boy/orta** (alçak açı): `cs 1.00→1.10, cy 0→−20`. François z 3.2→2.4 (u 0.46), Louis z 3.3→2.45 (u 0.70; ekran sağında, gövdeler birbirini örtmez). **Alt üçte bir ön plan:** TONNELIER fıçısı + eşik, CHAPELIER basamağı + chasse-roue, ön birikinti ve ıslak taş yansımaları (y 1560–1900, k 1.3). Sol cephede küçük resmî yapıda tricolore (x 150–390, y 480–700; yazı/karakter/ip/fenerle çakışmaz). Ayaklar y ≈1420.
+  - **p+0–78 boy/orta** (alçak açı): `cs 1.00→1.10, cy 0→−20`. François z 3.2→2.4 (u 0.46), Louis z 3.3→2.45 (u 0.70; ekran sağında, gövdeler birbirini örtmez). **Alt üçte bir ön plan:** TONNELIER fıçısı + eşik, CHAPELIER basamağı + chasse-roue, ön birikinti ve ıslak taş yansımaları (y 1560–1900, k 1.3). Sol cephede küçük resmî yapıda tricolore (isteğe bağlı [T]; x 150–390, y 480–700). Ayaklar y ≈1420.
   - **p+78–144 INSERT** (kaldırım hizası, statik; **fare insert yeniden kadraj:** ızgara sol-orta **(300,1130)**, ufuk y 700; Louis'nin bordo paçası + baston ucu sağdan girer, x ≈800–900). Fare boyu %12 (≥230 px). **Fare ızgaradan çıkar, Louis'nin ayağına doğru ~200 px yürür; baston fare'nin önüne iner; fare aynı ızgaraya koşarak döner.**
   - **p+144–216 bel → göğüs → yakın** (kesme sonrası tek kesintisiz push-in). François yüz merkezi dünya ≈ (492,1070), yüz ≈75 px @cs 1 → ≥230 px için `cs 3.2` (≈240 px). `e = easeInOutCubic(t)`, `t=(f−144)/36`, `cs = 1.70+1.50e`, `cx = 81.6+72e`, `cy = −247−265e`. Kare kare:
 
@@ -191,7 +191,7 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 
 ### P08 · kare 1284–1440 · TOURS-KULUBE-IC
 - **Çekim ölçeği:** **yakın** Louis OTS (p+0–60, yüz ≥300 px) → **yakın→göğüs** memur (p+60–156, push-in `cs 1.00→1.18`); el alt kadranda ≥330 px.
-- **Kadraj:** p+60–156 memurun yüzü sert mum ışığında (alttan), **sağ el masada y 1000–1330**, duvarda gölge (sol-üst x 100–520, y 430–860, %22), **çatı penceresi A** (gece: direk kolları DINLEN dikey çubuk) sağda. Ölü alan: alt masa + kese + mum; üst duvar + gölge + pencere.
+- **Kadraj:** p+60–156 memurun yüzü sert mum ışığında (alttan), **sağ el masada y 1000–1330**, duvarda gölge (sol-üst x 100–520, y 430–860, %22), **çatı penceresi A** (gece: kollar DINLEN dikey çubuk) sağda. Ölü alan: alt masa + kese + mum; üst duvar + gölge + pencere.
 - **Karakterler:** Louis z 1.5, u 0.30 (baston sağ yanında). Memur z 1.7, u 0.62.
 - **Zaman çizelgesi:** 0–20 Louis öne eğilir · 6–48 "Tek bir hata.", 50–60 "Fazlası..." · **60 kesme** · 60–72 Louis'nin eli ikinci keseyi memurun önüne kaydırır · 72–100 memurun gözü kese ↔ pencere (korku + açgözlülük, yakın) · **102, 117, 132 üç parmak tiki (manipulateur itme/çekme)** · mum gölgesi T biçimli kol silueti · 132–156 hold.
 - **Temas:** **1356 (p+72)** kese "tok" · **1386, 1401, 1416** parmak "tık" (−6) · mum cızırtısı −12.
@@ -372,7 +372,7 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 |---|---|
 | **Beyaz eldiven** | P01 memurun elinde, ışık havuzuna bırakılır · P10 pakette · P15 memurun elinde buruşuk · P16 elinde → yere düşer · P23 Paris'te pakete konur |
 | **Louis'nin eldivenleri** | P02, P04, P06, P07: sağ göğüs cebinden beyaz köşe · P19 çıkarılıp giyilir |
-| **Louis'nin ciltli defteri** | P02 pupitrde → P15 "1835" |
+| **Louis'nin ciltli defteri** | P02 pupitrde (açık avlu, arcade altı) → P15 "1835" |
 | **Gri manşet** | P09 + P23: gri manşet, sağ mansette altın düğme. P21: beyaz manşet |
 | **Louis'nin bastonu** | P04 **dış (ekran sağı) elde, el görünür** · P06 korkuluğa dayalı · P07, P08 masaya dayalı · P14 masada · P18–P19 sırada |
 | **Şapkalar** | Louis gri; François silindir; P04 sonunda François şapka elde; P18–P19 dizde |
@@ -383,12 +383,12 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 | **Kule kol konumları** | A/BEKLE (yatay çubuk, gündüz) = P01 f0, P21, P22 başı, P23 · B (asimetrik "7") = yalnız P01 f54 sonrası · X = P11→P14 · **DINLEN (dikey çubuk, gece/sis) = P07, P08, P16, P17** |
 | **Kule/mekân** | Tours: kent içi, yuvarlak taş kule (eski belediye sarayı üstü, olası) → P01, P07, P08, P10, P11, P15 alt, P21, P22 · ara kule: yuvarlak taş kule (P12, P13) · Bordeaux: Saint-Michel + T kol (P04 silik, P06, P14) |
 | **Pencere** | Tours: çatı penceresi A (kule 10–12 m ötede) + pencere B · Bordeaux: **attique cephe penceresi** (soldan 2., P06 dışarıdan → P14 içeriden) |
-| **Işık** | P01, P10 geç gün ışığı + fener · P07, P08, P16 gece mum |
+| **Işık** | P01, P10 geç gün ışığı + fener · P02 gündüz tepeden altın güneş (açık avlu) · P07, P08, P16 gece mum |
 | **Kamera eşleşmeleri** | P23 son = P01 f0 (cs 1.14, cy +40) · P05 başlangıç = P03 başlangıç |
 | **Paket** | P01 açılmış yumuşak kâğıt, ip çözülmüş · P09 kapalı · P10 açık · P23 kapatılan |
 | **Yatak** | P16–P17 ahşap yatak (demir değil) |
 | **Diğer** | İkinci kese P07→P08 · mühür P05→P21 · dosya P18→P19 · güve P20 · sehpa P16→P17 · pervaz çentikleri P14 |
-| **Nötrlükler** | Mahkeme: cübbe tek koyu ton, haç/arma yok, tokmak yok · Borsa: tricolore yok, yuvarlak kemer |
+| **Nötrlükler** | Mahkeme: cübbe tek koyu ton, haç/arma yok, tokmak yok · Borsa: tricolore yok, yarım daire arcade, tympanum amblemleri okunmaz |
 
 ---
 
@@ -405,16 +405,10 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 9. **P14:** kullanıcı kararı + dokunuş birlikte; 144 kare.
 10. **Dönem revizyonu (varsayılan):** P15 Alt-1, P19 (a), P01 geç gün ışığı, manipulateur itme/çekme, Saint-Michel çan kulesi.
 11. **v2.2 (A2 geri bildirimi):** P04 göz kırpma yakın plan, P02 ölü alan, küçük jest ölçüleri, P23 cs düzeltmesi.
-12. **v2.3:** P04 yüz ölçeği yeniden hesaplandı (75 px → cs 3.2); P04 baston eli (SK1); P04 ızgara u 0.32'ye karşı baston ulaşamıyordu → fare Louis'ye yürür; P02 ön plan siluet ufuk kuralı (baş y ≈1000–1100); P02 etiket–tebeşir çakışması; P02 tricolore/sivri kemer kaldırıldı; P01 paket/ip/kol, eldiven bırakma, kol konumu; P07 müdür bel plana, memur göz kırpması gövde irkilmesine; P13/P16/P11 yakın ölçek.
-13. **v2.4 (R2) yakalananlar:**
-    - **Gece kol konumu çelişkisi:** önceki taslak P07/P08/P16'da kolu "B sabit" yazıyordu; R2: gece/sis DINLEN (dikey çubuk). Düzeltildi; B yalnız P01 gündüz.
-    - **P21/P22 gündüz BEKLE (yatay çubuk)** ve P17 DINLEN → P21 BEKLE geçişi (zaman atlaması, gece→gündüz).
-    - **Dormer → attique:** P06/P14 pencere tipi değişti (konum, kare, temas aynı).
-    - **P14 tavanı:** eğimli yerine düz alçak kirişli.
-    - **Tours çatı katı + çatı penceresi + kent içi yuvarlak kule (olası):** P01, P07, P08, P10, P11, P15, P21, P22 mekân notları; **kanıt zayıf (tek kaynak)**, kesin iddia olarak anlatıma girmez.
-    - **Ara kule yuvarlak taş kule:** P12/P13 geri çekilme kadrajında kule gövdesi.
-    - **P05 hat:** telgraf hattı posta yolundan ayrı çizgi.
-14. **Dönem:** %3 rente, ipe asılı réverbère, Notre-Dame yok, T regülatör, sarkaçlı saat, kurutma kumu, arma/taç yok.
+12. **v2.3:** P04 yüz ölçeği yeniden hesaplandı (75 px → cs 3.2); P04 baston eli (SK1); P04 ızgara u 0.32'ye karşı baston ulaşamıyordu → fare Louis'ye yürür; P02 ön plan siluet ufuk kuralı; P02 etiket–tebeşir çakışması; tricolore/sivri kemer kaldırıldı; P01 paket/ip/kol, eldiven bırakma, kol konumu; P07 müdür bel plana, memur göz kırpması gövde irkilmesine; P13/P16/P11 yakın ölçek.
+13. **v2.4 (R2):** gece kol konumu DINLEN (önceki "B sabit" hatası düzeltildi); P21/P22 BEKLE; dormer → attique; P14 düz kirişli tavan; Tours çatı katı + çatı penceresi + kent içi yuvarlak kule (olası, tek kaynak: kesin iddia olarak anlatıma girmez); ara kule yuvarlak taş kule; P05 iki ayrı çizgi.
+14. **v2.5 (Borsa):** P02 kapalı salon yerine **açık portikli avlu** (Ek 3: 1749'da avlu açıktı, yarım daire arcade; tek kaynak, olası). Kadraj: gündüz tepeden altın güneş, tahta arcade altında; salon pencereleri/estrad kalktı. **Dikkat:** motion A2/R1 değerleri (`ODALAR.borsa` salon parametreleri, pencereli salon kodu) avlu için uyarlanmalı; z 1.65/1.75 ve ufuk kuralı aynı kalır. Kapatılma tarihi bilinmediğinden 1834'te hâlâ açık olup olmadığı kesin değil: kullanıcı kararıyla açık avlu çiziliyor, açıklamada "dramatizasyon/mekân yorumu" notu uygun olur.
+15. **Dönem:** %3 rente, ipe asılı réverbère [T], Notre-Dame yok, T regülatör, sarkaçlı saat, kurutma kumu, arma/taç yok.
 
 ---
 
@@ -428,16 +422,16 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 | R4 | P15 | Bölünmüş montaj, yarılar 1920'ye kadar dolu | Üç katman; yaprak eğrisi |
 | R5 | P14 | Odak kayması tüm kadrajda: swangle'da blur yavaş | İki katman keskin+bulanık |
 | R6 | P22 | Wi-Fi morfu neon'a kayabilir; BEKLE yatay çubuktan başlangıç | Tahta dokusu; başlangıç P21'le aynı |
-| R7 | P02 | Üç çekim ve 12+2 figür | Kalabalık statik siluet |
+| R7 | P02 | Üç çekim, 12+2 figür, **yeni açık avlu mekânı** (arcade + gök + tepeden güneş) | Kalabalık statik siluet; avlu plakası pişirilir; güneş/gölge tek ışık kaynağı |
 | R8 | P12/P13/P14 | Göz/kaş/esneme okunurluğu; yuvarlak taş kule yeni mekân | Farklı klip; KULE-DIS kartı mekanlar.md R2'ye göre |
 | R9 | P01/P23 | Kapak karesi + loop eşleşmesi; A/B kol konumu telefonda okunmalı | cs 1.14/cy +40; A düz T, B asimetrik |
-| R10 | P03/P05 | İki ayrı çizgi (posta yolu, telgraf hattı) ve sollama noktası | Harita katmanları ayrı; sollama Orléans–Tours |
+| R10 | P03/P05 | İki ayrı çizgi ve sollama noktası | Harita katmanları ayrı; sollama Orléans–Tours |
 | R11 | P08 | El ≥330 px + gölge %22 + push-in | Gölge ayrı katman |
 | R12 | P16 | Insert kamerası düşüşü izler; ahşap yatak yeni çizim | cy eğrisi katmanlarla |
 | R13 | P07 | Plan içi kesme p+30 ve p+66 | Kese hareketi kesilmeden |
 | R14 | Genel | 60 sn tam kesim | Foley görüntüye kilitli |
 | R15 | P11 | Direk karşılığı yalnız kol görünürken | Köşe katmanı |
-| R16 | Tours kent içi/yuvarlak kule | Tek kaynak (olası) | Görsel nötr kalır; anlatıma girmez; araştırmacı teyidi |
+| R16 | Tours kent içi/yuvarlak kule, Borsa açık avlu | Tek kaynak (olası) | Görsel nötr kalır; anlatıma girmez; araştırmacı teyidi |
 
 ---
 
@@ -447,7 +441,7 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 |---|---|---|---|
 | TOURS-KULUBE-IC (hook) | P01 | **60** | Eldiven yükselmiş, kol B'de |
 | TOURS-KULUBE-IC (oda) | P07 | **1226** | Çekmece BAM, alt üçte bir dolu |
-| BORSA | P02 | **276** (p+120) | Tebeşir tozu; ayrıca Louis göğüs **326** (yüz ≥240 px) |
+| BORSA (açık avlu) | P02 | **276** (p+120) | Tebeşir tozu tepeden güneşte, tahta arcade altında; ayrıca Louis göğüs **326** (yüz ≥240 px) |
 | HARITA | P05 | **940** | Mühür + balmumu; iki ayrı çizgi |
 | SOKAK-BORDEAUX | P04 | **724** (push-in ortası) ve **754** (göz kırpma yakın plan, ≈240 px) | Kompozisyon + rig yüz kalitesi |
 | PARIS-AVLU | P09 | **1506** | Paket oturur |
@@ -468,7 +462,7 @@ Toplam 3600 kare = 60.00 sn. Onaylı süre sapmaları: P09 2.0, P10 2.2, P14 2.4
 
 ## 7. Foley / boşluk özeti
 
-Temas kareleri her planda ve `sahne-plani.json` `temaslar[]` içinde mutlak karelerle; R2 güncellemesinde **zaman ve temas kareleri değişmedi**. v2.3 değişimleri: P04 fare yürüyüşü 660–668, dalış 692; P02 katip "cız" 348; P01 "tap" 140 ışık havuzuna. Kaldırılanlar (dönem): P12 odak halkası, P13 dürbün "tok", P14 şlak, P19 tokmak, P15 takvim yırtılması. Boşluklar: P04 insert 1.1 sn, P07→P08 0.3 sn, P11 kısılır, P12 tam sessizlik p+100–130, P17 p+126–144, P18 p+96–132, P19 TOK akoru, P23→P01 kesintisiz.
+Temas kareleri her planda ve `sahne-plani.json` `temaslar[]` içinde mutlak karelerle; R2 ve Borsa güncellemelerinde **zaman ve temas kareleri değişmedi**. v2.3 değişimleri: P04 fare yürüyüşü 660–668, dalış 692; P02 katip "cız" 348; P01 "tap" 140 ışık havuzuna. Kaldırılanlar (dönem): P12 odak halkası, P13 dürbün "tok", P14 şlak, P19 tokmak, P15 takvim yırtılması. Boşluklar: P04 insert 1.1 sn, P07→P08 0.3 sn, P11 kısılır, P12 tam sessizlik p+100–130, P17 p+126–144, P18 p+96–132, P19 TOK akoru, P23→P01 kesintisiz.
 
 ---
 
@@ -477,7 +471,7 @@ Temas kareleri her planda ve `sahne-plani.json` `temaslar[]` içinde mutlak kare
 | Plan | Küçük jest | Boyut / çözüm | Ölü alan çözümü |
 |---|---|---|---|
 | P01 | eldiven+el | ~330 px ✔ | cs 1.14→1.06; masa ön yüzü ≈120 px ahşap |
-| P02 | Louis yazması, tebeşir | Louis göğüs cs 2.8 (≥240); toz ≥240 | z 1.65/1.75, ön plan silüet (baş y ≈1000–1100), sol sütun, sağ-alt ışık yaması |
+| P02 | Louis yazması, tebeşir | Louis göğüs cs 2.8 (≥240); toz ≥240 | z 1.65/1.75; açık avlu: alt zemin güneş yamaları + sütun gölgeleri, ön plan siluet (baş y ≈1000–1100), sol sütun; üst arcade kuşağı + gök şeridi |
 | P03 | at başı | cs 2.60, %13 | harita tam |
 | P04 | göz kırpma, sırıtış | yüz ≈240 px (cs 3.2) | fıçı, basamak, birikinti ön planı |
 | P05 | – | mühür 300 px ✔ | harita tam |
@@ -534,11 +528,11 @@ Geniş/boy planlar yalnız mekân kurulumu ve fiziksel eylem: P01, P03, P05, P09
 
 ## 10. Rig yüz yakın plan kalitesi gerektiren planlar (motion için)
 
-Yüz ≥230 px'te çizilecek, kontur kalınlığı ölçeğe göre yeniden hesaplanacak. İhtiyaç: **kaş** (bağımsız yükselme/çatma), **göz** (kırpma, kısma, bakış `lookX/lookY`, kapama), **ağız** (`visem`, gülümse, sırıt, esneme, fısıltı, kapalı), **ter**, **solgun palet**, **alttan mum ışığı + gölge**, bıyık/sakal/kırışık.
+Yüz ≥230 px'te çizilecek, kontur kalınlığı ölçeğe göre yeniden hesaplanacak. İhtiyaç: **kaş** (bağımsız yükselme/çatma), **göz** (kırpma, kısma, bakış `lookX/lookY`, kapama), **ağız** (`visem`, gülümse, sırıt, esneme, fısıltı, kapalı), **ter**, **solgun palet**, **alttan mum ışığı + gölge**, bıyık/sakal/kırışık. P02'de **tepeden güneş** (şapka gölgesi yüzün alt yarısına düşer).
 
 | Plan | Kimin yüzü | Ölçek | Gereken |
 |---|---|---|---|
-| P02 | Louis | göğüs (≥240 px) | aşağı bakış, kaş düz, ifadesiz; defter/kalem eli |
+| P02 | Louis | göğüs (≥240 px) | aşağı bakış, kaş düz, ifadesiz; defter/kalem eli; tepeden güneş, şapka gölgesi |
 | P04 | François | bel→yakın (≈240 px) | `visem` "kazanır", kameraya bakış, **göz kırpma**, **sırıtış**, şapkalı el |
 | P06 | Louis | bel/göğüs (≥260 px) | yukarı bakış, sabırsız kaş |
 | P07 | Müdür | bel (≥230 px) | açgözlü bakış, yaşlı/iri yüz; memur gövde jesti |

@@ -1,6 +1,6 @@
 {
   "proje": "blanc-kardesler",
-  "surum": "storyboard-v2.4",
+  "surum": "storyboard-v2.5",
   "fps": 60,
   "genislik": 1080,
   "yukseklik": 1920,
@@ -18,7 +18,8 @@
     "bordeaux": "P06/P14 dormer yerine attique (cati kati) cephe penceresi, konum ayni (soldan 2.); P14 oda duz alcak kirisli tavan",
     "yatak": "P16-P17 ahsap yatak",
     "P05": "telgraf hatti posta yolundan ayri cizgi; sollama Orleans-Tours arasinda",
-    "zaman_temas": "R2'de zaman ve temas kareleri DEGISMEDI"
+    "borsa": "P02 ACIK PORTIKLI AVLU (Ek 3: 1749'da avlu acikti, yarim daire arcade; olasi, tek kaynak): gunduz tepeden altin gunes, tahta arcade altinda; kapali salon pencere/estrad kalkti",
+    "zaman_temas": "R2 ve Borsa guncellemelerinde zaman ve temas kareleri DEGISMEDI"
   },
   "kol_konumlari": {
     "A_BEKLE": "gunduz yatay cubuk, duz T: P01 f0, P21, P22 basi, P23 son",
@@ -26,7 +27,7 @@
     "X": "fazladan centik P11->P14",
     "DINLEN": "gece/sis dikey cubuk: P07, P08, P16, P17 (hareketsiz)"
   },
-  "motion_degerleri": { "P02": "oda xFar 230-850 yFar 1030, efektif ufuk ~280, kamera ~3.5 m, z Francois/Tuccar 1.65 Louis 1.75, tricolore yok, yuvarlak kemer", "P04": "z Francois 2.4 Louis 2.45, izgara z 2.6 u 0.32 ekran (440,1390), replik UST bant, fare insert izgara (300,1130)", "P01": "manipulateur kadraj disi sagda" },
+  "motion_degerleri": { "P02": "z Francois/Tuccar 1.65 Louis 1.75, efektif ufuk ~280, kamera ~3.5 m (oda parametreleri acik avlu icin uyarlanacak), tricolore yok, yarim daire arcade", "P04": "z Francois 2.4 Louis 2.45, izgara z 2.6 u 0.32 ekran (440,1390), replik UST bant, fare insert izgara (300,1130)", "P01": "manipulateur kadraj disi sagda" },
   "planlar": [
     {
       "id": "P01", "start_frame": 0, "end_frame": 156, "mekan": "TOURS-KULUBE-IC", "tip": "kinetic",
@@ -45,20 +46,21 @@
       "ekran_yazisi": { "metin": "1834. Bilgisayar yok.", "bant": "UST", "kare_araligi": [0, 156] }
     },
     {
-      "id": "P02", "start_frame": 156, "end_frame": 360, "mekan": "BORSA", "tip": "character",
+      "id": "P02", "start_frame": 156, "end_frame": 360, "mekan": "BORSA (acik portikli avlu)", "tip": "character",
       "dokunus": "tebesir kirilir",
+      "isik": "gunduz tepeden altin gunes (acik avlu), golgeler kisa ve bal rengi; tahta arcade altinda",
       "olcek": [
         { "kare": [156, 246], "olcek": "genis/boy dolly" },
         { "kare": [246, 306], "olcek": "boy/orta tebesir+toz+kalabalik donar" },
         { "kare": [306, 342], "olcek": "gogus Louis (kesme, yuz >=240 px)" },
         { "kare": [342, 360], "olcek": "boy dolly sonu" }
       ],
-      "kamera": "p0-90 cs 1.00->1.15 cy +100->+40; p90-150 cs 1.15->1.22 cy +40->+10 cx 0->20; p150-186 KESME Louis gogus cs 2.8 cx -392 cy -188 (A2 temel kadraj), yuz ~(540,800); p186-204 cs 1.30 cy -40. Alt ucte bir: sol sutun govdesi, sag-alt isik yamasi, 2 on kenar siluet (basi y 1000-1100). Tricolore yok, yuvarlak kemer. etiketler p78-86 cikar, Louis etiketi x>=720",
+      "kamera": "p0-90 cs 1.00->1.15 cy +100->+40; p90-150 cs 1.15->1.22 cy +40->+10 cx 0->20; p150-186 KESME Louis gogus cs 2.8 cx -392 cy -188 (A2 temel kadraj), yuz ~(540,800), ustten gunes; p186-204 cs 1.30 cy -40. Alt ucte bir: tas avlu zemini gunes yamalari + sutun golgeleri, sol sutun govdesi, 2 on kenar siluet (basi y 1000-1100). Ust ucte bir: arcade ust kusagi, tympanum amblemleri, gok seridi. Tricolore yok, yarim daire arcade. etiketler p78-86 cikar, Louis etiketi x>=720",
       "karakterler": [
         { "ad": "Francois", "z": 1.65, "u": 0.40 },
         { "ad": "Tuccar", "z": 1.65, "u": 0.24 },
         { "ad": "Louis", "z": 1.75, "u": 0.62, "not": "ciltli defter (->P15); sag gogus cebinde beyaz eldiven kosesi" },
-        { "ad": "Katip", "z": 5.5, "u": 0.50, "not": "platformda" },
+        { "ad": "Katip", "z": 5.5, "u": 0.50, "not": "arcade altindaki platformda" },
         { "ad": "kalabalik", "z": "2-6", "not": "12 + 2 on kenar siluet" }
       ],
       "temaslar": [
@@ -516,7 +518,7 @@
     { "plan": "P19", "an": "Louis soguk eldiven giyisi", "olcek": "gogus + insert", "kare": [2954, 3036], "sure_sn": 1.37 }
   ],
   "rig_yuz_yakin_plan": [
-    { "plan": "P02", "kim": "Louis", "olcek": "gogus >=240 px", "gerek": "asagi bakis, kas duz, ifadesiz; defter/kalem eli" },
+    { "plan": "P02", "kim": "Louis", "olcek": "gogus >=240 px", "gerek": "asagi bakis, kas duz, ifadesiz; defter/kalem eli; ustten gunes, sapka golgesi" },
     { "plan": "P04", "kim": "Francois", "olcek": "bel->yakin ~240 px", "gerek": "visem kazanir, kameraya bakis, goz kirpma, sirituş, sapkali el" },
     { "plan": "P06", "kim": "Louis", "olcek": "bel/gogus >=260 px", "gerek": "yukari bakis, sabirsiz kas" },
     { "plan": "P07", "kim": "Mudur", "olcek": "bel >=230 px", "gerek": "acgozlu bakis, yasli/iri yuz paleti; memur govde jesti" },
@@ -533,7 +535,7 @@
   "stil_kareleri": [
     { "mekan": "TOURS-KULUBE-IC (hook)", "plan": "P01", "kare": 60 },
     { "mekan": "TOURS-KULUBE-IC (oda)", "plan": "P07", "kare": 1226 },
-    { "mekan": "BORSA", "plan": "P02", "kare": 276, "ek": 326 },
+    { "mekan": "BORSA (acik avlu)", "plan": "P02", "kare": 276, "ek": 326 },
     { "mekan": "HARITA", "plan": "P05", "kare": 940 },
     { "mekan": "SOKAK-BORDEAUX", "plan": "P04", "kare": 724, "ek": 754 },
     { "mekan": "PARIS-AVLU", "plan": "P09", "kare": 1506 },
