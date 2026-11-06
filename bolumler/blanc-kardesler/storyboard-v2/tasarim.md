@@ -1,12 +1,13 @@
 # Blanc Kardeşler (Bölüm 1) — Storyboard v2 Görsel Tasarım Dosyası
 
-Hazırlayan: tasarimci · 2026-11-06 · Girdi: `senaryo-v2.md`, `arastirma.md`, `karakter/*`, `src/theme.ts`, `src/rig/Kukla.tsx`, `src/bolumler/blanc/proto/Sokak.tsx`, `src/components/ChappeTower.tsx`, `Harita.tsx`, `final/araba-yesil.png`, `final/S06.png`.
-Bu belge **tasarımdır, kod değildir.** Kod bloklarındaki sabitler motion'a önerilen tanımlardır, henüz hiçbir dosyaya yazılmadı.
+Hazırlayan: tasarimci · 2026-11-06
+Girdi: `senaryo-v2.md` (v2.1), `arastirma.md`, `storyboard-v2/dokunuslar.md` (yaratıcı yönetmen), `storyboard-v2/sahne-plani.md` (yönetmen), `karakter/*`, `src/theme.ts`, `src/rig/Kukla.tsx`, `src/bolumler/blanc/proto/Sokak.tsx`, `src/components/ChappeTower.tsx`, `Harita.tsx`, `final/araba-yesil.png`, `final/S06.png`.
+Bu belge **tasarımdır, kod değildir.** Kod bloğundaki sabitler motion'a öneridir, hiçbir dosyaya yazılmadı.
 
 Etiketler (her dönem iddiasının yanında):
 - **[A]** `arastirma.md`'de kaynaklı.
-- **[S]** `senaryo-v2.md`'de yazılı (kullanıcı onaylı; çoğu dramatizasyon).
-- **[G]** Genel tarih bilgisi. `arastirma.md`'de yok, araştırmacı/eleştirmen doğrulamadan "kesin" sayılmaz. Doğrulanana kadar görsel olarak yumuşak tutulur (okunur metin yok, tek bir ayrıntıya bağlı dokunuş yok).
+- **[S]** senaryoda yazılı (kullanıcı onaylı; çoğu dramatizasyon).
+- **[G]** Genel tarih bilgisi. `arastirma.md`'de yok; araştırmacı/eleştirmen doğrulamadan "kesin" sayılmaz. **[G ◐]** = daha az emin olduğum. Doğrulanana kadar görsel yumuşak tutulur (okunur metin yok, tek ayrıntıya bağlı dokunuş yok).
 - **[T]** Tasarım kararı (tarihî iddia değil).
 
 ---
@@ -14,22 +15,23 @@ Etiketler (her dönem iddiasının yanında):
 ## 0. Genel kararlar
 
 ### 0.1 Kimlik ve renk disiplini
-- Kanal kimliği: eskimiş kâğıt `#e9dfc9`, mürekkep `#1c1915`, mühür kırmızısı `#b3261e`, altın `#b8862b` (`C` in `theme.ts`). Dünya renkleri (ay mavisi, amber, alacakaranlık moru, Bordeaux altını) prototipte onaylandı. Bunlar "kimlik filtresinden" geçer: yeni her renk **~%15 desatüre, kâğıt tonuna doğru ısıtılmış** seçildi; her sahneye `FilmLook` (tane + vinyet) ve kâğıt greni bindirilir.
-- **Yeni renk gerekçesi (kullanıcı/yönetmen onayı bekler):**
-  1. `redLit #e5483c`. `C.red #b3261e` koyu zeminde (`#14120f`) kontrast ≈ 2.9:1, altyazıda yetersiz. Aynı tonun aydınlık hâli (≈ 4.5:1). Kâğıt/açık zeminde `C.red` kalır (≈ 4.9:1).
-  2. `up #5f9f6e` (patina yeşili). Yalnız P10 "yeşil ↑" için (senaryo gereği). Kimlik dışı parlak yeşil yerine bakır oksit tonu. Başka hiçbir yerde kullanılmaz.
-  Başka yeni font yok. Fontlar: Playfair Display 900, Inter 500/800, IBM Plex Mono 500 (başka ağırlık/italik **yüklü değil**).
-- **Kontur kuralı (her bölümde aynı çizgi kalınlığı):** karakter ve prop konturu = rig'deki `SW = 2` (yerel birim, ölçekle büyür), renk `ink(fill)` = fill'in %55 koyusu, asla saf siyah değil. Dekor konturu ekranda 3 px (uzak) – 6 px (yakın), aynı kural. Props için `strokeLinejoin="round"`.
-- **Işık yönü sözleşmesi:** Rig'deki kenar ışığı (`RIM #c4d6ff`) karakterin **baktığı yöndeki** kenara çizilir ve `facing` ile aynalanır. Bu yüzden her sahnede **karakter ışık kaynağına doğru bakacak** şekilde yönlendirilir; ters bakan karakterde kenar ışığı yanlış taraf olur (bkz. Açık soru 8).
-- **Akış yönü sözleşmesi (ekran yönü):** Haber/sinyal her zaman **soldan sağa** akar (Paris solda, Bordeaux sağda). Tüm dürbünler/bakışlar "Paris'e" = sola bakar (P12 telgrafçı, P14 suç ortağı, P06 güvercin sola uçar). Haritada (dikey) Paris üstte kalır.
-- **Çözünürlük/güvenli alan:** 1080×1920; canlı alan x 80–1000, y 220–1500. Eylemin kilit anları (çekmece, mühür, sürgü, tokmak) y ≤ 1500.
-- **Kukla boyu:** şapka dahil ≈ 620 birim (François), 635 (Louis); ayak y=0. Ekranda yükseklik = 620 × scale.
+- Kanal kimliği: eskimiş kâğıt `#e9dfc9`, mürekkep `#1c1915`, mühür kırmızısı `#b3261e`, altın `#b8862b` (`C`, `theme.ts`). Dünya renkleri (ay mavisi, amber, alacakaranlık moru, Bordeaux altını) prototipte onaylı. Yeni her renk **~%15 desatüre, kâğıt tonuna doğru ısıtılmış** seçildi; her sahneye `FilmLook` (tane + vinyet) bindirilir.
+- **Yeni renk gerekçesi (onay bekler):**
+  1. `redLit #e5483c`: `C.red #b3261e` koyu zeminde (`#14120f`) kontrast ≈ 2.9:1, altyazıda yetersiz. Aynı tonun aydınlık hâli ≈ 4.5:1. Açık/kâğıt zeminde `C.red` kalır (≈ 4.9:1).
+  2. `up #5f9f6e` (patina yeşili): yalnız P10 "yeşil ↑" için (senaryo gereği). Bakır oksit tonu, kimlik dışı parlak yeşil değil. Başka yerde kullanılmaz.
+  3. `boyaKrem #e6c88c`: P22 "yay dolgusu" rengi. Yaratıcı yönetmen "krem", yönetmen "açık amber" dedi; ikisinin ortası, kâğıt kimliğine yakın.
+  Yeni font yok. Fontlar: Playfair Display 900, Inter 500/800, IBM Plex Mono 500 (başka ağırlık/italik **yüklü değil**).
+- **Kontur kuralı (her bölümde aynı çizgi kalınlığı):** karakter ve prop konturu = rig `SW = 2` (yerel birim, ölçekle büyür), renk `ink(fill)` (fill'in %55 koyusu), asla saf siyah değil. Dekor konturu ekranda 3 px (uzak) – 6 px (yakın). `strokeLinejoin="round"`.
+- **Işık sözleşmesi:** Rig'deki kenar ışığı (`RIM #c4d6ff`) karakterin **baktığı yöndeki** kenara çizilir ve `facing` ile aynalanır. Bu yüzden karakter **ışık kaynağına doğru bakacak** şekilde yönlendirilir. Karşılıklı bakan iki karakterde bir kenar ışığı ters olur (Açık soru 8).
+- **Ekran yönü:** P12–P13 kule zincirinde haber **soldan sağa** akar (Tours solda ufukta, sıradaki kule sağda). Bordeaux'da hat biter: Bordeaux kulesi **sağdaki uzak tepede** (yönetmen sahne planı, P06/P14); suç ortağı sağa (kuleye) bakar.
+- **Güvenli alan:** 1080×1920; canlı alan x 80–1000, y 220–1500. Kilit anlar (çekmece, mühür, sürgü, tokmak) y ≤ 1500.
+- **Kukla boyu:** şapka dahil ≈ 620 birim (François), 635 (Louis); ekranda yükseklik = 620 × scale. Oturma pozu: `thigh −88, knee 88, bodyY ≈ +105` (kalça sandalye hizası), masa/sandalye bacakları gizler (müdür P07).
 
-### 0.2 "Yüz detayı yok" kuralı ile Kukla yüzü
-Sanat yönetmeni kuralı "minimal siluet, yüz detayı yok" der. Onaylı prototip rig'i (Kukla.tsx) gözlü/kaşlı/ağızlı. Senaryo ise dudak senkronu (P04, P08, P17), kaş kaldırma (P12), esneme (P13), göz kırpma (P04) ister. **Karar:**
-- **Yüzlü (Kukla rig):** François, Louis, memur, müdür, ara-kule telgrafçısı, suç ortağı. Oyunculuk gerektirenler.
-- **Yüzsüz siluet:** katip, yargıçlar, arabacı, kompars/kalabalık, jandarmalar, jüri. Ayrıca "Paris'teki adam" (yalnız el).
-- Siluet filtresi (kod önerisi, rig'e dokunmadan dışarıdan sarılır; rig'deki gözlerin sabit beyaz rengi paletle gizlenemediği için filtre şart):
+### 0.2 "Yüz detayı yok" ile Kukla yüzü
+Sanat yönetmeni kuralı "minimal siluet, yüz detayı yok" der. Onaylı prototip rig'i gözlü/kaşlı/ağızlı. Senaryo ise dudak senkronu (P04, P08, P17), kaş (P12), esneme (P13), göz kırpma (P04) ister. **Karar:**
+- **Yüzlü (Kukla):** François, Louis, memur, müdür, ara-kule telgrafçısı, suç ortağı.
+- **Yüzsüz siluet:** katip (küçük ölçek), yargıçlar, jüri, arabacı, kompars/kalabalık, jandarma. "Paris'teki adam" ve resmî görevli yalnız el/kol.
+- **Siluet filtresi** (rig'e dokunmadan dışarıdan sarılır; rig'deki göz beyazı palette gizlenemediği için filtre şart):
 
 ```tsx
 // <g filter="url(#siluet-uzak)"> <Kukla .../> </g>
@@ -43,18 +45,51 @@ Sanat yönetmeni kuralı "minimal siluet, yüz detayı yok" der. Onaylı prototi
 |---|---|---|---|
 | BORSA | yeni | P02 | gündüz altın |
 | HARITA | mevcut (`Harita.tsx`) | P03, P05 | posta: gün-gece döngüsü / telgraf: sabit |
-| SOKAK-BORDEAUX | mevcut Sokak'tan türer | P04 | gece ay + amber |
-| TOURS-KULUBE-IC | yeni | P01, P07, P08, P10, P11 | A akşam-fener (P01, P10) · B gece-mum (P07, P08) · C gündüz-soğuk (P11, P15 alt yarı) |
-| KULE-DIS | yeni | P12, P13, P17 penceresi, P21, P22 | KD-A Tours gündüz (P21) · KD-B ara kule kesit, gündüz (P12, P13) · KD-C alacakaranlık siluet (P17, P22) |
-| PARIS-AVLU | yeni | P09 (avlu, gündüz) · P23 (masa) | P23 masa = P01 ile **aynı plaka** (bkz. 1.6) |
+| SOKAK-BORDEAUX | `Sokak.tsx`'ten türer | P04 | gece ay + amber |
+| TOURS-KULUBE-IC | yeni | P01, P07, P08, P10, P11, (P15 alt yarı) | A akşam-fener (P01, P10) · B gece-mum (P07, P08) · C gündüz-soğuk (P11, P15 alt) · **PARIS-MASA = P01 plakası (P23)** |
+| KULE-DIS | yeni | P12, P13, P17 penceresi, P21 (**TOURS-KAPI**), P22 | KD-A Tours kapı gündüz (P21) · KD-B ara kule dış, gündüz (P12, P13) · KD-C alacakaranlık siluet (P17, P22) |
+| PARIS-AVLU | yeni | P09 (+ P23 masa) | gündüz (P09) |
 | CATI-BORDEAUX | yeni | P06 | şafak |
-| CATI-KATI | yeni | P14 · P15 üst yarı (masa insert'leri) | gündüz altın, pencere solda |
-| YATAK-ODASI | yeni | P16, P17 | tek mum + soğuk mavi pencere |
-| MAHKEME | yeni | P18, P19 | çapraz toz huzmesi |
+| CATI-KATI | yeni | P14, P15 üst yarı (**ALTIN-MASA**) | gündüz altın |
+| YATAK-ODASI | yeni | P16, P17 | mum + soğuk mavi pencere |
+| MAHKEME | yeni | P18, P19 | çapraz toz huzmesi (iki kamera yönü) |
 | KANUN-INSERT | yeni | P20 | tepe açı, tek huzme |
 | WIFI-MORF | yeni | P22 | alacakaranlık → ekran karanlığı |
 
-Not (senaryoda tanımsız kalan): P15 üst yarı (defter, altın yığını, kadeh, yıllık takvim levhası) için ayrı mekân açılmadı. CATI-KATI'nın masası kullanılır (Louis zaten orada bekliyor; maliyet düşer). P15 alt yarı = TOURS-KULUBE-IC C.
+### 0.4 Yönetmen / yaratıcı yönetmen belgeleriyle çakışmalar ve kararım
+Üç belge aynı gün yazıldı; çakışan yerlerde tasarım şöyle çözüldü. Karar asıl sahibine (yönetmen/yaratıcı yönetmen/kullanıcı) aittir; **tasarım her iki seçeneği de destekleyecek şekilde çizilir**.
+
+| Konu | Çakışma | Tasarım kararı |
+|---|---|---|
+| P06 | Yönetmen: saat insert + tüy saat camında. Yaratıcı yönetmen: tüy Louis'nin bordo koluna konar, saat sahne elemanı | Saat (savonnette) çizilir; kola konan tüy için bordo kol yüzeyi temiz bırakılır. Seçim yönetmen+yaratıcıda |
+| P08 | Yönetmen: pencere kolu gıcırdar. Yaratıcı: kol yok, **el–gölge** (duvarda T gölge, %22) | Pencere A kolu hareketli çizilir **ve** masa arkasında duvarda boş "gölge alanı" bırakılır (bölüm 1.4) |
+| P17 | Yönetmen: kule "klunk" ile dinlenmeye iner. Yaratıcı: kule statik, **kurutma kumu** | Kule iki durumda hazır (statik/iner); sağ alt: yazıcının siyah kollu eli + kum kabı |
+| P18 | Saat çapı: yönetmen 160 px, yaratıcı ≥ 210 px (%11) | **≥ 210 px**, sarkaçlı saat (sarkaç görünür) |
+| P19 | BERAAT: yönetmen "iner", yaratıcı "smash-cut, damga animasyonu yok" | Damga **belirir** (animasyonsuz), ALT-BANT, 170–180 px |
+| P22 | Yay rengi: yaratıcı "krem", yönetmen "amber" | `boyaKrem #e6c88c` boya dolgusu, parıltı yok |
+| P03 | Gün-ay diski: yönetmen sağ-üst, yaratıcı sol kenar | Disk 200 px, güvenli alanda; tarafı yönetmen/yaratıcı seçer (tasarım iki tarafta da boş tutar) |
+| P09 | Manşet: tek **altın düğme** sağ manşette (yönetmen) | Bu kabul edildi; palet buna göre |
+| P12–P13 telgrafçı | Yönetmen: kısa, tombul, kahve frak. Suç ortağı da kahve | **Zeytin yeşili** (kahve suç ortağında kalsın), kısa-tombul kabul. Yönetmen onaylamalı |
+| Mahkeme | Yönetmen: jüri sıraları sol, siyah cübbe kollu yargıç | **Siyah cübbe** varsayılan, **jüri siluet sırası** sol; kırmızı cübbe yalnız araştırmacı doğrularsa |
+| P15 | "Takvim bloğu / yaprak" (günlük kopan yaprak dönem için [G ◐]) | Yıl yaprağı çizilir; dönem riski Açık soru 5 |
+| P12–P13 mekân | Yönetmen: **dıştan pencere görünümü** (kesit değil) | KD-B dış cephe + pencere olarak çizildi (önceki kesit fikri bırakıldı) |
+| P23 | "PARIS-MASA" = P01 masa varyantı; paket **kapalı** biter | PARIS-MASA = P01 ile **aynı plaka**, paket kapalı, kol A'ya "klak" döner |
+
+### 0.5 Oda zemin parametreleri (`Sokak.tsx zemin(z,u)` sözleşmesi)
+Yönetmen karakter konumunu `z` (derinlik, 1 yakın … 7 uzak) ve `u` (0 sol … 1 sağ) ile verir. İç mekânlarda `zemin()` ile aynı formül, köşeler odaya göre: `y = yNear + (yFar − yNear)·sz(z)`, `x = lerp(xNear, xFar, sz(z))` (sol ve sağ ayrı), ölçek `s` aynı `sz(z)` ile `sNear → sFar` doğrusal.
+
+| Mekân | yNear / sNear | yFar / sFar | x near (sol–sağ) | x far (sol–sağ) | Kaçış noktası |
+|---|---|---|---|---|---|
+| BORSA | 1700 / 1.15 | 980 / 0.50 | −100 – 1180 | 160 – 920 | (540, 880) |
+| TOURS-KULUBE-IC | 1760 / 1.05 | 1400 / 0.80 | −60 – 1140 | 110 – 970 | (540, 700) |
+| CATI-KATI | 1740 / 1.05 | 1250 / 0.60 | −60 – 1140 | 120 – 960 | (540, 880) |
+| YATAK-ODASI | 1760 / 1.10 | 1380 / 0.85 | −60 – 1140 | 100 – 980 | (540, 900) |
+| MAHKEME (alçak açı) | 1800 / 1.10 | 1220 / 0.45 | −100 – 1180 | 170 – 910 | (540, 1150) |
+| PARIS-AVLU | 1780 / 1.05 | 1150 / 0.55 | −80 – 1160 | 150 – 930 | (540, 860) |
+| CATI-BORDEAUX (teras) | 1760 / 1.20 | 1300 / 0.95 | −80 – 1160 | 200 – 880 | (540, 1000) |
+| SOKAK-BORDEAUX | mevcut `zemin()` / `sokakGenislik()` | | | | bkz. 1.3 |
+
+Not: Hiçbir iç mekân gerçek tek-nokta perspektif matematiği taşımaz; `Sokak.tsx` gibi yaklaşık ve katmanlı. Ayak ve baston ucu daima `zemin(z,u).y` değerine basar.
 
 ---
 
@@ -62,46 +97,46 @@ Not (senaryoda tanımsız kalan): P15 üst yarı (defter, altın yığını, kad
 
 ### 1.1 BORSA (P02) — Bordeaux Borsası, gündüz
 
-**Amaç:** "Bordeaux'lu ikizler... tahvile oynuyor." Kalabalığın ortasında iki kardeş, sıcak altın öğle.
+**Amaç:** "Bordeaux'lu kardeşler... tahvile oynuyor." Kalabalığın ortasında iki kardeş, sıcak altın öğle.
 
 **Dönem ve kaynak**
-- Tahvil (%3 rente) ve Borsa [A]. Silindir şapkalı kalabalık [S]/CLAUDE dönem listesi.
-- Mimari: Bordeaux'nun 18. yy kireçtaşı (sarı-krem "pierre de Bordeaux") neoklasik salon, yüksek kemerli pencereler, dama zemin [G]. **Hangi binada (Palais de la Bourse?) geçtiği araştırmada yok**; belirli bir iç mekân kopyalanmaz, "genel neoklasik borsa salonu" çizilir.
-- Fiyat tahtası: tebeşirle yazılan kara tahta (ardoise) [S dramatizasyon; 1834 borsa pratiği için bkz. Açık soru 11]. **Gerçek fiyat iddiası yok:** tahtada yalnızca "3 %" başlığı ve altında yarı okunur iki satır rakam (örn. "8·,··"). Rakamlar sahnede okunmaz.
-- Kalem: **kaz tüyü + hokka** [G]; kurşun kalem değil. Defter: kenarı kalın, ciltli, sütunlu rakam çizgili.
-- Tricolore: salon girişinin üstünde sarkık bayrak (1830'dan beri) [CLAUDE].
-- Kâğıt para yok, tahvil/senet kâğıtları var (rente belgesi bir banknot değildir ama yine de okunur para görüntüsü verilmez).
+- Tahvil (%3 rente) ve Borsa [A]. Silindir şapkalı kalabalık [CLAUDE dönem listesi].
+- Mimari: Bordeaux'nun 18. yy kireçtaşı (sarı-krem) neoklasik salon, yüksek kemerli pencereler, dama zemin [G]. **Hangi binada geçtiği araştırmada yok;** belirli bir iç mekân kopyalanmaz, "genel neoklasik borsa salonu".
+- Fiyat tahtası: tebeşirle yazılan kara tahta [S dramatizasyon; Açık soru 11]. **Gerçek fiyat iddiası yok:** başlık **"PARIS · RENTE 3%"** (P02→P03 MATCH, yönetmen), altında iki satır yarı okunur rakam.
+- Kalem: **kaz tüyü + hokka** [G]. Defter: ciltli, sütun çizgili.
+- Tricolore: salon girişinin üstünde sarkık bayrak [CLAUDE].
+- Kâğıt para yok; altın/gümüş frank, tahvil kâğıdı (okunur para görüntüsü verilmez).
 
 **Katmanlar (arka → ön)**
-1. **Arka (duvar, z uzak):** üç yüksek kemerli pencere (üst %5–35, sol tarafta ışık girer), duvarda **fiyat tahtası** üst-ortada (x 230–850, y 330–760), tahta altında tebeşir rafı. Tahtanın önünde **0,9 m'lik iki basamaklı ahşap estrad** (katip burada durur; **yan taraftan çıkar**, merdiven kadraj dışı). Duvar-zemin birleşimi y ≈ 980.
-2. **Orta:** 12–14 siluet figür (silindir şapka boyları farklı, 3 baston, 2 defter), 3 derinlik sırası, **ayakları zeminde, her figürün altında temas gölgesi.** Estradın iki yanında bilerek **boşluk** bırakılır (tebeşir düşüş çizgisi görünür kalsın). Merkezde François + Louis (tam Kukla) + François'nın omzundan tuttuğu tüccar kompars.
-3. **Ön:** sol altta bir sütun gövdesi (çerçeveleme, kadraj dışına kayar), sağ altta bastonlu bir sırt siluetinin bulanık parçası, bir **yüksek yazı pupitri** (Louis'nin defteri) ve ahşap korkuluk parçası.
+1. **Arka:** üç yüksek kemerli pencere (sol tarafta ışık), **fiyat tahtası** x 300–780, y 400–760, altında tebeşir rafı. Tahta önünde **iki basamaklı ahşap estrad** (katip; **merdiveni arkada, kadraj sol-arka görünür**: yönetmen z 5.5, u 0.50). Duvar-zemin birleşimi y ≈ 980.
+2. **Orta:** 10–12 siluet figür (silindir boyları farklı, 3 baston, 2 defter), 3 derinlik; yalnız **3 figür animasyonlu** (yönetmen R6), kalan statik siluet dizisi. Estradın iki yanında **boşluk** (tebeşir düşüşü görünür). François (z 2.2, u 0.40), **tüccar kompars** (kısa, kahverengi, z 2.2, u 0.24; François omzundan tutar), Louis (z 2.3, u 0.62).
+3. **Ön:** sol altta sütun gövdesi, sağ altta bastonlu sırt siluetinin bulanık parçası, **yüksek pupitr** (Louis'nin defteri), ahşap korkuluk.
 
-**Palet:** duvar taşı `#d8c49a` · taş gölgesi `#a58f68` · sütun vurgusu `#efe2bd` · zemin dama `#cbbd9c` / `#8b7b5c` · ahşap korkuluk `#5b3d25` · tahta `#1f2a26` (soluk yeşilimsi kara) · tebeşir `#f3eddc` · ışık huzmesi `#ffd98f` α .18 · kalabalık siluetleri `#5a4a3c` (yakın) → `#9a8a74` (uzak, atmosferik).
-**Işık:** güneş sol-üst (pencereler solda), huzmeler 30° sağ-aşağı. **Gölgeler sağ-aşağı**, kısa (öğle). Karakterler sola/ışığa bakar: François ve Louis `facing = -1`.
-**Perspektif:** tek nokta, kaçış noktası **(540, 880)**, kamera göz hizası. Ölçek kuralı: `s(y) = 0.55 + 0.00085·(y − 1000)`. Örn. François/Louis ayak y = 1380 → s ≈ 0.87 (≈ 540 px boy). Kalabalık uzak sıra y 1060 → s ≈ 0.6. Dolly-in: s'e ek %12.
-**Türetme:** yeni arka plan (SVG); kalabalık = Kukla + `siluet` filtresi (yürüme döngüsü `yuru` yavaşlatılmış, çoğu duran). `Efektler.tsx`: `Dust`, `Glow`, `FilmLook`. İsim etiketleri bölüm 4'te.
+**Palet:** duvar taşı `#d8c49a` · taş gölgesi `#a58f68` · sütun vurgusu `#efe2bd` · zemin dama `#cbbd9c` / `#8b7b5c` · korkuluk `#5b3d25` · tahta `#1f2a26` · tebeşir `#f3eddc` · huzme `#ffd98f` α .18 · kalabalık siluetleri `#5a4a3c` (yakın) → `#9a8a74` (uzak).
+**Işık:** güneş sol-üst (pencereler solda), huzmeler 30° sağ-aşağı; **gölgeler sağ-aşağı**, kısa. François/Louis ışığa bakar (`facing = -1`).
+**Perspektif:** tablo 0.5 (BORSA). Dolly-in `cs 1.00 → 1.18, cy 0 → −60`.
+**Türetme:** yeni arka plan (SVG); kalabalık = Kukla + siluet filtresi; `Efektler.tsx`: `Dust`, `Glow`, `FilmLook`.
 **Motion notları**
-- İsim etiketleri karakter şapka tepesinin 40 px üstünde, y ≥ 240 (üst güvenli alanda kalmalı; tahta çakışırsa etiket tahtanın altına, şapka üstüne yerleşir).
-- **Tebeşir (dokunuş):** katip tahtanın sağ alt köşesinde yazarken parça kırılır → tebeşir rafına seker → estrad tahtasına iki sekme → zemin taşına. Üç ayrı temas = üç foley (çıt, tak, tak). Parça beyaz `#f3eddc`, 14×5 px; **dokunuşun okunabilirliği kalabalığın dönmesiyle sağlanır** (kafalar sola-sağa döner, Louis dönmez). Tebeşir düşerken kalabalık "donar" (animasyon `amt` → 0).
-- Louis kaz tüyü ile yazar; tüy ucu defter yüzeyine temas eder (kalem cızırtısı, temas anı olay listesine).
-- Kalabalığın yürüyenleri kadraj kenarından ya da estrad yan girişinden girer/çıkar; duvardan geçmez.
+- İsim etiketleri bölüm 4.3; yönetmen etiketi şapkanın ~80 px üstüne koyar (y ≈ 700–800).
+- **Tebeşir (dokunuş, yaratıcı yönetmen):** katip sağ-alt köşede yazarken parça kırılır, tahtadan seker ve **tahtada beyaz toz çizgisi kalır**; parça estrada iki sekme, sonra zemin. Parça `#f3eddc`, 14×5 px. Üç temas = üç foley (çıt, tak, tak). Kalabalık tahtaya döner ve **donar**; Louis dönmez, yazmaya devam eder.
+- Louis kaz tüyü ucu defter yüzeyine temas eder (cızırtı). Cebinden **beyaz eldiven köşesi** görünür (bölüm 2.2).
+- Kalabalık kenardan girer/çıkar; duvardan geçmez.
 
 ---
 
 ### 1.2 HARITA (P03, P05) — mevcut, tasarım notları
 
-**Kaynak:** `Harita.tsx` (gerçek Fransa GeoJSON, tarihî Paris→Chartres→Tours→Poitiers→Angoulême→Bordeaux yolu, kule ikonu). Rota tarihî ve ara şehirler [A: yalnız Paris–Tours–Bordeaux; ara şehirler harita sadeliği için, etiket küçük].
-**Palet (mevcut kodtan):** zemin `#1a120b` · mürekkep `#2b1d10` · parşömen görseli `parsomen.jpg` (~`#d9c49a`, Gemini üretimi) · kule parlaması `rgba(255,170,60)` · aktif kule kolu `#b3261e`.
-**Işık/gölge:** parşömen düz; kenarlarda vinyet. Gölge yok (düz harita). Posta arabası hafif sağ-alt gölge.
-**Perspektif:** üstten ortografik; kamera tilt Paris→Bordeaux. Kaçış yok.
-**Yeni çizim ihtiyaçları**
-- **Gün-ay turu (P03):** sağ üstte küçük disk; güneş `#e8b86a` → ay `#e9dfc9` üç tur. Sayaç mono: "1. GÜN · 2. GÜN · 3. GÜN" (T1 stili, gold). Rota üstünde gece kararması mevcut (`night`).
-- **Posta arabası:** `final/araba-yesil.png` (kromakey yeşil; kenar sızıntısı temizlenmeli). **Dönem uyarısı:** görselde kapı üzerinde "POSTES ROYALES" ve tacı/arması var. 1830 sonrası eski rejim arması (zambak) kalkmış olabilir [G]. Küçük ölçekte okunmaz; ancak P09'da da aynı araba kullanılacak, orada arma **sadeleştirilmiş/bulanık** çizilir (Açık soru 6).
-- **Mühür (P05):** kırmızı balmumu mühür, çap ≈ 220 px, taşan balmumu kenar lekeleri (`#b3261e`, iç gölge `#7a1914`, parlak kenar `#e5483c` α .5). **Baskı motifi: Chappe T kule ikonu** (arma/zambak riskinden kaçınır; imza nesne tekrarı). Mühür haritaya inerken hat kırmızıya (`#b3261e`) boyanır.
-- **Kule zinciri:** mevcut `Kule` ikonu T biçimli (regülatör yatay + iki kısa gösterge); **yel değirmeni okunmasın:** kollar asla pervane gibi dönmez; sadece gösterge kolları 45° adımlarla oynar.
-**Türetme:** doğrudan `Harita.tsx`.
-**Motion notları:** sinyal arabayı solladığı karede toz sinyale doğru savrulur (rüzgâr yönü sinyal yönü). Mühür inişi: ölçek 2.4→1 (mevcut `stamp`), temas karesinde "tok".
+**Kaynak:** `Harita.tsx` (gerçek Fransa GeoJSON, tarihî Paris→Chartres→Tours→Poitiers→Angoulême→Bordeaux yolu, T biçimli kule ikonu). Ara şehirler harita sadeliği için, etiket küçük; Tours düğümü işaretli (P07 kurulumu).
+**Palet (koddan):** zemin `#1a120b` · mürekkep `#2b1d10` · parşömen görseli `parsomen.jpg` (~`#d9c49a`, Gemini üretimi) · kule parlaması `rgba(255,170,60)` · aktif kule kolu `#b3261e`.
+**Işık/gölge:** düz harita; vinyet. Araba/mühür hafif sağ-aşağı gölge.
+**Perspektif:** üstten ortografik; kamera tilt Paris→Bordeaux.
+**Çizim ihtiyaçları**
+- **Gün-ay diski (P03):** çap **200 px** (%10 kuralı), güvenli alanda (üst-bant altında, x 760–1000, y 340–560 yönetmen önerisi). Güneş `#e8b86a` → ay `#e9dfc9`, üç tur. Sayaç mono "1. GÜN · 2. GÜN · 3. GÜN" diskin altında. Harita her gece %35 kararır, arabanın küçük feneri yanar.
+- **Posta arabası:** `final/araba-yesil.png` (kromakey yeşil). **At başı eğme (yaratıcı yönetmen, P03 kapanışı) için at başı ayrı katman olmalı:** görsel tek parça raster; ya at başı kesilip pivotla bağlanır ya da at vektör redraw edilir (motion kararı). Kenar sızıntısı temizlenmeli. **Dönem uyarısı:** kapıda "POSTES ROYALES" ve arma/taç var; 1830 sonrası eski rejim arması [G ◐]; küçük ölçekte okunmaz, P09'da sadeleştirilir (Açık soru 6).
+- **Toz/sis tonu:** P03 sonundaki Bordeaux'a çöken toz (MATCH) = P04 sokak sisi. İkisi de `#8b93ad` (Sokak `Duman` rengi) α .22–.35 yumuşak daireler; aynı doku (yönetmen).
+- **Mühür (P05):** kırmızı balmumu, çap **300 px** (%16), merkez (540, 880), taşan lekeler (`#b3261e`, iç gölge `#7a1914`, kenar parlak `#e5483c` α .5). **Baskı motifi: Chappe T kulesi** (arma riski yok; P21 ilanındaki mühürle **aynı tasarım**). P05→P06 MATCH: mühür dairesi = P06 doğan güneş diski (aynı nokta, aynı çap).
+- **Kule ikonu:** T biçimli (regülatör yatay + iki kısa gösterge); **asla pervane gibi dönmez**, yalnız 45° adımlar. Kule klakları kısalan aralıklarla.
+**Türetme:** doğrudan `Harita.tsx`. Motion notu: sinyal arabayı solladığında araba küçük ve yavaş kalır, toz yok (yaratıcı yönetmen).
 
 ---
 
@@ -110,207 +145,201 @@ Not (senaryoda tanımsız kalan): P15 üst yarı (defter, altın yığını, kad
 **Karar:** Prototip sokağı Bordeaux'ya taşınır. Notre-Dame çıkar; sokak ucunda sis içinde Garonne gemi direkleri. Yürüyüş/fare/baston/şapka/göz kırpma aynen kalır.
 
 **Dönem ve kaynak**
-- Haussmann öncesi: dar sokak, farklı yükseklikte bitişik evler, panjur, baca kümeleri, ipe asılı **réverbère**, tricolore [CLAUDE]. Mevcut Sokak bunların hepsini uyguluyor (kontrol edildi).
-- Bordeaux'ya özgü [G]: açık krem kireçtaşı cepheler (ay ışığında sıcak gri-bej, Paris'in soğuk mor-grisinden ayrılır); birinci kat demir balkonlar/ferronnerie (mevcut `balkon demiri` kullanılır); sokak ucu **Garonne rıhtımı** ve yelkenli gemiler ("Port de la Lune"). Bordeaux'nun Paris'ten ayrıştıran çatı çeşitliliği: arduvaz + **oluklu kiremit (tuile canal)** karışımı.
-- Dükkân adları: Paris listesi (`BOULANGERIE, VINS, CHAPELIER, CAFÉ`) Bordeaux'ya uyar: **`VINS`** kalır (şarap şehri), `BOULANGERIE`, `CAFÉ`, `CHAPELIER` (şapka motifi) kalır. İstersen bir dükkân `TONNELIER` (fıçıcı) olur.
-- Yelkenliler: yalnız yelken [G]; buharlı gemi/baca dumanı **yok**.
+- Haussmann öncesi: dar sokak, farklı yükseklikte bitişik evler, panjur, baca kümeleri, ipe asılı **réverbère**, tricolore [CLAUDE]. Mevcut Sokak bunları uyguluyor (kontrol edildi). Bayrak sırası (gönderde mavi, beyaz, kırmızı) doğru.
+- Bordeaux'ya özgü [G]: açık krem kireçtaşı cepheler; birinci kat demir balkon (mevcut `balkon demiri`); sokak ucu **Garonne rıhtımı** ve yelkenliler; çatılar arduvaz + **oluklu kiremit (tuile canal)** karışımı [G ◐].
+- Dükkân adları: `VINS` (kalır, şarap şehri), `BOULANGERIE`, `CAFÉ`, `CHAPELIER` kalır; biri `TONNELIER` (fıçıcı) olabilir.
+- Gemiler yalnız yelkenli; **buharlı gemi/baca dumanı yok** [G].
 
 **Katmanlar**
-1. **Gök (`katman="gok"`):** mevcut ay + yıldız + bulut (değişmez).
-2. **Uzak (`katman="uzak"`), değişen kısım:** Notre-Dame grubu (`Uzak` bileşeni) **kaldırılır**, yerine **Garonne ufku**:
-   - Sokak ucu açıklığı yaklaşık x 410–670, y 600–1130. Direkler bu açıklıkta, taban y ≈ 1100.
-   - 4 direk: x = 452, 512, 566, 628; üstler y = 760, 650, 720, 800. Her direkte 2–3 yatay seren (genişlik 70–120 px), sarılı yelken ruloları (koyu), ince donanım halatları (1.5 px).
-   - En yüksek direğin tepesinde küçük amber fener (r 5 + blur 40 α .35).
-   - Gövdeler y 1090–1130 arası koyu bant; rıhtım kenarı ve su çizgisinde amber ışıltı.
-   - **3 sis düzlemi:** `#6e7aa6` α .35 (y 980–1130), α .25 (y 880–1000) ve direklerin önünde α .5 yatay degrade. Uzak direkler sise gömülüp açık, yakın olanlar koyu (`#20284a` → `#2c3358`).
-   - İki yan "ev ucu" silueti (mevcut `M 400 860…` yolları) düz bırakılır.
-3. **Orta (`katman="orta"`):** cepheler + zemin + réverbère + fener + ızgara/fare + ilan + teras + bayrak. Değişiklikler:
-   - `SIVA` paleti Bordeaux'ya: `["#7b7868","#867f6c","#706e72","#8a826f","#78766c","#74707a"]`.
-   - Yarı ahşap oranı `0.35 → 0.15` (Bordeaux merkezinde nadir).
-   - Çatı varyantı: %40 `tuile canal` (`#7a3f2c`, 1.5 px oluk çizgileri `#4a2418`), %60 arduvaz (`#2c3550`).
-   - Dükkân adları yukarıdaki gibi.
-**Palet (gece):** gök `#070b1f → #1b2852 → #40507e` · ay `#f2f0e6` · kenar ışığı `#c4d6ff` · amber `#ffb357 / #ff9a40 / #ffd98f` · taş `SIVA_BDX` · panjur `#2f4a40 / #4a3328 / #33405a` · kaldırım `rgb(48–70)` mevcut.
-**Işık:** ay üst-orta (mevcut), kenar ışığı mavi; **réverbère amber** sokak ortasında: karakterlere ön-yan dolgu. Gölgeler lambadan **radyal, ışığın tersine** (zeminde sola/sağa yayılır); yansımalar mevcut ıslak zemin elipsleri.
-**Perspektif:** `Sokak.tsx` gerçek tek nokta perspektif değildir; `sz(z)` ile cephe köşelerini (SOL/SAĞ A-B-C-D) doğrusal harmanlar. Cephe tepe çizgileri y ≈ 838 civarında birleşir, zemin ufku y ≈ 977 (`z→∞`), sokak ucu düzlemi `z = 7` ⇒ y = 1130, x 410–670. Kaçış "bandı" y 840–980. Kukla konumu `zemin(z, u)` + `sokakGenislik(z)` (prototipteki `yol()` işlevi aynen).
-**Türetme:** `Sokak.tsx` (kod değişikliği motion'da: `uzak` prop'u, `SIVA` paleti ve çatı varyantı parametre). Yeni dosya gerekmez.
+1. **Gök (`katman="gok"`):** mevcut ay + yıldız + bulut.
+2. **Uzak (`katman="uzak"`), değişen:** `Uzak` (Notre-Dame) kaldırılır, yerine **Garonne ufku**:
+   - Sokak ucu açıklığı x 410–670, y 600–1130. Direk tabanı y ≈ 1100.
+   - 4 direk x = 452, 512, 566, 628; üstler y = 760, 650, 720, 800; her direkte 2–3 seren (70–120 px), sarılı yelken ruloları, ince halat (1.5 px). En yüksek direk tepesinde amber fener (r 5 + blur 40 α .35).
+   - Gövdeler y 1090–1130 koyu bant; rıhtım kenarı/su çizgisinde amber ışıltı.
+   - **3 sis düzlemi** `#6e7aa6` α .35 (y 980–1130), α .25 (y 880–1000), direk önünde α .5 degrade. Uzak direkler açık, yakın olanlar koyu (`#20284a → #2c3358`). Sis tonu P03 tozuyla aynı (`#8b93ad`).
+   - İki yan "ev ucu" silueti (`M 400 860…`) düz kalır.
+3. **Orta (`katman="orta"`):** `SIVA` paleti Bordeaux'ya `["#7b7868","#867f6c","#706e72","#8a826f","#78766c","#74707a"]`; yarı ahşap oranı `0.35 → 0.15`; çatı varyantı %40 `tuile canal` (`#7a3f2c`, oluk çizgisi `#4a2418`), %60 arduvaz (`#2c3550`); dükkân adları.
+**Palet (gece):** gök `#070b1f → #1b2852 → #40507e` · ay `#f2f0e6` · kenar ışığı `#c4d6ff` · amber `#ffb357 / #ff9a40 / #ffd98f` · panjur `#2f4a40 / #4a3328 / #33405a` · kaldırım `rgb(48–70)`.
+**Işık:** ay üst-orta, mavi kenar; **réverbère amber** sokak ortasında (ön-yan dolgu). Gölgeler lambadan radyal, ışığın tersine.
+**Perspektif (önemli):** `Sokak.tsx` gerçek tek nokta perspektif değil; `sz(z)` ile cephe köşelerini (SOL/SAĞ A-B-C-D) doğrusal harmanlar. Cephe tepe çizgileri y ≈ 838'de birleşir, zemin ufku y ≈ 977 (`z → ∞`), sokak ucu düzlemi `z = 7` ⇒ y = 1130, x 410–670. Kaçış bandı y 840–980.
+**Türetme:** `Sokak.tsx` (motion: `uzak` prop'u, `SIVA` ve çatı varyantı parametre). P04 insert'i `FareInsert.tsx` (kaldırım hizası, ızgara; ızgara `z 2.2, u 0.58` yönetmen) aynen.
 **Motion notları**
-- Fare/baston: Louis'nin baston ucu taşa **girmez**, zemin hizasında durur (prototipte çözüldü). `tak` temas karesi olay listesinde.
-- Garonne direkleri sisle birlikte **hafif sallanır** (yalnız 1–2 px yatay, ortam hareketi); P04 kısa olduğu için sis akışı yavaş.
-- Tricolore (`Bayrak`): mavi gönderde, sonra beyaz, kırmızı dışta. Mevcut sıra doğru.
+- Baston ucu zemin hizasında, taşa **gömülmez**; "tak" temas karesi olay listesinde.
+- Direkler sisle birlikte 1–2 px yatay ortam hareketi.
 
 ---
 
-### 1.4 TOURS-KULUBE-IC (P01, P07, P08, P10, P11)
+### 1.4 TOURS-KULUBE-IC (P01, P07, P08, P10, P11, P15 alt)
 
-**Amaç:** Hikâyenin kalbi: eldiven paketi açılır (P01), rüşvet (P07–P08), şifre masası (P10), gizli çentik (P11).
+**Amaç:** Hikâyenin kalbi: eldiven paketi (P01), rüşvet (P07–P08), şifre masası (P10), gizli çentik (P11).
 
 **Dönem ve kaynak**
-- Tours istasyonu, müdür + yardımcı [A]. Odanın içi **taş duvar, ahşap tavan kirişleri, tek küçük pencere, halat makaraları, fıçı, raf** (kaynak değil; `final/S06.png` eski storyboard kompozisyonu referans [T]). Tours/Loire bölgesi yapı taşı **tuffeau** (beyaz-krem kireçtaşı) [G], dış cepheye geçerken önemli.
-- **Pencere dışındaki kule: tek direk + T kolu.** Eski `S06.png` pencerede **kafes/pilon (elektrik direği) benzeri bir kule** gösteriyor, bu **Chappe değil** (kafes çelik kule 1850'ler sonrası). Yeni çizimde direk **düz ahşap, tek mast**; kafes yok (yakalanan ihlal).
-- Kumanda düzeneği (P11): odanın içinde **küçük T modeli + demir kol + çentikli dişli sektör** (operatör kuleyi iç mekândan kumanda eder) [G]. Çentik sayısı sembolik; sayısı iddia edilmez.
-- Aydınlatma: **kare cam fener** (P01, P10; teneke, 4 cam yüz, mum içinde, [G]) ve **şamdanda mum** (P07, P08, P16'da farklı oda). Fener, masa üzerinde pencere kafesli ışık desenini yansıtır (grafik, arşiv hissi).
-- Para: altın/gümüş frank, **kâğıt para yok**.
+- Tours istasyonu, müdür + yardımcı [A]. Taş duvar, ahşap tavan kirişleri, küçük pencere, halat bobinleri, fıçı, raf. Referans `final/S06.png` (eski storyboard kompozisyonu) [T]. Tours/Loire bölgesi yapı taşı **tuffeau** [G].
+- **Pencere dışındaki kule: tek direk + T kolu.** `S06.png` pencerede **kafes/pilon (elektrik direği) benzeri** kule gösteriyor: bu Chappe değil. Yeni çizimde direk **düz ahşap, tek mast**, kafes yok (yakalanan ihlal).
+- **Yönetmen düzeni:** iki pencere. **A (direk penceresi):** arka duvar sağ, direk pencere dışında ~5 m. **B (önceki kule):** sol duvar, uzak tepe. **Regülatör** (minyatür T kollu) **pencere A tezgâhında**. Tüm kule istasyonlarında aynı düzen (P11, P12, P13).
+- Kumanda düzeneği: küçük T modeli + demir kol + çentikli sektör [G]. Çentik sayısı iddia edilmez.
+- Aydınlatma: **kare cam fener** (P01, P10; teneke, 4 cam yüz, mum içinde [G]; masaya pencere kafesli ışık deseni), **şamdanda mum** (P07, P08, P16).
+- Para: altın/gümüş frank, kâğıt para yok.
 
-**Düzen (ana plan, orta plan P07–P08 için; 1080×1920)**
-- Arka duvar: duvar-zemin birleşimi y ≈ 1400. Sol arka **kapı** x 110–330, y 420–1400 (aralık, dışarısı karanlık; François burada gölgede).
-- **Pencere:** x 700–890, y 760–1100 (190×340 = ekranın %17.7'si). Sill zemin üstünden ~0.9 m, memur pencere yanında dururken **başı pencere hizasında**. Dışarıda alacakaranlık/gece gökyüzü, uzakta KD-C kule siluetinin üst yarısı.
-- Masa: ön kenar y ≈ 1500, üst düzlem y 1330–1500, x 260–960. Çekmeceler müdür tarafında (sağ), **çekmece ön yüzü masanın alt-ortasında** (P07 dokunuşu).
-- Sol duvarda halat bobinleri, sağ duvarda alet askısı, arka sağ köşede fıçı, üst rafta kutular (arka katman, düşük kontrast).
-- Kumanda düzeneği: pencerenin sağında, duvara bağlı (P11 insert'inde ana oyuncu).
-- Ölçek kuralı: `s(y) = 0.80 + 0.0007·(y − 1420)` (memur y 1440 → 0.81; Louis y 1560 → 0.90).
-- Karakter yerleşimi (P07): Louis sol-orta (kese uzatır), müdür masa arkası sağ-orta, memur müdürün arkasında bir adım geride (pencere yanı), François kapı aralığında gölgede. **Oturan figür yok:** rig oturamaz. Masa bacakları gizler.
+**Düzen (orta plan, P07–P08; 1080×1920)**
+- Duvar-zemin birleşimi y ≈ 1400. Sol arka **kapı** x 110–330, y 420–1400 (aralık; François gölgede). **Pencere B** sol duvar (perspektifle kısalmış), **pencere A** x 700–890, y 760–1100 (190×340 = %17.7; P08 yakın planda yönetmenin x 640–1000, y 420–960 kırpımına ölçeklenir). Sill ~0.9 m, memur pencere yanında başı pencere hizasında.
+- Masa ön kenarı y ≈ 1500, üst düzlem y 1330–1500, x 260–960. Çekmeceler müdür tarafında (sağ), **çekmece ön yüzü masanın alt-ortasında, plan başında yarı açık** (P07 kurulumu).
+- **P08 el–gölge alanı:** mum masa ortasında alçak; memurun arkasındaki duvar bölümü x 500–900, y 700–1250 **boş** (halat/askı yok). Elin gölgesi (T biçimli kol silueti, duvarda %22 = ~420 px) mumun tersine, yukarı-sağa düşer. Gölge çokgeni elden projeksiyonla türetilir.
+- Sol duvarda halat bobinleri, sağda alet askısı, arka sağ köşede fıçı (el–gölge alanının dışında), rafta kutular.
+- **Müdür sandalyede** (yönetmen): oturma pozu (bölüm 0.1) + ahşap sandalye; masa bacakları gizler.
+- Ölçek ve konum tablo 0.5 (TOURS-KULUBE-IC).
 
-**P01 ve P10 için "MASA-PLAKA" (tepe-önden yakın):** üst %33 duvar ve **pencere (kadrajın en az %15'i)**; alt %67 masa üst düzlemi. Pencerede T kolu siluet (KD-C). Masada fener (sol), kahverengi paket kâğıdı (orta), eldiven. P10'da bölünmüş ekran iki masa yarısı (sol eldiven, sağ çorap). **Aynı plaka P23'te yeniden kullanılır (bkz. 1.6).**
+**MASA-PLAKA (P01, P10, P23; tepe-önden yakın):** üst kısım duvar + **pencere A sağ-üstte** x 600–960, y 450–800 (360×350 = %18; kanca yazısının altı), masa üst düzlemi altta. Masada fener (sol), kahverengi paket kâğıdı (orta), eldiven. P10'da tepe 90° iki paket yan yana. **Aynı plaka P23'te yeniden kullanılır** (PARIS-MASA): aynı kamera, aynı fener/pencere/direk; fark yalnız eller (P01 memur eli çıplak ve titrek, P23 gri manşetli Paris elleri).
 
 **Işık varyantları**
-| Varyant | Planlar | Anahtar ışık | Dolgu | Gölge yönü |
+| Varyant | Planlar | Anahtar | Dolgu | Gölge yönü |
 |---|---|---|---|---|
-| A akşam-fener | P01, P10 | fener amber `#ffb357` masa solunda | pencereden mor `#3b2f5c` | **sağ-yukarı** (fener solda alçak) ve kare kafes desen |
-| B gece-mum | P07, P08 | mum alttan `#ffcf70` (masa ortası) | pencereden mavi gece `#4a5f94` | **yukarı ve duvara** (alttan ışık, yüzlerde sert gölge) |
-| C gündüz-soğuk | P11 | pencereden soğuk gün `#cfdcff` | oda amber `#ffb357` α .15 | pencerenin tersi: **sol-aşağı** |
+| A akşam-fener | P01, P10, P23 | fener amber `#ffb357`, masa solunda | pencereden mor `#3b2f5c` | **sağ-yukarı** + kare kafes desen |
+| B gece-mum | P07, P08 | mum alttan `#ffcf70` | pencereden gece mavisi `#4a5f94` | **yukarı ve duvara** (alttan ışık) |
+| C gündüz-soğuk | P11, P15 alt | pencereden soğuk gün `#cfdcff` | oda amber α .15 | pencerenin tersi: **sol-aşağı** |
 
-**Palet:** duvar taşı `#5a5450` (karanlık oda) / `#8a8478` (ışıklı), harç `#3a3632`, tavan kirişi `#3b2818`, masa `#7a5230` (S06'daki çam masa; üst yüzey açık `#a07848`), zemin `#2d2a2c`, pencere gece `#1a2033`, halat `#a07a48`, fıçı `#6a4a2c`, demir `#1c1915`, pirinç `#c9a24a`.
-**Perspektif:** P07–P08: tek nokta, kaçış (540, 700), kamera göz hizası biraz alçak. P01/P10/P11 insert: ortografik tepe-önden (kaçış yok), vurgu için hafif 8° eğim.
-**Türetme:** yeni arka plan. Pencere kulesi `ChappeTower.tsx`'ten (bölüm 1.5). Karakterler Kukla. Efektler: `Glow` (fener/mum), `Dust`, `FilmLook`.
+**Palet:** duvar taşı `#5a5450` (karanlık) / `#8a8478` (ışıklı), harç `#3a3632`, kiriş `#3b2818`, masa `#7a5230` (üst yüzey `#a07848`), zemin `#2d2a2c`, pencere gece `#1a2033`, halat `#a07a48`, fıçı `#6a4a2c`, demir `#1c1915`, pirinç `#c9a24a`.
+**Perspektif:** P07–P08 tek nokta kaçış (540, 700); P01/P10/P11 insert ortografik tepe-önden (hafif 8° eğim).
+**Türetme:** yeni arka plan; pencere kulesi `ChappeTower.tsx` (bölüm 1.5); Kukla; `Glow`, `Dust`, `FilmLook`.
 **Motion notları**
-- **P01 (şak):** eldiven kâğıttan tamamen çıktığı karede pencere dışındaki gösterge bir adım (45°) döner; tahta menteşe "klak". Kol pencerenin içinde kalır (kenara yapışık değil).
-- **P07 (çekmece):** müdür altını sağ elle masa kenarına süpürür (altın masanın içine **düşer**, çekmece açık), çekmece kapanır; "bam" temas karesinde. Kese masa üzerinde kayar (sürtünme + şıngırtı); keseden dökülen madeni paralar ≤ 6 adet, masa yüzeyinde kalır.
-- **P08 (irkilme):** pencere dışındaki kolun gıcırdayarak kıpırdaması ile memurun irkilmesi aynı karede. Pencere memurun başına bitişik (soldaki kural: pencere ≥ %12).
-- **P11 insert:** kumanda kolu iki eldivenli değil **çıplak** el (memur çıplak elli, bkz. 2.2); fazladan çentik kırmızı `#e5483c` halo (blur 8 px, kısa, neon değil, 0.4 sn). Ter damlası çeneden kol sapına düşer: damla r ≈ 10 px, sap yüzeyinde sıçrar.
-- Kapı yalnız François girişi için kullanılır (P07'de zaten içeride); kimse duvardan çıkmaz.
+- **P01 (şak):** eldiven kâğıttan tamamen çıktığı karede direk kolu **A→B** konumuna oturur (tek gösterge bir adım), menteşe "klak". Kol pencere çerçevesi içinde kalır.
+- **P07:** müdür altını masa kenarından açık çekmeceye süpürür; çekmece kapanır "bam". **İki kese** masada (ikincisi Louis'nin dirseğinde, P08'de memura kayar). Kese kayması + sikke şıngırtısı. Memur çekmece çarpınca **gözünü kırpar**.
+- **P08:** memur sağ elini masaya bırakır, parmak ucu **üç kez** tıklar (kol çevirme alışkanlığı); mum alttan, duvarda T gölge. (Pencere kolu gıcırtısı yönetmen seçeneği: kol A'dan ~20° sapıp geri döner; tasarım iki seçeneği de çizer.)
+- **P10 (tepe açı):** memur eli (çıplak) çorabı uçtan kaldırır; çorap sarkıp uzar (%30 ekran). Eldiven kımıldamaz. **Ok etiketleri** kâğıt kart + ip: ↑ yeşil, ↓ kırmızı (bölüm 3).
+- **P11 insert:** kumanda kolunu **çıplak eller** tutar (eldivenli değil); fazladan çentik halosu = **ince kırmızı halka, çap ≈ 860 px, merkez (540, 950), 6 px, blur ≤ 6, 0.4 sn** (P11→P12 dürbün maskesiyle aynı merkez/çap, MATCH). Ter damlası çeneden sapa düşer (r ≈ 10 px). Pencere B'de uzak kule ≥ 100 px.
+- **P15 alt yarı:** memur masa başında, elinde buruşuk beyaz eldiven (kurulum → P16), gri ceket sol göğüs cebinde eldiven köşesi, gözaltı koyu (`MEMUR_HASTA`).
+- Kapı yalnız François için; kimse duvardan çıkmaz.
 
 ---
 
 ### 1.5 KULE-DIS (P12, P13, P17 penceresi, P21, P22)
 
-**Amaç:** Chappe kulesi **imza nesne**; her mekânda tekrar eden motif (pencerede, ufukta, haritada, Wi-Fi morfunda). Bu kart üç varyant ve ortak **kule modeli** tanımlar.
+**Amaç:** Chappe kulesi **imza nesne**; her mekânda tekrar eden motif (pencerede, ufukta, haritada, Wi-Fi morfunda).
 
 **Kule modeli (ChappeTower'dan türeme)**
-- Kaynak: `ChappeTower.tsx` (400×600 viewBox; direk 14×300, regülatör 280×16, göstergeler 12×90, hub `C.gold`). Yapı olarak doğru: **T biçimi, tek direk, 3 kol**. Yel değirmeni çağrışımı yok.
-- Önerilen değişiklikler (motion, yeni bileşen `ChappeKule` veya prop):
-  1. `armColor` ve `indColor` ayrı parametre. **Varsayılan: tüm kollar `#1c1915` (siyah)**; mevcut bileşendeki kırmızı göstergeler tarihî değil (Chappe kolları siyah boyalıydı [G ◐]) ve P12'de kolu kontrastlı siluet ister. Kırmızı **yalnız** "fazladan çentik" halosu (P11, P14), harita mührü ve Wi-Fi morf son aşaması için ayrılır.
-  2. Kol yüzeyi: **jaluzili (kepenkli) kanatlar** [G ◐], 5 ince çizgi (ışıklı yüzde açık ton α .25); küçük ölçekte görünmez, yakında görünür. Uçlarda karşı ağırlık (küçük dikdörtgen), pivotlarda altın perçin (`C.gold` r 8).
-  3. Direk dibine iki ahşap payanda (A-şekli), ağır ahşap çerçeve [G ◐].
-  4. Bina: ChappeTower'daki üçgen çatılı kutu yerine **piramit arduvaz çatılı taş kulübe** (S01 storyboard'daki gibi), kapı + küçük pencere + pencere ışığı.
-  5. `size` yerine `viewBox` korunur; çatı ve zemin sahne tarafından kırpılabilsin diye bina ayrı katman.
-- **Adlandırılmış kol konumları** (regülatör ° / sol gösterge ° / sağ gösterge °; 45° adımlı yedi konum [A: 7 konum]; açı değerleri yaklaşık, motion `ChappeTower` eksenlerine göre ince ayar):
+- Kaynak: `ChappeTower.tsx` (400×600 viewBox; direk 14×300; regülatör 280×16; göstergeler 12×90; hub `C.gold`). Yapı doğru: **T biçimi, tek direk, 3 kol**; yel değirmeni çağrışımı yok.
+- Önerilen değişiklikler (motion, yeni bileşen `ChappeKule` ya da prop):
+  1. `armColor` / `indColor` ayrı. **Varsayılan tüm kollar `#1c1915` (siyah)**; mevcut bileşendeki kırmızı göstergeler tarihî değil (kollar siyah boyalıydı [G ◐], Açık soru 12). Kırmızı yalnız fazladan çentik halosu, harita mührü ve ilan mührü.
+  2. Kol yüzeyi **jaluzili (kepenkli) kanat** [G ◐]: 5 ince çizgi (α .25); karşı ağırlık; pivotlarda altın perçin.
+  3. Direk dibine iki ahşap payanda (A-şekli).
+  4. Bina: üçgen çatılı kutu yerine **piramit arduvaz çatılı taş kulübe** (S01 storyboard) + küçük pencere.
+  5. Bina ayrı katman (sahne kırpabilsin).
+- **Adlandırılmış kol konumları** (45° adımlı yedi konum [A: 7 konum]; açılar yaklaşık, motion eksene göre ince ayar). Yönetmen adları parantezde:
 
 | Ad | Reg | Sol | Sağ | Kullanım |
 |---|---|---|---|---|
-| DINLEN | 0 | 0 | 0 | P17 sonu ("klunk"), P22 başlangıcı |
-| ILK | 0 | 45 | −45 | P01 başlangıç |
-| SAK | 0 | 90 | −45 | P01 "şak" (tek gösterge bir adım) |
-| MESAJ-A | 0 | 90 | −90 | P11/P13 |
-| HATA | 0 | 135 | −90 | **fazladan çentik:** MESAJ-A'dan tek gösterge +45° (P11, P13, P14) |
+| ILK (yönetmen "A") | 0 | 45 | −45 | P01 f0 ve **P23 son kare** |
+| SAK ("B") | 0 | 90 | −45 | P01 "şak" sonrası, P07 |
+| MESAJ-A | 0 | 90 | −90 | P11/P13 normal mesaj |
+| HATA ("X") | 0 | 135 | −90 | **fazladan çentik**: MESAJ-A'dan tek gösterge +45° (P11, P12 POV, P13, P14) |
+| DINLEN | 0 | 0 | 0 | P21 (kapı üstü), P22 başlangıç; P17 sonu (yönetmen seçeneği) |
 
 **Varyantlar**
-- **KD-A: Tours istasyonu dış, gündüz (P21).** Kapı yakın plan/orta plan. Cephe **tuffeau** krem `#e3dcc6`, gölge `#b5ad94`; çatı **mavi arduvaz** `#3c4660` [G ◐]; kapı ahşap `#5a3d28` demir bantlı; kapı pervazı taş `#c9c0a6`. Gökyüzü açık `#cfdcff → #f2e8c9`. **Işık sol-üst, gölge sağ-aşağı.** Kule bina çatısında, kameranın üstünde kadrajın üst yarısına girer (yukarıda kule).
-  - **İlan (P21):** beyaz kâğıt `#efe9d8` (resmî ilan beyaz kâğıtta basılırdı [G ◐]), 38×54 cm oranı; tepede 3 şeritli (mavi `#2a3f7e` / beyaz / kırmızı `#a8262c`) 24 px tricolore bandı, başlık bloğu (iki kalın satır siluet), 2 sütun metin çizgileri (okunmaz, `#4a4237` α .55), altta **kırmızı balmumu mühür** (`#b3261e`). 4 köşe **kare başlı el yapımı demir çivi**; çivi çakma temas anları olay listesine (tak, tak, TAK).
-  - **Kapı mandalı (sürgü):** *düşen mandal* (loquet): kapıya bağlı yatay demir çubuk, sol ucu perçin pivot, çıkıntıya yaslı. Titreşimle 20° döner ve pervazdaki demir kancaya (cramponnet) oturur. Fizik doğru ve görsel: "klank". İlanın hemen altında, el hizasında. Insert 1 sn, ekranın ≥ %10'u.
-- **KD-B: ara kule (P12 göz → P13 orta/geniş), gündüz.** **Kesit (cutaway) kule:** ön duvar çıkarılmış, iç mekân görünür (telgrafçı, kumanda kolu, tripoda dürbün); yan duvar kalın taş kesit; çatıda direk + T kolu. Ufukta soldan **Tours kulesi** (uzak küçük T, sola/Paris'e), sağda **sıradaki kule** (P13'te kopyalar). Peyzaj: düz Loire/Poitou ovası, ince tarla çizgileri, birkaç kavak. Kaynak: kuleler 5–15 km arayla, her kulede iki dürbün [A]; kesit sunum tercihi [T].
-  - Gökyüzü gündüz `#cfdcff → #f2e8c9`; ova `#9aa06a`/`#7d8a56`; taş kesit `#c9c0a6` / iç duvar `#8a8478`; zemin ahşap `#7a5230`.
-  - Dürbünler **tek tüp (lunette), teleskopik**; çift gözlü (8 şekilli) dürbün **yok** [G]. P12 POV maskesi tek **daire** (pirinç halka, 28 px, iç vinyet siyah). P14'te maske yok (kullanıcı kararı).
-  - P12 aşırı yakın göz: arka plan düz bulanık gök + pirinç dürbün kenarı; kaş alanı üst yarıyı doldurur (rig `browF` +1).
-  - P13: telgrafçı kendi kumanda kolunu çevirir; esneme (`agiz "A"`, büyük ağız, ≥ %15 yüz). Kamera geri çekilince **sıradaki kule** ufukta, kolu aynı ağırlıkta (HATA) kopyalar.
-- **KD-C: alacakaranlık siluet (P17 pencere, P22).** Gökyüzü: `#1d1838 → #3b2f5c → #8a5a6e → #d98a5a` (üst → ufuk). Kule `#1c1915` siluet, kenar ışığı amber `#ffb357` α .5 tek kenarda. **P17:** yatak odası penceresinden görünen uzak kule, ekranın ≥ %12'si (≥ 230 px) ve kollar P17 sonunda DINLEN'e iner ("klunk").
-**Perspektif:** KD-A ve KD-B ortografik/hafif tek nokta, kaçış (540, 900); KD-B kesitte iç oda 2D (derinlik gerektirmez), ufuk çizgisi y ≈ 1050.
-**Türetme:** `ChappeTower.tsx` (bina + direk + kollar), `Efektler.tsx` `Clouds`, `Birds` (P13 ufukta ≤ 3 kuş, opsiyonel).
-**Motion notları:** kol hareketleri yalnız 45° adımlar + 3 kare "klak" oturması (60 fps'de 6 kare); kollar **asla sürekli dönmez**. Kule menteşe foley'i her adımda. Ufuktaki kopya kule kendi gecikmesiyle hareket eder (0.35 sn).
+- **KD-A: TOURS-KAPI, gündüz (P21).** Cephe **tuffeau** `#e3dcc6`, gölge `#b5ad94`; çatı mavi arduvaz `#3c4660` [G ◐]; kapı ahşap `#5a3d28`, demir bantlı; pervaz `#c9c0a6`. Gök `#cfdcff → #f2e8c9`. Işık sol-üst, gölge sağ-aşağı.
+  - **Geometri (yönetmen):** kapı x 320–760, y 700–1400 (440×700). **İlan** x 420–660, y 800–1100 (240×300, %16). Direk kapı üstünde x 380–700, y 330–700, kollar **DINLEN**. Sürgü insert'i kapı sağ kenarı, **~%14–25** (270+ px).
+  - **İlan:** beyaz kâğıt `#efe9d8` [G ◐ resmî ilan beyaz kâğıt], üstte 24 px tricolore bandı (`#2a3f7e / #efe9d8 / #a8262c`), başlık bloğu, 2 sütun metin çizgisi (okunmaz, α .55), altta **kırmızı balmumu mühür** (P05'le aynı Chappe T baskısı). 4 köşe **kare başlı demir çivi**.
+  - **Mandal (sürgü):** *düşen mandal*: yatay demir çubuk, sol ucu perçin pivot, çıkıntıya yaslı; çekiç titreşiminde 20° dönüp pervazdaki demir kancaya oturur ("klank"). İlanın hemen altında, el hizasında.
+  - Görevli eli: siyah redingot kolu `#1c1915` + **beyaz manşet** `#efe9d8` (Paris gri manşetinden ayrışır), yüz yok; kadrajın sağ-altından girer/çıkar.
+- **KD-B: ara kule, dıştan pencere görünümü, gündüz (P12 → P13).** Tours'tan sonraki ara kule görevlisi (bölüm 2.5).
+  - Dış cephe: taş kulübe, **açık pencere** (casement, iç yüzde regülatör tezgâhı: **minyatür T + demir kol**), telgrafçı bel üstü pencere içinde (z 1.5, u 0.50). Çatıda **kendi direği** (P13'te üstte). Ufukta soldan **Tours kulesi** (uzak küçük T, MESAJ→HATA), sağda **sıradaki kule**.
+  - Peyzaj: düz ova, tarla çizgileri, kavaklar. Kuleler 5–15 km arayla, her kulede iki dürbün [A].
+  - Gök `#cfdcff → #f2e8c9`; ova `#9aa06a / #7d8a56`; taş `#c9c0a6` / gölge `#8a8478`; pencere içi `#3a342e`; ahşap `#7a5230`.
+  - **P12 POV maskesi:** tek **daire** (merkez (540, 950), çap ≈ 860 px), pirinç halka 28 px, iç vinyet siyah. Tek tüp teleskop (lunette), çift gözlü (8 şekilli) maske **yok** [G]. POV'da Tours kulesi ≥ 300 px siluet, kollar HATA. Odak halkası "kırt".
+  - **P12 aşırı yakın göz/kaş:** göz y 520–820, kaş yayı y 400–520 (yönetmen R7); arka plan düz bulanık gök + pirinç dürbün kenarı; `browF` +1.
+  - **P13:** dürbünü indirir, omuz silker, kolu çevirir, esner; kamera geri çekilir (dış tarafta kalır, duvardan geçmez); kendi direği HATA'ya "klak"; ufuk kulesi 0.35 sn gecikmeyle kopyalar. `Birds` ≤ 3 (opsiyonel).
+- **KD-C: alacakaranlık siluet (P17 penceresi, P22).** Gök `#1d1838 → #3b2f5c → #8a5a6e → #d98a5a`; kule `#1c1915`, tek kenarda amber kenar ışığı `#ffb357` α .5. **P17 penceresi:** yatak odasından uzak kule, ekranın ≥ %12'si (yönetmen x 640–960, y 300–620 = %17), kollar statik (yaratıcı) ya da sonunda DINLEN'e iner "klunk" (yönetmen).
+**Türetme:** `ChappeTower.tsx`, `Efektler.tsx` `Clouds`, `Birds`.
+**Motion notları:** kol hareketleri yalnız 45° adımlar + 6 karelik (60 fps) "klak" oturması; kollar **asla sürekli dönmez**. Her adımda menteşe foley'i.
 
 ---
 
-### 1.6 PARIS-AVLU (P09 avlu · P23 masa)
+### 1.6 PARIS-AVLU (P09 avlu) ve PARIS-MASA (P23)
 
 **Dönem ve kaynak**
-- Paris posta avlusu: taş avlu, **kemerli araba kapısı (porte cochère)**, 2–3 katlı taş bina, arduvaz mansard çatı, Haussmann öncesi (bakınız Sokak cephe sistemi) [G]. Paris'teki tek konum iddiası yok; "bir posta avlusu" [S].
-- Posta arabası: `final/araba-yesil.png`'deki **kahverengi gövde üstü / krem alt gövde** "Postes" arabası (Harita'dakiyle **aynı araba**, süreklilik). Çatıda bagaj çatısı/kafesi, kapı levhası "POSTES" ve **sarkık krem etiket "TOURS"** (P09, 60 px yükseklik, Playfair 900, mürekkep). Arma sadeleştirilir (bkz. 1.2).
-- Paketler, posta çuvalları (`sacs`), ağaç tezgâh. Kâğıt para yok.
-- **Paris'te Chappe kulesi:** Paris–Lille hattı Paris'ten başlar [A: Paris–Lille 15 kule]; P23 masa plakasında penceredeki kule bu hattın bir kulesi olarak okunabilir, **konumu belirtilmez** (Açık soru 10).
+- Paris posta avlusu: taş avlu, **kemerli araba kapısı**, 2–3 katlı taş bina, arduvaz mansard çatı [G]. Tek konum iddiası yok; "bir posta avlusu" [S].
+- Posta arabası: Harita'daki `araba-yesil.png` ile **aynı** (süreklilik): kahverengi üst gövde, krem alt gövde, "POSTES" levhası; arma sadeleştirilir (bkz. 1.2). Çatıda bagaj çıtası; **"TOURS" etiketi 380×110 px** (yönetmen), krem kâğıt etiket, Playfair 900 mürekkep.
+- Paketler, posta çuvalları, ahşap tezgâh. Kâğıt para yok.
+- Paris'te Chappe kulesi: Paris–Lille hattı Paris'ten başlar [A]; P23 plakasında pencerede kule var, **konum belirtilmez** (Açık soru 10).
 
 **P09 avlu katmanları**
-1. Arka: taş cephe + kemerli kapı (karanlık geçit), arduvaz çatı, baca. Duvar dibinde posta çuvalları.
-2. Orta: **posta arabası** yandan (gövde + 2 tekerlek; atlar kadraj dışı sol, yani yola dönük), çatıda bagaj, **arabacı** kutusunda (siluet, kahverengi tonlar).
-3. Ön: sol alttan kadraja uzanan **gri manşetli eller** (bölüm 2.8) paketi arabanın tepesine fırlatır; ön plan tezgâh kenarı + çuvallar.
-**Palet:** taş `#b9ad92 / #8f8470`, arduvaz `#3c4660`, kalaş (kaldırım taşı) `#6a6458 / #4a463e`, araba üst `#3a2a1c`, alt `#d9c9a0`, tekerlek `#3a2a1c` + jant `#c9a24a`, paket kâğıdı `#b08a5a`, ip `#d8c9a0`, çuval `#a89870`, TOURS etiketi `#efe9d8`.
-**Işık:** gündüz, güneş sol-üst; **gölge sağ-aşağı** (araba gölgesi zemine sağa uzar). Hafif sıcak bulutlu gün, çarpıcı kontrast yok.
-**Perspektif:** orta plan, hafif yukarıdan: kaçış (540, 860); araba yan profil (ortografik), avlu zemini perspektifli. Ölçek: `s(y) = 0.70 + 0.0008·(y − 1200)`.
-**Motion notları (dokunuş: paket kayma/arabacı ayağı)**
-- Paket fırlatma: el kadraja soldan girer, paket parabol çizer, **bagaj çatısının ahşap yüzeyine** iner ("huf" → "tahtada sürtünme"). Kayar, **çatı kenarına** varmadan arabacı **çizmesiyle** paketin köşesine basar ("tap"). Çizme paketin içinden geçmez; temas köşesi görünür. Çizme koyu deri `#2a1d14` + parlak kenar `#7a5a3c`.
-- Eller her zaman **kadraj kenarından** girer/çıkar (soldan), duvardan değil.
-
-**P23 masa (loop kare):**
-- **Kural:** P23'ün son karesi, P01'in ilk karesi ile aynı **MASA-PLAKA**dır (bölüm 1.4). Aynı fener, aynı pencere/kule, aynı kâğıt/eldiven yerleşimi. Fark yalnız ellerdir: P01'de memur eli (çıplak, ince, titrek), P23'te **gri manşetli eller** (Paris). Sahne bağlamı Paris olarak "avlu tezgâhı" altına açılan aynı oda çerçevesine oturur; masa üstünde sadece paket ve fener olduğu için mekân ayrıntısı okunmaz.
-- Alternatif (eleştirmen seçsin): P23'te pencere dışında Paris çatı hattı değil, kule siluetinin kendisi kalır. Mevcut seçim: **aynı plaka** (döngü kusursuz olur).
-- Katlama kâğıdı: kenar kıvırma → ip fiyonk (3 poz, bölüm 2.8). Son kare kâğıt yarı açık, eldiven ortada (P01 ilk karesi).
-**Türetme:** yeni arka plan (avlu), araba `araba-yesil.png` (kromakey) ya da vektör redraw; masa = TOURS-KULUBE-IC MASA-PLAKA.
+1. **Arka:** taş cephe + kemerli kapı (karanlık geçit), arduvaz çatı, baca, duvar dibinde çuvallar.
+2. **Orta:** **posta arabası** yandan, sağda (z 2.2, u 0.62); atlar kadraj dışı. **Arabacı** kutuda (z 2.2, u 0.80), **sağ ayağı kutu korkuluğunda**; plan başından kadrajda (kurulum). Çatı bagaj çıtası eğimsiz.
+3. **Ön:** **Paris adamı** (z 1.6, u 0.28), **başı kadrajın üstünde kesik, yüzü görünmez**: koyu redingot kolu, **gri manşet, sağ manşette tek altın düğme** (bölüm 2.8). Ön plan çuval/tezgâh.
+**Palet:** taş `#b9ad92 / #8f8470`, arduvaz `#3c4660`, kaldırım `#6a6458 / #4a463e`, araba üst `#3a2a1c`, alt `#d9c9a0`, tekerlek `#3a2a1c` + jant `#c9a24a`, paket kâğıdı `#b08a5a`, ip `#d8c9a0`, çuval `#a89870`, etiket `#efe9d8`.
+**Işık:** gündüz, güneş sol-üst; **gölge sağ-aşağı** (araba gölgesi zemine sağa). Hafif bulutlu, kontrast sert değil.
+**Perspektif:** tablo 0.5 (PARIS-AVLU); kamera hafif alçak. Araba yan profil ortografik.
+**Motion notları**
+- Paket fırlatma: el soldan girer, parabol, **bagaj çatısına iner** ("huf" → "tok"), **eğimsiz çatıda x ekseninde kayar**, ön kenara varırken arabacı **topuğuyla** paketin köşesine basar ("tap"). Çizme paketin içinden geçmez, kutu korkuluğuna gömülmez. Çizme koyu deri `#2a1d14`, kenar `#7a5a3c`.
+- Eller/adam kadraj kenarından girer/çıkar. P09→P10 MATCH: aynı kâğıt dokusu ve etiket.
+**PARIS-MASA (P23):** **MASA-PLAKA** (bölüm 1.4) ile **birebir aynı**: aynı kamera `cs 1.00`, fener, pencere A, direk. Direk **HATA yerine ILK konumundan başlar** (P01 sonrası SAK), P23'te **ILK'e "klak"** döner (yönetmen: A konumu). Paket **kapalı** biter; döngü "kapat → aç" eşleşmesi. Eller: gri manşet + tek altın düğme. Katlama kâğıdı eldivenin beş parmağı **hafif kabartı** olarak görünür (yaratıcı yönetmen).
 
 ---
 
 ### 1.7 CATI-BORDEAUX (P06) — şafak, çatı terası
 
 **Dönem ve kaynak**
-- Bordeaux çatıları: oluklu kiremit (**tuile canal**) + arduvaz karışımı, baca grupları, kireçtaşı bacalar [G ◐]. Ufukta Garonne'un hilal kıvrımı, sis, gemi direkleri (P04 ile tutarlı), **Pont de pierre (1822, taş köprü, 17 kemer)** silüeti [G]. Pont de pierre sadece ufuk katmanında, çok küçük/sis içinde; konum iddiası değil.
-- Güvercin kafesi: **hasır (osier) kafes**, ahşap taban; güvercin "posta güvercini" [A: posta güvercinleri].
-- Cep saati: bölüm 3. **Savonnette (kapaklı)** altın saat.
-- Şafak: gün doğumu soldan (doğu); sinyal/haber akışı da soldan geldiği için tutarlı.
+- Bordeaux çatıları: arduvaz + oluklu kiremit, baca kümeleri [G ◐]. **Çinko oluklu yürüme sırtı** (düz ≈ 1.2 m teras, taş korkuluk): yönetmen. Ufukta Garonne hilali, sis, gemi direkleri (P04 ile tutarlı), isteğe **Pont de pierre (1822)** silüeti [G] (sis içinde çok küçük, konum iddiası değil).
+- Çatı katı **dormer penceresi** (soldan 2., açık): P14 ile eşleşir (süreklilik). Ufukta **sağ tepede Chappe kule silueti** (kurulum → P14), yönetmen.
+- Güvercin kafesi **hasır (osier)**; güvercin posta güvercini [A].
+- Cep saati **savonnette**, bölüm 3.
 
 **Katmanlar**
-1. **Arka:** şafak gökyüzü (üst `#5c6a9a` → orta `#d89a8a` → ufuk `#f2b27a`), güneş diski ufukta sol (`#ffd9a0`, kısmen sis arkasında), Garonne bandı, direkler, Pont de pierre silüeti (`#6a6a8a` α .6).
-2. **Orta:** çatı manzarası (kiremit `#9a5a3c` / arduvaz `#3c4660`), bacalar (`#8a7a6a`, tuğla uçlar `#8a5a42`). Chappe kulesi P06'da görünmez (Louis güvercini deniyor, kule henüz hikâyede yok).
-3. **Ön:** taş korkuluk (parapet) kısa (dize kadar), Louis (tam Kukla, orta plan = bel üstü), **kafes** (parapet üstünde), sol elde saat, tuğla zemin terası.
-**Palet:** çatı kiremit `#9a5a3c`, kiremit gölge `#6a3a28`, korkuluk taş `#c4b08a`, gölge `#7a6a52`, hasır `#a07a48`, güvercin gri-beyaz `#dfe2ea` + kanat çubukları `#4a5062` + boyun `#6a8f86`, tüy `#cfd3dc`.
-**Işık:** güneş **sol-alçak, ufukta**; kenar ışığı sıcak turuncu (`#ffb357`) karakterin sol kenarında. Gölgeler **sağa ve uzun**. Louis `facing = -1` (ışığa bakar). Güvercin **sola** (güneşe, Paris yönüne) uçar → arkadan aydınlanmış silüet.
-**Perspektif:** orta plan, hafif aşağıdan: kaçış (540, 1000) (ufuk çizgisi y ≈ 1000, Louis'nin göğsü). Ölçek: Louis `s ≈ 1.0` (orta plan, ayak kadraj dışı).
-**Türetme:** yeni arka plan; çatı kiremit/arduvaz desenleri `Sokak.tsx` çatı bölümünden (arduvaz sıraları, mahya, baca); Kukla; `Birds` (tek güvercin için özelleştirilir).
+1. **Arka:** şafak gök (üst `#5c6a9a` → orta `#d89a8a` → ufuk `#f2b27a`). **Güneş diski ufukta, merkez (540, 880), çap ≈ 300 px** (P05 mührüyle MATCH; `#ffd9a0`). Garonne bandı, direkler, sağda uzak tepede kule siluet `#5a5a70` α .7.
+2. **Orta:** çatı manzarası (kiremit `#9a5a3c` / arduvaz `#3c4660`), bacalar `#8a7a6a` (tuğla uç `#8a5a42`), dormer penceresi soldan 2.
+3. **Ön:** taş korkuluk, çinko teras, Louis (z 2.0, u 0.45), **kafes** korkuluk üstünde (z 2.3, u 0.62, sağda).
+**Palet:** kiremit `#9a5a3c`, gölge `#6a3a28`, korkuluk `#c4b08a` / gölge `#7a6a52`, çinko `#8a8f98`, hasır `#a07a48`, güvercin gri-beyaz `#dfe2ea` + kanat çubuğu `#4a5062` + boyun `#6a8f86`, tüy `#cfd3dc`.
+**Işık:** **kontrajur.** Güneş Louis'nin arkasında ufukta; Louis siluetinin çevresinde sıcak kenar ışığı (`#ffb357`); gölgeler **kameraya doğru uzun**. Louis ışığa değil güneşe karşı duruyor: kenar ışığı bu planda **elle çizilen overlay** (rig `RIM` yönü `facing` ile geldiği için `rim` bayrağı gerekir, Açık soru 8).
+**Perspektif:** tablo 0.5 (teras); kamera hafif aşağıdan, ufuk y ≈ 1000.
+**Türetme:** yeni arka plan; çatı kiremit/arduvaz desenleri `Sokak.tsx` çatı kısmından; Kukla; `Birds` tek güvercin için özelleştirilir.
 **Motion notları**
-- Kafes kapağı açılır (tahta "tak"), güvercin çıkar; **tek tüy** kanattan kopar, salınarak saatin camına düşer (cam üstünde kısa duraklama, "tık"), Louis tüyü fiske ile atar, **saat kapağı kapanır** ("çat"). Saat insert'i ekran yüksekliğinin ≥ %20'si (≥ 384 px).
-- Güvercin kadraj kenarından çıkar, fade yok.
+- Kafes kapağı açılır (tahta "tak"), güvercin çıkar, kanat çırparak **kadrajın sağ-üstünden çıkar** (yönetmen); fade yok. **Tek tüy** kopar. Yaratıcı yönetmen: tüy **Louis'nin bordo koluna** konar, Louis fiske atar (kol insert %20, tüy ≥ %10). Yönetmen: tüy saat camına konar (saat insert %20, ≥ 384 px). Tasarım ikisini de çizer (saat + bordo kol).
+- Louis **bastonu sol ön koluna asmış:** `Kukla.cane` yalnız elde tutar; asılı poz için baston kol üzerinde yatay (`cane ≈ −80`) ya da korkuluğa dayalı çizilir.
+- Cebinden beyaz eldiven köşesi görünür (süreklilik).
 
 ---
 
-### 1.8 CATI-KATI (P14, P15 üst yarı) — Bordeaux çatı katı, gündüz
+### 1.8 CATI-KATI (P14, P15 üst yarı = ALTIN-MASA) — Bordeaux çatı katı, gündüz
 
-**Karar:** P14 dürbün **maskesiz** (kullanıcı kararı). Odak kayması tüm kadrajın netleşmesiyle verilir.
+**Karar:** P14 dürbün **maskesiz** (kullanıcı kararı). Görsel **tek tüplü pirinç teleskop**, "dürbün" anlatımda kalır (yönetmen madde 10).
 
 **Dönem ve kaynak**
-- Çatı katı (mansarde): eğik tavan, açık ahşap kirişler, **çatı penceresi (lucarne)** ve panjur [G]. Pencere dışı: Bordeaux çatıları, ufukta **şehir kenarındaki tepede kule** [A: suç ortağı kuleyi izler; kulenin Bordeaux'daki tam yeri araştırmada yok, "tepe üstü uzak kule" çizilir].
-- **Tek tüp pirinç teleskop, ahşap/pirinç üç ayaklı sehpa** [G] (bölüm 3).
-- Masa: defter, mürekkep hokkası, kaz tüyü, cep saati; **altın ve gümüş frank yığınları** (P15 üst yarı), kadeh ve şarap şişesi (Bordeaux, François'nın kadehi).
+- Çatı katı (mansarde): eğik tavan, açık kirişler, **dormer penceresi** ve panjur [G]. Pencere dışı: Bordeaux çatıları, **sağ uzak tepede kule** [A: suç ortağı kuleyi izler; kulenin Bordeaux'daki yeri araştırmada yok].
+- Teleskop **pervaza dayanır** (yönetmen; sehpa yok). **Pervaz kalın ahşap, üstünde onlarca eski çentik** (yaratıcı yönetmen kurulumu: plan başından görünür); suç ortağı **çakıyla** bir çentik daha atar. Çentikler **beşli gruplar** (okunur sayma işareti).
+- Masa: defter, hokka, kaz tüyü, cep saati; **altın ve gümüş frank yığınları** (P15 üst yarı), kadeh ve Bordeaux şarap şişesi (François'nın kadehi).
 
-**Katmanlar**
-1. **Arka (pencere duvarı):** pencere sol-merkezde: x 80–620, y 400–1250 (540×850). Dışarıda çatılar ve **uzak kule** y 520–900 (≥ 380 px = %20; HATA konumu, ince kırmızı halka çizilir ama P14 sonunda).
-2. **Orta:** suç ortağı (Kukla, profil, `facing = -1`) sehpanın yanında eğilmiş; **sehpa + teleskop** pencereye doğru (sol) uzanır. Arka planda, kadrajın sağ yarısında **masa + Louis** (ayakta, scale ≈ 0.55, küçük, bekliyor).
-3. **Ön:** ön plan kiriş (üst kenar, çerçeve), sağ altta sandık/çuval, yer tahtası.
-**Palet:** kiriş `#3b2818 / #5b3d25`, sıva `#b9ad92 / #8f8470`, tahta zemin `#7a5230`, pencere dışı gök `#cfdcff → #f2e8c9`, çatılar `#9a5a3c / #3c4660`, uzak kule `#5a5a70` (sis içinde, netleşince `#1c1915`), pirinç `#c9a24a / #f1d48a / #7a5a1f`, sehpa ahşap `#5b3d25`.
-**Işık:** güneş pencereden **soldan**, içeri uzun dikdörtgen ışık yamuğu zeminde sağa uzanır. **Gölgeler sağa** (suç ortağı gölgesi masaya uzanır). Suç ortağı pencereye (ışığa) bakar (facing −1) → kenar ışığı doğru taraf.
-**Perspektif:** tek nokta, kaçış (540, 880); eğik tavan çizgileri sağda yükselir. Ölçek: `s(y) = 0.60 + 0.0008·(y − 1200)`; suç ortağı y 1420 → s ≈ 0.78; Louis y 1180 → 0.58.
-**Türetme:** yeni arka plan; Kukla (SUC_ORTAGI paleti); kule `ChappeKule` (KD modeli, küçük).
+**Katmanlar (yönetmen koordinatları)**
+1. **Arka (pencere duvarı):** dormer penceresi x 380–900, y 380–1000 (içeriden); dışarıda çatılar ve **sağ-uzak kule** (≥ 230 px = %12; HATA konumu; netleşince kol çizgisi keskin).
+2. **Orta:** suç ortağı (Kukla, `facing = +1`, kuleye/ışığa bakar; z 1.5, u 0.30, sırtı yarı kameraya) pencerenin solunda eğilmiş; teleskop pervazda. **Louis arka planda masa başında** (z 3.0, u 0.78, bulanık, gri şapkası masada, baston masaya dayalı).
+3. **Ön:** ön plan kiriş (üst çerçeve), köşede sandık/çuval, yer tahtaları.
+**P15 üst yarı:** ahşap kiriş ayraç **y 948–972**; üst y 220–948: Louis'nin defteri (x 120–520, y 700–900), altın yığını (x 380–620, y 780–930), François'nın kadeh tutan eli (x 640–900, y 560–800), sağ-üst takvim (x 700–960, y 330–600; yaprak 220×240).
+**Palet:** kiriş `#3b2818 / #5b3d25`, sıva `#b9ad92 / #8f8470`, zemin `#7a5230`, pencere dışı gök `#cfdcff → #f2e8c9`, çatılar `#9a5a3c / #3c4660`, uzak kule `#5a5a70` (netleşince `#1c1915`), pirinç `#c9a24a / #f1d48a / #7a5a1f`, pervaz `#6a4a2c` (çentik iç `#2a1c10`).
+**Işık:** güneş pencereden, içeri uzun ışık yamuğu, **gölgeler sola-aşağı** (ışık sağdan-ön, pencere sağ-merkezde). Suç ortağı pencereye bakar → kenar ışığı doğru taraf.
+**Perspektif:** tablo 0.5 (CATI-KATI); eğik tavan çizgileri sağa yükselir.
+**Türetme:** yeni arka plan; Kukla `SUC_ORTAGI` (kasket, bölüm 2.6); kule `ChappeKule`.
 **Motion notları**
-- **Odak (dokunuş):** tüm kadraja `blur(12px) → 0` (24 kare, ease-out), 1 sn netlik tutulur; netleşirken uzak kule HATA konumu seçilir, suç ortağı teleskopu **tek hamlede kapatır** ("şlak", teleskopun teleskopik kısmı iç içe geçer, temas karesinde). Kapanma sırasında teleskop sehpadan **ayrılmaz**.
-- Suç ortağı ayakları zemin tahtalarında, temas gölgeli.
-- **P15 üst yarı:** aynı masa, yakın insert, ≥ %10 boyutlu yıllık takvim levhası (bölüm 3). Altın yığını **büyür** (üç kez), her eklemede küçük "şıng".
+- **Odak (yönetmen):** tüm kadraj odak yakın (omuz/teleskop net, kule bulanık) → **kule net, ön plan bulanık, 1 sn** → odak Louis'ye. R4: `blur` swangle'da yavaş, iki keskin/bulanık katman sürümü, kare başı katman değişimi.
+- **Çentik (yaratıcı yönetmen):** suç ortağı teleskopu gözünden indirir, çakıyı pervaza bastırır ("kırt"), dürbünü yeniden kaldırır. Pervaz+çakı insert alt kadranda %22. Teleskop kapanırken **sehpadan değil pervazdan** kayar, tek hamlede "şlak".
+- P14→P15 karartma fiziksel gerekçeli (teleskop kapağı).
 
 ---
 
 ### 1.9 YATAK-ODASI (P16, P17)
 
 **Dönem ve kaynak**
-- Taşra yatak odası: ceviz yatak, ağır yün battaniye, çarşaf, yastık, **gece takkesi (bonnet de nuit)** [G ◐], komodin, mum [S: "tek mum"], pencere dışı uzak kule [S].
-- **Hastalığın niteliği:** "ağır hasta"; ölüm gösterilmez [A: çelişki; FR öldü, S hastalandı]. Memur nefes alıyor, hareketli.
-- Tricolore/mimari ayrıntı yok.
+- Taşra yatak odası: **tuffeau duvar, ahşap kiriş, demir yatak [G ◐], saman şilte**, yün battaniye, çarşaf, yastık, **gece takkesi (bonnet de nuit)** [G ◐], komodin, mum [S], pencere dışı uzak kule [S], kapı arka-sol (yönetmen). Memurun gri ceketi duvarda askıda (cep boş).
+- **Hastalık:** "ağır hasta"; ölüm gösterilmez [A çelişki: FR öldü, S hastalandı]. Memur nefes alıyor.
 
-**Düzen**
-- Yatak alt yarıda: y 1000–1500. Baş ucu solda, **memurun başı** x 330–480, y 880–1040 (yastıkta, hafif yana).
-- **Pencere:** sol-arka, x 80–300, y 480–860, dışarıda **uzak kule** (KD-C) ≥ 230 px (%12).
-- Komodin: sağda, üzerinde **tek mum** (şamdan, pirinç) + su bardağı. Mum x ≈ 900, y 1180.
-- **Eldiven:** memurun sağ elinden yorgana, oradan **yatak kenarından** yere düşer; yer: tahta parke, kadraj alt kenarı içinde (insert yer seviyesinde).
-**Palet:** duvar `#4a4238 / #6a5f52`, yatak ahşap `#3b2818`, yorgan `#6b5a4a` (soluk desen çizgileri `#5a4a3a`), çarşaf `#d8d0bb`, yastık `#e8e0cc`, takke `#e8e0cc`, parke `#5a4630 / #3b2c1c`, pencere mavi `#4a5f94`, mum `#ffcf70` + halo `#ff9a40`.
-**Işık:** **iki kaynak.** Anahtar: mum (sağ-alçak, amber) → yüzde sert gölge **sola/yukarı**. Dolgu: pencere soğuk mavi (sol-arka) → yatak üstünde soğuk kenar. Solgun yüz için sıcak yerine soğuk baskın.
-**Perspektif:** yavaş push-in; tek nokta kaçış (540, 900); yatak yan-yarı üç çeyrek görünüm.
-**Türetme:** yeni arka plan; Kukla `MEMUR_YATAK` paleti; yatay rig sorunu: **Kukla yatamaz**. Çözüm: yorgan çokgeni gövdenin önünde, gövde `lean ≈ 60–70°` ve bacaklar tamamen yorgan altında, yalnız baş + omuz + sağ kol görünür; kafa `headTilt` yana. Takke = baş üstüne bindirilmiş yumuşak koni (Kukla dışı overlay).
+**Düzen (yönetmen)**
+- Yatak alt yarıda (y 1000–1500); memur yatakta (z 2.2, u 0.45), başı yastıkta sağa dönük, sağ elinde **buruşuk beyaz eldiven (plan başından)**.
+- **Mum soldaki komodinde.** **Pencere sağ-arka** (A tipi, soğuk mavi), dışarıda uzak kule. **Sandalyede koyu figür silueti** (z 2.8, u 0.85): dinleyici/yazıcı (kimliği belirsiz, yüzsüz). Yazıcı **dizde yazı pulpitri (lap desk)** üstünde yazar [G]; kâğıt, hokka, **kum kabı** pulpitrin yanında (yaratıcı yönetmen P17: kurutma kumu serpme).
+- P17 yakın plan: memurun yüzü sol-üst (y 520–1100, 3/4), **yazıcının siyah kollu eli alt-sağda %13**; pencere kulesi x 640–960, y 300–620.
+**Palet:** duvar `#4a4238 / #6a5f52`, demir yatak `#1c1915` (kenar ışığı `#9fb3ea` α .3), yorgan `#6b5a4a` (desen `#5a4a3a`), çarşaf `#d8d0bb`, yastık/takke `#e8e0cc`, parke `#5a4630 / #3b2c1c`, pencere mavi `#4a5f94`, mum `#ffcf70` + halo `#ff9a40`, yazıcı kolu `#1c1915`.
+**Işık:** iki kaynak. Anahtar: mum (sol-alçak amber) → yüzde sert gölge **sağa/yukarı**. Dolgu: pencere sağ-arkadan **soğuk mavi** → yatak üstünde soğuk kenar. Solgun yüz için soğuk baskın.
+**Perspektif:** yavaş push-in; tablo 0.5 (YATAK-ODASI); yatak üç çeyrek.
+**Türetme:** yeni arka plan; Kukla `MEMUR_YATAK`. **Kukla yatamaz:** yorgan çokgeni gövdenin önünde, gövde `lean ≈ 60–70°`, bacaklar yorgan altında; yalnız baş + omuz + sağ kol görünür; takke baş üstünde yumuşak koni (overlay).
 **Motion notları**
-- P16: eldiven elden kayarken **yorgan yüzeyinde sürtünür** (soluk yün sesi), kenardan **düşer**, parkeye "yumuşak" temas (insert); eldiven buruşuk, beyaz `#f4efe2` lekeli gölgelerle.
-- P17: memur başını çevirir ve **kimliği belirsiz gölgeye** (kadraj dışı sağda, yalnız bir silüet omzu) fısıldar. Fısıltı bitince pencere dışı kule DINLEN'e iner, "klunk" (uzak, boğuk).
+- **P16:** eldiven elden parmak parmak kayar, yorgan yüzeyinde sürtünür, **eğik yorgan kenarından düşer**, parkeye "yumuşak" temas (insert alçak açı, yer seviyesi). Yatak ayağına çarpmaz. R10: yorgan sabit eğik yüzey, eldiven rigid parça, düşüşte iki nokta.
+- **P17:** memur başını yazıcıya çevirir, fısıldar; yazıcı yazar, bitince **kum serper** (kum zerreleri 20–30 nokta, mürekkep yüzeyine yapışır). Kule statik (yaratıcı) ya da DINLEN'e iner (yönetmen).
 
 ---
 
@@ -318,225 +347,224 @@ Not (senaryoda tanımsız kalan): P15 üst yarı (defter, altın yığını, kad
 
 **Dönem ve kaynak**
 - Tours Ağır Ceza, Mart 1837 [A].
-- **Lambri (ahşap panel)** duvarlar, yüksek pencereler, ahşap kürsü ve **sanık sırası korkuluklu** [G]. **Tricolore sarkık bayrak + kral büstü** arka duvarda (1830'dan beri tricolore [CLAUDE]; büst yüzsüz siluet, bir bakışta okunur [G]). **Çarmıh/haç yok** (1830 sonrası mahkemelerden kaldırıldığı bilgisi [G ◐]).
-- **Yargıç kıyafeti:** başkan yargıç **kırmızı cübbe (robe rouge) + beyaz rabat (iki beyaz şerit) + siyah toque** [G ◐; Assize mahkemesi başkanı için], iki asesör siyah cübbe. Doğrulanmazsa tümü siyah cübbe, kırmızı yalnız damga/mühürde kalır.
-- **Jüri bankı eklenmez** (Ağır Ceza'da jüri var ama araştırmada yok; jüri sorunu için bkz. Açık soru 4).
-- **Tokmak uyarısı:** Fransız mahkemelerinde başkan **tokmak değil, el çanı (clochette/sonnette)** kullanır [G ◐]. Senaryo P19 "Tokmak iner (aşırı yakın) … TAK" diyor. Tasarım iki prop da çizer (bölüm 3); **varsayılan tokmak (onaylı senaryo)**, öneri **çan** (Açık soru 1). Karar kullanıcıda.
-- **Yargıç masa saati:** duvar saati yuvarlak, beyaz mineli kadran, Roma rakamı, siyah ibreler (P18 dokunuşu).
-- Gendarme siluetleri (bicorne şapka) sanık sırası iki ucunda [G], isteğe bağlı kompars.
+- **Lambri (ahşap panel)** duvarlar, yüksek pencereler, kürsü ve korkuluklu sanık sırası [G]. Arka duvarda sarkık **tricolore + kral büstü** (yüzsüz siluet) [G]. **Haç/çarmıh yok** (1830 sonrası mahkemelerden kaldırıldı [G ◐]).
+- **Yargıçlar: siyah cübbe + beyaz rabat (iki şerit) + siyah toque** [G ◐], yönetmen "siyah cübbe kollu". Kırmızı başkan cübbesi (Ağır Ceza için [G ◐]) **yalnız araştırmacı doğrularsa** (Açık soru 4).
+- **Jüri siluet sırası** sol (yönetmen); jüri kaynak yok, [G ◐].
+- **Tokmak uyarısı:** Fransız mahkemesinde başkan **tokmak değil el çanı (clochette)** kullanır [G ◐]. Senaryo P19 "tokmak TAK". Tasarım ikisini de çizer; varsayılan tokmak (onaylı senaryo), öneri çan (Açık soru 1).
+- **Duvar saati:** sarkaçlı, yuvarlak beyaz mineli kadran, Roma rakamı, siyah ibreler, **sarkaç görünür** (yaratıcı yönetmen).
+- Jandarma siluetleri (bicorne) sanık sırası uçlarında, isteğe bağlı [G].
 
-**Katmanlar**
-1. **Arka:** lambri duvar, sarkık tricolore (sol-üst), kral büstü konsolda (üst-orta), **yuvarlak duvar saati** üst üçte birde (x 800–1020, y 350–570; çap ≈ 220 px = %11.5), yargıç kürsüsü (3 koltuk), arkada koyu.
-2. **Orta:** yargıç siluetleri (kırmızı/siyah cübbe), **katip masası** (kürsü altı sol), seyirci bankları (siluet).
-3. **Ön:** sanık sırası + korkuluk, **iki kardeş** (Kukla, mahkeme kıyafeti: şapka diz üstünde ya da elde; eldiven cepte), jandarmalar yanlarda; alçak açı → ön plan zemin tahtaları.
-- Sol duvar: üç yüksek kemerli pencere; **toz huzmeleri** pencerelerden **sağ-aşağı 28°**, `mix-blend-mode: screen`, degrade `#fff1c8` α .22 → 0.
-**Palet:** lambri `#3b2818 / #5b3d25`, vurgu `#7a5532`, zemin `#2d2118`, kürsü `#2f2016`, yargıç kırmızı `#8f2a22` / gölge `#5e1a15`, siyah cübbe `#1c1915`, rabat `#efe9d8`, toque `#1a1418` + altın şerit `#b8862b`, tricolore `#2a3f7e / #d9d4c8 / #a8262c`, huzme `#fff1c8`, toz `#fff1c8` α .5.
-**Işık:** güneş pencerelerden **soldan-üstten**; **gölgeler sağ-aşağı**, pencere kafesli gölge zemine uzar. Karakterler (sanık sırası) **sola** (ışığa/pencereye) bakar; P19'da kamera sanık sırasına çevrildiğinde `facing = -1`.
-**Perspektif:** **alçak açı**, kaçış (540, 1150), yatay ufuk y ≈ 1150. Düşey çizgiler yukarı %4 yakınsar (keystone). Ölçek: sanık sırası y 1560 → s ≈ 0.95; yargıç kürsüsü y 1000 → s ≈ 0.55.
-**Türetme:** yeni arka plan; yargıçlar **Kukla dışı statik siluet** (cübbe overlay + toque; yalnız baş dönmesi/el); iki kardeş Kukla (`FRANCOIS`/`LOUIS`, `LOUIS_ELSIZ` bölüm 2); `Dust`, `Glow`.
+**İki kamera yönü (yönetmen: P18 kürsüye bakar, P19 sanıklara bakar)**
+- **MAHKEME-A (kürsü yönü, P18):** pencereler solda. Sanık sırası arkadan, François ekran solu, Louis sağı. Kürsü orta-üst; **duvar saati y 430–650, çap ≥ 210 px (x 740–960)**, huzme üstünde. Jüri sol, halk arka.
+- **MAHKEME-B (sanık sırası yönü, P19):** arka duvar = giriş kapısı + seyirci galerisi; **pencereler sağda**: huzmeler **sağdan**, gölgeler sola. Louis ekran solu, François sağ.
+**Katmanlar (A)**
+1. **Arka:** lambri, tricolore (sol-üst), kral büstü konsolda, saat, yargıç kürsüsü (3 koltuk; başkan z 5.0, u 0.50).
+2. **Orta:** yargıç siluetleri (siyah cübbe), katip masası (kürsü altı sol), jüri sırası (sol), seyirci.
+3. **Ön:** sanık sırası + korkuluk, iki kardeş (Kukla, mahkeme kıyafeti: şapka dizde, eldiven cepte; z 2.4), jandarmalar; alçak açı ön plan zemin tahtası.
+- Üç yüksek kemerli pencere; **toz huzmeleri** sağ-aşağı 28°, `mix-blend-mode: screen`, degrade `#fff1c8` α .22 → 0.
+**Palet:** lambri `#3b2818 / #5b3d25`, vurgu `#7a5532`, zemin `#2d2118`, kürsü `#2f2016`, siyah cübbe `#1c1915` (gölge `#0f0d0b`), rabat `#efe9d8`, toque `#1a1418` + şerit `#b8862b`, tricolore `#2a3f7e / #d9d4c8 / #a8262c`, huzme `#fff1c8`, toz `#fff1c8` α .5. (İsteğe bağlı kırmızı başkan: `#8f2a22` / `#5e1a15`.)
+**Işık:** güneş pencerelerden; **gölgeler ışığın tersine**; pencere kafesli gölge zemine uzar. Karakterler pencereye/ışığa bakar.
+**Perspektif:** **alçak açı**, kaçış (540, 1150), düşey çizgiler yukarı %4 yakınsar. Tablo 0.5 (MAHKEME).
+**Türetme:** yeni arka plan; yargıçlar **Kukla dışı statik siluet** (cübbe overlay + toque; yalnız baş/el, yargıcın **oturma** hareketi P18); iki kardeş Kukla (`FRANCOIS_ELSIZ`, `LOUIS_ELSIZ`); `Dust`, `Glow`.
 **Motion notları**
-- **P18:** sessizlikte saat yelkovanı **bir kez sert zıplar**; saat ışık huzmesinin üstünde (huzme saati ışıtır).
-- **P19:** tokmak/çan insert'inde temas yüzeyi: ahşap **tabla**; "TAK" + kısa reverb temas karesinde. François yavaş gülümser (`agiz "gulumse"` → `"sirit"`), Louis kımıldamaz. Louis **çıplak elle** başlar; cepten **beyaz eldiveni** çıkarır (kadrajda görünür, süreklilik), parmak parmak giyer. Giyme insert'i el boyutu ≥ %20 (bölüm 2.2 ve 3). **BERAAT** damgası (T4) tokmak vuruşuyla aynı karede iner.
+- **P18:** başkan oturur (sandalye gıcırtısı), salon uğultusu kesilir, **sarkaç salınımı** görünür ve dakika ibresi tek "TIK" atlar (yaratıcı yönetmen); saat ışık huzmesinin üstünde. Louis'nin sırtında frak cebi: eldiven köşesi **sırttan görünmez**; yaratıcı yönetmen P18'de cep ucunun görünmesini ister (açık nokta: kameranın sırt/cep yönü).
+- **P19:** tokmak/çan insert'i; temas yüzeyi ahşap **tabla** (yuvarlak sehpa); "TAK" + reverb. **BERAAT damgası tokmakla aynı karede belirir** (animasyonsuz, bölüm 4). François gülümser; Louis kımıldamaz, **çıplak elle** başlar, cepten **beyaz eldiveni** çıkarır (cepten çıkış görünür), **parmak parmak** giyer (EldivenEl insert, R2), bilek düğmesi. Eller ≥ %20.
 
 ---
 
 ### 1.11 KANUN-INSERT (P20)
 
 **Dönem ve kaynak**
-- **Code pénal (1810)**: koyu dana derisi cilt, sırt bantları (nervür), kırmızı başlık etiketi "CODE PÉNAL", altın harf [G]. Yeşil çuha masa örtüsü (tapis vert) mahkeme masasında [G]. **"Bomboş sayfa" dramatizasyondur** [S], yasadaki gerçek bir maddeyi taklit etmez.
-- Sayfalar: iki sütun metin, üstte başlık satırı (okunmaz), alt kısım **boş**; yaş lekeleri (foxing).
+- **Code pénal (1810)**: koyu dana derisi cilt, sırt bantları, kırmızı başlık etiketi "CODE PÉNAL" altın harf [G]. Yeşil çuha örtülü masa [G]. **"Bomboş sayfa" dramatizasyon** [S]; yasadaki gerçek maddeyi taklit etmez.
+- Sayfalar: iki sütun metin (okunmaz), üstte başlık satırı, **alt kısım boş**, yaş lekeleri.
 **Katmanlar (tepe açı)**
-1. Arka: yeşil çuha masa `#2f4a40` (Sokak PANJUR yeşilini yeniden kullanır), ahşap kenar.
-2. Orta: açık kanun kitabı (sayfa `#e9dfc9`, kenar `#d6c7a6`, metin çizgileri `#4a4237` α .5), cilt `#5a3a22`, etiket `#8f2a22`.
-3. Ön: **yargıcın elleri** (kırmızı cübbe kolu + beyaz rabat uçlu manşet, çıplak el `#d8ae8b`) sayfaları çevirir; elin gölgesi sağ-alta düşer.
-**Işık:** tek **çapraz huzme** (soldan) sayfa üstünden geçer; **gölgeler sağ-aşağı**. Toz zerreleri huzmede.
-**Perspektif:** ortografik tepe açı; kitap hafif 6° döndürülmüş.
-**Türetme:** yeni; `Dust`/`FilmLook`.
+1. Yeşil çuha masa `#2f4a40` (Sokak `PANJUR` yeşili), ahşap kenar.
+2. Açık kitap (x 140–940, y 480–1300; sayfa `#e9dfc9`, kenar `#d6c7a6`, metin çizgisi `#4a4237` α .5), cilt `#5a3a22`, etiket `#8a2c24`.
+3. **Yargıç eli**: siyah cübbe kolu `#1c1915` + rabat manşet `#efe9d8`, çıplak el `#d8ae8b`; gölge sağ-alt.
+**Işık:** tek **çapraz huzme** soldan sayfa üstünden; gölgeler sağ-aşağı; huzmede toz.
+**Perspektif:** ortografik tepe açı, kitap 6° dönük.
 **Motion notları**
-- Sayfa çevirme: üç hızlı çevirme (flip), son sayfada alt kısım boş, **güve** katlanma çizgisinden kalkar. Güve: soluk kahverengi `#b9a98a`, kanat açıklığı ≈ 190 px (insert'te ~%10), kanat çırpma 8 Hz. Güve **kadrajın üst-sağ kenarından çıkar** (fade yok). Sayfa kâğıdına sürtünme sesi, güve kalkarken kısa kanat sesi.
-- Eller sağ üst kenardan girer/çıkar.
+- **Güve p+0'dan cilt oluğunda kanatları kapalı (~110 px)** (kurulum); açılışta ~220 px (kanat açıklığı ekran genişliğinin %20'si, ~%12 yükseklik), `#b9a98a`, 8 Hz. Güve kitaptan kalkar, **kadrajın üst-sağ kenarından çıkar** (fade yok). R11: büyük, basit gri-kahve vektör form.
+- Altı sayfa çevirme; son sayfada alt kısım boş. Eller sağ üst kenardan girer/çıkar.
 
 ---
 
 ### 1.12 WIFI-MORF (P22)
 
-**Karar:** Kukla/tahta dokusunda, **neon yok** (kullanıcı kararı). Film içindeki tek modern unsur; bu yüzden **dünyanın malzemesine çevrilir**, dünya ona uymaz.
+**Karar:** Kukla/tahta dokusunda, **neon yok**. Filmin tek modern unsuru; dünyanın malzemesine çevrilir.
 
 **Katmanlar**
-1. **Arka:** KD-C alacakaranlık gökyüzü (`#1d1838 → #3b2f5c → #8a5a6e → #d98a5a`). Morf ilerledikçe gökyüzü **düz ekran karanlığına** `#0e0d12` geçer (alttan yukarı kararan degrade; neon parlama yok).
-2. **Orta:** Chappe kulesi siluet (KD-C) + kamera kollara zoom.
-3. **Ön:** **Wi-Fi simgesi, tahta dokulu:** 3 yay (dış `r = 520`, orta `350`, iç `180`, kalınlık 80 px) + nokta (`r = 54`). Toplam yükseklik ≈ 575 px (**%30 boy**), genişlik ≈ 735 px, ortada (540, 900).
-**Malzeme:** koyu ceviz `#3b2412` (rig'deki baston tonu), yüzey ışık şeridi `#7a5030` α .6, kontur `ink(fill)` (2 → 6 px ölçekte), her yayın iki ucunda **altın perçin** (`#d4ad52`, vurgu `#fff4c0`), ahşap lif çizgileri. Kenar ışığı `#c4d6ff` α .45 sağ kenarda.
-**"Yanma":** neon yerine **tahta → altın yaprak (`#b8862b`) renk geçişi** sırayla: nokta → iç yay → orta yay → dış yay (her biri 0.25 sn), geçişte tek bir sürüşlü parıltı (blur ≤ 8 px, α .35). Yani "yanar" = altınlaşma + küçük "tık".
-**Morf akışı:** regülatör (yatay kiriş) bükülerek **dış yaya**, göstergeler (kısa kollar) yaylanıp **orta/iç yaylara**, direk kısalıp **noktaya** dönüşür. Aynı sayıda yol noktası (24) ile `d` enterpolasyonu; tahta dokusu morf boyunca sabit (doku yer değiştirmez, şekil değişir).
-**Işık/gölge:** kenar ışığı sağdan; şekil altında **kâğıt kesme gölgesi** (4 px, `#000` α .35). Işık kaynağı tutarlı (sağ-üst).
-**Perspektif:** düz, ortografik; kaçış yok.
-**Türetme:** `ChappeTower.tsx` (kollar) + yeni `WifiMorf` (SVG path). Kukla kullanılmaz.
-**Motion notları:** tahta gıcırtısı → dijital "blip" (ses tasarımı). Morf ekranın ortasında, y 600–1200 aralığında; üst güvenli alan (T2 yazı) ile çakışmaz ("İlk siber saldırı" başlığı y 240–400).
+1. **Arka:** KD-C alacakaranlık gökyüzü → morf ilerledikçe düz ekran karanlığı `#0e0d12` (alttan yukarı kararan degrade).
+2. **Orta:** Chappe kulesi siluet (DINLEN) + kamera kollara zoom (`cs 1.00 → 2.20`).
+3. **Ön:** **Wi-Fi simgesi tahta dokulu:** 3 yay (dış `r = 545`, orta `365`, iç `190`; kalınlık 84 px) + nokta (`r = 55`). Boy ≈ **600 px (%31)**, genişlik ≈ 770 px, merkez **(540, 800)** (yönetmen).
+**Malzeme:** koyu ceviz `#3b2412`, ışık şeridi `#7a5030` α .6, kontur `ink(fill)`, her yay ucunda **altın perçin** `#d4ad52` (`#fff4c0` vurgu), ahşap lif çizgisi. Kenar ışığı `#c4d6ff` α .45 sağ kenarda.
+**"Yanma":** neon yerine **boya dolgusu**: yaylar tahta renginden `boyaKrem #e6c88c`'e **alttan yukarı dolar** (nokta → iç → orta → dış, 0.25 sn). Parıltı blur ≤ 8 px α .3 (kenar vurgusu).
+**Morf akışı:** regülatör bükülerek **dış yaya**, göstergeler **orta/iç yaylara**, direk kısalıp **noktaya**. Aynı sayıda yol noktası (24), `d` enterpolasyonu; mafsal noktaları sabit; doku şekille değişmez.
+**Işık/gölge:** kenar ışığı sağdan; altta **kâğıt kesme gölgesi** (4 px, α .35).
+**Perspektif:** düz ortografik.
+**Türetme:** `ChappeTower.tsx` + yeni `WifiMorf` (SVG path). Kukla yok.
+**Motion notları:** tahta gıcırtısı → ahşap tık (yaratıcı yönetmen) ya da kısık blip (yönetmen). Morf y 480–1120 aralığında; yazı **ALT-BANT** (yönetmen), üst-bant çakışmaz.
 
 ---
 
 ## 2. Karakter kartları
 
-**Ortak:** rig `Kukla.tsx` (`Poz`, `Palet`); çizgi `SW = 2`; oranlar sabit; aynı yürüme döngüsü `yuru`. Paletlere ve rig eklerine dair "kod bloğu" bölüm 6'dadır.
-**Önemli tutarsızlıklar (yakalanan):**
-- `karakter/louis-kart.png`: Louis'in elinde **yeşil dolar benzeri kâğıt para** var (sağ alt portre). Kural: **kâğıt para yok** [CLAUDE]. Bu portre yalnızca yüz/kıyafet referansıdır, para sahnesi çizilirken **altın/gümüş frank** kullanılır.
-- `karakter/francois-kart.png`: yelek **gri desenli**; rig `FRANCOIS.vest = #6e5a3a` (kahve-altın). Şapka kartta lacivert, rig siyah (`#141317`), senaryo "siyah silindir" der. **Rig/senaryo kanon**, kart sadece yüz referansı. Kardeşleri ayırmak için de kahve yelek (François) ve gri yelek (Louis) kalır.
-- Rig tüm karakterlere **eldiven çizer** (`glove` alanı). Senaryo çıplak el ister (P01 memur, P19 Louis'nin eldiveni giymesi, P11). Çözüm: `glove` alanını `skin` ile aynı yap (aşağıda).
+**Ortak:** rig `Kukla.tsx`; çizgi `SW = 2`; oranlar sabit; yürüme `yuru`. Paletler ve rig ekleri bölüm 6.
+**Yakalanan tutarsızlıklar**
+- `karakter/louis-kart.png`: sağ alt portrede **yeşil dolar benzeri kâğıt para** var; kural: kâğıt para yok [CLAUDE]. Portre yalnız yüz/kıyafet referansı; para sahnesinde **altın/gümüş frank**.
+- `karakter/francois-kart.png`: yelek **gri desenli**; rig `FRANCOIS.vest = #6e5a3a` (kahve-altın). Şapka kartta lacivert, rig siyah, senaryo "siyah silindir". **Rig/senaryo kanon**; kart yüz referansı. Kardeşler ayrışsın diye yelek rengi korunur (François kahve, Louis gri).
+- Rig tüm karakterlere **eldiven çizer** (`glove`). Çıplak el için `glove = skin`.
 
 ### 2.1 François Blanc
-- **Rol:** karizmatik, sinsi gülümseyen kardeş; "herkesten önce bilen kazanır".
-- **Kostüm (rig kanon):** lacivert frak `#24407a` (koyu `#15264a`, açık `#3c5ea3`), kahve-altın desenli yelek `#6e5a3a` + altın saat zinciri, krem kravat `#f1e8d2`, gri-kahve pantolon `#3a3530`, siyah silindir `#141317` şerit `#2e2c36`, krem eldiven `#e8dcc0`.
-- **Silüet farkı:** normal boy silindir (`tall = 1`), **kıvrık bıyık uçları**, bastonsuz, **parlak krem kravat** (karanlıkta boyunda açık leke), favori `1`, kaş ağırlığı `1`. Sağ kolu hareketli (şapka çıkarma, kadeh, el sallama).
-- **Mahkeme varyantı:** aynı palet, şapka elde/dizde (`hat` nesnesi), eldiven cepte (`FRANCOIS_ELSIZ`, glove = skin).
-- **Oyunculuk:** `agiz` "gulumse" ↔ "sirit"; P04'te tek göz kırpma (`blinkF` 1, yalnız bu planda).
+- **Rol:** karizmatik, sinsi gülümseyen kardeş.
+- **Kostüm (rig kanon):** lacivert frak `#24407a`, kahve-altın desenli yelek `#6e5a3a` + altın zincir, krem kravat `#f1e8d2`, pantolon `#3a3530`, siyah silindir `#141317`, krem eldiven `#e8dcc0`.
+- **Silüet farkı:** normal boy silindir (`tall = 1`), **kıvrık bıyık uçları**, bastonsuz, **parlak krem kravat** (karanlıkta boyunda açık leke), favori 1, kaş 1.
+- **Varyantlar:** `FRANCOIS_ELSIZ` (mahkeme; şapka dizde). **Oyunculuk:** `agiz` "gulumse" ↔ "sirit"; P04'te filmdeki tek göz kırpma.
+- Cep: P02, P04 ve sonrasında yalnız Louis'nin cebi eldiven taşır (François'da yok).
 
 ### 2.2 Louis Blanc
-- **Rol:** soğuk hesapçı; az hareket, yüz kıpırdamaz.
-- **Kostüm (rig kanon):** bordo frak `#74222f` (koyu `#47131c`, açık `#9a3646`), gri yelek `#85878e`, siyah kravat `#16141a`, pantolon `#46464c`, **uzun gri şapka** `#74757c` (`tall = 1.15`, şerit `#2a2a2e`), eldiven gri `#cfc9b8`, **altın topuzlu baston** (sağ el, `cane`).
-- **Silüet farkı:** şapka %15 daha uzun ve **açık değerli** (karanlıkta gri leke), dikey baston çizgisi, **kısa düz bıyık**, favori `1.35` (geniş), kaş `1.2`, **siyah boyun** (François'nın parlak boynunun tersi).
-- **Elsiz varyantı (P19):** `LOUIS_ELSIZ = {...LOUIS, glove: LOUIS.skin}`. Giydikten sonra eldiven **kahraman beyazı** `#f4efe2` olur (rig'de P19 içinde palet ya da el overlay olarak geçer); P04'te eldiven rig gri kalır. Eldiveni giyme insert'i rig dışı el çizimidir (bölüm 3, "eldiven").
-- **P06:** sol elde cep saati; P07: kese; P02: kaz tüyü.
+- **Rol:** soğuk hesapçı; yüz kıpırdamaz.
+- **Kostüm (rig kanon):** bordo frak `#74222f`, gri yelek `#85878e`, siyah kravat `#16141a`, pantolon `#46464c`, **uzun gri şapka** `#74757c` (`tall = 1.15`), eldiven gri `#cfc9b8`, **altın topuzlu baston**.
+- **Silüet farkı:** şapka %15 uzun ve **açık değerli**, dikey baston, **kısa düz bıyık**, favori 1.35, kaş 1.2, **siyah boyun**.
+- **Cep eldiveni (süreklilik, yönetmen):** P02, P04, P06, P07'de **sağ göğüs cebinden beyaz köşe** görünür (overlay: `#f4efe2`, ≈ 24×14 px, −12° eğik, rig yerel (x ≈ 40, y ≈ −325) frak önü). P19'da cepten çıkarılır. Eldivenler ellerde değil.
+- **Elsiz varyant:** `LOUIS_ELSIZ = {...LOUIS, glove: LOUIS.skin}` (P18–P19). P19'da giydikten sonra eldiven **kahraman beyazı** `#f4efe2`; giyme insert'i rig dışı **EldivenEl** vektör çizimi (parmaklar ayrı).
+- **Baston:** P04 sağ elde; P06 sol kola asılı (bölüm 1.7); P07–P08 masaya dayalı; P18–P19 sıraya dayalı.
 
 ### 2.3 Memur (Tours müdür yardımcısı)
-- **Rol:** riski taşıyan, korku ile açgözlülük arasında. Zayıf, **yıpranmış gri ceket, şapkasız** [S]. 1834 → 1836 boyunca daha zayıf, solgun ve öksürüklü.
-- **Kostüm:** gri redingot `#6b6a66`, dirsek ve manşet **yama/yıpranma** (`#5a5953` bindirme dikdörtgenleri), soluk yelek `#5a5347` (desensiz), eski keten kravat `#b9b29d`, pantolon `#4b4741`. Çıplak eller. Şapka yok.
-- **Silüet farkı:** **şapkasız** (tek şapkasız ana karakter), **dar** (`scaleX 0.86`, `scaleY 1.02` dışarıdan sarmalayıcı), hafif öne eğik (`lean ≈ 6`), seyrek saç. Kardeşlerden gövde genişliği ve baş-şapka siluetiyle ayrılır.
-- **Rig türetme:** `MEMUR` paleti; `hat` yok: **Kukla her zaman başa şapka koyar** (`hat` null/undefined ise). Şapkasız için `hat: { x: 0, y: 9999, r: 0 }` hilesi ya da `hatYok?: boolean` ekle (bölüm 5). Dar gövde: `<g transform="scale(0.86,1.02)">` dışarıdan.
-- **Evrim:** `MEMUR` (P01–P11) → `MEMUR_HASTA` (P15 alt yarı: daha soluk, göz altı koyu elips) → `MEMUR_YATAK` (P16–P17: gece gömleği, takke, solgun, terli parlama).
-- **Oyunculuk:** P08 irkilme (kısa `shF/lean` sıçraması), P11 titrek eller, ter (çeneden damla).
+- **Rol:** riski taşıyan, korku ile açgözlülük arasında. **Zayıf, yıpranmış gri ceket, şapkasız** [S]. 1834 → 1836 daha zayıf, solgun, öksürüklü.
+- **Kostüm:** gri redingot `#6b6a66`, dirsek ve manşet **yama/yıpranma** (`#5a5953` dikdörtgenler), soluk yelek `#5a5347`, eski keten kravat `#b9b29d`, pantolon `#4b4741`. Çıplak eller. **Sol göğüs cebinde beyaz eldiven köşesi** (P01 kol, P07, P08, P11, P15).
+- **Silüet farkı:** tek şapkasız ana karakter, **dar** (dış sarmalayıcı `scaleX 0.86`, `scaleY 1.02`), hafif öne eğik (`lean ≈ 6`), seyrek saç.
+- **Rig türetme:** `MEMUR`. Şapkasız: `hatYok` (öneri) ya da `hat: {x:0,y:9999,r:0}` hilesi.
+- **Evrim:** `MEMUR` (P01–P11) → `MEMUR_HASTA` (P15 alt: soluk, göz altı koyu elips) → `MEMUR_YATAK` (P16–P17: gece gömleği, takke, terli parlama; ceket askıda).
+- **Oyunculuk:** P07 çekmece çarpınca göz kırpma, P08 parmak tiki, P11 titrek eller ve ter, P15 öksürük (omuz bir tık düşer).
 
 ### 2.4 Müdür (Tours istasyon müdürü)
-- **Rol:** yaşlı, iri, açgözlü; yalnız P07'de.
-- **Kostüm:** zeytin-kahve redingot `#5a4630` (koyu `#3a2c1d`), hardal yelek `#a58a4a` + desen `#d9c47a`, kalın beyaz kravat `#efe6d0`, pantolon `#3d352c`, çıplak elleri ve **kırçıl saç** `#b9b5ab`, **geniş favori** (`sideburn 1.7`), kalın kaş (`1.5`). Şapkasız (iç mekân, şapka askıda).
-- **Silüet farkı:** **iri ve geniş** (`scaleX 1.18`, `scale 1.08`), kısa boyun, yelek karnı; memurun **zıttı** (geniş ↔ dar). Renk: sıcak kahve ↔ memurun soğuk grisi.
-- **Rig türetme:** `MUDUR` paleti; `breathe` yüksek (genişlik).
-- **Oyunculuk:** P07'de altını tek hamlede süpürür, çekmeceyi çarpar (kararsızlık yok); göz kese kilitli.
+- **Rol:** yaşlı, iri, açgözlü; yalnız P07.
+- **Kostüm:** zeytin-kahve redingot `#5a4630`, hardal yelek `#a58a4a` + desen `#d9c47a`, kalın beyaz kravat `#efe6d0`, pantolon `#3d352c`, çıplak el, **kırçıl saç** `#b9b5ab`, geniş favori (1.7), kalın kaş (1.5). Şapkasız.
+- **Silüet farkı:** **iri ve geniş** (`scaleX 1.18`, `scale 1.08`), memurun zıttı (geniş ↔ dar; sıcak kahve ↔ soğuk gri). **Sandalyede oturur** (oturma pozu).
+- **Oyunculuk:** altını tek hamlede süpürür, çekmeceyi çarpar; kararsızlık yok.
 
 ### 2.5 Ara-kule telgrafçısı (P12, P13)
-- **Not (isim):** İstekte "Tours telgrafçısı" yazıyor. Senaryoda ise P12'de **"Sıradaki kulede bir telgrafçı Tours kulesine bakıyor"**; yani Tours'taki memur değil, **Tours'tan sonraki ara kule görevlisi**. Bu kart ara-kule telgrafçısı olarak çizilir; Tours memuru (2.3) ayrı karakter. (Açık soru 2.)
-- **Rol:** bürokratik kayıtsızlık, ironinin yüzü: şüphelenir, omuz silker, esner.
-- **Kostüm:** zeytin yeşili iş redingotu `#4f5a3e`, **hardal yün atkı** `#c79a3a` (rig'de `cravat` olarak, atkı gibi okunur), soluk yelek `#7a6a48`, pantolon `#3e3a34`. Çıplak eller. Şapkasız.
-- **Silüet farkı:** zeytin yeşili + hardal atkı (diğer tüm karakterlerden renkle ayrılır), şapkasız, **kalın kaşlar** (`browHeavy 1.3`), yumuşak yuvarlak duruş (omuz silkme). Kuledeyken rüzgârda atkı ucu salınır (overlay şerit, 8 px).
-- **Rig türetme:** `TELGRAFCI` paleti; `browF/browB` (+1) P12 kaş kalkması; `agiz "A"` + `headTilt` geriye P13 esneme.
+- **İsim notu:** İstekte "Tours telgrafçısı". Senaryoda P12: **"Sıradaki kulede bir telgrafçı Tours kulesine bakıyor"**; yani Tours'tan *sonraki* ara kule görevlisi, Tours memuru değil. Kart buna göre (Açık soru 2).
+- **Rol:** bürokratik kayıtsızlık: şüphelenir, omuz silker, esner.
+- **Kostüm:** zeytin yeşili iş redingotu `#4f5a3e`, **hardal yün atkı** `#c79a3a` (`cravat` olarak), yelek `#7a6a48`, pantolon `#3e3a34`, çıplak eller, şapkasız.
+- **Silüet farkı:** zeytin + hardal atkı (renkle ayrışır), **kısa-tombul** (`scale 0.94`, `scaleX 1.12`), kalın kaş (1.3). Rüzgârda atkı ucu salınır (overlay 8 px).
+- **Oyunculuk:** P12 `browF/browB +1` (tek kaş kalkar), P13 `agiz "A"` + `headTilt` geriye (esneme, yüz ≥ %15–18).
+- Yönetmen "kahve frak" demişti; suç ortağıyla karışmasın diye zeytin seçildi, onay bekler.
 
 ### 2.6 Suç ortağı (Bordeaux)
-- **Rol:** "dürbünün ucunda" bekleyen gözcü [A: kuleyi izleyen suç ortağı; "eski telgraf memuru" tek kaynakta, kullanılmaz].
-- **Kostüm:** toprak kahve redingot `#4a3a2c`, hardal yelek `#7d6a3f`, siyah kravat `#2b2a30`, pantolon `#34302b`, çıplak el, kısa koyu saç, şapkasız (çatı katında).
-- **Silüet farkı:** **kahverengi toprak tonları** (kardeşlerin mavi/bordosundan ayrılır), teleskopa **eğik duruş** (profil), tek gözü kapalı. Kardeşlere benzemesin diye favori `1.1`, bıyık yok kabul (rig'de `louis` bayrağı `false`, bıyık stili François'ya benzer; küçük ölçekte ayırt edilir).
-- **Rig türetme:** `SUC_ORTAGI` paleti; `facing = -1`; `lean ≈ 25`, `headTilt` teleskopa. `blinkF = 1` (kapalı göz) süreyle sabit.
+- **Rol:** dürbünün ucunda bekleyen gözcü [A: kuleyi izleyen suç ortağı; "eski telgraf memuru" tek kaynakta, kullanılmaz].
+- **Kostüm:** toprak kahve redingot `#4a3a2c`, hardal yelek `#7d6a3f`, siyah kravat `#2b2a30`, pantolon `#34302b`, çıplak el, kısa koyu saç, **basık kasket** `#3a2c20` (yönetmen).
+- **Silüet farkı:** kahverengi toprak tonları (kardeşlerin mavi/bordosundan ayrılır), teleskopa eğik duruş, tek gözü kapalı.
+- **Rig türetme:** `SUC_ORTAGI`; **kasket için rig'e `Poz.sapkaTip: "silindir"|"kasket"|"yok"`** (bölüm 6). `facing = +1`, `lean ≈ 25`, `blinkF = 1` sabit.
 
 ### 2.7 Katip (Borsa)
-- **Rol:** tahtaya fiyat yazar; tebeşir kırılır.
-- **Kostüm:** siyah kâtip redingotu `#2d2b28`, gri yelek `#8a8a80`, **siyah kol koruyucuları** (lustrin) overlay (`#1a1917`) [G ◐], çıplak eller, gri saç.
-- **Silüet:** küçük ölçek (`s ≈ 0.55`), yüz detayı yok (siluet filtresi uygulanabilir ya da `KATIP` paleti ile). Sol kolu tahtada yukarıda.
-- **Rig türetme:** `KATIP` paleti; kol yüksek (`shF ≈ −150`) yazı jesti.
+- **Kostüm:** siyah redingot `#2d2b28`, gri yelek `#8a8a80`, **siyah kol koruyucuları (lustrin)** overlay `#1a1917` [G ◐], gri saç. Küçük ölçek (z 5.5), yüzsüz siluet filtresi uygulanabilir. Kol yüksekte (`shF ≈ −150`).
 
-### 2.8 Paris'teki gri manşetli eller (P09, P23)
-- **Rol:** Paris'te paketi hazırlayan, yüzü hiç görünmeyen adam [S]. Yalnızca **eller + manşet**. P09'da "gri manşet", P23'te **aynı manşet** (görsel imza: tekrar eden süreklilik).
-- **Çizim (Kukla dışı, el sprite seti):** çıplak el `#d3a784` (gölge `#a77b5f`), **gri yün kol/manşet** `#7c7f87` (koyu `#55575e`), **iki siyah düğmeli manşet** (`#1c1915`), manşet altında 8 px kolalı gömlek kenarı `#e9e3d2`.
-- **Pozlar (3 poz/plan):**
-  - P09: fırlatma (açık el, kol uzanmış, sonra bırakma).
-  - P23: 1) eldiveni kâğıda yerleştirme, 2) iki el katlama (kenar kıvırma), 3) ip çekme (fiyonk; ip yolu spline, uçlar `#d8c9a0`).
-- **Kadraj:** eller kadrajın kenarından girer/çıkar; arkada bedeni yok.
+### 2.8 Paris'teki adam: gri manşetli eller (P09, P23)
+- **Rol:** paketi hazırlayan, yüzü hiç görünmeyen adam [S]. **Gri manşet + sağ manşette tek altın düğme** (yönetmen); P09 ve P23'te **aynı**.
+- **P09:** Kukla `PARIS_ADAM` (koyu redingot `#2b2a30`, **başı kadrajın üstünde kesik**), gri manşet overlay. Rig'in manşet şeridi `shade(coat, 0.12)`; gri için `Palet.cuff` önerisi (bölüm 6) ya da overlay.
+- **P23:** **yalnız eller** (Kukla dışı sprite seti): çıplak el `#d3a784` (gölge `#a77b5f`), koyu redingot kol `#2b2a30`, **gri manşet** `#7c7f87` + altın düğme `#d4ad52`. 3 poz: eldiveni koy, iki el katla, ip çek (fiyonk spline).
+- Resmî görevli (P21) manşeti **beyaz** (karışmasın).
 
 ### 2.9 Arabacı (P09)
-- **Rol:** posta arabasının kutusunda; ayağıyla paketi durdurur.
+- **Rol:** posta arabası kutusunda; topuğuyla paketi durdurur (yaratıcı yönetmen).
 - **Kostüm:** ham keten bluz `#b8a882`, deri yelek `#5a3f28`, pantolon `#4a3b2c`, **geniş kenarlı yağmurluk şapka** `#2b2420`, **diz üstü çizme** `#2a1d14`.
-- **Çizim:** Kukla **oturamaz**; arabacı **özel statik oturan figür** (gövde + bacaklar), yüzsüz siluet, yalnız **sağ bacak/çizme** animasyonlu (paketi durdurma). Üst gövde hafif öne eğik, `Poz`'a bağlı değil.
-- **Fizik:** çizme paketin köşesine temas eder, içinden geçmez; arabacı koltuktan düşmez.
+- **Çizim:** Kukla oturamaz; **özel statik oturan figür** (yüzsüz siluet), yalnız **sağ bacak/çizme** animasyonlu; **sağ ayağı kutu korkuluğunda** (yönetmen). Koltuktan düşmez, çizme paketin içinden geçmez.
 
 ### 2.10 Kompars seti (isimsiz)
-- **Borsa kalabalığı** (12–14 siluet), **seyirci** (mahkeme, 8–10 siluet), **jandarma** (2 siluet, bicorne şapka [G]), **yargıçlar** (3: 1 kırmızı + 2 siyah cübbe, statik siluet).
-- Hepsi yüzsüz, siluet filtresi, ayak temas gölgesi.
+- **Borsa kalabalığı** (10–12 siluet, 3 animasyonlu), **tüccar** (kısa, kahverengi, yüzlü Kukla `TUCCAR`, `scale 0.9`), **seyirci** (8–10 siluet), **jüri** (12 siluet sıra, [G ◐]), **jandarma** (2, bicorne), **yargıçlar** (3, siyah cübbe, statik). Yüzsüz siluet filtresi, ayak temas gölgesi.
 
 ---
 
 ## 3. Prop listesi
 
-Foley/temas sütunu, `Temas = ses` kuralı için: görünür her temas bir olay listesi satırıdır.
+"Temas yüzeyi / ses" sütunu `Temas = ses` kuralı içindir: her görünür temas olay listesinde bir satır.
 
 | Prop | Dönem notu | Boyut / renk | Planlar | Temas yüzeyi ve ses |
 |---|---|---|---|---|
-| **Eldiven (kahraman)** | Dana/kuzu derisi (glacé) erkek eldiveni; beyaz/krem [G]. Ön yüzde üç çizgili süs dikişi (küçük ölçekte eldiveni "eldiven" yapan imza). | `#f4efe2`, dikiş `#b9ad92`, kontur `ink` | P01, P10, P16, P19, P23 | kâğıt hışırtısı, masa "tıf", P16 yer "yumuşak tak". Pozlar: düz, buruşuk (P16), giyilen (P19: parmak parmak, deri gerilme sesi) |
-| **Yün çorap** | El örgü koyu yün, topuk yamalı [G]. | `#4b3a2c`, yama `#6a5340`, bant `#a07a48` | P10 | masa kenarından **pörsümüş sarkar** (flop) |
-| **Paket kâğıdı + ip** | Kahverengi/gri paket kâğıdı + kenevir ip (ficelle) + balmumu mühür [G]. Etiket: "TOURS". | kâğıt `#b08a5a` (gölge `#8a6a40`), ip `#d8c9a0`, etiket `#efe9d8` | P01, P09, P10, P23 | kâğıt hışırtısı, ip gerilme "zıııt", paket çatıda tahta "huf/tap" |
-| **Altın kesesi + frank** | Deri/kadife kese, bağcıklı (bourse). **Altın 20 frank, gümüş 5 frank (Louis-Philippe I)** [G]; **kâğıt para yok** [CLAUDE]. | kese `#3e3426`, bağ `#a07a48`; altın `#d4ad52` (kenar `#5a4018`, parlak `#fff4c0`); gümüş `#c9ccd2` (kenar `#6a6e78`) | P07, P15, P02 (defter yanı) | kese masada kayma, madeni para şıngırtısı, çekmece "bam" |
-| **Cep saati** | **Savonnette (kapaklı) altın cep saati**, beyaz mine kadran, Roma rakamı, ince Breguet ibreler [G]. | kasa `#d4ad52`, kadran `#f2ecd8`, ibre `#1c1915` | P06 (insert %20), P15 | kapak "çat", cam üstü tüy "tık" |
-| **Dürbün (pirinç)** | **Tek tüp teleskop (lunette), teleskopik**, deri kaplı orta bölüm; çift gözlü yok [G]. Sehpa: 3 ayaklı ahşap. | pirinç `#c9a24a / #f1d48a / #7a5a1f`, deri `#5a3a22`, sehpa `#5b3d25` | P12, P13, P14 | açılma "kırt", kapanma "şlak", sehpa zemin "tak" |
-| **Baston** | Siyah-kahve ahşap, altın topuz [rig]; ucu zemin hizasında. | `#3b2412`, topuz `#d4ad52` | P04 (fare), P06, P18 | kaldırım "tak" (P04, temas karesi) |
-| **Takvim levhası** | **Yıllık duvar takvimi levhası**; tek sayfa basılı takvim ("1834", "1835", "1836"). Günlük kopan yaprak 1830'larda yaygın değil [G ◐]. Didot tarzı yıl rakamı = Playfair Display 900. | kâğıt `#e9dfc9`, mürekkep `#1c1915`, kenar `#d6c7a6`; ≥ 190 px yükseklik | P15 | levha yırtılma "çıt", omuza konma yumuşak |
-| **Tokmak** (varsayılan, senaryo) | **Fransız mahkemesinde tokmak kullanılmaz, el çanı kullanılır** [G ◐]. Anglo-Amerikan görsel dil. | ceviz `#5a3a22`, boyun `#3b2412`; masa tablası `#2f2016` | P19 | "TAK" + reverb |
-| **El çanı (öneri alternatif)** | Pirinç el çanı (clochette), başkanın masasında [G ◐]. | pirinç `#c9a24a`, sap `#5b3d25` | P19 (alternatif) | çın + kısa reverb (vuruş hissi azalır) |
-| **Kanun kitabı** | Code pénal (1810), koyu dana derisi, sırt bantları, kırmızı etiket [G]. | cilt `#5a3a22`, etiket `#8f2a22`, altın harf `#b8862b` | P20 | sayfa çevirme hışırtı, kapak ağırlığı |
-| **İlan** | Resmî ilan beyaz kâğıt, üstte tricolore bandı, kırmızı mühür [G ◐]. | `#efe9d8`, mühür `#b3261e` | P21 | çivi darbeleri "tak-tak-TAK" |
-| **Demir mandal/sürgü** | Düşen mandal (loquet) + cramponnet; el yapımı demir [G]. | `#1c1915`, ışık kenarı `#9fb3ea` α .35 | P21 | titreşim, "klank" |
-| **Güvercin** | Posta güvercini [A], gri-beyaz | bölüm 1.7 | P06 | kanat çırpma, tüy |
-| **Kafes** | Hasır kafes | `#a07a48` | P06 | kapak "tak" |
-| **Kule kolları** | Regülatör + 2 gösterge, siyah, jaluzili [G ◐], T biçimli (yel değirmeni **asla**). | bölüm 1.5 | P01, P08, P11–P14, P17, P21, P22 | menteşe "klak", gıcırtı |
-| **Kumanda düzeneği** | Oda içi küçük T modeli + demir kol + çentikli sektör [G]. | demir `#1c1915`, pirinç perçin `#c9a24a` | P11 | çentik "tık-tık-TIK" |
-| **Fener** | Kare cam fener, tenekeli, mum içinde [G]. Masada, pencere kafesli ışık deseni. | teneke `#6a6a70`, cam `#ffd98f` α .8 | P01, P10 | masaya konuş "tık" |
-| **Şamdan + mum** | Pirinç şamdan, tiftik/donyağı mum [G]. | `#c9a24a`, alev `#ffcf70` | P07, P08, P16 | masaya konuş |
-| **Kaz tüyü + hokka** | 1830'lar yazı aracı [G]. | tüy `#e8e0cc`, hokka `#1c1915` | P02, P15 | kalem cızırtısı |
-| **Tebeşir** | Beyaz tebeşir, tahtaya yazı | `#f3eddc` | P02 | kırılma "çıt", seken "tak" |
-| **Çekmece** | Ceviz çekmece, pirinç halka | `#7a5230`, halka `#c9a24a` | P07 | "bam" |
-| **Duvar saati** | Yuvarlak beyaz mineli duvar saati, Roma rakamı [G] | `#f2ecd8`, çerçeve `#5b3d25` | P18 | "TIK" |
-| **Ter damlası** | — | r ≈ 10 px, `#cfdcff` α .7 | P11 | damla "tıp" |
-| **Güve** | — | `#b9a98a` | P20 | kanat sesi |
+| **Eldiven (kahraman)** | Dana/kuzu derisi (glacé) erkek eldiveni, beyaz [G]; ön yüzde üç çizgili süs dikişi (küçükte "eldiven" okutur) | `#f4efe2`, dikiş `#b9ad92` | P01, P10, P15, P16, P19, P23 | kâğıt hışırtısı, masa "tap", P16 parke "tok". Pozlar: düz, buruşuk (P15–P16), giyilen (P19) |
+| **Yün çorap** | El örgü koyu yün, topuk yamalı [G] | `#4b3a2c`, yama `#6a5340` | P10 | kenardan sarkar "flop" |
+| **Ok etiketi** (↑ yeşil / ↓ kırmızı) | İple bağlı kâğıt kart [T]; oklar SVG | kart `#efe9d8`, ↑ `#5f9f6e`, ↓ `#e5483c` | P10 | kâğıt hışırtı |
+| **Paket kâğıdı + ip** | Kahverengi paket kâğıdı + kenevir ip (ficelle) [G], "TOURS" etiketi 380×110 (P09) | kâğıt `#b08a5a`, ip `#d8c9a0` | P01, P09, P10, P23 | hışırtı, ip "zıııt", paket çatıda "tok" |
+| **Altın kesesi + frank** | Deri/kadife kese; **altın 20 frank, gümüş 5 frank (Louis-Philippe I)** [G]; **kâğıt para yok** | kese `#3e3426`; altın `#d4ad52` (kenar `#5a4018`, parlak `#fff4c0`); gümüş `#c9ccd2` (kenar `#6a6e78`) | P07, P08 (ikinci kese), P15 | kese kayma, sikke şıngırtı, çekmece "bam" |
+| **Çekmece** | Ceviz, pirinç halka | `#7a5230`, `#c9a24a` | P07 | "bam" |
+| **Cep saati** | **Savonnette (kapaklı) altın**, beyaz mine kadran, Roma rakamı, ince Breguet ibre [G] | kasa `#d4ad52`, kadran `#f2ecd8` | P06, P14/P15 masa | kapak "çat" |
+| **Dürbün (teleskop, pirinç)** | **Tek tüp teleskop (lunette), teleskopik**, deri kaplı orta bölüm; çift gözlü yok [G] | pirinç `#c9a24a / #f1d48a / #7a5a1f`, deri `#5a3a22` | P12, P13, P14 | açılma "kırt", kapanma "şlak", pervaza "tık" |
+| **Çakı** | Katlanır çakı [G] | çelik `#aab0bd`, sap `#5b3d25` | P14 | pervaz "kırt" |
+| **Baston** | Ahşap koyu, altın topuz [rig] | `#3b2412`, `#d4ad52` | P04, P06, P07, P18 | kaldırım "tak" |
+| **Takvim yaprağı** | **Yıl yaprağı** (büyük yıl rakamı, Playfair 900); günlük kopan yaprak 1830'larda yaygın olmayabilir [G ◐] | `#e9dfc9`, `#1c1915`; ≥ 210 px | P15 | yırtılma "çıt", omuza konma hafif |
+| **Tokmak** (varsayılan) | **Fransız mahkemesinde tokmak yok, el çanı var** [G ◐] | ceviz `#5a3a22`, tabla `#2f2016` | P18, P19 | "TAK" + reverb |
+| **El çanı** (öneri) | Pirinç clochette [G ◐] | `#c9a24a`, sap `#5b3d25` | P19 (alternatif) | çın + kısa reverb |
+| **Kanun kitabı** | Code pénal (1810), dana derisi cilt, kırmızı etiket [G] | `#5a3a22`, etiket `#8a2c24`, harf `#b8862b` | P20 | sayfa hışırtı |
+| **İlan** | Beyaz resmî ilan, tricolore bandı, kırmızı mühür [G ◐] | `#efe9d8`, mühür `#b3261e` | P21 | çivi "tak-tak-TAK" |
+| **Demir mandal** | Düşen mandal (loquet) + cramponnet, el yapımı demir [G] | `#1c1915` | P21 | "klank" |
+| **Güvercin / kafes** | Posta güvercini [A]; hasır kafes | güvercin `#dfe2ea`; kafes `#a07a48` | P06 | kapak "tak", kanat |
+| **Kule kolları** | Regülatör + 2 gösterge, siyah, jaluzili [G ◐]; T biçimli (yel değirmeni **asla**) | bölüm 1.5 | P01, P08, P11–P14, P17, P21–P23 | menteşe "klak" |
+| **Kumanda düzeneği** | Oda içi minyatür T + demir kol + çentikli sektör [G] | demir `#1c1915`, perçin `#c9a24a` | P11, P13 | "tık-tık-TIK" |
+| **Fener** | Kare cam fener, tenekeli [G] | teneke `#6a6a70`, cam `#ffd98f` α .8 | P01, P10, P23 | masaya "tık" |
+| **Şamdan + mum** | Pirinç şamdan, mum [G] | `#c9a24a`, alev `#ffcf70` | P07, P08, P16 | masaya konuş |
+| **Kaz tüyü + hokka** | 1830'lar yazı aracı [G] | `#e8e0cc`, `#1c1915` | P02, P15, P17 | cızırtı |
+| **Kum kabı** | Kurutma kumu (saupoudroir), ahşap/pirinç [G] | `#c9a24a` | P17 | serpme hışırtı |
+| **Yazı pulpitri** | Taşınabilir yazı sehpası (lap desk) [G] | ceviz `#5b3d25` | P17 | kalem cızırtı |
+| **Tebeşir** | Beyaz | `#f3eddc` | P02 | kırılma "çıt", sekme "tak" |
+| **Duvar saati** | Sarkaçlı, beyaz mineli, Roma rakamı [G]; ≥ 210 px | `#f2ecd8`, çerçeve `#5b3d25` | P18 | sandalye gıcırtı, "TIK" |
+| **Ter damlası** | | r ≈ 10 px, `#cfdcff` α .7 | P11 | "tıp" |
+| **Güve** | | `#b9a98a`, ~220 px | P20 | kanat sesi |
 
 ---
 
 ## 4. Ekran yazısı tipografisi ve isim etiketi
 
 ### 4.1 Teknik sınırlar
-- **Yüklü ağırlıklar:** Playfair Display **900**, Inter **500 ve 800**, IBM Plex Mono **500**. **İtalik yok.** Prototipteki `fontStyle: italic` (replik altyazısı) sahte italik üretir; **kaldırılır**.
-- **Türkçe büyük harf:** `text-transform: uppercase` yalnız `lang="tr"` ile `İ/ı` doğru çevirir; ya da büyük harf metin doğrudan yazılır (senaryo "ELDİVEN", "BERAAT" doğrudan yazılı).
-- **Ok glifi riski:** `theme.ts` unicode aralığı `↑ (U+2191)` ve `↓ (U+2193)` içerir ama **`→ (U+2192)` içermez** (senaryo "Paris → Bordeaux", "1834 → 1836" kullanıyor). Tüm oklar (**→ ↑ ↓**) **SVG yol olarak** çizilir (kalınlık = harf kalınlığı), font glifine güvenilmez. Dosyada font dosyalarındaki gerçek glif varlığı doğrulanmadı (Açık soru 9).
-- Güvenli alan: x 80–1000 (maks genişlik 920), üst yazı y ≥ 240, altyazı alt kenarı y = 1490–1500. Ekran yazısı hiçbir yerde y > 1500 değil.
+- **Yüklü ağırlıklar:** Playfair Display **900**, Inter **500 ve 800**, IBM Plex Mono **500**; **italik yok.** Prototipteki `fontStyle: italic` (replik altyazısı) sahte italik üretir; **kaldırılır**.
+- **Türkçe büyük harf:** `text-transform: uppercase` yalnız `lang="tr"` ile `İ/ı` doğru; ya da büyük harf doğrudan yazılır.
+- **Ok glifi riski:** `theme.ts` unicode aralığı `↑ (U+2191)` ve `↓ (U+2193)` içerir, **`→ (U+2192)` içermez** (senaryo "Paris → Bordeaux", "1834 → 1836"). Tüm oklar **SVG yol** olarak çizilir. Font dosyalarındaki gerçek glif varlığını doğrulayamadım (Açık soru 9).
+- **Güvenli alan:** x 80–1000 (920 px), **ÜST-BANT y 240–400** (yönetmen; T1+T2 tek satır ya da T2 iki satır), **ALT-BANT y 1290–1490**. Hiçbir yazı y > 1500 değil.
 
 ### 4.2 Yazı tipleri
-| Tip | Kullanım (senaryodan örnek) | Font / boyut | Renk | Konum |
+| Tip | Kullanım | Font / boyut | Renk | Konum |
 |---|---|---|---|---|
-| **T1 KÜNYE** | "TOURS · 1834", "Paris → Bordeaux: 3 GÜN", "Plan A: Güvercin — başarısız", "Tours Ağır Ceza · Mart 1837", "1836 · İçeriden biri" | IBM Plex Mono 500, **34 px**, harf aralığı 0.18 em, büyük harf | altın `#b8862b` (koyu zemin) / mürekkep `#1c1915` (kâğıt şerit zemin) | y 240, sol hizalı (x 80), üstte |
-| **T2 İDDİA** | "1834. Bilgisayar yok.", "Ya fark ederse?", "Kimse durdurmadı. Herkes kopyaladı.", "Önce açık. Sonra yasa.", "Suç yok. Çünkü yasa yok.", "Elektrik yok. Sadece…" | Playfair Display 900, **76 px** (kısa) / 64 px (uzun, 3 satır max), satır aralığı 1.05 | kâğıt `#e9dfc9`, **vurgu kelime `#e5483c`** | T1'in altı, y ≈ 290; sol hizalı; 920 px'e sığar |
-| **T3 FORMÜL** | "ELDİVEN = ↑ · ÇORAP = ↓" (P10), "Oyun: Paris'teki tahvil fiyatı" | Plex Mono 500 **42 px** (etiket) + SVG ok (yüksekliği 52 px, kalınlık 8 px) | etiket kâğıt; ok: ↑ `up #5f9f6e`, ↓ `#e5483c` | P10'da iki masa yarısının üstünde ortalı, y ≈ 400 ve 1000 |
-| **T4 DAMGA** | "BERAAT" (P19) | Playfair Display 900, **170 px**, çift çerçeve (6 px + 2 px), −4° döndürülmüş, mürekkep eksik doku (`feTurbulence`) | kırmızı `#e5483c` (koyu zemin), kâğıt kenar dış hat 3 px | ortada, y 620–900 |
-| **T5 ALTYAZI** | anlatıcı + replik | Inter **800**, **56 px**, satır 1.15, en fazla **2 satır**, maks 920 px | beyaz-kâğıt `#f6f1e4`; **vurgu kelime `#e5483c`**; `textShadow: 0 3px 0 #000, 0 0 22px rgba(0,0,0,.9)` | alt kenar y ≈ 1490 (güvenli alanın hemen üstü), ortalı |
-| **T5b REPLİK ETİKETİ** | "FRANÇOIS", "LOUIS", "MEMUR" | Plex Mono 500 **30 px**, aralık 0.2 em | altın `#b8862b` | altyazının hemen üstü, ortalı; replik tırnaklı |
+| **T1 KÜNYE** | "TOURS · 1834", "Paris → Bordeaux: 3 GÜN", "Plan A: Güvercin — başarısız", "Tours Ağır Ceza · Mart 1837", "1836 · İçeriden biri" | IBM Plex Mono 500, **34 px**, aralık 0.18 em, büyük harf | altın `#b8862b` (koyu) / mürekkep (kâğıt şerit) | ÜST-BANT, sol hizalı x 80 |
+| **T2 İDDİA** | "1834. Bilgisayar yok.", "Ya fark ederse?", "Kimse durdurmadı. Herkes kopyaladı.", "Önce açık. Sonra yasa.", "Suç yok. Çünkü yasa yok.", "Elektrik yok. Sadece…" | Playfair 900, **72 px** (kısa) / 64 px (iki satır), satır 1.05 | kâğıt `#e9dfc9`, **vurgu `#e5483c`** | ÜST-BANT (T1 ile birlikteyse T2 tek satır); bazı planlar ALT-BANT (yönetmen: P12, P21, P22) |
+| **T3 FORMÜL** | "ELDİVEN = ↑ · ÇORAP = ↓" (P10), "Oyun: Paris'teki tahvil fiyatı" | Plex Mono 500 **42 px** + SVG ok (52 px yüksek, 8 px kalın) | kâğıt; ↑ `#5f9f6e`, ↓ `#e5483c` | ÜST-BANT |
+| **T4 DAMGA** | "BERAAT" (P19) | Playfair 900, **170–180 px**, çift çerçeve (6 + 2 px), −4° döndürülmüş, mürekkep eksik doku (`feTurbulence`) | `#e5483c`, kâğıt kenar 3 px | **ALT-BANT** (yönetmen). **Belirir, animasyon yok** (yaratıcı yönetmen; P05 mührüyle metafor tekrarı olmasın) |
+| **T5 ALTYAZI** | anlatıcı + replik | Inter **800**, **56 px**, satır 1.15, **en fazla 2 satır**, maks 920 px | `#f6f1e4`; **vurgu `#e5483c`**; `textShadow: 0 3px 0 #000, 0 0 22px rgba(0,0,0,.9)` | alt kenar y ≈ 1490, ortalı |
+| **T5b REPLİK ETİKETİ** | "FRANÇOIS", "LOUIS", "MEMUR" | Plex Mono 500 **30 px**, aralık 0.2 em | altın `#b8862b` | altyazı üstü, ortalı; replik tırnaklı |
 
 **Kurallar**
-- **Vurgu kelime kırmızı** (kural). Prototipte "okunan kelime" altın `#ffcf70` ile vurgulanıyor ve `Film.tsx` içinde de aynı; bu **kural ihlalidir**. Yeni: okunan kelime **renk değil ölçek** (`1.06`) ve parlaklık ile işaretlenir; **kırmızı** yalnızca planın anahtar kelimesidir.
-- Vurgu kelimeleri (öneri; yönetmen onayı): P01 *hackledi*, P02 *tahvil*, P03 *üç günde*, P04 *kazanır*, P05 *devlete*, P06 *Olmadı*, P07 *satın*, P08 *hata*, P09 *paket*, P10 *düşüş* (tek vurgu; yükseliş/düşüş rengi ok ve T3 etiketinde zaten verilir), P11 *hata*, P12 *iki dürbün*, P13 *kopyalıyor*, P14 *suç ortağı*, P15 *önce*, P16 *hastalanana*, P17 *anlattı*, P18 *Mahkeme*, P19 *Beraat*, P20 *yasa*, P21 *yasası*, P22 *siber*, P23 *Sadece*.
-- **Giriş/çıkış:** giriş yukarıdan 30 px kayma + opaklık (0.45 sn, `bezier(0.16,1,0.3,1)`, mevcut). **Çıkış fade değil:** kâğıt şerit gibi yukarı kayarak maskelenir (0.25 sn).
-- **Açık zeminde** (harita parşömeni, Bordeaux gündüz): T1/T2 bir **kâğıt şerit** (`#e9dfc9` α .92, üst-alt 2 px mürekkep çizgi, hafif tane) üzerinde mürekkep renkte; vurgu `C.red #b3261e`.
-- **Ses kapalı kuralı:** yazı anlatımı tekrarlamaz, tamamlar (senaryo §5 ile uyumlu).
-- Kapak: 5 kelime, T2 stili, y 240, üst %22.
+- **Vurgu kelime kırmızı.** Prototipte ve `Film.tsx`'te "okunan kelime" altın `#ffcf70` ile vurgulanıyor: **kural ihlali.** Yeni: okunan kelime **ölçek `1.06` + parlaklık**, **kırmızı yalnız planın anahtar kelimesi**.
+- Vurgu önerisi (yönetmen onayı): P01 *hackledi*, P02 *tahvil*, P03 *üç günde*, P04 *kazanır*, P05 *devlete*, P06 *Olmadı*, P07 *satın*, P08 *hata*, P09 *paket*, P10 *düşüş*, P11 *hata*, P12 *iki dürbün*, P13 *kopyalıyor*, P14 *suç ortağı*, P15 *önce*, P16 *hastalanana*, P17 *anlattı*, P18 *Mahkeme*, P19 *Beraat*, P20 *yasa*, P21 *yasası*, P22 *siber*, P23 *Sadece*.
+- **Giriş:** yukarıdan 30 px kayma + opaklık (0.45 sn, `bezier(0.16,1,0.3,1)`). **Çıkış fade değil:** kâğıt şerit gibi yukarı kayarak maskelenir (0.25 sn).
+- **Açık zeminde** (harita parşömeni, Bordeaux gündüz): T1/T2 **kâğıt şerit** (`#e9dfc9` α .92, 2 px mürekkep üst-alt çizgi, hafif tane) üstünde mürekkep renkte; vurgu `C.red`.
+- Ses kapalı kuralı: yazı anlatımı tekrarlamaz, tamamlar. Kapak: ≤ 5 kelime, T2 stili, üst %22.
 
 ### 4.3 İsim etiketi ("dosya etiketi")
-- **Form:** kâğıt etiket `#e9dfc9`, **sağ üst köşesi kesik** (14 px), 2 px mürekkep kenar, hafif tane, iç dolgu 14×22 px. Sol kenarda **6 px'lik "sekme"**: karakterin ceket rengi (François `#3c5ea3`, Louis `#9a3646`; yeni renk yok).
-- **İçerik:** satır 1: ad, Playfair Display 900, **44 px**, mürekkep `#1c1915` ("François", "Louis"). Satır 2: Plex Mono 500, **28 px**, `#4a4237`, harf aralığı 0.14 em, büyük harf: **"BLANC · BORDEAUX"**. (Rol iddiası yok; "tüccar/iş insanı" yazılırsa [A] ile uyumlu: "İŞ İNSANI".)
-- **Bağlantı:** etiket altından karakterin şapka tepesine (ya da omzuna) **3 px mürekkep çizgi** + 12 px daire uç. Etiket şapkanın **40 px üstünde**; kadrajda y ≥ 240; yan güvenli alan 80 px.
-- **Giriş:** 0.4 sn, yukarıdan 20 px kayma + opaklık (mevcut `IsimKarti`). **Çıkış:** yukarı kayıp maske. Karakter hareket ederse etiket **çizgiyle takip eder** (ofset sabit).
-- **Yalnız P02'de** (senaryo). Başka yerde repliklerde konuşan kişi T5b ile belirtilir.
+- **Form:** kâğıt etiket `#e9dfc9`, **sağ üst köşesi kesik** (14 px), 2 px mürekkep kenar, tane, iç dolgu 14×22. Sol kenarda **6 px sekme** = karakterin ceket açık rengi (François `#3c5ea3`, Louis `#9a3646`; yeni renk yok).
+- **İçerik:** satır 1 ad, Playfair 900 **44 px**, mürekkep ("François", "Louis"). Satır 2 Plex Mono 500 **30 px**, `#4a4237`, aralık 0.14 em, büyük harf: **"BLANC · BORDEAUX"** (rol iddiası yok).
+- **Bağlantı:** etiket altından karakterin şapka tepesine **3 px mürekkep çizgi** + 12 px daire uç. Etiket şapkanın **60–80 px üstünde**, y ≥ 240, yan 80 px. Karakter yürürse etiket ofsetle takip eder.
+- **Giriş** 0.4 sn yukarıdan 20 px; **çıkış** yukarı kayıp maske. Yalnız P02'de; replikte konuşanı T5b belirtir.
 
 ---
 
 ## 5. Açık sorular (belgede "Açık soru N" olarak anılanlar)
 
-1. **Tokmak mı çan mı (P19)?** Fransız mahkemesinde tokmak yok, el çanı var [G ◐]. Senaryo onaylı "tokmak". Seçenek A: tokmak (okunabilir, anakronizm riski), B: çan (doğru, "TAK" vuruş hissi zayıflar), C: ikisi de değil, kapanan dosya/mühür "TAK". Karar kullanıcı/yönetmen.
-2. **"Tours telgrafçısı" adı:** P12–P13'teki kişi senaryoya göre Tours'tan *sonraki* ara kule görevlisi. Kart bu şekilde çizildi; yanlışsa Tours memurunun (2.3) tekrar kullanımı gerekir.
-3. **"Yüz detayı yok" ile Kukla yüzü:** bölüm 0.2'deki uzlaşma (ana kadro yüzlü, kompars/yargıç/arabacı yüzsüz) onaylanmalı.
-4. **Mahkeme doğruluğu:** kırmızı başkan cübbesi, toque, jüri yokluğu, haç yokluğu, jandarma [G ◐]. Araştırmacı doğrulamazsa tümü siyah cübbe, jüri/jandarma çıkar.
-5. **Takvim:** günlük kopan yaprak yerine **yıllık levha** (1834/1835/1836) çizildi (dönem). Senaryodaki "yaprak kopar" jesti levha ile korunur.
-6. **Posta arabası görseli (`araba-yesil.png`)** kapıda arma/taç taşıyor; 1830 sonrası için sadeleştirilmeli ya da küçük/bulanık kalmalı. Yeşil kromakey kenar temizliği gerekli.
-7. **Yeni renkler:** `redLit #e5483c` ve `up #5f9f6e` (gerekçe bölüm 0.1) onay bekler.
-8. **Rig kenar ışığı yönü:** `RIM` facing ile aynalanır; karşılıklı bakan iki karakterde bir kenar ışığı yanlış taraf olur. Çözüm `Poz.rim` (bölüm 5); motion karar verir.
-9. **Ok glifleri:** `→` aralıkta yok; `↑ ↓` aralıkta ama woff2 içindeki gerçek glif doğrulanmadı (Bash erişimim olmadığı için). Teknisyen kontrol etsin; o zamana dek SVG ok.
-10. **Paris'te kule (P23):** araştırma Paris'in hattaki yerini vermiyor (yalnız Paris–Lille). Pencere kulesi konum belirtilmeden, genel Chappe kulesi olarak çizildi.
-11. **Borsa tahtası:** 1834'te tebeşirli kara tahtada fiyat yazılması [S dramatizasyon], doğrulanmadı; gerçek fiyat rakamı yok. Araştırmacı teyit ederse "gerçekçi" etiket eklenebilir.
-12. **Chappe kolu rengi/detay:** siyah kollar, jaluzili kanat, karşı ağırlık, payanda [G ◐]. `ChappeTower.tsx` kırmızı gösterge kullanıyor; tarihî doğruluk için araştırmacı teyidi sonrası siyaha çekilmesi önerildi.
-13. **Bordeaux kulesi konumu (P14):** "tepe üstü uzak kule", gerçek konum belirtilmiyor.
-14. **Eski referanslar:** `final/S06.png` pencerede kafes pilon kule gösteriyor (Chappe değil); `karakter/louis-kart.png` kâğıt para içeriyor. İkisi stil/yüz referansıdır, kural dışı unsurlar kopyalanmaz.
+1. **Tokmak mı çan mı (P19)?** Fransız mahkemesinde tokmak yok, çan var [G ◐]. Senaryo onaylı "tokmak". Seçenekler: A tokmak (okunur, anakronizm riski), B çan (doğru, "TAK" zayıflar), C kapanan dosya/mühür "TAK". Karar kullanıcı/yönetmen.
+2. **"Tours telgrafçısı" adı:** P12–P13'teki kişi Tours'tan *sonraki* ara kule görevlisi; kart öyle çizildi. Yanlışsa Tours memuru (2.3) kullanılır.
+3. **"Yüz detayı yok" ile Kukla yüzü:** bölüm 0.2 uzlaşması onaylanmalı.
+4. **Mahkeme doğruluğu:** jüri varlığı, kırmızı başkan cübbesi, toque, haç yokluğu, jandarma [G ◐]. Araştırmacı doğrulamazsa jüri/jandarma çıkar, cübbeler siyah.
+5. **Takvim:** günlük kopan yaprak 1830'larda yaygın değil olabilir [G ◐]; yıl yaprağı/yıllık levha çizildi. Yönetmen "takvim bloğu" diyor; arka plan akış yaprakları aynı tipte levha olsun.
+6. **Posta arabası görseli** kapıda arma/taç taşıyor; 1830 sonrası sadeleştirilmeli. Kromakey kenar temizliği, at başı ayrı katman.
+7. **Yeni renkler:** `redLit`, `up`, `boyaKrem` onay bekler.
+8. **Rig kenar ışığı yönü:** `RIM` `facing` ile aynalanır; kontrajurlu planlarda (P06) ve karşılıklı bakan çiftlerde yanlış taraf. Öneri `Poz.rim` (bölüm 6).
+9. **Ok glifleri:** `→` aralıkta yok; `↑ ↓` aralıkta ama woff2 içindeki gerçek glif doğrulanmadı (araç erişimim yok). Teknisyen kontrol etsin; o zamana dek SVG ok.
+10. **Paris'te kule (P23):** araştırma Paris'in hattaki yerini vermiyor (yalnız Paris–Lille). Konum belirtilmez.
+11. **Borsa tahtası:** 1834'te tebeşirli kara tahtada fiyat yazılması [S dramatizasyon], doğrulanmadı; gerçek rakam yok.
+12. **Chappe kolu rengi/detayı:** siyah, jaluzili kanat, karşı ağırlık, payanda [G ◐]. `ChappeTower.tsx` kırmızı gösterge kullanıyor; araştırmacı teyidiyle siyaha çekilmesi önerildi.
+13. **Bordeaux kulesi:** "sağ-uzak tepede kule", gerçek konum yok.
+14. **Eski referanslar:** `S06.png` pencerede kafes pilon (Chappe değil); `louis-kart.png` kâğıt para. İkisi yalnız stil/yüz referansı.
+15. **Plan belgeleri çakışması (bölüm 0.4):** P06 saat/tüy, P08 kol/gölge, P17 klunk/kum, P18 saat ölçüsü, P03 disk tarafı, telgrafçı rengi. Yönetmen + yaratıcı yönetmen ortak karar versin.
+16. **P18 cep:** yaratıcı yönetmen P18'de Louis'nin cebinde eldiven ucu görünmesini ister; yönetmen "sırttan görünmez" yazıyor. Kamera arkadan olduğundan görünürlük cep tarafına (sağ göğüs) bağlı; yönetmen karar verir.
 
 ---
 
@@ -550,11 +578,13 @@ import { LOUIS, FRANCOIS } from "../../rig/Kukla";
 export const BL = {
   redLit: "#e5483c",     // altyazı/vurgu, koyu zeminde (C.red'in aydınlık hâli)
   up: "#5f9f6e",         // yalnız P10 ↑
+  boyaKrem: "#e6c88c",   // yalnız P22 yay dolgusu
   gloveHero: "#f4efe2",  // kahraman eldiven
   rimCool: "#c4d6ff", amber: "#ffb357", amberDeep: "#ff9a40", candle: "#ffcf70",
   tuffeau: "#e3dcc6", ardoise: "#3c4660", tuile: "#9a5a3c", pierreBdx: "#d8c49a",
   brass: "#c9a24a", brassLight: "#f1d48a", brassDark: "#7a5a1f", walnut: "#3b2818",
   duskTop: "#1d1838", duskMid: "#3b2f5c", duskLow: "#8a5a6e", duskHorizon: "#d98a5a", screenDark: "#0e0d12",
+  toz: "#8b93ad",        // P03 toz = P04 sis
 };
 
 const bare = (p: Palet): Palet => ({ ...p, glove: p.skin });
@@ -568,10 +598,20 @@ export const MUDUR: Palet = { coat: "#5a4630", coatDark: "#3a2c1d", coatLight: "
 export const TELGRAFCI: Palet = { coat: "#4f5a3e", coatDark: "#323a28", coatLight: "#6c7956", vest: "#7a6a48", vestDark: "#54482f", vestDesen: "#7a6a48", cravat: "#c79a3a", shirt: "#d8cfb8", pants: "#3e3a34", shoe: "#17120e", glove: "#dcae8b", skin: "#dcae8b", skinDark: "#ad7b60", hair: "#4a3626", hat: "#4a3b2c", hatBand: "#2c241c", sideburn: 0.9, browHeavy: 1.3 };
 export const SUC_ORTAGI: Palet = { coat: "#4a3a2c", coatDark: "#2e2319", coatLight: "#6a5440", vest: "#7d6a3f", vestDark: "#574a2a", vestDesen: "#a8935a", cravat: "#2b2a30", shirt: "#eee8d8", pants: "#34302b", shoe: "#0f0d0c", glove: "#d7a782", skin: "#d7a782", skinDark: "#a8765c", hair: "#2b1c12", hat: "#3a2c20", hatBand: "#241a12", sideburn: 1.1, browHeavy: 1.0 };
 export const KATIP: Palet = { coat: "#2d2b28", coatDark: "#1a1917", coatLight: "#4a4742", vest: "#8a8a80", vestDark: "#5f5f58", vestDesen: "#8a8a80", cravat: "#d8d0bb", shirt: "#e8e2d0", pants: "#3a3a3e", shoe: "#0f0d0c", glove: "#d8ae8b", skin: "#d8ae8b", skinDark: "#a97d62", hair: "#4a4a4a", hat: "#141317", hatBand: "#2a2a2e", sideburn: 0.8, browHeavy: 0.9 };
+export const TUCCAR: Palet = { coat: "#6a5338", coatDark: "#443523", coatLight: "#8a7050", vest: "#8a8a80", vestDark: "#5f5f58", vestDesen: "#8a8a80", cravat: "#d8d0bb", shirt: "#e8e2d0", pants: "#3a3530", shoe: "#0f0d0c", glove: "#d8ae8b", skin: "#d8ae8b", skinDark: "#a97d62", hair: "#2f2418", hat: "#2a2622", hatBand: "#1c1a18", sideburn: 1, browHeavy: 1 };
+export const PARIS_ADAM: Palet = { coat: "#2b2a30", coatDark: "#1a1a1e", coatLight: "#44434c", vest: "#55555c", vestDark: "#3a3a40", vestDesen: "#55555c", cravat: "#d8d0bb", shirt: "#e9e3d2", pants: "#34302b", shoe: "#0f0d0c", glove: "#d3a784", skin: "#d3a784", skinDark: "#a77b5f", hair: "#2b2018", hat: "#141317", hatBand: "#2a2a2e", sideburn: 1, browHeavy: 1 };
 // Kukla dışı (statik siluet/overlay)
-export const YARGIC = { baskanCubbe: "#8f2a22", baskanGolge: "#5e1a15", asesorCubbe: "#1c1915", rabat: "#efe9d8", toque: "#1a1418", toqueSerit: "#b8862b" };
+export const YARGIC = { cubbe: "#1c1915", cubbeGolge: "#0f0d0b", rabat: "#efe9d8", toque: "#1a1418", toqueSerit: "#b8862b", baskanKirmiziOpsiyon: "#8f2a22" };
 export const ARABACI = { bluz: "#b8a882", yelek: "#5a3f28", pantolon: "#4a3b2c", sapka: "#2b2420", cizme: "#2a1d14" };
-export const PARIS_EL = { ten: "#d3a784", tenGolge: "#a77b5f", manset: "#7c7f87", mansetKoyu: "#55575e", dugme: "#1c1915", gomlek: "#e9e3d2" };
+export const PARIS_EL = { ten: "#d3a784", tenGolge: "#a77b5f", kol: "#2b2a30", manset: "#7c7f87", mansetKoyu: "#55575e", altinDugme: "#d4ad52", gomlek: "#e9e3d2" };
+export const GOREVLI_EL = { kol: "#1c1915", manset: "#efe9d8", ten: "#d8ae8b" };
+export const YAZICI_EL = { kol: "#1c1915", ten: "#d3a784" };
 ```
 
-**Rig'e (Kukla.tsx) gereken küçük ekler (motion; bu belge kod değiştirmez):** (1) `Poz.hatYok?: boolean` (memur, müdür, telgrafçı şapkasız); (2) `Poz.rim?: 1 | -1` (kenar ışığı yönü facing'den bağımsız); (3) (isteğe bağlı) `Poz.genislik?: number` yerine dış sarmalayıcı `scale(x,y)`; (4) `siluet` SVG filtresi bölüm 0.2.
+**Rig'e (Kukla.tsx) gereken küçük ekler (motion; bu belge kod değiştirmez):**
+1. `Poz.sapkaTip?: "silindir" | "kasket" | "yok"` (memur/müdür/telgrafçı şapkasız, suç ortağı kasket; şimdilik `hat` null ise her zaman silindir çiziliyor).
+2. `Poz.rim?: 1 | -1` (kenar ışığı yönü `facing`'den bağımsız; P06 kontrajur, karşılıklı bakan çiftler).
+3. `Palet.cuff?: string` (gri manşet; rig manşet şeridi `shade(coat, 0.12)`).
+4. Genişlik/incelik için dış sarmalayıcı `scale(x,y)` yeter; rig'e parametre gerekmez.
+5. Siluet SVG filtresi (bölüm 0.2).
+6. **Oturma pozu:** rigde `thigh −88, knee 88, bodyY +105` denenmeli (müdür); olmuyorsa müdür özel statik figüre dönüşür.

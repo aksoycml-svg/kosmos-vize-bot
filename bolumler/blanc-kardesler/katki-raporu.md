@@ -34,3 +34,28 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - Motion: Kukla'da kaş, esneme, el–gölge, parmak parmak eldiven giyme var mı? Yoksa erkenden söyle, jest basitleşir. P03 diski, P15 yaprağı, P18 saati 200 px altına düşmesin.
   - Kurgucu: sessizlik/müzik kesilmesi sınırlı (P04, P12, P17, P18). Foley dosya adları önerilendir, `tools/sfx.mjs` ile üretilecek, tepe karesine hizalanacak.
   - Kullanıcı: P03 at yorgunluğu ve P14 pervaz kazıması yeni kararlar; storyboard onayında görsün.
+
+## tasarimci · 2026-11-06 · Storyboard v2 görsel tasarım dosyası
+- Ne yaptım: `storyboard-v2/tasarim.md` yazıldı: 12 mekân kartı (katmanlar, dönem/kaynak etiketi [A]/[S]/[G]/[T], hex palet, ışık+gölge yönü, perspektif/kaçış, türetme, motion notu), oda zemin parametre tablosu (`zemin(z,u)` sözleşmesi, yönetmenin z/u koordinatlarıyla uyumlu), 10 karakter kartı, 30 satırlık prop tablosu (temas/foley sütunlu), tipografi (5 yazı tipi + isim etiketi), 16 açık soru, önerilen palet/rig-ek kodu. Yönetmenin `sahne-plani.md` ve yaratıcı yönetmenin `dokunuslar.md` belgelerini okuyup tasarımı onlara hizaladım; çakışmaları bölüm 0.4'te tabloladım.
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/storyboard-v2/tasarim.md (yeni), bolumler/blanc-kardesler/katki-raporu.md (bu bölüm eklendi). Kod dosyalarına dokunmadım.
+- Aldığım kararlar ve gerekçeleri:
+  - P04 Bordeaux: `Sokak.tsx` için `SIVA` paleti, çatı varyantı (arduvaz + tuile canal) ve Notre-Dame yerine 4 direkli Garonne ufku (koordinatlı) tanımlandı. P03 tozu ile P04 sisi aynı renk (`#8b93ad`), MATCH kesmesi için.
+  - Kuleler: tüm kollar siyah, kırmızı yalnız çentik halosu/mühür; `ChappeTower.tsx` kırmızı göstergeleri tarihî doğru değil (araştırmacı teyidi gerek). Adlandırılmış kol konumları (ILK/SAK/MESAJ-A/HATA/DINLEN), yönetmenin A/B/X adlarıyla eşlendi.
+  - P22 Wi-Fi: tahta dokusu, "yanma" = boya dolgusu `boyaKrem #e6c88c` (yaratıcı "krem", yönetmen "amber" demişti, orta yol).
+  - P23 = P01 ile aynı plaka (MASA-PLAKA), paket kapalı biter, kol ILK'e "klak".
+  - Yüz kuralı uzlaşması: ana kadro Kukla yüzlü, kompars/yargıç/arabacı yüzsüz siluet (sanat yönetmeni kuralı ile onaylı rig/senaryo gereksinimleri arasında).
+  - Yeni renkler gerekçeli: `redLit #e5483c` (C.red koyu zeminde 2.9:1), `up #5f9f6e` (yalnız P10), `boyaKrem`.
+  - Paletler: memur (3 evre), müdür, telgrafçı, suç ortağı, katip, tüccar, Paris adamı; çıplak el için `glove = skin`.
+  - P14 maskesiz, odak kayması tüm kadrajda; ayrıca pervaz çentiği (yaratıcı yönetmen) için pervaz tasarımı.
+- Uyguladığım kurallar / yakaladığım ihlaller:
+  - `karakter/louis-kart.png` kâğıt para içeriyor (kural: yok). `S06.png` pencerede kafes pilon kule (Chappe değil). `araba-yesil.png` kapıda arma/taç (1830 sonrası riskli).
+  - Rig tüm karakterlere eldiven çiziyor; senaryo çıplak el istiyor (P01, P11, P19).
+  - Prototip/`Film.tsx` altyazıda okunan kelimeyi altınla vurguluyor (kural: vurgu kırmızı) ve serif italik kullanıyor (italik font yüklü değil, sahte italik).
+  - `→ (U+2192)` `theme.ts` unicode aralığında yok (senaryoda "Paris → Bordeaux", "1834 → 1836"); oklar SVG öneriliyor.
+  - Dönem şüpheleri: mahkemede tokmak (Fransa'da el çanı) [G ◐], günlük kopan takvim yaprağı [G ◐], haç yokluğu, jüri, kırmızı başkan cübbesi.
+  - Yönetmen/yaratıcı yönetmen çakışmaları (P06 saat/tüy, P08 kol/gölge, P17 klunk/kum, P18 saat ölçüsü, P03 disk tarafı, P19 BERAAT animasyonu, telgrafçı rengi): bölüm 0.4.
+- Açık sorular / bir sonraki ajana notlar:
+  - Kullanıcı/yönetmen: tokmak mı çan mı (P19); "Tours telgrafçısı" aslında Tours'tan sonraki ara kule görevlisi (kart öyle); yeni renk onayı.
+  - Araştırmacı: [G ◐] işaretli dönem iddialarını doğrula (kol rengi/jaluzi, mahkeme kıyafeti/jüri/haç, tuffeau/arduvaz, tuile canal, savonnette saat, yıl yaprağı, resmî ilan beyaz kâğıt).
+  - Motion: Kukla'ya `sapkaTip`, `rim`, `Palet.cuff` eklenmeli; oturma pozu (müdür) denenmeli; Kukla yatamaz (P16 yorgan çözümü); at başı ayrı katman (P03); `Sokak.tsx`'e `uzak` prop'u. Font glif varlığını (↑ ↓) doğrulamak için Bash erişimim yoktu; teknisyen baksın.
+  - Yönetmen: bölüm 0.4 tablosundaki çakışmaları yaratıcı yönetmenle birlikte kapat; P18 Louis cep görünürlüğü.
