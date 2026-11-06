@@ -89,3 +89,21 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 
 ## yonetmen · 2026-11-06 · Orkestra kararları uygulandı (ek)
 - P14 144 kare (2184–2328, kule 78–138 arası 1.0 sn net, odak kayması + pervaz çentiği birlikte), P15 144 kare (2328–2472); P14'ten sonraki karelerde P15 temasları 12 kare kaydı, P16 ve sonrası değişmedi, toplam 3600. P09/P10 aktarımı onaylı. "İkiz/twins" ifadeleri sahne planında "kardeşler" yapıldı. Dosyalar: sahne-plani.md, sahne-plani.json. Açık: tasarim.md P14/P15 kareleri (stil karesi P15 → 2440, P14 şlak → 2312) güncellenmeli.
+
+## arastirmaci · 2026-11-06 · Dönem doğrulama (tasarımcının 7 sorusu)
+- Ne yaptım: `tasarim.md`'deki [G ◐] maddeleri ve tasarımcının 7 sorusunu fr/en Vikipedi (doğrudan açıldı) ve arama özetleriyle taradım; her soru için cevap, güven (kesin/olası/bulunamadı), kaynak URL'si ve tasarıma etkisini `donem-dogrulama.md`'ye yazdım; çelişki tablosu, görsel potansiyel, hikâye altınları ve düzeltme listesi ekledim.
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/storyboard-v2/donem-dogrulama.md (yeni), bolumler/blanc-kardesler/katki-raporu.md (bu bölüm eklendi, öncekiler silinmedi). `arastirma.md`'ye dokunulmadı.
+- Aldığım kararlar ve gerekçeleri:
+  - Kaynakta olmayanı "bulunamadı" yazdım: 1830'lar mahkeme tokmağı/çanı, cübbe rengi, haç, salon düzeni; Tours çatısı; Bordeaux Borsası fiyat ilanı; yaprak takvim; arma; Hôtel des Postes avlusu; Tours civarı kule tipleri.
+  - Tek kaynaklı malle-poste rengini (fr Vikipedi: Restorasyon sarı, Louis-Philippe "gris puce") "olası" etiketledim, kesin yapmadım.
+  - Bulgular tasarımı değiştirir (kesin): kollar siyah + sabit jaluzi doğrulandı; direk gök mavisi (tasarımda siyah); dürbünler kule içinde ahşap kutuya sabit (tasarım elde teleskop varsayıyor); manipulateur içeride, direk dibinde; Bordeaux kulesi Saint-Michel çan kulesi üstünde (tasarımda bağımsız tepe kulesi).
+  - Tokmak için: Fransız kaynağında kanıt çıkmadığı için P19'da tokmak kullanılmamasını önerdim (el çanı da 1830'lar için kanıtsız, yalnız modern kaynak).
+- Uyguladığım kurallar / yakaladığım ihlaller:
+  - Her cümle kaynaklı; birincil sayfası açılamayan kaynakları "arama özeti / okunmadı" diye işaretledim (Justice.fr bakımda, laposte.fr Tretsch PDF 404, Touraine arşivi PDF okunamadı).
+  - Yakalanan ihlaller (tasarım dosyasında): "Garonne'da vapur yok" iddiası kanıtsız (tersi için de zayıf kanıt); Sokak.tsx çatı oranı Bordeaux kaynaklarına ters (tuile canal ağırlıklı olmalı); ChappeTower regülatör/gösterge oranı 3,1:1, kaynakta 4,6:2 yaklaşık 2,3:1.
+  - Kendi dosyamda kalan eksikler: (1) "Place de la Bourse adı 1848'de verildi; öncesi: Place Royale" cümlesinde "Place Royale" kısmı kaynaklanmadı (kaynak yalnız 1848 yeniden adlandırmasını söylüyor), güvenme. (2) "Görevli gerçekten bakmaz, yalnız göz dayar" ifadesi benim çıkarımım, kaynak "sabit kutu" demekten öteye gitmiyor. İkisini sonraki düzenlemede silin ya da "doğrulanmadı" yapın.
+- Açık sorular / bir sonraki ajana notlar:
+  - Tasarımcı: `donem-dogrulama.md` sonundaki "Tasarım dosyasına öneri düzeltme listesi" (8 madde) uygulanmalı. P12/P13/P14 dürbün jesti ve P06/P14 Bordeaux kulesi konumu en etkili iki değişiklik.
+  - Kullanıcı kararı: P19 mahkemede tokmak / el çanı / jestsiz; başkan cübbesi kırmızı mı siyah mı (1830'lar kanıtlanamadı, siluet olduğu için renk okunmuyor).
+  - Daha derin kaynak gerekirse: Gallica (Gazette des Tribunaux Mart 1837 duruşma raporları: salon, başkan, sonnette), Tretsch tezi (Hôtel des Postes avlusu), Musée de La Poste (malle-poste renk/arma), Bordeaux Chambre de commerce arşivi (1830'lar borsa ilanı). Wikimedia Commons / Gallica görsel aramaları yapılmadı.
+  - Senarist: kesin olmayan hiçbir mahkeme detayı ("tokmak", "kırmızı cübbe", "haç yok") anlatıma girmesin.
