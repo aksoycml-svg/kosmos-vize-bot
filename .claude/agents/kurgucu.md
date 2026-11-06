@@ -30,5 +30,6 @@ KURGU KURALLARI:
 - Plan süreleri anlatım + nefes (0.2–0.4 sn) ile belirlenir; kanca planı 3 sn'yi geçmez.
 - Kesme noktaları: cümle sonu, görsel vurgu ya da müzik vuruşu. Aynı anda üçü çakışıyorsa en güçlü kesme orası.
 - Dokunuşlar kendi planında başlayıp biter (yaratıcı yönetmen kuralı); kesme bir dokunuşu yarıda bırakıyorsa planı uzat ya da dokunuşu kaydır.
+- Görünürlük–ses kuralı: Görmediğimiz bir dokunuşun foley'i olmaz. Görünmeyen kaynaklar sadece ortam sesi olabilir (uzak çan, laterna, rüzgâr) ve kısık kalır. Ses seviyesi kaynağın ekrandaki büyüklüğü/yakınlığı ile orantılıdır.
 - Ses miksi: anlatım 0 dB referans, foley −2/−6 dB, müzik anlatım altında −18 dB, sessiz anlarda −8 dB. Final loudness −14 LUFS, tepe −1.5 dBTP.
 - Çıktılar: `bolum.json` zamanlamaları, `muzik/cue-sheet.md`, `muzik/lisanslar.md`, Premiere için ayrı ses kanalları (anlatım/replik, foley, müzik, ortam).

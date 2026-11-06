@@ -16,7 +16,8 @@ const cephe = (q: Q, z: number, v: number): P => { const t = sz(z); return lp(lp
 const poly = (pts: P[]) => pts.map((p) => p.map((n) => n.toFixed(1)).join(",")).join(" ");
 const dq = (q: Q, z1: number, z2: number, v1: number, v2: number): P[] => [cephe(q, z1, v1), cephe(q, z2, v1), cephe(q, z2, v2), cephe(q, z1, v2)];
 // sokak zemini: z derinliği, u (0 sol duvar … 1 sağ duvar)
-const zemin = (z: number, u: number): P => { const t = sz(z); return [lerp(lerp(-80, 410, t), lerp(1160, 670, t), u), lerp(2050, 1130, t)]; };
+export const sokakGenislik = (z: number) => lerp(1240, 260, sz(z));
+export const zemin = (z: number, u: number): P => { const t = sz(z); return [lerp(lerp(-80, 410, t), lerp(1160, 670, t), u), lerp(2050, 1130, t)]; };
 
 // Cephe üzerine perspektife yakın yazı (afin)
 const Yazi: React.FC<{ q: Q; side: "sol" | "sag"; z1: number; z2: number; v1: number; v2: number; text: string; color?: string }> = ({ q, side, z1, z2, v1, v2, text, color = "#e9d9b0" }) => {
@@ -413,7 +414,6 @@ export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?
       <Bayrak frame={frame} />
       <Fener fl={fl} />
       <Reverbere frame={frame} fl={fl} />
-      <Fare t={t} tap={tap} />
     </g>
   );
 };

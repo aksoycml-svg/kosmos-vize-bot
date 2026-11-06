@@ -11,5 +11,7 @@ KESİN KURALLAR (kanal sahibinin kuralı):
 3. DOKUNUŞ KENDİ PLANI İÇİNDE BAŞLAR VE BİTER. Sonraki plana sarkmaz; plan bitmeden tamamlanır ya da kadrajdan çıkar.
 4. Dokunuş hikâyeye ya da karakterin eylemine bağlıysa daha iyi (ör. bastonun vuruşuyla kaçan fare).
 5. SES GEREKTİREN HER DOKUNUŞUN FOLEY'İ EKLENİR (fare tıkırtısı, kanat sesi, bayrak hışırtısı, zincir gıcırtısı...). Atlanmaz; seviyesi anlatımı bastırmaz.
-6. Ortam dokusu (duman, bayrak dalgası, ışık titremesi, sis) dokunuş sayılmaz; ama dikkat çekecek kadar öne çıkmamalı.
+6. OKUNABİLİRLİK: Dokunuş telefonda fark edilmeli — ekran yüksekliğinin en az %10'u kadar ya da kısa bir yakın plan/insert ile gösterilir; en az 1 sn net görünür kalır. Dokunuş anında göz oraya yönlendirilir (kamera, ışık, kontrast, diğer hareketlerin durması).
+7. KATKI: Dokunuş bir karakter eylemine sebep-sonuç ile bağlanır ve mümkünse karakteri anlatır (ör. Louis fareyi umursamadan bastonu yanına vurur → soğukluğu).
+8. Ortam dokusu (duman, bayrak dalgası, ışık titremesi, sis) dokunuş sayılmaz; ama dikkat çekecek kadar öne çıkmamalı.
 Çıktı: her plan için {plan_id, dokunuş(lar), başlangıç-bitiş saniyesi, hangi eyleme bağlı, foley dosyası}.
