@@ -362,3 +362,22 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - TASARIMCI: tasarim.md 1.1'deki "salon girişinde tricolore" satırı kalksın; paket kâğıdı üç durum (açılmış/kapalı/kabartılı) çizim referansı; kol+el insert referansı.
   - YÖNETMEN: motion'ın değiştirdiği değerleri sahne planına işle (P02 oda + z 1.6/1.7, efektif ufuk ≈ 280; P04 z 2.4/2.45, ızgara z 2.6 u 0.32, replik üst bant, FareInsert yeniden kadrajı); P04 göz kırpma kararı (kaldır ya da okunur jest); P01 SAK yerine kancada okunur gösterge konumu; P02 etiketlerinin p84–90'da çıkışı.
   - Sonraki tur: TOURS (f0, p54, p150) ve BORSA (p0, p90, p102, p204) yeniden + 360 sayfa; SOKAK yalnız p150.
+
+## mekân sorumlusu · 2026-11-06 · R1 kare denetimi: SB2-SOKAK ve SB2-BORSA (mekanlar.md bölüm 9)
+- Ne yaptım: Kullanıcının "sokak mimarisi 1834 Bordeaux mu?" sorusu, café önündeki iki tahta ve tricolore isteği ile Borsa'daki sivri kemer şikâyeti üzerine SB2-SOKAK (A2 ve A1 `aca94c8`) ve SB2-BORSA karelerini ve kaynaklarını (`Sb2Sokak.tsx`, `proto/Sokak.tsx` bordeaux varyantı, `Sb2Borsa.tsx`, `doku/Mimari.tsx`) denetledim. mekanlar.md'ye değişiklik notu ve bölüm 9 eklendi: 20 satırlık doğru/yanlış tablosu, café kararı, tricolore konumu (hesaplanmış ekran koordinatları), ölü alan çözümü, Borsa kemer dili, 19 maddelik motion uygulama listesi, araştırmacıya 5 ek soru.
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/storyboard-v2/mekanlar.md (not + bölüm 9), bolumler/blanc-kardesler/katki-raporu.md (bu bölüm). Kod değişmedi.
+- Aldığım kararlar ve gerekçeleri:
+  - Sokak: malzeme ve atmosfer doğru (taş, ferforje, réverbère ipi, orta oluk, direkler, külahsız Saint-Michel); cephe dili yanlış: tek parça duvar, kat hiyerarşisi yok, düz pencere, levha gibi asılı maskaronlar, yanlış ölçekte kiremit ağızları, fazla panjur. Doğrusu: ayrı evler (R+2/R+3 + attique, farklı korniş), basık kemerli lento + kilit taşında maskaron, 1. katta ferforje, taş korniş arkasında görünmez tuile canal.
+  - Café: önünde hiçbir şey; kafe açık ve ışıklı, kapı aralık, asılı tabela, vitrinde iki statik siluet. Gerekçe: kaldırımsız dar sokakta 1830'larda teras olmaz; vitrin ışığı sahnede işlevli.
+  - Tricolore: sol cephede küçük resmî yapı, eğik direk 35°, direk dibi z 1.7 v 0.30 (≈155,630), bayrak alanı x 150–390 y 480–700 (yazı, karakter, ip ve fenerle çakışmaz). Mavi direğe bitişik, şeritler direğe paralel (A1'deki bayrakta şeritler direğe dikti: yanlıştı). Rüzgâr +x (sis yönüyle tutarlı), gece renkleri ve amber/ay ışığı tarif edildi.
+  - Borsa: sivri görünüm iki koddan geliyor: kemer yüksekliği pencere yüksekliğine oranlanmış (yarım daireyi aşıyor) ve tepeden inen Y kayıtları (gotik tracery). Doğrusu: Gabriel klasik dili, yarım daire (yükseklik = açıklık/2) ve basık kemer, agrafe + imposte, paralel kayıtlı küçük camlar, oran 1:2.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - "Her nesnenin yeri anlamlı": café önündeki `TabureSira` (iki bank) anlamsız, kaldırılmalı.
+  - "Ölü alan yok": SOKAK ve BORSA'da alt üçte bir boş. Sokak: TONNELIER fıçısı + eşik, CHAPELIER basamağı + chasse-roue, ön birikinti, oluk yansıması. Borsa: tasarımda olup karede olmayan sol sütun ve ön korkuluk.
+  - "Kırmızı yalnız mühür/hata/vurgu": sokaktaki kırmızı sardunya noktaları kaldırılmalı.
+  - "Küçük jest = yakın kamera": P04 geniş kadrajda yüz ~100 px; göz kırpma için push-in sonunda yüz ≥ 230 px olmalı.
+  - Saint-Michel nehrin içinde duruyormuş gibi; sola, çatıların arkasına alınmalı.
+- Açık sorular / bir sonraki ajana notlar:
+  - MOTION: mekanlar.md 9.6 listesi (Mimari.tsx kemer düzeltmesi önce; her kemerli kareyi etkiler).
+  - YÖNETMEN: P04'te karakterleri öne almak (z 2.4 → 1.9) ölü alanı daha iyi çözer ama ayaklar alt banda iner; P04 push-in süresi ve ölçeği (göz kırpma).
+  - ARAŞTIRMACI: 9.7'deki sorular (ev yüksekliği/panjur/is, 1834 Bordeaux'da yağ lambası mı havagazı mı, bayrak asan resmî yapılar, kafe terası, Borsa iç kemer düzeni).
