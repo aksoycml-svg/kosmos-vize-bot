@@ -149,7 +149,7 @@ Not: P13 esneme ve P04 göz kırpma (0.23 sn) oyunculuk jestidir; doğal sürele
 - **İsim etiketleri (BB2):** her biri kendi karakterinin şapkasının üstünde (bağlantı çizgisi 30 px). **Görünür p+0–42, p+42–50 yukarı kayarak çıkar (p+50'de yok); insert kesmesi p+78, tebeşir kırılması p+90** (etiket dokunuşla ve katibin yazma kurulumuyla çakışmaz). François etiketi sağ kenarı x ≤380, Louis etiketi sol kenarı x ≥720 (ikisi de tahtayı x 385–695 örtmez), her biri kendi şapka tepesine inen 30 px bağlantı çizgisiyle; toz/düşen parçanın üzerinde değil; sonra bir daha gelmez (BC4).
 - **Giriş/çıkış:** Hepsi kare açılırken içeride (avlu arcade geçitleri kullanılmaz).
 - **Zaman çizelgesi:** 0 dolly · 30–88 katip rakam yazar · 42–50 etiketler çıkar · **78 kesme: tahta insert** · **90 tebeşir kırılır** (toz ≥240 px, tahtanın önünde güneş ışığında asılı kalır; parça insertte ≥43×19 px, açık renk koyu kontur) · 90–114 parça tahta hizasından düşer, iki sekme (**v2.7: tahta altı tebeşir rafı p102, estrad basamağı p114**) · 96–126 kalabalık döner, **donar** (126–150; p+90–150 = 1.0 sn net) · 114–150 geri çekilme · **150 kesme: Louis göğüs** (kafası kalkmaz, yazar; tüy elde, mürekkep satırı ilerler) · 186 kesme: boy, dolly sonu · **192 katip yarım tebeşirle ilk çizgi**.
-- **Temas:** süren tebeşir cızırtısı (186–244) · **246 (p+90)** tebeşir "çıt" · **258 (p+102)** sekme-1 · **270 (p+114)** sekme-2 · **348 (p+192)** yarım tebeşir "cız" · kalem cızırtısı (Louis göğüs çekiminde yakın, −5; el ≥230 px ve yazma görünür) · insertte çıt/sekme sesleri YAKIN (−3/−4), tarih ve kare değişmez · kalabalık uğultusu p+90–168 0.5 sn kısılır (açık avlu: hafif yankı, kuş sesi yok).
+- **Temas:** süren tebeşir cızırtısı (186–244) · **246 (p+90)** tebeşir "çıt" · **258 (p+102)** sekme-1 (ahşap raf, tok) · **270 (p+114)** sekme-2 (estrad basamağı, taş/ahşap) · **348 (p+192)** yarım tebeşir "cız" · kalem cızırtısı (Louis göğüs çekiminde yakın, −5; el ≥230 px ve yazma görünür) · insertte çıt/sekme sesleri YAKIN (−3/−4), tarih ve kare değişmez · kalabalık uğultusu p+90–168 0.5 sn kısılır (açık avlu: hafif yankı, kuş sesi yok).
 - **Süreklilik:** Louis cep eldiven köşesi (→P19; Louis çıplak el); ciltli defteri (→P15); François taba eldiven. François solda, Louis sağda.
 - **Fizik:** Katip platformda; ön plan siluetler zemine basar (ayaklar kadraj dışı). Gölgeler güneşin tersine (tepeden, kısa). Ölçek efektif ufka göre.
 - **Geçiş (çıkış):** MATCH ("PARIS" (540,430)).
@@ -172,24 +172,24 @@ Not: P13 esneme ve P04 göz kırpma (0.23 sn) oyunculuk jestidir; doğal sürele
 - **Kadraj/kamera:**
   - **p+0–78 boy/orta** (alçak açı): `cs 1.00→1.10, cy 0→−20`. François z 3.2→2.4 (u 0.46), Louis z 3.3→2.45 (u 0.70; ekran sağında, gövdeler birbirini örtmez). **Alt üçte bir ön plan:** TONNELIER fıçısı + eşik, CHAPELIER basamağı + chasse-roue, ön birikinti ve ıslak taş yansımaları (y 1560–1900, k 1.3). Sol cephede küçük resmî yapıda tricolore (isteğe bağlı [T]; kullanıcı isteği olduğu için kalır, **gece paleti** mavi `#2b3550` / beyaz `#8a8676` / kırmızı `#5a2a28`, boyut ≈%60, sarkık; p+144 sonrası kadraja girmez; SC5 kaldırma önerisi kullanıcıya soruldu). **Birikintiler (SC4):** yassı perspektif elipsi (en/boy ≥3:1), yumuşak kenar, gök bandı `#2a3352` + réverbère'in kısa amber dikey yansıması + 1 px ay konturu; koyu dolgu yok. **Yürüyüş (SC11):** p0'da `yuru` fazı temas/geçiş pozunda başlar (sallanan ayak havada tekme gibi durmaz). Ayaklar y ≈1420.
   - **p+78–144 INSERT** (kaldırım hizası, statik; **fare insert yeniden kadraj:** ızgara sol-orta **(300,1130)**, ufuk y 700; Louis'nin bordo paçası + baston ucu sağdan girer, x ≈800–900). Fare boyu %12 (≥230 px). **Fare ızgaradan çıkar, Louis'nin ayağına doğru ~200 px yürür; baston fare'nin önüne iner; fare aynı ızgaraya koşarak döner.**
-  - **p+144–216 bel → göğüs → yakın** (kesme sonrası tek kesintisiz push-in). François yüz merkezi dünya ≈ (492,1070), yüz ≈75 px @cs 1 → ≥230 px için `cs 3.2` (≈240 px). `e = easeInOutCubic(t)`, `t=(f−144)/36`, `cs = 1.70+1.50e`, **`cx = 81.6−8e`, `cy = −247−225e`** (v2.6: eski `cx = 81.6+72e`, `cy = −247−265e`; SC3: Louis'nin yüzü x ≤1000'e ve baston eli IG sağ sütunu x 920–1080 dışına, SC9: botlar tamamen kadraj dışına). Kare kare (cs değişmedi, cx/cy güncellendi):
+  - **p+144–216 bel → göğüs → yakın** (kesme sonrası tek kesintisiz push-in). François yüz merkezi dünya ≈ (492,1070), yüz ≈75 px @cs 1 → ≥230 px için `cs 3.2` (≈240 px). `e = easeInOutCubic(t)`, `t=(f−144)/36`, `cs = 1.70+1.50e`, **`cx = 81.6−88e`, `cy = −247−225e`** (**v2.7, motion A4b ölçtü:** v2.6 `cx = 81.6−8e` ile Louis yüzü x ≈1065 kalıyordu; −88e ile x ≤1000; cs ve cy aynı. Tarihçe: v2.5 `81.6+72e`, `−247−265e`; SC3: Louis'nin yüzü x ≤1000'e, SC9: botlar tamamen kadraj dışına). Kare kare (cs ve cy değişmedi, **cx v2.7**):
 
 | p+N | t | cs | cx | cy |
 |---|---|---|---|---|
 | 144 | 0.000 | 1.700 | 81.6 | −247.0 |
-| 148 | 0.111 | 1.708 | 81.6 | −248.3 |
-| 152 | 0.222 | 1.766 | 81.2 | −256.8 |
-| 156 | 0.333 | 1.922 | 80.4 | −280.3 |
-| 160 | 0.444 | 2.227 | 78.8 | −326.0 |
-| 164 | 0.556 | 2.673 | 76.4 | −393.0 |
-| 168 | 0.667 | 2.978 | 74.8 | −438.7 |
-| 172 | 0.778 | 3.134 | 74.0 | −462.1 |
-| 176 | 0.889 | 3.192 | 73.6 | −470.8 |
-| 180 | 1.000 | 3.200 | 73.6 | −472.0 |
-| 198 | – | 3.260 | 76.0 | −477.0 |
-| 216 | – | 3.300 | 78.0 | −482.0 |
+| 148 | 0.111 | 1.708 | 81.1 | −248.3 |
+| 152 | 0.222 | 1.766 | 77.7 | −256.8 |
+| 156 | 0.333 | 1.922 | 68.6 | −280.3 |
+| 160 | 0.444 | 2.227 | 50.7 | −326.0 |
+| 164 | 0.556 | 2.673 | 24.5 | −393.0 |
+| 168 | 0.667 | 2.978 | 6.6 | −438.7 |
+| 172 | 0.778 | 3.134 | −2.5 | −462.1 |
+| 176 | 0.889 | 3.192 | −5.9 | −470.8 |
+| 180 | 1.000 | 3.200 | −6.4 | −472.0 |
+| 198 | – | 3.260 | −4.2 | −477.0 |
+| 216 | – | 3.300 | −2.0 | −482.0 |
 
-  (180–216 doğrusal yavaş sürüklenme; aradaki kareler formülle üretilir. Yüz dikeyde ≈40 px aşağı iner; yüz ≥230 px korunur, ölçümü motion doğrular.) Paralaks k: gök 0.25, uzak 0.55, karakter 1, ön plan 1.3.
+  (v2.6 cx sütunu: 81.6 · 81.6 · 81.2 · 80.4 · 78.8 · 76.4 · 74.8 · 74.0 · 73.6 · 73.6 · 76.0 · 78.0. 180–216 doğrusal yavaş sürüklenme, cx −6.4→−2.0; aradaki kareler formülle üretilir. Yüz dikeyde ≈40 px aşağı iner; yüz ≥230 px korunur, ölçümü motion doğrular.) Paralaks k: gök 0.25, uzak 0.55, karakter 1, ön plan 1.3.
 - **Baston ve el (SK1, kritik):** Baston **Louis'nin dış (ekran sağı) elinde, gövdesinin sağında**; kavrayan el ve parmaklar bel planda (p+144–168) tam görünür; baston ucu dış ayağın önünde, taşa değer (`bastonAcisi`/`kolIK`). François'nın bacaklarının önünden geçmez; kardeşe dokunan kol boş. **Eldiven (SC1, kesin):** Louis'nin baston eli ve tüm elleri **çıplak** (parmaklar görünür); sağ göğüs cebinde beyaz eldiven köşesi (bel planda p+144–168 ≥29×17 px, kurulum tekrarı); **François taba deri eldiven `#8a6a48`** (şapkayı kaldıran el); krem/gri eldiven yok. **SC6:** şapkayı kaldıran kol yüzün dışından yükselir (omuzdan yana-yukarı, dirsek yüzden ≥40 px uzakta); favori ≈%50 dar, saçla aynı ton, kulak önünde biter.
 - **Fare insert protokolü (SC7):** insert, ızgara (300,1130) kadrajında yeniden kurulmuş sayılır; kontrol kareleri p78, p87, p108, p138, p143 (Bölüm 11). Kapanışta ızgarada kuyruk ucu kaybolur, p138–144 boş ızgara.
 - **Giriş/çıkış:** Karakterler kare açılırken sokak ortasında. Fare ızgaradan çıkar ve aynı ızgaraya girer.
