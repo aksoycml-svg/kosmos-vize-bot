@@ -29,6 +29,26 @@ Her ajan görev bitince `bolumler/<slug>/katki-raporu.md` sonuna ekler: ne yapt�
 1. Araştırma → 2. Senaryo (**kullanıcı onayı**) → 3. Storyboard: kare + notlar (**kullanıcı onayı**) → 4. Ses (ElevenLabs) + varlıklar → 5. Animasyon (motion) → 6. Eleştirmen kontrolü (kontrol kareleri) → 7. İlk kurgu render (**kullanıcı onayı**) → 8. Premiere paketi (sahne klipleri, ayrı ses kanalları, SRT, XML) + 4K hareketli tuval gereken planlarda.
 Her teslimden önce eleştirmen kontrol karelerini kural listesine göre tarar. Kullanıcıya hatayı kullanıcının yakalaması = süreç hatası.
 
+### Ajan çalışma sırası (revizyon zincirini önlemek için)
+Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan, girdisi olan belge kesinleşmeden başlamaz. (Blanc'ta hepsi paralel çalıştı; dönem bulguları sonradan gelince senaryo, dokunuş, sahne planı ve tasarım 2–3 kez revize edildi.)
+
+| Adım | Ajan | Girdi (kesin olmalı) | Çıktı (tek sahibi) |
+|---|---|---|---|
+| 1 | araştırmacı | fikir | `arastirma.md` — olay **ve** dönem/görsel doğrulama (mimari, kıyafet, nesneler, teknoloji nasıl çalışır, şehir, saat/ışık koşulları) |
+| 2 | senarist | 1 | `senaryo.md` → **kullanıcı onayı** |
+| 3 | yaratıcı yönetmen | 1–2 | `dokunuslar.md` (yalnız kaynakla çelişmeyen jestler) |
+| 4 | yönetmen | 2–3 | `sahne-plani.md/.json` (zaman, kadraj, z/u, temas kareleri) |
+| 5 | tasarımcı → mekân sorumlusu | 1–4 | `tasarim.md` (kimlik, palet, karakter, prop, tipografi) önce; sonra `mekanlar.md` (doku, mekân dili) onun paletiyle |
+| 6 | motion | 1–5 | önce **1–3 kalibrasyon karesi** → eleştirmen → geçerse kalan kareler (paralel olabilir) |
+| 7 | eleştirmen | 6 | kalite kapısı; geçmeyen kare kullanıcıya gitmez |
+| 8 | teknisyen | 7 | kontrol sayfası, render, git |
+| — | kurgucu | 4'ten sonra | müzik/ses planı motion ile paralel yürüyebilir |
+
+- **Tek sahiplik:** her belgenin tek sahibi vardır; diğerleri doğrudan değiştirmez, notu orkestraya (ana oturum) yazar, orkestra sahibine iletir.
+- **Yukarı akış:** alt adımda bir sorun üst adımın belgesini etkiliyorsa (ör. dönem bulgusu), önce o belgenin sahibi düzeltir, sonra aşağıdakiler sırayla güncellenir — hepsi aynı anda değil.
+- **Açık soru biriktir:** her adımın sonunda kullanıcıya gereken kararlar tek mesajda toplanır; karar gelmeden bağımlı adım başlamaz (varsayılan seçilirse açıkça yazılır).
+- **Paralel serbest olanlar:** birbirinin girdisi olmayan işler (ör. kurgucu müzik araştırması ↔ motion; kalibrasyondan sonra farklı mekânların kareleri).
+
 ## KURALLAR
 
 ### Doğruluk
