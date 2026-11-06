@@ -358,21 +358,23 @@ const Zemin: React.FC<{ sehir?: Sehir }> = ({ sehir = "paris" }) => {
       {/* Bordeaux ıslaklık: yanık pencere ve dükkân camlarının altında dikey uzamış amber yansıma şeritleri */}
       {sehir === "bordeaux" && [[230, 1330, 0.22], [330, 1240, 0.18], [790, 1270, 0.2], [880, 1380, 0.24], [420, 1190, 0.14], [655, 1180, 0.14]].map(([x, y, o], i) => <ellipse key={`ys${i}`} cx={x} cy={y} rx={14} ry={120} fill="#ffb357" opacity={o} style={{ filter: "blur(9px)" }} />)}
       {/* Bordeaux: su birikintileri (gök ve fener aynası) */}
-      {sehir === "bordeaux" && <IslakKaldirim zemin={zemin} seed={DOKU_SEED.sokakBdx} birikinti={BIRIKINTI_BDX} isiklar={[{ x: 760, renk: "#ffb357", guc: 0.7, gen: 34 }, { x: 330, renk: "#ff9a40", guc: 0.55, gen: 30 }, { x: 540, renk: "#ffd98f", guc: 0.8, gen: 36 }]} pencereler={[]} />}
+      {sehir === "bordeaux" && <IslakKaldirim elips zemin={zemin} seed={DOKU_SEED.sokakBdx} birikinti={BIRIKINTI_BDX} isiklar={[{ x: 760, renk: "#ffb357", guc: 0.7, gen: 34 }, { x: 330, renk: "#ff9a40", guc: 0.55, gen: 30 }, { x: 540, renk: "#ffd98f", guc: 0.8, gen: 36 }]} pencereler={[]} />}
     </g>
   );
 };
 
 // Sokağın ortasına iple asılı yağ lambası (réverbère) — 1830'lar Paris'inin simgesi
 export const REVERBERE_Z = 2.3;
-export const reverbere = (frame: number) => {
+// asili: lambanın ip ortasından sarkma boyu (px @ kamera 1). Varsayılan 60 (Proto/Paris). SB2 P04: 15 — push-in sonunda
+// fener gövdesi ekranda y ≤ 200 (yazı bandı ve FRANÇOIS etiketiyle çakışmaz; elestiri-C SC2). Işık kaynağı aynı fonksiyondan.
+export const reverbere = (frame: number, asili = 60) => {
   const l = cephe(SOL, REVERBERE_Z, 0.36), r = cephe(SAG, REVERBERE_Z, 0.36);
   const mid: P = [(l[0] + r[0]) / 2, (l[1] + r[1]) / 2 + 90];
   const sway = Math.sin(frame * 0.045) * 4;
-  return { l, r, mid, lamp: [mid[0] + sway, mid[1] + 60] as P, sway };
+  return { l, r, mid, lamp: [mid[0] + sway, mid[1] + asili] as P, sway };
 };
-const Reverbere: React.FC<{ frame: number; fl: number }> = ({ frame, fl }) => {
-  const { l, r, mid, lamp, sway } = reverbere(frame);
+const Reverbere: React.FC<{ frame: number; fl: number; asili?: number }> = ({ frame, fl, asili }) => {
+  const { l, r, mid, lamp, sway } = reverbere(frame, asili);
   return (
     <g>
       <path d={`M ${l[0]} ${l[1]} Q ${mid[0]} ${mid[1] + 40} ${r[0]} ${r[1]}`} stroke="#0a0c14" strokeWidth={3} fill="none" />
@@ -661,13 +663,13 @@ const Fener: React.FC<{ fl: number; sonuk?: boolean }> = ({ fl, sonuk }) => {
   );
 };
 
-export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?: number; sehir?: Sehir; izgaraFaresiz?: boolean }> = ({ katman, t = 0, tap = 99, sehir = "paris", izgaraFaresiz }) => {
+export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?: number; sehir?: Sehir; izgaraFaresiz?: boolean; revAsili?: number }> = ({ katman, t = 0, tap = 99, sehir = "paris", izgaraFaresiz, revAsili }) => {
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame() * 30 / fps; // 30 fps eşdeğeri zaman
   const fl = Math.sin(frame * 0.7) * 0.5 + Math.sin(frame * 1.9) * 0.3;
   if (katman === "gok") return <Gokyuzu frame={frame} sehir={sehir} />;
   if (katman === "uzak") return <g>{sehir === "bordeaux" ? <UzakBordeaux frame={frame} /> : <Uzak />}<Duman x={440} y={820} frame={frame} seed="d1" /><Duman x={640} y={830} frame={frame} seed="d2" /></g>;
-  const { lamp } = reverbere(frame);
+  const { lamp } = reverbere(frame, revAsili);
   return (
     <g>
       <Zemin sehir={sehir} />
@@ -689,7 +691,7 @@ export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?
       {sehir !== "bordeaux" && <Bayrak frame={frame} />}
       {sehir === "bordeaux" && <BordeauxEk frame={frame} />}
       <Fener fl={sehir === "bordeaux" ? -9 : fl} sonuk={sehir === "bordeaux"} />
-      <Reverbere frame={frame} fl={fl} />
+      <Reverbere frame={frame} fl={fl} asili={revAsili} />
     </g>
   );
 };

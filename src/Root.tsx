@@ -7,6 +7,7 @@ import { RigTest } from "./bolumler/blanc/proto/RigTest";
 import { Proto, PROTO_SURE, PROTO_FPS } from "./bolumler/blanc/proto/Proto";
 import { KagitLifPisir, GrenPisir } from "./doku/ArsivKatmani";
 import { Sb2Sokak, SB2_SOKAK_SURE } from "./bolumler/blanc/sb2/Sb2Sokak";
+import { Sb2SokakFare } from "./bolumler/blanc/sb2/Sb2SokakFare";
 import { Sb2Tours, SB2_TOURS_SURE } from "./bolumler/blanc/sb2/Sb2Tours";
 import { Sb2Borsa, SB2_BORSA_SURE } from "./bolumler/blanc/sb2/Sb2Borsa";
 import { Sb2BorsaHibrit, SB2_BORSA_HIBRIT_SURE } from "./bolumler/blanc/sb2/Sb2BorsaHibrit";
@@ -29,5 +30,6 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="SB2-BORSA-HIBRIT" component={Sb2BorsaHibrit} durationInFrames={SB2_BORSA_HIBRIT_SURE} fps={60} width={1080} height={1920} defaultProps={{ deneme: 3 as 1 | 2 | 3, guvenli: false }} />
     <Still id="SB2-PROP-TEST" component={PropTest} width={1080} height={1920} />
     <Composition id="SB2-SOKAK" component={Sb2Sokak} durationInFrames={SB2_SOKAK_SURE} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
+    <Composition id="SB2-SOKAK-FARE" component={Sb2SokakFare} durationInFrames={SB2_SOKAK_SURE} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
   </>
 );

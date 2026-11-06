@@ -36,11 +36,13 @@ export const FormulYazisi: React.FC<{ metin: string; boyut?: number; renk?: stri
 // T5 ALTYAZI (+ T5b replik etiketi): Inter 800 56 px, en çok 2 satır, alt kenar y ≈ 1490
 // okunan kelime: ölçek 1.06 + parlaklık; anahtar kelime kırmızı
 // bant="ust": replik ayakları/temas anını/kurulum nesnesini örtecekse üst banda (y 240–400) alınır (CLAUDE.md yazı bantları)
-export const Altyazi: React.FC<{ metin: string; kim?: string; vurgu?: string[]; okunan?: number; soluk?: number; bant?: "ust" | "alt" }> = ({ metin, kim, vurgu, okunan = -1, soluk = -1, bant = "alt" }) => {
+// kimKontrast (A4b, elestiri-C SC2): konuşan etiketi sis/gece zemininde okunur — #e7c37a, 34 px, koyu mürekkep plaka (α .78) + 0 2px 0 gölge (kontrast ≥ 4.5:1)
+export const Altyazi: React.FC<{ metin: string; kim?: string; vurgu?: string[]; okunan?: number; soluk?: number; bant?: "ust" | "alt"; kimKontrast?: boolean }> = ({ metin, kim, vurgu, okunan = -1, soluk = -1, bant = "alt", kimKontrast }) => {
   const ps = parcala(metin, vurgu);
   return (
     <AbsoluteFill style={{ justifyContent: bant === "alt" ? "flex-end" : "flex-start", alignItems: "center", padding: bant === "alt" ? `0 ${BANT.yan}px ${1920 - BANT.altAlt}px` : `${BANT.ustY + 6}px ${BANT.yan}px 0` }}>
-      {kim && <div style={{ fontFamily: mono, fontWeight: 500, fontSize: 30, letterSpacing: "0.2em", color: "#b8862b", marginBottom: 10, textShadow: GOLGE }}>{kim}</div>}
+      {kim && !kimKontrast && <div style={{ fontFamily: mono, fontWeight: 500, fontSize: 30, letterSpacing: "0.2em", color: "#b8862b", marginBottom: 10, textShadow: GOLGE }}>{kim}</div>}
+      {kim && kimKontrast && <div style={{ fontFamily: mono, fontWeight: 600, fontSize: 34, letterSpacing: "0.2em", color: "#e7c37a", marginBottom: 10, padding: "2px 14px 4px 18px", background: "rgba(20,17,13,0.78)", textShadow: "0 2px 0 #000" }}>{kim}</div>}
       <div lang="tr" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0 14px", fontFamily: sans, fontWeight: 800, fontSize: 56, lineHeight: 1.15, textAlign: "center", textShadow: GOLGE, maxWidth: 920 }}>
         {ps.map((p, i) => (
           <span key={i} style={{ color: p.vurgu ? KIRMIZI : "#f6f1e4", opacity: soluk >= 0 && i > soluk ? 0.45 : 1, display: "inline-block", transform: i === okunan ? "scale(1.06)" : undefined, filter: i === okunan ? "brightness(1.12)" : undefined }}>{p.t}</span>

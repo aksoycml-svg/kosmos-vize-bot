@@ -1,6 +1,9 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { Kukla, FRANCOIS, LOUIS, Poz, yuru } from "../../../rig/Kukla";
+import { Kukla, Poz, yuru } from "../../../rig/Kukla";
+import { FRANCOIS_TABA, LOUIS_ELSIZ } from "../palet";
+import { CepEldiven } from "../props/EldivenKose";
+import { FareInsertSb2 } from "./Sb2SokakFare";
 import { AYAK_TABAN, bastonAcisi, bastonUcu, dunyaya, elYerel } from "../../../rig/kinematik";
 import { Sokak, FENER, Tanimlar, zemin, sokakGenislik, reverbere, SokakOnPlan } from "../proto/Sokak";
 import { ArsivKatmani } from "../../../doku/ArsivKatmani";
@@ -17,7 +20,8 @@ import { Altyazi } from "../../../components/EkranYazisi";
 // (cs 1.70→3.20 easeInOutCubic, tablo) · p180–216 yavaş sürüklenme (cs →3.30). Göz kırpma p186–200 yakın (yüz ≥ 230 px).
 // Baston Louis'nin DIŞ (ekran sağı = arka) elinde; ucu dış ayağın önünde taşa (FK). Replik ÜST bantta. Tek ışık: réverbère.
 export const SB2_SOKAK_SURE = 216;
-export const P04_KONTROL = [0, 150, 189, 215];
+export const P04_KONTROL = [0, 144, 150, 189, 215]; // + insert SB2-SOKAK-FARE 78, 87, 108, 138, 143
+export const REV_ASILI = 15; // réverbère ip ortasından sarkma (px): push-in sonunda fener gövdesi y ≤ 200 (SC2)
 export const P04_KONUM = { francois: { z0: 3.2, z: 2.4, u: 0.46 }, louis: { z0: 3.3, z: 2.45, u: 0.70 }, izgara: { z: 2.6, u: 0.32 } } as const;
 
 const cl = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -30,8 +34,9 @@ const yerlestir = (z: number, u: number) => { const [x, y] = zemin(z, u); const 
 const kamera = (p: number) => {
   if (p < 78) return { cs: interpolate(p, [0, 78], [1.0, 1.1], cl), cx: 0, cy: interpolate(p, [0, 78], [0, -20], cl) };
   if (p < 144) return { cs: 1.1, cx: 0, cy: -20 }; // (insert sırasında bu kadraj görünmez)
-  if (p <= 180) { const t = (p - 144) / 36; const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; return { cs: 1.7 + 1.5 * e, cx: 81.6 + 72 * e, cy: -247 - 265 * e }; }
-  return { cs: interpolate(p, [180, 198, 216], [3.2, 3.26, 3.3], cl), cx: interpolate(p, [180, 198, 216], [153.6, 156, 158], cl), cy: interpolate(p, [180, 198, 216], [-512, -517, -522], cl) };
+  // v2.6 (SC3/SC9) + A4b ölçüm düzeltmesi: cx = 81.6 − 88e (plan −8e Louis'nin yüzünü x ≈ 1065'te bırakıyordu), cy = −247 − 225e — Louis yüzü x ≤ 1000, botlar kadraj dışı
+  if (p <= 180) { const t = (p - 144) / 36; const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; return { cs: 1.7 + 1.5 * e, cx: 81.6 - 88 * e, cy: -247 - 225 * e }; }
+  return { cs: interpolate(p, [180, 198, 216], [3.2, 3.26, 3.3], cl), cx: interpolate(p, [180, 198, 216], [-6.4, -4, -2], cl), cy: interpolate(p, [180, 198, 216], [-472, -477, -482], cl) };
 };
 
 const yurume = (p: number, z0: number, z1: number, u: number, faz: number) => {
@@ -43,13 +48,13 @@ const yurume = (p: number, z0: number, z1: number, u: number, faz: number) => {
 
 const francoisPoz = (p: number): Poz => {
   const F = P04_KONUM.francois;
-  const { g, w, amt } = yurume(p, F.z0, F.z, F.u, 0);
+  const { g, w, amt } = yurume(p, F.z0, F.z, F.u, Math.PI / 2); // SC11: p0 topuk teması pozu (sallanan bacak tekme gibi durmaz)
   const kol = interpolate(p, [144, 158, 162], [0, 1.04, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) });
   const bak = interpolate(p, [176, 186], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) }); // 180–186 kameraya bakar
   const kirp = interpolate(p, [186, 190, 196, 200], [0, 1, 1, 0], cl); // göz kırpma (tek göz: ön göz)
   const pz: Poz = {
     x: g.x, y: g.y, scale: g.s, facing: -1, ...w,
-    shF: p < 78 ? w.shF : -158 * kol + 6 * (1 - kol), elF: p < 78 ? w.elF : -32 * kol - 8 * (1 - kol),
+    shF: p < 78 ? w.shF : -168 * kol + 6 * (1 - kol), elF: p < 78 ? w.elF : -14 * kol - 8 * (1 - kol), // SC6: kol yüzün dışından yükselir
     lean: (w.lean ?? 0) * amt + 1.5, breathe: Math.sin(p * 0.07),
     headTilt: interpolate(p, [144, 162], [0, -6], cl) + bak * 4 - kirp * 3, lookX: 1 - bak * 1.6, lookY: 0.1,
     browF: 0.8 - kirp * 1.2, browB: 0.6 + kirp * 0.6,
@@ -74,11 +79,6 @@ const louisPoz = (p: number): Poz => {
   return pz;
 };
 
-const CepEldiven: React.FC<{ pz: Poz }> = ({ pz }) => (
-  <g transform={`translate(${pz.x},${pz.y}) scale(${(pz.scale ?? 1) * (pz.facing ?? 1)},${pz.scale ?? 1}) translate(0,${pz.bodyY ?? 0}) rotate(${pz.lean ?? 0},0,-226)`}>
-    <path d="M 26 -322 L 50 -330 L 52 -318 L 30 -312 Z" fill="#f4efe2" stroke="#8a7f68" strokeWidth={1.4} transform="rotate(-12 40 -322)" />
-  </g>
-);
 
 const Izgara: React.FC = () => {
   const [gx, gy] = zemin(IZGARA.z, IZGARA.u);
@@ -95,6 +95,11 @@ const Izgara: React.FC = () => {
 
 export const Sb2Sokak: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
   const p = useCurrentFrame();
+  if (p >= 78 && p < 144) return <FareInsertSb2 p={p} guvenli={guvenli} />; // INSERT (kesme p78 → p144)
+  return <Sb2SokakPlan p={p} guvenli={guvenli} />;
+};
+
+const Sb2SokakPlan: React.FC<{ p: number; guvenli?: boolean }> = ({ p, guvenli }) => {
   const frame30 = p * 0.5;
   const { cs, cx, cy } = kamera(p);
   const kat = (k: number) => `translate(${540 + cx * k},${960 + cy * k}) scale(${1 + (cs - 1) * k}) translate(-540,-960)`;
@@ -104,7 +109,7 @@ export const Sb2Sokak: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
   );
   const fp = francoisPoz(p), lpz = louisPoz(p);
   const fz = { zx: fp.x, zy: fp.y - AYAK_TABAN * (fp.scale ?? 1), s: fp.scale ?? 1 }, lz = { zx: lpz.x, zy: lpz.y - AYAK_TABAN * (lpz.scale ?? 1), s: lpz.scale ?? 1 };
-  const { lamp } = reverbere(frame30);
+  const { lamp } = reverbere(frame30, REV_ASILI);
   const lambaZemin = zemin(2.3, 0.5);
   const REV: Isik = { tip: "nokta", ad: "réverbère", zemin: [lamp[0], lambaZemin[1]], yukseklik: lambaZemin[1] - lamp[1], renk: "#ffb357" };
   const uc = dunyaya(lpz, bastonUcu(lpz, lpz.caneArka ?? 0, false));
@@ -112,7 +117,7 @@ export const Sb2Sokak: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
   const kilit: KilitNokta[] = p < 144
     ? [{ ad: "François ayak", p: ekran([fz.zx, fz.zy]), tur: "ayak" }, { ad: "Louis ayak", p: ekran([lz.zx, lz.zy]), tur: "ayak" }, { ad: "baston ucu", p: ekran(uc), tur: "temas" }, { ad: "ızgara", p: ekran(zemin(IZGARA.z, IZGARA.u)), tur: "kurulum" }, { ad: "François yüz", p: yuz, tur: "yuz" }]
     : p < 170 ? [{ ad: "François yüz", p: yuz, tur: "yuz" }, { ad: "baston ucu", p: ekran(uc), tur: "temas" }, { ad: "şapka eli", p: ekran(dunyaya(fp, elYerel(fp, true))), tur: "dokunus" }]
-    : [{ ad: "François yüz (yakın)", p: yuz, tur: "yuz" }];
+    : [{ ad: "François yüz (yakın)", p: yuz, tur: "yuz" }, { ad: "Louis yüz", p: ekran(dunyaya(lpz, [20, -450])), tur: "yuz" }];
   return (
     <AbsoluteFill style={{ backgroundColor: "#0b0e1a" }}>
       <ArsivKatmani mod="gece">
@@ -125,14 +130,14 @@ export const Sb2Sokak: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
             {sis(0.55, 960, 0.26)}
             {sis(0.6, 1090, 0.2)}
             <g transform={kat(1)}>
-              <KonturTitreme derinlik="orta" seed={DOKU_SEED.sokakBdx}><Sokak katman="orta" t={0} sehir="bordeaux" izgaraFaresiz /></KonturTitreme>
+              <KonturTitreme derinlik="orta" seed={DOKU_SEED.sokakBdx}><Sokak katman="orta" t={0} sehir="bordeaux" izgaraFaresiz revAsili={REV_ASILI} /></KonturTitreme>
               <Izgara />
               <Golge isik={REV} ayak={[lz.zx, lz.zy]} h={635 * lz.s * 0.9} genislik={100 * lz.s} alfa={0.5} stil="gravur" seed={DOKU_SEED.sokakBdx + 300} />
               <Golge isik={REV} ayak={[fz.zx, fz.zy]} h={620 * fz.s * 0.9} genislik={100 * fz.s} alfa={0.5} stil="gravur" seed={DOKU_SEED.sokakBdx + 301} />
               <Golge isik={REV} ayak={uc} h={8} genislik={14 * lz.s} alfa={0.6} />
-              <Kukla louis p={LOUIS} pz={lpz} golgesiz />
-              <CepEldiven pz={lpz} />
-              <Kukla p={FRANCOIS} pz={fp} golgesiz />
+              <Kukla louis p={LOUIS_ELSIZ} pz={lpz} golgesiz />
+              <CepEldiven pz={lpz} kamera={cs} />
+              <Kukla p={FRANCOIS_TABA} pz={fp} golgesiz />
               {/* réverbère François'nın yüzünü önden amberle aydınlatır (tek kaynak; lamba karakterlerden önde, z 2.3) */}
               <circle cx={lamp[0]} cy={lamp[1] + 200} r={420} fill="url(#sb2rev)" style={{ mixBlendMode: "screen" }} />
               <circle cx={FENER[0] + 30} cy={FENER[1] + 200} r={600} fill="url(#sb2fener)" style={{ mixBlendMode: "screen" }} opacity={0.3} />
@@ -147,7 +152,7 @@ export const Sb2Sokak: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
           </svg>
         </AbsoluteFill>
       </ArsivKatmani>
-      {p >= 4 && p < 196 && <Altyazi bant="ust" kim="FRANÇOIS" metin="Herkesten önce bilen… kazanır." vurgu={["kazanır"]} okunan={p >= 146 && p < 176 ? 4 : -1} />}
+      {p >= 4 && p < 196 && <Altyazi bant="ust" kimKontrast kim="FRANÇOIS" metin="Herkesten önce bilen… kazanır." vurgu={["kazanır"]} okunan={p >= 146 && p < 176 ? 4 : -1} />}
       {guvenli && <GuvenliAlan noktalar={kilit} aktifBant={p >= 4 && p < 196 ? "ust" : null} baslik={`SB2-SOKAK p${p}`} />}
     </AbsoluteFill>
   );

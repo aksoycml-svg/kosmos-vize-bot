@@ -8,6 +8,7 @@ Kullanım:  python3 tools/sb2_kontrol.py            (render + ölçüm + sayfa)
            python3 tools/sb2_kontrol.py --sadece SB2-BORSA:0,90,168 SB2-SOKAK:0   (yalnız bu kareleri render et)
            python3 tools/sb2_kontrol.py --gravur   (A4 G6: mood-05 | Borsa | Sokak | Tours, 360 px karşılaştırma sayfası)
            --asama A4  (sayfa adı: {asama}-sayfa.png; varsayılan A4)
+           --eldiven   (yalnız eldiven beyazı denetimi + {asama}-eldiven-beyazi.png)
 Çıktı:     storyboard-v2/kareler/{ID}-p{N}.png, -360.png, -guvenli.png, renk-olcum.md, {asama}-sayfa.png, A4-gravur-karsilastirma.png
 Ad kuralı: her kare plan içi kare numarasıyla (-p{N}); NUMARASIZ ad üretilmez (A2 kalıntıları kareler/arsiv/A2/).
 Henüz Root'ta kayıtlı olmayan kompozisyonlar (ör. P04 fare insert) uyarıyla atlanır; yeri protokolde ayrılmıştır.
@@ -20,18 +21,18 @@ KARE = os.path.join(KOK, "bolumler/blanc-kardesler/storyboard-v2/kareler")
 
 # Protokol kareleri (plan içi kare, açıklama)
 KARELER = {
-    "SB2-TOURS": [(0, "ilk kare"), (54, "T SAK yerleşir"), (60, "paket açık (stil)"), (140, "eldiven bırakma (temas)"), (155, "kapanış")],
-    "SB2-SOKAK": [(0, "ilk kare"), (150, "push-in başı"), (189, "göz kırpma (yüz ≥230 px)"), (215, "kapanış")],
-    "SB2-BORSA": [(0, "ilk kare + etiketler"), (90, "tebeşir kırılır (temas)"), (102, "sekme 1 (temas)"), (168, "Louis göğüs"), (203, "kapanış (PARIS başlığı)")],
-    # P04 dokunuşu (baston–fare, TAK p108) — elestiri-C SC7. Kompozisyon A4 bölüm 2'de kaydedilecek (FareInsert yeniden kadraj);
-    # kareler P04 plan içi numarasıyla. Kayıtlı değilse atlanır.
-    "SB2-SOKAK-FARE": [(87, "fare ızgaradan çıkar (insert ilk)"), (108, "TAK: baston–taş (temas, dokunuş)"), (138, "kuyruk ızgarada kaybolur (kapanış)")],
+    "SB2-TOURS": [(0, "ilk/kapak (A)"), (54, "kol B ilk (klak)"), (60, "eldiven en yüksek, kâğıt yatar"), (100, "B 360 testi"), (140, "eldiven havuza TAP"), (155, "kapanış")],
+    "SB2-BORSA": [(0, "ilk + etiketler"), (30, "etiket/katip yazıyor"), (50, "etiket çıkmış"), (78, "insert ilk"), (90, "tebeşir kırılır"), (102, "sekme-1 raf"),
+                  (114, "sekme-2 basamak"), (126, "geri çekilme"), (150, "göğüs ilk"), (168, "yazan el + cep"), (203, "kapanış (PARIS)")],
+    "SB2-SOKAK": [(0, "ilk kare"), (144, "bel ilk (push-in başı)"), (150, "Louis durur"), (189, "göz kırpma"), (215, "kapanış")],
+    # P04 dokunuşu (baston–fare, TAK p108) — elestiri-C SC7; kare numarası = P04 plan karesi
+    "SB2-SOKAK-FARE": [(78, "insert ilk (boş ızgara)"), (87, "pençe → ızgara"), (108, "TAK baston"), (138, "kuyruk ucu tink"), (143, "kapanış boş ızgara")],
 }
 
 # Ölçüm: (kompozisyon, kare, ad, x, y, hedef hex, kaynak, |ΔL| tol, ΔE tol)
 NOKTALAR = [
     ("SB2-TOURS", 60, "duvar badana (ışıkta)", 300, 360, "#e2dccb", "SIVA Tours iç", 14, 14),
-    ("SB2-TOURS", 60, "pencere gök (geç gün)", 600, 470, "#e8c88a", "tasarım 1.4 gecGunGok", 14, 14),
+    ("SB2-TOURS", 60, "pencere gök (geç gün)", 690, 470, "#e8c88a", "tasarım 1.4 gecGunGok", 14, 14),
     ("SB2-TOURS", 60, "paket kâğıdı (güneşte)", 900, 1250, "#b08a5a", "KAGIT-PAKET", 16, 14),
     ("SB2-TOURS", 60, "masa (gölgede)", 980, 1600, "#7a5230", "AHSAP-MESE orta", 20, 16),
     ("SB2-SOKAK", 0, "gök (üst)", 540, 120, "#0f1530", "gece gök", 14, 14),
@@ -98,7 +99,7 @@ def render():
             Image.open(ad(kid, fr)).convert("RGB").resize((360, 640), Image.LANCZOS).save(ad(kid, fr, "-360"))
 
 def olc():
-    s = ["# Renk ölçüm tablosu (A3/A4 · derecelendirme sonrası, 9×9 px ortalama; TOURS p60 A3 karesi — A4 bölüm 1'de yeniden render edilmedi)", "",
+    s = ["# Renk ölçüm tablosu (A4b · derecelendirme sonrası, 9×9 px ortalama; tüm kareler A4b render)", "",
          "Hedef = mekanlar.md malzeme rengi. L* = CIELAB parlaklık; ΔE = CIEDE2000; ΔH° = ölçülen − hedef ton açısı (a*b*), "
          "C* düşükse (< 10, nötr) ton açısı anlamsız → '—'. Geçme: |ΔL*| ≤ tol_L VE ΔE ≤ tol_E VE (nötr değilse) |ΔH°| ≤ 25.", "",
          "| Kompozisyon | Kare | Nokta | (x,y) | Ölçülen | Hedef | Kaynak | L* ölç/hedef | ΔL* | C* ölç/hedef | ΔH° | ΔE00 | Sonuç |",
@@ -116,6 +117,80 @@ def olc():
         s.append(f"| {kid} | p{fr} | {nad} | ({x},{y}) | `#{ort[0]:02x}{ort[1]:02x}{ort[2]:02x}` | `{hedef}` | {kaynak} | {l_o[0]:.0f}/{l_h[0]:.0f} | {dL:+.0f} | {Co:.0f}/{Ch:.0f} | {'—' if notr else f'{dh:+.0f}'} | {dE:.1f} | {'✓' if ok else '✗'} |")
     open(os.path.join(KARE, "renk-olcum.md"), "w").write("\n".join(s) + "\n")
     print("\n".join(s))
+
+# ===== A4b: ELDİVEN BEYAZI denetimi (tasarim.md 0.6, ELDIVEN_BANDI L* ≥ 90, C* < 12) =====
+# "beyaz": izinli imza nesnesi (kahraman eldiven A / cep köşesi B) — kutuda bant pikseli ≥ %12 olmalı
+# "yasak": karakter eli / eldiveni / manşeti — kutuda bant pikseli ≤ %2 olmalı
+# "taba":  François'nın taba eldiveni — kutunun koyu-orta tonlarının medyanı hero'ya ΔE2000 ≥ 20 ve L* ≤ 70
+BANT_L, BANT_C, HERO = 90, 12, "#f4efe2"
+# Işık altı (render) bandı: arşiv derecelendirmesi + sahne ışığı palet beyazını (#f4efe2, L* 94.5) düşürür. Ölçülen kahraman eldiven
+# gündüz L* ≈ 87.6 / C* ≈ 15 (TOURS p60), cep köşesi gündüz L* ≈ 87 (BORSA p168), gece L* ≈ 76 (SOKAK p189). tasarim 0.6: hero L* ≥ 80 (gündüz).
+ISIK_BANDI = {"SB2-TOURS": (80, 18), "SB2-BORSA": (80, 18), "SB2-SOKAK": (70, 18), "SB2-SOKAK-FARE": (70, 18)}
+ELDIVEN_KUTULAR = [
+    # (kompozisyon, kare, ad, (x0, y0, x1, y1), tip)
+    ("SB2-TOURS", 60, "kahraman eldiven (A, elde)", (660, 1220, 800, 1450), "beyaz"),
+    ("SB2-TOURS", 60, "memurun eli (çıplak)", (440, 1120, 560, 1200), "yasak"),
+    ("SB2-TOURS", 155, "kahraman eldiven (A, havuzda)", (560, 1180, 720, 1260), "beyaz"),
+    ("SB2-BORSA", 0, "François eli (taba)", (198, 1055, 238, 1095), "taba"),
+    ("SB2-BORSA", 0, "tüccar eli (çıplak)", (205, 1220, 245, 1255), "yasak"),
+    ("SB2-BORSA", 0, "cep köşesi (B, orta)", (784, 1054, 808, 1078), "beyaz"),
+    ("SB2-BORSA", 168, "Louis yazan el (çıplak)", (330, 1010, 470, 1110), "yasak"),
+    ("SB2-BORSA", 168, "cep köşesi (B, göğüs)", (660, 1060, 760, 1130), "beyaz"),
+    ("SB2-SOKAK", 150, "Louis serbest eli (çıplak, manşet hariç)", (738, 1228, 780, 1262), "yasak"),
+    ("SB2-SOKAK", 150, "cep köşesi (B, bel)", (850, 1062, 888, 1092), "beyaz"),
+]
+
+def lab_dizi(im):
+    import numpy as np
+    a = np.asarray(im.convert("RGB"), dtype=np.float64) / 255.0
+    lin = np.where(a <= 0.04045, a / 12.92, ((a + 0.055) / 1.055) ** 2.4)
+    X = (lin[..., 0] * 0.4124 + lin[..., 1] * 0.3576 + lin[..., 2] * 0.1805) / 0.95047
+    Y = lin[..., 0] * 0.2126 + lin[..., 1] * 0.7152 + lin[..., 2] * 0.0722
+    Z = (lin[..., 0] * 0.0193 + lin[..., 1] * 0.1192 + lin[..., 2] * 0.9505) / 1.08883
+    f = lambda t: np.where(t > 0.008856, np.cbrt(t), 7.787 * t + 16 / 116)
+    L = 116 * f(Y) - 16; A = 500 * (f(X) - f(Y)); B = 200 * (f(Y) - f(Z))
+    return L, A, B
+
+def eldiven_denetim(asama="A4b"):
+    import numpy as np
+    sat = ["", f"## Eldiven beyazı denetimi ({asama}) — bant L* ≥ {BANT_L}, C* < {BANT_C}; taba ΔE2000 hero'ya ≥ 20, L* ≤ 70", "",
+           "Bant pikseli = ışık altı bandı (gündüz L* ≥ 80, gece L* ≥ 70; C* ≤ 18 — palet bandı derecelendirmeden sonra hiç oluşmuyor, ayrı sütun). Beyaz: ≥ %12; yasak/taba: ≤ %2.", "",
+           "| Kompozisyon | Kare | Bölge | Kutu | Tip | Işık altı bant | Palet bandı | Ölçülen (medyan) | L* | ΔE00 hero | Sonuç |", "|---|---|---|---|---|---|---|---|---|---|---|"]
+    hero = lab(hex2rgb(HERO))
+    for kid, fr, nad, (x0, y0, x1, y1), tip in ELDIVEN_KUTULAR:
+        if not os.path.exists(ad(kid, fr)): continue
+        im = Image.open(ad(kid, fr)).convert("RGB").crop((x0, y0, x1, y1))
+        L, A, B = lab_dizi(im); C = np.hypot(A, B)
+        bL, bC = ISIK_BANDI.get(kid, (80, 18))
+        bant = float(((L >= bL) & (C <= bC)).mean())
+        palet = float(((L >= BANT_L) & (C < BANT_C)).mean())
+        px = np.asarray(im, dtype=np.float64).reshape(-1, 3)
+        if tip == "taba":
+            Lf = L.reshape(-1); sec = px[(Lf > 20) & (Lf < 75)]
+            sec = sec if len(sec) else px
+        else: sec = px
+        med = tuple(int(v) for v in np.median(sec, axis=0))
+        lm = lab(med); dE = de2000(hero, lm)[0]
+        ok = bant >= 0.12 if tip == "beyaz" else bant <= 0.02 if tip == "yasak" else (dE >= 20 and lm[0] <= 70 and bant <= 0.02)
+        sat.append(f"| {kid} | p{fr} | {nad} | ({x0},{y0})–({x1},{y1}) | {tip} | %{bant * 100:.1f} | %{palet * 100:.1f} | `#{med[0]:02x}{med[1]:02x}{med[2]:02x}` | {lm[0]:.0f} | {dE:.1f} | {'✓' if ok else '✗'} |")
+    with open(os.path.join(KARE, "renk-olcum.md"), "a") as fh: fh.write("\n".join(sat) + "\n")
+    print("\n".join(sat))
+    # beyaz haritası: her protokol karesi 360 px, bant pikselleri KIRMIZI (izinli kutular yeşil çerçeve) — eleştirmen için
+    W, H, PAD, BAS = 240, 427, 8, 26
+    liste = [(kid, fr) for kid, v in KARELER.items() for fr, _ in v if os.path.exists(ad(kid, fr))]
+    if not liste: return
+    sut = 9; satir = (len(liste) + sut - 1) // sut
+    img = Image.new("RGB", (PAD + sut * (W + PAD), PAD + satir * (H + BAS + PAD)), (24, 22, 20)); d = ImageDraw.Draw(img); font = yazi_tipi(13)
+    for i, (kid, fr) in enumerate(liste):
+        im = Image.open(ad(kid, fr)).convert("RGB")
+        L, A, B = lab_dizi(im); bL, bC = ISIK_BANDI.get(kid, (80, 18)); m = (L >= bL) & (np.hypot(A, B) <= bC)
+        a = np.asarray(im).copy(); a = (a * 0.45).astype("uint8"); a[m] = [255, 40, 30]
+        k = Image.fromarray(a); dk = ImageDraw.Draw(k)
+        for kk, ff, nad, box, tip in ELDIVEN_KUTULAR:
+            if kk == kid and ff == fr: dk.rectangle(box, outline=(60, 230, 90) if tip == "beyaz" else (80, 160, 255), width=6)
+        x, y = PAD + (i % sut) * (W + PAD), PAD + (i // sut) * (H + BAS + PAD)
+        img.paste(k.resize((W, H), Image.LANCZOS), (x, y + BAS)); d.text((x, y + 6), f"{kid[4:]} p{fr} · %{m.mean() * 100:.1f}", fill=(236, 226, 200), font=font)
+    yol = os.path.join(KARE, f"{asama}-eldiven-beyazi.png"); img.save(yol); print("beyaz haritası:", yol)
 
 def yazi_tipi(n=15):
     try: return ImageFont.truetype("DejaVuSans.ttf", n)
@@ -167,5 +242,6 @@ def gravur_sayfa():
 if __name__ == "__main__":
     asama = sys.argv[sys.argv.index("--asama") + 1] if "--asama" in sys.argv else "A4"
     if "--gravur" in sys.argv: gravur_sayfa(); sys.exit(0)
+    if "--eldiven" in sys.argv: eldiven_denetim(asama); sys.exit(0)
     if "--olcum" not in sys.argv: render()
-    olc(); sayfa(asama)
+    olc(); eldiven_denetim(asama); sayfa(asama)

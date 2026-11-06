@@ -848,3 +848,124 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - **Mekân sorumlusu:** `hibrit-test.md` ufuk değeri 1135 → ≈ 1000 düzeltilmeli. A+ seçilirse d2'den ayrıntı envanteri çıkarılmalı ve 11'e "ayrıntı yoğunluğu" basamağı eklenmeli. Panel içi yıkama (degrade) kararı verilmeli.
   - **Motion:** A5 kapsamı `elestiri-D.md` bölüm 4 adım 3. Rig ışığı (`isik` prop) ve kompars taraması iki yolun da ortak borcu, önce yapılmalı.
   - **Teknisyen:** Gemini görselleri yayın kompozisyonlarına import edilmesin. `public/blanc/hibrit/` yalnız deney.
+
+## motion · 2026-11-06 · Storyboard v2 AŞAMA A4 (bölüm 2): plan düzeyi düzeltmeler (eldiven, P01, P02, P04, protokol)
+- **Ne yaptım:**
+  - **Eldiven sürekliliği (SÜ1/SC1):**
+    - `palet.ts`: tasarım v2.3 sabitleri eklendi (`GLOVE`, `ELDIVEN_OLCEK`, `ELDIVEN_BANDI`, `FRANCOIS_TABA`, `FRANCOIS_ELSIZ`, `LOUIS_ELSIZ`, `LOUIS_ELDIVENLI`, `CEP_ELDIVEN`, `KATIP_ACIK`).
+    - Rig varsayılanı: François taba `#8a6a48`, Louis çıplak el. Çıplak elde dikiş yerine boğum çizgisi çiziliyor. Gömlek manşeti %20 gölgede (bilekte beyaz bant kalmasın). `onKolYok` pozu eklendi.
+    - Yeni `props/EldivenKose.tsx`: iki yuvarlak parmak ucu, kumaş kıvrımı, sarkan manşet, cep ağzı, −12°. Ekran ölçüsünden boyutlanıyor: yakın ≥ 50 px, orta ≥ 30 px, boy < 400 px ise çizilmiyor.
+    - Cep yeri rig yerel (40, −325) → **(−40, −318)**. Eski yer uzak göğüsteydi ve ön kol hep örtüyordu (BC7'nin kök nedeni).
+  - **`sb2_kontrol.py`:**
+    - Yeni protokol listesi (Bölüm 11).
+    - **Eldiven beyazı denetimi**: izinli (A/B) kutular "beyaz", eller "yasak", François "taba" (ΔE2000 ≥ 20, L* ≤ 70).
+    - Bulgu: palet bandı (L* ≥ 90) arşiv derecelendirmesinden sonra hiçbir pikselde oluşmuyor. Bu yüzden ölçülen **ışık altı bandı** kullanılıyor: gündüz L* ≥ 80, gece L* ≥ 70, C* ≤ 18.
+    - Yeni sayfa `A4b-eldiven-beyazi.png`: bant pikselleri kırmızı.
+    - `--eldiven` bayrağı eklendi. Tours gök ölçüm noktası pencere kaydığı için (690,470)'e taşındı.
+  - **P01 Tours:**
+    - `Eldiven.tsx` yeniden çizildi ve `elBoyu`'na bağlandı.
+    - Pencere 360×370 (x 600–960). Direk x 780, L 165, regülatör y 560. Kanatlar açık, kayıt yok. Karşı ağırlık kısa blok (`ChappeKule karsiKisa`).
+    - Dağ kaldırıldı; yerine alçak sırtlar, baca kümesi ve yuvarlak kule tepesi (elips parapet + 1 pencere, direk dibi parapetin içinde).
+    - Fener x 430; ışık havuzu fener tabanından.
+    - Eldiven p122–140 arasında havuza yatırılıyor, ardından el gevşiyor ve kol geri çekiliyor (TC7).
+    - Gölge: multiply, ton + tarama. İp, etiket ve kat çizgilerinin üstünde, masa+kâğıda kırpılı. Eldiven gölgesinin ucu p0'da temasta.
+    - TOURS etiketi paketin solunda (ip o kenardan çıkıyor). Paket kanadındaki cetvel çizgileri kalktı (TC6).
+  - **P02 Borsa:**
+    - Gerçek **kamera dolly'si** (`KZ`): kameranın arkasında kalanlar çizilmiyor.
+    - p78–114 tahta insert'i; p114–150 geri çekilme (kalabalık kenardan giriyor); p150–186 göğüs; p186 boy.
+    - Etiketler p0–42, p42–50'de çıkıyor, tahtanın iki yanında.
+    - Katip artık siluet değil (`KATIP_ACIK`, 3 px sıcak kenar). Kırılma noktasının solunda duruyor.
+    - Tebeşir parçası ve toz metre ölçüsünde. Tahta altına raf eklendi. Rakamlar mesafeyle bulanıklaşıyor (insertte okunmuyor).
+    - Göğüs planı: aynalı `KolEl` (tip `louis`) çıplak yazan el. Kaz tüyü başparmak ile işaret parmağı arasında, ucu satırda. Mürekkep satırı p152–188'de ilerliyor. Cep köşesi kolun açıkta bıraktığı göğüste.
+    - Kırpık tezgâh kaldırıldı.
+  - **P04 Sokak:**
+    - Yeni `Sb2SokakFare.tsx` (kayıt `SB2-SOKAK-FARE`). `SB2-SOKAK` p78–144 arasında bu insert'i gösteriyor.
+    - Insert kadrajı: ızgara (300,1130), ufuk 700, fare ≈ 300 px. Akış: pençe p87 → yürüyüş → baston TAK p108 → irkilme → dönüş → dalış p128 → kuyruk p138 → p138–144 boş ızgara.
+    - Réverbère sarkması 60 → 15 (`reverbere(frame, asili)`; Proto varsayılanı değişmedi).
+    - FRANÇOIS etiketi yüksek kontrastlı (`Altyazi kimKontrast`).
+    - Birikintiler yassı elips (`IslakKaldirim elips`).
+    - Push-in eğrisi güncellendi. Louis çıplak el, François taba. SC11 yürüyüş fazı π/2. SC6 kol yüzün dışından kalkıyor.
+  - **Protokol:** 27 kare × (tam + 360 + güvenli). Kontrol sayfası `A4b-sayfa.png`. `tsc` temiz.
+  - **Proto kontrolü:** f200/f600'de yalnız eller değişti (taba/çıplak, beklenen). Bunun dışında fark yok.
+- **Dokunduğum dosyalar:**
+  - `src/bolumler/blanc/{palet.ts, props/Eldiven.tsx, props/EldivenKose.tsx (yeni), props/PaketKagidi.tsx, sb2/Sb2Tours.tsx, sb2/Sb2Borsa.tsx, sb2/Sb2Sokak.tsx, sb2/Sb2SokakFare.tsx (yeni), sb2/PropTest.tsx, proto/Sokak.tsx}`
+  - `src/rig/{Kukla.tsx, KolEl.tsx}`, `src/doku/{ChappeKule.tsx, IslakKaldirim.tsx}`, `src/components/EkranYazisi.tsx`, `src/Root.tsx` (+SB2-SOKAK-FARE)
+  - `tools/sb2_kontrol.py`
+  - `storyboard-v2/kareler/` (protokol kareleri, `A4b-sayfa.png`, `A4b-eldiven-beyazi.png`, `renk-olcum.md`)
+  - Tarama, Kemer ve Cephe'ye dokunmadım.
+- **Değişen değerler (yönetmen plana işlesin):**
+
+| Plan | Öğe | Plan v2.6 | A4b | Gerekçe | Durum |
+|---|---|---|---|---|---|
+| P01 | A (BEKLE) uçları | x 626–934 (göstergeler açık) | 673–887 (göstergeler katlı, modül `BEKLE`) | dönem doğrulamadaki BEKLE = katlı | onay bekliyor |
+| P01 | lucarne kanatları | iki kanat, küçük camlar | kanatlar açık, niş yanaklarına yaslı | direk x 780 orta kayıtla çakışıyordu | onay bekliyor (mekân) |
+| P01 | kule terası / direk dibi | — | parapet ağzı y 728, r 78; direk dibi parapet içinde | kule tepesi okunsun | bilgi |
+| P01 | eldiven | ≈350 px | el 266 → eldiven el kısmı 279, toplam 353, avuç 127 | ×1.05 | ✓ |
+| P01 | paket | (670,1270) | (690,1340), ölçek 1.15 | eldiven yatağı | bilgi |
+| P01 | havuz | merkez (430,1170) | fener tabanı (430,1100), rx 300 ry 160 | tek kaynak | bilgi |
+| P01 | bırakma | p134–142 | iniş p122–140, gevşeme + geri çekilme p141–152 | — | bilgi |
+| P02 | insert | cs ≈3.1 zoom | dolly KZ 4.645 m, tahta 864×576, merkez y 700 | ön plan kafaları tahtayı örtüyordu | onay bekliyor |
+| P02 | geri çekilme | cs 3.1→1.60 | KZ 4.645→2.7 (tahta 289×433), merkez y 700→620 | kalabalık kenardan girer | bilgi |
+| P02 | sekme-1 / sekme-2 | estrad kenarı y 1380 / avlu taşı y 1430 | tahta rafı (1.70 m, y ≈1000) / estrad üst basamağı (y ≈1360–1480) | avlu taşı insertte kameranın arkasında kalıyordu; kareler aynı | onay bekliyor |
+| P02 | kırılma | xm ≈0.65 | xm 0.85, h 2.03 (ekran y ≈906); katip xm 0.55→0.3 | katibin başı yazıyı örtüyordu | bilgi |
+| P02 | katip kıyafeti | KATIP siyah redingot | açık gömlek kolu `#d9ccae` + kum yelek | kol L* ≥ tahta +35 | onay bekliyor (tasarım 2.7) |
+| P02 | göğüs | cs ≈3.0 | cs 3.0, yüz merkezi (540,760), el 245 px, kalem ucu ≈(330–370,1215) | — | ✓ |
+| P02 | tezgâh | tam ya da kalkar | kalktı | — | ✓ |
+| Tümü | cep köşesi rig yerel | (40,−325) | (−40,−318); göğüste ≈80×50, orta ≈30×18, P04 p150 ≈35×22 | yakın göğüs, kol örtmez | onay bekliyor (tasarım 0.6) |
+| P04 | push-in cx | 81.6−8e, 180–216: 73.6→78 | 81.6−88e, 180–216: −6.4→−2 (cs/cy aynı) | −8e'de Louis yüzü x≈1065 kalıyordu | ✓ (ölçüldü) |
+| P04 | réverbère sarkması | — | 60→15 px | p180–216'da fener y ≤ 200 | ✓ |
+| P04 | insert "bordo paça" | bordo paça | gri pantolon (rig) + bordo frak eteği üstte | rig kanonu | onay bekliyor |
+| P04 | şapka kolu | shF −158 / elF −32 | −168 / −14 | SC6 | bilgi |
+
+- **Eleştiri C maddelerine karşı durum:**
+
+| Madde | Durum |
+|---|---|
+| TC1 eldiven ölçeği | ✓ |
+| TC2 B camda, "7" | ✓ uçlar camdan ≥ 25 px içeride, karşı ağırlık blok. 360'ta "T'nin iki kolu kalkık" okunuyor. |
+| TC3 havuz fenerden | ✓ |
+| TC4 dağ / kule | ✓ |
+| TC5 gölge katmanı | ✓ |
+| TC6 kanat | kısmi (cetvel çizgisi yok, kavisli kenar) |
+| TC7 kol geri çekilme | ✓ (yalnız bırakmadan sonra kol kenarda kısa görünüyor) |
+| TC8 başparmak | önceki gibi önde |
+| BC2 tebeşir insert | ✓ tahta %30, toz ≈ 270 px, parça ≈ 44×19 px. **Sınır:** katip eli + tebeşir ≈ 65–70 px. |
+| BC3 yazan el | ✓ |
+| BC4 etiketler | ✓ |
+| BC5 tezgâh | ✓ |
+| BC7 cep | ✓ |
+| BC8 boy | yapılmadı |
+| SC1 eller | ✓ (denetim tablosu 10/10 ✓) |
+| SC2 fener + etiket | ✓ |
+| SC3 Louis yüzü x ≤ 1000 | ✓ |
+| SC4 birikinti | ✓ |
+| SC5 bayrak | **yapılmadı** (Cephe modülünde; dokunma yasağı) |
+| SC6 kol | ✓ |
+| SC7 fare insert | ✓ |
+| SC9 botlar | ✓ |
+| SC10 Saint-Michel | yapılmadı (mekân) |
+| SC11 yürüyüş fazı | ✓ |
+| TOURS etiketi IG sütunu | ✓ (x ≈ 640) |
+
+- **Yakaladığım ihlaller / açıklar (öz tarama):**
+  - (1) P04 p189'da Louis'nin cep köşesi x ≈ 1000, y ≈ 1170 ile IG sütununda. Kilit noktası olarak denetlenmiyor. p150'de görünür ve temiz.
+  - (2) P04 p150'de François'nın şapkayı tutan eli şapka kenarının arkasında kalıyor (taba eldiven görünmüyor).
+  - (3) P02 p203 kapanışında Louis kadrajın sağ kenarında kırpık (plan değeri cs 1.3 / cx 70).
+  - (4) P02 insertte katibin 3/4 yüzü görünüyor; rig sırttan çizemiyor.
+  - (5) P01 p155'te kol sol kenarda kısa bir kol parçası olarak kalıyor.
+- **Öz puan (eğilimim ~1 yüksek, düşerek):** Tours **6.5**, Borsa **6.5**, Sokak **7** (insert dahil).
+- **Açık sorular / bir sonraki ajana notlar:**
+  - **Eleştirmen:**
+    - `A4b-sayfa.png`, `A4b-eldiven-beyazi.png`, `renk-olcum.md` (eldiven tablosu).
+    - Ölçülen ışık altı bant eşiğini (gündüz L* ≥ 80, gece ≥ 70) onaylayın ya da düzeltin.
+  - **Tasarımcı:**
+    - Cep yerel konumu (−40, −318).
+    - KATIP açık kıyafet.
+    - Palet bandının (L* ≥ 90) renderda hiç oluşmaması: kural ışık altı bant olarak yeniden yazılsın mı?
+  - **Mekân sorumlusu:** P01 açık kanatlar; SC5 bayrak; SC10 Saint-Michel.
+  - **Yönetmen:** tablo; P02 sekme yerleri; P04 cx; P01 A uçları.
+  - **Kurgucu:**
+    - P02 sekme-1 artık ahşap rafta (tok), sekme-2 estrad basamağında. Kareler aynı (102/114).
+    - P04 insert temas listesi `P04_FARE_TEMAS`: pençe 87, çizme 98, TAK 108, irkilme 110, dalış 128, tink 138.
+    - P02 kalem cızırtısı 152–184.
+  - **Teknisyen:** commit yapılmadı.

@@ -101,7 +101,8 @@ const Kol: React.FC<{ x: number; sh: number; el: number; p: Palet; arka?: boolea
         <path d="M -14 -2 L 14 -2 Q 13 40 12 76 L -12 76 Q -13 40 -14 -2 Z" fill={c} stroke={ink(c)} strokeWidth={SW} strokeLinejoin="round" />
         <path d="M -14 -2 Q -13 40 -12 76 L -4 76 Q -5 40 -5 -2 Z" fill="#000" opacity={0.25} />
         <path d="M -13 66 L 13 66 L 13 78 L -13 78 Z" fill={shade(c, 0.12)} />
-        <rect x={-12} y={77} width={24} height={6} fill={p.shirt} />
+        {/* gömlek manşeti: gölgede (shirt −%20) — bilekte "eldiven beyazı" bandına girmez (tasarim 0.6: el çevresinde beyaz yalnız imza nesnesi) */}
+        <rect x={-12} y={77} width={24} height={6} fill={shade(p.shirt, -0.2)} />
         <g transform="translate(0,90)">
           {/* el + başparmak: eldivenliyse sırt dikişi, çıplaksa (glove = skin) boğum çizgisi + parmak ayrımı */}
           <path d="M -12 -9 Q -15 9 -5 17 Q 9 21 14 8 Q 16 -5 10 -9 Z" fill={p.glove} stroke={p.glove === p.skin ? p.skinDark : ink(p.glove)} strokeWidth={SW} />

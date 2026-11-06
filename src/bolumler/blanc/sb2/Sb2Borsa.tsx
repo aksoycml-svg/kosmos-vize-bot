@@ -105,10 +105,11 @@ const govdeNokta = (pz: Poz, q: P): P => {
 const KAZ_NIB: P = [30, 58];
 const KazTuyu: React.FC<{ k: number }> = ({ k }) => (
   <g transform={`scale(${k})`}>
-    <path d={`M ${KAZ_NIB[0]} ${KAZ_NIB[1]} L 6 10 L -140 -236 Q -150 -250 -136 -248 Z`} fill="#e8e0cc" stroke={ink("#e8e0cc")} strokeWidth={1.6} />
-    <path d="M -20 -26 Q -70 -150 -150 -246 Q -96 -160 -40 -18 Z" fill="#efe8d6" stroke={ink("#e8e0cc")} strokeWidth={1.4} />
-    <path d="M -10 -14 Q -70 -110 -142 -240 Q -50 -140 6 -6 Z" fill="#d9d0ba" stroke={ink("#e8e0cc")} strokeWidth={1.2} />
-    {[0.25, 0.45, 0.65].map((t) => <path key={t} d={`M ${-20 - t * 120} ${-26 - t * 210} l -22 6`} stroke="#b9ae94" strokeWidth={1.4} />)}
+    {/* gövde kısa ve dik: bayrak yüzün önünden geçmez (yukarı, hafif geriye) */}
+    <path d={`M ${KAZ_NIB[0]} ${KAZ_NIB[1]} L 8 10 L -26 -176 Q -30 -190 -20 -186 Z`} fill="#e8e0cc" stroke={ink("#e8e0cc")} strokeWidth={1.6} />
+    <path d="M -2 -20 Q -30 -110 -34 -188 Q -4 -120 12 -14 Z" fill="#efe8d6" stroke={ink("#e8e0cc")} strokeWidth={1.4} />
+    <path d="M 4 -10 Q -6 -100 -26 -182 Q 10 -110 22 -4 Z" fill="#d9d0ba" stroke={ink("#e8e0cc")} strokeWidth={1.2} />
+    {[0.3, 0.55, 0.8].map((t) => <path key={t} d={`M ${-4 - t * 22} ${-30 - t * 140} l -16 4`} stroke="#b9ae94" strokeWidth={1.4} />)}
     <path d={`M ${KAZ_NIB[0]} ${KAZ_NIB[1]} L 14 30`} stroke="#1c1915" strokeWidth={3} strokeLinecap="round" />
   </g>
 );
@@ -196,7 +197,7 @@ export const Sb2Borsa: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
         <AbsoluteFill>
           <svg width={1080} height={1920} viewBox="0 0 1080 1920">
             <defs><filter id="b2toz" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation={sahne === "insert" ? 22 : 14} /></filter>
-              <filter id="b2rakam"><feTurbulence type="fractalNoise" baseFrequency="0.18" numOctaves={2} seed={S + 3} /><feDisplacementMap in="SourceGraphic" scale={11} xChannelSelector="R" yChannelSelector="G" /></filter>
+              <filter id="b2rakam"><feTurbulence type="fractalNoise" baseFrequency={0.18 * 85 / pxm(ARKA_Z)} numOctaves={2} seed={S + 3} /><feDisplacementMap in="SourceGraphic" scale={11 * pxm(ARKA_Z) / 85} xChannelSelector="R" yChannelSelector="G" /></filter>
               <filter id="b2tebesir"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves={1} seed={S} /><feDisplacementMap in="SourceGraphic" scale={2.2} xChannelSelector="R" yChannelSelector="G" /></filter></defs>
             <RenkKaydi>
             <g transform={kat(1)}>

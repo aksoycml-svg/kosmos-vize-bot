@@ -11,8 +11,39 @@ export type Yansima = { x: number; renk: string; guc?: number; gen?: number };
 export const IslakKaldirim: React.FC<{
   zemin: (z: number, u: number) => P; birikinti: Birikinti[]; seed: number;
   gok?: [string, string]; isiklar?: Yansima[]; pencereler?: Yansima[];
-}> = ({ zemin, birikinti, seed, gok = ["#4a5c90", "#080b16"], isiklar = [], pencereler = [] }) => {
+  elips?: boolean; // A4b (elestiri-C SC4): yassı perspektif elipsi (en/boy ≥ 3.4), yumuşak kenar, gök bandı #2a3352, kısa amber dikey yansıma, 1 px ay konturu; KOYU DOLGU YOK
+}> = ({ zemin, birikinti, seed, gok = ["#4a5c90", "#080b16"], isiklar = [], pencereler = [], elips }) => {
   const id = "ik" + useId().replace(/:/g, "");
+  if (elips) return (
+    <g>
+      <defs>
+        <filter id={`${id}y`} x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation={1.6} /></filter>
+        <filter id={`${id}b`} x="-50%" y="-20%" width="200%" height="140%"><feGaussianBlur stdDeviation={4} /></filter>
+      </defs>
+      {birikinti.map((b, i) => {
+        const c = zemin(b.z, b.u), a = zemin(b.z, b.u - b.ru), e = zemin(b.z, b.u + b.ru);
+        const rx = Math.abs(e[0] - a[0]) / 2, ry = rx / 3.4;
+        return (
+          <g key={i}>
+            <defs>
+              <clipPath id={`${id}c${i}`}><ellipse cx={c[0]} cy={c[1]} rx={rx} ry={ry} /></clipPath>
+              <linearGradient id={`${id}g${i}`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#5a6c9c" /><stop offset="0.35" stopColor="#2a3352" /><stop offset="1" stopColor="#343a4c" /></linearGradient>
+            </defs>
+            <ellipse cx={c[0]} cy={c[1]} rx={rx} ry={ry} fill={`url(#${id}g${i})`} filter={`url(#${id}y)`} />
+            <g clipPath={`url(#${id}c${i})`}>
+              {isiklar.filter((l) => l.x > c[0] - rx && l.x < c[0] + rx).map((l, j) => (
+                <rect key={j} x={l.x - Math.max(3, (l.gen ?? 22) * rx / 400)} y={c[1] - ry} width={Math.max(6, (l.gen ?? 22) * rx / 200)} height={ry * 1.5} fill={l.renk} opacity={(l.guc ?? 0.8) * 0.8} filter={`url(#${id}b)`} />
+              ))}
+            </g>
+            {/* ay ışığı: uzak kenarda 1 px kontur (yalnız üst yay) */}
+            <path d={`M ${c[0] - rx * 0.92} ${c[1] - ry * 0.4} A ${rx} ${ry} 0 0 1 ${c[0] + rx * 0.92} ${c[1] - ry * 0.4}`} stroke="#c4d6ff" strokeWidth={Math.max(1, rx / 160)} opacity={0.7} fill="none" />
+            {/* yakın kenarda içe taşan tek küçük taş kenarı */}
+            <path d={`M ${c[0] + rx * 0.35} ${c[1] + ry * 0.98} q ${rx * 0.06} ${-ry * 0.35} ${rx * 0.16} ${-ry * 0.2} q ${rx * 0.04} ${ry * 0.12} ${rx * 0.02} ${ry * 0.2} Z`} fill="#3a3e4c" />
+          </g>
+        );
+      })}
+    </g>
+  );
   return (
     <g>
       <defs>
