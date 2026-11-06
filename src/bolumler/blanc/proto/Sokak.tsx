@@ -2,6 +2,7 @@ import React from "react";
 import { Easing, interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { TasDuvar } from "../../../doku/TasDuvar";
 import { Sacak } from "../../../doku/Mimari";
+import { CepheEv, EvTanim as BdxEv, evYukseklik } from "../../../doku/Cephe";
 import { IslakKaldirim } from "../../../doku/IslakKaldirim";
 import { SaintMichel } from "../../../doku/SaintMichel";
 import { DOKU_SEED } from "../../../doku/sabitler";
@@ -201,7 +202,60 @@ const Ev: React.FC<{ q: Q; side: "sol" | "sag"; e: EvTanim; idx: number; frame: 
   return <g>{els}</g>;
 };
 
+// ===== Bordeaux (R3, mekanlar.md 10.3): Gambetta düzeni AYRI evler — aks / kat dizisi / korniş farkı =====
+// Cephe yüksekliği ölçeği: sokak 6.5 m = 1240 px (z=1) → cephe dörtgeninin v=0 çizgisi yerden 11.6 m.
+const CEPHE_M = 11.6;
+const BDX_TAS = "#8a7e66";
+type BdxSira = { z1: number; z2: number; e: BdxEv };
+const R1: BdxEv["katlar"] = ["zemin", "noble", "attique"], R2: BdxEv["katlar"] = ["zemin", "noble", "ust", "attique"];
+const ton = (k: number) => { const n = parseInt(BDX_TAS.slice(1), 16); const f = (v: number) => Math.max(0, Math.min(255, Math.round(v * (1 + k)))); return "#" + [n >> 16, (n >> 8) & 255, n & 255].map(f).map((v) => v.toString(16).padStart(2, "0")).join(""); };
+export const EVLER_BDX: Record<"sol" | "sag", BdxSira[]> = {
+  sol: [
+    { z1: 1, z2: 1.55, e: { aks: 3, katlar: R2, dukkan: { ad: "TONNELIER", kepenk: true }, renk: ton(0.02), ek: 0.3 } },
+    { z1: 1.55, z2: 2.2, e: { aks: 2, katlar: R1, panjur: true, renk: ton(-0.05), ek: -0.2 } }, // küçük resmî yapı (bayrak, okunmaz levha)
+    { z1: 2.2, z2: 2.9, e: { aks: 4, katlar: R2, zengin: true, dukkan: { ad: "VINS", kepenk: true }, renk: ton(0.05), ek: 0.5 } },
+    { z1: 2.9, z2: 3.8, e: { aks: 3, katlar: R1, panjur: true, renk: ton(-0.02), ek: 0.1 } },
+    { z1: 3.8, z2: 5, e: { aks: 2, katlar: R2, renk: ton(0.03), ek: -0.3 } },
+    { z1: 5, z2: 7, e: { aks: 3, katlar: R1, renk: ton(-0.04), ek: 0.2 } },
+  ],
+  sag: [
+    { z1: 1, z2: 1.55, e: { aks: 3, katlar: R1, dukkan: { ad: "CHAPELIER", kepenk: true }, renk: ton(-0.03), ek: 0.2 } },
+    { z1: 1.55, z2: 2.2, e: { aks: 3, katlar: R2, panjur: true, renk: ton(0.04), ek: -0.1 } },
+    { z1: 2.2, z2: 3.6, e: { aks: 4, katlar: R2, zengin: true, dukkan: { ad: "CAFÉ", acik: true }, renk: ton(0.0), ek: 0.4 } },
+    { z1: 3.6, z2: 4.6, e: { aks: 2, katlar: R1, renk: ton(0.06), ek: -0.3 } },
+    { z1: 4.6, z2: 5.6, e: { aks: 3, katlar: R2, panjur: true, renk: ton(-0.04), ek: 0.3 } },
+    { z1: 5.6, z2: 7, e: { aks: 3, katlar: R1, renk: ton(0.02), ek: 0 } },
+  ],
+};
+// ev üzerinde (metre) bir noktanın ekran konumu: xm ev boyunca (0..W), ym yerden
+export const evNokta = (side: "sol" | "sag", idx: number, u: number, ym: number): P => {
+  const { z1, z2, e } = EVLER_BDX[side][idx];
+  const H = evYukseklik(e), vTop = 1 - H / CEPHE_M;
+  return cephe(side === "sol" ? SOL : SAG, z1 + (z2 - z1) * u, vTop + (1 - vTop) * (1 - ym / H));
+};
+const SOKAK_TARAMA_ACI = 62; // θ: réverbère (sokak ortası) ışınlarına dik, sahne başına tek yön
+const CepheBdx: React.FC<{ side: "sol" | "sag" }> = ({ side }) => {
+  const q = side === "sol" ? SOL : SAG;
+  const list = EVLER_BDX[side];
+  return (
+    <g>
+      {list.map((h, i) => ({ h, i })).reverse().map(({ h, i }) => {
+        const H = evYukseklik(h.e), vTop = 1 - H / CEPHE_M;
+        const derin = h.z1 < 1.6 ? "yakin" : h.z1 < 3 ? "orta" : "uzak";
+        const yaz = (p0: P, p1: P, p3: P, ad: string, renk: string) => {
+          const [a, b] = side === "sol" ? [p0, p1] : [p1, p0];
+          const d: P = side === "sol" ? p3 : [p3[0] + (p1[0] - p0[0]), p3[1] + (p1[1] - p0[1])];
+          const W = 400, Hh = 60, mm = [(b[0] - a[0]) / W, (b[1] - a[1]) / W, (d[0] - a[0]) / Hh, (d[1] - a[1]) / Hh, a[0], a[1]];
+          return <g transform={`matrix(${mm.map((n) => n.toFixed(4)).join(",")})`}><text x={W / 2} y={Hh * 0.8} textAnchor="middle" fontFamily="'Playfair Display', serif" fontWeight={900} fontSize={Hh * 0.85} fill={renk} textLength={W * 0.8} lengthAdjust="spacingAndGlyphs">{ad}</text></g>;
+        };
+        return <CepheEv key={i} m={(u, v) => cephe(q, h.z1 + (h.z2 - h.z1) * u, vTop + (1 - vTop) * v)} e={h.e} seed={DOKU_SEED.sokakBdx * 100 + i * 7 + (side === "sol" ? 0 : 3)} derinlik={derin} aci={SOKAK_TARAMA_ACI} kameraH={0.9} yakinSusleme={h.z1 < 2.3} dukkanYazi={yaz} />;
+      })}
+    </g>
+  );
+};
+
 const Cephe: React.FC<{ q: Q; side: "sol" | "sag"; frame: number; sehir: Sehir }> = ({ q, side, frame, sehir }) => {
+  if (sehir === "bordeaux") return <CepheBdx side={side} />;
   const list = side === "sol" ? EVLER_SOL : EVLER_SAG;
   return <g>{list.map((e, i) => ({ e, i })).reverse().map(({ e, i }) => <Ev key={i} q={q} side={side} e={e} idx={i} frame={frame} sehir={sehir} />)}</g>;
 };
@@ -247,8 +301,8 @@ const UzakBordeaux: React.FC<{ frame: number }> = ({ frame }) => {
 };
 // sokak ucunun sol üstünde, sisin içinden yükselir (sol çatılar daha yakın: gövdenin altı sisle/çatıyla örtülür)
 // su birikintileri: yazı bandı ve IG alt bölgesi dışında (y 1150–1420), ızgaradan ayrı
-export const BIRIKINTI_BDX = [{ z: 3.0, u: 0.18, rz: 0.26, ru: 0.1 }, { z: 2.75, u: 0.84, rz: 0.24, ru: 0.09 }];
-export const SM_X = 622, SM_Y = 900, SM_H = 400;
+export const BIRIKINTI_BDX = [{ z: 3.0, u: 0.18, rz: 0.26, ru: 0.1 }, { z: 2.75, u: 0.84, rz: 0.24, ru: 0.09 }, { z: 1.4, u: 0.4, rz: 0.07, ru: 0.12 }];
+export const SM_X = 470, SM_Y = 880, SM_H = 320; // sol çatıların arkasında, tepe y ≥ 410
 
 // Notre-Dame (1834: sivri kule yok) — sokağın ucunda, ay ışığında
 const Uzak: React.FC = () => (
@@ -304,7 +358,7 @@ const Zemin: React.FC<{ sehir?: Sehir }> = ({ sehir = "paris" }) => {
       {/* Bordeaux ıslaklık: yanık pencere ve dükkân camlarının altında dikey uzamış amber yansıma şeritleri */}
       {sehir === "bordeaux" && [[230, 1330, 0.22], [330, 1240, 0.18], [790, 1270, 0.2], [880, 1380, 0.24], [420, 1190, 0.14], [655, 1180, 0.14]].map(([x, y, o], i) => <ellipse key={`ys${i}`} cx={x} cy={y} rx={14} ry={120} fill="#ffb357" opacity={o} style={{ filter: "blur(9px)" }} />)}
       {/* Bordeaux: su birikintileri (gök ve fener aynası) */}
-      {sehir === "bordeaux" && <IslakKaldirim zemin={zemin} seed={DOKU_SEED.sokakBdx} birikinti={BIRIKINTI_BDX} isiklar={[{ x: 735, renk: "#ffb357", guc: 0.9, gen: 26 }, { x: 372, renk: "#ff9a40", guc: 0.75, gen: 20 }]} pencereler={[{ x: 345, renk: "#ffb357", guc: 0.6, gen: 8 }, { x: 405, renk: "#ff9a40", guc: 0.5, gen: 7 }, { x: 700, renk: "#ff9a40", guc: 0.55, gen: 8 }, { x: 760, renk: "#ffb357", guc: 0.5, gen: 7 }]} />}
+      {sehir === "bordeaux" && <IslakKaldirim zemin={zemin} seed={DOKU_SEED.sokakBdx} birikinti={BIRIKINTI_BDX} isiklar={[{ x: 760, renk: "#ffb357", guc: 0.7, gen: 34 }, { x: 330, renk: "#ff9a40", guc: 0.55, gen: 30 }, { x: 540, renk: "#ffd98f", guc: 0.8, gen: 36 }]} pencereler={[]} />}
     </g>
   );
 };
@@ -365,6 +419,90 @@ const Ilan: React.FC = () => (
   </g>
 );
 
+// ===== Bordeaux ekleri (mekanlar.md 9.2–9.4, 10.3) =====
+// Kafe önü BOŞ (teras kanıtsız): aralık kapıdan sokağa tek ışık yamuğu + potence tabela; resmî yapıda tricolore [T, kullanıcı isteği];
+// réverbère ipinin sol ucunda makaralı kilitli kutu [T].
+const BordeauxEk: React.FC<{ frame: number }> = ({ frame }) => {
+  // CAFÉ (sağ, idx 2): kapı ışığı yamuğu sokağa
+  const zd = 2.42;
+  const yamuk = [zemin(zd - 0.08, 1), zemin(zd + 0.1, 1), zemin(zd + 0.32, 0.8), zemin(zd + 0.02, 0.78)];
+  // potence tabela: CAFÉ cephesinde, noble kat altı (yerden 4.4 m), duvardan sokağa demir kol + yuvarlak levha
+  const k0 = evNokta("sag", 2, 0.06, 4.4), k1: P = [k0[0] - 70, k0[1] + 6];
+  // makaralı ip kutusu
+  const { l } = reverbere(frame);
+  return (
+    <g>
+      <polygon points={poly(yamuk)} fill="#ffb357" opacity={0.2} style={{ filter: "blur(4px)" }} />
+      <g>
+        <line x1={k0[0]} y1={k0[1]} x2={k1[0]} y2={k1[1]} stroke="#1c1915" strokeWidth={4} />
+        <path d={`M ${k0[0]} ${k0[1] + 22} Q ${k0[0] - 30} ${k0[1] + 18} ${k1[0] + 10} ${k1[1] + 2}`} stroke="#1c1915" strokeWidth={2} fill="none" />
+        <line x1={k1[0] + 6} y1={k1[1]} x2={k1[0] + 6} y2={k1[1] + 12} stroke="#1c1915" strokeWidth={2} />
+        <circle cx={k1[0] + 6} cy={k1[1] + 34} r={22} fill="#4a3328" stroke="#1c1915" strokeWidth={3} />
+        <path d={`M ${k1[0] - 4} ${k1[1] + 30} h 18 v 10 q -9 6 -18 0 Z M ${k1[0] + 14} ${k1[1] + 32} q 6 2 0 6`} fill="#e7d6a8" stroke="#e7d6a8" strokeWidth={1} />
+        <path d={`M ${k1[0] - 12} ${k1[1] + 22} Q ${k1[0] + 6} ${k1[1] + 10} ${k1[0] + 24} ${k1[1] + 22}`} stroke="#ffb357" strokeWidth={1.5} opacity={0.5} fill="none" />
+      </g>
+      <g transform={`translate(${l[0] + 4},${l[1] + 8})`}>
+        <rect x={-10} y={-4} width={20} height={30} fill="#1c1915" stroke="#3a3c46" strokeWidth={1.5} />
+        <circle cx={0} cy={6} r={5} fill="none" stroke="#5a5c66" strokeWidth={1.5} />
+        <line x1={0} y1={-4} x2={-4} y2={-8} stroke="#0a0c14" strokeWidth={2.5} />
+      </g>
+      <TricoloreBdx frame={frame} />
+    </g>
+  );
+};
+
+// Tricolore (mekanlar.md 9.3, tasarim.md 3.2): sol cephe resmî yapı, hampe 35° yukarı sokağa, kaldırma kenarı hampe boyunca:
+// MAVİ hampeye bitişik, beyaz ortada, kırmızı dışta; şeritler hampeye PARALEL; sarkık, rüzgâr +x, genlik %6; gece renkleri.
+const TricoloreBdx: React.FC<{ frame: number }> = ({ frame }) => {
+  const dib = evNokta("sol", 1, 0.5, 9.6); // attique altı: push-in (cs 1.7+) sırasında kadrajın ÜSTÜNDEN çıkar, yazı bandına binmez
+  const aci = (-35 * Math.PI) / 180, L = 240;
+  const uc: P = [dib[0] + Math.cos(aci) * L, dib[1] + Math.sin(aci) * L];
+  const band = (o0: number, o1: number, c: string) => {
+    const nk = 9;
+    const nokta = (t: number, o: number): P => {
+      const bx = dib[0] + (uc[0] - dib[0]) * (0.18 + 0.78 * t), by = dib[1] + (uc[1] - dib[1]) * (0.18 + 0.78 * t);
+      const dalga = Math.sin(frame * 0.12 - t * 3 + o * 0.02) * 9 * t;
+      return [bx + o * 0.35 + dalga, by + o * 0.95 + Math.abs(dalga) * 0.3];
+    };
+    const ust = Array.from({ length: nk }).map((_, i) => nokta(i / (nk - 1), o0)), alt = Array.from({ length: nk }).map((_, i) => nokta((nk - 1 - i) / (nk - 1), o1));
+    return <polygon key={c} points={poly([...ust, ...alt])} fill={c} stroke="#14182a" strokeWidth={1.2} />;
+  };
+  return (
+    <g>
+      {band(0, 50, "#2c3d78")}{band(50, 100, "#d8cfb8")}{band(100, 150, "#9a2a2a")}
+      <line x1={dib[0]} y1={dib[1]} x2={uc[0]} y2={uc[1]} stroke="#2a1c12" strokeWidth={5} />
+      <circle cx={uc[0]} cy={uc[1]} r={5} fill="#c9a24a" />
+      {/* resmî yapının kapı üstü okunmaz levhası */}
+      {(() => { const a = evNokta("sol", 1, 0.62, 3.0), b = evNokta("sol", 1, 0.86, 3.0), c = evNokta("sol", 1, 0.86, 2.75), d = evNokta("sol", 1, 0.62, 2.75); return <g><polygon points={poly([a, b, c, d])} fill="#c9bf9e" stroke="#1c1915" strokeWidth={1.5} />{[0.35, 0.65].map((t) => <line key={t} x1={a[0] + (b[0] - a[0]) * 0.15} y1={a[1] + (d[1] - a[1]) * t} x2={a[0] + (b[0] - a[0]) * 0.85} y2={a[1] + (d[1] - a[1]) * t + (b[1] - a[1]) * 0.7} stroke="#3a2c20" strokeWidth={1.4} />)}</g>; })()}
+    </g>
+  );
+};
+
+// Alt üçte bir ön plan (ölü alan, işlevli): TONNELIER kapısı yanında fıçı + taş eşik; CHAPELIER basamağı + chasse-roue
+export const SokakOnPlan: React.FC = () => {
+  const [fx, fy] = zemin(1.12, 0.05), fs = sokakGenislik(1.12) / 1240;
+  const [cx, cy] = zemin(1.18, 0.96), cs = sokakGenislik(1.18) / 1240;
+  return (
+    <g>
+      <g transform={`translate(${fx},${fy}) scale(${fs})`}>
+        <ellipse cx={30} cy={4} rx={150} ry={22} fill="#0a0c14" opacity={0.55} />
+        <path d="M -90 0 Q -110 -170 -80 -330 L 120 -330 Q 150 -170 130 0 Z" fill="#3a2a20" stroke="#14100c" strokeWidth={5} />
+        {[-300, -200, -110, -30].map((y) => <path key={y} d={`M -100 ${y} Q 20 ${y + 18} 138 ${y}`} stroke="#1c1915" strokeWidth={9} fill="none" />)}
+        {[-60, 0, 60].map((x) => <path key={x} d={`M ${x} -326 Q ${x * 1.25} -165 ${x} -4`} stroke="#2a1e16" strokeWidth={3} fill="none" />)}
+        <path d="M 118 -320 Q 148 -170 128 -10" stroke="#c4d6ff" strokeWidth={4} opacity={0.4} fill="none" />
+        <rect x={-180} y={-14} width={420} height={18} fill="#4a4844" />
+      </g>
+      <g transform={`translate(${cx},${cy}) scale(${cs})`}>
+        <ellipse cx={-20} cy={4} rx={140} ry={20} fill="#0a0c14" opacity={0.5} />
+        <path d="M -40 0 L -40 -90 Q -20 -130 10 -90 L 10 0 Z" fill="#5a5448" stroke="#1c1915" strokeWidth={4} />
+        <path d="M -36 -96 Q -20 -124 4 -96" stroke="#c4d6ff" strokeWidth={3} opacity={0.45} fill="none" />
+        <rect x={20} y={-34} width={220} height={34} fill="#4a4640" stroke="#1c1915" strokeWidth={4} />
+        <line x1={20} y1={-34} x2={240} y2={-34} stroke="#c4d6ff" strokeWidth={2} opacity={0.4} />
+      </g>
+    </g>
+  );
+};
+
 // Kafe terası: masa + sandalye siluetleri
 const Teras: React.FC = () => (
   <g>
@@ -375,22 +513,6 @@ const Teras: React.FC = () => (
           <ellipse cx={0} cy={-62} rx={30} ry={8} fill="#2a2024" />
           <rect x={-3} y={-62} width={6} height={62} fill="#1a1416" />
           <path d="M 30 0 L 30 -40 L 52 -40 L 52 -80 M 30 -40 L 30 -36" stroke="#1a1416" strokeWidth={5} fill="none" />
-        </g>
-      );
-    })}
-  </g>
-);
-
-// Bordeaux kafe önü: düz ahşap sıra + tabure (bükme bistro sandalyesi 1859 sonrası olabilir [G ◐] → kullanılmaz)
-const TabureSira: React.FC = () => (
-  <g>
-    {[[2.6, 0.9], [3.2, 0.9]].map(([z, u], i) => {
-      const [x, y] = zemin(z, u); const s = (1 / z) * 2.2;
-      return (
-        <g key={i} transform={`translate(${x},${y}) scale(${s})`}>
-          <rect x={-40} y={-46} width={80} height={10} fill="#3a2a22" />
-          <rect x={-34} y={-36} width={6} height={36} fill="#241a16" /><rect x={28} y={-36} width={6} height={36} fill="#241a16" />
-          <line x1={-40} y1={-46} x2={40} y2={-46} stroke="#ffb357" strokeWidth={2} opacity={0.4} />
         </g>
       );
     })}
@@ -526,15 +648,15 @@ export const Tanimlar: React.FC = () => (
 );
 
 export const FENER: P = cephe(SOL, 1.75, 0.6);
-const Fener: React.FC<{ fl: number }> = ({ fl }) => {
+const Fener: React.FC<{ fl: number; sonuk?: boolean }> = ({ fl, sonuk }) => {
   const [x, y] = FENER;
   return (
     <g>
       <path d={`M ${x - 40} ${y - 70} L ${x + 30} ${y - 70} L ${x + 30} ${y - 60}`} stroke="#0b0d14" strokeWidth={7} fill="none" />
       <path d={`M ${x - 40} ${y - 70} Q ${x - 10} ${y - 40} ${x - 40} ${y - 20}`} stroke="#0b0d14" strokeWidth={5} fill="none" />
-      <path d={`M ${x + 14} ${y - 60} L ${x + 46} ${y - 60} L ${x + 40} ${y - 10} L ${x + 20} ${y - 10} Z`} fill="#ffd68a" stroke="#0b0d14" strokeWidth={4} />
+      <path d={`M ${x + 14} ${y - 60} L ${x + 46} ${y - 60} L ${x + 40} ${y - 10} L ${x + 20} ${y - 10} Z`} fill={sonuk ? "#3a3c46" : "#ffd68a"} stroke="#0b0d14" strokeWidth={4} />
       <path d={`M ${x + 10} ${y - 62} L ${x + 50} ${y - 62} L ${x + 30} ${y - 80} Z`} fill="#0b0d14" />
-      <circle cx={x + 30} cy={y - 36} r={70 + fl * 6} fill="#ffb456" opacity={0.35} style={{ filter: "blur(18px)" }} />
+      {!sonuk && <circle cx={x + 30} cy={y - 36} r={70 + fl * 6} fill="#ffb456" opacity={0.35} style={{ filter: "blur(18px)" }} />}
     </g>
   );
 };
@@ -552,7 +674,7 @@ export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?
       {/* ıslak zemin yansımaları */}
       <ellipse cx={lamp[0]} cy={1420} rx={45} ry={200} fill="#ffb357" opacity={0.22 + fl * 0.03} style={{ filter: "blur(14px)" }} />
       <ellipse cx={560} cy={1230} rx={36} ry={140} fill="#cfdcff" opacity={0.16} style={{ filter: "blur(10px)" }} />
-      <ellipse cx={FENER[0] + 70} cy={1680} rx={60} ry={260} fill="#ffb456" opacity={0.2 + fl * 0.03} style={{ filter: "blur(16px)" }} />
+      {sehir !== "bordeaux" && <ellipse cx={FENER[0] + 70} cy={1680} rx={60} ry={260} fill="#ffb456" opacity={0.2 + fl * 0.03} style={{ filter: "blur(16px)" }} />}
       <ellipse cx={cephe(SAG, 2.6, 0.95)[0] - 30} cy={1500} rx={70} ry={200} fill="#ff9d3a" opacity={0.2} style={{ filter: "blur(18px)" }} />
       <Cephe q={SOL} side="sol" frame={frame} sehir={sehir} />
       <Cephe q={SAG} side="sag" frame={frame} sehir={sehir} />
@@ -562,10 +684,11 @@ export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?
         <polygon points={poly([SAG.A, SAG.B, SAG.C, SAG.D])} filter="url(#siva)" fill="#fff" />
       </g>}
       {!izgaraFaresiz && <IzgaraVeFare t={t} frame={frame} />}
-      <Ilan />
-      {sehir === "bordeaux" ? <TabureSira /> : <Teras />}
+      {sehir !== "bordeaux" && <Ilan />}
+      {sehir !== "bordeaux" && <Teras />}
       {sehir !== "bordeaux" && <Bayrak frame={frame} />}
-      <Fener fl={fl} />
+      {sehir === "bordeaux" && <BordeauxEk frame={frame} />}
+      <Fener fl={sehir === "bordeaux" ? -9 : fl} sonuk={sehir === "bordeaux"} />
       <Reverbere frame={frame} fl={fl} />
     </g>
   );

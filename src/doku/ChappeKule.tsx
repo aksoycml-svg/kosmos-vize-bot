@@ -10,11 +10,13 @@ import { BL, ink, karistir, P, poly } from "./sabitler";
 // Sol gösterge sol uçta, sağ gösterge sağ uçta; sağ aynalıdır (aynı sayı = simetrik poz).
 export type KolKonum = { reg: number; sol: number; sag: number };
 export const KONUMLAR = {
-  ILK: { reg: 0, sol: 45, sag: -45 },
-  SAK: { reg: 0, sol: 90, sag: -45 },
+  // v2.5 (sahne-plani.md "Kule kol konumları"; mekanlar.md 12 #27). DINLEN/BEKLE araştırmacı teyidi bekler (zayıf kaynak).
+  BEKLE: { reg: 0, sol: 0, sag: 0 },      // A · gündüz: regülatör yatay, göstergeler katlı → düz T (yatay çubuk)
+  ILK: { reg: 0, sol: 0, sag: 0 },        // = BEKLE (P01 f0, P23 son kare)
+  SAK: { reg: 0, sol: 90, sag: 135 },     // B · P01 p54 sonrası: sol dikey yukarı, sağ dışa-yukarı 45° (asimetrik "7"; direkle üçgen kurmaz)
   MESAJ: { reg: 0, sol: 90, sag: -90 },
-  HATA: { reg: 0, sol: 135, sag: -90 },
-  DINLEN: { reg: 0, sol: 0, sag: 0 },
+  HATA: { reg: 0, sol: 135, sag: -90 },   // X · fazladan çentik
+  DINLEN: { reg: 90, sol: 0, sag: 0 },    // gece/sis: regülatör DİKEY, göstergeler katlı → dikey çubuk
 } satisfies Record<string, KolKonum>;
 export type KonumAdi = keyof typeof KONUMLAR;
 export type KuleDetay = "yakin" | "orta" | "siluet";

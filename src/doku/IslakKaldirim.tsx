@@ -17,7 +17,7 @@ export const IslakKaldirim: React.FC<{
     <g>
       <defs>
         <filter id={`${id}d`} x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.015 0.09" numOctaves={1} seed={seed} /><feDisplacementMap in="SourceGraphic" scale={5} xChannelSelector="R" yChannelSelector="G" /></filter>
-        <filter id={`${id}b`} x="-50%" y="-20%" width="200%" height="140%"><feGaussianBlur stdDeviation={4} /></filter>
+        <filter id={`${id}b`} x="-50%" y="-20%" width="200%" height="140%"><feGaussianBlur stdDeviation={9} /></filter>
         <filter id={`${id}k`} x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation={1.2} /></filter>
       </defs>
       {birikinti.map((b, i) => {
@@ -41,7 +41,7 @@ export const IslakKaldirim: React.FC<{
               {isiklar.filter((l) => l.x > x0 - 30 && l.x < x1 + 30).map((l, j) => (
                 <g key={`l${j}`}>
                   <rect x={l.x - (l.gen ?? 22) / 2} y={y0 - 6} width={l.gen ?? 22} height={y1 - y0 + 12} fill={l.renk} opacity={l.guc ?? 0.85} filter={`url(#${id}b)`} />
-                  <rect x={l.x - (l.gen ?? 22) / 8} y={y0 + 2} width={(l.gen ?? 22) / 4} height={(y1 - y0) * 0.85} fill="#fff4d8" opacity={0.9} filter={`url(#${id}k)`} />
+                  <rect x={l.x - (l.gen ?? 22) / 10} y={y0 + 2} width={(l.gen ?? 22) / 5} height={(y1 - y0) * 0.7} fill="#fff4d8" opacity={0.6} filter={`url(#${id}b)`} />
                 </g>
               ))}
             </g>

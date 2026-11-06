@@ -1,36 +1,17 @@
-# Renk ölçüm tablosu (derecelendirme sonrası, 9×9 px ortalama)
+# Renk ölçüm tablosu (A3 · derecelendirme sonrası, 9×9 px ortalama)
 
-Hedef = mekanlar.md malzeme rengi. ΔL = ölçülen − hedef algısal parlaklık (0–100). |ΔL| ≤ tolerans → ✓.
+Hedef = mekanlar.md malzeme rengi. L* = CIELAB parlaklık; ΔE = CIEDE2000; ΔH° = ölçülen − hedef ton açısı (a*b*), C* düşükse (< 10, nötr) ton açısı anlamsız → '—'. Geçme: |ΔL*| ≤ tol_L VE ΔE ≤ tol_E VE (nötr değilse) |ΔH°| ≤ 25.
 
-## SB2-TOURS
-
-| Nokta | (x,y) | Ölçülen | Hedef | Kaynak | L ölç/hedef | ΔL | Sonuç |
-|---|---|---|---|---|---|---|---|
-| duvar badana (ışıkta) | (430,425) | `#ded3b3` | `#e2dccb` | SIVA Tours iç | 83/86 | -3 | ✓ |
-| duvar tuffeau (ışıkta) | (140,640) | `#d0c2a1` | `#e6e0cc` | TUFFEAU | 76/88 | -12 | ✓ |
-| pencere gök (geç gün) | (640,470) | `#d8c08b` | `#e8c88a` | tasarim 1.4 gecGunGok | 76/79 | -3 | ✓ |
-| masa güneş yamasında | (600,900) | `#bc9e71` | `#a07848` | AHSAP-MESE açık | 63/49 | +14 | ✓ |
-| masa gölgede (loş oda) | (960,1560) | `#4c3824` | `#7a5230` | AHSAP-MESE orta (gölge) | 23/35 | -12 | ✓ |
-| fener camı | (246,877) | `#efe0b4` | `#ffd98f` | fener cam | 88/86 | +2 | ✓ |
-| eldiven | (556,1192) | `#e5dabf` | `#f4efe2` | kahraman eldiven | 86/94 | -8 | ✓ |
-| paket kâğıdı | (760,1225) | `#a78659` | `#b08a5a` | KAGIT-PAKET | 54/56 | -2 | ✓ |
-
-## SB2-SOKAK
-
-| Nokta | (x,y) | Ölçülen | Hedef | Kaynak | L ölç/hedef | ΔL | Sonuç |
-|---|---|---|---|---|---|---|---|
-| cephe TAS-BDX (gece) | (140,560) | `#a37041` | `#8a7e66` | TAS-BDX gece tonu | 47/50 | -3 | ✓ |
-| gök (üst) | (540,120) | `#222432` | `#0f1530` | gece gök #070b1f→#1b2852 | 14/8 | +6 | ✓ |
-| kaldırım | (540,1700) | `#3f3d3f` | `#3a3e4c` | KALDIRIM-ISLAK rgb(48–70) | 24/24 | +0 | ✓ |
-| yanık pencere (kafe camı) | (808,1148) | `#d69f57` | `#ffb357` | amber | 65/74 | -9 | ✓ |
-| réverbère camı | (540,852) | `#eadcb2` | `#ffd98f` | réverbère | 86/86 | +0 | ✓ |
-
-## SB2-BORSA
-
-| Nokta | (x,y) | Ölçülen | Hedef | Kaynak | L ölç/hedef | ΔL | Sonuç |
-|---|---|---|---|---|---|---|---|
-| arka duvar TAS-BDX (ışık) | (240,420) | `#d9c288` | `#d6bf8e` | TAS-BDX ışık | 76/75 | +1 | ✓ |
-| pilastr | (820,560) | `#e0cd9c` | `#efe2bd` | pilastr vurgu | 81/89 | -8 | ✓ |
-| zemin açık dama (yamada) | (150,1440) | `#baa77c` | `#cbbd9c` | dama açık | 66/74 | -8 | ✓ |
-| kara tahta | (360,640) | `#42443a` | `#1f2a26` | tahta | 26/15 | +11 | ✓ |
-| pencere camı (aşırı pozlama) | (188,322) | `#e6dbc2` | `#fff1c8` | CAM pencere | 86/95 | -9 | ✓ |
+| Kompozisyon | Kare | Nokta | (x,y) | Ölçülen | Hedef | Kaynak | L* ölç/hedef | ΔL* | C* ölç/hedef | ΔH° | ΔE00 | Sonuç |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| SB2-TOURS | p60 | duvar badana (ışıkta) | (300,360) | `#dfd3b4` | `#e2dccb` | SIVA Tours iç | 85/88 | -3 | 17/9 | — | 5.3 | ✓ |
+| SB2-TOURS | p60 | pencere gök (geç gün) | (600,470) | `#cec19f` | `#e8c88a` | tasarım 1.4 gecGunGok | 78/82 | -4 | 19/35 | +8 | 8.4 | ✓ |
+| SB2-TOURS | p60 | paket kâğıdı (güneşte) | (900,1250) | `#a98658` | `#b08a5a` | KAGIT-PAKET | 58/60 | -2 | 31/32 | +1 | 1.8 | ✓ |
+| SB2-TOURS | p60 | masa (gölgede) | (980,1600) | `#7b5c3b` | `#7a5230` | AHSAP-MESE orta | 42/39 | +3 | 26/30 | +7 | 4.3 | ✓ |
+| SB2-SOKAK | p0 | gök (üst) | (540,120) | `#222635` | `#0f1530` | gece gök | 15/8 | +8 | 11/22 | -9 | 8.0 | ✓ |
+| SB2-SOKAK | p0 | kaldırım (ışık dışı) | (300,1650) | `#4b4a4f` | `#3a3e4c` | KALDIRIM-ISLAK | 32/26 | +5 | 4/9 | — | 6.5 | ✓ |
+| SB2-SOKAK | p0 | cephe TAS-BDX (gece) | (120,700) | `#85765b` | `#8a7e66` | TAS-BDX gece | 50/53 | -3 | 17/15 | -4 | 3.3 | ✓ |
+| SB2-BORSA | p0 | taş (ışıkta) | (300,140) | `#c7b388` | `#e2cfa0` | BORSA taş ışık | 74/84 | -10 | 25/26 | -3 | 7.1 | ✓ |
+| SB2-BORSA | p0 | avlu taşı (güneşte) | (540,1500) | `#cab587` | `#d4c29a` | BORSA avlu taşı | 74/79 | -5 | 26/22 | -1 | 3.8 | ✓ |
+| SB2-BORSA | p0 | portik derin gölge | (140,820) | `#5e4f39` | `#4a3e2c` | BORSA portik | 35/27 | +8 | 16/13 | -1 | 6.1 | ✓ |
+| SB2-BORSA | p90 | kara tahta | (450,640) | `#2e332a` | `#1f2a26` | tahta | 21/16 | +5 | 8/9 | — | 5.0 | ✓ |

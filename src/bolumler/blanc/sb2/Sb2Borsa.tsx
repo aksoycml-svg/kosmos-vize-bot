@@ -7,308 +7,266 @@ import { KonturTitreme } from "../../../doku/KonturTitreme";
 import { TasDuvar } from "../../../doku/TasDuvar";
 import { AhsapYuzey } from "../../../doku/AhsapYuzey";
 import { Siluet } from "../../../doku/Siluet";
-import { AciklikIsigi, Golge, Isik } from "../../../doku/Isik";
-import { KemerliPencere, Kornis, Pilastr } from "../../../doku/Mimari";
+import { Golge, Isik } from "../../../doku/Isik";
+import { Kemer, kemerCokgen } from "../../../doku/Kemer";
+import { Tarama, taramaAcisi } from "../../../doku/Tarama";
 import { GuvenliAlan, KilitNokta } from "../../../doku/GuvenliAlan";
-import { oda, ODALAR, sz } from "../../../doku/perspektif";
-import { BL, DOKU_SEED, Esleme, P, dikdortgen, dortgen, ink, karistir, lerp, poly, rnd, tonla } from "../../../doku/sabitler";
+import { BL, DOKU_SEED, Esleme, P, ink, lerp, poly, rnd, tonla } from "../../../doku/sabitler";
 import { FormulYazisi, IsimEtiketi } from "../../../components/EkranYazisi";
 import { serif } from "../../../theme";
 import { KATIP, TUCCAR } from "../palet";
 
-// ===== SB2-BORSA · P02 · BORSA (Bordeaux, öğle) — plan karesi p = mutlak − 156; stil karesi p 120 = mutlak 276 =====
-// A2: geniş-kısa neoklasik salon (pilastr + korniş, sol duvarda üç KEMERLİ pencere, sağda kemerli giriş + sarkık
-// tricolore, estrad + merdiveni, ön sağda ahşap korkuluk, sol önde sütun gövdesi). Işık TEK güneşten: pencere
-// yamaları zeminde, huzmeler, tüm temas gölgeleri sağa (izdusum). Tüccar ayrı yüz/şapka/kostüm; kalabalık iki tonlu
-// siluet + sıcak kenar ışığı. Ön plan "kafa lekeleri" kaldırıldı (ufuk–ölçek kuralı).
-// Dolly cs 1.00→1.18, cy 0→−60; tahta başlığı dünya y≈562 → dolly sonunda ekran y≈430 (P03 MATCH).
+// ===== SB2-BORSA · P02 · Palais de la Bourse — AÇIK PORTİKLİ AVLU (mekanlar.md 10.1, R3 orkestra kararı) — p = mutlak − 156 =====
+// Arka avlu cephesi: YARIM DAİRE arcade'lar (oran 1:2), sade kilit taşı + imposte; alınlıkta ticaret amblemi + okunmaz şehir çizgileri;
+// arcade'larda demir parmaklıklı kapı; portik içi derin gölge (tarama IV). Fiyat tahtası ORTA arcade'ın altında, galeri duvarına dayalı
+// [S dramatizasyon]; katip estradda. Öğle güneşi TEPEDEN (sağ-üst arkadan hafif): gölgeler kısa, sol-öne. Kamera ÖN PORTİĞİN İÇİNDEN:
+// iki kenarda gölgeli arcade ayağı, altta gölgeli portik zemini, sağ altta tezgâh (defter + hokka), sol altta yarı açık demir kapı kanadı.
+// Bayrak YOK. Palet (6 + ışık): taş ışık #e2cfa0 · taş gölge #9a845e · portik derin gölge #4a3e2c · avlu taşı #d4c29a · tahta #1f2a26 · ahşap/demir #3a2c20 + güneş #fff1c8.
 export const SB2_BORSA_SURE = 204;
-export const P02_TEMAS = { tebesirCizirti: [30, 88], tebesirKirilir: 90, sekme1: 102, sekme2: 114, yarimTebesir: 176 } as const;
+export const P02_TEMAS = { tebesirCizirti: [30, 88], tebesirKirilir: 90, sekme1: 102, sekme2: 114, yarimTebesir: 192 } as const;
+export const P02_KONTROL = [0, 90, 102, 168, 203];
+const PAL = { tas: "#e2cfa0", tasG: "#9a845e", portik: "#4a3e2c", zemin: "#d4c29a", tahta: BL.tahta, ahsap: "#3a2c20", gunes: "#fff1c8" };
 
 const cl = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const S = DOKU_SEED.borsa;
-const O = oda(ODALAR.borsa);
-const DUVAR_H = 2600;
-const ARKA = { x0: 190, x1: 890, y: 1030 };
-const TAHTA = { x: 340, y: 520, w: 400, h: 200 };
-const ESTRAD = { z1: 5.0, z2: 7, u1: 0.3, u2: 0.7, H: 128, basamak: 64 };
-// TEK güneş: sol duvardaki kemerli pencerelerden; h px yükseklikteki noktanın gölgesi (+0.3h, +0.05h) → sağa, kısa
-const GUNES: Isik = { tip: "yonlu", ad: "güneş (sol pencereler)", yon: [0.3, 0.05], renk: "#ffd98f" };
-const BAL = "#6a5030"; // gölgeler bal rengi (asla gri/siyah)
+// ---- avlu perspektifi (göz hizası 1.6 m; ufuk y 800): y = 800 + 900/z, 1 m = 563/z px; rig 620 birim ≈ 1.85 m (şapkalı) ----
+const UFUK = 800;
+const pxm = (z: number) => 563 / z;
+const zem = (z: number, xm: number): P => [540 + xm * pxm(z), UFUK + 900 / z];
+const olc = (z: number) => 1.679 / z;
+const nok = (z: number, xm: number, hm: number): P => { const [x, y] = zem(z, xm); return [x, y - hm * pxm(z)]; };
+const ON_Z = 5.6, ARKA_Z = 6.6; // arcade ön düzlemi / portik arka (galeri) duvarı
+const AKS = 4.5, AW = 3.0, AH = 6.0; // aks genişliği, arcade açıklığı 3.0 × 6.0 (1:2)
+const GUNES: Isik = { tip: "yonlu", ad: "öğle güneşi (tepeden, sağ-arka)", yon: [-0.16, 0.05], renk: PAL.gunes };
+const TH = taramaAcisi(GUNES);
+const TAHTA = { xm: -1.5, w: 3.0, h0: 1.75, h1: 3.75 }; // galeri duvarında (m)
 
-const yer = (z: number, u: number, ek = 0) => { const [x, y] = O.zemin(z, u); const s = O.olcek(z); return { x, y: y + AYAK_TABAN * s - ek * s, s, zx: x, zy: y - ek * s }; };
-const dur = (x: number, y: number, s: number, f: 1 | -1, ek: Partial<Poz> = {}): Poz => ({
-  x, y, scale: s, facing: f, thighF: -3, kneeF: 3, thighB: 4, kneeB: 2, shF: 4, elF: -10, shB: 6, elB: -12, tails: 1, breathe: 0, blinkF: 0, blinkB: 0, hat: null, cane: null, ...ek,
-});
-// sol duvar eşlemesi: t = sz(z) derinlik, v = 0 üst … 1 zemin
-const solDuvar = (t: number, v: number): P => { const x = lerp(-100, ARKA.x0, t), yf = lerp(1700, ARKA.y, t), s = lerp(1.15, 0.6, t); return [x, yf - (1 - v) * DUVAR_H * s]; };
-const sagDuvar = (t: number, v: number): P => { const x = lerp(1180, ARKA.x1, t), yf = lerp(1700, ARKA.y, t), s = lerp(1.15, 0.6, t); return [x, yf - (1 - v) * DUVAR_H * s]; };
-// duvarda (z1..z2, H1..H2) parçası için yerel eşleme
-const duvarParca = (duvar: typeof solDuvar, z1: number, z2: number, Hust: number, Halt: number): Esleme => (u, v) => duvar(lerp(sz(z1), sz(z2), u), 1 - lerp(Hust, Halt, v) / DUVAR_H);
+const yer = (z: number, xm: number, ekH = 0) => { const [x, y] = zem(z, xm); const s = olc(z); return { x, y: y + AYAK_TABAN * s - ekH * pxm(z), s, zx: x, zy: y - ekH * pxm(z) }; };
+const dur = (x: number, y: number, s: number, f: 1 | -1, ek: Partial<Poz> = {}): Poz => ({ x, y, scale: s, facing: f, thighF: -3, kneeF: 3, thighB: 4, kneeB: 2, shF: 4, elF: -10, shB: 6, elB: -12, tails: 1, breathe: 0, blinkF: 0, blinkB: 0, hat: null, cane: null, ...ek });
 
-// kompars: ana kadronun yüzünü kopyalamaz
 const TUCCAR_V: Palet = { ...TUCCAR, hair: "#9a958a", sideburn: 1.8, biyik: "yok", sakal: true, sapka: "genis", burun: 1.2, hat: "#4a3a26", hatBand: "#2a2016", coat: "#7a5a2e", coatDark: "#54401f", coatLight: "#9a7844", vest: "#a58a4a", vestDark: "#7a6430" };
-const KOMPARS: Palet[] = [
-  { ...KATIP, sapka: "silindir", biyik: "yok" }, { ...TUCCAR, sapka: "genis", biyik: "duz" }, { ...KATIP, sapka: "genis", sakal: true, biyik: "yok" }, { ...TUCCAR, sapka: "silindir", burun: 1.15 },
-];
-const KALABALIK: [number, number][] = [[2.05, 0.06], [2.2, 0.92], [2.75, 0.8], [2.9, 0.12], [3.3, 0.38], [3.5, 0.9], [4.0, 0.16], [4.2, 0.62], [4.8, 0.08], [5.0, 0.88], [5.7, 0.22], [6.1, 0.8]];
-const kalabalikTon = (z: number): [string, string] => z < 2.6 ? ["#4a3a2a", "#7a6448"] : z < 4 ? ["#6a5844", "#9a8668"] : ["#8a7860", "#b4a286"];
+const KOMPARS: Palet[] = [{ ...KATIP, biyik: "yok" }, { ...TUCCAR, sapka: "genis", biyik: "duz" }, { ...KATIP, sapka: "genis", sakal: true, biyik: "yok" }, { ...TUCCAR, burun: 1.15 }];
+// kalabalık (xm, z): avluda; ana üçlünün arkasında açık koridor bırakılır (tahta görünür)
+const KALABALIK: [number, number][] = [[-2.5, 2.2], [2.3, 2.4], [-1.9, 3.0], [1.7, 3.2], [-0.9, 3.7], [2.8, 3.9], [-2.9, 4.3], [1.1, 4.5], [-1.6, 5.0], [2.2, 5.1]];
+const ton = (z: number): [string, string] => z < 2.8 ? ["#5a4a36", "#8a7556"] : z < 4 ? ["#6e5c44", "#a08a68"] : ["#857258", "#b49e7c"];
+
+// ---- tebeşir parçası yolu (p90 kırılma → p102 estrad kenarı → p114 güneşli avlu zemini) ----
+const KIRILMA: P = nok(ARKA_Z - 0.02, TAHTA.xm + 2.15, 2.03); // son satır (katibin erişimi: estrad 0.36 + kol ≈ 2.2 m)
+const tebesirParca = (p: number): P | null => {
+  if (p < 90) return null;
+  const a = KIRILMA, b = nok(6.0, 0.45, 0.36), c = nok(4.0, 0.3, 0); // sekme estrad kenarında, iniş François–Louis arasındaki boşlukta (görünür)
+  if (p <= 102) { const t = (p - 90) / 12; return [lerp(a[0], b[0], t), lerp(a[1], b[1], t * t)]; }
+  if (p <= 114) { const t = (p - 102) / 12; return [lerp(b[0], c[0], t), lerp(b[1], c[1], t) - Math.sin(t * Math.PI) * 28]; }
+  return c;
+};
 
 export const Sb2Borsa: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
   const p = useCurrentFrame();
   const ease = Easing.inOut(Easing.cubic);
-  const cs = interpolate(p, [0, 204], [1.0, 1.18], { ...cl, easing: ease });
-  const cy = interpolate(p, [0, 204], [0, -60], { ...cl, easing: ease });
-  const kat = `translate(540,${960 + cy}) scale(${cs}) translate(-540,-960)`;
-  const ekran = (q: P): P => [540 + (q[0] - 540) * cs, 960 + cy + (q[1] - 960) * cs];
+  // ---- kamera: geniş dolly → (p150–186 kesme) Louis göğüs → (p186–204) boy; p204'te "PARIS" başlığı ekran (540,430) ----
+  const louisZ = 1.52, lYer = yer(louisZ, 0.6);
+  const lYuz = dunyaya(dur(lYer.x, lYer.y, lYer.s, -1, { lean: 7 }), [20, -430]);
+  const kam = p < 90 ? { cs: interpolate(p, [0, 90], [1.0, 1.15], { ...cl, easing: ease }), cx: 0, cy: interpolate(p, [0, 90], [30, -10], { ...cl, easing: ease }) } // plan +100→+40; ayaklar alt banda girdiği için −70 (onay bekliyor)
+    : p < 150 ? { cs: interpolate(p, [90, 150], [1.15, 1.22], { ...cl, easing: ease }), cx: interpolate(p, [90, 150], [0, 20], cl), cy: interpolate(p, [90, 150], [-10, -40], cl) }
+    : p < 186 ? { cs: 2.8, cx: -2.8 * (lYuz[0] - 540), cy: -160 - 2.8 * (lYuz[1] - 960) }
+    : { cs: 1.3, cx: 70, cy: -110 };
+  const { cs, cx, cy } = kam;
+  const kat = (k: number) => `translate(${540 + cx * k},${960 + cy * k}) scale(${1 + (cs - 1) * k}) translate(-540,-960)`;
+  const ekran = (q: P): P => [540 + cx + (q[0] - 540) * cs, 960 + cy + (q[1] - 960) * cs];
   const don = interpolate(p, [96, 126], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) });
 
-  // ----- ana karakterler (z 1.6/1.7: yüzler telefonda okunur, ayaklar alt 420'nin üstünde) -----
-  const tY = yer(1.6, 0.2), fY = yer(1.6, 0.4), lY = yer(1.7, 0.66);
+  // ---- ana karakterler (dünya xm, z) ----
+  const tY = yer(1.45, -0.95), fY = yer(1.45, -0.25);
   const tuccar = dur(tY.x, tY.y, tY.s * 0.95, 1, { lookX: 0.6, lookY: -0.6 * don, headTilt: -6 * don, agiz: don > 0.5 ? "O" : "gulumse", browF: 0.8 * don, browB: 0.8 * don, shF: 10, elF: -20 });
   const tOmuz = dunyaya(tuccar, [50, -352]);
   const fr0 = dur(fY.x, fY.y, fY.s, -1, { lean: 2, lookX: 0.8, lookY: 0.1, headTilt: 4, agiz: "gulumse", browF: 0.5, browB: 0.4, shB: 10, elB: -24 });
   const fIK = kolIK(fr0, [tOmuz[0], tOmuz[1] + 4], true, [0, -8]);
   const francois: Poz = { ...fr0, shF: fIK.sh, elF: fIK.el };
-  const PUP = { z: 1.55, u: 0.6, yuz: 300 };
-  const pY = yer(PUP.z, PUP.u);
-  const defterUc: P = [pY.zx + 4 * pY.s, pY.zy - (PUP.yuz + 6) * pY.s];
-  const lo0 = dur(lY.x, lY.y, lY.s, -1, { lean: 7, headTilt: 16, lookX: 0.5, lookY: 1, browF: -0.5, browB: -0.5, agiz: "dinlen", blinkF: 0.45, blinkB: 0.45 });
+  const pY = yer(1.47, 0.25), PUP = 300;
+  const defterUc: P = [pY.zx + 4 * pY.s, pY.zy - (PUP + 6) * pY.s];
+  const lo0 = dur(lYer.x, lYer.y, lYer.s, -1, { lean: 7, headTilt: 16, lookX: 0.5, lookY: 1, browF: -0.5, browB: -0.5, agiz: "dinlen", blinkF: 0.45, blinkB: 0.45, yakin: p >= 150 && p < 186 });
   const lIK = kolIK(lo0, defterUc, true, [6, 10]);
-  const lIKb = kolIK(lo0, [defterUc[0] + 40 * lY.s, defterUc[1] + 4 * lY.s], false);
+  const lIKb = kolIK(lo0, [defterUc[0] + 40 * lYer.s, defterUc[1] + 4 * lYer.s], false);
   const louis: Poz = { ...lo0, shF: lIK.sh, elF: lIK.el, shB: lIKb.sh, elB: lIKb.el };
   const kalemEl = elDunya(louis, true, [6, 10]);
+  const parca = tebesirParca(p);
+  const fSapka = ekran(dunyaya(francois, [12, -592])), lSapka = ekran(dunyaya(louis, [12, -604]));
+  const etiketCikis = interpolate(p, [78, 86], [0, 1], { ...cl, easing: Easing.in(Easing.quad) });
 
-  const PENC = [1.85, 2.75, 3.9];
-  const PEN_H = [1150, 380]; // kemer tepesi/denizlik yüksekliği (birim): kemerler kadrajda okunur
-  const pencereM = (z: number) => duvarParca(solDuvar, z - 0.3, z + 0.3, PEN_H[0], PEN_H[1]);
-  const pencereKose = (z: number) => [[z - 0.3, PEN_H[0]], [z + 0.3, PEN_H[0]], [z + 0.3, PEN_H[1]], [z - 0.3, PEN_H[1]]].map(([zz, H]) => ({ p: solDuvar(sz(zz), 1 - H / DUVAR_H), ayak: O.zemin(zz, 0), h: H * O.olcek(zz) }));
-  const kisi = (y: ReturnType<typeof yer>, boy = 620) => ({ ayak: [y.zx, y.zy] as P, h: boy * y.s });
-
-  const fSapka = ekran(dunyaya(francois, [12, -592]));
-  const lSapka = ekran(dunyaya(louis, [12, -604]));
-  const etiketY = (h: P) => h[1] - 30 - 104;
-  const kilit: KilitNokta[] = [
-    { ad: "François ayak", p: ekran([fY.zx, fY.zy]), tur: "ayak" }, { ad: "Louis ayak", p: ekran([lY.zx, lY.zy]), tur: "ayak" }, { ad: "tüccar ayak", p: ekran([tY.zx, tY.zy]), tur: "ayak" },
-    { ad: "tebeşir/tahta", p: ekran([TAHTA.x + TAHTA.w * 0.62, TAHTA.y + 170]), tur: "dokunus" }, { ad: "PARIS başlığı", p: ekran([540, 562]), tur: "kurulum" },
-    { ad: "Louis defter", p: ekran(defterUc), tur: "kurulum" }, { ad: "tebeşir parçası", p: ekran(O.zemin(4.75, 0.47)), tur: "temas" },
-    { ad: "François etiketi", p: [fSapka[0], etiketY(fSapka) + 52], tur: "yazi" }, { ad: "Louis etiketi", p: [Math.min(1000 - 175, lSapka[0]), etiketY(lSapka) + 52], tur: "yazi" },
-  ];
+  const onCephe = (xm: number, hm: number) => nok(ON_Z, xm, hm);
+  const arcadeM = (i: number): Esleme => { const x0 = i * AKS - AW / 2; return (u, v) => onCephe(x0 + u * AW, (1 - v) * AH); };
+  const kilit: KilitNokta[] = p >= 150 && p < 186
+    ? [{ ad: "Louis yüz (göğüs)", p: ekran(lYuz), tur: "yuz" }, { ad: "kalem/defter", p: ekran(defterUc), tur: "dokunus" }]
+    : [
+      { ad: "François ayak", p: ekran([fY.zx, fY.zy]), tur: "ayak" }, { ad: "Louis ayak", p: ekran([lYer.zx, lYer.zy]), tur: "ayak" }, { ad: "tüccar ayak", p: ekran([tY.zx, tY.zy]), tur: "ayak" },
+      { ad: "tebeşir kırılma", p: ekran(KIRILMA), tur: "dokunus" }, { ad: "PARIS başlığı", p: ekran(nok(ARKA_Z, 0, TAHTA.h1 - 0.34)), tur: "kurulum" }, { ad: "Louis defter", p: ekran(defterUc), tur: "kurulum" },
+      ...(parca ? [{ ad: "tebeşir parçası", p: ekran(parca), tur: "temas" as const }] : []),
+    ];
   return (
     <AbsoluteFill style={{ backgroundColor: "#3a2c1c" }}>
       <ArsivKatmani mod="gunduz">
         <AbsoluteFill>
           <svg width={1080} height={1920} viewBox="0 0 1080 1920">
-            <defs>
-              <linearGradient id="b2pen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fffaf0" /><stop offset="1" stopColor="#fff1c8" /></linearGradient>
-              <linearGradient id="b2on" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#3a2a1a" stopOpacity={0} /><stop offset="1" stopColor="#3a2a1a" stopOpacity={0.5} /></linearGradient>
-              <filter id="b2bulanik" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation={12} /></filter>
-              <filter id="b2toz" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation={10} /></filter>
-              <filter id="b2tebesir"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves={1} seed={S} /><feDisplacementMap in="SourceGraphic" scale={2.5} xChannelSelector="R" yChannelSelector="G" /></filter>
-              <filter id="b2rakam"><feTurbulence type="fractalNoise" baseFrequency="0.18" numOctaves={2} seed={S + 3} /><feDisplacementMap in="SourceGraphic" scale={13} xChannelSelector="R" yChannelSelector="G" /></filter>
-            </defs>
-            <g transform={kat}>
+            <defs><filter id="b2toz" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation={14} /></filter>
+              <filter id="b2rakam"><feTurbulence type="fractalNoise" baseFrequency="0.18" numOctaves={2} seed={S + 3} /><feDisplacementMap in="SourceGraphic" scale={11} xChannelSelector="R" yChannelSelector="G" /></filter>
+              <filter id="b2tebesir"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves={1} seed={S} /><feDisplacementMap in="SourceGraphic" scale={2.2} xChannelSelector="R" yChannelSelector="G" /></filter></defs>
+            <g transform={kat(1)}>
               <KonturTitreme derinlik="orta" seed={S}>
-                {/* ===== arka duvar: TAS-BDX bal tonu ===== */}
-                <TasDuvar m={(u, v) => [ARKA.x0 + u * (ARKA.x1 - ARKA.x0), -400 + v * (ARKA.y + 400)]} boyut={[1170, 2400]} tip="bdx" seed={S} derinlik="orta" yogunluk={0.75} taban="#d9c290" />
-                {/* saçak korniş (üst) + tahta üstü küçük korniş */}
-                <Kornis m={dikdortgen(ARKA.x0, 70, ARKA.x1 - ARKA.x0, 60)} renk="#ecdcb2" />
-                <Kornis m={dikdortgen(TAHTA.x - 40, TAHTA.y - 62, TAHTA.w + 80, 30)} renk="#ecdcb2" />
-                {/* iyonik pilastrlar tahtanın iki yanında */}
-                <Pilastr m={dikdortgen(258, 130, 56, ARKA.y - 130)} renk="#efe2bd" isik="sag" />
-                <Pilastr m={dikdortgen(766, 130, 56, ARKA.y - 130)} renk="#efe2bd" isik="sag" />
-                {/* ===== sol duvar + üç kemerli pencere (perspektifte daralır) ===== */}
-                <TasDuvar m={(u, v) => solDuvar(u, v)} boyut={[2000, DUVAR_H]} tip="bdx" seed={S + 1} derinlik="yakin" yogunluk={0.75} taban="#ccb684" />
-                {PENC.map((z, i) => <KemerliPencere key={i} m={pencereM(z)} cam="url(#b2pen)" tas="#efe2bd" kayit="#5b3d25" kemerOran={0.22} kalin={0.8} />)}
-                {/* pencereler arası pilastrlar (sol duvarda) */}
-                {[2.3, 3.3].map((z, i) => <Pilastr key={i} m={duvarParca(solDuvar, z - 0.06, z + 0.06, 1500, 0)} renk="#e8d9b0" isik="sag" yiv={2} />)}
-                {/* ===== sağ duvar (gölgede) + kemerli giriş + sarkık tricolore ===== */}
-                <TasDuvar m={(u, v) => sagDuvar(u, v)} boyut={[2000, DUVAR_H]} tip="bdx" seed={S + 2} derinlik="yakin" yogunluk={0.75} taban="#b49d6e" />
-                <KemerliPencere m={duvarParca(sagDuvar, 2.4, 3.6, 1150, 0)} cam="#f4e2b4" tas="#d8c49a" kemerOran={0.25} kapi />
-                <Tricolore duvar={sagDuvar(sz(2.2), 1 - 1000 / DUVAR_H)} />
-                {/* ===== zemin: taş dama ===== */}
-                <Dama />
-                <Tahta p={p} />
-                <Estrad />
+                {/* ===== arka avlu cephesi: üst kat (dikdörtgen pencereler) + korniş + arcade sırası ===== */}
+                <polygon points={poly([onCephe(-12, 12), onCephe(12, 12), onCephe(12, 0), onCephe(-12, 0)])} fill={PAL.tas} />
+                <TasDuvar m={(u, v) => onCephe(-12 + 24 * u, 12 - 12 * v)} boyut={[2400, 1200]} tip="bdx" taban={PAL.tas} seed={S} derinlik="orta" yogunluk={0.5} gozenek={false} blok={[60, 30]} />
+                {/* üst kat: dikdörtgen pencereler (düz söve, kemer YOK) */}
+                {[-3, -2, -1, 0, 1, 2, 3].map((i) => { const x0 = i * AKS - 0.65; const q = [onCephe(x0, 9.9), onCephe(x0 + 1.3, 9.9), onCephe(x0 + 1.3, 7.7), onCephe(x0, 7.7)]; const s = [onCephe(x0 - 0.15, 10.05), onCephe(x0 + 1.45, 10.05), onCephe(x0 + 1.45, 7.6), onCephe(x0 - 0.15, 7.6)]; return <g key={i}><polygon points={poly(s)} fill={tonla(PAL.tas, 0.05)} stroke={ink(PAL.tas)} strokeWidth={1.4} /><polygon points={poly(q)} fill="#3a3a44" /><line x1={(q[0][0] + q[1][0]) / 2} y1={q[0][1]} x2={(q[0][0] + q[1][0]) / 2} y2={q[2][1]} stroke={PAL.ahsap} strokeWidth={3} />{[0.33, 0.66].map((t) => <line key={t} x1={q[0][0]} y1={lerp(q[0][1], q[3][1], t)} x2={q[1][0]} y2={lerp(q[0][1], q[3][1], t)} stroke={PAL.ahsap} strokeWidth={2} />)}</g>; })}
+                {/* arcade üstü korniş (imposte kuşağı) + alt yüz gölge */}
+                <polygon points={poly([onCephe(-12, 7.1), onCephe(12, 7.1), onCephe(12, 6.55), onCephe(-12, 6.55)])} fill={tonla(PAL.tas, 0.06)} stroke={ink(PAL.tas)} strokeWidth={1.6} />
+                <Tarama sekil={[onCephe(-12, 6.55), onCephe(12, 6.55), onCephe(12, 6.4), onCephe(-12, 6.4)]} basamak="III" aci={TH} renk={ink(PAL.tas)} derinlik="orta" seed={S + 1} />
+                {/* kadran (1750, rüzgâr/saat) — ayak üstünde, küçük; harf yok */}
+                {(() => { const c = onCephe(AKS / 2, 5.4), r = 0.42 * pxm(ON_Z); return <g><circle cx={c[0]} cy={c[1]} r={r} fill="#e9dfc9" stroke={PAL.tasG} strokeWidth={3} />{[0, 90, 180, 270].map((a) => <line key={a} x1={c[0]} y1={c[1] - r * 0.8} x2={c[0]} y2={c[1] - r * 0.62} transform={`rotate(${a} ${c[0]} ${c[1]})`} stroke={PAL.tasG} strokeWidth={2} />)}<path d={`M ${c[0]} ${c[1] - r * 0.7} L ${c[0] + 3} ${c[1]} L ${c[0] - 3} ${c[1]} Z`} fill={BL.brass} transform={`rotate(-38 ${c[0]} ${c[1]})`} /></g>; })()}
               </KonturTitreme>
-
-              {/* ===== TEK güneş: pencere yamaları zeminde + huzmeler ===== */}
-              {PENC.map((z, i) => <AciklikIsigi key={i} isik={GUNES} kose={pencereKose(z)} kayit={[2, 3]} alfa={0.13} yamaAlfa={0.42} toz={i === 1 ? { sayi: 30, seed: S + i } : undefined} />)}
-
-              {/* ===== kalabalık (uzaktan yakına): iki tonlu siluet + sıcak kenar (ışık solda) ===== */}
-              {KALABALIK.map(([z, u], i) => ({ z, u, i })).sort((a, b) => b.z - a.z).map(({ z, u, i }) => {
-                const g = yer(z, u);
-                const f: 1 | -1 = u < 0.5 ? 1 : -1;
-                const sc = g.s * (0.92 + rnd(S, `k${i}`) * 0.14);
-                const pz = dur(g.x, g.y, sc, f, { lookY: -0.8 * don, headTilt: -10 * don, shF: 6 + rnd(S, `a${i}`) * 14, elF: -14 - rnd(S, `b${i}`) * 30, lean: -2 * don, thighF: -6 + rnd(S, `t${i}`) * 8 });
-                const [koyu, acik] = kalabalikTon(z);
-                return (
-                  <g key={i}>
-                    <Golge isik={GUNES} ayak={[g.zx, g.zy]} h={620 * sc} genislik={100 * sc} alfa={0.32} renk={BAL} />
-                    <Siluet renk={koyu} acik={acik} kenar={{ renk: "#f2d49a", dx: -3 * sc }} kutu={[g.x - 120 * sc, g.y - 640 * sc, 240 * sc, 650 * sc]}><Kukla p={KOMPARS[i % KOMPARS.length]} pz={pz} golgesiz /></Siluet>
+              {/* ===== arcade'lar: yarım daire; açıklık içinde portik (derin gölge), galeri duvarı, ortada tahta + estrad + katip ===== */}
+              {[-2, -1, 0, 1, 2].map((i) => {
+                const m = arcadeM(i);
+                const ic = (
+                  <g>
+                    {/* portik içi: galeri duvarı (yansıyan ışıkla biraz aydınlık) + tavan gölgesi */}
+                    <polygon points={poly([nok(ARKA_Z, i * AKS - 3, 7), nok(ARKA_Z, i * AKS + 3, 7), nok(ARKA_Z, i * AKS + 3, 0), nok(ARKA_Z, i * AKS - 3, 0)])} fill={tonla(PAL.portik, 0.35)} />
+                    <polygon points={poly([nok(ARKA_Z, i * AKS - 3, 0), nok(ARKA_Z, i * AKS + 3, 0), onCephe(i * AKS + 3, 0), onCephe(i * AKS - 3, 0)])} fill={tonla(PAL.portik, 0.15)} />
+                    <Tarama sekil={kemerCokgen(m, "yarimDaire", AW, AH)} basamak={i === 0 ? "III" : "IV"} aci={TH} renk="#1e1810" derinlik="orta" seed={S + 10 + i} />
+                    {i === 0 && <Tahta p={p} />}
+                    {i === 0 && <Estrad />}
+                    {i === 0 && <Katip p={p} />}
+                    {/* yan arcade'larda demir parmaklıklı kapı (biri açık kanat) */}
+                    {i !== 0 && Array.from({ length: 9 }).map((_, j) => { const xm = i * AKS - AW / 2 + (AW * (j + 0.5)) / 9; return <line key={j} x1={onCephe(xm, 0)[0]} y1={onCephe(xm, 0)[1]} x2={onCephe(xm, 4.3)[0]} y2={onCephe(xm, 4.3)[1]} stroke={PAL.ahsap} strokeWidth={2.4} />; })}
+                    {i !== 0 && <line x1={onCephe(i * AKS - AW / 2, 4.3)[0]} y1={onCephe(i * AKS - AW / 2, 4.3)[1]} x2={onCephe(i * AKS + AW / 2, 4.3)[0]} y2={onCephe(i * AKS + AW / 2, 4.3)[1]} stroke={PAL.ahsap} strokeWidth={4} />}
+                    {/* alınlık (tympanum): üzengiden yukarısı taş dolgu + ticaret amblemi + okunmaz şehir adı çizgileri */}
+                    <polygon points={poly(kemerCokgen(m, "yarimDaire", AW, AH).filter((q) => q[1] <= onCephe(0, AH - AW / 2)[1] + 1).concat([onCephe(i * AKS + AW / 2, AH - AW / 2), onCephe(i * AKS - AW / 2, AH - AW / 2)]))} fill={tonla(PAL.tas, -0.04)} />
+                    <line x1={onCephe(i * AKS - AW / 2, AH - AW / 2)[0]} y1={onCephe(0, AH - AW / 2)[1]} x2={onCephe(i * AKS + AW / 2, AH - AW / 2)[0]} y2={onCephe(0, AH - AW / 2)[1]} stroke={PAL.ahsap} strokeWidth={5} />
+                    <Amblem c={onCephe(i * AKS, AH - AW / 2 + 0.85)} s={pxm(ON_Z) / 100} tip={(i + 2) % 4} />
+                    {[0.3, 0.42].map((h, j) => <line key={j} x1={onCephe(i * AKS - 0.7 + j * 0.2, AH - AW / 2 + h)[0]} y1={onCephe(0, AH - AW / 2 + h)[1]} x2={onCephe(i * AKS + 0.7 - j * 0.2, AH - AW / 2 + h)[0]} y2={onCephe(0, AH - AW / 2 + h)[1]} stroke={PAL.tasG} strokeWidth={2} />)}
                   </g>
                 );
+                return <Kemer key={i} m={m} W={AW} H={AH} tip="yarimDaire" dolgu={PAL.portik} ic={ic} sove={{ gen: 0.28, renk: tonla(PAL.tas, 0.04) }} kilit={{ renk: PAL.tas }} imposte />;
               })}
-              <Katip p={p} />
+              {/* ===== avlu zemini: büyük kare taş plaka, düzensiz derz; arka cephenin kısa gölgesi (güneşten) ===== */}
+              <AvluZemin />
+              <polygon points={poly([zem(ON_Z, -12), zem(ON_Z, 12), [zem(ON_Z, 12)[0] - 160, zem(ON_Z, 12)[1] + 54], [zem(ON_Z, -12)[0] - 160, zem(ON_Z, -12)[1] + 54]])} fill="url(#b2ct)" />
+              <Tarama sekil={[zem(ON_Z, -12), zem(ON_Z, 12), [zem(ON_Z, 12)[0] - 160, zem(ON_Z, 12)[1] + 54], [zem(ON_Z, -12)[0] - 160, zem(ON_Z, -12)[1] + 54]]} basamak="III" aci={TH} renk={ink(PAL.zemin)} derinlik="orta" seed={S + 20} />
+              {/* tebeşir parçası (≥ 14 px, açık, koyu kontur) + kırılma tozu (tahtanın önünde, ışıkta asılı) */}
+              {parca && <g>
+                <ellipse cx={parca[0]} cy={parca[1] + 6} rx={9} ry={3} fill="#3a2c1c" opacity={p >= 114 ? 0.45 : 0.15} />
+                <rect x={parca[0] - 8} y={parca[1] - 4} width={16} height={7} rx={2.5} fill={BL.tebesir} stroke="#3a2c1c" strokeWidth={1.6} transform={`rotate(${p < 114 ? p * 23 : 14} ${parca[0]} ${parca[1]})`} />
+              </g>}
+              {p >= 90 && p < 170 && (() => { const t = interpolate(p, [90, 100, 168], [0, 1, 0.4], cl); return <g opacity={t}><ellipse cx={KIRILMA[0]} cy={KIRILMA[1] + 10 + (p - 90) * 0.2} rx={70 + (p - 90) * 0.6} ry={45 + (p - 90) * 0.3} fill={BL.tebesir} opacity={0.45} filter="url(#b2toz)" />{Array.from({ length: 22 }).map((_, i) => <circle key={i} cx={KIRILMA[0] + (rnd(S, `tx${i}`) - 0.5) * 140} cy={KIRILMA[1] + (rnd(S, `ty${i}`) - 0.3) * 80 + (p - 90) * 0.25} r={1 + rnd(S, `tr${i}`) * 2.2} fill={BL.tebesir} opacity={0.8} />)}</g>; })()}
 
-              {/* ===== ana karakterler (gölgeler aynı güneşten) ===== */}
-              <Golge isik={GUNES} {...kisi(tY)} genislik={100 * tY.s} alfa={0.38} renk={BAL} />
+              {/* ===== kalabalık (avluda; iki tonlu yüzsüz siluet + sıcak kenar) ===== */}
+              {KALABALIK.map(([xm, z], i) => ({ xm, z, i })).sort((a, b) => b.z - a.z).map(({ xm, z, i }) => {
+                const g = yer(z, xm), f: 1 | -1 = xm < 0 ? 1 : -1, sc = g.s * (0.93 + rnd(S, `k${i}`) * 0.12);
+                const pz = dur(g.x, g.y, sc, f, { lookY: -0.8 * don, headTilt: -10 * don, shF: 6 + rnd(S, `a${i}`) * 14, elF: -14 - rnd(S, `b${i}`) * 30 });
+                const [k, a] = ton(z);
+                return <g key={i}><Golge isik={GUNES} ayak={[g.zx, g.zy]} h={620 * sc} genislik={100 * sc} alfa={0.35} renk="#6a5030" /><Siluet renk={k} acik={a} kenar={{ renk: "#fff1c8", dx: 2.5 * sc, dy: -2 * sc }} kutu={[g.x - 120 * sc, g.y - 640 * sc, 240 * sc, 650 * sc]}><Kukla p={KOMPARS[i % 4]} pz={pz} golgesiz /></Siluet></g>;
+              })}
+              {/* ===== ana karakterler (gölgeler aynı güneşten: kısa, sol-öne) ===== */}
+              <Golge isik={GUNES} ayak={[tY.zx, tY.zy]} h={600 * tY.s} genislik={100 * tY.s} alfa={0.4} renk="#6a5030" />
               <g transform={`translate(${tY.x},${tY.y}) scale(1.12,1) translate(${-tY.x},${-tY.y})`}><Kukla p={TUCCAR_V} pz={tuccar} golgesiz /></g>
-              <Golge isik={GUNES} {...kisi(fY)} genislik={100 * fY.s} alfa={0.38} renk={BAL} />
+              <Golge isik={GUNES} ayak={[fY.zx, fY.zy]} h={620 * fY.s} genislik={100 * fY.s} alfa={0.4} renk="#6a5030" />
               <Kukla p={FRANCOIS} pz={francois} golgesiz />
-              <Golge isik={GUNES} {...kisi(lY, 635)} genislik={100 * lY.s} alfa={0.38} renk={BAL} />
+              <Golge isik={GUNES} ayak={[lYer.zx, lYer.zy]} h={635 * lYer.s} genislik={100 * lYer.s} alfa={0.4} renk="#6a5030" />
               <Kukla louis p={LOUIS} pz={louis} golgesiz />
               <CepEldiven pz={louis} />
-              <Golge isik={GUNES} ayak={[pY.zx, pY.zy]} h={PUP.yuz * pY.s} genislik={110 * pY.s} alfa={0.3} renk={BAL} cekirdek={false} />
-              <Pupitr x={pY.zx} y={pY.zy} s={pY.s} yuz={PUP.yuz} />
-              <g transform={`translate(${kalemEl[0]},${kalemEl[1]}) rotate(-28)`}>
-                <path d="M 0 0 L 2 -70 Q 14 -60 10 -20 Z" fill="#e8e0cc" stroke={ink("#e8e0cc")} strokeWidth={1.4} />
-              </g>
-
-              {/* ===== ön plan derinlik öğesi: sol önde bulanık sütun gövdesi (korkuluk bu kadrajda tek dikme gibi okunduğu için kaldırıldı) ===== */}
-              <g filter="url(#b2bulanik)">
-                <rect x={-150} y={-300} width={210} height={2400} fill="#c4ad7c" />
-                <rect x={20} y={-300} width={40} height={2400} fill="#8a744e" />
-                {[-110, -60, -10].map((x) => <rect key={x} x={x} y={-300} width={6} height={2400} fill="#9a845a" />)}
-              </g>
-              <rect x={-200} y={1480} width={1480} height={700} fill="url(#b2on)" />
+              <Pupitr x={pY.zx} y={pY.zy} s={pY.s} yuz={PUP} />
+              <g transform={`translate(${kalemEl[0]},${kalemEl[1]}) rotate(-28)`}><path d="M 0 0 L 2 -70 Q 14 -60 10 -20 Z" fill="#e8e0cc" stroke={ink("#e8e0cc")} strokeWidth={1.4} /></g>
+              <defs><linearGradient id="b2ct" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#6a5030" stopOpacity={0.35} /><stop offset="1" stopColor="#6a5030" stopOpacity={0.2} /></linearGradient></defs>
+            </g>
+            {/* ===== ön portik çerçevesi (proscenium, paralaks 1.3): gölgeli ayaklar, gölgeli portik zemini, tezgâh, demir kapı kanadı ===== */}
+            <g transform={kat(1.3)}>
+              <OnPortik />
             </g>
           </svg>
         </AbsoluteFill>
       </ArsivKatmani>
       <FormulYazisi metin="Oyun: Paris'teki tahvil fiyatı" kagitSerit />
-      {/* isim etiketleri: kendi karakterinin şapkasının üstünde, bağlantı çizgisi 30 px, yüzü/başka karakteri örtmez */}
-      <IsimEtiketi ad="François" sekme="#3c5ea3" x={Math.max(80, fSapka[0] - 175)} y={etiketY(fSapka)} hedef={[fSapka[0], fSapka[1] - 4]} />
-      <IsimEtiketi ad="Louis" sekme="#9a3646" x={1000} y={etiketY(lSapka)} hedef={[lSapka[0], lSapka[1] - 4]} hiza="sag" />
+      {/* isim etiketleri p0–78, p78–86 yukarı kayarak maskelenir (tebeşir kırılmasından önce kadrajdan çıkar); Louis x ≥ 720 */}
+      {p < 86 && <AbsoluteFill style={{ clipPath: `inset(0 0 ${1920 - Math.max(fSapka[1], lSapka[1]) + 28}px 0)` }}>
+        <AbsoluteFill style={{ transform: `translateY(${-etiketCikis * 220}px)` }}>
+          <IsimEtiketi ad="François" sekme="#3c5ea3" x={Math.max(80, Math.min(650 - 360, fSapka[0] - 175))} y={fSapka[1] - 134} hedef={[fSapka[0], fSapka[1] - 4]} />
+          <IsimEtiketi ad="Louis" sekme="#9a3646" x={1000} y={lSapka[1] - 134} hedef={[lSapka[0], lSapka[1] - 4]} hiza="sag" />
+        </AbsoluteFill>
+      </AbsoluteFill>}
       {guvenli && <GuvenliAlan noktalar={kilit} aktifBant="ust" baslik={`SB2-BORSA p${p}`} />}
     </AbsoluteFill>
   );
 };
 
-// sağ duvardan çıkan eğik gönder + sarkık tricolore (1830'dan beri). Gönder kenarı (mavi) gönder BOYUNCA bağlı;
-// bayrak sarktığı için şeritler göndere PARALEL: mavi gönderde, beyaz ortada, kırmızı altta. Doygunluk ~%70 (göz çalmaz).
-const Tricolore: React.FC<{ duvar: P }> = ({ duvar }) => {
-  const [x, y] = duvar;
-  const uc: P = [x - 150, y + 54];
-  const band = (o0: number, o1: number, c: string) => {
-    const sark = (t: number, o: number): P => [lerp(x - 6, uc[0] + 6, t) + o * 0.12, lerp(y + 4, uc[1] + 4, t) + o * (0.9 + 0.25 * Math.sin(t * Math.PI))];
-    const ust = Array.from({ length: 9 }).map((_, i) => sark(i / 8, o0)), alt = Array.from({ length: 9 }).map((_, i) => sark((8 - i) / 8, o1));
-    return <polygon key={c} points={poly([...ust, ...alt])} fill={c} stroke={ink(c)} strokeWidth={1} />;
-  };
-  return (
-    <g>
-      {band(0, 46, "#4a5a8a")}{band(46, 92, "#e6dfcf")}{band(92, 138, "#a24a4a")}
-      <line x1={x} y1={y} x2={uc[0] - 8} y2={uc[1] + 3} stroke="#3b2412" strokeWidth={5} />
-      <circle cx={uc[0] - 8} cy={uc[1] + 3} r={5} fill={BL.brass} />
-    </g>
-  );
-};
+// ticaret amblemleri (çapa, Merkür asası, terazi, bereket boynuzu) — basit siluet, harf yok
+const Amblem: React.FC<{ c: P; s: number; tip: number }> = ({ c, s, tip }) => (
+  <g transform={`translate(${c[0]},${c[1]}) scale(${s})`} stroke="#8a744e" strokeWidth={4} fill="none" strokeLinecap="round">
+    {tip === 0 && <g><line x1={0} y1={-34} x2={0} y2={30} /><line x1={-14} y1={-22} x2={14} y2={-22} /><path d="M -26 14 Q 0 44 26 14" /><circle cx={0} cy={-40} r={6} /></g>}
+    {tip === 1 && <g><line x1={0} y1={-40} x2={0} y2={36} /><path d="M -14 -26 Q 14 -18 -14 -6 Q 14 4 -14 14 M 14 -26 Q -14 -18 14 -6 Q -14 4 14 14" /><path d="M -22 -34 Q -10 -44 0 -36 Q 10 -44 22 -34" /></g>}
+    {tip === 2 && <g><line x1={0} y1={-36} x2={0} y2={30} /><line x1={-30} y1={-26} x2={30} y2={-26} /><path d="M -40 0 L -30 -26 L -20 0 Z M 20 0 L 30 -26 L 40 0 Z" /><line x1={-14} y1={30} x2={14} y2={30} /></g>}
+    {tip === 3 && <g><path d="M -30 20 Q -30 -20 20 -30 Q 6 -12 8 8 Q -6 4 -30 20 Z" /><circle cx={24} cy={-30} r={6} /><circle cx={14} cy={-40} r={5} /></g>}
+  </g>
+);
 
-const Dama: React.FC = () => {
+// avlu zemini (z 1 … ön arcade düzlemi): 1.2 m kare taş, düzensiz derz, ışıkta
+const AvluZemin: React.FC = () => {
   const els: React.ReactNode[] = [];
-  const zs: number[] = []; for (let z = 1; z < 7.01; z += 0.3) zs.push(z);
-  const N = 12;
-  for (let r = 0; r < zs.length - 1; r++) for (let c = 0; c < N; c++) {
-    const a = O.zemin(zs[r], c / N), b = O.zemin(zs[r], (c + 1) / N), cc = O.zemin(zs[r + 1], (c + 1) / N), d = O.zemin(zs[r + 1], c / N);
-    let renk = (r + c) % 2 === 1 ? "#97875f" : "#c4b590";
-    renk = tonla(renk, (rnd(S, `d${r}-${c}`) - 0.5) * 0.08);
-    if (c >= 4 && c <= 7 && zs[r] > 2.6) renk = karistir(renk, "#efe2bd", 0.15);
-    els.push(<polygon key={`${r}-${c}`} points={poly([a, b, cc, d])} fill={renk} stroke="#6a5a40" strokeWidth={1} strokeOpacity={0.5} />);
+  const zs: number[] = []; for (let z = 0.9; z < ON_Z; z += 0.615) zs.push(z); zs.push(ON_Z);
+  for (let r = 0; r < zs.length - 1; r++) for (let c = -7; c < 7; c++) {
+    const o = (r % 2) * 0.6 + (rnd(S, `zo${r}`) - 0.5) * 0.3, x0 = c * 1.2 + o, x1 = x0 + 1.2;
+    const q = [zem(zs[r], x0), zem(zs[r], x1), zem(zs[r + 1], x1), zem(zs[r + 1], x0)];
+    els.push(<polygon key={`${r}-${c}`} points={poly(q)} fill={tonla(PAL.zemin, (rnd(S, `z${r}-${c}`) - 0.5) * 0.08)} stroke="#a8946c" strokeWidth={1.4} />);
   }
-  return <g><polygon points={poly([[-100, 1700], [ARKA.x0, ARKA.y], [ARKA.x1, ARKA.y], [1180, 1700], [1180, 2200], [-100, 2200]])} fill="#a8987a" />{els}</g>;
+  return <g>{els}</g>;
 };
 
-// kara tahta: başlık "PARIS · RENTE 3%" (dramatizasyon), rakam BİÇİMLİ ama okunmayan tebeşir grupları (fiyat iddiası yok)
+// fiyat tahtası: galeri duvarında, ahşap çerçeve; başlık "PARIS · RENTE 3%" [S]; satırlar okunmaz rakam grupları (fiyat iddiası yok)
 const Tahta: React.FC<{ p: number }> = ({ p }) => {
-  const { x, y, w, h } = TAHTA;
-  const kirik = p >= 90;
-  const toz = interpolate(p, [90, 100, 168], [0, 1, 0.5], cl);
-  const grup = (r: number, c: number) => { const n = 3 + Math.floor(rnd(S, `n${r}${c}`) * 2); return Array.from({ length: n }).map((_, i) => "0123456789"[Math.floor(rnd(S, `g${r}${c}${i}`) * 10)]).join(""); };
+  const a = nok(ARKA_Z, TAHTA.xm, TAHTA.h1), b = nok(ARKA_Z, TAHTA.xm + TAHTA.w, TAHTA.h0);
+  const x = a[0], y = a[1], w = b[0] - a[0], h = b[1] - a[1];
+  const grup = (r: number, c: number) => Array.from({ length: 3 + Math.floor(rnd(S, `n${r}${c}`) * 2) }).map((_, i) => "0123456789"[Math.floor(rnd(S, `g${r}${c}${i}`) * 10)]).join("");
+  const yazilan = interpolate(p, [30, 88], [0, 1], cl);
   return (
     <g>
-      <rect x={x - 14} y={y - 14} width={w + 28} height={h + 28} fill="#5b3d25" stroke={ink("#5b3d25")} strokeWidth={2} />
-      <rect x={x} y={y} width={w} height={h} fill={BL.tahta} />
-      {Array.from({ length: 9 }).map((_, i) => <text key={i} x={x + 30 + rnd(S, `px${i}`) * (w - 80)} y={y + 80 + rnd(S, `py${i}`) * (h - 90)} fontFamily={serif} fontWeight={900} fontSize={34} fill="#f3eddc" opacity={0.08}>{["7", "8", "½", "¾", "6", "9", "4", "¼", "5"][i]}</text>)}
+      <rect x={x - 8} y={y - 8} width={w + 16} height={h + 16} fill={PAL.ahsap} />
+      <rect x={x} y={y} width={w} height={h} fill={PAL.tahta} />
       <g filter="url(#b2tebesir)">
-        <text x={x + w / 2} y={y + 50} textAnchor="middle" fontFamily={serif} fontWeight={900} fontSize={38} letterSpacing={1} fill={BL.tebesir}>PARIS · RENTE 3%</text>
-        <line x1={x + 40} y1={y + 64} x2={x + w - 40} y2={y + 64} stroke={BL.tebesir} strokeWidth={2.5} opacity={0.8} />
+        <text x={x + w / 2} y={y + h * 0.17} textAnchor="middle" fontFamily={serif} fontWeight={900} fontSize={w * 0.088} fill={BL.tebesir}>PARIS · RENTE 3%</text>
+        <line x1={x + w * 0.1} y1={y + h * 0.23} x2={x + w * 0.9} y2={y + h * 0.23} stroke={BL.tebesir} strokeWidth={2} />
       </g>
-      {/* satırlar: tarih sütunu (kısa çizgi) + rakam grupları; güçlü bozulmayla okunmaz */}
       <g filter="url(#b2rakam)">
-        {[0, 1, 2, 3].map((r) => {
-          const yy = y + 100 + r * 30, son = r === 3;
-          return (
-            <g key={r}>
-              <line x1={x + 34} y1={yy - 8} x2={x + 70} y2={yy - 8} stroke={BL.tebesir} strokeWidth={3} opacity={0.8} />
-              <text x={x + 96} y={yy} fontFamily={serif} fontWeight={900} fontSize={26} fill={BL.tebesir} opacity={0.85}>{grup(r, 0)}</text>
-              <text x={x + 178} y={yy} fontFamily={serif} fontWeight={900} fontSize={26} fill={BL.tebesir} opacity={0.85}>{`${grup(r, 1)},${grup(r, 2).slice(0, 2)}`}</text>
-              {!son && <text x={x + 300} y={yy} fontFamily={serif} fontWeight={900} fontSize={26} fill={BL.tebesir} opacity={0.85}>{grup(r, 3)}</text>}
-            </g>
-          );
-        })}
+        {[0, 1, 2, 3].map((r) => { const yy = y + h * (0.38 + r * 0.16), son = r === 3; return <g key={r} opacity={son ? (yazilan > 0.2 ? 0.85 : 0) : 0.85}><line x1={x + w * 0.07} y1={yy - 6} x2={x + w * 0.17} y2={yy - 6} stroke={BL.tebesir} strokeWidth={2.4} /><text x={x + w * 0.22} y={yy} fontFamily={serif} fontWeight={900} fontSize={h * 0.11} fill={BL.tebesir}>{grup(r, 0)}</text><text x={x + w * 0.45} y={yy} fontFamily={serif} fontWeight={900} fontSize={h * 0.11} fill={BL.tebesir}>{son ? grup(r, 1).slice(0, 2) : `${grup(r, 1)},${grup(r, 2).slice(0, 2)}`}</text></g>; })}
       </g>
-      <rect x={x} y={y + h - 16} width={w} height={16} fill={BL.tebesir} opacity={0.12} />
-      <rect x={x - 14} y={y + h + 14} width={w + 28} height={10} fill="#7a5230" />
-      {kirik && <g opacity={toz}>
-        <ellipse cx={x + 300} cy={y + 186} rx={34} ry={20} fill={BL.tebesir} opacity={0.35} filter="url(#b2toz)" />
-        {Array.from({ length: 14 }).map((_, i) => <circle key={i} cx={x + 300 + (rnd(S, `tx${i}`) - 0.5) * 70} cy={y + 186 + (rnd(S, `ty${i}`) - 0.3) * 44 + (p - 90) * 0.15} r={1 + rnd(S, `tr${i}`) * 2} fill={BL.tebesir} opacity={0.7} />)}
-      </g>}
+      <rect x={x - 8} y={y + h + 8} width={w + 16} height={6} fill="#5b3d25" />
     </g>
   );
 };
-
-// estrad: 2 basamak + sol-arkada küçük merdiven (katip çıkışı) + basamak kenarı aşınmış
+// estrad: portik eşiğinde iki basamak
 const Estrad: React.FC = () => {
-  const E = ESTRAD;
-  const n = (z: number, u: number, H: number) => O.nokta(z, u, H);
-  const basZ = E.z1 + 0.35;
-  const b1Yuz = [n(E.z1, E.u1, 0), n(E.z1, E.u2, 0), n(E.z1, E.u2, E.basamak), n(E.z1, E.u1, E.basamak)];
-  const b1Ust = dortgen(n(basZ, E.u1, E.basamak), n(basZ, E.u2, E.basamak), n(E.z1, E.u2, E.basamak), n(E.z1, E.u1, E.basamak));
-  const b2Yuz = [n(basZ, E.u1, E.basamak), n(basZ, E.u2, E.basamak), n(basZ, E.u2, E.H), n(basZ, E.u1, E.H)];
-  const b2Ust = dortgen(n(E.z2, E.u1 + 0.02, E.H), n(E.z2, E.u2 - 0.02, E.H), n(basZ, E.u2, E.H), n(basZ, E.u1, E.H));
-  const yan = (z1: number, z2: number, H: number, u: number) => [n(z1, u, 0), n(z2, u, 0), n(z2, u, H), n(z1, u, H)];
-  // sol-arka merdiven: estradın sol yanına iki basamak
-  const m1 = [n(6.0, E.u1 - 0.08, 0), n(6.0, E.u1, 0), n(6.0, E.u1, E.basamak), n(6.0, E.u1 - 0.08, E.basamak)];
-  const m1u = [n(6.6, E.u1 - 0.08, E.basamak), n(6.6, E.u1, E.basamak), n(6.0, E.u1, E.basamak), n(6.0, E.u1 - 0.08, E.basamak)];
-  return (
-    <g>
-      <polygon points={poly(m1u)} fill="#8a6038" stroke={ink("#7a5230")} strokeWidth={1.5} />
-      <polygon points={poly(m1)} fill="#6e4a2a" stroke={ink("#7a5230")} strokeWidth={1.5} />
-      <polygon points={poly(yan(E.z1, E.z2, E.basamak, E.u2))} fill="#5b3d25" />
-      <polygon points={poly(yan(basZ, E.z2, E.H, E.u2))} fill="#5b3d25" />
-      <polygon points={poly(b1Yuz)} fill="#7a5230" stroke={ink("#7a5230")} strokeWidth={2} />
-      <AhsapYuzey m={b1Ust} boyut={[600, 80]} tur="mese" seed={S + 4} derinlik="orta" asinma={["alt"]} />
-      <polygon points={poly(b2Yuz)} fill="#6e4a2a" stroke={ink("#7a5230")} strokeWidth={2} />
-      <AhsapYuzey m={b2Ust} boyut={[600, 300]} tur="mese" seed={S + 5} derinlik="orta" tahta={3} asinma={["alt"]} />
-    </g>
-  );
+  const e = (z: number, h: number, xa: number, xb: number) => [nok(z, xa, h), nok(z, xb, h)];
+  const [a1, b1] = e(6.0, 0.18, -1.6, 1.6), [a2, b2] = e(6.0, 0, -1.6, 1.6), [a3, b3] = e(6.2, 0.36, -1.5, 1.5), [a4, b4] = e(6.2, 0.18, -1.5, 1.5);
+  return <g><polygon points={poly([a1, b1, b2, a2])} fill="#6e4a2a" stroke={ink("#6e4a2a")} strokeWidth={1.4} /><polygon points={poly([a3, b3, b4, a4])} fill="#7a5230" stroke={ink("#7a5230")} strokeWidth={1.4} /><AhsapYuzey m={(u, v): P => [lerp(a3[0], b3[0], u), lerp(a3[1], nok(6.6, 0, 0.36)[1], v)]} boyut={[300, 30]} tur="mese" seed={S + 4} derinlik="orta" /></g>;
 };
-
 const Katip: React.FC<{ p: number }> = ({ p }) => {
-  const g = yer(5.6, 0.5, ESTRAD.H);
-  const pz = dur(g.x - 18 * g.s, g.y, g.s, 1, { shF: -150, elF: -20, shB: 10, elB: -30, lookY: -0.4, headTilt: -6, lean: -2 });
-  const parca = O.zemin(4.75, 0.47);
-  return (
-    <g>
-      <Golge isik={GUNES} ayak={[g.zx, g.zy]} h={620 * g.s} genislik={100 * g.s} alfa={0.3} renk={BAL} />
-      <Siluet renk="#3a2e22" acik="#6a5640" kenar={{ renk: "#f2d49a", dx: -2 }} kutu={[g.x - 120 * g.s, g.y - 640 * g.s, 240 * g.s, 650 * g.s]}><Kukla p={KATIP} pz={pz} golgesiz /></Siluet>
-      {p >= 114 && <g><ellipse cx={parca[0] + 5} cy={parca[1] + 2} rx={9} ry={2.5} fill={BAL} opacity={0.4} /><rect x={parca[0] - 6} y={parca[1] - 4} width={12} height={5} rx={2} fill={BL.tebesir} transform={`rotate(14 ${parca[0]} ${parca[1]})`} /></g>}
-    </g>
-  );
+  const g = yer(6.35, 0.55, 0.36);
+  const p0 = dur(g.x, g.y, g.s, 1, { shB: 10, elB: -30, lookY: -0.4, headTilt: -6, lookX: 0.6 });
+  // yazarken el satır boyunca küçük adımlar; p90 kırılmada el kırılma noktasında, sonra yarım tebeşirle iner
+  const in_ = Math.min(1, Math.max(0, (p - 120) / 20));
+  const hedef: P = p < 90 ? [KIRILMA[0] - 46 + ((p - 30) / 60) * 40 + Math.sin(p * 0.9) * 3, KIRILMA[1] + Math.cos(p * 1.3) * 2] : [KIRILMA[0] - 20 * in_, KIRILMA[1] + 60 * in_];
+  const ik = kolIK(p0, hedef, true, [6, 10]);
+  const pz = { ...p0, shF: ik.sh, elF: ik.el };
+  const el = elDunya(pz, true, [6, 10]);
+  return <g><Siluet renk="#2e261c" acik="#4a3e2c" kutu={[g.x - 120 * g.s, g.y - 640 * g.s, 240 * g.s, 650 * g.s]}><Kukla p={KATIP} pz={pz} golgesiz /></Siluet><rect x={el[0] - 3} y={el[1] - 2} width={p < 90 ? 7 : 4} height={3} fill={BL.tebesir} /></g>;
 };
-
 const CepEldiven: React.FC<{ pz: Poz }> = ({ pz }) => (
   <g transform={`translate(${pz.x},${pz.y}) scale(${(pz.scale ?? 1) * (pz.facing ?? 1)},${pz.scale ?? 1}) translate(0,${pz.bodyY ?? 0}) rotate(${pz.lean ?? 0},0,-226)`}>
     <path d="M 26 -322 L 50 -330 L 52 -318 L 30 -312 Z" fill={BL.gloveHero} stroke="#8a7f68" strokeWidth={1.4} transform="rotate(-12 40 -322)" />
   </g>
 );
-
 const Pupitr: React.FC<{ x: number; y: number; s: number; yuz: number }> = ({ x, y, s, yuz }) => {
   const k = (dx: number, dy: number): P => [x + dx * s, y - dy * s];
   return (
     <g>
-      {[-48, 48].map((dx) => <rect key={dx} x={k(dx, 0)[0] - 4 * s} y={k(0, yuz - 20)[1]} width={8 * s} height={(yuz - 20) * s} fill="#4a3220" stroke={ink("#4a3220")} strokeWidth={1.2} />)}
-      <rect x={k(-48, 0)[0]} y={k(0, 90)[1]} width={96 * s} height={6 * s} fill="#4a3220" />
+      {[-48, 48].map((dx) => <rect key={dx} x={k(dx, 0)[0] - 4 * s} y={k(0, yuz - 20)[1]} width={8 * s} height={(yuz - 20) * s} fill={PAL.ahsap} />)}
       <polygon points={poly([k(-66, yuz - 22), k(66, yuz - 22), k(60, yuz + 14), k(-60, yuz + 14)])} fill="#5b3d25" stroke={ink("#5b3d25")} strokeWidth={1.6} />
       <polygon points={poly([k(-54, yuz - 16), k(0, yuz - 12), k(0, yuz + 12), k(-50, yuz + 9)])} fill="#efe6d0" stroke="#5a3a22" strokeWidth={1.4} />
       <polygon points={poly([k(0, yuz - 12), k(54, yuz - 16), k(50, yuz + 9), k(0, yuz + 12)])} fill="#e9dfc9" stroke="#5a3a22" strokeWidth={1.4} />
@@ -316,3 +274,20 @@ const Pupitr: React.FC<{ x: number; y: number; s: number; yuz: number }> = ({ x,
     </g>
   );
 };
+// ön portik (kamera onun içinde): arcade ayakları, gölgeli zemin, tezgâh, demir kapı kanadı — tümü derin gölgede (tarama IV)
+const OnPortik: React.FC = () => (
+  <g>
+    <polygon points={poly([[-200, 1560], [1280, 1560], [1280, 2200], [-200, 2200]])} fill={PAL.portik} />
+    <Tarama sekil={[[-200, 1560], [1280, 1560], [1280, 2200], [-200, 2200]]} basamak="IV" aci={TH} renk="#1e1810" derinlik="yakin" seed={S + 50} />
+    <polyline points={poly([[-200, 1560], [1280, 1560]])} stroke="#fff1c8" strokeWidth={3} opacity={0.5} />
+    {[[-200, 110], [970, 1280]].map(([a, b], i) => <g key={i}><rect x={a} y={-300} width={b - a} height={2500} fill={PAL.portik} /><Tarama sekil={[[a, -300], [b, -300], [b, 2200], [a, 2200]]} basamak="IV" aci={TH} renk="#1e1810" derinlik="yakin" seed={S + 51 + i} /><line x1={i ? a : b} y1={-300} x2={i ? a : b} y2={2200} stroke="#9a845e" strokeWidth={4} opacity={0.6} /></g>)}
+    {/* sağ altta tüccar tezgâhı (kırpık): defter + hokka */}
+    <polygon points={poly([[760, 1660], [1180, 1640], [1180, 1700], [760, 1720]])} fill="#5b3d25" stroke={ink("#5b3d25")} strokeWidth={2} />
+    <polygon points={poly([[760, 1720], [1180, 1700], [1180, 2200], [760, 2200]])} fill="#3a2c20" />
+    <polygon points={poly([[820, 1650], [940, 1644], [944, 1676], [822, 1682]])} fill="#e9dfc9" stroke="#5a3a22" strokeWidth={1.4} />
+    <ellipse cx={980} cy={1662} rx={14} ry={6} fill="#1c1915" />
+    {/* sol altta yarı açık demir parmaklıklı kapı kanadı */}
+    {Array.from({ length: 7 }).map((_, j) => <line key={j} x1={80 + j * 26} y1={1560 + j * 4} x2={80 + j * 26} y2={2200} stroke="#1c1915" strokeWidth={5} />)}
+    <line x1={70} y1={1560} x2={250} y2={1588} stroke="#1c1915" strokeWidth={8} />
+  </g>
+);

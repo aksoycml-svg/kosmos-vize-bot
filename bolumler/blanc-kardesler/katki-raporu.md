@@ -445,3 +445,79 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - KULLANICI: Borsa avlusunun 1834'te açık kalıp kalmadığı bilinmiyor (kapatma yılı yok), açık avlu bilinçli mekân yorumu; açıklamada "dramatizasyon" notu önerilir. Tours kent içi yuvarlak kule de tek kaynak (olası).
   - YARATICI YÖNETMEN: P07 memur göz kırpması gövde irkilmesine döndü; P02 dokunuş (tebeşir) tepeden güneşte, gölgeden güneşli zemine.
   - TASARIMCI/SENARİST: tasarim.md P02 mekân kartı açık avluya göre; kol konumları A/BEKLE ve DINLEN adları ChappeKule sözleşmesine eşlenmeli.
+
+## motion · 2026-11-06 · Storyboard v2 AŞAMA A3: sistemik modüller (gravür dili, kemer, cephe, kol/el, paket) + üç kalibrasyon mekânı yeniden + kontrol protokolü
+- Ne yaptım:
+  - Sistemik modüller: `src/doku/Tarama.tsx` (4 ton basamağı, ışığa dik tek θ, seed sabit `Desen`/`Tarama`/`TaramaEgri`/`RenkKaydi`), `src/doku/Kemer.tsx` (tip adıyla: duz/basik/yarimDaire/sivri; yükselti genişlikten; kilit taşı, imposte, söve, kayıt, maskaron), `src/doku/Cephe.tsx` (Gambetta düzeni AYRI EVLER: zemin arcade basık + ara kat, soylu kat balkon/balkonet, dikdörtgen üst pencere, korniş + IV tarama, attique; çatı yalnız kamera yüksekliği kornişi görüyorsa), `src/rig/KolEl.tsx` (koni kol, dirsek kırığı, kırışık, yama, ceket + gömlek manşeti, eklemli el, tutulan nesne başparmak altında), `props/PaketKagidi.tsx` (kapalı / kabartılı / yarı açık / açık tek tabaka; ip çözük + fiyonk izi), Kukla `yakin` (göz kapağı gölgesi, dolu kaş, dudak hacmi) ve `caneArka` (arka elde baston, parmaklar görünür).
+  - SB2-TOURS (P01) yeniden: çatı katı bürosu, basık lucarne, açık paket kâğıdı + çözülmüş ip, KolEl ile gerçek kol + manşet + el, T BEKLE→SAK p48–54, eldiven p140'ta fener havuzuna bırakılır.
+  - SB2-SOKAK (P04) yeniden: Bordeaux ayrı evler (CepheEv), kafe önü boş, resmî yapıda bayrak, Saint-Michel, baston Louis'nin dış elinde; push-in cs 1.70→3.20 kare kare, göz kırpma p186–200 (yüz ≥ 230 px).
+  - SB2-BORSA (P02) baştan: açık portikli avlu, 5 yarım daire arcade (3.0 × 6.0 m, kilit taşı + imposte), alınlıkta amblem + okunmaz çizgiler, yan arcade'larda demir parmaklıklı kapı, üst kat dikdörtgen pencere, kadran; tahta orta arcade'da galeri duvarında; katip estradda tebeşirle yazıyor (kolIK ile el tahtada), p90 kırılma → p102 estrad kenarına sekme → p114 güneşli avlu taşı (parça 16×7 px, koyu kontur); öğle güneşi tepeden (kısa sol-ön gölgeler); ön portik çerçevesi (ayaklar, gölgeli zemin, tezgâh + defter + hokka, demir kapı kanadı); tüccar; bayrak YOK; etiketler p78–86 yukarı kayarak çıkar. Temas listesi `P02_TEMAS` export edildi (kurgucu sesleri buradan yerleştirsin).
+  - `tools/sb2_kontrol.py`: protokol kareleri (P01 0/54/60/140/155 · P04 0/150/189/215 · P02 0/90/102/168/203), her kare tam + 360 + güvenli; renk ölçümü CIELAB L* + C* + ton açısı ΔH° + ΔE2000; `A3-sayfa.png` kontrol sayfası. Son ölçüm 11/11 ✓.
+  - Proto kontrol: Proto f600, A2 referansıyla piksel farkı ≈ 0 (bozulmadı). `npx tsc --noEmit` temiz.
+- Dokunduğum dosyalar: `src/doku/{Tarama,Kemer,Cephe,index}.tsx|ts`, `src/doku/{IslakKaldirim,ChappeKule}.tsx`, `src/rig/{Kukla.tsx,KolEl.tsx,kinematik.ts}`, `src/bolumler/blanc/props/{PaketKagidi,Eldiven}.tsx`, `src/bolumler/blanc/proto/Sokak.tsx` (yalnız Bordeaux yolu + siva filtresi), `src/bolumler/blanc/sb2/{Sb2Tours,Sb2Sokak,Sb2Borsa,PropTest}.tsx`, `src/Root.tsx`, `tools/sb2_kontrol.py`, `bolumler/blanc-kardesler/storyboard-v2/kareler/*` (SB2-*-p*.png, -360, -guvenli, renk-olcum.md, A3-sayfa.png).
+- Aldığım kararlar ve gerekçeleri:
+  - Borsa perspektifi oda modelinden avlu modeline geçti: göz 1.6 m, ufuk y 800, `y = 800 + 900/z`, 1 m = 563/z px (BB4'teki yüksek kamera/kukla açısı çelişkisi kalktı).
+  - Tahta alçaltıldı (alt 1.75 m, üst 3.75 m): katip estrad (0.36 m) üstünden ancak bu yüksekliğe erişir; tebeşir kırılması son satırda (≈ 2.0 m) — "tutulan nesne eli takip eder".
+  - Tebeşir yolu Louis'nin şapkasının arkasına düşüyordu (p102'de görünmez) → sekme estrad kenarında xm 0.45, iniş François–Louis arasındaki boşluğa (z 4.0, xm 0.3).
+  - Borsa kamera cy plan değerinden kaydırıldı: plan değerleriyle ayaklar alt IG bandına giriyordu (p0 y ≈ 1520) — güvenli alan denetimi ihlal veriyordu.
+  - Ölçüm aracında nötr renk eşiği C* < 10: kara tahta (C* ≈ 8) gibi neredeyse gri renklerde ton açısı gürültü; bu noktalarda ΔE + ΔL ile karar verilir.
+- Değiştirdiğim değerler (yönetmen plana işlesin):
+
+| Plan | Öğe | Plan / şartname | Uygulanan | Gerekçe | Durum |
+|---|---|---|---|---|---|
+| P01 | ışık havuzu (fener) | (180, 1120) | (430, 1170), fener x 290 | eldiven bırakma noktası havuzun içinde görünsün, kolun altında kalmasın | onay bekliyor |
+| P01 | pencere | — | x 640, y 420, 300 × 370 | T kolu pencere üst kenarında kesiliyordu | onay bekliyor |
+| P01 | Chappe direği | — | L 174, kule üstü y 777 | T pencere içinde tam görünsün | bilgi |
+| P01 | paket merkezi | — | (670, 1270) | kol + eldiven + etiket aynı karede | bilgi |
+| P04 | bayrak dibi | — | resmî yapı (sol 2. ev) 9.6 m | push-in sırasında replik bandına girmesin | onay bekliyor (bayrak [T]) |
+| P04 | Saint-Michel | x ≈ 600–640 | x 470, y 880, h 320 | replik bandına değmesin (SB4), kafe ışığıyla çakışmasın | onay bekliyor |
+| P04 | SokakOnPlan paralaks | k 1.3 | k 1 | push-in'de ön plan nesneleri ayaklarla kaymasın (zemin teması) | onay bekliyor |
+| P04 | "AVIS" ilanı | Paris'teki gibi | Bordeaux'da yok | kanıtsız metin → nötr | bilgi |
+| P02 | mekân | kapalı salon (A2) | açık portikli avlu | R3 / v2.5 | uygulandı |
+| P02 | kamera cy | p0 +100 → p90 +40 → p150 +10 | +30 → −10 → −40 | ayaklar alt bantta kalıyordu | onay bekliyor |
+| P02 | kapanış kamerası | cs 1.30, cy −40 | cs 1.30, cx +70, cy −110 | tüccar ayağı yan 80 px içine düşüyordu; PARIS başlığı ≈ y 430 | onay bekliyor |
+| P02 | tahta | — | galeri duvarı xm −1.5…+1.5, 1.75–3.75 m | katibin erişimi | onay bekliyor |
+| P02 | üçlü | — | tüccar z 1.45 xm −0.95 · François 1.45/−0.25 · Louis 1.52/0.6 · pupitr 1.47/0.25 | — | bilgi |
+| P02 | kadran | — | korniş altında, ayak üstünde, küçük, harfsiz | mekanlar 10.1 | onay bekliyor |
+| P02 | ticaret amblemleri (çapa, Merkür asası, terazi, bereket boynuzu) | "amblem" | 4 tip, sırayla | şartnamede tip yok | onay bekliyor |
+| P02 | tezgâh + demir kapı kanadı (ön portik) | — | sağ alt / sol alt | şartname "ön portik çerçevesi" | bilgi |
+| Tümü | TOURS etiketi | — | ortak `ToursEtiketi` | P01/P09/P10/P23 süreklilik | onay bekliyor |
+
+- Uyguladığım kurallar / yakaladığım kural ihlalleri (öz tarama):
+
+| Madde | Durum | Not |
+|---|---|---|
+| TB1 karton koli → kâğıt paket | geçti | tek tabaka, kat izleri, yan duvar yok |
+| TB2 havada düğüm | geçti | ip çözük, uçlar masada |
+| TB3 kol = kalas | geçti | koni kol, dirsek, kırışık, manşet |
+| TB4 el anatomisi | kısmi | el okunuyor; 360 px'te parmak boğumları seçilmiyor |
+| TB5 kapanışta eldiven elde | geçti | p140 bırakma, p155 eldiven havuzda |
+| TB6 T "vinç" | geçti | SAK {0,90,135}, iki gösterge direkten uzaklaşıyor |
+| TB7 / TB8 | geçti / kısmi | ön yüz ahşap 120 px; fener kafes gölgesi hâlâ zayıf |
+| SK1 baston eli | geçti | arka (dış) elde, parmaklar görünür |
+| SK2 göz kırpma okunmuyor | geçti | push-in cs 3.2, yüz ≥ 230 px |
+| SB3 birikinti | geçti | yumuşak kenar, pencere yansıması kaldırıldı |
+| SB4 kule yazı bandında | geçti | kule tepesi bandın altında |
+| BB1 sivri kemer | geçti | yarım daire, 1:2 |
+| BB2 etiket–dokunuş çakışması | kısmi | etiketler p86'da çıkıyor, kırılma p90; ama p30–78 arası François etiketi tahtanın satırlarını örtüyor (yazma eylemi kısmen gizli). Louis etiketi sağa hizalı, x 650–1000 — "x ≥ 720" sol kenar şartıysa KALMADI |
+| BB3 bayrak | geçti | kaldırıldı |
+| BB4 ufuk | geçti | ufuk 800, göz 1.6 m |
+| BB5 alt boş dama | geçti | ön portik çerçevesi alt üçte biri dolduruyor |
+| BB6 ışık kaynağı görünür | geçti | açık avlu, öğle güneşi |
+| Sistemik 1 kemer varsayılanı | geçti | `Kemer` tip='yarimDaire' varsayılan |
+| Sistemik 3 ton ölçümü | geçti | ΔE2000 + ΔH°, 11/11 ✓ |
+| Sistemik 4 protokol kareleri | geçti | 14 kare × (tam/360/güvenli) + A3-sayfa.png |
+| Sistemik 5 kol/el modülü | geçti | `KolEl` (EldivenEl insert'i bunu kullanmalı) |
+| Gravür dili | kısmi | Tarama/TaramaEgri kullanılıyor; `RenkKaydi` sahnelerde henüz uygulanmadı; yan arcade'larda IV tarama + demir parmaklık telefonda "tel örgü" gibi okunabiliyor |
+| Palet ≤ 6 + 1 | geçti (belgeli) | Tours (Sb2Tours başlığı), Sokak (`BDX_GECE_PALET`), Borsa (Sb2Borsa başlığı); karakter kostümleri hariç |
+| Temas = ses | kısmi | olay listeleri export (`P01_KONTROL`, `P02_TEMAS`); katibin yazma çıtırtısı ve sekme sesleri henüz yerleştirilmedi (kurgucu) |
+| Güvenli alan | geçti | tüm protokol karelerinde kilit ihlal 0 (Borsa son düzeltmeden sonra) |
+| Hareket tamamlanır | geçti | tebeşir parçası yerde durur; eldiven havuzda; etiketler kadrajdan çıkar |
+
+  Öz puan (eleştirmenden ~1 yüksek çıkma eğilimimi düşerek): SB2-TOURS **7/10**, SB2-SOKAK **7.5/10**, SB2-BORSA **6.5/10**.
+- Açık sorular / bir sonraki ajana notlar:
+  - Yönetmen: yukarıdaki değer tablosunu sahne-plani.md/.json'a işlesin; P02 etiket konumu (Louis x ≥ 720 sol kenar mı?) ve etiketlerin tahtayı örtmesi için karar (etiketleri p0–30'a kısaltmak ya da tahtanın altına indirmek).
+  - Katip ≈ 150 px, siluet: yazma eylemi geniş planda küçük; kırılma toz bulutu ve parça okunuyor. Gerekirse p88–92 için insert.
+  - FareInsert P04 ızgara konumuna göre yeniden kadrajlanmadı.
+  - Kurgucu: `P02_TEMAS` (çizirti 30–88, kırılma 90, sekme 102/114) ve `P01_KONTROL` (140 bırakma) ses yerleşimi.
+  - Yan arcade demir parmaklığının taramayla karışması bir sonraki turda sadeleştirilmeli (tarama III'e inmeli ya da parmaklık seyrekleşmeli).

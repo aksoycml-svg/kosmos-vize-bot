@@ -23,13 +23,13 @@ export const elYerel = (pz: Poz, on = true, ofset: [number, number] = [0, 0]) =>
 export const dunyaya = (pz: Poz, p: [number, number]): [number, number] => ap(mul(T(pz.x, pz.y), S((pz.scale ?? 1) * (pz.facing ?? 1), pz.scale ?? 1)), p);
 export const elDunya = (pz: Poz, on = true, ofset: [number, number] = [0, 0]) => dunyaya(pz, elYerel(pz, on, ofset));
 // Baston ucu (ön el, cane açısı): Kukla.tsx'te baston ucu yerel (0, 252)
-export const bastonUcu = (pz: Poz, cane: number) => ap(mul(kolMatris(pz, true), R(cane)), [0, 252]);
+export const bastonUcu = (pz: Poz, cane: number, on = true) => ap(mul(kolMatris(pz, on), R(cane)), [0, 252]);
 // Baston ucunu zemine (yerel y = −AYAK_TABAN) indiren açıyı bul. Birden çok çözüm varsa ucu hedefX'e
 // (yerel x, ör. ön ayağın hemen önü) en yakın olanı seç: baston bacakların/komşu karakterin içinden geçmez.
-export const bastonAcisi = (pz: Poz, hedefX = 60) => {
+export const bastonAcisi = (pz: Poz, hedefX = 60, on = true) => {
   let best = 0, skor = Infinity;
   for (let a = -180; a <= 180; a += 0.1) {
-    const [x, y] = bastonUcu(pz, a);
+    const [x, y] = bastonUcu(pz, a, on);
     const e = Math.abs(y + AYAK_TABAN);
     if (e > 1.2) continue;
     const sk = Math.abs(x - hedefX);
