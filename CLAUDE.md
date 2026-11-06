@@ -109,6 +109,8 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - Doku el yapımı vektör: seed sabit (doku kaynamaz), saf siyah/beyaz yok, en fazla 3 doku katmanı, kırmızı yalnız mühür/hata/vurgu için.
 - Kamera yüksekliği fiziksel tutarlı: alçak kameradan çatı yüzeyi görünmez, saçak altı görünür. Katmanlar arasında maske kenarı/şerit kalmaz.
 - Hikâyeyi taşıyan her nesne (paket, eldiven, tahta, pencere, kol) 360x640 telefon boyutunda ne olduğunu söyler; söylemiyorsa büyütülür ya da sadeleştirilir.
+- **İmza nesnesi tekildir:** hikâyenin imza nesnesinin (Blanc: beyaz eldiven) rengi/biçimi başka bir nesnede ya da kostümde tekrarlanmaz; aksi halde dokunuş boşa düşer. Nesne ölçüsü gerçek ölçüyle tutarlı (eldiven = bir el boyu).
+- **Gravür telefonda okunur:** tarama ve kontur 360 px'te görünür olmalı (yarım pikselin altına inen çizgi yok sayılır). Tarama ışığın mimariyi anlattığı yerde (kemer içi, saçak altı, pencere çevresi), büyük önemsiz yüzeyde değil. Çapraz tarama yalnız küçük derin gölgede; geniş alanda kafes/tel örgü deseni yasak (dönem dışı okunur). Gölge kenarı net.
 
 ### Kontrol karesi protokolü (eleştirmen)
 - Her plan için: ilk kare + dokunuş/temas karesi + kapanış karesi; tam boy + 360x640 telefon sayfası + güvenli alan bindirmeli sürüm. Renk ölçüm tablosu (duvar/zemin/gök hedef hex'e karşı).

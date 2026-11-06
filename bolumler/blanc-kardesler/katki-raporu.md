@@ -521,3 +521,62 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - FareInsert P04 ızgara konumuna göre yeniden kadrajlanmadı.
   - Kurgucu: `P02_TEMAS` (çizirti 30–88, kırılma 90, sekme 102/114) ve `P01_KONTROL` (140 bırakma) ses yerleşimi.
   - Yan arcade demir parmaklığının taramayla karışması bir sonraki turda sadeleştirilmeli (tarama III'e inmeli ya da parmaklık seyrekleşmeli).
+
+## eleştirmen · 2026-11-06 · Storyboard v2 Eleştiri C (A3 kalibrasyon kapısı)
+- **Ne yaptım:**
+  - A3 protokol karelerini denetledim: 14 kare × tam/360/güvenli + `A3-sayfa.png` + `renk-olcum.md`.
+  - Sorunlu bölgeleri kırpıp büyüttüm: T kolu, eldiven/el, gölge katman sırası, fener–etiket, Louis eli/cebi, tahta/tebeşir, parmaklık, kemer içi.
+  - Eldiven, cep köşesi ve etiket renklerini ölçtüm (7×7 px).
+  - mood-05 ile 360 px karşılaştırma yaptım.
+  - A2'den kalan numarasız dosyaları tespit ettim.
+  - Çıktı: `storyboard-v2/elestiri-C.md` (puanlar, maddeler, GRAVÜR DİLİ, SÜREKLİLİK-eldiven, geçiş kararı, A4 kabul ölçütleri). Kod değişmedi.
+- **Dokunduğum dosyalar:** `bolumler/blanc-kardesler/storyboard-v2/elestiri-C.md` (yeni), bu rapor (ek). Geçici kırpımlar scratchpad'de.
+- **Aldığım kararlar ve gerekçeleri:**
+  - Puanlar: TOURS **6.5**, SOKAK **7** (mekân 8), BORSA **5.5** (iskelet 7). B'nin kritikleri büyük ölçüde kapandı, ama yeni kritikler çıktı.
+  - **Kalan 9 mekân: iskelet için koşullu EVET, bitmiş plaka için HAYIR.** Gravür dili ve eldiven paleti sistemik; şimdi çözülmezse 9 mekân ikinci kez boyanır. Tarama modül düzeyinde olduğu için iskelet işi boşa gitmez.
+  - Eldiven çatışmasının kökü tasarım kanonunda (tasarim.md 2.2: rig kardeşlere krem/gri eldiven çiziyor). Motion hatası değil, yukarı akış meselesi.
+- **Uyguladığım kurallar / yakaladığım ihlaller:**
+  - KRİTİK:
+    - TC1: eldiven elin ≈ %70'i (ölçek).
+    - TC2: Chappe B konumu pencerede kesik, telefonda darağacı okunuyor (dokunuş okunurluğu).
+    - SC1 / SÜ1: kardeşler beyaz eldivenli; P19 dokunuşu ve cep kurulumu çatışıyor (süreklilik).
+    - SC7: P04 fare insert protokolde yok.
+    - BC1: yan arcade'larda tel örgü (dönem okuma).
+    - BC2: tebeşir dokunuşu %11 / 16 px, okunmuyor.
+    - BC3: Louis'nin "eli" parmaksız kart, kaz tüyü kendi başına duruyor (tutulan nesne).
+  - ORTA:
+    - Fener ışık havuzu kaynaktan kopuk (tek ışık).
+    - Tours penceresinde dağ ve kule yok (şehir iskeleti).
+    - Gölge katman sırası ve maske kenarı.
+    - Fener–FRANÇOIS çakışması; etiket kontrastı 1.6:1.
+    - Louis yüzü kadraj dışı / IG sütunu.
+    - Birikinti hâlâ leke.
+    - Gece bayrağı gündüz tonunda.
+    - Kol yüzün önünde.
+    - IV çapraz tarama kafes deseni.
+    - Etiketler tahtayı örtüyor ve kendi karakterini göstermiyor.
+    - Portik çerçevesi letterbox gibi.
+    - Bulanık gölgeler.
+    - P02'de cep köşesi görünmüyor.
+    - A2 dosyaları kafa karıştırıyor.
+  - Orkestranın dört gözlemi doğrulandı. A2 dosya kapsamı daha geniş: SOKAK da dahil, 9 dosya.
+- **Açık sorular / bir sonraki ajana notlar:**
+  - **Tasarımcı:** Kardeş elleri. Öneri: Louis P02–P18 çıplak el, François taba deri eldiven; beyaz yalnız kahraman eldiveni + Louis'nin cep eldiveni. Cep köşesi ≈ 50×30 px, iki parmak ucu. Louis'nin p168'deki gözlüğü tasarımda var mı?
+  - **Yönetmen:**
+    - P02'de p84–102 tahta insert/orta kesmesi (tahta ≥ %30).
+    - P01'de B konumunun pencere içinde tam görünmesi (direk x ya da pencere boyu).
+    - P04 push-in sonunda Louis'nin yüzü kadrajda, fener yazı bandı dışında.
+    - P04 bayrağı kaldırma önerisi.
+    - Kalan planlar için dokunuş ekran ölçüsü sütunu.
+  - **Mekân sorumlusu:**
+    - Tours penceresi: dağ yok, yuvarlak kule tepesi.
+    - Saint-Michel direklerin önünde değil, sol-arkada.
+    - Borsa parmaklık tipi: dikey çubuk + lunette ışınsal.
+    - 11.2'de telefon önce tarama ölçüsü ve IV açısı (G2) şartnameye işlensin.
+  - **Motion (A4):**
+    - G1–G5 gravür kalibrasyonu BORSA'da.
+    - TC1–TC5, SC2/SC4/SC6, BC1–BC5.
+    - FareInsert yeniden kadraj + p87/p108/p138 protokol kareleri.
+    - `sb2_kontrol.py` IG sağ-alt düğme sütunu kilidi + dokunuş ölçüsü tablosu.
+    - Kabul ölçütleri elestiri-C.md bölüm 8'de.
+  - **Teknisyen:** numarasız `SB2-{TOURS,SOKAK,BORSA}{,-360,-guvenli}.png` → `kareler/arsiv-A2/`.
