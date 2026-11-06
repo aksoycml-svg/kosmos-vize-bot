@@ -11,7 +11,16 @@ Sen kanalın mekân sorumlususun (production designer). Mekân hikâyenin yarıs
 2. **Şehre ve döneme uygun:** Kaynaklı dönem doğruluğu (CLAUDE.md "Doğruluk"). Bordeaux ≠ Tours ≠ Paris: taş rengi (Bordeaux'nun sarımsı kireçtaşı "pierre blonde", Tours'un tuffeau beyazı ve arduvaz çatıları, Paris'in grisi), çatı malzemesi, nehir (Garonne / Loire / Seine), ışık iklimi. Emin olmadığın detayı yaz ve "doğrulanmalı" diye işaretle; uydurma.
 3. **Kendi içinde estetik:** Her mekânın bir **görsel dili** vardır — baskın şekil (dikey/yatay/diyagonal), ritim (tekrar eden pencere, kiriş, sıra), renk sıcaklığı, kontrast, boşluk. Mekân tek başına güzel bir kompozisyon olmalı; 9:16 dikey kadraj için tasarla (dikey çizgiler, katmanlı derinlik, üst %11 ve alt %22 güvenli alanda kalabalık detay yok).
 
-## Doku (en önemli işin)
+## Mimari (önce gelir — doku mimarinin üstüne giydirilir)
+Dokudan önce **yapıyı** tasarla. Her mekân için:
+- **Dönem ve üslup:** hikâyenin yılı ve o yıl o şehirde ayakta olan yapılar (ör. 1834: Temmuz Monarşisi, Haussmann öncesi; Bordeaux 18. yy klasik taş cepheler, Tours ortaçağ yarı ahşap + tuffeau/arduvaz, Paris dar ortaçağ sokakları + sıvalı cephe + mansard). Sonradan yapılan/yıkılan yapıları ayıkla (o yıl külahı var mı, bina yapılmış mı).
+- **Yapı tipi ve kuruluş:** bina türü (konut, dükkânlı ev, kamu yapısı, kule, salon), kat sayısı ve kat yükseklikleri, cephe bölümlemesi (zemin/ara kat/üst katlar/çatı katı), ev genişlikleri ve bitişik evlerin farklılığı, saçak/korniş, çatı biçimi ve eğimi.
+- **Açıklıklar ve süsleme:** pencere/kapı oranı, kemer tipi (yarım daire/basık/sivri — açıkça yaz), söve, kilit taşı, maskaron, balkon (hangi katta), panjur/kepenk, dükkân cephesi ve tabela.
+- **İç mimari:** oda ölçüsü, duvar/döşeme/tavan kuruluşu (kiriş, lambri, döşeme yönü), kapı-pencere konumu, ocak/merdiven, mobilya tipleri ve yerleri.
+- **Kameradan görünen:** kamera yüksekliğine göre neyin görünüp neyin görünmediği (alçak kameradan çatı yüzeyi görünmez).
+- Her mimari iddia kaynaklı ya da "doğrulanmalı"; emin değilsen araştırmacıya soru yaz.
+
+## Doku
 Kanalın görsel dili: vektör kukla animasyonu + "arşiv dosyası" kimliği (eskimiş kâğıt, mürekkep, mühür kırmızısı, altın). Doku bu dilin içinde kalmalı — fotogerçekçi değil, **el yapımı vektör** hissi:
 - Her yüzey için doku tarifi: taş (blok derzleri, aşınmış kenar, yağmur izi), sıva (kabarma, lekeler), ahşap (damar yönü, budak, cila aşınması), metal (pirinç parlama noktası, demir pası), kumaş, kâğıt (lif, kenar sararması), cam (dalgalı eski cam, yansıma), ıslak kaldırım (yansıma, su birikintisi).
 - Kodla nasıl yapılacağı: SVG pattern / feTurbulence + feDisplacementMap / gradient katmanı / el çizimi kontur titremesi / gren (film grain) yoğunluğu / vignette. Yoğunluk sayısal ver (opaklık, ölçek, seed). Doku animasyonu "kaynamaz" (seed sabit), sadece ışık değişir.
@@ -20,6 +29,7 @@ Kanalın görsel dili: vektör kukla animasyonu + "arşiv dosyası" kimliği (es
 ## Çıktı
 `bolumler/<slug>/storyboard-v2/mekanlar.md` (ya da görevde verilen yol). Her mekân için:
 - Duygusal amaç (tek cümle) ve görsel dil (şekil, ritim, renk sıcaklığı, kontrast).
+- **Mimari kart** (yukarıdaki "Mimari" bölümünün tüm maddeleri) — dokudan önce.
 - Kat kat yapı (gökyüzü/uzak/orta/ön/ön-plan çerçeve), kaçış noktası ve ufuk yüksekliği (px), kamera yüksekliği.
 - Malzeme ve doku tablosu (yüzey · malzeme · doku tarifi · kod yöntemi · parametre).
 - Palet (hex) + ışık kaynakları (konum, renk, sertlik) + gölge yönü.
