@@ -97,7 +97,8 @@ const louisPoz = (t: number): Poz => {
     blinkF: kirp(t, "l"), blinkB: kirp(t, "l"),
     browF: -0.5, browB: -0.5,
     agiz: t > 11.1 ? "gulumse" : "dinlen",
-    cane: 22 + 720 * tw + Math.sin(phi) * 12 * amt,
+    // fizik: baston ucu zemin hizasında kalır (daha dik açı ucu kaldırıma gömerdi)
+    cane: 52 + 720 * tw + Math.sin(phi) * 12 * amt,
     hat: null,
   };
 };
@@ -173,6 +174,8 @@ export const Proto: React.FC = () => {
       {/* fare yakın planı foley'i: sadece insert boyunca */}
       <Sequence from={Math.round((T_INS + 0.25) * fps)} durationInFrames={Math.round((INSERT_TAP - 0.25) * fps)} layout="none"><Audio src={staticFile("proto/fare-koklama.mp3")} volume={0.45} /></Sequence>
       <Sequence from={Math.round(T_TAP * fps)} layout="none"><Audio src={staticFile("proto/baston-vurus.mp3")} volume={0.62} /></Sequence>
+      {/* temas = ses: zafer çevirmesinden sonra baston ana planda yere iner (orta plan → daha kısık) */}
+      <Sequence from={Math.round((T_DON + 1.0) * fps)} layout="none"><Audio src={staticFile("proto/baston-vurus.mp3")} volume={0.36} /></Sequence>
       <Sequence from={Math.round((T_TAP + 0.08 - 0.575) * fps)} layout="none"><Audio src={staticFile("proto/fare-kacis.mp3")} volume={0.45} /></Sequence>
       <Sequence from={Math.round(7.45 * fps)} layout="none"><Audio src={staticFile("proto/sapka.mp3")} volume={0.55} /></Sequence>
       <Sequence from={Math.round(T_REPLIK * fps)} layout="none"><Audio src={staticFile("proto/replik.mp3")} volume={1} /></Sequence>

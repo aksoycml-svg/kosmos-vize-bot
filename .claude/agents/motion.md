@@ -20,3 +20,4 @@ FİZİK VE SAHNELEME KURALLARI (zorunlu):
 - Nesneler: tutulan nesne eli takip eder; yere vurulan nesne yere değer ve ses tam o karede çıkar.
 - Gölgeler ışık kaynağının tersine düşer; aynı sahnede ışık yönü tutarlı.
 - HAREKET TAMAMLANIR: Başlayan her hareket (giriş, çıkış, dalış, fırlatma) ekranda tamamlanır ya da açıkça kadrajdan çıkar. Kesme hareketin ortasına denk gelmez (bilinçli match-cut hariç). Nesneler fade ile kaybolmaz; fiziksel olarak bir yere girer/çıkar. Hareketin sonunda kısa bir kapanış anı olur (ör. ızgarada kaybolan kuyruk ucu, oturan toz).
+- TEMAS = SES: Ekranda görünen her çarpma/basma/vurma/açılma-kapanma/bırakma anı (ayak, baston, kapı, para, tokmak, paket) kendi foley sesini alır ve ses tam o karede başlar. Temas anları animasyonda bir olay listesine yazılır; sesler aynı listeden yerleştirilir (hareket kayarsa ses de kayar). İstisna: kaynak çok küçük/ekran dışıysa görünürlük-ses kuralı geçerli.

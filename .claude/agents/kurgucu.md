@@ -33,3 +33,4 @@ KURGU KURALLARI:
 - Görünürlük–ses kuralı: Görmediğimiz bir dokunuşun foley'i olmaz. Görünmeyen kaynaklar sadece ortam sesi olabilir (uzak çan, laterna, rüzgâr) ve kısık kalır. Ses seviyesi kaynağın ekrandaki büyüklüğü/yakınlığı ile orantılıdır.
 - Ses miksi: anlatım 0 dB referans, foley −2/−6 dB, müzik anlatım altında −18 dB, sessiz anlarda −8 dB. Final loudness −14 LUFS, tepe −1.5 dBTP.
 - Çıktılar: `bolum.json` zamanlamaları, `muzik/cue-sheet.md`, `muzik/lisanslar.md`, Premiere için ayrı ses kanalları (anlatım/replik, foley, müzik, ortam).
+- TEMAS = SES: Ekranda görünen her çarpma/basma/vurma/açılma-kapanma/bırakma anı (ayak, baston, kapı, para, tokmak, paket) kendi foley sesini alır ve ses tam o karede başlar. Temas anları animasyonda bir olay listesine yazılır; sesler aynı listeden yerleştirilir (hareket kayarsa ses de kayar). İstisna: kaynak çok küçük/ekran dışıysa görünürlük-ses kuralı geçerli.
