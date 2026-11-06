@@ -96,6 +96,15 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - **Her nesnenin yeri anlamlı:** sahnede duran her eşya bir işleve ve mantıklı bir konuma sahiptir (kafe masası kafenin önünde, kapı açıklığını kapatmaz); amacı belli olmayan nesne çıkarılır.
 
 ### Mekân ve görsel dil (mekân sorumlusu)
+**Mimari çeviri: "doğru iskelet, sade yüzey"** (kullanıcı onaylı yön)
+- **İskelet tarihe sadık:** kat düzeni, pencere ritmi, kemer tipi, çatı biçimi/eğimi, şehrin imza silueti o yıl o şehirde neyse o. Telefonda okunan siluet ve orandır; gotik kemer ya da Haussmann düzeni stilize de olsa "yanlış yer/yıl" okunur.
+- **Süsleme imzaya iner:** her cephe 1–2 imza ayrıntı (ör. Bordeaux maskaron + 1. kat balkonu; Paris mansard + baca kümesi; Tours yarı ahşap), ortak kontur diliyle basit şekiller, doğru yerinde.
+- **Düzensizlik dönemin işaretidir:** Haussmann öncesi bitişik evler farklı yükseklik, genişlik, renkte; tekdüze sıra yapılmaz.
+- **Dönem gravürü dili:** mimari, 1830'ların renkli litografi/gravürlerinden beslenen bir **kukla tiyatrosu dekoru** gibi kurulur — düz katmanlı paneller, gerçek oranlar, sınırlı palet, gölgede tarama (hatching), kâğıt dokusu. Mood/referans için dönem gravürleri (kamu malı) kullanılır.
+- **Duygu için hafif abartı serbest** (oran, tavan yüksekliği, dikeylik); yapı tipi, malzeme ve dönem değişmez.
+- **Mesafeye göre ayrıntı:** yakın = doku + süsleme; orta = oran + ritim; uzak = tek siluet.
+- Her mekân için önce **mimari kart** (dönem/üslup, yapı tipi, kat düzeni, açıklık ve kemer tipi, süsleme, iç mimari, kameradan görünen), sonra doku.
+
 - Şehirler stil ile değil taş, çatı, ışık ve imza siluetle ayrışır; ilk 0.5 sn'de ses kapalı okunur. Arşiv/renk derecelendirmesi şehir paletini karartıp aynılaştırmaz (renk ölçüm tablosu ile kontrol).
 - Doku el yapımı vektör: seed sabit (doku kaynamaz), saf siyah/beyaz yok, en fazla 3 doku katmanı, kırmızı yalnız mühür/hata/vurgu için.
 - Kamera yüksekliği fiziksel tutarlı: alçak kameradan çatı yüzeyi görünmez, saçak altı görünür. Katmanlar arasında maske kenarı/şerit kalmaz.
