@@ -1,0 +1,4 @@
+Edit the reference image (an 1830s hand-coloured engraving of a courtyard seen from inside a dark front portico). Produce the FOREGROUND FRAME LAYER ONLY, for compositing:
+KEEP, unchanged in shape, position and drawing style: the two dark shaded stone piers at the left and right edges, the big dark round (semicircular) arch at the top, the dark hatched portico floor band at the bottom with its crisp sunlight edge, the half-open wrought-iron gate leaf in the lower-left, and the wooden counter with the open ledger and ink pot in the lower-right.
+REPLACE EVERYTHING ELSE (the sky, the courtyard, all facades, the chalkboard, the paving seen through the arch) with one perfectly flat, uniform, pure chroma-key green #00FF00, no texture, no shading, no paper grain, no gradient, hard clean edges. The green must also show through the gaps between the iron bars of the gate.
+No people, no text, no border.

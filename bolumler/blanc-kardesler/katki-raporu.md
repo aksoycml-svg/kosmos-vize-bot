@@ -736,3 +736,24 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - **Mekân sorumlusu:** 11.2 tablosunu yukarıdaki değerlerle güncellesin (aralık, kalınlık, IV +40° ≤ 120 px, kontur/2, `murekkep`). Ayrıca karar gerekenler: pilastr, parmaklık halka süsü, Sokak gölge tarafı seçimi, sivri okunan basık arcade.
   - **Motion A4 bölüm 2:** TC1–TC5, BC2 (tahta insert), BC3 (yazan el), SC1/SC2/SC4/SC6, FareInsert kompozisyonunu `SB2-SOKAK-FARE` adıyla kaydedip p87/p108/p138 protokolü, Tours etiketi IG sütunu, Tours kiriş / masa altı gölge iskeleti.
   - **Teknisyen:** commit yapılmadı. A2 taşıması `git mv` ile sahnelendi; `arsiv/A3/` ve `A4-*.png` izlenmiyor.
+
+## mekan-sorumlusu · 2026-11-06 · Hibrit plaka testi (B yolu), P02 BORSA
+- **Ne yaptım:** Gemini ile 4 deneme yaptım: tam plaka d1 ve d2, arka katman d3 (d2'yi düzenleyerek), ön çerçeve katmanı d4 (yeşil fon). Her denemeye baktım, d1'deki hataları (ufuk çok alçak, kafes tarama, amblem yeri, güneş yönü) d2 promptunda düzelttim. d4'ten renk eşiğiyle maske çıkarıp d3 ile bileşim yaptım (tek seferlik deney, repoya kod girmedi). Dönem ve mimari denetimini madde madde yazdım, kamera ve ufuk uyumunu ölçtüm, risk, paralaks sınırı, uygun mekânlar ve A ile kıyas çıkardım.
+- **Dokunduğum dosyalar:** `storyboard-v2/hibrit-test/` altında: `prompt-1-tam.txt`, `prompt-2-tam.txt`, `prompt-3-arka.txt`, `prompt-4-on.txt`, `BORSA-plaka-tam-d1.png`, `BORSA-plaka-tam-d2.png`, `BORSA-plaka-tam.png` (d2 kopyası), `BORSA-katman-arka-d3.png`, `BORSA-katman-on-d4.png`, `BORSA-katman-on-maske.png`, `BORSA-kompozit-test.png`, `BORSA-kompozit-360.png`, `hibrit-test.md`. Ayrıca bu rapor.
+- **Aldığım kararlar ve gerekçeleri:**
+  - En iyi deneme d2. Gerekçe: amblemler alınlıkta, güneş kartla aynı yönden (sağ-arka) geliyor, tarama paralel çizgi.
+  - Alınlıklarda kaynaklı amblemi (Ek 3) Eleştiri C'nin ışınsal lunette çubuğuna tercih ettim; parmaklık yalnız impost altında.
+  - Rakamlı saat yasaklandığı için kadran çizilmedi; eksik olarak işaretlendi.
+  - Önerim B′: plaka yalnız geniş ve uzak arka katman için kullanılsın; ön çerçeve, temas yüzeyleri, tahta, ışık değişimi ve insertler kodla çizilsin.
+- **Uyguladığım kurallar / yakaladığım ihlaller:**
+  - Sivri kemer yok, insan yok, yazı yok, modern öğe yok, cam tonoz yok: hepsi ✓.
+  - İhlal: ufuk hedefi tutmadı. Plakada y ≈1135, hedef ~800–880. Bu, ufuk ve ölçek kuralı açısından risk.
+  - İhlal: tahta P03 MATCH konumunu tutmadı. Plakada x 471–612, y 970–1060; olması gereken x 300–780, y 400–760.
+  - Tahta insert plakadan yapılamaz: 5.8× büyütme gerekiyor, plaka en fazla ~1.4× taşıyor.
+  - Ön ayaklarda kafes/ağ görünümlü tarama var (A4 G6'ya aykırı).
+  - Kadran (1750) eksik. Amblemler tek amblem yerine demet olarak çizilmiş.
+- **Açık sorular / bir sonraki ajana notlar:**
+  - (1) Kullanıcı: B′ yönü kabul mü? Ufuk sorunu için iki yol var: (a) sahne planı plakaya uydurulur, kuklalar küçülür; (b) motion SB2-p0'ın çizgi iskeletini referans olarak verir, Gemini o iskeletin üstüne boyar. (b) denenmedi.
+  - (2) Kadran plakanın üstüne vektör olarak mı eklensin, yoksa hiç çizilmesin mi?
+  - (3) Gemini çıktısının ticari kullanım koşulu doğrulanmalı.
+  - (4) Motion: d3 + d4 + kukla rig ile tek bir kontrol karesi üretsin, plaka ile rig arasında "iki dünya" farkı var mı görülsün. Ardından eleştirmen baksın.
