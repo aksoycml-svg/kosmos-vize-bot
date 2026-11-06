@@ -1,0 +1,405 @@
+{
+  "proje": "blanc-kardesler",
+  "surum": "storyboard-v2",
+  "fps": 60,
+  "genislik": 1080,
+  "yukseklik": 1920,
+  "toplam_kare": 3600,
+  "guvenli_alan": { "ust": 220, "alt": 420, "yan": 80 },
+  "yazi_bantlari": { "UST": { "y": [240, 400], "x": [80, 1000] }, "ALT": { "y": [1290, 1490], "x": [80, 1000] } },
+  "koordinat": "z: 1=kameraya yakin, buyudukce uzak (ZMAX 7); u: 0=sol kenar..1=sag kenar. kamera: cs olcek, cx/cy px kayma",
+  "kaydirilan_sure": "P09 120 kare (2.0 sn), P10 132 kare (2.2 sn); senaryodan 12 kare kayma, toplam sabit",
+  "planlar": [
+    {
+      "id": "P01", "start_frame": 0, "end_frame": 156, "mekan": "TOURS-KULUBE-IC", "tip": "kinetic",
+      "kamera": "yakin tepe-onden, cs 1.14->1.00, cy +40->0; pencere A x560-1000 y460-920",
+      "karakterler": [{ "ad": "memur eli", "konum": "x300-620 y1000-1350", "not": "gri ceket kolu, titrek, yuz yok" }],
+      "temaslar": [
+        { "kare": 0, "olay": "kagit surtunmesi baslar (0-44)", "seviye": "ORTA" },
+        { "kare": 44, "olay": "direk kolu klak, B konumu", "seviye": "ORTA" },
+        { "kare": 50, "olay": "kagit masaya yatar", "seviye": "ORTA" },
+        { "kare": 140, "olay": "eldiven masaya tap", "seviye": "ORTA" }
+      ],
+      "gecis_cikis": "SERT",
+      "ekran_yazisi": { "metin": "1834. Bilgisayar yok.", "bant": "UST", "kare_araligi": [0, 156] }
+    },
+    {
+      "id": "P02", "start_frame": 156, "end_frame": 360, "mekan": "BORSA", "tip": "character",
+      "kamera": "genis->orta dolly-in, cs 1.00->1.18, cy 0->-60; tahta x300-780 y400-760",
+      "karakterler": [
+        { "ad": "Francois", "z": 2.2, "u": 0.40 },
+        { "ad": "Tuccar", "z": 2.2, "u": 0.24 },
+        { "ad": "Louis", "z": 2.3, "u": 0.62, "not": "sag gogus cebinde beyaz eldiven kosesi" },
+        { "ad": "Katip", "z": 5.5, "u": 0.50, "not": "platformda" },
+        { "ad": "kalabalik", "z": "2-6", "u": "0.05-0.95" }
+      ],
+      "temaslar": [
+        { "kare": 176, "olay": "tebesir cizirtisi baslar (176-220)", "seviye": "ORTA" },
+        { "kare": 222, "olay": "tebesir kirilir cit", "seviye": "ORTA" },
+        { "kare": 238, "olay": "parca zemine sekme 1", "seviye": "ORTA" },
+        { "kare": 250, "olay": "parca sekme 2", "seviye": "ORTA" },
+        { "kare": 286, "olay": "yarim tebesirle ilk ciz", "seviye": "ORTA" }
+      ],
+      "gecis_cikis": "MATCH (tahta baslik PARIS (540,430) -> harita PARIS etiketi)",
+      "ekran_yazisi": { "metin": "Oyun: Paris'teki tahvil fiyati", "bant": "UST", "kare_araligi": [162, 354] }
+    },
+    {
+      "id": "P03", "start_frame": 360, "end_frame": 564, "mekan": "HARITA", "tip": "map",
+      "kamera": "tepe, cs 1.30, cy +300->-300 (Paris'ten Bordeaux'ya tilt)",
+      "karakterler": [],
+      "temaslar": [
+        { "kare": 360, "olay": "sayac 1 tik", "seviye": "ORTA" },
+        { "kare": 420, "olay": "sayac 2 tik", "seviye": "ORTA" },
+        { "kare": 480, "olay": "sayac 3 tik", "seviye": "ORTA" },
+        { "kare": 540, "olay": "araba durur, toz puf", "seviye": "ORTA" }
+      ],
+      "gecis_cikis": "MATCH (toz katmani -> sokak sisi)",
+      "ekran_yazisi": { "metin": "Paris → Bordeaux: 3 GÜN", "bant": "UST", "kare_araligi": [366, 558] }
+    },
+    {
+      "id": "P04", "start_frame": 564, "end_frame": 780, "mekan": "SOKAK-BORDEAUX", "tip": "character",
+      "kamera": "p+0-26 orta alcak cs 1.00->1.03; p+26-94 INSERT statik; p+94-216 push-in cs 1.06->1.18, cx 0->+60, cy -20->-120",
+      "karakterler": [
+        { "ad": "Francois", "z": "2.7->2.4->1.8", "u": "0.52->0.46" },
+        { "ad": "Louis", "z": "3.0->2.7->1.9", "u": "0.68->0.66", "not": "baston sag elde, ucu izgara yaninda" },
+        { "ad": "izgara", "z": 2.2, "u": 0.58, "not": "ekran ~(600,1465); fare cikar/kacar" }
+      ],
+      "temaslar": [
+        { "kare": 574, "olay": "fare pencesi tasa tikirti", "seviye": "YAKIN" },
+        { "kare": 622, "olay": "baston ucu tasa TAK", "seviye": "YAKIN" },
+        { "kare": 624, "olay": "fare irkilme zipla, pence tik", "seviye": "YAKIN" },
+        { "kare": 636, "olay": "fare izgara kafesine dalar, demir tingirtisi", "seviye": "YAKIN" },
+        { "kare": 652, "olay": "kuyruk ucu izgarada kaybolur tink", "seviye": "YAKIN" },
+        { "kare": 680, "olay": "Louis durur, baston ucu tasa tik", "seviye": "ORTA" },
+        { "kare": 570, "olay": "ADIM otomatik (yuru) genis plan p+6,20", "seviye": "ORTA" },
+        { "kare": 664, "olay": "ADIM otomatik (yuru) orta plan p+100,112", "seviye": "ORTA" }
+      ],
+      "gecis_cikis": "SERT",
+      "ekran_yazisi": { "metin": "Herkesten önce bilen… kazanır.", "bant": "ALT", "kare_araligi": [664, 780], "tur": "altyazi FRANÇOIS" },
+      "nefes": [{ "kare": [730, 748], "sure_sn": 0.3 }],
+      "gozkirpma": 760
+    },
+    {
+      "id": "P05", "start_frame": 780, "end_frame": 996, "mekan": "HARITA", "tip": "map",
+      "kamera": "P03 baslangic kadraji, cs 1.30, cy +300->+220; muhur merkezi (540,880)",
+      "karakterler": [],
+      "temaslar": [
+        { "kare": 780, "olay": "araba tekerlegi kisik baslar", "seviye": "GENIS" },
+        { "kare": 804, "olay": "kule klak 1", "seviye": "ORTA" },
+        { "kare": 822, "olay": "kule klak 2", "seviye": "ORTA" },
+        { "kare": 838, "olay": "kule klak 3", "seviye": "ORTA" },
+        { "kare": 852, "olay": "kule klak 4", "seviye": "ORTA" },
+        { "kare": 864, "olay": "kule klak 5", "seviye": "ORTA" },
+        { "kare": 874, "olay": "kule klak 6", "seviye": "ORTA" },
+        { "kare": 882, "olay": "kule klak 7", "seviye": "ORTA" },
+        { "kare": 889, "olay": "kule klak 8", "seviye": "ORTA" },
+        { "kare": 895, "olay": "kule klak 9 (Bordeaux)", "seviye": "ORTA" },
+        { "kare": 850, "olay": "sinyal arabayi sollar whoosh", "seviye": "ORTA" },
+        { "kare": 930, "olay": "araba durur", "seviye": "ORTA" },
+        { "kare": 938, "olay": "muhur tok", "seviye": "YAKIN" },
+        { "kare": 938, "olay": "balmumu tasma squelch (938-962)", "seviye": "ORTA" }
+      ],
+      "gecis_cikis": "MATCH (muhur diski (540,880) -> dogan gunes diski)",
+      "ekran_yazisi": { "metin": "Telgraf: BİRKAÇ SAAT · halka kapalı", "bant": "UST", "kare_araligi": [786, 990] }
+    },
+    {
+      "id": "P06", "start_frame": 996, "end_frame": 1128, "mekan": "CATI-BORDEAUX", "tip": "character",
+      "kamera": "p+0-44 orta cs 1.00->1.06; p+44-98 INSERT saat (kadran %20) statik; p+98-132 orta statik",
+      "karakterler": [
+        { "ad": "Louis", "z": 2.0, "u": 0.45, "not": "baston sol on kolunda asili, sol elde saat" },
+        { "ad": "kafes", "z": 2.3, "u": 0.62 },
+        { "ad": "guvercin", "not": "kadrajdan sag-ustten cikar p+40" }
+      ],
+      "temaslar": [
+        { "kare": 1000, "olay": "kafes mentese gicirtisi (1000-1006)", "seviye": "ORTA" },
+        { "kare": 1006, "olay": "kafes kapagi korkuluga tik", "seviye": "ORTA" },
+        { "kare": 1010, "olay": "guvercin kafes tabanindan iter, kanat (1010-1038)", "seviye": "ORTA" },
+        { "kare": 1034, "olay": "tuy cama (duyulmaz)", "seviye": "YAKIN" },
+        { "kare": 1056, "olay": "parmak fiske tuye tik", "seviye": "YAKIN" },
+        { "kare": 1086, "olay": "saat kapagi cat", "seviye": "YAKIN" }
+      ],
+      "gecis_cikis": "KAGIT/SERT",
+      "ekran_yazisi": { "metin": "Plan A: Güvercin — başarısız", "bant": "UST", "kare_araligi": [1002, 1122] }
+    },
+    {
+      "id": "P07", "start_frame": 1128, "end_frame": 1284, "mekan": "TOURS-KULUBE-IC", "tip": "character",
+      "kamera": "orta profil, pan cs 1.00->1.08, cx +10->+110, p+98'de durur",
+      "karakterler": [
+        { "ad": "Louis", "z": 2.0, "u": 0.22, "not": "baston masa kenarina dayali, iki kese onunde" },
+        { "ad": "mudur", "z": 2.0, "u": 0.60 },
+        { "ad": "memur", "z": 2.8, "u": 0.78 },
+        { "ad": "Francois", "z": 3.4, "u": 0.08, "not": "kapi araliginda golgede" }
+      ],
+      "temaslar": [
+        { "kare": 1134, "olay": "kese masa surtunmesi (1134-1168)", "seviye": "ORTA" },
+        { "kare": 1168, "olay": "kese durur tok", "seviye": "ORTA" },
+        { "kare": 1190, "olay": "sikkeler masaya sigir", "seviye": "ORTA" },
+        { "kare": 1216, "olay": "sikkeler cekmeceye", "seviye": "ORTA" },
+        { "kare": 1226, "olay": "cekmece BAM", "seviye": "YAKIN" }
+      ],
+      "gecis_cikis": "SAME",
+      "ekran_yazisi": { "metin": "Plan B: Rüşvet · Tours", "bant": "UST", "kare_araligi": [1134, 1278] }
+    },
+    {
+      "id": "P08", "start_frame": 1284, "end_frame": 1440, "mekan": "TOURS-KULUBE-IC", "tip": "character",
+      "kamera": "yakin; p+0-60 Louis yuzu OTS, p+60-156 memur yuzu OTS, cs 1.00->1.06; pencere A x640-1000 y420-960",
+      "karakterler": [
+        { "ad": "Louis", "z": 1.5, "u": 0.30 },
+        { "ad": "memur", "z": 1.7, "u": 0.62 }
+      ],
+      "temaslar": [
+        { "kare": 1356, "olay": "ikinci kese masaya kayip durur tok", "seviye": "YAKIN" },
+        { "kare": 1384, "olay": "direk kolu gicirtisi baslar (1384-1424)", "seviye": "ORTA" },
+        { "kare": 1390, "olay": "memur irkilir (kumas)", "seviye": "YAKIN" }
+      ],
+      "gecis_cikis": "SERT (sok, kol gicirtisi kesilir)",
+      "ekran_yazisi": { "metin": "Tek bir hata. Fazlası değil.", "bant": "ALT", "kare_araligi": [1294, 1414], "tur": "altyazi LOUIS" }
+    },
+    {
+      "id": "P09", "start_frame": 1440, "end_frame": 1560, "mekan": "PARIS-AVLU", "tip": "character",
+      "kamera": "orta alcak, adamin basi kesik, cs 1.00->1.05, cx 0->+30",
+      "karakterler": [
+        { "ad": "Paris adami", "z": 1.6, "u": 0.28, "not": "gri manset, sag mansette altin dugme, yuz gorunmez" },
+        { "ad": "arabaci", "z": 2.2, "u": 0.80 },
+        { "ad": "araba TOURS", "z": 2.2, "u": 0.62 }
+      ],
+      "temaslar": [
+        { "kare": 1458, "olay": "paket firlatma huf", "seviye": "ORTA" },
+        { "kare": 1480, "olay": "paket araba tepesine tok", "seviye": "ORTA" },
+        { "kare": 1482, "olay": "paket kayma surtunmesi (1482-1502)", "seviye": "ORTA" },
+        { "kare": 1504, "olay": "cizme paketi durdurur tap", "seviye": "ORTA" },
+        { "kare": 1520, "olay": "manset duzeltme", "seviye": "YAKIN" }
+      ],
+      "gecis_cikis": "MATCH (kahverengi paket -> masadaki paket)",
+      "ekran_yazisi": { "metin": "Şifre: bir posta paketi", "bant": "UST", "kare_araligi": [1446, 1554] }
+    },
+    {
+      "id": "P10", "start_frame": 1560, "end_frame": 1692, "mekan": "TOURS-KULUBE-IC", "tip": "document",
+      "kamera": "tepe 90 derece, cs 1.00->1.04; sol paket x140-500, sag paket x580-940, masa kenari y~1270",
+      "karakterler": [],
+      "temaslar": [
+        { "kare": 1572, "olay": "eldiven kabarma, kagit hisirtisi", "seviye": "YAKIN" },
+        { "kare": 1618, "olay": "etiket ipi corabi cekmeye baslar", "seviye": "YAKIN" },
+        { "kare": 1636, "olay": "yun kenar surtunmesi", "seviye": "YAKIN" },
+        { "kare": 1648, "olay": "corap kenardan flop", "seviye": "YAKIN" },
+        { "kare": 1676, "olay": "son sallanma", "seviye": "YAKIN" }
+      ],
+      "gecis_cikis": "SERT",
+      "ekran_yazisi": { "metin": "ELDİVEN = ↑ · ÇORAP = ↓", "bant": "UST", "kare_araligi": [1566, 1686] }
+    },
+    {
+      "id": "P11", "start_frame": 1692, "end_frame": 1884, "mekan": "TOURS-KULUBE-IC", "tip": "tower",
+      "kamera": "p+0-64 orta cs 1.00->1.04; p+64-192 INSERT 45 derece, sap+damla %25, cs 1.00->1.06",
+      "karakterler": [{ "ad": "memur", "z": 1.8, "u": 0.50, "not": "profil, saga donuk, damla cene ucunda" }],
+      "temaslar": [
+        { "kare": 1704, "olay": "eller sapa tak", "seviye": "YAKIN" },
+        { "kare": 1770, "olay": "sap tik", "seviye": "YAKIN" },
+        { "kare": 1784, "olay": "sap tik", "seviye": "YAKIN" },
+        { "kare": 1800, "olay": "fazladan centik TIK (sert); muzik kesilir 1800-1830", "seviye": "YAKIN" },
+        { "kare": 1826, "olay": "ter damlasi sapa tip", "seviye": "YAKIN" },
+        { "kare": 1842, "olay": "sap tik", "seviye": "YAKIN" },
+        { "kare": 1858, "olay": "sap tik", "seviye": "YAKIN" }
+      ],
+      "gecis_cikis": "MATCH (kirmizi halo dairesi -> durbun maskesi, merkez (540,950) cap ~860)",
+      "ekran_yazisi": { "metin": "Resmî mesaj + gizli bir \"hata\"", "bant": "UST", "kare_araligi": [1698, 1878] }
+    },
+    {
+      "id": "P12", "start_frame": 1884, "end_frame": 2028, "mekan": "KULE-DIS", "tip": "tower",
+      "kamera": "p+0-24 orta-yakin pencere; p+24-70 POV dairesel maske merkez (540,950) cap ~860; p+70-144 asiri yakin goz y520-820, kas y400-520",
+      "karakterler": [{ "ad": "telgrafci", "z": 1.5, "u": 0.50, "not": "kisa, tombul, kahve frak, biyik, sapkasiz" }],
+      "temaslar": [
+        { "kare": 1906, "olay": "durbun goze tik", "seviye": "YAKIN" },
+        { "kare": 1924, "olay": "odak halkasi kirt", "seviye": "YAKIN" }
+      ],
+      "nefes": [{ "kare": [1984, 2014], "sure_sn": 0.5, "not": "tam sessizlik, muzik de susar" }],
+      "gecis_cikis": "SERT",
+      "ekran_yazisi": { "metin": "Ya fark ederse?", "bant": "ALT", "kare_araligi": [1980, 2022] }
+    },
+    {
+      "id": "P13", "start_frame": 2028, "end_frame": 2184, "mekan": "KULE-DIS", "tip": "tower",
+      "kamera": "orta dis, p+0-60 cs 1.25; p+60-130 geri cekilme cs 1.25->0.80, cy +60->-120",
+      "karakterler": [{ "ad": "telgrafci", "z": 1.5, "u": 0.50 }],
+      "temaslar": [
+        { "kare": 2038, "olay": "durbun tezgaha tok", "seviye": "YAKIN" },
+        { "kare": 2062, "olay": "kol circiri (2062-2094)", "seviye": "ORTA" },
+        { "kare": 2096, "olay": "kendi diregi klak (centik X)", "seviye": "ORTA" },
+        { "kare": 2142, "olay": "ufuk kule uzaktan klak", "seviye": "GENIS" }
+      ],
+      "gecis_cikis": "MATCH (ufuk kulesi siluet -> durbunda kule)",
+      "ekran_yazisi": { "metin": "Kimse durdurmadı. Herkes kopyaladı.", "bant": "UST", "kare_araligi": [2034, 2178] }
+    },
+    {
+      "id": "P14", "start_frame": 2184, "end_frame": 2316, "mekan": "CATI-KATI", "tip": "tower",
+      "kamera": "OTS maskesiz, odak kaymasi tum kadrajda: p+0-40 yakin net; p+40-100 uzak net (1 sn); p+112-132 Louis; cs 1.00->1.05; pencere x380-900 y380-1000",
+      "karakterler": [
+        { "ad": "suc ortagi", "z": 1.5, "u": 0.30, "not": "koyu kahve redingot, basik kasket, tek tup teleskop" },
+        { "ad": "Louis", "z": 3.0, "u": 0.78, "not": "masa basinda, baston masaya dayali" }
+      ],
+      "temaslar": [
+        { "kare": 2188, "olay": "teleskop pervaza tik", "seviye": "YAKIN" },
+        { "kare": 2204, "olay": "odak halkasi (2204-2224)", "seviye": "YAKIN" },
+        { "kare": 2244, "olay": "uzak kule klak (centik X)", "seviye": "GENIS" },
+        { "kare": 2294, "olay": "teleskop kapanir slak", "seviye": "YAKIN" }
+      ],
+      "gecis_cikis": "KAGIT (teleskop kapagi, p+128-132 siyah)",
+      "ekran_yazisi": { "metin": "Dürbünün ucunda: Bordeaux", "bant": "UST", "kare_araligi": [2190, 2310] }
+    },
+    {
+      "id": "P15", "start_frame": 2316, "end_frame": 2472, "mekan": "MONTAJ-15", "tip": "chart",
+      "kamera": "dikey bolunmus, ayrac y948-972, cs 1.00->1.04; ust y220-948 ALTIN-MASA, alt y972-1500 TOURS-KULUBE-IC",
+      "karakterler": [{ "ad": "memur", "konum": "alt yari", "not": "gri ceket, elinde buruk beyaz eldiven" }],
+      "temaslar": [
+        { "kare": 2324, "olay": "sikke yigina sigir", "seviye": "ORTA" },
+        { "kare": 2332, "olay": "sikke sigir", "seviye": "ORTA" },
+        { "kare": 2342, "olay": "sikke sigir", "seviye": "ORTA" },
+        { "kare": 2358, "olay": "takvim 1835 yirtilir", "seviye": "YAKIN" },
+        { "kare": 2368, "olay": "memur oksuruk", "seviye": "ORTA" },
+        { "kare": 2386, "olay": "kadeh masaya tik", "seviye": "ORTA" },
+        { "kare": 2428, "olay": "yaprak memurun omzuna konar", "seviye": "YAKIN" },
+        { "kare": 2444, "olay": "memur oksuruk", "seviye": "ORTA" }
+      ],
+      "gecis_cikis": "MATCH (memur omuz silueti)",
+      "ekran_yazisi": { "metin": "1834 → 1836", "bant": "UST", "kare_araligi": [2322, 2466] }
+    },
+    {
+      "id": "P16", "start_frame": 2472, "end_frame": 2640, "mekan": "YATAK-ODASI", "tip": "character",
+      "kamera": "p+0-60 orta push-in cs 1.00->1.10; p+60-168 INSERT yer seviyesi cs 1.00->1.12",
+      "karakterler": [
+        { "ad": "memur", "z": 2.2, "u": 0.45, "not": "yatakta, gomlek, elinde eldiven" },
+        { "ad": "dinleyici silueti", "z": 2.8, "u": 0.85, "not": "sandalyede, yuzsuz" }
+      ],
+      "temaslar": [
+        { "kare": 2544, "olay": "eldiven yorgandan kayar (kumas)", "seviye": "YAKIN" },
+        { "kare": 2574, "olay": "eldiven tahta zemine tok", "seviye": "YAKIN" },
+        { "kare": 2580, "olay": "minik sekme", "seviye": "YAKIN" }
+      ],
+      "gecis_cikis": "SAME",
+      "ekran_yazisi": { "metin": "1836 · İçeriden biri", "bant": "UST", "kare_araligi": [2478, 2634] }
+    },
+    {
+      "id": "P17", "start_frame": 2640, "end_frame": 2784, "mekan": "YATAK-ODASI", "tip": "character",
+      "kamera": "yakin yuz y520-1100 3/4, pencere kule x640-960 y300-620, cs 1.00->1.05",
+      "karakterler": [{ "ad": "memur", "konum": "yuz", "not": "gomlek" }, { "ad": "dinleyici", "konum": "sag kenar omuz/sapka, bulanik" }],
+      "temaslar": [
+        { "kare": 2648, "olay": "yastik hisirtisi", "seviye": "YAKIN" },
+        { "kare": 2752, "olay": "uzak kule kollari dinlenmeye iner klunk", "seviye": "GENIS" }
+      ],
+      "nefes": [{ "kare": [2754, 2772], "sure_sn": 0.3 }],
+      "gecis_cikis": "SERT",
+      "ekran_yazisi": { "metin": "Eldiven… çorap…", "bant": "ALT", "kare_araligi": [2660, 2706], "tur": "altyazi MEMUR" }
+    },
+    {
+      "id": "P18", "start_frame": 2784, "end_frame": 2916, "mekan": "MAHKEME", "tip": "character",
+      "kamera": "genis alcak, push-in cs 1.00->1.12; saat x760-920 y470-640",
+      "karakterler": [
+        { "ad": "baskan yargic", "z": 5.0, "u": 0.50, "not": "kursude tokmak" },
+        { "ad": "Francois", "z": 2.4, "u": 0.34, "not": "arkadan, ekran solu, sapka dizde" },
+        { "ad": "Louis", "z": 2.4, "u": 0.52, "not": "arkadan, baston sirada sag yaninda" }
+      ],
+      "temaslar": [{ "kare": 2872, "olay": "duvar saati TIK", "seviye": "ORTA" }],
+      "nefes": [{ "kare": [2854, 2890], "sure_sn": 0.6 }],
+      "gecis_cikis": "SERT",
+      "ekran_yazisi": { "metin": "Tours Ağır Ceza · Mart 1837", "bant": "UST", "kare_araligi": [2790, 2910] }
+    },
+    {
+      "id": "P19", "start_frame": 2916, "end_frame": 3036, "mekan": "MAHKEME", "tip": "character",
+      "kamera": "p+0-40 INSERT tokmak; p+40-76 orta ters acı (kamera sanıklara bakar); p+76-120 INSERT eller %20+",
+      "karakterler": [
+        { "ad": "Louis", "z": 2.0, "u": 0.34, "not": "ters acida EKRAN SOLU; eldiven cebi sag gogus" },
+        { "ad": "Francois", "z": 2.0, "u": 0.62, "not": "ters acida EKRAN SAGI" }
+      ],
+      "temaslar": [
+        { "kare": 2928, "olay": "tokmak TAK + reverb", "seviye": "YAKIN" },
+        { "kare": 2964, "olay": "cepten eldiven (kumas)", "seviye": "YAKIN" },
+        { "kare": 2984, "olay": "sol eldiven bilek gerilmesi", "seviye": "YAKIN" },
+        { "kare": 3002, "olay": "parmak gerilme 1", "seviye": "YAKIN" },
+        { "kare": 3008, "olay": "parmak gerilme 2", "seviye": "YAKIN" },
+        { "kare": 3014, "olay": "parmak gerilme 3", "seviye": "YAKIN" },
+        { "kare": 3020, "olay": "parmak gerilme 4", "seviye": "YAKIN" },
+        { "kare": 3028, "olay": "bilek dugmesi cit", "seviye": "YAKIN" }
+      ],
+      "gecis_cikis": "KAGIT",
+      "ekran_yazisi": { "metin": "BERAAT", "bant": "ALT", "kare_araligi": [2928, 3016], "tur": "damga" }
+    },
+    {
+      "id": "P20", "start_frame": 3036, "end_frame": 3192, "mekan": "KANUN-INSERT", "tip": "document",
+      "kamera": "tepe insert, kitap x140-940 y480-1300, cs 1.00->1.05",
+      "karakterler": [{ "ad": "yargic eli", "not": "siyah cubbe kolu" }, { "ad": "guve", "not": "cilt olugunda p+0'dan, kapali ~110px; p+100'de acilir ~220px" }],
+      "temaslar": [
+        { "kare": 3042, "olay": "sayfa fist 1", "seviye": "YAKIN" },
+        { "kare": 3050, "olay": "sayfa fist 2", "seviye": "YAKIN" },
+        { "kare": 3058, "olay": "sayfa fist 3", "seviye": "YAKIN" },
+        { "kare": 3066, "olay": "sayfa fist 4", "seviye": "YAKIN" },
+        { "kare": 3074, "olay": "sayfa fist 5", "seviye": "YAKIN" },
+        { "kare": 3082, "olay": "sayfa fist 6", "seviye": "YAKIN" },
+        { "kare": 3108, "olay": "parmak bos sayfaya", "seviye": "YAKIN" },
+        { "kare": 3136, "olay": "guve kanat acar", "seviye": "YAKIN" },
+        { "kare": 3144, "olay": "kanat pirpiri (3144-3186)", "seviye": "GENIS" }
+      ],
+      "gecis_cikis": "SERT",
+      "ekran_yazisi": { "metin": "Suç yok. Çünkü yasa yok.", "bant": "UST", "kare_araligi": [3042, 3186] }
+    },
+    {
+      "id": "P21", "start_frame": 3192, "end_frame": 3324, "mekan": "TOURS-KAPI", "tip": "tower",
+      "kamera": "p+0-60 orta (kapi x320-760 y700-1400, ilan x420-660 y800-1100, direk x380-700 y330-700); p+60-120 INSERT surgu ~%25; p+120-132 orta",
+      "karakterler": [{ "ad": "gorevli eli", "not": "siyah redingot kolu, BEYAZ manset, yuz yok; p+46-58 kadrajdan sag-alta cikar" }],
+      "temaslar": [
+        { "kare": 3208, "olay": "cekic tak 1", "seviye": "ORTA" },
+        { "kare": 3222, "olay": "cekic tak 2", "seviye": "ORTA" },
+        { "kare": 3238, "olay": "cekic TAK 3 (agir)", "seviye": "ORTA" },
+        { "kare": 3258, "olay": "surgu halkasi tink", "seviye": "YAKIN" },
+        { "kare": 3266, "olay": "surgu halkasi tink", "seviye": "YAKIN" },
+        { "kare": 3276, "olay": "surgu yuvasina klank", "seviye": "YAKIN" }
+      ],
+      "gecis_cikis": "MATCH (direk dikey cizgisi -> siluet direk)",
+      "ekran_yazisi": { "metin": "Önce açık. Sonra yasa.", "bant": "ALT", "kare_araligi": [3198, 3318] }
+    },
+    {
+      "id": "P22", "start_frame": 3324, "end_frame": 3468, "mekan": "WIFI-MORF", "tip": "kinetic",
+      "kamera": "silüet genis->zoom cs 1.00->2.20; morf merkez (540,800) boy >=600px; kukla/tahta dokusu, neon yok",
+      "karakterler": [],
+      "temaslar": [
+        { "kare": 3384, "olay": "tahta gicirtisi (3384-3414), temas degil ses olayi", "seviye": "ORTA" },
+        { "kare": 3414, "olay": "blip 1 (ses olayi)", "seviye": "YAKIN" },
+        { "kare": 3426, "olay": "blip 2 (ses olayi)", "seviye": "YAKIN" },
+        { "kare": 3438, "olay": "blip 3 (ses olayi)", "seviye": "YAKIN" }
+      ],
+      "gecis_cikis": "SERT (ekran karanligi -> fener)",
+      "ekran_yazisi": { "metin": "İlk siber saldırı", "bant": "ALT", "kare_araligi": [3330, 3462] }
+    },
+    {
+      "id": "P23", "start_frame": 3468, "end_frame": 3600, "mekan": "PARIS-MASA", "tip": "document",
+      "kamera": "P01 aynasi: tepe-onden cs 1.00, ayni masa/pencere A/fener; son kare = P01 f0 kompozisyonu, kol A",
+      "karakterler": [{ "ad": "Paris adamin elleri", "not": "gri manset, sag mansette altin dugme" }],
+      "temaslar": [
+        { "kare": 3482, "olay": "eldiven kagida", "seviye": "YAKIN" },
+        { "kare": 3502, "olay": "kagit katlama 1", "seviye": "YAKIN" },
+        { "kare": 3526, "olay": "kagit katlama 2", "seviye": "YAKIN" },
+        { "kare": 3546, "olay": "kagit katlama 3", "seviye": "YAKIN" },
+        { "kare": 3564, "olay": "ip surtunmesi", "seviye": "YAKIN" },
+        { "kare": 3580, "olay": "ip gerilir zit", "seviye": "YAKIN" },
+        { "kare": 3584, "olay": "direk kolu klak (A konumu)", "seviye": "ORTA" }
+      ],
+      "gecis_cikis": "LOOP -> P01 (SERT, muzik kesintisiz)",
+      "ekran_yazisi": { "metin": "Elektrik yok. Sadece…", "bant": "UST", "kare_araligi": [3474, 3600] }
+    }
+  ],
+  "stil_kareleri": [
+    { "mekan": "TOURS-KULUBE-IC (hook)", "plan": "P01", "kare": 30 },
+    { "mekan": "TOURS-KULUBE-IC (oda)", "plan": "P07", "kare": 1226 },
+    { "mekan": "BORSA", "plan": "P02", "kare": 258 },
+    { "mekan": "HARITA", "plan": "P05", "kare": 944 },
+    { "mekan": "SOKAK-BORDEAUX", "plan": "P04", "kare": 700 },
+    { "mekan": "PARIS-AVLU", "plan": "P09", "kare": 1504 },
+    { "mekan": "CATI-BORDEAUX", "plan": "P06", "kare": 1012 },
+    { "mekan": "CATI-KATI", "plan": "P14", "kare": 2250 },
+    { "mekan": "KULE-DIS", "plan": "P13", "kare": 2128 },
+    { "mekan": "YATAK-ODASI", "plan": "P16", "kare": 2520 },
+    { "mekan": "MAHKEME", "plan": "P18", "kare": 2850 },
+    { "mekan": "KANUN-INSERT", "plan": "P20", "kare": 3148 },
+    { "mekan": "TOURS-KAPI", "plan": "P21", "kare": 3238 },
+    { "mekan": "MONTAJ-15", "plan": "P15", "kare": 2428 },
+    { "mekan": "WIFI-MORF", "plan": "P22", "kare": 3438 },
+    { "mekan": "PARIS-MASA", "plan": "P23", "kare": 3580 }
+  ]
+}
