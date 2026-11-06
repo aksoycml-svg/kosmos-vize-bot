@@ -143,7 +143,7 @@ Not: Birkaç sayfa açılamadı (Justice.fr bakımda, laposte.fr tretsch_eng.pdf
 - **Cevap:** fr Vikipedi: "Sous la Restauration, les malles-poste étaient peintes en jaune, puis, sous Louis-Philippe, en gris *puce*." Yani 1834–36 için **"gris puce"** (puce = kahverengimsi mor; "gri puce" ifadesi Vikipedi'de kaynaksız geçiyor). Başka kaynak bu ayrımı doğrulamadı. Arama "sarı-siyah" posta renginin Thurn und Taxis'den geldiğini söylüyor (Fransa için değil, İsviçre Postası makalesi).
 - **Güven:** olası (tek kaynak); çelişkili sinyaller var.
 - **Kaynak:** [fr.wikipedia, Malle-poste](https://fr.wikipedia.org/wiki/Malle-poste); [Swiss Post](https://www.post.ch/fr/notre-profil/actualites/2023/tout-sur-les-boites-aux-lettres) (sarı-siyah menşei, Fransa için değil); [Victor Adam litografisi (Saint-Étienne malle-poste, c.1830), el boyalı](https://www.livre-rare-book.com/book/5472883/LBW-1513) (renk belirtilmemiş).
-- **Tasarıma etkisi:** `araba-yesil.png` (kahve üst, krem alt gövde) için **yumuşak ifade**: araba rengi tek bir kesin iddia olmasın. Kalan seçenek: üst gövde koyu **gri-kahve (puce)** ve alt gövde sarı-krem ton. Mevcut tasarım (kahverengi üst + krem alt) sarı-gri-kahve karışımı olarak kabul edilebilir; renk açıkça "Restorasyon sarısı" olmasın. Kanal için büyük sorun yok.
+- **Tasarıma etkisi:** `araba-yesil.png` (kahve üst, krem alt gövde) için **yumuşak ifade**: araba rengi tek bir kesin iddia olmasın. Kalan seçenek: üst gövde koyu **gri-kahve (puce)** ve alt gövde sarı-krem ton. Mevcut tasarım (kahverengi üst + krem alt) sarı-gri-kahve karışımı olarak kabul edilebilir, renk açıkça "Restorasyon sarısı" olmasın. Kanal için büyük sorun yok.
 
 ### 4b. Arma
 - **Cevap:** Bulunamadı. Fleur-de-lis/taç 1830 sonrası kaldırılmış olması beklenir ama bu kaynaklanmadı.
@@ -376,8 +376,8 @@ Açılamayan kaynaklar: laposte.fr/Musée de la Poste PDF (403), Tours şehir ar
 
 ## Ek 2 — Hikâye altınları (doğrulananlardan)
 
-- Saint-Michel'in külahı **Eylül 1768'de bir kasırgada uçtu** ve kule 1860'a kadar kesik kaldı; yani sahte sinyaller **başı kesilmiş bir kulenin** tepesinden okundu. Hugo 1843'te kuleyi "başı kesilmiş ve ölü" diye anmış. [fr.wikipedia, Basilique Saint-Michel de Bordeaux](https://fr.wikipedia.org/wiki/Basilique_Saint-Michel_de_Bordeaux)
-- Hugo 1836'da Mont Saint-Michel'in tepesindeki başmelek heykelinin yerine Chappe telgrafı konduğunu görüp dehşete düşmüş. [en.wikipedia, Chappe telegraph](https://en.wikipedia.org/wiki/Chappe_telegraph)
+- Saint-Michel'in külahı **Eylül 1768'de bir kasırgada uçtu** ve kule 1860'a kadar kesik kaldı; yani sahte sinyaller **başı kesilmiş bir kulenin** tepesinden okundu. Hugo 1843'te kuleyi "başı kesilmiş ve ölü" diye anmış. [fr.wikipedia](https://fr.wikipedia.org/wiki/Basilique_Saint-Michel_de_Bordeaux)
+- Hugo 1836'da Mont Saint-Michel'in tepesindeki başmelek heykelinin yerine Chappe telgrafı konduğunu görüp dehşete düşmüş. [en.wikipedia](https://en.wikipedia.org/wiki/Chappe_telegraph)
 - 1815'te Napolyon'un dönüşü Paris'e sis yüzünden geç ulaştı: telgraf havaya muhtaçtı. [evous.fr](https://www.evous.fr/Metro-Telegraphe,204217.html) (ikincil, tek kaynak: yumuşak ifade)
 - Tours'un telgrafı bir **belediye sarayının** üstündeydi (olası, tek kaynak): rüşvet verilen müdür kentin tam ortasında çalışıyordu. [fr.wikipedia, Liste des tours Chappe](https://fr.wikipedia.org/wiki/Liste_des_tours_Chappe_de_la_ligne_Paris_-_Bayonne)
 - Tours'taki bugünkü adalet sarayı davadan **3 yıl sonra** yapılmaya başlandı (1840): duruşma, yıkılmış eski bir binada oldu. [fr.wikipedia, Palais de justice de Tours](https://fr.wikipedia.org/wiki/Palais_de_justice_de_Tours)
@@ -390,3 +390,128 @@ Açılamayan kaynaklar: laposte.fr/Musée de la Poste PDF (403), Tours şehir ar
 4. Tours çatısı: arduvaz baskın ama bir-iki çatıda düz tuile; 1830'lar oranı doğrulanamadı.
 5. Gece kol konumu: DINLEN = dikey çubuk (zayıf kaynak); kesin iddia olmadan kullan.
 6. MAHKEME: 1840–43 Palais cephesi kullanma; salon içi genel.
+
+---
+
+# Ek 3 — Bordeaux sokak/borsa soruları
+
+Hazırlayan: arastirmaci · 2026-11-06 · Girdi: `mekanlar.md` §9.7 (soru 15–19).
+Yöntem: Doğrudan açılan sayfalar: fr.wikipedia (Gaz de Bordeaux, Palais de la Bourse (Bordeaux), Place Gambetta (Bordeaux), Saint-Pierre (Bordeaux), Persienne, Drapeau de la France, Monarchie de Juillet; son ikisi uzun sayfa olduğu için yalnız ilk 100.000 karakteri okundu), POP/Mérimée PA00083432 (Place Gambetta binası), ici.fr (eski France Bleu, Michel Cardoze, 2 Mart 2017), choisir.com (Gaz de Bordeaux tarihçesi), Heritage Images (ILN 1871 gravürü). Yalnız **arama özeti** olarak görülenler ayrıca etiketli: Cairn "Les Bourses en France au XIXe siècle", Revue d'histoire de l'énergie 2023/2 (403), Toulouse Üniv. PDF'i (10 MB sınırını aştı, açılamadı), neufhistoire.fr (503), Nantes Patrimonia, Touteleurope, monumentum PA00083438/PA00083436 (503). Wikimedia 429 vermedi; kiwix gerekmedi.
+Genel sonuç: Beş sorunun **hiçbirinde 1834 Bordeaux'ya doğrudan dönem belgesi bulunamadı**. Bulunanlar modern derlemelerdir. Kesin etiketi hiçbir soruya verilmedi.
+
+## Ek 3 özet tablo
+
+| # | Soru | Cevap (kısa) | Güven |
+|---|---|---|---|
+| 15 | Eski kent ev yüksekliği, panjur, is | Yüksekliğin tek somut kaynağı Place Gambetta (planlı 18. yy meydanı): zemin kat arcade + entresol + 1. kat + mansart, bazı binalarda 2. kat. Saint-Pierre için yalnız "tipik 18. yy üslubu". **Panjur: bulunamadı. Is/kararma (1830'lar): bulunamadı** | olası (Gambetta için) / bulunamadı (panjur, is, Saint-Pierre yükseklikleri) |
+| 16 | 1834 sokak aydınlatması: yağ réverbère mi havagazı mı | Bordeaux'da havagazı 1824 şirket, 1827 (Borsa ilk bina), 1832 Judaïque fabrikası: yani 1834'te **havagazı şehirde vardı**. Dar eski kent sokaklarının 1834'te hangi sistemle aydınlandığı **bulunamadı** | olası (gazın varlığı) / bulunamadı (sokak ölçeği) |
+| 17 | Bayrak asan resmî yapılar, kalıcı mı bayramlık mı | Tricolore Ağustos 1830'dan beri resmî. Hangi yapının bayrak astığı ve kalıcı/bayramlık ayrımı **bulunamadı** | bulunamadı |
+| 18 | 1830'lar kafe terası | Bordeaux için **bulunamadı**. Paris'te geniş bulvarda 1818 örneği var (ikincil). Dar, kaldırımsız sokakta teras için kanıt yok | olası (Paris, ikincil) / bulunamadı (Bordeaux) |
+| 19 | Borsa iç kemer/pencere düzeni | İç avlu **yarım daire (plein cintre) arcade**, demir kapılar, tympanum'larda ticaret amblemleri; avlu 1749'da **açıktı**, kapatılma 19. yy (tarih yok). Üst pencere kemer tipi **bulunamadı** | olası-kesin (arcade) / olası (avlu açıktı) / bulunamadı (üst pencere) |
+
+---
+
+### Ek 3 · Soru 15 — Eski kent ev yüksekliği, dış panjur, cephe isi
+
+- **Cevap (yükseklik):**
+  - Mérimée (Place Gambetta, eski Place Dauphine, bina PA00083432): zemin katta arcade; arcade yayının içinde "petites fenêtres" ile **entresol**; birinci katta büyük portes-fenêtres, üstlerinde oyma mascaron, **demir (fer forgé) balkon**; üstte attique ve çatı; "quelques immeubles comportent un second étage". [POP / Mérimée PA00083432](https://pop.culture.gouv.fr/notice/merimee/PA00083432)
+  - fr.wikipedia (Place Gambetta): zemin kat tamamen ticaret; arcature'ler entresol'ü kapsıyor ve "toutes surmontées d'un mascaron"; 1. kat bossajlı taş, dikdörtgen meneşeli pencereler; 2. kat mansart (frontonlu dikdörtgen pencereler), kırık çatı çizgisinde arduvaz brisis üstünde kırmızı tuile; iş 1758'de başlayıp 1770'te bitti, binaların çoğu 18. yy ikinci yarısından. Balkon ve panjur bu makalede **geçmiyor**. [fr.wikipedia, Place Gambetta (Bordeaux)](https://fr.wikipedia.org/wiki/Place_Gambetta_(Bordeaux))
+  - fr.wikipedia (Saint-Pierre): "Le style architectural du quartier est typique du XVIIIe siècle", "l'histoire du quartier remonte au XIIIe siècle". Kat sayısı, sokak genişliği, yükseklik, panjur, is **yok**. [fr.wikipedia, Saint-Pierre (Bordeaux)](https://fr.wikipedia.org/wiki/Saint-Pierre_(Bordeaux))
+  - **Uyarı:** Place Gambetta, Tourny döneminde planlanmış bir meydandır; Saint-Pierre/Saint-Michel'in dar, parçalı sokak cephelerini temsil ettiği **kanıtlanmadı**. `mekanlar.md` §9.1 #3'teki "R+2 / R+3, en fazla R+4" ve "pencere boyu 1:2.2 → 1:1.8" **kaynaksız**; Gambetta için kaynak "zemin + entresol + 1. kat + attique/mansart (+ bazen 2. kat)" der (yani R+1/R+2).
+- **Cevap (panjur):** 1834 Bordeaux'da dış ahşap panjur (persienne) yaygınlığı için kaynak **bulunamadı**. fr.wikipedia Persienne yalnız sözcük kökeni (Perse) ve tür tanımı veriyor, tarih vermiyor. [fr.wikipedia, Persienne](https://fr.wikipedia.org/wiki/Persienne). Gambetta kaynaklarında panjur anılmıyor. Bir arama özeti Lyon'da persiennelerin 18.–20. yy binalarında "genel kural" olduğunu söylüyor (Lyon, Bordeaux değil; özet): [Guichet du savoir](https://www.guichetdusavoir.org/question/voir/45907).
+- **Cevap (is):** 1830'larda Bordeaux cephelerinin isle kararması için kaynak **bulunamadı**. Bulunan yalnız genel mekanizma (suie birikimi yüzey kirlenmesi). Modern Bordeaux temizlik kampanyası kaynağı bulunamadı; `mekanlar.md` §9.1 #1'deki "1830'larda cepheler muhtemelen isle koyulaşmıştı" **kaynaksız varsayım** olarak kalır.
+- **Güven:** Gambetta cephe düzeni **olası** (Mérimée + fr.wikipedia, iki kaynak ama aynı bina, ikisi mascaron'un konumunda ayrışıyor: bkz. çelişkiler). Saint-Pierre yükseklikleri, panjur, is: **bulunamadı**.
+- **Tasarıma etkisi (P04):**
+  - Kaynaklı ve kullanılabilir: zemin kat arcade + içinde entresol, 1. katta demir balkonlu uzun pencere, mascaron, üstte küçük attique/mansart. `mekanlar.md` 9.1 #6 (1. katta ferforje) ve #5 (maskaron) bu bakımdan desteklendi.
+  - **Çelişki:** §9.1 #4 "pencere başı basık kemerli lento + kilit taşı" Gambetta'da **görülmüyor**: kemer zemin katın arcade'ında; üst pencereler dikdörtgen (Wikipedia) ya da portes-fenêtres (Mérimée). Üst pencerelere basık kemer eklemek kanıtsız. Kemer yalnız zemin kat arcade'ında kalsın.
+  - Kat sayısı: R+2/R+3 yerine **zemin + entresol + 1 + (attique ya da 2. kat)** daha savunulabilir; "6 kat okunan ev" zaten düşürülecekti. Kesin yükseklik rakamı söyleme.
+  - Panjur oranını %30'a indirmek kanıt gerektirmez (kanıt yok); mevcut oran riski taşıyor sayılmaz ama "panjur tarihî doğrudur" iddiası yapılmasın. Renk çeşitliliğini azaltma kararı [T] olarak kalsın.
+  - Is: ek koyulaştırma yapma; gece paleti zaten karanlık. "İsle kararmış" gibi bir iddia yok.
+
+### Ek 3 · Soru 16 — 1834 Bordeaux sokak aydınlatması: yağlı réverbère mi havagazı mı
+
+- **Cevap:**
+  - 1824: Jean Benel "Compagnie d'éclairage de la Ville de Bordeaux" şirketini kurdu (fr.wikipedia "23 janvier 1824" der; bir soy ağacı blogu ve Revue d'histoire de l'énergie özeti 23 Haziran 1824 ordonnance'ını verir, 30 yıllık gaz aydınlatma imtiyazı). [fr.wikipedia, Gaz de Bordeaux](https://fr.wikipedia.org/wiki/Gaz_de_Bordeaux)
+  - 1827: "Le Palais de la Bourse est le premier immeuble à abandonner l'huile et la bougie"; gazın gelişi 1 Mart 1827 için duyurulmuş; 1827 sonunda ilk fabrika ("la Chartreuse") boru döşenmiş; gaz "plus économique mais guère plus brillant à ses débuts". [ici.fr (France Bleu), Cardoze, La révolution de l'éclairage à Bordeaux en 1827](https://www.ici.fr/emissions/l-histoire-du-jour-avec-michel-cardoze/gironde/la-revolution-de-l-eclairage-bordeaux-en-1827) (radyo anlatısı, tek kaynak; 2017)
+  - 1832: "C'est en 1832 que démarre l'installation du gaz à Bordeaux", rue Judaïque fabrikası; 1875'e kadar Compagnie Impériale et Continentale (İngiliz şirketi) imtiyaz sahibi, "l'éclairage est alors l'unique débouché" gazın. [fr.wikipedia, Gaz de Bordeaux](https://fr.wikipedia.org/wiki/Gaz_de_Bordeaux); [choisir.com, Gaz de Bordeaux](https://www.choisir.com/energie/articles/162804/gaz-de-bordeaux-une-eld-presente-partout-en-france) ("créée en 1832" Judaïque fabrikası).
+  - 1836: Bordeaux şehri için basılmış "Cahier des charges... de l'éclairage au gaz de la ville de Bordeaux" (arama özeti; Toulouse Üniv. PDF'i 10 MB sınırını aştığı için **açılamadı**, metin bozuk, bu yüzden içeriği söyleyemem). [Toulouse Üniv. PDF (açılamadı)](https://documents.univ-toulouse.fr/150NDG/PPN238265889.pdf)
+  - **Bulunamadı:** gazlı sokak lambalarının hangi sokaklara, hangi yılda ulaştığı; 1834'te yağlı réverbère'lerin şehirde ne kadar sürdüğü; eski kent dar sokaklarının sistemi. Sophie Reculin 2017 çalışması ("Mobiliers urbain de l'éclairage à Bordeaux au XIXe siècle : becs de gaz et réverbères") var ama içeriğine erişilemedi. [Bibliographie d'histoire du droit, Éclairage public](https://bibliographienumeriquedhistoiredudroit-ifg.univ-lorraine.fr/s/bibliography-of-legal-history/item-set/5461) (yalnız künye, arama özeti)
+- **Güven:** Bordeaux'da 1834'te **gazın var olduğu**: olası (iki ayrı kaynak: fr.wikipedia + radyo; 1832 fabrikası iki kaynak). **Sokak ölçeğinde sistem: bulunamadı.** Yağlı réverbère'in 1834'te hâlâ sokakta olması: bulunamadı (olası ama kanıtsız).
+- **Tasarıma etkisi (P04):**
+  - İpe asılı yağlı réverbère **ne doğrulandı ne çürütüldü.** Gazın 1827'den beri şehirde olması "yağlı réverbère kesin doğru" iddiasını **zayıflatır**. Gaz daha çok zengin yapılar ve ana caddelerle başlayıp ilerlemiş olabilir [G, kaynaksız çıkarım]; dar eski kent sokaklarında hâlâ yağ olması makul ama **kanıtsız**.
+  - Öneri: ip-fener korunabilir, **"doğru" diye etiketlenmesin**, [T] (tasarım kararı) olarak kalsın. Alev tipini ayırt ettiren ayrıntı çizilmesin (gaz memesi/boru yok; küçük sıcak ışık). Anlatım ya da açıklamada "yağ lambası" denmesin.
+  - Gaz tarafı çizilecekse (duvar konsolu + boru) kanıtsız. P02 Borsa öğle sahnesinde ışık meselesi yok.
+  - Tours (1823'ten gaz dosyaları, 1838–40 fener değişimi) arama özetinde geçti: Tours sahneleri iç mekân, etkisi yok.
+
+### Ek 3 · Soru 17 — Bayrak asan resmî yapılar; kalıcı mı bayramlık mı
+
+- **Cevap:**
+  - Tricolore resmî olarak yeniden getirildi: Temmuz Monarşisi'nde tricolore yeniden kabul edildi; fr.wikipedia bayrağın "sans interruption depuis 1830" ulusal bayrak olduğunu söyler (Restorasyon dışında). [fr.wikipedia, Drapeau de la France](https://fr.wikipedia.org/wiki/Drapeau_de_la_France); [fr.wikipedia, Monarchie de Juillet](https://fr.wikipedia.org/wiki/Monarchie_de_Juillet) ("La Charte révisée d'août 1830 rétablit le drapeau tricolore", ordu bölümünde beyaz bayrağın yerine tricolore). Charte 14 Ağustos 1830, "la France reprend ses couleurs" (arama özeti: [Assemblée nationale, EAT 1011](https://www.assemblee-nationale.fr/dyn/contenu/visualisation/610831/file/EAT%201011.pdf)).
+  - Yıllık Temmuz Devrimi anma törenleri: Nantes'ta 1831'de yıllık anma şenliği kararlaştırıldı, Ulusal Muhafız katıldı, 1833'te daha görkemli, **1834'ten itibaren yalnız cumhuriyetçi parti** anıyor (arama özeti, Nantes; Bordeaux değil). [Nantes Patrimonia, Mémoires de la Révolution de Juillet 1830](https://patrimonia.nantes.fr/fiches-encyclopediques/memoires-de-la-revolution-de-juillet-1830-a-nantes/)
+  - **Bulunamadı:** 1834 Bordeaux'da hangi yapıların (hôtel de ville, karakol/corps de garde, komiserlik, octroi bürosu) cepheye bayrak astığı; bayrağın kalıcı mı yalnız bayram/anma günlerinde mi asıldığı; gece indirilip indirilmediği. "Bayrak sürekli asılı kalır" bugünkü cumhuriyet uygulaması (İçişleri rehberi, [Touteleurope](https://www.touteleurope.eu/vie-politique-des-etats-membres/affichage-des-drapeaux-sur-les-frontons-des-mairies-en-france-que-dit-la-loi/), arama özeti) olup 1834'e **uygulanamaz**. Corps de garde ve Garde nationale için arama sonuçsuz.
+- **Güven:** tricolore'un 1834'te resmî bayrak olduğu: **kesin**. Bir sokak cephesinde bayrak asılı bulunması, kalıcılığı: **bulunamadı.**
+- **Tasarıma etkisi (P04):**
+  - **Bayrak anakronizm değildir** (1830'dan beri geçerli), ama P04 sokak sahnesindeki varlığını (gece, dar sokak, küçük resmî yapı) destekleyen **hiçbir kaynak yok**. CLAUDE.md "kanıtsız dönem detayı nötr" kuralı: bayrak asılı **olmak zorunda değil**.
+  - Kalabilir mi: **kullanıcı isterse kalabilir, [T] etiketiyle**; en az riskli biçim: açıkça resmî bir yapıda (levha/kapı), küçük, gölgede, "kalıcı" ya da "bayram" iddiası olmadan. Kaldırılırsa kayıp yok (Eleştirmen/A2 zaten kaldırdı).
+  - Bayrak asılacaksa **gece de asılı kalması** kanıtsız bir varsayımdır; "bayramlık" anlatısı kurma (Temmuz kutlaması P04'ün mevsimiyle bağlanmıyor, mevsim kaynaksız).
+  - Şerit yönü/mavi gönderde: bu belgede araştırılmadı (tasarım kararı).
+
+### Ek 3 · Soru 18 — 1830'lar Bordeaux'da kafe terası
+
+- **Cevap:**
+  - Bordeaux için 1830'larda kaldırım/sokak terasına dair kaynak **bulunamadı.**
+  - Paris'e dair ikincil iz (arama özeti): bir bulvar rehberi Café Véron'un 1818'de Boulevard Montmartre'da açıldığını ve "terrasses surélevées" ile ağaç gölgesinde araba yoluna kadar uzandığını anlatır; Café de Paris'in teras üzerine masa-sandalye koyup genel tepki yüzünden geri çekildiği (tarihsiz). [neufhistoire.fr, Le Boulevard au XIXe](http://www.neufhistoire.fr/articles.php?lng=fr&pg=273&prt=1) (sayfa 503 verdiği için yalnız arama özeti)
+  - Başlangıç tarihi çelişkili: franceinfo özeti terasları ~1840 civarına, Palais-Royal'in gerilemesine bağlıyor; popüler yazılar Haussmann bulvarlarına (1850 sonrası) bağlıyor. [franceinfo, Paris: la chaise...](https://www.franceinfo.fr/france/paris-la-chaise-element-important-du-succes-des-terrasses-de-cafe_1428267.html); [Le Tribunal du Net](https://www.letribunaldunet.fr/insolite/pourquoi-chaises-terrasse-tournees-vers-rue-france.html) (arama özetleri, ticari/popüler).
+  - Bordeaux'daki tek kafe izi: Illustrated London News 1871 gravürü, Comédie Meydanı'nda iki ana kafe ve Allées de Tourny'nin "dükkân ve kafe" sıraları. **1871, 1830'lar değil**; masa dışarıda diye bir ifade yok. [Heritage Images, ILN 1871](https://www.heritage-images.com/preview/3039043)
+- **Güven:** Bordeaux 1830'lar: **bulunamadı.** Paris 1818 geniş bulvar terası: **olası, ikincil, tek kaynak** (arama özeti).
+- **Tasarıma etkisi (P04):** `mekanlar.md` §9.2 kararı (kafe önünde masa-sandalye yok, kapı aralık, içi ışıklı) **kanıtsız hiçbir iddiaya dayanmıyor** ve savunulabilir kalır. "Dar sokakta teras olmaz" tarihî kesin değil, **olasılıkla doğru** (Paris'in bilinen örnekleri geniş bulvarlarda). Teras çizmek kanıtsız; çizmemek güvenli. Kapı üstü asılı tabela ve vitrinde siluet: bu soruda kaynak aranmadı (tasarım kararı).
+
+### Ek 3 · Soru 19 — Palais de la Bourse iç salonu: kemer ve pencere düzeni
+
+- **Cevap:**
+  - fr.wikipedia ve (arama özetinde alıntılanan) Mérimée notu: bina "cour couverte, entourée d'arcades plein cintre, garnies de portes en fer à claire-voie"; tympanum'larda "divers emblèmes commerciaux avec l'inscription des principales places d'Europe"; geniş portiklerde eskiden tezgâh, döviz bürosu, depo ve dükkânlar. Bugün korniş birinci kat hizasında balkon oluşturuyor; üstünde triglifli entablement'ın taşıdığı tonoz **on dört camlı fener** (lanterne vitrée) ile delik. [fr.wikipedia, Palais de la Bourse (Bordeaux)](https://fr.wikipedia.org/wiki/Palais_de_la_Bourse_(Bordeaux)); [POP / Mérimée PA00083191](https://pop.culture.gouv.fr/notice/merimee/PA00083191) (kayıt doğrudan açılamadı/503 verdi, alıntı arama özetinden ve fr.wikipedia'dan)
+  - Pencere: fr.wikipedia metni fenêtre düzenini **tarif etmiyor**; kemerli pencere tipi (yarım daire/basık) iç ya da dış cephe için **bulunamadı**. Mérimée'de "iki kadran 1750 (Hustin fayansı, saat ve rüzgâr yönü)", "1773 dövme demir kapı" gibi ayrıntılar var.
+  - Avlu 1749'da **açıktı**: bir ekonomi tarihi makalesinin arama özeti "à Bordeaux, c'est dès 1749 que Chambre, Tribunal de commerce et Bourse (dans une cour découverte) sont regroupés", avlunun "XIXe siècle'de kapatılıp genişletildiğini", 1864'te çatının bazı bölümlerinin camla değiştirilmesinin gündemde olduğunu söyler; 2013 CCI çatı teşhisi mevcut çatıların II. Dünya Savaşı sonrası dönüşümlere ait olduğunu belirtir. [Cairn, Les Bourses en France au XIXe siècle](https://shs.cairn.info/revue-histoire-economie-et-societe-2006-1-page-51?lang=fr) (403, **yalnız arama özeti**). Kapatma yılı **bulunamadı**.
+  - Aydınlatma notu (Soru 16): Borsa Bordeaux'da gaz alan ilk bina (1827, tek radyo kaynağı).
+- **Güven:** avlu çevresi yarım daire arcade: **olası-kesin** (fr.wikipedia + Mérimée alıntısı). 1834'te avlunun açık olması: **olası** (tek özet, kapatma tarihi yok; 1834 için kesin değil). Üst pencere kemer tipi, 1830'lardaki iç düzen: **bulunamadı.**
+- **Tasarıma etkisi (P02):**
+  - `mekanlar.md` §9.5'teki "zemin kat ve büyük salon açıklıkları yarım daire" **kaynakla uyumlu** (arcade plein cintre). "Üst pencereler basık kemer [G]" **kaynaksız**; kaldır ya da [T] yap. Gotik çağrışımı yok: karar sağlam.
+  - Tympanum'larda "Avrupa'nın başlıca ticaret yerlerinin adları" ve ticaret amblemleri kaynaklı: arcade alınlıklarında **okunmaz küçük yazı + amblem** kullanılırsa tarihî özgünlük artar (isim yazısı okunur olmasın; hangi şehirler yazıyor bilinmiyor).
+  - P02 "salon" bir [T] kararıdır: 1749'da avlu açıktı, bu yüzden tüccarların **kemerli portikli açık avluda** olması daha olası; güneş huzmesi için kapalı salon dramatizasyondur. İsteğe bağlı: sahneyi "portikli avlu" gibi çiz (üstü açık/gök görünür, arcade çevresi). Bu mekân değişikliği yönetmen kararı; kapalı salon da "dramatizasyon" notuyla savunulur.
+  - Kemer tepesi kilit taşı/imposte gibi ayrıntı Mérimée alıntısında yok; Gabriel dili için §9.5 [G] olarak kalsın.
+
+---
+
+## Ek 3 — çelişkiler
+
+| Konu | Kaynak A | Kaynak B | Hangisi daha güvenilir |
+|---|---|---|---|
+| Mascaron nerede (Gambetta) | fr.wikipedia: zemin kat arcature'lerinin **hepsi** mascaron'la bitiyor | Mérimée: 1. kat portes-fenêtres "couronnées de mascarons sculptés" | Mérimée (resmî envanter) ama ikisi aynı bina için; ikisi birden doğru olabilir. Tasarım: kilit taşı mascaron'u zemin arcade'ında, 1. katta isteğe bağlı |
+| Kat sayısı | `mekanlar.md` §9.1: R+2/R+3 (kaynaksız [G ◐]) | Mérimée/Wikipedia (Gambetta): zemin + entresol + 1. kat + attique/mansart, bazen 2. kat | Mérimée/Wikipedia, bir planlı meydan için; eski kent genelleştirmesi hâlâ kanıtsız |
+| Üst pencere başı | `mekanlar.md` §9.1 #4: basık kemerli lento | Wikipedia/Mérimée: üst pencereler dikdörtgen/portes-fenêtres, kemer zemin katta | Wikipedia/Mérimée (doğrudan bina betimi) |
+| Gaz şirketi kuruluş tarihi | fr.wikipedia: 23 Ocak 1824 | Soy ağacı blogu / Revue d'histoire de l'énergie özeti: 23 Haziran 1824 ordonnance | Belirsiz; yalnız "1824" söyle. Ocak=kuruluş, Haziran=ordonnance olabilir, doğrulanmadı |
+| Gazın başlangıcı | ici.fr (radyo): 1827, Borsa ilk gazlı bina | fr.wikipedia: "1832'de başlar" kurulum, Judaïque fabrikası | Çelişki değil olası aşama farkı (1827 ilk bina/fabrika, 1832 ikinci fabrika); sokak ölçeği ikisinde de yok |
+| Teras başlangıcı | Bulvar rehberi: 1818 Café Véron terasları | franceinfo ~1840; popüler yazılar 1850+ Haussmann | Belirsiz; hepsi Paris. Bordeaux 1834 için kullanılamaz |
+
+## Ek 3 — Görsel potansiyel
+
+- **Palais de la Bourse iç avlu arcade'ı + tympanum amblemleri + 1750 Hustin kadranları:** doğrudan belge (Mérimée/POP fotoğrafları, Wikimedia Commons "Palais de la Bourse (Bordeaux)" kategorisi). **Bu görevde görsel aranmadı, lisans/varlık doğrulanamadı**; Commons bu sunucudan 429 verebilir, kiwix aynası denenmedi.
+- **Place Gambetta cephesi (arcade + entresol + mascaron + demir balkon):** 18. yy Bordeaux cephe dilinin kaynaklı örneği; tasarımcı için referans. Gravür/fotoğraf Commons'ta aranmalı; görsel doğrulanmadı.
+- **1827 gaz fabrikası "la Chartreuse" ve 1832 Judaïque:** dönem gravürü bulunamadı.
+- Telifsiz arşiv adayları: Gallica (Bordeaux 1830'lar litografileri, plan), Library of Congress, Commons. **Hiçbiri bu turda taranmadı.**
+
+## Ek 3 — Hikâye altınları (doğrulananlardan)
+
+- Bordeaux Palais de la Bourse, şehirde yağ ve mum yerine **gaz kullanan ilk bina** oldu (1827); yani 1834'te borsa tüccarları şehrin geri kalanından daha parlak bir ışıkta çalışmış olabilir. [ici.fr, Cardoze](https://www.ici.fr/emissions/l-histoire-du-jour-avec-michel-cardoze/gironde/la-revolution-de-l-eclairage-bordeaux-en-1827) (radyo, tek kaynak: "olası")
+- Borsa avlusunun arcade alınlıklarında **Avrupa'nın başlıca ticaret merkezlerinin adları** yazılıydı: telgrafla Paris'ten haber bekleyen tüccarlar, dünyanın borsalarının adı altında bekliyordu. (Yorum benim; olgu kısmı: [fr.wikipedia, Palais de la Bourse (Bordeaux)](https://fr.wikipedia.org/wiki/Palais_de_la_Bourse_(Bordeaux)).)
+- Gazın gelişi dönemin kendi tanığına göre "plus économique mais guère plus brillant à ses débuts": gaz önce daha parlak değil, yalnız daha ucuzdu. [ici.fr, Cardoze](https://www.ici.fr/emissions/l-histoire-du-jour-avec-michel-cardoze/gironde/la-revolution-de-l-eclairage-bordeaux-en-1827) (radyo anlatısı, doğrudan alıntı dönem tanığı değil)
+
+## Ek 3 — Tasarım dosyalarına öneri düzeltmeler
+
+1. `mekanlar.md` §9.1 #11 (réverbère): "havagazı mı yağ mı doğrulanmalı" notunu "bulunamadı; gaz 1827'den beri şehirde, sokak ölçeği bilinmiyor; ip-fener [T]" olarak güncelle. Anlatımda/açıklamada "yağ lambası" deme.
+2. §9.1 #3 ve #4: "R+2/R+3" ve "üst pencerelerde basık kemerli lento" kaynaksız; Gambetta kaynağına göre kemer zemin kat arcade'ında, üst pencereler dikdörtgen. Mascaron kilit taşı zemin arcade'ında.
+3. §9.1 #1 (is): "1830'larda isle koyulaşmış" kaynaksız; palet koyulaştırma gerekçesi olarak yazma.
+4. §9.1 #7 (panjur): kaynak yok; oran kararı [T].
+5. §9.2 (kafe): kaynak bulunamadı, karar korunur; "teras olmazdı" ifadesini "kanıt yok, çizilmez" yap.
+6. §9.3 (bayrak): tricolore dönem içinde (kesin); sokak cephesinde asılı olması, kalıcılığı kaynaksız. Kalırsa [T], kalkarsa kayıp yok. "Küçük resmî yapı/karakol" [G ◐] bulunamadı olarak kalır.
+7. §9.5 (Borsa): arcade yarım daire kaynaklı; "üst pencere basık [G]" kaldır; tympanum amblem + yazı ekle; avlu 1749'da açık, P02 salon [T].

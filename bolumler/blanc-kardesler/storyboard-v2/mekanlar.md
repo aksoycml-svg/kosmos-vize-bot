@@ -9,6 +9,8 @@ Etiketler: **[A]** arastirma.md · **[D]** donem-dogrulama.md (güveni yanında:
 
 ---
 
+> **Değişiklik notu R2 (2026-11-06, mimari önce + dönem gravürü):** Kullanıcı: "mekâncı mimariyi düşünmemiş." Her mekân için dokudan önce okunacak **mimari kart** (bölüm 10), ortak **gravür dili** şartnamesi (bölüm 11, yeni `Tarama` modülü) ve yenilenmiş **motion uygulama listesi** (bölüm 12, 9.6'nın yerine) eklendi. `donem-dogrulama.md` Ek 2 işlendi (Saint-Michel külahsız olası-kesin; telgraf hattı Orléans–Tours–Poitiers–Angoulême; Tours istasyonu kent içinde, eski belediye sarayı üstünde yuvarlak kule; ara kuleler yuvarlak/piramit; gece kol konumu; 1837 mahkeme bugünkü Palais'de değil). Ek 3 (Bordeaux sokak/borsa) **bekliyor**; ilgili maddeler "BEKLİYOR (Ek 3)" işaretli. Kartlar ile önceki bölümler çakışırsa **bölüm 10–12 geçerli**.
+>
 > **Değişiklik notu R1 (2026-11-06, kare denetimi):** SB2-SOKAK ve SB2-BORSA kareleri kullanıcı sorusu üzerine denetlendi. Sonuçlar ve motion uygulama listesi **bölüm 9**'da. 3.1 (BORSA) ve 3.3 (SOKAK-BORDEAUX) kartları bu bölümle birlikte okunur; çakışırsa bölüm 9 geçerli. CLAUDE.md'ye eklenen "Her nesnenin yeri anlamlı", "Ölü alan yok", "Küçük jest = yakın kamera" kuralları uygulandı.
 
 ## 0. Bu belge tasarim.md'yi nerede değiştiriyor
@@ -18,7 +20,7 @@ Tasarımcının kartları temel alındı. Aşağıdakiler dönem doğrulaması, 
 | # | tasarim.md | Bu belge | Gerekçe |
 |---|---|---|---|
 | 1 | Kule direği ve kollar siyah | **Direk gök mavisi** `#8fa9c4`, **kollar siyah**, **karşı ağırlıklar gri** `#8b8d8c`, kanatlar **sabit jaluzili** | [D kesin]. Siluet planlarında (P22, P17 penceresi) renk okunmaz, sorun yok |
-| 2 | Bordeaux kulesi "sağ uzak tepede" bağımsız kule | **Saint-Michel çan kulesi + tepesinde Chappe** (P06, P14; P04'te uzak siluet) | [D kesin]. Ayrıca 1830'larda bu kulenin **sivri külahı yoktu** (1768 kasırgası, 1860'larda yeniden yapıldı) **[G ◐ doğrulanmalı]**. Kesik tepeli çizilir. Notre-Dame kuralının Bordeaux karşılığı |
+| 2 | Bordeaux kulesi "sağ uzak tepede" bağımsız kule | **Saint-Michel çan kulesi + tepesinde Chappe** (P06, P14; P04'te uzak siluet) | [D kesin]. Ayrıca 1830'larda bu kulenin **sivri külahı yoktu** (Eylül 1768 kasırgası; yeniden yapım 1861–1869, Abadie) **[D Ek 2: olası-kesin]**. Kesik tepeli çizilir. Notre-Dame kuralının Bordeaux karşılığı |
 | 3 | Dürbün elde, pervaza dayalı (P12, P13) | Kulede **iki pirinç dürbün, ahşap kutuya sabit** (biri önceki, biri sonraki kuleye); göz dayanır | [D kesin]. P14'te suç ortağının teleskopu kendi aleti, pervaza **kurulu** (yaratıcı yönetmen v2.1) |
 | 4 | Manipülatör pencere tezgâhında, "kol çevirme" | Manipülatör **pencere A önünde**, tavandan inen **iki kablo + makara** ile dışarıdaki kollara bağlı; jest **itme/çekme** | [D kesin]. Kablo tavana ve dışarı giden bir makara hattına bağlanır (bkz. 3.4) |
 | 5 | Bordeaux çatıları %60 arduvaz / %40 tuile canal | **%70 tuile canal, %30 arduvaz**, düşük eğim (~%33); sokaktan çatı **az görünür** | [D olası] |
@@ -233,7 +235,7 @@ Güvenli alan (1080×1920): üst 220 px ve alt 420 px'te **küçük ayrıntı yo
 - `YALNIZCA DEVLET` dikdörtgen damgası P05 mühür tasarımıyla (yuvarlak balmumu) çakışıyor; mühür kararı geçerli, damga kalkar.
 - Posta modunda arabanın arkasında toz parçacıkları çiziliyor; P03'ten toz **çıkarıldı** (dokunuşlar).
 - Araba görseli `araba.png` (Gemini raster, kapıda "POSTES ROYALES" ve arma): vektör `PostaArabasi` ile değişmeli (3.6).
-- **Doğrulanmalı:** P05'teki telgraf hattı, posta yoluyla (Chartres, Châteaudun, Vendôme) aynı çizgide çiziliyor. Paris–Bordeaux telgraf hattının Orléans–Blois–Tours üzerinden gittiği **[G ◐]**; doğrulanırsa kule ikonları ayrı bir çizgiye taşınır (iki yol yan yana: yavaş posta, hızlı telgraf; görsel olarak da daha güçlü).
+- **Doğrulandı (Ek 2, olası):** telgraf hattı **Paris – Étampes – Orléans – Tours – Poitiers – Angoulême – Lormont – Bordeaux (Saint-Michel)**; Blois, Chartres, Châteaudun, Vendôme telgraf hattında **yok**. P05 kule ikonları posta yolundan **ayrı, daha doğrusal ikinci bir çizgide**; kesin kule sayısı söylenmez. İkon çeşitliliği: Tours ve Poitiers yuvarlak kule, Lormont piramit, Bordeaux çan kulesi (kesik). Posta yolu (Chartres–Châteaudun–Vendôme) ayrıca doğrulanmalı.
 
 **Dokunuş yüzeyleri:** P03 gün-ay diski (sol kenar), araba+at (son kadrajda %11). P05 mührün indiği harita yüzeyi (540, 880): altında yazı/şehir adı olmamalı (balmumu okunurluğu); Angoulême etiketi bu noktaya yakınsa 40 px kaydırılır.
 
@@ -736,7 +738,7 @@ Karakterleri öne almak (z 2.4 → 1.9) ölü alanı daha iyi çözer ama ayakla
 - **Ölü alan:** alt üçte bir (y 1450–1920) boş dama zemin. Tasarımdaki ön plan öğeleri karede yok: **sol önde sütun gövdesi** (x 0–140, y 1150–1920, bulanık, sıcak gölgede) ve **ön sağda ahşap korkuluk** (y 1560–1720 bandında, balüstrlü, bulanık, AHSAP-MESE) eklensin; ikisi de anlamlı (salonun mimarisi ve tüccarların yaslandığı bölme).
 - **Bayrak:** Borsa'daki sarkık tricolore şerit yönü doğru (mavi gönderde). İç mekânda bayrak [G ◐ doğrulanmalı]; sokakta artık bir tricolore olduğu için Borsa'dakinin kalması isteğe bağlı. Öneri: **kalsın ama küçülsün** ve gölge tarafında kalsın (P04'teki ilk "okunan" bayrak olsun diye değil; P02 önce gelir: bu durumda P02'deki bayrak filmin ilk tricolore'u, P04'teki ikinci. İkisi de dönem işareti, tekrar sayılmaz: dokunuş değil).
 
-### 9.6 Motion uygulama listesi (sırayla)
+### 9.6 Motion uygulama listesi (sırayla) — **R2 ile yenilendi: geçerli liste bölüm 12**
 
 **`src/doku/Mimari.tsx`**
 1. `KemerliPencere`: kemer yüksekliğini **açıklık genişliğinden** hesapla (`tip: "yarimDaire" | "basik"`; yarım daire: yükseklik = genişlik/2; basık: genişlik × 0.13), metrik birimde, perspektif eşlemesinden önce. `kemerOran` parametresini bu hesaba bağla ya da kaldır.
@@ -771,3 +773,231 @@ Karakterleri öne almak (z 2.4 → 1.9) ölü alanı daha iyi çözer ama ayakla
 17. Eski kentte bayrak asan resmî yapılar (karakol/corps de garde, komiserlik, octroi bürosu) ve bayrağın kalıcı mı bayram günlerine özgü mü asıldığı.
 18. Kafe terasının (kaldırıma masa) 1830'larda Bordeaux'da varlığı.
 19. Palais de la Bourse iç salonunun 1830'lardaki kemer/pencere düzeni (yarım daire mi basık mı).
+
+---
+
+## 10. Mimari kartlar (R2 · dokudan önce okunur)
+
+Kural (CLAUDE.md "Mimari çeviri: doğru iskelet, sade yüzey"): **iskelet tarihe sadık** (kat düzeni, pencere ritmi, kemer tipi, çatı biçimi, imza siluet), **süsleme imzaya iner** (cephe başına 1–2 imza ayrıntı), **düzensizlik dönemin işaretidir**, **mesafeye göre ayrıntı** (yakın = doku + süsleme; orta = oran + ritim; uzak = tek siluet). Duygu için hafif abartı (oran, tavan, dikeylik) serbest; yapı tipi, malzeme, dönem değişmez.
+
+Etiketler önceki gibi: **[D]** donem-dogrulama.md (Ek 2 dahil), **[G]** genel bilgi, kaynaklanmadı, **[G ◐]** doğrulanmalı, **[T]** tasarım kararı, **BEKLİYOR (Ek 3)** araştırmacının yazmakta olduğu ekten gelecek.
+
+**Kemer sözlüğü (tüm kartlarda bu adlar kullanılır, motion `Kemer` modülünde aynı adlar):**
+| Ad | Tanım | Yükseklik (açıklık genişliği W'ye göre) | Nerede |
+|---|---|---|---|
+| `duz` | Düz lento | 0 | Paris mütevazı cepheler, iç kapılar, kulübe |
+| `basik` (arc segmentaire) | Tek merkezli, sığ yay | **0.10–0.15 W** | 18. yy Bordeaux ve Tours pencereleri, dükkân açıklıkları |
+| `yarimDaire` (plein cintre) | Tam yarım daire | **0.50 W** | Klasik arkadlar, araba kapısı (porte cochère), Borsa salon açıklıkları |
+| `sivri` (gotik) | İki merkezli, tepede kırık | > 0.5 W, tepe noktalı | **Yalnız Saint-Michel çan kulesi** (15. yy gotik). Başka hiçbir 1834 mekânında yok |
+
+Kemer yüksekliği **metrik (dünya) biriminde** genişlikten hesaplanır, sonra perspektife eşlenir; hiçbir zaman pencere yüksekliğinin oranı olarak verilmez (R1'deki sivri kemer hatasının nedeni).
+
+---
+
+### 10.1 BORSA (P02) · Palais de la Bourse iç salonu, Bordeaux
+
+- **Dönem/üslup:** Palais de la Bourse, mimar Ange-Jacques Gabriel, 1742–1749; 18. yy Fransız klasik (Louis XV), 1749'dan beri tüccar borsası [D]. 1834'te ayakta, işlevli. Bugünkü cam örtülü avlu sonradan olabilir; 1830'larda açık avlu ya da portikli salon **olası** [D]. Salon düzeni **BEKLİYOR (Ek 3: borsa salonu)**.
+- **Yapı tipi ve kuruluş:** kamu yapısı, büyük tek salon/avlu. [T, Ek 3 gelene dek] Dikdörtgen salon ~ 30 × 18 m, iç yükseklik ~ 12 m, iki katlı iç cephe: **zemin kat arkad** (yarım daire kemerler, pilastrlar arasında) + **üst kat galeri pencereleri** (basık kemer) + profilli korniş + ahşap kirişli ya da tonozlu tavan (kadrajda görünmez).
+- **Cephe bölümlemesi (iç):** aks ritmi = pilastr – açıklık – pilastr; aks genişliği ~ 4.5 m. Pilastr başlıkları sade iyonik [G ◐]. Simetri: tahta arka duvarın ortasında, iki yanında eşit aks.
+- **Açıklıklar:** zemin arkad **yarımDaire**, açıklık 3 × 6 m (oran 1:2), kilit taşı (agrafe) sade (maskaron iç mekânda yok [T]); üst pencereler **basik** 2 × 3.6 m, küçük camlı doğrama (dikey + yatay paralel kayıtlar). Sol duvar pencereleri = dış avluya açılan arkad camekânları (güneş buradan).
+- **Süsleme (imza):** (1) pilastr + korniş ritmi, (2) **rüzgâr kadranı** (1750, [D olası]). Başka süs yok.
+- **Döşeme:** taş plaka (dama düzeni [G ◐]).
+- **Mobilya/donanım:** fiyat tahtası (dramatizasyon [S]), iki basamaklı ahşap estrad, tüccar pupitrleri (ayakta yazı masası), ahşap korkuluk (bölme).
+- **Kameradan görünen** (göz hizası 1.6 m): arka duvar zemin kat arkadları ve üst galerinin alt yarısı; tavan görünmez (kadraj üstte kornişte biter). Ön planda sol pilastr gövdesi, sağ önde korkuluk.
+
+### 10.2 HARITA (P03, P05) · 1830'lar Fransız haritası
+
+- **Dönem dili:** 1830'lar Fransız kartografisi: bakır gravür harita, **rölyef taramayla** (hachures; Etat-major haritası 1818'de başlar [G ◐]), ince kıyı çizgisi, el boyası sınır şeritleri. Gravür dilinin (bölüm 11) en saf hâli: harita **tarama ile gölgelenen** tek mekân.
+- **"Yapı":** iki ayrı yol çizgisi: posta yolu (kesikli, [G ◐ güzergâh doğrulanmalı]) ve **telgraf hattı** Paris – Étampes – Orléans – Tours – Poitiers – Angoulême – Lormont – Bordeaux [D Ek 2 olası]. Kule ikon tipleri: düz T (çoğu), **yuvarlak kule** (Tours, Poitiers), **piramit** (Lormont), **kesik çan kulesi** (Bordeaux) [D Ek 2]. Şehirler: küçük blok + kilise kulesi sembolü.
+- **Kameradan görünen:** ortografik, yalnız düzlem.
+
+### 10.3 SOKAK-BORDEAUX (P04) · eski kentte dar sokak, gece
+
+- **Dönem/üslup:** 18. yy Bordeaux klasik taş konutları (Louis XV–XVI), Haussmann öncesi; 1834'te eski kentin (Saint-Pierre / Saint-Michel mahalleleri) olağan dokusu [G; 18. yy neoklasik cepheler D 3c-d]. Arada daha eski, daha dar ve sade ev (16–17. yy) olabilir [G].
+- **Yapı tipi:** **dükkânlı bitişik konutlar** (immeuble à boutique). Sokak genişliği ~ 6–7 m, yaya kaldırımı yok, orta oluk [T; D Ek 2: güvenli ve makul].
+- **Kat sayısı ve yükseklikleri:** ev başına **R+2 ya da R+3, çatı katı (attique) ile** [G ◐] — **BEKLİYOR (Ek 3: ev yüksekliği)**. Tipik kesit [G ◐]: zemin + ara kat (entresol) toplam ~ 5.5 m (tek yüksek kemerli dükkân açıklığı ikisini birlikte kapsar), 1. kat ~ 4.0 m, 2. kat ~ 3.5 m, 3. kat ~ 3.2 m, attique ~ 2.4 m. Toplam saçak yüksekliği 15–19 m; **komşular arasında ±1.5–3 m fark**.
+- **Ev genişlikleri ve farklılık:** ev başına **2, 3 ya da 4 aks** (aks ~ 2.8–3.2 m) → 6–13 m. Sol sıra (yakından uzağa): 3 aks R+3 / 2 aks R+2 (eski, dar, sade) / 4 aks R+3 (zengin: sürekli balkon, maskaronlar) / 3 aks R+2 / 2 aks R+3 / uzak siluet. Sağ sıra: 3 aks R+2 / 3 aks R+3 / 4 aks R+3 (CAFÉ) / 2 aks R+2 / 3 aks R+3. Hiçbir komşu aynı korniş yüksekliğinde değil; ev sınırları **köşe taşı şeridi** (hafif çıkıntı, 30 cm) ile okunur. Taş renkleri ev başına ±%5 L.
+- **Cephe bölümlemesi:** (1) zemin: **basik** kemerli yüksek açıklıklar, her aksta bir; dükkân evlerinde ahşap dükkân cephesi (devanture) + üstte ara kat penceresi aynı kemerin içinde; konut kapısı da basik kemerli, ahşap kapı + üstte demir parmaklıklı ışıklık (imposte). (2) Zemin ile 1. kat arasında **kat silmesi** (bandeau, 25 cm). (3) **1. kat (étage noble):** en uzun pencereler (oran 1:2.2), **ferforje balkon**: zengin evde taş konsollar üzerinde sürekli balkon, diğerlerinde her pencerede balkonet. (4) 2. kat: pencere oranı 1:1.8, alçak ferforje korkuluk (garde-corps). (5) 3. kat (varsa): 1:1.5, korkuluksuz ya da çok alçak. (6) **Profilli taş korniş** (çıkıntı 35–50 cm). (7) **Attique:** korniş üstünde geri çekilmemiş alçak kat, kare küçük pencereler (oran 1:1), üstünde ikinci ince korniş.
+- **Açıklıklar ve kemer:** tüm pencereler **basik** kemerli (yükseklik 0.12 W), **kilit taşı** çıkıntılı; söve düz bant (18 cm). Dükkân açıklıkları **basik**, genişlik ~ 2.6 m. **Yarım daire** yalnız bir evin araba kapısında (porte cochère) olabilir [T]. **Sivri kemer yok.**
+- **Süsleme (imza, yalnız 2):** (1) **maskaron**: yalnız 1. kat pencerelerinin kilit taşında, ve yalnız "zengin" iki evde (sol 3. ev, sağ 3. ev), cephe düzleminde kabartma, taş renginde; (2) **1. kat ferforje** (kıvrımlı Louis XV/XVI motif). Başka süs yok (çiçek, saksı, rozet yok).
+- **Panjur/kepenk:** dış panjur yalnız eski dar evde ve attique'lerde (%30) [G ◐]; diğerlerinde iç kepenk (camın arkasında koyu panel). Dükkânlar gece **ahşap kepenk panolarıyla** kapalı (VINS, TONNELIER, CHAPELIER), **CAFÉ açık** (9.2). Kafe terası **BEKLİYOR (Ek 3)**; o zamana dek terası yok.
+- **Dükkân cephesi:** ahşap çerçeve, alınlıkta boyalı serif yazı (krem/altın), dükkân başına bir **asılı tabela** (potence) en fazla iki dükkânda (CAFÉ: fincan; TONNELIER: fıçı silueti) [G].
+- **Çatı:** **tuile canal**, eğim ~ %33 (≈18°), korniş/attique arkasında [D olası]. **Kameradan görünen (0.9 m alçak kamera):** çatı yüzeyi **görünmez**; görünen: korniş alt yüzü (saçak altı), korniş üstünde tek ince kiremit sırası (yalnız uzaktaki evlerde, perspektifle), arkadaki kısa baca başları. Balkon konsollarının **alt yüzü** görünür (alçak kamera imzası).
+- **Sokak donanımı:** réverbère ipi + duvarda makaralı kilit kutusu [G], **BEKLİYOR (Ek 3: yağ/havagazı)**; resmî yapıda tricolore (9.3) **BEKLİYOR (Ek 3: bayrak)**; AVIS ilanı; ızgara.
+- **Uzak:** Garonne direkleri (köprünün aşağısında, büyük gemiler [D]); **Saint-Michel**: sol çatıların arkasında, kesik gotik çan kulesi (bağımsız campanile [D Ek 2]), tepede direk ve kollar **DINLEN = dikey çubuk** (gece, [D Ek 2 olası, zayıf]).
+
+### 10.4 TOURS-KULUBE-IC (P01, P07, P08, P10, P11, P15 alt) · Tours telgraf istasyonunun çalışma odası
+
+- **Dönem/üslup (Ek 2 ile değişti):** Tours istasyonu **kent içinde**, "eski belediye sarayı" binasının üstünde **yuvarlak bir kule**de (Tours n°1/n°2) [D Ek 2, olası, tek kaynak]. Binanın kimliği ve üslubu **doğrulanmalı** (18. yy klasik tuffeau yapı varsayımı [G ◐]). Yani "tepede tek kulübe" imgesi Tours için **kalktı**; ova ve kavaklar ara kuleler için (10.5 KD-B).
+- **Yapı tipi:** kamu yapısının çatı katında telgraf bürosu + bitişik yuvarlak kule (tourelle) üstünde direk [T, kaynaktaki "yuvarlak kule" ile uyumlu]. Manipülatör kaynağa göre direğin dibindeki üst kat çalışma odasında [D kesin]; bu filmde **çalışma odası = kulenin yanındaki çatı katı odası**, kablolar çatı üstünden kuleye gider (**[T] küçük sapma**, gerekçe 3.4 Seçenek 1: pencerede tam T).
+- **Oda ölçüsü ve kuruluş:** ~ 4.5 × 3.6 m. Tavan: düz kısım 2.7 m, kameranın arkasındaki duvarda eğik (çatı katı) — kadrajda görünmez. **Tavan kirişleri** görünür (meşe, 20 × 20 cm, aralık 0.8 m, kameraya dik yönde) + kiriş arası tahta. **Duvarlar:** tuffeau üstüne kireç sıva + badana (üst), alt kısımda dökülmüş sıvadan tuffeau görünür. **Döşeme:** çam tahta (üst kat), tahtalar kameraya doğru (derinlik yönünde).
+- **Açıklıklar:** **pencere A** (arka duvar sağ) = çatıya açılan **lucarne** (çatı penceresi), **basik** kemerli, 0.9 × 1.4 m, küçük camlı iki kanat; dışarıda çatı üstünden 10–12 m ötede yuvarlak kule ve direk (tam T). **Pencere B** (sol alın duvarı) küçük kare (0.6 × 0.7 m), içinde sabit dürbün kutusu (Paris yönü). **Kapı** (arka duvar sol): düz lentolu, ahşap tablalı (panneaux), merdiven sahanlığına açılır; aralıktan ilk iki basamak.
+- **Ocak:** [T] yan duvarda küçük tuffeau şömine, **kameranın gördüğü alanın dışında** (P07 yan ışık gerekçesi gerekirse kullanılabilir; şu an kullanılmaz).
+- **Mobilya (dönem tipi):** çekmeceli sade meşe masa (düz kare bacaklı, Louis XVI sadeliği [G]), iki **hasır oturaklı sandalye** (chaise paillée [G]), duvar rafı (kutular, kayıt defterleri), manipülatör tezgâhı (pencere A önü), halat bobinleri (yedek kablo: işlevli).
+- **Kameradan görünen:** P07–P08 (1.2 m): kirişli tavanın ön iki kirişi, arka duvar, sol alın duvarı, döşeme; eğik tavan ve ocak görünmez. MASA-PLAKA (P01/P10/P23, tepe-önden): masa üstü + pencere A; tavan görünmez.
+- **İmza ayrıntı:** (1) pencere A'dan görünen yuvarlak kule + mavi direk + siyah T, (2) tavandan pencereye inen iki kablo.
+
+### 10.5 KULE-DIS · KD-A TOURS-KAPI (P21), KD-B ARA KULE (P12, P13), KD-C siluet
+
+**KD-A TOURS-KAPI (P21), gündüz**
+- **Dönem/üslup (Ek 2 ile değişti):** istasyonun kent içindeki binası (eski belediye sarayı [D Ek 2, olası]); kapı = istasyona çıkan **yan kapı** (avlu ya da yan sokak), taş bina 18. yy klasik [G ◐].
+- **Cephe:** tuffeau kesme taş, **basik** kemerli kapı (genişlik 1.4 m, yükseklik 2.8 m, kemer 0.13 W), kilit taşı sade, söve bandı; ahşap çift kanat değil **tek kanat tablalı kapı**, demir bantlar, düşen mandal (sürgü). Kapı üstünde dar ışıklık (imposte) demir parmaklıklı. Kapının yanında kat silmesi; üstte 1. kat penceresi (basik).
+- **Kule:** kadrajın üstünde, bina köşesinden yükselen **yuvarlak kule (tourelle)**, çap ~ 4 m [G ◐], konik değil düz terasla biten üst, tepede mavi direk ve kollar. **Kameradan görünen** (1.5 m, kapıya yakın, yukarı bakış): kapı, ilan, kulenin alt kısmı perspektifte daralarak; direk ve kollar kadrajın üst-ortasında (x 380–700, y 330–700). Çatı yüzeyi görünmez, saçak altı görünür.
+- **Kol konumu:** gündüz; DINLEN (dikey çubuk) yalnız gece/sis için [D Ek 2, zayıf]. P21 gündüz için **"BEKLE"**: regülatör yatay, iki gösterge regülatöre katlı (düz yatay çubuk) [T, kaynak iddiası yok]. P22 başı bu konumdan başlar.
+
+**KD-B ARA KULE (P12, P13), gündüz**
+- **Dönem/üslup (Ek 2 ile değişti):** Tours sonrası ara istasyon (Chambray, Montbazon, Sorigny bölgesi [D Ek 2]); hat kulelerinde **yuvarlak ve piramit** tipler var, "kare taş kule" kaynakta yok [D Ek 2]. Örnek ayakta kalan ara kule (Gradignan, Bordeaux–Bayonne): **yuvarlak, ~10 m, çap ~5 m** [D Ek 2, Mérimée]. → **Yuvarlak taş kule**, 2 kat (alt: dinlenme odası, üst: çalışma odası [D kesin]), düz teras çatı, ortasında 7 m mavi direk.
+- **Açıklıklar:** üst katta karşılıklı iki küçük pencere (biri önceki, biri sonraki kuleye bakan, dürbün kutuları bunların içinde [D kesin]); kemer **basik** ya da **duz** [G ◐]; zemin katta tek kapı (duz lento). Pencere 0.8 × 1.1 m.
+- **Malzeme:** yerel taş, sarımsı moloz taş + kesme taş köşeler [G ◐] (kırsal sarı tuffeau [D olası]).
+- **Kameradan görünen** (P12–P13 dışarıdan, pencere hizası ~ 5 m yükseklikte, iskele/merdivensiz "uçan kamera" [T]): üst kat penceresi, kule gövdesinin eğriliği (pencere söveleri eğri duvarda), terasın alt kenarı, direk. P13 geri çekilmede kule tümüyle + ova + ufukta Tours'un kent siluetinde kule (sol) ve sonraki kule (sağ).
+- **Peyzaj:** Touraine ova/plato, tarla şeritleri, kavaklar [G].
+
+**KD-C SİLUET (P17 penceresi, P22 başı):** Tours'un kent içindeki yuvarlak kulesi, gece: kollar DINLEN (dikey çubuk), siluet.
+
+### 10.6 PARIS-AVLU (P09) ve PARIS-MASA (P23)
+
+- **Dönem/üslup:** Paris posta idaresi Hôtel d'Armenonville (rue J.-J. Rousseau), 1757'den beri postane, 1880'de yıkıldı [D]; avlu görünümü bulunamadı [D] → **genel 17–18. yy Paris hôtel avlusu** [G].
+- **Yapı tipi ve kuruluş:** avlulu konak (hôtel particulier) dönüştürülmüş idare binası. Avluyu çeviren üç kanat, **R+2 + mansard çatı katı** [G]; kat yükseklikleri ~ 4.5 / 4.0 / 3.5 m + mansard.
+- **Cephe bölümlemesi:** zemin kat: **yarımDaire** kemerli **araba kapısı (porte cochère)** 3.2 × 5 m + basık/düz kemerli ofis pencereleri; kat silmesi; üst katlar **duz** ya da **basik** lentolu uzun pencereler (oran 1:2), demir pencere korkulukları (balkon yok); profilli korniş; **mansard**: alt eğim dik (~70°) arduvaz, üst eğim yatık çinko; **lucarne**ler (basik alınlıklı) her aksta.
+- **İmza (2):** mansard + lucarne sırası, **baca kümeleri** (her kanatta 2 küme, 4–6 kil başlık).
+- **Yüzey:** sıva (plâtre) + kesme taş köşe ve söveler; is lekesi [G].
+- **Zemin:** avlu taş döşeme, arabalar için tekerlek izleri.
+- **Kameradan görünen** (1.1 m, hafif alçak): araba kapısı (sol), iki kat pencere, mansard'ın alt eğimi ve lucarneler (yukarı bakış), baca kümeleri gökte; mansard'ın yatık üst eğimi **görünmez**.
+- **PARIS-MASA:** MASA-PLAKA ile aynı (10.4); mimari iddia yok.
+
+### 10.7 CATI-BORDEAUX (P06) · çatı katı terası, şafak
+
+- **Dönem/üslup:** 18. yy Bordeaux konutunun çatısı.
+- **Yapı tipi:** [T] attique katının önünde dar **teras** (korniş üstü yürüme yolu), taş **balüstrad** korkuluk (balüster sırası) [G ◐: Bordeaux'da attique önü terası/balüstradın yaygınlığı doğrulanmalı]. Teras zemini çinko ya da taş plaka [G ◐].
+- **Çatı peyzajı:** **tuile canal**, eğim ~%33, iki yamaçlı, dalgalı sıralar [D olası]; arduvaz azınlık (19. yy bazı yapılar [D]); **kısa taş bacalar**, kil başlıklar. Bordeaux'da düşük eğimli çatılarda **lucarne yaygın değil** [G ◐] → tasarımdaki "soldan 2. dormer" yerine **attique penceresi** (cephede, korniş üstünde kare alçak pencere) öneriyorum: P14 odasının penceresi budur. Sahne planı/yaratıcı yönetmen onayı (yalnız ad ve biçim değişir, konum aynı).
+- **Uzak:** **Saint-Michel çan kulesi**: 15. yy gotik, kiliseden ayrı campanile [D Ek 2], **kesik tepe** (1768–1860) [D Ek 2 olası-kesin], tepede direk + T (şafak: telgraf çalışır, kollar sabit). Kesik yükseklik bilinmiyor [D Ek 2]; 114.6 m külahlı toplam → kesik kule ~ 45–50 m [G ◐]. Gövde: kare plan, köşe payandaları, **sivri** kemerli ses açıklıkları (filmde tek sivri kemer). Pont de pierre (1822 [D]) uzakta alçak çok kemerli bant (kemerler **yarımDaire** [G ◐]); Garonne direkleri.
+- **Kameradan görünen** (1.3 m, teras üstü): yakın çatıların **yüzeyi görünür** (kamera çatı seviyesinde), balüstrad, attique penceresi; ufuk.
+
+### 10.8 CATI-KATI (P14) ve ALTIN-MASA (P15 üst) · Bordeaux, kiralık attique odası
+
+- **Dönem/üslup:** 18. yy konutun **attique** katı; suç ortağı Saint-Michel'e bakan bir **oda kiralamıştı** [D kesin].
+- **Oda ölçüsü ve kuruluş:** ~ 4 × 3.5 m, tavan **alçak 2.4 m, düz**, görünür kirişler (attique düşük eğimli çatının altında tam duvarlı kat; eğik tavan yok [G ◐]). **Bu, tasarim.md'deki "mansard eğik tavan" yerine geçer** (düşük eğimli tuile canal çatıda mansard yok). Duvarlar sıva + badana, döşeme çam tahta.
+- **Açıklık:** **attique penceresi**: kare, alçak (0.9 × 1.0 m), **duz** lento ya da çok basık, iki kanat; derin taş pervaz (kalın duvar: 50 cm) → **pervaz derin ve geniş**: teleskopun kurulu olduğu ve çentiklerin atıldığı yüzey (anlamlı: taş duvar pervazı içte ahşap kaplı [T]).
+- **Mobilya:** sade masa, iki sandalye, sandık.
+- **Kameradan görünen** (omuz üstü 1.4 m): pencere (kare, alçak: diyagonal kompozisyon yerine **yatay pencere + eğik teleskop**), tavan kirişleri üst kenarda, pencereden Bordeaux çatılarının **yüzeyi** (kamera çatı seviyesinde) ve Saint-Michel.
+- **Görsel dil düzeltmesi:** 3.8'deki "mansard eğik tavan diyagonali" yerine baskın şekil **alçak yatay pencere + çapraz teleskop + kiriş ritmi**.
+
+### 10.9 YATAK-ODASI (P16, P17) · Tours, memurun evi
+
+- **Dönem/üslup:** Tours'ta mütevazı kent evi, 17–18. yy, tuffeau [G]; ya yarı ahşap eski ev ya taş ev (Tours'ta ~150 yarı ahşap ev [D]) → [T] taş ev, üst kat oda.
+- **Oda ölçüsü ve kuruluş:** ~ 3.8 × 3.2 m, tavan 2.6 m, **görünür kirişli tavan** (à la française: kiriş + kiriş arası döşeme tahtası alt yüzü). Duvar: sıva + badana, nem lekesi. Döşeme: çam tahta [T] (Touraine'de tomette (pişmiş toprak karo) de olası [G ◐]; foley "tahta" kararıyla tahta).
+- **Açıklıklar:** pencere (sağ-arka) **basik** kemerli, 0.9 × 1.5 m, küçük camlı; dışarıda kentin çatıları ve uzakta kent içindeki **yuvarlak kulede direk (DINLEN)**. Kapı arka-sol, **duz** lentolu.
+- **Ocak:** [T] küçük şömine kameranın dışında.
+- **Mobilya (dönem tipi):** **ahşap yatak** (sade, alçak başlıklı) [G ◐] — tasarim.md'deki **demir karyola** yerine öneri (demir yatak 19. yy ortasında yaygınlaşır [G ◐ doğrulanmalı]); komodin (mum), duvar askısı (gri ceket), hasır sandalye (yazıcı), dizde yazı pulpitri.
+- **Kameradan görünen** (1.0 m): yatak üç çeyrek, pencere, kirişlerin ön ikisi; tavanın çoğu görünmez.
+
+### 10.10 MAHKEME (P18, P19) · Tours Ağır Ceza salonu, Mart 1837
+
+- **Dönem/üslup:** duruşma **bugünkü Palais de justice'te değil** (o bina 1840–1843) [D Ek 2 kesin]; eski bina bilinmiyor ("rue Royale'deki eski palais" izi olası, doğrulanamadı) [D Ek 2]. **1840'ların neoklasik Palais cephesi hiçbir planda kullanılmaz** [D Ek 2]. → **Genel 18. yy sivil/adli salon** [T].
+- **Oda ölçüsü ve kuruluş:** dikdörtgen salon ~ 16 × 10 m, tavan ~ 6 m düz sıvalı, profilli korniş (kadrajın üstünde kalır). Duvar: alt 2.4 m **ceviz lambri** (panel + pilastr ritmi), üstü sıva. Döşeme: tahta ya da taş [G ◐], kürsü ve sanık bölümünde tahta.
+- **Açıklıklar:** bir uzun duvarda **üç yüksek pencere**, **basik** kemerli (18. yy), 1.4 × 3.4 m, küçük camlı; kemer **sivri değil, yarım daire değil**. Giriş kapısı arka duvarda çift kanat, **duz** lentolu.
+- **Düzen:** kürsü estradı (3 basamak, 0.6 m) üstünde başkan + iki yargıç masası (yeşil çuha); başkanın sağında katip masası; **jüri** (12) yan duvar boyunca iki sıra sıra [T, yerleşim kaynaksız D]; sanık sırası korkuluklu, kürsünün karşısında; seyirci bölümü alçak korkulukla ayrılmış. Saat kürsü üstünde duvarda. Haç/arma/büst/bayrak yok [D].
+- **Kameradan görünen:** P18 alçak (0.8 m): kürsü ön yüzü, yargıçların bel üstü, saat, pencereler ve huzme; tavan görünmez. P19 ters açı: seyirci bölmesi, arka kapı.
+
+### 10.11 KANUN-INSERT (P20)
+
+- Mimari yok; masa = P19 başkan masası (yeşil çuha, ceviz kenar). Kitap: Code pénal (1810) [G]. Ortografik tepe.
+
+### 10.12 WIFI-MORF (P22)
+
+- Başlangıç kulesi = KD-A Tours kentindeki yuvarlak kule + direk, alacakaranlık siluet. Kol başlangıcı: P21'deki **BEKLE** (yatay çubuk) [T] ya da DINLEN dikey çubuk; önerim BEKLE (P21 MATCH korunur; çubuk → T açılımı → üç yay: iki adım okunur). Mimari süsleme yok, yalnız kule silueti (yuvarlak gövde üst kısmı + direk).
+
+---
+
+## 11. Gravür dili şartnamesi (R2 · ortak, motion için)
+
+**Yön (kullanıcı onaylı):** mimari ve mekân, 1830'ların **renkli litografi / çelik gravür** baskılarından beslenen bir **kukla tiyatrosu dekoru**: düz katmanlı paneller (sahne kulisleri gibi), gerçek oranlar, **sınırlı palet** (el boyası), **gölgede tarama**, kâğıt dokusu. Bölüm 1'deki doku sisteminin **üstüne** gelir: tarama, gölge degradelerinin yerini alır; malzeme dokuları (blok derzi, damar) **yalnız yakın** planda kalır.
+
+### 11.1 Katman mantığı (kulis)
+- Her mekân **4–6 düz panel**: gök / uzak siluet / orta cepheler / yakın cepheler / ön plan çerçevesi (+ karakterler). Panel içinde perspektif doğru; paneller arası **hava perspektifi** (uzak panel kâğıda %25 daha yakın, tarama yok).
+- Panel kenarı: dış kontur aile kalınlığında, **kâğıt kesme** hissi için ön panellerin alt kenarına 3 px koyu gölge (bir sonraki panele düşen). Paneller arasında maske kenarı/şerit kalmaz (CLAUDE.md).
+
+### 11.2 Tarama (hatching)
+| Parametre | Değer |
+|---|---|
+| **Ton basamakları** | 4 basamak: **I ışık** (yalnız dolgu, tarama yok) · **II yarı ton** (tek yön tarama, α .30) · **III gölge** (tek yön, α .55 + dolgu L −%8) · **IV derin gölge / atılan gölge çekirdeği** (çapraz tarama: ikinci yön +60°, α .55). Hangi yüzeyin hangi basamakta olduğu ışık yönü ile yüzey normali arasındaki açıdan: ışığa bakan I, yan II, sırt III, kapalı köşe/balkon altı/kemer içi/kapı aralığı IV |
+| **Yön (θ)** | Sahne başına **tek ana yön**: θ = anahtar ışığın ekrandaki geliş yönü + 90° (çizgiler ışık ışınlarına dik; ışık değişse de tarama değişmez, pişirilir). Dikey düz yüzeylerde (cephe, duvar) alternatif: **cephenin perspektif yatay çizgilerine paralel** (form takip) — yakın cephelerde bu, uzaklarda θ. Silindir ve eğriler (sütun, yuvarlak kule, fıçı, kumaş kıvrımı): **form takipli** dikey çizgiler, gölge tarafına doğru aralık daralır (`TaramaEgri`) |
+| **Aralık** | yakın **6 px**, orta **8 px**, uzak **11 px**; çok uzak (siluet paneli) **tarama yok** |
+| **Kalınlık** | yakın **1.4 px**, orta **1.1 px**, uzak **0.8 px**; uçlar incelir (yol başı/sonu 40%'a). Kural: tarama kalınlığı ≤ kontur kalınlığının **1/3**'ü (kontur ailesi 3/4/6/8 px, 1.2) |
+| **Renk** | taranan yüzeyin `ink(fill)`'i (asla `#000`); gece sahnelerinde mürekkep `#1b2236` (gece mavisi), mum/fener ile aydınlanan bölgede tarama yok |
+| **Titreme** | `KonturTitreme` scale **1.0** (konturdan yumuşak), seed = mekân seed + 1 (sabit, kaynamaz); çizgi başına ±%8 aralık sapması (seed'li), elle çizilmiş görünür |
+| **Mesafe** | uzak panelde tarama yok; orta panelde yalnız III–IV; yakın ve insert'te II–IV. Kamera push-in'inde tarama aralığı **ekran pikseli değil dünya birimi** (pişirilmiş plaka ölçeklenir; 1.5× plakada aralık 6×1.5) |
+| **Nerede ASLA** | karakter yüzleri ve rig (rig kendi gölgelemesini kullanır), ekran yazısı, ışık huzmesi içi, gök (gök: 3 düz bant + yumuşak degrade serbest), kırmızı mühür |
+
+### 11.3 Sınırlı palet (el boyası litografi)
+- Mekân başına **en fazla 6 dolgu rengi** + kâğıt `#e9dfc9` + mürekkep + **1 ışık rengi** (amber/ay/güneş). Mevcut kartlardaki paletler bu sınıra indirilir (ör. SOKAK-BORDEAUX gece: taş `#8a7e66`, taş gölge `#5e5646`, gece mavi `#1b2852`, panjur/kapı `#2f4a40`, dükkân ahşap `#4a3328`, kiremit `#7a3f2c` + amber `#ffb357`).
+- Dolgular **düz**; malzeme farkı tonla değil **renk + tarama** ile. Degrade yalnız gök, ışık katmanı ve vinyet.
+- **Renk kaydı kayması** (litografi imzası): dolgu katmanı kontur katmanına göre **+1.5 px x, +1.0 px y** kayık; dolgu kenarında iç tarafa 2 px `ink` α .10 "suluboya kenarı". Seed'li küçük taşmalar (her 300 px kenarda bir, 3–6 px) yalnız yakın panellerde.
+- Kâğıt: lif katmanı (1.2) aynı; boya alanlarında kâğıt lifi biraz daha görünür (multiply α +.04).
+
+### 11.4 Kontur ailesi ile ilişki
+- Dış kontur (silüet) > iç kontur (kemer, söve, pencere) > tarama: **6 : 3 : 1.4** (yakın). Kemer, korniş, kat silmesi **iç kontur** ile çizilir, gölgeleri tarama ile; dolgu farkıyla değil.
+- Mimari ayrıntı mesafe kuralı: yakın = kontur + tarama + doku (blok derzi, damar); orta = kontur + tarama III–IV, doku yok; uzak = tek renk siluet + dış kontur.
+
+### 11.5 Modül önerisi (`src/doku/Tarama.tsx`)
+```ts
+type Basamak = "II" | "III" | "IV";
+<Tarama sekil={points | pathD} basamak="III" aci={θ} aralik={6} kalinlik={1.4} renk={ink(fill)}
+        formTakip?={{ tip: "yatayPerspektif", q: CepheQuad } | { tip: "silindir", eksen: [P, P], golgeYonu: -1 | 1 }}
+        yogunlukMaskesi?={gradientId} derinlik="yakin" seed={DOKU_SEED.x + 1} />
+// İçerik: <pattern patternUnits="userSpaceOnUse" patternTransform={`rotate(${aci})`}> içinde seed'li sapmalı çizgiler
+// + <clipPath>(şekil) + opsiyonel <mask>(yoğunluk) ; IV = iki <pattern> üst üste (aci, aci+60)
+export const taramaAcisi: (isik: Isik) => number;                    // sahne θ
+export const basamakBul: (normal: [number, number], isik: Isik) => Basamak | null;
+<TaramaEgri eksen={[p0, p1]} yaricap={r} golgeYonu={1} adim={6} />   // sütun, kule, fıçı
+<RenkKaydi dx={1.5} dy={1}>{dolgular}</RenkKaydi>                     // dolgu katmanını konturdan kaydırır
+```
+- Mevcut `Golge` (`doku/Isik.tsx`) atılan gölgeleri hesaplıyor: gölge çokgeni **dolgu karartma yerine** `Tarama basamak="III"` (çekirdeğe yakın IV) ile doldurulur; kenar yumuşatma yok (gravürde gölge kenarı nettir).
+- Pişirme: tarama statik katmanlarla birlikte PNG'ye pişirilir (performans); canlı katmanlarda (açılan kapı, çekmece) `Tarama` canlı.
+
+### 11.6 Mood
+- `mood/mood-05-gravur-sokak-bordeaux.png`: **gravür dili için yön** (tarama yoğunluğu ve yönü, sınırlı palet, el boyası dolgu, ince mürekkep kontur, ayrı evler, 1. kat ferforje + taş konsollar, kilit taşında maskaron, korniş arkasında görünmeyen çatı, réverbère ipi). **Mimari için referans DEĞİL:** model (1) pencereleri **yarım daire** çizdi (bizde `basik`), (2) Saint-Michel'e **fener + haç** ekledi (bizde kesik düz tepe + direk), (3) **yaya kaldırımı** ekledi (bizde yok), (4) dükkânda uydurma yazı, (5) üst/alt kâğıt bandı. Mimari için bölüm 10 kartı geçerli.
+
+---
+
+## 12. Motion uygulama listesi (R2 · 9.6'nın yerine; önce sistemik)
+
+**A. Sistemik modüller (her mekânı etkiler)**
+1. **`doku/Kemer.tsx` (yeni) / `Mimari.tsx KemerliPencere` yeniden yazımı:** `tip: "duz" | "basik" | "yarimDaire" | "sivri"`; kemer yüksekliği **dünya biriminde genişlikten** (basik 0.12 W, yarımDaire 0.5 W); kilit taşı (`clé`, opsiyonel `maskaron`), imposte silmesi, söve bandı; doğrama = paralel dikey+yatay kayıtlar (tepeye yakınsayan kayıt **yok**). `sivri` yalnız `SaintMichel` içinde kullanılır.
+2. **`doku/Tarama.tsx` (yeni):** 11.5 API; `taramaAcisi`, `basamakBul`, `TaramaEgri`, `RenkKaydi`. `Golge` çıktısı tarama ile doldurulur.
+3. **`doku/Cephe.tsx` (yeni) — "cephe = ayrı evler":** `Ev { aks: 2|3|4, katlar: ("zemin+entresol"|"noble"|"ust"|"attique")[], kornisH, sehir, zengin?: boolean, dukkan?: {...}, panjur?: oran }` → kat yükseklik tablosu (10.3), kat silmesi, korniş, köşe taşı şeridi, açıklık kemer tipleri, balkon kuralı (yalnız `noble` katta), maskaron (yalnız `zengin` + `noble`). `Sokak.tsx` `Ev` bu modülü kullanır; Paris ve Tours aynı modülle (`sehir` parametresi: Paris mansard + duz/basik, Tours tuffeau + arduvaz dik çatı).
+4. **Kamera-görünürlük kuralı:** `Cephe` kamera yüksekliğini alır; korniş üstü çatı yüzeyi yalnız kamera ≥ korniş yüksekliği ise çizilir; alçak kamerada korniş ve balkon konsolu **alt yüzleri** çizilir.
+5. **Palet sınırı:** her `Sb2*` mekânında 6 dolgu + kâğıt + mürekkep + 1 ışık; mevcut ek renkler (çiçek kırmızısı vb.) kaldırılır.
+
+**B. SOKAK-BORDEAUX (`proto/Sokak.tsx` bordeaux, `Sb2Sokak.tsx`)**
+6. Sol/sağ ev listeleri 10.3'teki aks/kat/korniş dizisiyle `Cephe` üzerinden yeniden; hiçbir komşu aynı korniş yüksekliğinde değil.
+7. Tüm pencereler `basik`; dükkân açıklıkları `basik` (zemin+entresol tek açıklık); maskaron yalnız iki zengin evin 1. katında (levha çerçevesi yok).
+8. Ferforje yalnız 1. katta (zengin evde sürekli balkon + konsol, diğerlerinde balkonet); 2. katta alçak korkuluk.
+9. Panjur %30 (eski dar ev + attique); kırmızı çiçekler kaldır; saçaktaki büyük kiremit ağızları kaldır → profilli korniş + uzakta ince kiremit sırası.
+10. `TabureSira` kaldır; CAFÉ açık (kapı aralık ışık yamuğu, potence tabela, vitrinde 2 statik siluet); diğer dükkânlar ahşap kepenk panolu (gece kapalı).
+11. Réverbère ip ucunda makaralı kutu; sol duvar feneri sönük.
+12. Saint-Michel sola, çatıların arkasına; kollar DINLEN = **dikey çubuk**.
+13. Tricolore 9.3 (z 1.7, v 0.30, mavi direk tarafında, şeritler direğe paralel) — **BEKLİYOR (Ek 3: bayrak)** sonucuna göre yapı türü kesinleşir; konum değişmez.
+14. Ölü alan: TONNELIER fıçısı + eşik (sol ön), CHAPELIER basamağı + chasse-roue (sağ ön), ön birikinti, oluk yansıması.
+15. Tarama: θ réverbère'e göre; balkon altları, kapı aralıkları, korniş altı IV; yakın cepheler yatay perspektif form takip.
+
+**C. BORSA (`Sb2Borsa.tsx`)**
+16. Sol duvar: zemin **arkad `yarimDaire`** (oran 1:2) + üstte galeri pencereleri `basik`; sağ giriş `yarimDaire`; Y kayıtlar kaldırılır; agrafe + imposte.
+17. Ön plan: sol pilastr/sütun gövdesi + sağ ön balüstrlü korkuluk (ölü alan).
+18. Tarama: güneş sol-üst → θ ≈ 120°; pilastr gövdeleri `TaramaEgri` değil düz (pilastr yassı), arkad içleri IV.
+19. Salon düzeni **BEKLİYOR (Ek 3: borsa salonu)**; gelene dek yukarıdaki iskelet.
+
+**D. TOURS-KULUBE-IC (`Sb2Tours.tsx`) ve KULE-DIS**
+20. Pencere A = **lucarne** (`basik`), dışarıda çatı üstünden yuvarlak kule + mavi direk + T; tavandan pencereye iki kablo.
+21. Döşeme ahşap; tavan kirişleri kameraya dik; kapı `duz` lentolu, sahanlık + iki basamak.
+22. KD-A (P21): yuvarlak kule (tourelle) + `basik` kemerli tek kanat kapı; kollar **BEKLE** (yatay çubuk). KD-B (P12–P13): **yuvarlak taş kule** ~10 m, çap 5 m, iki karşılıklı pencere + sabit dürbün kutuları; ChappeKule'ye `bina="yuvarlak"` varyantı. KD-C: DINLEN dikey çubuk.
+23. `ChappeKule` konumlarına `DINLEN` (regülatör dikey, göstergeler katlı) ve `BEKLE` (regülatör yatay, göstergeler katlı) eklenir; tasarim.md'deki eski DINLEN (0,0,0 = T) **BEKLE** olur.
+
+**E. Diğer mekânlar (sırası geldiğinde)**
+24. HARITA: telgraf hattı ayrı çizgi (Paris–Étampes–Orléans–Tours–Poitiers–Angoulême–Lormont–Bordeaux), kule ikon tipleri (yuvarlak/piramit/kesik çan kulesi), rölyef **tarama** (hachures) Fransa içinde hafif.
+25. CATI-BORDEAUX / CATI-KATI: dormer → **attique penceresi** (kare, alçak), oda tavanı düz alçak kirişli; balüstrad teras.
+26. PARIS-AVLU: porte cochère `yarimDaire`, pencereler `duz`/`basik`, mansard + lucarne + baca kümeleri; mansard üst eğimi görünmez.
+27. YATAK-ODASI: ahşap yatak (demir karyola yerine), `basik` pencere, kirişli tavan.
+28. MAHKEME: pencereler `basik`, lambri 2.4 m + sıva, kürsü 3 basamak, 1840 Palais cephesi yok.
+
+**F. Ek 3 gelince** (araştırmacı): 10.3 kat yükseklikleri, réverbère tipi (yağ/havagazı), bayrak asan yapı türü, kafe terası, 10.1 borsa salonu güncellenecek; değişen maddeler bu listede işaretlenecek.
