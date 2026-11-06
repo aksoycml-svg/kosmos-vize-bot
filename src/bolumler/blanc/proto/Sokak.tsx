@@ -291,6 +291,37 @@ const Teras: React.FC = () => (
   </g>
 );
 
+// Geniş planda kurulum: oluk boyunca koşup ızgaraya dalan küçük fare + ızgara
+export const IZGARA_Z = 1.62;
+const IzgaraVeFare: React.FC<{ t: number; frame: number }> = ({ t, frame }) => {
+  const [gx, gy] = zemin(IZGARA_Z, 0.5);
+  const k = sokakGenislik(IZGARA_Z) / 1240;
+  const p = interpolate(t, [1.0, 2.1], [0, 1], { ...cl, easing: Easing.inOut(Easing.sin) });
+  const dal = interpolate(t, [2.1, 2.3], [0, 1], cl);
+  const z = 2.05 + (IZGARA_Z - 2.05) * p;
+  const [fx, fy] = zemin(z, 0.5);
+  const fs = (sokakGenislik(z) / 1240) * 1.4;
+  return (
+    <g>
+      <g transform={`translate(${gx},${gy}) scale(${k})`}>
+        <ellipse cx={0} cy={0} rx={64} ry={14} fill="#05060a" />
+        {Array.from({ length: 7 }).map((_, i) => <line key={i} x1={-48 + i * 16} y1={-10} x2={-52 + i * 17} y2={12} stroke="#3a3c46" strokeWidth={5} />)}
+        <ellipse cx={0} cy={0} rx={66} ry={15} fill="none" stroke="#9fb3ea" strokeWidth={2} opacity={0.35} />
+      </g>
+      {t > 1.0 && dal < 1 && (
+        <g transform={`translate(${fx},${fy + dal * 14}) scale(${fs * (1 - dal * 0.6)})`} opacity={1 - dal}>
+          <path d={`M -26 -4 Q -50 ${-2 + Math.sin(frame * 0.8) * 4} -70 4`} stroke="#8a6e6a" strokeWidth={4} fill="none" />
+          <ellipse cx={0} cy={-12} rx={28} ry={13} fill="#2a2024" />
+          <ellipse cx={24} cy={-14} rx={13} ry={9} fill="#2a2024" />
+          <circle cx={18} cy={-24} r={6} fill="#3a2c2e" />
+          <path d="M -24 -24 Q 0 -30 30 -20" stroke="#c4d6ff" strokeWidth={3} opacity={0.7} fill="none" />
+          {[-14, 14].map((x, i) => <line key={i} x1={x} y1={-2} x2={x + Math.sin(frame * 1.6 + i * 3) * 6} y2={3} stroke="#2a2024" strokeWidth={4} />)}
+        </g>
+      )}
+    </g>
+  );
+};
+
 // Çatıda kedi — gözleri fareyi izler
 export const Kedi: React.FC<{ frame: number; bakX: number }> = ({ frame, bakX }) => {
   const p = cephe(SOL, 2.25, 0.0);
@@ -409,6 +440,7 @@ export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?
         <polygon points={poly([SOL.A, SOL.B, SOL.C, SOL.D])} filter="url(#siva)" fill="#fff" />
         <polygon points={poly([SAG.A, SAG.B, SAG.C, SAG.D])} filter="url(#siva)" fill="#fff" />
       </g>
+      <IzgaraVeFare t={t} frame={frame} />
       <Ilan />
       <Teras />
       <Bayrak frame={frame} />

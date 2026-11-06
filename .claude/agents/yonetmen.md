@@ -16,3 +16,4 @@ Sen bir kısa film yönetmenisin. Girdi: `senaryo.md` (+ ses zamanlamaları vars
 - Sessizlik bir araçtır: önemli cümleden önce 0.3-0.5 sn nefes.
 - Fizik kontrolü: her plan "gerçek dünyada olabilir mi?" sorusundan geçer (duvar, zemin, ölçek, ışık, giriş/çıkış yolları). Karakter yürüyüş yolu sahnede fiziksel olarak açık bir yol olmalı.
 - Küçük ama önemli olaylar (dokunuşlar) için yakın plan/insert kullan; telefonda okunmayan şey çekilmemiş sayılır.
+- Süreklilik (kurulum → karşılık): Yakın planda/insertte ilk kez gördüğümüz hiçbir şey birden belirmez. Ya önceki geniş planda kurulur (küçük de olsa görünür), ya da yakın planın içinde girişi gösterilir. Nesnelerin/karakterlerin konumu, yönü ve durumu planlar arasında tutarlıdır (sol-sağ, el-şapka, baston nerede).

@@ -12,8 +12,8 @@ import S02 from "../ses/S02.json";
 const cl = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const ease = Easing.inOut(Easing.cubic);
 export const PROTO_FPS = 60;
-export const PROTO_SURE = 12 * PROTO_FPS;
-const T_REPLIK = 7.4;
+export const PROTO_SURE = Math.round(12.6 * PROTO_FPS);
+const T_REPLIK = 8.0;
 const T_INS = 4.45; // fare yakın planı başlangıcı
 const T_DON = T_INS + INSERT_SURE; // ana plana dönüş
 const T_TAP = T_INS + INSERT_TAP;
@@ -55,9 +55,9 @@ const francoisPoz = (t: number): Poz => {
   const amt = interpolate(t, [0.3, 0.6, 3.7, 4.15], [0, 1, 1, 0], cl);
   const w = yuru(phi, amt);
   // şapka çıkarma: 5.0–5.7 kol kalkar, 5.45'te şapka başı terk eder
-  const kol = interpolate(t, [6.4, 6.55, 7.1, 7.3], [0, -0.08, 1.06, 1], { ...cl, easing: Easing.inOut(Easing.sin) });
-  const sapka = interpolate(t, [6.95, 7.35], [0, 1], { ...cl, easing: Easing.out(Easing.back(1.6)) });
-  const kirpma = interpolate(t, [10.3, 10.4, 10.75, 10.85], [0, 1, 1, 0], cl);
+  const kol = interpolate(t, [7.0, 7.15, 7.7, 7.9], [0, -0.08, 1.06, 1], { ...cl, easing: Easing.inOut(Easing.sin) });
+  const sapka = interpolate(t, [7.55, 7.95], [0, 1], { ...cl, easing: Easing.out(Easing.back(1.6)) });
+  const kirpma = interpolate(t, [10.9, 11.0, 11.35, 11.45], [0, 1, 1, 0], cl);
   const lt = t - T_REPLIK;
   const otur = interpolate(t, [4.0, 4.25, 4.6], [0, 1, 0], { ...cl, easing: ease });
   return {
@@ -66,14 +66,14 @@ const francoisPoz = (t: number): Poz => {
     shF: w.shF * (1 - kol) + kol * -158, elF: w.elF * (1 - kol) + kol * -32,
     lean: w.lean * amt,
     breathe: Math.sin(t * 2.2),
-    headTilt: interpolate(t, [6.2, 6.85, 7.05, 10.3, 10.6, 10.8], [0, -9, -6.5, -6.5, 6, 4], { ...cl, easing: ease }) + (t > T_REPLIK && t < T_REPLIK + 2.8 ? Math.sin((t - T_REPLIK) * 9) * 1.5 : 0),
-    lookX: interpolate(t, [6.1, 6.6], [1, -0.4], cl),
-    lookY: interpolate(t, [6.1, 6.6], [0, 0.2], cl),
+    headTilt: interpolate(t, [6.8, 7.45, 7.65, 10.9, 11.2, 11.4], [0, -9, -6.5, -6.5, 6, 4], { ...cl, easing: ease }) + (t > T_REPLIK && t < T_REPLIK + 2.8 ? Math.sin((t - T_REPLIK) * 9) * 1.5 : 0),
+    lookX: interpolate(t, [6.7, 7.2], [1, -0.4], cl),
+    lookY: interpolate(t, [6.7, 7.2], [0, 0.2], cl),
     blinkF: Math.max(kirp(t, "f"), kirpma),
     blinkB: kirp(t, "f"),
     browF: lt > 0.6 && lt < 1.4 ? 0.9 : lt > 1.6 && lt < 2.8 ? -0.5 : kirpma > 0 ? -0.6 : 0.2,
     browB: lt > 0.6 && lt < 1.4 ? 0.9 : kirpma > 0 ? 0.8 : 0.2,
-    agiz: t >= 10.3 ? "sirit" : t > T_REPLIK - 0.1 ? dudak(t) : t > 6.1 ? "gulumse" : "dinlen",
+    agiz: t >= 10.9 ? "sirit" : t > T_REPLIK - 0.1 ? dudak(t) : t > 6.7 ? "gulumse" : "dinlen",
     hat: sapka > 0 ? { x: interpolate(sapka, [0, 1], [12, 46]), y: interpolate(sapka, [0, 1], [-500, -572]), r: interpolate(sapka, [0, 1], [-4, -26]) } : null,
     cane: null,
   };
@@ -96,7 +96,7 @@ const louisPoz = (t: number): Poz => {
     lookY: t > 4.2 && t < T_DON + 0.6 ? 0.9 : 0,
     blinkF: kirp(t, "l"), blinkB: kirp(t, "l"),
     browF: -0.5, browB: -0.5,
-    agiz: t > 10.5 ? "gulumse" : "dinlen",
+    agiz: t > 11.1 ? "gulumse" : "dinlen",
     cane: 22 + 720 * tw + Math.sin(phi) * 12 * amt,
     hat: null,
   };
@@ -130,9 +130,9 @@ export const Proto: React.FC = () => {
   const t = useCurrentFrame() / fps;
   const frame = t * 30; // 30 fps eşdeğeri (ortam animasyonları için)
   // kamera: yavaş içeri itme + replikte François'ya yaklaşma
-  const cs = interpolate(t, [0, 4.4, T_DON, 7.4, 12], [1.0, 1.06, 1.08, 1.18, 1.24], { ...cl, easing: ease });
-  const cx = interpolate(t, [0, 4.4, T_DON, 7.4, 12], [0, -10, -10, 70, 90], { ...cl, easing: ease });
-  const cy = interpolate(t, [0, 4.4, T_DON, 7.4, 12], [0, -30, -40, -150, -170], { ...cl, easing: ease });
+  const cs = interpolate(t, [0, 4.4, T_DON, T_REPLIK, 12.6], [1.0, 1.06, 1.08, 1.18, 1.24], { ...cl, easing: ease });
+  const cx = interpolate(t, [0, 4.4, T_DON, T_REPLIK, 12.6], [0, -10, -10, 70, 90], { ...cl, easing: ease });
+  const cy = interpolate(t, [0, 4.4, T_DON, T_REPLIK, 12.6], [0, -30, -40, -150, -170], { ...cl, easing: ease });
   const kat = (k: number) => `translate(${540 + cx * k},${960 + cy * k}) scale(${1 + (cs - 1) * k}) translate(-540,-960)`;
   const fl = Math.sin(frame * 0.7) * 0.5 + Math.sin(frame * 1.9) * 0.3;
   const sis = (k: number, y: number, o: number) => (
@@ -171,10 +171,10 @@ export const Proto: React.FC = () => {
       <Sequence from={Math.round(0.5 * fps)} layout="none"><Audio src={staticFile("blanc/ses/S02.mp3")} volume={1} /></Sequence>
       <Sequence from={Math.round(0.45 * fps)} durationInFrames={Math.round(3.8 * fps)} layout="none"><Audio src={staticFile("proto/ayak-sesi.mp3")} volume={0.43} /></Sequence>
       {/* fare yakın planı foley'i: sadece insert boyunca */}
-      <Sequence from={Math.round((T_INS + 0.05) * fps)} durationInFrames={Math.round((INSERT_TAP - 0.05) * fps)} layout="none"><Audio src={staticFile("proto/fare-koklama.mp3")} volume={0.45} /></Sequence>
+      <Sequence from={Math.round((T_INS + 0.25) * fps)} durationInFrames={Math.round((INSERT_TAP - 0.25) * fps)} layout="none"><Audio src={staticFile("proto/fare-koklama.mp3")} volume={0.45} /></Sequence>
       <Sequence from={Math.round(T_TAP * fps)} layout="none"><Audio src={staticFile("proto/baston-vurus.mp3")} volume={0.62} /></Sequence>
       <Sequence from={Math.round((T_TAP + 0.08 - 0.575) * fps)} layout="none"><Audio src={staticFile("proto/fare-kacis.mp3")} volume={0.45} /></Sequence>
-      <Sequence from={Math.round(6.85 * fps)} layout="none"><Audio src={staticFile("proto/sapka.mp3")} volume={0.55} /></Sequence>
+      <Sequence from={Math.round(7.45 * fps)} layout="none"><Audio src={staticFile("proto/sapka.mp3")} volume={0.55} /></Sequence>
       <Sequence from={Math.round(T_REPLIK * fps)} layout="none"><Audio src={staticFile("proto/replik.mp3")} volume={1} /></Sequence>
       <Audio src={staticFile("proto/laterna.mp3")} volume={0.32} />
       <Sequence from={Math.round(0.2 * fps)} layout="none"><Audio src={staticFile("proto/can.mp3")} volume={0.22} /></Sequence>

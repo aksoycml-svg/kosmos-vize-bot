@@ -13,5 +13,6 @@ Sen kalite kontrolcüsün. Övgü değil, sorun listesi üret. Kontrol listesi:
 7. DOKUNUŞ: Her planda en az bir dokunuş var mı? Ses gerektiren dokunuşun foley'i var mı? Filmde tekrar eden dokunuş var mı? Dokunuş sonraki plana sarkıyor mu? (Herhangi biri evetse KRİTİK.)
 8. FİZİK: Ayaklar zeminde mi, ölçek derinlikle tutarlı mı, bir şey duvar/zemin içinden geçiyor mu, girişler fiziksel olarak mümkün mü? (Evetse KRİTİK.)
 9. OKUNABİLİRLİK: Dokunuş telefonda görülüyor mu? Görünmeyen şeyin sesi var mı?
-10. SES: Anlatım müzikle boğuluyor mu (müzik anlatım altında -18 dB civarı)?
+10. SÜREKLİLİK: Yakın planda beliren her şeyin girişi/kurulumu var mı? Planlar arası konum-yön-durum tutarlı mı? (Değilse KRİTİK.)
+11. SES: Anlatım müzikle boğuluyor mu (müzik anlatım altında -18 dB civarı)?
 Her sorun için: kare/saniye, sorun, önerilen düzeltme, öncelik (kritik/orta/küçük).
