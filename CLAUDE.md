@@ -21,6 +21,9 @@ Kullanıcı ile **Türkçe** konuş. Kullanıcı yapımcıdır; kurguyu **Adobe 
 ### Katkı raporu (zorunlu)
 Her ajan görev bitince `bolumler/<slug>/katki-raporu.md` sonuna ekler: ne yaptı, dokunduğu dosyalar, kararlar ve gerekçeleri, uyguladığı kurallar / yakaladığı ihlaller, açık sorular. Ana oturum bu raporları kullanıcıya özetler.
 
+## Bölüm fikirleri
+`bolumler/FIKIR-HAVUZU.md` — aday hikâyeler ve durumları. Yeni bölüm seçmeden önce oku; araştırmacı doğrulamadan senaryoya geçme.
+
 ## İş akışı ve onay noktaları
 1. Araştırma → 2. Senaryo (**kullanıcı onayı**) → 3. Storyboard: kare + notlar (**kullanıcı onayı**) → 4. Ses (ElevenLabs) + varlıklar → 5. Animasyon (motion) → 6. Eleştirmen kontrolü (kontrol kareleri) → 7. İlk kurgu render (**kullanıcı onayı**) → 8. Premiere paketi (sahne klipleri, ayrı ses kanalları, SRT, XML) + 4K hareketli tuval gereken planlarda.
 Her teslimden önce eleştirmen kontrol karelerini kural listesine göre tarar. Kullanıcıya hatayı kullanıcının yakalaması = süreç hatası.
