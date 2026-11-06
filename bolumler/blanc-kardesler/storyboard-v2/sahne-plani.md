@@ -2,6 +2,8 @@
 
 Girdi: `senaryo-v2.md` (v2.1, onaylı, 23 plan), `arastirma.md`, `storyboard-v2/dokunuslar.md` (yaratıcı yönetmenin kesin dokunuş listesi, bu plana işlendi). Kullanıcı kararları uygulandı: süre 60.0 sn tam kesim (3600 kare), anlatımda "kardeşler", P14 maskesiz (omuz üstü suç ortağı + dürbün, odak kayması tüm kadrajda), P22 kukla/tahta dokusu (neon yok), 8 yeni mekân tam detay. Ses: ElevenLabs Umut Canbay (TR). 1080x1920 @ 60 fps.
 
+**Orkestra kararları (işlendi):** P14 144 kareye çıktı (12 kare P15'ten alındı; kule ≥1 sn net; odak kayması + pervaz çentiği birlikte). P09/P10 12 kare aktarımı onaylandı. Toplam 3600 kare korundu; P14 ve P15 dışındaki planların kareleri değişmedi (P14 sonu ile P15 başı aynı 12 kare kadar kaydı, P15 sonu 2472 sabit).
+
 ---
 
 ## 0. Okuma kılavuzu
@@ -46,8 +48,8 @@ Girdi: `senaryo-v2.md` (v2.1, onaylı, 23 plan), `arastirma.md`, `storyboard-v2/
 | P11 | 1692–1884 | 3.20 | TOURS-KULUBE-IC → insert | tower | ter damlası | MATCH (halo→maske) |
 | P12 | 1884–2028 | 2.40 | KULE-DIS | tower | kaş | SERT |
 | P13 | 2028–2184 | 2.60 | KULE-DIS | tower | esneme | MATCH (kule→kule) |
-| P14 | 2184–2316 | 2.20 | CATI-KATI | tower | pervaza çentik kazıma | SERT |
-| P15 | 2316–2472 | 2.60 | MONTAJ-15 | chart | 1835 yaprağı | MATCH (memur) |
+| P14 | 2184–2328 | 2.40 | CATI-KATI | tower | pervaza çentik kazıma | SERT |
+| P15 | 2328–2472 | 2.40 | MONTAJ-15 | chart | 1835 yaprağı | MATCH (memur) |
 | P16 | 2472–2640 | 2.80 | YATAK-ODASI | character | eldiven düşer | SAME |
 | P17 | 2640–2784 | 2.40 | YATAK-ODASI | character | kurutma kumu | SERT |
 | P18 | 2784–2916 | 2.20 | MAHKEME | character | sarkaçlı saat TIK | SERT |
@@ -57,7 +59,7 @@ Girdi: `senaryo-v2.md` (v2.1, onaylı, 23 plan), `arastirma.md`, `storyboard-v2/
 | P22 | 3324–3468 | 2.40 | WIFI-MORF | kinetic | Wi-Fi morfu | SERT (karanlık) |
 | P23 | 3468–3600 | 2.20 | PARIS-MASA | document | parmak kabartısı | LOOP→P01 |
 
-Toplam 3600 kare = 60.00 sn. Senaryodan tek süre sapması: P09 1.8→2.0 sn, P10 2.4→2.2 sn (Bölüm 4, madde 1).
+Toplam 3600 kare = 60.00 sn. Senaryodan süre sapmaları (onaylı): P09 1.8→2.0, P10 2.4→2.2, P14 2.2→2.4, P15 2.6→2.4 sn.
 
 ---
 
@@ -214,26 +216,26 @@ Toplam 3600 kare = 60.00 sn. Senaryodan tek süre sapması: P09 1.8→2.0 sn, P1
 - **Ekran yazısı:** "Kimse durdurmadı. Herkes kopyaladı." ÜST-BANT, 2034–2178.
 - **Anlatım:** "Ama devletin adamları hatayı aynen kopyalıyor." **Dokunuş:** esneme (yüz %18).
 
-### P14 · kare 2184–2316 · CATI-KATI
+### P14 · kare 2184–2328 · CATI-KATI (144 kare, 2.4 sn)
 - **Kadraj/kamera:** Omuz üstü, **maskesiz**, odak kayması **tüm kadrajda** (kullanıcı kararı). `cs 1.00→1.05`. Pencere (dormer, içeriden) x 380–900, y 380–1000. Alt-sol kadranda pervaz+bıçak (x 80–620, y 1000–1290, %22). Pervaz **onlarca eski çentikle dolu** (plan başından görünür = "iki yıl" kurulumu).
 - **Karakterler:** Suç ortağı z 1.5, u 0.30 (sırtı yarı kameraya, koyu kahve redingot, basık kasket, tek tüplü teleskop). Louis arka planda masada z 3.0, u 0.78 (bordo frak, gri şapka masada, baston masaya dayalı, bekler; bulanık).
 - **Giriş/çıkış:** Dormer açık; kimse girmez/çıkmaz.
-- **Zaman çizelgesi:** 0–54 odak **yakın** (pervaz, bıçak, omuz net; kule bulanık) · 10–40 suç ortağı dürbünü gözünden indirmiş, **bıçağıyla pervaza bir çentik daha atar** (dokunuş) · 40–54 dürbünü kaldırır, pervaza dayar · **54–78 odak kayması, kule net** · 78–118 **kule net** (0.67 sn) · **90 uzak kule kolu çentik X'e "klak"** (seçilir) · **116 teleskopu tek hamlede kapatır "şlak"** · 116–132 odak Louis'ye döner, hold (kapanış).
-- **Temas:** **2214 (p+30)** bıçak "kırt" (−4) · **2238 (p+54)** teleskop pervaza "tık" · 2238–2262 odak halkası · **2274 (p+90)** uzak kule "klak" (GENİŞ −8) · **2300 (p+116)** teleskop kapanır "şlak" (YAKIN).
+- **Zaman çizelgesi:** 0–54 odak **yakın** (pervaz, bıçak, omuz net; kule bulanık) · 10–40 suç ortağı dürbünü gözünden indirmiş, **bıçağıyla pervaza bir çentik daha atar** (dokunuş) · 40–54 dürbünü kaldırır, pervaza dayar · **54–78 odak kayması, kule net** · **78–138 kule net (60 kare = 1.0 sn)** · **90 uzak kule kolu çentik X'e "klak"** (seçilir) · **128 teleskopu tek hamlede kapatır "şlak"** (kule net penceresi 78–128 + kapanış jesti; net 1 sn: 78–138 aralığında kule sahnesi görünür) · 128–144 odak Louis'ye döner, hold (kapanış).
+- **Temas:** **2214 (p+30)** bıçak "kırt" (−4) · **2238 (p+54)** teleskop pervaza "tık" · 2238–2262 odak halkası · **2274 (p+90)** uzak kule "klak" (GENİŞ −8) · **2312 (p+128)** teleskop kapanır "şlak" (YAKIN).
 - **Süreklilik:** Dormer + kule P06 çatı dışıyla eşleşir (soldan 2. dormer). Louis bastonu masada. Kol X (P11→P12→P13→P14).
 - **Fizik:** Teleskop pervaza dayanır, çerçeveden geçmez; kule uzak, ölçek derin.
 - **Geçiş (çıkış):** SERT (zaman atlaması "iki yıl"; ses köprüsü şlak → takvim yırtılması).
-- **Ekran yazısı:** "Dürbünün ucunda: Bordeaux" ÜST-BANT, 2190–2310.
-- **Anlatım:** "Bordeaux'da bir suç ortağı bekliyor." **Dokunuş:** pervaza çentik kazıma. Odak kayması kamera aracı (kullanıcı kararı). Net kule süresi 0.67 sn: Bölüm 5, R4.
+- **Ekran yazısı:** "Dürbünün ucunda: Bordeaux" ÜST-BANT, 2190–2322.
+- **Anlatım:** "Bordeaux'da bir suç ortağı bekliyor." **Dokunuş:** pervaza çentik kazıma. Odak kayması kamera aracı (kullanıcı kararı). Net kule süresi 1.0 sn (12 kare P15'ten alınarak sağlandı).
 
-### P15 · kare 2316–2472 · MONTAJ-15
+### P15 · kare 2328–2472 · MONTAJ-15 (144 kare, 2.4 sn)
 - **Kadraj/kamera:** Dikey ikiye bölünmüş, ayraç ahşap kiriş y 948–972, `cs 1.00→1.04`. ÜST (ALTIN-MASA, sıcak, y 220–948): sol Louis'nin defteri (x 120–520, y 700–900), altın yığını (x 380–620, y 780–930), sağ François'nın kadeh tutan eli (x 640–900, y 560–800), sağ-üst takvim bloğu (x 700–960, y 330–600). ALT (TOURS-KULUBE-IC, soğuk, y 972–1500): memur masa başında, elinde **buruşuk beyaz eldiven**, her öksürükte biraz çöker.
-- **Eylem:** 6–36 üç sikke yığına düşer · 20–70 François kadeh kaldırır, bırakır (70) · **40–54 "1835" yaprağı** (diğerlerinden büyük, krem, ~210 px) kopar · 54–110 yaprak ayracın **önünden** alt yarıya süzülür · **112 memurun omzuna konar**, omuz hafifçe çöker · 120–140 takvimde "1836" · 52, 128 öksürük · 140–156 hold.
-- **Temas:** **2324, 2332, 2342** sikke "şıngır" · **2358 (p+42)** takvim yırtılması · **2368 (p+52)** öksürük · **2386 (p+70)** kadeh masaya "tık" · **2428 (p+112)** yaprak omza (kâğıt, çok yumuşak) · **2444 (p+128)** öksürük.
+- **Eylem (12 kare kısaltıldı, hold payı azaldı):** 6–36 üç sikke yığına düşer · 20–70 François kadeh kaldırır, bırakır (70) · **40–54 "1835" yaprağı** (diğerlerinden büyük, krem, ~210 px) kopar · 54–110 yaprak ayracın **önünden** alt yarıya süzülür · **112 memurun omzuna konar**, omuz hafifçe çöker · 118–132 takvimde "1836" · 52, 124 öksürük · 132–144 hold.
+- **Temas:** **2336, 2344, 2354** (p+8,16,26) sikke "şıngır" · **2370 (p+42)** takvim yırtılması · **2380 (p+52)** öksürük · **2398 (p+70)** kadeh masaya "tık" · **2440 (p+112)** yaprak omza (kâğıt, çok yumuşak) · **2452 (p+124)** öksürük.
 - **Süreklilik:** Memur gri ceket, eldiven elinde (kurulum → P16). Ter damlası yok (yalnız P11).
 - **Fizik:** İki yarı tek ahşap çerçevenin iki penceresi; yaprak ayracın önünden geçer. Yaprak kâğıt gibi salınır.
 - **Geçiş (çıkış):** MATCH (memur omuz silueti → P16 yatakta aynı omuz açısı).
-- **Ekran yazısı:** "1834 → 1836" ÜST-BANT, 2322–2466.
+- **Ekran yazısı:** "1834 → 1836" ÜST-BANT, 2334–2466.
 - **Anlatım:** "İki yıl boyunca... herkesten önce bildiler." **Dokunuş:** 1835 yaprağı.
 
 ### P16 · kare 2472–2640 · YATAK-ODASI (gece)
@@ -356,23 +358,23 @@ Toplam 3600 kare = 60.00 sn. Senaryodan tek süre sapması: P09 1.8→2.0 sn, P1
 
 ## 4. Senaryodan sapmalar ve yakalanan sorunlar
 
-1. **P09 1.8 sn (sahne 2–5 sn kuralı).** P09'dan 12 kare P10'a kaydı: P09 2.0 sn, P10 2.2 sn. Toplam değişmez. Senarist onayı gerekir.
+1. **Süre kaydırmaları (onaylı).** P09 1.8→2.0 sn (sahne 2–5 sn kuralı), P10 2.4→2.2 sn (12 kare aktarıldı, orkestra onayladı). P14 2.2→2.4 sn ve P15 2.6→2.4 sn (12 kare P15'ten P14'e, orkestra kararı; kule ≥1 sn net). Toplam 3600.
 2. **P23 "son kare kâğıt yarı açık" ile "ipi çeker" çelişkisi.** Kapalı paketle bitiyor, eşleşen kesme (aynı kamera/paket konumu) döngüyü taşıyor.
-3. **P01 kolun "şak"ı eldivenle aynı karede.** Fiziksel gerekçe: kadraj dışındaki ikinci el regülatörde. Bu bir kanca metaforu, belgeli.
+3. **P01 kolun "şak"ı eldivenle aynı karede.** Fiziksel gerekçe: kadraj dışındaki ikinci el regülatörde. Kanca metaforu, belgeli.
 4. **P12 kurulum eksiği.** Telgrafçının yüzü aşırı yakın planda ilk kez görünüyordu; p+0–24 giriş eklendi.
 5. **P08 ikinci kese.** P07'ye iki kese eklendi.
 6. **P15/P16 memurun eldiveni.** P15'te elde kuruldu, P16'da elde başlar.
 7. **P16/P17 dinleyici/yazan.** Kimliksiz silüet + yazı sehpası P16'da kuruldu.
 8. **P19 eldiven cebi.** Louis'nin cebi P02'den itibaren beyaz köşeyle kuruldu.
-9. **P18 → P19 sol/sağ.** Ters açıda ikizlerin ekran yönü tersine döner (tabloda).
+9. **P18 → P19 sol/sağ.** Ters açıda kardeşlerin ekran yönü tersine döner (tabloda).
 10. **Dürbün.** Dönem: tek tüplü pirinç teleskop; anlatım "dürbün" diyor.
-11. **"İkizler" → "kardeşler".** P02 metni değişti. Açıklama ve EN uyarlamasını senarist güncellemeli.
-12. **dokunuslar.md ile uyum (yaratıcı yönetmen kesin liste).** Plana işlendi: P01 pencere kanca yazısının altında; P03 gün-gece + at yorgunluğu, toz yok; P04 replik bölünmesi (insert "..." boşluğunda, müzik 1.1 sn sessiz); P05 rüzgâr/toz yok; P06 tüy kola + fiske; P07 memurun göz kırpması; P08 parmak tiki + duvar gölgesi (kule kolu yok); P10 çorabı kaldıran el; P11 müzik yalnız kısılır; P14 çentik kazıma; P17 kum serpme (kule kolları statik); P18 sarkaçlı saat, yargıç oturuşu; P19 BERAAT animasyonsuz; P21 sürgü çekiç sarsıntısı sonucu; P22 boya dolgusu + ahşap tık; P23 parmak kabartısı, kule kolu hareketsiz.
-13. **ÇAKIŞMA (kullanıcı kararı vs dokunuş): P14.** Kullanıcı kararı "dürbün maskesiz, omuz üstü suç ortağı + dürbün, odak kayması tüm kadrajda". Yaratıcı yönetmen odak kaymasını P12'ye bırakıp pervaz çentiğini yazdı. Bu planda **ikisi birlikte**: odak kayması kamera aracı (kullanıcı kararı), dokunuş pervaz çentik kazıma (yaratıcı yönetmen). Bedeli: net kule 0.67 sn (ideal 1 sn). Onay gerek: R4.
+11. **"Kardeşler".** P02 metni ve bu belgedeki tüm ifadeler "kardeşler"; "ikiz/twins" geçen yer kalmadı. Senaryo v2.1 açıklamasındaki bilinçli yumuşak ifade senaristte.
+12. **dokunuslar.md ile uyum.** Plana işlendi: P01 pencere kanca yazısının altında; P03 gün-gece + at yorgunluğu, toz yok; P04 replik bölünmesi; P05 rüzgâr/toz yok; P06 tüy kola + fiske; P07 memurun göz kırpması; P08 parmak tiki + duvar gölgesi (kule kolu yok); P10 çorabı kaldıran el; P11 müzik yalnız kısılır; P14 çentik kazıma; P17 kum serpme; P18 sarkaçlı saat; P19 BERAAT animasyonsuz; P21 sürgü çekiç sarsıntısı sonucu; P22 boya dolgusu + ahşap tık; P23 parmak kabartısı, kule kolu hareketsiz.
+13. **P14 (kullanıcı kararı + dokunuş birlikte).** Odak kayması kamera aracı (kullanıcı kararı), dokunuş pervaza çentik (yaratıcı yönetmen). Orkestra kararıyla plan 144 kareye çıktı; kule 78–138 arasında 1.0 sn net.
 14. **P04 insert ızgarası.** Proto FareInsert ızgarası (400,1446) ALT-BANT altyazıyla çakışır; insert (400,1130)'a kaldırıldı.
 15. **P10 açısı.** 90° tepe açıda sarkan çorap okunmazdı; 55° eğik açıya alındı.
-16. **P18 konuşma süresi.** "bin sekiz yüz otuz yedi. Mahkeme." ~1.6 sn; 0.6 sn sessizlik plan sonuna kondu (önceki taslakta konuşma 1 sn'ye sıkışıyordu).
-17. **Hareket tamamlanır/kapanış:** her planda yazıldı (P03 at durur, P05 araba durur, P06 saat çat, P07 çekmece hold, P09 manşet, P12 kaş hold, P13 ufuk kule, P16 parmaklar, P20 güve çıkışı, P21 sürgü net, P23 paket kapalı).
+16. **P18 konuşma süresi.** "bin sekiz yüz otuz yedi. Mahkeme." ~1.6 sn; 0.6 sn sessizlik plan sonuna kondu.
+17. **Hareket tamamlanır/kapanış:** her planda yazıldı.
 18. **Dönem:** %3 rente (kâğıt para yok), ipe asılı réverbère, Notre-Dame yok, regülatör T biçimli, 1830'lar sarkaçlı saat ve kurutma kumu.
 
 ---
@@ -383,8 +385,8 @@ Toplam 3600 kare = 60.00 sn. Senaryodan tek süre sapması: P09 1.8→2.0 sn, P1
 |---|---|---|---|
 | R1 | P04 | Replik bölündü ama insert 66 kare, göz kırpma ve şapka dönüşte; "kazanır" 146–176 | Göz kırpma ilk kısalır. Baston TAK (p+108) kaymaz. Insert ızgarası (400,1130)'a kaldırılacak |
 | R2 | P19 | Parmak parmak eldiven + cepten çıkış 2 sn'de; rig'de parmak yok | Ayrı vektör "EldivenEl" insert varlığı (motion) |
-| R3 | P15 | Bölünmüş montaj; yaprak ayracı geçer, omza konar | Üç katman; yaprak eğri parametreli |
-| R4 | P14 | Hem odak kayması hem çentik kazıma: kule net yalnız 0.67 sn; swangle'da blur yavaş | Onay: P14'e 12 kare (P15'ten) eklensin mi (net 1 sn)? Blur için iki katman (ön/arka) keskin+bulanık, kare başı katman değişimi |
+| R3 | P15 | Bölünmüş montaj; yaprak ayracı geçer, omza konar; plan 144 kareye kısaldı | Üç katman; yaprak eğri parametreli. Hold payı 12 kare |
+| R4 | P14 | Odak kayması tüm kadrajda: swangle'da blur yavaş; kule net 1.0 sn (78–138) | İki katman (ön/arka) keskin+bulanık, kare başı katman değişimi; stil karesinde (2264) önce test |
 | R5 | P22 | Wi-Fi morfu neon'a kayabilir | Tahta dokusu, yanma = boya dolgusu; eleştirmen kontrolü |
 | R6 | P02 | 12 figürlük kalabalık + 60 fps | Kalabalık statik siluet, 3 figür animasyonlu |
 | R7 | P12/P13 | Aşırı yakın göz/kaş ve esneme telefonda okunmalı; rig'de kaş, esneme var mı | Motion erken söylesin; yoksa büyük vektör parçaları |
@@ -410,13 +412,13 @@ Toplam 3600 kare = 60.00 sn. Senaryodan tek süre sapması: P09 1.8→2.0 sn, P1
 | SOKAK-BORDEAUX | P04 | **724** | François şapka kalkık, sırıtış; fener, sis, gemi direkleri: prototip kimliği Bordeaux'ya oturur |
 | PARIS-AVLU | P09 | **1506** | Paket oturur, çizme, "TOURS" etiketi, araba, gri manşet |
 | CATI-BORDEAUX | P06 | **1012** | Güvercin çıkışı, tüy, dormer, uzak kule, şafak |
-| CATI-KATI | P14 | **2264** | Kule net, ön plan bulanık: odak kayması en zor render; pervaz çentikleri bulanık görünür |
+| CATI-KATI | P14 | **2264** | Kule net (78–138 aralığı), ön plan bulanık: odak kayması en zor render; pervaz çentikleri bulanık görünür |
 | KULE-DIS | P13 | **2128** | Geri çekilmiş kadraj: kulübe, kendi direk, ufuk kulesi |
 | YATAK-ODASI | P16 | **2520** | Orta plan: yatak, mum, pencere kule, sandalye silüeti, ceket |
 | MAHKEME | P18 | **2850** | Huzmeler, kürsü, saat, jüri: en kalabalık geniş kadraj |
 | KANUN-INSERT | P20 | **3148** | Güve açık, boş sayfa, huzme |
 | TOURS-KAPI | P21 | **3258** | Sürgü düştü: ilan, mühür, direk, kapı |
-| MONTAJ-15 | P15 | **2428** | Yaprak omza konarken iki yarı + ayraç |
+| MONTAJ-15 | P15 | **2440** | Yaprak omza konarken iki yarı + ayraç |
 | WIFI-MORF | P22 | **3438** | Tam Wi-Fi ikonu: tahta dokusu / neon kontrolü |
 | PARIS-MASA | P23 | **3582** | Düğüm sıkıldı, kabartı yatışıyor: P01 ile kompozisyon eşleşmesi |
 | Rig doğrulama (opsiyonel) | P19 | **3008** | Eldiven insert eli: parmak vektörü |

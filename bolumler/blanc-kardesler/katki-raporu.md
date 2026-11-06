@@ -69,8 +69,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - Tours kulübesinde tek düzen: pencere A (direk ~5 m dışarıda) ve pencere B (önceki kule); regülatör pencere tezgâhında. P01, P08, P11, P17, P21 aynı kuleyi tutarlı gösteriyor.
   - Ekran yazısı iki banda ayrıldı: ÜST (y 240–400) etiketler, ALT (y 1290–1490) altyazılar ve üstte içerik yoğunsa etiket (P12, P19, P21, P22).
   - Louis'nin bastonu plan plan kilitlendi. Eldiven cebi P02'den itibaren beyaz köşeyle kuruldu (P19 hazırlığı).
-  - P18 (arkadan) ve P19 (ters açı) arasında ikizlerin ekran yönü kasıtlı olarak tersine döner (Louis P19'da solda).
-  - **P14 çakışması:** Kullanıcı kararı (omuz üstü + odak kayması tüm kadrajda) ile yaratıcı yönetmen dokunuşu (pervaza çentik) birlikte uygulandı: odak kayması kamera aracı, dokunuş çentik kazıma. Bedel: kule net yalnız 0.67 sn.
+  - P18 (arkadan) ve P19 (ters açı) arasında kardeşlerin ekran yönü kasıtlı olarak tersine döner (Louis P19'da solda).
+  - **P14 çakışması:** Kullanıcı kararı (omuz üstü + odak kayması tüm kadrajda) ile yaratıcı yönetmen dokunuşu (pervaza çentik) birlikte uygulandı: odak kayması kamera aracı, dokunuş çentik kazıma. (İlk taslakta bedel kule net 0.67 sn idi; orkestra kararıyla çözüldü, aşağıdaki ek satıra bak.)
   - P04 insert ızgarası (proto: (400,1446)) ALT-BANT altyazısıyla çakıştığı için (400,1130)'a kaldırıldı.
   - P10 90° tepe açı yerine 55° eğik açı (sarkan çorap okunsun).
   - P23'te kule kolu hareket ettirilmedi (dokunuş tekrarı olmasın). Tasarımcı "kol ILK'e klak" yazmış; geçerli olan: kol A'da sabit.
@@ -81,8 +81,11 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - YAKALANAN: P23 "yarı açık kâğıt" çelişkisi (kapalı paket + eşleşen kesme). P18'de "1837. Mahkeme." konuşması 1 sn'ye sıkışmıştı, 0.6 sn sessizlik plan sonuna alındı.
   - Temas=ses, görünürlük=ses: görünmeyen kaynak yok; P22 tıkları "ses olayı" olarak işaretli. Fade yok. Dönem: teleskop, T regülatör, sarkaçlı saat, kurutma kumu.
 - Açık sorular / bir sonraki ajana notlar:
-  - SENARİST: (1) P09/P10 süre kaydırması onayı. (2) Açıklama metni ve EN uyarlama "ikiz/twins" diyor. (3) P12'ye 0.4 sn giriş eklendi. (4) P14 GÖRSEL satırı hem odak kaymasını hem pervaz çentiğini içerecek şekilde güncellenmeli; kullanıcı kararı gerek: net kule 0.67 sn kabul mü, yoksa P15'ten 12 kare alınıp P14 144 kare mi olsun?
+  - SENARİST: (1) P12'ye 0.4 sn giriş eklendi. (2) P14 GÖRSEL satırı hem odak kaymasını hem pervaz çentiğini içerecek şekilde güncellenmeli. (Süre kaydırmaları orkestra tarafından onaylandı.)
   - SES: Anlatım kareleri tahmini. Foley görüntüye kilitli. P04 müzik sessizliği 1.1 sn (insert), P12 tam sessizlik, P17 0.3, P18 0.6.
   - MOTION: P19 parmak parmak eldiven için rig'de parmak yok (ayrı insert varlığı). P12/P13 kaş ve esneme, P08 el–gölge rig kontrolü. P04 FareInsert 2.45 sn → 66 kare (TAP 1.5 sn → p+30'a; ızgara (400,1130)). P14 odak kayması ve P15 yaprak yolu en pahalı.
   - TASARIMCI: tasarim.md'yi güncel sahne-plani.md'ye göre kontrol et (P06 tüy sol önkola konar, saat sahne elemanı; P17 kum; P23 kol sabit). Yazı sehpası (kâğıt, hokka, kum kutusu) P16'da kurulu olmalı. Paris adamı manşeti (gri, sağ manşette altın düğme) ile P21 görevlisi (siyah kol, beyaz manşet) ayırt edilmeli.
   - KURGU/MÜZİK: P11 müzik yalnız kısılır; P23→P01 kesintisiz pizzicato döngüsü.
+
+## yonetmen · 2026-11-06 · Orkestra kararları uygulandı (ek)
+- P14 144 kare (2184–2328, kule 78–138 arası 1.0 sn net, odak kayması + pervaz çentiği birlikte), P15 144 kare (2328–2472); P14'ten sonraki karelerde P15 temasları 12 kare kaydı, P16 ve sonrası değişmedi, toplam 3600. P09/P10 aktarımı onaylı. "İkiz/twins" ifadeleri sahne planında "kardeşler" yapıldı. Dosyalar: sahne-plani.md, sahne-plani.json. Açık: tasarim.md P14/P15 kareleri (stil karesi P15 → 2440, P14 şlak → 2312) güncellenmeli.

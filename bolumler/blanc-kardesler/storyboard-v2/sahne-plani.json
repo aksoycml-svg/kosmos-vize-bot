@@ -8,7 +8,7 @@
   "guvenli_alan": { "ust": 220, "alt": 420, "yan": 80 },
   "yazi_bantlari": { "UST": { "y": [240, 400], "x": [80, 1000] }, "ALT": { "y": [1290, 1490], "x": [80, 1000] } },
   "koordinat": "z: 1=kameraya yakin, buyudukce uzak (ZMAX 7); u: 0=sol kenar..1=sag kenar. kamera: cs olcek, cx/cy px kayma. kare = sn*60; temas kareleri MUTLAK",
-  "kaydirilan_sure": "P09 120 kare (2.0 sn), P10 132 kare (2.2 sn); senaryodan 12 kare kayma, toplam sabit",
+  "kaydirilan_sure": "ONAYLI: P09 120 kare (2.0 sn), P10 132 (2.2); P14 144 kare (2.4 sn), P15 144 (2.4); toplam 3600 sabit",
   "kaynak_dokunuslar": "storyboard-v2/dokunuslar.md islendi",
   "planlar": [
     {
@@ -245,9 +245,9 @@
       "ekran_yazisi": { "metin": "Kimse durdurmadı. Herkes kopyaladı.", "bant": "UST", "kare_araligi": [2034, 2178] }
     },
     {
-      "id": "P14", "start_frame": 2184, "end_frame": 2316, "mekan": "CATI-KATI", "tip": "tower",
+      "id": "P14", "start_frame": 2184, "end_frame": 2328, "mekan": "CATI-KATI", "tip": "tower",
       "dokunus": "pervaza centik kazima (odak kaymasi kamera araci, kullanici karari)",
-      "kamera": "OTS maskesiz, odak kaymasi tum kadrajda: p+0-54 yakin net; p+54-78 rack; p+78-118 kule net; p+116-132 Louis; cs 1.00->1.05; pencere x380-900 y380-1000; pervaz+bicak x80-620 y1000-1290",
+      "kamera": "OTS maskesiz, odak kaymasi tum kadrajda: p+0-54 yakin net; p+54-78 rack; p+78-138 kule net (60 kare = 1.0 sn); p+128 teleskop kapanir on planda; p+128-144 Louis; cs 1.00->1.05; pencere x380-900 y380-1000; pervaz+bicak x80-620 y1000-1290",
       "karakterler": [
         { "ad": "suc ortagi", "z": 1.5, "u": 0.30, "not": "koyu kahve redingot, basik kasket, tek tup teleskop" },
         { "ad": "Louis", "z": 3.0, "u": 0.78, "not": "masa basinda, baston masaya dayali, bulanik" }
@@ -257,28 +257,28 @@
         { "kare": 2238, "olay": "teleskop pervaza tik", "seviye": "YAKIN" },
         { "kare": 2238, "olay": "odak halkasi (2238-2262)", "seviye": "YAKIN" },
         { "kare": 2274, "olay": "uzak kule klak (centik X)", "seviye": "GENIS" },
-        { "kare": 2300, "olay": "teleskop kapanir slak", "seviye": "YAKIN" }
+        { "kare": 2312, "olay": "teleskop kapanir slak", "seviye": "YAKIN" }
       ],
       "gecis_cikis": "SERT (zaman atlamasi; slak -> takvim yirtilmasi ses koprusu)",
-      "ekran_yazisi": { "metin": "Dürbünün ucunda: Bordeaux", "bant": "UST", "kare_araligi": [2190, 2310] }
+      "ekran_yazisi": { "metin": "Dürbünün ucunda: Bordeaux", "bant": "UST", "kare_araligi": [2190, 2322] }
     },
     {
-      "id": "P15", "start_frame": 2316, "end_frame": 2472, "mekan": "MONTAJ-15", "tip": "chart",
+      "id": "P15", "start_frame": 2328, "end_frame": 2472, "mekan": "MONTAJ-15", "tip": "chart",
       "dokunus": "1835 takvim yapragi",
       "kamera": "dikey bolunmus, ayrac y948-972, cs 1.00->1.04; ust y220-948 ALTIN-MASA, alt y972-1500 TOURS-KULUBE-IC",
       "karakterler": [{ "ad": "memur", "konum": "alt yari", "not": "gri ceket, elinde buruk beyaz eldiven" }],
       "temaslar": [
-        { "kare": 2324, "olay": "sikke yigina sigir", "seviye": "ORTA" },
-        { "kare": 2332, "olay": "sikke sigir", "seviye": "ORTA" },
-        { "kare": 2342, "olay": "sikke sigir", "seviye": "ORTA" },
-        { "kare": 2358, "olay": "takvim 1835 yirtilir", "seviye": "YAKIN" },
-        { "kare": 2368, "olay": "memur oksuruk", "seviye": "ORTA" },
-        { "kare": 2386, "olay": "kadeh masaya tik", "seviye": "ORTA" },
-        { "kare": 2428, "olay": "yaprak memurun omzuna konar", "seviye": "YAKIN" },
-        { "kare": 2444, "olay": "memur oksuruk", "seviye": "ORTA" }
+        { "kare": 2336, "olay": "sikke yigina sigir", "seviye": "ORTA" },
+        { "kare": 2344, "olay": "sikke sigir", "seviye": "ORTA" },
+        { "kare": 2354, "olay": "sikke sigir", "seviye": "ORTA" },
+        { "kare": 2370, "olay": "takvim 1835 yirtilir", "seviye": "YAKIN" },
+        { "kare": 2380, "olay": "memur oksuruk", "seviye": "ORTA" },
+        { "kare": 2398, "olay": "kadeh masaya tik", "seviye": "ORTA" },
+        { "kare": 2440, "olay": "yaprak memurun omzuna konar", "seviye": "YAKIN" },
+        { "kare": 2452, "olay": "memur oksuruk", "seviye": "ORTA" }
       ],
       "gecis_cikis": "MATCH (memur omuz silueti)",
-      "ekran_yazisi": { "metin": "1834 → 1836", "bant": "UST", "kare_araligi": [2322, 2466] }
+      "ekran_yazisi": { "metin": "1834 → 1836", "bant": "UST", "kare_araligi": [2334, 2466] }
     },
     {
       "id": "P16", "start_frame": 2472, "end_frame": 2640, "mekan": "YATAK-ODASI", "tip": "character",
@@ -427,7 +427,7 @@
     { "mekan": "MAHKEME", "plan": "P18", "kare": 2850 },
     { "mekan": "KANUN-INSERT", "plan": "P20", "kare": 3148 },
     { "mekan": "TOURS-KAPI", "plan": "P21", "kare": 3258 },
-    { "mekan": "MONTAJ-15", "plan": "P15", "kare": 2428 },
+    { "mekan": "MONTAJ-15", "plan": "P15", "kare": 2440 },
     { "mekan": "WIFI-MORF", "plan": "P22", "kare": 3438 },
     { "mekan": "PARIS-MASA", "plan": "P23", "kare": 3582 }
   ]
