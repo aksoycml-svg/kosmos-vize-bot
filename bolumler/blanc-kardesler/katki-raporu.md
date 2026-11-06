@@ -147,3 +147,27 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 
 ## senarist · 2026-11-06 · Senaryo DOKUNUŞ/SES hizalaması (ek)
 - Koordinatör onayıyla senaryo-v2.md'nin tüm DOKUNUŞ ve ilgili SES/GÖRSEL hücreleri dokunuslar.md'ye hizalandı (P03, P04, P05, P06, P07–P10, P15–P23; P08 el–gölge, P17 kurutma kumu dahil; v2.1 madde 7), kurutma kumu dramatizasyon maddesi koşulsuz yapıldı, P23 paket kapalı biter + eşleşen kesme; önceki bölümdeki "açık soru (1)" bununla kapandı. Bilinen kusur: senaryo-v2.md checklist CTA satırında "ssorusu" yazım hatası var (bir sonraki düzenlemede "sorusu" yapılmalı).
+
+## mekân sorumlusu (production designer) · 2026-11-06 · Mekân şartnamesi (mekanlar.md)
+- Ne yaptım: `storyboard-v2/mekanlar.md` yazıldı. (1) Ortak doku sistemi: 5 kural (stil sabit/ışık değişken, seed sabit, saf siyah/beyaz yok, mesafeyle sadeleşme, en fazla 3 doku katmanı), sayısal ortak katmanlar (kontur ailesi 3/4/6/8 px, kontur titremesi displacement 1.2–3.0, sabit kâğıt lifi PNG, gren karosu + 15 Hz ofset, sıcak vinyet, derecelendirme), 26 malzemelik kütüphane (TAS-BDX, TUFFEAU, TAS-PARIS, SIVA, meşe/ceviz/döşeme/boyalı ahşap, JALUZI, arduvaz, tuile canal, çinko, demir, pirinç, eski cam, paket/arşiv kâğıdı, yün/keten/çuha, deri, balmumu, ıslak/kuru kaldırım, ova, gök, sis/toz) için doku tarifi + kod yöntemi + parametre; ışık katmanı sözleşmesi; `src/doku/` modül API önerisi (TasDuvar, AhsapYuzey, CatiOrtusu, PencereEskiCam, KagitYuzey, Kumas, MetalVurgu, IslakKaldirim, IsikKatmani, Huzme, KonturTitreme, KesmeBulut, ArsivKatmani, ChappeKule, SaintMichel, DurbunKutusu, Manipulator, PostaArabasi) ve pişirilmiş plaka performans stratejisi. (2) Şehir ayrışma tablosu (taş, çatı, nehir/ufuk, ışık, imza siluet, baskın şekil). (3) 12 mekân kartı: duygusal amaç, görsel dil, 9:16 kompozisyon/güvenli alan, kaçış noktası ve kamera yüksekliği, malzeme-doku tablosu, palet, ışık/gölge yönü, dönem/kaynak, dokunuş yüzeyleri. (4) 23 planlık ışık eğrisi tablosu (sıcaklık, kontrast, APL) ve okunuşu. (5) 4 Gemini mood referansı (`storyboard-v2/mood/`).
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/storyboard-v2/mekanlar.md (yeni), bolumler/blanc-kardesler/storyboard-v2/mood/mood-01-tours-kulube-ic.png, mood-02-sokak-bordeaux.png, mood-03-cati-bordeaux-saint-michel.png, mood-04-sehir-ayrismasi.png (yeni), bolumler/blanc-kardesler/katki-raporu.md (bu bölüm). Kod dosyalarına dokunulmadı.
+- Aldığım kararlar ve gerekçeleri:
+  - donem-dogrulama.md uygulandı: direk gök mavisi, kollar siyah + sabit jaluzi, karşı ağırlık gri; kulelerde iki sabit dürbün kutusu; manipülatör kablo+makara ile, jest itme/çekme; Bordeaux sinyali Saint-Michel çan kulesinden (P06, P14; P04'te silik siluet önerisi); Bordeaux çatıları %70 tuile canal, düşük eğim; tuffeau beyaz + sarı/gri lekeler; posta arabası gri-puce, armasız; mahkeme tokmaksız masa düzeni (yeşil çuha, iple bağlı ciltli dosya, karar kâğıdı; tokmak seçilirse de çalışır), arka duvar boş lambri, cübbe tek koyu ton; P15 takvim yok, defter.
+  - Saint-Michel 1834'te külahsız (kesik tepe + Chappe), "doğrulanmalı" işaretiyle (koordinatör kararı).
+  - Tours kulübesi kulenin üst katı: zemin ahşap döşeme, kapı merdiven sahanlığına açılır.
+  - Pencere A–direk mesafesi için iki seçenek; önerilen 12 m (tam T siluet, P01 kancası ve P22 morfu için), kaynaktan küçük sapma açıkça yazıldı.
+  - P01/P10/P23 ışığı "geç gün ışığı" (telgraf gece çalışmaz). P05 harita gündüz sabit.
+  - P23 Paris olsa da P01 plakasıyla birebir aynı (döngü, şehir kuralına bilinçli istisna).
+  - Telgrafçı zeytin yeşili (koordinatör kararı).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Harita.tsx: "⚡" glifi (elektrik anlamı, "Elektrik yok" ile çelişir; font aralığı dışında), "☀ ☾" glifleri font dışı, dikdörtgen "YALNIZCA DEVLET" damgası mühür kararıyla çakışıyor, posta tozu (dokunuştan çıkarılmıştı), aktif kule kırmızı, raster araba "POSTES ROYALES" + arma.
+  - ChappeTower.tsx: kırmızı göstergeler, siyah direk, oran 3.1:1 (gerçek 2.3:1).
+  - FilmLook: her karede yeni gren seed'i (doku kaynar, swangle'da pahalı), saf siyah vinyet; FilmLook/Paper sabit filtre id'leri çakışabilir.
+  - Sokak.tsx Paris'e özgü (Notre-Dame, mor sıva, yüksek arduvaz, %35 yarı ahşap) → `sehir` parametresi önerildi.
+  - mood-04 Paris paneli Haussmann tipi çıktı (anakronik): kullanılmaz diye işaretlendi. Eski final/*.png kareleri yalnız yön referansı.
+  - Güvenli alan: her kartta üst 220 / alt 420 px'in ayrıntısız yüzeyle dolması tanımlandı.
+- Açık sorular / bir sonraki ajana notlar:
+  - YÖNETMEN/KULLANICI: pencere A–direk mesafesi (Seçenek 1/2); P11'de memur pencere B'deki sabit dürbünle baksın; P04 Saint-Michel silueti; mahkeme arka duvarı boş; P07'de François merdiven sahanlığında.
+  - ARAŞTIRMACI (mekanlar.md bölüm 7, 14 soru): öncelik Saint-Michel'in 1830'lardaki tepesi ve Chappe kurulumu, Paris–Bordeaux telgraf güzergâhı (Harita P05), "gece çalışmaz" birincil kaynağı, Tours çatısı arduvaz mı, dinlenme konumu, 1837 Tours mahkeme binası.
+  - MOTION: önce `ArsivKatmani` + `kagit-lif.png` + `gren-512.png` + `ChappeKule` (her planı etkiler), sonra mekân plakaları pişirilerek. Doku seed'leri `DOKU_SEED` tablosunda.
+  - ELEŞTİRMEN: kontrol karelerinde şehir testi (ses kapalı ilk 0.5 sn), saf siyah/beyaz yokluğu, kırmızının yalnız mühür/hata/vurguda kalması.
