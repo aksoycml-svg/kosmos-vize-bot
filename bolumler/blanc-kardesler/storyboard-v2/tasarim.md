@@ -4,6 +4,8 @@ Hazırlayan: tasarimci · 2026-11-06 · **v2.1:** `donem-dogrulama.md` (araştı
 Girdi: `senaryo-v2.md` (v2.1), `arastirma.md`, `karakter/*`, `src/theme.ts`, `src/rig/Kukla.tsx`, `src/bolumler/blanc/proto/Sokak.tsx`, `src/components/ChappeTower.tsx`, `Harita.tsx`, `final/araba-yesil.png`, `final/S06.png`.
 Bu belge **tasarımdır, kod değildir.** Kod bloğundaki sabitler motion'a öneridir, hiçbir dosyaya yazılmadı.
 
+**v2.2 (eleştiri B + CLAUDE.md yeni kuralları):** Yeni bölümler: **3.1 PaketKagidi modülü** (yumuşak kâğıt paket; kutu/koli değil; kapalı/yarı açık/açık/kabartılı), **3.2 Bayrak (tricolore) çizim tanımı**, **2.11 Tüccar kartı** (motion'ın uyguladığı hâl), **2.12 Memur kolu + eli (`KolEl` modülü)**. Borsa salonundan tricolore kalktı (1.1). Paletlere `MEMUR_EL` genişletildi, `TUCCAR` güncellendi (bölüm 6).
+
 **Kapsam notu:** Mekân kartlarının derinleştirmesini artık mekan-sorumlusu ajan `storyboard-v2/mekanlar.md` içinde yapıyor. Bu dosyada **karakter, prop, tipografi ve kimlik** bölümleri güncel; **mekân kartları (Bölüm 1) için yalnız yanlışlar düzeltildi.** Her kart (1.1–1.12) için **ayrıntı: mekanlar.md**; çakışırsa mekanlar.md önceliklidir, dönem doğruluğu sorularında `donem-dogrulama.md`.
 
 Etiketler (her dönem iddiasının yanında):
@@ -104,7 +106,7 @@ Ayak ve baston ucu daima `zemin(z,u).y` değerine basar.
 
 ### 1.1 BORSA (P02) — ayrıntı: mekanlar.md
 **Düzeltme:** Önceki "krem kireçtaşı" iddiası kaldırıldı. Palais de la Bourse (Gabriel, 1742–1749) borsa olarak biliniyor [D~]; **1830'lardaki iç düzeni ve fiyat ilanı biçimi bulunamadı [D?]**. Cam tonoz sonradan eklenmiş olabilir: açık avlu/portikli salon çiz, belirli iç mekân kopyalama. Tebeşirli tahta **dramatizasyon**; açıklamada belirtilsin (araştırmacı önerisi: ciltli defter + haykıran agent alternatif).
-- **Amaç:** "Bordeaux'lu kardeşler... tahvile oynuyor." Sıcak altın öğle. Tahta başlığı **"PARIS · RENTE 3%"** (P02→P03 MATCH); gerçek fiyat iddiası yok. Kalem kaz tüyü + hokka [G]; kâğıt para yok; salon girişinde sarkık tricolore [CLAUDE].
+- **Amaç:** "Bordeaux'lu kardeşler... tahvile oynuyor." Sıcak altın öğle. Tahta başlığı **"PARIS · RENTE 3%"** (P02→P03 MATCH); gerçek fiyat iddiası yok. Kalem kaz tüyü + hokka [G]; kâğıt para yok. **Tricolore bu salondan kaldırıldı** (eleştirmen B BB3): ulusal bayrağın 1830'dan beri var olması iç mekânda asılı olduğunu kanıtlamaz ("kanıtsız dönem detayı nötr kalır") ve kadrajın en doygun lekesi olarak tahtadan göz çalıyordu. Bordeaux'yu taş, pilastr ve ışık söyler. **Kemer:** pencere/niş **yuvarlak (plein cintre) ya da basık** kemer + kilit taşı; **sivri (gotik) kemer yok** (Palais de la Bourse 18. yy klasik, eleştirmen B BB1), pencere oranı ≈ 1:2.
 - **Düzen:** tahta x 300–780, y 400–760; katip estradında (z 5.5, u 0.50, merdiven kadraj sol-arka); François z 2.2/u 0.40, tüccar z 2.2/u 0.24, Louis z 2.3/u 0.62; 10–12 siluet kalabalık (3 animasyonlu).
 - **Palet:** duvar taşı `#d8c49a` (sarımsı-bal) · gölge `#a58f68` · sütun `#efe2bd` · dama `#cbbd9c / #8b7b5c` · korkuluk `#5b3d25` · tahta `#1f2a26` · tebeşir `#f3eddc` · siluetler `#5a4a3c → #9a8a74`. Işık sol-üst, gölge sağ-aşağı.
 - **Not:** Tebeşir "çıt" + toz çizgisi tahtada; Louis dönmez. Louis'nin cebinden beyaz eldiven köşesi (bölüm 2.2).
@@ -125,7 +127,7 @@ Ayak ve baston ucu daima `zemin(z,u).y` değerine basar.
 **Uzak katman:** Notre-Dame çıkar; 4 direk x = 452, 512, 566, 628; üstler y = 760, 650, 720, 800; seren, sarılı yelken, halat; tepede amber fener; gövde bandı y 1090–1130; 3 sis düzlemi `#6e7aa6` (α .35/.25/.5). İsteğe bağlı çok uzak **Saint-Michel çan kulesi** silueti (bölüm 1.7 uyarısıyla).
 **Palet (gece):** gök `#070b1f → #1b2852 → #40507e`, ay `#f2f0e6`, kenar ışığı `#c4d6ff`, amber `#ffb357 / #ff9a40 / #ffd98f`, panjur `#2f4a40 / #4a3328 / #33405a`.
 **Perspektif:** `Sokak.tsx` gerçek tek nokta değil (`sz(z)` doğrusal); cephe tepe çizgileri y ≈ 838'de birleşir, zemin ufku y ≈ 977, sokak ucu `z = 7` ⇒ y = 1130, x 410–670. Türetme: `Sokak.tsx` (`uzak` prop'u, `SIVA`, çatı varyantı), P04 insert `FareInsert.tsx` (ızgara z 2.2, u 0.58).
-**Not:** Baston ucu taşa gömülmez; tricolore sırası doğru.
+**Not:** Baston ucu taşa gömülmez; baston **Louis'nin dış elinde**, tutan el görünür (eleştirmen B SK1). **P04'te kullanıcı bir tricolore istiyor:** konumu mekân sorumlusu (mekanlar.md) belirler; çizim tanımı (oran, şerit sırası, kumaş, gönder) bölüm **3.2**.
 
 ### 1.4 TOURS-KULUBE-IC (P01, P07, P08, P10, P11, P15 alt) — ayrıntı: mekanlar.md
 **Düzeltmeler**
@@ -233,6 +235,7 @@ Ahşap dokulu, neon yok; yaylar `boyaKrem #e6c88c` ile **alttan yukarı dolar**;
 - **Kostüm:** gri redingot `#6b6a66`, dirsek/manşet yama (`#5a5953`), soluk yelek `#5a5347`, eski keten kravat `#b9b29d`, pantolon `#4b4741`; çıplak eller; **sol göğüs cebinde beyaz eldiven köşesi** (P01 kol, P07, P08, P11, P15).
 - **Silüet farkı:** tek şapkasız ana karakter, **dar** (`scaleX 0.86`, `scaleY 1.02`), hafif öne eğik, seyrek saç.
 - **Rig:** `MEMUR`; şapkasız için `sapkaTip: "yok"` (öneri). **Evrim:** `MEMUR` → `MEMUR_HASTA` (P15 alt) → `MEMUR_YATAK` (P16–P17: gece gömleği, takke, terli parlama; ceket askıda).
+- **Kol ve el çizimi:** bölüm **2.12** (`KolEl`); P01'de kol "tek parça kalas" okunuyordu (eleştirmen B TB3), koni + dirsek + kırışık + manşet ile yeniden tanımlandı.
 - **Oyunculuk:** P07 çekmece çarpınca göz kırpma; **P08 parmak ucu "kol itip çeker gibi" üç tık** (manipulateur kablo/makara [D✓]); P11 sapı iki elle iter-çeker, ter; P15 öksürük (omuz bir tık düşer).
 
 ### 2.4 Müdür (Tours istasyon müdürü)
@@ -264,7 +267,41 @@ Siyah redingot `#2d2b28`, gri yelek `#8a8a80`, **siyah kol koruyucuları** overl
 Keten bluz `#b8a882`, deri yelek `#5a3f28`, pantolon `#4a3b2c`, geniş kenarlı yağmurluk şapka `#2b2420`, diz üstü çizme `#2a1d14`. **Özel statik oturan figür** (yüzsüz), yalnız sağ bacak/çizme animasyonlu; **sağ ayağı kutu korkuluğunda**; paketi **topuğuyla** durdurur; plan başından kadrajda.
 
 ### 2.10 Kompars seti (isimsiz)
-Borsa kalabalığı (10–12 siluet, 3 animasyonlu), **tüccar** (kısa, kahverengi, yüzlü `TUCCAR`, `scale 0.9`), seyirci (8–10 siluet), **12 kişilik sivil jüri** (siluet, [T]), **yargıçlar** (3, tek koyu ton cübbe, statik). Jandarma yok. Yüzsüz siluet filtresi, ayak temas gölgesi.
+Borsa kalabalığı (10–12 siluet, 3 animasyonlu), **tüccar** (yüzlü, bkz. 2.11), seyirci (8–10 siluet), **12 kişilik sivil jüri** (siluet, [T]), **yargıçlar** (3, tek koyu ton cübbe, statik). Jandarma yok. Yüzsüz siluet filtresi, ayak temas gölgesi.
+
+### 2.11 Tüccar (P02) — motion'ın uyguladığı hâl
+- **Rol:** François'nın gülerek omzundan tuttuğu Bordeaux tüccarı; kalabalığın tek **yüzlü** isimsiz figürü. Tebeşir kırılınca kalabalıkla birlikte tahtaya bakar (kaş kalkık, ağız "O").
+- **Kostüm / yüz (`TUCCAR_V`):** **kır saç ve kır sakal** `#9a958a` (`sakal: true`), **bıyıksız** (`biyik: "yok"`), geniş favori (`sideburn 1.8`), belirgin burun (`burun 1.2`), **geniş kenarlı şapka** (`sapka: "genis"`, `#4a3a26`, şerit `#2a2016`), hardal-kahve redingot `#7a5a2e` (koyu `#54401f`, açık `#9a7844`), hardal yelek `#a58a4a`, krem kravat `#d8d0bb`, pantolon `#3a3530`.
+- **Silüet farkı:** **tıknaz** (dış sarmalayıcı `scale(1.12, 1)`), **kısa** (`scale × 0.95`), geniş kenarlı şapka (kardeşlerin silindirinden ve kalabalığın silindirlerinden ayrılır), sakal. Ana kadronun yüzü kopyalanmaz (CLAUDE: kompars ayrışır). Kalabalık 4 iki tonlu yüzsüz varyanttan oluşur (silindir/geniş şapka, sakallı/sakalsız).
+- **Dönem:** geniş kenarlı şapka ve çene sakalı 1830'larda yaşlı/taşralı kesim için olası [G ◐]; baskın moda silindir olduğu için "farklı kişi" ipucu olarak kullanılıyor, tarihî iddia değil.
+- **Konum / oyunculuk:** z 1.6, u 0.20, `facing +1` (François'ya dönük); François'nın sağ kolu tüccarın omzuna `kolIK` ile gider (omuz noktası rig yerel (50, −352)). Reaksiyon: `lookY −0.6`, `headTilt −6`, `agiz "O"`, `browF/browB 0.8`.
+
+### 2.12 Memur kolu ve eli — `KolEl` modülü (P01, P10, P11, P15, P16)
+**Sorun (eleştirmen B TB3/TB4):** kol sabit genişlikte 1000 px'lik gri kalas; dirsek, kırışık, perspektif yok; el sırtı "gaga". Telefonda (360 px) ve f0 kapak karesinde kol okunmalı. Aynı iskelet `EldivenEl` insert'iyle (P19), Paris elleriyle (P09/P23), görevli eliyle (P21) ve yazıcı eliyle (P17) **ortak modül** olur; farklı olan kol/manşet paletidir.
+
+**Kol (ceket, P01 tepe-önden ~60°):**
+- **Perspektif koni:** kol kameraya doğru genişler: bilekte ≈ 90 px, kadraj kenarında ≈ 200 px (paralel kenarlı kalas yok). Kol **sol kenardan** girer (y ≈ 1250–1400), alt köşeden değil.
+- **Dirsek:** 25–35° kırılma; iç kıvrımda **3–4 kumaş kırışığı** (her biri ışık + gölge çizgi çifti, kol eksenine 20–40° açıyla), iç kıvrım gölgesi `#35342f`. Dış noktada **yama** `#5a5953` (kola paralel, ≈ 70×60 px, yuvarlatılmış köşe, kesik dikiş çizgisi `#3d3c38`, bir köşesi kalkık, iplik ucu); sol alttaki kalkan biçimli anlamsız yama kalkar.
+- **Kumaş:** yıpranmış gri redingot `#6b6a66`; ışık şeridi `#8a8983` (ışık yönü ışık sözleşmesine göre: P01 pencere sağ-üstte ⇒ kolun üst/sağ kenarı aydınlık, alt/sol gölge `#46453f`); kontur yakın 6 px, iç çizgiler 3 px; en fazla 3 doku katmanı (dokuma, aşınma, ışık).
+- **Ceket manşeti:** kol ucunda 1,2× aydınlık şerit, 2 dikiş çizgisi, yıpranmış kenar (iplik uçları), **iki düğme izi, biri düşmüş** (ø10 px `#1c1915` + eksik yerde ip ucu). Bilek üstünde kumaş yığılması (3 kısa kıvrım).
+- **Gömlek manşeti:** ceket manşetinden **14–18 px taşar**, `#d8d0bb`, kirli kenar `#b9b29d`, buruşuk. Telefonda koldan "kol" okutan en güçlü ipucu bu beyaz bant (≥ 14 px).
+
+**El (çıplak, `#d9b190` / gölge `#a9806a`):**
+- **Anatomi:** ince, kemikli; el sırtında 3 metakarp çizgisi, 2 soluk damar (`#8c8a9a` α .35), her parmakta **2 boğum çizgisi + eklem çıkıntısı** (küçük ışık noktası), başparmak ayrı segment (2 boğum), bilekte kemik çıkıntısı. Parmak uzunluk oranı: işaret 1.0, orta 1.08, yüzük 0.96, serçe 0.78, başparmak 0.8. Parmak araları **negatif boşluk ≥ 6 px** (avuç üçgen/"gaga" olmasın; avuç dikdörtgenimsi).
+- **Tırnak:** oval, kısa, ışık `#e8cdb4`, kenar `#c9a38a`, alt kenarda kir çizgisi.
+- **Boyut:** el ≥ 200×190 px (telefonda ≥ 75 px); kol girişten ele ≈ 700–800 px.
+- **Titreme:** ±1.5° ve ±2 px, ≈ 9 Hz, p+62–134'te sönümlenir.
+
+**Pozlar**
+| Poz | Kullanım | Tanım |
+|---|---|---|
+| `kistir` | P01 eldiveni çekme, P10 çorabı kaldırma | **Başparmak üstte, işaret parmağı altta** eldiven/çorap ucunu kıstırır (kıstıran parmak uçları görünür, kumaşa gömülmez); diğer üç parmak kıvrık/serbest, serçe havada; kumaş parmak ucunda yumuşak çöker ve sarkar (katı kalıp gibi durmaz) |
+| `kavra` | P11 manipulateur sapı (iki el) | 4 parmak sapı sarar, başparmak karşıdan; eklemlerde kavrama açıklığı (`#ead0b8` α .5), ön kol perspektifle kısalmış, dirsek açık |
+| `tik` | P08 masada üç tık | parmak ucu masaya "itip çeker gibi", el yarı yatık |
+| `yumruk` | P15 alt (eldiven sıkılı) | buruşuk eldiven avuçta, boğumlar beyaz |
+| `gevsek` | P16 gevşeyen el | parmaklar yarı açık, bilek sarkık; kol **gömlek** (`#d8d0bb`, aynı dirsek kırışıkları) |
+
+**Modül imzası (öneri):** `KolEl({ kol: "ceket" | "gomlek" | "parisManset" | "gorevli" | "yazici", poz, titreme, olcek, yon })`. Paris eli: koyu redingot kol + **gri manşet + sağ manşette tek altın düğme**; görevli: siyah kol + **beyaz manşet**; yazıcı: siyah kol. Telefon testi (360×640): koni siluet + dirsek açısı + beyaz manşet bandı + parmak boşluğu bir arada kol olarak okunmalı; okunmuyorsa büyütülür.
 
 ---
 
@@ -277,7 +314,7 @@ Borsa kalabalığı (10–12 siluet, 3 animasyonlu), **tüccar** (kısa, kahvere
 | **Eldiven (kahraman)** | Glacé (kuzu/dana) erkek eldiveni, beyaz [G]; ön yüzde üç çizgili dikiş | `#f4efe2`, dikiş `#b9ad92` | P01, P10, P15, P16, P19, P23 | kâğıt hışırtı, masa "tap", P16 parke "tok" |
 | **Yün çorap** | El örgü koyu yün, topuk yamalı [G] | `#4b3a2c`, yama `#6a5340` | P10 | kenardan sarkar "flop" |
 | **Ok etiketi** (↑ yeşil / ↓ kırmızı) | İple bağlı kâğıt kart [T]; oklar SVG | `#efe9d8`, `#5f9f6e`, `#e5483c` | P10 | kâğıt hışırtı |
-| **Paket kâğıdı + ip** | Kahverengi paket kâğıdı + kenevir ip [G]; "TOURS" etiketi 380×110 (P09) | `#b08a5a`, ip `#d8c9a0` | P01, P09, P10, P23 | hışırtı, ip "zıııt", çatıda "tok" |
+| **Paket kâğıdı + ip (`PaketKagidi`, 3.1)** | **Eldivene doğrudan sarılan yumuşak kahverengi paket kâğıdı + kenevir ip [S]; kutu/koli/mukavva DEĞİL** (modern, anakronik); "TOURS" etiketi 380×110 | kâğıt `#b08a5a`, ip `#d8c9a0` | P01, P09, P10, P23 | kâğıt hışırtı, ip "zıııt", çatıda "tok" |
 | **Altın kesesi + frank** | Deri/kadife kese; altın 20 frank, gümüş 5 frank [G]; **kâğıt para yok** | kese `#3e3426`; altın `#d4ad52`; gümüş `#c9ccd2` | P07, P08, P15 | kese kayma, sikke şıngırtı |
 | **Çekmece** | Ceviz, pirinç halka | `#7a5230`, `#c9a24a` | P07 | "bam" |
 | **Cep saati** | Cep saati yaygın; **kapaklı (savonnette) tip 1830'larda olası** [D~ 6]; zincirle yelek cebine | kasa `#d4ad52`, kadran `#f2ecd8`; **kapak içi kadran okunmaz**, marka/fiyat yazısı yok | P06 (+ masa) | kapak "çat" |
@@ -302,6 +339,34 @@ Borsa kalabalığı (10–12 siluet, 3 animasyonlu), **tüccar** (kısa, kahvere
 | **Duvar saati** | Sarkaçlı, beyaz mineli, Roma rakamı; ≥ 210 px, sarkaç görünür | `#f2ecd8`, çerçeve `#5b3d25` | P18 | sandalye gıcırtı, "TIK" |
 | **Ter damlası** | | r ≈ 10 px, `#cfdcff` α .7 | P11 | "tıp" |
 | **Güve** | | `#b9a98a`, ~220 px | P20 | kanat sesi |
+
+### 3.1 `PaketKagidi` modülü (P01, P09, P10, P23 ortak)
+**Dönem kararı:** 1834 paketi = **eldivene doğrudan sarılan yumuşak kahverengi paket kâğıdı + kenevir ip** [S]. **Kutu, koli, kapaklı mukavva yok:** oluklu mukavva 19. yy sonu/20. yy [G]; mevcut stil karesindeki RSC tipi karton koli (eleştirmen B TB1) kaldırılır. P23'ün "kâğıdın altında eldivenin beş parmağı kabarır" dokunuşu yalnız yumuşak sarım ile fiziksel.
+
+**Yapı:** tek parça dikdörtgen kâğıt (≈ 30×36 cm), eldiven düz yatar; kâğıt **zarf gibi** katlanır: iki yan kenar ortaya, alt ve üst kıvrım üst üste. Kenevir ip **boyuna bir, enine bir kez çaprazlanır**, ortada fiyonk/düğüm; **TOURS etiketi düğüme ipiyle bağlı** (`ToursEtiketi`: ip deliği = bağ noktası; kapalıda düğümden sarkar, açıkta ipiyle kâğıdın yanında yatar). Her planda **aynı kâğıt dokusu ve etiket** (P09→P10 MATCH, P01↔P23 döngü).
+
+| Durum | Planlar | Çizim |
+|---|---|---|
+| **KAPALI** | P09 (araba çatısında), P23 son kare | Dikdörtgen ≈ 1:1,25; yan kenar katları ve alt kat görünür, üst bindirme; **ip çaprazı + fiyonk** (≈ 20 px kabarık), etiket sarkar; kenarlar yumuşak yuvarlak (keskin kutu köşesi yok), hafif şişkin eldiven kabarıklığı |
+| **YARI AÇIK** | P01 f0–f54 | **Eldiven kâğıt ağzından yarı çıkmış**; üst kanat geri yatmış ve kalkık, yan kanatlar gevşek açılmış; **ip çözülmüş** (düğüm yok, iki uç masada kıvrık); kâğıt eldivene takılır, çıkınca yavaşça masaya yatar (p60) |
+| **AÇIK** | P01 p54 sonrası, P10 | **4 kanat (üst/alt/sol/sağ) masaya yatık**, uçları hafif kalkık (kat çizgisi = **ışık + gölge çifti**), ortada eldiven boyu sığ **kırışık yatak**, **yan duvar yok**; ip çözülmüş: iki uç masada gevşek kıvrım, kâğıtta **ezik fiyonk izi** ve çapraz ip izleri (silik çizgiler); ip açık paketin üstünden **geçmez**, düğüm havada asılı kalmaz (eleştirmen B TB2) |
+| **KABARTILI** | P23 p54–p120 | KAPALI durumunun üstüne: kâğıdın altında **eldivenin beş parmağı** kabartı (parmak sırtında ışık şeridi, ışığın tersine gölge; ip gerildikçe α 0 → .5, düğüm sıkılınca .15'e yatışır) |
+
+**Parametre önerisi:** `PaketKagidi({ acik: 0..1, kabarti: 0..1, ipCozuk: boolean, etiket: boolean })`: `acik` 0 = kapalı, ~0.5 = yarı açık, 1 = açık; kanat çokgenleri (4) `acik` ile döner/yassılır.
+**Renkler:** kâğıt `#b08a5a`, aydınlık yüz `#c49f6c`, gölge `#8a6a40`, kat ışığı `#d9bf94`, kat gölgesi `#6e5230`, eskime kenarı `#9a7a4c`; ip `#d8c9a0` (kontur `#8a7a52`, 5–6 px, çapraz bükülme çizgileri). Tek doku katmanı: ince yatay kâğıt lifi (α .12).
+**Işık:** P01/P10/P23'te geç gün ışığı (pencere sağ-üst) ⇒ kat ışıkları sağda/üstte, gölgeler sol-aşağı; P09 gündüz sol-üst güneş ⇒ gölge sağ-aşağı.
+**Telefon (360×640):** paket "kâğıt paket" okunmalı: 4 kanat siluetinin kontrastı (kâğıt `#b08a5a` ↔ masa `#7a5230`/aydınlık yüz), ip çarpısı, TOURS etiketi. Okunmuyorsa kanatlar büyütülür, kutu hissi veren dik kenarlar yasak.
+**Ses/foley:** kâğıt hışırtısı (açılış/katlama), ip "zıııt" (P23), çatıda "tok" (P09).
+
+### 3.2 Bayrak (tricolore) çizim tanımı
+Kullanıcı **P04 sokak planında bir tricolore** istiyor; **konumu mekân sorumlusu** (mekanlar.md) belirler. **Borsa salonunda yok** (1.1). Çizim tanımı:
+- **1830+ ulusal tricolore:** **dikey** şeritler, **mavi gönderde (hoist), ortada beyaz, dışta kırmızı** [CLAUDE]. Beyaz Bourbon bayrağı ve zambak/arma/yıldız/yazı **yok**.
+- **Oran:** yükseklik : genişlik ≈ 2 : 3; üç şerit okunurluk için **eşit** (1 : 1 : 1; 1794 düzenlemesindeki 30:33:37 denizcilik oranı [G ◐], karada eşit okutulur).
+- **Kumaş:** keten/yün bunting, **hafif dalgalı**: dalga genliği uca doğru artar (`wave(x) = sin(frame·0.12 − x·0.05)·(x/L)·12`, mevcut `Sokak.tsx` `Bayrak`), kenar ucu hafif yıpranmış; üç şeride ortak **kumaş gölge degradesi** (gönderden uca α .1 → .45), dikiş çizgisi şeritlerin birleşiminde.
+- **Renkler (gün):** mavi `#2a3f7e`, beyaz `#d9d4c8`, kırmızı `#a8262c`. **Gece/ay ışığında** doygunluk ~%30 düşer (ay mavisine çekilir); kırmızı bandın alanı küçük tutulur (kırmızı yalnız mühür/hata/vurgu kuralı: bayrak göz çalmaz, doygunluk ~%70).
+- **Gönder:** duvardan çıkan **eğik gönder** (≈ 25–30° yukarı), koyu ceviz `#3b2412` (kenar `ink`), ucunda pirinç topuz `#c9a24a`; bayrak 3 pirinç halkayla göndere bağlı. Gönder sarkık bayrak taşıyorsa şeritler göndere **paralel**, mavi gönder tarafında; yatay açık dalgalanıyorsa mavi gönderde dikey şerit.
+- **Gölge:** ışık kaynağının tersine; bayrak ve gönder duvara gölge düşürür (tek ışık kaynağı).
+- **Ölçek:** sokakta gönder dahil ≈ 180 px, bayrak ≈ 150×100 (`Sokak.tsx`), cepheye perspektifle oturur; yazı bandına (üst y 240–400) girmez.
 
 ---
 
@@ -397,7 +462,13 @@ export const MUDUR: Palet = { coat: "#5a4630", coatDark: "#3a2c1d", coatLight: "
 export const TELGRAFCI: Palet = { coat: "#4f5a3e", coatDark: "#323a28", coatLight: "#6c7956", vest: "#7a6a48", vestDark: "#54482f", vestDesen: "#7a6a48", cravat: "#c79a3a", shirt: "#d8cfb8", pants: "#3e3a34", shoe: "#17120e", glove: "#dcae8b", skin: "#dcae8b", skinDark: "#ad7b60", hair: "#4a3626", hat: "#4a3b2c", hatBand: "#2c241c", sideburn: 0.9, browHeavy: 1.3 };
 export const SUC_ORTAGI: Palet = { coat: "#4a3a2c", coatDark: "#2e2319", coatLight: "#6a5440", vest: "#7d6a3f", vestDark: "#574a2a", vestDesen: "#a8935a", cravat: "#2b2a30", shirt: "#eee8d8", pants: "#34302b", shoe: "#0f0d0c", glove: "#d7a782", skin: "#d7a782", skinDark: "#a8765c", hair: "#2b1c12", hat: "#3a2c20", hatBand: "#241a12", sideburn: 1.1, browHeavy: 1.0 };
 export const KATIP: Palet = { coat: "#2d2b28", coatDark: "#1a1917", coatLight: "#4a4742", vest: "#8a8a80", vestDark: "#5f5f58", vestDesen: "#8a8a80", cravat: "#d8d0bb", shirt: "#e8e2d0", pants: "#3a3a3e", shoe: "#0f0d0c", glove: "#d8ae8b", skin: "#d8ae8b", skinDark: "#a97d62", hair: "#4a4a4a", hat: "#141317", hatBand: "#2a2a2e", sideburn: 0.8, browHeavy: 0.9 };
-export const TUCCAR: Palet = { coat: "#6a5338", coatDark: "#443523", coatLight: "#8a7050", vest: "#8a8a80", vestDark: "#5f5f58", vestDesen: "#8a8a80", cravat: "#d8d0bb", shirt: "#e8e2d0", pants: "#3a3530", shoe: "#0f0d0c", glove: "#d8ae8b", skin: "#d8ae8b", skinDark: "#a97d62", hair: "#2f2418", hat: "#2a2622", hatBand: "#1c1a18", sideburn: 1, browHeavy: 1 };
+// Tüccar (P02): motion'ın uyguladığı hâl (2.11). Palet'teki biyik/sakal/sapka/burun alanları rig'de mevcut.
+export const TUCCAR: Palet = { coat: "#7a5a2e", coatDark: "#54401f", coatLight: "#9a7844", vest: "#a58a4a", vestDark: "#7a6430", vestDesen: "#a58a4a", cravat: "#d8d0bb", shirt: "#e8e2d0", pants: "#3a3530", shoe: "#0f0d0c", glove: "#d8ae8b", skin: "#d8ae8b", skinDark: "#a97d62", hair: "#9a958a", hat: "#4a3a26", hatBand: "#2a2016", sideburn: 1.8, browHeavy: 1, biyik: "yok", sakal: true, sapka: "genis", burun: 1.2 }; // + dış sarmalayıcı scale(1.12,1), scale × 0.95
+// KolEl (2.12): memur kolu/eli
+export const MEMUR_EL = { kol: "#6b6a66", kolKoyu: "#46453f", kolIsik: "#8a8983", kirisikGolge: "#35342f", yama: "#5a5953", yamaDikis: "#3d3c38", manset: "#7a7975", gomlekManset: "#d8d0bb", gomlekKir: "#b9b29d", dugme: "#1c1915", ten: "#d9b190", tenKoyu: "#a9806a", tenIsik: "#ead0b8", damar: "#8c8a9a", tirnak: "#e8cdb4", tirnakKenar: "#c9a38a" };
+// PaketKagidi (3.1) ve Bayrak (3.2)
+export const PAKET = { kagit: "#b08a5a", kagitIsik: "#c49f6c", kagitGolge: "#8a6a40", katIsik: "#d9bf94", katGolge: "#6e5230", eskime: "#9a7a4c", ip: "#d8c9a0", ipKontur: "#8a7a52" };
+export const BAYRAK = { mavi: "#2a3f7e", beyaz: "#d9d4c8", kirmizi: "#a8262c", gonder: "#3b2412", topuz: "#c9a24a" };
 export const PARIS_ADAM: Palet = { coat: "#2b2a30", coatDark: "#1a1a1e", coatLight: "#44434c", vest: "#55555c", vestDark: "#3a3a40", vestDesen: "#55555c", cravat: "#d8d0bb", shirt: "#e9e3d2", pants: "#34302b", shoe: "#0f0d0c", glove: "#d3a784", skin: "#d3a784", skinDark: "#a77b5f", hair: "#2b2018", hat: "#141317", hatBand: "#2a2a2e", sideburn: 1, browHeavy: 1 };
 // Kukla dışı (statik siluet/overlay)
 export const YARGIC = { cubbe: "#2a1c1e", cubbeGolge: "#150d0f", rabat: "#efe9d8", toque: "#1a1418" }; // tek koyu ton; kırmızı yok
@@ -409,7 +480,7 @@ export const YAZICI_EL = { kol: "#1c1915", ten: "#d3a784" };
 ```
 
 **Rig'e (Kukla.tsx) gereken küçük ekler (motion):**
-1. `Poz.sapkaTip?: "silindir" | "kasket" | "yok"` (memur/müdür/telgrafçı şapkasız, suç ortağı kasket).
+1. Şapka tipi: motion `Palet.sapka?: "silindir" | "genis" | "yok"` olarak **uyguladı** (tüccar geniş kenarlı); suç ortağı için `"kasket"` hâlâ eksik. Ayrıca `biyik`, `sakal`, `burun` alanları rig'de var.
 2. `Poz.rim?: 1 | -1` (kenar ışığı yönü).
 3. `Palet.cuff?: string` (gri manşet).
 4. Genişlik/incelik için dış `scale(x,y)` sarmalayıcı yeter.

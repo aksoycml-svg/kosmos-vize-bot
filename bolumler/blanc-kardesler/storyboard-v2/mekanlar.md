@@ -9,6 +9,8 @@ Etiketler: **[A]** arastirma.md · **[D]** donem-dogrulama.md (güveni yanında:
 
 ---
 
+> **Değişiklik notu R1 (2026-11-06, kare denetimi):** SB2-SOKAK ve SB2-BORSA kareleri kullanıcı sorusu üzerine denetlendi. Sonuçlar ve motion uygulama listesi **bölüm 9**'da. 3.1 (BORSA) ve 3.3 (SOKAK-BORDEAUX) kartları bu bölümle birlikte okunur; çakışırsa bölüm 9 geçerli. CLAUDE.md'ye eklenen "Her nesnenin yeri anlamlı", "Ölü alan yok", "Küçük jest = yakın kamera" kuralları uygulandı.
+
 ## 0. Bu belge tasarim.md'yi nerede değiştiriyor
 
 Tasarımcının kartları temel alındı. Aşağıdakiler dönem doğrulaması, güncel sahne planı ve dokunuş revizyonu nedeniyle **değişti**. Gerekçeler ilgili kartta.
