@@ -337,3 +337,21 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - Eleştirmenin istediği tam protokol (her plan için f0 + dokunuş karesi + kapanış karesi) bu turda yapılmadı; yalnız stil kareleri var. `tools/sb2_kontrol.py`'ye `KARELER` listesine kare eklemek yetiyor.
   - Yönetmen: P02 oda parametreleri (yFar 1030 / xFar 190–890) ve z 1.6/1.7; P04 z 2.4/2.45, ızgara z 2.6 u 0.32, replik üst bant (sahne planı ve FareInsert yeniden kadrajı buna göre güncellenmeli); P01 SAK konumu.
   - Render: still başına 3.3–5.6 sn (paketleme dahil).
+
+## elestirmen · 2026-11-06 · Eleştiri B (ikinci tur, motion A2 sonrası kalibrasyon kapısı)
+- Ne yaptım: A2'nin üç karesini (tam boy, -360, -guvenli) ve `renk-olcum.md`'yi CLAUDE.md'nin yeni kurallarına ve Eleştiri A maddelerine göre denetledim. Protokoldeki eksik kareleri (P01 f0/p54/p150, P02 p92/p98/p104, P04 p40/p189/p210) `npx remotion still` ile scratchpad'e render ettim (kod değişmedi). `ODALAR.borsa` parametrelerinden efektif ufku hesapladım, `sb2_kontrol.py`'nin ölçüm yöntemini inceledim, orkestranın 6 gözlemini doğruladım. Sonuçları `storyboard-v2/elestiri-B.md`'ye yazdım.
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/storyboard-v2/elestiri-B.md (yeni), bolumler/blanc-kardesler/katki-raporu.md (bu bölüm eklendi). Scratchpad'e render (proje dışı).
+- Aldığım kararlar ve gerekçeleri:
+  - Puanlar: TOURS 6.5 (düzeltilmeli), SOKAK 8 (geçer, SK1 düzeltilerek), BORSA 6.5 (düzeltilmeli).
+  - **Temel hazır: EVET, koşullu.** A'nın 9 sistemik sorunundan 7'si kapandı. Kalan mekânlar paralel başlayabilir; koşullar: KemerliPencere varsayılanı yuvarlak kemer, KagitYuzey modülü (P09/P10/P23), renk aracına ΔE/ton denetimi, KARELER'e protokol kareleri.
+  - TOURS ve BORSA'nın öteki kritikleri plan düzeyi, temeli bekletmez.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - KRİTİK: P01 paket karton koli (senaryo + P23 kabartı döngüsüyle çelişki, 1834 için anakronik [G]) · P01 açık paketin ağzında havada asılı düğüm · P01 kol telefonda ve kapak karesinde gri kalas · P02 sivri (gotik) kemerler (Gabriel'in 18. yy klasik borsası; salon kilise nefi gibi okunuyor) · P02 Louis etiketi tebeşir kırılma noktasının dibinde, düşen parça renderlarda görünmüyor · P04 bastonu tutan el görünmüyor (baston kardeşlerin arasında, François'nınmış gibi).
+  - ORTA: tricolore borsa salonunda kanıtsız (yeni "kanıtsız → nötr" kuralı) + kırmızı kuralı · göz kırpma telefonda ≈ 4 px, okunmaz · P01 kapanış karesinde eldiven bırakılmamış (plan 134–142) · SAK konumunda T hâlâ vinç/darağacı çağrışımı · el anatomisi · pencereler yalnız kenardan görünüyor.
+  - Araç: `renk-olcum.md` yalnız L farkına bakıyor. SOKAK cephesi `#a37041` / hedef `#8a7e66` ton olarak çok farklı ama "✓"; toleranslar 14–20 geniş.
+- Açık sorular / bir sonraki ajana notlar:
+  - MOTION: TB1–TB3, BB1, BB2, SK1; ardından sistemik 1–4 (elestiri-B.md bölüm 5).
+  - MEKÂN SORUMLUSU: mekanlar.md'ye kemer tipi (yuvarlak/basık; sivri yok) yazılsın.
+  - TASARIMCI: tasarim.md 1.1'deki "salon girişinde tricolore" satırı kalksın; paket kâğıdı üç durum (açılmış/kapalı/kabartılı) çizim referansı; kol+el insert referansı.
+  - YÖNETMEN: motion'ın değiştirdiği değerleri sahne planına işle (P02 oda + z 1.6/1.7, efektif ufuk ≈ 280; P04 z 2.4/2.45, ızgara z 2.6 u 0.32, replik üst bant, FareInsert yeniden kadrajı); P04 göz kırpma kararı (kaldır ya da okunur jest); P01 SAK yerine kancada okunur gösterge konumu; P02 etiketlerinin p84–90'da çıkışı.
+  - Sonraki tur: TOURS (f0, p54, p150) ve BORSA (p0, p90, p102, p204) yeniden + 360 sayfa; SOKAK yalnız p150.
