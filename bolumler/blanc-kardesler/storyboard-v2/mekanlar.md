@@ -662,3 +662,112 @@ Tasarımcının [G ◐] listesinden açık kalanlar ve bu belgenin yeni sorular�
 4. **P04:** sokak ucunda sol çatıların üstünde silik Saint-Michel silueti (P06/P14 kurulumu). Kalabalık bulunursa çıkarılabilir; Garonne direkleri esas.
 5. **Mahkeme arka duvarı boş lambri** (tricolore/büst yok) — tasarim.md'den sapma.
 6. **TOURS-KULUBE-IC zemini ahşap**, kapı merdiven sahanlığına açılır (üst kat) — P07 François konumu "sahanlıkta".
+
+---
+
+## 9. Revizyon R1 · Kare denetimi: SB2-SOKAK (P04) ve SB2-BORSA (P02)
+
+Denetlenen: `storyboard-v2/kareler/SB2-SOKAK.png` (A2), A1 hâli (`aca94c8`, bayraklı), `SB2-BORSA.png`; kaynak `src/bolumler/blanc/sb2/Sb2Sokak.tsx`, `Sb2Borsa.tsx`, `proto/Sokak.tsx` (sehir="bordeaux"), `src/doku/Mimari.tsx`.
+Kullanıcı sorusu: "Sokak planında mimari o senenin (1834 Bordeaux) mimarisi mi?" **Kısa cevap: malzeme ve atmosfer doğru, cephe dili değil.** Taş rengi, ferforje, réverbère, orta oluk, gemi direkleri ve külahsız Saint-Michel dönemle uyumlu. Ama cepheler 18. yy Bordeaux taş evlerinin kuruluşunu (kat hiyerarşisi, basık kemerli pencere, kilit taşında maskaron, ev ev ayrılan korniş) taşımıyor; tek parça, her katı aynı, ızgara gibi bir duvar okunuyor. Bu "herhangi bir eski şehir" görüntüsü verir.
+
+### 9.1 SOKAK: ne doğru, ne yanlış
+
+| # | Öğe | Karede | Durum | 1834 Bordeaux eski kenti için doğrusu | Kaynak |
+|---|---|---|---|---|---|
+| 1 | Taş | Bal-sarı kesme blok | **Doğru** | Sarımsı, gözenekli kireçtaşı (calcaire à astéries); 1830'larda cepheler muhtemelen **isle koyulaşmıştı** (temizlenmemiş): gece paletinde üst katlar ve korniş altları %10–15 daha koyu | [D olası]; is [G ◐ doğrulanmalı] |
+| 2 | Ev ayrımı | Sol ve sağ duvar tek parça, aynı korniş çizgisi, aynı kat yüksekliği | **Yanlış** | Bitişik ama **ayrı evler**: her ev 3–4 pencere aksı (travée), komşudan farklı korniş yüksekliği (±%8), ev sınırında dikey derz/köşe taşı, bazı evlerde çatı katı (attique) geri çekilmiş. CLAUDE.md dönem listesi: "farklı yükseklikte bitişik evler" | [G] |
+| 3 | Kat hiyerarşisi | Tüm pencereler aynı boy, bazı evler 6 kat okunuyor | **Yanlış** | Eski kentte **R+2 / R+3** (+ attique), en fazla R+4. Yüksek zemin kat (~4.5 m) + **entresol** (alçak, kare pencere) + **1. kat (étage noble, en uzun pencereler ~1:2.2)** + 2. kat (daha kısa ~1:1.8) + attique (kare, küçük). Pencereler yukarı çıktıkça kısalır | [G ◐ doğrulanmalı] |
+| 4 | Pencere başı | Düz dikdörtgen | **Eksik** | 18. yy Bordeaux: **basık kemerli (arc segmentaire) lento** + çıkıntılı **oyma kilit taşı (clé)**; denizlikte ince profil. Basık kemer yüksekliği = açıklık genişliğinin **~%12** (yarım daire değil, sivri hiç değil) | [G] |
+| 5 | Maskaron | Pencere üstünde **ayrı yamuk levha** (asılı tabela gibi); konum rastgele (sol x~55 y~910, sağ x~950 y~990) | **Yanlış** | Maskaron **kilit taşının kendisidir**: cephe düzleminde, taşla aynı renkte, kabartma (ayrı çerçeve yok). Yalnız **1. kat** ve zemin kat kemerlerinin kilit taşında, ev başına 2–4 adet, aynı evde aynı motif. Yakın evlerde okunur boyda (40–60 px), uzakta yalnız kilit taşı çıkıntısı | [G] |
+| 6 | Ferforje | Küçük balkonlar rastgele katlarda | **Kısmen** | **1. kat boyunca**: ya taş konsollara oturan sürekli balkon (zengin ev) ya her pencerede balkonet (pencere önü korkuluğu). Üst katlarda yalnız alçak korkuluk; zemin katta yok. Ferforje motifi kıvrımlı (Louis XV/XVI), düz çubuk değil | [G] |
+| 7 | Panjur | Hemen her pencerede renkli dış panjur | **Fazla** | Klasik taş cephelerde iç kepenk yaygındı, dış ahşap panjur daha çok mütevazı evlerde/üst katlarda [G ◐ doğrulanmalı]. Öneri: panjurları %80 → **%30**, yalnız mütevazı evlerde ve attique'te; soluk gri-yeşil, renk çeşitliliği azalt |
+| 8 | Saksı çiçekleri | Kırmızı sardunya noktaları | **Kural ihlali** | Kırmızı yalnız mühür/hata/vurgu (CLAUDE.md). Gece zaten okunmaz: **kaldır** ya da koyu yeşil yaprak yalnız |
+| 9 | Çatı/saçak | Duvar tepesinde büyük yuvarlak kiremit ağızları (yakında ~40 px), korniş yok | **Yanlış ölçek** | Bordeaux: duvar **taş korniş** (profilli, 25–35 cm çıkıntı) ile biter; arkasında düşük eğimli tuile canal, sokaktan **neredeyse görünmez**. Kiremit ağzı en fazla korniş üstünde ince bir sıra, yakında ≤ 14 px. Bacalar kornişin gerisinde, kısa |
+| 10 | Dükkânlar | VINS, CAFÉ, CHAPELIER, BOULANGERIE dikdörtgen vitrin, yazı alınlıkta | **Kısmen** | Zemin katta **basık kemerli açıklık** içinde ahşap dükkân cephesi (devanture), üstte boyalı alınlık yazısı (doğru), **kapanış için ahşap kepenk panoları** gündüz yan tarafta istiflenir. Yazılar elle boyanmış serif, altın/krem. Dükkân türleri: VINS (şarap), TONNELIER (fıçıcı), CAFÉ, CHAPELIER uygun | [G] |
+| 11 | Réverbère | Sokağı kesen ip + ortada fener | **Doğru** | İpin bir ucu duvardaki **kilitli küçük demir kutuya** (makara + ip sarma) bağlanır; fener yakmak için indirilir [G]. Kutu eksik: sol duvarda, ip ucunda, 2.5 m yükseklikte ekle. **Doğrulanmalı:** Bordeaux'da 1834'te bu sokakta havagazı mı yağ lambası mı (Bordeaux'ya havagazı 1830'larda girmeye başlamış olabilir [G ◐]). Yağ lambası güvenli kalır |
+| 12 | Duvar feneri (sol) | Konsollu fener | **Doğru ama gereksiz** | Tek ışık kaynağı kararı (réverbère) ile yarışıyor; özel bir ev/dükkân feneri olarak kalabilir ama **söndürülmüş** ya da çok kısık |
+| 13 | AVIS ilanı | Duvarda dikey kâğıt | **Doğru** | Resmî ilanlar duvara yapıştırılırdı [G]. Kalsın; P21 ilanının kurulumu gibi okunur |
+| 14 | Kaldırım | Yuvarlatılmış dikdörtgen taşlar, **ortada oluk**, yaya kaldırımı yok | **Doğru** | Haussmann öncesi: sokak ortasına eğimli, **orta oluk (caniveau central)**, yaya kaldırımı yok [G]. Taş tipi [G ◐ doğrulanmalı]. Oluk düz taşlarla çizilir, içinde ince su şeridi ay ışığını yansıtır |
+| 15 | Saint-Michel | Sokak ucunda, direklerin tam arkasında, **nehrin içinde duruyor gibi** | **Konum yanlış** | Kule karadadır: **soldaki uzak evlerin çatılarının arkasından** yükselsin (taban görünmez, çatı çizgisinin arkasında kesilir), sokak eksenine değil sola kayık: x 430–500, tepe y ~470. Chappe direği kule boyunun **~%12–15**'i [G ◐]. Kollar DINLEN (gece). Külahsız kesik tepe [G ◐ doğrulanmalı] |
+| 16 | Gemi direkleri | Sis içinde, sokak ucunda | **Doğru** | Vapur yok (çizmemek güvenli) |
+| 17 | Café önü | İki tahta "tabure/bank" (kod: `TabureSira`, z 2.6 / 3.2, u 0.9) | **Anlamsız (kural ihlali)** | 9.2 |
+| 18 | Alt üçte bir (y 1450–1920) | Boş kaldırım | **Ölü alan (kural ihlali)** | 9.4 |
+| 19 | Tricolore | A2'de yok (A1'de vardı) | **Kullanıcı istiyor** | 9.3 |
+| 20 | Replik altyazısı | ÜST bantta | Sahne planı kararı (ayak/ızgara ALT bantta) | Mekân açısından sorun yok: gök bölgesi sakin |
+
+### 9.2 Café önü: karar
+
+Seçenekler: (a) gece kapalı kafe, sandalyeler masalara ters kaldırılmış; (b) kepenk panoları kapalı; (c) dışarıda hiçbir şey.
+**Karar: (c) dışarıda hiçbir şey, kafe açık ve içi ışıklı.** Gerekçe:
+- 1830'larda dar, yaya kaldırımsız bir sokakta kafe önüne masa-sandalye koymak araba ve yaya yolunu kapatır; kaldırım terası ancak geniş caddelerde ve kaldırımlar yaygınlaştıktan sonra olağanlaşır [G ◐]. Sandalyeyi masaya kaldırma (a) da bir teras varsayar.
+- Kafenin ışıklı vitrini sahnede **işlevli**: réverbère dışında ikinci sıcak dolgu, kaldırıma ve sağdaki su birikintisine ışık düşürür, "şehir yaşıyor ama sokak boş" duygusunu verir. (b) kapalı kepenk bu ışığı öldürür.
+- Anlamı güçlendirmek için: kapı **aralık** (yere 15° açılı ışık şeridi düşer, x 760–860, y 1250–1420 civarı, tek yamuk, `#ffb357` α .18), alınlıkta CAFÉ yazısı kalır, kapının üstünde **asılı tabela** (enseigne en potence: demir kol + küçük kahve fincanı ya da yuvarlak levha silueti, 60 px) [G]. Pencerede 2 oturan **müşteri silueti** (yüzsüz, koyu, statik): ışığın kaynağını anlamlandırır, hareket etmez.
+- Kaldırılan: `TabureSira` (iki bank). Yerine hiçbir eşya konmaz.
+
+### 9.3 Tricolore: konum, ışık, rüzgâr
+
+- **Nereden asılır:** resmî bir yapının cephesinden, **eğik bayrak direği (hampe) üzerinde** [G]. Eski kentte bir karakol (corps de garde) ya da mahalle polis komiserliği kapısı gibi küçük resmî yapı [G ◐ doğrulanmalı: 1834 Bordeaux'da hangi yapıların bayrak astığı]. Yapıya kimlik: kapı üstünde **okunmaz küçük taş/teneke levha** (yazı çizgisi, harf yok) + kapı yanında taş **nöbetçi kulübesi değil** (abartı), yalnız levha. Tricolore 1830'dan beri [CLAUDE.md].
+- **Konum (P04 kadrajı):** **sol cephe**, ikinci ev (`EVLER_SOL` z 1.55–2.2), **1. kat hizası** (cephe v ≈ 0.42): direk dibi ekranda ~ (150, 760), direk duvardan sokağa doğru yukarı **35°** eğik, uzunluk ~ 230 px, direk ucu ~ (340, 630). Bayrak boyu ~ 200×140 px. Bayrak alanı x 140–360, y 600–800: ÜST-BANT (y 240–400) ve karakterlerin (x 430–700, y 900–1420) dışında, réverbère ipinin (y ~700–760) **solunda ve önünde** (ip ile kesişmez: ip z 2.3'te, bayrak z ~1.9 daha yakında; ip bayrağın arkasından geçer).
+- **Şerit yönü (önemli):** bayrak **direğe kılıfla bağlıdır**; kaldırma kenarı (hoist) direk boyuncadır. Bu yüzden **mavi şerit direğe bitişik**, beyaz ortada, kırmızı direkten en uzak kenarda. Bayrak sarktığı için şeritler direğe paraleldir (Sb2Borsa'daki doğru kural: "mavi gönderde"). A1'deki bayrak şeritleri direğe dikti: **yanlıştı**.
+- **Rüzgâr:** sahnedeki sis soldan sağa (+x) akıyor (`Sb2Sokak` `sis()`), bacadan duman sağa eğik. Bayrak sol cepheden sokağa doğru açıldığı için hafif rüzgâr onu **sokağın ortasına doğru (+x)** dalgalandırır: tutarlı. Genlik düşük (gece esintisi): dalga genliği bayrak boyunun **%6**'sı, hız 0.12 rad/kare (30 fps eşdeğeri), sis hızıyla uyumlu; bayrak çoğunlukla **sarkık**, uç kısmı açılır.
+- **Işık ve gece okunurluğu:** anahtar réverbère (sağ-aşağıda, sokak ortası z 2.3) bayrağın **alt-sağ kıvrımlarını** amberle yakalar; ay üstten mavi kenar verir. Gece renkleri (doygunluk ~%70, renk ölçüm tablosuna uygun): mavi `#2c3d78` (gölgede `#1e2a55`), beyaz `#d8cfb8` (amber yanda `#e9cf9a`), kırmızı `#9a2a2a` (gölgede `#6e1e20`). Kırmızı "vurgu" kuralıyla çakışmaz: bayrak tek dönem işareti, **mühür kırmızısından daha koyu ve doygunluksuz**. Kumaş kıvrımında 2 koyu kıvrım çizgisi (KUMAS-KETEN, ince yün bayrak kumaşı). Direk: AHSAP-BOYALI koyu, uçta küçük pirinç topuz (ay ışığında tek parlama). Bayrak gölgesi cepheye, réverbère'in tersine (sol-yukarı) yumuşak düşer.
+- **Hareket kuralı:** bayrak kadrajda baştan sona durur; P04 push-in'inde (`cx +60`) kadrajın solundan çıkabilir (fiziksel çıkış, fade yok).
+
+### 9.4 Ölü alan (alt üçte bir, y 1450–1920)
+
+Şu an boş kaldırım. Kural: alt bant önemli bilgi taşımaz ama boş görünmez. Uygulama (önem sırasıyla):
+1. **Sol ön: TONNELIER dükkânının önü** (BOULANGERIE → TONNELIER, bölüm 3.3): kapı yanında **duvara dayalı bir fıçı** (z 1.15, u 0.06, ekranda ~ x 0–150, y 1500–1800, kenardan kırpık) ve kapının taş eşiği. Anlamlı: dükkânın ticaret işareti. Koyu, ayrıntısız, yalnız çember ve ay kenarı.
+2. **Sağ ön: CHAPELIER kapısının taş basamağı + köşe taşı (chasse-roue)**: araba tekerleğinin duvarı sıyırmasını önleyen alçak taş babası [G], z 1.2, u 0.95. Anlamlı ve dönemli.
+3. **Zemin derinliği:** orta oluğun ay ışığını yansıtan su şeridi y 1500–1920 boyunca sürsün (göz yolu karakterlere çıkar), ön planda bir **su birikintisi** réverbère'i yansıtsın (z 1.4, u 0.40, ~260×70 px).
+4. Alt kenar degrade karartma (mevcut) korunur; bu öğeler degradenin içinde kalır.
+Karakterleri öne almak (z 2.4 → 1.9) ölü alanı daha iyi çözer ama ayakları alt 420 px'e indirir (sahne planı A2 kararı); yönetmen kararı. **Küçük jest kuralı:** göz kırpma bu geniş kadrajda okunmaz (yüz ~100 px < 230 px); sahne planındaki p+144 sonrası push-in, yüz ≥ 230 px olacak kadar uzamalı (`cs` ≥ ~1.6 ya da kırpma). Yönetmen/motion.
+
+### 9.5 BORSA: kemer tipi ve salon dili
+
+**Sorun:** sol duvardaki üç pencere ve sağ kemerli giriş **sivri (gotik) kemer** gibi okunuyor. Kaynak kodda iki neden var (`doku/Mimari.tsx` `KemerliPencere`):
+1. Kemer yüksekliği `kemerOran` pencere **yüksekliğinin** oranı (0.22) olarak verilmiş; pencere dar ve uzun olduğu için kemer yüksekliği açıklık genişliğinin yarısını aşıyor, yarım daire uzayıp sivrileşiyor (perspektif daraltma bunu artırıyor).
+2. Kemer içine **tepe noktasından iki yana inen iki kayıt** (`bar(m(0.5,k), m(0.22/0.78,…))`) çizilmiş: bu "Y" biçimli taş tracery, gotik pencerenin imzası.
+
+**Doğrusu:** Palais de la Bourse (Gabriel, 1742–1749) 18. yy Fransız klasik dili [D]: 
+- Zemin kat ve büyük salon açıklıkları **yarım daire (plein cintre)** kemer: kemer yüksekliği = açıklık genişliği / 2, **metrik birimde** hesaplanır (perspektif eşlemesinden önce). Üst pencereler **basık kemer (segmentaire)**, yükseklik = genişlik × 0.12–0.15 [G].
+- Kemer tepesinde **kilit taşı (agrafe)**, kemer başlangıcında yatay **imposte silmesi**, söve profili düz ve kalın.
+- Doğrama: **küçük dikdörtgen camlı ızgara** (dikey ve yatay kayıtlar paralel; kemer içinde dikey kayıtlar yukarı devam eder). Tepeye yakınsayan kayıt yok. İstenirse kemer içi tek yatay kayıt (imposte) + 3 dikey kayıt.
+- Salon dili: **pilastr + düz korniş + düzenli aks ritmi** (pencere-pilastr-pencere), simetri, açık taş, iç mekânda süs az. Mevcut iyonik başlıklı pilastrlar ve korniş bu dile uygun, kalsın. Gotik çağrışım yapan dar-uzun oran yerine pencere oranı **1:2** (genişlik:yükseklik, kemer dahil).
+- **Ölü alan:** alt üçte bir (y 1450–1920) boş dama zemin. Tasarımdaki ön plan öğeleri karede yok: **sol önde sütun gövdesi** (x 0–140, y 1150–1920, bulanık, sıcak gölgede) ve **ön sağda ahşap korkuluk** (y 1560–1720 bandında, balüstrlü, bulanık, AHSAP-MESE) eklensin; ikisi de anlamlı (salonun mimarisi ve tüccarların yaslandığı bölme).
+- **Bayrak:** Borsa'daki sarkık tricolore şerit yönü doğru (mavi gönderde). İç mekânda bayrak [G ◐ doğrulanmalı]; sokakta artık bir tricolore olduğu için Borsa'dakinin kalması isteğe bağlı. Öneri: **kalsın ama küçülsün** ve gölge tarafında kalsın (P04'teki ilk "okunan" bayrak olsun diye değil; P02 önce gelir: bu durumda P02'deki bayrak filmin ilk tricolore'u, P04'teki ikinci. İkisi de dönem işareti, tekrar sayılmaz: dokunuş değil).
+
+### 9.6 Motion uygulama listesi (sırayla)
+
+**`src/doku/Mimari.tsx`**
+1. `KemerliPencere`: kemer yüksekliğini **açıklık genişliğinden** hesapla (`tip: "yarimDaire" | "basik"`; yarım daire: yükseklik = genişlik/2; basık: genişlik × 0.13), metrik birimde, perspektif eşlemesinden önce. `kemerOran` parametresini bu hesaba bağla ya da kaldır.
+2. Tepe noktasından inen iki eğik kayıt (`bar(m(0.5,k), m(u, …))`) **kaldır**; yerine paralel dikey kayıtlar + kemer başlangıcında yatay imposte kaydı. Kemer tepesine kilit taşı (agrafe) çokgeni, kemer başlangıcına imposte silmesi.
+3. Yeni `BasikKemerLento` (segmentaire lento + kilit taşı; isteğe bağlı `maskaron`) — Sokak cepheleri için.
+
+**`src/bolumler/blanc/proto/Sokak.tsx` (`sehir="bordeaux"`)**
+4. `TabureSira` **kaldır** (café önünde hiçbir şey).
+5. CAFÉ: kapı aralığı + kaldırıma tek ışık yamuğu, kapı üstünde asılı tabela (potence), vitrinde 2 statik yüzsüz siluet.
+6. `Maskaron`: yamuk levha çerçevesini kaldır; cephe düzleminde (cephe eşlemesiyle afin) **kilit taşı** olarak, taş renginde kabartma; yalnız 1. kat ve zemin kat kemerlerinde, ev başına 2–4, aynı evde aynı motif.
+7. Cepheler: ev başına farklı korniş yüksekliği (±%8), ev sınırında köşe taşı/derz, kat hiyerarşisi (zemin yüksek + entresol + 1. kat uzun + 2. kat kısa + attique küçük), pencereler basık kemer lentolu; ev başına R+2 / R+3 (+ attique); 6 kat okunan evleri düşür.
+8. Ferforje: 1. katta sürekli balkon (konsollu) ya da her pencerede balkonet; diğer katlarda yok/alçak korkuluk.
+9. Panjur oranı %30, yalnız mütevazı evler ve attique; renk çeşitliliğini tek soluk gri-yeşile indir.
+10. Sardunya noktaları (kırmızı) **kaldır**.
+11. Saçak: büyük kiremit ağızlarını kaldır; profilli taş korniş + korniş üstünde ince tuile canal sırası (yakında ≤ 14 px), bacalar kısa ve geride.
+12. Réverbère ipinin sol ucuna duvarda küçük kilitli demir kutu (ip makarası).
+13. Sol duvar fenerini söndür ya da α ≤ .3 (tek ışık kararı).
+14. Saint-Michel: `SM_X/SM_Y` sola, soldaki uzak çatıların arkasına; taban çatı çizgisinin arkasında kesilsin; direk kule boyunun %12–15'i; kollar DINLEN.
+15. Tricolore (`Bayrak` bileşeni Bordeaux için yeniden): sol cephe, `EVLER_SOL[1]` 1. kat hizası, eğik hampe 35°, **mavi direk tarafında, şeritler direğe paralel**, rüzgâr +x, genlik %6, gece renkleri 9.3; kapı üstüne okunmaz resmî levha.
+16. BOULANGERIE → TONNELIER; önüne duvara dayalı fıçı (z 1.15, u 0.06) + taş eşik. CHAPELIER önüne taş basamak + chasse-roue (z 1.2, u 0.95). Ön planda réverbère'i yansıtan birikinti (z 1.4, u 0.40). Orta oluk su şeridi alt kenara kadar.
+
+**`src/bolumler/blanc/sb2/Sb2Borsa.tsx`**
+17. Sol duvardaki üç pencere ve sağ giriş: yeni `KemerliPencere` (yarım daire, Y kayıt yok, agrafe + imposte), oran 1:2.
+18. Ön plan: sol sütun gövdesi (x 0–140, y 1150–1920) + ön sağ balüstrlü korkuluk (y 1560–1720), ikisi bulanık.
+19. Tricolore küçültülsün (%70), gölge tarafında kalsın (isteğe bağlı).
+
+**Sahne planı/yönetmen (bilgi):** P04 göz kırpma için push-in sonunda yüz ≥ 230 px (Küçük jest kuralı).
+
+### 9.7 Araştırmacıya ek sorular
+15. 1834 Bordeaux eski kentinde (Saint-Pierre/Saint-Michel mahalleleri) tipik ev yüksekliği (R+2/R+3?), dış panjur yaygınlığı, cephelerin is ile kararması.
+16. Bordeaux'da 1834'te sokak aydınlatması: yağlı réverbère mi, havagazı mı?
+17. Eski kentte bayrak asan resmî yapılar (karakol/corps de garde, komiserlik, octroi bürosu) ve bayrağın kalıcı mı bayram günlerine özgü mü asıldığı.
+18. Kafe terasının (kaldırıma masa) 1830'larda Bordeaux'da varlığı.
+19. Palais de la Bourse iç salonunun 1830'lardaki kemer/pencere düzeni (yarım daire mi basık mı).
