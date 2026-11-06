@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { Kukla, Palet, Poz } from "../../../rig/Kukla";
-import { KolEl, KISTIR_YEREL, elMatris, EL_BOY_YEREL } from "../../../rig/KolEl";
+import { KolEl, KISTIR_YEREL, elMatris } from "../../../rig/KolEl";
 import { CepEldiven } from "../props/EldivenKose";
 import { AYAK_TABAN, dunyaya, elDunya, kolIK } from "../../../rig/kinematik";
 import { ArsivKatmani } from "../../../doku/ArsivKatmani";
@@ -331,6 +331,7 @@ const AvluZemin: React.FC = () => {
   const els: React.ReactNode[] = [];
   const zs: number[] = []; for (let z = 0.9; z < ON_Z; z += 0.615) zs.push(z); zs.push(ON_Z);
   for (let r = 0; r < zs.length - 1; r++) for (let c = -7; c < 7; c++) {
+    if (zs[r] - KZ < 0.3) continue; // kameranın arkası / dibi (dolly)
     const o = (r % 2) * 0.6 + (rnd(S, `zo${r}`) - 0.5) * 0.3, x0 = c * 1.2 + o, x1 = x0 + 1.2;
     const q = [zem(zs[r], x0), zem(zs[r], x1), zem(zs[r + 1], x1), zem(zs[r + 1], x0)];
     els.push(<polygon key={`${r}-${c}`} points={poly(q)} fill={tonla(PAL.zemin, (rnd(S, `z${r}-${c}`) - 0.5) * 0.08)} stroke={murekkep(PAL.zemin)} strokeOpacity={0.45} strokeWidth={1.8} />);
@@ -355,7 +356,9 @@ const Tahta: React.FC<{ p: number }> = ({ p }) => {
       <g filter="url(#b2rakam)">
         {[0, 1, 2, 3].map((r) => { const yy = y + h * (0.38 + r * 0.16), son = r === 3; return <g key={r} opacity={son ? (yazilan > 0.2 ? 0.85 : 0) : 0.85}><line x1={x + w * 0.07} y1={yy - 6} x2={x + w * 0.17} y2={yy - 6} stroke={BL.tebesir} strokeWidth={2.4} /><text x={x + w * 0.22} y={yy} fontFamily={serif} fontWeight={900} fontSize={h * 0.11} fill={BL.tebesir}>{grup(r, 0)}</text><text x={x + w * 0.45} y={yy} fontFamily={serif} fontWeight={900} fontSize={h * 0.11} fill={BL.tebesir}>{son ? grup(r, 1).slice(0, 2) : `${grup(r, 1)},${grup(r, 2).slice(0, 2)}`}</text></g>; })}
       </g>
-      <rect x={x - 8} y={y + h + 8} width={w + 16} height={6} fill="#5b3d25" />
+      {/* tebeşir rafı (tahta altı, 1.70 m; sekme-1 burada): üst yüz + ön kenar */}
+      {(() => { const r0 = nok(ARKA_Z - 0.12, TAHTA.xm - 0.05, 1.70), r1 = nok(ARKA_Z - 0.12, TAHTA.xm + TAHTA.w + 0.05, 1.70), b0 = nok(ARKA_Z, TAHTA.xm - 0.05, 1.70), b1 = nok(ARKA_Z, TAHTA.xm + TAHTA.w + 0.05, 1.70), t = 0.05 * pxm(ARKA_Z);
+        return <g><polygon points={poly([b0, b1, r1, r0])} fill="#7a5230" stroke={ink("#7a5230")} strokeWidth={1.4} /><rect x={r0[0]} y={r0[1]} width={r1[0] - r0[0]} height={t} fill="#5b3d25" stroke={ink("#5b3d25")} strokeWidth={1.4} /><rect x={lerp(r0[0], r1[0], 0.2)} y={r0[1] - t * 0.5} width={t * 2.4} height={t * 0.5} rx={t * 0.2} fill={BL.tebesir} opacity={0.9} /></g>; })()}
     </g>
   );
 };
@@ -365,23 +368,32 @@ const Estrad: React.FC = () => {
   const [a1, b1] = e(6.0, 0.18, -1.6, 1.6), [a2, b2] = e(6.0, 0, -1.6, 1.6), [a3, b3] = e(6.2, 0.36, -1.5, 1.5), [a4, b4] = e(6.2, 0.18, -1.5, 1.5);
   return <g><polygon points={poly([a1, b1, b2, a2])} fill="#6e4a2a" stroke={ink("#6e4a2a")} strokeWidth={1.4} /><polygon points={poly([a3, b3, b4, a4])} fill="#7a5230" stroke={ink("#7a5230")} strokeWidth={1.4} /><AhsapYuzey m={(u, v): P => [lerp(a3[0], b3[0], u), lerp(a3[1], nok(6.6, 0, 0.36)[1], v)]} boyut={[300, 30]} tur="mese" seed={S + 4} derinlik="orta" /></g>;
 };
+// Katip (BC2): koyu siluet DEĞİL — KATIP_ACIK (açık gömlek kolu/manşet, açık kum yelek); kol/el tahtadan ≥ 35 L* açık.
+// Tahtanın önündeki ışık sınırı katibi 3 px sıcak kenar ışığıyla ayırır (aynı güneş: üstten-sağdan). Kırılma noktasının SOLUNDA durur.
+const KATIP_YER = { z: 6.35, xm: 0.3, h: 0.36 };
 const Katip: React.FC<{ p: number }> = ({ p }) => {
-  const g = yer(6.35, 0.55, 0.36);
-  const p0 = dur(g.x, g.y, g.s, 1, { shB: 10, elB: -30, lookY: -0.4, headTilt: -6, lookX: 0.6 });
-  // yazarken el satır boyunca küçük adımlar; p90 kırılmada el kırılma noktasında, sonra yarım tebeşirle iner
+  if (!gorunur(KATIP_YER.z)) return null;
+  const g = yer(KATIP_YER.z, KATIP_YER.xm, KATIP_YER.h);
+  const p0 = dur(g.x, g.y, g.s, 1, { shB: 10, elB: -30, lookY: -0.6, headTilt: -10, lookX: 1, browF: 0.2, agiz: "M" });
+  const K0 = kirilma();
+  // yazarken el satır boyunca küçük adımlar; p90 kırılmada el kırılma noktasında, p120 sonrası yarım tebeşirle iner
   const in_ = Math.min(1, Math.max(0, (p - 120) / 20));
-  const hedef: P = p < 90 ? [KIRILMA[0] - 46 + ((p - 30) / 60) * 40 + Math.sin(p * 0.9) * 3, KIRILMA[1] + Math.cos(p * 1.3) * 2] : [KIRILMA[0] - 20 * in_, KIRILMA[1] + 60 * in_];
+  const sat = 0.42 * pxm(KIR.z);
+  const hedef: P = p < 90 ? [K0[0] - sat + interpolate(p, [30, 88], [0, sat], cl) + Math.sin(p * 0.9) * 0.01 * sat, K0[1] + Math.cos(p * 1.3) * 0.006 * sat] : [K0[0] - 0.05 * sat * in_, K0[1] + 0.3 * sat * in_];
   const ik = kolIK(p0, hedef, true, [6, 10]);
   const pz = { ...p0, shF: ik.sh, elF: ik.el };
   const el = elDunya(pz, true, [6, 10]);
-  return <g><Siluet renk="#2e261c" acik="#4a3e2c" kutu={[g.x - 120 * g.s, g.y - 640 * g.s, 240 * g.s, 650 * g.s]}><Kukla p={KATIP} pz={pz} golgesiz /></Siluet><rect x={el[0] - 3} y={el[1] - 2} width={p < 90 ? 7 : 4} height={3} fill={BL.tebesir} /></g>;
+  const L = (p < 90 ? 0.14 : 0.07) * pxm(KATIP_YER.z), tk = 0.03 * pxm(KATIP_YER.z);
+  return (
+    <g>
+      <Siluet renk="#fff1c8" kutu={[g.x - 140 * g.s, g.y - 660 * g.s, 280 * g.s, 680 * g.s]}><g transform="translate(-3,-3)"><Kukla p={KATIP_ACIK} pz={pz} golgesiz /></g></Siluet>
+      <Kukla p={KATIP_ACIK} pz={pz} golgesiz />
+      {/* tebeşir parmaklar arasında; ucu tahtaya değer (kırılmadan önce tam, sonra yarım) */}
+      <g transform={`translate(${el[0]},${el[1]}) rotate(-35)`}><rect x={-tk * 0.3} y={-tk / 2} width={L} height={tk} rx={tk * 0.3} fill={BL.tebesir} stroke="#3a2c1c" strokeWidth={Math.max(1.2, tk * 0.12)} /></g>
+    </g>
+  );
 };
-const CepEldiven: React.FC<{ pz: Poz }> = ({ pz }) => (
-  <g transform={`translate(${pz.x},${pz.y}) scale(${(pz.scale ?? 1) * (pz.facing ?? 1)},${pz.scale ?? 1}) translate(0,${pz.bodyY ?? 0}) rotate(${pz.lean ?? 0},0,-226)`}>
-    <path d="M 26 -322 L 50 -330 L 52 -318 L 30 -312 Z" fill={BL.gloveHero} stroke="#8a7f68" strokeWidth={1.4} transform="rotate(-12 40 -322)" />
-  </g>
-);
-const Pupitr: React.FC<{ x: number; y: number; s: number; yuz: number }> = ({ x, y, s, yuz }) => {
+const Pupitr: React.FC<{ x: number; y: number; s: number; yuz: number; yazi?: number }> = ({ x, y, s, yuz, yazi = 1 }) => {
   const k = (dx: number, dy: number): P => [x + dx * s, y - dy * s];
   return (
     <g>
@@ -389,7 +401,9 @@ const Pupitr: React.FC<{ x: number; y: number; s: number; yuz: number }> = ({ x,
       <polygon points={poly([k(-66, yuz - 22), k(66, yuz - 22), k(60, yuz + 14), k(-60, yuz + 14)])} fill="#5b3d25" stroke={ink("#5b3d25")} strokeWidth={1.6} />
       <polygon points={poly([k(-54, yuz - 16), k(0, yuz - 12), k(0, yuz + 12), k(-50, yuz + 9)])} fill="#efe6d0" stroke="#5a3a22" strokeWidth={1.4} />
       <polygon points={poly([k(0, yuz - 12), k(54, yuz - 16), k(50, yuz + 9), k(0, yuz + 12)])} fill="#e9dfc9" stroke="#5a3a22" strokeWidth={1.4} />
-      {[-6, 0, 6].map((d) => <line key={d} x1={k(8, yuz + d)[0]} y1={k(8, yuz + d)[1]} x2={k(44, yuz + d - 2)[0]} y2={k(44, yuz + d - 2)[1]} stroke="#2b1d10" strokeWidth={1} opacity={0.6} />)}
+      {[-9, -4, 6].map((d) => <line key={d} x1={k(8, yuz + d)[0]} y1={k(8, yuz + d)[1]} x2={k(44, yuz + d - 2)[0]} y2={k(44, yuz + d - 2)[1]} stroke="#2b1d10" strokeWidth={1} opacity={0.6} />)}
+      {/* yazılmakta olan satır (göğüs planında kalem ucuyla birlikte ilerler; ıslak mürekkep koyu) */}
+      <polyline points={poly(Array.from({ length: 13 }).map((_, i) => { const t = (i / 12) * yazi; return k(10 + 12 * t, yuz + 1 + Math.sin(t * 40) * 0.6); }))} stroke="#14110d" strokeWidth={Math.max(1.2, 0.9 * s)} fill="none" strokeLinecap="round" />
     </g>
   );
 };
@@ -430,12 +444,7 @@ const OnPortik: React.FC = () => {
       <polyline points={poly([[-200, 1562], [1280, 1562]])} stroke={mk} strokeWidth={3} />
       {ayak(-200, 110, 110, 1, 0)}
       {ayak(970, 1280, 970, -1, 1)}
-      {/* sağ altta tüccar tezgâhı (kırpık): defter + hokka */}
-      <polygon points={poly([[760, 1660], [1180, 1640], [1180, 1700], [760, 1720]])} fill="#5b3d25" stroke={murekkep("#5b3d25")} strokeWidth={4} />
-      <polygon points={poly([[760, 1720], [1180, 1700], [1180, 2200], [760, 2200]])} fill="#3a2c20" stroke={murekkep("#5b3d25")} strokeWidth={4} />
-      <Tarama sekil={[[760, 1720], [1180, 1700], [1180, 2200], [760, 2200]]} basamak="III" aci={TH} renk="#120c08" derinlik="yakin" seed={S + 58} />
-      <polygon points={poly([[820, 1650], [940, 1644], [944, 1676], [822, 1682]])} fill="#e9dfc9" stroke="#3a2412" strokeWidth={2} />
-      <ellipse cx={980} cy={1662} rx={14} ry={6} fill="#1c1915" />
+      {/* BC5: kırpık tüccar tezgâhı KALDIRILDI (amacı okunmuyordu) */}
       {/* sol altta yarı açık dövme demir kapı kanadı (dikey çubuk + mızrak uç + kuşaklar; arcade kapılarıyla aynı dil) */}
       <g stroke={MK_DEMIR} strokeLinecap="round">
         {Array.from({ length: 8 }).map((_, j) => { const x = 80 + j * 26, y0 = 1600 + j * 3.6; return <g key={j}><line x1={x} y1={y0} x2={x} y2={2200} strokeWidth={6} /><polygon points={poly([[x, y0 - 26], [x + 7, y0 - 6], [x, y0 + 2], [x - 7, y0 - 6]])} fill={MK_DEMIR} stroke="none" /></g>; })}

@@ -51,8 +51,8 @@ export const Altyazi: React.FC<{ metin: string; kim?: string; vurgu?: string[]; 
 };
 
 // 4.3 İsim etiketi ("dosya etiketi"): kâğıt, sağ üst köşe kesik, sol sekme ceket rengi, şapkaya çizgi + daire
-export const IsimEtiketi: React.FC<{ ad: string; alt?: string; sekme: string; x: number; y: number; hedef: [number, number]; hiza?: "sol" | "sag" }> = ({ ad, alt = "BLANC · BORDEAUX", sekme, x, y, hedef, hiza = "sol" }) => {
-  const W = 350, H = 104;
+export const IsimEtiketi: React.FC<{ ad: string; alt?: string; sekme: string; x: number; y: number; hedef: [number, number]; hiza?: "sol" | "sag"; W?: number; altBoyut?: number }> = ({ ad, alt = "BLANC · BORDEAUX", sekme, x, y, hedef, hiza = "sol", W = 350, altBoyut = 30 }) => {
+  const H = 104;
   const left = hiza === "sol" ? x : x - W;
   const ax = hiza === "sol" ? left + 40 : left + W - 40;
   return (
@@ -64,7 +64,7 @@ export const IsimEtiketi: React.FC<{ ad: string; alt?: string; sekme: string; x:
       <div style={{ position: "absolute", left, top: y, width: W, height: H, background: KAGIT, border: `2px solid ${MUREKKEP}`, clipPath: "polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%)", boxSizing: "border-box", padding: "8px 10px 0 18px" }}>
         <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 6, background: sekme }} />
         <div style={{ fontFamily: serif, fontWeight: 900, fontSize: 44, lineHeight: 1, color: MUREKKEP }}>{ad}</div>
-        <div style={{ fontFamily: mono, fontWeight: 500, fontSize: 30, letterSpacing: "0.01em", whiteSpace: "nowrap", color: "#4a4237", marginTop: 6 }}>{alt}</div>
+        <div style={{ fontFamily: mono, fontWeight: 500, fontSize: altBoyut, letterSpacing: "0.01em", whiteSpace: "nowrap", color: "#4a4237", marginTop: 6 }}>{alt}</div>
       </div>
     </AbsoluteFill>
   );
