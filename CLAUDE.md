@@ -34,6 +34,8 @@ Her teslimden önce eleştirmen kontrol karelerini kural listesine göre tarar. 
 ### Doğruluk
 - Sadece `arastirma.md`'de kaynaklı bilgiler. Çelişkili detaylarda yumuşak ifade. Tek kaynaklı bilgiyi kesin gibi söyleme. Repliklerin dramatizasyon olduğu açıklamada belirtilebilir.
 - Dönem doğruluğu (ör. 1830'lar Fransa): Haussmann öncesi mimari (dar sokak, farklı yükseklikte bitişik evler, panjur, yarı ahşap, arduvaz/mansard, baca kümeleri), ipe asılı yağ lambası (réverbère), kâğıt para yok (altın/gümüş frank), Notre-Dame'da sivri kule yok (1786–1860'lar arası), Chappe telgrafı T biçimli kol mekanizması (asla yel değirmeni), tricolore 1830'dan beri.
+- Chappe ayrıntıları (`bolumler/blanc-kardesler/storyboard-v2/donem-dogrulama.md`): kollar siyah + sabit jaluzi, karşı ağırlık gri, direk gök mavisi; regülatör/gösterge ≈2.3:1; dürbünler kulede ahşap kutuya sabit (elde tutulmaz); kumanda (manipulateur) direk dibindeki odada, kablo-makara, it-çek; **telgraf gece ve siste çalışmaz** → gece planlarında kollar sabit. Bordeaux sinyali Saint-Michel çan kulesi üstünde (1768–1860'lar arası külahsız).
+- Fransız mahkemesinde tokmak yok (kanıt yok). 1830'larda koparmalı yaprak takvim yok. Kanıtsız dönem detayı (cübbe rengi, haç, arma) görsel olarak nötr kalır.
 
 ### Dokunuş (yaratıcı yönetmen)
 - Her plana **en az bir** dokunuş; filmde **hiçbiri tekrar etmez**; dokunuş **kendi planında başlar ve biter**.
@@ -45,7 +47,10 @@ Her teslimden önce eleştirmen kontrol karelerini kural listesine göre tarar. 
 - Ayaklar her karede zemine basar; temas gölgesi. Ölçek derinlikle (kaçış noktası) orantılı; karakter konumu (z derinlik, u yanal) ile tanımlanır.
 - Giriş/çıkış sadece mümkün yerlerden (kapı, sokak ucu, duvarsız kadraj kenarı). Hiçbir şey duvar/zemin/nesne içinden geçmez (baston ucu kaldırıma gömülmez, fare taşın içine batmaz).
 - Merdiven: her adım bir basamağa; yokuş: gövde dik, ayak eğime uyar.
-- Tutulan nesne eli takip eder. Gölgeler ışık kaynağının tersine.
+- Tutulan nesne eli takip eder (kıstıran parmaklar görünür; tutulan kumaş/eldiven yumuşak sarkar, katı kalıp gibi durmaz). Gölgeler ışık kaynağının tersine.
+- **Tek ışık kaynağı:** huzme, ışık havuzu ve gölge yönü aynı kaynak tanımından türetilir; elle ayrı ayrı konmaz. Görünen her lamba/fener/pencere çevresine ışık düşürür.
+- **Ufuk–ölçek:** ön plan dahil her figür ufuk çizgisine göre ölçeklenir (ayakta yetişkinin başı göz hizasındaki ufka yakın). Bulanık ön plan figürü de bu kurala uyar.
+- **Kompars ana kadrodan ayrışır:** farklı yüz/şapka/kostüm ya da yüzsüz siluet; ana karakterin yüzü kopyalanmaz.
 
 ### Süreklilik
 - Yakın planda ilk kez görülen hiçbir şey birden belirmez: önceki planda kurulur ya da girişi gösterilir (kurulum → karşılık).
@@ -62,7 +67,18 @@ Her teslimden önce eleştirmen kontrol karelerini kural listesine göre tarar. 
 
 ### Senaryo ve yazı
 - Üç katmanlı kanca (ilk kare + söz + ekran yazısı). Önce ses kapalı izleyen için yaz; ekran yazısı anlatımı tekrar etmez, tamamlar. Döngülü son. Her 2–4 sn görsel değişim.
-- Güvenli alan (1080x1920): üst 220 px, alt 420 px, yan 80 px.
+- Güvenli alan (1080x1920): üst 220 px, alt 420 px, yan 80 px. Ayaklar, temas noktaları ve kurulum nesneleri de güvenli alanın içinde kalır (Instagram arayüzü altında kalmaz).
+- **Yazı bantları:** üst bant y 240–400 (anlatım ekran yazısı), alt bant y 1290–1490 (replik altyazısı). **Replik altyazısı ayakları, temas anını ya da kurulum nesnesini örtecekse üst banda alınır.** Yazı hiçbir zaman dokunuşun üstüne binmez.
+- İsim etiketi kendi karakterinin üstünde durur, yüzü ve başka karakteri örtmez.
+
+### Mekân ve görsel dil (mekân sorumlusu)
+- Şehirler stil ile değil taş, çatı, ışık ve imza siluetle ayrışır; ilk 0.5 sn'de ses kapalı okunur. Arşiv/renk derecelendirmesi şehir paletini karartıp aynılaştırmaz (renk ölçüm tablosu ile kontrol).
+- Doku el yapımı vektör: seed sabit (doku kaynamaz), saf siyah/beyaz yok, en fazla 3 doku katmanı, kırmızı yalnız mühür/hata/vurgu için.
+- Kamera yüksekliği fiziksel tutarlı: alçak kameradan çatı yüzeyi görünmez, saçak altı görünür. Katmanlar arasında maske kenarı/şerit kalmaz.
+- Hikâyeyi taşıyan her nesne (paket, eldiven, tahta, pencere, kol) 360x640 telefon boyutunda ne olduğunu söyler; söylemiyorsa büyütülür ya da sadeleştirilir.
+
+### Kontrol karesi protokolü (eleştirmen)
+- Her plan için: ilk kare + dokunuş/temas karesi + kapanış karesi; tam boy + 360x640 telefon sayfası + güvenli alan bindirmeli sürüm. Renk ölçüm tablosu (duvar/zemin/gök hedef hex'e karşı).
 
 ## Teknik
 - Proje: Remotion 4 (`src/`), fps 60 (animasyon), 1080x1920. `npm install` sonra `npx remotion studio` / `npx remotion render <id>`.
