@@ -60,6 +60,7 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 ### Dokunuş (yaratıcı yönetmen)
 - Her plana **en az bir** dokunuş; filmde **hiçbiri tekrar etmez**; dokunuş **kendi planında başlar ve biter**.
 - **Okunabilir:** telefonda fark edilir — ekran yüksekliğinin ≥%10'u ya da yakın plan/insert, ≥1 sn net; göz oraya yönlendirilir.
+- **Küçük jest = yakın kamera:** göz kırpma, kaş, dudak, parmak gibi küçük jestler okunacaksa yüz/el ekran yüksekliğinin ≥%12'si (~230 px) olur. Değilse kamera o ana push-in yapar, yakın plana keser ya da karakter kameraya daha yakın konumlanır. Uzak planda küçük jest oynanmaz.
 - **Katkı:** bir karakter eylemine sebep-sonuç ile bağlanır, mümkünse karakteri anlatır.
 - Ses gerektiren dokunuşun foley'i atlanmaz.
 
@@ -90,6 +91,8 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - Güvenli alan (1080x1920): üst 220 px, alt 420 px, yan 80 px. Ayaklar, temas noktaları ve kurulum nesneleri de güvenli alanın içinde kalır (Instagram arayüzü altında kalmaz).
 - **Yazı bantları:** üst bant y 240–400 (anlatım ekran yazısı), alt bant y 1290–1490 (replik altyazısı). **Replik altyazısı ayakları, temas anını ya da kurulum nesnesini örtecekse üst banda alınır.** Yazı hiçbir zaman dokunuşun üstüne binmez.
 - İsim etiketi kendi karakterinin üstünde durur, yüzü ve başka karakteri örtmez.
+- **Ölü alan yok:** dikey kadrajın hiçbir üçte biri boş kalmaz. Konu kadrajı doldurur (kamera açısı, z konumu, ön plan öğesi); alt güvenli bant önemli bilgi taşımaz ama boş da görünmez (ön plan nesnesi, gölge, zemin derinliği).
+- **Her nesnenin yeri anlamlı:** sahnede duran her eşya bir işleve ve mantıklı bir konuma sahiptir (kafe masası kafenin önünde, kapı açıklığını kapatmaz); amacı belli olmayan nesne çıkarılır.
 
 ### Mekân ve görsel dil (mekân sorumlusu)
 - Şehirler stil ile değil taş, çatı, ışık ve imza siluetle ayrışır; ilk 0.5 sn'de ses kapalı okunur. Arşiv/renk derecelendirmesi şehir paletini karartıp aynılaştırmaz (renk ölçüm tablosu ile kontrol).
