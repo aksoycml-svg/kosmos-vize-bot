@@ -8,7 +8,7 @@ import { titresim } from "../../../doku/IsikKatmani";
 import { AciklikIsigi, Isik, IsikHavuzu, izdusum } from "../../../doku/Isik";
 import { Kiris, MasaKenari } from "../../../doku/Mimari";
 import { Kemer } from "../../../doku/Kemer";
-import { Desen, Tarama, TaramaEgri, taramaAcisi } from "../../../doku/Tarama";
+import { Desen, RenkKaydi, Tarama, TARAMA_ARALIK, TARAMA_KALINLIK, TaramaEgri, taramaAcisi } from "../../../doku/Tarama";
 import { GuvenliAlan, KilitNokta } from "../../../doku/GuvenliAlan";
 import { ChappeKule, KolKonum, KONUMLAR } from "../../../doku/ChappeKule";
 import { BL, DOKU_SEED, P, dikdortgen, ink, poly } from "../../../doku/sabitler";
@@ -127,7 +127,7 @@ export const Sb2Tours: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
     { ad: "TOURS etiketi", p: ekran([PAKET[0] + 70 + 150, PAKET[1] + 236]), tur: "kurulum" },
     ...(birak ? [{ ad: "eldiven tap", p: ekran(eldivenYere), tur: "temas" as const }] : []),
   ];
-  const tarama = <Desen id="t1gTar" aci={TH} aralik={6} kalin={1.6} renk="#2a1c10" alfa={0.75} seed={S + 9} />;
+  const tarama = <Desen id="t1gTar" aci={TH} aralik={TARAMA_ARALIK.yakin} kalin={TARAMA_KALINLIK.yakin} renk="#2a1c10" alfa={0.75} seed={S + 9} />;
   return (
     <AbsoluteFill style={{ backgroundColor: "#2a2016" }}>
       <ArsivKatmani mod="gunduz">
@@ -138,6 +138,7 @@ export const Sb2Tours: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
               <radialGradient id="t1duvarFener"><stop offset="0" stopColor="#ffcf86" stopOpacity={0.35} /><stop offset="1" stopColor="#ffcf86" stopOpacity={0} /></radialGradient>
               <filter id="t1golgeBlur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation={3} /></filter>
             </defs>
+            <RenkKaydi>
             <g transform={kam}>
               {/* ===== DUVAR (badanalı tuffeau; alt kısımda dökülmüş sıvadan tuffeau) ===== */}
               <KonturTitreme derinlik="orta" seed={S}>
@@ -215,6 +216,7 @@ export const Sb2Tours: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
               {[-40, 140, 320, 500, 680, 860, 1040].map((x, i) => <line key={i} x1={x} y1={MASA.on + MASA.onYuz} x2={x * 1.25 - 135} y2={2200} stroke="#2a1e12" strokeWidth={3} />)}
               <Tarama sekil={[[-140, MASA.on + MASA.onYuz], [1220, MASA.on + MASA.onYuz], [1220, MASA.on + MASA.onYuz + 60], [-140, MASA.on + MASA.onYuz + 60]]} basamak="IV" aci={TH} renk="#14110d" derinlik="yakin" seed={S + 12} />
             </g>
+            </RenkKaydi>
           </svg>
         </AbsoluteFill>
       </ArsivKatmani>

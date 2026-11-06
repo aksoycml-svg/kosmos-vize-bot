@@ -4,6 +4,7 @@ import { Kukla, FRANCOIS, LOUIS, Poz, yuru } from "../../../rig/Kukla";
 import { AYAK_TABAN, bastonAcisi, bastonUcu, dunyaya, elYerel } from "../../../rig/kinematik";
 import { Sokak, FENER, Tanimlar, zemin, sokakGenislik, reverbere, SokakOnPlan } from "../proto/Sokak";
 import { ArsivKatmani } from "../../../doku/ArsivKatmani";
+import { RenkKaydi } from "../../../doku/Tarama";
 import { KonturTitreme } from "../../../doku/KonturTitreme";
 import { Golge, Isik } from "../../../doku/Isik";
 import { GuvenliAlan, KilitNokta } from "../../../doku/GuvenliAlan";
@@ -118,6 +119,7 @@ export const Sb2Sokak: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
         <AbsoluteFill>
           <svg width={1080} height={1920} viewBox="0 0 1080 1920">
             <Tanimlar />
+            <RenkKaydi>
             <g transform={kat(0.25)}><Sokak katman="gok" sehir="bordeaux" /></g>
             <g transform={kat(0.55)}><KonturTitreme derinlik="uzak" seed={DOKU_SEED.sokakBdx}><Sokak katman="uzak" sehir="bordeaux" /></KonturTitreme></g>
             {sis(0.55, 960, 0.26)}
@@ -125,8 +127,8 @@ export const Sb2Sokak: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
             <g transform={kat(1)}>
               <KonturTitreme derinlik="orta" seed={DOKU_SEED.sokakBdx}><Sokak katman="orta" t={0} sehir="bordeaux" izgaraFaresiz /></KonturTitreme>
               <Izgara />
-              <Golge isik={REV} ayak={[lz.zx, lz.zy]} h={635 * lz.s * 0.9} genislik={100 * lz.s} alfa={0.5} />
-              <Golge isik={REV} ayak={[fz.zx, fz.zy]} h={620 * fz.s * 0.9} genislik={100 * fz.s} alfa={0.5} />
+              <Golge isik={REV} ayak={[lz.zx, lz.zy]} h={635 * lz.s * 0.9} genislik={100 * lz.s} alfa={0.5} stil="gravur" seed={DOKU_SEED.sokakBdx + 300} />
+              <Golge isik={REV} ayak={[fz.zx, fz.zy]} h={620 * fz.s * 0.9} genislik={100 * fz.s} alfa={0.5} stil="gravur" seed={DOKU_SEED.sokakBdx + 301} />
               <Golge isik={REV} ayak={uc} h={8} genislik={14 * lz.s} alfa={0.6} />
               <Kukla louis p={LOUIS} pz={lpz} golgesiz />
               <CepEldiven pz={lpz} />
@@ -137,6 +139,7 @@ export const Sb2Sokak: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
               <SokakOnPlan />
             </g>
             {sis(1.3, 1800, 0.1)}
+            </RenkKaydi>
             <defs>
               <radialGradient id="sb2fener"><stop offset="0" stopColor="#ffb456" stopOpacity="0.2" /><stop offset="1" stopColor="#ffb456" stopOpacity="0" /></radialGradient>
               <radialGradient id="sb2rev"><stop offset="0" stopColor="#ffb357" stopOpacity="0.24" /><stop offset="1" stopColor="#ffb357" stopOpacity="0" /></radialGradient>

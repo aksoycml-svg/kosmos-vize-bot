@@ -1,6 +1,7 @@
 import React, { useId } from "react";
 import { useCurrentFrame } from "remotion";
 import { EN_KOYU, P, poly, rnd } from "./sabitler";
+import { Tarama, taramaAcisi } from "./Tarama";
 
 // ===== TEK KAYNAKTAN IŞIK (eleştiri A, sistemik 2) =====
 // Her sahne ışığını BİR kez tanımlar; huzme, zemin yaması / ışık havuzu ve tüm gölgeler (yön, uzunluk, genişlik)
@@ -93,13 +94,36 @@ export const IsikHavuzu: React.FC<{ isik: Isik; guc?: number }> = ({ isik, guc =
   );
 };
 
-// --- Gölge: ayaktan ışığın tersine koni (uzunluk/yön ışıktan), uca doğru açılır ve yumuşar + temas çekirdeği ---
-export const Golge: React.FC<{ isik: Isik; ayak: P; h: number; genislik: number; alfa?: number; renk?: string; yassi?: number; cekirdek?: boolean }> = ({ isik, ayak, h, genislik, alfa = 0.45, renk = EN_KOYU, yassi = 0.2, cekirdek = true }) => {
+// --- Gölge: ayaktan ışığın tersine koni (uzunluk/yön ışıktan) + temas çekirdeği ---
+// stil "yumusak" (eski, bulanık degrade — Proto) | "gravur" (A4 G4: NET kenarlı gölge çokgeni = ton bloğu + Tarama III,
+// ayak altında küçük IV çekirdek; kenar yumuşatma yok, gravürde gölge kenarı nettir). seed sabit.
+export const Golge: React.FC<{ isik: Isik; ayak: P; h: number; genislik: number; alfa?: number; renk?: string; yassi?: number; cekirdek?: boolean; stil?: "yumusak" | "gravur"; seed?: number }> = ({ isik, ayak, h, genislik, alfa = 0.45, renk = EN_KOYU, yassi = 0.2, cekirdek = true, stil = "yumusak", seed = 1 }) => {
   const id = "gl" + useId().replace(/:/g, "");
   const uc = izdusum(isik, ayak, h);
   const dx = uc[0] - ayak[0], dy = uc[1] - ayak[1], L = Math.hypot(dx, dy) || 1;
   const nx = -dy / L, ny = dx / L;
   const w0 = genislik / 2, w1 = genislik * 0.8;
+  if (stil === "gravur") {
+    // gövde gölgesi: ayaktan uca hafif şişen, ucu yuvarlak çokgen (net kenar)
+    const ux = dx / L, uy = dy / L, w2 = genislik * 0.42, rx = genislik * 0.5, ry = genislik * yassi * 0.5;
+    const yan = (t: number, w: number, s: 1 | -1): P => [ayak[0] + dx * t + nx * w * s, ayak[1] + dy * t + ny * w * s * 0.4];
+    const kenar = (s: 1 | -1) => [0, 0.35, 0.7, 1].map((t) => yan(t, lerpW(w0 * 0.9, w2, t), s));
+    const sag = kenar(1), sol = kenar(-1).reverse();
+    const uc2: P = [uc[0] + ux * w2 * 0.6, uc[1] + uy * w2 * 0.6 * 0.4];
+    const govde = L > 4 ? `M ${sag.map((q) => q.join(" ")).join(" L ")} Q ${uc2.join(" ")} ${sol[0].join(" ")} L ${sol.map((q) => q.join(" ")).join(" L ")} Z` : "";
+    // ayak altı temas lekesi (elips) — sabit, net
+    const elips = `M ${ayak[0] - rx} ${ayak[1]} A ${rx} ${ry} 0 1 0 ${ayak[0] + rx} ${ayak[1]} A ${rx} ${ry} 0 1 0 ${ayak[0] - rx} ${ayak[1]} Z`;
+    const cek = `M ${ayak[0] - rx * 0.55} ${ayak[1]} A ${rx * 0.55} ${ry * 0.6} 0 1 0 ${ayak[0] + rx * 0.55} ${ayak[1]} A ${rx * 0.55} ${ry * 0.6} 0 1 0 ${ayak[0] - rx * 0.55} ${ayak[1]} Z`;
+    const aci = taramaAcisi(isik);
+    const sekil = govde ? `${govde} ${elips}` : elips;
+    return (
+      <g>
+        <path d={sekil} fill={renk} fillOpacity={alfa * 0.55} />
+        <Tarama sekil={sekil} basamak="III" aci={aci} renk={renk} seed={seed} ton={0} alfaCarpan={0.9} derinlik={genislik > 70 ? "yakin" : "orta"} />
+        {cekirdek && <path d={cek} fill={renk} fillOpacity={Math.min(0.85, alfa * 1.4)} />}
+      </g>
+    );
+  }
   const koni: P[] = [[ayak[0] + nx * w0, ayak[1] + ny * w0 * 0.4], [uc[0] + nx * w1, uc[1] + ny * w1 * 0.4], [uc[0] - nx * w1, uc[1] - ny * w1 * 0.4], [ayak[0] - nx * w0, ayak[1] - ny * w0 * 0.4]];
   return (
     <g>
@@ -113,3 +137,4 @@ export const Golge: React.FC<{ isik: Isik; ayak: P; h: number; genislik: number;
     </g>
   );
 };
+const lerpW = (a: number, b: number, t: number) => a + (b - a) * t;

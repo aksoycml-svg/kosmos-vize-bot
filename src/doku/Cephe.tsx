@@ -2,7 +2,7 @@ import React from "react";
 import { Kemer, Maskaron } from "./Kemer";
 import { Tarama } from "./Tarama";
 import { TasDuvar } from "./TasDuvar";
-import { Derinlik, Esleme, P, ink, karistir, poly, rnd, tonla } from "./sabitler";
+import { Derinlik, Esleme, MIMARI_KONTUR, P, ink, karistir, murekkep, poly, rnd, tonla } from "./sabitler";
 
 // ===== Cephe = AYRI EVLER (mekanlar.md 10.3, 12 #3–#4) =====
 // Her ev kendi aks sayısı, kat dizisi, korniş yüksekliği, rengi ile. İskelet tarihe sadık (Bordeaux Gambetta düzeni [D Ek 3]):
@@ -34,6 +34,7 @@ export const CepheEv: React.FC<{
   const r = (k: string) => rnd(seed, k);
   const tas = e.renk, golge = palet.tasGolge, mur = palet.murekkep;
   const uzak = derinlik === "uzak", yakin = derinlik === "yakin";
+  const KK = MIMARI_KONTUR[derinlik], mk = murekkep(tas); // A4 G3: iç kontur koyu mürekkep, karakter konturuyla aynı aile
   const els: React.ReactNode[] = [];
 
   // kat yükseklikleri (alttan)
@@ -46,14 +47,14 @@ export const CepheEv: React.FC<{
   // 1) gövde + (yakında) blok dokusu
   els.push(<polygon key="g" points={poly(dik(0, W, 0, kornis[1]))} fill={tas} />);
   if (!uzak) els.push(<TasDuvar key="td" m={em(0, 0, W, kornis[1])} boyut={[W * 60, kornis[1] * 60]} tip="bdx" taban={tas} seed={seed} derinlik={derinlik} yogunluk={yakin ? 0.6 : 0.4} gozenek={false} blok={[36, 18]} />);
-  if (att) els.push(<polygon key="att" points={poly(dik(0.25, W - 0.25, att[0], att[1]))} fill={tonla(tas, -0.05)} stroke={ink(tas)} strokeWidth={1} />);
+  if (att) els.push(<polygon key="att" points={poly(dik(0.25, W - 0.25, att[0], att[1]))} fill={tonla(tas, -0.05)} stroke={mk} strokeWidth={KK.ic * 0.6} />);
   // 2) köşe taşı şeridi (ev sınırı)
   for (let i = 0; i < 12 && !uzak; i++) {
     const y0 = (kornis[0] * i) / 12, y1 = (kornis[0] * (i + 1)) / 12 - 0.06, w = i % 2 ? 0.35 : 0.55;
     els.push(<polygon key={`q${i}`} points={poly(dik(0, w, y0, y1))} fill={tonla(tas, 0.06)} />);
     els.push(<polygon key={`qr${i}`} points={poly(dik(W - w, W, y0, y1))} fill={tonla(tas, 0.06)} />);
   }
-  els.push(<polyline key="sinir" points={poly([P_(0, 0), P_(0, kornis[1])])} stroke={ink(tas)} strokeWidth={uzak ? 1 : 2} fill="none" />);
+  els.push(<polyline key="sinir" points={poly([P_(0, 0), P_(0, kornis[1])])} stroke={mk} strokeWidth={KK.dis * 0.7} fill="none" />);
 
   const aksW = W / e.aks;
   // 3) ZEMİN: arcade (basık), içinde entresol penceresi; altında dükkân cephesi ya da kapı
@@ -100,7 +101,7 @@ export const CepheEv: React.FC<{
       );
       els.push(
         <g key={`ar${a}`}>
-          <Kemer m={em(x0, z0, ow, oh)} W={ow} H={oh} tip="basik" dolgu={karistir(golge, mur, 0.35)} ic={ic} kontur={uzak ? 1 : 2}
+          <Kemer m={em(x0, z0, ow, oh)} W={ow} H={oh} tip="basik" dolgu={karistir(golge, mur, 0.35)} ic={ic} kontur={KK.ic}
             sove={uzak ? null : { gen: 0.22, renk: tonla(tas, 0.05) }} kilit={uzak ? null : { renk: tas, maskaron: !!(yakinSusleme && !uzak) }} />
           {/* arcade iç yan yüzü (derinlik) — tarama IV */}
           {!uzak && <Tarama sekil={dik(x0, x0 + 0.16, z0, z0 + oh - 0.4)} basamak="IV" aci={aci} renk={mur} derinlik={derinlik} seed={seed + a} />}
@@ -109,7 +110,7 @@ export const CepheEv: React.FC<{
       if (dukkanBu && dukkanYazi && !uzak) els.push(<g key={`dy${a}`}>{dukkanYazi(P_(x0 + 0.12, z0 + 2.97), P_(x0 + ow - 0.12, z0 + 2.97), P_(x0 + 0.12, z0 + 2.8), e.dukkan!.ad, isikli ? "#ffd27a" : "#e7d6a8")}</g>);
     }
     // kat silmesi
-    els.push(<polygon key="silme" points={poly(dik(0, W, z0 + KAT_H.zemin - 0.22, z0 + KAT_H.zemin))} fill={tonla(tas, 0.07)} stroke={ink(tas)} strokeWidth={1} />);
+    els.push(<polygon key="silme" points={poly(dik(0, W, z0 + KAT_H.zemin - 0.22, z0 + KAT_H.zemin))} fill={tonla(tas, 0.07)} stroke={mk} strokeWidth={KK.ic} />);
   }
 
   // 4) NOBLE (1. kat): uzun dikdörtgen pencere (porte-fenêtre) + demir balkon (zengin: konsollu sürekli; diğer: balkonet)
@@ -118,13 +119,15 @@ export const CepheEv: React.FC<{
     for (let a = 0; a < e.aks; a++) {
       const x0 = a * aksW + (aksW - ww) / 2;
       const isik = r(`${k}l${a}`) < 0.32;
-      out.push(<polygon key={`${k}s${a}`} points={poly(dik(x0 - 0.14, x0 + ww + 0.14, y0 - 0.12, y0 + wh + 0.18))} fill={tonla(tas, 0.06)} stroke={ink(tas)} strokeWidth={uzak ? 0.8 : 1.2} />);
+      out.push(<polygon key={`${k}s${a}`} points={poly(dik(x0 - 0.14, x0 + ww + 0.14, y0 - 0.12, y0 + wh + 0.18))} fill={tonla(tas, 0.06)} stroke={mk} strokeWidth={KK.ic} />);
       out.push(<polygon key={`${k}w${a}`} points={poly(dik(x0, x0 + ww, y0, y0 + wh))} fill={isik ? palet.camIsik : palet.cam} opacity={isik ? 0.92 : 1} />);
       if (!uzak) {
         out.push(<polyline key={`${k}m${a}`} points={poly([P_(x0 + ww / 2, y0), P_(x0 + ww / 2, y0 + wh)])} stroke={palet.ahsap} strokeWidth={2} fill="none" />);
         [0.33, 0.66].forEach((t) => out.push(<polyline key={`${k}h${a}${t}`} points={poly([P_(x0, y0 + wh * t), P_(x0 + ww, y0 + wh * t)])} stroke={palet.ahsap} strokeWidth={1.4} fill="none" />));
-        // pencere içi üst yarı derin gölge (söve içi) — tarama III
-        out.push(<Tarama key={`${k}t${a}`} sekil={dik(x0, x0 + ww, y0 + wh * 0.82, y0 + wh)} basamak="III" aci={aci} renk={mur} derinlik={derinlik} seed={seed + 30 + a} />);
+        // pencere çevresi (A4 G1): söve iç yüzü (sol) + lento altı gölgesi — ışığın mimariyi anlattığı yer; cam konturu koyu
+        out.push(<Tarama key={`${k}t${a}`} sekil={dik(x0, x0 + ww, y0 + wh * 0.84, y0 + wh)} basamak="III" aci={aci} renk={mur} derinlik={derinlik} seed={seed + 30 + a} />);
+        out.push(<Tarama key={`${k}r${a}`} sekil={dik(x0, x0 + ww * 0.14, y0, y0 + wh * 0.84)} basamak="III" aci={aci} renk={mur} derinlik={derinlik} seed={seed + 40 + a} />);
+        out.push(<polygon key={`${k}c${a}`} points={poly(dik(x0, x0 + ww, y0, y0 + wh))} fill="none" stroke={mk} strokeWidth={KK.ic * 0.8} />);
       }
       if (panjur && !uzak) [[x0 - ww * 0.5, x0 - 0.02], [x0 + ww + 0.02, x0 + ww * 1.5]].forEach(([p0, p1], j) => out.push(<polygon key={`${k}p${a}${j}`} points={poly(dik(p0, p1, y0, y0 + wh))} fill={palet.panjur} stroke={ink(palet.panjur)} strokeWidth={1} />));
       if (korkuluk === "balkonet" && !uzak) {
@@ -141,24 +144,24 @@ export const CepheEv: React.FC<{
     if (e.zengin && !uzak) {
       // taş konsollara oturan sürekli balkon: döşeme + ALT yüzü (alçak kamera) + konsollar + kıvrımlı ferforje
       const by = n0 + 0.25;
-      els.push(<polygon key="bal" points={poly(dik(0.3, W - 0.3, by - 0.18, by))} fill={tonla(tas, 0.04)} stroke={ink(tas)} strokeWidth={1.2} />);
+      els.push(<polygon key="bal" points={poly(dik(0.3, W - 0.3, by - 0.18, by))} fill={tonla(tas, 0.04)} stroke={mk} strokeWidth={KK.ic} />);
       els.push(<Tarama key="balt" sekil={dik(0.3, W - 0.3, by - 0.32, by - 0.18)} basamak="IV" aci={aci} renk={mur} derinlik={derinlik} seed={seed + 50} />);
-      for (let i = 0; i <= e.aks; i++) { const x = 0.4 + ((W - 0.8) * i) / e.aks; els.push(<polygon key={`kon${i}`} points={poly([P_(x - 0.12, by - 0.18), P_(x + 0.12, by - 0.18), P_(x + 0.05, by - 0.75), P_(x - 0.05, by - 0.75)])} fill={tonla(tas, -0.04)} stroke={ink(tas)} strokeWidth={1.2} />); }
+      for (let i = 0; i <= e.aks; i++) { const x = 0.4 + ((W - 0.8) * i) / e.aks; els.push(<polygon key={`kon${i}`} points={poly([P_(x - 0.12, by - 0.18), P_(x + 0.12, by - 0.18), P_(x + 0.05, by - 0.75), P_(x - 0.05, by - 0.75)])} fill={tonla(tas, -0.04)} stroke={mk} strokeWidth={KK.ic * 0.8} />); }
       els.push(<polyline key="balu" points={poly([P_(0.3, by + 1.0), P_(W - 0.3, by + 1.0)])} stroke={palet.demir} strokeWidth={2.6} fill="none" />);
       for (let i = 0; i <= e.aks * 6; i++) { const x = 0.3 + ((W - 0.6) * i) / (e.aks * 6); els.push(<path key={`bf${i}`} d={`M ${P_(x, by).join(" ")} Q ${P_(x + 0.12, by + 0.5).join(" ")} ${P_(x, by + 1.0).join(" ")}`} stroke={palet.demir} strokeWidth={1.3} fill="none" />); }
     }
   }
   if (kat.ust) els.push(...pencere("u", kat.ust[0] + 0.4, aksW * 0.38, 1.9, "alcak", !!e.panjur));
   // 5) profilli korniş + ALT yüzü (alçak kamera) — tarama IV
-  els.push(<polygon key="k1" points={poly(dik(-0.15, W + 0.15, kornis[0] + 0.18, kornis[1]))} fill={tonla(tas, 0.08)} stroke={ink(tas)} strokeWidth={uzak ? 1 : 1.6} />);
+  els.push(<polygon key="k1" points={poly(dik(-0.15, W + 0.15, kornis[0] + 0.18, kornis[1]))} fill={tonla(tas, 0.08)} stroke={mk} strokeWidth={KK.ic} />);
   els.push(<polygon key="k2" points={poly(dik(-0.1, W + 0.1, kornis[0], kornis[0] + 0.18))} fill={golge} />);
   if (!uzak) els.push(<Tarama key="k3" sekil={dik(-0.1, W + 0.1, kornis[0] - 0.25, kornis[0] + 0.18)} basamak="IV" aci={aci} renk={mur} derinlik={derinlik} seed={seed + 60} />);
   // kamera görünürlüğü: çatı yüzeyi yalnız kamera korniş seviyesinde/üstündeyse (bu filmin sokak kamerası 0.9 m: ÇİZİLMEZ)
   if (kameraH >= kornis[1]) els.push(<polygon key="cati" points={poly(dik(-0.15, W + 0.15, kornis[1], kornis[1] + 1.2))} fill="#7a3f2c" />);
   // 6) attique: küçük dikdörtgen pencereler, ince korniş
   if (att) {
-    for (let a = 0; a < e.aks; a++) { const ww = aksW * 0.3, x0 = a * aksW + (aksW - ww) / 2; els.push(<polygon key={`at${a}`} points={poly(dik(x0, x0 + ww, att[0] + 0.5, att[0] + 1.5))} fill={r(`al${a}`) < 0.2 ? palet.camIsik : palet.cam} stroke={ink(tas)} strokeWidth={1} />); }
-    els.push(<polygon key="atk" points={poly(dik(0.15, W - 0.15, att[1] - 0.15, att[1]))} fill={tonla(tas, 0.04)} stroke={ink(tas)} strokeWidth={1} />);
+    for (let a = 0; a < e.aks; a++) { const ww = aksW * 0.3, x0 = a * aksW + (aksW - ww) / 2; els.push(<polygon key={`at${a}`} points={poly(dik(x0, x0 + ww, att[0] + 0.5, att[0] + 1.5))} fill={r(`al${a}`) < 0.2 ? palet.camIsik : palet.cam} stroke={mk} strokeWidth={KK.ic * 0.8} />); }
+    els.push(<polygon key="atk" points={poly(dik(0.15, W - 0.15, att[1] - 0.15, att[1]))} fill={tonla(tas, 0.04)} stroke={mk} strokeWidth={KK.ic * 0.8} />);
   }
   return <g>{els}</g>;
 };

@@ -1,5 +1,6 @@
 import React, { useId } from "react";
-import { Esleme, P, ink, poly, tonla } from "./sabitler";
+import { Derinlik, Esleme, P, ink, murekkep, poly, tonla } from "./sabitler";
+import { Basamak, Tarama } from "./Tarama";
 
 // ===== Kemer (mekanlar.md 10 kemer sözlüğü) =====
 // tip: duz (lento) · basik (segmentaire, yükselti 0.10–0.15 W) · yarimDaire (plein cintre, 0.5 W) · sivri (gotik — YALNIZ Saint-Michel).
@@ -39,7 +40,10 @@ export const Kemer: React.FC<{
   imposte?: boolean;                                     // üzengi silmesi
   esik?: { renk: string } | null;                        // denizlik / eşik
   kontur?: number;
-}> = ({ m, W, H, tip = "yarimDaire", dolgu, ic, kayit = null, sove = null, kilit = null, imposte = false, esik = null, kontur = 2 }) => {
+  // açıklığın İÇ YÜZÜ (söve + kemer içi / intrados): arka kenarın ekrandaki kayması (kaçış noktasına doğru) → görünen derinlik bandı,
+  // gravürde ışığın mimariyi anlattığı yer (A4 G1). Bant, açıklık içi çizimin ÜSTÜNE gelir (önde olan örter).
+  icYuz?: { kaydir: P; renk: string; basamak: Basamak; aci: number; seed: number; derinlik?: Derinlik } | null;
+}> = ({ m, W, H, tip = "yarimDaire", dolgu, ic, kayit = null, sove = null, kilit = null, imposte = false, esik = null, kontur = 3, icYuz = null }) => {
   const id = "km" + useId().replace(/:/g, "");
   const ac = kemerCokgen(m, tip, W, H);
   const rise = KEMER_YUKSELTI[tip] * W, sp = H - rise;
@@ -48,9 +52,20 @@ export const Kemer: React.FC<{
   return (
     <g>
       <defs><clipPath id={`${id}c`}><polygon points={poly(ac)} /></clipPath></defs>
-      {sove && <polygon points={poly(kemerCokgen(m, tip, W, H, sove.gen))} fill={sove.renk} stroke={ink(sove.renk)} strokeWidth={kontur} strokeLinejoin="round" />}
+      {sove && <polygon points={poly(kemerCokgen(m, tip, W, H, sove.gen))} fill={sove.renk} stroke={murekkep(sove.renk)} strokeWidth={kontur} strokeLinejoin="round" />}
       <polygon points={poly(ac)} fill={dolgu} />
       {ic && <g clipPath={`url(#${id}c)`}>{ic}</g>}
+      {icYuz && (() => {
+        const ic2 = ac.map(([x, y]): P => [x + icYuz.kaydir[0], y + icYuz.kaydir[1]]);
+        const d = `M ${poly(ac).split(" ").join(" L ")} Z M ${poly(ic2).split(" ").join(" L ")} Z`;
+        return (
+          <g clipPath={`url(#${id}c)`}>
+            <path d={d} fillRule="evenodd" fill={icYuz.renk} />
+            <Tarama sekil={d} basamak={icYuz.basamak} aci={icYuz.aci} renk={murekkep(icYuz.renk)} derinlik={icYuz.derinlik ?? "orta"} seed={icYuz.seed} kural="evenodd" />
+            <polygon points={poly(ic2)} fill="none" stroke={murekkep(icYuz.renk)} strokeWidth={kontur * 0.6} strokeLinejoin="round" />
+          </g>
+        );
+      })()}
       {kayit && (
         <g clipPath={`url(#${id}c)`}>
           {Array.from({ length: kayit.dikey }).map((_, i) => { const x = (W * (i + 1)) / (kayit.dikey + 1); return <polyline key={`d${i}`} points={poly([P_(x, 0), P_(x, H)])} stroke={krenk} strokeWidth={kayit.kalin ?? 4} fill="none" />; })}
@@ -59,9 +74,9 @@ export const Kemer: React.FC<{
           <polygon points={poly(ac)} fill="none" stroke={krenk} strokeWidth={(kayit.kalin ?? 4) * 1.6} />
         </g>
       )}
-      <polygon points={poly(ac)} fill="none" stroke={ink(sove?.renk ?? dolgu)} strokeWidth={kontur} strokeLinejoin="round" />
+      <polygon points={poly(ac)} fill="none" stroke={murekkep(sove?.renk ?? dolgu)} strokeWidth={kontur} strokeLinejoin="round" />
       {imposte && tip !== "duz" && [[-0.1 * W, 0.02 * W], [W - 0.02 * W, W + 0.1 * W]].map(([a, b], i) => (
-        <polygon key={i} points={poly([P_(a, sp + 0.05 * W), P_(b, sp + 0.05 * W), P_(b, sp - 0.02 * W), P_(a, sp - 0.02 * W)])} fill={tonla(sove?.renk ?? "#cdbb8e", 0.05)} stroke={ink(sove?.renk ?? "#cdbb8e")} strokeWidth={kontur * 0.7} />
+        <polygon key={i} points={poly([P_(a, sp + 0.05 * W), P_(b, sp + 0.05 * W), P_(b, sp - 0.02 * W), P_(a, sp - 0.02 * W)])} fill={tonla(sove?.renk ?? "#cdbb8e", 0.05)} stroke={murekkep(sove?.renk ?? "#cdbb8e")} strokeWidth={kontur * 0.7} />
       ))}
       {kilit && tip !== "duz" && (() => {
         const w0 = 0.07 * W, w1 = 0.1 * W, h0 = H + (sove?.gen ?? 0.12 * W) * 0.9, h1 = H - Math.min(rise * 0.6, 0.18 * W);
@@ -69,12 +84,12 @@ export const Kemer: React.FC<{
         const c = P_(W / 2, (h0 + h1) / 2), s = Math.abs(P_(W / 2 + w1, h0)[0] - P_(W / 2 - w1, h0)[0]) / 40;
         return (
           <g>
-            <polygon points={poly(pts)} fill={tonla(kilit.renk, 0.06)} stroke={ink(kilit.renk)} strokeWidth={kontur * 0.8} />
+            <polygon points={poly(pts)} fill={tonla(kilit.renk, 0.06)} stroke={murekkep(kilit.renk)} strokeWidth={kontur * 0.8} />
             {kilit.maskaron && <Maskaron x={c[0]} y={c[1]} s={s} renk={kilit.renk} />}
           </g>
         );
       })()}
-      {esik && <polygon points={poly([P_(-0.08 * W, 0.02 * W), P_(W + 0.08 * W, 0.02 * W), P_(W + 0.1 * W, -0.05 * W), P_(-0.1 * W, -0.05 * W)])} fill={esik.renk} stroke={ink(esik.renk)} strokeWidth={kontur * 0.7} />}
+      {esik && <polygon points={poly([P_(-0.08 * W, 0.02 * W), P_(W + 0.08 * W, 0.02 * W), P_(W + 0.1 * W, -0.05 * W), P_(-0.1 * W, -0.05 * W)])} fill={esik.renk} stroke={murekkep(esik.renk)} strokeWidth={kontur * 0.7} />}
     </g>
   );
 };

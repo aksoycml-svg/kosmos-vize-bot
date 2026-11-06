@@ -9,9 +9,9 @@ import { AhsapYuzey } from "../../../doku/AhsapYuzey";
 import { Siluet } from "../../../doku/Siluet";
 import { Golge, Isik } from "../../../doku/Isik";
 import { Kemer, kemerCokgen } from "../../../doku/Kemer";
-import { Tarama, taramaAcisi } from "../../../doku/Tarama";
+import { RenkKaydi, Tarama, taramaAcisi } from "../../../doku/Tarama";
 import { GuvenliAlan, KilitNokta } from "../../../doku/GuvenliAlan";
-import { BL, DOKU_SEED, Esleme, P, ink, lerp, poly, rnd, tonla } from "../../../doku/sabitler";
+import { BL, DOKU_SEED, Esleme, P, ink, lerp, murekkep, poly, rnd, tonla } from "../../../doku/sabitler";
 import { FormulYazisi, IsimEtiketi } from "../../../components/EkranYazisi";
 import { serif } from "../../../theme";
 import { KATIP, TUCCAR } from "../palet";
@@ -40,6 +40,22 @@ const AKS = 4.5, AW = 3.0, AH = 6.0; // aks genişliği, arcade açıklığı 3.
 const GUNES: Isik = { tip: "yonlu", ad: "öğle güneşi (tepeden, sağ-arka)", yon: [-0.16, 0.05], renk: PAL.gunes };
 const TH = taramaAcisi(GUNES);
 const TAHTA = { xm: -1.5, w: 3.0, h0: 1.75, h1: 3.75 }; // galeri duvarında (m)
+// A4 gravür: mürekkep (iç kontur 3 px, dış 5 px) ve gölge tonları — tek ışık (öğle güneşi) tanımından
+const MK = murekkep(PAL.tas), MK_DEMIR = "#1f1812", IC = 3, DIS = 5;
+const DUVAR_KAL = 0.6; // arcade duvar kalınlığı (m): kemer içi / söve iç yüzü bandı
+// dövme demir parmaklıklı kapı (1773 dövme demir [D Ek 3]): seyrek DİKEY çubuk (~0.2 m), mızrak uçlu; alt/orta/üst kuşak. Tel örgü YOK.
+const Parmaklik: React.FC<{ q: (xm: number, hm: number) => P; x0: number; w: number; h: number; kalin: number }> = ({ q, x0, w, h, kalin }) => {
+  const n = Math.round(w / 0.2);
+  return (
+    <g stroke={MK_DEMIR} strokeLinecap="round" fill="none">
+      {Array.from({ length: n + 1 }).map((_, j) => { const xm = x0 + (w * j) / n, a = q(xm, 0), b = q(xm, h + 0.12), t = q(xm, h + 0.32), tl = q(xm - 0.05, h + 0.14), tr = q(xm + 0.05, h + 0.14);
+        return <g key={j}><line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} strokeWidth={kalin} /><polygon points={poly([t, tr, b, tl])} fill={MK_DEMIR} stroke="none" /></g>; })}
+      {[0.15, 1.0, h].map((hm) => { const a = q(x0, hm), b = q(x0 + w, hm); return <line key={hm} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} strokeWidth={kalin * 1.7} />; })}
+      {/* orta kuşakta küçük halka süs (dönem kapı dili; seyrek) */}
+      {Array.from({ length: Math.floor(n / 2) }).map((_, j) => { const c = q(x0 + (w * (2 * j + 1)) / n, 0.58), r = Math.abs(q(x0 + 0.1, 0)[0] - q(x0, 0)[0]) * 0.8; return <circle key={`h${j}`} cx={c[0]} cy={c[1]} r={r} strokeWidth={kalin * 0.8} />; })}
+    </g>
+  );
+};
 
 const yer = (z: number, xm: number, ekH = 0) => { const [x, y] = zem(z, xm); const s = olc(z); return { x, y: y + AYAK_TABAN * s - ekH * pxm(z), s, zx: x, zy: y - ekH * pxm(z) }; };
 const dur = (x: number, y: number, s: number, f: 1 | -1, ek: Partial<Poz> = {}): Poz => ({ x, y, scale: s, facing: f, thighF: -3, kneeF: 3, thighB: 4, kneeB: 2, shF: 4, elF: -10, shB: 6, elB: -12, tails: 1, breathe: 0, blinkF: 0, blinkB: 0, hat: null, cane: null, ...ek });
@@ -110,47 +126,83 @@ export const Sb2Borsa: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
             <defs><filter id="b2toz" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation={14} /></filter>
               <filter id="b2rakam"><feTurbulence type="fractalNoise" baseFrequency="0.18" numOctaves={2} seed={S + 3} /><feDisplacementMap in="SourceGraphic" scale={11} xChannelSelector="R" yChannelSelector="G" /></filter>
               <filter id="b2tebesir"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves={1} seed={S} /><feDisplacementMap in="SourceGraphic" scale={2.2} xChannelSelector="R" yChannelSelector="G" /></filter></defs>
+            <RenkKaydi>
             <g transform={kat(1)}>
               <KonturTitreme derinlik="orta" seed={S}>
                 {/* ===== arka avlu cephesi: üst kat (dikdörtgen pencereler) + korniş + arcade sırası ===== */}
                 <polygon points={poly([onCephe(-12, 12), onCephe(12, 12), onCephe(12, 0), onCephe(-12, 0)])} fill={PAL.tas} />
-                <TasDuvar m={(u, v) => onCephe(-12 + 24 * u, 12 - 12 * v)} boyut={[2400, 1200]} tip="bdx" taban={PAL.tas} seed={S} derinlik="orta" yogunluk={0.5} gozenek={false} blok={[60, 30]} />
+                <TasDuvar m={(u, v) => onCephe(-12 + 24 * u, 12 - 12 * v)} boyut={[2400, 1200]} tip="bdx" taban={PAL.tas} derz={tonla(PAL.tas, -0.42)} seed={S} derinlik="orta" yogunluk={0.5} gozenek={false} blok={[60, 30]} />
                 {/* üst kat: dikdörtgen pencereler (düz söve, kemer YOK) */}
-                {[-3, -2, -1, 0, 1, 2, 3].map((i) => { const x0 = i * AKS - 0.65; const q = [onCephe(x0, 9.9), onCephe(x0 + 1.3, 9.9), onCephe(x0 + 1.3, 7.7), onCephe(x0, 7.7)]; const s = [onCephe(x0 - 0.15, 10.05), onCephe(x0 + 1.45, 10.05), onCephe(x0 + 1.45, 7.6), onCephe(x0 - 0.15, 7.6)]; return <g key={i}><polygon points={poly(s)} fill={tonla(PAL.tas, 0.05)} stroke={ink(PAL.tas)} strokeWidth={1.4} /><polygon points={poly(q)} fill="#3a3a44" /><line x1={(q[0][0] + q[1][0]) / 2} y1={q[0][1]} x2={(q[0][0] + q[1][0]) / 2} y2={q[2][1]} stroke={PAL.ahsap} strokeWidth={3} />{[0.33, 0.66].map((t) => <line key={t} x1={q[0][0]} y1={lerp(q[0][1], q[3][1], t)} x2={q[1][0]} y2={lerp(q[0][1], q[3][1], t)} stroke={PAL.ahsap} strokeWidth={2} />)}</g>; })}
+                {[-3, -2, -1, 0, 1, 2, 3].map((i) => { const x0 = i * AKS - 0.65; const q = [onCephe(x0, 9.9), onCephe(x0 + 1.3, 9.9), onCephe(x0 + 1.3, 7.7), onCephe(x0, 7.7)]; const s = [onCephe(x0 - 0.15, 10.05), onCephe(x0 + 1.45, 10.05), onCephe(x0 + 1.45, 7.6), onCephe(x0 - 0.15, 7.6)]; return <g key={i}><polygon points={poly(s)} fill={tonla(PAL.tas, 0.05)} stroke={MK} strokeWidth={IC} /><polygon points={poly(q)} fill="#3a3a44" />
+                  {/* pencere çevresi (A4 G1): söve iç yüzü sol (güneş sağdan → gölge) + lento altı; koyu cam konturu */}
+                  <Tarama sekil={[onCephe(x0, 9.9), onCephe(x0 + 0.2, 9.75), onCephe(x0 + 0.2, 7.7), onCephe(x0, 7.7)]} basamak="III" aci={TH} renk={MK} seed={S + 70 + i} ton={0.3} />
+                  <Tarama sekil={[onCephe(x0, 9.9), onCephe(x0 + 1.3, 9.9), onCephe(x0 + 1.3, 9.72), onCephe(x0 + 0.2, 9.72)]} basamak="IV" aci={TH} renk={MK} seed={S + 80 + i} /><line x1={(q[0][0] + q[1][0]) / 2} y1={q[0][1]} x2={(q[0][0] + q[1][0]) / 2} y2={q[2][1]} stroke={PAL.ahsap} strokeWidth={3} />{[0.33, 0.66].map((t) => <line key={t} x1={q[0][0]} y1={lerp(q[0][1], q[3][1], t)} x2={q[1][0]} y2={lerp(q[0][1], q[3][1], t)} stroke={PAL.ahsap} strokeWidth={2} />)}<polygon points={poly(q)} fill="none" stroke={MK} strokeWidth={IC * 0.8} /></g>; })}
                 {/* arcade üstü korniş (imposte kuşağı) + alt yüz gölge */}
-                <polygon points={poly([onCephe(-12, 7.1), onCephe(12, 7.1), onCephe(12, 6.55), onCephe(-12, 6.55)])} fill={tonla(PAL.tas, 0.06)} stroke={ink(PAL.tas)} strokeWidth={1.6} />
-                <Tarama sekil={[onCephe(-12, 6.55), onCephe(12, 6.55), onCephe(12, 6.4), onCephe(-12, 6.4)]} basamak="III" aci={TH} renk={ink(PAL.tas)} derinlik="orta" seed={S + 1} />
+                <polygon points={poly([onCephe(-12, 7.1), onCephe(12, 7.1), onCephe(12, 6.55), onCephe(-12, 6.55)])} fill={tonla(PAL.tas, 0.06)} stroke={MK} strokeWidth={IC} />
+                {/* korniş altı (saçak altı) — derin gölge bandı: ton + tarama; tepe güneşinde korniş kendi altını gölgeler */}
+                <Tarama sekil={[onCephe(-12, 6.55), onCephe(12, 6.55), onCephe(12, 6.3), onCephe(-12, 6.3)]} basamak="IV" aci={TH} renk={MK} derinlik="orta" seed={S + 1} />
+                <polyline points={poly([onCephe(-12, 7.1), onCephe(12, 7.1)])} stroke={MK} strokeWidth={DIS} fill="none" />
                 {/* kadran (1750, rüzgâr/saat) — ayak üstünde, küçük; harf yok */}
-                {(() => { const c = onCephe(AKS / 2, 5.4), r = 0.42 * pxm(ON_Z); return <g><circle cx={c[0]} cy={c[1]} r={r} fill="#e9dfc9" stroke={PAL.tasG} strokeWidth={3} />{[0, 90, 180, 270].map((a) => <line key={a} x1={c[0]} y1={c[1] - r * 0.8} x2={c[0]} y2={c[1] - r * 0.62} transform={`rotate(${a} ${c[0]} ${c[1]})`} stroke={PAL.tasG} strokeWidth={2} />)}<path d={`M ${c[0]} ${c[1] - r * 0.7} L ${c[0] + 3} ${c[1]} L ${c[0] - 3} ${c[1]} Z`} fill={BL.brass} transform={`rotate(-38 ${c[0]} ${c[1]})`} /></g>; })()}
+                {(() => { const c = onCephe(AKS / 2, 5.4), r = 0.42 * pxm(ON_Z); return <g><circle cx={c[0]} cy={c[1]} r={r} fill="#e9dfc9" stroke={MK} strokeWidth={IC} />{[0, 90, 180, 270].map((a) => <line key={a} x1={c[0]} y1={c[1] - r * 0.8} x2={c[0]} y2={c[1] - r * 0.62} transform={`rotate(${a} ${c[0]} ${c[1]})`} stroke={PAL.tasG} strokeWidth={2} />)}<path d={`M ${c[0]} ${c[1] - r * 0.7} L ${c[0] + 3} ${c[1]} L ${c[0] - 3} ${c[1]} Z`} fill={BL.brass} transform={`rotate(-38 ${c[0]} ${c[1]})`} /></g>; })()}
               </KonturTitreme>
+              {/* ===== pilastrlar (mimari kart 10.1 "pilastr aralarında"): 0.7 m, 0.15 m çıkıntı. Tek ışık (öğle güneşi, sağ-üst-arka):
+                  −x'e bakan yan yüz gölgede (III), pilastrın duvara attığı gölge solunda dar şerit (III). Gravürün dikey ritmi. ===== */}
+              {[-2.5, -1.5, -0.5, 0.5, 1.5, 2.5].map((k) => {
+                const xc = k * AKS, w = 0.35, cik = 0.15, h1 = 6.55, zf = ON_Z - cik;
+                const on: P[] = [nok(zf, xc - w, h1), nok(zf, xc + w, h1), nok(zf, xc + w, 0), nok(zf, xc - w, 0)];
+                // görünen yan yüz: kamera x=0 → xc>0 ise sol (−x, gölge), xc<0 ise sağ (+x, ışık)
+                const yx = xc > 0 ? xc - w : xc + w;
+                const yan: P[] = [onCephe(yx, h1), nok(zf, yx, h1), nok(zf, yx, 0), onCephe(yx, 0)];
+                const atilan: P[] = [onCephe(xc - w, h1 - 0.1), onCephe(xc - w - 0.22, h1 - 0.35), onCephe(xc - w - 0.22, 0), onCephe(xc - w, 0)];
+                return (
+                  <g key={k}>
+                    <Tarama sekil={atilan} basamak="III" aci={TH} renk={MK} seed={S + 90 + k * 2} ton={0.3} />
+                    <polygon points={poly(yan)} fill={xc > 0 ? PAL.tasG : tonla(PAL.tas, 0.06)} stroke={MK} strokeWidth={IC * 0.7} />
+                    {xc > 0 && <Tarama sekil={yan} basamak="III" aci={TH} renk={MK} seed={S + 95 + k * 2} />}
+                    <polygon points={poly(on)} fill={tonla(PAL.tas, 0.03)} stroke={MK} strokeWidth={IC} />
+                    {/* pilastr başlığı (imposte kuşağıyla aynı hizada sade silme) + altı gölge */}
+                    <polygon points={poly([nok(zf - 0.05, xc - w - 0.08, 6.55), nok(zf - 0.05, xc + w + 0.08, 6.55), nok(zf - 0.05, xc + w + 0.08, 6.3), nok(zf - 0.05, xc - w - 0.08, 6.3)])} fill={tonla(PAL.tas, 0.07)} stroke={MK} strokeWidth={IC * 0.8} />
+                  </g>
+                );
+              })}
               {/* ===== arcade'lar: yarım daire; açıklık içinde portik (derin gölge), galeri duvarı, ortada tahta + estrad + katip ===== */}
               {[-2, -1, 0, 1, 2].map((i) => {
                 const m = arcadeM(i);
                 const ic = (
                   <g>
-                    {/* portik içi: galeri duvarı (yansıyan ışıkla biraz aydınlık) + tavan gölgesi */}
-                    <polygon points={poly([nok(ARKA_Z, i * AKS - 3, 7), nok(ARKA_Z, i * AKS + 3, 7), nok(ARKA_Z, i * AKS + 3, 0), nok(ARKA_Z, i * AKS - 3, 0)])} fill={tonla(PAL.portik, 0.35)} />
-                    <polygon points={poly([nok(ARKA_Z, i * AKS - 3, 0), nok(ARKA_Z, i * AKS + 3, 0), onCephe(i * AKS + 3, 0), onCephe(i * AKS - 3, 0)])} fill={tonla(PAL.portik, 0.15)} />
-                    <Tarama sekil={kemerCokgen(m, "yarimDaire", AW, AH)} basamak={i === 0 ? "III" : "IV"} aci={TH} renk="#1e1810" derinlik="orta" seed={S + 10 + i} />
+                    {/* portik içi ton iskeleti (A4 G1): galeri duvarı yansıyan ışıkla yarı ton (II), üstü tonoz gölgesi (III), zemin III.
+                        Büyük alan → tek yön tarama, çapraz YOK (kafes yasağı). */}
+                    <polygon points={poly([nok(ARKA_Z, i * AKS - 3, 7), nok(ARKA_Z, i * AKS + 3, 7), nok(ARKA_Z, i * AKS + 3, 0), nok(ARKA_Z, i * AKS - 3, 0)])} fill={tonla(PAL.portik, 0.45)} />
+                    <Tarama sekil={[nok(ARKA_Z, i * AKS - 3, 7), nok(ARKA_Z, i * AKS + 3, 7), nok(ARKA_Z, i * AKS + 3, 0), nok(ARKA_Z, i * AKS - 3, 0)]} basamak="II" aci={TH} renk="#1e1810" derinlik="orta" seed={S + 10 + i} />
+                    <Tarama sekil={[nok(ARKA_Z, i * AKS - 3, 7), nok(ARKA_Z, i * AKS + 3, 7), nok(ARKA_Z, i * AKS + 3, 4.6), nok(ARKA_Z, i * AKS - 3, 4.6)]} basamak="III" aci={TH} renk="#1e1810" derinlik="orta" seed={S + 15 + i} ton={0.3} />
+                    <polygon points={poly([nok(ARKA_Z, i * AKS - 3, 0), nok(ARKA_Z, i * AKS + 3, 0), onCephe(i * AKS + 3, 0), onCephe(i * AKS - 3, 0)])} fill={tonla(PAL.portik, 0.2)} />
+                    <Tarama sekil={[nok(ARKA_Z, i * AKS - 3, 0), nok(ARKA_Z, i * AKS + 3, 0), onCephe(i * AKS + 3, 0), onCephe(i * AKS - 3, 0)]} basamak="III" aci={TH} renk="#1e1810" derinlik="orta" seed={S + 25 + i} />
+                    <polyline points={poly([nok(ARKA_Z, i * AKS - 3, 0), nok(ARKA_Z, i * AKS + 3, 0)])} stroke={MK_DEMIR} strokeWidth={IC} fill="none" />
                     {i === 0 && <Tahta p={p} />}
                     {i === 0 && <Estrad />}
                     {i === 0 && <Katip p={p} />}
-                    {/* yan arcade'larda demir parmaklıklı kapı (biri açık kanat) */}
-                    {i !== 0 && Array.from({ length: 9 }).map((_, j) => { const xm = i * AKS - AW / 2 + (AW * (j + 0.5)) / 9; return <line key={j} x1={onCephe(xm, 0)[0]} y1={onCephe(xm, 0)[1]} x2={onCephe(xm, 4.3)[0]} y2={onCephe(xm, 4.3)[1]} stroke={PAL.ahsap} strokeWidth={2.4} />; })}
-                    {i !== 0 && <line x1={onCephe(i * AKS - AW / 2, 4.3)[0]} y1={onCephe(i * AKS - AW / 2, 4.3)[1]} x2={onCephe(i * AKS + AW / 2, 4.3)[0]} y2={onCephe(i * AKS + AW / 2, 4.3)[1]} stroke={PAL.ahsap} strokeWidth={4} />}
+                    {/* yan arcade'larda dövme demir parmaklıklı kapı: duvar kalınlığının ortasında (söve iç yüzü önünü örter) */}
+                    {i !== 0 && <Parmaklik q={(xm, hm) => nok(ON_Z + DUVAR_KAL * 0.5, xm, hm)} x0={i * AKS - AW / 2} w={AW} h={4.0} kalin={3} />}
                     {/* alınlık (tympanum): üzengiden yukarısı taş dolgu + ticaret amblemi + okunmaz şehir adı çizgileri */}
                     <polygon points={poly(kemerCokgen(m, "yarimDaire", AW, AH).filter((q) => q[1] <= onCephe(0, AH - AW / 2)[1] + 1).concat([onCephe(i * AKS + AW / 2, AH - AW / 2), onCephe(i * AKS - AW / 2, AH - AW / 2)]))} fill={tonla(PAL.tas, -0.04)} />
-                    <line x1={onCephe(i * AKS - AW / 2, AH - AW / 2)[0]} y1={onCephe(0, AH - AW / 2)[1]} x2={onCephe(i * AKS + AW / 2, AH - AW / 2)[0]} y2={onCephe(0, AH - AW / 2)[1]} stroke={PAL.ahsap} strokeWidth={5} />
+                    <line x1={onCephe(i * AKS - AW / 2, AH - AW / 2)[0]} y1={onCephe(0, AH - AW / 2)[1]} x2={onCephe(i * AKS + AW / 2, AH - AW / 2)[0]} y2={onCephe(0, AH - AW / 2)[1]} stroke={MK_DEMIR} strokeWidth={5} />
+                    {/* alınlık alt kenarı gölgesi (lento altı) */}
+                    <Tarama sekil={[onCephe(i * AKS - AW / 2, AH - AW / 2), onCephe(i * AKS + AW / 2, AH - AW / 2), onCephe(i * AKS + AW / 2, AH - AW / 2 - 0.22), onCephe(i * AKS - AW / 2, AH - AW / 2 - 0.22)]} basamak="III" aci={TH} renk="#1e1810" seed={S + 30 + i} ton={0.35} />
                     <Amblem c={onCephe(i * AKS, AH - AW / 2 + 0.85)} s={pxm(ON_Z) / 100} tip={(i + 2) % 4} />
                     {[0.3, 0.42].map((h, j) => <line key={j} x1={onCephe(i * AKS - 0.7 + j * 0.2, AH - AW / 2 + h)[0]} y1={onCephe(0, AH - AW / 2 + h)[1]} x2={onCephe(i * AKS + 0.7 - j * 0.2, AH - AW / 2 + h)[0]} y2={onCephe(0, AH - AW / 2 + h)[1]} stroke={PAL.tasG} strokeWidth={2} />)}
                   </g>
                 );
-                return <Kemer key={i} m={m} W={AW} H={AH} tip="yarimDaire" dolgu={PAL.portik} ic={ic} sove={{ gen: 0.28, renk: tonla(PAL.tas, 0.04) }} kilit={{ renk: PAL.tas }} imposte />;
+                // kemer içi + söve iç yüzü: arka kenar (z + duvar kalınlığı) ekranda kaçış noktasına doğru kayar → görünen bant (III, tepe güneşinde gölgede)
+                const on = onCephe(i * AKS, 5), ark = nok(ON_Z + DUVAR_KAL, i * AKS, 5);
+                return <Kemer key={i} m={m} W={AW} H={AH} tip="yarimDaire" dolgu={PAL.portik} ic={ic} sove={{ gen: 0.28, renk: tonla(PAL.tas, 0.04) }} kilit={{ renk: PAL.tas }} imposte kontur={IC}
+                  icYuz={{ kaydir: [ark[0] - on[0], ark[1] - on[1]], renk: PAL.tasG, basamak: "III", aci: TH, seed: S + 40 + i }} />;
               })}
               {/* ===== avlu zemini: büyük kare taş plaka, düzensiz derz; arka cephenin kısa gölgesi (güneşten) ===== */}
               <AvluZemin />
-              <polygon points={poly([zem(ON_Z, -12), zem(ON_Z, 12), [zem(ON_Z, 12)[0] - 160, zem(ON_Z, 12)[1] + 54], [zem(ON_Z, -12)[0] - 160, zem(ON_Z, -12)[1] + 54]])} fill="url(#b2ct)" />
-              <Tarama sekil={[zem(ON_Z, -12), zem(ON_Z, 12), [zem(ON_Z, 12)[0] - 160, zem(ON_Z, 12)[1] + 54], [zem(ON_Z, -12)[0] - 160, zem(ON_Z, -12)[1] + 54]]} basamak="III" aci={TH} renk={ink(PAL.zemin)} derinlik="orta" seed={S + 20} />
+              {/* portik gölgesinin avlu zeminindeki NET kenarı (gravürde güçlü yatay) */}
+              <polygon points={poly([zem(ON_Z, -12), zem(ON_Z, 12), [zem(ON_Z, 12)[0] - 160, zem(ON_Z, 12)[1] + 54], [zem(ON_Z, -12)[0] - 160, zem(ON_Z, -12)[1] + 54]])} fill="#6a5030" fillOpacity={0.3} />
+              <Tarama sekil={[zem(ON_Z, -12), zem(ON_Z, 12), [zem(ON_Z, 12)[0] - 160, zem(ON_Z, 12)[1] + 54], [zem(ON_Z, -12)[0] - 160, zem(ON_Z, -12)[1] + 54]]} basamak="III" aci={TH} renk={murekkep(PAL.zemin)} derinlik="orta" seed={S + 20} ton={0} />
+              <polyline points={poly([[zem(ON_Z, -12)[0] - 160, zem(ON_Z, -12)[1] + 54], [zem(ON_Z, 12)[0] - 160, zem(ON_Z, 12)[1] + 54]])} stroke={murekkep(PAL.zemin)} strokeWidth={2} strokeOpacity={0.6} fill="none" />
               {/* tebeşir parçası (≥ 14 px, açık, koyu kontur) + kırılma tozu (tahtanın önünde, ışıkta asılı) */}
               {parca && <g>
                 <ellipse cx={parca[0]} cy={parca[1] + 6} rx={9} ry={3} fill="#3a2c1c" opacity={p >= 114 ? 0.45 : 0.15} />
@@ -163,14 +215,14 @@ export const Sb2Borsa: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
                 const g = yer(z, xm), f: 1 | -1 = xm < 0 ? 1 : -1, sc = g.s * (0.93 + rnd(S, `k${i}`) * 0.12);
                 const pz = dur(g.x, g.y, sc, f, { lookY: -0.8 * don, headTilt: -10 * don, shF: 6 + rnd(S, `a${i}`) * 14, elF: -14 - rnd(S, `b${i}`) * 30 });
                 const [k, a] = ton(z);
-                return <g key={i}><Golge isik={GUNES} ayak={[g.zx, g.zy]} h={620 * sc} genislik={100 * sc} alfa={0.35} renk="#6a5030" /><Siluet renk={k} acik={a} kenar={{ renk: "#fff1c8", dx: 2.5 * sc, dy: -2 * sc }} kutu={[g.x - 120 * sc, g.y - 640 * sc, 240 * sc, 650 * sc]}><Kukla p={KOMPARS[i % 4]} pz={pz} golgesiz /></Siluet></g>;
+                return <g key={i}><Golge isik={GUNES} ayak={[g.zx, g.zy]} h={620 * sc} genislik={100 * sc} alfa={0.35} renk="#4a3418" stil="gravur" seed={S + 200 + i} /><Siluet renk={k} acik={a} kenar={{ renk: "#fff1c8", dx: 2.5 * sc, dy: -2 * sc }} kutu={[g.x - 120 * sc, g.y - 640 * sc, 240 * sc, 650 * sc]}><Kukla p={KOMPARS[i % 4]} pz={pz} golgesiz /></Siluet></g>;
               })}
               {/* ===== ana karakterler (gölgeler aynı güneşten: kısa, sol-öne) ===== */}
-              <Golge isik={GUNES} ayak={[tY.zx, tY.zy]} h={600 * tY.s} genislik={100 * tY.s} alfa={0.4} renk="#6a5030" />
+              <Golge isik={GUNES} ayak={[tY.zx, tY.zy]} h={600 * tY.s} genislik={100 * tY.s} alfa={0.45} renk="#4a3418" stil="gravur" seed={S + 210} />
               <g transform={`translate(${tY.x},${tY.y}) scale(1.12,1) translate(${-tY.x},${-tY.y})`}><Kukla p={TUCCAR_V} pz={tuccar} golgesiz /></g>
-              <Golge isik={GUNES} ayak={[fY.zx, fY.zy]} h={620 * fY.s} genislik={100 * fY.s} alfa={0.4} renk="#6a5030" />
+              <Golge isik={GUNES} ayak={[fY.zx, fY.zy]} h={620 * fY.s} genislik={100 * fY.s} alfa={0.45} renk="#4a3418" stil="gravur" seed={S + 210} />
               <Kukla p={FRANCOIS} pz={francois} golgesiz />
-              <Golge isik={GUNES} ayak={[lYer.zx, lYer.zy]} h={635 * lYer.s} genislik={100 * lYer.s} alfa={0.4} renk="#6a5030" />
+              <Golge isik={GUNES} ayak={[lYer.zx, lYer.zy]} h={635 * lYer.s} genislik={100 * lYer.s} alfa={0.45} renk="#4a3418" stil="gravur" seed={S + 210} />
               <Kukla louis p={LOUIS} pz={louis} golgesiz />
               <CepEldiven pz={louis} />
               <Pupitr x={pY.zx} y={pY.zy} s={pY.s} yuz={PUP} />
@@ -181,6 +233,7 @@ export const Sb2Borsa: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
             <g transform={kat(1.3)}>
               <OnPortik />
             </g>
+            </RenkKaydi>
           </svg>
         </AbsoluteFill>
       </ArsivKatmani>
@@ -214,7 +267,7 @@ const AvluZemin: React.FC = () => {
   for (let r = 0; r < zs.length - 1; r++) for (let c = -7; c < 7; c++) {
     const o = (r % 2) * 0.6 + (rnd(S, `zo${r}`) - 0.5) * 0.3, x0 = c * 1.2 + o, x1 = x0 + 1.2;
     const q = [zem(zs[r], x0), zem(zs[r], x1), zem(zs[r + 1], x1), zem(zs[r + 1], x0)];
-    els.push(<polygon key={`${r}-${c}`} points={poly(q)} fill={tonla(PAL.zemin, (rnd(S, `z${r}-${c}`) - 0.5) * 0.08)} stroke="#a8946c" strokeWidth={1.4} />);
+    els.push(<polygon key={`${r}-${c}`} points={poly(q)} fill={tonla(PAL.zemin, (rnd(S, `z${r}-${c}`) - 0.5) * 0.08)} stroke={murekkep(PAL.zemin)} strokeOpacity={0.45} strokeWidth={1.8} />);
   }
   return <g>{els}</g>;
 };
@@ -274,20 +327,55 @@ const Pupitr: React.FC<{ x: number; y: number; s: number; yuz: number }> = ({ x,
     </g>
   );
 };
-// ön portik (kamera onun içinde): arcade ayakları, gölgeli zemin, tezgâh, demir kapı kanadı — tümü derin gölgede (tarama IV)
-const OnPortik: React.FC = () => (
-  <g>
-    <polygon points={poly([[-200, 1560], [1280, 1560], [1280, 2200], [-200, 2200]])} fill={PAL.portik} />
-    <Tarama sekil={[[-200, 1560], [1280, 1560], [1280, 2200], [-200, 2200]]} basamak="IV" aci={TH} renk="#1e1810" derinlik="yakin" seed={S + 50} />
-    <polyline points={poly([[-200, 1560], [1280, 1560]])} stroke="#fff1c8" strokeWidth={3} opacity={0.5} />
-    {[[-200, 110], [970, 1280]].map(([a, b], i) => <g key={i}><rect x={a} y={-300} width={b - a} height={2500} fill={PAL.portik} /><Tarama sekil={[[a, -300], [b, -300], [b, 2200], [a, 2200]]} basamak="IV" aci={TH} renk="#1e1810" derinlik="yakin" seed={S + 51 + i} /><line x1={i ? a : b} y1={-300} x2={i ? a : b} y2={2200} stroke="#9a845e" strokeWidth={4} opacity={0.6} /></g>)}
-    {/* sağ altta tüccar tezgâhı (kırpık): defter + hokka */}
-    <polygon points={poly([[760, 1660], [1180, 1640], [1180, 1700], [760, 1720]])} fill="#5b3d25" stroke={ink("#5b3d25")} strokeWidth={2} />
-    <polygon points={poly([[760, 1720], [1180, 1700], [1180, 2200], [760, 2200]])} fill="#3a2c20" />
-    <polygon points={poly([[820, 1650], [940, 1644], [944, 1676], [822, 1682]])} fill="#e9dfc9" stroke="#5a3a22" strokeWidth={1.4} />
-    <ellipse cx={980} cy={1662} rx={14} ry={6} fill="#1c1915" />
-    {/* sol altta yarı açık demir parmaklıklı kapı kanadı */}
-    {Array.from({ length: 7 }).map((_, j) => <line key={j} x1={80 + j * 26} y1={1560 + j * 4} x2={80 + j * 26} y2={2200} stroke="#1c1915" strokeWidth={5} />)}
-    <line x1={70} y1={1560} x2={250} y2={1588} stroke="#1c1915" strokeWidth={8} />
-  </g>
-);
+// ön portik (kamera onun içinde): arcade ayakları + imposte + kemer başlangıcı, gölgeli zemin, tezgâh, demir kapı kanadı.
+// A4: siyah "letterbox" değil MİMARİ: ayak gövdesi gölgede (III, tek yön; büyük alanda çapraz YOK), iç kenarda ışık pahı,
+// imposte silmesi + altı gölge, kemer başlangıcı (intrados bandı), zeminde güneş/gölge sınırı + derzler.
+const OnPortik: React.FC = () => {
+  const ayakR = tonla(PAL.portik, 0.3), zR = tonla(PAL.portik, 0.12), mk = murekkep(PAL.portik);
+  const ayak = (a: number, b: number, ic: number, yon: 1 | -1, k: number) => {
+    // imposte (y 170–205) + kemer başlangıcı: iç kenardan kadraj tepesine kıvrılan alın + intrados
+    const imp = [[ic - yon * 6, 168], [ic + yon * 34, 168], [ic + yon * 34, 206], [ic - yon * 6, 206]] as P[];
+    const kemerAlin = `M ${ic} 168 Q ${ic + yon * 30} 40 ${ic + yon * 190} -40 L ${a === -200 ? -200 : 1280} -40 L ${a === -200 ? -200 : 1280} 168 Z`;
+    const intrados = `M ${ic} 168 Q ${ic + yon * 30} 40 ${ic + yon * 190} -40 L ${ic + yon * 230} -40 Q ${ic + yon * 62} 50 ${ic + yon * 34} 168 Z`;
+    return (
+      <g key={k}>
+        <rect x={a} y={-300} width={b - a} height={2500} fill={ayakR} />
+        <path d={kemerAlin} fill={ayakR} />
+        <Tarama sekil={[[a, -300], [b, -300], [b, 2200], [a, 2200]]} basamak="III" aci={TH} renk="#1e1810" derinlik="yakin" seed={S + 51 + k} />
+        <path d={intrados} fill={tonla(PAL.portik, 0.05)} stroke={mk} strokeWidth={4} />
+        <Tarama sekil={intrados} basamak="IV" aci={TH} renk="#1e1810" derinlik="yakin" seed={S + 55 + k} />
+        <polygon points={poly(imp)} fill={tonla(PAL.tasG, -0.1)} stroke={mk} strokeWidth={4} />
+        <Tarama sekil={[[ic - yon * 6, 206], [ic + yon * 34, 206], [ic + yon * 34, 222], [ic - yon * 6, 222]]} basamak="IV" aci={TH} renk="#1e1810" derinlik="yakin" seed={S + 57 + k} />
+        {/* iç kenar ışık pahı (avlu güneşinin yansıması) + koyu dış siluet */}
+        <rect x={yon === 1 ? ic - 12 : ic} y={206} width={12} height={1994} fill={PAL.tasG} />
+        <line x1={ic} y1={206} x2={ic} y2={2200} stroke={mk} strokeWidth={6} />
+        <line x1={ic - yon * 12} y1={206} x2={ic - yon * 12} y2={2200} stroke={mk} strokeWidth={2} strokeOpacity={0.7} />
+      </g>
+    );
+  };
+  return (
+    <g>
+      {/* portik zemini: gölgede taş (III), güneş sınırı net, derzler kaçış noktasına (540, 800) */}
+      <polygon points={poly([[-200, 1560], [1280, 1560], [1280, 2200], [-200, 2200]])} fill={zR} />
+      <Tarama sekil={[[-200, 1560], [1280, 1560], [1280, 2200], [-200, 2200]]} basamak="III" aci={TH} renk="#1e1810" derinlik="yakin" seed={S + 50} />
+      {[-1000, -480, 30, 540, 1050, 1560, 2080].map((xb) => <line key={xb} x1={540 + (xb - 540) * (760 / 1400)} y1={1560} x2={xb} y2={2200} stroke={mk} strokeWidth={2.4} strokeOpacity={0.55} />)}
+      {[1700, 1880].map((y) => <line key={y} x1={-200} y1={y} x2={1280} y2={y} stroke={mk} strokeWidth={2.4} strokeOpacity={0.55} />)}
+      <polyline points={poly([[-200, 1556], [1280, 1556]])} stroke="#fff1c8" strokeWidth={5} opacity={0.75} />
+      <polyline points={poly([[-200, 1562], [1280, 1562]])} stroke={mk} strokeWidth={3} />
+      {ayak(-200, 110, 110, 1, 0)}
+      {ayak(970, 1280, 970, -1, 1)}
+      {/* sağ altta tüccar tezgâhı (kırpık): defter + hokka */}
+      <polygon points={poly([[760, 1660], [1180, 1640], [1180, 1700], [760, 1720]])} fill="#5b3d25" stroke={murekkep("#5b3d25")} strokeWidth={4} />
+      <polygon points={poly([[760, 1720], [1180, 1700], [1180, 2200], [760, 2200]])} fill="#3a2c20" stroke={murekkep("#5b3d25")} strokeWidth={4} />
+      <Tarama sekil={[[760, 1720], [1180, 1700], [1180, 2200], [760, 2200]]} basamak="III" aci={TH} renk="#120c08" derinlik="yakin" seed={S + 58} />
+      <polygon points={poly([[820, 1650], [940, 1644], [944, 1676], [822, 1682]])} fill="#e9dfc9" stroke="#3a2412" strokeWidth={2} />
+      <ellipse cx={980} cy={1662} rx={14} ry={6} fill="#1c1915" />
+      {/* sol altta yarı açık dövme demir kapı kanadı (dikey çubuk + mızrak uç + kuşaklar; arcade kapılarıyla aynı dil) */}
+      <g stroke={MK_DEMIR} strokeLinecap="round">
+        {Array.from({ length: 8 }).map((_, j) => { const x = 80 + j * 26, y0 = 1600 + j * 3.6; return <g key={j}><line x1={x} y1={y0} x2={x} y2={2200} strokeWidth={6} /><polygon points={poly([[x, y0 - 26], [x + 7, y0 - 6], [x, y0 + 2], [x - 7, y0 - 6]])} fill={MK_DEMIR} stroke="none" /></g>; })}
+        <line x1={68} y1={1606} x2={276} y2={1631} strokeWidth={9} />
+        <line x1={68} y1={1760} x2={276} y2={1785} strokeWidth={8} />
+      </g>
+    </g>
+  );
+};

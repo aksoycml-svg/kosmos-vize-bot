@@ -46,6 +46,10 @@ export const hsl2hex = (h: number, s: number, l: number) => {
 };
 // Kontur rengi: dolgunun L×0.45, S×0.8 — asla #000
 export const ink = (hex: string) => { const [h, s, l] = rgb2hsl(hex); return hsl2hex(h, s * 0.8, Math.max(0.07, l * 0.45)); };
+// Gravür mürekkebi (G3): mimari iç kontur karakter konturuyla aynı aileden — dolgunun L×0.28, S×0.7; asla #000
+export const murekkep = (hex: string) => { const [h, s, l] = rgb2hsl(hex); return hsl2hex(h, s * 0.7, Math.max(0.06, Math.min(0.2, l * 0.28))); };
+// Mimari kontur ailesi (11.4 → A4 G3, telefon önce): dış siluet : iç kontur (kemer, söve, silme, korniş) : tarama ≈ 5.5 : 3 : 1.6 (orta)
+export const MIMARI_KONTUR: Record<Derinlik, { dis: number; ic: number }> = { uzak: { dis: 2, ic: 1.2 }, orta: { dis: 5, ic: 3 }, yakin: { dis: 6, ic: 4.4 }, insert: { dis: 7, ic: 5 } };
 // Açıklık kaydırma (L ± oran)
 export const tonla = (hex: string, dL: number) => { const [h, s, l] = rgb2hsl(hex); return hsl2hex(h, s, Math.max(0.05, Math.min(0.94, l * (1 + dL)))); };
 export const karistir = (a: string, b: string, t: number) => { const A = hex2rgb(a), B = hex2rgb(b); return rgb2hex(A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t, A[2] + (B[2] - A[2]) * t); };
