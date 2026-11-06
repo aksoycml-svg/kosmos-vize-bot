@@ -11,7 +11,7 @@ export type Yansima = { x: number; renk: string; guc?: number; gen?: number };
 export const IslakKaldirim: React.FC<{
   zemin: (z: number, u: number) => P; birikinti: Birikinti[]; seed: number;
   gok?: [string, string]; isiklar?: Yansima[]; pencereler?: Yansima[];
-}> = ({ zemin, birikinti, seed, gok = ["#8a9ccc", "#141c38"], isiklar = [], pencereler = [] }) => {
+}> = ({ zemin, birikinti, seed, gok = ["#4a5c90", "#080b16"], isiklar = [], pencereler = [] }) => {
   const id = "ik" + useId().replace(/:/g, "");
   return (
     <g>
@@ -35,15 +35,15 @@ export const IslakKaldirim: React.FC<{
             </defs>
             <g clipPath={`url(#${id}c${i})`}>
               <rect x={x0 - 10} y={y0 - 10} width={x1 - x0 + 20} height={y1 - y0 + 20} fill={`url(#${id}g${i})`} />
-              <g filter={`url(#${id}d)`}>
-                {pencereler.filter((w) => w.x > x0 - 20 && w.x < x1 + 20).map((w, j) => <rect key={`w${j}`} x={w.x - (w.gen ?? 10) / 2} y={y0 + (y1 - y0) * 0.15} width={w.gen ?? 10} height={(y1 - y0) * 0.55} fill={w.renk} opacity={w.guc ?? 0.7} />)}
-                {isiklar.map((l, j) => Math.abs(l.x - (x0 + x1) / 2) < (x1 - x0) * 0.9 && (
-                  <g key={`l${j}`} filter={`url(#${id}b)`}>
-                    <rect x={l.x - (l.gen ?? 22) / 2} y={y0 - 6} width={l.gen ?? 22} height={y1 - y0 + 12} fill={l.renk} opacity={l.guc ?? 0.85} />
-                    <rect x={l.x - (l.gen ?? 22) / 6} y={y0} width={(l.gen ?? 22) / 3} height={(y1 - y0) * 0.8} fill="#fff4d8" opacity={0.85} />
-                  </g>
-                ))}
-              </g>
+              {/* uzak kenarda gök bandı (ince), sonra koyu ayna */}
+              <rect x={x0 - 10} y={y0 - 4} width={x1 - x0 + 20} height={(y1 - y0) * 0.22} fill="#8fa3d8" opacity={0.35} filter={`url(#${id}k)`} />
+              {pencereler.filter((w) => w.x > x0 - 10 && w.x < x1 + 10).map((w, j) => <rect key={`w${j}`} x={w.x - (w.gen ?? 10) / 2} y={y0 + (y1 - y0) * 0.1} width={w.gen ?? 10} height={(y1 - y0) * 0.6} fill={w.renk} opacity={w.guc ?? 0.7} filter={`url(#${id}k)`} />)}
+              {isiklar.filter((l) => l.x > x0 - 30 && l.x < x1 + 30).map((l, j) => (
+                <g key={`l${j}`}>
+                  <rect x={l.x - (l.gen ?? 22) / 2} y={y0 - 6} width={l.gen ?? 22} height={y1 - y0 + 12} fill={l.renk} opacity={l.guc ?? 0.85} filter={`url(#${id}b)`} />
+                  <rect x={l.x - (l.gen ?? 22) / 8} y={y0 + 2} width={(l.gen ?? 22) / 4} height={(y1 - y0) * 0.85} fill="#fff4d8" opacity={0.9} filter={`url(#${id}k)`} />
+                </g>
+              ))}
             </g>
             {/* ıslak kenar: ince parlak çizgi (ay kenar ışığı) + uzak kenarda koyu taş kenarı */}
             <polygon points={poly(pts)} fill="none" stroke="#c4d6ff" strokeWidth={1.6} opacity={0.55} filter={`url(#${id}k)`} />

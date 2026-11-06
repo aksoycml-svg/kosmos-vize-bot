@@ -225,7 +225,7 @@ const UzakBordeaux: React.FC<{ frame: number }> = ({ frame }) => {
   return (
     <g>
       {/* Saint-Michel: sol çatıların üstünde, sis içinde */}
-      <SaintMichel x={SM_X} y={SM_Y} h={SM_H} renk="#38427a" kenar="#c4d6ff" kenarA={0.7} acikRenk="#232a52" />
+      <SaintMichel x={SM_X} y={SM_Y} h={SM_H} renk="#38427a" kenar="#c4d6ff" kenarA={0.22} acikRenk="#232a52" />
       {/* karşı kıyı alçak siluet */}
       <path d="M 380 1062 L 420 1056 L 440 1046 L 470 1050 L 500 1040 L 540 1048 L 590 1042 L 640 1052 L 700 1048 L 700 1072 L 380 1072 Z" fill="#232b50" />
       {/* Garonne: ay yansıması + fener izleri */}
@@ -247,7 +247,7 @@ const UzakBordeaux: React.FC<{ frame: number }> = ({ frame }) => {
 };
 // sokak ucunun sol üstünde, sisin içinden yükselir (sol çatılar daha yakın: gövdenin altı sisle/çatıyla örtülür)
 // su birikintileri: yazı bandı ve IG alt bölgesi dışında (y 1150–1420), ızgaradan ayrı
-export const BIRIKINTI_BDX = [{ z: 2.75, u: 0.6, rz: 0.22, ru: 0.12 }, { z: 3.6, u: 0.4, rz: 0.3, ru: 0.08 }];
+export const BIRIKINTI_BDX = [{ z: 3.0, u: 0.18, rz: 0.26, ru: 0.1 }, { z: 2.75, u: 0.84, rz: 0.24, ru: 0.09 }];
 export const SM_X = 622, SM_Y = 900, SM_H = 400;
 
 // Notre-Dame (1834: sivri kule yok) — sokağın ucunda, ay ışığında
@@ -304,7 +304,7 @@ const Zemin: React.FC<{ sehir?: Sehir }> = ({ sehir = "paris" }) => {
       {/* Bordeaux ıslaklık: yanık pencere ve dükkân camlarının altında dikey uzamış amber yansıma şeritleri */}
       {sehir === "bordeaux" && [[230, 1330, 0.22], [330, 1240, 0.18], [790, 1270, 0.2], [880, 1380, 0.24], [420, 1190, 0.14], [655, 1180, 0.14]].map(([x, y, o], i) => <ellipse key={`ys${i}`} cx={x} cy={y} rx={14} ry={120} fill="#ffb357" opacity={o} style={{ filter: "blur(9px)" }} />)}
       {/* Bordeaux: su birikintileri (gök ve fener aynası) */}
-      {sehir === "bordeaux" && <IslakKaldirim zemin={zemin} seed={DOKU_SEED.sokakBdx} birikinti={BIRIKINTI_BDX} isiklar={[{ x: 540, renk: "#ffb357", guc: 0.9, gen: 26 }]} pencereler={[{ x: 470, renk: "#ff9a40", guc: 0.6 }, { x: 612, renk: "#ffb357", guc: 0.6 }, { x: 650, renk: "#ff9a40", guc: 0.5, gen: 8 }]} />}
+      {sehir === "bordeaux" && <IslakKaldirim zemin={zemin} seed={DOKU_SEED.sokakBdx} birikinti={BIRIKINTI_BDX} isiklar={[{ x: 735, renk: "#ffb357", guc: 0.9, gen: 26 }, { x: 372, renk: "#ff9a40", guc: 0.75, gen: 20 }]} pencereler={[{ x: 345, renk: "#ffb357", guc: 0.6, gen: 8 }, { x: 405, renk: "#ff9a40", guc: 0.5, gen: 7 }, { x: 700, renk: "#ff9a40", guc: 0.55, gen: 8 }, { x: 760, renk: "#ffb357", guc: 0.5, gen: 7 }]} />}
     </g>
   );
 };
@@ -497,11 +497,11 @@ const GokBdx: React.FC<{ frame: number }> = ({ frame }) => (
   <g>
     <rect x={-300} y={-400} width={1700} height={1700} fill="url(#gok)" />
     {Array.from({ length: 120 }).map((_, i) => { const x = random(`sx${i}`) * 1600 - 260, y = random(`sy${i}`) * 900 - 380; return <circle key={i} cx={x} cy={y} r={0.8 + random(`sr${i}`) * 1.3} fill="#e8eeff" opacity={0.25 + 0.4 * (0.5 + 0.5 * Math.sin(frame * 0.08 + i))} />; })}
-    <circle cx={650} cy={380} r={170} fill="url(#ayHale)" />
-    <circle cx={650} cy={380} r={50} fill="#e6e4da" />
-    <circle cx={650} cy={380} r={50} fill="url(#ayGolge)" />
+    <circle cx={470} cy={560} r={150} fill="url(#ayHale)" />
+    <circle cx={470} cy={560} r={46} fill="#e6e4da" />
+    <circle cx={470} cy={560} r={46} fill="url(#ayGolge)" />
     {Array.from({ length: 7 }).map((_, i) => { const w = 260 + random(`cw${i}`) * 300; const x = ((random(`cx${i}`) * 1600 + frame * (0.4 + random(`cv${i}`) * 0.5)) % 1900) - 500; const y = 120 + random(`cy${i}`) * 520; return <ellipse key={i} cx={x} cy={y} rx={w} ry={w * 0.14} fill="#5a6898" opacity={0.3} style={{ filter: "blur(14px)" }} />; })}
-    <ellipse cx={600} cy={398} rx={190} ry={26} fill="#4a5888" opacity={0.75} style={{ filter: "blur(8px)" }} />
+    <ellipse cx={430} cy={578} rx={150} ry={22} fill="#4a5888" opacity={0.75} style={{ filter: "blur(8px)" }} />
   </g>
 );
 

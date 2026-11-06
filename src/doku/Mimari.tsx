@@ -7,7 +7,7 @@ import { Derinlik, Esleme, P, dortgen, ink, karistir, lerp, lp, parca, poly, rnd
 // ya da perspektifli duvar (dortgen / oda().nokta). u yatay (soldan sağa), v dikey (0 üst … 1 alt).
 
 // ---------- Kemerli pencere: yarım daire kemer + söve + ceviz kayıtlar + alt pervaz; cam dolgusu verilir ----------
-export const KemerliPencere: React.FC<{ m: Esleme; cam: string; camIc?: React.ReactNode; tas?: string; kayit?: string; kemerOran?: number; kalin?: number }> = ({ m, cam, camIc, tas = "#efe2bd", kayit = "#5b3d25", kemerOran = 0.28, kalin = 1 }) => {
+export const KemerliPencere: React.FC<{ m: Esleme; cam: string; camIc?: React.ReactNode; tas?: string; kayit?: string; kemerOran?: number; kalin?: number; kapi?: boolean }> = ({ m, cam, camIc, tas = "#efe2bd", kayit = "#5b3d25", kemerOran = 0.28, kalin = 1, kapi }) => {
   const id = "kp" + useId().replace(/:/g, "");
   const kontur = (pad: number): P[] => {
     const pts: P[] = [m(-pad, 1 + pad * 0.3)];
@@ -25,13 +25,15 @@ export const KemerliPencere: React.FC<{ m: Esleme; cam: string; camIc?: React.Re
       <polygon points={poly([m(0.42, -0.04), m(0.58, -0.04), m(0.55, 0.05), m(0.45, 0.05)])} fill={tonla(tas, 0.04)} stroke={ink(tas)} strokeWidth={1.5} />
       <polygon points={poly(ic)} fill={cam} />
       <g clipPath={`url(#${id}c)`}>{camIc}</g>
-      {bar(m(0.5, 0), m(0.5, 1), 6, "v")}
-      {[0.48, 0.74].map((v) => bar(m(0, v), m(1, v), 5, `h${v}`))}
-      {bar(m(0, kemerOran), m(1, kemerOran), 5, "k")}
-      {[0.22, 0.78].map((u) => bar(m(0.5, kemerOran), m(u, kemerOran - kemerOran * 0.8), 4, `r${u}`))}
-      <polygon points={poly(ic)} fill="none" stroke={kayit} strokeWidth={9 * kalin} />
-      {/* alt pervaz (denizlik) */}
-      <polygon points={poly([m(-0.2, 1.02), m(1.2, 1.02), m(1.24, 1.08), m(-0.24, 1.08)])} fill={tonla(tas, -0.05)} stroke={ink(tas)} strokeWidth={1.5} />
+      {!kapi && <>
+        {bar(m(0.5, 0), m(0.5, 1), 6, "v")}
+        {[0.48, 0.74].map((v) => bar(m(0, v), m(1, v), 5, `h${v}`))}
+        {bar(m(0, kemerOran), m(1, kemerOran), 5, "k")}
+        {[0.22, 0.78].map((u) => bar(m(0.5, kemerOran), m(u, kemerOran - kemerOran * 0.8), 4, `r${u}`))}
+        <polygon points={poly(ic)} fill="none" stroke={kayit} strokeWidth={9 * kalin} />
+        {/* alt pervaz (denizlik) */}
+        <polygon points={poly([m(-0.2, 1.02), m(1.2, 1.02), m(1.24, 1.08), m(-0.24, 1.08)])} fill={tonla(tas, -0.05)} stroke={ink(tas)} strokeWidth={1.5} />
+      </>}
     </g>
   );
 };

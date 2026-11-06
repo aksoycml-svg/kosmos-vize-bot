@@ -22,8 +22,8 @@ export const RemotionRoot: React.FC = () => (
     <Still id="DokuKagitLif" component={KagitLifPisir} width={1080} height={1920} />
     <Still id="DokuGren" component={GrenPisir} width={512} height={512} />
     {/* Storyboard v2 kalibrasyon stil kareleri (60 fps, plan uzunluğu; kare = plan içi kare) */}
-    <Composition id="SB2-TOURS" component={Sb2Tours} durationInFrames={SB2_TOURS_SURE} fps={60} width={1080} height={1920} />
-    <Composition id="SB2-BORSA" component={Sb2Borsa} durationInFrames={SB2_BORSA_SURE} fps={60} width={1080} height={1920} />
-    <Composition id="SB2-SOKAK" component={Sb2Sokak} durationInFrames={SB2_SOKAK_SURE} fps={60} width={1080} height={1920} />
+    <Composition id="SB2-TOURS" component={Sb2Tours} durationInFrames={SB2_TOURS_SURE} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
+    <Composition id="SB2-BORSA" component={Sb2Borsa} durationInFrames={SB2_BORSA_SURE} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
+    <Composition id="SB2-SOKAK" component={Sb2Sokak} durationInFrames={SB2_SOKAK_SURE} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
   </>
 );

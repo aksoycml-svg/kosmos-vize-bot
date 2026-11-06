@@ -24,8 +24,8 @@ export const oda = (o: OdaParam) => {
 export type Oda = ReturnType<typeof oda>;
 
 export const ODALAR = {
-  // borsa: xFar 160–920 → 230–850 (motion kalibrasyonu: yan duvarlar açılır, sol duvardaki kemerli pencereler ve huzmeler okunur)
-  borsa: { yNear: 1700, sNear: 1.15, yFar: 980, sFar: 0.5, xNear: [-100, 1180], xFar: [230, 850] } as OdaParam,
+  // borsa (A2): salon "uzun koridor" değil, geniş ve kısa: arka duvar öne (yFar 1030, sFar .6), genişlik 190–890
+  borsa: { yNear: 1700, sNear: 1.15, yFar: 1030, sFar: 0.6, xNear: [-100, 1180], xFar: [190, 890] } as OdaParam,
   tours: { yNear: 1760, sNear: 1.05, yFar: 1400, sFar: 0.8, xNear: [-60, 1140], xFar: [110, 970] } as OdaParam,
   catiKati: { yNear: 1740, sNear: 1.05, yFar: 1250, sFar: 0.6, xNear: [-60, 1140], xFar: [120, 960] } as OdaParam,
   yatak: { yNear: 1760, sNear: 1.1, yFar: 1380, sFar: 0.85, xNear: [-60, 1140], xFar: [100, 980] } as OdaParam,

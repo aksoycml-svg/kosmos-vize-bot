@@ -246,3 +246,94 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - YÖNETMEN: P04 orta plan z değerleri (François ≥ 2.4, Louis ≥ 2.45) ya da altyazı ÜST-BANT'a; ızgara konumu (öneri z 2.6, u 0.30–0.35); P01'deki pencere pencere A mı, manipülatör nerede (yazılı karar); P01 p54 sonrası sağ gösterge konumu T'yi bozmamalı.
   - TASARIMCI: tüccar yüz/şapka varyantı; açılmış paket ve kıstırılmış eldiven çizim referansı; TOURS etiketinin P09/P23 ile ortak çizimi; bayrak gerekliyse doğru asılış.
   - Bir sonraki eleştiri turu için istek: her plan f0 + dokunuş temas karesi + kapanış karesi, 360×640 sayfa, güvenli alan bindirmeli kopya, piksel ölçüm tablosu.
+
+## motion · 2026-11-06 · Storyboard v2 AŞAMA A2: Eleştiri A sistemik düzeltmeler + 3 kare yeniden
+- Ne yaptım:
+  - **Sistemik 1 (renk):** Karartmanın ana nedeni ArsivKatmani değil, sahnelere elle koyduğum multiply katmanlarıydı. Tours'ta bunlar duvarı ve kahraman eldiveni (eldiven en parlak noktası 216/204/177 idi) gömüyordu. Katmanlar kaldırıldı ya da çizim sırası düzeltildi. `tools/sb2_kontrol.py` her kare için 5–8 noktayı derecelendirme SONRASI ölçer ve mekanlar.md hedef hex'iyle karşılaştırır → `kareler/renk-olcum.md`: **18/18 ✓**.
+    - Tours tuffeau L 76/88, badana 83/86, eldiven 86/94.
+    - Bordeaux taşı gece 47/50.
+    - Borsa taşı #ddc89c (hedef #d6bf8e).
+    - Şehir ayrışması: Tours süt beyazı ve loş amber, Bordeaux gece bal taşı, Borsa sıcak bal ve en parlak plan.
+  - **Sistemik 2 (tek ışık kaynağı):** yeni `src/doku/Isik.tsx`. `Isik` (yönlü/nokta) tek tanımdan şunları türetir:
+    - `izdusum` (gölge yönü ve boyu: nokta ışıkta h·d/(H−h)),
+    - `aciklikYamasi`/`AciklikIsigi` (pencere açıklığından zemindeki/masadaki pencere biçimli yama + kayıt gölgeleri + huzme + toz),
+    - `IsikHavuzu`,
+    - `Golge` (ayaktan açılan, uca doğru yumuşayan koni + temas çekirdeği).
+    - Üç karede elle konmuş gölge kalmadı.
+  - **Sistemik 3 (güvenli alan):** yeni `src/doku/GuvenliAlan.tsx`.
+    - Bindirme gösterir: üst 220, alt 420, yan 80, IG sağ sütun, ÜST/ALT yazı bantları (aktif bant mavi).
+    - `kilitKontrol` ayak, temas, kurulum, dokunuş, yüz ve yazı noktalarını denetler; ihlaller karede kırmızı ve konsolda.
+    - Sahneler `guvenli` prop'u alır.
+    - Sonuç: TOURS 6, SOKAK 6, BORSA 9 kilit noktası, **0 ihlal**.
+  - **Sistemik 4 (mimari):** yeni `src/doku/Mimari.tsx`: `KemerliPencere` (kapı varyantı), `Pilastr` (iyonik), `Kornis` (dentilli), `Kiris`, `Sacak` (alçak kameradan kiremit uçları), `Korkuluk`, `MasaKenari`.
+  - **Sistemik 5 (hikâye nesneleri, 360×640'ta test):**
+    - Paket açıldı: taban yüzü, dört kanat, ışık-gölge kat izleri, köşe kıvrıkları, eldiven yatağı, çözülmüş ip, fiyonk izi.
+    - Eldiven: manşet kenarının bir noktasından kıstırılmış; işaret parmağı manşetin içinde, başparmak dışında; manşet ağzı eğik ve katlı; parmaklar ayrık-kıvrık, sarkık, 4° salınım.
+    - Çıplak el: ince bilek, kapalı yumruk.
+    - Tahta: rakam biçimli ama okunmayan gruplar.
+    - Su birikintisi: gerçek ayna (gök bandı, lamba ve kafe ışığı dikey yansıma, pencere lekeleri).
+    - TOURS etiketi P01/P09/P10/P23 için tek çizim: `props/ToursEtiketi.tsx` (380×110 temel).
+  - **Sistemik 6 (gök/maske):** P04'teki dikey gök şeridinin kök nedeni `Sokak.tsx` `#siva` filtresiydi: turbulence polygon'un dışına (sınır kutusuna) taşıyor, gökte "bulutlu" iki yan oluşturuyordu. Filtreye `feComposite in` eklendi. Bordeaux'da sıvanın yerini TAS-BDX alır; gök tek katman, tam genişlik (`GokBdx`).
+  - **Rig ve siluet:**
+    - Rig (geriye uyumlu): `Palet` alanlarına `biyik` (kıvrık/düz/yok), `sakal`, `sapka` (silindir/geniş/yok), `burun` eklendi.
+    - `Siluet` yeniden yazıldı: alfa maskesi + dikey iki ton degrade + sıcak kenar ışığı; yüz, göz ve bıyık tamamen kaybolur.
+  - **Sahneler:**
+    - **SB2-SOKAK:**
+      - Kardeşler z 2.4/2.45 (ayaklar y≈1420), ızgara z 2.6 u 0.32.
+      - Replik ÜST bantta; ay küçük ve kenarda.
+      - Saint-Michel x 622, açık değerli siluet, kesik tepe + T; Bordeaux'da çatı yüzeyi yok, saçak + tek tük baca.
+      - Bayrak ve kesik kenar tabelası kaldırıldı; bistro sandalyesi yerine düz sıra.
+      - Islak taş varyansı + amber yansıma şeritleri; réverbère gölgeleri tek kaynaktan.
+      - François p150'den bakışını kameraya çevirir.
+    - **SB2-TOURS:**
+      - Alçak tavan (sablière + kiriş uçları), beyaz tuffeau, yatay dar tahtalı masa + ön kenar + koyu ön yüz.
+      - Masada hokka + kaz tüyü ve ciltli defter; süpürgelik yok.
+      - Manipülatör kadraj dışı sağda; makara ipi kirişten sağa iner.
+      - Güneş: pencere biçimli yama + huzme + el/eldiven gölgesi aynı vektörden (sol-aşağı).
+      - Fener: masada temas gölgesi + ışık havuzu (eldivenin p134–142'de bırakılacağı yer) + oda chiaroscuro.
+      - T: direk 1.5× kalın, gölge yüzü + kontur, jaluzi 2–4 yarık, topuz küçük.
+      - TOURS etiketi x ≤ 880.
+    - **SB2-BORSA:**
+      - Salon geniş-kısa: arka duvar yFar 1030, x 190–890.
+      - İyonik pilastrlar + korniş (tahta üstü + saçak).
+      - Sol duvarda pilastrlarla ayrılmış üç kemerli pencere.
+      - Sağ duvarda kemerli giriş + doğru asılmış tricolore (mavi gönderde, şeritler göndere paralel, %70 doygunluk).
+      - Estrad + sol-arka merdiven; sol önde bulanık sütun. Sahte ön plan kafaları kaldırıldı.
+      - Tüccar: kır sakal, bıyıksız, geniş kenarlı şapka, tıknaz.
+      - 4 kompars varyantı, yüzsüz iki tonlu siluet.
+      - Zeminde pencere yamaları; tüm gölgeler sağa ve bal rengi.
+      - Etiketler kendi karakterinin şapkasının üstünde, bağlantı çizgisi 30 px.
+- Dokunduğum dosyalar:
+  - Yeni: `src/doku/{Isik.tsx, GuvenliAlan.tsx, Mimari.tsx}`, `src/bolumler/blanc/props/ToursEtiketi.tsx`, `tools/sb2_kontrol.py`.
+  - Değişen:
+    - `src/doku/{Siluet.tsx, IslakKaldirim.tsx, ChappeKule.tsx, perspektif.ts, index.ts}`
+    - `src/rig/{Kukla.tsx, kinematik.ts}`
+    - `src/bolumler/blanc/proto/Sokak.tsx`
+    - `src/bolumler/blanc/sb2/{Sb2Tours, Sb2Sokak, Sb2Borsa}.tsx`
+    - `src/components/EkranYazisi.tsx` (Altyazi `bant`)
+    - `src/Root.tsx` (`guvenli` defaultProps)
+  - Çıktılar: `bolumler/blanc-kardesler/storyboard-v2/kareler/SB2-{TOURS,SOKAK,BORSA}{,-360,-guvenli}.png`, `renk-olcum.md`.
+- Aldığım kararlar ve gerekçeleri:
+  - Renk sorunu derecelendirme parametresinde değil sahne katmanlarındaydı. ArsivKatmani şartname değerlerinde bırakıldı (doygunluk .86, BP/WP); ölçüm tablosu bunu kanıtlıyor.
+  - P02 korkuluğu: bu kadrajda ya Louis'nin önünü kesiyor ya kenarda tek dikme gibi okunuyordu → kaldırıldı. Ön plan derinliği yalnız sütun gövdesiyle veriliyor (modül hazır).
+  - Rüzgâr kadranı kaldırıldı: P18 saatiyle karışma riski (eleştirmen B10'un izin verdiği seçenek).
+  - P01 kol konumu SAK (sol 90 / sağ −45) tasarim.md'deki gibi korundu. Eleştirmenin "sağ gösterge dışa-yukarı" önerisi yönetmen kararı olarak bırakıldı; T artık kalın direk ve sade jaluziyle okunuyor.
+  - P01 masa ön kenarı bilerek alt 420'de (MASA-PLAKA şartnamesi: koyu ön yüz alt güvenli alanı doldurur); kilit nokta sayılmadı.
+  - `#siva` düzeltmesi Paris prototipini de etkiliyor: ortalama fark 0.35/255, hiçbir piksel >20 değişmedi; yalnız gökteki hatalı doku gitti.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - CLAUDE.md'ye yeni eklenen kurallar: tek ışık kaynağı, ufuk–ölçek, kompars ayrışması, yazı bantları (replik üst banda), isim etiketi kendi karakterinin üstünde, alçak kameradan çatı yüzeyi görünmez, maske şeridi yok, 360×640 nesne testi, kontrol karesi protokolü (tam + 360 + güvenli + renk tablosu).
+  - Kendi bulduğum ihlaller:
+    - Kahraman eldiven derecelendirme sonrası griydi (multiply sırası).
+    - Siluet filtresinin ilk iki tonlu sürümü kompars yüzlerini geri getirdi → maske tabanlı yeniden yazıldı.
+    - Tahta rakamları ilk denemede okunur çıktı ("fiyat iddiası" riski) → bozulma artırıldı.
+    - Birikintiler ilk denemede "taş" gibi okundu → koyu ayna + ışık şeritleri.
+- Açık sorular / bir sonraki ajana notlar:
+  - **ÖZ PUAN:** TOURS **7/10**, SOKAK **7.5/10**, BORSA **7/10**.
+  - Bilinen zayıflıklar:
+    - P01 elin sırtı küçük ölçekte biraz "gaga" biçimli; kıstırma okunuyor ama daha iyi bir el çizimi (insert varlığı EldivenEl ile ortak) değer.
+    - P01 fener kafes gölgesi zayıf.
+    - P04'te karakterler z 2.4'te telefonda küçük (yüz ~45 px); push-in sonuna (p216) ayrıca bakılmalı.
+    - P02 kemerli pencerelerin yalnız sol kenarı görünüyor (duvar çok eğik); kalabalık yoğun.
+  - Eleştirmenin istediği tam protokol (her plan için f0 + dokunuş karesi + kapanış karesi) bu turda yapılmadı; yalnız stil kareleri var. `tools/sb2_kontrol.py`'ye `KARELER` listesine kare eklemek yetiyor.
+  - Yönetmen: P02 oda parametreleri (yFar 1030 / xFar 190–890) ve z 1.6/1.7; P04 z 2.4/2.45, ızgara z 2.6 u 0.32, replik üst bant (sahne planı ve FareInsert yeniden kadrajı buna göre güncellenmeli); P01 SAK konumu.
+  - Render: still başına 3.3–5.6 sn (paketleme dahil).

@@ -38,13 +38,13 @@ const Kanat: React.FC<{ len: number; th: number; x0?: number; detay: KuleDetay; 
   // yakın: koyu dolu kanat (siluet önce okunmalı) + 45° eğik sabit lamellerin arasındaki ince ışık yarıkları (gök görünür: maske = delik)
   const f = Math.max(2.5, th * 0.2);
   // sade jaluzi: 3–5 yarık (telefonda dolu siyah siluet okunur)
-  const n = Math.min(5, Math.max(3, Math.round(len / (th * 3))));
+  const n = Math.min(4, Math.max(2, Math.round(len / (th * 4))));
   const step = (len - 2 * f) / n;
   const ih = th - 2 * f;
   const yarik: React.ReactNode[] = [];
   for (let i = 0; i < n; i++) {
     const x = x0 + f + i * step + step * 0.45;
-    yarik.push(<polygon key={i} points={poly([[x, y0 + th - f], [x + step * 0.14, y0 + th - f], [x + step * 0.14 + ih * 0.5, y0 + f], [x + ih * 0.5, y0 + f]])} fill="#000" />);
+    yarik.push(<polygon key={i} points={poly([[x, y0 + th - f], [x + step * 0.09, y0 + th - f], [x + step * 0.09 + ih * 0.5, y0 + f], [x + ih * 0.5, y0 + f]])} fill="#000" />);
   }
   return (
     <g>
