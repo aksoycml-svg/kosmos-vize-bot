@@ -34,7 +34,7 @@ const Windows: React.FC<{ b: B; lit: number }> = ({ b, lit }) => {
     for (let f = 0; f < floors; f++)
       for (let i = 0; i < n; i++) {
         const s = `${b.seed}-win-${f}-${i}`;
-        arr.push({ x: -b.w / 2 + (i + 0.5) * (b.w / n), y: 1.6 + f * 3, on: random(s) < 0.38, warm: random(s + "c") < 0.5 ? "#ffb35c" : "#ffcf86" });
+        arr.push({ x: -b.w / 2 + (i + 0.5) * (b.w / n), y: 1.6 + f * 3, on: random(s) < 0.3, warm: random(s + "c") < 0.5 ? "#ff8a2a" : "#ffa94a" });
       }
     return arr;
   }, [b]);
@@ -43,7 +43,7 @@ const Windows: React.FC<{ b: B; lit: number }> = ({ b, lit }) => {
       {items.map((w, i) => (
         <mesh key={i} position={[w.x, w.y, 0]}>
           <planeGeometry args={[0.8, 1.6]} />
-          <meshStandardMaterial color={w.on ? w.warm : "#2a2a33"} emissive={w.on ? w.warm : "#000"} emissiveIntensity={w.on ? lit * 2.2 : 0} roughness={0.3} metalness={0.2} />
+          <meshStandardMaterial color={w.on ? "#3a2412" : "#22232b"} emissive={w.on ? w.warm : "#000"} emissiveIntensity={w.on ? lit * 0.9 : 0} roughness={0.35} metalness={0.2} />
         </mesh>
       ))}
     </group>

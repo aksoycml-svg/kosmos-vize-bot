@@ -42,8 +42,8 @@ export const Sky: React.FC<{ tod: number }> = ({ tod }) => {
         <meshBasicMaterial color="#f4f1e4" transparent opacity={0.25 + night * 0.75} fog={false} />
       </mesh>
       <mesh position={[-120, 150, -301]}>
-        <circleGeometry args={[40, 48]} />
-        <meshBasicMaterial color="#9fb3e6" transparent opacity={night * 0.12} fog={false} depthWrite={false} />
+        <circleGeometry args={[18, 48]} />
+        <meshBasicMaterial color="#9fb3e6" transparent opacity={night * 0.08} fog={false} depthWrite={false} />
       </mesh>
     </group>
   );
