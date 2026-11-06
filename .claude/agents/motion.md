@@ -19,3 +19,4 @@ FİZİK VE SAHNELEME KURALLARI (zorunlu):
 - Yokuş: gövde yerçekimi yönünde dik; ayaklar eğime uyar; çıkışta öne eğilme + kısa adım, inişte geriye yaslanma.
 - Nesneler: tutulan nesne eli takip eder; yere vurulan nesne yere değer ve ses tam o karede çıkar.
 - Gölgeler ışık kaynağının tersine düşer; aynı sahnede ışık yönü tutarlı.
+- HAREKET TAMAMLANIR: Başlayan her hareket (giriş, çıkış, dalış, fırlatma) ekranda tamamlanır ya da açıkça kadrajdan çıkar. Kesme hareketin ortasına denk gelmez (bilinçli match-cut hariç). Nesneler fade ile kaybolmaz; fiziksel olarak bir yere girer/çıkar. Hareketin sonunda kısa bir kapanış anı olur (ör. ızgarada kaybolan kuyruk ucu, oturan toz).

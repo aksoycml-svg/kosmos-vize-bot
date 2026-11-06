@@ -3,7 +3,7 @@ import { Easing, interpolate, random } from "remotion";
 
 // Yakın plan (insert): kamera kaldırım hizasında. Fare devlere bakar, Louis bastonu yanına vurur, fare kaçar.
 // t: insert içindeki saniye (0 = kesme anı). TAP: bastonun yere değdiği an.
-export const INSERT_SURE = 2.3;
+export const INSERT_SURE = 2.45;
 export const INSERT_TAP = 1.5;
 const IZ: [number, number] = [400, 1446]; // lağım ızgarası (fare buradan çıkar ve buraya kaçar)
 const cl = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -32,15 +32,19 @@ const Fare: React.FC<{ t: number; frame: number }> = ({ t, frame }) => {
   const yuru = interpolate(t, [0.7, 1.0], [0, 1], { ...cl, easing: Easing.inOut(Easing.quad) });
   const bak = interpolate(t, [0.95, 1.3], [0, 1], { ...cl, easing: Easing.out(Easing.cubic) }); // başını kaldırıp devlere bakar
   const irk = interpolate(t, [INSERT_TAP, INSERT_TAP + 0.06, INSERT_TAP + 0.16], [0, 1, 0.4], cl); // irkilme zıplaması
-  const kac = interpolate(t, [INSERT_TAP + 0.14, INSERT_TAP + 0.5], [0, 1], { ...cl, easing: Easing.in(Easing.quad) }); // ızgaraya geri dalar
+  // kaçış: deliğin üstüne gel → burnu aşağı çevir → kafa üstü dal (tamamen) 
+  const git = interpolate(t, [INSERT_TAP + 0.14, INSERT_TAP + 0.3], [0, 1], { ...cl, easing: Easing.inOut(Easing.quad) });
+  const egil = interpolate(t, [INSERT_TAP + 0.26, INSERT_TAP + 0.38], [0, 1], { ...cl, easing: Easing.inOut(Easing.quad) });
+  const bat = interpolate(t, [INSERT_TAP + 0.32, INSERT_TAP + 0.6], [0, 1], { ...cl, easing: Easing.in(Easing.quad) });
+  const kac = git;
   const don = interpolate(t, [INSERT_TAP + 0.06, INSERT_TAP + 0.16], [1, -1], cl); // sola döner
   const kokla = t < INSERT_TAP ? Math.sin(frame * 2.2) : 0;
-  const x = IZ[0] + yuru * 70 - kac * 70, y = IZ[1] + 240 * (1 - cik) - 44 - irk * 90 + kac * 190;
-  const sq = 1 + irk * 0.18 - kac * 0.1; // esneme
+  const x = IZ[0] + yuru * 70 - git * 70, y = IZ[1] + 240 * (1 - cik) - 44 - irk * 90 + egil * 30 + bat * 520;
+  const sq = 1 + irk * 0.18; // esneme
   const ayak = kac > 0 || (yuru > 0 && yuru < 1) ? Math.sin(frame * 4) : 0;
   const S = 6;
   return (
-    <g transform={`translate(${x},${y}) scale(${S * don * (1 + kac * 0.4)},${S / sq})`}>
+    <g transform={`translate(${x},${y}) rotate(${-72 * egil}) scale(${S * don},${S / sq})`}>
       {/* temas gölgesi */}
       <ellipse cx={0} cy={3} rx={38} ry={5} fill="#000" opacity={0.55 - irk * 0.3} />
       {/* kuyruk */}
@@ -128,6 +132,13 @@ export const FareInsert: React.FC<{ t: number }> = ({ t }) => {
         </g>
         <defs><clipPath id="izgaraUstu"><rect x={-200} y={-200} width={1500} height={IZ[1] + 4 + 200} /></clipPath></defs>
         <g clipPath="url(#izgaraUstu)"><Fare t={t} frame={frame} /></g>
+        {/* kapanış: kuyruk ucu ızgaradan içeri kayar */}
+        {(() => {
+          const k = interpolate(t, [INSERT_TAP + 0.58, INSERT_TAP + 0.8], [1, 0], { ...cl, easing: Easing.in(Easing.quad) });
+          if (t < INSERT_TAP + 0.58 || k <= 0) return null;
+          const L = 200 * k;
+          return <path d={`M ${IZ[0] + 10} ${IZ[1] + 2} Q ${IZ[0] + 10 + L * 0.3} ${IZ[1] - 60 * k} ${IZ[0] + 10 + L * 0.5} ${IZ[1] - L * 0.6}`} stroke="#b08a86" strokeWidth={14} fill="none" strokeLinecap="round" />;
+        })()}
         {/* alan derinliği: ön plan bulanıklığı */}
         <rect x={-100} y={1700} width={1300} height={300} fill="#05060c" opacity={0.35} style={{ filter: "blur(30px)" }} />
       </g>
