@@ -16,3 +16,4 @@ export type { Birikinti } from "./IslakKaldirim";
 export { ChappeKule, KONUMLAR, CHAPPE_ORAN } from "./ChappeKule";
 export type { KolKonum, KonumAdi, KuleDetay } from "./ChappeKule";
 export { SaintMichel } from "./SaintMichel";
+export { Siluet } from "./Siluet";

@@ -35,21 +35,27 @@ const Kanat: React.FC<{ len: number; th: number; x0?: number; detay: KuleDetay; 
       </g>
     );
   }
-  // yakın: çerçeve + 45° eğik sabit lameller, lamel aralarından gök görünür (delik)
-  const f = Math.max(2, th * 0.17);
-  const n = Math.max(4, Math.round(len / (th * 0.55)));
+  // yakın: koyu dolu kanat (siluet önce okunmalı) + 45° eğik sabit lamellerin arasındaki ince ışık yarıkları (gök görünür: maske = delik)
+  const f = Math.max(2.5, th * 0.2);
+  const n = Math.max(4, Math.round(len / (th * 0.7)));
   const step = (len - 2 * f) / n;
-  const lam: React.ReactNode[] = [];
+  const ih = th - 2 * f;
+  const yarik: React.ReactNode[] = [];
   for (let i = 0; i < n; i++) {
-    const x = x0 + f + i * step;
-    lam.push(<polygon key={i} points={poly([[x, y0 + th - f], [x + step * 0.55, y0 + th - f], [x + step * 0.55 + (th - 2 * f) * 0.5, y0 + f], [x + (th - 2 * f) * 0.5, y0 + f]])} fill={renk} />);
+    const x = x0 + f + i * step + step * 0.62;
+    yarik.push(<polygon key={i} points={poly([[x, y0 + th - f], [x + step * 0.2, y0 + th - f], [x + step * 0.2 + ih * 0.5, y0 + f], [x + ih * 0.5, y0 + f]])} fill="#000" />);
   }
   return (
-    <g data-seed={seed}>
-      <defs><clipPath id={`kl${seed}`}><rect x={x0 + f} y={y0 + f} width={len - 2 * f} height={th - 2 * f} /></clipPath></defs>
-      <g clipPath={`url(#kl${seed})`}>{lam}</g>
-      <rect x={x0 + f / 2} y={y0 + f / 2} width={len - f} height={th - f} fill="none" stroke={renk} strokeWidth={f} />
-      <line x1={x0 + f} y1={y0 + 1} x2={x0 + len - f} y2={y0 + 1} stroke={kenar} strokeWidth={1.2} opacity={0.7} />
+    <g>
+      <defs>
+        <mask id={`kl${seed}`} maskUnits="userSpaceOnUse" x={x0 - 4} y={y0 - 4} width={len + 8} height={th + 8}>
+          <rect x={x0 - 4} y={y0 - 4} width={len + 8} height={th + 8} fill="#fff" />
+          <g>{yarik}</g>
+          <rect x={x0} y={y0} width={f} height={th} fill="#fff" /><rect x={x0 + len - f} y={y0} width={f} height={th} fill="#fff" />
+        </mask>
+      </defs>
+      <rect x={x0} y={y0} width={len} height={th} fill={renk} mask={`url(#kl${seed})`} />
+      <line x1={x0 + f} y1={y0 + 1} x2={x0 + len - f} y2={y0 + 1} stroke={kenar} strokeWidth={1.4} opacity={0.8} />
     </g>
   );
 };

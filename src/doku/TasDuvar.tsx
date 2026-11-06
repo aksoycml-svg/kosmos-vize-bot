@@ -8,9 +8,10 @@ import { Derinlik, DOKU_YOGUNLUK, Esleme, karistir, parca, poly, rnd, tonla, P }
 
 export type TasTip = "bdx" | "tuffeau" | "paris";
 export const TAS = {
-  bdx: { taban: "#d6bf8e", derz: "#7e6846", derzA: 0.55, derzW: 1.5, golge: "#8f774f", leke: ["#bfa676", "#c9b07c"], blok: [180, 90] as [number, number], gozenek: 0.16 },
-  tuffeau: { taban: "#e6e0cc", derz: "#cfc6ab", derzA: 0.8, derzW: 3, golge: "#a39b84", leke: ["#dccaa0", "#b9b7ad"], blok: [180, 105] as [number, number], gozenek: 0.07 },
-  paris: { taban: "#c9c2b2", derz: "#a29b8c", derzA: 0.6, derzW: 2, golge: "#8a8478", leke: ["#bdb6a8", "#b3ab9c"], blok: [180, 90] as [number, number], gozenek: 0.12 },
+  bdx: { taban: "#d6bf8e", derz: "#7e6846", derzA: 0.55, derzW: 1.5, golge: "#8f774f", leke: ["#bfa676", "#c9b07c"], blok: [180, 90] as [number, number], gozenek: 0.16, bulut: "0.6 0.52 0.36", bulutA: 0.5 },
+  // tuffeau: büyük, YUMUŞAK sarı/gri bulutlanma (kirli kahve değil) — açık renk multiply, düşük alfa
+  tuffeau: { taban: "#e6e0cc", derz: "#cfc6ab", derzA: 0.8, derzW: 3, golge: "#a39b84", leke: ["#dccaa0", "#b9b7ad"], blok: [180, 105] as [number, number], gozenek: 0.07, bulut: "0.86 0.79 0.6", bulutA: 0.35 },
+  paris: { taban: "#c9c2b2", derz: "#a29b8c", derzA: 0.6, derzW: 2, golge: "#8a8478", leke: ["#bdb6a8", "#b3ab9c"], blok: [180, 90] as [number, number], gozenek: 0.12, bulut: "0.7 0.68 0.64", bulutA: 0.4 },
 };
 
 export type YagmurIzi = { u: number; v: number; gen: number; boy: number };
@@ -65,8 +66,8 @@ export const TasDuvar: React.FC<{
         </filter>
         <filter id={`${id}b`} filterUnits="userSpaceOnUse" x={bb.x} y={bb.y} width={bb.w} height={bb.h} colorInterpolationFilters="sRGB">
           <feTurbulence type="fractalNoise" baseFrequency={tip === "tuffeau" ? "0.012" : "0.02"} numOctaves={3} seed={seed + 1} />
-          <feColorMatrix type="matrix" values={`0 0 0 0 0.6  0 0 0 0 0.52  0 0 0 0 0.36  2.2 0 0 0 -1.05`} />
-          <feComponentTransfer><feFuncA type="linear" slope={0.5 * k} /></feComponentTransfer>
+          <feColorMatrix type="matrix" values={`0 0 0 0 ${T.bulut.split(" ")[0]}  0 0 0 0 ${T.bulut.split(" ")[1]}  0 0 0 0 ${T.bulut.split(" ")[2]}  2.2 0 0 0 -1.05`} />
+          <feComponentTransfer><feFuncA type="linear" slope={T.bulutA * k} /></feComponentTransfer>
         </filter>
         <linearGradient id={`${id}y`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#3a2e1c" stopOpacity={0.32 * k} /><stop offset="1" stopColor="#3a2e1c" stopOpacity={0} /></linearGradient>
         <linearGradient id={`${id}n`} x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#6e6650" stopOpacity={0.32 * k} /><stop offset="1" stopColor="#6e6650" stopOpacity={0} /></linearGradient>

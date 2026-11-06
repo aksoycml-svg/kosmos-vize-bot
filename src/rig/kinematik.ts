@@ -24,9 +24,32 @@ export const dunyaya = (pz: Poz, p: [number, number]): [number, number] => ap(mu
 export const elDunya = (pz: Poz, on = true, ofset: [number, number] = [0, 0]) => dunyaya(pz, elYerel(pz, on, ofset));
 // Baston ucu (ön el, cane açısı): Kukla.tsx'te baston ucu yerel (0, 252)
 export const bastonUcu = (pz: Poz, cane: number) => ap(mul(kolMatris(pz, true), R(cane)), [0, 252]);
-// Baston ucunu zemine (yerel y = −AYAK_TABAN) indiren açıyı bul; önde (bakış yönünde) olanı seç
-export const bastonAcisi = (pz: Poz, min = -10, max = 80) => {
-  let best = min, err = Infinity;
-  for (let a = min; a <= max; a += 0.1) { const [, y] = bastonUcu(pz, a); const e = Math.abs(y + AYAK_TABAN); if (e < err) { err = e; best = a; } }
+// Baston ucunu zemine (yerel y = −AYAK_TABAN) indiren açıyı bul. Birden çok çözüm varsa ucu hedefX'e
+// (yerel x, ör. ön ayağın hemen önü) en yakın olanı seç: baston bacakların/komşu karakterin içinden geçmez.
+export const bastonAcisi = (pz: Poz, hedefX = 60) => {
+  let best = 0, skor = Infinity;
+  for (let a = -180; a <= 180; a += 0.1) {
+    const [x, y] = bastonUcu(pz, a);
+    const e = Math.abs(y + AYAK_TABAN);
+    if (e > 1.2) continue;
+    const sk = Math.abs(x - hedefX);
+    if (sk < skor) { skor = sk; best = a; }
+  }
   return best;
+};
+
+// Kol IK: el (eldiven merkezi + ofset) dünya hedefine en yakın omuz/dirsek açıları (dirsek yalnız ileri bükülür).
+// Tutulan nesne / dokunulan yüzey: el tam yüzeyde — içinden geçmez.
+export const kolIK = (pz: Poz, hedef: [number, number], on = true, ofset: [number, number] = [0, 0], dirsek: [number, number] = [-150, 0]) => {
+  let best = { sh: 0, el: 0 }, err = Infinity;
+  const dene = (sh: number, el: number) => {
+    const q = { ...pz, ...(on ? { shF: sh, elF: el } : { shB: sh, elB: el }) };
+    const [x, y] = elDunya(q, on, ofset);
+    const e = Math.hypot(x - hedef[0], y - hedef[1]);
+    if (e < err) { err = e; best = { sh, el }; }
+  };
+  for (let sh = -200; sh <= 120; sh += 3) for (let el = dirsek[0]; el <= dirsek[1]; el += 3) dene(sh, el);
+  const b0 = best;
+  for (let sh = b0.sh - 3; sh <= b0.sh + 3; sh += 0.25) for (let el = b0.el - 3; el <= b0.el + 3; el += 0.25) dene(sh, el);
+  return { ...best, hata: err };
 };

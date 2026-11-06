@@ -71,7 +71,7 @@ export const KagitLifPisir: React.FC = () => (
         <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves={2} seed={8} result="b" />
         <feComposite in="b" in2="a" operator="arithmetic" k1={0} k2={0.5} k3={1} k4={-0.25} />
         <feColorMatrix type="saturate" values="0" />
-        <feComponentTransfer><feFuncR type="linear" slope={0.7} intercept={0.35} /><feFuncG type="linear" slope={0.7} intercept={0.35} /><feFuncB type="linear" slope={0.7} intercept={0.35} /><feFuncA type="linear" slope={0} intercept={1} /></feComponentTransfer>
+        <feComponentTransfer><feFuncR type="linear" slope={0.6} intercept={0.75} /><feFuncG type="linear" slope={0.6} intercept={0.75} /><feFuncB type="linear" slope={0.6} intercept={0.75} /><feFuncA type="linear" slope={0} intercept={1} /></feComponentTransfer>
       </filter>
       <rect width={1080} height={1920} filter="url(#lif)" />
     </svg>

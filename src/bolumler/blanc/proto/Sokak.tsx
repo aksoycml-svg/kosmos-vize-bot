@@ -1,7 +1,15 @@
 import React from "react";
 import { Easing, interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
+import { TasDuvar } from "../../../doku/TasDuvar";
+import { CatiOrtusu } from "../../../doku/CatiOrtusu";
+import { IslakKaldirim } from "../../../doku/IslakKaldirim";
+import { SaintMichel } from "../../../doku/SaintMichel";
+import { DOKU_SEED, dortgen } from "../../../doku/sabitler";
 
-// Ay ışıklı Paris sokağı, 1834 (Haussmann öncesi) — tamamen vektör, katmanlı
+// Şehir varyantı: "paris" (prototip, onaylı) | "bordeaux" (P04: bal rengi kireçtaşı, tuile canal, Garonne direkleri, Saint-Michel)
+export type Sehir = "paris" | "bordeaux";
+
+// Ay ışıklı sokak (Paris prototipi; sehir="bordeaux" ile Bordeaux), 1834 (Haussmann öncesi) — tamamen vektör, katmanlı
 type P = [number, number];
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const lp = (a: P, b: P, t: number): P => [lerp(a[0], b[0], t), lerp(a[1], b[1], t)];
@@ -34,6 +42,9 @@ const Yazi: React.FC<{ q: Q; side: "sol" | "sag"; z1: number; z2: number; v1: nu
 
 // ---- 1830'lar Paris evi ----
 const SIVA = ["#6a6170", "#73697a", "#5f6676", "#6d6f7c", "#7a6c70", "#655f6e"];
+// TAS-BDX gece tonu (mekanlar.md 3.3) — sarımsı gözenekli kireçtaşı, ay ışığında
+const BDX_GECE = ["#8a7e66", "#7f7560", "#93866a", "#857a62", "#7a715c", "#8d8168"];
+const BDX_TABELA: Record<string, string> = { BOULANGERIE: "TONNELIER" };
 const PANJUR = ["#2f4a40", "#4a3328", "#33405a"];
 const DUKKAN = ["#1f3a30", "#4a1c22", "#1f2a45"];
 
@@ -41,29 +52,42 @@ type EvTanim = { z1: number; z2: number; dukkan?: string };
 const EVLER_SOL: EvTanim[] = [{ z1: 1, z2: 1.55, dukkan: "BOULANGERIE" }, { z1: 1.55, z2: 2.2 }, { z1: 2.2, z2: 2.9, dukkan: "VINS" }, { z1: 2.9, z2: 3.8 }, { z1: 3.8, z2: 5 }, { z1: 5, z2: 7 }];
 const EVLER_SAG: EvTanim[] = [{ z1: 1, z2: 1.55, dukkan: "CHAPELIER" }, { z1: 1.55, z2: 2.2 }, { z1: 2.2, z2: 3.6, dukkan: "CAFÉ" }, { z1: 3.6, z2: 4.6 }, { z1: 4.6, z2: 5.6 }, { z1: 5.6, z2: 7 }];
 
-const Ev: React.FC<{ q: Q; side: "sol" | "sag"; e: EvTanim; idx: number; frame: number }> = ({ q, side, e, idx, frame }) => {
+const Ev: React.FC<{ q: Q; side: "sol" | "sag"; e: EvTanim; idx: number; frame: number; sehir: Sehir }> = ({ q, side, e, idx, frame, sehir }) => {
+  const bdx = sehir === "bordeaux";
   const { z1, z2 } = e;
   const r = (k: string) => random(`${side}${idx}${k}`);
   const top = 0.02 + r("top") * 0.16;
-  const renk = SIVA[Math.floor(r("c") * SIVA.length)];
-  const yari = !e.dukkan && r("yari") < 0.35;
+  const renk = bdx ? BDX_GECE[Math.floor(r("c") * BDX_GECE.length)] : SIVA[Math.floor(r("c") * SIVA.length)];
+  // yarı ahşap: Paris %35, Bordeaux %5 (merkezde taş hâkim)
+  const yari = !e.dukkan && r("yari") < (bdx ? 0.05 : 0.35);
+  const dukkanAd = e.dukkan && bdx ? BDX_TABELA[e.dukkan] ?? e.dukkan : e.dukkan;
+  // çatı: Paris yüksek arduvaz; Bordeaux %70 tuile canal, düşük eğim (sokaktan az görünür)
+  const tuile = bdx && r("cati") < 0.7;
+  const catiH = bdx ? 0.14 : 0.3, catiO = bdx ? 0.05 : 0.1;
+  const sove = bdx ? "#c2b38e" : "#b9b4c4", lentoC = bdx ? "#d0c09a" : "#c9c3d2";
   const out = side === "sol" ? -1 : 1;
   const a = cephe(q, z1, top), b = cephe(q, z2, top);
   const hNear = cephe(q, z1, 1)[1] - cephe(q, z1, top)[1];
   const hFar = cephe(q, z2, 1)[1] - cephe(q, z2, top)[1];
-  const roofA: P = [a[0] + out * hNear * 0.1, a[1] - hNear * 0.3];
-  const roofB: P = [b[0] + out * hFar * 0.1, b[1] - hFar * 0.3];
+  const roofA: P = [a[0] + out * hNear * catiO, a[1] - hNear * catiH];
+  const roofB: P = [b[0] + out * hFar * catiO, b[1] - hFar * catiH];
   const katlar = 3;
   const kolon = z2 - z1 > 0.9 ? 3 : 2;
   const els: React.ReactNode[] = [];
   const zemKat = e.dukkan ? 0.72 : 0.78;
   els.push(<polygon key="g" points={poly(dq(q, z1, z2, top, 1))} fill={renk} />);
+  if (bdx) {
+    // kesme blok (ashlar) + korniş altı dikey yağmur izi; gözenek sokak geneli #siva katmanında
+    const derin = z1 < 1.6 ? "yakin" : z1 < 3 ? "orta" : "uzak";
+    const izler = Array.from({ length: 5 }).map((_, i) => ({ u: 0.05 + r(`yu${i}`) * 0.85, v: 0.012, gen: 0.02 + r(`yg${i}`) * 0.03, boy: 0.08 + r(`yb${i}`) * 0.14 }));
+    els.push(<TasDuvar key="tas" m={(u, v) => cephe(q, z1 + (z2 - z1) * u, top + (1 - top) * v)} boyut={[1800, 2700]} tip="bdx" taban={renk} seed={DOKU_SEED.sokakBdx * 100 + idx * 7 + (side === "sol" ? 0 : 3)} derinlik={derin} yogunluk={0.8} gozenek={false} yagmurIzi={izler} />);
+  }
   // ay ışığı yukarıdan, sokak dibi karanlık (ortam kapanması)
   els.push(<polygon key="isik" points={poly(dq(q, z1, z2, top, 1))} fill="url(#cepheIsik)" />);
   // köşe taşları (quoin)
   for (let k = 0; k < 14; k++) { const v1 = top + (k * (1 - top)) / 14; const w = k % 2 ? 0.05 : 0.08; els.push(<polygon key={`q${k}`} points={poly(dq(q, z1, z1 + w * (z2 - z1), v1, v1 + (1 - top) / 14 - 0.004))} fill="#ffffff" opacity={0.07} />); }
   // korniş
-  els.push(<polygon key="kor" points={poly(dq(q, z1, z2, top, top + 0.018))} fill="#a3a0b4" opacity={0.55} />);
+  els.push(<polygon key="kor" points={poly(dq(q, z1, z2, top, top + 0.018))} fill={bdx ? "#c9b48a" : "#a3a0b4"} opacity={0.55} />);
   els.push(<polygon key="kor2" points={poly(dq(q, z1, z2, top + 0.018, top + 0.03))} fill="#000" opacity={0.28} />);
   // kat silmeleri
   for (let k = 1; k < katlar; k++) { const v = top + 0.04 + ((zemKat - top - 0.04) * k) / katlar; els.push(<polygon key={`s${k}`} points={poly(dq(q, z1, z2, v - 0.008, v))} fill="#ffffff" opacity={0.1} />); }
@@ -89,7 +113,7 @@ const Ev: React.FC<{ q: Q; side: "sol" | "sag"; e: EvTanim; idx: number; frame: 
       els.push(
         <g key={`w${k}${c}`}>
           {/* taş söve */}
-          <polygon points={poly(dq(q, zc - w * 1.18, zc + w * 1.18, v - 0.012, v + dv + 0.01))} fill="#b9b4c4" opacity={0.28} />
+          <polygon points={poly(dq(q, zc - w * 1.18, zc + w * 1.18, v - 0.012, v + dv + 0.01))} fill={sove} opacity={0.28} />
           <polygon points={poly(dq(q, zc - w, zc + w, v, v + dv))} fill={lit ? warm : "#1a2033"} opacity={lit ? fl : 1} />
           {lit && <polygon points={poly(dq(q, zc - w * 0.95, zc - w * 0.35, v, v + dv))} fill="#a8502a" opacity={0.55} />}
           {lit && <polygon points={poly(dq(q, zc - w, zc + w, v, v + dv))} fill={warm} opacity={0.4} style={{ filter: "blur(10px)" }} />}
@@ -98,7 +122,9 @@ const Ev: React.FC<{ q: Q; side: "sol" | "sag"; e: EvTanim; idx: number; frame: 
           <polyline points={poly([cephe(q, zc, v), cephe(q, zc, v + dv)])} stroke="#1b1d2a" strokeWidth={2} fill="none" />
           {[0.33, 0.66].map((t) => <polyline key={t} points={poly([cephe(q, zc - w, v + dv * t), cephe(q, zc + w, v + dv * t)])} stroke="#1b1d2a" strokeWidth={1.4} fill="none" />)}
           {/* lento */}
-          <polygon points={poly(dq(q, zc - w * 1.3, zc + w * 1.3, v - 0.024, v - 0.012))} fill="#c9c3d2" opacity={0.35} />
+          <polygon points={poly(dq(q, zc - w * 1.3, zc + w * 1.3, v - 0.024, v - 0.012))} fill={lentoC} opacity={0.35} />
+          {/* Bordeaux: yakın evlerde kilit taşında maskaron (yüz kabartması), ay kenar ışığı */}
+          {bdx && k === katlar - 1 && idx < 2 && c === (side === "sol" ? kolon - 1 : 0) && <Maskaron p={cephe(q, zc, v - 0.03)} s={Math.max(0.45, Math.min(1.1, hNear * 0.0007))} />}
           {/* panjurlar (lamelli) */}
           {acik < 0.8 && [[zc - w * 2.05, zc - w * 1.05], [zc + w * 1.05, zc + w * 2.05]].map(([pa, pb], i) => (
             <g key={i}>
@@ -132,7 +158,7 @@ const Ev: React.FC<{ q: Q; side: "sol" | "sag"; e: EvTanim; idx: number; frame: 
       <g key="dukkan">
         <polygon points={poly(dq(q, z1 + 0.03 * (z2 - z1), z2 - 0.03 * (z2 - z1), zemKat, 1))} fill={renkD} />
         <polygon points={poly(dq(q, z1 + 0.03 * (z2 - z1), z2 - 0.03 * (z2 - z1), zemKat, zemKat + 0.045))} fill="#120f14" opacity={0.6} />
-        <Yazi q={q} side={side} z1={z1 + 0.08 * (z2 - z1)} z2={z2 - 0.08 * (z2 - z1)} v1={zemKat + 0.004} v2={zemKat + 0.042} text={e.dukkan} color={e.dukkan === "CAFÉ" ? "#ffd27a" : "#e7d6a8"} />
+        <Yazi q={q} side={side} z1={z1 + 0.08 * (z2 - z1)} z2={z2 - 0.08 * (z2 - z1)} v1={zemKat + 0.004} v2={zemKat + 0.042} text={dukkanAd ?? ""} color={e.dukkan === "CAFÉ" ? "#ffd27a" : "#e7d6a8"} />
         <polygon points={poly(dq(q, z1 + 0.1 * (z2 - z1), z1 + 0.55 * (z2 - z1), zemKat + 0.06, 0.96))} fill={lit ? "#ffb357" : "#151a28"} opacity={lit ? 0.92 : 1} />
         {lit && <polygon points={poly(dq(q, z1 + 0.1 * (z2 - z1), z1 + 0.55 * (z2 - z1), zemKat + 0.06, 0.96))} fill="#ff9a40" opacity={0.6} style={{ filter: "blur(22px)" }} />}
         {[0.25, 0.4].map((t) => <polyline key={t} points={poly([cephe(q, z1 + t * (z2 - z1), zemKat + 0.06), cephe(q, z1 + t * (z2 - z1), 0.96)])} stroke="#140f12" strokeWidth={3} fill="none" />)}
@@ -141,13 +167,17 @@ const Ev: React.FC<{ q: Q; side: "sol" | "sag"; e: EvTanim; idx: number; frame: 
     );
   } else {
     const zd = z1 + (z2 - z1) * (0.3 + r("kapi") * 0.35);
-    els.push(<g key="kapi"><polygon points={poly(dq(q, zd - 0.02 * (z2 - z1), zd + 0.2 * (z2 - z1), 0.8, 1))} fill="#b9b4c4" opacity={0.22} /><polygon points={poly(dq(q, zd, zd + 0.18 * (z2 - z1), 0.82, 1))} fill="#231a1c" /></g>);
+    els.push(<g key="kapi"><polygon points={poly(dq(q, zd - 0.02 * (z2 - z1), zd + 0.2 * (z2 - z1), 0.8, 1))} fill={sove} opacity={0.22} /><polygon points={poly(dq(q, zd, zd + 0.18 * (z2 - z1), 0.82, 1))} fill="#231a1c" /></g>);
   }
   // çatı: arduvaz sıraları + mahya + çatı pencereleri + bacalar
-  els.push(<polygon key="cati" points={poly([a, b, roofB, roofA])} fill="#2c3550" />);
-  for (let k = 1; k < 6; k++) els.push(<polyline key={`ar${k}`} points={poly([lp(a, roofA, k / 6), lp(b, roofB, k / 6)])} stroke="#1c2236" strokeWidth={1.5} fill="none" />);
-  els.push(<polyline key="mahya" points={poly([roofA, roofB])} stroke="#a9b8e6" strokeWidth={2.5} opacity={0.6} fill="none" />);
-  for (let d = 0; d < kolon; d++) {
+  if (tuile) {
+    els.push(<CatiOrtusu key="cati" m={dortgen(roofA, roofB, b, a)} boyut={[Math.max(200, Math.hypot(roofB[0] - roofA[0], roofB[1] - roofA[1]) * 1.6), Math.max(60, hNear * catiH * 1.2)]} tip="tuileCanal" seed={DOKU_SEED.catiBdx + idx * 5 + (side === "sol" ? 0 : 2)} derinlik={z1 < 2 ? "orta" : "uzak"} gece={0.55} likenli mahya="#c4d6ff" />);
+  } else {
+    els.push(<polygon key="cati" points={poly([a, b, roofB, roofA])} fill="#2c3550" />);
+    for (let k = 1; k < 6; k++) els.push(<polyline key={`ar${k}`} points={poly([lp(a, roofA, k / 6), lp(b, roofB, k / 6)])} stroke="#1c2236" strokeWidth={1.5} fill="none" />);
+    els.push(<polyline key="mahya" points={poly([roofA, roofB])} stroke="#a9b8e6" strokeWidth={2.5} opacity={0.6} fill="none" />);
+  }
+  for (let d = 0; d < (tuile ? 0 : kolon); d++) {
     const t = (d + 0.5) / kolon;
     const m = lp(lp(a, b, t), lp(roofA, roofB, t), 0.3);
     const hh = (hNear + (hFar - hNear) * t) * 0.05;
@@ -163,10 +193,52 @@ const Ev: React.FC<{ q: Q; side: "sol" | "sag"; e: EvTanim; idx: number; frame: 
   return <g>{els}</g>;
 };
 
-const Cephe: React.FC<{ q: Q; side: "sol" | "sag"; frame: number }> = ({ q, side, frame }) => {
+const Cephe: React.FC<{ q: Q; side: "sol" | "sag"; frame: number; sehir: Sehir }> = ({ q, side, frame, sehir }) => {
   const list = side === "sol" ? EVLER_SOL : EVLER_SAG;
-  return <g>{list.map((e, i) => ({ e, i })).reverse().map(({ e, i }) => <Ev key={i} q={q} side={side} e={e} idx={i} frame={frame} />)}</g>;
+  return <g>{list.map((e, i) => ({ e, i })).reverse().map(({ e, i }) => <Ev key={i} q={q} side={side} e={e} idx={i} frame={frame} sehir={sehir} />)}</g>;
 };
+
+// Maskaron: kilit taşında yüz kabartması (18. yy Bordeaux cepheleri), ay kenar ışığı üstten
+const Maskaron: React.FC<{ p: P; s: number }> = ({ p, s }) => (
+  <g transform={`translate(${p[0]},${p[1]}) scale(${s})`}>
+    <path d="M -22 -26 L 22 -26 L 16 26 L -16 26 Z" fill="#a8996f" stroke="#4a4030" strokeWidth={2} />
+    <ellipse cx={0} cy={2} rx={13} ry={17} fill="#bcae84" />
+    <path d="M -10 -6 Q -5 -10 0 -6 Q 5 -10 10 -6" stroke="#4a4030" strokeWidth={2.4} fill="none" />
+    <path d="M 0 -4 L -3 8 L 3 8 Z" fill="#7a6c4c" />
+    <path d="M -6 14 Q 0 18 6 14" stroke="#4a4030" strokeWidth={2} fill="none" />
+    <path d="M -13 -14 Q -18 0 -12 16 M 13 -14 Q 18 0 12 16" stroke="#7a6c4c" strokeWidth={3} fill="none" />
+    <path d="M -12 -14 Q 0 -22 12 -14" stroke="#c4d6ff" strokeWidth={2} opacity={0.6} fill="none" />
+  </g>
+);
+
+// Bordeaux sokak ucu: Garonne + yelkenli direkleri (vapur yok) + silik, külahsız Saint-Michel (tepede Chappe, gece DINLEN)
+const UzakBordeaux: React.FC<{ frame: number }> = ({ frame }) => {
+  const MAST = [[452, 760], [512, 650], [566, 720], [628, 800]] as const;
+  return (
+    <g>
+      {/* Saint-Michel: sol çatıların üstünde, sis içinde */}
+      <g opacity={0.8}><SaintMichel x={SM_X} y={SM_Y} h={SM_H} renk="#161c3a" kenar="#c4d6ff" kenarA={0.4} acikRenk="#2e3868" /></g>
+      {/* karşı kıyı alçak siluet */}
+      <path d="M 380 1062 L 420 1056 L 440 1046 L 470 1050 L 500 1040 L 540 1048 L 590 1042 L 640 1052 L 700 1048 L 700 1072 L 380 1072 Z" fill="#232b50" />
+      {/* Garonne: ay yansıması + fener izleri */}
+      <rect x={380} y={1068} width={320} height={70} fill="#1d2546" />
+      <rect x={520} y={1072} width={40} height={60} fill="#c4d6ff" opacity={0.18} style={{ filter: "blur(6px)" }} />
+      {/* gövde bandı (rıhtıma yanaşmış tekneler) */}
+      <path d="M 410 1094 L 690 1094 L 676 1128 L 424 1128 Z" fill="#141a33" />
+      {MAST.map(([x, top], i) => (
+        <g key={i}>
+          <line x1={x} y1={top} x2={x} y2={1096} stroke="#141a33" strokeWidth={4} />
+          {[0.18, 0.42].map((t) => { const yy = top + (1096 - top) * t, w = 46 - t * 30; return <g key={t}><line x1={x - w} y1={yy} x2={x + w} y2={yy} stroke="#141a33" strokeWidth={2.5} /><path d={`M ${x - w * 0.9} ${yy + 2} Q ${x} ${yy + 12} ${x + w * 0.9} ${yy + 2}`} stroke="#3a4470" strokeWidth={5} fill="none" /></g>; })}
+          <line x1={x} y1={top + 4} x2={x - 70} y2={1094} stroke="#141a33" strokeWidth={1} opacity={0.6} />
+          <line x1={x} y1={top + 4} x2={x + 60} y2={1094} stroke="#141a33" strokeWidth={1} opacity={0.6} />
+          <circle cx={x} cy={top - 4} r={3} fill="#ffb357" opacity={0.75 + Math.sin(frame * 0.05 + i) * 0.1} />
+        </g>
+      ))}
+    </g>
+  );
+};
+// sokak ucunun sol üstünde, sisin içinden yükselir (sol çatılar daha yakın: gövdenin altı sisle/çatıyla örtülür)
+export const SM_X = 445, SM_Y = 830, SM_H = 340;
 
 // Notre-Dame (1834: sivri kule yok) — sokağın ucunda, ay ışığında
 const Uzak: React.FC = () => (
@@ -191,7 +263,7 @@ const Uzak: React.FC = () => (
   </g>
 );
 
-const Zemin: React.FC = () => {
+const Zemin: React.FC<{ sehir?: Sehir }> = ({ sehir = "paris" }) => {
   const rows: React.ReactNode[] = [];
   let k = 0;
   for (let z = 1; z < ZMAX; z *= 1.045) {
@@ -215,6 +287,8 @@ const Zemin: React.FC = () => {
       {/* ortadan su oluğu (caniveau) */}
       <polygon points="498,2050 538,1130 542,1130 582,2050" fill="#0c0f18" />
       <polygon points="526,2050 539.5,1130 540.5,1130 554,2050" fill="#9fb3ea" opacity={0.25} />
+      {/* Bordeaux: 3 su birikintisi (gök ve fener aynası) */}
+      {sehir === "bordeaux" && <IslakKaldirim zemin={zemin} seed={DOKU_SEED.sokakBdx} birikinti={[{ z: 1.6, u: 0.3, rz: 0.12, ru: 0.09 }, { z: 2.4, u: 0.7, rz: 0.2, ru: 0.08 }, { z: 3.2, u: 0.45, rz: 0.28, ru: 0.07 }]} isiklar={[{ x: 540, renk: "#ffb357", guc: 0.5 }, { x: FENER[0] + 30, renk: "#ffb456", guc: 0.45 }]} />}
     </g>
   );
 };
@@ -419,29 +493,29 @@ const Fener: React.FC<{ fl: number }> = ({ fl }) => {
   );
 };
 
-export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?: number }> = ({ katman, t = 0, tap = 99 }) => {
+export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?: number; sehir?: Sehir; izgaraFaresiz?: boolean }> = ({ katman, t = 0, tap = 99, sehir = "paris", izgaraFaresiz }) => {
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame() * 30 / fps; // 30 fps eşdeğeri zaman
   const fl = Math.sin(frame * 0.7) * 0.5 + Math.sin(frame * 1.9) * 0.3;
   if (katman === "gok") return <Gokyuzu frame={frame} />;
-  if (katman === "uzak") return <g><Uzak /><Duman x={440} y={820} frame={frame} seed="d1" /><Duman x={640} y={830} frame={frame} seed="d2" /></g>;
+  if (katman === "uzak") return <g>{sehir === "bordeaux" ? <UzakBordeaux frame={frame} /> : <Uzak />}<Duman x={440} y={820} frame={frame} seed="d1" /><Duman x={640} y={830} frame={frame} seed="d2" /></g>;
   const { lamp } = reverbere(frame);
   return (
     <g>
-      <Zemin />
+      <Zemin sehir={sehir} />
       {/* ıslak zemin yansımaları */}
       <ellipse cx={lamp[0]} cy={1420} rx={45} ry={200} fill="#ffb357" opacity={0.22 + fl * 0.03} style={{ filter: "blur(14px)" }} />
       <ellipse cx={560} cy={1230} rx={36} ry={140} fill="#cfdcff" opacity={0.16} style={{ filter: "blur(10px)" }} />
       <ellipse cx={FENER[0] + 70} cy={1680} rx={60} ry={260} fill="#ffb456" opacity={0.2 + fl * 0.03} style={{ filter: "blur(16px)" }} />
       <ellipse cx={cephe(SAG, 2.6, 0.95)[0] - 30} cy={1500} rx={70} ry={200} fill="#ff9d3a" opacity={0.2} style={{ filter: "blur(18px)" }} />
-      <Cephe q={SOL} side="sol" frame={frame} />
-      <Cephe q={SAG} side="sag" frame={frame} />
+      <Cephe q={SOL} side="sol" frame={frame} sehir={sehir} />
+      <Cephe q={SAG} side="sag" frame={frame} sehir={sehir} />
       {/* sıva dokusu */}
       <g style={{ mixBlendMode: "multiply" }}>
         <polygon points={poly([SOL.A, SOL.B, SOL.C, SOL.D])} filter="url(#siva)" fill="#fff" />
         <polygon points={poly([SAG.A, SAG.B, SAG.C, SAG.D])} filter="url(#siva)" fill="#fff" />
       </g>
-      <IzgaraVeFare t={t} frame={frame} />
+      {!izgaraFaresiz && <IzgaraVeFare t={t} frame={frame} />}
       <Ilan />
       <Teras />
       <Bayrak frame={frame} />
