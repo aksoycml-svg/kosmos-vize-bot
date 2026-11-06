@@ -757,3 +757,69 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - (2) Kadran plakanın üstüne vektör olarak mı eklensin, yoksa hiç çizilmesin mi?
   - (3) Gemini çıktısının ticari kullanım koşulu doğrulanmalı.
   - (4) Motion: d3 + d4 + kukla rig ile tek bir kontrol karesi üretsin, plaka ile rig arasında "iki dünya" farkı var mı görülsün. Ardından eleştirmen baksın.
+
+## motion · 2026-11-06 · Hibrit kompozit testi (P02 BORSA: Gemini plakası + kukla rig, "iki dünya" deneyi)
+- **Ne yaptım:**
+  - Plakaları `public/blanc/hibrit/` altına kopyaladım: `plaka-d2.png`, `arka-d3.png`. `on-d4.png` dosyasını d4 ile maskeden RGBA olarak ürettim (0.8 px yumuşatma). Yeşil sızıntı ölçümü: 0 piksel.
+  - Yeni kompozisyon `SB2-BORSA-HIBRIT` (121 kare, props `deneme: 1|2|3`, `guvenli`). Karakterlerin P02 p0 pozları Sb2Borsa'dakiyle aynı: tüccar; François taba eldivenli, eli tüccarın omzunda (IK); Louis çıplak elinde tüy kalem, pupitrde defter, cebinde eldiven köşesi; 4 kompars siluet.
+  - **Plaka ufkunu yeniden ölçtüm: y ≈ 1000 ±30, kaçış x ≈ 542** (1080×1920; zemin derzlerinden çizgi uydurma + kaçış ışını bindirmesi). hibrit-test.md'deki y ≈ 1135 ufuk değil, arka cephe tabanı (y ≈ 1148). Sağlama: arka parmaklık 173 px, göz yüksekliği 148 px. Göz 1.7 m alınınca parmaklık ≈ 2.0 m, arcade ≈ 4.0 m çıkıyor; tutarlı.
+  - Üç deneme yaptım:
+    - (1) d2 + çıplak rig.
+    - (2) d2 + gravür uyumu. Rig'i satürasyon 0.76 ile desatüre ettim. Ton eşlemesinde siyah plaka mürekkebine (#20160d), beyaz plaka kâğıdına (#fbe8c8) gidiyor. Böylece mavi kenar ışığı ve saf siyah plakanın aralığına iniyor. 1.3 px mürekkep dış kontur ekledim. Tarama luminans eşikli ve net kenarlı: orta ton L<.45 seyrek, koyu L<.25, en koyu L<.15 yarım aralık kaydırmalı. Yön plakadaki gibi "\"; çapraz/kafes yok. Üstte ortak kâğıt lifi (.16) ve gren (.07) katmanı var.
+    - (3) d3 arka + (2) ile işlenmiş rig + d4 ön çerçeve kuklaların önünde. p0–120 arası push-in 1.00→1.10, ön katman paralaks 1.3.
+  - Kareler (`storyboard-v2/hibrit-test/`): `kompozit-1/2/3.png`, `kompozit-1/2/3-360.png`, `kompozit-3-p120.png` (kamera sonu), `kompozit-3-guvenli.png` (5 kilit, 0 ihlal), `kompozit-sayfa.png` (A4 kod karesi + 3 deneme; telefon, figür 2×, yüz 3×).
+  - tsc temiz.
+- **Dokunduğum dosyalar:** `src/bolumler/blanc/sb2/Sb2BorsaHibrit.tsx` (yeni) · `src/Root.tsx` (1 import + 1 Composition) · `public/blanc/hibrit/{plaka-d2,arka-d3,on-d4}.png` (yeni) · `bolumler/blanc-kardesler/storyboard-v2/hibrit-test/kompozit-*.png` (yeni) · bu rapor. Mevcut modüllerin hiçbirini değiştirmedim (Kukla, kinematik, Isik, Siluet, GuvenliAlan, palet yalnız import edildi).
+- **Aldığım kararlar ve gerekçeleri:**
+  - Ölçek ufuk–ölçek kuralına göre: boy = (ayak y − 1000) · 1.85/1.7. Kare, değiştirdiğim değerler:
+
+    | Öğe | A4 (Sb2Borsa) | Hibrit |
+    |---|---|---|
+    | ufuk y | 800 | **1000** (plaka) |
+    | tüccar ayak (x, y) / boy | z 1.45 / ≈ 620 px | (222, 1488) / ≈ 530 px |
+    | François | z 1.45 | (428, 1492) / ≈ 535 px |
+    | pupitr | z 1.47 | (662, 1478) |
+    | Louis | z 1.52 | (800, 1472) / ≈ 513 px |
+    | kompars | avluda 10 kişi | 4 kişi: (305,1196) ve (176,1232) güneşte; (700,1172) ve (884,1262) sağ kanadın gölgesinde (atılan gölge yok, yalnız temas) |
+    | güneş yon | [-0.16, 0.05] | [-0.24, 0.09] (sol-öne, kısa) |
+
+  - Ayaklar ön çerçeve zemin kenarının (y ≈ 1650) önünde değil, arkasındaki güneşli avluda. Alt güvenli alan sınırı (≤1500) da bu yüzden tutuyor. Tahtanın (x 470–612, y 960–1065) önü boş bırakıldı.
+  - Deneme 1 ve 2 düz d2 plakası üzerinde. Bu yüzden ön kapı kanadı fiziksel olarak kuklaların önünde olmasına rağmen ancak (3)'te önde çiziliyor. (1) ve (2)'de tüccar kanadın kenarından uzak tutuldu, örtüşme yok.
+  - Satürasyon 0.62 ile François'nın mavisi ve Louis'nin bordosu kayboluyordu; karakter kimliği için 0.76'ya çıktı.
+- **Uyguladığım kurallar / yakaladığım ihlaller:**
+  - Ufuk–ölçek: gözler ufkun hemen altında, kompars başları da ufukta.
+  - Ayak + temas çekirdeği: gravür gölgesi tek güneş tanımından türetildi. Gölgedeki kompars atılan gölge almıyor.
+  - Derinlik sırası (3): ön çerçeve ve kapı kanadı kuklaların önünde. p120'de kanat tüccarın kenarını doğru biçimde örtüyor; dikiş ya da hale yok.
+  - Güvenli alan bindirmesinde 0 ihlal.
+  - Yakaladığım sorunlar:
+    - (a) hibrit-test.md'deki ufuk değeri yanlış (1135 değil, ~1000). "Kuklalar ≈365 px'e küçülmeli" sonucu da buna göre düzelir: ayaklar avlunun önünde olunca ≈ 530 px.
+    - (b) Plaka perspektifi tutarsız: sol kanadın korniş ve taban çizgileri farklı kaçışlara gidiyor, zemin derzlerinde ±30 px sapma var.
+    - (c) Plakada saf siyaha yakın mürekkep var (%1 ≈ #0b0200); "saf siyah yok" kuralına sınırda.
+    - (d) d2/d4 tezgâh defterinde sahte yazı karalaması var (yazı yasağı); 360 px'te okunmuyor ama plakada mevcut.
+- **Değerlendirme (öz puan temkinli):**
+  - **En iyi deneme: 3** (ön çerçeve + uyum). Hemen arkasında 2 geliyor; 3 ile 2'nin üslup farkı aynı, 3 derinlik ve paralaks kazandırıyor.
+  - **"İki dünya" farkı kapanmıyor, daralıyor.**
+    - 360 px telefonda: (2) ve (3) tek resim gibi okunuyor. Renk aralığı, mürekkep tonu, tarama ve doku ortak.
+    - Tam boy ve yakında: rig hâlâ karikatür (büyük baş, düz dolgu yüz, yuvarlak çizgisiz biçimler), plaka ise ince çizgili gerçekçi gravür. "Gravür dekor önünde kukla" okunuyor. Kukla tiyatrosu konseptiyle bu savunulabilir, ama bütünleşmiş değil.
+    - (1) açıkça iki dünya: parlak mavi/bordo, mavi kenar ışığı, saf siyah.
+  - Kalan sorunlar:
+    - Rig ışığı plakaya uymuyor. Güneş sağ-arkadan geliyor; kameraya bakan yüzler yarı gölgede, sağ/üst kenarda sıcak kenar ışığı olmalı. Rig hâlâ önden düz ışıkta.
+    - Siluet komparslar düz kahve kesik gibi; gravürde onlar da taranmalı.
+    - Tarama maskesi luminans eşikli olduğu için ışık yönünü bilmiyor (koyu kumaş her yanda taranıyor).
+    - Yüzler P02 geniş planda ≈ 75 px; dokunuş ve oyunculuk için zaten kesme gerekiyor.
+- **Animasyon riskleri (bu yolun):**
+  - Kamera: push-in ≤1.10–1.15 temiz (p120 karesi). Daha büyükte arka plaka "fotoğrafa zoom" olur, gerçek perspektif kayması olmaz. Yanal kaydırmada arka katmanın içinde derinlik yok; zemin ve cephe birlikte kayar. Ön katman paralaksı yalnız 2 düzlem verir.
+  - Ufuk sabit: plaka hangi ufukla geldiyse sahne planı ona uyar. Tahta MATCH konumu ve P03 geçişi plakadan yapılamaz.
+  - Işık değişimi: plaka ışığı pişmiş. Gün/gece, bulut gölgesi, tebeşir tozu huzmesi ancak üst katmanla yapılabilir; plakadaki gölgeler değişmez.
+  - Insert/yakın (tahta insert, Louis göğüs, el): 2K plaka en fazla ~1.4× taşır. Her insert ayrı plaka ister ve her yeni plaka yeni mimari tutarsızlık riski getirir. Yakın planda da rig ile gravür farkı en çok orada büyür (yüz 3× satırına bkz.).
+  - Fizik ve temas: karakterlerin plakadaki nesnelere dokunması (tahtaya yazma, kapı, tezgâh) plakanın piksel konumlarına elle kilitlenir. Plaka yeniden üretilirse bütün temaslar kayar.
+  - Rig'in gravür filtresi (3 maske + morfoloji) her karede kukla başına iki ek çizim demek; render süresi ≈2–3× (bu karede kabul edilebilir).
+- **Açık sorular / bir sonraki ajana notlar:**
+  - Kullanıcı: A (kod) mı, B′ (hibrit) mi? B′ seçilirse önerim:
+    - (i) Deneme 3 düzeni temel alınsın.
+    - (ii) Rig'e sahne ışığına bağlı yön taraması + sıcak kenar ışığı eklensin (Kukla'ya `isik` prop'u; bu Kukla.tsx değişikliği demek, sahibi motion, paralel iş bitince).
+    - (iii) Kompars siluetleri de taransın.
+    - (iv) Plakalar sahne planı iskeletine (ufuk, tahta dikdörtgeni) göre üretilsin.
+  - Eleştirmen: `kompozit-sayfa.png` + `kompozit-3-p120.png` + `kompozit-3-guvenli.png`. Renk ölçümü yapılmadı (deney karesi).
+  - Maske betiği `tools/` altına alınmadı (görev kapsamı dışı). On-d4 RGBA üretimi raporda tarif edildiği gibi: maske L kanalı → alfa, Gauss 0.8.
+  - Mekân sorumlusu: hibrit-test.md'deki ufuk değeri 1135 → ~1000 düzeltilmeli (belgenin sahibi o).

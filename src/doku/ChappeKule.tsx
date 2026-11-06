@@ -67,7 +67,8 @@ export const ChappeKule: React.FC<{
   x: number; y: number; L: number; konum: KonumAdi | KolKonum; detay?: KuleDetay;
   direkRenk?: string; kolRenk?: string; karsiAgirlik?: string; kenarIsik?: string;
   sicakIsik?: number; siluetRenk?: string; payanda?: boolean; direkGorunen?: number; direkKalin?: number; topuz?: number;
-}> = ({ x, y, L, konum, detay = "orta", direkRenk = BL.direkMavi, kolRenk = BL.kolSiyah, karsiAgirlik = BL.karsiAgirlik, kenarIsik = BL.kolKenar, sicakIsik = 0, siluetRenk, payanda = true, direkGorunen = 1, direkKalin = 1, topuz = 1 }) => {
+  karsiKisa?: boolean; // P01 TC2: karşı ağırlık kısa ve kola hizalı kalın blok (ince çubuk + sarkan ağırlık "ip/ilmik" okunmasın)
+}> = ({ x, y, L, konum, detay = "orta", direkRenk = BL.direkMavi, kolRenk = BL.kolSiyah, karsiAgirlik = BL.karsiAgirlik, kenarIsik = BL.kolKenar, sicakIsik = 0, siluetRenk, payanda = true, direkGorunen = 1, direkKalin = 1, topuz = 1, karsiKisa = false }) => {
   const id = "ck" + useId().replace(/:/g, "");
   const k: KolKonum = typeof konum === "string" ? KONUMLAR[konum] : konum;
   const O = CHAPPE_ORAN;
@@ -84,9 +85,13 @@ export const ChappeKule: React.FC<{
     const a = side === -1 ? -k.sol : 180 + k.sag; // ekran açısı (derece, +x'ten saat yönü)
     return (
       <g transform={`translate(${side * yHalf},0) rotate(${a})`}>
-        {/* karşı ağırlık: pivotun ters tarafında kısa çubuk + gri çatal ağırlık */}
-        <rect x={-Li * O.karsi} y={-tG * 0.16} width={Li * O.karsi} height={tG * 0.32} fill={aR} />
-        <rect x={-Li * O.karsi - tG * 0.5} y={-tG * 0.42} width={tG * 0.6} height={tG * 0.84} rx={tG * 0.12} fill={aR} stroke={sil ? "none" : ink(aR)} strokeWidth={1} />
+        {/* karşı ağırlık: pivotun ters tarafında kısa çubuk + gri çatal ağırlık (karsiKisa: kola hizalı tek kalın blok) */}
+        {karsiKisa
+          ? <rect x={-Li * 0.2} y={-tG * 0.45} width={Li * 0.2} height={tG * 0.9} rx={tG * 0.15} fill={aR} stroke={sil ? "none" : ink(aR)} strokeWidth={1.2} />
+          : <>
+            <rect x={-Li * O.karsi} y={-tG * 0.16} width={Li * O.karsi} height={tG * 0.32} fill={aR} />
+            <rect x={-Li * O.karsi - tG * 0.5} y={-tG * 0.42} width={tG * 0.6} height={tG * 0.84} rx={tG * 0.12} fill={aR} stroke={sil ? "none" : ink(aR)} strokeWidth={1} />
+          </>}
         <Kanat len={Li} th={tG} x0={tG * 0.2} detay={detay} renk={kR} kenar={kenarIsik} seed={`${id}${side}`} />
       </g>
     );

@@ -69,9 +69,10 @@ export const PaketKagidi: React.FC<{
     return (
       <g transform={`translate(${x},${y}) rotate(${aci}) scale(${olcek})`}>
         <polygon points={poly(kanat.map(([p, r]) => [p - 6, r + 9] as P))} fill="#14110d" opacity={0.22 * k} />
-        <polygon points={poly(kanat)} fill={R.isik} stroke={ink(R.kagit)} strokeWidth={2} strokeLinejoin="round" />
-        <path d={`M ${-B.x + 8} ${B.y - h} Q 0 ${B.y - h - 12} ${B.x - 4} ${B.y - h + 10}`} stroke={R.katIsik} strokeWidth={4} fill="none" />
-        {[0.3, 0.6].map((t) => <line key={t} x1={-B.x + 20} y1={B.y - h * t} x2={B.x - 20} y2={B.y - h * t + 4} stroke={R.katGolge} strokeWidth={1.4} opacity={0.4} />)}
+        {/* TC6: yumuşak kâğıt kanat — kavisli kenar, yuvarlanmış köşe, cetvel çizgisi YOK; iç yüzde 1–2 kırışık */}
+        <path d={`M ${kanat[0][0]} ${kanat[0][1]} Q 0 ${B.y + 10} ${kanat[1][0]} ${kanat[1][1]} Q ${kanat[2][0] + 14} ${(kanat[1][1] + kanat[2][1]) / 2} ${kanat[2][0]} ${kanat[2][1]} Q ${kanat[2][0] - 6} ${kanat[2][1] - 12} ${kanat[2][0] - 20} ${kanat[2][1] - 10} Q 0 ${B.y - h - 14} ${kanat[3][0] + 16} ${kanat[3][1] - 4} Q ${kanat[3][0] - 2} ${kanat[3][1]} ${kanat[3][0] - 2} ${kanat[3][1] + 12} Q ${kanat[0][0] - 12} ${(kanat[0][1] + kanat[3][1]) / 2} ${kanat[0][0]} ${kanat[0][1]} Z`} fill={R.isik} stroke={ink(R.kagit)} strokeWidth={2} strokeLinejoin="round" />
+        <path d={`M ${-B.x + 14} ${B.y - h + 2} Q 0 ${B.y - h - 12} ${B.x - 18} ${B.y - h + 6}`} stroke={R.katIsik} strokeWidth={4} fill="none" strokeLinecap="round" />
+        <path d={`M ${-B.x * 0.4} ${B.y - h * 0.55} q 22 10 38 2 M ${B.x * 0.2} ${B.y - h * 0.3} q 18 6 30 -2`} stroke={R.katGolge} strokeWidth={1.8} opacity={0.45} fill="none" strokeLinecap="round" />
       </g>
     );
   }
@@ -125,8 +126,17 @@ export const PaketKagidi: React.FC<{
       {/* çözülmüş ip: iki uç MASADA gevşek kıvrık (kâğıdın kenarından çıkar, açık paketin üstünden geçmez) */}
       {ipCozuk && <g>
         <path d={`M ${-B.x - D.y + 10} 40 Q ${-B.x - D.y - 50} 70 ${-B.x - D.y - 30} 130 Q ${-B.x - D.y - 10} 180 ${-B.x - D.y - 70} 210`} stroke={R.ip} strokeWidth={5} fill="none" strokeLinecap="round" />
-        <path d={`M ${30} ${B.y + D.a - 4} Q 70 ${B.y + D.a + 50} 140 ${B.y + D.a + 40} Q 200 ${B.y + D.a + 30} ${etiketYeri[0] - 8} ${etiketYeri[1] + 4}`} stroke={R.ip} strokeWidth={5} fill="none" strokeLinecap="round" />
-        {[0, 1].map((i) => <path key={i} d={i ? `M ${30} ${B.y + D.a - 4} Q 70 ${B.y + D.a + 50} 140 ${B.y + D.a + 40} Q 200 ${B.y + D.a + 30} ${etiketYeri[0] - 8} ${etiketYeri[1] + 4}` : `M ${-B.x - D.y + 10} 40 Q ${-B.x - D.y - 50} 70 ${-B.x - D.y - 30} 130 Q ${-B.x - D.y - 10} 180 ${-B.x - D.y - 70} 210`} stroke={R.ipKontur} strokeWidth={1.6} strokeDasharray="3 8" fill="none" />)}
+        {(() => {
+          // ikinci ip ucu: etiket hangi taraftaysa kâğıdın O kenarından çıkar (açık paketin üstünden geçmez)
+          const ip2 = etiketYeri[0] < 0
+            ? `M ${-B.x - D.y + 16} -30 Q ${-B.x - D.y - 30} -10 ${(-B.x - D.y + etiketYeri[0]) / 2} ${(etiketYeri[1] - 30) / 2} Q ${etiketYeri[0] - 40} ${etiketYeri[1] - 30} ${etiketYeri[0] - 8} ${etiketYeri[1] + 4}`
+            : `M ${30} ${B.y + D.a - 4} Q 70 ${B.y + D.a + 50} 140 ${B.y + D.a + 40} Q 200 ${B.y + D.a + 30} ${etiketYeri[0] - 8} ${etiketYeri[1] + 4}`;
+          const ip1 = `M ${-B.x - D.y + 10} 40 Q ${-B.x - D.y - 50} 70 ${-B.x - D.y - 30} 130 Q ${-B.x - D.y - 10} 180 ${-B.x - D.y - 70} 210`;
+          return <g>
+            <path d={ip2} stroke={R.ip} strokeWidth={5} fill="none" strokeLinecap="round" />
+            {[ip1, ip2].map((d, i) => <path key={i} d={d} stroke={R.ipKontur} strokeWidth={1.6} strokeDasharray="3 8" fill="none" />)}
+          </g>;
+        })()}
         {etiket && <ToursEtiketi x={etiketYeri[0]} y={etiketYeri[1]} olcek={0.4} aci={-6} />}
       </g>}
     </g>

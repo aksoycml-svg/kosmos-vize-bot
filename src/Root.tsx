@@ -9,6 +9,7 @@ import { KagitLifPisir, GrenPisir } from "./doku/ArsivKatmani";
 import { Sb2Sokak, SB2_SOKAK_SURE } from "./bolumler/blanc/sb2/Sb2Sokak";
 import { Sb2Tours, SB2_TOURS_SURE } from "./bolumler/blanc/sb2/Sb2Tours";
 import { Sb2Borsa, SB2_BORSA_SURE } from "./bolumler/blanc/sb2/Sb2Borsa";
+import { Sb2BorsaHibrit, SB2_BORSA_HIBRIT_SURE } from "./bolumler/blanc/sb2/Sb2BorsaHibrit";
 import { PropTest } from "./bolumler/blanc/sb2/PropTest";
 
 export const RemotionRoot: React.FC = () => (
@@ -25,6 +26,7 @@ export const RemotionRoot: React.FC = () => (
     {/* Storyboard v2 kalibrasyon stil kareleri (60 fps, plan uzunluğu; kare = plan içi kare) */}
     <Composition id="SB2-TOURS" component={Sb2Tours} durationInFrames={SB2_TOURS_SURE} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
     <Composition id="SB2-BORSA" component={Sb2Borsa} durationInFrames={SB2_BORSA_SURE} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
+    <Composition id="SB2-BORSA-HIBRIT" component={Sb2BorsaHibrit} durationInFrames={SB2_BORSA_HIBRIT_SURE} fps={60} width={1080} height={1920} defaultProps={{ deneme: 3 as 1 | 2 | 3, guvenli: false }} />
     <Still id="SB2-PROP-TEST" component={PropTest} width={1080} height={1920} />
     <Composition id="SB2-SOKAK" component={Sb2Sokak} durationInFrames={SB2_SOKAK_SURE} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
   </>

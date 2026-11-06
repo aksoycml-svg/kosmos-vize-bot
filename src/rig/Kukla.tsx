@@ -20,6 +20,7 @@ export type Poz = {
   cane?: number | null;
   caneArka?: number | null; // baston arka (dış) elde
   yakin?: boolean;          // yakın plan yüz detayı (göz kapağı kıvrımı, kapak gölgesi, dolgulu kaş, dudak)
+  onKolYok?: boolean;       // ön kol çizilmez (yakın planda yerine KolEl overlay'i gelir, ör. P02 yazan el)
 };
 
 export type Palet = {
@@ -30,14 +31,16 @@ export type Palet = {
   biyik?: "kivrik" | "duz" | "yok"; sakal?: boolean; sapka?: "silindir" | "genis" | "yok"; burun?: number;
 };
 
+// v2.3 (tasarim.md 0.6): rig varsayılan eldiveni krem/gri OLAMAZ — François taba deri #8a6a48, Louis çıplak el (glove = skin).
+// "Eldiven beyazı" yalnız kahraman eldiven + Louis'nin cep eldiveni (overlay) + P19.
 export const FRANCOIS: Palet = {
   coat: "#24407a", coatDark: "#15264a", coatLight: "#3c5ea3", vest: "#6e5a3a", vestDark: "#4e3f28", vestDesen: "#c9a24a", cravat: "#f1e8d2", shirt: "#f6f1e4",
-  pants: "#3a3530", shoe: "#0f0d0c", glove: "#e8dcc0", skin: "#e4b28e", skinDark: "#b98063", hair: "#3a2416", hat: "#141317", hatBand: "#2e2c36",
+  pants: "#3a3530", shoe: "#0f0d0c", glove: "#8a6a48", skin: "#e4b28e", skinDark: "#b98063", hair: "#3a2416", hat: "#141317", hatBand: "#2e2c36",
   sideburn: 1, browHeavy: 1,
 };
 export const LOUIS: Palet = {
   coat: "#74222f", coatDark: "#47131c", coatLight: "#9a3646", vest: "#85878e", vestDark: "#5f6168", vestDesen: "#a9abb2", cravat: "#16141a", shirt: "#f2ede1",
-  pants: "#46464c", shoe: "#0f0d0c", glove: "#cfc9b8", skin: "#e0ae8a", skinDark: "#b27b5f", hair: "#35210f", hat: "#74757c", hatBand: "#2a2a2e",
+  pants: "#46464c", shoe: "#0f0d0c", glove: "#e0ae8a", skin: "#e0ae8a", skinDark: "#b27b5f", hair: "#35210f", hat: "#74757c", hatBand: "#2a2a2e",
   sideburn: 1.35, browHeavy: 1.2,
 };
 
@@ -100,10 +103,12 @@ const Kol: React.FC<{ x: number; sh: number; el: number; p: Palet; arka?: boolea
         <path d="M -13 66 L 13 66 L 13 78 L -13 78 Z" fill={shade(c, 0.12)} />
         <rect x={-12} y={77} width={24} height={6} fill={p.shirt} />
         <g transform="translate(0,90)">
-          {/* eldivenli el + başparmak */}
-          <path d="M -12 -9 Q -15 9 -5 17 Q 9 21 14 8 Q 16 -5 10 -9 Z" fill={p.glove} stroke={ink(p.glove)} strokeWidth={SW} />
-          <path d="M 10 -6 Q 20 -2 16 8" fill={p.glove} stroke={ink(p.glove)} strokeWidth={SW} />
-          <path d="M -6 2 L 6 2 M -6 8 L 6 8" stroke={ink(p.glove)} strokeWidth={1} opacity={0.5} />
+          {/* el + başparmak: eldivenliyse sırt dikişi, çıplaksa (glove = skin) boğum çizgisi + parmak ayrımı */}
+          <path d="M -12 -9 Q -15 9 -5 17 Q 9 21 14 8 Q 16 -5 10 -9 Z" fill={p.glove} stroke={p.glove === p.skin ? p.skinDark : ink(p.glove)} strokeWidth={SW} />
+          <path d="M 10 -6 Q 20 -2 16 8" fill={p.glove} stroke={p.glove === p.skin ? p.skinDark : ink(p.glove)} strokeWidth={SW} />
+          {p.glove === p.skin
+            ? <path d="M -9 9 Q -3 13 4 12 M -6 14 L -5 18 M 0 15 L 1 19 M 6 13 L 8 17" stroke={p.skinDark} strokeWidth={1.2} fill="none" opacity={0.8} />
+            : <path d="M -6 2 L 6 2 M -6 8 L 6 8" stroke={ink(p.glove)} strokeWidth={1} opacity={0.5} />}
           {children}
         </g>
       </g>
@@ -249,7 +254,7 @@ export const Kukla: React.FC<{ pz: Poz; p: Palet; louis?: boolean; golgesiz?: bo
       {!golgesiz && <ellipse cx={6} cy={8} rx={96} ry={15} fill="#000" opacity={0.4} />}
       <g transform={`translate(0,${pz.bodyY ?? 0}) rotate(${pz.lean ?? 0},0,-226)`}>
         <Kol x={-30 - (pz.sway ?? 0) * 3} sh={pz.shB} el={pz.elB} p={p} arka>
-          {pz.caneArka !== null && pz.caneArka !== undefined && <g><Baston aci={pz.caneArka} />{/* kavrayan parmaklar bastonun önünde */}<path d="M -11 -4 Q 0 -10 12 -4 M -12 3 Q 0 -3 13 3 M -11 10 Q 0 4 12 10" stroke={ink(p.glove)} strokeWidth={1.6} fill="none" /></g>}
+          {pz.caneArka !== null && pz.caneArka !== undefined && <g><Baston aci={pz.caneArka} />{/* kavrayan parmaklar bastonun önünde */}<path d="M -11 -4 Q 0 -10 12 -4 M -12 3 Q 0 -3 13 3 M -11 10 Q 0 4 12 10" stroke={p.glove === p.skin ? p.skinDark : ink(p.glove)} strokeWidth={1.6} fill="none" /></g>}
         </Kol>
         <Bacak x={-10} thigh={pz.thighB} knee={pz.kneeB} foot={pz.footB ?? 0} p={p} arka />
         {/* frak etekleri */}
@@ -289,9 +294,9 @@ export const Kukla: React.FC<{ pz: Poz; p: Palet; louis?: boolean; golgesiz?: bo
           <path d="M -44 -360 Q -36 -368 -30 -386" stroke={ink(c)} strokeWidth={1.4} fill="none" opacity={0.6} />
           <Kafa pz={pz} p={p} louis={louis} />
         </g>
-        <Kol x={40 + (pz.sway ?? 0) * 3} sh={pz.shF} el={pz.elF} p={p}>
+        {!pz.onKolYok && <Kol x={40 + (pz.sway ?? 0) * 3} sh={pz.shF} el={pz.elF} p={p}>
           {pz.cane !== null && pz.cane !== undefined && <Baston aci={pz.cane} />}
-        </Kol>
+        </Kol>}
       </g>
       {pz.hat ? <g transform={`translate(${pz.hat.x},${pz.hat.y}) rotate(${pz.hat.r})`}><Sapka p={p} tall={louis ? 1.15 : 1} /></g> : null}
     </g>

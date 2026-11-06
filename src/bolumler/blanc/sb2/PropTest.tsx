@@ -16,7 +16,7 @@ export const PropTest: React.FC = () => (
           <PaketKagidi x={800} y={330} olcek={0.8} acik={0} ipCozuk={false} kabarti={0.6} />
           <PaketKagidi x={270} y={900} olcek={0.75} acik={0.5} etiketYeri={[200, 330]} />
           <PaketKagidi x={780} y={900} olcek={0.75} acik={1} etiketYeri={[200, 330]} />
-          <KolEl giris={[-40, 1560]} dirsek={[180, 1500]} bilek={[420, 1380]} gen={[210, 170, 92]} elAci={-8} olcek={1.9} tutulan={<g transform="scale(1.1)"><Eldiven /></g>} />
+          <KolEl giris={[-40, 1560]} dirsek={[180, 1500]} bilek={[420, 1380]} gen={[210, 170, 92]} elAci={-8} olcek={1.9} tutulan={<Eldiven elBoyu={140 * 1.9} />} />
           <KolEl giris={[1120, 1820]} dirsek={[960, 1720]} bilek={[760, 1640]} gen={[200, 160, 90]} tip="parisManset" elAci={170} olcek={1.5} eldiven="#f4efe2" poz="gevsek" />
         </svg>
       </AbsoluteFill>
