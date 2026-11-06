@@ -24,6 +24,8 @@ export type Palet = {
   coat: string; coatDark: string; coatLight: string; vest: string; vestDark: string; vestDesen: string; cravat: string; shirt: string;
   pants: string; shoe: string; glove: string; skin: string; skinDark: string; hair: string; hat: string; hatBand: string;
   sideburn: number; browHeavy: number;
+  // isteğe bağlı varyantlar (kompars ayrışması; varsayılan = mevcut görünüm)
+  biyik?: "kivrik" | "duz" | "yok"; sakal?: boolean; sapka?: "silindir" | "genis" | "yok"; burun?: number;
 };
 
 export const FRANCOIS: Palet = {
@@ -109,6 +111,18 @@ const AGIZ: Record<Agiz, React.ReactNode> = {
 };
 
 const Sapka: React.FC<{ p: Palet; tall?: number }> = ({ p, tall = 1 }) => {
+  if (p.sapka === "yok") return null;
+  if (p.sapka === "genis") {
+    // alçak tepeli, geniş kenarlı şapka (tüccar/kompars)
+    return (
+      <g>
+        <path d="M -30 0 Q -32 -22 -26 -40 Q 4 -48 36 -40 Q 40 -22 36 0 Z" fill={p.hat} stroke={ink(p.hat)} strokeWidth={SW} />
+        <path d="M -30 -4 L -30 -14 Q 4 -18 36 -14 L 36 -4 Z" fill={p.hatBand} />
+        <path d="M -74 4 Q -76 -8 -60 -6 Q 4 4 68 -6 Q 82 -8 80 4 Q 4 22 -74 4 Z" fill={p.hat} stroke={ink(p.hat)} strokeWidth={SW} />
+        <path d="M 30 -38 Q 34 -20 31 -6" stroke={RIM} strokeWidth={2} opacity={0.45} fill="none" />
+      </g>
+    );
+  }
   const h = 80 * tall;
   return (
     <g>
@@ -172,14 +186,17 @@ const Kafa: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }
       <path d={`M -14 ${-20 - bB} Q -5 ${-26 - bB * 1.2} 4 ${-20 - bB * 0.6}`} stroke={p.hair} strokeWidth={4.6 * p.browHeavy} fill="none" strokeLinecap="round" />
       <path d={`M 11 ${-21 - bF * 0.6} Q 23 ${-29 - bF * 1.2} 35 ${-22 - bF}`} stroke={p.hair} strokeWidth={5.6 * p.browHeavy} fill="none" strokeLinecap="round" />
       {/* burun */}
-      <path d="M 33 -3 Q 38 8 47 19 Q 48 26 39 26 Q 33 26 30 22" fill={sk} stroke={skd} strokeWidth={SW} strokeLinejoin="round" />
+      <g transform={`translate(33,-3) scale(${p.burun ?? 1}) translate(-33,3)`}><path d="M 33 -3 Q 38 8 47 19 Q 48 26 39 26 Q 33 26 30 22" fill={sk} stroke={skd} strokeWidth={SW} strokeLinejoin="round" /></g>
       <path d="M 33 23 Q 36 21 39 23" stroke="#7a4030" strokeWidth={1.8} fill="none" />
       <path d="M 40 6 Q 44 13 45 18" stroke="#fff3e6" strokeWidth={1.8} opacity={0.5} fill="none" />
       {/* ağız */}
       <g transform="translate(2,0)">{AGIZ[pz.agiz ?? "dinlen"]}</g>
       {/* bıyık: uçları kıvrık */}
-      <path d={louis ? "M 0 32 Q 10 27 22 30 Q 34 27 45 32 Q 38 38 22 35 Q 8 38 0 32 Z" : "M -6 34 Q 4 24 22 29 Q 40 24 50 34 Q 56 40 50 40 Q 54 34 46 34 Q 34 32 22 35 Q 6 33 -4 40 Q -12 38 -6 34 Z"} fill={p.hair} />
-      <path d="M 6 30 Q 22 26 40 30" stroke={shade(p.hair, 0.4)} strokeWidth={1.4} fill="none" opacity={0.6} />
+      {(p.biyik ?? (louis ? "duz" : "kivrik")) !== "yok" && <>
+        <path d={(p.biyik ?? (louis ? "duz" : "kivrik")) === "duz" ? "M 0 32 Q 10 27 22 30 Q 34 27 45 32 Q 38 38 22 35 Q 8 38 0 32 Z" : "M -6 34 Q 4 24 22 29 Q 40 24 50 34 Q 56 40 50 40 Q 54 34 46 34 Q 34 32 22 35 Q 6 33 -4 40 Q -12 38 -6 34 Z"} fill={p.hair} />
+        <path d="M 6 30 Q 22 26 40 30" stroke={shade(p.hair, 0.4)} strokeWidth={1.4} fill="none" opacity={0.6} />
+      </>}
+      {p.sakal && <path d="M -30 10 Q -26 44 -10 56 Q 8 66 24 60 Q 40 52 44 30 Q 36 50 20 52 Q 4 54 -8 44 Q -20 30 -30 10 Z" fill={p.hair} opacity={0.95} />}
       {/* çene */}
       <path d="M 2 54 Q 20 52 36 42" stroke={skd} strokeWidth={1.8} fill="none" opacity={0.6} />
       <path d="M 43 -14 Q 47 4 43 22" stroke={RIM} strokeWidth={2} opacity={0.3} fill="none" />

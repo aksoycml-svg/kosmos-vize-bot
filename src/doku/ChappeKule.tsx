@@ -37,13 +37,14 @@ const Kanat: React.FC<{ len: number; th: number; x0?: number; detay: KuleDetay; 
   }
   // yakın: koyu dolu kanat (siluet önce okunmalı) + 45° eğik sabit lamellerin arasındaki ince ışık yarıkları (gök görünür: maske = delik)
   const f = Math.max(2.5, th * 0.2);
-  const n = Math.max(4, Math.round(len / (th * 0.7)));
+  // sade jaluzi: 3–5 yarık (telefonda dolu siyah siluet okunur)
+  const n = Math.min(5, Math.max(3, Math.round(len / (th * 3))));
   const step = (len - 2 * f) / n;
   const ih = th - 2 * f;
   const yarik: React.ReactNode[] = [];
   for (let i = 0; i < n; i++) {
-    const x = x0 + f + i * step + step * 0.62;
-    yarik.push(<polygon key={i} points={poly([[x, y0 + th - f], [x + step * 0.2, y0 + th - f], [x + step * 0.2 + ih * 0.5, y0 + f], [x + ih * 0.5, y0 + f]])} fill="#000" />);
+    const x = x0 + f + i * step + step * 0.45;
+    yarik.push(<polygon key={i} points={poly([[x, y0 + th - f], [x + step * 0.14, y0 + th - f], [x + step * 0.14 + ih * 0.5, y0 + f], [x + ih * 0.5, y0 + f]])} fill="#000" />);
   }
   return (
     <g>
@@ -63,13 +64,13 @@ const Kanat: React.FC<{ len: number; th: number; x0?: number; detay: KuleDetay; 
 export const ChappeKule: React.FC<{
   x: number; y: number; L: number; konum: KonumAdi | KolKonum; detay?: KuleDetay;
   direkRenk?: string; kolRenk?: string; karsiAgirlik?: string; kenarIsik?: string;
-  sicakIsik?: number; siluetRenk?: string; payanda?: boolean; direkGorunen?: number;
-}> = ({ x, y, L, konum, detay = "orta", direkRenk = BL.direkMavi, kolRenk = BL.kolSiyah, karsiAgirlik = BL.karsiAgirlik, kenarIsik = BL.kolKenar, sicakIsik = 0, siluetRenk, payanda = true, direkGorunen = 1 }) => {
+  sicakIsik?: number; siluetRenk?: string; payanda?: boolean; direkGorunen?: number; direkKalin?: number; topuz?: number;
+}> = ({ x, y, L, konum, detay = "orta", direkRenk = BL.direkMavi, kolRenk = BL.kolSiyah, karsiAgirlik = BL.karsiAgirlik, kenarIsik = BL.kolKenar, sicakIsik = 0, siluetRenk, payanda = true, direkGorunen = 1, direkKalin = 1, topuz = 1 }) => {
   const id = "ck" + useId().replace(/:/g, "");
   const k: KolKonum = typeof konum === "string" ? KONUMLAR[konum] : konum;
   const O = CHAPPE_ORAN;
   const Li = L * O.gosterge, tR = L * O.regKalin, tG = L * O.gosKalin;
-  const H = L * O.direk, dw = L * O.direkGen;
+  const H = L * O.direk, dw = L * O.direkGen * direkKalin;
   const sil = detay === "siluet";
   const dR = sil ? siluetRenk ?? kolRenk : karistir(direkRenk, "#b0a090", sicakIsik);
   const dG = sil ? dR : karistir(BL.direkGolge, "#6a5a50", sicakIsik * 0.6);
@@ -95,8 +96,8 @@ export const ChappeKule: React.FC<{
       {/* payandalar (direk dibinde iki ahşap destek) */}
       {payanda && direkGorunen >= 1 && [-1, 1].map((s) => <polygon key={s} points={poly([[x + s * dw * 0.5, y - H * 0.24], [x + s * (dw * 0.5 + L * 0.2), y], [x + s * (dw * 0.5 + L * 0.2) - s * dw * 0.6, y], [x + s * dw * 0.5, y - H * 0.24 + dw * 1.2]])} fill={dG} stroke={sil ? "none" : ink(dG)} strokeWidth={1.2} />)}
       {/* direk: gök mavisi boyalı ahşap; gölge şeridi; boya çatlakları; dipte aşınma */}
-      <rect x={x - dw / 2} y={top[1] - tR * 0.6} width={dw} height={yDip - top[1] + tR * 0.6} fill={dR} stroke={sil ? "none" : ink(dR)} strokeWidth={1.4} />
-      {!sil && <rect x={x + dw * 0.12} y={top[1] - tR * 0.6} width={dw * 0.38} height={yDip - top[1] + tR * 0.6} fill={dG} opacity={0.75} />}
+      <rect x={x - dw / 2} y={top[1] - tR * 0.6} width={dw} height={yDip - top[1] + tR * 0.6} fill={dR} stroke={sil ? "none" : ink(dG)} strokeWidth={2.2} />
+      {!sil && <rect x={x + dw * 0.12} y={top[1] - tR * 0.6} width={dw * 0.38} height={yDip - top[1] + tR * 0.6} fill={dG} opacity={0.95} />}
       {!sil && detay === "yakin" && Array.from({ length: 9 }).map((_, i) => { const yy = top[1] + ((yDip - top[1]) * (i + 0.5)) / 9; return <line key={i} x1={x - dw * 0.3} y1={yy} x2={x - dw * 0.3} y2={yy + dw * 0.5} stroke={ink(dR)} strokeWidth={1} opacity={0.3} />; })}
       {!sil && direkGorunen >= 1 && <rect x={x - dw / 2} y={y - dw * 1.5} width={dw} height={dw * 1.5} fill={BL.direkAsinma} opacity={0.35} />}
       {/* regülatör + göstergeler */}
@@ -104,7 +105,7 @@ export const ChappeKule: React.FC<{
         <Kanat len={L} th={tR} x0={-L / 2} detay={detay} renk={kR} kenar={kenarIsik} seed={`${id}r`} />
         {gos(-1)}
         {gos(1)}
-        {pirinc(0, tR * 0.38)}
+        {pirinc(0, tR * 0.38 * topuz)}
         {pirinc(-yHalf, tG * 0.26)}
         {pirinc(yHalf, tG * 0.26)}
       </g>
