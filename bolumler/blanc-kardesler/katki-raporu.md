@@ -823,3 +823,28 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - Eleştirmen: `kompozit-sayfa.png` + `kompozit-3-p120.png` + `kompozit-3-guvenli.png`. Renk ölçümü yapılmadı (deney karesi).
   - Maske betiği `tools/` altına alınmadı (görev kapsamı dışı). On-d4 RGBA üretimi raporda tarif edildiği gibi: maske L kanalı → alfa, Gauss 0.8.
   - Mekân sorumlusu: hibrit-test.md'deki ufuk değeri 1135 → ~1000 düzeltilmeli (belgenin sahibi o).
+
+## eleştirmen · 2026-11-06 · Eleştiri D: yön kararı (A tam kod ↔ B′ hibrit plaka)
+- **Ne yaptım:** A4 kod karelerini (SB2-BORSA-p0, A4-gravur-karsilastirma), mood-05'i, hibrit plakayı (d2) ve motion kompozitlerini (kompozit-sayfa, kompozit-3, -360, -p120) 9 ölçütte puanladım. Kompozitten kırpma büyüttüm (kardeşler + tüccar, Louis + pupitr, tezgâh). Plakada ve kompozitte koyu piksel oranını ve tahta rengini ölçtüm. Sahne planı tablosundan plakanın gerçekten işe yarayacağı ekran süresini tahmin ettim. `storyboard-v2/elestiri-D.md` yazıldı.
+- **Dokunduğum dosyalar:** `bolumler/blanc-kardesler/storyboard-v2/elestiri-D.md` (yeni), bu rapor. Kırpmalar scratchpad'de (repo dışı). Kod değişmedi.
+- **Aldığım kararlar ve gerekçeleri:**
+  - Puan ortalaması **A ≈ 7.6, B′ ≈ 4.9**. Tek kare görsel kalitede B′ önde (plaka 8.5, kompozit 7; A4 5.5). Kamera, insert, süreklilik, revizyon ve yasal ölçütlerde A önde.
+  - Plakanın fayda verdiği süre ≈ 6–8 sn / 60 sn (%10–13). Filmin %85'ten fazlası insert, yakın plan ya da temas; bunlar iki yolda da kodla çizilecek. Bu yüzden B′ işi azaltmıyor, artırıyor.
+  - **Öneri: A+.** Kod omurga kalır. Gemini plakası ekrana girmez; görsel hedef ve ayrıntı envanteri olarak kullanılır. Tek turluk zaman kutulu bir A5 yapılır (ayrıntı yoğunluğu + panel içi yıkama + rig ışığı + kompars taraması). 360'ta ≥ 7 tutmazsa B′ yalnız kuruluş planlarında, iskelet koşullu üretimle devreye girer.
+- **Uyguladığım kurallar / yakaladığım kural ihlalleri:**
+  - **Plaka perspektifi tutarsız** (motion ölçümü teyit edildi; ufuk ≈ 1000, plan 800). **KRİTİK.**
+  - **Plaka ışığı tek kaynaktan türemiyor.** Hokka gölgesi sağa düşüyor (ışık soldan) ve portik gölgesinde olduğu hâlde net gölge atıyor. Zemin gölge kaması arkada geniş (gözlem, ölçülmedi). Rig gölgeleri sol-öne gidiyor. **KRİTİK.**
+  - **Saf siyaha yakın mürekkep.** Plakada %6.2 L<15, %2.3 L<8 (motion'ın "%1" değeri düşük kalmış). Kompozitte %4.0. Tahta `#202221`. ORTA.
+  - Tezgâh defterinde sahte yazı. Kadran eksik. Ön ayak çapraz taraması 360'ta ağ gibi okunuyor. Tahta insert ve P03 MATCH plakadan yapılamaz (KRİTİK, P02 için).
+  - **Rig tarafı (iki yolda da):**
+    - Louis hibritte de yazmıyor; tüy defterde dik duruyor (BC3, KRİTİK).
+    - François'nın taba eldiveni tüccar paltosuyla aynı tonda, el omuzda kayboluyor.
+    - Cep eldiveni "kart" gibi okunuyor.
+    - Pupitr gölgesi bulanık elips (G4'e aykırı).
+    - Komparslar karton kesik gibi.
+  - Mood-05 referansında kanıtsız ayrıntılar var (gotik kule + haç, sahte tabela harfleri). Model istenmeyen dönem ayrıntısı ekliyor, bu sistematik bir risk.
+- **Açık sorular / bir sonraki ajana notlar:**
+  - **Kullanıcı:** A+ mı (önerilen), B′ mi? B′ seçilirse yasal önkoşullar doğrulanmalı: Gemini ticari koşullar ve ücretli katman, Meta "AI info" etiketi, telif koruması.
+  - **Mekân sorumlusu:** `hibrit-test.md` ufuk değeri 1135 → ≈ 1000 düzeltilmeli. A+ seçilirse d2'den ayrıntı envanteri çıkarılmalı ve 11'e "ayrıntı yoğunluğu" basamağı eklenmeli. Panel içi yıkama (degrade) kararı verilmeli.
+  - **Motion:** A5 kapsamı `elestiri-D.md` bölüm 4 adım 3. Rig ışığı (`isik` prop) ve kompars taraması iki yolun da ortak borcu, önce yapılmalı.
+  - **Teknisyen:** Gemini görselleri yayın kompozisyonlarına import edilmesin. `public/blanc/hibrit/` yalnız deney.

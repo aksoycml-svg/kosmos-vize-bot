@@ -32,9 +32,10 @@ export const EldivenKose: React.FC<{ w: number; cepRenk: string }> = ({ w, cepRe
   );
 };
 
-// Kukla üstüne bindirme: rig yerel (34, −326). Ekran boyu (boyPx = 620·ölçek·kamera) < 400 ise çizilmez (geniş plan; rozet okunmasın).
+// Kukla üstüne bindirme: rig yerel (−40, −318) = YAKIN göğüs (3/4 pozda revers ile sırt silueti arasında; facing −1'de sağ göğüs).
+// Eski (40, −325) uzak göğüsteydi ve ön kol (x 40'tan sarkar) cebi örtüyordu (eleştiri C BC7). Ekran boyu (boyPx = 620·ölçek·kamera) < 400 ise çizilmez (geniş plan; rozet okunmasın).
 // Ekran genişliği: yakın (boy ≥ 1100) ≥ 50 px, orta ≥ 30 px; doğal boy 24 birim (≈ 7 cm) bunun altına inmez.
-export const CEP_YEREL: [number, number] = [32, -326];
+export const CEP_YEREL: [number, number] = [-40, -318];
 export const cepGenislik = (pz: Poz, kamera = 1): number | null => {
   const s = (pz.scale ?? 1) * kamera, boy = 620 * s;
   if (boy < CEP_ELDIVEN.genisBoyPx) return null;

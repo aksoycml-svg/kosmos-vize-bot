@@ -25,7 +25,7 @@ export const FRANCOIS_TABA: Palet = { ...FRANCOIS, glove: GLOVE.taba };   // P02
 export const FRANCOIS_ELSIZ = bare(FRANCOIS);                              // mahkeme P18–P19
 export const LOUIS_ELSIZ = bare(LOUIS);                                    // P02–P18 TAMAMI
 export const LOUIS_ELDIVENLI: Palet = { ...LOUIS, glove: GLOVE.hero };     // yalnız P19 (giyme sonrası)
-// Louis cep eldiveni (B): overlay `EldivenKose` (props/EldivenKose.tsx), rig yerel ≈ (34, −326); ekran: yakın ≈ 50×30, orta ≥ 30×18, geniş (boy < 400 px) çizilmez.
+// Louis cep eldiveni (B): overlay `EldivenKose` (props/EldivenKose.tsx), rig yerel (−40, −318) (yakın göğüs); ekran: yakın ≈ 50×30, orta ≥ 30×18, geniş (boy < 400 px) çizilmez.
 export const CEP_ELDIVEN = { renk: GLOVE.hero, golge: GLOVE.heroGolge, agiz: GLOVE.cepAgzi, aci: -12, yakinPx: [50, 30], ortaPx: [30, 18], genisBoyPx: 400 } as const;
 
 export const MEMUR: Palet = { coat: "#6b6a66", coatDark: "#46453f", coatLight: "#8a8983", vest: "#5a5347", vestDark: "#3d382f", vestDesen: "#5a5347", cravat: "#b9b29d", shirt: "#d8d0bb", pants: "#4b4741", shoe: "#1a1512", glove: "#d9b190", skin: "#d9b190", skinDark: "#a9806a", hair: "#5e5144", hat: "#2c2a26", hatBand: "#1c1b18", sideburn: 0.6, browHeavy: 0.8 };
