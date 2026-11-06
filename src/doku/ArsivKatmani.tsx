@@ -13,8 +13,9 @@ export type ArsivMod = "gunduz" | "gece" | "kagit";
 
 const GREN_OFSET: [number, number][] = [[0, 0], [211, 87], [97, 301], [389, 173], [43, 419], [257, 29], [151, 233], [331, 367]];
 const AYAR: Record<ArsivMod, { lif: number; gren: number; vinyet: string }> = {
-  gunduz: { lif: 0.12, gren: 0.08, vinyet: "rgba(40,24,8,0.42)" },
-  gece: { lif: 0.08, gren: 0.12, vinyet: "rgba(6,6,14,0.58)" },
+  // A4 G5: kâğıt lifi litografi imzası olarak görünür olsun (gündüz .12→.18, gece .08→.13); boya alanlarında +.04 (11.3)
+  gunduz: { lif: 0.18, gren: 0.08, vinyet: "rgba(40,24,8,0.42)" },
+  gece: { lif: 0.13, gren: 0.12, vinyet: "rgba(6,6,14,0.58)" },
   kagit: { lif: 0.18, gren: 0.08, vinyet: "rgba(40,24,8,0.42)" },
 };
 

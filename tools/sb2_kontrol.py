@@ -5,7 +5,12 @@ tek kontrol sayfası (contact sheet).
 
 Kullanım:  python3 tools/sb2_kontrol.py            (render + ölçüm + sayfa)
            python3 tools/sb2_kontrol.py --olcum    (yalnız ölçüm + sayfa, mevcut PNG'lerden)
-Çıktı:     storyboard-v2/kareler/{ID}-p{N}.png, -360.png, -guvenli.png, renk-olcum.md, A3-sayfa.png
+           python3 tools/sb2_kontrol.py --sadece SB2-BORSA:0,90,168 SB2-SOKAK:0   (yalnız bu kareleri render et)
+           python3 tools/sb2_kontrol.py --gravur   (A4 G6: mood-05 | Borsa | Sokak | Tours, 360 px karşılaştırma sayfası)
+           --asama A4  (sayfa adı: {asama}-sayfa.png; varsayılan A4)
+Çıktı:     storyboard-v2/kareler/{ID}-p{N}.png, -360.png, -guvenli.png, renk-olcum.md, {asama}-sayfa.png, A4-gravur-karsilastirma.png
+Ad kuralı: her kare plan içi kare numarasıyla (-p{N}); NUMARASIZ ad üretilmez (A2 kalıntıları kareler/arsiv/A2/).
+Henüz Root'ta kayıtlı olmayan kompozisyonlar (ör. P04 fare insert) uyarıyla atlanır; yeri protokolde ayrılmıştır.
 """
 import math, os, subprocess, sys, time
 from PIL import Image, ImageDraw, ImageFont
@@ -18,6 +23,9 @@ KARELER = {
     "SB2-TOURS": [(0, "ilk kare"), (54, "T SAK yerleşir"), (60, "paket açık (stil)"), (140, "eldiven bırakma (temas)"), (155, "kapanış")],
     "SB2-SOKAK": [(0, "ilk kare"), (150, "push-in başı"), (189, "göz kırpma (yüz ≥230 px)"), (215, "kapanış")],
     "SB2-BORSA": [(0, "ilk kare + etiketler"), (90, "tebeşir kırılır (temas)"), (102, "sekme 1 (temas)"), (168, "Louis göğüs"), (203, "kapanış (PARIS başlığı)")],
+    # P04 dokunuşu (baston–fare, TAK p108) — elestiri-C SC7. Kompozisyon A4 bölüm 2'de kaydedilecek (FareInsert yeniden kadraj);
+    # kareler P04 plan içi numarasıyla. Kayıtlı değilse atlanır.
+    "SB2-SOKAK-FARE": [(87, "fare ızgaradan çıkar (insert ilk)"), (108, "TAK: baston–taş (temas, dokunuş)"), (138, "kuyruk ızgarada kaybolur (kapanış)")],
 }
 
 # Ölçüm: (kompozisyon, kare, ad, x, y, hedef hex, kaynak, |ΔL| tol, ΔE tol)
@@ -33,6 +41,8 @@ NOKTALAR = [
     ("SB2-BORSA", 0, "avlu taşı (güneşte)", 540, 1500, "#d4c29a", "BORSA avlu taşı", 14, 12),
     ("SB2-BORSA", 0, "portik derin gölge", 140, 820, "#4a3e2c", "BORSA portik", 16, 14),
     ("SB2-BORSA", 90, "kara tahta", 450, 640, "#1f2a26", "tahta", 12, 12),
+    # A4 (elestiri-C 8 · Renk): her mekânda bir gölge (III) bölgesi — gölge iskeleti ton bloğu olarak okunuyor mu
+    ("SB2-BORSA", 0, "galeri tonoz gölgesi (III)", 600, 560, "#4a3e2c", "BORSA portik", 16, 14),
 ]
 
 def hex2rgb(h): h = h.lstrip("#"); return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
@@ -60,9 +70,27 @@ def de2000(l1, l2):
 
 def ad(kid, fr, ek=""): return os.path.join(KARE, f"{kid}-p{fr}{ek}.png")
 
+def kayitli():
+    """Root'ta kayıtlı kompozisyon kimlikleri (remotion compositions -q; --log=error ile çıktı boş kalır)."""
+    r = subprocess.run(["npx", "remotion", "compositions", "-q"], cwd=KOK, capture_output=True, text=True)
+    return set(r.stdout.split())
+
+def secim():
+    """--sadece ID:kare,kare ... → {ID: [kare]}; yoksa tüm protokol."""
+    if "--sadece" not in sys.argv: return {k: [f for f, _ in v] for k, v in KARELER.items()}
+    out = {}
+    for a in sys.argv[sys.argv.index("--sadece") + 1:]:
+        if a.startswith("--"): break
+        kid, _, kr = a.partition(":")
+        out[kid] = [int(x) for x in kr.split(",")] if kr else [f for f, _ in KARELER[kid]]
+    return out
+
 def render():
-    for kid, liste in KARELER.items():
-        for fr, _ in liste:
+    var = kayitli()
+    for kid, liste in secim().items():
+        if kid not in var:
+            print(f"UYARI: {kid} Root'ta kayıtlı değil — atlandı (protokolde yeri ayrıldı)", flush=True); continue
+        for fr in liste:
             for ek, props in (("", None), ("-guvenli", '{"guvenli":true}')):
                 cmd = ["npx", "remotion", "still", kid, ad(kid, fr, ek), f"--frame={fr}", "--log=error"]
                 if props: cmd.append(f"--props={props}")
@@ -70,12 +98,13 @@ def render():
             Image.open(ad(kid, fr)).convert("RGB").resize((360, 640), Image.LANCZOS).save(ad(kid, fr, "-360"))
 
 def olc():
-    s = ["# Renk ölçüm tablosu (A3 · derecelendirme sonrası, 9×9 px ortalama)", "",
+    s = ["# Renk ölçüm tablosu (A3/A4 · derecelendirme sonrası, 9×9 px ortalama; TOURS p60 A3 karesi — A4 bölüm 1'de yeniden render edilmedi)", "",
          "Hedef = mekanlar.md malzeme rengi. L* = CIELAB parlaklık; ΔE = CIEDE2000; ΔH° = ölçülen − hedef ton açısı (a*b*), "
          "C* düşükse (< 10, nötr) ton açısı anlamsız → '—'. Geçme: |ΔL*| ≤ tol_L VE ΔE ≤ tol_E VE (nötr değilse) |ΔH°| ≤ 25.", "",
          "| Kompozisyon | Kare | Nokta | (x,y) | Ölçülen | Hedef | Kaynak | L* ölç/hedef | ΔL* | C* ölç/hedef | ΔH° | ΔE00 | Sonuç |",
          "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for kid, fr, nad, x, y, hedef, kaynak, tL, tE in NOKTALAR:
+        if not os.path.exists(ad(kid, fr)): continue
         im = Image.open(ad(kid, fr)).convert("RGB")
         px = [im.getpixel((min(1079, max(0, x + dx)), min(1919, max(0, y + dy)))) for dx in range(-4, 5) for dy in range(-4, 5)]
         ort = tuple(round(sum(p[i] for p in px) / len(px)) for i in range(3))
@@ -88,23 +117,55 @@ def olc():
     open(os.path.join(KARE, "renk-olcum.md"), "w").write("\n".join(s) + "\n")
     print("\n".join(s))
 
-def sayfa():
+def yazi_tipi(n=15):
+    try: return ImageFont.truetype("DejaVuSans.ttf", n)
+    except Exception: return ImageFont.load_default()
+
+def sayfa(asama="A4"):
     W, H, PAD, BAS = 216, 384, 10, 30
-    sut = max(len(v) for v in KARELER.values()) * 2
-    img = Image.new("RGB", (PAD + sut * (W + PAD), PAD + len(KARELER) * (H + BAS + PAD)), (24, 22, 20))
-    d = ImageDraw.Draw(img)
-    try: font = ImageFont.truetype("DejaVuSans.ttf", 15)
-    except Exception: font = ImageFont.load_default()
-    for r, (kid, liste) in enumerate(KARELER.items()):
+    sec = secim()
+    satir = [(kid, [(fr, acik) for fr, acik in KARELER.get(kid, []) if fr in sec.get(kid, []) and os.path.exists(ad(kid, fr))]) for kid in KARELER]
+    satir = [(k, v) for k, v in satir if v]
+    if not satir: return
+    sut = max(len(v) for _, v in satir) * 2
+    img = Image.new("RGB", (PAD + sut * (W + PAD), PAD + len(satir) * (H + BAS + PAD)), (24, 22, 20))
+    d = ImageDraw.Draw(img); font = yazi_tipi()
+    for r, (kid, liste) in enumerate(satir):
         y = PAD + r * (H + BAS + PAD)
         for c, (fr, acik) in enumerate(liste):
             for j, ek in enumerate(("", "-guvenli")):
                 x = PAD + (2 * c + j) * (W + PAD)
-                img.paste(Image.open(ad(kid, fr, ek)).convert("RGB").resize((W, H), Image.LANCZOS), (x, y + BAS))
+                if os.path.exists(ad(kid, fr, ek)): img.paste(Image.open(ad(kid, fr, ek)).convert("RGB").resize((W, H), Image.LANCZOS), (x, y + BAS))
             d.text((PAD + 2 * c * (W + PAD), y + 6), f"{kid} p{fr} · {acik}", fill=(236, 226, 200), font=font)
-    img.save(os.path.join(KARE, "A3-sayfa.png"))
-    print("sayfa:", os.path.join(KARE, "A3-sayfa.png"), img.size)
+    yol = os.path.join(KARE, f"{asama}-sayfa.png"); img.save(yol); print("sayfa:", yol, img.size)
+
+MOOD = os.path.join(KOK, "bolumler/blanc-kardesler/storyboard-v2/mood/mood-05-gravur-sokak-bordeaux.png")
+ARSIV_A3 = os.path.join(KARE, "arsiv/A3")
+
+def gravur_sayfa():
+    """A4 G6 kabul testi: 360 px (telefon) yan yana — üst satır A3 (önce), alt satır A4 (sonra); ilk sütun mood-05.
+    Mood 9:16'ya kırpılmaz, 360 genişliğe ölçeklenir (kâğıt bandı dahil). Altında 2× büyütülmüş ayrıntı şeridi (360'tan, piksel kopyası)."""
+    W, H, PAD, BAS = 360, 640, 14, 34
+    sut = [("mood-05 (yön)", None), ("BORSA p0", ("SB2-BORSA", 0)), ("BORSA p90", ("SB2-BORSA", 90)), ("SOKAK p0", ("SB2-SOKAK", 0)), ("TOURS p0", ("SB2-TOURS", 0))]
+    satirlar = [("A3 (önce)", ARSIV_A3), ("A4 (sonra)", KARE)]
+    img = Image.new("RGB", (PAD + len(sut) * (W + PAD), PAD + len(satirlar) * (H + BAS + PAD) + 60), (24, 22, 20))
+    d = ImageDraw.Draw(img); font = yazi_tipi(18)
+    mood = Image.open(MOOD).convert("RGB"); mood = mood.resize((W, round(mood.height * W / mood.width)), Image.LANCZOS)
+    for r, (etiket, klasor) in enumerate(satirlar):
+        y = PAD + 60 + r * (H + BAS + PAD)
+        for c, (bas, kaynak) in enumerate(sut):
+            x = PAD + c * (W + PAD)
+            if kaynak is None: img.paste(mood.crop((0, (mood.height - H) // 2, W, (mood.height - H) // 2 + H)), (x, y + BAS))
+            else:
+                yol = os.path.join(klasor, f"{kaynak[0]}-p{kaynak[1]}.png")
+                if os.path.exists(yol): img.paste(Image.open(yol).convert("RGB").resize((W, H), Image.LANCZOS), (x, y + BAS))
+                else: d.text((x + 10, y + BAS + 10), "(yok)", fill=(200, 80, 60), font=font)
+            d.text((x, y + 6), f"{etiket} · {bas}", fill=(236, 226, 200), font=font)
+    d.text((PAD, 18), "A4 G6 · gravür kabul testi (360 px telefon) — (a) her mekânda ≥3 yerde tarama seçilir (b) kafes/örgü yok (c) mood-05 ile aynı aile", fill=(255, 210, 120), font=font)
+    yol = os.path.join(KARE, "A4-gravur-karsilastirma.png"); img.save(yol); print("gravür sayfası:", yol, img.size)
 
 if __name__ == "__main__":
+    asama = sys.argv[sys.argv.index("--asama") + 1] if "--asama" in sys.argv else "A4"
+    if "--gravur" in sys.argv: gravur_sayfa(); sys.exit(0)
     if "--olcum" not in sys.argv: render()
-    olc(); sayfa()
+    olc(); sayfa(asama)

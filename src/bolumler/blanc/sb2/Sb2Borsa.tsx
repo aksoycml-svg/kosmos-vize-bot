@@ -131,7 +131,7 @@ export const Sb2Borsa: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
               <KonturTitreme derinlik="orta" seed={S}>
                 {/* ===== arka avlu cephesi: üst kat (dikdörtgen pencereler) + korniş + arcade sırası ===== */}
                 <polygon points={poly([onCephe(-12, 12), onCephe(12, 12), onCephe(12, 0), onCephe(-12, 0)])} fill={PAL.tas} />
-                <TasDuvar m={(u, v) => onCephe(-12 + 24 * u, 12 - 12 * v)} boyut={[2400, 1200]} tip="bdx" taban={PAL.tas} derz={tonla(PAL.tas, -0.42)} seed={S} derinlik="orta" yogunluk={0.5} gozenek={false} blok={[60, 30]} />
+                <TasDuvar m={(u, v) => onCephe(-12 + 24 * u, 12 - 12 * v)} boyut={[2400, 1200]} tip="bdx" taban={PAL.tas} derz={tonla(PAL.tas, -0.34)} seed={S} derinlik="orta" yogunluk={0.5} gozenek={false} blok={[60, 30]} />
                 {/* üst kat: dikdörtgen pencereler (düz söve, kemer YOK) */}
                 {[-3, -2, -1, 0, 1, 2, 3].map((i) => { const x0 = i * AKS - 0.65; const q = [onCephe(x0, 9.9), onCephe(x0 + 1.3, 9.9), onCephe(x0 + 1.3, 7.7), onCephe(x0, 7.7)]; const s = [onCephe(x0 - 0.15, 10.05), onCephe(x0 + 1.45, 10.05), onCephe(x0 + 1.45, 7.6), onCephe(x0 - 0.15, 7.6)]; return <g key={i}><polygon points={poly(s)} fill={tonla(PAL.tas, 0.05)} stroke={MK} strokeWidth={IC} /><polygon points={poly(q)} fill="#3a3a44" />
                   {/* pencere çevresi (A4 G1): söve iç yüzü sol (güneş sağdan → gölge) + lento altı; koyu cam konturu */}

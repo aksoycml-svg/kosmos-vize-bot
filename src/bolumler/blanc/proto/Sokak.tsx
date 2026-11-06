@@ -248,7 +248,7 @@ const CepheBdx: React.FC<{ side: "sol" | "sag" }> = ({ side }) => {
           const W = 400, Hh = 60, mm = [(b[0] - a[0]) / W, (b[1] - a[1]) / W, (d[0] - a[0]) / Hh, (d[1] - a[1]) / Hh, a[0], a[1]];
           return <g transform={`matrix(${mm.map((n) => n.toFixed(4)).join(",")})`}><text x={W / 2} y={Hh * 0.8} textAnchor="middle" fontFamily="'Playfair Display', serif" fontWeight={900} fontSize={Hh * 0.85} fill={renk} textLength={W * 0.8} lengthAdjust="spacingAndGlyphs">{ad}</text></g>;
         };
-        return <CepheEv key={i} m={(u, v) => cephe(q, h.z1 + (h.z2 - h.z1) * u, vTop + (1 - vTop) * v)} e={h.e} seed={DOKU_SEED.sokakBdx * 100 + i * 7 + (side === "sol" ? 0 : 3)} derinlik={derin} aci={SOKAK_TARAMA_ACI} kameraH={0.9} yakinSusleme={h.z1 < 2.3} dukkanYazi={yaz} />;
+        return <CepheEv key={i} m={(u, v) => cephe(q, h.z1 + (h.z2 - h.z1) * u, vTop + (1 - vTop) * v)} e={h.e} seed={DOKU_SEED.sokakBdx * 100 + i * 7 + (side === "sol" ? 0 : 3)} derinlik={derin} aci={SOKAK_TARAMA_ACI} golgeTaraf={side === "sol" ? "II" : null} kameraH={0.9} yakinSusleme={h.z1 < 2.3} dukkanYazi={yaz} />;
       })}
     </g>
   );

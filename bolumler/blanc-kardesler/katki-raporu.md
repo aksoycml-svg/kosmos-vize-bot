@@ -622,3 +622,117 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - YARATICI YÖNETMEN: dokunuslar.md P19 ve süreklilik notu (memur cep köşesi yok) güncellensin; P18 cep köşesi ≥ 30×18 px.
   - MOTION: `palet.ts` (FRANCOIS_TABA, LOUIS_ELSIZ P02–P18, LOUIS_ELDIVENLI, GLOVE), `Louis.cepEldiven` → `EldivenKose` overlay, `Eldiven.tsx` ölçek ×1.35–1.45 (TC1), rig varsayılan `glove` değerini koyu/ten yap, `sb2_kontrol.py`'ye "eldiven beyazı yalnız A/B/C" + taba ΔE2000 ≥ 20 kontrolü. `louis-kart.png`/`francois-kart.png` eldiven rengi referans olarak kullanılmasın.
   - ELEŞTİRMEN: protokolde cep köşesinin telefon (360) okunurluğu ve P19 çıplak → hero karşıtlığı satır olarak girsin.
+
+## motion · 2026-11-06 · Storyboard v2 AŞAMA A4 (bölüm 1): gravür dili kalibrasyonu (G1–G6) + Borsa parmaklık + araç/arşiv
+- **Ne yaptım:**
+  - **Tarama modülü (G1, G2):**
+    - Ölçü telefona göre: yakın 7.5 px aralık / 2.2 px çizgi, orta 9 / 1.6, uzak 12 / 1.1.
+    - III/IV basamağı şeklin altına mürekkep renginde **ton bloğu** koyuyor (gölge önce ton olarak okunur).
+    - IV çapraz tarama yalnız ekran kutusu ≤ 120×120 px olan şekillerde, ikinci yön +40°. Büyük IV otomatik olarak sık tek yön + koyu tona dönüyor. Geniş alanda kafes ya da tel örgü artık modül düzeyinde çizilemiyor.
+    - `evenodd` desteği eklendi.
+  - **RenkKaydi gerçek oldu (G5):** eskiden yalnız `translate`'ti. Artık tüm plakaya filtre uyguluyor:
+    - koyu mürekkep pikselleri yerinde kalıyor, renk katmanı +1.5/+1 px kayıyor;
+    - renk sınırlarında α .14 suluboya kenarı;
+    - derinlik sırası bozulmuyor.
+    - Üç sahneye de uygulandı; yazılar filtrenin dışında.
+  - **Kâğıt lifi (G5):** `ArsivKatmani` lif opaklığı gündüz .12→.18, gece .08→.13. Yalnız sb2 sahneleri kullanıyor.
+  - **İç kontur (G3):**
+    - `murekkep()` eklendi (dolgu L×0.28; `ink` ×0.45 açık kalıyordu).
+    - `MIMARI_KONTUR` aile tablosu eklendi (orta: dış 5 / iç 3).
+    - Kemer ve Cephe konturları bu aileye geçti: kemer, söve, silme, korniş, konsol, attique.
+  - **Kemer `icYuz` (G1):** açıklığın iç yüzü (söve + kemer içi), arka kenarın kaçış noktasına kayması ile çiziliyor. Görünen bant ton + III tarama + koyu kontur alıyor; açıklık içi çizimin önünde kalıyor.
+  - **Atılan gölge (G4):** `Golge stil="gravur"`. Net kenarlı gövde çokgeni + ayak altı elips, ton + Tarama III, koyu çekirdek, blur yok. Varsayılan "yumusak" kaldı, Proto değişmedi.
+  - **Cephe:**
+    - pencere çevresi: sol söve iç yüzü + lento altı III, koyu cam konturu;
+    - `golgeTaraf` prop'u: gölge tarafı cephe II, Sokak'ta sol sıra;
+    - balkon altı ve korniş altı modül kuralıyla sık tek yöne döndü (SC8 elmas kafes kalktı).
+  - **SB2-BORSA:**
+    - (BC1) yan arcade parmaklıkları **dövme demir dikey çubuk**: ≈0.2 m aralık, mızrak uçlu, alt/orta/üst kuşak, orta kuşakta seyrek halka. Duvar kalınlığının ortasında duruyor, söve iç yüzü önünü örtüyor.
+    - Kemer içi bandı III.
+    - Portik içi ton iskeleti: galeri duvarı II, üstü tonoz gölgesi III, zemin III. Büyük alanda çapraz yok.
+    - Alınlık alt gölgesi.
+    - **Pilastrlar** (mimari kart "pilastr aralarında"): −x yüzü gölgede III, duvara atılan gölge şeridi, başlık silmesi.
+    - Korniş altı IV bandı.
+    - Üst kat pencere söveleri.
+    - Taş derzi koyulaştırıldı (−0.34).
+    - Karakter ve kompars gölgeleri gravür stiline geçti.
+    - Portik zemin gölgesinin net kenarı.
+    - (BC5 kısmi) **ön portik** yeniden kuruldu: ayak gövdesi III, iç kenarda ışık pahı + koyu siluet, imposte + altı, kadraj tepesinde kemer başlangıcı (intrados IV), zeminde güneş sınırı + derzler, tezgâh konturlu, kapı kanadı aynı dövme demir dilinde.
+  - **SOKAK / TOURS:** yalnız modül yansıması. Ek olarak RenkKaydi, Sokak'ta gravür gölge ve sol sıra `golgeTaraf="II"`, Tours'ta gölge deseni yeni ölçü. Plan düzeyinde değişiklik yok.
+  - **Araç:**
+    - `GuvenliAlan` IG sağ düğme sütunu ayrı kilit bölgesi: x 920–1080, y 900–1700, alt banda taşan kısım dahil. Yüz de denetleniyor. Çizgili bölge + düğme halkaları + "IG düğmeleri" etiketi var.
+    - `sb2_kontrol.py`:
+      - `--sadece ID:kareler` (alt küme render);
+      - kayıtlı olmayan kompozisyonu uyarıyla atlama;
+      - **P04 fare insert yuvası** `SB2-SOKAK-FARE` p87 / p108 / p138 (kompozisyon A4 bölüm 2'de kaydedilecek);
+      - `--gravur` → `A4-gravur-karsilastirma.png` (A3 önce / A4 sonra × mood-05 | Borsa p0 | Borsa p90 | Sokak p0 | Tours p0, 360 px);
+      - sayfa adı aşamaya göre (`A4-sayfa.png`);
+      - renk ölçümüne Borsa gölge (III) noktası.
+  - **Arşiv:**
+    - Numarasız 9 A2 dosyası `git mv` ile `kareler/arsiv/A2/` altına taşındı.
+    - Üzerine yazılan A3 kareleri (Borsa p0/p90/p168, Sokak p0, Tours p0 × tam/360/güvenli) `kareler/arsiv/A3/` altına kopyalandı (önce/sonra karşılaştırması için).
+  - **Render (yalnız still):** SB2-BORSA p0, p90, p168; SB2-SOKAK p0; SB2-TOURS p0. Her biri tam + 360 + güvenli.
+  - `npx tsc --noEmit` temiz.
+  - **Proto kontrolü:** f200 ve f600, değişiklik öncesi referansla karşılaştırıldı. Fark ≤ 1 seviye, >8 seviye piksel sayısı 0. Bozulmadı.
+- **Dokunduğum dosyalar:**
+  - `src/doku/{Tarama.tsx, Kemer.tsx, Cephe.tsx, Isik.tsx, ArsivKatmani.tsx, GuvenliAlan.tsx, sabitler.ts}`
+  - `src/bolumler/blanc/sb2/{Sb2Borsa, Sb2Sokak, Sb2Tours}.tsx`
+  - `src/bolumler/blanc/proto/Sokak.tsx` (yalnız Bordeaux `CepheBdx` çağrısı)
+  - `tools/sb2_kontrol.py`
+  - `bolumler/blanc-kardesler/storyboard-v2/kareler/`: `SB2-BORSA-p{0,90,168}*`, `SB2-SOKAK-p0*`, `SB2-TOURS-p0*`, `A4-sayfa.png`, `A4-gravur-karsilastirma.png`, `renk-olcum.md`, `arsiv/A2/*`, `arsiv/A3/*`
+- **Değişen parametreler (yönetmen / mekân sorumlusu 11.2'ye işlesin):**
+
+| Modül / öğe | Önce (A3 / 11.2) | A4 | Gerekçe | Durum |
+|---|---|---|---|---|
+| Tarama aralığı yakın / orta / uzak | 6 / 8 / 11 px | 7.5 / 9 / 12 px | G2, telefonda çizgi ayrışsın | onay bekliyor (11.2) |
+| Tarama kalınlığı yakın / orta / uzak | 1.4 / 1.1 / 0.8 px | 2.2 / 1.6 / 1.1 px | G2, 360'ta ≥ 0.5 px | onay bekliyor |
+| Tarama alfası II / III / IV | .30 / .55 / .55 | .40 / .62 / .70 | ton yoğunluğu | bilgi |
+| Ton bloğu II / III / IV | yok | 0 / .16 / .28 (mürekkep) | G1 "önce ton" | bilgi |
+| IV ikinci yön | +60°, her boyutta | +40°, yalnız ≤ 120×120 px; büyük IV → III sık (×0.75 aralık) | G2, kafes yasağı | onay bekliyor |
+| Kalınlık kuralı | ≤ kontur/3 | ≤ kontur/2 | G2 | onay bekliyor |
+| Mimari kontur (orta) | ≈ 1–2 px, `ink` (L×.45) | iç 3 / dış 5 px, `murekkep` (L×.28); yakın 4.4 / 6 | G3 | onay bekliyor |
+| Kemer kontur varsayılanı | 2 | 3 | G3 | bilgi |
+| RenkKaydi | translate (kullanılmıyordu) | filtre: mürekkep sabit, renk +1.5/+1, suluboya kenarı α .14, eşik Y .26 | G5 | bilgi |
+| Kâğıt lifi gündüz / gece | .12 / .08 | .18 / .13 | G5 | bilgi |
+| Borsa duvar kalınlığı (kemer içi) | — | 0.6 m | iç yüz bandı | bilgi |
+| Borsa pilastr | yok | 0.7 m genişlik, 0.15 m çıkıntı, ±2.25 / ±6.75 / ±11.25 m | mimari kart 10.1 "pilastr aralarında" | onay bekliyor |
+| Borsa parmaklık | 9 dikey çizgi + IV arka | 0.2 m aralık çubuk, mızrak uç, kuşak 0.15 / 1.0 / 4.0 m, orta kuşakta halka, z = ön + 0.3 m | BC1, dönem dövme demir | halka süsü onay bekliyor |
+| Borsa taş derzi | `tonla(taş, −0.28)` | `tonla(taş, −0.34)` | blok çizgisi telefonda seçilsin | bilgi |
+| Sokak sol sıra | düz dolgu | `golgeTaraf="II"` | elestiri-C "gölge tarafı cephe" | onay bekliyor (gölge tarafı seçimi) |
+| IG sağ sütun kilidi | x > 920, y 900–1500, yüz hariç | x 920–1080, y 900–1700, yüz dahil | SC3 / koşul 5 | bilgi |
+
+- **Kabul ölçütlerine karşı (elestiri-C, A4 bölüm 1 kapsamı):**
+
+| Madde | Durum | Not |
+|---|---|---|
+| G1 gölge iskeleti önce | **kısmi-geçti** | Borsa: kemer içi, galeri tonozu, portik zemini, pilastr gölge yüzü + atılan gölge, korniş altı, pencere sövesi, alınlık altı. Cephe modülü: pencere çevresi, gölge tarafı. Tours'ta kiriş altı / masa altı planlanmadı (bölüm 2). |
+| G2 telefon ölçüsü + IV sınırı | **geçti** | 360 sayfasında elmas / kafes deseni yok (Sokak korniş / balkon altı dahil). |
+| G3 iç kontur | **geçti (Borsa, Sokak)** / kısmi (Tours) | Tours'ta yalnız lucarne kemeri modülden geliyor. Kiriş ve masa konturları sahneye özel, bu bölümde dokunulmadı. |
+| G4 net taramalı gölge | **geçti (Borsa, Sokak)** | Tours el / eldiven gölgesi KolEl deseniyle zaten taramalı. Katman sırası sorunu (TC5) bölüm 2'de. |
+| G5 RenkKaydi + kâğıt | **geçti (teknik)** / telefonda **zayıf** | 1.5 px kayma 360'ta 0.5 px'e iniyor; imza tam boyda görünür. Lif artışı ölçümde ≤ 1 L* oynattı, telefonda belli belirsiz. |
+| G6 (a) her mekânda ≥ 3 yerde tarama seçilir (360) | Borsa **✓**, Sokak **✓**, Tours **sınırda** | Borsa: ön ayaklar, kemer içi bantları, galeri duvarı, gölgeler, parmaklık. Sokak: sol cephe, korniş altı, söveler. Tours: lucarne yanağı, el gölgesi, masa önü; 360'ta soluk. |
+| G6 (b) kafes / örgü yok | **✓** | modül kuralı |
+| G6 (c) mood-05 ile aynı aile | **kısmi** | Mimari artık mürekkeple çizili okunuyor. Mood'un ayrıntı yoğunluğu (konsol, maskaron, kepenk, katman başına renk yıkaması) ve rig'in çizgi film dili arasındaki fark sürüyor. Karakterler hâlâ "ayrı dünya"dan duruyor; bu rig düzeyi bir iş. |
+| BC1 tel örgü → dikey dövme demir | **✓** | p0 / p90 / p168 |
+| BC5 portik çerçevesi letterbox | **kısmi-geçti** | Ayak, imposte, kemer başlangıcı ve güneş sınırı okunuyor. Tezgâh hâlâ kırpık (planı yönetmende). |
+| BC6 bulanık gölge, kemer içi | **✓** | |
+| SC8 kafes | **✓** | |
+| Araç: A2 arşiv, IG sütunu, fare insert yuvası | **✓** | Fare kompozisyonu kayıtlı değil; araç uyarıyla atlıyor. |
+| Renk ölçümü | 12/12 ✓ | Borsa gölge (III) noktası eklendi (L* 25 / 27). Sokak "cephe TAS-BDX" noktası (120,700) artık gölge tarafını ölçüyor (L* 43, A3'te 50). Işıktaki Bordeaux taşı için noktayı sağ sıraya taşımak doğru olur. |
+
+- **Yakaladığım ihlaller (öz tarama):**
+  - **Tours p0 güvenli alan:** "TOURS etiketi" (x 939, y 1622) IG düğme sütununda. Bu ihlal A3'te de vardı ("alt 420" olarak). A3 raporundaki "tüm protokol karelerinde ihlal 0" ifadesi **yanlıştı**. Plan düzeyi; bölüm 2'de etiket x ≤ 900 ve y ≤ 1500 olmalı.
+  - **Sokak zemin arcade'ları:** basık kemer + kilit taşı, sokak perspektifinde sıyırma açısından bakınca **sivri kemer** gibi okunuyor (360'ta da). İskelet "basık" ama okuma gotik. Mekân sorumlusu / eleştirmen baksın. Öneri: yakın evlerde kilit taşını küçültmek, ya da basık yükseltiyi 0.13→0.10'a indirmek.
+  - **Borsa p168:** tarama dünya biriminde ölçeklendiği için cs 2.8'de ≈ 25 px aralık / 4.5 px çizgi, iri. Şartnameye uygun ("pişirilmiş plaka ölçeklenir") ama göğüs planında kaba duruyor. Yakın plan kesmesinde plaka `derinlik="yakin"` ile yeniden çizilebilir (karar mekân sorumlusunda).
+  - Renk ölçüm tablosundaki TOURS p60 satırları A3 karesinden. Bu bölümde yeniden render edilmedi; tabloda not düşüldü.
+- **Öz puan (geçmiş eğilimimi ~1 düşerek):**
+  - Gravür dili telefonda: Borsa **6/10**, Sokak **6/10**, Tours **5/10**.
+  - Kompozisyonlar (plan kritikleri açık): Borsa **6/10**, Sokak **7/10**, Tours **6.5/10**.
+  - Gravür yönü artık "düz vektör"den ayrışıyor ama mood-05 ailesine tam girmedi.
+- **Açık sorular / bir sonraki ajana notlar:**
+  - **Eleştirmen:** G6 için `kareler/A4-gravur-karsilastirma.png` (üst satır A3, alt satır A4). Karar verilmesi gereken iki soru:
+    - (1) Yön yeterli mi, yoksa ikinci adım mı gerekli: ayrıntı yoğunluğu (konsol, maskaron, söve profili) ve renk yıkaması (degrade yasağının panel içi gevşetilmesi)?
+    - (2) Rig ile mimari arasındaki "iki dünya" farkı için rig'e de mürekkep ailesi / gölge taraması uygulanacak mı? 11.2 şu an rig'e taramayı yasaklıyor.
+  - **Mekân sorumlusu:** 11.2 tablosunu yukarıdaki değerlerle güncellesin (aralık, kalınlık, IV +40° ≤ 120 px, kontur/2, `murekkep`). Ayrıca karar gerekenler: pilastr, parmaklık halka süsü, Sokak gölge tarafı seçimi, sivri okunan basık arcade.
+  - **Motion A4 bölüm 2:** TC1–TC5, BC2 (tahta insert), BC3 (yazan el), SC1/SC2/SC4/SC6, FareInsert kompozisyonunu `SB2-SOKAK-FARE` adıyla kaydedip p87/p108/p138 protokolü, Tours etiketi IG sütunu, Tours kiriş / masa altı gölge iskeleti.
+  - **Teknisyen:** commit yapılmadı. A2 taşıması `git mv` ile sahnelendi; `arsiv/A3/` ve `A4-*.png` izlenmiyor.

@@ -1,6 +1,6 @@
 import React from "react";
 import { Kemer, Maskaron } from "./Kemer";
-import { Tarama } from "./Tarama";
+import { Basamak, Tarama } from "./Tarama";
 import { TasDuvar } from "./TasDuvar";
 import { Derinlik, Esleme, MIMARI_KONTUR, P, ink, karistir, murekkep, poly, rnd, tonla } from "./sabitler";
 
@@ -25,7 +25,9 @@ export const BDX_GECE_PALET: CephePalet = { tasGolge: "#5e5646", cam: "#1b2238",
 export const CepheEv: React.FC<{
   m: Esleme; e: EvTanim; seed: number; derinlik: Derinlik; aci: number; palet?: CephePalet;
   kameraH?: number; yakinSusleme?: boolean; dukkanYazi?: (p0: P, p1: P, p3: P, ad: string, renk: string) => React.ReactNode;
-}> = ({ m, e, seed, derinlik, aci, palet = BDX_GECE_PALET, kameraH = 0.9, yakinSusleme, dukkanYazi }) => {
+  // gölge tarafı cephe (A4 G1, elestiri-C: "gölge tarafı cephe II–III"): gövdeye tek yön tarama; açıklıklar ve süs üstte temiz kalır. Uzakta çizilmez.
+  golgeTaraf?: Basamak | null;
+}> = ({ m, e, seed, derinlik, aci, palet = BDX_GECE_PALET, kameraH = 0.9, yakinSusleme, dukkanYazi, golgeTaraf = null }) => {
   const H = evYukseklik(e);
   const W = e.aks * 3.3;
   const P_ = (x: number, y: number): P => m(x / W, 1 - y / H); // metre → ekran (y yerden)
@@ -47,6 +49,7 @@ export const CepheEv: React.FC<{
   // 1) gövde + (yakında) blok dokusu
   els.push(<polygon key="g" points={poly(dik(0, W, 0, kornis[1]))} fill={tas} />);
   if (!uzak) els.push(<TasDuvar key="td" m={em(0, 0, W, kornis[1])} boyut={[W * 60, kornis[1] * 60]} tip="bdx" taban={tas} seed={seed} derinlik={derinlik} yogunluk={yakin ? 0.6 : 0.4} gozenek={false} blok={[36, 18]} />);
+  if (golgeTaraf && !uzak) els.push(<Tarama key="gt" sekil={dik(0, W, 0, kornis[1])} basamak={golgeTaraf} aci={aci} renk={mur} derinlik={derinlik} seed={seed + 90} />);
   if (att) els.push(<polygon key="att" points={poly(dik(0.25, W - 0.25, att[0], att[1]))} fill={tonla(tas, -0.05)} stroke={mk} strokeWidth={KK.ic * 0.6} />);
   // 2) köşe taşı şeridi (ev sınırı)
   for (let i = 0; i < 12 && !uzak; i++) {
