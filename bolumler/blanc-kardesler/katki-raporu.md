@@ -107,3 +107,23 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - Kullanıcı kararı: P19 mahkemede tokmak / el çanı / jestsiz; başkan cübbesi kırmızı mı siyah mı (1830'lar kanıtlanamadı, siluet olduğu için renk okunmuyor).
   - Daha derin kaynak gerekirse: Gallica (Gazette des Tribunaux Mart 1837 duruşma raporları: salon, başkan, sonnette), Tretsch tezi (Hôtel des Postes avlusu), Musée de La Poste (malle-poste renk/arma), Bordeaux Chambre de commerce arşivi (1830'lar borsa ilanı). Wikimedia Commons / Gallica görsel aramaları yapılmadı.
   - Senarist: kesin olmayan hiçbir mahkeme detayı ("tokmak", "kırmızı cübbe", "haç yok") anlatıma girmesin.
+
+## yaratici-yonetmen · 2026-11-06 · Dönem revizyonu (dokunuslar.md v2.1 — dönem)
+- Ne yaptım: `donem-dogrulama.md`, güncel `sahne-plani.md` ve `tasarim.md`'ye göre dokunuşları revize ettim. Değişen satırlarda "v2.1 — dönem" notu, Bölüm 0'da bulgu-karar tablosu, Bölüm 3'te P15 ve P19 için ikişer alternatif ve öneri, tekrar-yok listesi yenilendi.
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/storyboard-v2/dokunuslar.md, bolumler/blanc-kardesler/katki-raporu.md (bu bölüm eklendi).
+- Aldığım kararlar ve gerekçeleri:
+  - P12: göz sabit dürbünün oküler halkasına dayalı kalır, kaş kalkar; odak halkası foley'i silindi (odak bir kez ayarlı). İki sabit tüp kutuda görünür ("iki dürbün" anlatımının görseli).
+  - P13: göz dürbünden çekilir, doğrulur; "indirir/tezgâha koyar" ve "dürbün tok" silindi; kumanda itme/çekme, dışarıdaki direk karşılık verir.
+  - P14: teleskop pervaza kurulu; göz çeker, eğilir, çentik atar, tekrar dayar. "Şlak" silindi. Ufukta Saint-Michel çan kulesi + T kol (P06 siluetiyle kurulum).
+  - P08/P11/P13: "kol çevirme" yok, manipulateur itme/çekme (kablo + makara). P11'de insert köşesinde direk kolu görünürken karşılık "klak" (görünmeyen kaynak sesi yok kuralı).
+  - **P15 önerim Alt-1: Louis'nin defterinden elle yazılmış "1835" sayfası** (Alt-2 almanak sayfası/levhası yedek). Gerekçe: dönem riski yok, defter P02'de kurulu, Louis'nin hesapçılığını anlatır. Takvim bloğu kalkıyor, "1836" yazısı kalktı.
+  - **P19 önerim (a) tokmaksız: başkan hükmü okur, ciltli dosyanın kapağını kapatır.** (b) el çanı önerilmedi (yalnız modern kaynak; hükmü değil girişi bildirir). **BERAAT ses vurgusu = dosya kapağı "TOK"** (p+9, −2 dB, kısa reverb, öncesinde 0.2 sn salon iç çekişi), yazı aynı karede belirir. Louis'nin eldiven giymesi aynen kalır.
+  - Mahkeme: cübbe renksiz koyu ton, haç/arma yok, boş panel (kesin olmayan detay nötr).
+- Uyguladığım kurallar / yakaladığım ihlaller: tekrar-yok (takvim yaprağı artık hiçbir yerde yok; tokmak yok; odak halkası jesti yok); görünmeyen kaynak sesi yok (P11 direk karşılığı yalnız kol görünürken); dönem doğruluğu (kum doğrulandı, günlük yaprak ve tokmak çıkarıldı). Yakaladığım ek sorun: **P01 alacakaranlıkta kol oynuyor, oysa telgraf geceleyin/sisli havada çalışmaz** (Universalis, arama özeti); P01 ışığı geç gün ışığı/erken akşam olmalı, dokunuş aynı.
+- Açık sorular / bir sonraki ajana notlar:
+  - **Yönetmen:** sahne-plani.md'de şunlar silinmeli/değişmeli: P12 odak halkası (p+40), P13 p+0 "dürbünü indirir/tezgâha koyar" + 2038 foley, P14 p+128 "şlak", P15 takvim bloğu → defter (üst yarıda y≈540–840'e yükselsin, yaprak yolu ≥300 px), P18 kürsüdeki tokmak → ciltli dosya + karar kâğıdı, P19 insert ve p+9 "TAK" → dosya kapağı "TOK", P01 ışığı.
+  - **Yönetmen (süre):** P14'te çentik kazıma net süresi ~0.9 sn (p+0–54). 1 sn kuralı için pervaz katmanı p+62'ye kadar net kalsın (kule odağı 54–78'de başlarken pervaz alt kadranda bulanıklaşarak kalır); dokunuslar.md'deki "okunabilir hepsi ≥1.0 sn" ifadesi P14 için bu şarta bağlı.
+  - **Tasarımcı:** Bordeaux ufuk kulesi → Saint-Michel çan kulesi + T kol (P06, P14); direk gök mavisi; takvim bloğu yerine defter sayfası; mahkeme cübbesi renksiz, haç yok; P12'de ahşap kutuda iki sabit tüp.
+  - **Senarist:** senaryo-v2.md P19 satırındaki "tokmak iner" ve K2 kanca alternatifindeki "tokmak" ifadeleri güncellenmeli; P15 DOKUNUŞ "takvim yaprağı" → "defter sayfası"; dramatizasyon beyanına defter sayfası ve dosya kapağı eklensin.
+  - **Motion:** P13 (geri yaslan) ve P14 (öne eğil) göz çekme animasyonlarını aynı klibin tekrarı yapmasın.
+  - **Kullanıcı:** P15 (Alt-1/Alt-2) ve P19 ((a)/(b)) seçimi storyboard onayında.
