@@ -504,7 +504,7 @@ Genel sonuç: Beş sorunun **hiçbirinde 1834 Bordeaux'ya doğrudan dönem belge
 
 - Bordeaux Palais de la Bourse, şehirde yağ ve mum yerine **gaz kullanan ilk bina** oldu (1827); yani 1834'te borsa tüccarları şehrin geri kalanından daha parlak bir ışıkta çalışmış olabilir. [ici.fr, Cardoze](https://www.ici.fr/emissions/l-histoire-du-jour-avec-michel-cardoze/gironde/la-revolution-de-l-eclairage-bordeaux-en-1827) (radyo, tek kaynak: "olası")
 - Borsa avlusunun arcade alınlıklarında **Avrupa'nın başlıca ticaret merkezlerinin adları** yazılıydı: telgrafla Paris'ten haber bekleyen tüccarlar, dünyanın borsalarının adı altında bekliyordu. (Yorum benim; olgu kısmı: [fr.wikipedia, Palais de la Bourse (Bordeaux)](https://fr.wikipedia.org/wiki/Palais_de_la_Bourse_(Bordeaux)).)
-- Gazın gelişi dönemin kendi tanığına göre "plus économique mais guère plus brillant à ses débuts": gaz önce daha parlak değil, yalnız daha ucuzdu. [ici.fr, Cardoze](https://www.ici.fr/emissions/l-histoire-du-jour-avec-michel-cardoze/gironde/la-revolution-de-l-eclairage-bordeaux-en-1827) (radyo anlatısı, doğrudan alıntı dönem tanığı değil)
+- Gazın gelişi radyo anlatısına göre "plus économique mais guère plus brillant à ses débuts": gaz önce daha parlak değil, yalnız daha ucuzdu. [ici.fr, Cardoze](https://www.ici.fr/emissions/l-histoire-du-jour-avec-michel-cardoze/gironde/la-revolution-de-l-eclairage-bordeaux-en-1827) (radyo anlatısı, doğrudan alıntı dönem tanığı değil)
 
 ## Ek 3 — Tasarım dosyalarına öneri düzeltmeler
 
