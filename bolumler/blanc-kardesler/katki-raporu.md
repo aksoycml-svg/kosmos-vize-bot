@@ -14,3 +14,23 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Kararlar ve gerekçeleri: Yeni dosya açılmadı, yapı korundu. Görsel notlardaki "ikizler" ifadelerini de "kardeşler" yaptım, çünkü görsel olarak ikiz sunmak aynı tek kaynaklı iddiayı ekrana taşırdı. DOKUNUŞ sütunlarına ve diğer içeriğe dokunulmadı. Doğruluk notunda P14 satırına "maskesiz" notu düştüm.
 - Uyguladığım kurallar / yakaladığım ihlaller: Tek kaynaklı bilgiyi kesin söylememe (ikiz); yumuşak ifade; dokunuşlar yaratıcı yönetmende kaldı. Bölüm 5 değerlendirmesindeki "dürbün maskesi" ifadesi P12 için hâlâ doğru, değiştirmedim.
 - Açık sorular / sonraki ajana notlar: (a) CLAUDE.md'ye göre ücretsiz planda Umut Canbay kütüphane sesi kapalı, ticari kullanım için Starter plan gerekli; ses üretiminden önce plan teyit edilmeli. (b) Umut Canbay'ın gerçek konuşma hızı bilinmiyor; 2.5 kelime/sn varsayımı ilk testte ölçülmeli, yavaşsa yedek kısa kesim devreye girer. (c) Yönetmen: P14 maskesiz olduğu için P12'deki maskeli POV ile görsel ayrım net kalmalı.
+
+## yaratici-yonetmen · 2026-11-06 · Storyboard v2 dokunuşları (23 plan)
+- Ne yaptım: Senaryo-v2'deki 23 dokunuşu kurallara göre denetledim, tekrarları yakaladım, zayıf/bağsız olanları değiştirdim ve her plan için kesin tanım (süre, ekran %, yer, plan içi ve mutlak başlangıç-bitiş, foley dosyası ve seviyesi) yazdım. Sonuna tekrar-yok kontrol listesi ve P04 yoğunluk değerlendirmesi ekledim.
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/storyboard-v2/dokunuslar.md (yeni), bolumler/blanc-kardesler/katki-raporu.md (bu bölüm eklendi, öncekiler silinmedi).
+- Aldığım kararlar ve gerekçeleri:
+  - Kule kolu P01/P08/P17'de tekrar ediyordu. P01 kaldı (kanca, sebebi eldiven). P08 → memurun parmak tiki + duvardaki el–gölge (replikten sonra, alışkanlıkla kol çevirme). P17 → kimliksiz kişinin yazdığı sayfaya kurutma kumu serpmesi.
+  - P04: replik ikiye bölündü, "..." boşluğu baston–fare insert'ine verildi (fare %12, 1.1 sn). Süre değişmedi. Göz kırpma oyunculuk sayıldı, sıkışırsa ilk o kısalır.
+  - P14 maskesiz: suç ortağı dürbünü indirip pervaza çentik kazıyor, pervaz eski çentiklerle dolu ("iki yıl" için kurulum). P11'in "fazladan çentik" vurgusu da tekrar etmemiş oluyor.
+  - Toz P03 ve P05'ten çıktı (tekrar; P05'teki "sinyalin rüzgârı" fiziksel olarak da yanlıştı). P03'e at yorgunluğu eklendi, P05'te sollama + mühür kaldı.
+  - Düşen nesne kümesi (tebeşir, tüy, paket, damla, yaprak, eldiven) kesilmedi; altısı farklı jest olarak ayrıştırıldı. Tüy saat camına değil Louis'nin bordo koluna konar (okunurluk; saat nesnesi P18'e kaldı).
+  - P23 çelişkisi (kapanıyor ama son kare yarı açık) eşleşen kesmeyle çözüldü.
+  - P22: "yanar" → boya dolgusu, dijital blip → ahşap tık (kukla/tahta, neon yok).
+  - P11 müzik kesilmesi kaldırıldı; tam sessizlik P12'de kalsın.
+- Uyguladığım kurallar / yakaladığım ihlaller: her plana ≥1 dokunuş; tekrar yok (kule kolu, toz, çentik vurgusu, mühür/damga); okunabilirlik ölçüleri; sebep-sonuç (hayalet "kendiliğinden" hareket yok); foley temas karesinde; süreklilik (P09 arabacı, P14 çentikler, P16 eldiven, P18 cebindeki eldiven ucu plan başından görünür olmalı). Ayrıca P09 net süresi 0.8 sn (<1 sn) idi, P01 pencere kanca yazısıyla çakışıyordu, P10 karakter bağı yoktu.
+- Açık sorular / bir sonraki ajana notlar:
+  - **Senarist (çakışma):** v2.1'de P14 GÖRSEL "odak kayması tüm kadrajda" diyor ve DOKUNUŞ'ta dürbün odak kaydırma duruyor. Benim dokunuşum bunun yerine pervaz çentiği (maske olmadan odak kayması dürbün POV'u gerektirir, o da P12'nin işi). P14 GÖRSEL satırı buna göre güncellenmeli (omuz üstü/yan açı, pervaz, odak kayması çıkar) ya da kullanıcı eski fikri seçer.
+  - Senarist: P17'deki kayda geçme (kum, kalem) sahneleme; uygun değilse yedek: mum tutan el. Dramatizasyon beyanına pervaz çentikleri, kum, parmak tiki eklensin. P04 müzik sessizliği 0.3 → 1.1 sn oldu.
+  - Motion: Kukla'da kaş, esneme, el–gölge, parmak parmak eldiven giyme var mı? Yoksa erkenden söyle, jest basitleşir. P03 diski, P15 yaprağı, P18 saati 200 px altına düşmesin.
+  - Kurgucu: sessizlik/müzik kesilmesi sınırlı (P04, P12, P17, P18). Foley dosya adları önerilendir, `tools/sfx.mjs` ile üretilecek, tepe karesine hizalanacak.
+  - Kullanıcı: P03 at yorgunluğu ve P14 pervaz kazıması yeni kararlar; storyboard onayında görsün.
