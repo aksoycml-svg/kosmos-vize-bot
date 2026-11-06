@@ -228,3 +228,21 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - YÖNETMEN/TASARIMCI: P02 z ve oda genişliği değişikliği, P04 Saint-Michel konumu, P01 "TOURS" etiketi onayı. P04 kare 724'te François "kazanır" diyor (ağız A); stil karesi tanımındaki "sırıtış" p 198+ (mutlak 762+).
   - ARAŞTIRMACI: Chappe DINLEN konumu (katlı mı?), Saint-Michel'de telgrafın oturduğu platform biçimi.
   - Temas olay listeleri başlangıcı: `P01_TEMAS`, `P02_TEMAS` sabitleri sahne dosyalarında; P04 temasları sahne planında, insert (FareInsert) bu aşamada yok.
+
+## elestirmen · 2026-11-06 · Storyboard v2 kalibrasyon kalite kapısı (Eleştiri A: SB2-TOURS / SB2-SOKAK / SB2-BORSA)
+- Ne yaptım: Üç stil karesini tam çözünürlükte, bölge kırpma ile (2–3× büyütme), telefon boyutunda (360×640) ve piksel örneklemeyle (duvar/zemin/gök renkleri, parlaklık aralığı) denetledim. `Sb2Sokak.tsx` ve `Sokak.tsx zemin()` ile ızgara, ayak ve birikintilerin ekran konumlarını hesapladım. Koordinatörün 13 ek gözlemini tek tek doğruladım/çürüttüm. Bulguları `storyboard-v2/elestiri-A.md`'ye yazdım (kare/piksel bölgesi, kural, düzeltme, öncelik; puanlar; sapma görüşleri; 9 sistemik sorun; kabul ölçütleri). Kod değiştirmedim.
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/storyboard-v2/elestiri-A.md (yeni), bolumler/blanc-kardesler/katki-raporu.md (bu bölüm eklendi).
+- Aldığım kararlar ve gerekçeleri:
+  - Puanlar: TOURS 4.5/10, SOKAK 6/10, BORSA 5/10; üçü de DÜZELTİLMELİ. Doku altyapısı sağlam; sorunlar mimari biçim, ışık geometrisi, yerleşim-güvenli alan ve prop okunurluğunda.
+  - Motion sapmaları: P02 oda genişliği ve z değerleri kabul (koşullu); P04 Saint-Michel x=445 bu hâliyle ret (maske şeridine yapışık, okunmuyor; ya x≈600–640 ya P06'ya); P01 TOURS etiketi koşullu kabul (x ≤ 880, P09 ile aynı çizim, P23'te de var); P04 facing −1 koşullu kabul (yürüyüşte tutarlı, ama p150'den François kameraya dönmeli, göz kırpma için).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri (KRİTİK olanlar):
+  - P01: eldiven tutulmuyor (kıstırma yok, katı kalıp gibi) · huzme sağ-aşağı, gölgeler sol-aşağı (gölge yönü) · fener ışık havuzu yok (p134 bırakma hedefi kurulmamış) · masa oda döşemesi gibi okunuyor · paket kâğıdı açılmış paket okunmuyor (P23 aynası da etkilenir) · telefonda T kolu vinç/iskele gibi, direk sapı kayboluyor.
+  - P04: gökte x≈405/683 dikey maske/katman hatası · ayaklar y 1527–1542 (IG alt bölgesi), altyazı baldırları örtüyor · ızgara (589,1465) tam ALT-BANT altında: insert öncesi kurulum görünmez · dik ve görünen çatı yüzeyleri (alçak kameradan fiziksel değil + Bordeaux şartnamesine ters, şehir Paris okunuyor).
+  - P02: ön plan kafaları y 1500+ (ufuk y 880 kuralı, ölçek ihlali) · "François" etiketi tüccarın başının üstünde · kemerli pencereler anlamsız çizgi · salon "koridor" okunuyor (pilastr/kemer/estrad merdiveni/korkuluk yok).
+  - Orta: birikinti düz gri levha, réverbère gölgesi sonsuz uzun "oluk", bayrak direğe yanlış bağlı (şeritler direğe dik), ay odağı çalıyor, tüccar kardeşlerle aynı yüz, kalabalık siluetleri yönsüz, gölgeler yönsüz, tahtada sinüs dalgası, TOURS etiketi IG sağ bölgede, P01 üst %23 ölü alan.
+  - Sistemik: Tours duvarı `#ad9d7f` ve Borsa duvarı `#bda67a` aynı bej ailesinde (tuffeau `#e6e0cc` hedefinin çok altında): derecelendirme hattı şehir ayrışmasını siliyor.
+- Açık sorular / bir sonraki ajana notlar:
+  - MOTION: kalan mekânlardan önce elestiri-A.md bölüm 6 sırası: (1) derecelendirme sonrası renk hedefleri + ölçüm, (2) tek kaynaktan ışık geometrisi (huzme/havuz/gölge), (3) güvenli alan + yazı bandı + IG bindirmesi ve kilit nokta assert'i, (4) Mimari modüller (kemer, pilastr, korniş, kiriş, saçak, korkuluk, masa kenarı), (5) prop 360 px testleri, (6) gök/paralaks kompozit düzeltmesi.
+  - YÖNETMEN: P04 orta plan z değerleri (François ≥ 2.4, Louis ≥ 2.45) ya da altyazı ÜST-BANT'a; ızgara konumu (öneri z 2.6, u 0.30–0.35); P01'deki pencere pencere A mı, manipülatör nerede (yazılı karar); P01 p54 sonrası sağ gösterge konumu T'yi bozmamalı.
+  - TASARIMCI: tüccar yüz/şapka varyantı; açılmış paket ve kıstırılmış eldiven çizim referansı; TOURS etiketinin P09/P23 ile ortak çizimi; bayrak gerekliyse doğru asılış.
+  - Bir sonraki eleştiri turu için istek: her plan f0 + dokunuş temas karesi + kapanış karesi, 360×640 sayfa, güvenli alan bindirmeli kopya, piksel ölçüm tablosu.
