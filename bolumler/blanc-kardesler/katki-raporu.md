@@ -1248,3 +1248,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Dosyalar: src/kit/Bolum.tsx, tools/premiere_paket.py, katki-raporu.md. Katman toplamı ham mikse -69 dB fark; miks.wav'daki 240 örnek zincir gecikmesi giderildi.
 - Açık: XML Premiere'de denenmedi; katmanlar loudnorm öncesi (sessiz), yayın seviyesi son çıkışta.
 - ana oturum · 2026-11-07 · EN senaryo kullanıcı onayı; P11 'Assize'→'Criminal Court' (kullanıcı kararı, senaryo-en.md'ye işlendi).
+
+## teknisyen · 2026-11-07 · Blanc EN ses adayları
+- Üretilen (public/blanc/ses-en/aday/): anlatici-A.mp3 (George, 5.43 sn), anlatici-B.mp3 (Brian, 4.62 sn), anlatici-C.mp3 (Daniel, 5.88 sn), francois.mp3 (TR ses vwmWy…, 1.85 sn), memur.mp3 (TR ses iaO74…, eleven_v3 + [whispers], 2.93 sn), hepsi.mp3 (A,B,C,François,memur; 1 sn sessizlik, 24.56 sn).
+- Harcanan: 267 karakter (A/B/C 3×67, François 32, memur 34). Model eleven_multilingual_v2; memur için v3 denemesi başarılı, v2 yedeği kullanılmadı. Ayarlar: stability 0.45, similarity 0.8, style 0.35, speaker_boost açık. Çağrılar curl ile yapıldı; anahtar yazdırılmadı.
+- Hata yok. Sesler dinlenmedi (yalnız süre/md5 kontrolü). Anlatıcı kararı ve A/B/C iki cümle 0.6 sn sessizlikle; kullanıcı onayı bekliyor.
