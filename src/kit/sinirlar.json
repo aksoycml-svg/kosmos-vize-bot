@@ -47,5 +47,11 @@
   "jestler": ["yuru", "konus", "isaret", "sapka-kaldir", "baston-vur", "esne", "it-cek", "eldiven-giy", "fisilda", "yaz", "bak"],
   "jestTemas": { "baston-vur": ["vurus"], "it-cek": ["tik"], "eldiven-giy": ["gerilme"] },
   "props": ["paket", "eldiven", "corap", "dosya", "kitap", "kese", "hokka", "mum", "fener"],
-  "bantlar": ["ust", "alt"]
+  "bantlar": ["ust", "alt"],
+  "_k3": "K3: yuzVaryant = kim → yüz varyantı (src/kit/karakterler.ts YUZLER; tek kaynak). ayniKisi: aynı kişinin kostüm kaydı. Bölümde iki farklı kişi aynı varyant ⇒ UYARI",
+  "yuzVaryant": { "francois": "francois", "louis": "louis", "louis-eldivenli": "louis", "memur": "memur", "mudur": "mudur", "telgrafci": "telgrafci", "katip": "katip", "tuccar": "tuccar", "yargic": "yargic" },
+  "ayniKisi": { "louis-eldivenli": "louis" },
+  "ifadeler": ["dinlen", "gulumse", "sirit", "A", "E", "O", "M", "S", "esneme", "fisilti", "hasta"],
+  "pozlar": ["ayakta", "yatik"],
+  "bitisPayiKare": 12
 }

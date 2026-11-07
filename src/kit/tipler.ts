@@ -22,7 +22,9 @@ export type Karakter = {
   kare?: number[];
   yon?: 1 | -1;                // 1 = sağa bakar, -1 = sola
   jestler?: JestCagri[];
-  yuz?: { ifade?: Agiz; bakis?: P; kas?: number; yakin?: boolean };
+  yuz?: { ifade?: Agiz | "hasta"; bakis?: P; kas?: number; yakin?: boolean; ter?: boolean }; // K3: "hasta" = solgun + göz altı + yarı kapalı göz
+  poz?: "ayakta" | "yatik";    // K3: yatik = yatakta sırtüstü (IC-ODA oda=yatak → yatağa oturur; YAKIN-YUZ yatik: true)
+  yuzVaryant?: string;         // K3: kayıttaki yüzü ezer (YUZLER anahtarı); bölümde iki kişi aynı varyantı kullanırsa doğrulayıcı uyarır
   palet?: Partial<Palet>;      // bölüme özel kostüm/ten (ör. solgun memur)
   aksesuar?: ("cep-eldiven" | "baston")[];
   etiket?: { ad: string; alt?: string; bas?: number; bit?: number };

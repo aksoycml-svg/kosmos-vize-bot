@@ -33,6 +33,9 @@ const temasVar = (plan, kare, tol = 2) => (plan.temaslar ?? []).some((t) => Math
 if (B.fps !== SN.fps) H("bölüm", `fps ${B.fps} (beklenen ${SN.fps})`);
 if (!Array.isArray(B.planlar) || !B.planlar.length) { H("bölüm", "planlar boş"); }
 const idler = new Set(), dokunuslar = new Map(), sablonlar = new Set();
+const yuzKullanim = new Map(); // K3: yüz varyantı → Map(kişi → ilk plan)
+const VARYANTLAR = new Set(Object.values(SN.yuzVaryant ?? {}));
+const PAY = SN.bitisPayiKare ?? 12;
 let toplam = 0;
 const tumTemas = [];
 
@@ -46,6 +49,19 @@ for (const plan of B.planlar ?? []) {
   const sure = plan.sure_kare;
   if (!Number.isInteger(sure) || sure < SN.planSureMinKare) H(Y, `sure_kare ${sure} (en az ${SN.planSureMinKare}, tam sayı)`);
   const prm = plan.parametreler ?? {};
+  // K3 (CLAUDE.md bolum.json kuralı 3): kontrol_kare zorunlu ve plan içinde
+  if (!Number.isInteger(plan.kontrol_kare)) H(Y, "kontrol_kare yok (zorunlu: dokunuşun/ana eylemin en okunur karesi)");
+  else if (plan.kontrol_kare < 0 || plan.kontrol_kare >= sure) H(Y, `kontrol_kare ${plan.kontrol_kare} plan dışında [0, ${sure})`);
+  // K3 (kural 2): her jest/prop/morf/dokunuş aralığı plan içinde ve plan sonundan ≥PAY kare önce biter
+  const bitis = (yer, ad, bit) => { if (typeof bit !== "number") return; if (bit > sure - PAY) H(yer, `${ad} p${bit} bitişi plan sonuna ${sure - bit} kare (≥ ${PAY} kare önce bitmeli; süre ${sure})`); };
+  const son = (k) => (Array.isArray(k) && k.length ? k[k.length - 1] : undefined);
+  for (const ad of ["golgeT", "pervazBicak", "eldivenGiy", "posta", "telgraf"]) if (prm[ad]) bitis(Y, ad, prm[ad].bit);
+  if (prm.muhur) bitis(Y, "muhur", prm.muhur.kare);
+  if (prm.insert) bitis(Y, "insert (fare 66 kare)", prm.insert.bas + 66);
+  if (typeof prm.pervazCentikYeni === "number") bitis(Y, "pervazCentikYeni", prm.pervazCentikYeni);
+  if (prm.kol && typeof prm.kol === "object") bitis(Y, "kol", son(prm.kol.kare));
+  (prm.kuleler ?? []).forEach((k, i) => { if (typeof k.konum === "object") bitis(Y, `kule ${i + 1} konum`, son(k.konum.kare)); if (k.wifi) bitis(Y, `kule ${i + 1} wifi`, k.wifi.bit); if (Array.isArray(k.halo)) bitis(Y, `kule ${i + 1} halo`, k.halo[1]); });
+  if (plan.dokunus) bitis(Y, `dokunuş ${plan.dokunus.id}`, plan.dokunus.bit);
   for (const z of S.zorunlu) if (prm[z] === undefined) H(Y, `zorunlu parametre yok: ${z}`);
   for (const [ad, izin] of Object.entries(S.parametreler)) if (prm[ad] !== undefined && !izin.includes(prm[ad])) H(Y, `${ad}="${prm[ad]}" geçersiz (${izin.join(" | ")})`);
   // şablona özel kurallar
@@ -100,9 +116,18 @@ for (const plan of B.planlar ?? []) {
     if (!SN.karakterler.includes(c.kim)) H(y, `bilinmeyen karakter (kayıt: ${SN.karakterler.join(", ")})`);
     if (S.z && plan.sablon !== "YAKIN-YUZ") { aralik(y, "z", c.z, S.z); aralik(y, "u", c.u, S.u); }
     anahtarUzunluk(y, "z", c.z, c.kare); anahtarUzunluk(y, "u", c.u, c.kare); if (c.kare) artan(y, c.kare);
+    if (Array.isArray(c.z) || Array.isArray(c.u)) bitis(y, "yol (kare)", son(c.kare));
+    // K3: ifade / poz / yüz varyantı
+    if (c.yuz?.ifade !== undefined && !SN.ifadeler.includes(c.yuz.ifade)) U(y, `ifade "${c.yuz.ifade}" kitte yok → "dinlen" çizilir (${SN.ifadeler.join(", ")}) — kit_eksik ile işaretle`);
+    if (c.poz !== undefined && !SN.pozlar.includes(c.poz)) H(y, `poz "${c.poz}" (${SN.pozlar.join(" | ")})`);
+    if (c.poz === "yatik" && !(plan.sablon === "IC-ODA" && prm.oda === "yatak") && !(plan.sablon === "YAKIN-YUZ" && prm.yatik)) U(y, "poz yatik yalnız IC-ODA oda=yatak ya da YAKIN-YUZ yatik:true'da yatağa oturur");
+    if (c.yuzVaryant !== undefined && !VARYANTLAR.has(c.yuzVaryant)) H(y, `yuzVaryant "${c.yuzVaryant}" yok (${[...VARYANTLAR].join(", ")})`);
+    const varyant = c.yuzVaryant ?? SN.yuzVaryant?.[c.kim], kisi = SN.ayniKisi?.[c.kim] ?? c.kim;
+    if (varyant) { if (!yuzKullanim.has(varyant)) yuzKullanim.set(varyant, new Map()); const m = yuzKullanim.get(varyant); if (!m.has(kisi)) m.set(kisi, plan.id); }
     for (const j of c.jestler ?? []) {
       if (!SN.jestler.includes(j.ad)) H(y, `bilinmeyen jest ${j.ad}`);
-      if (!(j.bas < j.bit) || j.bas < 0 || j.bit > sure + 12) H(y, `jest ${j.ad} zamanı [${j.bas}, ${j.bit}] geçersiz`);
+      if (!(j.bas < j.bit) || j.bas < 0) H(y, `jest ${j.ad} zamanı [${j.bas}, ${j.bit}] geçersiz`);
+      else bitis(y, `jest ${j.ad}`, j.bit);
       if (j.ad === "yuru" && !Array.isArray(c.z) && !Array.isArray(c.u)) U(y, "yuru jesti var ama z/u yolu (dizi) yok — yerinde sayar");
       const o = j.ops ?? {};
       if (j.ad === "baston-vur") { const v = o.vurus ?? Math.round(j.bas + (j.bit - j.bas) * 0.6); if (!temasVar(plan, v, 1)) H(y, `baston-vur vuruşu p${v}: temas yok (TEMAS = SES)`); if (!(c.aksesuar ?? []).includes("baston") && o.el !== "on") U(y, "baston-vur: aksesuar 'baston' yok"); }
@@ -117,12 +142,15 @@ for (const plan of B.planlar ?? []) {
     if (pr.id) propIdler.add(pr.id);
     anahtarUzunluk(`${Y} ${pr.tur}`, "x", pr.x, pr.kare); anahtarUzunluk(`${Y} ${pr.tur}`, "y", pr.y, pr.kare);
     for (const [k, v] of Object.entries(pr.durum ?? {})) anahtarUzunluk(`${Y} ${pr.tur}`, `durum.${k}`, v, pr.kare);
+    if (Array.isArray(pr.kare) && pr.kare.length > 1) bitis(`${Y} ${pr.tur}`, "prop anahtarı", son(pr.kare));
   }
   for (const [i, el] of (plan.el ?? []).entries()) {
     const y = `${Y} el${i}`;
     if (plan.sablon !== "MASA-INSERT") H(y, "el yalnız MASA-INSERT'te");
     for (const ad of ["bilek", "dirsek", "aci"]) if (el[ad]?.length !== el.kare?.length) H(y, `${ad} (${el[ad]?.length}) ile kare (${el.kare?.length}) eşit değil`);
     artan(y, el.kare);
+    bitis(y, "el hareketi", son(el.kare));
+    if (el.tut) bitis(y, "bırakma", el.tut.bit);
     if (el.tut) { if (!propIdler.has(el.tut.prop)) H(y, `tut.prop "${el.tut.prop}" prop id'si değil`); if (el.tut.bit < sure && !temasVar(plan, el.tut.bit, 1)) H(y, `bırakma p${el.tut.bit}: temas yok`); }
   }
   if ((plan.el ?? []).length > (S.elMaks ?? 0)) H(Y, `el sayısı > ${S.elMaks ?? 0}`);
@@ -156,6 +184,9 @@ for (const plan of B.planlar ?? []) {
   if (plan.dokunus) { if (dokunuslar.has(plan.dokunus.id)) H(Y, `dokunuş ${plan.dokunus.id} tekrar ediyor (ilk: ${dokunuslar.get(plan.dokunus.id)})`); dokunuslar.set(plan.dokunus.id, plan.id); }
   toplam += sure || 0;
 }
+
+// K3: iki farklı kişi aynı yüz varyantını kullanıyorsa (kompars ana kadronun/başkasının yüzünü kopyalar)
+for (const [v, m] of yuzKullanim) if (m.size > 1) U("bölüm", `yüz varyantı "${v}" ${m.size} kişide: ${[...m].map(([k, p]) => `${k} (${p})`).join(", ")} — yuzVaryant ile ayır ya da palet.yuzsuz`);
 
 const sn = toplam / SN.fps, BK = SN.bolum;
 const bolumKural = (m) => (TAM ? H("bölüm", m) : U("bölüm", m));

@@ -1,0 +1,309 @@
+{
+ "slug": "blanc-kardesler",
+ "baslik": "K3 kit kontrol",
+ "fps": 60,
+ "planlar": [
+  {
+   "id": "K3-YATIK-YAKIN",
+   "sablon": "YAKIN-YUZ",
+   "sure_kare": 180,
+   "kontrol_kare": 100,
+   "parametreler": {
+    "arka": {
+     "sablon": "IC-ODA",
+     "parametreler": {
+      "oda": "yatak",
+      "isik": "mum",
+      "dis": "gece"
+     },
+     "kamera": {
+      "kare": [
+       0
+      ],
+      "cs": [
+       1.0
+      ]
+     }
+    },
+    "yuz": [
+     560,
+     760
+    ],
+    "olcek": 3.6,
+    "egim": 8,
+    "yatik": true,
+    "bulanik": 16,
+    "isik": "mum"
+   },
+   "karakterler": [
+    {
+     "kim": "memur",
+     "poz": "yatik",
+     "yuz": {
+      "ifade": "hasta",
+      "bakis": [
+       0,
+       0.2
+      ],
+      "kas": 0.6,
+      "ter": true
+     },
+     "jestler": [
+      {
+       "ad": "fisilda",
+       "bas": 60,
+       "bit": 160,
+       "ops": {
+        "hiz": 8
+       }
+      }
+     ]
+    }
+   ],
+   "replik": [
+    {
+     "kim": "MEMUR",
+     "metin": "Eldiven… çorap…",
+     "bant": "alt",
+     "bas": 60,
+     "bit": 160
+    }
+   ]
+  },
+  {
+   "id": "K3-YATAK-GENIS",
+   "sablon": "IC-ODA",
+   "sure_kare": 120,
+   "kontrol_kare": 60,
+   "parametreler": {
+    "oda": "yatak",
+    "isik": "mum",
+    "dis": "gece",
+    "masa": {
+     "z": 3.0,
+     "u": 0.95,
+     "w": 0.6,
+     "d": 0.5,
+     "h": 0.7
+    }
+   },
+   "karakterler": [
+    {
+     "kim": "memur",
+     "poz": "yatik",
+     "z": 3.6,
+     "u": -1.3,
+     "yuz": {
+      "ifade": "hasta",
+      "ter": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "K3-YUZ-MEMUR",
+   "sablon": "YAKIN-YUZ",
+   "sure_kare": 120,
+   "kontrol_kare": 60,
+   "parametreler": {
+    "arka": {
+     "sablon": "IC-ODA",
+     "parametreler": {
+      "oda": "tours-buro",
+      "isik": "gun"
+     },
+     "kamera": {
+      "kare": [
+       0
+      ],
+      "cs": [
+       1.0
+      ]
+     }
+    },
+    "yuz": [
+     540,
+     800
+    ],
+    "olcek": 3.6,
+    "isik": "gun"
+   },
+   "karakterler": [
+    {
+     "kim": "memur",
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       0.6,
+       0
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "K3-YUZ-TELGRAFCI",
+   "sablon": "YAKIN-YUZ",
+   "sure_kare": 120,
+   "kontrol_kare": 60,
+   "parametreler": {
+    "arka": {
+     "sablon": "IC-ODA",
+     "parametreler": {
+      "oda": "tours-buro",
+      "isik": "gun"
+     },
+     "kamera": {
+      "kare": [
+       0
+      ],
+      "cs": [
+       1.0
+      ]
+     }
+    },
+    "yuz": [
+     540,
+     800
+    ],
+    "olcek": 3.6,
+    "isik": "gun"
+   },
+   "karakterler": [
+    {
+     "kim": "telgrafci",
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       0.6,
+       0
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "K3-YUZ-KATIP",
+   "sablon": "YAKIN-YUZ",
+   "sure_kare": 120,
+   "kontrol_kare": 60,
+   "parametreler": {
+    "arka": {
+     "sablon": "IC-ODA",
+     "parametreler": {
+      "oda": "tours-buro",
+      "isik": "gun"
+     },
+     "kamera": {
+      "kare": [
+       0
+      ],
+      "cs": [
+       1.0
+      ]
+     }
+    },
+    "yuz": [
+     540,
+     800
+    ],
+    "olcek": 3.6,
+    "isik": "gun"
+   },
+   "karakterler": [
+    {
+     "kim": "katip",
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       0.6,
+       0
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "K3-FRANCOIS",
+   "sablon": "YAKIN-YUZ",
+   "sure_kare": 120,
+   "kontrol_kare": 60,
+   "parametreler": {
+    "arka": {
+     "sablon": "IC-ODA",
+     "parametreler": {
+      "oda": "tours-buro",
+      "isik": "gun"
+     },
+     "kamera": {
+      "kare": [
+       0
+      ],
+      "cs": [
+       1.0
+      ]
+     }
+    },
+    "yuz": [
+     540,
+     800
+    ],
+    "olcek": 3.6,
+    "isik": "gun"
+   },
+   "karakterler": [
+    {
+     "kim": "francois",
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       0.6,
+       0
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "K3-LOUIS",
+   "sablon": "YAKIN-YUZ",
+   "sure_kare": 120,
+   "kontrol_kare": 60,
+   "parametreler": {
+    "arka": {
+     "sablon": "IC-ODA",
+     "parametreler": {
+      "oda": "tours-buro",
+      "isik": "gun"
+     },
+     "kamera": {
+      "kare": [
+       0
+      ],
+      "cs": [
+       1.0
+      ]
+     }
+    },
+    "yuz": [
+     540,
+     800
+    ],
+    "olcek": 3.6,
+    "isik": "gun"
+   },
+   "karakterler": [
+    {
+     "kim": "louis",
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       0.6,
+       0
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

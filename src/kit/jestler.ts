@@ -4,12 +4,13 @@
 // aynı kareler olmalı (doğrulayıcı denetler) — ses aynı listeden yerleşir.
 import { Easing, interpolate } from "remotion";
 import type { Agiz, Palet, Poz } from "../rig/Kukla";
+import { AGIZLAR } from "../rig/Kukla";
 import { yuru as yuruDongu, visem } from "../rig/Kukla";
 import { bastonAcisi, bastonUcu, elYerel, AYAK_TABAN } from "../rig/kinematik";
 import { GLOVE } from "../bolumler/blanc/palet";
 import type { JestCagri, Karakter, P } from "./tipler";
 import { cl, deger, zarf } from "./zaman";
-import { karakterBul } from "./karakterler";
+import { karakterBul, YUZLER } from "./karakterler";
 
 export type Yerlesim = {
   yer: (z: number, u: number) => { x: number; y: number; s: number }; // y = zemin (ayak tabanı) ekran y
@@ -85,7 +86,8 @@ const J: Record<string, JestFn> = {
   },
   fisilda: (pz, p, c) => {
     const w = zarf(p, c.bas, c.bit, 0.2, 0.1);
-    const seri: Agiz[] = ["S", "E", "M", "dinlen", "O", "S"];
+    // K3: hasta yüzde küçük fısıltı ağzı (diş görünmez)
+    const seri: Agiz[] = pz.hasta ? ["fisilti", "M", "fisilti", "dinlen", "fisilti", "M"] : ["S", "E", "M", "dinlen", "O", "S"];
     karis(pz, { blinkF: 0.5, blinkB: 0.5, headTilt: 4, lookY: 0.35, browF: 0.4, browB: 0.4, agiz: seri[Math.floor((p - c.bas) / n(c.ops?.hiz, 10)) % seri.length] }, w);
   },
   yaz: (pz, p, c) => karis(pz, { shF: -38, elF: -88 + Math.sin(p * 0.9) * 5, lookY: 0.7, headTilt: 6 }, zarf(p, c.bas, c.bit)),
@@ -113,7 +115,12 @@ export const karakterPoz = (k: Karakter, p: number, Y: Yerlesim): KarakterDurum 
   const kp = (p + sd) % 230;
   const kirp = kp < 9 ? Math.sin((kp / 9) * Math.PI) : 0;
   pz.blinkF = kirp; pz.blinkB = kirp;
-  pz.agiz = k.yuz?.ifade ?? "dinlen";
+  // K3: "hasta" ifadesi ağız değil yüz durumu; bilinmeyen ifade → dinlen (doğrulayıcı uyarır)
+  const ifade = k.yuz?.ifade ?? "dinlen";
+  pz.hasta = ifade === "hasta" ? 1 : 0;
+  pz.agiz = (AGIZLAR as string[]).includes(ifade) ? (ifade as Agiz) : "dinlen";
+  pz.ter = !!k.yuz?.ter;
+  pz.yatik = k.poz === "yatik";
   pz.lookX = k.yuz?.bakis?.[0] ?? 0.8; pz.lookY = k.yuz?.bakis?.[1] ?? 0;
   pz.browF = k.yuz?.kas ?? 0; pz.browB = k.yuz?.kas ?? 0;
   pz.yakin = k.yuz?.yakin;
@@ -131,7 +138,7 @@ export const karakterPoz = (k: Karakter, p: number, Y: Yerlesim): KarakterDurum 
     Object.assign(pz, w);
     pz.lean = (w.lean ?? 0) * amt + 1.5;
   }
-  let palet: Palet = { ...kayit.palet, ...(k.palet ?? {}) };
+  let palet: Palet = { ...kayit.palet, ...(k.yuzVaryant ? YUZLER[k.yuzVaryant] ?? {} : {}), ...(k.palet ?? {}) };
   // baston aksesuarı: dinlenirken uç taşta (arka el)
   if (k.aksesuar?.includes("baston")) { pz.shB = -14; pz.elB = -40; pz.caneArka = bastonAcisi(pz, -48, false); }
   for (const j of jestler) {

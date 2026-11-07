@@ -91,7 +91,19 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const pa = Q(pen.u - pen.w / 2, pen.h0 + pen.h, ARKA), pb = Q(pen.u + pen.w / 2, pen.h0, ARKA);
   const PW = pb[0] - pa[0], PH = pb[1] - pa[1];
   const disOlcek = Math.max(PW / PEN0.w, PH / PEN0.h);
-  const kar = (plan.karakterler ?? []).map((c, i) => ({ c, i, d: karakterPoz(c, p, ODA_YER), z: deger(c.z, c.kare, p, 3) }));
+  // K3 yatak (oda=yatak): arka duvara paralel, başucu solda. Yatık karakter (poz yatik) şilteye oturur (z/u yok sayılır).
+  const yb = { u0: -1.6, u1: 0.5, zb: ARKA - 0.03, zf: ARKA - 0.95, h: 0.55 }; // z 3.7'te |u| ≤ 1.74 kadraj içi
+  const yzm = (yb.zb + yb.zf) / 2, yum = yb.u0 + 1.07; // başucundan: yastık ucu 1.05 m, ayak ucu tahtadan önce
+  const kar = (plan.karakterler ?? []).map((c, i) => {
+    const d = karakterPoz(c, p, ODA_YER);
+    if (d.pz.yatik && odaAd === "yatak") {
+      const s = (F * 0.00298) / yzm;
+      d.pz.x = X(yum, yzm); d.pz.y = Y(yb.h, yzm); d.pz.scale = s; d.pz.facing = 1;
+      d.pz.sarkma = (Y(yb.h - 0.2, yb.zf) - d.pz.y) / s;
+      return { c, i, d, z: yzm };
+    }
+    return { c, i, d, z: deger(c.z, c.kare, p, 3) };
+  });
   // K2 kumanda (manipulateur): it-çek eden karakterin önünde direk; kol açısı it-çek fazından, el kol ucuna IK ile (el koldan kopmaz)
   const manip = param<{ kim: string; ileri?: number; h?: number; yari?: number } | null>(plan, "manipulator", null);
   const manipCiz: { z: number; el: React.ReactNode }[] = [];
@@ -121,8 +133,15 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     kilit.push({ ad: "masa", p: ekranNokta(k, Q(masa.u, masa.h ?? 0.75, masa.z)), tur: "kurulum" });
   }
   nesneler.push(...manipCiz);
+  if (odaAd === "yatak") {
+    // ayak ucu tahtası kameraya yakın (sağ uç) → yorgan ucunu örter
+    const { u1, zb, zf } = yb;
+    nesneler.push({ z: yzm - 0.6, el: <g key="ayakucu">
+      <polygon points={poly([Q(u1, 0.85, zb), Q(u1, 0.85, zf), Q(u1, 0, zf), Q(u1, 0, zb)])} fill={tonla("#5a3e2a", ton)} stroke={mur} strokeWidth={2.5} />
+      <polyline points={poly([Q(u1, 0.85, zb), Q(u1, 0.85, zf)])} stroke={tonla("#7a5636", ton)} strokeWidth={5} />
+    </g> });
+  }
   nesneler.sort((a, b) => b.z - a.z);
-  const yatakZ = ARKA - 0.05;
   // K2 (D2) gölge → T kol: mum alevinden arka duvara izdüşüm (pencere camına düşmez: kırpma deliği)
   const gT = param<GolgeTParam | null>(plan, "golgeT", null);
   const gTk = gT && mum ? kar.find((q) => q.c.kim === gT.kim) : undefined;
@@ -188,15 +207,22 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           {gTk && <GolgeT pz={gTk.d.pz} z={gTk.z} isik={{ u: mumYer.u, h: mumYer.h + 0.165, z: mumYer.z }} arka={ARKA} t={gTt} konum={gT!.konum} klip="url(#ioDuvar)"
             ekranDunya={(q, z) => ({ u: ((q[0] - 540) * z) / F, h: GOZ - ((q[1] - UFUK) * z) / F })} dunyaEkran={(u, h, z) => Q(u, h, z)} />}
           {teleskop && <g transform={`translate(${pa[0] + PW * 0.65},${pb[1] + 2})`}><rect x={-6} y={-24} width={12} height={24} fill="#4a3220" /><g transform="rotate(-14)"><rect x={-70} y={-40} width={130} height={18} rx={4} fill="#c9a24a" stroke={ink("#c9a24a")} strokeWidth={2} /><rect x={50} y={-43} width={18} height={24} rx={3} fill="#a8862e" /></g></g>}
-          {odaAd === "yatak" && <g>
-            {/* yatak: ahşap çerçeve, keten (eldiven beyazının altında L*), arka duvara dayalı */}
-            <polygon points={poly([Q(-2.3, 0.55, yatakZ - 1.9), Q(-0.5, 0.55, yatakZ - 1.9), Q(-0.5, 0.55, yatakZ), Q(-2.3, 0.55, yatakZ)])} fill={tonla("#cfc4a8", ton)} stroke={mur} strokeWidth={2.5} />
-            <polygon points={poly([Q(-2.3, 0.55, yatakZ - 1.9), Q(-0.5, 0.55, yatakZ - 1.9), Q(-0.5, 0.2, yatakZ - 1.9), Q(-2.3, 0.2, yatakZ - 1.9)])} fill={tonla("#5a3e2a", ton)} stroke={mur} strokeWidth={2.5} />
-            <polygon points={poly([Q(-2.3, 1.25, yatakZ), Q(-0.5, 1.25, yatakZ), Q(-0.5, 0.2, yatakZ), Q(-2.3, 0.2, yatakZ)])} fill={tonla("#5a3e2a", ton)} stroke={mur} strokeWidth={2.5} />
-          </g>}
           {/* zemin: çam döşeme tahtaları (derinlik yönünde) */}
           <AhsapYuzey m={dortgen(Q(-YARI, 0, ARKA), Q(YARI, 0, ARKA), Q(YARI, 0, 1.2), Q(-YARI, 0, 1.2))} boyut={[1300, 900]} tur="doseme" taban={tonla("#8a6a48", ton)} tahta={9} seed={S + 6} derinlik="orta" kenarKontur={false} />
           <polyline points={poly([Q(-YARI, 0, ARKA), Q(YARI, 0, ARKA)])} stroke={mur} strokeWidth={4} />
+          {odaAd === "yatak" && (() => {
+            // K3 yatak: arka duvara paralel ahşap karyola (başucu solda, 1.15 m), keten şilte (eldiven beyazının altında L*)
+            const { u0, u1, zb, zf, h } = yb, ah = tonla("#5a3e2a", ton), ket = tonla("#cfc4a8", ton);
+            return <g>
+              <polygon points={poly([Q(u0, 0, zb), Q(u1, 0, zb), Q(u1, 0, zf), Q(u0, 0, zf)])} fill="#14110d" opacity={0.35} />
+              <polygon points={poly([Q(u0, 1.15, zb), Q(u0, 1.15, zf), Q(u0, 0, zf), Q(u0, 0, zb)])} fill={ah} stroke={mur} strokeWidth={2.5} />
+              <polyline points={poly([Q(u0, 1.15, zb), Q(u0, 1.15, zf)])} stroke={tonla("#7a5636", ton)} strokeWidth={6} />
+              <polygon points={poly([Q(u0, h, zb), Q(u1, h, zb), Q(u1, h, zf), Q(u0, h, zf)])} fill={ket} stroke={mur} strokeWidth={2.5} />
+              <polygon points={poly([Q(u0, h, zf), Q(u1, h, zf), Q(u1, h - 0.17, zf), Q(u0, h - 0.17, zf)])} fill={tonla("#b8ac90", ton)} stroke={mur} strokeWidth={2} />
+              <polygon points={poly([Q(u0, h - 0.17, zf), Q(u1, h - 0.17, zf), Q(u1, 0.2, zf), Q(u0, 0.2, zf)])} fill={ah} stroke={mur} strokeWidth={2.5} />
+              {[u0 + 0.04, u1 - 0.04].map((u, i) => { const a = Q(u, 0.2, zf), b = Q(u, 0, zf), g = (F * 0.06) / zf; return <rect key={i} x={a[0] - g / 2} y={a[1]} width={g} height={b[1] - a[1]} fill={ah} stroke={mur} strokeWidth={2} />; })}
+            </g>;
+          })()}
           {mum && <circle cx={alev[0]} cy={alev[1]} r={(F * 1.6) / mumYer.z} fill="url(#ioMum)" style={{ mixBlendMode: "screen" }} />}
           {nesneler.map((n) => n.el)}
           {bicakCiz}

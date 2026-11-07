@@ -159,3 +159,14 @@ Tek karakter yakın (rig `yakin` yüz), arka başka şablonun bulanık sahnesi.
 
 ## Bölüm düzeyi kurallar (doğrulayıcı `--tam`)
 30–60 sn · 8–14 plan · plan ≥ 60 kare · 2–4 mekân şablonu (+ HARITA/YAKIN-YUZ/MASA-INSERT) · dokunuş tekrarı yok.
+
+## K3 ekleri (yatık poz · hasta yüz · yüz varyantları · bitiş/kontrol_kare kuralları)
+| alan | değerler |
+|---|---|
+| `karakterler[].poz` | `ayakta` (varsayılan) · `yatik` — yatakta sırtüstü: baş solda yastıkta, gövde yorgan altında (kabartı göğüs–kalça–diz–ayak), kol yorganın üstünde, şapka otomatik yok, ayak gölgesi/ayak kilidi yok. **IC-ODA `oda: yatak`** → karyolaya oturur (z/u yok sayılır; yatak arka duvara paralel u −1.6…0.5, ayak ucu tahtası yorgan ucunu örter). **YAKIN-YUZ `yatik: true`** → yüz `yuz` noktasında, yandan-üstten; altında keten çarşaf + başucu tahtası, yorgan kısa sarkar. `egim` çapraz verir (8 iyi). `yorgan` (YAKIN-YUZ, renk; varsayılan #5d6b7a) |
+| `yuz.ifade: "hasta"` | solgun ten (el dahil), göz altı morluğu, göz yarı kapalı (kırpma sürer), yanak kızarıklığı yok. `yuz.ter: true` → alında/şakakta 4 ter damlası. `fisilda` jesti hasta yüzde küçük `fisilti` ağzıyla döner (diş görünmez) |
+| ağız `fisilti` | küçük aralık dudak (ifade olarak da verilebilir) |
+| `karakterler[].yuzVaryant` | kayıttaki yüzü ezer: `francois, louis, memur, telgrafci, katip, mudur, tuccar, yargic` |
+- **Yüz varyantları** (`src/kit/karakterler.ts` YUZLER; kim → varyant `sinirlar.json` `yuzVaryant`): memur = dar-uzun yüz, seyrek saç (açık alın), endişeli ince kaş, yanak çukuru, sakalsız/bıyıksız, şapkasız · telgrafçı = yuvarlak geniş yüz, gür favori, kalın kaş, yuvarlak burun, kumaş kasket · katip = sivri burun, ince bıyık, yağlı yana taranmış saç, kemerli kaş, gözlük yok · müdür/tüccar/yargıç kendi varyantı. François/Louis değişmedi (piksel farkı 0). Rig parametreleri: `palet.yuz {genislik, uzunluk, burunTip duz|sivri|yuvarlak, kasAci, sac bukle|seyrek|duz, yasCizgi, zayif}`, `biyik … | ince`, `sapka … | kasket`; kaş kalınlığı `browHeavy`, favori `sideburn`.
+- **Doğrulayıcı (K3):** iki farklı kişi aynı yüz varyantı → UYARI (louis/louis-eldivenli aynı kişi); kitte olmayan `ifade` → UYARI (dinlen çizilir); `poz` geçersiz/`yuzVaryant` yok → HATA. **HATA:** her jest/prop anahtarı/el/yürüyüş yolu/morf (golgeT, pervazBicak, eldivenGiy, wifi, kule konum, halo, posta, telgraf, mühür, fare insert, kol) ve `dokunus.bit` plan sonundan **≥ 12 kare önce** biter; **`kontrol_kare` her planda zorunlu** ve plan içinde.
+- **Kontrol kareleri:** `node tools/kontrol_kareleri.mjs bolumler/<slug>/bolum.json [cikti.json] [--komut]` → plan başına ilk / kontrol_kare / son (plan içi + mutlak kare + sn); `--komut` remotion still satırlarını yazar. Otomatik kare seçimi yok.
