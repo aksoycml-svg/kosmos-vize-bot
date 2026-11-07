@@ -2574,16 +2574,44 @@
      "olcek": 1.15,
      "kare": [
       0,
-      58,
-      100,
-      140
+      62,
+      82,
+      94,
+      114,
+      124,
+      142,
+      150,
+      168,
+      172,
+      196
      ],
      "durum": {
-      "acik": [
+      "acik": 1,
+      "kapan": [
+       0,
+       0,
+       0.25,
+       0.25,
+       0.5,
+       0.5,
+       0.75,
+       0.75,
        1,
        1,
-       0.7,
-       0.5
+       1
+      ],
+      "ip": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
       ],
       "ipCozuk": true,
       "etiketX": -262,
@@ -2610,10 +2638,18 @@
      "olcek": 1.9,
      "kare": [
       0,
-      58,
-      118,
-      160,
-      196
+      50,
+      62,
+      82,
+      94,
+      114,
+      124,
+      142,
+      150,
+      168,
+      172,
+      196,
+      212
      ],
      "bilek": [
       [
@@ -2625,12 +2661,44 @@
        1190
       ],
       [
-       420,
-       1250
+       161,
+       1391
       ],
       [
-       520,
-       1280
+       428,
+       1391
+      ],
+      [
+       704,
+       1391
+      ],
+      [
+       437,
+       1391
+      ],
+      [
+       432,
+       1720
+      ],
+      [
+       432,
+       1407
+      ],
+      [
+       432,
+       1071
+      ],
+      [
+       432,
+       1366
+      ],
+      [
+       432,
+       1391
+      ],
+      [
+       432,
+       1391
       ],
       [
        -330,
@@ -2643,16 +2711,48 @@
        1270
       ],
       [
-       140,
-       1300
+       142,
+       1240
       ],
       [
-       180,
-       1330
+       -69,
+       1441
       ],
       [
-       220,
-       1330
+       198,
+       1441
+      ],
+      [
+       474,
+       1441
+      ],
+      [
+       207,
+       1441
+      ],
+      [
+       202,
+       1770
+      ],
+      [
+       202,
+       1457
+      ],
+      [
+       202,
+       1121
+      ],
+      [
+       202,
+       1416
+      ],
+      [
+       202,
+       1441
+      ],
+      [
+       202,
+       1441
       ],
       [
        -450,
@@ -2663,30 +2763,107 @@
       -28,
       -10,
       -10,
-      -6,
+      -10,
+      -10,
+      -10,
+      -10,
+      -10,
+      -10,
+      -10,
+      -10,
+      -10,
       -20
      ],
      "poz": [
       {
-       "kare": 58,
+       "kare": 50,
        "poz": "gevsek"
       },
       {
-       "kare": 118,
+       "kare": 58,
        "poz": "kistir"
       },
       {
-       "kare": 160,
+       "kare": 84,
+       "poz": "gevsek"
+      },
+      {
+       "kare": 90,
+       "poz": "kistir"
+      },
+      {
+       "kare": 116,
+       "poz": "gevsek"
+      },
+      {
+       "kare": 120,
+       "poz": "kistir"
+      },
+      {
+       "kare": 144,
+       "poz": "gevsek"
+      },
+      {
+       "kare": 146,
+       "poz": "kistir"
+      },
+      {
+       "kare": 170,
+       "poz": "gevsek"
+      },
+      {
+       "kare": 171,
+       "poz": "kistir"
+      },
+      {
+       "kare": 198,
        "poz": "gevsek"
       }
      ],
      "tut": {
       "prop": "eldiven",
       "bas": 0,
-      "bit": 58,
+      "bit": 50,
       "tutulAci": -64,
       "birakAci": 0
-     }
+     },
+     "takip": [
+      {
+       "prop": "paket",
+       "kare": [
+        62,
+        82
+       ]
+      },
+      {
+       "prop": "paket",
+       "kare": [
+        94,
+        114
+       ]
+      },
+      {
+       "prop": "paket",
+       "kare": [
+        124,
+        142
+       ]
+      },
+      {
+       "prop": "paket",
+       "kare": [
+        150,
+        168
+       ]
+      },
+      {
+       "prop": "paket",
+       "kare": [
+        172,
+        196
+       ]
+      }
+     ]
     }
    ],
    "ekran_yazisi": [
@@ -2704,23 +2881,46 @@
    ],
    "temaslar": [
     {
-     "kare": 58,
+     "kare": 50,
      "olay": "eldiven paketin yatağına bırakılır",
      "ses": "eldiven-fit"
     },
     {
-     "kare": 140,
-     "olay": "el paketin kâğıt kanadını katlar",
+     "kare": 82,
+     "olay": "sol kanat eldivenin üstüne katlanır",
      "ses": "kagit-katlama"
+    },
+    {
+     "kare": 114,
+     "olay": "sağ kanat katlanır",
+     "ses": "kagit-katlama",
+     "db": -8
+    },
+    {
+     "kare": 142,
+     "olay": "alt kanat katlanır",
+     "ses": "kagit-katlama",
+     "db": -8
+    },
+    {
+     "kare": 168,
+     "olay": "üst kanat kapanır — paket kapalı",
+     "ses": "kagit-katlama"
+    },
+    {
+     "kare": 182,
+     "olay": "ip paketin üstünden çekilir",
+     "ses": "ip-zit"
+    },
+    {
+     "kare": 196,
+     "olay": "düğüm sıkılır",
+     "ses": "dugum-tok"
     }
    ],
    "dokunus": null,
-   "kontrol_kare": 140,
-   "not": "v4: tek paket nesnesi, ölçek/konum sabit (690,1340 x1.15); acik 1→.5 sürekli (sıçrama yok), son durum P01 başlangıcıyla aynı (acik .5, cs 1.14, cy 40) = döngü. Kitte acik<.25 farklı (küçük kapalı) sprite'a atlıyor → kapanma ve ip/düğüm yok; ip-zit/dugum-tok görünmediği için çıkarıldı. El 196'da çıkar (plan sonundan 32 önce).",
-   "kit_eksik": [
-    "paket_kapak_kapan",
-    "paket_ip_dugum"
-   ]
+   "kontrol_kare": 160,
+   "not": "v4 + kit K4: tek paket nesnesi, ölçek/konum sabit (690,1340 x1.15). Eldiven 50'de yatağa; el dört kanadı sırayla katlar (paket.durum.kapan, el.takip ile kıstırma kanat kenarını izler), 172–196 ip sarılır ve düğüm sıkılır (durum.ip), etiket ipin ucunda düğüme gelir. El 212'de kadrajdan çıkar (plan sonundan 16 önce). Döngü: kapalı paket P01'in açık paketiyle aynı yer/ölçek/kamera (cs 1.14, cy 40)."
   }
  ]
 }

@@ -17,7 +17,7 @@ import { KolKonum, KONUMLAR, KonumAdi } from "../../doku/ChappeKule";
 import { BL, DOKU_SEED, P, dikdortgen, ink, poly } from "../../doku/sabitler";
 import { KolEl, KISTIR_YEREL, elMatris } from "../../rig/KolEl";
 import { kolIsigi } from "../../rig/RigIsik";
-import { PaketKagidi } from "../../bolumler/blanc/props/PaketKagidi";
+import { PaketKagidi, paketTutma } from "../../bolumler/blanc/props/PaketKagidi";
 import type { El, Prop } from "../tipler";
 import { cl, deger, GIRIS, kameraHesapla, ekranNokta } from "../zaman";
 import { param, Sablon, SablonProps } from "../ortak";
@@ -58,13 +58,15 @@ const elDurum = (el: El, p: number): ElDurum => {
 };
 
 // Prop çizimi (masa düzleminde: tepe-önden y ekseni kısalmış — ölçek 1, 0.86)
-const PropCiz: React.FC<{ pr: Prop; p: number; konum?: P; aci?: number; golge?: boolean; golgeRenk?: string; fl?: number; katman?: "alt" | "ust" }> = ({ pr, p, konum, aci, golge, golgeRenk, fl, katman = "alt" }) => {
+const PropCiz: React.FC<{ pr: Prop; p: number; konum?: P; aci?: number; golge?: boolean; golgeRenk?: string; fl?: number; katman?: "alt" | "ust" | "kapak" }> = ({ pr, p, konum, aci, golge, golgeRenk, fl, katman = "alt" }) => {
   const d = propDurum(pr, p);
   const x = konum ? konum[0] : deger(pr.x, pr.kare, p), y = konum ? konum[1] : deger(pr.y, pr.kare, p);
   const a = aci ?? deger(pr.aci ?? 0, pr.kare, p);
   const o = pr.olcek ?? 1;
-  if (pr.tur === "paket" && !golge) return <PaketKagidi x={x} y={y} olcek={o} aci={a} acik={(d.acik as number) ?? 1} ipCozuk={d.ipCozuk !== false} kabarti={(d.kabarti as number) ?? 0} etiket={katman === "alt" && d.etiket !== false} etiketYeri={[(d.etiketX as number) ?? 250, (d.etiketY as number) ?? 300]} katman={katman} seed={S} />;
-  if (katman === "ust") return null;
+  // K4: kapan/ip > 0 → etiket kapak katmanında (ip ucunda düğüme gelir)
+  const kapanMod = ((d.kapan as number) ?? 0) > 0 || ((d.ip as number) ?? 0) > 0;
+  if (pr.tur === "paket" && !golge) return <PaketKagidi x={x} y={y} olcek={o} aci={a} acik={(d.acik as number) ?? 1} ipCozuk={d.ipCozuk !== false} kabarti={(d.kabarti as number) ?? 0} etiket={(kapanMod ? katman === "kapak" : katman === "alt") && d.etiket !== false} etiketYeri={[(d.etiketX as number) ?? 250, (d.etiketY as number) ?? 300]} katman={katman} kapan={(d.kapan as number) ?? 0} ip={(d.ip as number) ?? 0} seed={S} />;
+  if (katman !== "alt") return null;
   const C = PROPLAR[pr.tur];
   return <g transform={`translate(${x},${y}) rotate(${a}) scale(${o})`}><C durum={d} seed={S} golge={golge} golgeRenk={golgeRenk} fl={fl} /></g>;
 };
@@ -99,6 +101,22 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const FENER_ISIK: Isik = { tip: "nokta", ad: "fener", zemin: HAVUZ, yukseklik: -FENER_ALEV_Y, renk: "#ffb357", havuz: { rx: 300, ry: 160, alfa: 0.8 } };
   const props = plan.props ?? [];
   const eller = (plan.el ?? []).map((e) => elDurum(e, p));
+  // K4 el.takip: pencere içinde kıstırma noktası prop'un tutma noktasını izler (paket: katlanan kanadın serbest kenarı / düğüm).
+  // Pencere dışına 6 kare yumuşak geçiş; anahtarlı yol pencere sınırında tutma noktasına yakın verilmeli. "Tutulan nesne eli takip eder."
+  for (const e of eller) for (const tk of e.el.takip ?? []) {
+    const pr = props.find((q) => q.id === tk.prop);
+    if (!pr || pr.tur !== "paket") continue;
+    const [a, b] = tk.kare, R6 = 6;
+    const w = p < a - R6 || p > b + R6 ? 0 : p < a ? (p - (a - R6)) / R6 : p <= b ? 1 : 1 - (p - b) / R6;
+    if (w <= 0) continue;
+    const d = propDurum(pr, Math.min(Math.max(p, a), b));
+    const g = paketTutma((d.kapan as number) ?? 0, (d.ip as number) ?? 0);
+    if (!g) continue;
+    const o = pr.olcek ?? 1, r = (deger(pr.aci ?? 0, pr.kare, p) * Math.PI) / 180;
+    const hx = deger(pr.x, pr.kare, p) + o * (g[0] * Math.cos(r) - g[1] * Math.sin(r)), hy = deger(pr.y, pr.kare, p) + o * (g[0] * Math.sin(r) + g[1] * Math.cos(r));
+    const dx = (hx - e.kist[0]) * w, dy = (hy - e.kist[1]) * w;
+    e.bilek = [e.bilek[0] + dx, e.bilek[1] + dy]; e.dirsek = [e.dirsek[0] + dx * 0.6, e.dirsek[1] + dy * 0.6]; e.kist = [e.kist[0] + dx, e.kist[1] + dy];
+  }
   // tutulan prop: id → { el, bırakıldı mı, bırakma noktası }
   const tutma = new Map<string, { e: ElDurum; birak: boolean; yer: P; aci: number }>();
   for (const e of eller) {
@@ -181,6 +199,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           {fenerVar && <g transform={`translate(${FX},${FT})`}><ellipse cx={2} cy={2} rx={70} ry={10} fill="#14110d" opacity={0.6} />{React.createElement(PROPLAR.fener, { durum: {}, seed: S, fl })}</g>}
           {/* bırakılmış tutulan prop'lar (bıraktığı yerde) */}
           {tutulan.map((pr, i) => { const t = tutma.get(pr.id!)!; return t.birak ? <PropCiz key={`b${i}`} pr={pr} p={p} konum={t.yer} aci={t.aci} fl={fl} /> : null; })}
+          {/* K4: katlanan paket kanatları + ip — eldivenin üstünde, elin altında (el kanadın kenarını kıstırır) */}
+          {serbest.filter((pr) => pr.tur === "paket").map((pr, i) => <PropCiz key={`k${i}`} pr={pr} p={p} katman="kapak" />)}
           {eller.map((e, i) => <KolEl key={`e${i}`} {...kolProps(e)} isik={kolIsigi(GUNES, e.bilek, { murekkep: "#2a1c10" })} poz={e.poz} tutulan={tutulanCiz(e)} />)}
           {serbest.filter((pr) => pr.tur === "paket").map((pr, i) => <PropCiz key={`u${i}`} pr={pr} p={p} katman="ust" />)}
           {/* K2 (D7): parmak parmak eldiven giyme — eller masanın üstünde, insert'te ≥ %20 */}

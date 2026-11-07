@@ -45,6 +45,7 @@ export type El = {
   olcek?: number;
   poz?: { kare: number; poz: "kistir" | "gevsek" }[];
   tut?: { prop: string; bas: number; bit: number; tutulAci?: number; birakAci?: number }; // prop.id; bit = bırakma (temas)
+  takip?: { prop: string; kare: [number, number] }[]; // K4: pencerede kıstırma prop'un tutma noktasını izler (paket kapan/ip)
 };
 
 export type EkranYazisi = { bant: Bant; metin: string; vurgu?: string[]; tur?: "iddia" | "formul"; kagitSerit?: boolean; bas?: number; bit?: number; boyut?: number };

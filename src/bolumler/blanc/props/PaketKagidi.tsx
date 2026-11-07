@@ -13,15 +13,116 @@ export const PAKET_RENK = { kagit: "#b08a5a", isik: "#c49f6c", golge: "#8a6a40",
 const R = PAKET_RENK;
 const B = { x: 120, y: 150 }; // eldiven yatağı yarı ölçüsü (taban)
 
+// ===== K4 (v4 P14) KAPANMA: `kapan` 0..1 (acik = 1 iken) — AÇIK silüetten SÜREKLİ kapanış, sprite atlaması YOK =====
+// Dört kanat sırayla katlanır: sol (0–.25) · sağ (.25–.5) · alt (.5–.75) · üst (.75–1). Kanat menteşesi yatak kenarı; serbest kenar
+// yarım tur döner (cos) ve kameraya doğru kalkar (sin · KALK); katlanırken köşeler içe kıvrılır (serbest kenar daralır).
+// `ip` 0..1: 0 masada gevşek iki uç (açık hâldeki gibi) · 0→.6 uçlar çekilir, ip paketi boyuna + enine sarar · .6→1 düğüm/fiyonk sıkılır,
+// etiket ipin ucunda düğüme gelir. Kapanmış paket = yatak ölçüsü (silüet açık hâlin ortası; konum/ölçek değişmez).
+const KALK = 0.6; // kalkan kanadın ekranda yukarı kayması (tepe-önden bakış)
+const KD = { yan: 116, u: 128, a: 136 }; // açık hâldeki kanat derinlikleri (D ile aynı)
+const BIN = 12; // yan kanatlar ortada üst üste biner (eldiven aradan görünmez)
+const sat = (v: number) => Math.min(1, Math.max(0, v));
+export const kanatT = (kapan: number, i: number) => sat(kapan * 4 - i);
+// Kanadın serbest kenar orta noktası (yerel) — el bu noktayı kıstırır (MASA-INSERT el.takip)
+const serbestOrta = (i: number, t: number): P => {
+  const c = Math.cos(Math.PI * t), sn = Math.sin(Math.PI * t);
+  if (i === 0) return [-B.x - KD.yan * c + BIN * t, -KD.yan * KALK * sn];
+  if (i === 1) return [B.x + KD.yan * c - BIN * t, -KD.yan * KALK * sn];
+  if (i === 2) return [0, B.y + KD.a * c - KD.a * KALK * sn];
+  return [0, -B.y - KD.u * c - KD.u * KALK * sn];
+};
+// Elin tuttuğu nokta (yerel): aktif kanadın serbest kenarı; ip evresinde düğüm (hafif çekiş). Hiçbiri aktif değilse null.
+export const paketTutma = (kapan: number, ip: number): P | null => {
+  if (ip > 0 && ip < 1) return [0, -10 * Math.sin(Math.PI * sat((ip - 0.6) / 0.4))];
+  if (ip >= 1) return [0, 0];
+  for (let i = 3; i >= 0; i--) { const t = kanatT(kapan, i); if (t > 0) return serbestOrta(i, t); }
+  return serbestOrta(0, 0);
+};
+
 export const PaketKagidi: React.FC<{
   x: number; y: number; olcek?: number; aci?: number; acik: number; ipCozuk?: boolean; kabarti?: number; etiket?: boolean; seed?: number;
   etiketYeri?: P; // açık hâlde etiketin masadaki yeri (yerel)
-  katman?: "alt" | "ust"; // ust: yarı açıkta eldivenin ÜSTÜNE kapanan gevşek yan kanatlar (eldivenden sonra çizilir)
-}> = ({ x, y, olcek = 1, aci = 0, acik, ipCozuk = true, kabarti = 0, etiket = true, seed = 23, etiketYeri = [250, 300], katman = "alt" }) => {
+  katman?: "alt" | "ust" | "kapak"; // ust: yarı açıkta eldivenin ÜSTÜNE kapanan gevşek yan kanatlar; kapak: K4 katlanan kanatlar + ip (elden ÖNCE çizilir)
+  kapan?: number; ip?: number; // K4: bkz. üstteki not
+}> = ({ x, y, olcek = 1, aci = 0, acik, ipCozuk = true, kabarti = 0, etiket = true, seed = 23, etiketYeri = [250, 300], katman = "alt", kapan = 0, ip = 0 }) => {
   const id = "pk" + useId().replace(/:/g, "");
   const tir = (a: P, b: P, n: number, k: string, gen = 5): P[] => Array.from({ length: n + 1 }).map((_, i) => [lerp(a[0], b[0], i / n) + (rnd(seed, `${k}x${i}`) - 0.5) * gen, lerp(a[1], b[1], i / n) + (rnd(seed, `${k}y${i}`) - 0.5) * gen] as P);
   const kat = (a: P, b: P, k: string) => <g key={k}><polyline points={poly([a, b])} stroke={R.katIsik} strokeWidth={3.2} fill="none" /><polyline points={poly([[a[0] - 2, a[1] + 3], [b[0] - 2, b[1] + 3]])} stroke={R.katGolge} strokeWidth={2.2} fill="none" opacity={0.85} /></g>;
   const lif = <filter id={`${id}l`} x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.22" numOctaves={2} seed={seed} /><feColorMatrix type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0 0.14  -1.6 0 0 0 0.95" /></filter>;
+
+  // --- K4 KAPANMA modu (kapan > 0 ya da ip > 0): alt = yalnız yatak tabanı; kapak = dört kanat + ip + etiket ---
+  if (kapan > 0 || ip > 0) {
+    const tr = `translate(${x},${y}) rotate(${aci}) scale(${olcek})`;
+    if (katman === "ust") return null;
+    if (katman === "alt") {
+      const yatak: P[] = [[-B.x - 4, -B.y - 4], [B.x + 4, -B.y - 4], [B.x + 4, B.y + 4], [-B.x - 4, B.y + 4]];
+      return (
+        <g transform={tr}>
+          <defs>{lif}<clipPath id={`${id}c`}><polygon points={poly(yatak)} /></clipPath></defs>
+          <polygon points={poly(yatak.map(([p, q]) => [p - 6, q + 8] as P))} fill="#14110d" opacity={0.18} />
+          <polygon points={poly(yatak)} fill={R.kagit} stroke={ink(R.kagit)} strokeWidth={2.2} strokeLinejoin="round" />
+          <g clipPath={`url(#${id}c)`}><rect x={-B.x - 4} y={-B.y - 4} width={2 * B.x + 8} height={2 * B.y + 8} filter={`url(#${id}l)`} opacity={0.5} /></g>
+        </g>
+      );
+    }
+    // kanat: menteşe [h0,h1] → serbest kenar [f0,f1]; t < .5 iç yüz (masaya yatık, gölgede), t ≥ .5 dış yüz (ışıkta, katlanmış)
+    const kanat = (i: number) => {
+      const t = kanatT(kapan, i), c = Math.cos(Math.PI * t), sn = Math.sin(Math.PI * t);
+      let h0: P, h1: P, f0: P, f1: P;
+      if (i < 2) {
+        const sx = i === 0 ? -1 : 1, fx = sx * B.x + sx * KD.yan * c - sx * BIN * t, fy = -KD.yan * KALK * sn;
+        h0 = [sx * B.x, -B.y]; h1 = [sx * B.x, B.y];
+        const yu = 278 - (278 - 136) * t, ya = 286 - (286 - 136) * t; // serbest kenar uçları: açıkta silüet köşeleri → katlanırken içe kıvrılır
+        f0 = [fx, fy - yu]; f1 = [fx, fy + ya];
+      } else {
+        const sy = i === 2 ? 1 : -1, D0 = i === 2 ? KD.a : KD.u, fy = sy * B.y + sy * D0 * c - D0 * KALK * sn;
+        h0 = [-B.x, sy * B.y]; h1 = [B.x, sy * B.y];
+        const xs = 236 - (236 - 112) * Math.max(t, 0.85 * (kanatT(kapan, 0) + kanatT(kapan, 1)) / 2); // yanlar katlanınca köşeler içe kıvrılır
+        f0 = [-xs, fy]; f1 = [xs, fy];
+      }
+      const ic = t < 0.5;
+      const dolgu = ic ? R.kagit : t > 0.85 ? R.isik : R.katIsik;
+      const kose: P[] = [h0, f0, f1, h1];
+      const gol = sn * 18;
+      return (
+        <g key={`kn${i}`}>
+          {t > 0.02 && t < 0.98 && <polygon points={poly(kose.map(([p, q]) => [p - gol * 0.5, q + gol] as P))} fill="#14110d" opacity={0.16} />}
+          <polygon points={poly(kose)} fill={dolgu} stroke={ink(R.kagit)} strokeWidth={2.2} strokeLinejoin="round" />
+          {ic ? <polyline points={poly([f0, f1])} stroke={R.kenar} strokeWidth={4} opacity={0.7} strokeLinecap="round" />
+            : <polyline points={poly([f0, f1])} stroke={R.katIsik} strokeWidth={4} strokeLinecap="round" />}
+          {/* menteşe katı (ışık + gölge çifti) */}
+          {kat(h0, h1, `kk${i}`)}
+          {/* iç yüzde bir kırışık; dış yüzde kâğıt lifi */}
+          <path d={`M ${lerp(h0[0], f0[0], 0.5) + 6} ${lerp(h0[1], f0[1], 0.5)} Q ${(h0[0] + h1[0] + f0[0] + f1[0]) / 4} ${(h0[1] + h1[1] + f0[1] + f1[1]) / 4 + 6} ${lerp(h1[0], f1[0], 0.5) - 6} ${lerp(h1[1], f1[1], 0.5)}`} stroke={ic ? R.katGolge : R.golge} strokeWidth={1.8} fill="none" opacity={0.4} />
+        </g>
+      );
+    };
+    // ip: gevşek uçlar çekildikçe kısalır (yoldan geri), sarma çizgileri kenardan merkeze uzar, fiyonk .6→1'de sıkılır
+    const a = sat(ip / 0.6), b = sat((ip - 0.6) / 0.4);
+    const uc1 = `M ${-B.x - 6} 40 Q ${-B.x - 60} 70 ${-B.x - 40} 130 Q ${-B.x - 20} 180 ${-B.x - 80} 210`;
+    const uc2 = etiketYeri[0] < 0
+      ? `M ${-B.x - 6} -30 Q ${-B.x - 40} -10 ${(-B.x + etiketYeri[0]) / 2} ${(etiketYeri[1] - 30) / 2} Q ${etiketYeri[0] - 40} ${etiketYeri[1] - 30} ${etiketYeri[0] - 8} ${etiketYeri[1] + 4}`
+      : `M 30 ${B.y + 6} Q 70 ${B.y + 50} 140 ${B.y + 40} Q 200 ${B.y + 30} ${etiketYeri[0] - 8} ${etiketYeri[1] + 4}`;
+    const ipC = (d: string, k: string, uz: number) => uz > 0.01 && <g key={k}><path d={d} pathLength={1} strokeDasharray={`${uz} 2`} stroke={R.ip} strokeWidth={5} fill="none" strokeLinecap="round" /></g>;
+    const sar: [P, P][] = [[[0, -B.y - 6], [0, 0]], [[0, B.y + 6], [0, 0]], [[-B.x - 6, 0], [0, 0]], [[B.x + 6, 0], [0, 0]]];
+    const etk = etiket ? (() => { const e = sat((ip - 0.3) / 0.7); const ex = lerp(etiketYeri[0], 30, e), ey = lerp(etiketYeri[1], 48, e); return <g><path d={`M 0 0 Q ${ex * 0.5} ${ey * 0.5 + 14} ${ex} ${ey}`} stroke={R.ip} strokeWidth={4} fill="none" opacity={e > 0.02 ? 1 : 0} /><ToursEtiketi x={ex} y={ey} olcek={lerp(0.4, 0.34, e)} aci={lerp(-6, 18, e)} /></g>; })() : null;
+    return (
+      <g transform={tr}>
+        {[0, 1, 2, 3].filter((i) => kanatT(kapan, i) === 0).map(kanat)}
+        {[0, 1, 2, 3].filter((i) => kanatT(kapan, i) > 0).map(kanat)}
+        {ipC(uc1, "u1", 1 - a)}{ipC(uc2, "u2", 1 - a)}
+        {a > 0 && sar.map(([p0, p1], i) => <path key={`s${i}`} d={`M ${p0[0]} ${p0[1]} L ${p1[0]} ${p1[1]}`} pathLength={1} strokeDasharray={`${a} 2`} stroke={R.ip} strokeWidth={6} strokeLinecap="round" />)}
+        {b > 0 && <g transform={`scale(${0.35 + 0.65 * b})`}>
+          <path d="M 0 0 q -26 -22 -36 -2 q 10 16 36 2 q 26 -22 36 -2 q -10 16 -36 2" fill={R.ip} stroke={R.ipKontur} strokeWidth={1.6} />
+          <path d="M -2 4 q -10 30 -24 44 M 2 4 q 12 26 30 34" stroke={R.ip} strokeWidth={5} fill="none" strokeLinecap="round" />
+          <circle cx={0} cy={1} r={6} fill={R.ipKontur} />
+        </g>}
+        {etk}
+      </g>
+    );
+  }
+
+  if (katman === "kapak") return null; // kapak katmanı yalnız K4 kapanma modunda çizilir
 
   // --- KAPALI / KABARTILI ---
   if (acik < 0.25) {
