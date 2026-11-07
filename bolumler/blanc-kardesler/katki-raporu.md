@@ -1172,3 +1172,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Kararlar: Hilenin kalbi P05 (Louis: "Hata yap. Hemen geri al.") → P07 (kol çentik + geri dönüş, "HATA + GERİ AL = TEMİZ MESAJ") → P08 → P09 ("Devlete: hata · Onlara: haber") zincirine bağlandı. Fısıltı "Hatalar… kasıtlıydı." oldu. Mühür ≈10. sn'ye alındı. Kitap beraatten önceye geçti. Son: "Silahı klavye değildi. Bir eldivendi." (P01 ile döngü).
 - Kurallar/ihlaller: Yalnız arastirma.md kullanıldı. Düzeltme sinyalinin biçimi uydurulmadı (kol yalnızca geri döner). "Dürbün" tek kaynaklı olduğu için anlatımda geçmiyor, yalnız açıklamada var. Wi-Fi gündüz (katalog). Planlar 3–5 sn. Yeni şablon yok.
 - Açık: kit_eksik doğrulaması: P08 uykulu esneme varyantı, P11 güvenin son sayfadan önce gizli olması, P09 IC-ODA kolunda HATA/halo. D1 fare isteğe bağlı kesilebilir. Brif yalnız TR istediği için EN yazılmadı. Kullanıcı onayı gerekli.
+
+## senarist · 2026-11-07 · Senaryo v4 revizyonu (P04 fare çıktı, P05 sadeleşti)
+- Ne yaptım: `senaryo-v4.md`'de P04'ten fare/ızgara/baston (D1) ve 1.1 sn sessizliği çıkardım (François durup Louis'ye döner, 3.5 sn), P05'i "Tours istasyonunda iki telgraf memurunu satın aldılar." + kese→gölge T (D2 yeniden tanımlı, 5.0 sn) yaptım; kurulum→karşılık, eee-yani, kelime/süre ve v3→v4 farkları güncellendi (102 kelime, ≈47.9 sn konuşma, 60.0 sn, 7 dokunuş).
+- Etki (orkestraya): `dokunuslar.md` (D1 sil, D2 yeniden tanımla) ve `bolum.json` (P04 fare/baston, P05 replik, süreler 12.0–15.5 / 15.5–20.5) bu senaryoyla hizalanmalı; ben dokunmadım. P07 görsel/anlatımı "Hatalar… kasıtlıydı."ın karşılığı oldu.
+- Açık: Hata/geri-al sözlü kurulumu artık yalnız P07'de; P05'te gölge tek "tik" oynuyor, mekanizma P07'de ilk kez açılıyor (izleyici testinde sorun görünmedi).

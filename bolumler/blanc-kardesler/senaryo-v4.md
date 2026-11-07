@@ -1,7 +1,7 @@
 # Senaryo v4: Blanc Kardeşler — "Bu eldiven devleti hackledi"
 
 Kaynak: yalnız `arastirma.md`. Taban: `senaryo-v3.md` (14 plan, aynı şablonlar). Yapımcı notu: "mükemmel hikâyeyi harcamış." v4 hilenin kalbini (hata + geri al) merkeze alır ve her kurulumu bir karşılığa bağlar.
-Format: 1080x1920 · **60.0 sn** · **14 plan** · mekân şablonları SOKAK, IC-ODA, KULE-DIS (+ HARITA, MASA-INSERT, YAKIN-YUZ) · **8 dokunuş**.
+Format: 1080x1920 · **60.0 sn** · **14 plan** · mekân şablonları SOKAK, IC-ODA, KULE-DIS (+ HARITA, MASA-INSERT, YAKIN-YUZ) · **7 dokunuş** (D1 baston–fare çıktı).
 Doğruluk kararları (v2.1/v3 geçerli): "kardeşler" (ikiz yok) · tokmak yok · gece kollar sabit · dürbün/teleskop elde değil, pervaza kurulu · yaprak takvim yok · itiraf eden "ağır hastalanan bir memur" · sonuç "beraat" · yasa "aynı yıl" · düzeltme = "geri al" (biçimi uydurulmaz).
 
 ## 0. Hikâye omurgası
@@ -35,8 +35,8 @@ Işık kuralı: Kol hareketi olan planlar (P07, P08 arka, P09 dış, P13) günd�
 | P01 | 0.0–3.0 (3.0) | MASA-INSERT · tepe-onden · fener · props: paket (açık), eldiven · el `gorevli` (v3 P01 aynen) | Bir el, kahverengi kâğıttan beyaz eldiveni çekip fener ışığındaki masaya bırakır. Hareket planın içinde tamamlanır. | "Bu eldiven, Fransız devletinin ağını hackledi." | **1834. Bilgisayar yok.** | — (kanca) | kâğıt hışırtısı · eldivenin masaya "fıt"ı |
 | P02 | 3.0–7.0 (4.0) | SOKAK · bordeaux · gun · francois + louis + tuccar (kompars, yüzsüz) · isim etiketleri (v3 P02) | Gündüz Bordeaux sokağında François konuşup Paris yönünü işaret eder, Louis deftere rakam yazar. | "Bordeaux'lu Blanc kardeşler, Paris'teki tahvil fiyatına oynuyor." | **Fiyatı önce bilen kazanır.** | — | kalem cızırtısı · kısık kalabalık |
 | P03 | 7.0–12.0 (5.0) | HARITA · paris-bordeaux (Tours noktası etiketli) · telgraf {0.2→1.8 sn, sayaç "4 SAAT"} · muhur {≈3.2 sn, "YALNIZ DEVLET"} · posta {0.2→4.7 sn, "3. GÜN"} | Sinyal kuleden kuleye Bordeaux'ya birkaç saatte varır. Hattın üstüne kırmızı "YALNIZ DEVLET" mührü iner. Posta arabası ise üçüncü günde ancak varır. | "Telgraf birkaç saat, posta üç gün. Ama telgraf yalnız devletin." | **En hızlı ağ: kilitli.** | — (harita ritmi) | kule "klak" zinciri (kısık) · mühür "TOK" (temas) · tekerlek (kısık) · sayaç "tık"×3 |
-| P04 | 12.0–16.0 (4.0) | SOKAK · bordeaux · gece · insert fare (bas ≈1.3 sn) · francois + louis (baston) (v3 P04) | Islak sokakta François konuşurken ızgaradan bir fare çıkar. Louis bakmadan bastonu indirir. François cümlesini bitirir. | FRANÇOIS: "Hattı satın alamayız…" *(TAK, 1.1 sn sessizlik)* "…memurunu alırız." | *(altyazı, üst bant)* | **D1 Baston–fare:** Önündeki engeli düşünmeden ezer. Cümlenin ikinci yarısının (memuru satın alma) habercisi. | ıslak taşta adım · baston "TAK" · fare cıyaklaması · ızgara "tink" |
-| P05 | 16.0–20.5 (4.5) | IC-ODA · tours-buro · mum · louis + mudur + memur (`yuzVaryant memur`) · golgeT {kim: memur, konum SAK} · memur `it-cek` tekrar 2 · isim etiketi yok | Louis keseyi masada müdüre kaydırır. Louis konuşurken arkadaki zayıf memurun duvardaki gölgesi T koluna döner ve iki kez oynar: bir ileri, bir geri. | "İki memur satın alınıyor." LOUIS: "Hata yap. Hemen geri al." | **Rüşvet · Tours istasyonu** | **D2 El–gölge provası:** Gölgenin itişi "hata yap"a, çekişi "geri al"a denk gelir. Memur emri bedeniyle prova eder. | kese kayması · altın şıngırtısı · iki "tik" (it, çek; kısık) |
+| P04 | 12.0–15.5 (3.5) | SOKAK · bordeaux · gece · francois + louis (yan yana yürüyüş; François cümlenin ortasında durur, Louis'ye döner) · fare/ızgara/baston yok | Yağmurlu gece sokağında François ile Louis yan yana yürür. François "satın alamayız…" derken durur, Louis'ye döner, cümleyi öyle bitirir. | FRANÇOIS: "Hattı satın alamayız…" *(kısa duraksama, François durup Louis'ye döner)* "…memurunu alırız." | *(altyazı, üst bant)* | — (dokunuşsuz; duraksama yalnız cümleyi böler) | ıslak taşta adım · yağmur (kısık) |
+| P05 | 15.5–20.5 (5.0) | IC-ODA · tours-buro · mum · louis + mudur + memur (`yuzVaryant memur`) · golgeT {kim: memur, konum SAK, tek oynama} · memur `it-cek` tekrar 1 · isim etiketi yok | Louis altın keseyi masaya kaydırır, müdür keseyi alır. Arkadaki zayıf memurun duvardaki gölgesi T koluna döner ve bir kez oynar. Anlamı: telgrafın kendisini değil, onu çalıştıran adamı satın aldılar. | "Tours istasyonunda iki telgraf memurunu satın aldılar." | **Rüşvet · Tours istasyonu** | **D2 Gölge–T:** Satın alınan memurun gölgesi makineye (T koluna) döner; adam hattın parçası olur. | kese kayması · altın şıngırtısı · bir "tik" (gölge T oynar; kısık) |
 | P06 | 20.5–25.5 (5.0) | MASA-INSERT · tepe · fener · props: paket, eldiven, corap · el `gorevli` (v3 P06) | Memurun eli Paris'ten gelen paketi açar. Eldiveni sola koyar, çorabı kaldırınca çorap aşağı sarkar. | "Paris'ten Tours'a paket gelir. Eldiven: yükseliş. Çorap: düşüş." | **ELDİVEN = ↑ · ÇORAP = ↓** (formul) | **D3 Çorap sarkar:** Yünün sarkması ↓ okuyla aynı anda. | paket kâğıdı açılışı · eldiven "fıt" · çorap masaya "flop" |
 | **P07 ★** | 25.5–30.5 (5.0) | KULE-DIS · gun · 4 kule: yakın Tours (L 240, taban 1500) + 3 uzak sırtta · yakın kol {MESAJ → HATA ≈1.0 sn (halo) → MESAJ ≈1.8 sn} · uzaklar sırayla aynı ikiliyi kopyalar (≈2.5 / 3.3 / 4.0 sn, son varış ≤4.8 sn) | **Hilenin kalbi:** Yakın kulenin kolu fazladan bir çentik atar (kırmızı halo) ve hemen eski yerine döner. Arkadaki kuleler aynı "çentik + geri dönüşü" dalga hâlinde tekrarlar. | "Memur resmî mesaja bir hata ekliyor. Hemen geri alıyor." | **HATA + GERİ AL = TEMİZ MESAJ** (formul; geri dönüş karesinde) | **D4 Çentik + geri dönüş + kopya dalgası** | sert "KLAK" (hata) · yumuşak "klak" (geri) · uzaktan kısık klak×3 |
 | P08 | 30.5–34.5 (4.0) | YAKIN-YUZ · telgrafci · manipulator · olcek 3.6 · arka: KULE-DIS gun bulanık, kol HATA→MESAJ (halo) · `it-cek` tekrar 3 sürer · `esne` (2. tikten sonra) | Ara kuledeki telgrafçı kolu tekdüze iter-çeker. Arkada bulanık kol çentik atıp dönerken elini durdurmadan kocaman esner. | "Mesaj bozulmuyor. Ama kuleler hatayı da kopyalıyor." | **Kimse fark etmedi.** | **D5 Esneme:** Hata elinden geçerken esner. Bu bir rutin, kimse sorgulamıyor. | kumanda "tik"×3 · esneme (kısık) · uzak "klak" |
@@ -62,16 +62,16 @@ Işık kuralı: Kol hareketi olan planlar (P07, P08 arka, P09 dış, P13) günd�
 | Eldiven (kanca, "ağını hackledi") | P01 | Kodun "yükseliş"i → beraatten sonra açıkça giyilir → "Bir eldivendi." → P01'e döngü | P06 → P12 → P14 |
 | Çorap | P06 | Kodun ikinci yarısı: sarkan çorap = ↓ (D3). Aynı planda kapanır; fısıltıdan çıkarıldı. | P06 |
 | "Devletin ağı" / "yalnız devlet" (engel) | P01, P03 | Kilitli ağa içeriden girilir ("memurunu alırız") → kilit sonunda yasayla gelir | P04, P05 → P12 |
-| Hata ("Hata yap") | P05 (Louis + gölge itişi) | Kol çentiği → kopyalanır → okunur → itiraf: "Hatalar… kasıtlıydı." | P07 → P08 → P09 → P10 |
-| Düzeltme ("Hemen geri al") | P05 (gölge çekişi) | Kol geri döner + TEMİZ MESAJ → "Mesaj bozulmuyor" → "silinen o hatayı okuyor" | P07 → P08 → P09 |
-| Hasta memur | P05 (zayıf memur, gölgesi T) | Aynı yüz yatakta itiraf eder | P10 |
+| Satın alınan memur (gölgesi T'ye döner; "telgrafı değil, adamı aldılar") | P05 | Hata burada doğar: kol çentiği → kopyalanır → okunur → itiraf: "Hatalar… kasıtlıydı." | P07 → P08 → P09 → P10 |
+| Düzeltme ("Hemen geri alıyor") | P07 (aynı planda kurulur ve karşılanır; P05'te replik yok) | Kol geri döner + TEMİZ MESAJ → "Mesaj bozulmuyor" → "silinen o hatayı okuyor" | P07 → P08 → P09 |
+| Hasta memur | P05 (zayıf memur, gölgesi T) | Aynı yüz yatakta itiraf eder; "Hatalar… kasıtlıydı." fısıltısının karşılığı P07'deki görüntü ve anlatım ("Memur resmî mesaja bir hata ekliyor. Hemen geri alıyor.") | P10 ← P07 |
 | Pervaz çentikleri | P09 | "İki yıl sonra" | P10 |
 | Boş yasa | P11 | Beraat + "Yasa aynı yıl çıkıyor. Ama geç." | P12 |
 | Güve | P11 | Boş sayfanın kanıtı; yasa yok demek. Aynı planda kapanır. | P11 |
 | Wi-Fi | P13 | Kancadaki "hackledi"nin karşılığı → "Silahı klavye değildi." | P01 ↔ P13–P14 |
 | Paket | P01 (açık) | Paris'te yeniden kapanır, döngü | P06 → P14 |
 
-Çıkarılanlar: Fısıltıdaki "Eldiven… çorap…" çıkarıldı (karşılıksızdı, yerini P05'e bağlanan "Hatalar… kasıtlıydı." aldı). v3'teki "Tek bir hata. Fazlası değil." yerine "Hata yap. Hemen geri al." geldi, çünkü bu replik mekanizmayı kuruyor.
+Çıkarılanlar: Fısıltıdaki "Eldiven… çorap…" çıkarıldı (karşılıksızdı, yerini P07'ye bağlanan "Hatalar… kasıtlıydı." aldı). P05'teki Louis repliği "Hata yap. Hemen geri al." çıkarıldı (kullanıcı onaylı); mekanizmayı artık P07 görüntüsü ve anlatımı kuruyor. P04'teki fare/ızgara/baston (D1) ve 1.1 sn sessizlik çıkarıldı.
 
 ## 4. İlk kez izleyen testi
 
@@ -80,8 +80,8 @@ Işık kuralı: Kol hareketi olan planlar (P07, P08 arka, P09 dış, P13) günd�
 P01 1834. Bilgisayar yok.               (eldiven çekilir)
 P02 Fiyatı önce bilen kazanır.          (kardeşler, defter)
 P03 En hızlı ağ: kilitli.               (sinyal 4 SAAT · mühür YALNIZ DEVLET · araba 3. GÜN)
-P04 "Hattı satın alamayız… memurunu alırız."  (baston–fare)
-P05 Rüşvet · Tours istasyonu  "Hata yap. Hemen geri al."  (gölge T: it, çek)
+P04 "Hattı satın alamayız… memurunu alırız."  (yağmurlu gece, François durup döner)
+P05 Rüşvet · Tours istasyonu            (kese kayar, gölge T oynar)
 P06 ELDİVEN = ↑ · ÇORAP = ↓
 P07 HATA + GERİ AL = TEMİZ MESAJ        (kol çentik + dönüş, kopya dalgası)
 P08 Kimse fark etmedi.                  (esneyen telgrafçı)
@@ -94,7 +94,7 @@ P14 Sıradaki paket yolda.               (paket kapanır → P01)
 ```
 
 ### Ses açık (yalnız anlatım + replik)
-"Bu eldiven, Fransız devletinin ağını hackledi. / Bordeaux'lu Blanc kardeşler, Paris'teki tahvil fiyatına oynuyor. / Telgraf birkaç saat, posta üç gün. Ama telgraf yalnız devletin. / Hattı satın alamayız… memurunu alırız. / İki memur satın alınıyor. Hata yap. Hemen geri al. / Paris'ten Tours'a paket gelir. Eldiven: yükseliş. Çorap: düşüş. / Memur resmî mesaja bir hata ekliyor. Hemen geri alıyor. / Mesaj bozulmuyor. Ama kuleler hatayı da kopyalıyor. / Bordeaux'da bir suç ortağı, silinen o hatayı okuyor. / İki yıl sonra memur ağır hastalanıyor. Hatalar… kasıtlıydı. / Mahkeme toplanıyor. Ama bunu suç sayan yasa yok. / Beraat. Yasa aynı yıl çıkıyor. Ama geç. / Bugün buna ilk siber saldırı diyenler var. / Silahı klavye değildi. Bir eldivendi."
+"Bu eldiven, Fransız devletinin ağını hackledi. / Bordeaux'lu Blanc kardeşler, Paris'teki tahvil fiyatına oynuyor. / Telgraf birkaç saat, posta üç gün. Ama telgraf yalnız devletin. / Hattı satın alamayız… memurunu alırız. / Tours istasyonunda iki telgraf memurunu satın aldılar. / Paris'ten Tours'a paket gelir. Eldiven: yükseliş. Çorap: düşüş. / Memur resmî mesaja bir hata ekliyor. Hemen geri alıyor. / Mesaj bozulmuyor. Ama kuleler hatayı da kopyalıyor. / Bordeaux'da bir suç ortağı, silinen o hatayı okuyor. / İki yıl sonra memur ağır hastalanıyor. Hatalar… kasıtlıydı. / Mahkeme toplanıyor. Ama bunu suç sayan yasa yok. / Beraat. Yasa aynı yıl çıkıyor. Ama geç. / Bugün buna ilk siber saldırı diyenler var. / Silahı klavye değildi. Bir eldivendi."
 
 ### "Eee yani?" taraması (bulunan → düzeltme)
 | Plan | İzleyicinin sorusu | Durum |
@@ -102,19 +102,19 @@ P14 Sıradaki paket yolda.               (paket kapanır → P01)
 | P01 | "Eldiven nasıl hackler?" | Bilinçli merak boşluğu. P06'da (kod), P09'da (okuma) ve P14'te (cevap) kapanır. |
 | P02 | "Tahvil fiyatı neden önemli?" | Ekrandaki "Fiyatı önce bilen kazanır." cevaplar. |
 | P03 | "Engel ne, ne zaman anlaşılıyor?" | v3'te 13. saniyede, plan sonunda geliyordu. v4'te mühür ≈10. saniyede iner ve anlatımda "Ama…" ile söylenir. |
-| P04 | "Fare ne alaka?" | Baston, iki yarım cümlenin arasına girer: önce sorun ("satın alamayız"), sonra ezilen engel, sonra çözüm ("memurunu alırız"). Hâlâ sırıtırsa D1 hikâye kaybı olmadan kesilebilir. |
-| P05 | "Gölge neden T oluyor?" | Gölgenin itişi ve çekişi Louis'nin iki emrine kare kare oturuyor. Memurun bedeni makineye dönüşüyor. |
+| P04 | "Sorun ne, çözüm ne?" | Fare/baston kalktı. Tek cümle: sorun ("satın alamayız") → duraksama (François Louis'ye döner) → çözüm ("memurunu alırız"). Eee yani yok. |
+| P05 | "Gölge neden T oluyor?" | Anlatım "telgraf memurunu satın aldılar" diyor, gölge T'ye dönüyor: telgrafı değil, onu çalıştıran adamı aldılar. Tek görsel, tek cümle. |
 | P06 | "Paket de postayla gelmiyor mu, nasıl hızlı?" | Anlatıma "Tours'a" eklendi, P03 haritasında Tours yolun üstünde etiketli. Paket yolun yalnız bir kısmını gidiyor, kalanını telgraf taşıyor. |
 | P07 | "Geri alınan hata ne işe yarar?" | Soru bilinçli olarak 5 saniye açık kalıyor. P08 ve P09 cevaplıyor. |
 | P08 | "Neden esniyor, acı mı çekiyor?" | v3'te bağlamsızdı. Şimdi esnerken eli kolu çekmeye devam ediyor, anlatımda "kopyalıyor", ekranda "Kimse fark etmedi." var. Bu rutin olarak okunuyor. |
 | P09 | "Silinen hata nasıl haber olur?" | "Devlete: hata · Onlara: haber" ve P06'daki kod. Kol çentiği pervaz çentiğine dönüşüyor. |
-| P10 | "Fısıltıyla ne söyledi, eee yani?" | v3'teki "Eldiven… çorap…" fısıltısı yerine "Hatalar… kasıtlıydı." geldi. P05'teki "Hata yap" emrinin karşılığı ve mahkemenin sebebi. |
+| P10 | "Fısıltıyla ne söyledi, eee yani?" | v3'teki "Eldiven… çorap…" fısıltısı yerine "Hatalar… kasıtlıydı." geldi. P07'de görülen ve anlatılan ("Memur resmî mesaja bir hata ekliyor. Hemen geri alıyor.") hilenin itirafı ve mahkemenin sebebi. |
 | P11 | "Güve neden sayfa çevrilmeden önce orada?" | Güve artık son boş sayfa açılınca çıkıyor (kit doğrulaması gerekiyor, bkz. `kit_eksik` 2). |
 | P12 | "Eldiveni neden giyiyor?" | Beraatin hemen ardından, duraksamadan giyiyor: şifre artık açıkta ve ceza yok. "Ama geç." ironiyi kapatıyor. |
 | P13 | "Wi-Fi neden?" | "İlk siber saldırı" cümlesiyle aynı anda. Ekrandaki "Kablo yok. Elektrik yok." farkı tamamlıyor. |
 | P14 | "Son ne demek?" | "Bir eldivendi." tamamlanmış bir cümle ve tekrar izlemede doğrudan "Bu eldiven…" cümlesine akıyor. Ekrandaki "Sıradaki paket yolda." ise iki yıllık tekrarı ve döngüyü görselleştiriyor. |
 
-Kalan soru: yok. (Fare D1 bilinçli olarak riskli tutuldu, kesilirse hikâye kaybı olmaz.)
+Kalan soru: yok.
 
 ## 5. Kelime ve süre
 | Plan | Seslendirilen kelime | Tahmini konuşma (2.1 k/sn) | Plan |
@@ -122,8 +122,8 @@ Kalan soru: yok. (Fare D1 bilinçli olarak riskli tutuldu, kesilirse hikâye kay
 | P01 | 6 | 2.9 | 3.0 |
 | P02 | 7 | 3.3 | 4.0 |
 | P03 | 10 | 4.8 | 5.0 |
-| P04 | 5 (+1.1 sn sessizlik) | 3.5 | 4.0 |
-| P05 | 4 + 5 = 9 | 4.3 | 4.5 |
+| P04 | 5 (+≈0.5 sn duraksama) | 2.9 | 3.5 |
+| P05 | 7 | 3.3 | 5.0 |
 | P06 | 8 | 3.8 (v3'te iki nokta duraksaması yavaşlattı; pay bırakıldı) | 5.0 |
 | P07 | 9 | 4.3 | 5.0 |
 | P08 | 7 | 3.3 | 4.0 |
@@ -133,23 +133,23 @@ Kalan soru: yok. (Fare D1 bilinçli olarak riskli tutuldu, kesilirse hikâye kay
 | P12 | 7 | 3.3 | 4.0 |
 | P13 | 7 | 3.3 | 4.0 |
 | P14 | 5 | 2.4 | 3.5 |
-| **Toplam** | **104** | **≈49.5 sn** | **60.0 sn** |
+| **Toplam** | **102** | **≈47.9 sn** | **60.0 sn** |
 
-- Kalan ≈10.5 sn: fare sessizliği, esneme, güve uçuşu, TOK/BERAAT vuruşu, P14 düğümü ve plan geçiş payları.
-- En sıkışık planlar P03 (4.8/5.0) ve P05 (4.3/4.5). Gerçek ses taşarsa önce P03'ten "posta üç gün" kısmı ekrana bırakılır (sayaç zaten "3. GÜN" gösteriyor). İkinci kısaltma P12'deki "Ama geç."
-- Planların tümü 3.0–5.0 sn arasında. Her planda 2–4 sn içinde ikinci bir görsel olay var (mühür, TAK, gölge, sarkma, dönüş, esneme, çentik, güve, TOK→giyme, yay, düğüm).
+- Kalan ≈12.1 sn: P04 duraksaması, kese/gölge anı, esneme, güve uçuşu, TOK/BERAAT vuruşu, P14 düğümü ve plan geçiş payları.
+- En sıkışık plan P03 (4.8/5.0). Gerçek ses taşarsa önce P03'ten "posta üç gün" kısmı ekrana bırakılır (sayaç zaten "3. GÜN" gösteriyor). İkinci kısaltma P12'deki "Ama geç."
+- Planların tümü 3.0–5.0 sn arasında. Her planda 2–4 sn içinde ikinci bir görsel olay var (mühür, François'nın durup dönmesi, kese→gölge, sarkma, dönüş, esneme, çentik, güve, TOK→giyme, yay, düğüm).
 
 ## 6. v3 → v4 farkları
-1. **Hilenin kalbi eklendi:** "Hata yap. Hemen geri al." (P05) → kol çentik atar ve geri döner, ekranda "HATA + GERİ AL = TEMİZ MESAJ" (P07) → "Mesaj bozulmuyor. Ama kuleler hatayı da kopyalıyor." (P08) → "silinen o hatayı okuyor" + "Devlete: hata · Onlara: haber" (P09).
-2. **Fısıltı değişti:** "Eldiven… çorap…" yerine "Hatalar… kasıtlıydı." Karşılığı P05/P07'deki hata, sonucu da mahkeme.
+1. **Hilenin kalbi eklendi:** gölge T'ye dönen satın alınmış memur (P05) → kol çentik atar ve geri döner, ekranda "HATA + GERİ AL = TEMİZ MESAJ" (P07) → "Mesaj bozulmuyor. Ama kuleler hatayı da kopyalıyor." (P08) → "silinen o hatayı okuyor" + "Devlete: hata · Onlara: haber" (P09).
+2. **Fısıltı değişti:** "Eldiven… çorap…" yerine "Hatalar… kasıtlıydı." Karşılığı P07'deki hata, sonucu da mahkeme.
 3. **Engel öne alındı:** "Yalnız devlet" mührü P03'ün ortasına geldi (≈10. sn) ve anlatımda "Ama…" ile söyleniyor. v3'te 13. saniyede, plan sonundaydı.
 4. **Son tamamlandı:** "Kablo yok. Bilgisayar yok. Sadece…" yerine "Silahı klavye değildi. Bir eldivendi." Bu cümle tekrar izlemede "Bu eldiven…" kancasına bağlanıyor. "Kablo yok. Elektrik yok." ekran yazısına (P13) taşındı.
 5. **Jestlere bağlam verildi:** P08'de esneme it-çek sürerken ve "kopyalıyor" kelimesiyle oluyor. P12'de (eski P11) eldiven TOK'tan hemen sonra, el hareket hâlindeyken giyiliyor. P11'de (eski P12) güve son boş sayfa açılınca çıkıyor.
 6. **Sıra değişti:** Kitap (yasa yok) artık beraatten önce: sebep → sonuç. Eski P11 ile P12 yer değiştirdi.
-7. **Replikler değişti:** François: "Hattı satın alamayız… memurunu alırız." (engel → plan köprüsü). Louis: "Hata yap. Hemen geri al." (mekanizma).
-8. **D2 ve D6'ya sebep–sonuç eklendi:** Gölgenin iki hareketi iki emre denk geliyor (D2). Pervaz çentiğini kolun çentiği tetikliyor (D6).
+7. **Replikler değişti:** François: "Hattı satın alamayız… memurunu alırız." (engel → plan köprüsü). P05'teki Louis repliği çıktı; P05 anlatımı "Tours istasyonunda iki telgraf memurunu satın aldılar." (kullanıcı onaylı revizyon).
+8. **D2 ve D6'ya sebep–sonuç eklendi:** Gölge tek kez T'ye dönüyor, adam makineye dönüşüyor (D2). D1 (baston–fare) çıktı; P04 dokunuşsuz. Pervaz çentiğini kolun çentiği tetikliyor (D6).
 9. **P13 gündüz:** Wi-Fi morfu katalogda yalnız `gun`'de var (bolum.json zaten öyleydi). Senaryo buna hizalandı.
-10. **Süre:** 64.2 sn (ilk kurgu) → 60.0 sn hedefi, 104 kelime. Şablon ve plan sayısı aynı; yeni şablon yok. Bütün planlar v3 planlarının parametre değişikliği.
+10. **Süre:** 64.2 sn (ilk kurgu) → 60.0 sn hedefi, 102 kelime. Şablon ve plan sayısı aynı; yeni şablon yok. Bütün planlar v3 planlarının parametre değişikliği.
 
 ## 7. Paylaşım
 - **Kapak:** ELDİVENLE DEVLETİ HACKLEDİLER (P01 karesi)
