@@ -465,21 +465,22 @@
     "P10-memur": {
       "plan": "P10",
       "metin": "Hatalar… kasıtlıydı.",
-      "dur_ffprobe": 2.038,
+      "dur_ffprobe": 2.847,
       "model": "eleven_v3",
       "ses_kimligi": "MuOq11XzQTthwLhmGZ2V",
       "words": [
         {
           "t": "Hatalar…",
           "s": 0.072,
-          "e": 1.08
+          "e": 1.52
         },
         {
           "t": "kasıtlıydı.",
-          "s": 1.19,
-          "e": 2
+          "s": 1.7,
+          "e": 2.8
         }
-      ]
+      ],
+      "secim": "aday C (kullanıcı seçimi)"
     },
     "P11": {
       "plan": "P11",
