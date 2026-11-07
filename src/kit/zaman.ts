@@ -11,6 +11,15 @@ export const cl = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as con
 export const deger = (v: Sayi | undefined, kare: number[] | undefined, p: number, varsayilan = 0, egri: (t: number) => number = INOUT): number => {
   if (v === undefined) return varsayilan;
   if (typeof v === "number") return v;
+  if (typeof v === "boolean") return v ? 1 : 0;
+  // Boolean anahtarlar (ör. ipCozuk) basamaklı: son geçilen anahtarın değeri, 0/1.
+  if ((v as unknown[]).some((x) => typeof x === "boolean")) {
+    const b = (v as unknown[]).map((x) => (x ? 1 : 0));
+    if (b.length === 1 || !kare || kare.length < 2) return b[0];
+    let i = 0;
+    while (i + 1 < kare.length && p >= kare[i + 1]) i++;
+    return b[i];
+  }
   if (v.length === 1 || !kare || kare.length < 2) return v[0];
   return interpolate(p, kare, v, { ...cl, easing: egri });
 };

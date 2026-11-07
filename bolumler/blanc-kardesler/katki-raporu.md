@@ -1093,3 +1093,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Ne yaptım: `Plan.ses?: {dosya, kare, db?}[]` (tipler.ts); Bolum.tsx'te plan Sequence'i içinde `@remotion/media` Audio, `kare`'den başlar, volume = 10^(db/20), plan sonunda kesilir; bolum_dogrula.mjs: dosya yok = HATA, ffprobe ile plan sonundan taşma + aynı planda çakışma = UYARI (ffprobe yoksa uyarı); KATALOG.md'ye alan eklendi.
 - Dokunduğum dosyalar: src/kit/tipler.ts, src/kit/Bolum.tsx, tools/bolum_dogrula.mjs, src/kit/KATALOG.md. tsc temiz; bolum.json'a dokunulmadı.
 - Not: Audio, projede zaten kullanılan `@remotion/media` paketinden. Taşan ses kesilir (sonraki plana akmaz) — plan aşırı sesler gerekirse ayrı alan gerekir.
+
+## teknisyen · 2026-11-07 · Blanc storyboard v3 kontrol kareleri tamamlama
+- Ne yaptım / komutlar: eksik kareleri (P06-son, P06-temas-guvenli, P07–P14) `npx remotion still Bolum` ile render ettim (scale 0.5, guvenli false/true); kontrol sayfaları python3 PIL ile üretildi (sayfa-1/2.jpg, 968x2939, q85).
+- Üretilen dosyalar: storyboard-v3/kareler/ altında 34 yeni PNG; storyboard-v3/sayfa-1.jpg, sayfa-2.jpg.
+- Hatalar ve çözümler: P14 dört karesi (ilk, dokunus, son, temas-guvenli) "Booleans can only be interpolated using Easing.step1" hatası verdi (src/kit/zaman.ts:14 ← src/kit/props/index.tsx:137 ← src/kit/sablonlar/MasaInsert.tsx:61). Neden: bolum.json P14 paket.durum.ipCozuk boolean dizisi. Düzeltilmedi (kod/veri kararı motion/yönetmen); sayfa-2'de EKSIK olarak işaretli.
