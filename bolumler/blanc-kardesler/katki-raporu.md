@@ -1119,3 +1119,7 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 ## yönetmen · 2026-11-07 · bolum.json doğrulayıcı uyum turu
 - Ne yaptım: 15 bitiş HATA'sı kapatıldı (bak/it-cek/golgeT/D2/esne/D5/fısılda/sapka/çorap/kitap/D8/paket/el planı ≥12 kare erken bitirildi), P08 ifade yorgun→dinlen, P10 yatik+poz yatik (hasta/ter/fısıltı) ve kit_bekliyor silindi, P05 louis u −0.85→−1.1 (örtüşme kalktı). Toplam 3854 kare ve ses kareleri aynı; kare-listesi-v2.json üretildi.
 - Dokundum: bolumler/blanc-kardesler/bolum.json, storyboard-v3/kare-listesi-v2.json. Kayma: mühür 448→447 (P03, TOK ses de 447), düğüm tok 210→207 (P14), P05 tik 2/3 → 241/285 (jest kısalınca); çorap 426'da masaya oturur, güve 229. Hepsi 1–5 kare; foley'i motion/kurgucu bu karelere hizalasın.
+
+## teknisyen · 2026-11-07 · Blanc storyboard v3.1 kontrol kareleri
+- Ne yaptım: 14 plan × 4 kare (ilk/kontrol/son/kontrol-güvenli) = 56 still render, 0 hata; sayfa-1 (P01–P07) ve sayfa-2 (P08–P14) JPEG 968x2939 üretildi. Kaynak: storyboard-v3/kare-listesi-v2.json. Komutlar: npx remotion still Bolum --frame --props --scale=0.5 (betik scratchpad/render31.py).
+- Üretilen: bolumler/blanc-kardesler/storyboard-v31/kareler/P*.png (56), sayfa-1.jpg, sayfa-2.jpg. Hata yok; ara commit'ler 8 karede bir atıldı.
