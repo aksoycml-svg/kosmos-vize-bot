@@ -12,7 +12,7 @@
     "isik": "mum",
     "masa": {
      "z": 3.0,
-     "u": 0.1,
+     "u": 0.45,
      "w": 1.4,
      "d": 0.8
     },
@@ -22,7 +22,7 @@
      "bas": 30,
      "bit": 230,
      "donusum": 40,
-     "konum": "MESAJ"
+     "konum": "SAK"
     },
     "manipulator": {
      "kim": "memur",
@@ -35,7 +35,7 @@
     {
      "kim": "memur",
      "z": 3.65,
-     "u": -0.3,
+     "u": -0.2,
      "yon": 1,
      "yuz": {
       "bakis": [

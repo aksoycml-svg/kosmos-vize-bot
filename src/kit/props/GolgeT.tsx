@@ -30,14 +30,14 @@ export const GolgeT: React.FC<{
   const omuzA = duvar(dunyaya(pz, [-40, -372])), kalcaO = duvar(dunyaya(pz, [42, -226])), kalcaA = duvar(dunyaya(pz, [-36, -226]));
   const b0 = duvar(dunyaya(pz, [0, -300])), b1 = duvar(dunyaya(pz, [100, -300]));
   const birim = Math.hypot(b1[0] - b0[0], b1[1] - b0[1]) / 100; // 1 rig yerel birimi duvarda kaç px
-  // hedef T: boyu gövde ölçeğinden (≈ 0.8 m karşılığı, duvarda büyür), eğimi kolun dikey sapmasından (±28° sınırlı: it-çek pompası
+  // hedef T: boyu gövde ölçeğinden (≈ 0.8 m karşılığı, duvarda büyür), eğimi kolun dikey sapmasından (±15° sınırlı: it-çek pompası
   // T'yi sallar), merkez omuzun üstünde-önünde. Kol kısa/bükük olsa da T okunur boyda kalır.
   const kolV: P = [el[0] - omuz[0], el[1] - omuz[1]];
   const ileri = Math.sign(dirsek[0] - omuz[0] + kolV[0] + 1e-6) || 1;
-  const egim = Math.max(-28, Math.min(28, (Math.atan2(kolV[1], Math.abs(kolV[0]) + 30 * birim) * 180) / Math.PI));
+  const egim = Math.max(-15, Math.min(15, (Math.atan2(kolV[1], Math.abs(kolV[0]) + 30 * birim) * 180) / Math.PI));
   const yonu: P = [ileri * Math.cos((egim * Math.PI) / 180), Math.sin((egim * Math.PI) / 180)];
   const Lr = 270 * birim;
-  const C: P = [omuz[0] + ileri * Lr * 0.25, omuz[1] - Lr * 0.42];
+  const C: P = [omuz[0] + ileri * Lr * 0.2, omuz[1] - Lr * 0.12];
   const TL: P = [C[0] - yonu[0] * Lr / 2, C[1] - yonu[1] * Lr / 2], TR: P = [C[0] + yonu[0] * Lr / 2, C[1] + yonu[1] * Lr / 2];
   const kol = [lp(omuz, TL, t), lp(dirsek, C, t), lp(el, TR, t)];
   const kalin = 26 * birim * (1 - t) + Lr * 0.075 * t;
@@ -48,7 +48,7 @@ export const GolgeT: React.FC<{
   const sagUc = lp(parmak, hedefUc(TR, (-K.sag * Math.PI) / 180), t);
   const solUc = lp(bas, hedefUc(TL, Math.PI + (K.sol * Math.PI) / 180), t);
   // gövde → direk (dikey, merkezden kalça hizasına)
-  const alt = (kalcaO[1] + kalcaA[1]) / 2, dw = Lr * 0.04;
+  const alt = (kalcaO[1] + kalcaA[1]) / 2, dw = Lr * 0.045;
   const govde = [lp(omuz, [C[0] + dw, C[1]], t), lp(omuzA, [C[0] - dw, C[1]], t), lp(kalcaA, [C[0] - dw, alt], t), lp(kalcaO, [C[0] + dw, alt], t)];
   const basR = 0.12 * 1150 / z * k * (1 - t) + Lr * 0.03 * t;
   const basM = lp(bas, C, t);

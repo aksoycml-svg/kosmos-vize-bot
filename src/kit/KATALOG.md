@@ -1,4 +1,4 @@
-# Set Kiti K1 — Şablon Kataloğu
+# Set Kiti K1+K2 — Şablon Kataloğu
 
 Yönetmen bölümü **yalnız bu katalogla** kurar: `bolumler/<slug>/bolum.json` yazılır, kod yazılmaz.
 Sınırların makine okunur tek kaynağı: `src/kit/sinirlar.json` (doğrulayıcı aynı dosyayı okur).
@@ -32,6 +32,7 @@ Dosya adı `bolum*.json` olmalı (bundle'a `require.context` ile girer). Kareler
 - **Anahtarlı değer:** sayı ya da dizi; dizi ise aynı nesnenin `kare` dizisiyle eşit uzunlukta (yol, durum, kamera).
 - **Kamera eğrisi:** `giris` = bezier(.16,1,.3,1) (varsayılan), `inout` push-in, `lineer` yalnız kamera kaymasında.
 - **Yazı bantları:** `ust` y 240–400, `alt` y 1290–1490. Replik ayakları/temas/kurulum nesnesini örtecekse `ust`.
+- **Yazı standardı (K2, şablondan bağımsız — parametre DEĞİL, `src/kit/yazi.tsx`):** ekran yazısı HER ZAMAN kâğıt şerit + Playfair 900 (`tur: formul` → Plex Mono, yine şeritli); kırmızı vurgu yalnız TEK kelime (`vurgu` listesinden ilk eşleşen); uzun metin iki dengeli satıra bölünür, şerit iki satırı kapsar, kutu 240–400 içinde kalır (boyut otomatik). `kagitSerit`/`boyut` alanları geri uyum için şemada, yok sayılır. Replik: konuşan plakası + Inter 800 + arkasında yarı saydam koyu bant. Doğrulayıcı: üst bantta ekran yazısı ile replik aynı anda → uyarı; vurgu > 1 → uyarı.
 - **Temas = ses:** görünür her çarpma/bırakma bir `temaslar` girdisi. Jest temasları (baston-vur vuruşu, it-cek tik'leri, eldiven-giy gerilmesi, MASA-INSERT bırakma, HARITA mühür, kule kol varışı) doğrulayıcıda denetlenir. `--temas` çıktısı mutlak kare/saniye listesidir; sesler oradan yerleşir.
 - **Dokunuş:** plan başına en çok bir `dokunus.id`; bölümde tekrar ederse doğrulayıcı hata verir. Kütüphane: `DOKUNUS-KUTUPHANESI.md`.
 
@@ -46,7 +47,7 @@ Dosya adı `bolum*.json` olmalı (bundle'a `require.context` ile girer). Kareler
 | `isaret` | `aci` (−95 ileri, −150 yukarı) | ön kol |
 | `sapka-kaldir` | — | ön el şapkayı kaldırır, bit'te iner |
 | `baston-vur` | `vurus` (kare), `el` (arka/on), `hedefX` | uç taşa iner, temas = `vurus` (zorunlu temas). `aksesuar: baston` |
-| `esne` | — | baş geri, gözler kapalı, ağız O (yakın planda) |
+| `esne` | `agiz` (`esneme`\|`O`) | yakın planda (YAKIN-YUZ) varsayılan kocaman `esneme` ağzı (çene düşer, diş + dil, gözler sıkı); genel planda küçük O. Ağız ifadesi `yuz.ifade: "esneme"` da olur |
 | `it-cek` | `tekrar` (3) | kol iter-çeker; tik kareleri `round(bas + (i+.25)·L/tekrar)` |
 | `eldiven-giy` | `gerilme` (kare) | iki el önde; gerilme karesinden sonra el eldiven beyazı (temas zorunlu) |
 | `fisilda` | `hiz` | ağır göz kapağı, kısık ağız döngüsü |
@@ -61,7 +62,7 @@ Jestler zarfla karışır (giriş bezier(.16,1,.3,1), çıkış hızlı); aynı 
 | `eldiven` | `elBoyu` (266) | İMZA NESNESİ — beyazı başka nesnede yok |
 | `corap` | `sarkma` 0–1 | koyu yün |
 | `dosya` | `kapak` 0 açık → 1 kapalı | kapanış karesi = "TOK" teması |
-| `kitap` | `sayfa` 0–1, `bos` | açık kanun kitabı |
+| `kitap` | `sayfa` 0–1, `bos`, `guve` 0–1 (K2) | açık kanun kitabı; `guve` anahtarlı: 0 boş sayfada güve (kanat kapalı), .1'den sonra kıvrımlı uçuş, 1'de kadraj üstünden çıkmış (fade yok) |
 | `kese`, `hokka`, `mum`, `fener` | — | fener/mum ışık kaynağı şablonda aynı noktadan |
 
 ---
@@ -96,7 +97,10 @@ Kutu oda, göz hizası 1.6 m (ufuk y 760, F 1150), alçak çatı katı tavanı +
 | `arka` | arka duvar z (4.2) · `pervazCentik` (sayı) · `pervazCentikYeni` (kare: bir çentik daha — bıçak teması) · `teleskop` |
 - Karakter: `z` 2.2–4.0 m, `u` −2.0…2.0 m (0 orta). Ekran x = 540 + u·1150/z → **|u|/z ≤ 0.33** tut (IG düğme sütunu x > 920). En çok 3.
 - Ayak y = 760 + 1840/z: z ≥ 2.6 ⇒ ayak ≤ 1468.
-- Sınır: duvara düşen karakter gölgesi (D2 "gölge T kol") bu sürümde YOK — zemin gölgesi var.
+| `golgeT` (K2, D2) | `{kim, bas, bit, donusum (36), konum ("MESAJ"; "SAK" önerilir)}` — yalnız `isik: mum`. Karakterin omuz/dirsek/el/baş/kalça noktaları mum alevinden arka duvara izdüşer (net kenar, büyür; pencere camına düşmez); `bas`→`bas+donusum` kol düzleşip regülatör, parmak/baş gösterge, gövde direk olur; `bit`'e doğru geri döner. Karakter z > masa z olmalı (mumun arkasında). Gölge karakterin yanına düşsün: mum yanal olarak karakterden ≥ 1 m uzak (örnek: masa u 0.45, karakter u −0.2, z 3.65 / masa z 3.0) |
+| `manipulator` (K2) | `{kim, ileri (0.75 m), h (1.0 m), yari (0.3 m)}` — Chappe kumandası: karakterin önünde ahşap direk + küçük siyah kol + tavandaki makaralara kablolar. Kol açısı karakterin `it-cek` fazından; ön el IK ile tutamağa oturur (el koldan kopmaz). Tik temasları `it-cek` ile aynı |
+| `pervazBicak` (K2, D6) | `{bas, kare, bit, tip ("ceket")}` — sağ-alt kadraj kenarından kol + bıçak; uç `pervazCentik`+1. çentiği çizer, `kare` = "kırt" teması (zorunlu). `pervazCentikYeni` = aynı kare. Push-in planında kullan (kamera cs ≈ 2.5; pencere `u` 0.1 ile çentik merkeze yakın, cx sınırı içinde) |
+- Örtüşme (K2): doğrulayıcı aynı derinlik yakınındaki (|Δz| ≤ 0.6) karakterlerin ekran x farkı omuz genişliğinden (0.6 m) azsa UYARI verir (`sinirlar.json` → `IC-ODA.ortusme`).
 
 ## MASA-INSERT
 Tepe-önden masa yakın planı (SB2-TOURS P01 plakası): meşe masa, prop seti, 0–2 KolEl eli.
@@ -109,7 +113,8 @@ Tepe-önden masa yakın planı (SB2-TOURS P01 plakası): meşe masa, prop seti, 
 - Props: ekran px (masa düzlemi). Masa y aralığı ≈ 860–1680 (tepe-onden).
 - El: `{tip, giris, kare[], bilek[[x,y]], dirsek[[x,y]], aci[], olcek(1.9), poz:[{kare, poz:"kistir|gevsek"}], tut:{prop, bas, bit, tutulAci, birakAci}}`. Tutulan prop kıstırma noktasını izler, bit'ten önceki 18 karede `birakAci`'ya döner, bit'te bırakıldığı yerde kalır (bit = temas, zorunlu). `tip`: ceket · gomlek · parisManset · gorevli · yazici · louis.
 - Kamera: cs 1.0–1.5. Kıstırma noktası ve bırakma yeri alt banda (y > 1290) gelmesin; yazı `ust`.
-- Sınır: tutulan prop'un gölgesi yok (el gölgesi var); eldiven-giy için el içi eldiven animasyonu yok.
+| `eldivenGiy` (K2, D7) | `{bas, bit, gerilme (bas+.86·L), x (540), y (1000 = eldiven boğum hattı), olcek (1.3), aci}` — Louis sol eli alttan girer, sağ el (KolEl) manşeti kıstırır; kılıflar sırayla dolar (işaret→orta→yüzük→serçe→başparmak), sonra manşet çekilir. `gerilme` = TEMAS (zorunlu). olcek 1.3 ⇒ el ≈ ekranın %21–26'sı. Eldiven = İMZA beyazı; bu planda başka eldiven prop'u koyma |
+- Tutulan prop'un masaya gölgesi (K2): otomatik, el gölgesiyle aynı güneş kaymasından (`elYukseklik`).
 
 ## KULE-DIS
 Açık gök + Loire sırtları + 1–5 Chappe istasyonu (kare tuffeau kule ≈ 2 kat, çatıdan gök mavisi direk + siyah T; 2.3:1).
@@ -119,7 +124,8 @@ Açık gök + Loire sırtları + 1–5 Chappe istasyonu (kare tuffeau kule ≈ 2
 | `kuleler` | `[{x, taban, L, konum, halo:[bas,bit], govde}]` — `L` regülatör px (280 yakın … 36 uzak); `konum` KONUMLAR adı (`BEKLE, SAK, MESAJ, HATA, DINLEN`) ya da `{kare, konum[]}` (varışta aşma + yerleşme; varış karesi = "klak") |
 - Kule tepesi y = taban − 3.2·L: L 280 ⇒ taban ≥ 1300 ki T üst banda girmesin. Uzak kuleler sırt çizgisine (y 900–1060) bassın.
 - `halo`: kırmızı halka (yalnız hata vurgusu). Ön planda en yakın kuleye toprak yol otomatik.
-- Kamera cs 0.9–4.0 (push-in kola). Sınır: Wi-Fi morfu (P13) yok.
+- Kamera cs 0.9–4.0 (push-in kola).
+- `kuleler[].wifi` (K2, P13): `{bas, bit}` — T kolları ahşap Wi-Fi ikonuna döner: sağ gösterge → küçük yay, sol → orta, regülatör → büyük yay, sırayla (her biri ⅓); pivot topuzu = nokta. Siyah boyalı ahşap + açık kenar çizgisi, neon/parlama yok; direk gök mavisi kalır. Varış kareleri `bas + (bit−bas)·i/3` (i=1..3) = "tak" temasları. Yalnız `saat: gun`. Yaylar regülatör tepesinin 0.86·L üstüne çıkar → büyük kulede taban/L'yi üst banda girmeyecek seç (L 240, taban 1500 ⇒ yay tepesi y ≈ 520).
 
 ## HARITA
 Parşömen + Fransa + dönem rotası. Font dışı glif yok (sayaç ikonları SVG: güneş/ay/T).
@@ -138,7 +144,8 @@ Tek karakter yakın (rig `yakin` yüz), arka başka şablonun bulanık sahnesi.
 | `arka` * | `{sablon: "KULE-DIS"|"IC-ODA"|"SOKAK"|..., parametreler, kamera}` |
 | `yuz` | `[x, y]` yüz merkezi (540, 800) — yazı bantlarından ≥ 60 px uzak |
 | `olcek` | 3.6 (≥ 3.5 ⇒ yüz ≥ %15) · `egim` (yastığa yaslanma °) · `yastik` · `bulanik` (16) · `isik` `gun`|`mum` |
-- 1 karakter; `z/u` yok sayılır. Sınır: kocaman esneme ağzı rig'de küçük "O"; manipülatör kolu prop'u yok (it-cek kolu kadraj dışına uzanır, kullanma).
+- 1 karakter; `z/u` yok sayılır. `esne` jesti burada kocaman `esneme` ağzı verir (K2).
+- `manipulator` (K2): `{ileri: [x, y] rig yerel (175, −280), yari (72)}` — göğüs önünde kumanda kolu; it-çek fazı kolu döndürür, el IK ile tutamakta; kablolar kadraj üstüne. Kol jest dışında da elde kalır (süreklilik).
 
 ## AVLU-SALON (kayıtlı değil)
 `src/kit/sablonlar/avlu-salon/AvluSalon.tsx` = SB2-BORSA P02 kodu (portikli avlu, kalabalık, tahta). Parametrelenmedi; `SB2-BORSA` kompozisyonu olarak çalışır. Gerektiğinde kurulum ekibi şablonlaştırır.

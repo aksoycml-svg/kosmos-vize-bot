@@ -6,13 +6,14 @@ Durum: **kitte** = mevcut şablon/jest/prop ile kurulabilir · **kısmi** = yakl
 | id | ad (Blanc) | şablon | kit karşılığı | temas/ses | durum |
 |---|---|---|---|---|---|
 | D1 | Baston–fare | SOKAK gece | `insert: {tur: "fare", bas}` (66 kare; Louis çizmesi + baston TAK + fare dalışı + kuyruk tink); geniş planda `baston-vur` jesti | pençe, çizme, TAK, cıyak, dalış, tink | kitte |
-| D2 | El–gölge (memurun it-çek'i duvarda T kol gölgesi) | IC-ODA mum | `it-cek` jesti + mum nokta ışığı (zemin gölgesi) | 3 × makara tik | kısmi — duvar gölgesi T dönüşümü yok |
+| D2 | El–gölge (memurun it-çek'i duvarda T kol gölgesi) | IC-ODA mum | `golgeT {kim, bas, bit, konum}` + `manipulator {kim}` + `it-cek` jesti | 3–4 × makara tik | kitte (K2) |
 | D3 | Çorabı kaldıran el (sarkar, uzar, ok ↓) | MASA-INSERT | `corap` prop `durum.sarkma` + `el.tut`; ok ↓ = ekran yazısı | yün "flop" (bırakma) | kısmi — ok grafiği yazıyla |
 | D4 | Fazladan çentik + kopya dalgası | KULE-DIS gün | `kuleler[].konum` anahtarları (sırayla `HATA`) + `halo` | klak zinciri (ilki sert) | kitte |
-| D5 | Esneme | YAKIN-YUZ (arka KULE-DIS) | `esne` jesti, olcek ≥ 3.6 | esneme sesi, uzak klak | kısmi — ağız küçük O |
-| D6 | Pervaz çentiği ("iki yıl") | IC-ODA bordeaux-cati | `pervazCentik` + `pervazCentikYeni` (kare) | bıçak "kırt" | kısmi — bıçak/el görünmez |
-| D7 | Eldiven giyme (dosya kapağı aksan) | MASA-INSERT | `dosya` prop `durum.kapak` 0→1 (TOK) + `louis` elleri | dosya TOK, eldiven gerilmesi | kısmi — parmak parmak giyme animasyonu yok (Kukla `eldiven-giy` jesti genel planda) |
-| D8 | Boş kitap + güve | MASA-INSERT | `kitap` prop `durum.sayfa`, `bos: true` | sayfa çevirme | kısmi — güve yok |
+| D5 | Esneme | YAKIN-YUZ (arka KULE-DIS) | `esne` jesti (yakında kocaman `esneme` ağzı), olcek ≥ 3.6 | esneme sesi (ağız tepe karesi), uzak klak | kitte (K2) |
+| D6 | Pervaz çentiği ("iki yıl") | IC-ODA bordeaux-cati, push-in | `pervazCentik` (sayı) + `pervazBicak {bas, kare, bit}` (+ `pervazCentikYeni` = kare) | bıçak "kırt" (kare) | kitte (K2) |
+| D7 | Eldiven giyme (dosya kapağı aksan) | MASA-INSERT | `eldivenGiy {bas, bit, gerilme}` (parmak parmak, eller ≥ %20); dosya aksanı ayrı planda `dosya.kapak` | eldiven gerilme (+ dosya TOK) | kitte (K2) |
+| D8 | Boş kitap + güve | MASA-INSERT | `kitap` `durum.sayfa`, `bos`, `guve` (anahtarlı 0→1) | sayfa çevirme (güve sessiz/çok kısık) | kitte (K2) |
+| P13 | T kolu → Wi-Fi (döngülü son) | KULE-DIS gün | `kuleler[].wifi {bas, bit}` | 3 × ahşap "tak" (yay varışları) | kitte (K2) |
 
 ## Yeni dokunuş eklerken
 - Satır ekle: id (bölüm-öneki ile, ör. `BL-D1`), şablon, hangi parametre/jest/prop ile kurulur, temas listesi, durum.
