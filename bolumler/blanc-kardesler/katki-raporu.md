@@ -1225,3 +1225,9 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Ne yaptım: P09 yazı bandı ust→alt (T kol + HATA halkası açıkta); P05 memur u −0.35→0.0 (T gölgesi memurun arkasında, pencere yanında); P02 u 0.40/0.58→0.28/0.72 (etiketler başlara yakın); P13 kamera cs 2.0→1.7, cy 460→330 (kule tabanı görünür). Süreler/ses kareleri aynı, 3730 kare, doğrulayıcı 0 hata.
 - kit_eksik: P01 yazı fade-in (Giris 0→14 kare; bas<0 doğrulayıcıda HATA, ilk kare yazısız → şablon: ilk karede opak seçeneği); P12 3034–3070 el yönü (json parametresi yok); P05 gölge T eğik/kısmi okunur (kit "SAK" izdüşümü, memur–mum açısı).
 - Kontak: scratchpad/k/kontak-v4fix.png
+
+## kurgucu · 2026-11-07 · v4 müzik sonu + final ses zinciri
+- Ne yaptım: müziği archive.org kaynağından yeniden kestim (64.08 sn, motif tam, dönüş ~3490 aynı); miks.json toplam_kare 3730, fade_out_bas 3670; ham ses.mp3 üzerinde final zincirini ölçtüm (eski limiter simülasyonu LRA 1.8 / fark 2.1 dB; öneri I −14.5, TP −1.5, LRA 4.0, fark 7.0 dB).
+- Dokunduğum dosyalar: public/blanc/muzik/chopin-nocturne-b108-blanc-v4.mp3, bolumler/blanc-kardesler/miks.json, sesler.md, muzik/lisanslar.md.
+- Karar: duck/db değişmedi (ham mikste fark 8.4 dB, spec uyumlu); asıl sorun alimiter 0.11. Foley dokunulmadı.
+- Açık: ses yeniden render edilmeli (teknisyen); kulakla dinleme yapılmadı, motif sonundaki bölüm-sonu fade'i dinlenerek onaylanmalı.

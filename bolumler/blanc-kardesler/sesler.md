@@ -105,3 +105,9 @@ Toplam gerçek süre tahmini (her plan max(plan, ses+0.4)): **61.3 sn** (plan to
 2. P10 kare 302 `sessizlik` (−60) temasını sil: tam sessizlik kullanılmıyor.
 3. P08 `esneme` temas `db`'si (−6) miks'i ezer; dosyada −6 gömülü, yani etkin ≈ −12. `db` alanını kaldırmak ya da −6'da bırakmak serbest, ayrıca düşürme.
 4. P07 `kol-klak-sert` temas `db: 0` kullanıcı "foley yüksek" geri bildirimine aykırı; −3 önerilir (miks istisnası −3 ama temas.db onu ezer).
+
+## v4.1 müzik/final zinciri notu (kurgucu)
+- Müzik dosyası yeniden kesildi: 64.08 sn (3845 kare) >= bölüm 3730 kare; açılış motifi tam (dönüş kare 3490 aynı), bölüm sonunda kit fade_out_kare 60 (3670–3730). miks.json toplam_kare 3730. duck/db değişmedi (−8 / −18).
+- Ezilmenin nedeni final zincirindeki `alimiter limit=0.11`: ham ses.mp3 (−24.2 LUFS, LRA 7.5) üzerinde simülasyon: I −25.7, LRA 1.8, anlatım−boşluk farkı 2.1 dB. Önerilen zincir (loudnorm iki geçiş + yumuşak limiter): I −14.5, TP −1.5, LRA 4.0, anlatım RMS −14.5 / boşluk −21.5 (fark 7.0 dB; eski 2.1). Ham mikste fark 8.4 dB.
+- Ses yeniden render gerekir (müzik dosyası ve toplam_kare değişti); ham ses.mp3 bayat.
+- Teknisyen final ses zinciri (iki geçiş; `alimiter 0.11` KALDIRILDI): `J=$(ffmpeg -i ses.mp3 -af loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json -f null - 2>&1)` ardından `ffmpeg -i ses.mp3 -af "loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=<input_i>:measured_TP=<input_tp>:measured_LRA=<input_lra>:measured_thresh=<input_thresh>:offset=<target_offset>:linear=true,alimiter=limit=0.84:attack=5:release=100:level=disabled" -ar 48000 final.wav`

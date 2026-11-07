@@ -12,7 +12,7 @@
 | Lisans | CC0 1.0 / Public Domain Dedication (öğe metadata `licenseurl`: http://creativecommons.org/publicdomain/zero/1.0/) — ticari kullanıma uygun, atıf zorunlu değil |
 | Atıf (isteğe bağlı) | Müzik: Chopin, Nocturne in C minor B. 108 (kamu malı, CC0 kayıt, Musopen/Internet Archive) |
 | Kullanım | `public/blanc/muzik/chopin-nocturne-b108-blanc.mp3`: kaynağın 0:00.45–1:01.5 bölümü + açılış notası (0:00.45–0:04.65) P14'te geri dönüş; 64.23 sn |
-| v4 kesim | `chopin-nocturne-b108-blanc-v4.mp3`: aynı kaynak, ffmpeg ile yeniden düzenlendi (gövde 0–58.65 sn + 0.5 sn crossfade + açılış motifi); 61.62 sn |
+| v4 kesim | `chopin-nocturne-b108-blanc-v4.mp3`: aynı kaynak (archive.org mp3, 0:00.45 başlangıç), ffmpeg ile yeniden düzenlendi (gövde 0–58.65 sn + 0.5 sn crossfade + açılış motifi, kuyruk dahil); 64.08 sn (v4.1, bölüm 62.17 sn) |
 | Not | Lisans Internet Archive öğe sayfasındaki metadata'dan doğrulandı; kaydı yükleyenin kayıt hakkı beyanına dayanır (Musopen/Parso CC0 serisi). |
 
 ### Foley

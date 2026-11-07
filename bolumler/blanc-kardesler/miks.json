@@ -1,15 +1,15 @@
 {
  "fps": 60,
- "toplam_kare": 3690,
+ "toplam_kare": 3730,
  "referans": "Anlatım/replik 0 dB. Foley dosyaları ~-20 LUFS'a normalize; temas.db > istisnalar > onerilen_db. v4: müzik kesintisiz (hiç -60/sessizlik yok), yalnız yumuşak duck.",
  "muzik": {
   "dosya": "blanc/muzik/chopin-nocturne-b108-blanc-v4.mp3",
   "bas_kare": 0,
   "db": -8,
-  "not": "db = anlatımsız seviye (-8 dB); anlatım altında duck -18 mutlak. v4 kesim: ana gövde 0-58.65 s + 0.5 sn crossfade ile açılış motifi (P14'te geri dönüş, ~kare 3490); dosya 61.62 sn = 3697 kare >= bölüm. Eski kesim: chopin-nocturne-b108-blanc.mp3.",
+  "not": "db = anlatımsız seviye (-8 dB); anlatım altında duck -18 mutlak. v4 kesim: ana gövde 0-58.65 s + 0.5 sn crossfade ile açılış motifi (P14'te geri dönüş, ~kare 3490); dosya 64.08 sn = 3845 kare >= bölüm (3730); son motif tam çalınır, bölüm sonunda kit fade_out ile iner. Eski kesim: chopin-nocturne-b108-blanc.mp3.",
   "fade_in_kare": 12,
   "fade_out_kare": 60,
-  "fade_out_bas_kare": 3630,
+  "fade_out_bas_kare": 3670,
   "geri_donus": {
    "kare": 3490,
    "aciklama": "Açılış motifi P14 başında (anlatım başlar başlamaz) geri döner; dosyada 58.15 s'de 0.5 sn crossfade ile yerleşik, ek işlem gerekmez."
