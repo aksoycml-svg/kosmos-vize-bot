@@ -1098,3 +1098,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Ne yaptım / komutlar: eksik kareleri (P06-son, P06-temas-guvenli, P07–P14) `npx remotion still Bolum` ile render ettim (scale 0.5, guvenli false/true); kontrol sayfaları python3 PIL ile üretildi (sayfa-1/2.jpg, 968x2939, q85).
 - Üretilen dosyalar: storyboard-v3/kareler/ altında 34 yeni PNG; storyboard-v3/sayfa-1.jpg, sayfa-2.jpg.
 - Hatalar ve çözümler: P14 dört karesi (ilk, dokunus, son, temas-guvenli) "Booleans can only be interpolated using Easing.step1" hatası verdi (src/kit/zaman.ts:14 ← src/kit/props/index.tsx:137 ← src/kit/sablonlar/MasaInsert.tsx:61). Neden: bolum.json P14 paket.durum.ipCozuk boolean dizisi. Düzeltilmedi (kod/veri kararı motion/yönetmen); sayfa-2'de EKSIK olarak işaretli.
+
+## elestirmen · 2026-11-07 · storyboard v3 tek tur kalite kapısı
+- Ne yaptım: sayfa-1/2 ve 6 tekil kareyi inceledim; storyboard-v3/elestiri.md yazdım (14 plan puanı, 8 kritik madde). Dokunduğum dosyalar: storyboard-v3/elestiri.md, katki-raporu.md.
+- Kararlar/ihlaller: P08 esneme yok, P10 hasta/yatak okunmuyor, P13 Wi-Fi morfu yok; D1, D2, D4, D8 telefonda okunmuyor; 14 planın 10'u düzelt.
+- Açık soru: memur için ayrışmış yüz/hasta poz kit'te var mı (motion'a); P08-P09-P10 aynı yüzü paylaşıyor.
