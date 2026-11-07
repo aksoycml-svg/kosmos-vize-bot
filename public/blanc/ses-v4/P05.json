@@ -1,0 +1,44 @@
+{
+ "id": "P05",
+ "text": "Tours istasyonunda iki telgraf memurunu satın aldılar.",
+ "model": "eleven_multilingual_v2",
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "dur": 3.483,
+ "words": [
+  {
+   "t": "Tours",
+   "s": 0,
+   "e": 0.29
+  },
+  {
+   "t": "istasyonunda",
+   "s": 0.36,
+   "e": 1.138
+  },
+  {
+   "t": "iki",
+   "s": 1.231,
+   "e": 1.416
+  },
+  {
+   "t": "telgraf",
+   "s": 1.474,
+   "e": 1.904
+  },
+  {
+   "t": "memurunu",
+   "s": 1.985,
+   "e": 2.38
+  },
+  {
+   "t": "satın",
+   "s": 2.403,
+   "e": 2.67
+  },
+  {
+   "t": "aldılar.",
+   "s": 2.728,
+   "e": 3.483
+  }
+ ]
+}

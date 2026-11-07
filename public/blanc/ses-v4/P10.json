@@ -1,0 +1,39 @@
+{
+ "id": "P10",
+ "text": "İki yıl sonra memur ağır hastalanıyor.",
+ "model": "eleven_multilingual_v2",
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "dur": 2.461,
+ "words": [
+  {
+   "t": "İki",
+   "s": 0,
+   "e": 0.255
+  },
+  {
+   "t": "yıl",
+   "s": 0.279,
+   "e": 0.372
+  },
+  {
+   "t": "sonra",
+   "s": 0.441,
+   "e": 0.708
+  },
+  {
+   "t": "memur",
+   "s": 0.778,
+   "e": 1.103
+  },
+  {
+   "t": "ağır",
+   "s": 1.196,
+   "e": 1.405
+  },
+  {
+   "t": "hastalanıyor.",
+   "s": 1.463,
+   "e": 2.461
+  }
+ ]
+}

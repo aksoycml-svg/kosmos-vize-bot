@@ -1177,3 +1177,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Ne yaptım: `senaryo-v4.md`'de P04'ten fare/ızgara/baston (D1) ve 1.1 sn sessizliği çıkardım (François durup Louis'ye döner, 3.5 sn), P05'i "Tours istasyonunda iki telgraf memurunu satın aldılar." + kese→gölge T (D2 yeniden tanımlı, 5.0 sn) yaptım; kurulum→karşılık, eee-yani, kelime/süre ve v3→v4 farkları güncellendi (102 kelime, ≈47.9 sn konuşma, 60.0 sn, 7 dokunuş).
 - Etki (orkestraya): `dokunuslar.md` (D1 sil, D2 yeniden tanımla) ve `bolum.json` (P04 fare/baston, P05 replik, süreler 12.0–15.5 / 15.5–20.5) bu senaryoyla hizalanmalı; ben dokunmadım. P07 görsel/anlatımı "Hatalar… kasıtlıydı."ın karşılığı oldu.
 - Açık: Hata/geri-al sözlü kurulumu artık yalnız P07'de; P05'te gölge tek "tik" oynuyor, mekanizma P07'de ilk kez açılıyor (izleyici testinde sorun görünmedi).
+
+## teknisyen · 2026-11-07 · Blanc v4 seslendirme
+- Ne yaptım: 15 ses (anlatıcı 13 + FRANÇOIS + MEMUR), memur için 3 aday (A/B/C), ölçüm ve plan sığma tablosu; `zamanlama-v4.json`, `sesler.md` v4 bölümü.
+- Üretilen: `public/blanc/ses-v4/` (P01–P14 mp3/json, `P04-francois`, `P10-memur` = aday B, `aday/` A/B/C); `bolumler/blanc-kardesler/zamanlama-v4.json`.
+- Sorunlar: node fetch proxy'ye çıkamadı (asılı kaldı), curl ile çözüldü; memur seçimi yalnız ölçümle, dinleme onayı bekliyor; P01, P02, P10 plan süresine sığmıyor; kredi sayacı değişmedi (≈772 karakter tahmini).

@@ -1,0 +1,49 @@
+{
+ "id": "P09",
+ "text": "Bordeaux'da bir suç ortağı, silinen o hatayı okuyor.",
+ "model": "eleven_multilingual_v2",
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "dur": 3.622,
+ "words": [
+  {
+   "t": "Bordeaux'da",
+   "s": 0,
+   "e": 0.557
+  },
+  {
+   "t": "bir",
+   "s": 0.604,
+   "e": 0.743
+  },
+  {
+   "t": "suç",
+   "s": 0.789,
+   "e": 0.964
+  },
+  {
+   "t": "ortağı,",
+   "s": 1.045,
+   "e": 1.509
+  },
+  {
+   "t": "silinen",
+   "s": 1.683,
+   "e": 2.206
+  },
+  {
+   "t": "o",
+   "s": 2.322,
+   "e": 2.438
+  },
+  {
+   "t": "hatayı",
+   "s": 2.473,
+   "e": 2.879
+  },
+  {
+   "t": "okuyor.",
+   "s": 2.902,
+   "e": 3.622
+  }
+ ]
+}

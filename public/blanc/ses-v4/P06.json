@@ -1,0 +1,49 @@
+{
+ "id": "P06",
+ "text": "Paris'ten Tours'a paket gelir. Eldiven: yükseliş. Çorap: düşüş.",
+ "model": "eleven_multilingual_v2",
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "dur": 4.551,
+ "words": [
+  {
+   "t": "Paris'ten",
+   "s": 0,
+   "e": 0.569
+  },
+  {
+   "t": "Tours'a",
+   "s": 0.65,
+   "e": 0.964
+  },
+  {
+   "t": "paket",
+   "s": 1.01,
+   "e": 1.3
+  },
+  {
+   "t": "gelir.",
+   "s": 1.347,
+   "e": 1.672
+  },
+  {
+   "t": "Eldiven:",
+   "s": 1.846,
+   "e": 2.368
+  },
+  {
+   "t": "yükseliş.",
+   "s": 2.45,
+   "e": 3.03
+  },
+  {
+   "t": "Çorap:",
+   "s": 3.1,
+   "e": 3.622
+  },
+  {
+   "t": "düşüş.",
+   "s": 3.738,
+   "e": 4.551
+  }
+ ]
+}

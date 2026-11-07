@@ -1,0 +1,19 @@
+{
+ "id": "memur-C",
+ "text": "Hatalar… kasıtlıydı.",
+ "model": "eleven_v3",
+ "voice": "iaO74V3r84UsdPt3frCW",
+ "dur": 2.8,
+ "words": [
+  {
+   "t": "Hatalar…",
+   "s": 0.072,
+   "e": 1.52
+  },
+  {
+   "t": "kasıtlıydı.",
+   "s": 1.7,
+   "e": 2.8
+  }
+ ]
+}

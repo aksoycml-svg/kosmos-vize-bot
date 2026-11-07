@@ -1,0 +1,44 @@
+{
+ "id": "P13",
+ "text": "Bugün buna ilk siber saldırı diyenler var.",
+ "model": "eleven_multilingual_v2",
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "dur": 2.508,
+ "words": [
+  {
+   "t": "Bugün",
+   "s": 0,
+   "e": 0.302
+  },
+  {
+   "t": "buna",
+   "s": 0.337,
+   "e": 0.511
+  },
+  {
+   "t": "ilk",
+   "s": 0.58,
+   "e": 0.685
+  },
+  {
+   "t": "siber",
+   "s": 0.755,
+   "e": 1.01
+  },
+  {
+   "t": "saldırı",
+   "s": 1.08,
+   "e": 1.451
+  },
+  {
+   "t": "diyenler",
+   "s": 1.486,
+   "e": 1.904
+  },
+  {
+   "t": "var.",
+   "s": 1.962,
+   "e": 2.508
+  }
+ ]
+}

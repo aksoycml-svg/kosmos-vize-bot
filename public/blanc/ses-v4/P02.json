@@ -1,0 +1,44 @@
+{
+ "id": "P02",
+ "text": "Bordeaux'lu Blanc kardeşler, Paris'teki tahvil fiyatına oynuyor.",
+ "model": "eleven_multilingual_v2",
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "dur": 3.855,
+ "words": [
+  {
+   "t": "Bordeaux'lu",
+   "s": 0,
+   "e": 0.627
+  },
+  {
+   "t": "Blanc",
+   "s": 0.673,
+   "e": 0.975
+  },
+  {
+   "t": "kardeşler,",
+   "s": 1.01,
+   "e": 1.672
+  },
+  {
+   "t": "Paris'teki",
+   "s": 1.788,
+   "e": 2.334
+  },
+  {
+   "t": "tahvil",
+   "s": 2.38,
+   "e": 2.705
+  },
+  {
+   "t": "fiyatına",
+   "s": 2.763,
+   "e": 3.146
+  },
+  {
+   "t": "oynuyor.",
+   "s": 3.181,
+   "e": 3.855
+  }
+ ]
+}

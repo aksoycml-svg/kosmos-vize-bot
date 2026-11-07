@@ -1,0 +1,34 @@
+{
+ "id": "P04-francois",
+ "text": "Hattı satın alamayız… memurunu alırız.",
+ "model": "eleven_multilingual_v2",
+ "voice": "vwmWyMlmlJtiiXeCVRKn",
+ "dur": 2.554,
+ "words": [
+  {
+   "t": "Hattı",
+   "s": 0,
+   "e": 0.302
+  },
+  {
+   "t": "satın",
+   "s": 0.337,
+   "e": 0.557
+  },
+  {
+   "t": "alamayız…",
+   "s": 0.592,
+   "e": 1.126
+  },
+  {
+   "t": "memurunu",
+   "s": 1.3,
+   "e": 1.834
+  },
+  {
+   "t": "alırız.",
+   "s": 1.858,
+   "e": 2.554
+  }
+ ]
+}

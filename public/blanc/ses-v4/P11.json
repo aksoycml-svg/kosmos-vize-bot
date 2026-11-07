@@ -1,0 +1,49 @@
+{
+ "id": "P11",
+ "text": "Mahkeme toplanıyor. Ama bunu suç sayan yasa yok.",
+ "model": "eleven_multilingual_v2",
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "dur": 3.344,
+ "words": [
+  {
+   "t": "Mahkeme",
+   "s": 0,
+   "e": 0.488
+  },
+  {
+   "t": "toplanıyor.",
+   "s": 0.522,
+   "e": 1.103
+  },
+  {
+   "t": "Ama",
+   "s": 1.544,
+   "e": 1.765
+  },
+  {
+   "t": "bunu",
+   "s": 1.8,
+   "e": 1.985
+  },
+  {
+   "t": "suç",
+   "s": 2.02,
+   "e": 2.218
+  },
+  {
+   "t": "sayan",
+   "s": 2.252,
+   "e": 2.496
+  },
+  {
+   "t": "yasa",
+   "s": 2.566,
+   "e": 2.775
+  },
+  {
+   "t": "yok.",
+   "s": 2.81,
+   "e": 3.344
+  }
+ ]
+}

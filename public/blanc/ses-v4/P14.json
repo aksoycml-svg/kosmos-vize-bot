@@ -1,0 +1,34 @@
+{
+ "id": "P14",
+ "text": "Silahı klavye değildi. Bir eldivendi.",
+ "model": "eleven_multilingual_v2",
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "dur": 2.972,
+ "words": [
+  {
+   "t": "Silahı",
+   "s": 0,
+   "e": 0.383
+  },
+  {
+   "t": "klavye",
+   "s": 0.453,
+   "e": 0.894
+  },
+  {
+   "t": "değildi.",
+   "s": 0.952,
+   "e": 1.451
+  },
+  {
+   "t": "Bir",
+   "s": 1.776,
+   "e": 1.974
+  },
+  {
+   "t": "eldivendi.",
+   "s": 1.997,
+   "e": 2.972
+  }
+ ]
+}

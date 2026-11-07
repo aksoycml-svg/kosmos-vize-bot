@@ -1,0 +1,39 @@
+{
+ "id": "P01",
+ "text": "Bu eldiven, Fransız devletinin ağını hackledi.",
+ "model": "eleven_multilingual_v2",
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "dur": 3.065,
+ "words": [
+  {
+   "t": "Bu",
+   "s": 0,
+   "e": 0.186
+  },
+  {
+   "t": "eldiven,",
+   "s": 0.244,
+   "e": 0.755
+  },
+  {
+   "t": "Fransız",
+   "s": 0.871,
+   "e": 1.312
+  },
+  {
+   "t": "devletinin",
+   "s": 1.358,
+   "e": 1.858
+  },
+  {
+   "t": "ağını",
+   "s": 1.95,
+   "e": 2.229
+  },
+  {
+   "t": "hackledi.",
+   "s": 2.264,
+   "e": 3.065
+  }
+ ]
+}

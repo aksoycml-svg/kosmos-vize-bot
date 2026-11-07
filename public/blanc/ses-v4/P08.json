@@ -1,0 +1,44 @@
+{
+ "id": "P08",
+ "text": "Mesaj bozulmuyor. Ama kuleler hatayı da kopyalıyor.",
+ "model": "eleven_multilingual_v2",
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "dur": 3.344,
+ "words": [
+  {
+   "t": "Mesaj",
+   "s": 0,
+   "e": 0.43
+  },
+  {
+   "t": "bozulmuyor.",
+   "s": 0.488,
+   "e": 1.126
+  },
+  {
+   "t": "Ama",
+   "s": 1.277,
+   "e": 1.509
+  },
+  {
+   "t": "kuleler",
+   "s": 1.556,
+   "e": 1.904
+  },
+  {
+   "t": "hatayı",
+   "s": 1.962,
+   "e": 2.31
+  },
+  {
+   "t": "da",
+   "s": 2.334,
+   "e": 2.403
+  },
+  {
+   "t": "kopyalıyor.",
+   "s": 2.45,
+   "e": 3.344
+  }
+ ]
+}
