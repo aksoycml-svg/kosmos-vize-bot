@@ -14,6 +14,7 @@ import { ChappeKule, KolKonum, KONUMLAR } from "../../../doku/ChappeKule";
 import { BL, DOKU_SEED, P, dikdortgen, ink, poly } from "../../../doku/sabitler";
 import { IddiaYazisi } from "../../../components/EkranYazisi";
 import { KolEl, KISTIR_YEREL, elMatris, EL_BOY_YEREL } from "../../../rig/KolEl";
+import { kolIsigi } from "../../../rig/RigIsik";
 import { PaketKagidi } from "../props/PaketKagidi";
 import { Eldiven } from "../props/Eldiven";
 
@@ -263,7 +264,7 @@ export const Sb2Tours: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
               {/* ===== eldiven (bırakılmadan önce elde, sonra havuzda yatar) ===== */}
               {birak && <g transform={eldivenDonusum(elYerKist)}><Eldiven elBoyu={EL_BOYU} /></g>}
               {/* ===== KOL + EL + tutulan ELDİVEN (başparmak üstte/manşetin önünde, işaret parmağı altta) ===== */}
-              <KolEl {...kolProps} poz={birak ? "gevsek" : "kistir"} tutulan={birak ? undefined : <g transform={`scale(1,${yatY}) rotate(${yatAci + sal * (1 - tasi)})`}><Eldiven elBoyu={EL_BOYU} /></g>} />
+              <KolEl {...kolProps} isik={kolIsigi(GUNES, bilek, { murekkep: "#2a1c10" })} poz={birak ? "gevsek" : "kistir"} tutulan={birak ? undefined : <g transform={`scale(1,${yatY}) rotate(${yatAci + sal * (1 - tasi)})`}><Eldiven elBoyu={EL_BOYU} /></g>} />
               {/* yarı açıkta alt kanat eldivenin parmaklarının üstüne kapanık (eldiven kâğıttan çıkıyor) */}
               <PaketKagidi x={PAKET[0]} y={PAKET[1]} olcek={PAKET_OLCEK} acik={acik} ipCozuk etiket={false} katman="ust" seed={S} />
 

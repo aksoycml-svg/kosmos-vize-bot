@@ -10,6 +10,8 @@ import { ArsivKatmani } from "../../../doku/ArsivKatmani";
 import { RenkKaydi } from "../../../doku/Tarama";
 import { KonturTitreme } from "../../../doku/KonturTitreme";
 import { Golge, Isik } from "../../../doku/Isik";
+import { BDX_GECE_PALET } from "../../../doku/Cephe";
+import { kuklaIsigi } from "../../../rig/RigIsik";
 import { GuvenliAlan, KilitNokta } from "../../../doku/GuvenliAlan";
 import { DOKU_SEED, P } from "../../../doku/sabitler";
 import { Altyazi } from "../../../components/EkranYazisi";
@@ -134,10 +136,12 @@ const Sb2SokakPlan: React.FC<{ p: number; guvenli?: boolean }> = ({ p, guvenli }
               <Izgara />
               <Golge isik={REV} ayak={[lz.zx, lz.zy]} h={635 * lz.s * 0.9} genislik={100 * lz.s} alfa={0.5} stil="gravur" seed={DOKU_SEED.sokakBdx + 300} />
               <Golge isik={REV} ayak={[fz.zx, fz.zy]} h={620 * fz.s * 0.9} genislik={100 * fz.s} alfa={0.5} stil="gravur" seed={DOKU_SEED.sokakBdx + 301} />
-              <Golge isik={REV} ayak={uc} h={8} genislik={14 * lz.s} alfa={0.6} />
-              <Kukla louis p={LOUIS_ELSIZ} pz={lpz} golgesiz />
+              {/* baston ucu gölgesi: net (gravür) — bulanık elips yok */}
+              <Golge isik={REV} ayak={uc} h={8} genislik={14 * lz.s} alfa={0.6} stil="gravur" seed={DOKU_SEED.sokakBdx + 302} />
+              {/* A5r rig ışığı: réverbère (nokta, önden-üstten) → gölge yanı ton + tarama, amber kenar, yüz ton düşümü; kontur gece mürekkebi */}
+              <Kukla louis p={LOUIS_ELSIZ} pz={lpz} golgesiz isik={kuklaIsigi(REV, [lz.zx, lz.zy], 600 * lz.s, { murekkep: BDX_GECE_PALET.murekkep, kamera: cs, seed: DOKU_SEED.sokakBdx + 310 })} />
               <CepEldiven pz={lpz} kamera={cs} />
-              <Kukla p={FRANCOIS_TABA} pz={fp} golgesiz />
+              <Kukla p={FRANCOIS_TABA} pz={fp} golgesiz isik={kuklaIsigi(REV, [fz.zx, fz.zy], 600 * fz.s, { murekkep: BDX_GECE_PALET.murekkep, kamera: cs, seed: DOKU_SEED.sokakBdx + 311 })} />
               {/* réverbère François'nın yüzünü önden amberle aydınlatır (tek kaynak; lamba karakterlerden önde, z 2.3) */}
               <circle cx={lamp[0]} cy={lamp[1] + 200} r={420} fill="url(#sb2rev)" style={{ mixBlendMode: "screen" }} />
               <circle cx={FENER[0] + 30} cy={FENER[1] + 200} r={600} fill="url(#sb2fener)" style={{ mixBlendMode: "screen" }} opacity={0.3} />

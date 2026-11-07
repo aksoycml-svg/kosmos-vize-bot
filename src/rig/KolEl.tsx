@@ -1,5 +1,7 @@
-import React from "react";
-import { ink, P, poly, tonla } from "../doku/sabitler";
+import React, { useId } from "react";
+import { ink, karistir, P, poly, tonla } from "../doku/sabitler";
+import { Desen } from "../doku/Tarama";
+import type { KolIsik } from "./RigIsik";
 
 // ===== KolEl — insert/yakın plan kol + el (tasarim.md 2.12) =====
 // P01, P10, P11, P15, P16 memur; P09/P23 Paris eli; P21 görevli; P17 yazıcı; P19 EldivenEl (eldiven = el dolgusu).
@@ -37,8 +39,16 @@ export const KolEl: React.FC<{
   giris: P; dirsek: P; bilek: P; gen: [number, number, number]; // kenar / dirsek / bilek yarı-genişlik değil TAM genişlik (px)
   tip?: KolTip; elAci: number; olcek: number; poz?: "kistir" | "gevsek";
   tutulan?: React.ReactNode; eldiven?: string; golge?: boolean; golgeRenk?: string; isikUst?: boolean;
-}> = ({ giris, dirsek, bilek, gen, tip = "ceket", elAci, olcek, poz = "kistir", tutulan, eldiven, golge, golgeRenk = "#14110d", isikUst = true }) => {
-  const K = KOL_PALET[tip];
+  // A5r rig ışığı: sahnenin Isik'ından (RigIsik.kolIsigi). Işık yanı geometriden (isikUst yerine), gölge yanında net kenarlı
+  // ton + tek yön tarama (sahne θ), ışık yanında sıcak kenar. El taranmaz. Verilmezse eski davranış.
+  isik?: KolIsik;
+}> = ({ giris, dirsek, bilek, gen, tip = "ceket", elAci, olcek, poz = "kistir", tutulan, eldiven, golge, golgeRenk = "#14110d", isikUst: isikUst0 = true, isik }) => {
+  const K0 = KOL_PALET[tip];
+  const uid = "ke" + useId().replace(/:/g, "");
+  // ışık yanı: kol eksenine dik (giriş→dirsek normali, ofset() ile aynı işaret) · ışığa doğru yön
+  const n1: P = (() => { const dx = dirsek[0] - giris[0], dy = dirsek[1] - giris[1], L = Math.hypot(dx, dy) || 1; return [-dy / L, dx / L]; })();
+  const isikUst = isik && !golge ? n1[0] * isik.yon[0] + n1[1] * isik.yon[1] > 0 : isikUst0;
+  const K = isik && !golge ? { ...K0, kolIsik: karistir(K0.kolIsik, isik.renk, 0.45) } : K0;
   const g = golgeRenk;
   const f = (c: string) => (golge ? g : c);
   const st = (c: string, w = 2) => (golge ? {} : { stroke: ink(c), strokeWidth: w, strokeLinejoin: "round" as const });
@@ -86,6 +96,25 @@ export const KolEl: React.FC<{
     <g>
       {/* kol */}
       <path d={yol} fill={f(K.kol)} {...st(K.kol, 3)} />
+      {isik && !golge && (() => {
+        // gölge yanı bandı: gölge kenarı → kol genişliğinin %42'si içeri (net terminatör, kol eksenine paralel)
+        const gk = isikUst ? [g2, d2a, d2b, b2] : [g1, d1a, d1b, b1], ik = isikUst ? [g1, d1a, d1b, b1] : [g2, d2a, d2b, b2];
+        const ic = gk.map((q, i) => lp(q, ik[i], 0.42));
+        const bant = [...gk, ...[...ic].reverse()];
+        const mk = isik.murekkep ? karistir(K.kol, isik.murekkep, 0.7) : ink(K.kol);
+        return (
+          <g>
+            <defs>
+              <clipPath id={`${uid}c`}><path d={yol} /></clipPath>
+              <Desen id={`${uid}p`} aci={isik.aci} aralik={7.5} kalin={2.2} renk={mk} alfa={0.6 * isik.sertlik} seed={11} />
+            </defs>
+            <g clipPath={`url(#${uid}c)`}>
+              <polygon points={poly(bant)} fill={mk} fillOpacity={0.2 * isik.sertlik} />
+              <polygon points={poly(bant)} fill={`url(#${uid}p)`} />
+            </g>
+          </g>
+        );
+      })()}
       {!golge && <>
         {/* ışık kenarı (anahtar sağ-üst) ve gölge kenarı */}
         <polyline points={poly(isikUst ? [lp(g1, d1a, 0.05), d1a, d1b, lp(d1b, b1, 0.9)] : [g2, d2a, d2b, b2])} stroke={K.kolIsik} strokeWidth={Math.max(6, gen[2] * 0.12)} fill="none" strokeLinecap="round" opacity={0.75} />

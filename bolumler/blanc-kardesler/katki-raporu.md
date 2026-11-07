@@ -992,3 +992,43 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Kararlar ve gerekçeleri: (a) Eleştiri D çözümü için eldiven tonunu değil tüccar paltosunu değiştirdim: taba eldiven zaten hero'dan ΔE ≥ 20 tablosuna bağlı, palto kompars rengi serbest. Elle hesap: eski palto Lab ≈ 40.6/8.0/30.1, taba ile ΔE76 ≈ 9; yeni `#4a4f42` Lab ≈ 32.8/−4.8/6.9, ΔE76 ≈ 26 (±2, motion ölçsün). Omuz temasına taba kenar çizgisi ve temas gölgesi eklendi. (b) Cep eldiveninde "kart" okunması boyuttan çok biçim sorunuydu: gölge zorunlu, ağız çizgisi eldivenin altından geçer, kenarlar düz değil; mesafeye göre ayrıntı kademesi. (c) Katip kıyafetini dönem açısından işaretledim: 19. yy büro katibi kolluğu bilinen ama koyu (lüstrin) olduğu için kontrast sorununu geri getirir; açık renk kolluk için kaynağım yok, redingotsuz gömlek kolu da 1830'lar Bordeaux Borsası için kanıtsız, ikisi de [G ◐] doğrulanmalı, tarihî iddia değil okunurluk kararı [T]. (d) Açık gömlek tonları C* ≥ 15 tutuldu ki ölçülen eldiven bandına (C* < 12) karışmasın; gömlek manşeti etkin ≈ `#ada696`.
 - Uyguladığım kurallar / yakaladığım kural ihlalleri: Kanıtsız dönem detayı nötr/işaretli (katip), tek sahiplik (rapor motion'ındı, belge benim), imza nesne tekilliği (açık tonlar banttan ayrıldı), mesafeye göre ayrıntı. Yakaladığım: motion raporu C* eşiğini ≤ 18 yazmış, orkestra kararı < 12; belgeye < 12 yazdım. Ayrıca 0.2 hâlâ "katip yüzsüz" diyor, motion yüz çizmiş; 2.7'de motion'ın uyguladığı hâl kabul edildi, 0.2/2.10 listesi sonraki turda hizalanmalı.
 - Açık sorular / bir sonraki ajana notlar: Araştırmacı: 1830'larda Fransız borsa/büro katibi kolluğu (rengi, takılışı) ve ceketsiz çalışma. Motion: `TUCCAR.coat`, `KATIP_ACIK`, `gomlekManset` ve `CEP_ELDIVEN` değerlerini koda al; tüccar palto ΔE'sini `sb2_kontrol.py` ile ışık altında doğrula (hedef ΔE2000 ≥ 15, olmazsa `#3f443a`). Eleştirmen: C* eşiği < 12 mi ≤ 18 mi onaylasın; tüccarın omzundaki taba eldiven 360×640'ta okunuyor mu bak. Yönetmen: P02 değişen değerler tablosundaki cep ve katip satırları artık tasarımda onaylı.
+
+## motion · 2026-11-07 · A5r: rig ışığı (`isik`) + kompars + net nesne gölgeleri (iki yolun ortak borcu, elestiri-D 4/3c–d)
+- **Ne yaptım:**
+  - Yeni `src/rig/RigIsik.tsx` yazdım. `kuklaIsigi(isik, ayak, boyPx, {murekkep, kamera, seed})` sahnenin `Isik` tanımından 3B ışık vektörü üretiyor. Yönlü ışıkta vektör (−gx, 1, −3·gy) (gy > 0 ise ışık arkadan). Nokta ışıkta vektör kaynak − göğüs olarak, z bileşeni zemin izdüşümünden. Tarama açısı `taramaAcisi(isik)`, yani sahnenin tek θ'sı; mimariyle aynı.
+  - `Bolge`: her uzuvda (uyluk, baldır, üst/ön kol, frak eteği, gövde, şapka tepesi) gölge yanı, uzuv eksenine paralel net terminatör. Gölge payı silindir formülüyle (önden 0, yandan .5, arkadan 1), tepeden ışıkta daralıyor; **%12–62 arasında sınırlı**, kumaş hiçbir yerde baştan sona taranmıyor. Gölge yanında ton bloğu + tek yön tarama var. Tarama ekranda telefon ölçüsünde kalıyor (aralık/kalınlık ÷ ölçek·kamera; ayna ve dönüş telafi ediliyor). Işık yanında sıcak kenar ışığı var (ışık rengi, 1.1–3.2 px). Bu kenar soğuk RIM'in yerini alıyor.
+  - `YuzTonu`: yüz, kulak, burun ve ellerde **tarama yok**. Bunun yerine skinDark'a (sahne mürekkebine %18 karışık) yumuşak degrade var, en çok %70. Borsa'da arkadan ışıkta yüzün ön yarısı gölgede ama okunuyor.
+  - Kontur `useInk`: rig ink'i sahne mürekkebine %50 karışıyor. Borsa `murekkep(taş)`, Sokak `BDX_GECE_PALET.murekkep`, Tours `#2a1c10`.
+  - `Kukla` yeni `isik?` prop'u aldı. `isik` verilince sabit siyah gölge şeritleri, soğuk RIM, coatLight vurgusu ve burun parlaması kalkıyor. **Verilmezse çıktı birebir eski:** Proto f200 ve SB2-BORSA-HIBRIT p0 piksel farkı 0.
+  - `KolEl` yeni `isik?` prop'u aldı (`kolIsigi`). Işık yanı geometriden hesaplanıyor (`isikUst` yerine giriş→dirsek normali · ışık). Gölge yanında %42 net bant + tarama, kolIsik ışık rengine karışıyor. El taranmıyor.
+  - **Kompars (P02):** Siluet yerine **yüzsüz kukla** kullandım (`Palet.yuzsuz`: göz, kaş, ağız, bıyık, yanak yok). İki ton mesafe tonundan geliyor: açık kostüm/ten, koyu pantolon/şapka/saç. Aynı güneşten gölge yanı tarama, kenar ışığı ve mürekkep konturu alıyorlar. `KOMPARS_POZ` sabit seed'le poz çeşitliliği veriyor: duruş, ağırlık, baş, el belde / eller arkada / işaret eden / kolları önde. Ayak gölgesi önceki gibi Golge gravür. Siluet.tsx'te deneme yaptım; kullanmadığım için geri aldım (değişmedi).
+  - **Net gölgeler:** pupitre gövde gölgesi eklendi (Golge gravür, çekirdeksiz) ve iki ayağın altına küçük temas çekirdeği kondu. Önce gölgesi yoktu; ortada yüzen bir çekirdek de çıkmasın diye böyle yaptım. P04 baston ucu gölgesi `yumusak` (bulanık) yerine `gravur`.
+  - **P04 p150:** şapka tutulurken (`pz.hat`) ön el şapkadan sonra yeniden çiziliyor (`Kol sadeceEl`). Taba eldiven kenarın önünde görünüyor. `isik` verilince ya da `pz.elSapkaOnde` ile açılıyor; Proto'da kapalı (geri uyum).
+  - Katip: elle konan (−3,−3) kenar ışığı kalktı. Siluet kenarı artık güneşe doğru kaydırılıyor ve katip rig ışığı alıyor.
+  - Protokol: `sb2_kontrol.py --sadece SB2-BORSA:0,90,168 SB2-SOKAK:0,150,189 SB2-TOURS:0,60 --asama A5r` çalıştırıldı (tam + 360 + güvenli). Renk ölçümü 12/12 ✓, eldiven beyazı denetimi 10/10 ✓.
+  - Kontrol sayfası `kareler/A5r-sayfa.png`: her karede A4b önce 360 | A5r 360 | güvenli | A5r 1:1 rig kırpması | A4b 1:1 kırpma. Ayrıca araç sayfası `A5r-eldiven-beyazi.png`. tsc temiz.
+- **Dokunduğum dosyalar:** `src/rig/RigIsik.tsx` (yeni), `src/rig/Kukla.tsx`, `src/rig/KolEl.tsx`, `src/bolumler/blanc/sb2/{Sb2Borsa,Sb2Sokak,Sb2Tours}.tsx`, `storyboard-v2/kareler/` (8 kare × 3, `renk-olcum.md`, `A5r-sayfa.png`, `A5r-eldiven-beyazi.png`), bu rapor. Tarama, Kemer, Cephe, Siluet, Isik ve palet değişmedi; Desen, taramaAcisi ve BDX_GECE_PALET yalnızca import edildi.
+- **Aldığım kararlar ve gerekçeleri:**
+  - Tarama uzvun yerel çerçevesinde ama açı telafili. Ekran-uzayı maske yöntemi de mümkündü, ama derinlik örtmesi (ön kol gövdeyi kapatır) yerel çizimde kendiliğinden doğru çıkıyor; ikinci render ve filtre gerekmiyor.
+  - Gölge payı üst sınırı %62: "kumaşı her yanda tarama yok" kuralı ve hibritteki pijama sorunu.
+  - Kompars için yüzsüz kukla seçtim. Kaydırmalı siluet bandı (denendi) 360'ta "çift baskı / gölge kopyası" okunuyordu; kuklada uzuv ayrımı ve kontur kalıyor, karton kesik hissi gidiyor.
+  - Değişen değerler (yönetmen ve tasarımcı için):
+
+    | Öğe | A4b | A5r | Durum |
+    |---|---|---|---|
+    | P02 kompars | düz iki tonlu siluet (koyu kahve) | yüzsüz kukla, açık/koyu sepya (ton(z)), poz çeşitli | **onay bekliyor** (tasarım 0.2 "yüzsüz siluet" yorumu) |
+    | P02 pupitr gölgesi | yok | Golge gravür h = 300·s + 2 ayak çekirdeği | bilgi |
+    | P02 katip kenar ışığı | (−3,−3) sabit | güneş yönünde 3 px | bilgi |
+    | P04 şapka eli | şapkanın arkasında | şapka kenarının önünde | ✓ |
+    | P04 baston ucu gölgesi | bulanık | gravür (net) | ✓ |
+- **Uyguladığım kurallar / yakaladığım ihlaller:** tek ışık kaynağı (rig, kompars, gölge ve tarama aynı Isik'ten); gölge kenarı net; yüzde tarama yok; saf siyah yok (kontur mürekkep karışımı); kompars ana kadrodan ayrışıyor (sepya ve yüzsüz; ana kadro renkli). Öz taramada yakaladığım sorunlar aşağıda.
+- **Öz puan (eğilimim ~1 yüksek, düşerek):** rig ışığı **6**, kompars **6.5**, net gölgeler **7**, P04 şapka eli **8**. Yalnız bu iş için ölçüt 1'e katkı ≈ **+0.5**; tek başına A5'in ≥ 7 hedefini taşımaz (ayrıntı yoğunluğu ve panel yıkaması ayrı iş).
+- **Kalanlar / açık sorular:**
+  - **(1) Koyu kumaşta tarama 360'ta zor seçiliyor** (François lacivert, pantolonlar). Gravürde koyu alan zaten ton olarak okunur; tarama açık kumaşta (yelek, katip, Louis şapkası) görünür. Daha görünür olsun istenirse çözüm yüksek kenar ışığı ya da koyu kumaşta tarama yerine açık "ters tarama"; karar eleştirmenin.
+  - **(2) Borsa'da θ ≈ 73° (neredeyse dikey).** Kumaşta çizgili kumaş okunması riski var (tam boyda hafif). Sahnenin tek yönü kuralı gereği mimariyle aynı; eleştirmen bakmalı.
+  - (3) Yüzsüz kompars başları yakında (p168) "manken" okunabilir; ten koyu tona çekildi. Tasarımcı onayı gerekli.
+  - (4) Yüz ton düşümü bilinçli olarak yumuşak (en çok %70). Önden ışıkta (Sokak) yüz neredeyse tamamen aydınlık; fiziksel olarak doğru.
+  - (5) Tasarımcının tüccar/eldiven ton kararı (v2.4) henüz uygulanmadı (görev gereği palet değişmedi).
+  - (6) Hibrit (`Sb2BorsaHibrit`) `isik` almıyor. B′ seçilirse aynı `kuklaIsigi` ile tek satırda bağlanır.
+  - **Eleştirmen:** `A5r-sayfa.png` (önce/sonra + 1:1 kırpma), `A5r-eldiven-beyazi.png`, `renk-olcum.md`.
+  - **Teknisyen:** commit yapılmadı.

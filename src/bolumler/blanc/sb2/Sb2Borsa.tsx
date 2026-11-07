@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { Kukla, Palet, Poz } from "../../../rig/Kukla";
 import { KolEl, KISTIR_YEREL, elMatris } from "../../../rig/KolEl";
+import { KuklaIsik, kolIsigi, kuklaIsigi } from "../../../rig/RigIsik";
 import { CepEldiven } from "../props/EldivenKose";
 import { AYAK_TABAN, dunyaya, elDunya, kolIK } from "../../../rig/kinematik";
 import { ArsivKatmani } from "../../../doku/ArsivKatmani";
@@ -13,7 +14,7 @@ import { Golge, Isik } from "../../../doku/Isik";
 import { Kemer, kemerCokgen } from "../../../doku/Kemer";
 import { RenkKaydi, Tarama, taramaAcisi } from "../../../doku/Tarama";
 import { GuvenliAlan, KilitNokta } from "../../../doku/GuvenliAlan";
-import { BL, DOKU_SEED, Esleme, P, ink, lerp, murekkep, poly, rnd, tonla } from "../../../doku/sabitler";
+import { BL, DOKU_SEED, Esleme, P, ink, karistir, lerp, murekkep, poly, rnd, tonla } from "../../../doku/sabitler";
 import { FormulYazisi, IsimEtiketi } from "../../../components/EkranYazisi";
 import { serif } from "../../../theme";
 import { KATIP, KATIP_ACIK, TUCCAR, FRANCOIS_TABA, LOUIS_ELSIZ } from "../palet";
@@ -49,9 +50,11 @@ const ON_Z = 5.6, ARKA_Z = 6.6; // arcade ön düzlemi / portik arka (galeri) du
 const AKS = 4.5, AW = 3.0, AH = 6.0; // aks genişliği, arcade açıklığı 3.0 × 6.0 (1:2)
 const GUNES: Isik = { tip: "yonlu", ad: "öğle güneşi (tepeden, sağ-arka)", yon: [-0.16, 0.05], renk: PAL.gunes };
 const TH = taramaAcisi(GUNES);
+// A5r rig ışığı: ana karakterler + katip aynı güneşten (gölge yanı ton + tarama, sıcak kenar, yüz ton düşümü)
 const TAHTA = { xm: -1.5, w: 3.0, h0: 1.75, h1: 3.75 }; // galeri duvarında (m)
 // A4 gravür: mürekkep (iç kontur 3 px, dış 5 px) ve gölge tonları — tek ışık (öğle güneşi) tanımından
 const MK = murekkep(PAL.tas), MK_DEMIR = "#1f1812", IC = 3, DIS = 5;
+const rigIsik = (ayak: P, s: number, kamera: number, seed: number): KuklaIsik => kuklaIsigi(GUNES, ayak, 600 * s, { murekkep: MK, kamera, seed });
 const DUVAR_KAL = 0.6; // arcade duvar kalınlığı (m): kemer içi / söve iç yüzü bandı
 // dövme demir parmaklıklı kapı (1773 dövme demir [D Ek 3]): seyrek DİKEY çubuk (~0.2 m), mızrak uçlu; alt/orta/üst kuşak. Tel örgü YOK.
 const Parmaklik: React.FC<{ q: (xm: number, hm: number) => P; x0: number; w: number; h: number; kalin: number }> = ({ q, x0, w, h, kalin }) => {
@@ -72,6 +75,22 @@ const dur = (x: number, y: number, s: number, f: 1 | -1, ek: Partial<Poz> = {}):
 
 const TUCCAR_V: Palet = { ...TUCCAR, hair: "#9a958a", sideburn: 1.8, biyik: "yok", sakal: true, sapka: "genis", burun: 1.2, hat: "#4a3a26", hatBand: "#2a2016", coat: "#7a5a2e", coatDark: "#54401f", coatLight: "#9a7844", vest: "#a58a4a", vestDark: "#7a6430" };
 const KOMPARS: Palet[] = [{ ...KATIP, biyik: "yok" }, { ...TUCCAR, sapka: "genis", biyik: "duz" }, { ...KATIP, sapka: "genis", sakal: true, biyik: "yok" }, { ...TUCCAR, burun: 1.15 }];
+// A5r: kompars iki ton paleti (kt koyu, a açık: ton(z)) — yüz ayrıntısı yok
+const komparsPalet = (b: Palet, kt: string, a: string): Palet => ({
+  ...b, yuzsuz: true, coat: a, coatDark: tonla(a, -0.12), coatLight: tonla(a, 0.08), vest: tonla(a, -0.06), vestDark: kt, vestDesen: tonla(a, -0.06),
+  cravat: tonla(a, 0.14), shirt: tonla(a, 0.14), pants: kt, shoe: tonla(kt, -0.4), glove: karistir(a, kt, 0.35), skin: karistir(a, kt, 0.35), skinDark: karistir(a, kt, 0.7),
+  hair: tonla(kt, -0.15), hat: tonla(kt, -0.2), hatBand: tonla(kt, -0.35),
+});
+// A5r: kompars poz çeşitliliği (seed sabit): duruş açıklığı, ağırlık, baş, kol (biri elini beline, biri arkasında kavuşturur, biri işaret eder)
+const KOMPARS_POZ = (i: number): Partial<Poz> => {
+  const r = (k: string) => rnd(S, `kp${k}${i}`);
+  const tip = i % 4;
+  return {
+    thighF: -6 + r("tf") * 10, kneeF: 2 + r("kf") * 6, thighB: 2 + r("tb") * 9, kneeB: 1 + r("kb") * 4,
+    lean: (r("l") - 0.5) * 6, headTilt: (r("h") - 0.5) * 10,
+    ...(tip === 0 ? { shB: 30, elB: -95 } : tip === 1 ? { shB: -18, elB: -40, shF: 14, elF: -30 } : tip === 2 ? { shF: -40 - r("p") * 25, elF: -20 } : { shF: 4, elF: -60, shB: 10, elB: -50 }),
+  };
+};
 // kalabalık (xm, z): avluda; ana üçlünün arkasında açık koridor bırakılır (tahta görünür)
 const KALABALIK: [number, number][] = [[-2.5, 2.2], [2.3, 2.4], [-1.9, 3.0], [1.7, 3.2], [-0.9, 3.7], [2.8, 3.9], [-2.9, 4.3], [1.1, 4.5], [-1.6, 5.0], [2.2, 5.1]];
 const ton = (z: number): [string, string] => z < 2.8 ? ["#5a4a36", "#8a7556"] : z < 4 ? ["#6e5c44", "#a08a68"] : ["#857258", "#b49e7c"];
@@ -271,18 +290,24 @@ export const Sb2Borsa: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
               {/* ===== kalabalık (avluda; iki tonlu yüzsüz siluet + sıcak kenar); kameranın arkasındakiler çizilmez ===== */}
               {KALABALIK.map(([xm, z], i) => ({ xm, z, i })).filter(({ z }) => gorunur(z)).sort((a, b) => b.z - a.z).map(({ xm, z, i }) => {
                 const g = yer(z, xm), f: 1 | -1 = xm < 0 ? 1 : -1, sc = g.s * (0.93 + rnd(S, `k${i}`) * 0.12);
-                const pz = dur(g.x, g.y, sc, f, { lookY: -0.8 * don, headTilt: -10 * don, shF: 6 + rnd(S, `a${i}`) * 14, elF: -14 - rnd(S, `b${i}`) * 30 });
+                const v = KOMPARS_POZ(i);
+                const pz = dur(g.x, g.y, sc, f, { shF: 6 + rnd(S, `a${i}`) * 14, elF: -14 - rnd(S, `b${i}`) * 30, ...v, lookY: -0.8 * don, headTilt: (v.headTilt ?? 0) * (1 - don) - 10 * don });
                 const [kt, a] = ton(z);
-                return <g key={i}><Golge isik={GUNES} ayak={[g.zx, g.zy]} h={620 * sc} genislik={100 * sc} alfa={0.35} renk="#4a3418" stil="gravur" seed={S + 200 + i} /><Siluet renk={kt} acik={a} kenar={{ renk: "#fff1c8", dx: 2.5 * sc, dy: -2 * sc }} kutu={[g.x - 120 * sc, g.y - 640 * sc, 240 * sc, 650 * sc]}><Kukla p={KOMPARS[i % 4]} pz={pz} golgesiz /></Siluet></g>;
+                // A5r: karton kesik siluet DEĞİL — yüzsüz kukla, İKİ TON (açık: kostüm/ten · koyu: pantolon/şapka/saç, mesafe tonundan),
+                // gölge yanı net ton + tek yön tarama + sıcak kenar (GUNES), kontur sahne mürekkebi; ayak gölgesi aynı güneşten
+                return <g key={i}><Golge isik={GUNES} ayak={[g.zx, g.zy]} h={620 * sc} genislik={100 * sc} alfa={0.35} renk="#4a3418" stil="gravur" seed={S + 200 + i} /><Kukla p={komparsPalet(KOMPARS[i % 4], kt, a)} pz={pz} golgesiz isik={rigIsik([g.zx, g.zy], sc, cs, S + 300 + i)} /></g>;
               })}
               {/* ===== ana karakterler (gölgeler aynı güneşten: kısa, sol-öne). Eldiven (v2.3): François taba, Louis çıplak + cep köşesi ===== */}
               {yakinlar && <>
                 <Golge isik={GUNES} ayak={[tY.zx, tY.zy]} h={600 * tY.s} genislik={100 * tY.s} alfa={0.45} renk="#4a3418" stil="gravur" seed={S + 210} />
-                <g transform={`translate(${tY.x},${tY.y}) scale(1.12,1) translate(${-tY.x},${-tY.y})`}><Kukla p={TUCCAR_V} pz={tuccar} golgesiz /></g>
+                <g transform={`translate(${tY.x},${tY.y}) scale(1.12,1) translate(${-tY.x},${-tY.y})`}><Kukla p={TUCCAR_V} pz={tuccar} golgesiz isik={rigIsik([tY.zx, tY.zy], tY.s, cs, S + 401)} /></g>
                 <Golge isik={GUNES} ayak={[fY.zx, fY.zy]} h={620 * fY.s} genislik={100 * fY.s} alfa={0.45} renk="#4a3418" stil="gravur" seed={S + 210} />
-                <Kukla p={FRANCOIS_TABA} pz={francois} golgesiz />
+                <Kukla p={FRANCOIS_TABA} pz={francois} golgesiz isik={rigIsik([fY.zx, fY.zy], fY.s, cs, S + 402)} />
+                {/* pupitr gölgesi: aynı güneşten, NET kenarlı (gravür çokgeni + tarama; bulanık elips yok) */}
+                <Golge isik={GUNES} ayak={[pY.zx, pY.zy]} h={PUP * pY.s} genislik={120 * pY.s} alfa={0.4} renk="#4a3418" stil="gravur" seed={S + 212} cekirdek={false} />
+                {[-48, 48].map((dx) => <Golge key={dx} isik={GUNES} ayak={[pY.zx + dx * pY.s, pY.zy]} h={10} genislik={16 * pY.s} alfa={0.55} renk="#4a3418" stil="gravur" seed={S + 213} />)}
                 <Golge isik={GUNES} ayak={[lYer.zx, lYer.zy]} h={635 * lYer.s} genislik={100 * lYer.s} alfa={0.45} renk="#4a3418" stil="gravur" seed={S + 210} />
-                <Kukla louis p={LOUIS_ELSIZ} pz={louis} golgesiz />
+                <Kukla louis p={LOUIS_ELSIZ} pz={louis} golgesiz isik={rigIsik([lYer.zx, lYer.zy], lYer.s, cs, S + 403)} />
                 <Pupitr x={pY.zx} y={pY.zy} s={pY.s} yuz={PUP} yazi={sahne === "gogus" ? yazi : 1} />
                 {/* geniş/boy planda tüy rig elinde (kendi başına durmaz) */}
                 {sahne !== "gogus" && <g transform={`translate(${kalemEl[0]},${kalemEl[1]}) rotate(-28)`}><path d="M 0 0 L 2 -70 Q 14 -60 10 -20 Z" fill="#e8e0cc" stroke={ink("#e8e0cc")} strokeWidth={1.4} /></g>}
@@ -292,7 +317,7 @@ export const Sb2Borsa: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => {
             {/* ===== göğüs planı: yazan el (ekran px, aynalı: Louis sola bakar) + cep köşesi kolun ÜSTÜNDE değil, kolun açıkta bıraktığı yakın göğüste ===== */}
             {sahne === "gogus" && <g>
               <g transform={`translate(${2 * M},0) scale(-1,1)`}>
-                <KolEl giris={yazanKol.giris} dirsek={yazanKol.dirsek} bilek={yazanKol.bilek} gen={[150, 132, 80]} tip="louis" elAci={yazanKol.elAci} olcek={EL_OLC} tutulan={<KazTuyu k={1} />} />
+                <KolEl giris={yazanKol.giris} dirsek={yazanKol.dirsek} bilek={yazanKol.bilek} gen={[150, 132, 80]} tip="louis" elAci={yazanKol.elAci} olcek={EL_OLC} tutulan={<KazTuyu k={1} />} isik={kolIsigi(GUNES, NIB, { murekkep: MK, ayna: true })} />
               </g>
               <g transform={kat(1)}><CepEldiven pz={louis} kamera={cs} /></g>
             </g>}
@@ -385,10 +410,13 @@ const Katip: React.FC<{ p: number }> = ({ p }) => {
   const pz = { ...p0, shF: ik.sh, elF: ik.el };
   const el = elDunya(pz, true, [6, 10]);
   const L = (p < 90 ? 0.14 : 0.07) * pxm(KATIP_YER.z), tk = 0.03 * pxm(KATIP_YER.z);
+  // A5r: kenar ışığı elle (−3,−3) değil — güneşe doğru kaydırılmış siluet (aynı GUNES); rig ışığı katibe de
+  const I = rigIsik([g.zx, g.zy], g.s, 1, S + 410);
+  const kL = Math.hypot(I.v[0], I.v[1] * 0.5) || 1, kd: P = [(I.v[0] / kL) * 3, (-I.v[1] * 0.5 / kL) * 3];
   return (
     <g>
-      <Siluet renk="#fff1c8" kutu={[g.x - 140 * g.s, g.y - 660 * g.s, 280 * g.s, 680 * g.s]}><g transform="translate(-3,-3)"><Kukla p={KATIP_ACIK} pz={pz} golgesiz /></g></Siluet>
-      <Kukla p={KATIP_ACIK} pz={pz} golgesiz />
+      <Siluet renk="#fff1c8" kutu={[g.x - 140 * g.s, g.y - 660 * g.s, 280 * g.s, 680 * g.s]}><g transform={`translate(${kd[0]},${kd[1]})`}><Kukla p={KATIP_ACIK} pz={pz} golgesiz /></g></Siluet>
+      <Kukla p={KATIP_ACIK} pz={pz} golgesiz isik={I} />
       {/* tebeşir parmaklar arasında; ucu tahtaya değer (kırılmadan önce tam, sonra yarım) */}
       <g transform={`translate(${el[0]},${el[1]}) rotate(-35)`}><rect x={-tk * 0.3} y={-tk / 2} width={L} height={tk} rx={tk * 0.3} fill={BL.tebesir} stroke="#3a2c1c" strokeWidth={Math.max(1.2, tk * 0.12)} /></g>
     </g>
