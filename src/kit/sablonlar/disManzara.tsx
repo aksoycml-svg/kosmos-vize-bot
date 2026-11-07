@@ -47,15 +47,21 @@ const ToursDis: React.FC<{ kol: KolKonum; gergin?: number }> = ({ kol, gergin = 
 };
 
 // Bordeaux çatı katından: tuile canal çatı denizi + baca kümeleri, ufukta külahsız Saint-Michel + Chappe T (mekanlar.md P14 kartı)
-// Saint-Michel T'si bu sürümde sabit BEKLE (uzak siluet; kol animasyonu KULE-DIS'te)
-const BordeauxDis: React.FC = () => {
+// K4 (v4 P09) bordeaux_dis_kol: Saint-Michel T'si şablonun `kol` parametresini izler (MESAJ/HATA, varışta aşma — kolHesapla).
+// Telefonda okunurluk: T %35 büyük (hafif abartı; oran ve T biçimi aynı), kollar kule taşından koyu; sol gösterge HATA açısına
+// (135°) yaklaştıkça kırmızı halka belirir (kırmızı yalnız hata vurgusu) — ayrı parametre yok, durum koldan türer.
+const BordeauxDis: React.FC<{ kol: KolKonum }> = ({ kol }) => {
+  const hata = Math.max(0, Math.min(1, (kol.sol - 100) / 35));
+  // kule açıklığın ortasına yakın ve alçakta (gövde dibi çatıların arkasında): direk + T pencere kemerinin altında kalır
+  const SX = 820, SY = 820, SH = 240, TX = SX, TL = SH * 0.2 * 0.95 * 1.35, TY = SY - SH * 0.955 - TL * 1.52;
   const X0 = PEN0.x - 30, X1 = PEN0.x + PEN0.w + 30, Y0 = PEN0.y - 30, Y1 = PEN0.y + PEN0.h + 40;
   return (
     <g>
       <defs><linearGradient id="kitBdxGok" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#b9c4d8" /><stop offset="0.7" stopColor="#ecdcb8" /><stop offset="1" stopColor="#f2e2b8" /></linearGradient></defs>
       <rect x={X0} y={Y0} width={X1 - X0} height={Y1 - Y0} fill="url(#kitBdxGok)" />
       {/* Saint-Michel (külahsız, kesik tepe + T) sağ ufukta; hava perspektifi */}
-      <SaintMichel x={850} y={720} h={250} renk="#b3a283" kenar="#fff1c8" kenarA={0.3} acikRenk="#8f8068" detay="orta" chappe={{ konum: "BEKLE", renk: "#2a2622" }} />
+      <SaintMichel x={SX} y={SY} h={SH} renk="#b3a283" kenar="#fff1c8" kenarA={0.3} acikRenk="#8f8068" detay="orta" chappe={{ konum: kol, renk: "#1e1a17", olcek: 1.35 }} />
+      {hata > 0 && <circle cx={TX} cy={TY - TL * 0.12} r={TL * (0.8 + 0.1 * hata)} fill="none" stroke={BL.redLit} strokeWidth={Math.max(3, TL * 0.08)} opacity={0.9 * hata} />}
       {/* uzak çatı bandı (tuile, düşük kontrast) */}
       <path d={`M ${X0} 712 L 640 700 L 700 708 L 760 694 L 820 712 L 880 702 L ${X1} 714 L ${X1} ${Y1} L ${X0} ${Y1} Z`} fill="#c08a64" />
       {/* yakın tuile canal çatı: kiremit sıraları + baca kümesi */}
@@ -81,4 +87,4 @@ const GeceDis: React.FC = () => {
 };
 
 export const DisManzara: React.FC<{ tur: DisTur; kol: KolKonum; gergin?: number }> = ({ tur, kol, gergin }) =>
-  tur === "tours" ? <ToursDis kol={kol} gergin={gergin} /> : tur === "bordeaux" ? <BordeauxDis /> : <GeceDis />;
+  tur === "tours" ? <ToursDis kol={kol} gergin={gergin} /> : tur === "bordeaux" ? <BordeauxDis kol={kol} /> : <GeceDis />;

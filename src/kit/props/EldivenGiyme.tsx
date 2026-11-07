@@ -7,7 +7,7 @@ import React from "react";
 import { Easing, interpolate } from "remotion";
 import { ink, P, tonla } from "../../doku/sabitler";
 import { GLOVE } from "../../bolumler/blanc/palet";
-import { KolEl, KISTIR_YEREL, KOL_PALET } from "../../rig/KolEl";
+import { EL_BOY_YEREL, KolEl, KISTIR_YEREL, KOL_PALET } from "../../rig/KolEl";
 import { cl } from "../zaman";
 
 export type EldivenGiyParam = { bas: number; bit: number; gerilme?: number; x?: number; y?: number; olcek?: number; aci?: number };
@@ -23,6 +23,7 @@ const PARMAK = [
 const BAS_PARMAK = { x: 74, y: 70, len: 96, w: 34, aci: 52, sark: 95 };
 const SIRA = [[0.08, 0.28], [0.18, 0.38], [0.28, 0.48], [0.38, 0.56], [0.48, 0.66]]; // işaret, orta, yüzük, serçe, başparmak
 
+export const ELDIVEN_EL_BOY = 314; // eldivenin dolu el boyu (yerel): orta parmak 136·1.06 + boğum→bilek 170
 const rad = (d: number) => (d * Math.PI) / 180;
 // kılıf eğrisi: taban → uç, dolu (f=1) düz; boş (f=0) sarkık eğri, kısa ve ince
 const kilif = (bx: number, by: number, len: number, aci: number, sark: number, f: number) => {
@@ -53,7 +54,9 @@ export const EldivenGiyme: React.FC<{ e: EldivenGiyParam; p: number; golge?: boo
   const genis = 0.9 + 0.1 * dolu;
   // sağ el: kıstırma noktası manşet ağzının sağ ucunda (çekerken onunla iner)
   const hedef: P = [92, manset - 14];
-  const elAci = 196, eo = 1.9 / s;        // KolEl ölçeği yerel birimde (ekranda MASA-INSERT el ölçüsü 1.9)
+  // K4 (v4 P12) imza nesnesi ölçüsü: eldiven = BİR EL BOYU. Eldivenin el boyu (orta parmak ucu → bilek) yerel ≈ 314; sağ el (KolEl)
+  // aynı boyda çizilir (EL_BOY_YEREL·eo = 314) → eldiven onu tutan elden büyük görünmez (eskiden sağ el 1.9 ekran ölçeğinde ≈ %65'iydi).
+  const elAci = 196, eo = ELDIVEN_EL_BOY / EL_BOY_YEREL, kk = (eo * s) / 1.9;
   const r = rad(elAci);
   const kb: P = [hedef[0] - (KISTIR_YEREL[0] * Math.cos(r) - KISTIR_YEREL[1] * Math.sin(r)) * eo, hedef[1] - (KISTIR_YEREL[0] * Math.sin(r) + KISTIR_YEREL[1] * Math.cos(r)) * eo];
   return (
@@ -92,7 +95,7 @@ export const EldivenGiyme: React.FC<{ e: EldivenGiyParam; p: number; golge?: boo
         <path d={`M -82 ${manset} L 90 ${manset}`} stroke={tonla(GLOVE.hero, -0.25)} strokeWidth={3} />
       </>}
       {/* sağ el: sağ kadraj kenarından, manşetin sağ ucunu kıstırır */}
-      {!golge && <KolEl giris={[kb[0] + 520, kb[1] + 330]} dirsek={[kb[0] + 250, kb[1] + 150]} bilek={kb} gen={[210 / s, 172 / s, 92 / s]} tip="louis" elAci={elAci} olcek={eo} poz="kistir" />}
+      {!golge && <KolEl giris={[kb[0] + 520 * kk, kb[1] + 330 * kk]} dirsek={[kb[0] + 250 * kk, kb[1] + 150 * kk]} bilek={kb} gen={[(210 * kk) / s, (172 * kk) / s, (92 * kk) / s]} tip="louis" elAci={elAci} olcek={eo} poz="kistir" />}
     </g>
   );
 };

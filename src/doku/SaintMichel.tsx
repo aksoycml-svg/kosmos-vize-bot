@@ -1,5 +1,5 @@
 import React from "react";
-import { ChappeKule, KonumAdi } from "./ChappeKule";
+import { ChappeKule, KolKonum, KonumAdi } from "./ChappeKule";
 import { P, poly } from "./sabitler";
 
 // ===== Bordeaux Saint-Michel çan kulesi, 1834 =====
@@ -9,7 +9,7 @@ import { P, poly } from "./sabitler";
 // (x,y): görünür taban ortası; h: gövde yüksekliği (Chappe hariç).
 export const SaintMichel: React.FC<{
   x: number; y: number; h: number; renk: string; kenar?: string; kenarA?: number; detay?: "siluet" | "orta";
-  chappe?: { konum: KonumAdi; renk?: string } | null; acikRenk?: string;
+  chappe?: { konum: KonumAdi | KolKonum; renk?: string; olcek?: number } | null; acikRenk?: string;
 }> = ({ x, y, h, renk, kenar = "#9fb3ea", kenarA = 0.25, detay = "siluet", chappe = { konum: "DINLEN" }, acikRenk }) => {
   const w = h * 0.2; // gövde genişliği (altta)
   const wt = w * 0.86; // tepede
@@ -47,7 +47,7 @@ export const SaintMichel: React.FC<{
   return (
     <g>
       {els}
-      {chappe && <ChappeKule x={x} y={yy(0.955)} L={w * 0.95} konum={chappe.konum} detay="siluet" siluetRenk={chappe.renk ?? renk} payanda={false} />}
+      {chappe && <ChappeKule x={x} y={yy(0.955)} L={w * 0.95 * (chappe.olcek ?? 1)} konum={chappe.konum} detay="siluet" siluetRenk={chappe.renk ?? renk} payanda={false} />}
     </g>
   );
 };

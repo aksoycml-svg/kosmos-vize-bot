@@ -51,15 +51,21 @@ const Dosya: React.FC<PropCiz> = (o) => {
   );
 };
 
-// Kanun kitabı (açık): sayfa 0..1 çevrilen sayfanın ilerlemesi; bos: sağ sayfa boş
+// Kanun kitabı (açık): sayfa 0..1 çevrilen yaprağın ilerlemesi (her çevirişte 0→1, sonra 0'a dönüp sonraki yaprak).
+// K4 (v4 P11) bos: sabit ya da ANAHTARLI (boolean dizisi, basamaklı) — sağ sayfa boş mu. Son çevirişin başında true yapılır
+// (yaprak sağ sayfayı örterken değişir → görünür sıçrama yok).
+// K4 guve: sayı ANAHTARLI; < 0 → güve YOK (çizilmez). 0 = boş sayfada kanat kapalı (yaprağın ALTINDA: çevrilen yaprak üstünden
+// kalkınca görünür), .1'den sonra kanat çırparak uçar (yaprağın ÜSTÜNDE), 1'de kadraj üstünden çıkmış. Tek kitap nesnesi yeter.
 const Kitap: React.FC<PropCiz> = (o) => {
   const t = sayi(o.durum, "sayfa", 0);
-  const bos = o.durum.bos !== false;
+  const bos = o.durum.bos !== false && o.durum.bos !== 0;
   const W = 250, H = 360;
   const kag = G(o, "#e2d6b8"), cil = G(o, "#4a2e22");
   const st = (c: string) => (o.golge ? {} : { stroke: ink(c), strokeWidth: 2.5 });
   const sx = W * Math.cos(t * Math.PI); // çevrilen sayfanın genişliği (sağdan sola)
   const satir = (x0: number, n: number) => !o.golge && Array.from({ length: n }).map((_, i) => <line key={i} x1={x0 + 26} y1={-H / 2 + 40 + i * 22} x2={x0 + W - 30} y2={-H / 2 + 40 + i * 22} stroke="#6a5e48" strokeWidth={2.4} opacity={0.55} />);
+  const g = typeof o.durum.guve === "number" ? (o.durum.guve as number) : -1;
+  const guve = !o.golge && g >= 0 ? <Guve g={g} x0={W * 0.5} y0={10} golge={o.golge} /> : null;
   return (
     <g>
       <rect x={-W - 14} y={-H / 2 - 12} width={2 * W + 28} height={H + 24} rx={8} fill={cil} {...st("#4a2e22")} />
@@ -68,9 +74,9 @@ const Kitap: React.FC<PropCiz> = (o) => {
       {satir(-W, 14)}
       {!bos && satir(0, 14)}
       {!o.golge && <line x1={0} y1={-H / 2} x2={0} y2={H / 2} stroke="#8a7a5a" strokeWidth={3} />}
+      {g < 0.1 && guve}
       {t > 0 && t < 1 && <polygon points={poly([[0, -H / 2], [sx, -H / 2 - 18 * Math.sin(t * Math.PI)], [sx, H / 2 - 10 * Math.sin(t * Math.PI)], [0, H / 2]])} fill={G(o, t < 0.5 ? "#ece2c8" : "#d8ccae")} {...st("#e2d6b8")} />}
-      {/* K2 (D8): güve — durum.guve 0..1 (kare ile anahtarla): 0 boş sayfada kanat kapalı, .1'den sonra uçar, 1'de kadraj üstünden çıkmış */}
-      {!o.golge && typeof o.durum.guve === "number" && <Guve g={o.durum.guve as number} x0={W * 0.5} y0={10} golge={o.golge} />}
+      {g >= 0.1 && guve}
     </g>
   );
 };
@@ -127,7 +133,9 @@ const Fener: React.FC<PropCiz> = (o) => {
   );
 };
 
-const Paket: React.FC<PropCiz> = (o) => o.golge ? <rect x={-140} y={-170} width={280} height={340} fill={o.golgeRenk} opacity={0.5} /> : <PaketKagidi x={0} y={0} acik={sayi(o.durum, "acik", 1)} ipCozuk={o.durum.ipCozuk !== false} kabarti={sayi(o.durum, "kabarti", 0)} etiket={o.durum.etiket !== false} seed={o.seed} />;
+// K4: kapanırken masa gölgesi açık kâğıdın altından kapalı paketin ölçüsüne daralır (kapalı pakette taşan koyu kutu kalmaz)
+const paketGolge = (o: PropCiz) => { const k = Math.min(1, sayi(o.durum, "kapan", 0)); const w = 140 - 26 * k, h = 170 - 24 * k; return <rect x={-w} y={-h} width={2 * w} height={2 * h} fill={o.golgeRenk} opacity={0.5} />; };
+const Paket: React.FC<PropCiz> = (o) => o.golge ? paketGolge(o) : <PaketKagidi x={0} y={0} acik={sayi(o.durum, "acik", 1)} ipCozuk={o.durum.ipCozuk !== false} kabarti={sayi(o.durum, "kabarti", 0)} etiket={o.durum.etiket !== false} seed={o.seed} />;
 const EldivenP: React.FC<PropCiz> = (o) => <Eldiven elBoyu={sayi(o.durum, "elBoyu", 266)} golge={o.golge} golgeRenk={o.golgeRenk} />;
 
 export const PROPLAR: Record<PropTur, React.FC<PropCiz>> = { paket: Paket, eldiven: EldivenP, corap: Corap, dosya: Dosya, kitap: Kitap, kese: Kese, hokka: Hokka, mum: Mum, fener: Fener };

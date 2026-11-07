@@ -36,6 +36,10 @@ export type Prop = {
   x: Sayi; y: Sayi; kare?: number[];           // MASA-INSERT: ekran px (masa düzlemi). IC-ODA: x = u (m), y = z (m)
   olcek?: number; aci?: Sayi;
   durum?: Record<string, Sayi | string | boolean>; // ör. paket {acik: [0.5,1]}, dosya {kapak: [0,1]}, kitap {sayfa: [0,1]}
+  // K4 (IC-ODA) el–prop teması: `it` = karakterin ön eli prop'u masada iter (bas–bit eli prop'un arkasında izler; prop yolu x/y anahtarı);
+  // `al` = karakter uzanır (kare−uzan … kare), kare'de kavrar (prop ele bağlanır), don karede göğüs hizasına kaldırır ve tutar.
+  it?: { kim: string; bas: number; bit: number };
+  al?: { kim: string; kare: number; uzan?: number; don?: number };
 };
 
 // MASA-INSERT eli: KolEl anahtarları (ekran px)

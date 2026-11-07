@@ -353,13 +353,13 @@
    "parametreler": {
     "rota": "paris-bordeaux",
     "posta": {
-     "bas": 12,
-     "bit": 138,
+     "bas": 88,
+     "bit": 170,
      "gun": 3
     },
     "telgraf": {
-     "bas": 138,
-     "bit": 180,
+     "bas": 10,
+     "bit": 84,
      "kule": 5,
      "saat": 4
     },
@@ -402,34 +402,58 @@
    ],
    "temaslar": [
     {
-     "kare": 14,
-     "olay": "sayaç 1. gün tık",
+     "kare": 10,
+     "olay": "telgraf sayacı girer: 1 SAAT tık",
+     "ses": "sayac-tik",
+     "db": -12
+    },
+    {
+     "kare": 55,
+     "olay": "telgraf sayacı 2 SAAT tık",
+     "ses": "sayac-tik",
+     "db": -12
+    },
+    {
+     "kare": 68,
+     "olay": "telgraf sayacı 3 SAAT tık",
+     "ses": "sayac-tik",
+     "db": -12
+    },
+    {
+     "kare": 79,
+     "olay": "telgraf sayacı 4 SAAT tık",
+     "ses": "sayac-tik",
+     "db": -12
+    },
+    {
+     "kare": 84,
+     "olay": "son kule klak (sinyal Bordeaux'ya varır, 'saat')",
+     "ses": "klak-uzak",
+     "db": -8
+    },
+    {
+     "kare": 88,
+     "olay": "posta sayacı 1. gün tık ('posta')",
      "ses": "sayac-tik",
      "db": -8
     },
     {
-     "kare": 61,
-     "olay": "sayaç 2. gün tık",
-     "ses": "sayac-tik",
-     "db": -8
-    },
-    {
-     "kare": 89,
-     "olay": "sayaç 3. gün tık",
+     "kare": 120,
+     "olay": "posta sayacı 2. gün tık",
      "ses": "sayac-tik",
      "db": -8
     },
     {
      "kare": 138,
-     "olay": "posta arabası varır, tekerlek susar",
-     "ses": "tekerlek-gicirti",
-     "db": -14
+     "olay": "posta sayacı 3. gün tık",
+     "ses": "sayac-tik",
+     "db": -8
     },
     {
-     "kare": 180,
-     "olay": "son kule klak (sinyal Bordeaux'ya varır)",
-     "ses": "klak-uzak",
-     "db": -8
+     "kare": 170,
+     "olay": "posta arabası Bordeaux'ya varır, tekerlek susar",
+     "ses": "tekerlek-gicirti",
+     "db": -14
     },
     {
      "kare": 198,
@@ -439,10 +463,7 @@
    ],
    "dokunus": null,
    "kontrol_kare": 198,
-   "not": "v4: mühür 198 (3.3 sn; v3'te 447/7.4 sn). Kit tek sayaç kutusu: posta ve telgraf aynı anda koşturulamıyor (telgraf başlayınca kutu hep 'N SAAT'); bu yüzden posta 12–138, telgraf 138–180 art arda (senaryo v4 eş zamanlı istiyordu) → kit_eksik harita_cift_sayac.",
-   "kit_eksik": [
-    "harita_cift_sayac"
-   ]
+   "not": "v4 + kit K4 çift sayaç: telgraf 10–84 ('Telgraf birkaç saat' 6–84; üst kutu 4 SAAT'te kalır), posta 88–170 ('posta üç gün' 87–136; alt kutu 3. GÜN). Mühür 198 değişmedi."
   },
   {
    "id": "P04",
@@ -669,17 +690,7 @@
        0
       ],
       "kas": -0.4
-     },
-     "jestler": [
-      {
-       "ad": "isaret",
-       "bas": 8,
-       "bit": 70,
-       "ops": {
-        "aci": -95
-       }
-      }
-     ]
+     }
     },
     {
      "kim": "mudur",
@@ -742,13 +753,24 @@
      "id": "kese",
      "x": [
       -0.3,
-      0.35
+      0.55
      ],
      "y": 3.1,
      "kare": [
       20,
       80
-     ]
+     ],
+     "it": {
+      "kim": "louis",
+      "bas": 20,
+      "bit": 40
+     },
+     "al": {
+      "kim": "mudur",
+      "kare": 122,
+      "uzan": 26,
+      "don": 32
+     }
     }
    ],
    "ekran_yazisi": [
@@ -767,15 +789,21 @@
    "temaslar": [
     {
      "kare": 20,
-     "olay": "kese masada kayar",
+     "olay": "Louis'nin eli keseyi masada iter (kayma başlar)",
      "ses": "kese-kayma",
      "db": -6
     },
     {
      "kare": 80,
-     "olay": "kese durur, altın şıngırtısı",
+     "olay": "kese müdürün önünde durur, altın şıngırtısı",
      "ses": "altin-singirti",
      "db": -6
+    },
+    {
+     "kare": 122,
+     "olay": "müdür keseyi kavrar, altınlar şıngırdar",
+     "ses": "altin-singirti",
+     "db": -10
     },
     {
      "kare": 168,
@@ -791,11 +819,7 @@
     "bit": 280
    },
    "kontrol_kare": 200,
-   "not": "v4: Louis konuşmaz (replik çıktı). golgeT 130–280 (donusum 66, tek oynama), memur it-cek tekrar 1 (tik 168). Louis z 2.8 u -.75 (kese x -.3 ona erişilebilir; memurla |dz|>.6, örtüşme yok). 'Müdür keseyi alır' ve 'Louis iter' için jest yok: isaret ≈ uzanan kol, müdür yalnız bakar → kit_eksik.",
-   "kit_eksik": [
-    "mudur_kese_al",
-    "louis_kese_it"
-   ]
+   "not": "v4: Louis konuşmaz (replik çıktı). golgeT 130–280 (donusum 66, tek oynama), memur it-cek tekrar 1 (tik 168). Louis z 2.8 u -.75 (kese x -.3 ona erişilebilir; memurla |dz|>.6, örtüşme yok). Kit K4: kese.it (Louis ön eli 6–54 keseyi iter, 20–40 elde, sonra kese kayarak 80'de müdürün önünde durur) + kese.al (müdür 96–122 uzanır, 122 kavrar, 126–158 göğüs hizasına kaldırır ve tutar; arkadaki müdürün ön kolu masanın önüne çizilir). Louis isaret jesti kaldırıldı (itme onu karşılıyor)."
   },
   {
    "id": "P06",
@@ -1472,7 +1496,7 @@
        "bas": 120,
        "bit": 224,
        "ops": {
-        "agiz": "esneme"
+        "agiz": "uykulu"
        }
       }
      ]
@@ -1536,15 +1560,12 @@
     "bit": 224
    },
    "kontrol_kare": 172,
-   "not": "v4: it-cek 0–200 esneme boyunca sürer; esne 120–224 'kopyalıyor' (153–206) ile. Esneme varyantı: kitte yalnız 'esneme' (gözler sıkı, kaşlar kalkık = acı gibi okundu) ve küçük 'O' — uykulu varyant yok → kit_eksik esne_uykulu. Arka kule x 830 (yüzün arkasında gizlenmesin).",
+   "not": "v4: it-cek 0–200 esneme boyunca sürer; esne 120–224 'kopyalıyor' (153–206) ile. Esneme varyantı: kitte yalnız 'esneme' (gözler sıkı, kaşlar kalkık = acı gibi okundu) ve küçük 'O' — uykulu varyant yok → kit_eksik esne_uykulu. Arka kule x 830 (yüzün arkasında gizlenmesin). Kit K4: esne ops.agiz 'uykulu' (yarı inik ağır kapaklar, gevşek kaş, yuvarlak ağız).",
    "ses": [
     {
      "dosya": "blanc/ses-v4/P08.mp3",
      "kare": 6
     }
-   ],
-   "kit_eksik": [
-    "esne_uykulu"
    ]
   },
   {
@@ -1594,7 +1615,7 @@
      "bas": 126,
      "kare": 160,
      "bit": 200,
-     "tip": "ceket"
+     "kim": "katip"
     }
    },
    "kamera": {
@@ -1695,11 +1716,7 @@
     "bit": 200
    },
    "kontrol_kare": 160,
-   "not": "v4: kamera lucarne'a yakın (cs 2.0) başlar, T okunur; 90–150 pervaza iner. Kol MESAJ→HATA(96)→MESAJ(186); bıçak 126–200, kırt 160.",
-   "kit_eksik": [
-    "bordeaux_dis_kol",
-    "pervaz_bicak_kol"
-   ]
+   "not": "v4: kamera lucarne'a yakın (cs 2.0) başlar, T okunur; 90–150 pervaza iner. Kol MESAJ→HATA(96)→MESAJ(186); bıçak 126–200, kırt 160. Kit K4: bıçak katibin kendi ön kolunda (IK, rig ışığı; çakı plan başından elde); pencere T'si kol parametresini izler, HATA'da kırmızı halka."
   },
   {
    "id": "P10",
@@ -1740,7 +1757,11 @@
     "olcek": 3.6,
     "egim": 8,
     "yatik": true,
-    "yorgan": "#8a7260",
+    "yorgan": {
+     "renk": "#8a7260",
+     "kalinlik": 0.5,
+     "sarkma": 30
+    },
     "yastik": true,
     "bulanik": 16,
     "isik": "mum"
@@ -1819,7 +1840,7 @@
    ],
    "dokunus": null,
    "kontrol_kare": 240,
-   "not": "v4: anlatıcı 6–156, nefes 0.4 sn, memur 180 (söz ~184–302), 302–320 tam sessizlik, plan 330. Kamera yüze yaklaşır (cs 1.0→1.3).",
+   "not": "v4: anlatıcı 6–156, nefes 0.4 sn, memur 180 (söz ~184–302), 302–320 tam sessizlik, plan 330. Kamera yüze yaklaşır (cs 1.0→1.3). Kit K4: yorgan {kalinlik .5, sarkma 30} → kk 240'ta yorgan alt üçte birin ≈%18'i.",
    "kamera": {
     "kare": [
      0,
@@ -1838,10 +1859,7 @@
      0
     ],
     "egri": "inout"
-   },
-   "kit_eksik": [
-    "yorgan_olcek"
-   ]
+   }
   },
   {
    "id": "P11",
@@ -1889,19 +1907,8 @@
    "props": [
     {
      "tur": "kitap",
-     "id": "kitapA",
-     "x": [
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      -4000
-     ],
+     "id": "kitap",
+     "x": 540,
      "y": 1000,
      "olcek": 2.0,
      "kare": [
@@ -1914,7 +1921,10 @@
       45,
       50,
       51,
-      52
+      72,
+      96,
+      100,
+      190
      ],
      "durum": {
       "sayfa": [
@@ -1927,139 +1937,35 @@
        0,
        0,
        0.0004,
-       0.003
-      ],
-      "bos": false
-     }
-    },
-    {
-     "tur": "kitap",
-     "id": "kitapB",
-     "x": [
-      -4000,
-      -4000,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      -4000
-     ],
-     "y": 1000,
-     "olcek": 2.0,
-     "kare": [
-      0,
-      51,
-      52,
-      53,
-      54,
-      55,
-      56,
-      57,
-      58,
-      59,
-      60,
-      61
-     ],
-     "durum": {
-      "sayfa": [
-       0.003,
-       0.003,
-       0.003,
-       0.0101,
-       0.024,
-       0.047,
-       0.0811,
-       0.1289,
-       0.1923,
-       0.2739,
-       0.3757,
-       0.3757
-      ],
-      "bos": true
-     }
-    },
-    {
-     "tur": "kitap",
-     "id": "kitapC",
-     "x": [
-      -4000,
-      -4000,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540,
-      540
-     ],
-     "y": 1000,
-     "olcek": 2.0,
-     "kare": [
-      0,
-      60,
-      61,
-      62,
-      63,
-      64,
-      65,
-      66,
-      67,
-      68,
-      69,
-      70,
-      71,
-      72,
-      96,
-      100,
-      190
-     ],
-     "durum": {
-      "sayfa": [
-       0.5,
-       0.5,
-       0.5,
-       0.6243,
-       0.7261,
-       0.8077,
-       0.8711,
-       0.9189,
-       0.953,
-       0.976,
-       0.9899,
-       0.997,
-       0.9996,
-       1.0,
+       1,
        1,
        1,
        1
       ],
-      "bos": true,
+      "bos": [
+       false,
+       false,
+       false,
+       false,
+       false,
+       false,
+       false,
+       false,
+       true,
+       true,
+       true,
+       true,
+       true
+      ],
       "guve": [
-       0,
-       0,
-       0,
-       0,
-       0,
-       0,
-       0,
-       0,
-       0,
-       0,
-       0,
-       0,
+       -1,
+       -1,
+       -1,
+       -1,
+       -1,
+       -1,
+       -1,
+       -1,
        0,
        0,
        0,
@@ -2253,11 +2159,7 @@
     "bit": 190
    },
    "kontrol_kare": 130,
-   "not": "v4: kitap 3 prop ile kuruldu (A=metinli sayfalar, B=boş sayfa çevirme, C=boş sayfa + güve; x -4000 ile sahne dışı = geçici çözüm). Güve ancak C'de, leaf sayfayı açtıktan sonra (61) görünür; kit yalnız durum.guve tanımlıysa güveyi çiziyor ve g=0'da hep görünür. Kalıcı çözüm: guveBas + bos anahtarlanabilir. El 120'de kadrajdan çıkar (x 1600).",
-   "kit_eksik": [
-    "guve_gizli",
-    "kitap_bos_anahtar"
-   ]
+   "not": "v4 + kit K4: TEK kitap nesnesi. Üç çeviriş (6–22, 28–44, 50–72); bos 51'de (yaprak sağ sayfayı örterken) true olur, güve 51'den itibaren boş sayfada ama çevrilen yaprağın ALTINDA — yaprak kalkınca görünür; 100'de kanat çırpar, 190'da kadraj üstünden çıkmış. El 120'de kadrajdan çıkar (x 1600)."
   },
   {
    "id": "P12",
@@ -2657,8 +2559,8 @@
        1252
       ],
       [
-       372,
-       1190
+       392,
+       1222
       ],
       [
        161,
@@ -2711,8 +2613,8 @@
        1270
       ],
       [
-       142,
-       1240
+       162,
+       1272
       ],
       [
        -69,

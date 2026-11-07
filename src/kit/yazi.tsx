@@ -41,7 +41,19 @@ const Serit: React.FC<{ children: React.ReactNode; padY?: number }> = ({ childre
 export const KitEkranYazisi: React.FC<{ metin: string; vurgu?: string[]; tur?: "iddia" | "formul"; bant?: "ust" | "alt" }> = ({ metin, vurgu, tur = "iddia", bant = "ust" }) => {
   const formul = tur === "formul";
   // en/oran: Playfair 900 ≈ 0.52 em/harf (ölçüldü), Plex Mono = 0.6. İki satırda boyut ≤ 64 → kutu ≈ 152 px (bant 160)
-  const { satirlar, px } = formul ? yerlesim(metin, 44, 0.6, 40) : yerlesim(metin, 72, 0.52, 64);
+  // K4 (v4 P06/P07): formül telefonda küçük kalıyordu (44 px mono). Artık iddia boyutuna yakın: tek satır ≤ 64, iki satır ≤ 60;
+  // " · " ayırıcısı varsa satır oradan kırılır (ayırıcı düşer) — "ELDİVEN = ↑" / "ÇORAP = ↓"; yoksa "=" öncesinden kırılır.
+  const formulYer = () => {
+    const ic = YAZI.kutuW - 52, en = 0.6;
+    const tek = metin.length * en * 64 <= ic;
+    if (tek) return { satirlar: [metin.split(" ").filter(Boolean)], px: 64 };
+    const parca = metin.includes(" · ") ? metin.split(" · ") : (() => { const i = metin.lastIndexOf(" = "); return i > 0 ? [metin.slice(0, i), metin.slice(i + 1)] : [metin]; })();
+    if (parca.length !== 2) return yerlesim(metin, 64, en, 60);
+    const satirlar = parca.map((q) => q.split(" ").filter(Boolean));
+    const uzun = Math.max(...parca.map((q) => q.length));
+    return { satirlar, px: Math.min(60, ic / (uzun * en)) };
+  };
+  const { satirlar, px } = formul ? formulYer() : yerlesim(metin, 72, 0.52, 64);
   const tum = satirlar.flat();
   const vi = formul ? -1 : vurguIndeks(tum, vurgu);
   let j = 0;

@@ -32,7 +32,7 @@ Dosya adı `bolum*.json` olmalı (bundle'a `require.context` ile girer). Kareler
 - **Anahtarlı değer:** sayı ya da dizi; dizi ise aynı nesnenin `kare` dizisiyle eşit uzunlukta (yol, durum, kamera).
 - **Kamera eğrisi:** `giris` = bezier(.16,1,.3,1) (varsayılan), `inout` push-in, `lineer` yalnız kamera kaymasında.
 - **Yazı bantları:** `ust` y 240–400, `alt` y 1290–1490. Replik ayakları/temas/kurulum nesnesini örtecekse `ust`.
-- **Yazı standardı (K2, şablondan bağımsız — parametre DEĞİL, `src/kit/yazi.tsx`):** ekran yazısı HER ZAMAN kâğıt şerit + Playfair 900 (`tur: formul` → Plex Mono, yine şeritli); kırmızı vurgu yalnız TEK kelime (`vurgu` listesinden ilk eşleşen); uzun metin iki dengeli satıra bölünür, şerit iki satırı kapsar, kutu 240–400 içinde kalır (boyut otomatik). `kagitSerit`/`boyut` alanları geri uyum için şemada, yok sayılır. Replik: konuşan plakası + Inter 800 + arkasında yarı saydam koyu bant. Doğrulayıcı: üst bantta ekran yazısı ile replik aynı anda → uyarı; vurgu > 1 → uyarı.
+- **Yazı standardı (K2, şablondan bağımsız — parametre DEĞİL, `src/kit/yazi.tsx`):** ekran yazısı HER ZAMAN kâğıt şerit + Playfair 900 (`tur: formul` → Plex Mono, yine şeritli; **K4:** tek satır 64 px, iki satır ≤ 60 px, ` · ` varsa oradan, yoksa son ` = ` öncesinden kırılır); kırmızı vurgu yalnız TEK kelime (`vurgu` listesinden ilk eşleşen); uzun metin iki dengeli satıra bölünür, şerit iki satırı kapsar, kutu 240–400 içinde kalır (boyut otomatik). `kagitSerit`/`boyut` alanları geri uyum için şemada, yok sayılır. Replik: konuşan plakası + Inter 800 + arkasında yarı saydam koyu bant. Doğrulayıcı: üst bantta ekran yazısı ile replik aynı anda → uyarı; vurgu > 1 → uyarı.
 - **Temas = ses:** görünür her çarpma/bırakma bir `temaslar` girdisi. Jest temasları (baston-vur vuruşu, it-cek tik'leri, eldiven-giy gerilmesi, MASA-INSERT bırakma, HARITA mühür, kule kol varışı) doğrulayıcıda denetlenir. `--temas` çıktısı mutlak kare/saniye listesidir; sesler oradan yerleşir.
 - **Plan sesi (`ses`, opsiyonel):** `"ses": [{ "dosya": "blanc/ses-v3/P05.mp3", "kare": 12, "db": 0 }]` — `dosya` public/ altından göreli, `kare` plan içi başlangıç, `db` kazanç (varsayılan 0 → volume 1). Plan bitince kesilir. Doğrulayıcı: dosya yok = HATA; plan sonundan taşma ve aynı planda iki sesin çakışması = UYARI (ffprobe yoksa uyarı).
 - **Foley + müzik (ses eki, `src/kit/ses.tsx`):** bolum.json'a alan EKLENMEZ. Bolum props `foley`/`miks` (bolumler/'den göreli json yolu) verilmezse bolum json'unun klasöründeki `foley.json` / `miks.json` okunur; yoksa sessiz geçilir. `foley.json`: `{ "<ses_adi>": { "dosya": "blanc/foley/x.wav", "tepe_ms": 35, "onerilen_db": -6 } }` — her `temaslar[].ses` adı buradan çalar; başlangıç = temas mutlak karesi − tepe_ms·60/1000 (tepe temas karesinde), plan kesmesinde kesilmez. db önceliği: `temas.db` > `miks.istisnalar[ses]` (sayı ya da `{db}`) > `onerilen_db` > `miks.foley_varsayilan_db` > −4. `miks.json`: `{ "muzik": { "dosya", "bas_kare", "db", "fade_in_kare", "fade_out_kare", "duck": { "anlatim_db", "atak_kare"?, "birakma_kare"? } }, "foley_varsayilan_db", "istisnalar" }` — tek müzik bas_kare'den bölüm sonuna; `db` = anlatımsız seviye, `duck.anlatim_db` = plan `ses` çalarken MUTLAK seviye (atak 9 / bırakma 24 kare rampa; anlatım süresi calculateMetadata'da okunur, okunamazsa plan sonuna dek duck). public'te olmayan dosya render'da atlanır. Doğrulayıcı (`--foley`/`--miks` ile yol ezilir): foley.json yok, tanımsız ses adı, eksik dosya, tepe_ms yok, sessiz temas, kullanılmayan foley, müzik dosyası yok = UYARI.
@@ -49,7 +49,7 @@ Dosya adı `bolum*.json` olmalı (bundle'a `require.context` ile girer). Kareler
 | `isaret` | `aci` (−95 ileri, −150 yukarı) | ön kol |
 | `sapka-kaldir` | — | ön el şapkayı kaldırır, bit'te iner |
 | `baston-vur` | `vurus` (kare), `el` (arka/on), `hedefX` | uç taşa iner, temas = `vurus` (zorunlu temas). `aksesuar: baston` |
-| `esne` | `agiz` (`esneme`\|`O`) | yakın planda (YAKIN-YUZ) varsayılan kocaman `esneme` ağzı (çene düşer, diş + dil, gözler sıkı); genel planda küçük O. Ağız ifadesi `yuz.ifade: "esneme"` da olur |
+| `esne` | `agiz` (`esneme`\|`O`\|`uykulu` K4) | yakın planda (YAKIN-YUZ) varsayılan kocaman `esneme` ağzı (çene düşer, diş + dil, gözler sıkı); genel planda küçük O. Ağız ifadesi `yuz.ifade: "esneme"` da olur |
 | `it-cek` | `tekrar` (3) | kol iter-çeker; tik kareleri `round(bas + (i+.25)·L/tekrar)` |
 | `eldiven-giy` | `gerilme` (kare) | iki el önde; gerilme karesinden sonra el eldiven beyazı (temas zorunlu) |
 | `fisilda` | `hiz` | ağır göz kapağı, kısık ağız döngüsü |
@@ -60,12 +60,13 @@ Jestler zarfla karışır (giriş bezier(.16,1,.3,1), çıkış hızlı); aynı 
 ### Prop kaydı (`props[].tur`, `durum`)
 | tur | durum | not |
 |---|---|---|
-| `paket` | `acik` 0–1, `ipCozuk`, `kabarti`, `etiket`, `etiketX/Y` | kâğıt + kenevir ip (kutu yok) |
+| `paket` | `acik` 0–1, `ipCozuk`, `kabarti`, `etiket`, `etiketX/Y`, **K4:** `kapan` 0–1, `ip` 0–1 | kâğıt + kenevir ip (kutu yok). **K4 kapanma (MASA-INSERT, `acik: 1` iken):** `kapan` 0→1 dört kanadı sırayla katlar (sol 0–.25 · sağ .25–.5 · alt .5–.75 · üst .75–1), silüet/konum/ölçek SÜREKLİ (sprite atlaması yok); `ip` 0→1 gevşek uçlar çekilir, ip boyuna+enine sarar, .6–1 fiyonk sıkılır, etiket düğüme gelir. Her kanadın inişi `kagit-katlama`, ip `ip-zit`, düğüm `dugum-tok` teması. Kanat geçişleri arasında 8–12 kare bekleme anahtarı ver (el yeni kanada gider) |
 | `eldiven` | `elBoyu` (266) | İMZA NESNESİ — beyazı başka nesnede yok |
 | `corap` | `sarkma` 0–1 | koyu yün |
 | `dosya` | `kapak` 0 açık → 1 kapalı | kapanış karesi = "TOK" teması |
-| `kitap` | `sayfa` 0–1, `bos`, `guve` 0–1 (K2) | açık kanun kitabı; `guve` anahtarlı: 0 boş sayfada güve (kanat kapalı), .1'den sonra kıvrımlı uçuş, 1'de kadraj üstünden çıkmış (fade yok) |
+| `kitap` | `sayfa` 0–1, `bos` (K4: boolean dizisi de olur, basamaklı), `guve` (K4: < 0 = yok) | açık kanun kitabı, TEK nesne: her çevirişte `sayfa` 0→1, sonraki yaprak için 0. `bos` son çevirişin ilk karesinde true (yaprak sağ sayfayı örterken). `guve` anahtarlı: −1 yok · 0 boş sayfada kanat kapalı, çevrilen yaprağın ALTINDA (yaprak kalkınca görünür) · .1'den sonra kanat çırparak uçar (yaprağın üstünde) · 1 kadraj üstünden çıkmış (fade yok) |
 | `kese`, `hokka`, `mum`, `fener` | — | fener/mum ışık kaynağı şablonda aynı noktadan |
+| **K4 el–prop teması (IC-ODA, her prop)** | `it: {kim, bas, bit}` · `al: {kim, kare, uzan (24), don (30)}` | `it`: karakterin ön eli (IK) bas–bit prop'un arkasında izler (prop yolu `x/y` anahtarı; el 14 karede gelir/çekilir), bas = temas. `al`: kare−uzan…kare uzanır, kare'de kavrar (prop ele bağlanır, ağzından sarkar), sonra `don` karede bel–göğüs hizasına kaldırır ve tutar; kare = temas. Arkadaki karakter masaya uzanırsa ön kolu masanın önünde çizilir. Erişim yetmezse kalçadan ≤ 20° eğilir. Doğrulayıcı: kim planda, temas, bitiş payı |
 
 ---
 
@@ -94,7 +95,7 @@ Kutu oda, göz hizası 1.6 m (ufuk y 760, F 1150), alçak çatı katı tavanı +
 | `isik` * | `mum` (masadaki mum TEK nokta ışık; tonlar loş-sıcak — karartma katmanı yok) · `gun` (pencereden güneş) |
 | `masa` | `{z, u, w, d, h}` (m) — props masanın üstüne: `x` = u (m), `y` = z (m) |
 | `pencere` | `{u, h0, w, h}` (m; varsayılan u .9, h0 .95, 1.0×1.15) |
-| `dis` | `tours` · `bordeaux` · `gece` (oda varsayılanını ezer) |
+| `dis` | `tours` · `bordeaux` · `gece` (oda varsayılanını ezer). **K4:** `bordeaux` Saint-Michel T'si planın `kol` parametresini izler (MESAJ/HATA, varışta aşma), T %35 büyük ve açıklığın içinde; sol gösterge HATA açısına yaklaşınca kırmızı halka (ayrı parametre yok) |
 | `kol` | dış T kolu: `"BEKLE"` ya da `{kare:[a,b], konum:["BEKLE","SAK"]}` (gece/sis: sabit) |
 | `arka` | arka duvar z (4.2) · `pervazCentik` (sayı) · `pervazCentikYeni` (kare: bir çentik daha — bıçak teması) · `teleskop` |
 - Karakter: `z` 2.2–4.0 m, `u` −2.0…2.0 m (0 orta). Ekran x = 540 + u·1150/z → **|u|/z ≤ 0.33** tut (IG düğme sütunu x > 920). En çok 3.
@@ -104,7 +105,7 @@ Kutu oda, göz hizası 1.6 m (ufuk y 760, F 1150), alçak çatı katı tavanı +
 |---|---|
 | `golgeT` (K2, D2) | `{kim, bas, bit, donusum (36), konum ("MESAJ"; "SAK" önerilir), koyuluk (0.82; 0–1 opaklık), kenar (1; 0–1 netlik, 1 = keskin)}` — yalnız `isik: mum`. T merkezi kol gölgesinin ortasında. Karakter zemin gölgesi IC-ODA'da zemine kırpılır (duvara tırmanmaz; duvardaki kısım bu izdüşüm). Karakterin omuz/dirsek/el/baş/kalça noktaları mum alevinden arka duvara izdüşer (net kenar, büyür; pencere camına düşmez); `bas`→`bas+donusum` kol düzleşip regülatör, parmak/baş gösterge, gövde direk olur; `bit`'e doğru geri döner. Karakter z > masa z olmalı (mumun arkasında). Gölge karakterin yanına düşsün: mum yanal olarak karakterden ≥ 1 m uzak (örnek: masa u 0.45, karakter u −0.2, z 3.65 / masa z 3.0) |
 | `manipulator` (K2) | `{kim, ileri (0.75 m), h (1.0 m), yari (0.3 m)}` — Chappe kumandası: karakterin önünde ahşap direk + küçük siyah kol + tavandaki makaralara kablolar. Kol açısı karakterin `it-cek` fazından; ön el IK ile tutamağa oturur (el koldan kopmaz). Tik temasları `it-cek` ile aynı |
-| `pervazBicak` (K2, D6) | `{bas, kare, bit, tip ("ceket")}` — sağ-alt kadraj kenarından kol + bıçak; uç `pervazCentik`+1. çentiği çizer, `kare` = "kırt" teması (zorunlu). `pervazCentikYeni` = aynı kare. Push-in planında kullan (kamera cs ≈ 2.5; pencere `u` 0.1 ile çentik merkeze yakın, cx sınırı içinde) |
+| `pervazBicak` (K2, D6; K4) | `{bas, kare, bit, kim}` — **K4:** bıçak `kim` karakterinin (yoksa ilk karakter) KENDİ ön kolunda: kukla kolu + manşet + el + sapı kavrayan parmaklar, rig ışığı sahnenin tek ışığından; iki kemikli IK (dirsek aşağı), erişim için ≤ 24° öne eğilme; çakı plan başından elde (birden belirmez). `tip` artık yok sayılır; uç `pervazCentik`+1. çentiği çizer, `kare` = "kırt" teması (zorunlu). `pervazCentikYeni` = aynı kare. Push-in planında kullan (kamera cs ≈ 2.5; pencere `u` 0.1 ile çentik merkeze yakın, cx sınırı içinde) |
 - Örtüşme (K2): doğrulayıcı aynı derinlik yakınındaki (|Δz| ≤ 0.6) karakterlerin ekran x farkı omuz genişliğinden (0.6 m) azsa UYARI verir (`sinirlar.json` → `IC-ODA.ortusme`).
 
 ## MASA-INSERT
@@ -117,11 +118,12 @@ Tepe-önden masa yakın planı (SB2-TOURS P01 plakası): meşe masa, prop seti, 
 | `fener` | `[x, taban]` (430, 1092) · `elYukseklik` (el gölge kayması, 120) |
 - Props: ekran px (masa düzlemi). Masa y aralığı ≈ 860–1680 (tepe-onden).
 - El: `{tip, giris, kare[], bilek[[x,y]], dirsek[[x,y]], aci[], olcek(1.9), poz:[{kare, poz:"kistir|gevsek"}], tut:{prop, bas, bit, tutulAci, birakAci}}`. Tutulan prop kıstırma noktasını izler, bit'ten önceki 18 karede `birakAci`'ya döner, bit'te bırakıldığı yerde kalır (bit = temas, zorunlu). `tip`: ceket · gomlek · parisManset · gorevli · yazici · louis.
+- **K4 `el.takip: [{prop, kare: [a, b]}]`** (MASA-INSERT): pencere içinde kıstırma noktası prop'un tutma noktasını izler (paket: o an katlanan kanadın serbest kenarı; `ip` evresinde düğüm). Pencere dışına 6 kare yumuşak geçiş; anahtarlı `bilek` pencere sınırında tutma noktasına yakın verilir (Blanc P14). Paket kanatları/ip eldivenin üstünde, elin altında çizilir.
 - Kamera: cs 1.0–1.5. Kıstırma noktası ve bırakma yeri alt banda (y > 1290) gelmesin; yazı `ust`.
 
 | K2 parametre | değerler |
 |---|---|
-| `eldivenGiy` (K2, D7) | `{bas, bit, gerilme (bas+.86·L), x (540), y (1000 = eldiven boğum hattı), olcek (1.3), aci}` — Louis sol eli alttan girer, sağ el (KolEl) manşeti kıstırır; kılıflar sırayla dolar (işaret→orta→yüzük→serçe→başparmak), sonra manşet çekilir. `gerilme` = TEMAS (zorunlu). olcek 1.3 ⇒ el ≈ ekranın %21–26'sı. Eldiven = İMZA beyazı; bu planda başka eldiven prop'u koyma |
+| `eldivenGiy` (K2, D7) | `{bas, bit, gerilme (bas+.86·L), x (540), y (1000 = eldiven boğum hattı), olcek (1.3), aci}` — Louis sol eli alttan girer, sağ el (KolEl) manşeti kıstırır; kılıflar sırayla dolar (işaret→orta→yüzük→serçe→başparmak), sonra manşet çekilir. `gerilme` = TEMAS (zorunlu). olcek 1.3 ⇒ el ≈ ekranın %21–26'sı. **K4:** sağ el (KolEl) eldivenle AYNI el boyunda çizilir (eldiven = bir el boyu; eskiden sağ el eldivenin ≈ %65'iydi). Eldiven = İMZA beyazı; bu planda başka eldiven prop'u koyma |
 - Tutulan prop'un masaya gölgesi (K2): otomatik, el gölgesiyle aynı güneş kaymasından (`elYukseklik`).
 
 ## KULE-DIS
@@ -140,10 +142,10 @@ Parşömen + Fransa + dönem rotası. Font dışı glif yok (sayaç ikonları SV
 | parametre | değerler |
 |---|---|
 | `rota` * | `paris-bordeaux` (Chartres–Tours–Poitiers–Angoulême) |
-| `posta` | `{bas, bit}` araba rota boyunca; sayaç "N. GÜN" + gün/ay diski (`gun`: 3) |
-| `telgraf` | `{bas, bit, kule}` sinyal + kule ikonları; sayaç "N SAAT" (`saat`: 4) |
+| `posta` | `{bas, bit, gun}` araba rota boyunca; sayaç "N. GÜN" + gün/ay diski (`gun`: 3) |
+| `telgraf` | `{bas, bit, kule, saat}` sinyal + kule ikonları; sayaç "N SAAT" (`saat`: 4) |
 | `muhur` | `{kare, metin}` kırmızı mühür (540, 880) iner; kare = TOK teması (zorunlu) |
-- Sayaç kutusu sağ-alt (y 1320–1400). Kamera cs 1.0–1.6. Gece karartma katmanı yok.
+- Sayaç kutusu sağ-alt (y 1320–1400). **K4 çift sayaç:** `posta` ve `telgraf` birlikte verilirse iki ayrı kutu (telgraf üstte y 1290, posta altta y 1400); her kutu kendi `bas`'ında sağdan kayarak girer, son değerinde kalır. Vuruşlar art arda ya da üst üste olabilir; sırayı anlatıma göre ver. Sayaç değişimleri (saat: qt .375/.625/.875; gün: qp 1/3, 2/3) `sayac-tik` teması alır. Kamera cs 1.0–1.6. Gece karartma katmanı yok.
 
 ## YAKIN-YUZ
 Tek karakter yakın (rig `yakin` yüz), arka başka şablonun bulanık sahnesi.
@@ -164,7 +166,7 @@ Tek karakter yakın (rig `yakin` yüz), arka başka şablonun bulanık sahnesi.
 ## K3 ekleri (yatık poz · hasta yüz · yüz varyantları · bitiş/kontrol_kare kuralları)
 | alan | değerler |
 |---|---|
-| `karakterler[].poz` | `ayakta` (varsayılan) · `yatik` — yatakta sırtüstü: baş solda yastıkta, gövde yorgan altında (kabartı göğüs–kalça–diz–ayak), kol yorganın üstünde, şapka otomatik yok, ayak gölgesi/ayak kilidi yok. **IC-ODA `oda: yatak`** → karyolaya oturur (z/u yok sayılır; yatak arka duvara paralel u −1.6…0.5, ayak ucu tahtası yorgan ucunu örter). **YAKIN-YUZ `yatik: true`** → yüz `yuz` noktasında, yandan-üstten; altında keten çarşaf + başucu tahtası, yorgan kısa sarkar. `egim` çapraz verir (8 iyi). `yorgan` (YAKIN-YUZ, renk; varsayılan #5d6b7a) |
+| `karakterler[].poz` | `ayakta` (varsayılan) · `yatik` — yatakta sırtüstü: baş solda yastıkta, gövde yorgan altında (kabartı göğüs–kalça–diz–ayak), kol yorganın üstünde, şapka otomatik yok, ayak gölgesi/ayak kilidi yok. **IC-ODA `oda: yatak`** → karyolaya oturur (z/u yok sayılır; yatak arka duvara paralel u −1.6…0.5, ayak ucu tahtası yorgan ucunu örter). **YAKIN-YUZ `yatik: true`** → yüz `yuz` noktasında, yandan-üstten; altında keten çarşaf + başucu tahtası, yorgan kısa sarkar. `egim` çapraz verir (8 iyi). `yorgan` (YAKIN-YUZ): renk (varsayılan #5d6b7a) **ya da K4** `{renk, kalinlik 0.3–1 (kabartı yüksekliği, 1), sarkma (rig yerel, 120)}` — yakın planda yorgan alt üçte birin ≤ %25'i (Blanc P10: `{kalinlik .5, sarkma 30}` ≈ %18) |
 | `yuz.ifade: "hasta"` | solgun ten (el dahil), göz altı morluğu, göz yarı kapalı (kırpma sürer), yanak kızarıklığı yok. `yuz.ter: true` → alında/şakakta 4 ter damlası. `fisilda` jesti hasta yüzde küçük `fisilti` ağzıyla döner (diş görünmez) |
 | ağız `fisilti` | küçük aralık dudak (ifade olarak da verilebilir) |
 | `karakterler[].yuzVaryant` | kayıttaki yüzü ezer: `francois, louis, memur, telgrafci, katip, mudur, tuccar, yargic` |

@@ -51,7 +51,7 @@
   "_k3": "K3: yuzVaryant = kim → yüz varyantı (src/kit/karakterler.ts YUZLER; tek kaynak). ayniKisi: aynı kişinin kostüm kaydı. Bölümde iki farklı kişi aynı varyant ⇒ UYARI",
   "yuzVaryant": { "francois": "francois", "louis": "louis", "louis-eldivenli": "louis", "memur": "memur", "mudur": "mudur", "telgrafci": "telgrafci", "katip": "katip", "tuccar": "tuccar", "yargic": "yargic" },
   "ayniKisi": { "louis-eldivenli": "louis" },
-  "ifadeler": ["dinlen", "gulumse", "sirit", "A", "E", "O", "M", "S", "esneme", "fisilti", "hasta"],
+  "ifadeler": ["dinlen", "gulumse", "sirit", "A", "E", "O", "M", "S", "esneme", "fisilti", "uykulu", "hasta"],
   "pozlar": ["ayakta", "yatik"],
   "bitisPayiKare": 12
 }

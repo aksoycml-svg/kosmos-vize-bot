@@ -5,7 +5,7 @@ import { Bolge, KuklaIsik, RigCtx, useInk, useRig, YuzTonu } from "./RigIsik";
 // Karakter sağa bakan 3/4 pozda çizilir; facing=-1 ile aynalanır.
 // Açılar derece; 0 = uzuv aşağı sarkar. Negatif açı = ileri (bakış yönüne).
 
-export type Agiz = "dinlen" | "gulumse" | "sirit" | "A" | "E" | "O" | "M" | "S" | "esneme" | "fisilti";
+export type Agiz = "dinlen" | "gulumse" | "sirit" | "A" | "E" | "O" | "M" | "S" | "esneme" | "fisilti" | "uykulu";
 
 export type Poz = {
   x: number; y: number; scale?: number; facing?: 1 | -1;
@@ -21,10 +21,13 @@ export type Poz = {
   cane?: number | null;
   caneArka?: number | null; // baston arka (dış) elde
   yakin?: boolean;          // yakın plan yüz detayı (göz kapağı kıvrımı, kapak gölgesi, dolgulu kaş, dudak)
-  onKolYok?: boolean;       // ön kol çizilmez (yakın planda yerine KolEl overlay'i gelir, ör. P02 yazan el)
+  bicak?: number | null;    // K4 (v4 P09): ön elde çakı — ağız aşağı; değer = gövde yerel çerçevesinde ağız açısı (0 = dik aşağı). Parmaklar sapı kavrar
+  onKolYok?: boolean;
+  yalnizOnKol?: boolean;    // K4: YALNIZ ön kol (+ elindeki nesne) çizilir — masanın önüne ikinci geçiş (masa üstüne uzanan arkadaki karakter)       // ön kol çizilmez (yakın planda yerine KolEl overlay'i gelir, ör. P02 yazan el)
   elSapkaOnde?: boolean;    // tutulan şapkada ön el şapka kenarının ÖNÜNDE yeniden çizilir (isik verilince her zaman; Proto geri uyum için kapalı)
   // K3: yatık poz (yatakta sırtüstü; baş solda yastıkta, gövde yorgan altında). (x, y) = şilte üstü, gövde ortası. Şapka çizilmez.
   yatik?: boolean; yorgan?: string; sarkma?: number; yatikKol?: boolean;
+  yorganKalinlik?: number; // K4 (v4 P10): yorgan kabartısının yüksekliği (1 = varsayılan; 0.4–1). Yakın planda yorgan alt bandı kaplamasın
   // K3: hasta yüz (0–1: solgun ten, göz altı morluğu, yarı kapalı göz, yanak kızarıklığı yok) + ter damlaları
   hasta?: number; ter?: boolean;
 };
@@ -102,6 +105,19 @@ const Bacak: React.FC<{ x: number; thigh: number; knee: number; foot: number; p:
 };
 
 // ---- Kol: üst kol + ön kol + eldivenli el ----
+// K4 çakı: ahşap sap (el içinde) + çelik ağız (≈11 cm, yerel ~36 birim), ağız ucu y = +BICAK_UC; kavrayan parmaklar sapın önünde
+export const BICAK_UC = 50;
+const Bicak: React.FC<{ aci: number; p: Palet }> = ({ aci, p }) => (
+  <g transform={`rotate(${aci})`}>
+    <path d="M -4.5 -16 Q 0 -19 4.5 -16 L 4 12 L -4 12 Z" fill="#4a3220" stroke="#1c120a" strokeWidth={1.6} />
+    <rect x={-4.8} y={10} width={9.6} height={4} fill="#b8a070" stroke="#4a3a1c" strokeWidth={1} />
+    <path d="M -3.6 14 L 3.6 14 L 2.6 40 L 0 50 L -2.4 40 Z" fill="#b9bec4" stroke="#3a3e44" strokeWidth={1.5} strokeLinejoin="round" />
+    <path d="M 1.6 16 L 1.2 40" stroke="#eef1f3" strokeWidth={1.2} opacity={0.8} />
+    {/* kavrayan dört parmak: sapın önünde boğum sırası (ten) */}
+    <path d="M -9 -10 Q -11 -2 -8 6 L 8 6 Q 10 -2 8 -10 Z" fill={p.glove} stroke={p.glove === p.skin ? p.skinDark : "#3a2a1c"} strokeWidth={1.4} />
+    <path d="M -8 -4 L 8 -4 M -8 1 L 8 1" stroke={p.glove === p.skin ? p.skinDark : "#3a2a1c"} strokeWidth={1} opacity={0.7} />
+  </g>
+);
 const Baston: React.FC<{ aci: number }> = ({ aci }) => (
   <g transform={`rotate(${aci})`}>
     <rect x={-4} y={-6} width={8} height={250} rx={3} fill="#3b2412" stroke="#160c06" strokeWidth={1.6} />
@@ -150,7 +166,7 @@ const Kol: React.FC<{ x: number; sh: number; el: number; p: Palet; arka?: boolea
   );
 };
 
-export const AGIZLAR: Agiz[] = ["dinlen", "gulumse", "sirit", "A", "E", "O", "M", "S", "esneme", "fisilti"];
+export const AGIZLAR: Agiz[] = ["dinlen", "gulumse", "sirit", "A", "E", "O", "M", "S", "esneme", "fisilti", "uykulu"];
 const AGIZ: Record<Agiz, React.ReactNode> = {
   dinlen: <path d="M 8 40 Q 19 42 30 39" stroke="#5a2a22" strokeWidth={2.6} fill="none" strokeLinecap="round" />,
   gulumse: <path d="M 6 38 Q 19 47 32 37" stroke="#5a2a22" strokeWidth={3} fill="none" strokeLinecap="round" />,
@@ -163,6 +179,8 @@ const AGIZ: Record<Agiz, React.ReactNode> = {
   // K2 (D5): kocaman esneme — çene düşer (yüz konturunun altına; çene uzantısı başta ten rengiyle çizilir), dikey oval ağız, üst diş sırası, dil
   // K3: fısıltı — küçük aralık dudak (dişsiz)
   fisilti: <g><path d="M 12 39.5 Q 19 38 27 39.5 Q 24 44.5 19 44.5 Q 14 44.5 12 39.5 Z" fill="#4a1a17" stroke="#3a1410" strokeWidth={1.6} /></g>,
+  // K4 (v4 P08): uykulu/sıkılmış esneme — orta açık YUVARLAK ağız (gerilmiş değil), diş yok, dil ucu; çene hafif düşer
+  uykulu: <g><path d="M 20 37 C 30 37 33 48 31 55 C 29 62 24 64 20 64 C 16 64 11 62 9 55 C 7 48 10 37 20 37 Z" fill="#3a1210" stroke="#2a0e0c" strokeWidth={2.2} /><path d="M 13 58 Q 20 54 27 58 Q 24 63 20 63 Q 16 63 13 58 Z" fill="#a8504a" /><path d="M 12 40 Q 20 36 28 40" stroke="#b8705e" strokeWidth={2} fill="none" opacity={0.6} /></g>,
   esneme: <g><path d="M 4 36 Q 20 31 36 36 Q 38 62 21 72 Q 4 64 4 36 Z" fill="#3a1210" stroke="#2a0e0c" strokeWidth={2.2} /><path d="M 8 37 Q 20 34 32 37 L 31 41 Q 20 39 9 41 Z" fill="#f3eee6" /><path d="M 10 64 Q 21 56 32 63 Q 26 71 21 71 Q 14 70 10 64 Z" fill="#b8544a" /></g>,
 };
 
@@ -321,6 +339,7 @@ const Kafa: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }
       <path d="M 33 23 Q 36 21 39 23" stroke="#7a4030" strokeWidth={1.8} fill="none" />
       {!I && <path d="M 40 6 Q 44 13 45 18" stroke="#fff3e6" strokeWidth={1.8} opacity={0.5} fill="none" />}
       {/* ağız */}
+      {pz.agiz === "uykulu" && <path d="M -6 47 Q 2 64 21 69 Q 37 64 41 41 L 36 41 Q 30 56 20 54 Q 4 55 -6 47 Z" fill={sk} stroke={skd} strokeWidth={SW} />}
       {pz.agiz === "esneme" && <path d="M -10 48 Q 0 76 22 82 Q 40 76 44 40 L 38 40 Q 30 60 20 56 Q 2 58 -10 48 Z" fill={sk} stroke={skd} strokeWidth={SW} />}
       <g transform="translate(2,0)">{AGIZ[pz.agiz ?? "dinlen"]}</g>
       {pz.yakin && (pz.agiz === "gulumse" || pz.agiz === "sirit" || pz.agiz === "dinlen" || pz.agiz === "M") && <g transform="translate(2,0)">
@@ -338,7 +357,7 @@ const Kafa: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }
       {p.sakal && <path d="M -30 10 Q -26 44 -10 56 Q 8 66 24 60 Q 40 52 44 30 Q 36 50 20 52 Q 4 54 -8 44 Q -20 30 -30 10 Z" fill={p.hair} opacity={0.95} />}
       {/* çene */}
       {!p.yuzsuz && <>
-      {pz.agiz !== "esneme" && <path d="M 2 54 Q 20 52 36 42" stroke={skd} strokeWidth={1.8} fill="none" opacity={0.6} />}
+      {pz.agiz !== "esneme" && pz.agiz !== "uykulu" && <path d="M 2 54 Q 20 52 36 42" stroke={skd} strokeWidth={1.8} fill="none" opacity={0.6} />}
       </>}
       {!I && <path d="M 43 -14 Q 47 4 43 22" stroke={RIM} strokeWidth={2} opacity={0.3} fill="none" />}
       {pz.ter && !p.yuzsuz && [[-16, -40, 1], [24, -44, 0.85], [41, -28, 1.1], [-28, -12, 0.8]].map(([x, y, r], i) => (
@@ -391,7 +410,7 @@ const YatikGovde: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, l
   const { I } = useRig(); const ink = useInk(inkTemel);
   const yor = pz.yorgan ?? "#5d6b7a";
   const br = (pz.breathe ?? 0) * 3; // göğüs nefesle iner-kalkar
-  const BAS = 0.78; // gövde kabartısı basıklığı (sırtüstü yatan beden yüzden yüksek görünmez)
+  const BAS = 0.78 * Math.max(0.3, Math.min(1, pz.yorganKalinlik ?? 1)); // gövde kabartısı basıklığı (sırtüstü yatan beden yüzden yüksek görünmez)
   const sk = (pz.sarkma ?? 90) / BAS;
   const tepe = `M -232 -30 Q -214 ${-80 - br} -150 ${-90 - br} Q -50 ${-98 - br * 0.6} 40 -94 Q 110 -98 170 -78 Q 236 -70 278 -80 Q 314 -86 324 -52 Q 332 -22 336 0`;
   const yorgan = `${tepe} L 336 ${sk} Q 60 ${sk + 14} -232 ${sk} Z`;
@@ -447,7 +466,9 @@ const KuklaGovde: React.FC<{ pz: Poz; p: Palet; louis?: boolean; golgesiz?: bool
   // tutulan şapka (pz.hat): el şapka kenarının ÖNÜNDE — şapkadan sonra ön el yeniden çizilir (P04 p150)
   const onKol = (sadeceEl?: boolean) => <Kol x={40 + (pz.sway ?? 0) * 3} sh={pz.shF} el={pz.elF} p={p} a0={lean} sadeceEl={sadeceEl}>
     {!sadeceEl && pz.cane !== null && pz.cane !== undefined && <Baston aci={pz.cane} />}
+    {!sadeceEl && pz.bicak !== null && pz.bicak !== undefined && <Bicak aci={pz.bicak - pz.shF - pz.elF} p={p} />}
   </Kol>;
+  if (pz.yalnizOnKol) return <g transform={`translate(${pz.x},${pz.y}) scale(${s * f},${s})`}><g transform={gov}>{onKol()}</g></g>;
   return (
     <g transform={`translate(${pz.x},${pz.y}) scale(${s * f},${s})`}>
       {!golgesiz && <ellipse cx={6} cy={8} rx={96} ry={15} fill="#000" opacity={0.4} />}

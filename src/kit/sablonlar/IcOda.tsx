@@ -15,6 +15,9 @@ import { Kemer } from "../../doku/Kemer";
 import { RenkKaydi, Tarama, taramaAcisi } from "../../doku/Tarama";
 import { DOKU_SEED, P, dortgen, ink, karistir, murekkep, poly, tonla } from "../../doku/sabitler";
 import { karakterPoz, Yerlesim } from "../jestler";
+import { elDunya, kolIK } from "../../rig/kinematik";
+import type { Poz } from "../../rig/Kukla";
+import type { Prop } from "../tipler";
 import { deger, kameraHesapla, ekranNokta } from "../zaman";
 import { KarakterCiz, karakterKilit, param, Sablon, SablonProps } from "../ortak";
 import { PROPLAR, propDurum, MUM_ALEV_Y } from "../props";
@@ -22,7 +25,6 @@ import { DisManzara, DisTur, PEN0 } from "./disManzara";
 import { kolHesapla, KolParam } from "./MasaInsert";
 import { GolgeT, GolgeTParam } from "../props/GolgeT";
 import { Manipulator, manipAci, manipUygula } from "../props/Manipulator";
-import { KolEl, KISTIR_YEREL } from "../../rig/KolEl";
 import { interpolate, Easing } from "remotion";
 import { cl, GIRIS, CIKIS } from "../zaman";
 
@@ -119,20 +121,74 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     }
   }
   kar.forEach(({ c, d }) => kilit.push(...karakterKilit(c.kim, d, k)));
+  // K4 el–prop teması (louis_kese_it / mudur_kese_al): ön kol IK ile prop'a uzanır (kinematik.kolIK, dirsek ileri bükülür);
+  // erişmezse kalçadan öne eğilir (≤ 20°). Tutulan prop eli izler (elDunya). Arkadaki karakter masa üstüne uzanırsa ön kolu
+  // masanın ÖNÜNE ikinci geçişte çizilir (önde olan arkadakini örter; el masanın üstünde görünür).
+  const masaH = masa?.h ?? 0.75;
+  const propYer = (pr: Prop, q: number): P => Q(deger(pr.x, pr.kare, q), masaH, deger(pr.y, pr.kare, q));
+  const uzan = (pz: Poz, hedef: P, w: number) => {
+    if (w <= 0) return;
+    let iy = { sh: pz.shF, el: pz.elF, hata: Infinity }, ln = 0;
+    for (const l of [0, 6, 12, 20]) { const q = { ...pz, lean: (pz.lean ?? 0) + l }; const r = kolIK(q, hedef, true, [0, 0], [-150, 0]); if (r.hata < iy.hata - 2) { iy = r; ln = l; } if (r.hata < 4) break; }
+    pz.lean = (pz.lean ?? 0) + ln * w; pz.shF += (iy.sh - pz.shF) * w; pz.elF += (iy.el - pz.elF) * w;
+  };
+  const kolOnde = new Set<string>(); // ön kolu masanın önüne alınan karakterler
+  const tutulanProp = new Map<Prop, string>(); // ele bağlı prop → karakter
+  for (const pr of plan.props ?? []) {
+    if (pr.it) {
+      const c = kar.find((q) => q.c.kim === pr.it!.kim);
+      if (c) {
+        const w = p < pr.it.bas ? interpolate(p, [pr.it.bas - 14, pr.it.bas], [0, 1], { ...cl, easing: GIRIS }) : interpolate(p, [pr.it.bit, pr.it.bit + 14], [1, 0], { ...cl, easing: CIKIS });
+        const yon = c.d.pz.facing ?? 1, q = propYer(pr, Math.min(Math.max(p, pr.it.bas), pr.it.bit));
+        const sF = F / deger(pr.y, pr.kare, p);
+        uzan(c.d.pz, [q[0] - yon * 0.1 * sF, q[1] - 0.05 * sF], w);
+        if (c.z > (masa?.z ?? 0) && w > 0) kolOnde.add(c.c.kim);
+      }
+    }
+    if (pr.al) {
+      const c = kar.find((q) => q.c.kim === pr.al!.kim);
+      if (c) {
+        const { kare: K0 } = pr.al, U = pr.al.uzan ?? 24, D = pr.al.don ?? 30;
+        const yon = c.d.pz.facing ?? 1, sF = F / c.z;
+        const masada = propYer(pr, K0);
+        const ayak = c.d.ayak;
+        const gogus: P = [ayak[0] + yon * 0.24 * sF, ayak[1] - 1.0 * sF]; // bel–göğüs arası, gövdenin önünde (masanın arka kenarının üstünde)
+        const w = interpolate(p, [K0 - U, K0], [0, 1], { ...cl, easing: GIRIS });
+        const kaldir = interpolate(p, [K0 + 4, K0 + 4 + D], [0, 1], { ...cl, easing: Easing.inOut(Easing.cubic) });
+        const hedef: P = [masada[0] + (gogus[0] - masada[0]) * kaldir, masada[1] - 0.06 * sF + (gogus[1] - masada[1] + 0.06 * sF) * kaldir];
+        uzan(c.d.pz, hedef, w);
+        if (w > 0) kolOnde.add(c.c.kim);
+        if (p >= K0) tutulanProp.set(pr, c.c.kim);
+      }
+    }
+  }
+  // ele bağlı prop çizimi: ağzından (büzgü, yerel y −100) kıstırılmış sarkar
+  const eldekiProp = (kim: string) => [...tutulanProp].filter(([, k]) => k === kim).map(([pr], i) => {
+    const c = kar.find((q) => q.c.kim === kim)!; const el = elDunya(c.d.pz, true, [0, 4]);
+    const s = ((F * 0.0011) / c.z) * (pr.olcek ?? 1); const C = PROPLAR[pr.tur];
+    return <g key={`tp${i}`} transform={`translate(${el[0]},${el[1] + 100 * s}) scale(${s})`}><C durum={propDurum(pr, p)} seed={S} fl={fl} /></g>;
+  });
   // derinlik sırası: uzak önce (karakterler + masa)
-  const nesneler: { z: number; el: React.ReactNode }[] = kar.map(({ c, i, d, z }) => ({ z, el: <KarakterCiz key={`k${i}`} d={d} isik={isik} kamera={k} murekkep={mur} seed={S + 300 + i * 11} cepEldiven={c.aksesuar?.includes("cep-eldiven")} golgeAlfa={mum ? 0.5 : 0.35} golgeKlip="url(#ioZemin)" /> }));
+  const nesneler: { z: number; el: React.ReactNode }[] = kar.map(({ c, i, d, z }) => ({ z, el: <KarakterCiz key={`k${i}`} d={kolOnde.has(c.kim) && masa ? { ...d, pz: { ...d.pz, onKolYok: true } } : d} isik={isik} kamera={k} murekkep={mur} seed={S + 300 + i * 11} cepEldiven={c.aksesuar?.includes("cep-eldiven")} golgeAlfa={mum ? 0.5 : 0.35} golgeKlip="url(#ioZemin)" /> }));
   if (masa) {
     const h = masa.h ?? 0.75;
     nesneler.push({ z: masa.z - 0.01, el: (
       <g key="masa">
         <MasaCiz m={masa} mur={mur} ton={ton} />
-        {(plan.props ?? []).map((pr, i) => { const u = deger(pr.x, pr.kare, p), z = deger(pr.y, pr.kare, p); const s = ((F * 0.0011) / z) * (pr.olcek ?? 1); const C = PROPLAR[pr.tur]; return <g key={i} transform={`translate(${X(u, z)},${Y(h, z)}) scale(${s})`}><ellipse cx={0} cy={4} rx={60} ry={10} fill="#14110d" opacity={0.4} /><C durum={propDurum(pr, p)} seed={S} fl={fl} /></g>; })}
+        {(plan.props ?? []).filter((pr) => !tutulanProp.has(pr)).map((pr, i) => { const u = deger(pr.x, pr.kare, p), z = deger(pr.y, pr.kare, p); const s = ((F * 0.0011) / z) * (pr.olcek ?? 1); const C = PROPLAR[pr.tur]; return <g key={i} transform={`translate(${X(u, z)},${Y(h, z)}) scale(${s})`}><ellipse cx={0} cy={4} rx={60} ry={10} fill="#14110d" opacity={0.4} /><C durum={propDurum(pr, p)} seed={S} fl={fl} /></g>; })}
         {mum && <g transform={`translate(${X(mumYer.u, mumYer.z)},${Y(h, mumYer.z)}) scale(${mumS})`}><ellipse cx={0} cy={4} rx={60} ry={10} fill="#14110d" opacity={0.5} />{React.createElement(PROPLAR.mum, { durum: {}, seed: S, fl })}</g>}
       </g>
     ) });
     kilit.push({ ad: "masa", p: ekranNokta(k, Q(masa.u, masa.h ?? 0.75, masa.z)), tur: "kurulum" });
   }
   nesneler.push(...manipCiz);
+  // K4: masanın önüne alınan ön kollar + eldeki prop'lar
+  kar.forEach(({ c, i, d, z }) => {
+    const onde = kolOnde.has(c.kim) && !!masa;
+    const tp = eldekiProp(c.kim);
+    if (!onde && !tp.length) return;
+    nesneler.push({ z: onde ? masa!.z - 0.02 : z - 0.001, el: <g key={`ko${i}`}>{onde && <KarakterCiz d={d} isik={isik} kamera={k} murekkep={mur} seed={S + 300 + i * 11} yalnizKol />}{tp}</g> });
+  });
   if (odaAd === "yatak") {
     // ayak ucu tahtası kameraya yakın (sağ uç) → yorgan ucunu örter
     const { u1, zb, zf } = yb;
@@ -149,32 +205,54 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const gTt = gT ? (p < gT.bit - gTD * 0.5 ? interpolate(p, [gT.bas, gT.bas + gTD], [0, 1], { ...cl, easing: GIRIS }) : interpolate(p, [gT.bit - gTD * 0.5, gT.bit], [1, 0], { ...cl, easing: CIKIS })) : 0;
   const duvarSol = Q(-YARI, TAVAN, ARKA), duvarSag = Q(YARI, 0, ARKA);
   // K2 (D6) pervaza bıçakla çentik: el sağ-alttan girer (kadraj kenarı; push-in planında), bıçak ucu yeni çentiği çizer (kare = "kırt")
-  const bicak = param<{ bas: number; kare: number; bit: number; tip?: "gomlek" | "ceket" | "gorevli" | "louis" } | null>(plan, "pervazBicak", null);
+  const bicak = param<{ bas: number; kare: number; bit: number; kim?: string } | null>(plan, "pervazBicak", null);
   const centikN = centik + (centikYeni !== null && p >= centikYeni ? 1 : 0);
   const centikAdim = Math.min(12, (PW - 20) / (centik + 1));
-  const bicakCiz = (() => {
-    if (!bicak || p < bicak.bas || p > bicak.bit) return null;
-    const sF = F / ARKA, x = pa[0] + 10 + centik * centikAdim;
+  // K4 (v4 P09) pervaz_bicak_kol: bıçağı tutan kol KARAKTERİN KENDİ ön kolu (kukla kolu dili: ceket kolu + manşet + el + kavrayan
+  // parmaklar; rig ışığı sahnenin tek Isik'ından → gölge yanı pencere ışığının tersinde). İki kemikli IK: el, bıçak ucu çentikte olacak
+  // yere uzanır; erişim yetmezse gövde kalçadan öne eğilir (lean ≤ 24°). Yaklaşma/çekilme: dinlenme eli ↔ hedef (GIRIS / CIKIS).
+  // bicak.kim yoksa plandaki ilk karakter. (Eski sağ-alt kenardan giren KolEl "kütük" kolu kaldırıldı.)
+  const bicakKar = bicak ? kar.find((q) => q.c.kim === bicak.kim) ?? kar[0] : undefined;
+  // çakı planın başından elde (kurulum: birden belirmez); dinlenmede ağız aşağı, yan tarafta
+  if (bicak && bicakKar) bicakKar.d.pz.bicak = 0;
+  if (bicak && bicakKar && p >= bicak.bas && p <= bicak.bit) {
+    const pz = bicakKar.d.pz, s = pz.scale ?? 1, f = pz.facing ?? 1;
+    const x = pa[0] + 10 + centik * centikAdim;
     const ucA: P = [x, pb[1] + 2], ucB: P = [x + 3, pb[1] + 17];
-    const yaklas = interpolate(p, [bicak.bas, bicak.kare - 14], [1, 0], { ...cl, easing: GIRIS });
+    const yaklas = interpolate(p, [bicak.bas, bicak.kare - 14], [0, 1], { ...cl, easing: GIRIS });
     const kes = interpolate(p, [bicak.kare - 10, bicak.kare], [0, 1], { ...cl, easing: Easing.in(Easing.quad) });
     const cek = interpolate(p, [bicak.kare + 8, bicak.bit], [0, 1], { ...cl, easing: CIKIS });
+    const r = yaklas * (1 - cek);
     const uc: P = [ucA[0] + (ucB[0] - ucA[0]) * kes, ucA[1] + (ucB[1] - ucA[1]) * kes - 4 * (1 - kes) * (p < bicak.kare - 10 ? 1 : 0)];
-    const off: P = [(yaklas + cek) * 0.55 * sF, (yaklas + cek) * 0.7 * sF];
-    const bl = 0.11 * sF; // bıçak ağzı ≈ 11 cm
-    const bd: P = [Math.cos((118 * Math.PI) / 180), Math.sin((118 * Math.PI) / 180)]; // ağız aşağı-sol, sap yukarı-sağ
-    const ucE: P = [uc[0] + off[0], uc[1] + off[1]];
-    const kist: P = [ucE[0] - bd[0] * bl, ucE[1] - bd[1] * bl];
-    const olc = (0.19 * sF) / 140, aci = 212, r = aci * Math.PI / 180;
-    const bilek: P = [kist[0] - (KISTIR_YEREL[0] * Math.cos(r) - KISTIR_YEREL[1] * Math.sin(r)) * olc, kist[1] - (KISTIR_YEREL[0] * Math.sin(r) + KISTIR_YEREL[1] * Math.cos(r)) * olc];
-    const g = olc / 1.9;
-    return (
-      <g>
-        <KolEl giris={[bilek[0] + 0.62 * sF, bilek[1] + 0.95 * sF]} dirsek={[bilek[0] + 0.3 * sF, bilek[1] + 0.32 * sF]} bilek={bilek} gen={[210 * g * 1.3, 172 * g, 92 * g]} tip={bicak.tip ?? "ceket"} elAci={aci} olcek={olc} poz="kistir"
-          tutulan={<g><line x1={0} y1={0} x2={ucE[0] - kist[0]} y2={ucE[1] - kist[1]} stroke="#9aa0a6" strokeWidth={Math.max(2.5, 0.016 * sF)} strokeLinecap="round" /><line x1={0} y1={0} x2={-(ucE[0] - kist[0]) * 0.7} y2={-(ucE[1] - kist[1]) * 0.7} stroke="#4a3220" strokeWidth={Math.max(4, 0.024 * sF)} strokeLinecap="round" /></g>} />
-      </g>
-    );
-  })();
+    const loc = (q: P): P => [(q[0] - pz.x) / (s * f), (q[1] - pz.y) / s];
+    const L1 = 88, L2 = 90, BUC = 50;
+    const bAci = 14; // ağız hafif öne eğik (yerel), uç çentikte
+    const ucL = loc(uc);
+    const hedef: P = [ucL[0] + BUC * Math.sin((bAci * Math.PI) / 180), ucL[1] - BUC * Math.cos((bAci * Math.PI) / 180)]; // el = uç − ağız vektörü
+    const omuz0: P = [40, -380], kalca: P = [0, -226];
+    const dinlen: P = [omuz0[0] - L1 * Math.sin((4 * Math.PI) / 180) - L2 * Math.sin((-6 * Math.PI) / 180), omuz0[1] + L1 * Math.cos((4 * Math.PI) / 180) + L2 * Math.cos((-6 * Math.PI) / 180)];
+    const H: P = [dinlen[0] + (hedef[0] - dinlen[0]) * r, dinlen[1] + (hedef[1] - dinlen[1]) * r];
+    // gerekli öne eğilme: omuz kalça etrafında döner
+    let lean = 0, Sh: P = omuz0;
+    for (let l = 0; l <= 24; l += 0.5) {
+      const a = (l * Math.PI) / 180, dx = omuz0[0] - kalca[0], dy = omuz0[1] - kalca[1];
+      Sh = [kalca[0] + dx * Math.cos(a) - dy * Math.sin(a), kalca[1] + dx * Math.sin(a) + dy * Math.cos(a)];
+      lean = l;
+      if (Math.hypot(H[0] - Sh[0], H[1] - Sh[1]) <= L1 + L2 - 2) break;
+    }
+    const dx = H[0] - Sh[0], dy = H[1] - Sh[1], d = Math.min(L1 + L2 - 2, Math.hypot(dx, dy));
+    const phi = Math.atan2(-dx, dy);
+    const a1 = Math.acos(Math.max(-1, Math.min(1, (L1 * L1 + d * d - L2 * L2) / (2 * L1 * d))));
+    const a2 = Math.acos(Math.max(-1, Math.min(1, (L1 * L1 + L2 * L2 - d * d) / (2 * L1 * L2))));
+    // dirsek AŞAĞIDA (öne uzanan kolun doğal kırılması; yukarı "kanat" kırılması değil): omuz φ + a1, dirsek −(π − a2)
+    const sh = ((phi + a1) * 180) / Math.PI, el = (-(Math.PI - a2) * 180) / Math.PI;
+    const w = Math.min(1, r * 3); // dinlenme pozundan yumuşak geçiş
+    const l0 = pz.lean ?? 0;
+    pz.lean = l0 + lean;
+    pz.shF = pz.shF + (sh - lean - l0 - pz.shF) * w;
+    pz.elF = pz.elF + (el - pz.elF) * w;
+    pz.bicak = bAci - lean - l0;
+  }
   if (bicak && p >= bicak.bas && p <= bicak.bit) kilit.push({ ad: "bıçak ucu / çentik", p: ekranNokta(k, [pa[0] + 10 + centik * centikAdim, pb[1] + 10]), tur: p >= bicak.kare ? "temas" : "dokunus" });
   return (
     <svg width={1080} height={1920} viewBox="0 0 1080 1920">
@@ -227,7 +305,6 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           })()}
           {mum && <circle cx={alev[0]} cy={alev[1]} r={(F * 1.6) / mumYer.z} fill="url(#ioMum)" style={{ mixBlendMode: "screen" }} />}
           {nesneler.map((n) => n.el)}
-          {bicakCiz}
         </g>
       </RenkKaydi>
     </svg>

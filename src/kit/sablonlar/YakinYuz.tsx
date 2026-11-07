@@ -28,7 +28,11 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const mum = param<string>(plan, "isik", "gun") === "mum";
   // K3 yatik: karakter yatakta sırtüstü (rig poz yatik), kamera yandan-üstten; baş yastıkta, yorgan kadrajın altına sarkar
   const yatik = param<boolean>(plan, "yatik", false);
-  const yorgan = param<string | null>(plan, "yorgan", null);
+  // K4 (v4 P10) yorgan_olcek: "#renk" ya da { renk, kalinlik (kabartı yüksekliği 0.3–1, vars. 1), sarkma (şilte kenarından sarkan
+  // kenar, rig yerel birim, vars. 120) } — yakın planda yüz baskın kalsın, yorgan alt üçte birin ≤ %25'i.
+  const yorganP = param<string | { renk?: string; kalinlik?: number; sarkma?: number } | null>(plan, "yorgan", null);
+  const yorgan = typeof yorganP === "string" ? yorganP : yorganP?.renk ?? null;
+  const yorganO = typeof yorganP === "object" && yorganP ? yorganP : {};
   const k = kameraHesapla(plan.kamera, p);
   const c = plan.karakterler?.[0];
   const yon = c?.yon ?? 1;
@@ -37,7 +41,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   if (d && d.pz.yatik) {
     const [fx, fy] = yuzYerel(d.pz);
     d.pz.x = yx - fx * olcek * yon; d.pz.y = yy - fy * olcek;
-    d.pz.sarkma = 120; // yorgan şilte kenarından kısa sarkar; altında keten çarşaf (yandan-üstten bakış)
+    d.pz.sarkma = yorganO.sarkma ?? 120; // yorgan şilte kenarından kısa sarkar; altında keten çarşaf (yandan-üstten bakış)
+    if (yorganO.kalinlik !== undefined) d.pz.yorganKalinlik = yorganO.kalinlik;
     if (yorgan) d.pz.yorgan = yorgan;
   }
   // K2 kumanda (manipulateur): yakın planda göğüs önünde kol; it-çek fazı kolu döndürür, el IK ile tutamağa oturur; kablolar kadraj üstüne

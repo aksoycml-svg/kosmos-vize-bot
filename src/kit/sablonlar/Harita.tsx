@@ -2,6 +2,10 @@
 // Parşömen üzerinde Fransa (Natural Earth sadeleştirilmiş), dönem rotası, isteğe bağlı üç vuruş:
 //  posta {bas, bit}: posta arabası rota boyunca; sayaç "N. GÜN" + gün/ay diski (SVG ikon; font dışı glif YOK)
 //  telgraf {bas, bit, kule}: hat boyunca ışık sinyali, kule ikonları sırayla yanar; sayaç "N SAAT" + T ikonu
+//  K4 (v4 P03) harita_cift_sayac: posta ve telgraf İKİ AYRI sayaç kutusu (üstte telgraf "N SAAT", altta posta "N. GÜN"); her kutu
+//  kendi vuruşunun bas karesinde sağ kenardan kayarak girer ve plan sonuna kadar son değerinde kalır (karşılaştırma okunur).
+//  Vuruşlar art arda ya da üst üste koşabilir; sıra anlatımla aynı verilir (ör. önce telgraf, sonra posta).
+//  posta.gun / telgraf.saat vuruş içinde de verilebilir (plan düzeyi `gun`/`saat` yerine).
 //  muhur {kare, metin}: kırmızı mühür iner (ölçek 2.4 → 1, temas = kare) — kırmızı yalnız burada
 // Gece karartma katmanı YOK (kural): posta gününü sayaçtaki gün/ay diski anlatır.
 import React from "react";
@@ -46,7 +50,8 @@ const rotaYol = (ad: string) => {
 const INK = "#2b1d10";
 // ikonlar (font dışı glif yerine SVG): güneş, ay, Chappe T
 const Gunes: React.FC = () => <g><circle r={13} fill="#e7c37a" />{Array.from({ length: 8 }).map((_, i) => { const a = (i * Math.PI) / 4; return <line key={i} x1={Math.cos(a) * 17} y1={Math.sin(a) * 17} x2={Math.cos(a) * 24} y2={Math.sin(a) * 24} stroke="#e7c37a" strokeWidth={3.5} strokeLinecap="round" />; })}</g>;
-const Ay: React.FC = () => <path d="M 6 -18 A 18 18 0 1 0 6 18 A 13 13 0 1 1 6 -18 Z" fill="#cfd6e6" />;
+// K4: hilal (eski iç yay yarıçapı kirişten küçüktü → SVG onu büyütüp sıfır alan çiziyordu; ay görünmüyordu)
+const Ay: React.FC = () => <path d="M 6 -18 A 18 18 0 1 0 6 18 A 22 22 0 0 1 6 -18 Z" fill="#cfd6e6" />;
 const TIkon: React.FC<{ renk: string }> = ({ renk }) => <g stroke={renk} strokeLinecap="round"><line x1={0} y1={22} x2={0} y2={-14} strokeWidth={4} /><line x1={-20} y1={-14} x2={20} y2={-14} strokeWidth={6} /><line x1={-20} y1={-14} x2={-20} y2={-2} strokeWidth={4} /><line x1={20} y1={-14} x2={20} y2={-26} strokeWidth={4} /></g>;
 
 const KuleIkon: React.FC<{ x: number; y: number; on: number }> = ({ x, y, on }) => (
@@ -60,13 +65,18 @@ const KuleIkon: React.FC<{ x: number; y: number; on: number }> = ({ x, y, on }) 
   </g>
 );
 
-type Vurus = { bas: number; bit: number; kule?: number };
+type Vurus = { bas: number; bit: number; kule?: number; gun?: number; saat?: number };
+const SayacKutu: React.FC<{ y: number; giris: number; ikon: React.ReactNode; metin: string }> = ({ y, giris, ikon, metin }) => (
+  <div style={{ position: "absolute", right: 80, top: y, transform: `translateX(${(1 - giris) * 700}px)`, display: "flex", alignItems: "center", gap: 18, fontFamily: mono, fontSize: 44, letterSpacing: 4, padding: "12px 26px", color: "#f1e4c4", background: "rgba(30,18,8,0.88)", border: "2px solid #b8862b" }}>
+    <svg width={52} height={52} viewBox="-26 -26 52 52">{ikon}</svg>{metin}
+  </div>
+);
 const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const { R, at, YOL } = rotaYol(param<string>(plan, "rota", "paris-bordeaux"));
   const posta = param<Vurus | null>(plan, "posta", null);
   const tel = param<Vurus | null>(plan, "telgraf", null);
   const muhur = param<{ kare: number; metin: string } | null>(plan, "muhur", null);
-  const gunSayisi = param<number>(plan, "gun", 3), saatSayisi = param<number>(plan, "saat", 4);
+  const gunSayisi = posta?.gun ?? param<number>(plan, "gun", 3), saatSayisi = tel?.saat ?? param<number>(plan, "saat", 4);
   const k = kameraHesapla(plan.kamera, p);
   const qp = posta ? interpolate(p, [posta.bas, posta.bit], [0, 1], { ...cl, easing: Easing.inOut(Easing.sin) }) : 0;
   const qt = tel ? interpolate(p, [tel.bas, tel.bit], [0, 1], { ...cl, easing: Easing.in(Easing.quad) }) : 0;
@@ -105,12 +115,9 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
         </svg>
         {posta && <Img src={staticFile("blanc/img/araba.png")} style={{ position: "absolute", left: ax - 100, top: ay - 82 + bob, width: 200 }} />}
       </div>
-      {(posta || tel) && (
-        <div style={{ position: "absolute", right: 80, top: 1320, display: "flex", alignItems: "center", gap: 18, fontFamily: mono, fontSize: 44, letterSpacing: 4, padding: "12px 26px", color: "#f1e4c4", background: "rgba(30,18,8,0.88)", border: "2px solid #b8862b" }}>
-          <svg width={52} height={52} viewBox="-26 -26 52 52">{telAktif ? <TIkon renk="#f1e4c4" /> : gece ? <Ay /> : <Gunes />}</svg>
-          {telAktif ? `${saat} SAAT` : `${gun}. GÜN`}
-        </div>
-      )}
+      {/* K4 çift sayaç: telgraf üstte, posta altta (ikisi birden varsa); tek vuruşta tek kutu eski yerinde */}
+      {tel && p >= tel.bas && <SayacKutu y={posta ? 1290 : 1320} giris={interpolate(p, [tel.bas, tel.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={<TIkon renk="#f1e4c4" />} metin={`${saat} SAAT`} />}
+      {posta && p >= posta.bas && <SayacKutu y={tel ? 1400 : 1320} giris={interpolate(p, [posta.bas, posta.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={gece ? <Ay /> : <Gunes />} metin={`${gun}. GÜN`} />}
     </div>
   );
 };

@@ -158,6 +158,10 @@ for (const plan of B.planlar ?? []) {
     anahtarUzunluk(`${Y} ${pr.tur}`, "x", pr.x, pr.kare); anahtarUzunluk(`${Y} ${pr.tur}`, "y", pr.y, pr.kare);
     for (const [k, v] of Object.entries(pr.durum ?? {})) anahtarUzunluk(`${Y} ${pr.tur}`, `durum.${k}`, v, pr.kare);
     if (Array.isArray(pr.kare) && pr.kare.length > 1) bitis(`${Y} ${pr.tur}`, "prop anahtarı", son(pr.kare));
+    // K4 el–prop teması (IC-ODA): it / al
+    const kimVar = (kim) => (plan.karakterler ?? []).some((c) => c.kim === kim);
+    if (pr.it) { const y = `${Y} ${pr.tur}.it`; if (plan.sablon !== "IC-ODA") H(y, "it yalnız IC-ODA"); if (!kimVar(pr.it.kim)) H(y, `kim "${pr.it.kim}" planda yok`); if (!(pr.it.bas < pr.it.bit)) H(y, "bas < bit olmalı"); bitis(y, "itme (el çekilişi +14)", pr.it.bit + 14); if (!temasVar(plan, pr.it.bas, 1)) H(y, `itme p${pr.it.bas}: temas yok (TEMAS = SES)`); }
+    if (pr.al) { const y = `${Y} ${pr.tur}.al`; if (plan.sablon !== "IC-ODA") H(y, "al yalnız IC-ODA"); if (!kimVar(pr.al.kim)) H(y, `kim "${pr.al.kim}" planda yok`); bitis(y, "alma (kaldırış)", pr.al.kare + 4 + (pr.al.don ?? 30)); if (!temasVar(plan, pr.al.kare, 1)) H(y, `kavrama p${pr.al.kare}: temas yok (TEMAS = SES)`); }
   }
   for (const [i, el] of (plan.el ?? []).entries()) {
     const y = `${Y} el${i}`;

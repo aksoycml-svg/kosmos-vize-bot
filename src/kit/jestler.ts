@@ -71,7 +71,16 @@ const J: Record<string, JestFn> = {
     const w = zarf(p, c.bas, c.bit, 0.35, 0.25);
     // K2 (D5): yakın planda kocaman "esneme" ağzı (çene düşer, gözler sıkı kapalı, kaşlar kalkar); genel planda küçük "O".
     // ops.agiz ile ezilebilir ("O" | "esneme"). Ağız zarf > .5'te açılır — tepe anı = esneme sesi (temas listesine yazılır).
-    const buyuk = String(c.ops?.agiz ?? (pz.yakin ? "esneme" : "O")) === "esneme";
+    const tur = String(c.ops?.agiz ?? (pz.yakin ? "esneme" : "O"));
+    // K4 (v4 P08) "uykulu": sıkılmış/uykulu esneme — kapaklar YARI inik ve ağır (göz sıkılmaz), kaşlar gevşek ve hafif düşük
+    // (acı/sıkma okunmaz), yuvarlak orta açık ağız, baş yavaşça geri. Kapak zarftan önce iner, sonra kalkar (ağırlık).
+    if (tur === "uykulu") {
+      const kapak = zarf(p, Math.max(0, c.bas - 10), c.bit, 0.45, 0.3);
+      karis(pz, { blinkF: 0.42, blinkB: 0.42, browF: -0.35, browB: -0.35 }, kapak);
+      karis(pz, { headTilt: -12, headY: -3, agiz: "uykulu", lookY: 0.5, blinkF: 0.55, blinkB: 0.55 }, w);
+      return;
+    }
+    const buyuk = tur === "esneme";
     karis(pz, { headTilt: buyuk ? -16 : -11, headY: buyuk ? -4 : 0, blinkF: buyuk ? 1 : 0.9, blinkB: buyuk ? 1 : 0.9, browF: buyuk ? 1.4 : 0.9, browB: buyuk ? 1.4 : 0.9, agiz: buyuk ? "esneme" : "O", lookY: -0.3 }, w);
   },
   "it-cek": (pz, p, c) => {
