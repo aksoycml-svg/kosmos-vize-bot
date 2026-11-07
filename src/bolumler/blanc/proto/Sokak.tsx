@@ -2,13 +2,15 @@ import React from "react";
 import { Easing, interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { TasDuvar } from "../../../doku/TasDuvar";
 import { Sacak } from "../../../doku/Mimari";
-import { CepheEv, EvTanim as BdxEv, evYukseklik } from "../../../doku/Cephe";
+import { CepheEv, CephePalet, EvTanim as BdxEv, evYukseklik } from "../../../doku/Cephe";
 import { IslakKaldirim } from "../../../doku/IslakKaldirim";
 import { SaintMichel } from "../../../doku/SaintMichel";
 import { DOKU_SEED } from "../../../doku/sabitler";
 
 // Şehir varyantı: "paris" (prototip, onaylı) | "bordeaux" (P04: bal rengi kireçtaşı, tuile canal, Garonne direkleri, Saint-Michel)
 export type Sehir = "paris" | "bordeaux";
+// Saat (kit K1): "gece" (varsayılan, Proto + SB2-SOKAK) | "gun" (yalnız bordeaux: TAS-BDX ışık #d6bf8e, kuru taş, güneş)
+export type Saat = "gece" | "gun";
 
 // Ay ışıklı sokak (Paris prototipi; sehir="bordeaux" ile Bordeaux), 1834 (Haussmann öncesi) — tamamen vektör, katmanlı
 type P = [number, number];
@@ -234,8 +236,13 @@ export const evNokta = (side: "sol" | "sag", idx: number, u: number, ym: number)
   return cephe(side === "sol" ? SOL : SAG, z1 + (z2 - z1) * u, vTop + (1 - vTop) * (1 - ym / H));
 };
 const SOKAK_TARAMA_ACI = 62; // θ: réverbère (sokak ortası) ışınlarına dik, sahne başına tek yön
-const CepheBdx: React.FC<{ side: "sol" | "sag" }> = ({ side }) => {
+// gündüz: TAS-BDX ışık #d6bf8e; ev tonu gece tonunun BDX_TAS'a oranıyla taşınır (evler arası fark korunur)
+export const BDX_GUN_PALET: CephePalet = { tasGolge: "#8f774f", cam: "#3a4250", camIsik: "#7d8ea4", ahsap: "#5a3e2c", panjur: "#3f6a58", demir: "#1c1915", murekkep: "#3a2c1c", isik: "#fff1c8" };
+const BDX_GUN_TAS = "#d6bf8e";
+const gunTonu = (gece: string) => { const a = parseInt(gece.slice(1), 16), b = parseInt(BDX_TAS.slice(1), 16), c = parseInt(BDX_GUN_TAS.slice(1), 16); const ch = (v: number, s: number) => (v >> s) & 255; return "#" + [16, 8, 0].map((s) => Math.max(0, Math.min(255, Math.round(ch(c, s) * ch(a, s) / ch(b, s))))).map((v) => v.toString(16).padStart(2, "0")).join(""); };
+const CepheBdx: React.FC<{ side: "sol" | "sag"; saat?: Saat }> = ({ side, saat = "gece" }) => {
   const q = side === "sol" ? SOL : SAG;
+  const gun = saat === "gun";
   const list = EVLER_BDX[side];
   return (
     <g>
@@ -246,16 +253,16 @@ const CepheBdx: React.FC<{ side: "sol" | "sag" }> = ({ side }) => {
           const [a, b] = side === "sol" ? [p0, p1] : [p1, p0];
           const d: P = side === "sol" ? p3 : [p3[0] + (p1[0] - p0[0]), p3[1] + (p1[1] - p0[1])];
           const W = 400, Hh = 60, mm = [(b[0] - a[0]) / W, (b[1] - a[1]) / W, (d[0] - a[0]) / Hh, (d[1] - a[1]) / Hh, a[0], a[1]];
-          return <g transform={`matrix(${mm.map((n) => n.toFixed(4)).join(",")})`}><text x={W / 2} y={Hh * 0.8} textAnchor="middle" fontFamily="'Playfair Display', serif" fontWeight={900} fontSize={Hh * 0.85} fill={renk} textLength={W * 0.8} lengthAdjust="spacingAndGlyphs">{ad}</text></g>;
+          return <g transform={`matrix(${mm.map((n) => n.toFixed(4)).join(",")})`}><text x={W / 2} y={Hh * 0.8} textAnchor="middle" fontFamily="'Playfair Display', serif" fontWeight={900} fontSize={Hh * 0.85} fill={gun ? "#e9dcb4" : renk} textLength={W * 0.8} lengthAdjust="spacingAndGlyphs">{ad}</text></g>;
         };
-        return <CepheEv key={i} m={(u, v) => cephe(q, h.z1 + (h.z2 - h.z1) * u, vTop + (1 - vTop) * v)} e={h.e} seed={DOKU_SEED.sokakBdx * 100 + i * 7 + (side === "sol" ? 0 : 3)} derinlik={derin} aci={SOKAK_TARAMA_ACI} golgeTaraf={side === "sol" ? "II" : null} kameraH={0.9} yakinSusleme={h.z1 < 2.3} dukkanYazi={yaz} />;
+        return <CepheEv key={i} m={(u, v) => cephe(q, h.z1 + (h.z2 - h.z1) * u, vTop + (1 - vTop) * v)} e={gun ? { ...h.e, renk: gunTonu(h.e.renk), dukkan: h.e.dukkan ? { ...h.e.dukkan, acik: false } : undefined } : h.e} palet={gun ? BDX_GUN_PALET : undefined} seed={DOKU_SEED.sokakBdx * 100 + i * 7 + (side === "sol" ? 0 : 3)} derinlik={derin} aci={SOKAK_TARAMA_ACI} golgeTaraf={side === "sol" ? "II" : null} kameraH={0.9} yakinSusleme={h.z1 < 2.3} dukkanYazi={yaz} />;
       })}
     </g>
   );
 };
 
-const Cephe: React.FC<{ q: Q; side: "sol" | "sag"; frame: number; sehir: Sehir }> = ({ q, side, frame, sehir }) => {
-  if (sehir === "bordeaux") return <CepheBdx side={side} />;
+const Cephe: React.FC<{ q: Q; side: "sol" | "sag"; frame: number; sehir: Sehir; saat?: Saat }> = ({ q, side, frame, sehir, saat }) => {
+  if (sehir === "bordeaux") return <CepheBdx side={side} saat={saat} />;
   const list = side === "sol" ? EVLER_SOL : EVLER_SAG;
   return <g>{list.map((e, i) => ({ e, i })).reverse().map(({ e, i }) => <Ev key={i} q={q} side={side} e={e} idx={i} frame={frame} sehir={sehir} />)}</g>;
 };
@@ -274,26 +281,31 @@ const Maskaron: React.FC<{ p: P; s: number }> = ({ p, s }) => (
 );
 
 // Bordeaux sokak ucu: Garonne + yelkenli direkleri (vapur yok) + silik, külahsız Saint-Michel (tepede Chappe, gece DINLEN)
-const UzakBordeaux: React.FC<{ frame: number }> = ({ frame }) => {
+const UZAK_RENK = {
+  gece: { sm: "#38427a", smKenar: "#c4d6ff", smAcik: "#232a52", kiyi: "#232b50", nehir: "#1d2546", yans: "#c4d6ff", govde: "#141a33", yelken: "#3a4470" },
+  gun: { sm: "#b9a988", smKenar: "#fff1c8", smAcik: "#8f8068", kiyi: "#9a9a88", nehir: "#8aa0a8", yans: "#fff1c8", govde: "#4a3e30", yelken: "#d8ccb0" },
+};
+const UzakBordeaux: React.FC<{ frame: number; saat?: Saat }> = ({ frame, saat = "gece" }) => {
   const MAST = [[452, 760], [512, 650], [566, 720], [628, 800]] as const;
+  const R = UZAK_RENK[saat], gun = saat === "gun";
   return (
     <g>
       {/* Saint-Michel: sol çatıların üstünde, sis içinde */}
-      <SaintMichel x={SM_X} y={SM_Y} h={SM_H} renk="#38427a" kenar="#c4d6ff" kenarA={0.22} acikRenk="#232a52" />
+      <SaintMichel x={SM_X} y={SM_Y} h={SM_H} renk={R.sm} kenar={R.smKenar} kenarA={0.22} acikRenk={R.smAcik} chappe={gun ? { konum: "BEKLE", renk: "#3a3630" } : undefined} />
       {/* karşı kıyı alçak siluet */}
-      <path d="M 380 1062 L 420 1056 L 440 1046 L 470 1050 L 500 1040 L 540 1048 L 590 1042 L 640 1052 L 700 1048 L 700 1072 L 380 1072 Z" fill="#232b50" />
+      <path d="M 380 1062 L 420 1056 L 440 1046 L 470 1050 L 500 1040 L 540 1048 L 590 1042 L 640 1052 L 700 1048 L 700 1072 L 380 1072 Z" fill={R.kiyi} />
       {/* Garonne: ay yansıması + fener izleri */}
-      <rect x={380} y={1068} width={320} height={70} fill="#1d2546" />
-      <rect x={520} y={1072} width={40} height={60} fill="#c4d6ff" opacity={0.18} style={{ filter: "blur(6px)" }} />
+      <rect x={380} y={1068} width={320} height={70} fill={R.nehir} />
+      <rect x={520} y={1072} width={40} height={60} fill={R.yans} opacity={0.18} style={{ filter: "blur(6px)" }} />
       {/* gövde bandı (rıhtıma yanaşmış tekneler) */}
-      <path d="M 410 1094 L 690 1094 L 676 1128 L 424 1128 Z" fill="#141a33" />
+      <path d="M 410 1094 L 690 1094 L 676 1128 L 424 1128 Z" fill={R.govde} />
       {MAST.map(([x, top], i) => (
         <g key={i}>
-          <line x1={x} y1={top} x2={x} y2={1096} stroke="#141a33" strokeWidth={4} />
-          {[0.18, 0.42].map((t) => { const yy = top + (1096 - top) * t, w = 46 - t * 30; return <g key={t}><line x1={x - w} y1={yy} x2={x + w} y2={yy} stroke="#141a33" strokeWidth={2.5} /><path d={`M ${x - w * 0.9} ${yy + 2} Q ${x} ${yy + 12} ${x + w * 0.9} ${yy + 2}`} stroke="#3a4470" strokeWidth={5} fill="none" /></g>; })}
-          <line x1={x} y1={top + 4} x2={x - 70} y2={1094} stroke="#141a33" strokeWidth={1} opacity={0.6} />
-          <line x1={x} y1={top + 4} x2={x + 60} y2={1094} stroke="#141a33" strokeWidth={1} opacity={0.6} />
-          <circle cx={x} cy={top - 4} r={3} fill="#ffb357" opacity={0.75 + Math.sin(frame * 0.05 + i) * 0.1} />
+          <line x1={x} y1={top} x2={x} y2={1096} stroke={R.govde} strokeWidth={4} />
+          {[0.18, 0.42].map((t) => { const yy = top + (1096 - top) * t, w = 46 - t * 30; return <g key={t}><line x1={x - w} y1={yy} x2={x + w} y2={yy} stroke={R.govde} strokeWidth={2.5} /><path d={`M ${x - w * 0.9} ${yy + 2} Q ${x} ${yy + 12} ${x + w * 0.9} ${yy + 2}`} stroke={R.yelken} strokeWidth={5} fill="none" /></g>; })}
+          <line x1={x} y1={top + 4} x2={x - 70} y2={1094} stroke={R.govde} strokeWidth={1} opacity={0.6} />
+          <line x1={x} y1={top + 4} x2={x + 60} y2={1094} stroke={R.govde} strokeWidth={1} opacity={0.6} />
+          {!gun && <circle cx={x} cy={top - 4} r={3} fill="#ffb357" opacity={0.75 + Math.sin(frame * 0.05 + i) * 0.1} />}
         </g>
       ))}
     </g>
@@ -327,7 +339,8 @@ const Uzak: React.FC = () => (
   </g>
 );
 
-const Zemin: React.FC<{ sehir?: Sehir }> = ({ sehir = "paris" }) => {
+const Zemin: React.FC<{ sehir?: Sehir; saat?: Saat }> = ({ sehir = "paris", saat = "gece" }) => {
+  const gun = saat === "gun";
   const rows: React.ReactNode[] = [];
   let k = 0;
   for (let z = 1; z < ZMAX; z *= 1.045) {
@@ -342,23 +355,23 @@ const Zemin: React.FC<{ sehir?: Sehir }> = ({ sehir = "paris" }) => {
       if (sehir === "bordeaux") {
         // taş başına boyut/ton varyansı (seed sabit); derzlerde koyu su
         const jw = 0.78 + random(`jw${k}-${i}`) * 0.2, jh = 0.72 + random(`jh${k}-${i}`) * 0.2, jx = (random(`jx${k}-${i}`) - 0.5) * w * 0.08;
-        rows.push(<rect key={`${k}-${i}`} x={x + w * (1 - jw) / 2 + jx} y={y2 + (y1 - y2) * (1 - jh) / 2} width={w * jw} height={(y1 - y2) * jh} rx={Math.min(w, y1 - y2) * (0.2 + random(`jr${k}-${i}`) * 0.25)} fill={`rgb(${c - 4},${c + 2},${c + 20})`} />);
+        rows.push(<rect key={`${k}-${i}`} x={x + w * (1 - jw) / 2 + jx} y={y2 + (y1 - y2) * (1 - jh) / 2} width={w * jw} height={(y1 - y2) * jh} rx={Math.min(w, y1 - y2) * (0.2 + random(`jr${k}-${i}`) * 0.25)} fill={gun ? `rgb(${c * 2.3 + 18},${c * 2.1 + 10},${c * 1.75})` : `rgb(${c - 4},${c + 2},${c + 20})`} />);
       } else rows.push(<rect key={`${k}-${i}`} x={x + w * 0.06} y={y2 + (y1 - y2) * 0.08} width={w * 0.88} height={(y1 - y2) * 0.84} rx={Math.min(w, y1 - y2) * 0.35} fill={`rgb(${c},${c + 4},${c + 18})`} />);
-      if (rr > 0.6) rows.push(<rect key={`h${k}-${i}`} x={x + w * 0.2} y={y2 + (y1 - y2) * 0.15} width={w * 0.5} height={(y1 - y2) * 0.18} rx={3} fill="#b9c8f0" opacity={0.12} />);
+      if (rr > 0.6 && !gun) rows.push(<rect key={`h${k}-${i}`} x={x + w * 0.2} y={y2 + (y1 - y2) * 0.15} width={w * 0.5} height={(y1 - y2) * 0.18} rx={3} fill="#b9c8f0" opacity={0.12} />);
     }
     k++;
   }
   return (
     <g>
-      <polygon points="-80,2050 410,1130 670,1130 1160,2050" fill={sehir === "bordeaux" ? "#0d1120" : "#171b28"} />
+      <polygon points="-80,2050 410,1130 670,1130 1160,2050" fill={gun ? "#6e6250" : sehir === "bordeaux" ? "#0d1120" : "#171b28"} />
       {rows}
       {/* ortadan su oluğu (caniveau) */}
-      <polygon points="498,2050 538,1130 542,1130 582,2050" fill="#0c0f18" />
-      <polygon points="526,2050 539.5,1130 540.5,1130 554,2050" fill="#9fb3ea" opacity={0.25} />
+      <polygon points="498,2050 538,1130 542,1130 582,2050" fill={gun ? "#5a4e3e" : "#0c0f18"} />
+      {!gun && <polygon points="526,2050 539.5,1130 540.5,1130 554,2050" fill="#9fb3ea" opacity={0.25} />}
       {/* Bordeaux ıslaklık: yanık pencere ve dükkân camlarının altında dikey uzamış amber yansıma şeritleri */}
-      {sehir === "bordeaux" && [[230, 1330, 0.22], [330, 1240, 0.18], [790, 1270, 0.2], [880, 1380, 0.24], [420, 1190, 0.14], [655, 1180, 0.14]].map(([x, y, o], i) => <ellipse key={`ys${i}`} cx={x} cy={y} rx={14} ry={120} fill="#ffb357" opacity={o} style={{ filter: "blur(9px)" }} />)}
+      {sehir === "bordeaux" && !gun && [[230, 1330, 0.22], [330, 1240, 0.18], [790, 1270, 0.2], [880, 1380, 0.24], [420, 1190, 0.14], [655, 1180, 0.14]].map(([x, y, o], i) => <ellipse key={`ys${i}`} cx={x} cy={y} rx={14} ry={120} fill="#ffb357" opacity={o} style={{ filter: "blur(9px)" }} />)}
       {/* Bordeaux: su birikintileri (gök ve fener aynası) */}
-      {sehir === "bordeaux" && <IslakKaldirim elips zemin={zemin} seed={DOKU_SEED.sokakBdx} birikinti={BIRIKINTI_BDX} isiklar={[{ x: 760, renk: "#ffb357", guc: 0.7, gen: 34 }, { x: 330, renk: "#ff9a40", guc: 0.55, gen: 30 }, { x: 540, renk: "#ffd98f", guc: 0.8, gen: 36 }]} pencereler={[]} />}
+      {sehir === "bordeaux" && !gun && <IslakKaldirim elips zemin={zemin} seed={DOKU_SEED.sokakBdx} birikinti={BIRIKINTI_BDX} isiklar={[{ x: 760, renk: "#ffb357", guc: 0.7, gen: 34 }, { x: 330, renk: "#ff9a40", guc: 0.55, gen: 30 }, { x: 540, renk: "#ffd98f", guc: 0.8, gen: 36 }]} pencereler={[]} />}
     </g>
   );
 };
@@ -373,18 +386,18 @@ export const reverbere = (frame: number, asili = 60) => {
   const sway = Math.sin(frame * 0.045) * 4;
   return { l, r, mid, lamp: [mid[0] + sway, mid[1] + asili] as P, sway };
 };
-const Reverbere: React.FC<{ frame: number; fl: number; asili?: number }> = ({ frame, fl, asili }) => {
+const Reverbere: React.FC<{ frame: number; fl: number; asili?: number; sonuk?: boolean }> = ({ frame, fl, asili, sonuk }) => {
   const { l, r, mid, lamp, sway } = reverbere(frame, asili);
   return (
     <g>
       <path d={`M ${l[0]} ${l[1]} Q ${mid[0]} ${mid[1] + 40} ${r[0]} ${r[1]}`} stroke="#0a0c14" strokeWidth={3} fill="none" />
       <line x1={mid[0]} y1={mid[1] + 8} x2={lamp[0]} y2={lamp[1] - 26} stroke="#0a0c14" strokeWidth={2.5} />
       <g transform={`translate(${lamp[0]},${lamp[1]}) rotate(${sway * 0.8})`}>
-        <circle r={150 + fl * 8} fill="#ffb357" opacity={0.28} style={{ filter: "blur(30px)" }} />
-        <path d="M -16 -26 L 16 -26 L 22 10 L -22 10 Z" fill="#ffd98f" stroke="#0a0c14" strokeWidth={3} />
+        {!sonuk && <circle r={150 + fl * 8} fill="#ffb357" opacity={0.28} style={{ filter: "blur(30px)" }} />}
+        <path d="M -16 -26 L 16 -26 L 22 10 L -22 10 Z" fill={sonuk ? "#bdb6a2" : "#ffd98f"} stroke="#0a0c14" strokeWidth={3} />
         <path d="M -20 -26 L 20 -26 L 0 -42 Z" fill="#0a0c14" />
         <rect x={-24} y={10} width={48} height={6} fill="#0a0c14" />
-        <circle r={10} cy={-6} fill="#fff4d0" />
+        {!sonuk && <circle r={10} cy={-6} fill="#fff4d0" />}
       </g>
     </g>
   );
@@ -424,7 +437,7 @@ const Ilan: React.FC = () => (
 // ===== Bordeaux ekleri (mekanlar.md 9.2–9.4, 10.3) =====
 // Kafe önü BOŞ (teras kanıtsız): aralık kapıdan sokağa tek ışık yamuğu + potence tabela; resmî yapıda tricolore [T, kullanıcı isteği];
 // réverbère ipinin sol ucunda makaralı kilitli kutu [T].
-const BordeauxEk: React.FC<{ frame: number }> = ({ frame }) => {
+const BordeauxEk: React.FC<{ frame: number; gun?: boolean }> = ({ frame, gun }) => {
   // CAFÉ (sağ, idx 2): kapı ışığı yamuğu sokağa
   const zd = 2.42;
   const yamuk = [zemin(zd - 0.08, 1), zemin(zd + 0.1, 1), zemin(zd + 0.32, 0.8), zemin(zd + 0.02, 0.78)];
@@ -434,7 +447,7 @@ const BordeauxEk: React.FC<{ frame: number }> = ({ frame }) => {
   const { l } = reverbere(frame);
   return (
     <g>
-      <polygon points={poly(yamuk)} fill="#ffb357" opacity={0.2} style={{ filter: "blur(4px)" }} />
+      {!gun && <polygon points={poly(yamuk)} fill="#ffb357" opacity={0.2} style={{ filter: "blur(4px)" }} />}
       <g>
         <line x1={k0[0]} y1={k0[1]} x2={k1[0]} y2={k1[1]} stroke="#1c1915" strokeWidth={4} />
         <path d={`M ${k0[0]} ${k0[1] + 22} Q ${k0[0] - 30} ${k0[1] + 18} ${k1[0] + 10} ${k1[1] + 2}`} stroke="#1c1915" strokeWidth={2} fill="none" />
@@ -481,7 +494,8 @@ const TricoloreBdx: React.FC<{ frame: number }> = ({ frame }) => {
 };
 
 // Alt üçte bir ön plan (ölü alan, işlevli): TONNELIER kapısı yanında fıçı + taş eşik; CHAPELIER basamağı + chasse-roue
-export const SokakOnPlan: React.FC = () => {
+export const SokakOnPlan: React.FC<{ gun?: boolean }> = ({ gun }) => {
+  const rim = gun ? "#fff1c8" : "#c4d6ff";
   const [fx, fy] = zemin(1.12, 0.05), fs = sokakGenislik(1.12) / 1240;
   const [cx, cy] = zemin(1.18, 0.96), cs = sokakGenislik(1.18) / 1240;
   return (
@@ -491,15 +505,15 @@ export const SokakOnPlan: React.FC = () => {
         <path d="M -90 0 Q -110 -170 -80 -330 L 120 -330 Q 150 -170 130 0 Z" fill="#3a2a20" stroke="#14100c" strokeWidth={5} />
         {[-300, -200, -110, -30].map((y) => <path key={y} d={`M -100 ${y} Q 20 ${y + 18} 138 ${y}`} stroke="#1c1915" strokeWidth={9} fill="none" />)}
         {[-60, 0, 60].map((x) => <path key={x} d={`M ${x} -326 Q ${x * 1.25} -165 ${x} -4`} stroke="#2a1e16" strokeWidth={3} fill="none" />)}
-        <path d="M 118 -320 Q 148 -170 128 -10" stroke="#c4d6ff" strokeWidth={4} opacity={0.4} fill="none" />
+        <path d="M 118 -320 Q 148 -170 128 -10" stroke={rim} strokeWidth={4} opacity={0.4} fill="none" />
         <rect x={-180} y={-14} width={420} height={18} fill="#4a4844" />
       </g>
       <g transform={`translate(${cx},${cy}) scale(${cs})`}>
         <ellipse cx={-20} cy={4} rx={140} ry={20} fill="#0a0c14" opacity={0.5} />
         <path d="M -40 0 L -40 -90 Q -20 -130 10 -90 L 10 0 Z" fill="#5a5448" stroke="#1c1915" strokeWidth={4} />
-        <path d="M -36 -96 Q -20 -124 4 -96" stroke="#c4d6ff" strokeWidth={3} opacity={0.45} fill="none" />
+        <path d="M -36 -96 Q -20 -124 4 -96" stroke={rim} strokeWidth={3} opacity={0.45} fill="none" />
         <rect x={20} y={-34} width={220} height={34} fill="#4a4640" stroke="#1c1915" strokeWidth={4} />
-        <line x1={20} y1={-34} x2={240} y2={-34} stroke="#c4d6ff" strokeWidth={2} opacity={0.4} />
+        <line x1={20} y1={-34} x2={240} y2={-34} stroke={rim} strokeWidth={2} opacity={0.4} />
       </g>
     </g>
   );
@@ -602,7 +616,7 @@ export const Fare: React.FC<{ t: number; tap: number }> = ({ t, tap }) => {
   );
 };
 
-const Gokyuzu: React.FC<{ frame: number; sehir?: Sehir }> = ({ frame, sehir }) => sehir === "bordeaux" ? <GokBdx frame={frame} /> : (
+const Gokyuzu: React.FC<{ frame: number; sehir?: Sehir; saat?: Saat }> = ({ frame, sehir, saat }) => saat === "gun" ? <GokGun frame={frame} /> : sehir === "bordeaux" ? <GokBdx frame={frame} /> : (
   <g>
     <rect x={-300} y={-400} width={1700} height={1600} fill="url(#gok)" />
     {Array.from({ length: 140 }).map((_, i) => { const x = random(`sx${i}`) * 1600 - 260, y = random(`sy${i}`) * 900 - 380; const tw = 0.5 + 0.5 * Math.sin(frame * 0.08 + i); return <circle key={i} cx={x} cy={y} r={0.8 + random(`sr${i}`) * 1.6} fill="#e8eeff" opacity={0.3 + tw * 0.5} />; })}
@@ -626,6 +640,15 @@ const GokBdx: React.FC<{ frame: number }> = ({ frame }) => (
     <circle cx={470} cy={560} r={46} fill="url(#ayGolge)" />
     {Array.from({ length: 7 }).map((_, i) => { const w = 260 + random(`cw${i}`) * 300; const x = ((random(`cx${i}`) * 1600 + frame * (0.4 + random(`cv${i}`) * 0.5)) % 1900) - 500; const y = 120 + random(`cy${i}`) * 520; return <ellipse key={i} cx={x} cy={y} rx={w} ry={w * 0.14} fill="#5a6898" opacity={0.3} style={{ filter: "blur(14px)" }} />; })}
     <ellipse cx={430} cy={578} rx={150} ry={22} fill="#4a5888" opacity={0.75} style={{ filter: "blur(8px)" }} />
+  </g>
+);
+
+// Bordeaux gündüz göğü: sıcak altın ışık (mekanlar.md: güney ışığı), açık lavanta-mavi tepe → sıcak krem ufuk; seyrek bulut, güneş kadraj dışı sol-üst
+const GokGun: React.FC<{ frame: number }> = ({ frame }) => (
+  <g>
+    <defs><linearGradient id="gokGun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#9fb4cf" /><stop offset="0.55" stopColor="#d6dccf" /><stop offset="1" stopColor="#f2e2b8" /></linearGradient></defs>
+    <rect x={-300} y={-400} width={1700} height={1700} fill="url(#gokGun)" />
+    {Array.from({ length: 5 }).map((_, i) => { const w = 220 + random(`gw${i}`) * 260; const x = ((random(`gx${i}`) * 1600 + frame * (0.3 + random(`gv${i}`) * 0.4)) % 1900) - 500; const y = 140 + random(`gy${i}`) * 420; return <ellipse key={i} cx={x} cy={y} rx={w} ry={w * 0.13} fill="#f6efe0" opacity={0.55} style={{ filter: "blur(10px)" }} />; })}
   </g>
 );
 
@@ -663,23 +686,24 @@ const Fener: React.FC<{ fl: number; sonuk?: boolean }> = ({ fl, sonuk }) => {
   );
 };
 
-export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?: number; sehir?: Sehir; izgaraFaresiz?: boolean; revAsili?: number }> = ({ katman, t = 0, tap = 99, sehir = "paris", izgaraFaresiz, revAsili }) => {
+export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?: number; sehir?: Sehir; izgaraFaresiz?: boolean; revAsili?: number; saat?: Saat }> = ({ katman, t = 0, tap = 99, sehir = "paris", izgaraFaresiz, revAsili, saat = "gece" }) => {
+  const gun = saat === "gun";
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame() * 30 / fps; // 30 fps eşdeğeri zaman
   const fl = Math.sin(frame * 0.7) * 0.5 + Math.sin(frame * 1.9) * 0.3;
-  if (katman === "gok") return <Gokyuzu frame={frame} sehir={sehir} />;
-  if (katman === "uzak") return <g>{sehir === "bordeaux" ? <UzakBordeaux frame={frame} /> : <Uzak />}<Duman x={440} y={820} frame={frame} seed="d1" /><Duman x={640} y={830} frame={frame} seed="d2" /></g>;
+  if (katman === "gok") return <Gokyuzu frame={frame} sehir={sehir} saat={saat} />;
+  if (katman === "uzak") return <g>{sehir === "bordeaux" ? <UzakBordeaux frame={frame} saat={saat} /> : <Uzak />}{!gun && <><Duman x={440} y={820} frame={frame} seed="d1" /><Duman x={640} y={830} frame={frame} seed="d2" /></>}</g>;
   const { lamp } = reverbere(frame, revAsili);
   return (
     <g>
-      <Zemin sehir={sehir} />
+      <Zemin sehir={sehir} saat={saat} />
       {/* ıslak zemin yansımaları */}
-      <ellipse cx={lamp[0]} cy={1420} rx={45} ry={200} fill="#ffb357" opacity={0.22 + fl * 0.03} style={{ filter: "blur(14px)" }} />
-      <ellipse cx={560} cy={1230} rx={36} ry={140} fill="#cfdcff" opacity={0.16} style={{ filter: "blur(10px)" }} />
+      {!gun && <><ellipse cx={lamp[0]} cy={1420} rx={45} ry={200} fill="#ffb357" opacity={0.22 + fl * 0.03} style={{ filter: "blur(14px)" }} />
+      <ellipse cx={560} cy={1230} rx={36} ry={140} fill="#cfdcff" opacity={0.16} style={{ filter: "blur(10px)" }} /></>}
       {sehir !== "bordeaux" && <ellipse cx={FENER[0] + 70} cy={1680} rx={60} ry={260} fill="#ffb456" opacity={0.2 + fl * 0.03} style={{ filter: "blur(16px)" }} />}
-      <ellipse cx={cephe(SAG, 2.6, 0.95)[0] - 30} cy={1500} rx={70} ry={200} fill="#ff9d3a" opacity={0.2} style={{ filter: "blur(18px)" }} />
-      <Cephe q={SOL} side="sol" frame={frame} sehir={sehir} />
-      <Cephe q={SAG} side="sag" frame={frame} sehir={sehir} />
+      {!gun && <ellipse cx={cephe(SAG, 2.6, 0.95)[0] - 30} cy={1500} rx={70} ry={200} fill="#ff9d3a" opacity={0.2} style={{ filter: "blur(18px)" }} />}
+      <Cephe q={SOL} side="sol" frame={frame} sehir={sehir} saat={saat} />
+      <Cephe q={SAG} side="sag" frame={frame} sehir={sehir} saat={saat} />
       {/* sıva dokusu */}
       {sehir !== "bordeaux" && <g style={{ mixBlendMode: "multiply" }}>
         <polygon points={poly([SOL.A, SOL.B, SOL.C, SOL.D])} filter="url(#siva)" fill="#fff" />
@@ -689,9 +713,9 @@ export const Sokak: React.FC<{ katman: "gok" | "uzak" | "orta"; t?: number; tap?
       {sehir !== "bordeaux" && <Ilan />}
       {sehir !== "bordeaux" && <Teras />}
       {sehir !== "bordeaux" && <Bayrak frame={frame} />}
-      {sehir === "bordeaux" && <BordeauxEk frame={frame} />}
+      {sehir === "bordeaux" && <BordeauxEk frame={frame} gun={gun} />}
       <Fener fl={sehir === "bordeaux" ? -9 : fl} sonuk={sehir === "bordeaux"} />
-      <Reverbere frame={frame} fl={fl} asili={revAsili} />
+      <Reverbere frame={frame} fl={fl} asili={revAsili} sonuk={gun} />
     </g>
   );
 };

@@ -1,0 +1,99 @@
+// ===== Bolum: bolum.json → Sequence'ler (SET KİTİ K1) =====
+// Kompozisyon "Bolum": props { yol: "blanc-kardesler/bolum.ornek.json", guvenli?: boolean, bolum?: BolumJson (yol yerine satır içi) }.
+// JSON'lar bundle'a webpack require.context ile girer: bolumler/**/bolum*.json (yeni bölüm = yeni dosya, kod yok).
+import React from "react";
+import { AbsoluteFill, CalculateMetadataFunction, Sequence, interpolate, useCurrentFrame } from "remotion";
+import { ArsivKatmani } from "../doku/ArsivKatmani";
+import { GuvenliAlan, KilitNokta } from "../doku/GuvenliAlan";
+import { Altyazi, FormulYazisi, IddiaYazisi, IsimEtiketi } from "../components/EkranYazisi";
+import type { BolumJson, Plan } from "./tipler";
+import { SABLONLAR } from "./sablonlar";
+import { cl, GIRIS } from "./zaman";
+
+const ctx = require.context("../../bolumler", true, /bolum[^/]*\.json$/);
+export const BOLUM_YOLLARI: string[] = ctx.keys().map((k) => k.replace(/^\.\//, ""));
+export const bolumYukle = (yol?: string, bolum?: BolumJson): BolumJson => {
+  if (bolum) return bolum;
+  const key = `./${yol}`;
+  if (!yol || !ctx.keys().includes(key)) throw new Error(`[Bolum] json bulunamadı: ${yol} (mevcut: ${BOLUM_YOLLARI.join(", ")})`);
+  return ctx(key) as BolumJson;
+};
+
+export type BolumProps = { yol?: string; bolum?: BolumJson; guvenli?: boolean };
+
+export const bolumMetadata: CalculateMetadataFunction<BolumProps> = ({ props }) => {
+  const b = bolumYukle(props.yol, props.bolum);
+  return { durationInFrames: Math.max(1, b.planlar.reduce((s, p) => s + p.sure_kare, 0)), fps: 60 };
+};
+
+// ---- yazı katmanı: ekran yazısı (iddia/formül), replik altyazısı, isim etiketi ----
+const Giris: React.FC<{ p: number; bas: number; children: React.ReactNode }> = ({ p, bas, children }) => {
+  const t = interpolate(p, [bas, bas + 14], [0, 1], { ...cl, easing: GIRIS });
+  return <AbsoluteFill style={{ opacity: t, transform: `translateY(${(1 - t) * 18}px)` }}>{children}</AbsoluteFill>;
+};
+const YaziKatmani: React.FC<{ plan: Plan; p: number }> = ({ plan, p }) => (
+  <>
+    {(plan.ekran_yazisi ?? []).map((y, i) => {
+      const bas = y.bas ?? 0, bit = y.bit ?? plan.sure_kare;
+      if (p < bas || p >= bit) return null;
+      return <Giris key={`y${i}`} p={p} bas={bas}>{y.tur === "formul" ? <FormulYazisi metin={y.metin} kagitSerit={y.kagitSerit} boyut={y.boyut} /> : <IddiaYazisi metin={y.metin} vurgu={y.vurgu} kagitSerit={y.kagitSerit} bant={y.bant} boyut={y.boyut} />}</Giris>;
+    })}
+    {(plan.replik ?? []).map((r, i) => {
+      if (p < r.bas || p >= r.bit) return null;
+      const okunan = r.kelimeKare ? r.kelimeKare.reduce((a, k, j) => (p >= k ? j : a), -1) : -1;
+      return <Giris key={`r${i}`} p={p} bas={r.bas}><Altyazi metin={r.metin} kim={r.kim} vurgu={r.vurgu} bant={r.bant} okunan={okunan} kimKontrast /></Giris>;
+    })}
+  </>
+);
+
+// etiket: karakterin başının üstünde (Sahne'nin kilit listesindeki "<kim> yüz" noktasından)
+const Etiketler: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> = ({ plan, p, kilit }) => (
+  <>
+    {(() => {
+      const ets = (plan.karakterler ?? []).map((c) => ({ c, yuz: kilit.find((q) => q.ad === `${c.kim} yüz`) })).filter(({ c, yuz }) => c.etiket && yuz && p >= (c.etiket.bas ?? 0) && p < (c.etiket.bit ?? plan.sure_kare));
+      const orta = ets.reduce((s, e) => s + e.yuz!.p[0], 0) / Math.max(1, ets.length);
+      return ets.map(({ c, yuz }, i) => {
+        // birden çok etiket: ortanın solundaki karakterin etiketi solda, sağdakinin sağda (yüzü ve diğer karakteri örtmez)
+        const solda = ets.length > 1 ? yuz!.p[0] <= orta : yuz!.p[0] > 540;
+        const W = 350, x = solda ? Math.max(80 + W, yuz!.p[0] - 30) : Math.min(1000 - W, yuz!.p[0] + 30);
+        return <IsimEtiketi key={i} ad={c.etiket!.ad} alt={c.etiket!.alt} sekme="#b8862b" x={x} y={Math.max(430, yuz!.p[1] - 330)} hedef={[yuz!.p[0], yuz!.p[1] - 150]} hiza={solda ? "sag" : "sol"} W={W} />;
+      });
+    })()}
+  </>
+);
+
+// GuvenliAlan, Sahne'nin render sırasında doldurduğu kilit listesini okur (aynı geçişte, Sahne'den SONRA render edilir)
+const KilitBindirme: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> = ({ plan, p, kilit }) => {
+  const ust = [...(plan.ekran_yazisi ?? []), ...(plan.replik ?? [])].some((y) => y.bant === "ust" && p >= (y.bas ?? 0) && p < (y.bit ?? plan.sure_kare));
+  const alt = [...(plan.ekran_yazisi ?? []), ...(plan.replik ?? [])].some((y) => y.bant === "alt" && p >= (y.bas ?? 0) && p < (y.bit ?? plan.sure_kare));
+  return <GuvenliAlan noktalar={kilit} aktifBant={alt ? "alt" : ust ? "ust" : null} baslik={`${plan.id} ${plan.sablon} p${p}`} />;
+};
+
+const PlanGoster: React.FC<{ plan: Plan; guvenli?: boolean }> = ({ plan, guvenli }) => {
+  const p = useCurrentFrame();
+  const S = SABLONLAR[plan.sablon];
+  if (!S) throw new Error(`[Bolum] bilinmeyen şablon: ${plan.sablon}`);
+  const kilit: KilitNokta[] = [];
+  const sahne = <AbsoluteFill><S.Sahne plan={plan} p={p} kilit={kilit} /></AbsoluteFill>;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#14110d" }}>
+      {S.arsivAtla?.(plan, p) ? sahne : <ArsivKatmani mod={S.arsiv(plan)}>{sahne}</ArsivKatmani>}
+      <Etiketler plan={plan} p={p} kilit={kilit} />
+      <YaziKatmani plan={plan} p={p} />
+      {guvenli && <KilitBindirme plan={plan} p={p} kilit={kilit} />}
+    </AbsoluteFill>
+  );
+};
+
+export const Bolum: React.FC<BolumProps> = ({ yol, bolum, guvenli }) => {
+  const b = bolumYukle(yol, bolum);
+  let bas = 0;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#14110d" }}>
+      {b.planlar.map((plan) => {
+        const from = bas; bas += plan.sure_kare;
+        return <Sequence key={plan.id} from={from} durationInFrames={plan.sure_kare} name={`${plan.id} · ${plan.sablon}`}><PlanGoster plan={plan} guvenli={guvenli} /></Sequence>;
+      })}
+    </AbsoluteFill>
+  );
+};

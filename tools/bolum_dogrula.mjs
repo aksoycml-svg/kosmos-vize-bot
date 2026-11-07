@@ -1,0 +1,133 @@
+#!/usr/bin/env node
+// bolum.json doğrulayıcı (SET KİTİ K1). Kullanım:
+//   node tools/bolum_dogrula.mjs bolumler/<slug>/bolum.json [--tam] [--temas cikti.json]
+// --tam: bölüm düzeyi kurallar (30–60 sn, 8–14 plan, ≤4 şablon) HATA sayılır; yoksa uyarı (örnek/parça dosyaları için).
+// --temas: tüm temasların mutlak kare/saniye listesini yazar (kurgucu/teknisyen sesleri bu listeden yerleştirir).
+// Sınırlar tek kaynaktan: src/kit/sinirlar.json (KATALOG.md ile aynı).
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const kok = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const SN = JSON.parse(fs.readFileSync(path.join(kok, "src/kit/sinirlar.json"), "utf8"));
+const arg = process.argv.slice(2);
+const dosya = arg.find((a) => !a.startsWith("--") && arg[arg.indexOf(a) - 1] !== "--temas");
+const TAM = arg.includes("--tam");
+const temasCikti = arg.includes("--temas") ? arg[arg.indexOf("--temas") + 1] : null;
+if (!dosya) { console.error("kullanım: node tools/bolum_dogrula.mjs <bolum.json> [--tam] [--temas cikti.json]"); process.exit(2); }
+
+const hatalar = [], uyarilar = [];
+const H = (yer, m) => hatalar.push(`${yer}: ${m}`);
+const U = (yer, m) => uyarilar.push(`${yer}: ${m}`);
+let B;
+try { B = JSON.parse(fs.readFileSync(dosya, "utf8")); } catch (e) { console.error(`JSON okunamadı: ${e.message}`); process.exit(1); }
+
+const dizi = (v) => (Array.isArray(v) ? v : [v]);
+const aralik = (yer, ad, v, [a, b]) => dizi(v).forEach((x) => { if (typeof x !== "number" || x < a || x > b) H(yer, `${ad}=${x} aralık dışı [${a}, ${b}]`); });
+const anahtarUzunluk = (yer, ad, v, kare) => { if (Array.isArray(v) && v.length > 1 && (!kare || kare.length !== v.length)) H(yer, `${ad} dizisi (${v.length}) ile kare dizisi (${kare?.length ?? 0}) eşit değil`); };
+const artan = (yer, kare) => { for (let i = 1; i < (kare?.length ?? 0); i++) if (kare[i] <= kare[i - 1]) H(yer, `kare dizisi artan değil (${kare.join(",")})`); };
+const temasVar = (plan, kare, tol = 2) => (plan.temaslar ?? []).some((t) => Math.abs(t.kare - kare) <= tol);
+
+if (B.fps !== SN.fps) H("bölüm", `fps ${B.fps} (beklenen ${SN.fps})`);
+if (!Array.isArray(B.planlar) || !B.planlar.length) { H("bölüm", "planlar boş"); }
+const idler = new Set(), dokunuslar = new Map(), sablonlar = new Set();
+let toplam = 0;
+const tumTemas = [];
+
+for (const plan of B.planlar ?? []) {
+  const Y = plan.id ?? "(id yok)";
+  if (!plan.id) H(Y, "id yok");
+  if (idler.has(plan.id)) H(Y, "id tekrar ediyor"); idler.add(plan.id);
+  const S = SN.sablonlar[plan.sablon];
+  if (!S) { H(Y, `bilinmeyen şablon ${plan.sablon} (katalog: ${Object.keys(SN.sablonlar).join(", ")})`); continue; }
+  sablonlar.add(plan.sablon);
+  const sure = plan.sure_kare;
+  if (!Number.isInteger(sure) || sure < SN.planSureMinKare) H(Y, `sure_kare ${sure} (en az ${SN.planSureMinKare}, tam sayı)`);
+  const prm = plan.parametreler ?? {};
+  for (const z of S.zorunlu) if (prm[z] === undefined) H(Y, `zorunlu parametre yok: ${z}`);
+  for (const [ad, izin] of Object.entries(S.parametreler)) if (prm[ad] !== undefined && !izin.includes(prm[ad])) H(Y, `${ad}="${prm[ad]}" geçersiz (${izin.join(" | ")})`);
+  // şablona özel kurallar
+  if (plan.sablon === "SOKAK" && prm.saat === "gun" && prm.sehir !== "bordeaux") H(Y, "SOKAK gün yalnız bordeaux (paris yalnız gece)");
+  if (plan.sablon === "SOKAK" && prm.insert) { if (prm.insert.tur !== "fare") H(Y, "insert.tur yalnız 'fare'"); if (prm.insert.bas + 66 > sure) H(Y, `fare insert'i (66 kare) plan sonunu aşıyor`); }
+  if (plan.sablon === "KULE-DIS") {
+    const kl = prm.kuleler ?? [];
+    if (kl.length > S.kuleMaks) H(Y, `kule sayısı ${kl.length} > ${S.kuleMaks}`);
+    if (prm.saat === "alacakaranlik") kl.forEach((k, i) => { if (typeof k.konum !== "string") H(Y, `kule ${i + 1}: alacakaranlıkta kollar SABİT olmalı (telgraf gece/siste çalışmaz)`); });
+    kl.forEach((k, i) => { if (typeof k.konum === "object") { artan(`${Y} kule ${i + 1}`, k.konum.kare); k.konum.kare.slice(1).forEach((q) => { if (!temasVar(plan, q)) U(Y, `kule ${i + 1} kol varışı p${q}: "klak" teması yok`); }); } });
+  }
+  if (plan.sablon === "HARITA" && prm.muhur && !temasVar(plan, prm.muhur.kare, 1)) H(Y, `mühür p${prm.muhur.kare}: temas (TOK) yok`);
+  if (plan.sablon === "YAKIN-YUZ") {
+    if (!prm.arka?.sablon || !SN.sablonlar[prm.arka.sablon] || prm.arka.sablon === "YAKIN-YUZ") H(Y, "arka.sablon geçerli bir şablon olmalı (YAKIN-YUZ hariç)");
+    if ((prm.olcek ?? 3.6) < 3.5) H(Y, `olcek ${prm.olcek}: yüz ekranın %15'inin altına iner (≥ 3.5)`);
+    const yz = prm.yuz ?? [540, 800];
+    if ((yz[1] >= 240 - 60 && yz[1] <= 400 + 60) || (yz[1] >= 1290 - 60 && yz[1] <= 1490 + 60)) U(Y, `yüz y=${yz[1]} yazı bandına yakın`);
+  }
+  // kamera
+  const K = plan.kamera;
+  if (K) {
+    artan(`${Y} kamera`, K.kare);
+    for (const ad of ["cs", "cx", "cy"]) if (K[ad]) { anahtarUzunluk(`${Y} kamera`, ad, K[ad], K.kare); aralik(`${Y} kamera`, ad, K[ad], S.kamera[ad]); }
+    if ((K.kare ?? []).some((q) => q < 0 || q > sure)) H(Y, "kamera karesi plan dışında");
+  }
+  // karakterler
+  const kar = plan.karakterler ?? [];
+  if (kar.length > S.karakterMaks) H(Y, `karakter sayısı ${kar.length} > ${S.karakterMaks}`);
+  kar.forEach((c, i) => {
+    const y = `${Y} ${c.kim ?? `karakter${i}`}`;
+    if (!SN.karakterler.includes(c.kim)) H(y, `bilinmeyen karakter (kayıt: ${SN.karakterler.join(", ")})`);
+    if (S.z && plan.sablon !== "YAKIN-YUZ") { aralik(y, "z", c.z, S.z); aralik(y, "u", c.u, S.u); }
+    anahtarUzunluk(y, "z", c.z, c.kare); anahtarUzunluk(y, "u", c.u, c.kare); if (c.kare) artan(y, c.kare);
+    for (const j of c.jestler ?? []) {
+      if (!SN.jestler.includes(j.ad)) H(y, `bilinmeyen jest ${j.ad}`);
+      if (!(j.bas < j.bit) || j.bas < 0 || j.bit > sure + 12) H(y, `jest ${j.ad} zamanı [${j.bas}, ${j.bit}] geçersiz`);
+      if (j.ad === "yuru" && !Array.isArray(c.z) && !Array.isArray(c.u)) U(y, "yuru jesti var ama z/u yolu (dizi) yok — yerinde sayar");
+      const o = j.ops ?? {};
+      if (j.ad === "baston-vur") { const v = o.vurus ?? Math.round(j.bas + (j.bit - j.bas) * 0.6); if (!temasVar(plan, v, 1)) H(y, `baston-vur vuruşu p${v}: temas yok (TEMAS = SES)`); if (!(c.aksesuar ?? []).includes("baston") && o.el !== "on") U(y, "baston-vur: aksesuar 'baston' yok"); }
+      if (j.ad === "it-cek") { const t = o.tekrar ?? 3, L = j.bit - j.bas; for (let q = 0; q < t; q++) { const k = Math.round(j.bas + ((q + 0.25) * L) / t); if (!temasVar(plan, k)) U(y, `it-cek tik p${k}: temas yok`); } }
+      if (j.ad === "eldiven-giy") { const g = o.gerilme ?? Math.round((j.bas + j.bit) / 2); if (!temasVar(plan, g)) H(y, `eldiven-giy gerilme p${g}: temas yok`); }
+    }
+  });
+  // props + el
+  const propIdler = new Set();
+  for (const pr of plan.props ?? []) {
+    if (!SN.props.includes(pr.tur)) H(Y, `bilinmeyen prop ${pr.tur}`);
+    if (pr.id) propIdler.add(pr.id);
+    anahtarUzunluk(`${Y} ${pr.tur}`, "x", pr.x, pr.kare); anahtarUzunluk(`${Y} ${pr.tur}`, "y", pr.y, pr.kare);
+    for (const [k, v] of Object.entries(pr.durum ?? {})) anahtarUzunluk(`${Y} ${pr.tur}`, `durum.${k}`, v, pr.kare);
+  }
+  for (const [i, el] of (plan.el ?? []).entries()) {
+    const y = `${Y} el${i}`;
+    if (plan.sablon !== "MASA-INSERT") H(y, "el yalnız MASA-INSERT'te");
+    for (const ad of ["bilek", "dirsek", "aci"]) if (el[ad]?.length !== el.kare?.length) H(y, `${ad} (${el[ad]?.length}) ile kare (${el.kare?.length}) eşit değil`);
+    artan(y, el.kare);
+    if (el.tut) { if (!propIdler.has(el.tut.prop)) H(y, `tut.prop "${el.tut.prop}" prop id'si değil`); if (el.tut.bit < sure && !temasVar(plan, el.tut.bit, 1)) H(y, `bırakma p${el.tut.bit}: temas yok`); }
+  }
+  if ((plan.el ?? []).length > (S.elMaks ?? 0)) H(Y, `el sayısı > ${S.elMaks ?? 0}`);
+  // yazılar
+  for (const yz of [...(plan.ekran_yazisi ?? []), ...(plan.replik ?? [])]) {
+    if (!SN.bantlar.includes(yz.bant)) H(Y, `yazı bandı "${yz.bant}" (ust | alt)`);
+    if ((yz.bas ?? 0) < 0 || (yz.bit ?? sure) > sure) H(Y, `yazı "${yz.metin}" zamanı plan dışında`);
+    if ([...(yz.metin ?? "")].some((ch) => ch.codePointAt(0) > 0x2215 && !"…→↑↓·".includes(ch))) U(Y, `yazıda font dışı olabilecek glif: "${yz.metin}"`);
+  }
+  // temaslar + dokunuş
+  for (const t of plan.temaslar ?? []) {
+    if (t.kare < 0 || t.kare >= sure) H(Y, `temas p${t.kare} plan dışında`);
+    tumTemas.push({ plan: plan.id, kare: toplam + t.kare, sn: +((toplam + t.kare) / SN.fps).toFixed(3), olay: t.olay, ses: t.ses ?? null, db: t.db ?? null });
+  }
+  if (plan.dokunus) { if (dokunuslar.has(plan.dokunus.id)) H(Y, `dokunuş ${plan.dokunus.id} tekrar ediyor (ilk: ${dokunuslar.get(plan.dokunus.id)})`); dokunuslar.set(plan.dokunus.id, plan.id); }
+  toplam += sure || 0;
+}
+
+const sn = toplam / SN.fps, BK = SN.bolum;
+const bolumKural = (m) => (TAM ? H("bölüm", m) : U("bölüm", m));
+if (sn < BK.sureMinSn || sn > BK.sureMaxSn) bolumKural(`süre ${sn.toFixed(1)} sn (${BK.sureMinSn}–${BK.sureMaxSn})`);
+const n = (B.planlar ?? []).length;
+if (n < BK.planMin || n > BK.planMax) bolumKural(`plan sayısı ${n} (${BK.planMin}–${BK.planMax})`);
+if (sablonlar.size > BK.sablonMaks + 2) bolumKural(`şablon çeşidi ${sablonlar.size} (önerilen mekân şablonu 2–${BK.sablonMaks})`);
+
+console.log(`${dosya}: ${n} plan · ${toplam} kare · ${sn.toFixed(2)} sn · şablonlar: ${[...sablonlar].join(", ")}`);
+for (const u of uyarilar) console.log(`  UYARI  ${u}`);
+for (const h of hatalar) console.log(`  HATA   ${h}`);
+console.log(`  temas: ${tumTemas.length}  dokunuş: ${dokunuslar.size}  →  ${hatalar.length ? "GEÇMEDİ" : "GEÇTİ"} (${hatalar.length} hata, ${uyarilar.length} uyarı)`);
+if (temasCikti) { fs.writeFileSync(temasCikti, JSON.stringify({ fps: SN.fps, temaslar: tumTemas }, null, 2)); console.log(`  temas listesi → ${temasCikti}`); }
+process.exit(hatalar.length ? 1 : 0);

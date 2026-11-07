@@ -1,9 +1,10 @@
+// AVLU-SALON (kit, taşındı): SB2-BORSA P02 kodu. Henüz parametrik değil; SB2-BORSA kompozisyonu buradan çalışır. Parametreleme: kurulum ekibi işi.
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { Kukla, Palet, Poz } from "../../../rig/Kukla";
 import { KolEl, KISTIR_YEREL, elMatris } from "../../../rig/KolEl";
 import { KuklaIsik, kolIsigi, kuklaIsigi } from "../../../rig/RigIsik";
-import { CepEldiven } from "../props/EldivenKose";
+import { CepEldiven } from "../../../bolumler/blanc/props/EldivenKose";
 import { AYAK_TABAN, dunyaya, elDunya, kolIK } from "../../../rig/kinematik";
 import { ArsivKatmani } from "../../../doku/ArsivKatmani";
 import { KonturTitreme } from "../../../doku/KonturTitreme";
@@ -17,7 +18,7 @@ import { GuvenliAlan, KilitNokta } from "../../../doku/GuvenliAlan";
 import { BL, DOKU_SEED, Esleme, P, ink, karistir, lerp, murekkep, poly, rnd, tonla } from "../../../doku/sabitler";
 import { FormulYazisi, IsimEtiketi } from "../../../components/EkranYazisi";
 import { serif } from "../../../theme";
-import { KATIP, KATIP_ACIK, TUCCAR, FRANCOIS_TABA, LOUIS_ELSIZ } from "../palet";
+import { KATIP, KATIP_ACIK, TUCCAR, FRANCOIS_TABA, LOUIS_ELSIZ } from "../../../bolumler/blanc/palet";
 
 // ===== SB2-BORSA · P02 · Palais de la Bourse — AÇIK PORTİKLİ AVLU (mekanlar.md 10.1, R3 orkestra kararı) — p = mutlak − 156 =====
 // Arka avlu cephesi: YARIM DAİRE arcade'lar (oran 1:2), sade kilit taşı + imposte; alınlıkta ticaret amblemi + okunmaz şehir çizgileri;

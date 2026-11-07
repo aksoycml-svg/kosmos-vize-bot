@@ -1,0 +1,430 @@
+{
+  "slug": "blanc-kardesler",
+  "baslik": "Kit K1 kontrol — şablon başına bir plan (SOKAK gün, IC-ODA, KULE-DIS, HARITA, YAKIN-YUZ)",
+  "fps": 60,
+  "planlar": [
+    {
+      "id": "K-SOKAK-GUN",
+      "sablon": "SOKAK",
+      "parametreler": {
+        "sehir": "bordeaux",
+        "saat": "gun"
+      },
+      "sure_kare": 120,
+      "kamera": {
+        "kare": [
+          0,
+          120
+        ],
+        "cs": [
+          1.0,
+          1.08
+        ],
+        "cy": [
+          0,
+          -20
+        ],
+        "egri": "lineer"
+      },
+      "karakterler": [
+        {
+          "kim": "francois",
+          "z": 2.4,
+          "u": 0.42,
+          "yon": 1,
+          "yuz": {
+            "ifade": "gulumse",
+            "bakis": [
+              1,
+              0
+            ]
+          },
+          "etiket": {
+            "ad": "François",
+            "alt": "BLANC · BORDEAUX"
+          },
+          "jestler": [
+            {
+              "ad": "konus",
+              "bas": 10,
+              "bit": 100,
+              "ops": {
+                "metin": "devlet tahvili"
+              }
+            },
+            {
+              "ad": "isaret",
+              "bas": 30,
+              "bit": 110,
+              "ops": {
+                "aci": -150
+              }
+            }
+          ]
+        },
+        {
+          "kim": "louis",
+          "z": 2.55,
+          "u": 0.68,
+          "yon": -1,
+          "aksesuar": [
+            "cep-eldiven"
+          ],
+          "etiket": {
+            "ad": "Louis",
+            "alt": "BLANC · BORDEAUX"
+          },
+          "jestler": [
+            {
+              "ad": "yaz",
+              "bas": 0,
+              "bit": 120
+            }
+          ]
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "Oyun: Paris'teki tahvil fiyatı",
+          "vurgu": [
+            "Paris'teki"
+          ]
+        }
+      ],
+      "temaslar": [],
+      "dokunus": null
+    },
+    {
+      "id": "K-IC-ODA",
+      "sablon": "IC-ODA",
+      "parametreler": {
+        "oda": "tours-buro",
+        "isik": "mum",
+        "masa": {
+          "z": 3.2,
+          "u": -0.1,
+          "w": 1.5,
+          "d": 0.8
+        },
+        "kol": "BEKLE"
+      },
+      "sure_kare": 120,
+      "karakterler": [
+        {
+          "kim": "louis",
+          "z": 3.0,
+          "u": -0.85,
+          "yon": 1,
+          "yuz": {
+            "bakis": [
+              1,
+              0.2
+            ]
+          }
+        },
+        {
+          "kim": "mudur",
+          "z": 3.6,
+          "u": 0.55,
+          "yon": -1,
+          "yuz": {
+            "bakis": [
+              1,
+              0.3
+            ]
+          }
+        },
+        {
+          "kim": "memur",
+          "z": 3.9,
+          "u": 1.1,
+          "yon": -1,
+          "jestler": [
+            {
+              "ad": "it-cek",
+              "bas": 20,
+              "bit": 110,
+              "ops": {
+                "tekrar": 3
+              }
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "tur": "kese",
+          "x": -0.45,
+          "y": 3.2,
+          "olcek": 1.2
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "Rüşvet · Tours",
+          "vurgu": [
+            "Rüşvet"
+          ]
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 28,
+          "olay": "makara tik",
+          "db": -14
+        },
+        {
+          "kare": 58,
+          "olay": "makara tik",
+          "db": -14
+        },
+        {
+          "kare": 88,
+          "olay": "makara tik",
+          "db": -14
+        }
+      ],
+      "dokunus": null
+    },
+    {
+      "id": "K-KULE-DIS",
+      "sablon": "KULE-DIS",
+      "parametreler": {
+        "saat": "gun",
+        "kuleler": [
+          {
+            "x": 330,
+            "taban": 1470,
+            "L": 280,
+            "konum": {
+              "kare": [
+                10,
+                20
+              ],
+              "konum": [
+                "BEKLE",
+                "MESAJ"
+              ]
+            }
+          },
+          {
+            "x": 700,
+            "taban": 1060,
+            "L": 120,
+            "konum": {
+              "kare": [
+                30,
+                40
+              ],
+              "konum": [
+                "BEKLE",
+                "HATA"
+              ]
+            },
+            "halo": [
+              40,
+              110
+            ]
+          },
+          {
+            "x": 860,
+            "taban": 960,
+            "L": 64,
+            "konum": {
+              "kare": [
+                55,
+                65
+              ],
+              "konum": [
+                "BEKLE",
+                "HATA"
+              ]
+            }
+          },
+          {
+            "x": 955,
+            "taban": 905,
+            "L": 36,
+            "konum": {
+              "kare": [
+                75,
+                85
+              ],
+              "konum": [
+                "BEKLE",
+                "HATA"
+              ]
+            }
+          }
+        ]
+      },
+      "sure_kare": 120,
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "Gizli \"hata\" · Herkes kopyaladı",
+          "vurgu": [
+            "\"hata\""
+          ]
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 20,
+          "olay": "klak"
+        },
+        {
+          "kare": 40,
+          "olay": "klak (sert)"
+        },
+        {
+          "kare": 65,
+          "olay": "klak uzak",
+          "db": -10
+        },
+        {
+          "kare": 85,
+          "olay": "klak uzak",
+          "db": -14
+        }
+      ],
+      "dokunus": {
+        "id": "D4",
+        "ad": "Fazladan çentik + kopya dalgası"
+      }
+    },
+    {
+      "id": "K-HARITA",
+      "sablon": "HARITA",
+      "parametreler": {
+        "rota": "paris-bordeaux",
+        "posta": {
+          "bas": 0,
+          "bit": 220
+        },
+        "telgraf": {
+          "bas": 230,
+          "bit": 300,
+          "kule": 13
+        },
+        "muhur": {
+          "kare": 340,
+          "metin": "YALNIZCA DEVLET"
+        },
+        "gun": 3,
+        "saat": 4
+      },
+      "sure_kare": 390,
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "Posta: 3 GÜN · Telgraf: BİRKAÇ SAAT",
+          "tur": "formul",
+          "kagitSerit": true
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 73,
+          "olay": "sayaç tık"
+        },
+        {
+          "kare": 147,
+          "olay": "sayaç tık"
+        },
+        {
+          "kare": 219,
+          "olay": "sayaç tık"
+        },
+        {
+          "kare": 340,
+          "olay": "mühür TOK"
+        }
+      ],
+      "dokunus": null
+    },
+    {
+      "id": "K-YAKIN-YUZ",
+      "sablon": "YAKIN-YUZ",
+      "parametreler": {
+        "yuz": [
+          540,
+          820
+        ],
+        "olcek": 3.6,
+        "isik": "gun",
+        "bulanik": 14,
+        "arka": {
+          "sablon": "KULE-DIS",
+          "parametreler": {
+            "saat": "gun",
+            "kuleler": [
+              {
+                "x": 860,
+                "taban": 1500,
+                "L": 260,
+                "konum": {
+                  "kare": [
+                    40,
+                    50,
+                    90,
+                    100
+                  ],
+                  "konum": [
+                    "BEKLE",
+                    "MESAJ",
+                    "MESAJ",
+                    "BEKLE"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      "sure_kare": 180,
+      "karakterler": [
+        {
+          "kim": "telgrafci",
+          "z": 1,
+          "u": 0,
+          "yon": 1,
+          "jestler": [
+            {
+              "ad": "esne",
+              "bas": 30,
+              "bit": 130
+            }
+          ]
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "Kimse durdurmadı.",
+          "vurgu": [
+            "Kimse"
+          ]
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 50,
+          "olay": "direk klak (bulanık, uzak)",
+          "db": -16
+        },
+        {
+          "kare": 100,
+          "olay": "direk klak (bulanık, uzak)",
+          "db": -16
+        }
+      ],
+      "dokunus": {
+        "id": "D5",
+        "ad": "Esneme"
+      }
+    }
+  ]
+}
