@@ -35,6 +35,13 @@ Her ajan görev bitince `bolumler/<slug>/katki-raporu.md` sonuna ekler: ne yapt�
 - **Denetim önce betik:** güvenli alan, yazı bantları, ayak teması, renk/ton, imza nesnesi beyazı, süre — `tools/` betikleriyle; insan/ajan gözü yalnız betiğin ölçemediği için.
 - Ajan brifleri kısa; ajana yalnız ilgili dosyalar verilir. Uzun belge yerine şablon kataloğuna referans.
 
+### İki dil baştan birlikte (kullanıcı kararı, Blanc EN sonrası)
+- Senarist TR ve EN metni **aynı anda**, yaklaşık eşit uzunlukta yazar; kullanıcı ikisini birlikte onaylar.
+- Her iki dilin sesi yönetmenden önce üretilir; **plan süresi = iki dilin uzun olanı** (+ kuyruk). İki dil aynı zamanlamayı, aynı temas/foley karelerini paylaşır.
+- Görüntü **yazısız** bir kez render edilir; ekran yazıları, replik altyazısı, etiketler (harita, mühür) dil başına **ayrı katman** (şeffaf) + ses dil başına ayrı. İkinci dil = yalnız yazı katmanı + ses + miks; görüntü yeniden render edilmez.
+- Görüntüye gömülü dil (tabela, mühür metni) ya dil-nötr tasarlanır ya yazı katmanına alınır. Kitte sabit yazılmış dil metni bırakılmaz.
+- (Blanc EN'de zamanlama sese bağlı olduğundan tüm animasyon yeniden hizalandı, iki tam render + düzeltme turu gerekti.)
+
 ### bolum.json kuralları (Blanc storyboard v3 hatalarından)
 1. **Senaryo → parametre eşlemesi zorunlu:** senaryodaki her görsel cümle (poz, durum, ifade, dokunuş) json'da karşılığı olan bir parametreye eşlenir. Kitte karşılığı yoksa "en yakınla doldurma" yok → `kit_eksik` ile işaretlenir, orkestra karar verir. (P10: "yatakta hasta memur" ayakta, şapkalı çizildi.)
 2. **Her animasyon planın içinde biter:** jest/prop/morf aralığı plan süresine sığar ve plan sonundan ≥12 kare önce tamamlanır (hareket tamamlanır). Doğrulayıcı reddeder. (P13: Wi-Fi morfu plan bittikten sonraya kalmıştı.)
