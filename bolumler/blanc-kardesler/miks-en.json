@@ -1,0 +1,136 @@
+{
+ "fps": 60,
+ "toplam_kare": 3369,
+ "referans": "Anlatım/replik 0 dB. Foley dosyaları ~-20 LUFS'a normalize; temas.db > istisnalar > onerilen_db. EN (v4 mantığı): müzik kesintisiz (hiç -60/sessizlik yok), yalnız yumuşak duck.",
+ "muzik": {
+  "dosya": "blanc/muzik/chopin-nocturne-b108-blanc-en.mp3",
+  "bas_kare": 0,
+  "db": -8,
+  "not": "EN kesim: v4 dosyasından gövde 0-52.9 sn + 0.3 sn qsin crossfade + açılış motifi (v4 başı, 5.8 sn, son 0.8 sn fade); dosya 58.44 sn = 3506 kare >= bölüm (3369, >=56.4 sn); motif ilk notası 52.85 sn = kare 3171 (P14 başı 3145, anlatım 3163). Gövde 52.55 sn notasının sönümünden sonra, 53.10 sn yeni cümle notasından önce kesilir. db = anlatımsız seviye (-8); anlatım altında duck -18 mutlak. Bölüm sonunda kit fade_out ile iner.",
+  "fade_in_kare": 12,
+  "fade_out_kare": 60,
+  "fade_out_bas_kare": 3309,
+  "geri_donus": {
+   "kare": 3171,
+   "aciklama": "Açılış motifi P14'te anlatımdan 8 kare sonra geri döner (dosyada 52.85 sn, 0.3 sn crossfade ile yerleşik, ek işlem gerekmez)."
+  },
+  "duck": {
+   "anlatim_db": -18,
+   "sessiz_db": -8,
+   "atak_kare": 18,
+   "birakma_kare": 36,
+   "kaynaklar": [
+    {
+     "plan": "P01",
+     "dosya": "blanc/ses-en/P01.mp3",
+     "bas_kare": 6,
+     "bit_kare": 126
+    },
+    {
+     "plan": "P02",
+     "dosya": "blanc/ses-en/P02.mp3",
+     "bas_kare": 204,
+     "bit_kare": 380
+    },
+    {
+     "plan": "P03",
+     "dosya": "blanc/ses-en/P03.mp3",
+     "bas_kare": 454,
+     "bit_kare": 660
+    },
+    {
+     "plan": "P04",
+     "dosya": "blanc/ses-en/P04-francois.mp3",
+     "bas_kare": 692,
+     "bit_kare": 812
+    },
+    {
+     "plan": "P05",
+     "dosya": "blanc/ses-en/P05.mp3",
+     "bas_kare": 838,
+     "bit_kare": 1003
+    },
+    {
+     "plan": "P06",
+     "dosya": "blanc/ses-en/P06.mp3",
+     "bas_kare": 1132,
+     "bit_kare": 1383
+    },
+    {
+     "plan": "P07",
+     "dosya": "blanc/ses-en/P07.mp3",
+     "bas_kare": 1496,
+     "bit_kare": 1647
+    },
+    {
+     "plan": "P08",
+     "dosya": "blanc/ses-en/P08.mp3",
+     "bas_kare": 1728,
+     "bit_kare": 1901
+    },
+    {
+     "plan": "P09",
+     "dosya": "blanc/ses-en/P09.mp3",
+     "bas_kare": 1970,
+     "bit_kare": 2151
+    },
+    {
+     "plan": "P10",
+     "dosya": "blanc/ses-en/P10.mp3",
+     "bas_kare": 2177,
+     "bit_kare": 2325
+    },
+    {
+     "plan": "P10",
+     "dosya": "blanc/ses-en/P10-memur.mp3",
+     "bas_kare": 2351,
+     "bit_kare": 2497
+    },
+    {
+     "plan": "P11",
+     "dosya": "blanc/ses-en/P11.mp3",
+     "bas_kare": 2523,
+     "bit_kare": 2660
+    },
+    {
+     "plan": "P12",
+     "dosya": "blanc/ses-en/P12.mp3",
+     "bas_kare": 2818,
+     "bit_kare": 2945
+    },
+    {
+     "plan": "P13",
+     "dosya": "blanc/ses-en/P13.mp3",
+     "bas_kare": 2971,
+     "bit_kare": 3094
+    },
+    {
+     "plan": "P14",
+     "dosya": "blanc/ses-en/P14.mp3",
+     "bas_kare": 3163,
+     "bit_kare": 3269
+    }
+   ],
+   "not": "Mutlak seviyeler (TR v4 ile aynı: -8/-18, atak 18, bırakma 36). Kaynaklar bolum-en.json ses kareleri + EN ffprobe süreleri; bit = min(plan sonu, bas+ceil(süre*60)). Kit aralıkları bolum json'dan kendisi hesaplar; liste belgeleme amaçlıdır."
+  }
+ },
+ "foley_varsayilan_db": -6,
+ "foley_dosya": "bolumler/blanc-kardesler/foley.json",
+ "foley_yerlestirme": "Her temas: baslangic_kare = temas.kare - round(tepe_ms*60/1000). Liste temaslar.json.",
+ "final": {
+  "lufs": -14,
+  "tepe_dbfs": -1.5,
+  "tepe_dbtp": -1.5,
+  "kanallar": [
+   "anlatim",
+   "foley",
+   "muzik",
+   "ortam"
+  ],
+  "not": "Ortam kanalı yok: kit temas dışında sürekli ortam katmanı desteklemiyor (bkz. sesler.md v4 miks)."
+ },
+ "muzik_istisnalari": [],
+ "istisnalar": {
+  "kol-klak-sert": -3
+ }
+}

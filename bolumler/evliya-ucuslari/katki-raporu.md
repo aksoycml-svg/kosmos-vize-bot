@@ -11,3 +11,9 @@
 - Kurallar: Evliya için "gördü" demedim. Lagâri Boğaz'ı geçmiyor ve onun için sürgün geçmiyor. "Kardeş", "rüzgâr ölçüldü" ve "sıska" (tek kaynak) kullanılmadı. Kanat ve "yedi kollu" görselde nötr. 2 replik var ve ikisi de dramatizasyon olarak işaretli.
 - Açık sorular: "TEK TANIK: BİR KİTAP" yorumu, Hezarfen planlarının gündüz olması, ~1633 mü 1630'lar mı, "her gün maaş" sadeleştirmesi, replik sesleri (ayrıntı senaryo.md §7'de).
 - ana oturum · 2026-11-07 · senaryo kullanıcı onayı; P02 '1630'lar', P05 'Bugünkü bir hesap' işlendi.
+
+## yaratici-yonetmen · 2026-11-07 · Evliya uçuşları dokunuş listesi
+- Ne yaptım: 6 ana + 1 yedek dokunuş (P05 başlık, P06 bırakılan demet, P08 düşen taş, P09 martı, P11 düşen kese+sikke, P12 pencere kanadı/ışık şeridi; yedek P04 boğum); kare aralığı, ölçek, okunurluk, foley, kit durumu, kesilme sırası. Dosya: bolumler/evliya-ucuslari/dokunuslar.md (+ bu rapor).
+- Kararlar: Blanc'ın paket ip-düğümü, kıvılcım (kanca/kapanış döngüsü) ve boş kitap (D8) çağrışımı yüzünden P03, P07, P13 dokunuşsuz; P07 yalnız P11'in kurulumu.
+- Kurallar: kanat yapısı belirsiz (martı karşılaştırması için kontra ışık notu), Evliya "gördü" yok, Lagâri Boğaz'ı geçmiyor, her dokunuş bit ≤ plan sonu − 12.
+- Açık: P06'daki fişeği bırakma kaynakta yok (çelişmez, dramatizasyon); P13 senaryosu D8 mekanizmasını paylaşıyor; Efektler.tsx içeriği doğrulanmadı; kütüphaneye ekleme yapılmadı.
