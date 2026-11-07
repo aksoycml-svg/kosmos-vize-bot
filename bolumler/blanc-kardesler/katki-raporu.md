@@ -1274,3 +1274,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Dosyalar: public/blanc/muzik/chopin-nocturne-b108-blanc-en.mp3, bolumler/blanc-kardesler/{miks-en.json,sesler.md,katki-raporu.md}, muzik/lisanslar.md, src/kit/ses.tsx (regex `miks[^/]*`).
 - Kural/ihlal: `require.context` regex'i miks-en.json'u yakalamıyordu (müziksiz render riski) — düzeltildi; müzik kesilmez, istisna yok.
 - Açık: kesim dinlenmedi (ölçümle doğrulandı); kullanıcı/teknisyen kulakla kontrol etsin.
+
+## teknisyen · 2026-11-07 · Blanc EN ilk kurgu render
+- Doğrulama 0 hata/13 uyarı, 3369 kare. Görüntü 4 parça (843/843/842/841 kare) sıralı render, concat 3369 kare, 1080x1920 60 fps.
+- Ses: mp3 render; müzik RMS son 2 sn = -32.9 dB (geçer). loudnorm ölçüm I=-20.99, TP=-1.74, LRA=5.40. I=-11.5 ve I=-11.0 denendi; sonuç AAC sonrası I=-14.5 LUFS, TP=-2.3, LRA=3.1 (hedef -14 ±0.3 dışında, -0.2 LU). Limiter 0.84 sabit; sapma TP sınırından kaynaklı, kullanıcı kararı gerekli.
+- Çıktılar: out/blanc-en-ilk-kurgu.mp4 (1080, AAC 320k 48k), out/blanc-en-ilk-kurgu-540.mp4 (540x960 CRF26 AAC128k, TP -1.9), out/en/kontrol.png (14 plan). Sorun: uyarı P07 "klak" teması eksik (7 varış), 6 foley tanımlı ama kullanılmıyor.
