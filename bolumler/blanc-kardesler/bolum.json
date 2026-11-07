@@ -2184,7 +2184,7 @@
      "gerilme": 201,
      "x": 540,
      "y": 1150,
-     "olcek": 1.0
+     "olcek": 1.2
     }
    },
    "kamera": {
@@ -2208,7 +2208,7 @@
      "id": "dosya",
      "x": 540,
      "y": 1010,
-     "olcek": 1.4,
+     "olcek": 1.7,
      "kare": [
       0,
       12,
@@ -2262,7 +2262,7 @@
     "bit": 228
    },
    "kontrol_kare": 201,
-   "not": "v4: dosya 1.6x (cilt tahtası eldivenden büyük = eldivenin üstünde durduğu şey okunur), eldiven boğum y 1150. Kapağı sol elden giren el kapatır (TOK 30), el 54'te çıkar; eldiven giyme 36'da duraksamadan başlar (TOK'tan 6 kare sonra), gerilme 201 ('geç.'), bit 228. v4-son ölçek: eldiven olcek 1.3→1.0, dosya 1.6→1.4, görevli el 1.9→2.2 (eldiven bir el boyu; dosya eldivenden büyük).",
+   "not": "v4: dosya 1.6x (cilt tahtası eldivenden büyük = eldivenin üstünde durduğu şey okunur), eldiven boğum y 1150. Kapağı sol elden giren el kapatır (TOK 30), el 54'te çıkar; eldiven giyme 36'da duraksamadan başlar (TOK'tan 6 kare sonra), gerilme 201 ('geç.'), bit 228. v4-son ölçek: eldiven olcek 1.3→1.2 (katalog alt sınırı), dosya 1.6→1.7, görevli el 1.9→2.6 (eldiven bir el boyu; dosya eldivenden büyük).",
    "el": [
     {
      "tip": "gorevli",
@@ -2270,7 +2270,7 @@
       -80,
       1000
      ],
-     "olcek": 2.2,
+     "olcek": 2.6,
      "kare": [
       0,
       12,
