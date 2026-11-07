@@ -1,0 +1,184 @@
+[
+ {
+  "plan": "P01",
+  "sablon": "MASA-INSERT",
+  "sure": 196,
+  "baslangic": 0,
+  "temasKaynak": "temas",
+  "temasPlanKare": 0,
+  "kareler": {
+   "ilk": 3,
+   "dokunus": 0,
+   "son": 192
+  }
+ },
+ {
+  "plan": "P02",
+  "sablon": "SOKAK",
+  "sure": 294,
+  "baslangic": 196,
+  "temasKaynak": "temas",
+  "temasPlanKare": 86,
+  "kareler": {
+   "ilk": 199,
+   "dokunus": 282,
+   "son": 486
+  }
+ },
+ {
+  "plan": "P03",
+  "sablon": "HARITA",
+  "sure": 459,
+  "baslangic": 490,
+  "temasKaynak": "temas",
+  "temasPlanKare": 60,
+  "kareler": {
+   "ilk": 493,
+   "dokunus": 550,
+   "son": 945
+  }
+ },
+ {
+  "plan": "P04",
+  "sablon": "SOKAK",
+  "sure": 240,
+  "baslangic": 949,
+  "temasKaynak": "dokunus",
+  "temasPlanKare": 150,
+  "kareler": {
+   "ilk": 952,
+   "dokunus": 1099,
+   "son": 1185
+  }
+ },
+ {
+  "plan": "P05",
+  "sablon": "IC-ODA",
+  "sure": 330,
+  "baslangic": 1189,
+  "temasKaynak": "dokunus",
+  "temasPlanKare": 186,
+  "kareler": {
+   "ilk": 1192,
+   "dokunus": 1375,
+   "son": 1515
+  }
+ },
+ {
+  "plan": "P06",
+  "sablon": "MASA-INSERT",
+  "sure": 438,
+  "baslangic": 1519,
+  "temasKaynak": "dokunus",
+  "temasPlanKare": 288,
+  "kareler": {
+   "ilk": 1522,
+   "dokunus": 1807,
+   "son": 1953
+  }
+ },
+ {
+  "plan": "P07",
+  "sablon": "KULE-DIS",
+  "sure": 338,
+  "baslangic": 1957,
+  "temasKaynak": "dokunus",
+  "temasPlanKare": 158,
+  "kareler": {
+   "ilk": 1960,
+   "dokunus": 2115,
+   "son": 2291
+  }
+ },
+ {
+  "plan": "P08",
+  "sablon": "YAKIN-YUZ",
+  "sure": 120,
+  "baslangic": 2295,
+  "temasKaynak": "dokunus",
+  "temasPlanKare": 52,
+  "kareler": {
+   "ilk": 2298,
+   "dokunus": 2347,
+   "son": 2411
+  }
+ },
+ {
+  "plan": "P09",
+  "sablon": "IC-ODA",
+  "sure": 291,
+  "baslangic": 2415,
+  "temasKaynak": "dokunus",
+  "temasPlanKare": 119,
+  "kareler": {
+   "ilk": 2418,
+   "dokunus": 2534,
+   "son": 2702
+  }
+ },
+ {
+  "plan": "P10",
+  "sablon": "YAKIN-YUZ",
+  "sure": 308,
+  "baslangic": 2706,
+  "temasKaynak": "temas",
+  "temasPlanKare": 40,
+  "kareler": {
+   "ilk": 2709,
+   "dokunus": 2746,
+   "son": 3010
+  }
+ },
+ {
+  "plan": "P11",
+  "sablon": "MASA-INSERT",
+  "sure": 210,
+  "baslangic": 3014,
+  "temasKaynak": "dokunus",
+  "temasPlanKare": 80,
+  "kareler": {
+   "ilk": 3017,
+   "dokunus": 3094,
+   "son": 3220
+  }
+ },
+ {
+  "plan": "P12",
+  "sablon": "MASA-INSERT",
+  "sure": 241,
+  "baslangic": 3224,
+  "temasKaynak": "dokunus",
+  "temasPlanKare": 99,
+  "kareler": {
+   "ilk": 3227,
+   "dokunus": 3323,
+   "son": 3461
+  }
+ },
+ {
+  "plan": "P13",
+  "sablon": "KULE-DIS",
+  "sure": 170,
+  "baslangic": 3465,
+  "temasKaynak": "temas",
+  "temasPlanKare": 70,
+  "kareler": {
+   "ilk": 3468,
+   "dokunus": 3535,
+   "son": 3631
+  }
+ },
+ {
+  "plan": "P14",
+  "sablon": "MASA-INSERT",
+  "sure": 219,
+  "baslangic": 3635,
+  "temasKaynak": "temas",
+  "temasPlanKare": 58,
+  "kareler": {
+   "ilk": 3638,
+   "dokunus": 3693,
+   "son": 3850
+  }
+ }
+]
