@@ -1247,3 +1247,4 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - out/blanc-premiere.zip (181 MB): 14 sessiz klip (CRF 12, toplam 3730 kare), anlatım/foley/müzik WAV (48k/24 bit) + miks.wav, 2 SRT, FCP7 XML, OKUBENI.txt; Bolum'a `katman` bayrağı eklendi (varsayılan değişmez).
 - Dosyalar: src/kit/Bolum.tsx, tools/premiere_paket.py, katki-raporu.md. Katman toplamı ham mikse -69 dB fark; miks.wav'daki 240 örnek zincir gecikmesi giderildi.
 - Açık: XML Premiere'de denenmedi; katmanlar loudnorm öncesi (sessiz), yayın seviyesi son çıkışta.
+- ana oturum · 2026-11-07 · EN senaryo kullanıcı onayı; P11 'Assize'→'Criminal Court' (kullanıcı kararı, senaryo-en.md'ye işlendi).

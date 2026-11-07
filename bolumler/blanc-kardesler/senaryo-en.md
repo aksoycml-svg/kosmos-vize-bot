@@ -84,7 +84,7 @@ Her cümlenin altında `[GÖRSEL]` notu `bolum.json`'daki mevcut görselin özet
 ### P11 · 4.1 sn · MASA-INSERT · tepe · gün
 - "**Trial begins. But no law forbids it.**"
   - [GÖRSEL: yargıcın eli kanun kitabının sayfalarını çevirir (kare 14/36/61); son sayfa boş açılır (kare 72) ve güve uçar.]
-- Ekran: **Tours Assize Court · 1837** (vurgu: 1837)
+- Ekran: **Tours Criminal Court · 1837** (vurgu: 1837)
 - Senkron: "Trial begins" ≈ 0.1–0.9 sayfa çevirme; üç nokta/ara boşluk ≈ 1.1–1.6 (son boş sayfa kare 72 = 1.2 sn); "no law" ≈ 1.7–2.1 güve kalkışı (kare 100+).
 
 ### P12 · 4.1 sn · MASA-INSERT · tepe-eğik
@@ -144,7 +144,7 @@ Kural: gerçek EN ses TR slotunu aşarsa önce şu kısaltmalar sırayla uygulan
 | P09 | Devlete: hata · Onlara: haber | 29 | State: error · Them: news | 25 | |
 | P10 | 1836 | 4 | 1836 | 4 | |
 | P10 (replik) | Hatalar… kasıtlıydı. | 20 | The errors… on purpose. | 23 | +3, alt bant sığar |
-| P11 | Tours Ağır Ceza · 1837 | 22 | Tours Assize Court · 1837 | 25 | +3, tek satır |
+| P11 | Tours Ağır Ceza · 1837 | 22 | Tours Criminal Court · 1837 | 25 | +3, tek satır |
 | P12 | BERAAT · 14 Mart 1837 | 21 | ACQUITTED · 14 Mar 1837 | 23 | +2 |
 | P13 | Kablo yok. Elektrik yok. | 24 | No wires. No electricity. | 25 | |
 | P14 | Sıradaki paket yolda. | 21 | Next package on its way. | 24 | +3 |
@@ -182,7 +182,7 @@ P07 ERROR + UNDO = CLEAN MESSAGE      (arm notch + return, copy wave)
 P08 Nobody noticed.                   (yawning operator)
 P09 State: error · Them: news         (telescope, window-sill notch)
 P10 1836  "The errors… on purpose."   (sick operator)
-P11 Tours Assize Court · 1837         (blank page, moth)
+P11 Tours Criminal Court · 1837         (blank page, moth)
 P12 ACQUITTED · 14 Mar 1837           (file thud, glove worn)
 P13 No wires. No electricity.         (T → Wi-Fi)
 P14 Next package on its way.          (package closes → P01)
@@ -235,3 +235,6 @@ Kalan soru: yok (P04 ve P06 hafif risk olarak işaretli).
 7. **Tarih biçimi:** "14 Mar 1837" (gün-ay-yıl) kullandım. ABD izleyici için "Mar 14, 1837" tercih ederseniz ekran yazısı aynı uzunlukta.
 8. **"Assize Court":** Fransa'daki "cour d'assises"in standart İngilizce karşılığı, ama ABD izleyicisi tanımayabilir. Alternatif "Tours Criminal Court · 1837" (27 karakter).
 9. **EN sesler:** Anlatıcı, François ve Memur (fısıltı) için EN ses seçimi gerekli; TR sesler (Umut Canbay, François, Nihat) EN konuşmaz. Seslendirme teknisyen/kurgucu işi, bu belgede ses kimliği seçilmedi.
+
+## Kullanıcı kararları (2026-11-07, ana oturum kaydı)
+- Onaylandı. P04 "buy the man" kalır · P11 ekran "Tours Criminal Court · 1837" · P12 "yasa aynı yıl" düşer · kanca "This glove hacked the French state." kalır · harita etiketleri EN (4 HOURS / DAY 3 / STATE ONLY) · "gravely ill" (sığarsa; taşarsa "ill").
