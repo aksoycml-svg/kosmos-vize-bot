@@ -13,7 +13,25 @@ export type MiksJson = {
   muzik?: { dosya: string; bas_kare?: number; db?: number; fade_in_kare?: number; fade_out_kare?: number; duck?: { anlatim_db?: number; atak_kare?: number; birakma_kare?: number } };
   foley_varsayilan_db?: number;
   istisnalar?: Record<string, number | { db?: number }> | unknown[];
+  // Aralık istisnaları (mutlak kare): müzik/foley bu aralıkta en çok bu seviyede (6 kare rampa). Tek kareli kayıtlar not amaçlıdır.
+  muzik_istisnalari?: { kare: number | [number, number]; muzik_db?: number; foley_db?: number }[];
 };
+
+const RAMPA = 6;
+// Aralık tavanı (dB): a karesinde geçerli en düşük istisna; yoksa undefined. Rampa: aralık dışına 6 kare yumuşak geçiş.
+const tavanDb = (m: MiksJson | null, a: number, alan: "muzik_db" | "foley_db"): { db: number; w: number } | undefined => {
+  let en: { db: number; w: number } | undefined;
+  for (const x of m?.muzik_istisnalari ?? []) {
+    const db = x[alan];
+    if (db === undefined || !Array.isArray(x.kare)) continue;
+    const [s, e] = x.kare;
+    const w = a < s - RAMPA || a > e + RAMPA ? 0 : a < s ? (a - (s - RAMPA)) / RAMPA : a <= e ? 1 : 1 - (a - e) / RAMPA;
+    if (w > 0 && (!en || db < en.db)) en = { db, w };
+  }
+  return en;
+};
+// mevcut seviye db'yi tavana doğru w oranında çek (tavan daha düşükse)
+const tavanUygula = (db: number, t?: { db: number; w: number }) => (t && t.db < db ? db + (t.db - db) * t.w : db);
 export type Aralik = [number, number]; // mutlak kare [bas, bit)
 
 const sctx = require.context("../../bolumler", true, /(foley|miks)\.json$/);
@@ -49,7 +67,7 @@ export const FoleyKatmani: React.FC<{ b: BolumJson; foley: FoleyJson | null; mik
       const start = bas + t.kare - Math.round(((k.tepe_ms ?? 0) * fps) / 1000); // tepe = temas karesi
       out.push(
         <Sequence key={`${plan.id}-f${i}`} from={Math.max(0, start)} layout="none" name={`foley ${plan.id} ${t.ses} @${bas + t.kare}`}>
-          <Audio src={staticFile(k.dosya)} volume={dbVol(db)} trimBefore={start < 0 ? -start : undefined} />
+          <Audio src={staticFile(k.dosya)} volume={(f: number) => dbVol(tavanUygula(db, tavanDb(miks, Math.max(0, start) + f, "foley_db")))} trimBefore={start < 0 ? -start : undefined} />
         </Sequence>,
       );
     }
@@ -107,7 +125,7 @@ export const MuzikKatmani: React.FC<{ miks: MiksJson | null; toplam: number; anl
     for (const [s, e] of anlatim) {
       if (a >= s - atak && a < e + birak) d = Math.max(d, a < s ? (a - (s - atak)) / atak : a < e ? 1 : 1 - (a - e) / birak);
     }
-    return fade * dbVol(tabanDb + (duckDb - tabanDb) * d);
+    return fade * dbVol(tavanUygula(tabanDb + (duckDb - tabanDb) * d, tavanDb(miks, a, "muzik_db")));
   };
   return (
     <Sequence from={bas} durationInFrames={L} layout="none" name={`müzik ${m.dosya}`}>
