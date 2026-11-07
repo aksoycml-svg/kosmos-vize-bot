@@ -1242,3 +1242,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Dosyalar: bolumler/blanc-kardesler/senaryo-en.md (yeni), katki-raporu.md.
 - Kararlar: plan/görsel aynı; TR ses süresine göre yazıldı, P04/P06/P12 sıkı; P12'de "aynı yıl" düştü; mühür 3.3 sn'ye "government-only" hizalandı; tek kaynaklı "ikiz"/teleskop yalnız açıklamada, "Some call it…" ile yumuşatma.
 - Açık: HARITA etiketleri (4 SAAT, 3. GÜN, YALNIZ DEVLET) EN render'da değişmeli; EN sesler seçilmedi; "hack" ve "buy the man/operator" kararı kullanıcıda.
+
+## teknisyen · 2026-11-07 · Blanc v4.1 Premiere paketi
+- out/blanc-premiere.zip (181 MB): 14 sessiz klip (CRF 12, toplam 3730 kare), anlatım/foley/müzik WAV (48k/24 bit) + miks.wav, 2 SRT, FCP7 XML, OKUBENI.txt; Bolum'a `katman` bayrağı eklendi (varsayılan değişmez).
+- Dosyalar: src/kit/Bolum.tsx, tools/premiere_paket.py, katki-raporu.md. Katman toplamı ham mikse -69 dB fark; miks.wav'daki 240 örnek zincir gecikmesi giderildi.
+- Açık: XML Premiere'de denenmedi; katmanlar loudnorm öncesi (sessiz), yayın seviyesi son çıkışta.
