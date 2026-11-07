@@ -148,4 +148,5 @@ Sahne kitleri (17. yy. İstanbul mekânı, kostüm, demet, kese, kitap) kurulum 
 
 1. P05'te fişek kalkışı başlık yere inmeden (p100) mi, sonra mı (p112)? Yönetmen render karesine bakıp karar verir.
 2. P06'daki "fişeği bırakma" kaynakta yok ama kaynakla çelişmez; kullanıcı dramatizasyonu kabul ediyor mu? Etmezse EV-D2 yerine EV-Y1 öne çıkar.
+   **Karar (kullanıcı, 2026-11-07): KABUL.** EV-D2 kalır; EV-Y1 yedekte. Açıklamada "dramatizasyon" notu.
 3. `DOKUNUS-KUTUPHANESI.md`'ye ekleme bu görevde yapılmadı (yalnız bu dosya yazıldı); dokunuşlar onaylanınca eklenecek.
