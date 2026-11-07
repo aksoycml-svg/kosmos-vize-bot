@@ -44,7 +44,7 @@
       "olcek": "geniş → boy",
       "ses": [{ "dosya": "blanc/ses-v3/P02.mp3", "kare": 6 }],
       "parametreler": { "sehir": "bordeaux", "saat": "gun" },
-      "kamera": { "kare": [0, 294], "cs": [1.15, 1.5], "cx": [0, 20], "cy": [-80, -260], "egri": "inout" },
+      "kamera": { "kare": [0, 294], "cs": [1.4, 1.9], "cx": [0, 20], "cy": [-200, -400], "egri": "inout" },
       "karakterler": [
         { "kim": "francois", "z": 2.4, "u": 0.46, "yon": 1,
           "yuz": { "ifade": "gulumse", "bakis": [0.5, 0], "kas": 0.8 },
@@ -158,7 +158,7 @@
         "dis": "tours", "kol": "BEKLE",
         "golgeT": { "kim": "memur", "bas": 186, "bit": 318, "donusum": 66, "konum": "SAK" }
       },
-      "kamera": { "kare": [0, 330], "cs": [1.1, 1.6], "cx": [0, 0], "cy": [-20, -80], "egri": "inout" },
+      "kamera": { "kare": [0, 330], "cs": [1.1, 1.6], "cx": [0, 200], "cy": [-20, -80], "egri": "inout" },
       "karakterler": [
         { "kim": "louis", "z": 3.1, "u": -1.1, "yon": 1,
           "yuz": { "bakis": [0.8, 0], "kas": -0.4 },
@@ -210,8 +210,8 @@
       ],
       "el": [
         { "tip": "gorevli", "giris": [1160, 1000], "olcek": 1.9, "kare": [0, 250, 288, 320, 350, 410],
-          "bilek": [[1250, 1060], [1000, 1060], [780, 1090], [780, 980], [780, 1090], [1100, 1060]],
-          "dirsek": [[1350, 1100], [1160, 1100], [1020, 1100], [1020, 1060], [1020, 1100], [1200, 1080]],
+          "bilek": [[1250, 1060], [900, 1060], [560, 1090], [560, 980], [560, 1090], [1100, 1060]],
+          "dirsek": [[1350, 1100], [1160, 1100], [880, 1100], [880, 1060], [880, 1100], [1200, 1080]],
           "aci": [10, 10, 10, 0, 10, 20],
           "poz": [{ "kare": 288, "poz": "kistir" }, { "kare": 350, "poz": "gevsek" }],
           "tut": { "prop": "corap", "bas": 288, "bit": 350, "tutulAci": 0, "birakAci": 20 } }
@@ -312,7 +312,7 @@
         "arka": 4.2, "pervazCentik": 24, "pervazCentikYeni": 149, "teleskop": true,
         "pervazBicak": { "bas": 119, "kare": 149, "bit": 189, "tip": "ceket" }
       },
-      "kamera": { "kare": [0, 100, 150, 291], "cs": [1.0, 1.8, 2.6, 2.6], "cx": [0, -20, -30, -30], "cy": [0, 10, 10, 10], "egri": "inout" },
+      "kamera": { "kare": [0, 100, 150, 291], "cs": [1.0, 1.6, 2.0, 2.0], "cx": [0, -80, -180, -180], "cy": [0, 0, 0, 0], "egri": "inout" },
       "karakterler": [
         { "kim": "katip", "z": 2.5, "u": 0.45, "yon": -1,
           "yuz": { "bakis": [-0.8, -0.2], "kas": 0.3 },
@@ -345,7 +345,7 @@
           "parametreler": { "oda": "yatak", "isik": "mum", "dis": "gece" },
           "kamera": { "kare": [0], "cs": [1.0] }
         },
-        "yuz": [540, 780], "olcek": 3.6, "egim": 8, "yatik": true, "yastik": true, "bulanik": 16, "isik": "mum"
+        "yuz": [500, 900], "olcek": 3.6, "egim": 8, "yatik": true, "yorgan": "#8a7260", "yastik": true, "bulanik": 16, "isik": "mum"
       },
       "karakterler": [
         { "kim": "memur", "poz": "yatik",
@@ -404,15 +404,15 @@
       "olcek": "insert (tepe)",
       "ses": [{ "dosya": "blanc/ses-v3/P12.mp3", "kare": 6 }],
       "parametreler": { "aci": "tepe", "isik": "gun", "elYukseklik": 120 },
-      "kamera": { "kare": [0, 241], "cs": [1.1, 1.5], "cy": [0, -30], "egri": "inout" },
+      "kamera": { "kare": [0, 241], "cs": [1.2, 1.5], "cx": [-60, -120], "cy": [0, -30], "egri": "inout" },
       "props": [
-        { "tur": "kitap", "id": "kitap", "x": 540, "y": 1000, "olcek": 1.5, "kare": [0, 60, 99, 150, 229],
+        { "tur": "kitap", "id": "kitap", "x": 540, "y": 1000, "olcek": 2.0, "kare": [0, 60, 99, 150, 229],
           "durum": { "sayfa": [0, 0.6, 1, 1, 1], "bos": true, "guve": [0, 0, 0, 0, 1] } }
       ],
       "el": [
         { "tip": "gorevli", "giris": [1160, 1000], "olcek": 1.9, "kare": [0, 45, 99, 150, 200],
-          "bilek": [[1100, 1040], [820, 1060], [760, 1040], [800, 1060], [1100, 1040]],
-          "dirsek": [[1220, 1120], [1040, 1100], [1000, 1080], [1040, 1100], [1220, 1120]],
+          "bilek": [[1100, 1040], [820, 1060], [1000, 1060], [1150, 1060], [1250, 1040]],
+          "dirsek": [[1220, 1120], [1040, 1100], [1160, 1100], [1240, 1100], [1300, 1120]],
           "aci": [10, 10, 0, 5, 15],
           "poz": [{ "kare": 45, "poz": "kistir" }, { "kare": 99, "poz": "gevsek" }] }
       ],
@@ -470,8 +470,8 @@
       ],
       "el": [
         { "tip": "parisManset", "giris": [-80, 1340], "olcek": 1.9, "kare": [0, 58, 140, 185, 207],
-          "bilek": [[144, 1252], [372, 1190], [420, 1250], [520, 1280], [300, 1300]],
-          "dirsek": [[24, 1270], [140, 1300], [180, 1330], [220, 1330], [60, 1330]],
+          "bilek": [[144, 1252], [372, 1190], [420, 1250], [520, 1280], [-330, 1330]],
+          "dirsek": [[24, 1270], [140, 1300], [180, 1330], [220, 1330], [-450, 1340]],
           "aci": [-28, -10, -10, -6, -20],
           "poz": [{ "kare": 58, "poz": "gevsek" }, { "kare": 170, "poz": "kistir" }],
           "tut": { "prop": "eldiven", "bas": 0, "bit": 58, "tutulAci": -64, "birakAci": 0 } }

@@ -1126,3 +1126,7 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 
 ## elestirmen · 2026-11-07 · storyboard v3.1 tek tur
 - Ne yaptım: v3 8 kritiğini sayfa-1/2, K3 ve P04/P12/P13 karelerinde doğruladım (3 kapandı, 4 kısmen, 1 kapanmadı); 14 plan puanlandı. Dosya: bolumler/blanc-kardesler/storyboard-v31/elestiri.md. Karar: sunulamaz; açıklar P12/P13/P14/P06/P05/P09. Not: P05/P06/P09 ayrıntı karesi açılmadı, sayfa üstünden hüküm verildi.
+
+## yonetmen · 2026-11-07 · görerek düzeltme turu (bolum.json)
+- Yaptım: kontrol karelerini render edip baktım; P02 cs/cy büyütüldü (figür ~%45), P05 cx→+200 (Louis/memur büyük), P06 el bilek x 560 (çorap kadrajda, el sağdan girer/çıkar), P09 cs 2.0+cx -180 (figür tam, alt yarı dolu), P10 yuz [500,900]+yorgan sıcak, P12 kitap 2.0 + el güve sahnesinden çekildi (güve ~%25 genişlik), P14 son key el sol dışa (kapalı paket, el çıkar). P13 gündüz kabul. Dokunulan: bolum.json. Doğrulayıcı 0 hata, 3854 kare, ses/temas aynı.
+- Durum: P02 okunuyor (kalabalık 3 figür sınırı); P05 kısmen (figür büyük; gölge-T kirişlerle karışıyor, kit_eksik: GolgeT renk/opaklık/duvar kontrastı); P06, P12, P13, P14, P10 okunuyor; P09 okunuyor (çentik cs 2.0, daha yakını katalogda figürü keser).
