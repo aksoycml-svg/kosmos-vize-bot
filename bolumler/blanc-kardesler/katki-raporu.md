@@ -1268,3 +1268,9 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 ## motion · 2026-11-07 · Blanc EN kit düzeltmeleri
 - Harita `sayac_etiket {saat,gun}` ("{n}" yer tutucu; varsayılan TR aynı) + KitReplik: tek satıra ≥44 px ile sığan metin tek satır küçülür (EN P04), sığmayan eski akışta (TR değişmedi); EN P03'e etiket eklendi.
 - Dosyalar: src/kit/sablonlar/Harita.tsx, src/kit/yazi.tsx, src/kit/KATALOG.md, bolumler/blanc-kardesler/bolum-en.json. Doğrulayıcı iki json 0 hata.
+
+## kurgucu · 2026-11-07 · Blanc EN müzik ve miks
+- Yaptım: `chopin-nocturne-b108-blanc-en.mp3` (58.44 sn, motif kare 3171), `miks-en.json` (3369 kare, EN duck kaynakları), lisans notu, sesler.md EN bölümü + final zinciri.
+- Dosyalar: public/blanc/muzik/chopin-nocturne-b108-blanc-en.mp3, bolumler/blanc-kardesler/{miks-en.json,sesler.md,katki-raporu.md}, muzik/lisanslar.md, src/kit/ses.tsx (regex `miks[^/]*`).
+- Kural/ihlal: `require.context` regex'i miks-en.json'u yakalamıyordu (müziksiz render riski) — düzeltildi; müzik kesilmez, istisna yok.
+- Açık: kesim dinlenmedi (ölçümle doğrulandı); kullanıcı/teknisyen kulakla kontrol etsin.
