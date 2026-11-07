@@ -1048,3 +1048,10 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Onay bekliyor: KULE-DIS ön plan toprak yolu ve 2 katlı kare kule gövdesi (mekân sorumlusu kartı yok); müdür paleti (koyu yeşil-gri redingot).
 - Eksik / sınır: D2 duvar gölgesi T dönüşümü, D7 parmak parmak eldiven giyme, D8 güve, P13 Wi-Fi morfu, manipülatör prop'u, tutulan prop gölgesi, büyük esneme ağzı yok; Saint-Michel T'si sabit; AVLU-SALON parametresiz; IC-ODA kompozisyon örtüşmesini doğrulayıcı ölçmez. Fare insert'i kendi sabit zamanlamasında (66 kare).
 - Bir sonraki ajana: yönetmen yalnız KATALOG.md ile `bolum.json` yazar → `node tools/bolum_dogrula.mjs <json> --tam --temas temaslar.json`. Öz puan 7/10 (şablon iskeleti sağlam, Blanc'ın 8 dokunuşunun 2'si tam kitte).
+
+## yönetmen · 2026-11-07 · senaryo v3 → bolum.json
+- Ne yaptım: 14 plan, 3600 kare (180/240/390/240/300/270/270/180/300/300/270/300/210/150), D1–D8 birer kez; P01+P04 örnekten alındı.
+- Dosyalar: bolumler/blanc-kardesler/bolum.json, bu rapor.
+- Kararlar: P07'de 5 kule (senaryo kol dizisi); P09 suç ortağı = `katip`; P05 kol sabit "BEKLE"; P10 replik alt bant (yüz y 780, ayak yok); P11 tek louis eli, dosya kapağı prop animasyonuyla.
+- Kurallar: dokunuş tekrarı yok, ekran yazıları ust bant, temaslar listelendi; `kit_eksik` alanları D2, D3, D5, D6, D7, D8, P11 karar kâğıdı, P13 morf.
+- Açık: Bash yok, `bolum_dogrula.mjs` ÇALIŞTIRILMADI; el koordinatları (P06, P11, P12, P14) tahmini, kıstırma y>1290 uyarısı çıkabilir (P14); jest/yuz alan adları (ifade "yorgun/hasta", `ter`) katalogda tanımsız olabilir; replik zamanları zamanlama.json gelince kelimeKare ile güncellenmeli.

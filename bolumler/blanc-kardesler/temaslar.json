@@ -1,0 +1,429 @@
+{
+  "fps": 60,
+  "temaslar": [
+    {
+      "plan": "P01",
+      "kare": 0,
+      "sn": 0,
+      "olay": "kâğıt hışırtısı (eldiven çekiliyor)",
+      "ses": "kagit-hisirti",
+      "db": null
+    },
+    {
+      "plan": "P01",
+      "kare": 60,
+      "sn": 1,
+      "olay": "kâğıt kanadı masaya yatar",
+      "ses": "kagit-yatis",
+      "db": null
+    },
+    {
+      "plan": "P01",
+      "kare": 140,
+      "sn": 2.333,
+      "olay": "eldiven masaya bırakılır — fıt",
+      "ses": "eldiven-fit",
+      "db": null
+    },
+    {
+      "plan": "P02",
+      "kare": 250,
+      "sn": 4.167,
+      "olay": "Louis kalem cızırtısı (deftere rakam)",
+      "ses": "kalem-cizirti",
+      "db": -8
+    },
+    {
+      "plan": "P03",
+      "kare": 510,
+      "sn": 8.5,
+      "olay": "sayaç 1. gün tık",
+      "ses": "sayac-tik",
+      "db": -8
+    },
+    {
+      "plan": "P03",
+      "kare": 570,
+      "sn": 9.5,
+      "olay": "sayaç 2. gün tık",
+      "ses": "sayac-tik",
+      "db": -8
+    },
+    {
+      "plan": "P03",
+      "kare": 630,
+      "sn": 10.5,
+      "olay": "sayaç 3. gün tık",
+      "ses": "sayac-tik",
+      "db": -8
+    },
+    {
+      "plan": "P03",
+      "kare": 670,
+      "sn": 11.167,
+      "olay": "posta arabası varır, tekerlek susar",
+      "ses": "tekerlek-gicirti",
+      "db": -14
+    },
+    {
+      "plan": "P03",
+      "kare": 740,
+      "sn": 12.333,
+      "olay": "son kule klak (sinyal varır)",
+      "ses": "klak-uzak",
+      "db": -8
+    },
+    {
+      "plan": "P03",
+      "kare": 780,
+      "sn": 13,
+      "olay": "mühür TOK",
+      "ses": "muhur-tok",
+      "db": null
+    },
+    {
+      "plan": "P04",
+      "kare": 897,
+      "sn": 14.95,
+      "olay": "fare pençesi ızgara demirine",
+      "ses": "izgara-tinkir",
+      "db": -10
+    },
+    {
+      "plan": "P04",
+      "kare": 908,
+      "sn": 15.133,
+      "olay": "Louis çizme topuğu taşa",
+      "ses": "adim-islak",
+      "db": null
+    },
+    {
+      "plan": "P04",
+      "kare": 918,
+      "sn": 15.3,
+      "olay": "baston ucu taşa TAK",
+      "ses": "baston-tak",
+      "db": null
+    },
+    {
+      "plan": "P04",
+      "kare": 920,
+      "sn": 15.333,
+      "olay": "fare cıyaklaması",
+      "ses": "fare-ciyak",
+      "db": -8
+    },
+    {
+      "plan": "P04",
+      "kare": 938,
+      "sn": 15.633,
+      "olay": "fare ızgaraya dalar",
+      "ses": "izgara-tinkir",
+      "db": -10
+    },
+    {
+      "plan": "P04",
+      "kare": 948,
+      "sn": 15.8,
+      "olay": "kuyruk ucu ızgara demirine — tink (kapanış)",
+      "ses": "tink",
+      "db": -12
+    },
+    {
+      "plan": "P05",
+      "kare": 1090,
+      "sn": 18.167,
+      "olay": "kese masada kayar",
+      "ses": "kese-kayma",
+      "db": -6
+    },
+    {
+      "plan": "P05",
+      "kare": 1130,
+      "sn": 18.833,
+      "olay": "kese durur, altın şıngırtısı",
+      "ses": "altin-singirti",
+      "db": -6
+    },
+    {
+      "plan": "P05",
+      "kare": 1230,
+      "sn": 20.5,
+      "olay": "it-çek tik 1",
+      "ses": "makara-tik",
+      "db": -10
+    },
+    {
+      "plan": "P05",
+      "kare": 1270,
+      "sn": 21.167,
+      "olay": "it-çek tik 2",
+      "ses": "makara-tik",
+      "db": -10
+    },
+    {
+      "plan": "P05",
+      "kare": 1310,
+      "sn": 21.833,
+      "olay": "it-çek tik 3",
+      "ses": "makara-tik",
+      "db": -10
+    },
+    {
+      "plan": "P06",
+      "kare": 1370,
+      "sn": 22.833,
+      "olay": "paket kâğıdı açılır",
+      "ses": "kagit-acilis",
+      "db": null
+    },
+    {
+      "plan": "P06",
+      "kare": 1560,
+      "sn": 26,
+      "olay": "çorap masaya bırakılır — flop",
+      "ses": "yun-flop",
+      "db": -6
+    },
+    {
+      "plan": "P07",
+      "kare": 1660,
+      "sn": 27.667,
+      "olay": "kule 1 kol varışı klak",
+      "ses": "kol-klak",
+      "db": null
+    },
+    {
+      "plan": "P07",
+      "kare": 1705,
+      "sn": 28.417,
+      "olay": "kule 2 klak",
+      "ses": "kol-klak",
+      "db": -4
+    },
+    {
+      "plan": "P07",
+      "kare": 1750,
+      "sn": 29.167,
+      "olay": "kule 3 fazladan çentik — sert klak",
+      "ses": "kol-klak-sert",
+      "db": 0
+    },
+    {
+      "plan": "P07",
+      "kare": 1795,
+      "sn": 29.917,
+      "olay": "kule 4 kopya klak",
+      "ses": "kol-klak",
+      "db": -8
+    },
+    {
+      "plan": "P07",
+      "kare": 1840,
+      "sn": 30.667,
+      "olay": "kule 5 kopya klak",
+      "ses": "kol-klak",
+      "db": -12
+    },
+    {
+      "plan": "P08",
+      "kare": 1898,
+      "sn": 31.633,
+      "olay": "makara tik 1",
+      "ses": "makara-tik",
+      "db": -10
+    },
+    {
+      "plan": "P08",
+      "kare": 1928,
+      "sn": 32.133,
+      "olay": "makara tik 2",
+      "ses": "makara-tik",
+      "db": -10
+    },
+    {
+      "plan": "P08",
+      "kare": 1958,
+      "sn": 32.633,
+      "olay": "makara tik 3",
+      "ses": "makara-tik",
+      "db": -10
+    },
+    {
+      "plan": "P08",
+      "kare": 1970,
+      "sn": 32.833,
+      "olay": "arka direk kolu klak (bulanık)",
+      "ses": "klak-uzak",
+      "db": -12
+    },
+    {
+      "plan": "P08",
+      "kare": 1990,
+      "sn": 33.167,
+      "olay": "esneme sesi",
+      "ses": "esneme",
+      "db": -6
+    },
+    {
+      "plan": "P09",
+      "kare": 2090,
+      "sn": 34.833,
+      "olay": "göz teleskopa tik",
+      "ses": "teleskop-tik",
+      "db": -8
+    },
+    {
+      "plan": "P09",
+      "kare": 2220,
+      "sn": 37,
+      "olay": "bıçak pervaza kırt (yeni çentik)",
+      "ses": "bicak-kirt",
+      "db": null
+    },
+    {
+      "plan": "P09",
+      "kare": 2275,
+      "sn": 37.917,
+      "olay": "uzak kol klak",
+      "ses": "klak-uzak",
+      "db": -12
+    },
+    {
+      "plan": "P10",
+      "kare": 2410,
+      "sn": 40.167,
+      "olay": "ağır nefes",
+      "ses": "agir-nefes",
+      "db": -8
+    },
+    {
+      "plan": "P10",
+      "kare": 2652,
+      "sn": 44.2,
+      "olay": "son 0.3 sn tam sessizlik başlar (nefes kesilir)",
+      "ses": "sessizlik",
+      "db": -60
+    },
+    {
+      "plan": "P11",
+      "kare": 2758,
+      "sn": 45.967,
+      "olay": "salon iç çekişi (TOK'tan 0.2 sn önce)",
+      "ses": "salon-ic-cekis",
+      "db": -10
+    },
+    {
+      "plan": "P11",
+      "kare": 2770,
+      "sn": 46.167,
+      "olay": "dosya kapağı TOK",
+      "ses": "dosya-tok",
+      "db": null
+    },
+    {
+      "plan": "P11",
+      "kare": 2860,
+      "sn": 47.667,
+      "olay": "eldiven gerilmesi",
+      "ses": "eldiven-gerilme",
+      "db": -6
+    },
+    {
+      "plan": "P11",
+      "kare": 2920,
+      "sn": 48.667,
+      "olay": "el eldivenle yerleşir",
+      "ses": "eldiven-fit",
+      "db": -8
+    },
+    {
+      "plan": "P12",
+      "kare": 3000,
+      "sn": 50,
+      "olay": "sayfa çevirme",
+      "ses": "sayfa-cevirme",
+      "db": null
+    },
+    {
+      "plan": "P12",
+      "kare": 3070,
+      "sn": 51.167,
+      "olay": "sayfa yatar (boş bölüm)",
+      "ses": "sayfa-yatis",
+      "db": -6
+    },
+    {
+      "plan": "P12",
+      "kare": 3140,
+      "sn": 52.333,
+      "olay": "güve kanat pırpırı",
+      "ses": "guve-kanat",
+      "db": -14
+    },
+    {
+      "plan": "P13",
+      "kare": 3340,
+      "sn": 55.667,
+      "olay": "tahta gıcırtısı (morf başlar)",
+      "ses": "tahta-gicirti",
+      "db": -8
+    },
+    {
+      "plan": "P13",
+      "kare": 3390,
+      "sn": 56.5,
+      "olay": "yay 1 tık",
+      "ses": "ahsap-tik",
+      "db": -8
+    },
+    {
+      "plan": "P13",
+      "kare": 3405,
+      "sn": 56.75,
+      "olay": "yay 2 tık",
+      "ses": "ahsap-tik",
+      "db": -8
+    },
+    {
+      "plan": "P13",
+      "kare": 3420,
+      "sn": 57,
+      "olay": "yay 3 tık",
+      "ses": "ahsap-tik",
+      "db": -8
+    },
+    {
+      "plan": "P14",
+      "kare": 3490,
+      "sn": 58.167,
+      "olay": "eldiven kâğıda bırakılır",
+      "ses": "eldiven-fit",
+      "db": null
+    },
+    {
+      "plan": "P14",
+      "kare": 3520,
+      "sn": 58.667,
+      "olay": "kâğıt katlanır",
+      "ses": "kagit-katlama",
+      "db": null
+    },
+    {
+      "plan": "P14",
+      "kare": 3550,
+      "sn": 59.167,
+      "olay": "ip çekilir zıııt",
+      "ses": "ip-zit",
+      "db": -6
+    },
+    {
+      "plan": "P14",
+      "kare": 3585,
+      "sn": 59.75,
+      "olay": "düğüm tok",
+      "ses": "dugum-tok",
+      "db": -6
+    }
+  ]
+}
