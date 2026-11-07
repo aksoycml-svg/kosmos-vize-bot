@@ -97,6 +97,9 @@ Kutu oda, göz hizası 1.6 m (ufuk y 760, F 1150), alçak çatı katı tavanı +
 | `arka` | arka duvar z (4.2) · `pervazCentik` (sayı) · `pervazCentikYeni` (kare: bir çentik daha — bıçak teması) · `teleskop` |
 - Karakter: `z` 2.2–4.0 m, `u` −2.0…2.0 m (0 orta). Ekran x = 540 + u·1150/z → **|u|/z ≤ 0.33** tut (IG düğme sütunu x > 920). En çok 3.
 - Ayak y = 760 + 1840/z: z ≥ 2.6 ⇒ ayak ≤ 1468.
+
+| K2 parametre | değerler |
+|---|---|
 | `golgeT` (K2, D2) | `{kim, bas, bit, donusum (36), konum ("MESAJ"; "SAK" önerilir)}` — yalnız `isik: mum`. Karakterin omuz/dirsek/el/baş/kalça noktaları mum alevinden arka duvara izdüşer (net kenar, büyür; pencere camına düşmez); `bas`→`bas+donusum` kol düzleşip regülatör, parmak/baş gösterge, gövde direk olur; `bit`'e doğru geri döner. Karakter z > masa z olmalı (mumun arkasında). Gölge karakterin yanına düşsün: mum yanal olarak karakterden ≥ 1 m uzak (örnek: masa u 0.45, karakter u −0.2, z 3.65 / masa z 3.0) |
 | `manipulator` (K2) | `{kim, ileri (0.75 m), h (1.0 m), yari (0.3 m)}` — Chappe kumandası: karakterin önünde ahşap direk + küçük siyah kol + tavandaki makaralara kablolar. Kol açısı karakterin `it-cek` fazından; ön el IK ile tutamağa oturur (el koldan kopmaz). Tik temasları `it-cek` ile aynı |
 | `pervazBicak` (K2, D6) | `{bas, kare, bit, tip ("ceket")}` — sağ-alt kadraj kenarından kol + bıçak; uç `pervazCentik`+1. çentiği çizer, `kare` = "kırt" teması (zorunlu). `pervazCentikYeni` = aynı kare. Push-in planında kullan (kamera cs ≈ 2.5; pencere `u` 0.1 ile çentik merkeze yakın, cx sınırı içinde) |
@@ -113,6 +116,9 @@ Tepe-önden masa yakın planı (SB2-TOURS P01 plakası): meşe masa, prop seti, 
 - Props: ekran px (masa düzlemi). Masa y aralığı ≈ 860–1680 (tepe-onden).
 - El: `{tip, giris, kare[], bilek[[x,y]], dirsek[[x,y]], aci[], olcek(1.9), poz:[{kare, poz:"kistir|gevsek"}], tut:{prop, bas, bit, tutulAci, birakAci}}`. Tutulan prop kıstırma noktasını izler, bit'ten önceki 18 karede `birakAci`'ya döner, bit'te bırakıldığı yerde kalır (bit = temas, zorunlu). `tip`: ceket · gomlek · parisManset · gorevli · yazici · louis.
 - Kamera: cs 1.0–1.5. Kıstırma noktası ve bırakma yeri alt banda (y > 1290) gelmesin; yazı `ust`.
+
+| K2 parametre | değerler |
+|---|---|
 | `eldivenGiy` (K2, D7) | `{bas, bit, gerilme (bas+.86·L), x (540), y (1000 = eldiven boğum hattı), olcek (1.3), aci}` — Louis sol eli alttan girer, sağ el (KolEl) manşeti kıstırır; kılıflar sırayla dolar (işaret→orta→yüzük→serçe→başparmak), sonra manşet çekilir. `gerilme` = TEMAS (zorunlu). olcek 1.3 ⇒ el ≈ ekranın %21–26'sı. Eldiven = İMZA beyazı; bu planda başka eldiven prop'u koyma |
 - Tutulan prop'un masaya gölgesi (K2): otomatik, el gölgesiyle aynı güneş kaymasından (`elYukseklik`).
 
