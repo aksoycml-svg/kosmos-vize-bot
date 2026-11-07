@@ -1257,3 +1257,10 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 ## teknisyen · 2026-11-07 · Blanc EN seslendirme
 - Ne yaptım / komutlar: 15 klip ElevenLabs with-timestamps ile curl'den üretildi (HTTP 200, hepsi); base64 çözümü node ile, süre ffprobe ile ölçüldü, TR sığma tablosu `zamanlama-en.json`'a yazıldı. Anlatıcı Brian, François vwmWy… (multilingual v2, en, stab 0.45 / sim 0.8 / style 0.35 / boost), memur iaO74… (eleven_v3, `[whispers]`, stab 0.0 / sim 0.8).
 - Üretilen: `public/blanc/ses-en/` P01–P14 (+`P04-francois`, `P10-memur`) mp3 + json; `bolumler/blanc-kardesler/zamanlama-en.json`. Taşan plan yok (15/15 sığıyor; P10 anlatım kare 154 ile memur kare 180 öncesi bitiyor). "Gravely ill" korundu. Harcanan: 621 karakter (metin 610 + `[whispers] ` 11).
+
+## yonetmen · 2026-11-07 · bolum-en.json (EN sürüm)
+- Ne yaptım: bolum.json'dan bolum-en.json üretildi (ses-en, EN yazı/replik/dudak metni, mühür "STATE ONLY", vurgular); planlar sıkıştırıldı: 3730 → 3369 kare (56.15 sn). Doğrulayıcı 0 hata; kontrol kareleri: scratchpad/kontak-en.png.
+- Kural: plan sonu = max(EN ses sonu+20, son animasyon+12); animasyon kareleri kaydırılmadı. Yalnız konuşma/döngü jestleri (konus, fisilda, yaz, bak) ve P04 durağan son konum anahtarı (180→140) kısaltıldı; P13 kontrol_kare 185→168.
+- Ses kaydırma: P03 54 (government-only = mühür 198), P07 60 (error/undo klakları arasında), P12 99 ("late" ≈ gerilme 201; tek mp3'te duraksama yok, TOK'tan sonra gelir), P14 18 ("glove" ≈ sol kanat katlanırken).
+- kit_eksik: src/kit/sablonlar/Harita.tsx:119 `${saat} SAAT` ve :120 `${gun}. GÜN` sabit TR (EN: "4 HOURS", "DAY 3"); json'dan değişmez. "TOURS" etiketi (props/ToursEtiketi.tsx:18) yer adı, EN'de aynı.
+- Açık: hedef 45–52 sn tutmadı (56.15); bağlayıcı olan animasyon bitişleri (P05 D2 gölge/it-çek 280, P06 çorap 300, P07 D4 274, P08 esneme 224, P01 el 186, P14 el 212). Kazanç için bu animasyonların erken bitirilmesi gerekir (motion/orkestra kararı).

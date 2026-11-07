@@ -1,0 +1,2829 @@
+{
+  "slug": "blanc-kardesler",
+  "baslik": "Blanc Brothers — This glove hacked the French state (EN, v4.1)",
+  "fps": 60,
+  "dil": "en",
+  "planlar": [
+    {
+      "id": "P01",
+      "sablon": "MASA-INSERT",
+      "sure_kare": 198,
+      "olcek": "insert (tepe-önden)",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P01.mp3",
+          "kare": 6
+        }
+      ],
+      "parametreler": {
+        "aci": "tepe-onden",
+        "isik": "fener",
+        "pencere": "tours",
+        "fener": [
+          430,
+          1092
+        ],
+        "elYukseklik": 120
+      },
+      "kamera": {
+        "kare": [
+          0,
+          198
+        ],
+        "cs": [
+          1.14,
+          1.06
+        ],
+        "cy": [
+          40,
+          0
+        ],
+        "egri": "giris"
+      },
+      "props": [
+        {
+          "tur": "paket",
+          "id": "paket",
+          "x": 690,
+          "y": 1340,
+          "olcek": 1.15,
+          "kare": [
+            0,
+            59,
+            65
+          ],
+          "durum": {
+            "acik": [
+              0.5,
+              0.85,
+              1
+            ],
+            "ipCozuk": true,
+            "etiketX": -262,
+            "etiketY": 40
+          }
+        },
+        {
+          "tur": "eldiven",
+          "id": "eldiven",
+          "x": 0,
+          "y": 0,
+          "durum": {
+            "elBoyu": 266
+          }
+        }
+      ],
+      "el": [
+        {
+          "tip": "ceket",
+          "giris": [
+            -80,
+            1340
+          ],
+          "olcek": 1.9,
+          "kare": [
+            0,
+            59,
+            120,
+            138,
+            152,
+            186
+          ],
+          "bilek": [
+            [
+              372,
+              1206
+            ],
+            [
+              372,
+              1176
+            ],
+            [
+              372,
+              1176
+            ],
+            [
+              194,
+              1228
+            ],
+            [
+              160,
+              1245
+            ],
+            [
+              -330,
+              1330
+            ]
+          ],
+          "dirsek": [
+            [
+              140,
+              1300
+            ],
+            [
+              140,
+              1300
+            ],
+            [
+              140,
+              1300
+            ],
+            [
+              44,
+              1310
+            ],
+            [
+              30,
+              1290
+            ],
+            [
+              -450,
+              1340
+            ]
+          ],
+          "aci": [
+            -10,
+            -10,
+            -10,
+            -4,
+            -28,
+            -20
+          ],
+          "poz": [
+            {
+              "kare": 138,
+              "poz": "gevsek"
+            }
+          ],
+          "tut": {
+            "prop": "eldiven",
+            "bas": 0,
+            "bit": 138,
+            "tutulAci": 0,
+            "birakAci": -64
+          }
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "1834. No computers.",
+          "vurgu": [
+            "No"
+          ],
+          "kagitSerit": true,
+          "tur": "iddia",
+          "bas": 0,
+          "bit": 198
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 0,
+          "olay": "kâğıt hışırtısı (eldiven çekiliyor)",
+          "ses": "kagit-hisirti"
+        },
+        {
+          "kare": 65,
+          "olay": "kâğıt kanadı masaya yatar",
+          "ses": "kagit-yatis"
+        },
+        {
+          "kare": 138,
+          "olay": "eldiven masaya bırakılır — fıt",
+          "ses": "eldiven-fit"
+        }
+      ],
+      "dokunus": null,
+      "kontrol_kare": 138,
+      "not": "v4: eldiven 138'de bırakılır, el 186'da kadrajdan tamamen çıkar (plan sonundan 24 kare önce); 186–210 eldiven masada, el yok (kapanış anı). Kanca ilk kare 0 = kapak (hareketin ortası). | EN (bolum-en): sure 210→198; ses başlangıç [6]; ses sonu +20 nefes ya da son animasyon+12."
+    },
+    {
+      "id": "P02",
+      "sablon": "SOKAK",
+      "sure_kare": 202,
+      "olcek": "geniş → boy",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P02.mp3",
+          "kare": 6
+        }
+      ],
+      "parametreler": {
+        "sehir": "bordeaux",
+        "saat": "gun"
+      },
+      "kamera": {
+        "kare": [
+          0,
+          202
+        ],
+        "cs": [
+          1.4,
+          1.9
+        ],
+        "cx": [
+          0,
+          20
+        ],
+        "cy": [
+          -200,
+          -400
+        ],
+        "egri": "inout"
+      },
+      "karakterler": [
+        {
+          "kim": "francois",
+          "z": 2.4,
+          "u": 0.28,
+          "yon": 1,
+          "yuz": {
+            "ifade": "gulumse",
+            "bakis": [
+              0.5,
+              0
+            ],
+            "kas": 0.8
+          },
+          "jestler": [
+            {
+              "ad": "konus",
+              "bas": 12,
+              "bit": 182,
+              "ops": {
+                "metin": "Paris bond prices"
+              }
+            },
+            {
+              "ad": "isaret",
+              "bas": 100,
+              "bit": 190,
+              "ops": {
+                "aci": -95
+              }
+            }
+          ],
+          "etiket": {
+            "ad": "François",
+            "alt": "BLANC"
+          }
+        },
+        {
+          "kim": "louis",
+          "z": 2.4,
+          "u": 0.72,
+          "yon": -1,
+          "aksesuar": [
+            "baston"
+          ],
+          "yuz": {
+            "bakis": [
+              0,
+              0.6
+            ],
+            "kas": -0.3
+          },
+          "jestler": [
+            {
+              "ad": "yaz",
+              "bas": 12,
+              "bit": 190
+            }
+          ],
+          "etiket": {
+            "ad": "Louis",
+            "alt": "BLANC"
+          }
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "Whoever knows first wins.",
+          "vurgu": [
+            "wins"
+          ],
+          "kagitSerit": true,
+          "tur": "iddia",
+          "bas": 24,
+          "bit": 202
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 86,
+          "olay": "Louis kalem cızırtısı (deftere rakam)",
+          "ses": "kalem-cizirti",
+          "db": -8
+        }
+      ],
+      "dokunus": null,
+      "kontrol_kare": 120,
+      "not": "v4: v3 P02 yeniden; süre 258 (ses 6–240, kuyruk 18). isaret 100–190 'Paris'teki' ile. v4-son: tüccar komparsı çıkarıldı (kardeşlere benziyordu); kadraj yalnız François+Louis, u 0.40/0.58. | EN (bolum-en): sure 258→202; ses başlangıç [6]; ses sonu +20 nefes ya da son animasyon+12."
+    },
+    {
+      "id": "P03",
+      "sablon": "HARITA",
+      "sure_kare": 280,
+      "olcek": "geniş (harita)",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P03.mp3",
+          "kare": 54
+        }
+      ],
+      "parametreler": {
+        "rota": "paris-bordeaux",
+        "posta": {
+          "bas": 88,
+          "bit": 170,
+          "gun": 3
+        },
+        "telgraf": {
+          "bas": 10,
+          "bit": 84,
+          "kule": 5,
+          "saat": 4
+        },
+        "muhur": {
+          "kare": 198,
+          "metin": "STATE ONLY"
+        }
+      },
+      "kamera": {
+        "kare": [
+          0,
+          280
+        ],
+        "cs": [
+          1.0,
+          1.35
+        ],
+        "cx": [
+          0,
+          -40
+        ],
+        "cy": [
+          0,
+          60
+        ],
+        "egri": "inout"
+      },
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "Fastest line: locked.",
+          "vurgu": [
+            "locked"
+          ],
+          "tur": "iddia",
+          "kagitSerit": true,
+          "bas": 186,
+          "bit": 280
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 10,
+          "olay": "telgraf sayacı girer: 1 SAAT tık",
+          "ses": "sayac-tik",
+          "db": -12
+        },
+        {
+          "kare": 55,
+          "olay": "telgraf sayacı 2 SAAT tık",
+          "ses": "sayac-tik",
+          "db": -12
+        },
+        {
+          "kare": 68,
+          "olay": "telgraf sayacı 3 SAAT tık",
+          "ses": "sayac-tik",
+          "db": -12
+        },
+        {
+          "kare": 79,
+          "olay": "telgraf sayacı 4 SAAT tık",
+          "ses": "sayac-tik",
+          "db": -12
+        },
+        {
+          "kare": 84,
+          "olay": "son kule klak (sinyal Bordeaux'ya varır, 'saat')",
+          "ses": "klak-uzak",
+          "db": -8
+        },
+        {
+          "kare": 88,
+          "olay": "posta sayacı 1. gün tık ('posta')",
+          "ses": "sayac-tik",
+          "db": -8
+        },
+        {
+          "kare": 120,
+          "olay": "posta sayacı 2. gün tık",
+          "ses": "sayac-tik",
+          "db": -8
+        },
+        {
+          "kare": 138,
+          "olay": "posta sayacı 3. gün tık",
+          "ses": "sayac-tik",
+          "db": -8
+        },
+        {
+          "kare": 170,
+          "olay": "posta arabası Bordeaux'ya varır, tekerlek susar",
+          "ses": "tekerlek-gicirti",
+          "db": -14
+        },
+        {
+          "kare": 198,
+          "olay": "mühür YALNIZ DEVLET TOK ('Ama telgraf' ile 'yalnız' arası)",
+          "ses": "muhur-tok"
+        }
+      ],
+      "dokunus": null,
+      "kontrol_kare": 198,
+      "not": "v4 + kit K4 çift sayaç: telgraf 10–84 ('Telgraf birkaç saat' 6–84; üst kutu 4 SAAT'te kalır), posta 88–170 ('posta üç gün' 87–136; alt kutu 3. GÜN). Mühür 198 değişmedi. | EN (bolum-en): sure 300→280; ses başlangıç [54]; ses sonu +20 nefes ya da son animasyon+12."
+    },
+    {
+      "id": "P04",
+      "sablon": "SOKAK",
+      "sure_kare": 152,
+      "olcek": "boy → bel (push-in)",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P04-francois.mp3",
+          "kare": 12
+        }
+      ],
+      "parametreler": {
+        "sehir": "bordeaux",
+        "saat": "gece",
+        "revAsili": 15
+      },
+      "kamera": {
+        "kare": [
+          0,
+          80,
+          152
+        ],
+        "cs": [
+          1.3,
+          2.0,
+          2.5
+        ],
+        "cx": [
+          0,
+          0,
+          0
+        ],
+        "cy": [
+          -120,
+          -260,
+          -380
+        ],
+        "egri": "inout"
+      },
+      "karakterler": [
+        {
+          "kim": "francois",
+          "z": 2.5,
+          "u": [
+            0.4,
+            0.58,
+            0.58
+          ],
+          "kare": [
+            0,
+            80,
+            140
+          ],
+          "yon": 1,
+          "yuz": {
+            "ifade": "dinlen",
+            "bakis": [
+              1,
+              0
+            ],
+            "kas": 0.3
+          },
+          "jestler": [
+            {
+              "ad": "yuru",
+              "bas": 0,
+              "bit": 80
+            },
+            {
+              "ad": "konus",
+              "bas": 12,
+              "bit": 132,
+              "ops": {
+                "metin": "Can't buy the line… buy the man.",
+                "hiz": 4
+              }
+            },
+            {
+              "ad": "bak",
+              "bas": 84,
+              "bit": 140,
+              "ops": {
+                "x": -1,
+                "y": 0
+              }
+            }
+          ]
+        },
+        {
+          "kim": "louis",
+          "z": 2.5,
+          "u": [
+            0.18,
+            0.36,
+            0.36
+          ],
+          "kare": [
+            0,
+            80,
+            140
+          ],
+          "yon": 1,
+          "aksesuar": [
+            "baston"
+          ],
+          "yuz": {
+            "bakis": [
+              0.9,
+              0
+            ],
+            "kas": -0.4
+          },
+          "jestler": [
+            {
+              "ad": "yuru",
+              "bas": 0,
+              "bit": 80,
+              "ops": {
+                "faz": 1.3
+              }
+            },
+            {
+              "ad": "bak",
+              "bas": 96,
+              "bit": 140,
+              "ops": {
+                "x": 1,
+                "y": 0
+              }
+            }
+          ]
+        }
+      ],
+      "replik": [
+        {
+          "kim": "FRANÇOIS",
+          "metin": "Can't buy the line… buy the man.",
+          "bant": "ust",
+          "bas": 12,
+          "bit": 152,
+          "vurgu": [
+            "man"
+          ]
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 40,
+          "olay": "ıslak taşta adım (yürüyüş)",
+          "ses": "adim-islak",
+          "db": -12
+        },
+        {
+          "kare": 80,
+          "olay": "son adım, ikisi durur",
+          "ses": "adim-islak",
+          "db": -10
+        }
+      ],
+      "dokunus": null,
+      "kontrol_kare": 110,
+      "not": "v4: fare/ızgara/baston çıktı. François 80'de durur ('alamayız…' duraksaması 74–84), bak x=-1 ile Louis'ye döner. Yürüyüş yatay (u), z 2.5 sabit: sokak boyunca değil karşıdan karşıya; ayaklar y<=1480. | EN (bolum-en): sure 198→152; ses başlangıç [12]; ses sonu +20 nefes ya da son animasyon+12."
+    },
+    {
+      "id": "P05",
+      "sablon": "IC-ODA",
+      "sure_kare": 292,
+      "olcek": "boy → bel (kamera push-in)",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P05.mp3",
+          "kare": 6
+        }
+      ],
+      "parametreler": {
+        "oda": "tours-buro",
+        "isik": "mum",
+        "masa": {
+          "z": 3.0,
+          "u": 0.6,
+          "w": 1.9,
+          "d": 0.7,
+          "h": 0.8
+        },
+        "dis": "tours",
+        "kol": "BEKLE",
+        "golgeT": {
+          "kim": "memur",
+          "bas": 130,
+          "bit": 280,
+          "donusum": 66,
+          "konum": "SAK"
+        }
+      },
+      "kamera": {
+        "kare": [
+          0,
+          292
+        ],
+        "cs": [
+          1.05,
+          1.3
+        ],
+        "cx": [
+          0,
+          -20
+        ],
+        "cy": [
+          0,
+          -40
+        ],
+        "egri": "inout"
+      },
+      "karakterler": [
+        {
+          "kim": "louis",
+          "z": 2.8,
+          "u": -0.75,
+          "yon": 1,
+          "yuz": {
+            "bakis": [
+              0.8,
+              0
+            ],
+            "kas": -0.4
+          }
+        },
+        {
+          "kim": "mudur",
+          "z": 3.9,
+          "u": 1.1,
+          "yon": -1,
+          "yuz": {
+            "bakis": [
+              -0.5,
+              0.3
+            ],
+            "kas": 0.2
+          },
+          "jestler": [
+            {
+              "ad": "bak",
+              "bas": 44,
+              "bit": 132,
+              "ops": {
+                "x": -0.5,
+                "y": 0.4
+              }
+            }
+          ]
+        },
+        {
+          "kim": "memur",
+          "z": 3.65,
+          "u": 0.0,
+          "yon": 1,
+          "yuz": {
+            "bakis": [
+              0.4,
+              0.2
+            ],
+            "kas": 0.5
+          },
+          "yuzVaryant": "memur",
+          "jestler": [
+            {
+              "ad": "it-cek",
+              "bas": 130,
+              "bit": 280,
+              "ops": {
+                "tekrar": 1
+              }
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "tur": "mum",
+          "id": "mum",
+          "x": 0.65,
+          "y": 3.0
+        },
+        {
+          "tur": "kese",
+          "id": "kese",
+          "x": [
+            -0.3,
+            0.55
+          ],
+          "y": 3.1,
+          "kare": [
+            20,
+            80
+          ],
+          "it": {
+            "kim": "louis",
+            "bas": 20,
+            "bit": 40
+          },
+          "al": {
+            "kim": "mudur",
+            "kare": 122,
+            "uzan": 26,
+            "don": 32
+          }
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "Bribery · Tours station",
+          "vurgu": [
+            "Bribery"
+          ],
+          "kagitSerit": true,
+          "tur": "iddia",
+          "bas": 6,
+          "bit": 292
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 20,
+          "olay": "Louis'nin eli keseyi masada iter (kayma başlar)",
+          "ses": "kese-kayma",
+          "db": -6
+        },
+        {
+          "kare": 80,
+          "olay": "kese müdürün önünde durur, altın şıngırtısı",
+          "ses": "altin-singirti",
+          "db": -6
+        },
+        {
+          "kare": 122,
+          "olay": "müdür keseyi kavrar, altınlar şıngırdar",
+          "ses": "altin-singirti",
+          "db": -10
+        },
+        {
+          "kare": 168,
+          "olay": "memur it-çek tek tik (gölge T oynar)",
+          "ses": "makara-tik",
+          "db": -10
+        }
+      ],
+      "dokunus": {
+        "id": "D2",
+        "ad": "El–gölge",
+        "bas": 130,
+        "bit": 280
+      },
+      "kontrol_kare": 200,
+      "not": "v4: Louis konuşmaz (replik çıktı). golgeT 130–280 (donusum 66, tek oynama), memur it-cek tekrar 1 (tik 168). Louis z 2.8 u -.75 (kese x -.3 ona erişilebilir; memurla |dz|>.6, örtüşme yok). Kit K4: kese.it (Louis ön eli 6–54 keseyi iter, 20–40 elde, sonra kese kayarak 80'de müdürün önünde durur) + kese.al (müdür 96–122 uzanır, 122 kavrar, 126–158 göğüs hizasına kaldırır ve tutar; arkadaki müdürün ön kolu masanın önüne çizilir). Louis isaret jesti kaldırıldı (itme onu karşılıyor). | EN (bolum-en): sure 300→292; ses başlangıç [6]; ses sonu +20 nefes ya da son animasyon+12."
+    },
+    {
+      "id": "P06",
+      "sablon": "MASA-INSERT",
+      "sure_kare": 312,
+      "olcek": "insert (tepe)",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P06.mp3",
+          "kare": 8
+        }
+      ],
+      "parametreler": {
+        "aci": "tepe",
+        "isik": "fener",
+        "fener": [
+          430,
+          1092
+        ],
+        "elYukseklik": 120
+      },
+      "kamera": {
+        "kare": [
+          0,
+          150,
+          250,
+          312
+        ],
+        "cs": [
+          1.0,
+          1.0,
+          1.15,
+          1.2
+        ],
+        "cx": [
+          0,
+          0,
+          -110,
+          -110
+        ],
+        "cy": [
+          0,
+          0,
+          -20,
+          -20
+        ],
+        "egri": "inout"
+      },
+      "props": [
+        {
+          "tur": "paket",
+          "id": "paket",
+          "x": 540,
+          "y": 1000,
+          "olcek": 1.0,
+          "kare": [
+            0,
+            50
+          ],
+          "durum": {
+            "acik": [
+              0.5,
+              1
+            ],
+            "ipCozuk": true
+          }
+        },
+        {
+          "tur": "eldiven",
+          "id": "eldiven",
+          "x": 540,
+          "y": 1010,
+          "durum": {
+            "elBoyu": 266
+          }
+        },
+        {
+          "tur": "corap",
+          "id": "corap",
+          "x": 780,
+          "y": 1090,
+          "kare": [
+            0,
+            196,
+            236,
+            262,
+            275,
+            300
+          ],
+          "durum": {
+            "sarkma": [
+              0,
+              0,
+              1,
+              1,
+              0.2,
+              0.2
+            ]
+          }
+        }
+      ],
+      "el": [
+        {
+          "tip": "gorevli",
+          "giris": [
+            1160,
+            1000
+          ],
+          "olcek": 1.9,
+          "kare": [
+            0,
+            40,
+            70,
+            105,
+            140,
+            165,
+            185
+          ],
+          "bilek": [
+            [
+              720,
+              830
+            ],
+            [
+              800,
+              780
+            ],
+            [
+              600,
+              1010
+            ],
+            [
+              480,
+              1060
+            ],
+            [
+              290,
+              1170
+            ],
+            [
+              700,
+              1100
+            ],
+            [
+              1450,
+              1000
+            ]
+          ],
+          "dirsek": [
+            [
+              950,
+              900
+            ],
+            [
+              1020,
+              860
+            ],
+            [
+              860,
+              1080
+            ],
+            [
+              760,
+              1100
+            ],
+            [
+              560,
+              1220
+            ],
+            [
+              980,
+              1140
+            ],
+            [
+              1700,
+              1060
+            ]
+          ],
+          "aci": [
+            10,
+            10,
+            10,
+            10,
+            0,
+            10,
+            10
+          ],
+          "poz": [
+            {
+              "kare": 0,
+              "poz": "kistir"
+            },
+            {
+              "kare": 40,
+              "poz": "gevsek"
+            },
+            {
+              "kare": 70,
+              "poz": "kistir"
+            },
+            {
+              "kare": 140,
+              "poz": "gevsek"
+            }
+          ],
+          "tut": {
+            "prop": "eldiven",
+            "bas": 70,
+            "bit": 140,
+            "tutulAci": 0,
+            "birakAci": -20
+          }
+        },
+        {
+          "tip": "gorevli",
+          "giris": [
+            1160,
+            1000
+          ],
+          "olcek": 1.9,
+          "kare": [
+            0,
+            170,
+            196,
+            236,
+            262,
+            275,
+            298
+          ],
+          "bilek": [
+            [
+              1450,
+              1090
+            ],
+            [
+              1450,
+              1090
+            ],
+            [
+              780,
+              1090
+            ],
+            [
+              780,
+              940
+            ],
+            [
+              780,
+              940
+            ],
+            [
+              780,
+              1090
+            ],
+            [
+              1450,
+              1060
+            ]
+          ],
+          "dirsek": [
+            [
+              1700,
+              1100
+            ],
+            [
+              1700,
+              1100
+            ],
+            [
+              1040,
+              1110
+            ],
+            [
+              1040,
+              980
+            ],
+            [
+              1040,
+              980
+            ],
+            [
+              1040,
+              1110
+            ],
+            [
+              1700,
+              1080
+            ]
+          ],
+          "aci": [
+            10,
+            10,
+            10,
+            0,
+            0,
+            10,
+            10
+          ],
+          "poz": [
+            {
+              "kare": 196,
+              "poz": "kistir"
+            },
+            {
+              "kare": 275,
+              "poz": "gevsek"
+            }
+          ],
+          "tut": {
+            "prop": "corap",
+            "bas": 196,
+            "bit": 275,
+            "tutulAci": 0,
+            "birakAci": 20
+          }
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "GLOVE = ↑",
+          "vurgu": [
+            "↑"
+          ],
+          "tur": "formul",
+          "bas": 130,
+          "bit": 200
+        },
+        {
+          "bant": "ust",
+          "metin": "GLOVE = ↑ · SOCK = ↓",
+          "vurgu": [
+            "↓"
+          ],
+          "tur": "formul",
+          "bas": 200,
+          "bit": 312
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 30,
+          "olay": "el paket kâğıdını açar",
+          "ses": "kagit-acilis"
+        },
+        {
+          "kare": 140,
+          "olay": "eldiven masaya, solda bırakılır",
+          "ses": "eldiven-fit",
+          "db": -8
+        },
+        {
+          "kare": 275,
+          "olay": "çorap masaya bırakılır — flop",
+          "ses": "yun-flop",
+          "db": -6
+        }
+      ],
+      "dokunus": {
+        "id": "D3",
+        "ad": "Çorabı kaldıran el",
+        "bas": 196,
+        "bit": 275
+      },
+      "kontrol_kare": 250,
+      "not": "v4: iki el (açan/eldiven + çorap). Paketi el açar (0–40), eldiven paket yatağından alınıp sola (140), çorap elde sarkar (236–262) ve 275'te masaya (flop); el 298'de çıkar (plan sonundan 14 önce). Çorap kare 0'dan masada görünür (kurulum). | EN (bolum-en): sure 312→312; ses başlangıç [8]; ses sonu +20 nefes ya da son animasyon+12."
+    },
+    {
+      "id": "P07",
+      "sablon": "KULE-DIS",
+      "sure_kare": 286,
+      "olcek": "geniş",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P07.mp3",
+          "kare": 60
+        }
+      ],
+      "parametreler": {
+        "saat": "gun",
+        "kuleler": [
+          {
+            "x": 260,
+            "taban": 1500,
+            "L": 240,
+            "konum": {
+              "kare": [
+                0,
+                36,
+                84,
+                96,
+                172,
+                184
+              ],
+              "konum": [
+                "BEKLE",
+                "MESAJ",
+                "MESAJ",
+                "HATA",
+                "HATA",
+                "MESAJ"
+              ]
+            },
+            "halo": [
+              96,
+              184
+            ]
+          },
+          {
+            "x": 640,
+            "taban": 1220,
+            "L": 150,
+            "konum": {
+              "kare": [
+                0,
+                60,
+                114,
+                126,
+                202,
+                214
+              ],
+              "konum": [
+                "BEKLE",
+                "MESAJ",
+                "MESAJ",
+                "HATA",
+                "HATA",
+                "MESAJ"
+              ]
+            },
+            "halo": [
+              126,
+              214
+            ]
+          },
+          {
+            "x": 440,
+            "taban": 1090,
+            "L": 100,
+            "konum": {
+              "kare": [
+                0,
+                84,
+                144,
+                156,
+                232,
+                244
+              ],
+              "konum": [
+                "BEKLE",
+                "MESAJ",
+                "MESAJ",
+                "HATA",
+                "HATA",
+                "MESAJ"
+              ]
+            },
+            "halo": [
+              156,
+              244
+            ]
+          },
+          {
+            "x": 880,
+            "taban": 1000,
+            "L": 64,
+            "konum": {
+              "kare": [
+                0,
+                108,
+                174,
+                186,
+                262,
+                274
+              ],
+              "konum": [
+                "BEKLE",
+                "MESAJ",
+                "MESAJ",
+                "HATA",
+                "HATA",
+                "MESAJ"
+              ]
+            },
+            "halo": [
+              186,
+              274
+            ]
+          }
+        ]
+      },
+      "kamera": {
+        "kare": [
+          0,
+          286
+        ],
+        "cs": [
+          1.0,
+          1.1
+        ],
+        "cx": [
+          0,
+          20
+        ],
+        "cy": [
+          0,
+          0
+        ],
+        "egri": "inout"
+      },
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "ERROR + UNDO = CLEAN MESSAGE",
+          "vurgu": [
+            "ERROR"
+          ],
+          "tur": "formul",
+          "bas": 184,
+          "bit": 286
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 36,
+          "olay": "yakın kule MESAJ klak",
+          "ses": "kol-klak",
+          "db": -6
+        },
+        {
+          "kare": 60,
+          "olay": "kule 2 ilk MESAJ varışı",
+          "ses": "klak-uzak",
+          "db": -12
+        },
+        {
+          "kare": 84,
+          "olay": "kule 3 ilk MESAJ varışı",
+          "ses": "klak-uzak",
+          "db": -13
+        },
+        {
+          "kare": 96,
+          "olay": "yakın kule HATA — sert klak ('hata' ile)",
+          "ses": "kol-klak-sert",
+          "db": -3
+        },
+        {
+          "kare": 108,
+          "olay": "kule 4 ilk MESAJ varışı",
+          "ses": "klak-uzak",
+          "db": -14
+        },
+        {
+          "kare": 126,
+          "olay": "kule 2 HATA kopya",
+          "ses": "klak-uzak",
+          "db": -8
+        },
+        {
+          "kare": 156,
+          "olay": "kule 3 HATA kopya",
+          "ses": "klak-uzak",
+          "db": -10
+        },
+        {
+          "kare": 184,
+          "olay": "yakın kule geri MESAJ (geri alıyor) — yumuşak klak",
+          "ses": "kol-klak",
+          "db": -6
+        },
+        {
+          "kare": 186,
+          "olay": "kule 4 HATA kopya",
+          "ses": "klak-uzak",
+          "db": -12
+        },
+        {
+          "kare": 214,
+          "olay": "kule 2 geri MESAJ",
+          "ses": "klak-uzak",
+          "db": -10
+        },
+        {
+          "kare": 244,
+          "olay": "kule 3 geri MESAJ",
+          "ses": "klak-uzak",
+          "db": -12
+        },
+        {
+          "kare": 274,
+          "olay": "kule 4 geri MESAJ",
+          "ses": "klak-uzak",
+          "db": -14
+        }
+      ],
+      "dokunus": {
+        "id": "D4",
+        "ad": "Çentik + geri dönüş + kopya dalgası",
+        "bas": 96,
+        "bit": 274
+      },
+      "kontrol_kare": 190,
+      "not": "v4 hilenin kalbi: yakın kol MESAJ(36) → HATA(96, halo) → MESAJ(184); uzaklar 30'ar kare gecikmeyle aynı ikiliyi kopyalar (son varış 274). Yazı üst bantta (kolla bitişik değil), geri dönüş karesinde (184). v4-son: kol varışları temaslarla tam eşlendi (kule1 36/96/184; k2 60/126/214; k3 84/156/244; k4 108/186/274). Kurgucunun saydığı p84,p172 (k1), p114,p202 (k2), p144,p232 (k3), p174,p262 (k4) aynı-poz bekleme anahtarları (MESAJ→MESAJ, HATA→HATA): hareket yok, ses yok; silinirse sonraki hareket 60 kareye yayılırdı, bu yüzden korundu. kol-klak-sert −3 dB. | EN (bolum-en): sure 300→286; ses başlangıç [60]; ses sonu +20 nefes ya da son animasyon+12."
+    },
+    {
+      "id": "P08",
+      "sablon": "YAKIN-YUZ",
+      "sure_kare": 236,
+      "olcek": "yakın (yüz ≥%15)",
+      "parametreler": {
+        "arka": {
+          "sablon": "KULE-DIS",
+          "parametreler": {
+            "saat": "gun",
+            "kuleler": [
+              {
+                "x": 830,
+                "taban": 1200,
+                "L": 200,
+                "konum": {
+                  "kare": [
+                    0,
+                    24,
+                    88,
+                    100,
+                    166,
+                    178
+                  ],
+                  "konum": [
+                    "BEKLE",
+                    "MESAJ",
+                    "MESAJ",
+                    "HATA",
+                    "HATA",
+                    "MESAJ"
+                  ]
+                },
+                "halo": [
+                  100,
+                  178
+                ]
+              }
+            ]
+          },
+          "kamera": {
+            "kare": [
+              0
+            ],
+            "cs": [
+              1.0
+            ]
+          }
+        },
+        "yuz": [
+          540,
+          820
+        ],
+        "olcek": 3.6,
+        "bulanik": 16,
+        "isik": "gun",
+        "manipulator": {
+          "ileri": [
+            175,
+            -280
+          ],
+          "yari": 72
+        }
+      },
+      "karakterler": [
+        {
+          "kim": "telgrafci",
+          "yuz": {
+            "ifade": "dinlen",
+            "bakis": [
+              0,
+              0
+            ],
+            "kas": -0.3
+          },
+          "jestler": [
+            {
+              "ad": "it-cek",
+              "bas": 0,
+              "bit": 200,
+              "ops": {
+                "tekrar": 3
+              }
+            },
+            {
+              "ad": "esne",
+              "bas": 120,
+              "bit": 224,
+              "ops": {
+                "agiz": "uykulu"
+              }
+            }
+          ]
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "Nobody noticed.",
+          "vurgu": [
+            "Nobody"
+          ],
+          "kagitSerit": true,
+          "tur": "iddia",
+          "bas": 90,
+          "bit": 236
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 17,
+          "olay": "kumanda tik 1",
+          "ses": "makara-tik",
+          "db": -10
+        },
+        {
+          "kare": 83,
+          "olay": "kumanda tik 2",
+          "ses": "makara-tik",
+          "db": -10
+        },
+        {
+          "kare": 100,
+          "olay": "arka kule HATA klak (bulanık)",
+          "ses": "klak-uzak",
+          "db": -12
+        },
+        {
+          "kare": 150,
+          "olay": "kumanda tik 3",
+          "ses": "makara-tik",
+          "db": -10
+        },
+        {
+          "kare": 160,
+          "olay": "esneme (ağız açılırken)",
+          "ses": "esneme",
+          "db": -6
+        },
+        {
+          "kare": 178,
+          "olay": "arka kule geri MESAJ klak",
+          "ses": "klak-uzak",
+          "db": -12
+        }
+      ],
+      "dokunus": {
+        "id": "D5",
+        "ad": "Esneme",
+        "bas": 120,
+        "bit": 224
+      },
+      "kontrol_kare": 172,
+      "not": "v4: it-cek 0–200 esneme boyunca sürer; esne 120–224 'kopyalıyor' (153–206) ile. Esneme varyantı: kitte yalnız 'esneme' (gözler sıkı, kaşlar kalkık = acı gibi okundu) ve küçük 'O' — uykulu varyant yok → kit_eksik esne_uykulu. Arka kule x 830 (yüzün arkasında gizlenmesin). Kit K4: esne ops.agiz 'uykulu' (yarı inik ağır kapaklar, gevşek kaş, yuvarlak ağız). | EN (bolum-en): sure 240→236; ses başlangıç [6]; ses sonu +20 nefes ya da son animasyon+12.",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P08.mp3",
+          "kare": 6
+        }
+      ]
+    },
+    {
+      "id": "P09",
+      "sablon": "IC-ODA",
+      "sure_kare": 213,
+      "olcek": "boy → insert push-in (pervaz)",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P09.mp3",
+          "kare": 12
+        }
+      ],
+      "parametreler": {
+        "oda": "bordeaux-cati",
+        "isik": "gun",
+        "dis": "bordeaux",
+        "pencere": {
+          "u": 0.1,
+          "h0": 0.95,
+          "w": 1.0,
+          "h": 1.15
+        },
+        "kol": {
+          "kare": [
+            0,
+            40,
+            84,
+            96,
+            174,
+            186
+          ],
+          "konum": [
+            "BEKLE",
+            "MESAJ",
+            "MESAJ",
+            "HATA",
+            "HATA",
+            "MESAJ"
+          ]
+        },
+        "arka": 4.2,
+        "pervazCentik": 14,
+        "pervazCentikYeni": 160,
+        "teleskop": true,
+        "pervazBicak": {
+          "bas": 126,
+          "kare": 160,
+          "bit": 200,
+          "kim": "katip"
+        }
+      },
+      "kamera": {
+        "kare": [
+          0,
+          90,
+          150,
+          213
+        ],
+        "cs": [
+          2.0,
+          2.0,
+          2.4,
+          2.4
+        ],
+        "cx": [
+          -54,
+          -54,
+          -120,
+          -120
+        ],
+        "cy": [
+          200,
+          200,
+          0,
+          -20
+        ],
+        "egri": "inout"
+      },
+      "karakterler": [
+        {
+          "kim": "katip",
+          "z": 3.6,
+          "u": 0.62,
+          "yon": -1,
+          "yuz": {
+            "bakis": [
+              -0.8,
+              -0.2
+            ],
+            "kas": 0.3
+          },
+          "jestler": [
+            {
+              "ad": "bak",
+              "bas": 0,
+              "bit": 201,
+              "ops": {
+                "x": -0.8,
+                "y": -0.2
+              }
+            }
+          ]
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "alt",
+          "metin": "State: error · Them: news",
+          "vurgu": [
+            "news"
+          ],
+          "kagitSerit": true,
+          "tur": "iddia",
+          "bas": 100,
+          "bit": 213
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 26,
+          "olay": "göz teleskopa tik",
+          "ses": "teleskop-tik",
+          "db": -8
+        },
+        {
+          "kare": 40,
+          "olay": "uzak kol ilk MESAJ varışı",
+          "ses": "klak-uzak",
+          "db": -14
+        },
+        {
+          "kare": 96,
+          "olay": "uzak kol HATA klak",
+          "ses": "klak-uzak",
+          "db": -12
+        },
+        {
+          "kare": 160,
+          "olay": "bıçak pervaza kırt (yeni çentik)",
+          "ses": "bicak-kirt"
+        },
+        {
+          "kare": 186,
+          "olay": "uzak kol geri MESAJ klak",
+          "ses": "klak-uzak",
+          "db": -12
+        }
+      ],
+      "dokunus": {
+        "id": "D6",
+        "ad": "Pervaz çentiği",
+        "bas": 126,
+        "bit": 200
+      },
+      "kontrol_kare": 160,
+      "not": "v4: kamera lucarne'a yakın (cs 2.0) başlar, T okunur; 90–150 pervaza iner. Kol MESAJ→HATA(96)→MESAJ(186); bıçak 126–200, kırt 160. Kit K4: bıçak katibin kendi ön kolunda (IK, rig ışığı; çakı plan başından elde); pencere T'si kol parametresini izler, HATA'da kırmızı halka. v4-son: katip z 3.2→3.6 (kol derinliği); cs 2.0 başlangıcı render edildi (kare 0): pencere + T okunur, geniş değil. | EN (bolum-en): sure 300→213; ses başlangıç [12]; ses sonu +20 nefes ya da son animasyon+12."
+    },
+    {
+      "id": "P10",
+      "sablon": "YAKIN-YUZ",
+      "sure_kare": 346,
+      "olcek": "yakın",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P10.mp3",
+          "kare": 6
+        },
+        {
+          "dosya": "blanc/ses-en/P10-memur.mp3",
+          "kare": 180
+        }
+      ],
+      "parametreler": {
+        "arka": {
+          "sablon": "IC-ODA",
+          "parametreler": {
+            "oda": "yatak",
+            "isik": "mum",
+            "dis": "gece"
+          },
+          "kamera": {
+            "kare": [
+              0
+            ],
+            "cs": [
+              1.0
+            ]
+          }
+        },
+        "yuz": [
+          470,
+          1000
+        ],
+        "olcek": 3.6,
+        "egim": 8,
+        "yatik": true,
+        "yorgan": {
+          "renk": "#8a7260",
+          "kalinlik": 0.5,
+          "sarkma": 30
+        },
+        "yastik": true,
+        "bulanik": 16,
+        "isik": "mum"
+      },
+      "karakterler": [
+        {
+          "kim": "memur",
+          "poz": "yatik",
+          "yuz": {
+            "ifade": "hasta",
+            "bakis": [
+              0,
+              0.2
+            ],
+            "kas": 0.6,
+            "ter": true
+          },
+          "jestler": [
+            {
+              "ad": "fisilda",
+              "bas": 182,
+              "bit": 326,
+              "ops": {
+                "hiz": 1
+              }
+            },
+            {
+              "ad": "konus",
+              "bas": 184,
+              "bit": 326,
+              "ops": {
+                "metin": "The errors… on purpose."
+              }
+            }
+          ]
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "1836",
+          "vurgu": [
+            "1836"
+          ],
+          "kagitSerit": true,
+          "tur": "iddia",
+          "bas": 10,
+          "bit": 346
+        }
+      ],
+      "replik": [
+        {
+          "kim": "MEMUR",
+          "metin": "The errors… on purpose.",
+          "bant": "alt",
+          "bas": 184,
+          "bit": 346,
+          "vurgu": [
+            "purpose"
+          ]
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 40,
+          "olay": "ağır nefes",
+          "ses": "agir-nefes",
+          "db": -8
+        }
+      ],
+      "dokunus": null,
+      "kontrol_kare": 300,
+      "not": "v4-son: memur sesi 2.85 sn (kare 180–351); plan 330→370 (ses bitişinden 19 kare nefes). Anlatıcı 6–156, nefes 0.4 sn, söz ~184–348. 'sessizlik' teması silindi. Kamera yüze yaklaşır (cs 1.0→1.3, 0–370). Kit K4: yorgan {kalinlik .5, sarkma 30} alt üçte birde ≈%18. | EN (bolum-en): sure 370→346; ses başlangıç [6, 180]; ses sonu +20 nefes ya da son animasyon+12.",
+      "kamera": {
+        "kare": [
+          0,
+          346
+        ],
+        "cs": [
+          1.0,
+          1.3
+        ],
+        "cx": [
+          0,
+          0
+        ],
+        "cy": [
+          0,
+          0
+        ],
+        "egri": "inout"
+      }
+    },
+    {
+      "id": "P11",
+      "sablon": "MASA-INSERT",
+      "sure_kare": 202,
+      "olcek": "insert (tepe, push-in)",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P11.mp3",
+          "kare": 6
+        }
+      ],
+      "parametreler": {
+        "aci": "tepe",
+        "isik": "gun",
+        "elYukseklik": 120
+      },
+      "kamera": {
+        "kare": [
+          0,
+          60,
+          110,
+          202
+        ],
+        "cs": [
+          1.0,
+          1.1,
+          1.45,
+          1.5
+        ],
+        "cx": [
+          0,
+          0,
+          -120,
+          -120
+        ],
+        "cy": [
+          0,
+          0,
+          -20,
+          -40
+        ],
+        "egri": "inout"
+      },
+      "props": [
+        {
+          "tur": "kitap",
+          "id": "kitap",
+          "x": 540,
+          "y": 1000,
+          "olcek": 2.0,
+          "kare": [
+            0,
+            6,
+            22,
+            23,
+            28,
+            44,
+            45,
+            50,
+            51,
+            72,
+            96,
+            100,
+            190
+          ],
+          "durum": {
+            "sayfa": [
+              0,
+              0,
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0.0004,
+              1,
+              1,
+              1,
+              1
+            ],
+            "bos": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "guve": [
+              -1,
+              -1,
+              -1,
+              -1,
+              -1,
+              -1,
+              -1,
+              -1,
+              0,
+              0,
+              0,
+              0.1,
+              1
+            ]
+          }
+        }
+      ],
+      "el": [
+        {
+          "tip": "gorevli",
+          "giris": [
+            1160,
+            1000
+          ],
+          "olcek": 1.9,
+          "kare": [
+            0,
+            6,
+            22,
+            28,
+            44,
+            50,
+            72,
+            96,
+            120
+          ],
+          "bilek": [
+            [
+              1180,
+              1100
+            ],
+            [
+              1180,
+              1100
+            ],
+            [
+              640,
+              1060
+            ],
+            [
+              1180,
+              1100
+            ],
+            [
+              640,
+              1060
+            ],
+            [
+              1180,
+              1100
+            ],
+            [
+              560,
+              1050
+            ],
+            [
+              1000,
+              1080
+            ],
+            [
+              1600,
+              1060
+            ]
+          ],
+          "dirsek": [
+            [
+              1380,
+              1160
+            ],
+            [
+              1380,
+              1160
+            ],
+            [
+              860,
+              1120
+            ],
+            [
+              1380,
+              1160
+            ],
+            [
+              860,
+              1120
+            ],
+            [
+              1380,
+              1160
+            ],
+            [
+              780,
+              1110
+            ],
+            [
+              1220,
+              1140
+            ],
+            [
+              1800,
+              1120
+            ]
+          ],
+          "aci": [
+            10,
+            10,
+            0,
+            10,
+            0,
+            10,
+            0,
+            10,
+            15
+          ],
+          "poz": [
+            {
+              "kare": 0,
+              "poz": "gevsek"
+            },
+            {
+              "kare": 6,
+              "poz": "kistir"
+            },
+            {
+              "kare": 22,
+              "poz": "gevsek"
+            },
+            {
+              "kare": 28,
+              "poz": "kistir"
+            },
+            {
+              "kare": 44,
+              "poz": "gevsek"
+            },
+            {
+              "kare": 50,
+              "poz": "kistir"
+            },
+            {
+              "kare": 72,
+              "poz": "gevsek"
+            }
+          ]
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "Tours Criminal Court · 1837",
+          "vurgu": [
+            "1837"
+          ],
+          "kagitSerit": true,
+          "tur": "iddia",
+          "bas": 6,
+          "bit": 202
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 14,
+          "olay": "1. sayfa çevrilir",
+          "ses": "sayfa-cevirme",
+          "db": -8
+        },
+        {
+          "kare": 36,
+          "olay": "2. sayfa çevrilir",
+          "ses": "sayfa-cevirme",
+          "db": -8
+        },
+        {
+          "kare": 61,
+          "olay": "3. (son) sayfa çevrilir",
+          "ses": "sayfa-cevirme",
+          "db": -8
+        },
+        {
+          "kare": 72,
+          "olay": "son sayfa boş açılır, yatar",
+          "ses": "sayfa-yatis",
+          "db": -6
+        }
+      ],
+      "dokunus": {
+        "id": "D8",
+        "ad": "Boş kitap + güve",
+        "bas": 61,
+        "bit": 190
+      },
+      "kontrol_kare": 130,
+      "not": "v4 + kit K4: TEK kitap nesnesi. Üç çeviriş (6–22, 28–44, 50–72); bos 51'de (yaprak sağ sayfayı örterken) true olur, güve 51'den itibaren boş sayfada ama çevrilen yaprağın ALTINDA — yaprak kalkınca görünür; 100'de kanat çırpar, 190'da kadraj üstünden çıkmış. El 120'de kadrajdan çıkar (x 1600). | EN (bolum-en): sure 246→202; ses başlangıç [6]; ses sonu +20 nefes ya da son animasyon+12."
+    },
+    {
+      "id": "P12",
+      "sablon": "MASA-INSERT",
+      "sure_kare": 246,
+      "olcek": "insert (tepe-eğik)",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P12.mp3",
+          "kare": 99
+        }
+      ],
+      "parametreler": {
+        "aci": "tepe-egik",
+        "isik": "gun",
+        "pencere": "yok",
+        "elYukseklik": 120,
+        "eldivenGiy": {
+          "bas": 36,
+          "bit": 228,
+          "gerilme": 201,
+          "x": 540,
+          "y": 1150,
+          "olcek": 1.2
+        }
+      },
+      "kamera": {
+        "kare": [
+          0,
+          246
+        ],
+        "cs": [
+          1.0,
+          1.15
+        ],
+        "cy": [
+          0,
+          -20
+        ],
+        "egri": "inout"
+      },
+      "props": [
+        {
+          "tur": "dosya",
+          "id": "dosya",
+          "x": 540,
+          "y": 1010,
+          "olcek": 1.7,
+          "kare": [
+            0,
+            12,
+            30
+          ],
+          "durum": {
+            "kapak": [
+              0,
+              0,
+              1
+            ]
+          }
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "ACQUITTED · 14 Mar 1837",
+          "vurgu": [
+            "ACQUITTED"
+          ],
+          "kagitSerit": true,
+          "tur": "iddia",
+          "bas": 30,
+          "bit": 246
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 30,
+          "olay": "dosya kapağı TOK ('Beraat.')",
+          "ses": "dosya-tok"
+        },
+        {
+          "kare": 201,
+          "olay": "eldiven gerilmesi ('geç.')",
+          "ses": "eldiven-gerilme",
+          "db": -6
+        },
+        {
+          "kare": 228,
+          "olay": "el eldivenle yerleşir",
+          "ses": "eldiven-fit",
+          "db": -8
+        }
+      ],
+      "dokunus": {
+        "id": "D7",
+        "ad": "Eldiven giyme",
+        "bas": 36,
+        "bit": 228
+      },
+      "kontrol_kare": 201,
+      "not": "v4: dosya 1.6x (cilt tahtası eldivenden büyük = eldivenin üstünde durduğu şey okunur), eldiven boğum y 1150. Kapağı sol elden giren el kapatır (TOK 30), el 54'te çıkar; eldiven giyme 36'da duraksamadan başlar (TOK'tan 6 kare sonra), gerilme 201 ('geç.'), bit 228. v4-son ölçek: eldiven olcek 1.3→1.2 (katalog alt sınırı), dosya 1.6→1.7, görevli el 1.9→2.6 (eldiven bir el boyu; dosya eldivenden büyük). | EN (bolum-en): sure 246→246; ses başlangıç [99]; ses sonu +20 nefes ya da son animasyon+12.",
+      "el": [
+        {
+          "tip": "gorevli",
+          "giris": [
+            -80,
+            1000
+          ],
+          "olcek": 2.6,
+          "kare": [
+            0,
+            12,
+            30,
+            54
+          ],
+          "bilek": [
+            [
+              160,
+              1000
+            ],
+            [
+              230,
+              980
+            ],
+            [
+              420,
+              1000
+            ],
+            [
+              -420,
+              1010
+            ]
+          ],
+          "dirsek": [
+            [
+              -60,
+              1040
+            ],
+            [
+              0,
+              1020
+            ],
+            [
+              160,
+              1030
+            ],
+            [
+              -700,
+              1050
+            ]
+          ],
+          "aci": [
+            -10,
+            -10,
+            -10,
+            -10
+          ],
+          "poz": [
+            {
+              "kare": 0,
+              "poz": "kistir"
+            },
+            {
+              "kare": 30,
+              "poz": "gevsek"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P13",
+      "sablon": "KULE-DIS",
+      "sure_kare": 180,
+      "olcek": "geniş → yakın (push-in)",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P13.mp3",
+          "kare": 6
+        }
+      ],
+      "parametreler": {
+        "saat": "gun",
+        "kuleler": [
+          {
+            "x": 540,
+            "taban": 1500,
+            "L": 240,
+            "konum": "BEKLE",
+            "wifi": {
+              "bas": 48,
+              "bit": 168
+            }
+          },
+          {
+            "x": 250,
+            "taban": 1050,
+            "L": 60,
+            "konum": "BEKLE"
+          },
+          {
+            "x": 820,
+            "taban": 980,
+            "L": 40,
+            "konum": "BEKLE"
+          }
+        ]
+      },
+      "kamera": {
+        "kare": [
+          0,
+          180
+        ],
+        "cs": [
+          1.0,
+          1.7
+        ],
+        "cx": [
+          0,
+          0
+        ],
+        "cy": [
+          0,
+          460
+        ],
+        "egri": "inout"
+      },
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "No wires. No electricity.",
+          "vurgu": [
+            "wires"
+          ],
+          "kagitSerit": true,
+          "tur": "iddia",
+          "bas": 60,
+          "bit": 180
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 48,
+          "olay": "tahta gıcırtısı (morf başlar)",
+          "ses": "tahta-gicirti",
+          "db": -8
+        },
+        {
+          "kare": 88,
+          "olay": "yay 1 tak",
+          "ses": "ahsap-tik",
+          "db": -8
+        },
+        {
+          "kare": 128,
+          "olay": "yay 2 tak",
+          "ses": "ahsap-tik",
+          "db": -8
+        },
+        {
+          "kare": 168,
+          "olay": "yay 3 tak",
+          "ses": "ahsap-tik",
+          "db": -8
+        }
+      ],
+      "dokunus": null,
+      "kontrol_kare": 168,
+      "not": "v4: wifi 48–168 (varışlar 88/128/168), plan 222; ikon 54 kare net. | EN (bolum-en): sure 222→180; ses başlangıç [6]; ses sonu +20 nefes ya da son animasyon+12."
+    },
+    {
+      "id": "P14",
+      "sablon": "MASA-INSERT",
+      "sure_kare": 224,
+      "olcek": "insert (tepe-önden, P01 aynası)",
+      "ses": [
+        {
+          "dosya": "blanc/ses-en/P14.mp3",
+          "kare": 18
+        }
+      ],
+      "parametreler": {
+        "aci": "tepe-onden",
+        "isik": "fener",
+        "pencere": "tours",
+        "fener": [
+          430,
+          1092
+        ],
+        "elYukseklik": 120
+      },
+      "kamera": {
+        "kare": [
+          0,
+          224
+        ],
+        "cs": [
+          1.06,
+          1.14
+        ],
+        "cy": [
+          0,
+          40
+        ],
+        "egri": "inout"
+      },
+      "props": [
+        {
+          "tur": "paket",
+          "id": "paket",
+          "x": 690,
+          "y": 1340,
+          "olcek": 1.15,
+          "kare": [
+            0,
+            62,
+            82,
+            94,
+            114,
+            124,
+            142,
+            150,
+            168,
+            172,
+            196
+          ],
+          "durum": {
+            "acik": 1,
+            "kapan": [
+              0,
+              0,
+              0.25,
+              0.25,
+              0.5,
+              0.5,
+              0.75,
+              0.75,
+              1,
+              1,
+              1
+            ],
+            "ip": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "ipCozuk": true,
+            "etiketX": -262,
+            "etiketY": 40
+          }
+        },
+        {
+          "tur": "eldiven",
+          "id": "eldiven",
+          "x": 0,
+          "y": 0,
+          "durum": {
+            "elBoyu": 266
+          }
+        }
+      ],
+      "el": [
+        {
+          "tip": "parisManset",
+          "giris": [
+            -80,
+            1340
+          ],
+          "olcek": 1.9,
+          "kare": [
+            0,
+            50,
+            62,
+            82,
+            94,
+            114,
+            124,
+            142,
+            150,
+            168,
+            172,
+            196,
+            212
+          ],
+          "bilek": [
+            [
+              144,
+              1252
+            ],
+            [
+              392,
+              1222
+            ],
+            [
+              161,
+              1391
+            ],
+            [
+              428,
+              1391
+            ],
+            [
+              704,
+              1391
+            ],
+            [
+              437,
+              1391
+            ],
+            [
+              432,
+              1720
+            ],
+            [
+              432,
+              1407
+            ],
+            [
+              432,
+              1071
+            ],
+            [
+              432,
+              1366
+            ],
+            [
+              432,
+              1391
+            ],
+            [
+              432,
+              1391
+            ],
+            [
+              -330,
+              1330
+            ]
+          ],
+          "dirsek": [
+            [
+              24,
+              1270
+            ],
+            [
+              162,
+              1272
+            ],
+            [
+              -69,
+              1441
+            ],
+            [
+              198,
+              1441
+            ],
+            [
+              474,
+              1441
+            ],
+            [
+              207,
+              1441
+            ],
+            [
+              202,
+              1770
+            ],
+            [
+              202,
+              1457
+            ],
+            [
+              202,
+              1121
+            ],
+            [
+              202,
+              1416
+            ],
+            [
+              202,
+              1441
+            ],
+            [
+              202,
+              1441
+            ],
+            [
+              -450,
+              1340
+            ]
+          ],
+          "aci": [
+            -28,
+            -10,
+            -10,
+            -10,
+            -10,
+            -10,
+            -10,
+            -10,
+            -10,
+            -10,
+            -10,
+            -10,
+            -20
+          ],
+          "poz": [
+            {
+              "kare": 50,
+              "poz": "gevsek"
+            },
+            {
+              "kare": 58,
+              "poz": "kistir"
+            },
+            {
+              "kare": 84,
+              "poz": "gevsek"
+            },
+            {
+              "kare": 90,
+              "poz": "kistir"
+            },
+            {
+              "kare": 116,
+              "poz": "gevsek"
+            },
+            {
+              "kare": 120,
+              "poz": "kistir"
+            },
+            {
+              "kare": 144,
+              "poz": "gevsek"
+            },
+            {
+              "kare": 146,
+              "poz": "kistir"
+            },
+            {
+              "kare": 170,
+              "poz": "gevsek"
+            },
+            {
+              "kare": 171,
+              "poz": "kistir"
+            },
+            {
+              "kare": 198,
+              "poz": "gevsek"
+            }
+          ],
+          "tut": {
+            "prop": "eldiven",
+            "bas": 0,
+            "bit": 50,
+            "tutulAci": -64,
+            "birakAci": 0
+          },
+          "takip": [
+            {
+              "prop": "paket",
+              "kare": [
+                62,
+                82
+              ]
+            },
+            {
+              "prop": "paket",
+              "kare": [
+                94,
+                114
+              ]
+            },
+            {
+              "prop": "paket",
+              "kare": [
+                124,
+                142
+              ]
+            },
+            {
+              "prop": "paket",
+              "kare": [
+                150,
+                168
+              ]
+            },
+            {
+              "prop": "paket",
+              "kare": [
+                172,
+                196
+              ]
+            }
+          ]
+        }
+      ],
+      "ekran_yazisi": [
+        {
+          "bant": "ust",
+          "metin": "Next package on its way.",
+          "vurgu": [
+            "way"
+          ],
+          "kagitSerit": true,
+          "tur": "iddia",
+          "bas": 0,
+          "bit": 224
+        }
+      ],
+      "temaslar": [
+        {
+          "kare": 50,
+          "olay": "eldiven paketin yatağına bırakılır",
+          "ses": "eldiven-fit"
+        },
+        {
+          "kare": 82,
+          "olay": "sol kanat eldivenin üstüne katlanır",
+          "ses": "kagit-katlama"
+        },
+        {
+          "kare": 114,
+          "olay": "sağ kanat katlanır",
+          "ses": "kagit-katlama",
+          "db": -8
+        },
+        {
+          "kare": 142,
+          "olay": "alt kanat katlanır",
+          "ses": "kagit-katlama",
+          "db": -8
+        },
+        {
+          "kare": 168,
+          "olay": "üst kanat kapanır — paket kapalı",
+          "ses": "kagit-katlama"
+        },
+        {
+          "kare": 182,
+          "olay": "ip paketin üstünden çekilir",
+          "ses": "ip-zit"
+        },
+        {
+          "kare": 196,
+          "olay": "düğüm sıkılır",
+          "ses": "dugum-tok"
+        }
+      ],
+      "dokunus": null,
+      "kontrol_kare": 160,
+      "not": "v4 + kit K4: tek paket nesnesi, ölçek/konum sabit (690,1340 x1.15). Eldiven 50'de yatağa; el dört kanadı sırayla katlar (paket.durum.kapan, el.takip ile kıstırma kanat kenarını izler), 172–196 ip sarılır ve düğüm sıkılır (durum.ip), etiket ipin ucunda düğüme gelir. El 212'de kadrajdan çıkar (plan sonundan 16 önce). Döngü: kapalı paket P01'in açık paketiyle aynı yer/ölçek/kamera (cs 1.14, cy 40). v4-son: P14 sonu kapalı paket → P01 açık paket kesmesi aynı yer/ölçek/kamerada 'yeni paket' okunuyor (P01'de yeni eldiven eliyle gelir); bırakıldı. | EN (bolum-en): sure 228→224; ses başlangıç [18]; ses sonu +20 nefes ya da son animasyon+12."
+    }
+  ]
+}
