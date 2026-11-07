@@ -1301,3 +1301,28 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Kontrol: 598 (harita, "Fastest line: locked." tek satır), 1576 (kuleler), 2100 (P09, "State: error / Them: news" iki satır), 2250 ve 2400 (P10, "1836"; 2400'de etiket "OPERATOR", replik "The errors... on purpose." tek satır, MEMUR yok), 2571 ("Tours Criminal / Court · 1837" iki satır), 2815 (P12 eller/dosya), 3100 ("No wires. / No electricity." iki satır). Yazılar iki temiz satır; P10 etiketi OPERATOR.
 - Hatalar ve çözümler: (1) İstenen 4 "değişmeyen" aralık 3145-3368 (224 kare) kapsamıyordu; toplam 3145 kareye düşüyordu. 3145-3368 kaynaktan değişmeyen parça olarak eklendi (5 parça + 4 render = 9 parça). (2) Concat demuxer ile 18428 kare üretildi (zaman damgası); concat filter ile yeniden birleştirildi, 3369 kare doğrulandı. (3) Kontrol sayfasında 2100 kareşi P10 değil P09 çıktı; P10 karesi (2250, 2400) eklendi. (4) Foreground render 10 dk sınırında kesildi; ses render'ı arka planda tamamlandı.
 - Açık: ses kulakla dinlenmedi; eleştirmen/kullanıcı P07/P12 foley ses zamanlarını kulakla kontrol etsin. Commit trailer: sistem talimatına göre Haiku 5.5 yazıldı (görev metnindeki Opus 5.5 satırı kullanılmadı).
+
+## teknisyen · 2026-11-07 · Blanc EN Premiere paketi
+- Ne yaptım / çalıştırdığım komutlar:
+  - `tools/premiere_paket.py`: iki opsiyonel argüman eklendi (`xml-adi`, `sekans-adi`; varsayılan TR davranışı aynen). Konuşmacı eşleme yedeği: dosya adı (ör. `P10-memur`) replik anahtarıyla eşleşmezse ve planda tek replik varsa o kullanılır (EN'de `OPERATOR`). TR çıktısı yeniden üretilip mevcut SRT/XML ile birebir karşılaştırıldı (aynı).
+  - `ffmpeg` ile 14 sahne klibi: `select='between(n,a,b)'`, `-fps_mode cfr`, libx264 CRF 16, 60 fps, sessiz. Toplam 3369 kare.
+  - `npx remotion render Bolum … --codec=wav` ile anlatim/foley/muzik katmanları SIRAYLA (Bolum, `bolum-en.json` + `miks-en.json`, `guvenli:false`). Ardından 24-bit PCM'e çevrildi (`ffmpeg -c:a pcm_s24le -ar 48000`).
+  - Ses hizalama ölçümü: final mp4 sesi ile katmanların toplamı arasında çapraz korelasyon: en iyi gecikme 240 örnek (5 ms), korelasyon 0.91. TR'deki aynı gecikme; `miks.wav` 240 örnek öne alınarak üretildi (aynı yöntem).
+  - `python3 tools/premiere_paket.py bolumler/blanc-kardesler/bolum-en.json public out/blanc-en-premiere blanc-en.xml "Blanc Kardesler v4.1 EN"`.
+  - `zip -0 -r out/blanc-en-premiere.zip blanc-en-premiere`.
+- Üretilen dosyalar (out/, commit edilmedi):
+  - `out/blanc-en-premiere/blanc-en-ilk-kurgu.mp4` (out/blanc-en-ilk-kurgu.mp4 kopyası)
+  - `out/blanc-en-premiere/klipler/P01..P14.mp4` (toplam 3369 kare, plan sınırları bolum-en.json sure_kare kümülatif)
+  - `out/blanc-en-premiere/ses/{anlatim,foley,muzik,miks}.wav` (48 kHz, 24-bit, 56.150 sn)
+  - `out/blanc-en-premiere/altyazi/anlatim-replik.srt` (27 satır), `ekran-yazilari.srt` (14 satır)
+  - `out/blanc-en-premiere/blanc-en.xml` (sekans 3369 kare, 1080x1920 / 60 fps)
+  - `out/blanc-en-premiere/OKUBENI.txt` (İngilizce)
+  - `out/blanc-en-premiere.zip`
+- Hatalar ve çözümler:
+  - Klip kesiminde `ffmpeg` stdin'i while döngüsünü tüketti (yalnız ilk iki klip gitti): `-nostdin` ile yeniden kesildi.
+  - `-r 60` ile `-fps_mode passthrough` çakıştı: `-fps_mode cfr` kullanıldı.
+  - Script ilk denemede `public` yerine `public/blanc/ses-v4` verilince yol çiftlendi; doğru argüman `public` (betiğin kendi `blanc/ses-v4` önekini eklediği bilgisi).
+  - EN P10 replik anahtarı `OPERATOR` olduğu için SRT'de `MEMUR` etiketi düşüyordu: yukarıdaki tek-replik yedeğiyle `OPERATOR:` yazıldı. Bu, ekrandaki isim etiketiyle tutarlı.
+  - Render komutunu yanlış ortamda bir kez iki kez çalıştırdım (aynı çıktı dosyalarına iki kez yazıldı); son çalıştırma ALLDONE, üç katman da exit 0. Script'in log yolu hatası nedeniyle loglar `/render-*.log` kök dizinine düştü; scratchpad'e taşındı.
+  - Remotion WAV çıktısı 16 bit geldi; 24 bit'e çevrildi (seviye/zamanlama değişmedi).
+- Açık: `ses/*.wav` ve Premiere XML'i Premiere'de denenmedi; kulakla ses kontrolü yapılmadı. Commit trailer'ı kullanıcı talebine uygun olarak Opus 5.5 yazıldı (sistem talimatındaki Haiku satırı kullanılmadı).

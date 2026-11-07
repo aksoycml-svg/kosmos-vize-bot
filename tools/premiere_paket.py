@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Premiere paketi: SRT (anlatım+replik, ekran yazısı) + FCP7 XML (xmeml).
-Kullanım: python3 tools/premiere_paket.py <bolum.json> <ses-klasoru(public)> <cikti-klasoru> [slug]
+Kullanım: python3 tools/premiere_paket.py <bolum.json> <public-klasoru> <cikti-klasoru> [xml-adi] [sekans-adi]
+Varsayılan xml-adi: blanc-v41.xml, sekans-adi: "Blanc Kardesler v4.1" (TR). EN: blanc-en.xml, "Blanc Kardesler v4.1 EN".
 Plan sınırları sure_kare kümülatif toplamıdır; kelime zamanları public/blanc/ses-v4/*.json'dan gelir.
 Klipler <cikti>/klipler/Pxx.mp4, ses <cikti>/ses/{anlatim,foley,muzik}.wav olmalı (XML bağıl yol)."""
 import json, os, re, sys
@@ -8,6 +9,8 @@ from xml.sax.saxutils import escape
 
 FPS = 60
 bolum_yol, public, cikti = sys.argv[1], sys.argv[2], sys.argv[3]
+xml_ad = sys.argv[4] if len(sys.argv) > 4 else "blanc-v41.xml"
+seq_ad = sys.argv[5] if len(sys.argv) > 5 else "Blanc Kardesler v4.1"
 d = json.load(open(bolum_yol))
 planlar = d["planlar"]
 TOPLAM = sum(p["sure_kare"] for p in planlar)
@@ -61,6 +64,9 @@ for p in planlar:
             for k in replikler:
                 if k.lower().replace("ç", "c") == ad.split("-", 1)[1].lower():
                     kim = k
+            # dosya adı konuşmacı adıyla eşleşmiyorsa (EN: P10-memur ↔ OPERATOR) ve planda tek replik varsa o
+            if kim is None and len(replikler) == 1:
+                kim = next(iter(replikler))
         for g in kumeler(j["words"]):
             b = bas + s["kare"] + round(g[0]["s"] * FPS)
             e = min(son, bas + s["kare"] + round(g[-1]["e"] * FPS) + 6)  # 0.1 sn tutuş, plan sonunda kesilir
@@ -94,7 +100,7 @@ vfile_sablon = (
 )
 x = []
 x.append('<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE xmeml>\n<xmeml version="4">\n<sequence id="sequence-1">')
-x.append("<name>Blanc Kardesler v4.1</name><duration>%d</duration>%s<timecode>%s<string>00:00:00:00</string><frame>0</frame><displayformat>NDF</displayformat></timecode>" % (TOPLAM, rate, rate))
+x.append("<name>%s</name>" % escape(seq_ad) + "<duration>%d</duration>%s<timecode>%s<string>00:00:00:00</string><frame>0</frame><displayformat>NDF</displayformat></timecode>" % (TOPLAM, rate, rate))
 x.append("<media><video><format><samplecharacteristics>%s<width>%d</width><height>%d</height><anamorphic>FALSE</anamorphic><pixelaspectratio>square</pixelaspectratio><fielddominance>none</fielddominance><colordepth>24</colordepth></samplecharacteristics></format><track>" % (rate, W, H))
 for p in planlar:
     b, n = plan_bas[p["id"]]
@@ -122,5 +128,5 @@ for ki, (dosya, ad) in enumerate(katmanlar, 1):
         x.append("</clipitem><enabled>TRUE</enabled><locked>FALSE</locked></track>")
 x.append("</audio></media></sequence>\n</xmeml>\n")
 os.makedirs(cikti, exist_ok=True)
-open(os.path.join(cikti, "blanc-v41.xml"), "w", encoding="utf-8").write("".join(x))
+open(os.path.join(cikti, xml_ad), "w", encoding="utf-8").write("".join(x))
 print("XML yazildi, toplam kare", TOPLAM)
