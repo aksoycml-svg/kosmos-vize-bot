@@ -1236,3 +1236,9 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Ne yaptım: P02 (210–467), P05 (966–1265), P09 (2118–2417), P13 (3280–3501) sessiz render (CRF 18, 60 fps, 1080x1920); v4 kareleri ffmpeg trim/concat ile birleştirildi (3730 kare); ses mp3 render edildi, AAC 320k 48 kHz: I −14.1 LUFS, LRA 3.1, TP −2.1 dBFS; 540x960 (CRF 26, AAC 128k): I −14.4, TP −1.6 dBFS.
 - Üretilen: out/blanc-v41-ilk-kurgu.mp4 (3730 kare, 62.167 sn), out/blanc-v41-ilk-kurgu-540.mp4 (3730 kare), out/v41/kontrol.png (P09 kontrol 2278 + son 3 sn).
 - Sorun: loudnorm linear=true + I −14 hedefi TP'yi aşıyordu (AAC sonrası TP −0.8); nihai zincir dinamik loudnorm I=−11.5 TP=−2.5 + alimiter 0.84 (I hedefi sapması kasıtlı). 540 için alimiter 0.70 gerekti. Ses 62.208 sn (mp3 pad), video 62.167 sn.
+
+## senarist · 2026-11-07 · Senaryo EN (v4 uyarlaması)
+- Ne yaptım: `senaryo-en.md` (14 plan, 105 kelime, 3 EN kanca, süre/sığma ve karakter tabloları, kurulum→karşılık, ilk kez izleyen testi, EN açıklama, 9 açık soru).
+- Dosyalar: bolumler/blanc-kardesler/senaryo-en.md (yeni), katki-raporu.md.
+- Kararlar: plan/görsel aynı; TR ses süresine göre yazıldı, P04/P06/P12 sıkı; P12'de "aynı yıl" düştü; mühür 3.3 sn'ye "government-only" hizalandı; tek kaynaklı "ikiz"/teleskop yalnız açıklamada, "Some call it…" ile yumuşatma.
+- Açık: HARITA etiketleri (4 SAAT, 3. GÜN, YALNIZ DEVLET) EN render'da değişmeli; EN sesler seçilmedi; "hack" ve "buy the man/operator" kararı kullanıcıda.
