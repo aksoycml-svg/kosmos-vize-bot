@@ -19,11 +19,12 @@ export type Sablon = { Sahne: React.FC<SablonProps>; arsiv: (plan: Plan) => Arsi
 export const param = <T,>(plan: Plan, ad: string, v: T): T => (plan.parametreler?.[ad] as T | undefined) ?? v;
 
 // Karakter: ışık tanımından gölge (gravür) + rig ışığı + (varsa) cep eldiveni. Önde olan arkadakini örter: çağıran z'ye göre sıralar.
-export const KarakterCiz: React.FC<{ d: KarakterDurum; isik: Isik; kamera: KameraDurum; murekkep: string; seed: number; cepEldiven?: boolean; golgeAlfa?: number }> = ({ d, isik, kamera, murekkep, seed, cepEldiven, golgeAlfa = 0.45 }) => {
+export const KarakterCiz: React.FC<{ d: KarakterDurum; isik: Isik; kamera: KameraDurum; murekkep: string; seed: number; cepEldiven?: boolean; golgeAlfa?: number; golgeKlip?: string }> = ({ d, isik, kamera, murekkep, seed, cepEldiven, golgeAlfa = 0.45, golgeKlip }) => {
   const s = d.pz.scale ?? 1;
   return (
     <g>
-      {!d.pz.yatik && <Golge isik={isik} ayak={d.ayak} h={600 * s * 0.9} genislik={100 * s} alfa={golgeAlfa} stil="gravur" seed={seed} />}
+      {/* golgeKlip: zemin gölgesi zemin düzleminde kalır (alçak mumda duvara taşmaz; duvardaki kısmı ayrı izdüşüm, ör. GolgeT) */}
+      {!d.pz.yatik && <g clipPath={golgeKlip}><Golge isik={isik} ayak={d.ayak} h={600 * s * 0.9} genislik={100 * s} alfa={golgeAlfa} stil="gravur" seed={seed} /></g>}
       <Kukla louis={d.louis} p={d.palet} pz={d.pz} golgesiz isik={kuklaIsigi(isik, d.ayak, d.boyPx, { murekkep, kamera: kamera.cs, seed: seed + 7 })} />
       {cepEldiven && <CepEldiven pz={d.pz} kamera={kamera.cs} />}
     </g>

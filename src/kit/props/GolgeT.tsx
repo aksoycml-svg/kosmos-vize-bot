@@ -9,7 +9,10 @@ import { dunyaya, elYerel } from "../../rig/kinematik";
 import { KONUMLAR, KonumAdi } from "../../doku/ChappeKule";
 import { P, poly } from "../../doku/sabitler";
 
-export type GolgeTParam = { kim: string; bas: number; bit: number; donusum?: number; konum?: KonumAdi };
+export type GolgeTParam = { kim: string; bas: number; bit: number; donusum?: number; konum?: KonumAdi;
+  koyuluk?: number; // 0–1 opaklık (varsayılan 0.82: duvar tonundan belirgin koyu, telefonda T okunur)
+  kenar?: number;   // 0–1 netlik (1 = keskin nokta-ışık kenarı; <1 hafif yumuşama, mum alevi boyu kadar)
+};
 type Dunya = { u: number; h: number; z: number };
 
 const lp = (a: P, b: P, t: number): P => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
@@ -17,8 +20,9 @@ const lp = (a: P, b: P, t: number): P => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1]
 export const GolgeT: React.FC<{
   pz: Poz; z: number; isik: Dunya; arka: number; t: number; konum?: KonumAdi;
   ekranDunya: (q: P, z: number) => { u: number; h: number }; dunyaEkran: (u: number, h: number, z: number) => P;
-  klip: string; renk?: string;
-}> = ({ pz, z, isik, arka, t, konum = "MESAJ", ekranDunya, dunyaEkran, klip, renk = "#2a1a10" }) => {
+  klip: string; renk?: string; koyuluk?: number; kenar?: number;
+}> = ({ pz, z, isik, arka, t, konum = "MESAJ", ekranDunya, dunyaEkran, klip, renk = "#22140b", koyuluk = 0.82, kenar = 1 }) => {
+  const fid = "gT" + React.useId().replace(/:/g, "");
   if (z <= isik.z + 0.05) return null;
   const k = (arka - isik.z) / (z - isik.z); // büyütme
   const duvar = (q: P): P => { const w = ekranDunya(q, z); return dunyaEkran(isik.u + k * (w.u - isik.u), isik.h + k * (w.h - isik.h), arka); };
@@ -37,7 +41,8 @@ export const GolgeT: React.FC<{
   const egim = Math.max(-15, Math.min(15, (Math.atan2(kolV[1], Math.abs(kolV[0]) + 30 * birim) * 180) / Math.PI));
   const yonu: P = [ileri * Math.cos((egim * Math.PI) / 180), Math.sin((egim * Math.PI) / 180)];
   const Lr = 270 * birim;
-  const C: P = [omuz[0] + ileri * Lr * 0.2, omuz[1] - Lr * 0.12];
+  // merkez: kol gölgesinin ortası (regülatör = kol), biraz önde-yukarıda → T karakterin arkasında değil kolun izinde, kadrajda kalır
+  const C: P = [(omuz[0] + el[0]) / 2 + ileri * Lr * 0.1, omuz[1] - Lr * 0.12];
   const TL: P = [C[0] - yonu[0] * Lr / 2, C[1] - yonu[1] * Lr / 2], TR: P = [C[0] + yonu[0] * Lr / 2, C[1] + yonu[1] * Lr / 2];
   const kol = [lp(omuz, TL, t), lp(dirsek, C, t), lp(el, TR, t)];
   const kalin = 26 * birim * (1 - t) + Lr * 0.075 * t;
@@ -52,13 +57,17 @@ export const GolgeT: React.FC<{
   const govde = [lp(omuz, [C[0] + dw, C[1]], t), lp(omuzA, [C[0] - dw, C[1]], t), lp(kalcaA, [C[0] - dw, alt], t), lp(kalcaO, [C[0] + dw, alt], t)];
   const basR = 0.12 * 1150 / z * k * (1 - t) + Lr * 0.03 * t;
   const basM = lp(bas, C, t);
+  const bulan = (1 - Math.max(0, Math.min(1, kenar))) * Lr * 0.03; // yarı gölge genişliği ~ alev boyu × büyütme
   return (
-    <g clipPath={klip} style={{ mixBlendMode: "multiply" }} opacity={0.62}>
+    <g clipPath={klip} style={{ mixBlendMode: "multiply" }} opacity={Math.max(0, Math.min(1, koyuluk))}>
+      {bulan > 0.3 && <defs><filter id={fid} x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation={bulan} /></filter></defs>}
+      <g filter={bulan > 0.3 ? `url(#${fid})` : undefined}>
       <polygon points={poly(govde)} fill={renk} />
       <circle cx={basM[0]} cy={basM[1]} r={basR} fill={renk} />
       <polyline points={poly(kol)} stroke={renk} strokeWidth={kalin} fill="none" strokeLinejoin="round" strokeLinecap="round" />
       <line x1={kol[2][0]} y1={kol[2][1]} x2={sagUc[0]} y2={sagUc[1]} stroke={renk} strokeWidth={kalin * (0.6 + 0.3 * t)} strokeLinecap="round" />
       {t > 0.02 && <line x1={lp(bas, kol[0], t)[0]} y1={lp(bas, kol[0], t)[1]} x2={solUc[0]} y2={solUc[1]} stroke={renk} strokeWidth={kalin * 0.85 * t} strokeLinecap="round" />}
+      </g>
     </g>
   );
 };

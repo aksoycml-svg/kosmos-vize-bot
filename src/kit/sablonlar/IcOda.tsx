@@ -120,7 +120,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   }
   kar.forEach(({ c, d }) => kilit.push(...karakterKilit(c.kim, d, k)));
   // derinlik sırası: uzak önce (karakterler + masa)
-  const nesneler: { z: number; el: React.ReactNode }[] = kar.map(({ c, i, d, z }) => ({ z, el: <KarakterCiz key={`k${i}`} d={d} isik={isik} kamera={k} murekkep={mur} seed={S + 300 + i * 11} cepEldiven={c.aksesuar?.includes("cep-eldiven")} golgeAlfa={mum ? 0.5 : 0.35} /> }));
+  const nesneler: { z: number; el: React.ReactNode }[] = kar.map(({ c, i, d, z }) => ({ z, el: <KarakterCiz key={`k${i}`} d={d} isik={isik} kamera={k} murekkep={mur} seed={S + 300 + i * 11} cepEldiven={c.aksesuar?.includes("cep-eldiven")} golgeAlfa={mum ? 0.5 : 0.35} golgeKlip="url(#ioZemin)" /> }));
   if (masa) {
     const h = masa.h ?? 0.75;
     nesneler.push({ z: masa.z - 0.01, el: (
@@ -180,6 +180,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     <svg width={1080} height={1920} viewBox="0 0 1080 1920">
       <defs>
         <radialGradient id="ioMum"><stop offset="0" stopColor="#ffcf70" stopOpacity={0.42} /><stop offset="0.5" stopColor="#ffb357" stopOpacity={0.14} /><stop offset="1" stopColor="#ffb357" stopOpacity={0} /></radialGradient>
+        {/* zemin düzlemi (arka duvar dibinden kameraya, kadraj altına kadar): karakter zemin gölgesi duvara tırmanmaz */}
+        <clipPath id="ioZemin"><polygon points={poly([[-2000, Y(0, ARKA)], [3080, Y(0, ARKA)], [3080, 4000], [-2000, 4000]])} /></clipPath>
         <clipPath id="ioPen"><rect x={pa[0]} y={pa[1]} width={PW} height={PH} /></clipPath>
         <clipPath id="ioDuvar"><path clipRule="evenodd" d={`M ${duvarSol[0]} ${duvarSol[1]} H ${duvarSag[0]} V ${duvarSag[1]} H ${duvarSol[0]} Z M ${pa[0]} ${pa[1]} H ${pb[0]} V ${pb[1]} H ${pa[0]} Z`} /></clipPath>
       </defs>
@@ -204,7 +206,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
             ic={<g clipPath="url(#ioPen)"><g transform={`translate(${pa[0] + PW / 2},${pa[1] + PH / 2}) scale(${disOlcek}) translate(${-(PEN0.x + PEN0.w / 2)},${-(PEN0.y + PEN0.h / 2)})`}><DisManzara tur={dis} kol={kol} /></g></g>} />
           {/* pervaz çentikleri (D6 "iki yıl"): bıçak izi sırası; yeni çentik temas karesinde belirir */}
           {centikN > 0 && Array.from({ length: centikN }).map((_, i) => { const x = pa[0] + 10 + i * centikAdim; return <line key={i} x1={x} y1={pb[1] + 2} x2={x + 3} y2={pb[1] + 17} stroke="#3a2a18" strokeWidth={3} strokeLinecap="round" />; })}
-          {gTk && <GolgeT pz={gTk.d.pz} z={gTk.z} isik={{ u: mumYer.u, h: mumYer.h + 0.165, z: mumYer.z }} arka={ARKA} t={gTt} konum={gT!.konum} klip="url(#ioDuvar)"
+          {gTk && <GolgeT pz={gTk.d.pz} z={gTk.z} isik={{ u: mumYer.u, h: mumYer.h + 0.165, z: mumYer.z }} arka={ARKA} t={gTt} konum={gT!.konum} koyuluk={gT!.koyuluk} kenar={gT!.kenar} klip="url(#ioDuvar)"
             ekranDunya={(q, z) => ({ u: ((q[0] - 540) * z) / F, h: GOZ - ((q[1] - UFUK) * z) / F })} dunyaEkran={(u, h, z) => Q(u, h, z)} />}
           {teleskop && <g transform={`translate(${pa[0] + PW * 0.65},${pb[1] + 2})`}><rect x={-6} y={-24} width={12} height={24} fill="#4a3220" /><g transform="rotate(-14)"><rect x={-70} y={-40} width={130} height={18} rx={4} fill="#c9a24a" stroke={ink("#c9a24a")} strokeWidth={2} /><rect x={50} y={-43} width={18} height={24} rx={3} fill="#a8862e" /></g></g>}
           {/* zemin: çam döşeme tahtaları (derinlik yönünde) */}
