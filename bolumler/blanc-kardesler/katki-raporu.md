@@ -1083,6 +1083,12 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Ses zamanlaması YAPILMADI: sağlanamaz. Ses toplamı ≈ 3375 kare (56.3 sn); marjlar (başta ≥6, sonda ≥12; P05/P10 arası ≥15) + P06 ≥ 438 + P04 fare 66 kare + P08 ≥ 120 ile en az ≈ 3848 kare (64.1 sn) gerekir; 3600 sınırı ≈ 248 kare (4.1 sn) aşılıyor. Karar bekleniyor (seçenekler final cevapta). `ses:[{dosya,kare}]` alanı KATALOG'da yok; eklenecekse bu biçim önerilir.
 - Doğrulayıcı çalıştırılmadı (Bash yok); P05 örtüşme uyarısı ve P09 cx sınırı ihtimaline bakılmalı.
 
+## yönetmen · 2026-11-07 · bolum.json ses zamanlaması (Seçenek A)
+- Ne yaptım: 14 planın süreleri sese göre yeniden dağıtıldı (toplam 3854 kare = 64.2 sn; marjlar 6/12 sağlandı, P05/P10 arası ≥15); her plana `ses: [{dosya, kare}]` eklendi (dosya `blanc/ses-v3/…`, plan içi kare; KATALOG'da yoktu, motion Bolum'a ekleyecek). Anahtar kareler/jestler/temaslar yeni süre ve sese göre elle yeniden kuruldu (orantısal değil; temaslar sözcük arası boşluklara yerleştirildi).
+- Kararlar: P04 fare insert'i konuşmadan sonra (bas 150), yürüyüş 0–140; P05 tikler 198/244/290 (Louis cümle arası), ekran yazısı 196'da biter, replik 202'de başlar (ust bant çakışması giderildi); P06 vurgu ["↓"], hand 250–410, flop 350 (Çorap:–düşüş arası); P07 sert klak 198 (cümleler arası); P11 TOK 95 / gerilme 142 gibi boşluklarda; P13 wifi 70–160.
+- Dosya: bolumler/blanc-kardesler/bolum.json (yeniden yazıldı). Doğrulayıcı çalıştırılmadı.
+- Açık: P06 `el` ilk anahtar kadraj dışı (1250,1060), kare 0–250 el görünmemeli (motion teyit); P10 sessizlik 296'dan sonra 12 kare; P14 düğüm 210, plan 219.
+
 ## motion · 2026-11-07 · Bolum'a plan sesi (`ses`) desteği
 - Ne yaptım: `Plan.ses?: {dosya, kare, db?}[]` (tipler.ts); Bolum.tsx'te plan Sequence'i içinde `@remotion/media` Audio, `kare`'den başlar, volume = 10^(db/20), plan sonunda kesilir; bolum_dogrula.mjs: dosya yok = HATA, ffprobe ile plan sonundan taşma + aynı planda çakışma = UYARI (ffprobe yoksa uyarı); KATALOG.md'ye alan eklendi.
 - Dokunduğum dosyalar: src/kit/tipler.ts, src/kit/Bolum.tsx, tools/bolum_dogrula.mjs, src/kit/KATALOG.md. tsc temiz; bolum.json'a dokunulmadı.
