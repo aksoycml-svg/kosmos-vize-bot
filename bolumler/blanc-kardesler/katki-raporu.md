@@ -1103,3 +1103,9 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Ne yaptım: sayfa-1/2 ve 6 tekil kareyi inceledim; storyboard-v3/elestiri.md yazdım (14 plan puanı, 8 kritik madde). Dokunduğum dosyalar: storyboard-v3/elestiri.md, katki-raporu.md.
 - Kararlar/ihlaller: P08 esneme yok, P10 hasta/yatak okunmuyor, P13 Wi-Fi morfu yok; D1, D2, D4, D8 telefonda okunmuyor; 14 planın 10'u düzelt.
 - Açık soru: memur için ayrışmış yüz/hasta poz kit'te var mı (motion'a); P08-P09-P10 aynı yüzü paylaşıyor.
+
+## yonetmen · 2026-11-07 · bolum.json düzeltme turu (v3.1)
+- Ne yaptım: bolum.json'da P02, P04, P05, P06, P07, P08, P09, P12, P13 kadraj/zamanlama/ölçek düzeltmesi; 14 plana `kontrol_kare`; P10'a `kit_bekliyor`. Toplam kare ve ses kareleri değişmedi (P08/P13 temas kareleri yeni hareketle hizalandı).
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/bolum.json, katki-raporu.md.
+- Kararlar: kamera cx/cy post-scale kayma varsayıldı (P13 cy +460, P07 cx +150 buna göre; kalibrasyon karesinde doğrulanmalı); P02 3-figür sınırı yüzünden kalabalık yalnız yakınlaştırmayla; P06 çorap anahtarı 438'e uzatıldı.
+- Açık: P14 `ipCozuk` boolean dizisi render hatası veriyordu (öncekiler), bu turda dokunulmadı; P09 gölge yönü ve P07 halo büyüklüğü motion'da; doğrulayıcı henüz çalıştırılmadı.

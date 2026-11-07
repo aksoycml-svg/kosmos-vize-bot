@@ -227,24 +227,24 @@
     },
     {
       "plan": "P08",
-      "kare": 2299,
-      "sn": 38.317,
+      "kare": 2298,
+      "sn": 38.3,
       "olay": "makara tik 1",
       "ses": "makara-tik",
       "db": -10
     },
     {
       "plan": "P08",
-      "kare": 2316,
-      "sn": 38.6,
+      "kare": 2308,
+      "sn": 38.467,
       "olay": "makara tik 2",
       "ses": "makara-tik",
       "db": -10
     },
     {
       "plan": "P08",
-      "kare": 2333,
-      "sn": 38.883,
+      "kare": 2318,
+      "sn": 38.633,
       "olay": "makara tik 3",
       "ses": "makara-tik",
       "db": -10
@@ -259,9 +259,9 @@
     },
     {
       "plan": "P08",
-      "kare": 2367,
-      "sn": 39.45,
-      "olay": "esneme sesi",
+      "kare": 2355,
+      "sn": 39.25,
+      "olay": "esneme sesi (ağız tam açık)",
       "ses": "esneme",
       "db": -6
     },
@@ -355,32 +355,32 @@
     },
     {
       "plan": "P13",
-      "kare": 3535,
-      "sn": 58.917,
+      "kare": 3495,
+      "sn": 58.25,
       "olay": "tahta gıcırtısı (morf başlar)",
       "ses": "tahta-gicirti",
       "db": -8
     },
     {
       "plan": "P13",
-      "kare": 3565,
-      "sn": 59.417,
+      "kare": 3525,
+      "sn": 58.75,
       "olay": "yay 1 tık",
       "ses": "ahsap-tik",
       "db": -8
     },
     {
       "plan": "P13",
-      "kare": 3595,
-      "sn": 59.917,
+      "kare": 3555,
+      "sn": 59.25,
       "olay": "yay 2 tık",
       "ses": "ahsap-tik",
       "db": -8
     },
     {
       "plan": "P13",
-      "kare": 3625,
-      "sn": 60.417,
+      "kare": 3585,
+      "sn": 59.75,
       "olay": "yay 3 tık",
       "ses": "ahsap-tik",
       "db": -8

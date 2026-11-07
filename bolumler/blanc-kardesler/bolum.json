@@ -34,6 +34,7 @@
         { "kare": 152, "olay": "eldiven masaya bırakılır — fıt", "ses": "eldiven-fit" }
       ],
       "dokunus": null,
+      "kontrol_kare": 0,
       "not": "Kanca: ilk kare hareketin ortasında (eldiven yarı çıkmış), kapak karesi. Ses 6–183, plan 196."
     },
     {
@@ -43,7 +44,7 @@
       "olcek": "geniş → boy",
       "ses": [{ "dosya": "blanc/ses-v3/P02.mp3", "kare": 6 }],
       "parametreler": { "sehir": "bordeaux", "saat": "gun" },
-      "kamera": { "kare": [0, 294], "cs": [1.0, 1.3], "cx": [0, 20], "cy": [0, -60], "egri": "inout" },
+      "kamera": { "kare": [0, 294], "cs": [1.15, 1.5], "cx": [0, 20], "cy": [-80, -260], "egri": "inout" },
       "karakterler": [
         { "kim": "francois", "z": 2.4, "u": 0.46, "yon": 1,
           "yuz": { "ifade": "gulumse", "bakis": [0.5, 0], "kas": 0.8 },
@@ -56,7 +57,7 @@
           "yuz": { "bakis": [0, 0.6], "kas": -0.3 },
           "jestler": [{ "ad": "yaz", "bas": 12, "bit": 282 }],
           "etiket": { "ad": "Louis", "alt": "BLANC" } },
-        { "kim": "tuccar", "z": 3.2, "u": 0.22, "yon": 1,
+        { "kim": "tuccar", "z": 2.7, "u": 0.2, "yon": 1,
           "jestler": [{ "ad": "bak", "bas": 0, "bit": 294, "ops": { "x": 0.6, "y": 0 } }] }
       ],
       "ekran_yazisi": [
@@ -66,7 +67,8 @@
         { "kare": 86, "olay": "Louis kalem cızırtısı (deftere rakam)", "ses": "kalem-cizirti", "db": -8 }
       ],
       "dokunus": null,
-      "not": "Alt üçte bir: z 2.4 ayaklar ≤1480, öndeki kalabalık tuccarlar + kaldırım gölgesi doldurur. Ses 6–282, plan 294."
+      "kontrol_kare": 90,
+      "not": "v3.1: cs 1.15→1.5, cy -80→-260 (ayaklar ≈1480'de kalır, figürler ~+%30); tüccar z 2.7 öne (kalabalık 3 figür sınırı). Alt üçte bir: z 2.4 ayaklar ≤1480, öndeki kalabalık tuccarlar + kaldırım gölgesi doldurur. Ses 6–282, plan 294."
     },
     {
       "id": "P03",
@@ -94,6 +96,7 @@
         { "kare": 448, "olay": "mühür TOK (konuşma 446'da biter)", "ses": "muhur-tok" }
       ],
       "dokunus": null,
+      "kontrol_kare": 448,
       "not": "Ses 6–446: cümle1 6–170 (posta), cümle2 189–334 (telgraf), cümle3 351–446; mühür sözden sonra. Alt üçte bir: rota Bordeaux ucu ve sayaç kutusu (y 1320–1400)."
     },
     {
@@ -107,10 +110,10 @@
         "insert": { "tur": "fare", "bas": 150 }, "revAsili": 15
       },
       "kamera": {
-        "kare": [0, 120, 190, 222, 240],
-        "cs": [1.0, 1.1, 1.7, 3.2, 3.3],
-        "cx": [0, 0, 81.6, -6.4, -2],
-        "cy": [0, -20, -247, -472, -482],
+        "kare": [0, 120, 150, 170, 216, 240],
+        "cs": [1.0, 1.1, 1.8, 3.2, 3.3, 2.6],
+        "cx": [0, 0, 70, -6, -2, 20],
+        "cy": [0, -20, -260, -472, -482, -380],
         "egri": "inout"
       },
       "karakterler": [
@@ -137,7 +140,8 @@
         { "kare": 210, "olay": "kuyruk ucu ızgara demirine — tink (kapanış)", "ses": "tink", "db": -12 }
       ],
       "dokunus": { "id": "D1", "ad": "Baston–fare", "bas": 150, "bit": 216 },
-      "not": "Replik 6–150 (yürürken); fare insert konuşmadan sonra 150–216, anlatım zaten yok (sessizlik). Plan 240 değişmedi."
+      "kontrol_kare": 180,
+      "not": "v3.1: yakın plan (cs 3.2) 170'te hazır → fare pençe 159, çizme 170, baston TAK 180 yakın planda okunur; 216'dan sonra cs 2.6'ya geri çekilir (son karede ayak/zemin görünür, ölü yakın plan yok). Replik 6–150 (yürürken); fare insert 150–216, anlatım yok (sessizlik). Plan 240 değişmedi."
     },
     {
       "id": "P05",
@@ -150,11 +154,11 @@
       ],
       "parametreler": {
         "oda": "tours-buro", "isik": "mum",
-        "masa": { "z": 3.0, "u": 0.45, "w": 1.4, "d": 0.7, "h": 0.8 },
+        "masa": { "z": 3.0, "u": 0.6, "w": 1.9, "d": 0.7, "h": 0.8 },
         "dis": "tours", "kol": "BEKLE",
-        "golgeT": { "kim": "memur", "bas": 186, "bit": 324, "donusum": 36, "konum": "SAK" }
+        "golgeT": { "kim": "memur", "bas": 186, "bit": 324, "donusum": 66, "konum": "SAK" }
       },
-      "kamera": { "kare": [0, 330], "cs": [1.0, 1.25], "cx": [0, 0], "cy": [0, -40], "egri": "inout" },
+      "kamera": { "kare": [0, 330], "cs": [1.1, 1.6], "cx": [0, 0], "cy": [-20, -80], "egri": "inout" },
       "karakterler": [
         { "kim": "louis", "z": 3.1, "u": -0.85, "yon": 1,
           "yuz": { "bakis": [0.8, 0], "kas": -0.4 },
@@ -163,14 +167,14 @@
         { "kim": "mudur", "z": 3.9, "u": 1.1, "yon": -1,
           "yuz": { "bakis": [-0.5, 0.3], "kas": 0.2 },
           "jestler": [{ "ad": "bak", "bas": 44, "bit": 132, "ops": { "x": -0.5, "y": 0.4 } }] },
-        { "kim": "memur", "z": 3.65, "u": -0.2, "yon": 1,
+        { "kim": "memur", "z": 3.65, "u": -0.35, "yon": 1,
           "yuz": { "bakis": [0.4, 0.2], "kas": 0.5 },
           "jestler": [{ "ad": "it-cek", "bas": 186, "bit": 324, "ops": { "tekrar": 3 } }],
           "etiket": { "ad": "Memur", "alt": "TOURS" } }
       ],
       "props": [
-        { "tur": "mum", "id": "mum", "x": 0.45, "y": 3.0 },
-        { "tur": "kese", "id": "kese", "x": [0.0, 0.8], "y": 3.15, "kare": [22, 88] }
+        { "tur": "mum", "id": "mum", "x": 0.65, "y": 3.0 },
+        { "tur": "kese", "id": "kese", "x": [-0.1, 0.3], "y": 3.15, "kare": [22, 88] }
       ],
       "ekran_yazisi": [
         { "bant": "ust", "metin": "Rüşvet · Tours", "vurgu": ["Rüşvet"], "kagitSerit": true, "tur": "iddia", "bas": 6, "bit": 196 }
@@ -186,7 +190,8 @@
         { "kare": 290, "olay": "it-çek tik 3", "ses": "makara-tik", "db": -10 }
       ],
       "dokunus": { "id": "D2", "ad": "El–gölge", "bas": 186, "bit": 324 },
-      "not": "Ekran yazısı replikten önce biter (196 < 202) → üst bantta çakışma yok. Ses: anlatım 6–186, Louis 202–318. K2 yerleşim: masa u .45 z 3.0, mum masada; memur masa arkasında → gölge sola; müdür masa dışı. manipulator konmadı (direk masaya girerdi)."
+      "kontrol_kare": 252,
+      "not": "v3.1 K2 örneğine göre: masa u .6 w 1.9 (memur masa arkasında), mum u .65, memur u -.35 (mum–memur 1.0 m → gölge sola, karakter yanında), dönüşüm 66 kare (186–252 T tam, 252–324 T'de kalır). cs 1.1→1.6. Ekran yazısı replikten önce biter (196 < 202) → üst bantta çakışma yok. Ses: anlatım 6–186, Louis 202–318. K2 yerleşim: masa u .45 z 3.0, mum masada; memur masa arkasında → gölge sola; müdür masa dışı. manipulator konmadı (direk masaya girerdi)."
     },
     {
       "id": "P06",
@@ -200,13 +205,13 @@
         { "tur": "paket", "id": "paket", "x": 540, "y": 1000, "olcek": 1.0, "kare": [0, 110],
           "durum": { "acik": [0.3, 1], "ipCozuk": true } },
         { "tur": "eldiven", "id": "eldiven", "x": 300, "y": 1080, "durum": { "elBoyu": 266 } },
-        { "tur": "corap", "id": "corap", "x": 780, "y": 1080, "kare": [0, 288, 320, 350],
-          "durum": { "sarkma": [0, 0, 1, 0.15] } }
+        { "tur": "corap", "id": "corap", "x": 760, "y": 1080, "kare": [0, 288, 320, 350, 438],
+          "durum": { "sarkma": [0, 0, 1, 0.15, 0.15] } }
       ],
       "el": [
         { "tip": "gorevli", "giris": [1160, 1000], "olcek": 1.9, "kare": [0, 250, 288, 320, 350, 410],
-          "bilek": [[1250, 1060], [1000, 1060], [800, 1090], [800, 980], [800, 1090], [1100, 1060]],
-          "dirsek": [[1350, 1100], [1160, 1100], [1040, 1100], [1040, 1060], [1040, 1100], [1200, 1080]],
+          "bilek": [[1250, 1060], [1000, 1060], [780, 1090], [780, 980], [780, 1090], [1100, 1060]],
+          "dirsek": [[1350, 1100], [1160, 1100], [1020, 1100], [1020, 1060], [1020, 1100], [1200, 1080]],
           "aci": [10, 10, 10, 0, 10, 20],
           "poz": [{ "kare": 288, "poz": "kistir" }, { "kare": 350, "poz": "gevsek" }],
           "tut": { "prop": "corap", "bas": 288, "bit": 350, "tutulAci": 0, "birakAci": 20 } }
@@ -220,7 +225,8 @@
         { "kare": 350, "olay": "çorap masaya bırakılır — flop (\"Çorap:\" ile \"düşüş\" arası boşlukta)", "ses": "yun-flop", "db": -6 }
       ],
       "dokunus": { "id": "D3", "ad": "Çorabı kaldıran el", "bas": 288, "bit": 410 },
-      "not": "Ses 8–417: paket cümlesi 8–128, Eldiven 150–257, Çorap 288–326, düşüş 363–417. Vurgu tek kelime (↓). ↓ oku katalogda yok: ekran yazısıyla aynı karede."
+      "kontrol_kare": 320,
+      "not": "v3.1: çorap son karede (438) masada kalır (kare anahtarı 438'e uzatıldı, x 760); el/kıstırma x 780 (sağ 160 px dışında). Ses 8–417: paket cümlesi 8–128, Eldiven 150–257, Çorap 288–326, düşüş 363–417. Vurgu tek kelime (↓). ↓ oku katalogda yok: ekran yazısıyla aynı karede."
     },
     {
       "id": "P07",
@@ -238,7 +244,7 @@
           { "x": 480, "taban": 960, "L": 40, "konum": { "kare": [272, 312], "konum": ["BEKLE", "HATA"] } }
         ]
       },
-      "kamera": { "kare": [0, 130, 200, 338], "cs": [1.0, 1.0, 1.35, 1.1], "cx": [0, 0, -50, -10], "cy": [0, 0, -120, -20], "egri": "inout" },
+      "kamera": { "kare": [0, 130, 200, 338], "cs": [1.0, 1.0, 1.5, 1.2], "cx": [0, 0, 150, 60], "cy": [0, 0, 0, -10], "egri": "inout" },
       "ekran_yazisi": [
         { "bant": "ust", "metin": "Gizli \"hata\"", "vurgu": ["hata"], "kagitSerit": true, "tur": "iddia", "bas": 150, "bit": 215 },
         { "bant": "ust", "metin": "Herkes kopyaladı", "vurgu": ["kopyaladı"], "kagitSerit": true, "tur": "iddia", "bas": 215, "bit": 338 }
@@ -251,7 +257,8 @@
         { "kare": 312, "olay": "kule 5 kopya klak", "ses": "kol-klak", "db": -12 }
       ],
       "dokunus": { "id": "D4", "ad": "Fazladan çentik + kopya dalgası", "bas": 158, "bit": 318 },
-      "not": "Gündüz: kollar çalışır. Ses 6–326: cümle1 6–185, boşluk 185–213 (sert klak burada), cümle2 213–324."
+      "kontrol_kare": 230,
+      "not": "v3.1: 200–338 arası kamera fazladan çentikli kule 3'e (x 420) yaklaşır (cs 1.5, cx +150 → kule merkeze), halo 198–298 kadrajda. Gündüz: kollar çalışır. Ses 6–326: cümle1 6–185, boşluk 185–213 (sert klak burada), cümle2 213–324."
     },
     {
       "id": "P08",
@@ -274,22 +281,23 @@
         { "kim": "telgrafci",
           "yuz": { "ifade": "yorgun", "bakis": [0, 0], "kas": -0.3 },
           "jestler": [
-            { "ad": "it-cek", "bas": 0, "bit": 50, "ops": { "tekrar": 3 } },
-            { "ad": "esne", "bas": 52, "bit": 112, "ops": { "agiz": "esneme" } }
+            { "ad": "it-cek", "bas": 0, "bit": 30, "ops": { "tekrar": 3 } },
+            { "ad": "esne", "bas": 30, "bit": 112, "ops": { "agiz": "esneme" } }
           ] }
       ],
       "ekran_yazisi": [
         { "bant": "ust", "metin": "Kimse durdurmadı.", "vurgu": ["durdurmadı"], "kagitSerit": true, "tur": "iddia", "bas": 10, "bit": 120 }
       ],
       "temaslar": [
-        { "kare": 4, "olay": "makara tik 1", "ses": "makara-tik", "db": -10 },
-        { "kare": 21, "olay": "makara tik 2", "ses": "makara-tik", "db": -10 },
-        { "kare": 38, "olay": "makara tik 3", "ses": "makara-tik", "db": -10 },
+        { "kare": 3, "olay": "makara tik 1", "ses": "makara-tik", "db": -10 },
+        { "kare": 13, "olay": "makara tik 2", "ses": "makara-tik", "db": -10 },
+        { "kare": 23, "olay": "makara tik 3", "ses": "makara-tik", "db": -10 },
         { "kare": 48, "olay": "arka direk kolu klak (bulanık)", "ses": "klak-uzak", "db": -12 },
-        { "kare": 72, "olay": "esneme sesi", "ses": "esneme", "db": -6 }
+        { "kare": 60, "olay": "esneme sesi (ağız tam açık)", "ses": "esneme", "db": -6 }
       ],
-      "dokunus": { "id": "D5", "ad": "Esneme", "bas": 52, "bit": 112 },
-      "not": "Anlatım yok: 2 sn sessiz ironi. K2: kocaman esneme ağzı, manipulator elde."
+      "dokunus": { "id": "D5", "ad": "Esneme", "bas": 30, "bit": 112 },
+      "kontrol_kare": 70,
+      "not": "v3.1: it-cek 0–30 (tikler 3/13/23), esne 30–112 → ilk yarıda başlar, ağız ~45–100 tam açık (≥1 sn). Anlatım yok: 2 sn sessiz ironi. K2: kocaman esneme ağzı, manipulator elde."
     },
     {
       "id": "P09",
@@ -304,14 +312,14 @@
         "arka": 4.2, "pervazCentik": 24, "pervazCentikYeni": 149, "teleskop": true,
         "pervazBicak": { "bas": 119, "kare": 149, "bit": 189, "tip": "ceket" }
       },
-      "kamera": { "kare": [0, 110, 291], "cs": [1.0, 2.5, 2.5], "cx": [0, -20, -20], "cy": [0, 10, 10], "egri": "inout" },
+      "kamera": { "kare": [0, 100, 150, 291], "cs": [1.0, 1.8, 2.6, 2.6], "cx": [0, -20, -30, -30], "cy": [0, 10, 10, 10], "egri": "inout" },
       "karakterler": [
-        { "kim": "katip", "z": 2.8, "u": 0.55, "yon": -1,
+        { "kim": "katip", "z": 2.5, "u": 0.45, "yon": -1,
           "yuz": { "bakis": [-0.8, -0.2], "kas": 0.3 },
           "jestler": [{ "ad": "bak", "bas": 0, "bit": 291, "ops": { "x": -0.8, "y": -0.2 } }] }
       ],
       "ekran_yazisi": [
-        { "bant": "ust", "metin": "1834 → 1836", "vurgu": ["1836"], "kagitSerit": true, "tur": "formul", "bas": 154, "bit": 291 }
+        { "bant": "ust", "metin": "1834 → 1836", "vurgu": ["1836"], "kagitSerit": true, "tur": "iddia", "bas": 154, "bit": 291 }
       ],
       "temaslar": [
         { "kare": 20, "olay": "göz teleskopa tik", "ses": "teleskop-tik", "db": -8 },
@@ -319,7 +327,8 @@
         { "kare": 205, "olay": "uzak kol klak", "ses": "klak-uzak", "db": -12 }
       ],
       "dokunus": { "id": "D6", "ad": "Pervaz çentiği", "bas": 119, "bit": 189 },
-      "not": "Gündüz, dış kol çalışır. Ses 6–279: cümle1 6–145, boşluk, cümle2 154–279. K2: pencere u .1, katip sağda pencereye bakar; cs 2.5 push-in, bıçak sağ-alttan girer."
+      "kontrol_kare": 149,
+      "not": "v3.1: push-in 0–150 (cs 1→2.6, 'kırt' 149'da cs 2.6 = pervaz+bıçak ekranı doldurur, alt yarı ceket kolu/pervaz/duvar); katip z 2.5 u .45 (daha büyük, kesik değil); yazı Playfair 'iddia' (standart ekran yazısı boyu). Gölge yönü pencereyle: motion IC-ODA kit. Gündüz, dış kol çalışır. Ses 6–279: cümle1 6–145, boşluk, cümle2 154–279. K2: pencere u .1, katip sağda pencereye bakar; cs 2.5 push-in, bıçak sağ-alttan girer."
     },
     {
       "id": "P10",
@@ -357,6 +366,8 @@
         { "kare": 296, "olay": "son 0.3 sn tam sessizlik başlar (nefes kesilir)", "ses": "sessizlik", "db": -60 }
       ],
       "dokunus": null,
+      "kit_bekliyor": ["yatik-poz", "yuz-cesidi"],
+      "kontrol_kare": 230,
       "not": "Oyunculuk planı (yüz). Ses: anlatım 6–175, memur 191–296. Replik alt bantta: yüz y 780, ayak yok."
     },
     {
@@ -384,6 +395,7 @@
         { "kare": 152, "olay": "el eldivenle yerleşir", "ses": "eldiven-fit", "db": -8 }
       ],
       "dokunus": { "id": "D7", "ad": "Eldiven giyme", "bas": 80, "bit": 152 },
+      "kontrol_kare": 142,
       "not": "K2 eldivenGiy; karar kâğıdı katalogda yok → dosya kapağı. Ses 6–197. Gerilme sözcükler arası boşlukta."
     },
     {
@@ -393,9 +405,9 @@
       "olcek": "insert (tepe)",
       "ses": [{ "dosya": "blanc/ses-v3/P12.mp3", "kare": 6 }],
       "parametreler": { "aci": "tepe", "isik": "gun", "elYukseklik": 120 },
-      "kamera": { "kare": [0, 241], "cs": [1.0, 1.2], "cy": [0, -30], "egri": "inout" },
+      "kamera": { "kare": [0, 241], "cs": [1.1, 1.5], "cy": [0, -30], "egri": "inout" },
       "props": [
-        { "tur": "kitap", "id": "kitap", "x": 540, "y": 1050, "olcek": 1.2, "kare": [0, 60, 99, 150, 230],
+        { "tur": "kitap", "id": "kitap", "x": 540, "y": 1000, "olcek": 1.5, "kare": [0, 60, 99, 150, 230],
           "durum": { "sayfa": [0, 0.6, 1, 1, 1], "bos": true, "guve": [0, 0, 0, 0, 1] } }
       ],
       "el": [
@@ -413,7 +425,8 @@
         { "kare": 99, "olay": "sayfa yatar (boş bölüm; cümleler arası boşluk)", "ses": "sayfa-yatis", "db": -6 }
       ],
       "dokunus": { "id": "D8", "ad": "Boş kitap + güve", "bas": 99, "bit": 230 },
-      "not": "K2: güve boş sayfada konar (99–150), 150'den sonra uçar, 230'da kadraj üstünden çıkar; ses yok. Ses 6–228."
+      "kontrol_kare": 120,
+      "not": "v3.1: kitap olcek 1.5 (güve kitapla büyür), cs 1.1→1.5 (katalog üst sınırı), kitap tahtayı doldurur. K2: güve boş sayfada konar (99–150), 150'den sonra uçar, 230'da kadraj üstünden çıkar; ses yok. Ses 6–228."
     },
     {
       "id": "P13",
@@ -424,23 +437,24 @@
       "parametreler": {
         "saat": "gun",
         "kuleler": [
-          { "x": 540, "taban": 1500, "L": 240, "konum": "BEKLE", "wifi": { "bas": 70, "bit": 160 } },
+          { "x": 540, "taban": 1500, "L": 240, "konum": "BEKLE", "wifi": { "bas": 30, "bit": 120 } },
           { "x": 250, "taban": 1050, "L": 60, "konum": "BEKLE" },
           { "x": 820, "taban": 980, "L": 40, "konum": "BEKLE" }
         ]
       },
-      "kamera": { "kare": [0, 170], "cs": [1.0, 3.0], "cx": [0, 0], "cy": [0, -260], "egri": "inout" },
+      "kamera": { "kare": [0, 170], "cs": [1.0, 2.0], "cx": [0, 0], "cy": [0, 460], "egri": "inout" },
       "ekran_yazisi": [
         { "bant": "ust", "metin": "\"İlk siber saldırı\"", "vurgu": ["siber"], "kagitSerit": true, "tur": "iddia", "bas": 60, "bit": 170 }
       ],
       "temaslar": [
-        { "kare": 70, "olay": "tahta gıcırtısı (morf başlar)", "ses": "tahta-gicirti", "db": -8 },
-        { "kare": 100, "olay": "yay 1 tık", "ses": "ahsap-tik", "db": -8 },
-        { "kare": 130, "olay": "yay 2 tık", "ses": "ahsap-tik", "db": -8 },
-        { "kare": 160, "olay": "yay 3 tık", "ses": "ahsap-tik", "db": -8 }
+        { "kare": 30, "olay": "tahta gıcırtısı (morf başlar)", "ses": "tahta-gicirti", "db": -8 },
+        { "kare": 60, "olay": "yay 1 tık", "ses": "ahsap-tik", "db": -8 },
+        { "kare": 90, "olay": "yay 2 tık", "ses": "ahsap-tik", "db": -8 },
+        { "kare": 120, "olay": "yay 3 tık", "ses": "ahsap-tik", "db": -8 }
       ],
       "dokunus": null,
-      "not": "K2 wifi yalnız saat:gun (alacakaranlıktan gündüze geçti, orkestra kabul). Tikler bas+(bit-bas)·i/3 = 100/130/160. Ses 6–158."
+      "kontrol_kare": 135,
+      "not": "v3.1: wifi 30–120 plan içinde biter, 120–170 Wi-Fi ikonu net (≥50 kare); kamera cs 1→2.0, cy +460 → kollar/yaylar (y≈650) ekran y≈800'e iner, gövde değil kollar kadrajda. K2 wifi yalnız saat:gun (alacakaranlıktan gündüze geçti, orkestra kabul). Tikler bas+(bit-bas)·i/3 = 60/90/120. Ses 6–158."
     },
     {
       "id": "P14",
@@ -473,6 +487,7 @@
         { "kare": 210, "olay": "düğüm tok (konuşma 207'de biter)", "ses": "dugum-tok", "db": -6 }
       ],
       "dokunus": null,
+      "kontrol_kare": 58,
       "not": "P01 ile eşleşen kesme (döngü); paket kapalı biter. Ses 6–207. Kıstırma noktaları: bilek 1300 y>1290 uyarısı çıkarsa yukarı çekilmeli."
     }
   ]

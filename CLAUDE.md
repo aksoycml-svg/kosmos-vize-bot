@@ -35,6 +35,14 @@ Her ajan görev bitince `bolumler/<slug>/katki-raporu.md` sonuna ekler: ne yapt�
 - **Denetim önce betik:** güvenli alan, yazı bantları, ayak teması, renk/ton, imza nesnesi beyazı, süre — `tools/` betikleriyle; insan/ajan gözü yalnız betiğin ölçemediği için.
 - Ajan brifleri kısa; ajana yalnız ilgili dosyalar verilir. Uzun belge yerine şablon kataloğuna referans.
 
+### bolum.json kuralları (Blanc storyboard v3 hatalarından)
+1. **Senaryo → parametre eşlemesi zorunlu:** senaryodaki her görsel cümle (poz, durum, ifade, dokunuş) json'da karşılığı olan bir parametreye eşlenir. Kitte karşılığı yoksa "en yakınla doldurma" yok → `kit_eksik` ile işaretlenir, orkestra karar verir. (P10: "yatakta hasta memur" ayakta, şapkalı çizildi.)
+2. **Her animasyon planın içinde biter:** jest/prop/morf aralığı plan süresine sığar ve plan sonundan ≥12 kare önce tamamlanır (hareket tamamlanır). Doğrulayıcı reddeder. (P13: Wi-Fi morfu plan bittikten sonraya kalmıştı.)
+3. **`kontrol_kare` zorunlu:** her plan, dokunuşun/ana eylemin en okunur olduğu kareyi beyan eder; kontrol render'ı bu kareyi kullanır, otomatik seçim yapılmaz. (v3'te dokunuş başlamadan önceki kareler render edildi.)
+4. **Okunurluk beyan edilir ve ölçülür:** dokunuş nesnesinin ekran oranı ve net süresi (≥%10 / ≥1 sn) json'da; küçük kalırsa kamera yaklaşır (katalog sınırı içinde).
+5. **Kit özelliği kanıtla kabul edilir:** "kitte var" demek yetmez; yeni kit parçası bir bölüm json'ında kullanılıp render edilmiş karede görülünce kabul edilir.
+6. **Json'u yazan doğrular:** yönetmen doğrulayıcıyı kendisi çalıştırır, geçmeyen json teslim edilmez.
+
 ## İş akışı ve onay noktaları
 1. Araştırma → 2. Senaryo (**kullanıcı onayı**) → 3. Storyboard: kare + notlar (**kullanıcı onayı**) → 4. Ses (ElevenLabs) + varlıklar → 5. Animasyon (motion) → 6. Eleştirmen kontrolü (kontrol kareleri) → 7. İlk kurgu render (**kullanıcı onayı**) → 8. Premiere paketi (sahne klipleri, ayrı ses kanalları, SRT, XML) + 4K hareketli tuval gereken planlarda.
 Her teslimden önce eleştirmen kontrol karelerini kural listesine göre tarar. Kullanıcıya hatayı kullanıcının yakalaması = süreç hatası.
