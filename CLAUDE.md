@@ -25,6 +25,16 @@ Her ajan görev bitince `bolumler/<slug>/katki-raporu.md` sonuna ekler: ne yapt�
 ## Bölüm fikirleri
 `bolumler/FIKIR-HAVUZU.md` — aday hikâyeler ve durumları. Yeni bölüm seçmeden önce oku; araştırmacı doğrulamadan senaryoya geçme.
 
+## Günlük üretim modeli (kullanıcı kararı, Blanc sonrası)
+- **Her gün bir bölüm.** Bölüm başına dış maliyet **≤ $1** (ElevenLabs aboneliği hariç). Gemini görseli ancak bu bütçe içinde ve istisna olarak; ekrana girmeyen referans dahil sayılır.
+- **Kota hedefi:** bir bölüm Claude kotasının ~%3–5'i. (Blanc pilotu tek bölüm için %30+ yedi: her plan için ayrı opus kodu, kare kare opus eleştirisi, paralel revizyon zincirleri — tekrarlanmaz.)
+- **Set kiti:** mekânlar, karakterler, props, jestler bir kez kurulan **parametrik şablonlardır** (`src/kit/`). Bölüm = `bolum.json` (plan listesi: şablon + parametre + metin + zaman + temas); genel `Bolum` bileşeni render eder. Günlük bölümde yeni kod yazılmaz.
+- **Format:** 30–60 sn, 8–14 plan, bölüm başına 2–4 mekân şablonu. Anlatım + kinetik yazı + harita/insert ağırlıklı; kukla hareketleri jest kütüphanesinden.
+- **Günlük ekip (sonnet/haiku):** araştırmacı → senarist (**kullanıcı onayı**) → yaratıcı yönetmen (kısa dokunuş listesi, kütüphaneden ya da yeni) → yönetmen (`bolum.json`, şablon kataloğundan) → teknisyen (ses, render, kontrol betiği, kontrol sayfası) → eleştirmen (**tek tur**, kontrol sayfası üzerinden, sonnet). 
+- **Kurulum ekibi (opus, yalnız yeni şablon gerekince):** tasarımcı → mekân sorumlusu (mimari kart + doku, şablona gömülür) → motion (şablon kodu) → eleştirmen (şablon kalibrasyonu). Bir şablon bir kez doğru kurulur, her bölümde doğru gelir.
+- **Denetim önce betik:** güvenli alan, yazı bantları, ayak teması, renk/ton, imza nesnesi beyazı, süre — `tools/` betikleriyle; insan/ajan gözü yalnız betiğin ölçemediği için.
+- Ajan brifleri kısa; ajana yalnız ilgili dosyalar verilir. Uzun belge yerine şablon kataloğuna referans.
+
 ## İş akışı ve onay noktaları
 1. Araştırma → 2. Senaryo (**kullanıcı onayı**) → 3. Storyboard: kare + notlar (**kullanıcı onayı**) → 4. Ses (ElevenLabs) + varlıklar → 5. Animasyon (motion) → 6. Eleştirmen kontrolü (kontrol kareleri) → 7. İlk kurgu render (**kullanıcı onayı**) → 8. Premiere paketi (sahne klipleri, ayrı ses kanalları, SRT, XML) + 4K hareketli tuval gereken planlarda.
 Her teslimden önce eleştirmen kontrol karelerini kural listesine göre tarar. Kullanıcıya hatayı kullanıcının yakalaması = süreç hatası.
