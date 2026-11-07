@@ -1134,3 +1134,6 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 ## motion · 2026-11-07 · GolgeT okunurluk (P05 D2)
 - GolgeT: `koyuluk` (0.82) + `kenar` (1) parametreleri, T merkezi kol gölgesi ortasına; IC-ODA karakter zemin gölgesi zemine kırpıldı (alçak mumda duvara tırmanan taramalı bant "kiriş" gibi okunuyordu — fizik ihlali); P05 kare 1441 telefonda T + 2 gösterge kolu okunuyor. Dosyalar: src/kit/props/GolgeT.tsx, src/kit/sablonlar/IcOda.tsx, src/kit/ortak.tsx, src/kit/KATALOG.md. Not (yönetmen): Louis/Memur isim etiketleri gösterge kol uçlarına biniyor, bolum.json etiket konumu.
 - orkestra · P05 isim etiketleri kaldırıldı (gölge-T dokunuşunun üstüne biniyordu; Louis P02'de tanıtıldı, memur anlatımla).
+
+## teknisyen · 2026-11-07 · Blanc storyboard v3.2 kontrol kareleri
+- v3.1 betikleri (render/sayfa) storyboard-v32'ye kopyalanıp çalıştırıldı; 14 plan × 4 kare = 56 still, 0 hata, 0 EKSIK; sayfa-1.jpg ve sayfa-2.jpg üretildi; ara commitler 8'erli yapıldı.
