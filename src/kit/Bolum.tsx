@@ -24,7 +24,8 @@ export const bolumYukle = (yol?: string, bolum?: BolumJson): BolumJson => {
 
 // foley/miks: bolumler/'den göreli json yolu; verilmezse bolum json'unun klasöründeki foley.json/miks.json (yoksa sessiz).
 // sesSure: calculateMetadata'nın doldurduğu anlatım süreleri (müzik duck'ı için; elle verilmez).
-export type BolumProps = { yol?: string; bolum?: BolumJson; guvenli?: boolean; foley?: string; miks?: string; sesSure?: Record<string, number> };
+export type BolumProps = { yol?: string; bolum?: BolumJson; guvenli?: boolean; foley?: string; miks?: string; sesSure?: Record<string, number>; katman?: "anlatim" | "foley" | "muzik" };
+// katman: yalnız o ses katmanı çalınır (Premiere ses kanalı dışa aktarımı için, --codec=wav); verilmezse tam bölüm (varsayılan değişmez).
 
 export const bolumMetadata: CalculateMetadataFunction<BolumProps> = async ({ props }) => {
   const b = bolumYukle(props.yol, props.bolum);
@@ -104,7 +105,7 @@ const PlanSesleri: React.FC<{ plan: Plan }> = ({ plan }) => (
   </>
 );
 
-export const Bolum: React.FC<BolumProps> = ({ yol, bolum, guvenli, foley, miks, sesSure }) => {
+export const Bolum: React.FC<BolumProps> = ({ yol, bolum, guvenli, foley, miks, sesSure, katman }) => {
   const b = bolumYukle(yol, bolum);
   const fj = foleyYukle(yol, foley), mj = miksYukle(yol, miks);
   const toplam = b.planlar.reduce((s, p) => s + p.sure_kare, 0);
@@ -113,10 +114,10 @@ export const Bolum: React.FC<BolumProps> = ({ yol, bolum, guvenli, foley, miks, 
     <AbsoluteFill style={{ backgroundColor: "#14110d" }}>
       {b.planlar.map((plan) => {
         const from = bas; bas += plan.sure_kare;
-        return <Sequence key={plan.id} from={from} durationInFrames={plan.sure_kare} name={`${plan.id} · ${plan.sablon}`}><PlanGoster plan={plan} guvenli={guvenli} /><PlanSesleri plan={plan} /></Sequence>;
+        return <Sequence key={plan.id} from={from} durationInFrames={plan.sure_kare} name={`${plan.id} · ${plan.sablon}`}>{!katman && <PlanGoster plan={plan} guvenli={guvenli} />}{(!katman || katman === "anlatim") && <PlanSesleri plan={plan} />}</Sequence>;
       })}
-      <FoleyKatmani b={b} foley={fj} miks={mj} fps={60} />
-      <MuzikKatmani miks={mj} toplam={toplam} anlatim={anlatimAraliklari(b, sesSure, 60)} />
+      {(!katman || katman === "foley") && <FoleyKatmani b={b} foley={fj} miks={mj} fps={60} />}
+      {(!katman || katman === "muzik") && <MuzikKatmani miks={mj} toplam={toplam} anlatim={anlatimAraliklari(b, sesSure, 60)} />}
     </AbsoluteFill>
   );
 };
