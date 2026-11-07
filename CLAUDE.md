@@ -108,6 +108,7 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - Müzik kaynakları: kamu malı klasik (dönem uygunsa öncelik, ör. Chopin Paris 1831+), Incompetech (CC-BY), Pixabay Music. Her parçanın lisansı `muzik/lisanslar.md`.
 
 ### Senaryo ve yazı
+- **Güçlü, meraklı, çok basit anlatım** (kullanıcı kararı): her cümle bir sonrakini merak ettirir (açık soru → cevap → yeni soru). Dil "bebeğe anlatır gibi" sade: kısa cümle, günlük kelime, terim yok ya da hemen açıklanır; izleyici hiçbir an "ne dedi?" demez. Akıllı görünmeye çalışan cümle değil, net cümle.
 - **Hikâyenin mekanizması net:** olayın "nasıl"ı (hile, keşif) tek görsel + tek cümleyle anlatılır; izleyici "bu neden işe yaradı?" sorusunun cevabını görür. (Blanc v3: "hata"nın düzeltildiği söylenmedi → "Tek bir hata" anlamsız kaldı.)
 - **Her kurulum karşılık bulur:** senaryoda "Kurulum → Karşılık" tablosu zorunlu; karşılıksız öğe çıkar ("Eldiven… çorap…" → "eee yani?").
 - **Son tamamlanır:** son cümle askıda kalmaz ("Sadece…" yok); döngü bir vuruşla kapanır.
