@@ -1182,3 +1182,10 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Ne yaptım: 15 ses (anlatıcı 13 + FRANÇOIS + MEMUR), memur için 3 aday (A/B/C), ölçüm ve plan sığma tablosu; `zamanlama-v4.json`, `sesler.md` v4 bölümü.
 - Üretilen: `public/blanc/ses-v4/` (P01–P14 mp3/json, `P04-francois`, `P10-memur` = aday B, `aday/` A/B/C); `bolumler/blanc-kardesler/zamanlama-v4.json`.
 - Sorunlar: node fetch proxy'ye çıkamadı (asılı kaldı), curl ile çözüldü; memur seçimi yalnız ölçümle, dinleme onayı bekliyor; P01, P02, P10 plan süresine sığmıyor; kredi sayacı değişmedi (≈772 karakter tahmini).
+
+## yonetmen · 2026-11-07 · senaryo v4 → bolum.json
+- Ne yaptım: bolum-v3.json yedeği; bolum.json v4 (14 plan, 3690 kare = 61.5 sn, doğrulayıcı --tam 0 hata/18 uyarı); 14 kontrol karesi + plan sonu kareleri render edildi, kontak: scratchpad/v4/kontak.png; ses alanları ses-v4'e; temaslar foley.json adlarıyla.
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/bolum.json, bolum-v3.json, kit-eksik-v4.md, temaslar.json (--temas ile yeniden üretildi), katki-raporu.md.
+- Kararlar: P03 mühür 198 (3.3 sn); P07 kol MESAJ→HATA→MESAJ + 3 uzak kopya, yazı üst bantta; P12 dosya 1.6x, eldiven giyme TOK'tan 6 kare sonra; P11 güve 3 prop ile geçici gizlendi; dokunuş ID'leri kütüphaneye göre (D7 eldiven giyme P12, D8 kitap+güve P11; senaryodaki D7/D8 ters yazılmıştı).
+- Kurallar: 2 (animasyonlar ≥12 kare önce biter), 3 (kontrol_kare), 6 (doğrulayıcı), 7 (kör ayar yok); kit_eksik 8 madde (kit-eksik-v4.md).
+- Açık: P08 esneme hâlâ acı gibi, P09 uzak kol Bordeaux penceresinde animasyonsuz + kol "kütük", P10 yorgan ≈%35, P14 paket kapanmıyor (acik .5'te bitiyor, ip/düğüm sesleri çıkarıldı); P03 posta/telgraf art arda (anlatım sırasıyla ters).
