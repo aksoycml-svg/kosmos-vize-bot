@@ -12,10 +12,12 @@ import { execFileSync } from "node:child_process";
 const kok = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SN = JSON.parse(fs.readFileSync(path.join(kok, "src/kit/sinirlar.json"), "utf8"));
 const arg = process.argv.slice(2);
-const dosya = arg.find((a) => !a.startsWith("--") && arg[arg.indexOf(a) - 1] !== "--temas");
+const DEGERLI = ["--temas", "--foley", "--miks"];
+const dosya = arg.find((a, i) => !a.startsWith("--") && !DEGERLI.includes(arg[i - 1]));
+const argDeger = (ad) => (arg.includes(ad) ? arg[arg.indexOf(ad) + 1] : null);
 const TAM = arg.includes("--tam");
 const temasCikti = arg.includes("--temas") ? arg[arg.indexOf("--temas") + 1] : null;
-if (!dosya) { console.error("kullanım: node tools/bolum_dogrula.mjs <bolum.json> [--tam] [--temas cikti.json]"); process.exit(2); }
+if (!dosya) { console.error("kullanım: node tools/bolum_dogrula.mjs <bolum.json> [--tam] [--temas cikti.json] [--foley foley.json] [--miks miks.json]"); process.exit(2); }
 
 const hatalar = [], uyarilar = [];
 const H = (yer, m) => hatalar.push(`${yer}: ${m}`);
@@ -23,6 +25,19 @@ const U = (yer, m) => uyarilar.push(`${yer}: ${m}`);
 let B;
 try { B = JSON.parse(fs.readFileSync(dosya, "utf8")); } catch (e) { console.error(`JSON okunamadı: ${e.message}`); process.exit(1); }
 
+// ses eki: foley.json / miks.json (varsayılan bolum json'unun klasörü; yoksa uyarı, hata değil)
+const jsonYa = (f) => { try { return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : null; } catch (e) { U("ses", `${f} okunamadı: ${e.message}`); return null; } };
+const foleyYol = argDeger("--foley") ?? path.join(path.dirname(dosya), "foley.json");
+const miksYol = argDeger("--miks") ?? path.join(path.dirname(dosya), "miks.json");
+const FOLEY = jsonYa(foleyYol), MIKS = jsonYa(miksYol);
+const foleyEksik = new Set(), foleyTanimsiz = new Map(), foleyKullanilan = new Set();
+if (FOLEY) for (const [ad, k] of Object.entries(FOLEY)) {
+  if (!k?.dosya) U("foley", `${ad}: dosya alanı yok`);
+  else if (!fs.existsSync(path.join(kok, "public", k.dosya))) { foleyEksik.add(ad); U("foley", `${ad}: dosya bulunamadı public/${k.dosya} (render sessiz geçer)`); }
+  if (k && k.tepe_ms === undefined) U("foley", `${ad}: tepe_ms yok — ses başı temas karesine konur`);
+}
+if (MIKS?.muzik) { const m = MIKS.muzik; if (!m.dosya || !fs.existsSync(path.join(kok, "public", m.dosya))) U("miks", `müzik dosyası bulunamadı: public/${m.dosya} (müzik çalmaz)`); }
+else if (MIKS) U("miks", "muzik alanı yok");
 const dizi = (v) => (Array.isArray(v) ? v : [v]);
 const aralik = (yer, ad, v, [a, b]) => dizi(v).forEach((x) => { if (typeof x !== "number" || x < a || x > b) H(yer, `${ad}=${x} aralık dışı [${a}, ${b}]`); });
 const anahtarUzunluk = (yer, ad, v, kare) => { if (Array.isArray(v) && v.length > 1 && (!kare || kare.length !== v.length)) H(yer, `${ad} dizisi (${v.length}) ile kare dizisi (${kare?.length ?? 0}) eşit değil`); };
@@ -163,6 +178,9 @@ for (const plan of B.planlar ?? []) {
   // temaslar + dokunuş
   for (const t of plan.temaslar ?? []) {
     if (t.kare < 0 || t.kare >= sure) H(Y, `temas p${t.kare} plan dışında`);
+    if (!t.ses) U(`${Y} temas p${t.kare}`, `"${t.olay}": ses yok (TEMAS = SES; görünmüyorsa temas olarak yazma)`);
+    else if (FOLEY && !FOLEY[t.ses]) foleyTanimsiz.set(t.ses, [...(foleyTanimsiz.get(t.ses) ?? []), `${plan.id} p${t.kare}`]);
+    else if (FOLEY) { foleyKullanilan.add(t.ses); const ms = FOLEY[t.ses].tepe_ms ?? 0; if (toplam + t.kare - Math.round((ms * SN.fps) / 1000) < 0) U(`${Y} temas p${t.kare}`, `${t.ses}: tepe hizası bölüm başından önce — baş kırpılır`); }
     tumTemas.push({ plan: plan.id, kare: toplam + t.kare, sn: +((toplam + t.kare) / SN.fps).toFixed(3), olay: t.olay, ses: t.ses ?? null, db: t.db ?? null });
   }
   // plan sesleri: dosya var mı, plan sonundan taşıyor mu (ffprobe), çakışma
@@ -184,6 +202,12 @@ for (const plan of B.planlar ?? []) {
   if (plan.dokunus) { if (dokunuslar.has(plan.dokunus.id)) H(Y, `dokunuş ${plan.dokunus.id} tekrar ediyor (ilk: ${dokunuslar.get(plan.dokunus.id)})`); dokunuslar.set(plan.dokunus.id, plan.id); }
   toplam += sure || 0;
 }
+
+// ses eki özeti
+const sesliTemas = tumTemas.filter((t) => t.ses).length;
+if (!FOLEY && sesliTemas) U("foley", `${foleyYol} yok — ${sesliTemas} temas sesi çalmayacak`);
+for (const [ad, yer] of foleyTanimsiz) U("foley", `"${ad}" foley.json'da tanımsız (${yer.join(", ")}) — çalmaz`);
+if (FOLEY) for (const ad of Object.keys(FOLEY)) if (!foleyKullanilan.has(ad) && !foleyTanimsiz.has(ad)) U("foley", `"${ad}" tanımlı ama hiçbir temasta kullanılmıyor (görünmeyen ses çalınmaz)`);
 
 // K3: iki farklı kişi aynı yüz varyantını kullanıyorsa (kompars ana kadronun/başkasının yüzünü kopyalar)
 for (const [v, m] of yuzKullanim) if (m.size > 1) U("bölüm", `yüz varyantı "${v}" ${m.size} kişide: ${[...m].map(([k, p]) => `${k} (${p})`).join(", ")} — yuzVaryant ile ayır ya da palet.yuzsuz`);

@@ -11,6 +11,7 @@ import { KitEkranYazisi, KitReplik } from "./yazi";
 import type { BolumJson, Plan } from "./tipler";
 import { SABLONLAR } from "./sablonlar";
 import { cl, GIRIS } from "./zaman";
+import { anlatimAraliklari, FoleyKatmani, foleyYukle, miksYukle, MuzikKatmani, sesSureleri } from "./ses";
 
 const ctx = require.context("../../bolumler", true, /bolum[^/]*\.json$/);
 export const BOLUM_YOLLARI: string[] = ctx.keys().map((k) => k.replace(/^\.\//, ""));
@@ -21,11 +22,15 @@ export const bolumYukle = (yol?: string, bolum?: BolumJson): BolumJson => {
   return ctx(key) as BolumJson;
 };
 
-export type BolumProps = { yol?: string; bolum?: BolumJson; guvenli?: boolean };
+// foley/miks: bolumler/'den göreli json yolu; verilmezse bolum json'unun klasöründeki foley.json/miks.json (yoksa sessiz).
+// sesSure: calculateMetadata'nın doldurduğu anlatım süreleri (müzik duck'ı için; elle verilmez).
+export type BolumProps = { yol?: string; bolum?: BolumJson; guvenli?: boolean; foley?: string; miks?: string; sesSure?: Record<string, number> };
 
-export const bolumMetadata: CalculateMetadataFunction<BolumProps> = ({ props }) => {
+export const bolumMetadata: CalculateMetadataFunction<BolumProps> = async ({ props }) => {
   const b = bolumYukle(props.yol, props.bolum);
-  return { durationInFrames: Math.max(1, b.planlar.reduce((s, p) => s + p.sure_kare, 0)), fps: 60 };
+  const durationInFrames = Math.max(1, b.planlar.reduce((s, p) => s + p.sure_kare, 0));
+  const sesSure = miksYukle(props.yol, props.miks)?.muzik ? await sesSureleri(b.planlar.flatMap((p) => (p.ses ?? []).map((s) => s.dosya))) : {};
+  return { durationInFrames, fps: 60, props: { ...props, sesSure } };
 };
 
 // ---- yazı katmanı: ekran yazısı (iddia/formül), replik altyazısı, isim etiketi ----
@@ -99,8 +104,10 @@ const PlanSesleri: React.FC<{ plan: Plan }> = ({ plan }) => (
   </>
 );
 
-export const Bolum: React.FC<BolumProps> = ({ yol, bolum, guvenli }) => {
+export const Bolum: React.FC<BolumProps> = ({ yol, bolum, guvenli, foley, miks, sesSure }) => {
   const b = bolumYukle(yol, bolum);
+  const fj = foleyYukle(yol, foley), mj = miksYukle(yol, miks);
+  const toplam = b.planlar.reduce((s, p) => s + p.sure_kare, 0);
   let bas = 0;
   return (
     <AbsoluteFill style={{ backgroundColor: "#14110d" }}>
@@ -108,6 +115,8 @@ export const Bolum: React.FC<BolumProps> = ({ yol, bolum, guvenli }) => {
         const from = bas; bas += plan.sure_kare;
         return <Sequence key={plan.id} from={from} durationInFrames={plan.sure_kare} name={`${plan.id} · ${plan.sablon}`}><PlanGoster plan={plan} guvenli={guvenli} /><PlanSesleri plan={plan} /></Sequence>;
       })}
+      <FoleyKatmani b={b} foley={fj} miks={mj} fps={60} />
+      <MuzikKatmani miks={mj} toplam={toplam} anlatim={anlatimAraliklari(b, sesSure, 60)} />
     </AbsoluteFill>
   );
 };

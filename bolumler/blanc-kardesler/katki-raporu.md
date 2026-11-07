@@ -1140,3 +1140,7 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 
 ## elestirmen · 2026-11-07 · Blanc storyboard v3.2 kalite kapısı
 - Ne yaptım: sayfa-1/2 + P12-kontrol, P14-son incelendi; v3.1 açıkları tek tek kapatıldı/kısmen etiketlendi. Dosya: bolumler/blanc-kardesler/storyboard-v32/elestiri.md. Kararlar: tabloda kapanma kanıtı; açık: P12 güve ölçeği, P07 yazı çakışması, P14 ara kare doğrulaması; kullanıcıya sunulabilir: evet.
+
+## motion · 2026-11-07 · Kit eki: foley + müzik oynatma
+- Ne yaptım: `src/kit/ses.tsx` (FoleyKatmani: temaslar[].ses → foley.json, tepe_ms temas karesine hizalı, db önceliği temas > istisna > onerilen > varsayılan; MuzikKatmani: tek Audio, fade, anlatım duck'ı), `Bolum.tsx` props `foley`/`miks` (varsayılan: aynı klasör), `tools/bolum_dogrula.mjs` ses uyarıları, KATALOG. Dosyalar: src/kit/ses.tsx, src/kit/Bolum.tsx, tools/bolum_dogrula.mjs, src/kit/KATALOG.md.
+- Kararlar: bolum.json'a dokunulmadı; eksik json/dosya render'da sessiz atlanır; foley plan kesmesinde kesilmez; `duck.anlatim_db` MUTLAK seviye kabul edildi (kurgucu göreli yazdıysa düzeltilmeli). Açık: 52 temastan 33'ü test foley'inde tanımsız çıktı — kurgucu foley.json'u temas listesindeki tüm adlarla yazmalı; tsc temiz, render alınmadı.
