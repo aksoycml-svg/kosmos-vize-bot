@@ -7,6 +7,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { execFileSync } from "node:child_process";
 
 const kok = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SN = JSON.parse(fs.readFileSync(path.join(kok, "src/kit/sinirlar.json"), "utf8"));
@@ -26,6 +27,7 @@ const dizi = (v) => (Array.isArray(v) ? v : [v]);
 const aralik = (yer, ad, v, [a, b]) => dizi(v).forEach((x) => { if (typeof x !== "number" || x < a || x > b) H(yer, `${ad}=${x} aralık dışı [${a}, ${b}]`); });
 const anahtarUzunluk = (yer, ad, v, kare) => { if (Array.isArray(v) && v.length > 1 && (!kare || kare.length !== v.length)) H(yer, `${ad} dizisi (${v.length}) ile kare dizisi (${kare?.length ?? 0}) eşit değil`); };
 const artan = (yer, kare) => { for (let i = 1; i < (kare?.length ?? 0); i++) if (kare[i] <= kare[i - 1]) H(yer, `kare dizisi artan değil (${kare.join(",")})`); };
+const sesSure = (f) => { try { const o = execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f], { encoding: "utf8" }); const d = parseFloat(o); return Number.isFinite(d) ? d : null; } catch { return null; } };
 const temasVar = (plan, kare, tol = 2) => (plan.temaslar ?? []).some((t) => Math.abs(t.kare - kare) <= tol);
 
 if (B.fps !== SN.fps) H("bölüm", `fps ${B.fps} (beklenen ${SN.fps})`);
@@ -134,6 +136,22 @@ for (const plan of B.planlar ?? []) {
   for (const t of plan.temaslar ?? []) {
     if (t.kare < 0 || t.kare >= sure) H(Y, `temas p${t.kare} plan dışında`);
     tumTemas.push({ plan: plan.id, kare: toplam + t.kare, sn: +((toplam + t.kare) / SN.fps).toFixed(3), olay: t.olay, ses: t.ses ?? null, db: t.db ?? null });
+  }
+  // plan sesleri: dosya var mı, plan sonundan taşıyor mu (ffprobe), çakışma
+  const sesAralik = [];
+  for (const [i, s] of (plan.ses ?? []).entries()) {
+    const y = `${Y} ses${i}`;
+    if (typeof s.dosya !== "string" || !s.dosya) { H(y, "dosya yok"); continue; }
+    if (!Number.isInteger(s.kare) || s.kare < 0 || s.kare >= sure) H(y, `kare ${s.kare} plan dışında [0, ${sure})`);
+    if (s.db !== undefined && (typeof s.db !== "number" || s.db > 6)) U(y, `db ${s.db} (sayı, ≤ +6 beklenir)`);
+    const tam = path.join(kok, "public", s.dosya);
+    if (!fs.existsSync(tam)) { H(y, `dosya bulunamadı: public/${s.dosya}`); continue; }
+    const sn = sesSure(tam);
+    if (sn === null) { U(y, "ffprobe yok/okunamadı — süre ve çakışma denetlenmedi"); continue; }
+    const bit = s.kare + Math.ceil(sn * SN.fps);
+    if (bit > sure) U(y, `${s.dosya} (${sn.toFixed(2)} sn) plan sonunu ${bit - sure} kare aşıyor — kesilir`);
+    for (const o of sesAralik) if (s.kare < o.bit && o.bas < bit) U(y, `${s.dosya} ile ${o.dosya} çakışıyor (p${Math.max(s.kare, o.bas)}–p${Math.min(bit, o.bit)})`);
+    sesAralik.push({ dosya: s.dosya, bas: s.kare, bit });
   }
   if (plan.dokunus) { if (dokunuslar.has(plan.dokunus.id)) H(Y, `dokunuş ${plan.dokunus.id} tekrar ediyor (ilk: ${dokunuslar.get(plan.dokunus.id)})`); dokunuslar.set(plan.dokunus.id, plan.id); }
   toplam += sure || 0;

@@ -48,6 +48,8 @@ export type El = {
 export type EkranYazisi = { bant: Bant; metin: string; vurgu?: string[]; tur?: "iddia" | "formul"; kagitSerit?: boolean; bas?: number; bit?: number; boyut?: number };
 export type Replik = { kim: string; metin: string; bant: Bant; bas: number; bit: number; vurgu?: string[]; kelimeKare?: number[] };
 export type Temas = { kare: number; olay: string; ses?: string; db?: number };
+// Plan sesi: dosya public/ altından göreli (ör. "blanc/ses-v3/P05.mp3"), kare = plan içi başlangıç, db = kazanç (0 = ref)
+export type PlanSes = { dosya: string; kare: number; db?: number };
 export type Dokunus = { id: string; ad: string; bas?: number; bit?: number };
 
 export type Plan = {
@@ -62,6 +64,7 @@ export type Plan = {
   ekran_yazisi?: EkranYazisi[];
   replik?: Replik[];
   temaslar?: Temas[];
+  ses?: PlanSes[];
   dokunus?: Dokunus | null;
   not?: string;
 };

@@ -2,7 +2,8 @@
 // Kompozisyon "Bolum": props { yol: "blanc-kardesler/bolum.ornek.json", guvenli?: boolean, bolum?: BolumJson (yol yerine satır içi) }.
 // JSON'lar bundle'a webpack require.context ile girer: bolumler/**/bolum*.json (yeni bölüm = yeni dosya, kod yok).
 import React from "react";
-import { AbsoluteFill, CalculateMetadataFunction, Sequence, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, CalculateMetadataFunction, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { Audio } from "@remotion/media";
 import { ArsivKatmani } from "../doku/ArsivKatmani";
 import { GuvenliAlan, KilitNokta } from "../doku/GuvenliAlan";
 import { IsimEtiketi } from "../components/EkranYazisi";
@@ -87,6 +88,17 @@ const PlanGoster: React.FC<{ plan: Plan; guvenli?: boolean }> = ({ plan, guvenli
   );
 };
 
+// plan sesleri: plan Sequence'i içinde kendi karesinden başlar; plan bitince kesilir (taşma doğrulayıcıda uyarı)
+const PlanSesleri: React.FC<{ plan: Plan }> = ({ plan }) => (
+  <>
+    {(plan.ses ?? []).map((s, i) => (
+      <Sequence key={`ses${i}`} from={s.kare} layout="none" name={`ses ${s.dosya}`}>
+        <Audio src={staticFile(s.dosya)} volume={Math.pow(10, (s.db ?? 0) / 20)} />
+      </Sequence>
+    ))}
+  </>
+);
+
 export const Bolum: React.FC<BolumProps> = ({ yol, bolum, guvenli }) => {
   const b = bolumYukle(yol, bolum);
   let bas = 0;
@@ -94,7 +106,7 @@ export const Bolum: React.FC<BolumProps> = ({ yol, bolum, guvenli }) => {
     <AbsoluteFill style={{ backgroundColor: "#14110d" }}>
       {b.planlar.map((plan) => {
         const from = bas; bas += plan.sure_kare;
-        return <Sequence key={plan.id} from={from} durationInFrames={plan.sure_kare} name={`${plan.id} · ${plan.sablon}`}><PlanGoster plan={plan} guvenli={guvenli} /></Sequence>;
+        return <Sequence key={plan.id} from={from} durationInFrames={plan.sure_kare} name={`${plan.id} · ${plan.sablon}`}><PlanGoster plan={plan} guvenli={guvenli} /><PlanSesleri plan={plan} /></Sequence>;
       })}
     </AbsoluteFill>
   );

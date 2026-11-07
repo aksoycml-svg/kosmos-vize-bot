@@ -34,6 +34,7 @@ Dosya adı `bolum*.json` olmalı (bundle'a `require.context` ile girer). Kareler
 - **Yazı bantları:** `ust` y 240–400, `alt` y 1290–1490. Replik ayakları/temas/kurulum nesnesini örtecekse `ust`.
 - **Yazı standardı (K2, şablondan bağımsız — parametre DEĞİL, `src/kit/yazi.tsx`):** ekran yazısı HER ZAMAN kâğıt şerit + Playfair 900 (`tur: formul` → Plex Mono, yine şeritli); kırmızı vurgu yalnız TEK kelime (`vurgu` listesinden ilk eşleşen); uzun metin iki dengeli satıra bölünür, şerit iki satırı kapsar, kutu 240–400 içinde kalır (boyut otomatik). `kagitSerit`/`boyut` alanları geri uyum için şemada, yok sayılır. Replik: konuşan plakası + Inter 800 + arkasında yarı saydam koyu bant. Doğrulayıcı: üst bantta ekran yazısı ile replik aynı anda → uyarı; vurgu > 1 → uyarı.
 - **Temas = ses:** görünür her çarpma/bırakma bir `temaslar` girdisi. Jest temasları (baston-vur vuruşu, it-cek tik'leri, eldiven-giy gerilmesi, MASA-INSERT bırakma, HARITA mühür, kule kol varışı) doğrulayıcıda denetlenir. `--temas` çıktısı mutlak kare/saniye listesidir; sesler oradan yerleşir.
+- **Plan sesi (`ses`, opsiyonel):** `"ses": [{ "dosya": "blanc/ses-v3/P05.mp3", "kare": 12, "db": 0 }]` — `dosya` public/ altından göreli, `kare` plan içi başlangıç, `db` kazanç (varsayılan 0 → volume 1). Plan bitince kesilir. Doğrulayıcı: dosya yok = HATA; plan sonundan taşma ve aynı planda iki sesin çakışması = UYARI (ffprobe yoksa uyarı).
 - **Dokunuş:** plan başına en çok bir `dokunus.id`; bölümde tekrar ederse doğrulayıcı hata verir. Kütüphane: `DOKUNUS-KUTUPHANESI.md`.
 
 ### Karakter kaydı (`kim`)
