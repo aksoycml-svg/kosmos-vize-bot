@@ -34,7 +34,7 @@ const tavanDb = (m: MiksJson | null, a: number, alan: "muzik_db" | "foley_db"): 
 const tavanUygula = (db: number, t?: { db: number; w: number }) => (t && t.db < db ? db + (t.db - db) * t.w : db);
 export type Aralik = [number, number]; // mutlak kare [bas, bit)
 
-const sctx = require.context("../../bolumler", true, /(foley|miks)\.json$/);
+const sctx = require.context("../../bolumler", true, /(foley|miks[^/]*)\.json$/);
 const jsonOku = <T,>(yol: string): T | null => (sctx.keys().includes(`./${yol}`) ? (sctx(`./${yol}`) as T) : null);
 const klasor = (yol?: string) => (yol && yol.includes("/") ? yol.slice(0, yol.lastIndexOf("/") + 1) : "");
 export const foleyYukle = (bolumYol?: string, yol?: string) => jsonOku<FoleyJson>(yol ?? `${klasor(bolumYol)}foley.json`);
