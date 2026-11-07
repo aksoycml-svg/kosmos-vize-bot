@@ -1149,3 +1149,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Yaptım: 37 ses adı → public/blanc/sfx-v3 (4 mevcut arşivden, 30 ElevenLabs SFX, sessizlik 0.3 sn boş dosya), tepe_ms ölçüldü (foley.json); Chopin Nocturne B.108 (CC0, archive.org) 64.23 sn kesim, P14'te açılış notası geri dönüşü; miks.json (mutlak dB: müzik -8, anlatımda -18).
 - Dosyalar: public/blanc/sfx-v3/, public/blanc/muzik/, foley.json, miks.json, muzik/lisanslar.md. Karar: Chopin dönem uygun; istisnalar {ses:db}, müzik istisnaları `muzik_istisnalari`.
 - Doğrulayıcı: --tam GEÇTİ. Not: ortam kanalı üretilmedi; kayıt hakkı beyanı IA metadata'ya dayanır.
+
+## teknisyen · 2026-11-07 · Blanc ilk kurgu render
+- Ne yaptım/komutlar: bolum_dogrula --tam GEÇTİ; 4 parça video (--muted, --frames 0-999/1000-1999/2000-2999/3000-3853) + tam ses (--codec=mp3) + ffmpeg concat/mux + loudnorm (dinamik, ölçülen değerlerle) + AAC 320k; 540 önizleme CRF 26.
+- Üretilen: out/blanc-ilk-kurgu-ham.mp4 (55 MB), out/blanc-ilk-kurgu.mp4 (56 MB), out/blanc-ilk-kurgu-540.mp4 (5.1 MB); .gitignore out/ eklendi.
+- Hatalar/çözümler: loudnorm TP -1.5 hedefi AAC 192k kodlamada +1..2 dB taşıyordu; 320k AAC + TP -1.8 ara hedef ile çözüldü. Sonuç I -14.5 LUFS, TP -1.7 dBTP (I hedefi -14 yerine -14.5: TP sınırı).
