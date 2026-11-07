@@ -1032,3 +1032,10 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - (6) Hibrit (`Sb2BorsaHibrit`) `isik` almıyor. B′ seçilirse aynı `kuklaIsigi` ile tek satırda bağlanır.
   - **Eleştirmen:** `A5r-sayfa.png` (önce/sonra + 1:1 kırpma), `A5r-eldiven-beyazi.png`, `renk-olcum.md`.
   - **Teknisyen:** commit yapılmadı.
+
+## senarist · 2026-11-07 · Senaryo v3 (SADE, set kiti)
+- Ne yaptım: v2.1'i (23 plan) 14 plana, 6 şablona, 8 dokunuşa indirdim; kanca ve döngü korundu, hikâye omurgası aynı.
+- Dokunduğum dosyalar: `/home/user/kosmos-vize-bot/bolumler/blanc-kardesler/senaryo-v3.md` (yeni), bu rapor (ek).
+- Aldığım kararlar ve gerekçeleri: Katalogdaki 7 şablondan AVLU-SALON bırakıldı (≤6 kuralı); mahkeme MASA-INSERT (dosya kapağı, kanun kitabı) + yazı ile kuruldu, bedeli geniş salon planı yok. Güvercin, Paris avlusu, dürbün üçlüsü, defter sayfası, kum, saat, sürgü kesildi. Posta + telgraf haritası tek plana (iki beat) alındı. Esneme tek başına sessiz plan oldu.
+- Uyguladığım kurallar / yakaladığım ihlaller: "ikiz" yok, tokmak yok, gece/alacakaranlıkta kollar sabit (P04, P13), dürbün elde değil (teleskop pervaza kurulu), yaprak takvim yok. Dokunuşlar 8; CLAUDE.md "her plana en az bir dokunuş" kuralı kullanıcı kararıyla (≤8) 6 planda uygulanmıyor (P01, P02, P03, P10, P13, P14).
+- Açık sorular / bir sonraki ajana notlar: (1) MASA-INSERT'te pencere/kule silueti seçeneği var mı? P01 "şak" dokunuşu zaten kaldırıldı. (2) YAKIN-YUZ bulanık arka planı KULE-DIS ve IC-ODA yatak odası ister (P08, P10); parametre mevcut mu? (3) Mahkeme geniş planı olmadığı için kullanıcı onayı gerekir. (4) Yaratıcı yönetmen `dokunuslar.md`'yi D1–D8'e indirmeli. (5) EN uyarlama 14 plana göre henüz yazılmadı.
