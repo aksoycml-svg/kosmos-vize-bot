@@ -1231,3 +1231,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Dokunduğum dosyalar: public/blanc/muzik/chopin-nocturne-b108-blanc-v4.mp3, bolumler/blanc-kardesler/miks.json, sesler.md, muzik/lisanslar.md.
 - Karar: duck/db değişmedi (ham mikste fark 8.4 dB, spec uyumlu); asıl sorun alimiter 0.11. Foley dokunulmadı.
 - Açık: ses yeniden render edilmeli (teknisyen); kulakla dinleme yapılmadı, motif sonundaki bölüm-sonu fade'i dinlenerek onaylanmalı.
+
+## teknisyen · 2026-11-07 · Blanc v4.1 render
+- Ne yaptım: P02 (210–467), P05 (966–1265), P09 (2118–2417), P13 (3280–3501) sessiz render (CRF 18, 60 fps, 1080x1920); v4 kareleri ffmpeg trim/concat ile birleştirildi (3730 kare); ses mp3 render edildi, AAC 320k 48 kHz: I −14.1 LUFS, LRA 3.1, TP −2.1 dBFS; 540x960 (CRF 26, AAC 128k): I −14.4, TP −1.6 dBFS.
+- Üretilen: out/blanc-v41-ilk-kurgu.mp4 (3730 kare, 62.167 sn), out/blanc-v41-ilk-kurgu-540.mp4 (3730 kare), out/v41/kontrol.png (P09 kontrol 2278 + son 3 sn).
+- Sorun: loudnorm linear=true + I −14 hedefi TP'yi aşıyordu (AAC sonrası TP −0.8); nihai zincir dinamik loudnorm I=−11.5 TP=−2.5 + alimiter 0.84 (I hedefi sapması kasıtlı). 540 için alimiter 0.70 gerekti. Ses 62.208 sn (mp3 pad), video 62.167 sn.
