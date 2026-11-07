@@ -74,11 +74,15 @@ export const KitEkranYazisi: React.FC<{ metin: string; vurgu?: string[]; tur?: "
 export const KitReplik: React.FC<{ metin: string; kim?: string; vurgu?: string[]; okunan?: number; bant?: "ust" | "alt" }> = ({ metin, kim, vurgu, okunan = -1, bant = "alt" }) => {
   const k = metin.split(" ").filter(Boolean);
   const vi = vurguIndeks(k, vurgu);
-  const px = metin.length > 52 ? 48 : 54;
+  const px0 = metin.length > 52 ? 48 : 54;
+  // tek satıra ≥44 px ile sığıyorsa küçülterek tek satır (yetim son kelime/kesik yok); sığmıyorsa eski çok satırlı akış
+  const tekPx = (YAZI.kutuW - 52) / (metin.length * 0.58);
+  const tek = tekPx >= 44 && tekPx < px0;
+  const px = tek ? Math.floor(tekPx) : px0;
   return (
     <AbsoluteFill style={{ justifyContent: bant === "alt" ? "flex-end" : "flex-start", alignItems: "center", padding: bant === "alt" ? `0 ${YAZI.yan}px ${1920 - YAZI.altAlt}px` : `${YAZI.ustY + 4}px ${YAZI.yan}px 0` }}>
       {kim && <div style={{ fontFamily: mono, fontWeight: 500, fontSize: 30, letterSpacing: "0.2em", color: "#e7c37a", marginBottom: 6, padding: "2px 14px 4px 18px", background: "rgba(20,17,13,0.82)" }}>{kim}</div>}
-      <div lang="tr" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0 13px", fontFamily: sans, fontWeight: 800, fontSize: px, lineHeight: 1.14, textAlign: "center", maxWidth: YAZI.kutuW, padding: "8px 26px 10px", background: "rgba(20,17,13,0.62)", borderRadius: 4 }}>
+      <div lang="tr" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0 13px", fontFamily: sans, fontWeight: 800, fontSize: px, lineHeight: 1.14, textAlign: "center", whiteSpace: tek ? "nowrap" : undefined, maxWidth: YAZI.kutuW, padding: "8px 26px 10px", background: "rgba(20,17,13,0.62)", borderRadius: 4 }}>
         {k.map((w, i) => (
           <span key={i} style={{ color: i === vi ? KIRMIZI : "#f6f1e4", display: "inline-block", transform: i === okunan ? "scale(1.06)" : undefined, filter: i === okunan ? "brightness(1.12)" : undefined }}>{w}</span>
         ))}

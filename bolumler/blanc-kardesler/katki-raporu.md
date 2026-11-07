@@ -1264,3 +1264,7 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Ses kaydırma: P03 54 (government-only = mühür 198), P07 60 (error/undo klakları arasında), P12 99 ("late" ≈ gerilme 201; tek mp3'te duraksama yok, TOK'tan sonra gelir), P14 18 ("glove" ≈ sol kanat katlanırken).
 - kit_eksik: src/kit/sablonlar/Harita.tsx:119 `${saat} SAAT` ve :120 `${gun}. GÜN` sabit TR (EN: "4 HOURS", "DAY 3"); json'dan değişmez. "TOURS" etiketi (props/ToursEtiketi.tsx:18) yer adı, EN'de aynı.
 - Açık: hedef 45–52 sn tutmadı (56.15); bağlayıcı olan animasyon bitişleri (P05 D2 gölge/it-çek 280, P06 çorap 300, P07 D4 274, P08 esneme 224, P01 el 186, P14 el 212). Kazanç için bu animasyonların erken bitirilmesi gerekir (motion/orkestra kararı).
+
+## motion · 2026-11-07 · Blanc EN kit düzeltmeleri
+- Harita `sayac_etiket {saat,gun}` ("{n}" yer tutucu; varsayılan TR aynı) + KitReplik: tek satıra ≥44 px ile sığan metin tek satır küçülür (EN P04), sığmayan eski akışta (TR değişmedi); EN P03'e etiket eklendi.
+- Dosyalar: src/kit/sablonlar/Harita.tsx, src/kit/yazi.tsx, src/kit/KATALOG.md, bolumler/blanc-kardesler/bolum-en.json. Doğrulayıcı iki json 0 hata.
