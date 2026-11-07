@@ -335,6 +335,10 @@
       ],
       "parametreler": {
         "rota": "paris-bordeaux",
+        "sayac_etiket": {
+          "saat": "{n} HOURS",
+          "gun": "DAY {n}"
+        },
         "posta": {
           "bas": 88,
           "bit": 170,

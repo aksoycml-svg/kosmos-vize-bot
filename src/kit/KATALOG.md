@@ -144,6 +144,7 @@ Parşömen + Fransa + dönem rotası. Font dışı glif yok (sayaç ikonları SV
 | `rota` * | `paris-bordeaux` (Chartres–Tours–Poitiers–Angoulême) |
 | `posta` | `{bas, bit, gun}` araba rota boyunca; sayaç "N. GÜN" + gün/ay diski (`gun`: 3) |
 | `telgraf` | `{bas, bit, kule, saat}` sinyal + kule ikonları; sayaç "N SAAT" (`saat`: 4) |
+| `sayac_etiket` | `{saat, gun}` sayaç metin şablonu, `{n}` sayıyı alır (EN: `{"saat":"{n} HOURS","gun":"DAY {n}"}`); verilmezse TR: "{n} SAAT" / "{n}. GÜN" |
 | `muhur` | `{kare, metin}` kırmızı mühür (540, 880) iner; kare = TOK teması (zorunlu) |
 - Sayaç kutusu sağ-alt (y 1320–1400). **K4 çift sayaç:** `posta` ve `telgraf` birlikte verilirse iki ayrı kutu (telgraf üstte y 1290, posta altta y 1400); her kutu kendi `bas`'ında sağdan kayarak girer, son değerinde kalır. Vuruşlar art arda ya da üst üste olabilir; sırayı anlatıma göre ver. Sayaç değişimleri (saat: qt .375/.625/.875; gün: qp 1/3, 2/3) `sayac-tik` teması alır. Kamera cs 1.0–1.6. Gece karartma katmanı yok.
 

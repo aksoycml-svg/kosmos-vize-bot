@@ -77,6 +77,9 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const tel = param<Vurus | null>(plan, "telgraf", null);
   const muhur = param<{ kare: number; metin: string } | null>(plan, "muhur", null);
   const gunSayisi = posta?.gun ?? param<number>(plan, "gun", 3), saatSayisi = tel?.saat ?? param<number>(plan, "saat", 4);
+  const etiket = param<{ saat?: string; gun?: string }>(plan, "sayac_etiket", {});
+  const etSaat = (n: number) => (etiket.saat ?? "{n} SAAT").replace("{n}", String(n));
+  const etGun = (n: number) => (etiket.gun ?? "{n}. GÜN").replace("{n}", String(n));
   const k = kameraHesapla(plan.kamera, p);
   const qp = posta ? interpolate(p, [posta.bas, posta.bit], [0, 1], { ...cl, easing: Easing.inOut(Easing.sin) }) : 0;
   const qt = tel ? interpolate(p, [tel.bas, tel.bit], [0, 1], { ...cl, easing: Easing.in(Easing.quad) }) : 0;
@@ -116,8 +119,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
         {posta && <Img src={staticFile("blanc/img/araba.png")} style={{ position: "absolute", left: ax - 100, top: ay - 82 + bob, width: 200 }} />}
       </div>
       {/* K4 çift sayaç: telgraf üstte, posta altta (ikisi birden varsa); tek vuruşta tek kutu eski yerinde */}
-      {tel && p >= tel.bas && <SayacKutu y={posta ? 1290 : 1320} giris={interpolate(p, [tel.bas, tel.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={<TIkon renk="#f1e4c4" />} metin={`${saat} SAAT`} />}
-      {posta && p >= posta.bas && <SayacKutu y={tel ? 1400 : 1320} giris={interpolate(p, [posta.bas, posta.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={gece ? <Ay /> : <Gunes />} metin={`${gun}. GÜN`} />}
+      {tel && p >= tel.bas && <SayacKutu y={posta ? 1290 : 1320} giris={interpolate(p, [tel.bas, tel.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={<TIkon renk="#f1e4c4" />} metin={etSaat(saat)} />}
+      {posta && p >= posta.bas && <SayacKutu y={tel ? 1400 : 1320} giris={interpolate(p, [posta.bas, posta.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={gece ? <Ay /> : <Gunes />} metin={etGun(gun)} />}
     </div>
   );
 };
