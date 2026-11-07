@@ -1279,3 +1279,10 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Doğrulama 0 hata/13 uyarı, 3369 kare. Görüntü 4 parça (843/843/842/841 kare) sıralı render, concat 3369 kare, 1080x1920 60 fps.
 - Ses: mp3 render; müzik RMS son 2 sn = -32.9 dB (geçer). loudnorm ölçüm I=-20.99, TP=-1.74, LRA=5.40. I=-11.5 ve I=-11.0 denendi; sonuç AAC sonrası I=-14.5 LUFS, TP=-2.3, LRA=3.1 (hedef -14 ±0.3 dışında, -0.2 LU). Limiter 0.84 sabit; sapma TP sınırından kaynaklı, kullanıcı kararı gerekli.
 - Çıktılar: out/blanc-en-ilk-kurgu.mp4 (1080, AAC 320k 48k), out/blanc-en-ilk-kurgu-540.mp4 (540x960 CRF26 AAC128k, TP -1.9), out/en/kontrol.png (14 plan). Sorun: uyarı P07 "klak" teması eksik (7 varış), 6 foley tanımlı ama kullanılmıyor.
+
+## elestirmen · 2026-11-07 · Blanc EN ilk kurgu kalite kapısı (tek tur)
+- Ne yaptım: ses json zaman damgaları ile plan başlangıçlarını hesapladım; ebur128 ve 50 ms RMS (plan sınırları, son saniye); kontak sayfası taraması; P03/P10 kare çıkarıldı. Karar: GEÇMEZ (koşullu).
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/ilk-kurgu-elestiri-en.md, katki-raporu.md (yalnız ekleme).
+- Kararlar: LUFS −14.0 / TP −1.8 geçer (teknisyen raporundaki −14.5'ten farklı: güncel dosya ölçüldü). Senkron: P03 ve P14 tam; P12 ve P07 ayrık.
+- Yakalanan ihlaller: P10 "MEMUR" TR etiketi (kritik); P12 yazı/TOK sözden 1.15 sn önce; P07 hata sözü 0.45 sn geç; küçük yazı kırılımı/kenar.
+- Açık sorular: P12 hangisi kayacak (yazı mı ses mi); P07 mp3 iki klibe bölünsün mü; P14 başındaki müzik çentiği kulakla dinlenmeli.
