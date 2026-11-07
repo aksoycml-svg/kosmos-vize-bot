@@ -1158,3 +1158,10 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 ## teknisyen · 2026-11-07 · Ses yeniden render (muzik_istisnalari)
 - Ses2 render (kit/ses.tsx, P04/P10/P11/P12 istisnaları): 1108–1174 kare arası müzik farkı RMS -37.8 dB, 0–17 sn değişmedi; mux + loudnorm (2 geçiş lineer, alimiter 0.70, TP -1.8) + AAC 320k: I -14.3 LUFS, TP -1.6 dBTP (AAC sonrası, final mp4 ölçüldü).
 - Üretilen: out/blanc-ilk-kurgu.mp4 (üzerine yazıldı), out/blanc-ilk-kurgu-540.mp4 (I -14.3, TP +0.9 dBFS: AAC 128k kodlama tepe taşması, düzeltilmedi).
+
+## elestirmen · 2026-11-07 · İlk kurgu kalite kapısı (tek tur)
+- Yaptım: 14 plandan 3 kare + kesme öncesi kareler, 2 kontak sayfası, P14 ara şeridi; ses senkronu ölçülmedi.
+- Dosya: bolumler/blanc-kardesler/ilk-kurgu-elestiri.md
+- Karar: kullanıcıya gitmez; 3 kritik (P14 paket sıçraması, P01 yarım jest, P09 kol/gölge), 3 orta.
+- Yakalanan: hareket tamamlanma, süreklilik; ertelenen P07/P10/P12 sürüyor, P14 geçişi doğrulandı: hatalı.
+- Not: P01/P06/P09 bulguları tek kareye dayalı, düzeltmeden önce doğrulanmalı.
