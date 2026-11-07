@@ -1,0 +1,34 @@
+{
+ "id": "P14",
+ "text": "No keyboard. Just a glove.",
+ "model": "eleven_multilingual_v2",
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "dur": 1.718,
+ "words": [
+  {
+   "t": "No",
+   "s": 0,
+   "e": 0.186
+  },
+  {
+   "t": "keyboard.",
+   "s": 0.255,
+   "e": 0.72
+  },
+  {
+   "t": "Just",
+   "s": 0.789,
+   "e": 0.975
+  },
+  {
+   "t": "a",
+   "s": 1.022,
+   "e": 1.045
+  },
+  {
+   "t": "glove.",
+   "s": 1.08,
+   "e": 1.718
+  }
+ ]
+}

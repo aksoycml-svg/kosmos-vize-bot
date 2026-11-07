@@ -1,0 +1,49 @@
+{
+ "id": "P02",
+ "text": "Bordeaux's Blanc brothers bet on Paris bond prices.",
+ "model": "eleven_multilingual_v2",
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "dur": 2.879,
+ "words": [
+  {
+   "t": "Bordeaux's",
+   "s": 0,
+   "e": 0.464
+  },
+  {
+   "t": "Blanc",
+   "s": 0.522,
+   "e": 0.789
+  },
+  {
+   "t": "brothers",
+   "s": 0.836,
+   "e": 1.173
+  },
+  {
+   "t": "bet",
+   "s": 1.231,
+   "e": 1.382
+  },
+  {
+   "t": "on",
+   "s": 1.428,
+   "e": 1.486
+  },
+  {
+   "t": "Paris",
+   "s": 1.544,
+   "e": 1.788
+  },
+  {
+   "t": "bond",
+   "s": 1.846,
+   "e": 2.043
+  },
+  {
+   "t": "prices.",
+   "s": 2.078,
+   "e": 2.879
+  }
+ ]
+}

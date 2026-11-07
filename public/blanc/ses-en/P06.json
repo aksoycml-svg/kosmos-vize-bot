@@ -1,0 +1,59 @@
+{
+ "id": "P06",
+ "text": "Paris sends a package to Tours. Glove: up. Sock: down.",
+ "model": "eleven_multilingual_v2",
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "dur": 4.133,
+ "words": [
+  {
+   "t": "Paris",
+   "s": 0,
+   "e": 0.372
+  },
+  {
+   "t": "sends",
+   "s": 0.418,
+   "e": 0.627
+  },
+  {
+   "t": "a",
+   "s": 0.662,
+   "e": 0.685
+  },
+  {
+   "t": "package",
+   "s": 0.743,
+   "e": 1.08
+  },
+  {
+   "t": "to",
+   "s": 1.115,
+   "e": 1.173
+  },
+  {
+   "t": "Tours.",
+   "s": 1.231,
+   "e": 1.649
+  },
+  {
+   "t": "Glove:",
+   "s": 1.73,
+   "e": 2.206
+  },
+  {
+   "t": "up.",
+   "s": 2.334,
+   "e": 2.67
+  },
+  {
+   "t": "Sock:",
+   "s": 2.844,
+   "e": 3.309
+  },
+  {
+   "t": "down.",
+   "s": 3.46,
+   "e": 4.133
+  }
+ ]
+}

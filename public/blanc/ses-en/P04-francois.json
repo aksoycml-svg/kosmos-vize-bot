@@ -1,0 +1,44 @@
+{
+ "id": "P04-francois",
+ "text": "Can't buy the line… buy the man.",
+ "model": "eleven_multilingual_v2",
+ "voice": "vwmWyMlmlJtiiXeCVRKn",
+ "dur": 1.95,
+ "words": [
+  {
+   "t": "Can't",
+   "s": 0,
+   "e": 0.29
+  },
+  {
+   "t": "buy",
+   "s": 0.325,
+   "e": 0.43
+  },
+  {
+   "t": "the",
+   "s": 0.476,
+   "e": 0.546
+  },
+  {
+   "t": "line…",
+   "s": 0.592,
+   "e": 0.882
+  },
+  {
+   "t": "buy",
+   "s": 1.033,
+   "e": 1.242
+  },
+  {
+   "t": "the",
+   "s": 1.3,
+   "e": 1.382
+  },
+  {
+   "t": "man.",
+   "s": 1.416,
+   "e": 1.95
+  }
+ ]
+}

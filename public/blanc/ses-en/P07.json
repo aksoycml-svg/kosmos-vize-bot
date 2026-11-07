@@ -1,0 +1,49 @@
+{
+ "id": "P07",
+ "text": "The operator adds an error. Then undoes it.",
+ "model": "eleven_multilingual_v2",
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "dur": 2.461,
+ "words": [
+  {
+   "t": "The",
+   "s": 0,
+   "e": 0.151
+  },
+  {
+   "t": "operator",
+   "s": 0.221,
+   "e": 0.65
+  },
+  {
+   "t": "adds",
+   "s": 0.697,
+   "e": 0.894
+  },
+  {
+   "t": "an",
+   "s": 0.929,
+   "e": 0.998
+  },
+  {
+   "t": "error.",
+   "s": 1.057,
+   "e": 1.37
+  },
+  {
+   "t": "Then",
+   "s": 1.428,
+   "e": 1.579
+  },
+  {
+   "t": "undoes",
+   "s": 1.649,
+   "e": 1.974
+  },
+  {
+   "t": "it.",
+   "s": 2.032,
+   "e": 2.461
+  }
+ ]
+}

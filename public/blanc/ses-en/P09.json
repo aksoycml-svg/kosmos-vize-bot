@@ -1,0 +1,49 @@
+{
+ "id": "P09",
+ "text": "In Bordeaux, an accomplice reads the deleted error.",
+ "model": "eleven_multilingual_v2",
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "dur": 2.972,
+ "words": [
+  {
+   "t": "In",
+   "s": 0,
+   "e": 0.151
+  },
+  {
+   "t": "Bordeaux,",
+   "s": 0.221,
+   "e": 0.72
+  },
+  {
+   "t": "an",
+   "s": 0.766,
+   "e": 0.871
+  },
+  {
+   "t": "accomplice",
+   "s": 0.906,
+   "e": 1.44
+  },
+  {
+   "t": "reads",
+   "s": 1.498,
+   "e": 1.753
+  },
+  {
+   "t": "the",
+   "s": 1.8,
+   "e": 1.869
+  },
+  {
+   "t": "deleted",
+   "s": 1.916,
+   "e": 2.287
+  },
+  {
+   "t": "error.",
+   "s": 2.345,
+   "e": 2.972
+  }
+ ]
+}

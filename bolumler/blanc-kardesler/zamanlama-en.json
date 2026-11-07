@@ -1,0 +1,284 @@
+{
+  "kaynak": "EN: public/blanc/ses-en (ffprobe). TR: zamanlama-v4.json dur_ffprobe; plan: bolum.json sure_kare (fps 60).",
+  "kural": "sigiyor = TR ses başlangıç karesi + ceil(EN süre × 60) ≤ plan_sure_kare − 12; P10 için anlatım memur başlangıcından (kare 180) önce bitmeli.",
+  "tasan_planlar": [],
+  "planlar": [
+    {
+      "plan": "P01",
+      "plan_sure": 3.5,
+      "plan_sure_kare": 210,
+      "sinir_kare": 198,
+      "klipler": [
+        {
+          "dosya": "P01.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 6,
+          "tr_sure": 3.109,
+          "en_sure": 1.985,
+          "en_sure_kare": 120,
+          "en_bitis_kare": 126,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P02",
+      "plan_sure": 4.3,
+      "plan_sure_kare": 258,
+      "sinir_kare": 246,
+      "klipler": [
+        {
+          "dosya": "P02.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 6,
+          "tr_sure": 3.892,
+          "en_sure": 2.926,
+          "en_sure_kare": 176,
+          "en_bitis_kare": 182,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P03",
+      "plan_sure": 5,
+      "plan_sure_kare": 300,
+      "sinir_kare": 288,
+      "klipler": [
+        {
+          "dosya": "P03.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 6,
+          "tr_sure": 4.624,
+          "en_sure": 3.422,
+          "en_sure_kare": 206,
+          "en_bitis_kare": 212,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P04",
+      "plan_sure": 3.3,
+      "plan_sure_kare": 198,
+      "sinir_kare": 186,
+      "klipler": [
+        {
+          "dosya": "P04-francois.mp3",
+          "ses": "FRANÇOIS",
+          "baslangic_kare": 12,
+          "tr_sure": 2.586,
+          "en_sure": 1.985,
+          "en_sure_kare": 120,
+          "en_bitis_kare": 132,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P05",
+      "plan_sure": 5,
+      "plan_sure_kare": 300,
+      "sinir_kare": 288,
+      "klipler": [
+        {
+          "dosya": "P05.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 6,
+          "tr_sure": 3.527,
+          "en_sure": 2.743,
+          "en_sure_kare": 165,
+          "en_bitis_kare": 171,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P06",
+      "plan_sure": 5.2,
+      "plan_sure_kare": 312,
+      "sinir_kare": 300,
+      "klipler": [
+        {
+          "dosya": "P06.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 8,
+          "tr_sure": 4.598,
+          "en_sure": 4.18,
+          "en_sure_kare": 251,
+          "en_bitis_kare": 259,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P07",
+      "plan_sure": 5,
+      "plan_sure_kare": 300,
+      "sinir_kare": 288,
+      "klipler": [
+        {
+          "dosya": "P07.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 18,
+          "tr_sure": 3.657,
+          "en_sure": 2.508,
+          "en_sure_kare": 151,
+          "en_bitis_kare": 169,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P08",
+      "plan_sure": 4,
+      "plan_sure_kare": 240,
+      "sinir_kare": 228,
+      "klipler": [
+        {
+          "dosya": "P08.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 6,
+          "tr_sure": 3.37,
+          "en_sure": 2.873,
+          "en_sure_kare": 173,
+          "en_bitis_kare": 179,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P09",
+      "plan_sure": 5,
+      "plan_sure_kare": 300,
+      "sinir_kare": 288,
+      "klipler": [
+        {
+          "dosya": "P09.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 12,
+          "tr_sure": 3.657,
+          "en_sure": 3.004,
+          "en_sure_kare": 181,
+          "en_bitis_kare": 193,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P10",
+      "plan_sure": 6.167,
+      "plan_sure_kare": 370,
+      "sinir_kare": 358,
+      "klipler": [
+        {
+          "dosya": "P10.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 6,
+          "tr_sure": 2.508,
+          "en_sure": 2.456,
+          "en_sure_kare": 148,
+          "en_bitis_kare": 154,
+          "sigiyor": true,
+          "anlatim_memur_oncesi_bitiyor": true
+        },
+        {
+          "dosya": "P10-memur.mp3",
+          "ses": "MEMUR",
+          "baslangic_kare": 180,
+          "tr_sure": 2.847,
+          "en_sure": 2.429,
+          "en_sure_kare": 146,
+          "en_bitis_kare": 326,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P11",
+      "plan_sure": 4.1,
+      "plan_sure_kare": 246,
+      "sinir_kare": 234,
+      "klipler": [
+        {
+          "dosya": "P11.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 6,
+          "tr_sure": 3.37,
+          "en_sure": 2.273,
+          "en_sure_kare": 137,
+          "en_bitis_kare": 143,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P12",
+      "plan_sure": 4.1,
+      "plan_sure_kare": 246,
+      "sinir_kare": 234,
+      "klipler": [
+        {
+          "dosya": "P12.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 6,
+          "tr_sure": 3.474,
+          "en_sure": 2.116,
+          "en_sure_kare": 127,
+          "en_bitis_kare": 133,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P13",
+      "plan_sure": 3.7,
+      "plan_sure_kare": 222,
+      "sinir_kare": 210,
+      "klipler": [
+        {
+          "dosya": "P13.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 6,
+          "tr_sure": 2.534,
+          "en_sure": 2.038,
+          "en_sure_kare": 123,
+          "en_bitis_kare": 129,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    },
+    {
+      "plan": "P14",
+      "plan_sure": 3.8,
+      "plan_sure_kare": 228,
+      "sinir_kare": 216,
+      "klipler": [
+        {
+          "dosya": "P14.mp3",
+          "ses": "ANLATICI",
+          "baslangic_kare": 6,
+          "tr_sure": 3.004,
+          "en_sure": 1.75,
+          "en_sure_kare": 106,
+          "en_bitis_kare": 112,
+          "sigiyor": true
+        }
+      ],
+      "sigiyor": true
+    }
+  ]
+}

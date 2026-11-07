@@ -1,0 +1,44 @@
+{
+ "id": "P10",
+ "text": "Two years on, the operator's gravely ill.",
+ "model": "eleven_multilingual_v2",
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "dur": 2.415,
+ "words": [
+  {
+   "t": "Two",
+   "s": 0,
+   "e": 0.197
+  },
+  {
+   "t": "years",
+   "s": 0.255,
+   "e": 0.499
+  },
+  {
+   "t": "on,",
+   "s": 0.58,
+   "e": 0.836
+  },
+  {
+   "t": "the",
+   "s": 0.859,
+   "e": 0.94
+  },
+  {
+   "t": "operator's",
+   "s": 1.01,
+   "e": 1.463
+  },
+  {
+   "t": "gravely",
+   "s": 1.498,
+   "e": 1.823
+  },
+  {
+   "t": "ill.",
+   "s": 1.881,
+   "e": 2.415
+  }
+ ]
+}

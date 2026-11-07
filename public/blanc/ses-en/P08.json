@@ -1,0 +1,44 @@
+{
+ "id": "P08",
+ "text": "Message stays clean. But towers copy errors.",
+ "model": "eleven_multilingual_v2",
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "dur": 2.833,
+ "words": [
+  {
+   "t": "Message",
+   "s": 0,
+   "e": 0.383
+  },
+  {
+   "t": "stays",
+   "s": 0.406,
+   "e": 0.673
+  },
+  {
+   "t": "clean.",
+   "s": 0.731,
+   "e": 1.173
+  },
+  {
+   "t": "But",
+   "s": 1.324,
+   "e": 1.474
+  },
+  {
+   "t": "towers",
+   "s": 1.509,
+   "e": 1.811
+  },
+  {
+   "t": "copy",
+   "s": 1.858,
+   "e": 2.101
+  },
+  {
+   "t": "errors.",
+   "s": 2.148,
+   "e": 2.833
+  }
+ ]
+}

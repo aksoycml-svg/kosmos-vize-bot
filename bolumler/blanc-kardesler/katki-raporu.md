@@ -1253,3 +1253,7 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Üretilen (public/blanc/ses-en/aday/): anlatici-A.mp3 (George, 5.43 sn), anlatici-B.mp3 (Brian, 4.62 sn), anlatici-C.mp3 (Daniel, 5.88 sn), francois.mp3 (TR ses vwmWy…, 1.85 sn), memur.mp3 (TR ses iaO74…, eleven_v3 + [whispers], 2.93 sn), hepsi.mp3 (A,B,C,François,memur; 1 sn sessizlik, 24.56 sn).
 - Harcanan: 267 karakter (A/B/C 3×67, François 32, memur 34). Model eleven_multilingual_v2; memur için v3 denemesi başarılı, v2 yedeği kullanılmadı. Ayarlar: stability 0.45, similarity 0.8, style 0.35, speaker_boost açık. Çağrılar curl ile yapıldı; anahtar yazdırılmadı.
 - Hata yok. Sesler dinlenmedi (yalnız süre/md5 kontrolü). Anlatıcı kararı ve A/B/C iki cümle 0.6 sn sessizlikle; kullanıcı onayı bekliyor.
+
+## teknisyen · 2026-11-07 · Blanc EN seslendirme
+- Ne yaptım / komutlar: 15 klip ElevenLabs with-timestamps ile curl'den üretildi (HTTP 200, hepsi); base64 çözümü node ile, süre ffprobe ile ölçüldü, TR sığma tablosu `zamanlama-en.json`'a yazıldı. Anlatıcı Brian, François vwmWy… (multilingual v2, en, stab 0.45 / sim 0.8 / style 0.35 / boost), memur iaO74… (eleven_v3, `[whispers]`, stab 0.0 / sim 0.8).
+- Üretilen: `public/blanc/ses-en/` P01–P14 (+`P04-francois`, `P10-memur`) mp3 + json; `bolumler/blanc-kardesler/zamanlama-en.json`. Taşan plan yok (15/15 sığıyor; P10 anlatım kare 154 ile memur kare 180 öncesi bitiyor). "Gravely ill" korundu. Harcanan: 621 karakter (metin 610 + `[whispers] ` 11).

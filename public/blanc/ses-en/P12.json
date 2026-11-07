@@ -1,0 +1,39 @@
+{
+ "id": "P12",
+ "text": "Acquitted. A law came. Too late.",
+ "model": "eleven_multilingual_v2",
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "dur": 2.09,
+ "words": [
+  {
+   "t": "Acquitted.",
+   "s": 0,
+   "e": 0.488
+  },
+  {
+   "t": "A",
+   "s": 0.511,
+   "e": 0.546
+  },
+  {
+   "t": "law",
+   "s": 0.615,
+   "e": 0.789
+  },
+  {
+   "t": "came.",
+   "s": 0.848,
+   "e": 1.184
+  },
+  {
+   "t": "Too",
+   "s": 1.254,
+   "e": 1.428
+  },
+  {
+   "t": "late.",
+   "s": 1.498,
+   "e": 2.09
+  }
+ ]
+}

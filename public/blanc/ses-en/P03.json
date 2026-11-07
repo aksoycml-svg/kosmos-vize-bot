@@ -1,0 +1,49 @@
+{
+ "id": "P03",
+ "text": "Telegraph: hours. Mail: three days. But it's government-only.",
+ "model": "eleven_multilingual_v2",
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "dur": 3.39,
+ "words": [
+  {
+   "t": "Telegraph:",
+   "s": 0,
+   "e": 0.65
+  },
+  {
+   "t": "hours.",
+   "s": 0.72,
+   "e": 1.138
+  },
+  {
+   "t": "Mail:",
+   "s": 1.196,
+   "e": 1.498
+  },
+  {
+   "t": "three",
+   "s": 1.521,
+   "e": 1.718
+  },
+  {
+   "t": "days.",
+   "s": 1.765,
+   "e": 2.043
+  },
+  {
+   "t": "But",
+   "s": 2.078,
+   "e": 2.206
+  },
+  {
+   "t": "it's",
+   "s": 2.241,
+   "e": 2.357
+  },
+  {
+   "t": "government-only.",
+   "s": 2.403,
+   "e": 3.39
+  }
+ ]
+}

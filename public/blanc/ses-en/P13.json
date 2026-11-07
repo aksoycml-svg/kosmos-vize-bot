@@ -1,0 +1,39 @@
+{
+ "id": "P13",
+ "text": "Some call it the first cyberattack.",
+ "model": "eleven_multilingual_v2",
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "dur": 1.997,
+ "words": [
+  {
+   "t": "Some",
+   "s": 0,
+   "e": 0.267
+  },
+  {
+   "t": "call",
+   "s": 0.302,
+   "e": 0.453
+  },
+  {
+   "t": "it",
+   "s": 0.511,
+   "e": 0.569
+  },
+  {
+   "t": "the",
+   "s": 0.592,
+   "e": 0.662
+  },
+  {
+   "t": "first",
+   "s": 0.708,
+   "e": 0.917
+  },
+  {
+   "t": "cyberattack.",
+   "s": 0.952,
+   "e": 1.997
+  }
+ ]
+}

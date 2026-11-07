@@ -1,0 +1,44 @@
+{
+ "id": "P11",
+ "text": "Trial begins. But no law forbids it.",
+ "model": "eleven_multilingual_v2",
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "dur": 2.229,
+ "words": [
+  {
+   "t": "Trial",
+   "s": 0,
+   "e": 0.395
+  },
+  {
+   "t": "begins.",
+   "s": 0.453,
+   "e": 0.848
+  },
+  {
+   "t": "But",
+   "s": 0.882,
+   "e": 0.998
+  },
+  {
+   "t": "no",
+   "s": 1.057,
+   "e": 1.149
+  },
+  {
+   "t": "law",
+   "s": 1.231,
+   "e": 1.37
+  },
+  {
+   "t": "forbids",
+   "s": 1.44,
+   "e": 1.776
+  },
+  {
+   "t": "it.",
+   "s": 1.823,
+   "e": 2.229
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "id": "P10-memur",
+ "text": "The errors… on purpose.",
+ "model": "eleven_v3",
+ "voice": "iaO74V3r84UsdPt3frCW",
+ "dur": 2.4,
+ "words": [
+  {
+   "t": "The",
+   "s": 0.136,
+   "e": 0.16
+  },
+  {
+   "t": "errors…",
+   "s": 0.251,
+   "e": 1.24
+  },
+  {
+   "t": "on",
+   "s": 1.387,
+   "e": 1.68
+  },
+  {
+   "t": "purpose.",
+   "s": 1.77,
+   "e": 2.4
+  }
+ ]
+}
