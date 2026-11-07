@@ -42,6 +42,7 @@ Her ajan görev bitince `bolumler/<slug>/katki-raporu.md` sonuna ekler: ne yapt�
 4. **Okunurluk beyan edilir ve ölçülür:** dokunuş nesnesinin ekran oranı ve net süresi (≥%10 / ≥1 sn) json'da; küçük kalırsa kamera yaklaşır (katalog sınırı içinde).
 5. **Kit özelliği kanıtla kabul edilir:** "kitte var" demek yetmez; yeni kit parçası bir bölüm json'ında kullanılıp render edilmiş karede görülünce kabul edilir.
 6. **Json'u yazan doğrular:** yönetmen doğrulayıcıyı kendisi çalıştırır, geçmeyen json teslim edilmez.
+7. **Yönetmen kör ayar yapmaz:** kamera/ölçek/konum değiştirdiği her planın `kontrol_kare`'sini kendisi render eder (`npx remotion still Bolum … --scale=0.25`) ve bakar; okunmuyorsa aynı turda düzeltir. Katalog sınırı yetmiyorsa `kit_eksik` yazar. (v3.1'de kör ayarlanan 8 planın 5'i hâlâ okunmuyordu.)
 
 ## İş akışı ve onay noktaları
 1. Araştırma → 2. Senaryo (**kullanıcı onayı**) → 3. Storyboard: kare + notlar (**kullanıcı onayı**) → 4. Ses (ElevenLabs) + varlıklar → 5. Animasyon (motion) → 6. Eleştirmen kontrolü (kontrol kareleri) → 7. İlk kurgu render (**kullanıcı onayı**) → 8. Premiere paketi (sahne klipleri, ayrı ses kanalları, SRT, XML) + 4K hareketli tuval gereken planlarda.

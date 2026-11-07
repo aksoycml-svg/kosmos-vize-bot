@@ -1123,3 +1123,6 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 ## teknisyen · 2026-11-07 · Blanc storyboard v3.1 kontrol kareleri
 - Ne yaptım: 14 plan × 4 kare (ilk/kontrol/son/kontrol-güvenli) = 56 still render, 0 hata; sayfa-1 (P01–P07) ve sayfa-2 (P08–P14) JPEG 968x2939 üretildi. Kaynak: storyboard-v3/kare-listesi-v2.json. Komutlar: npx remotion still Bolum --frame --props --scale=0.5 (betik scratchpad/render31.py).
 - Üretilen: bolumler/blanc-kardesler/storyboard-v31/kareler/P*.png (56), sayfa-1.jpg, sayfa-2.jpg. Hata yok; ara commit'ler 8 karede bir atıldı.
+
+## elestirmen · 2026-11-07 · storyboard v3.1 tek tur
+- Ne yaptım: v3 8 kritiğini sayfa-1/2, K3 ve P04/P12/P13 karelerinde doğruladım (3 kapandı, 4 kısmen, 1 kapanmadı); 14 plan puanlandı. Dosya: bolumler/blanc-kardesler/storyboard-v31/elestiri.md. Karar: sunulamaz; açıklar P12/P13/P14/P06/P05/P09. Not: P05/P06/P09 ayrıntı karesi açılmadı, sayfa üstünden hüküm verildi.
