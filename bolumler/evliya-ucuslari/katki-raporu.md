@@ -10,3 +10,4 @@
 - Kararlar: Kancada -mış eki kullandım ("uçmuş"). Evliya hikâyenin başında gizli kalıyor ve P13'te cevap olarak geliyor. P02/P10 aynı köşk kadrajı ve P07/P11 iki kese birbirinin aynası. Döngü: P14'teki kitap çizimindeki kıvılcım P01'e bağlanıyor.
 - Kurallar: Evliya için "gördü" demedim. Lagâri Boğaz'ı geçmiyor ve onun için sürgün geçmiyor. "Kardeş", "rüzgâr ölçüldü" ve "sıska" (tek kaynak) kullanılmadı. Kanat ve "yedi kollu" görselde nötr. 2 replik var ve ikisi de dramatizasyon olarak işaretli.
 - Açık sorular: "TEK TANIK: BİR KİTAP" yorumu, Hezarfen planlarının gündüz olması, ~1633 mü 1630'lar mı, "her gün maaş" sadeleştirmesi, replik sesleri (ayrıntı senaryo.md §7'de).
+- ana oturum · 2026-11-07 · senaryo kullanıcı onayı; P02 '1630'lar', P05 'Bugünkü bir hesap' işlendi.

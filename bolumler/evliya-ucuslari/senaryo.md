@@ -39,10 +39,10 @@ Işık: Lagâri planları gece ya da alacakaranlıkta. Bu bir çıkarım: Evliya
 | # | Süre (sn) | Mekân | Görsel (ne görülüyor) | Anlatım / replik | Ekran yazısı |
 |---|---|---|---|---|---|
 | P01 | 0.0–4.5 (4.5) | SARAYBURNU gece → GALATA-TEPE | Kıvılcım fitilde ilerliyor ve fişek ateş alıp göğe yükseliyor (ilk kare hareketin ortasında). ≈2.3 sn'de kesme: kule tepesinde, kanatları belirsiz bir siluet kenara adım atıyor. | "İstanbul'da iki adam uçmuş. Bunu yazan, tek bir kişi." | **TEK TANIK: BİR KİTAP** |
-| P02 | 4.5–9.0 (4.5) | SARAYBURNU gece | Deniz kıyısında çifte kemerli taş altyapının üstünde köşk var, önünde rıhtım. Pencerede padişahın sırtı ya da silueti görünüyor (yüz yok, portre referansı yok). Gökte şenlik fişekleri patlıyor. | "Padişahın kızı doğmuş. Padişah, sahildeki köşkünden şenliği izliyor." | **1. UÇUŞ · Sarayburnu, ~1633** |
+| P02 | 4.5–9.0 (4.5) | SARAYBURNU gece | Deniz kıyısında çifte kemerli taş altyapının üstünde köşk var, önünde rıhtım. Pencerede padişahın sırtı ya da silueti görünüyor (yüz yok, portre referansı yok). Gökte şenlik fişekleri patlıyor. | "Padişahın kızı doğmuş. Padişah, sahildeki köşkünden şenliği izliyor." | **1. UÇUŞ · Sarayburnu, 1630'lar** |
 | P03 | 9.0–13.5 (4.5) | SARAYBURNU kıyı | Kıyıda barut dolu tüplerden bir demet duruyor (kol sayılmıyor, nötr). Lagâri demetin üstüne oturuyor. Yardımcıların elinde meşale var. | "Lagâri Hasan Çelebi, barut dolu bir fişeğe biniyor." | **İçinde ~64 kilo barut** |
 | P04 | 13.5–17.0 (3.5) | SARAYBURNU kıyı (bel plan) | Lagâri, fişeğin üstünden köşke doğru dönüp sesleniyor. Elini kaldırıyor, sonra tutunuyor. | LAGÂRİ: "Padişahım, İsa peygamberle konuşmaya gidiyorum!" | üst: *Lagâri (Evliya'ya göre)* · alt: replik altyazısı |
-| P05 | 17.0–21.0 (4.0) | SARAYBURNU geniş | Meşale fitile değiyor. Fişek ateş püskürterek yükseliyor ve deniz yüzeyi ışıl ışıl aydınlanıyor. | "Fitil yanıyor. Fişek onu göğe fırlatıyor!" | **Tahmin: ~250 metre** |
+| P05 | 17.0–21.0 (4.0) | SARAYBURNU geniş | Meşale fitile değiyor. Fişek ateş püskürterek yükseliyor ve deniz yüzeyi ışıl ışıl aydınlanıyor. | "Fitil yanıyor. Fişek onu göğe fırlatıyor!" | **Bugünkü bir hesap: ~250 m** |
 | P06 | 21.0–26.0 (5.0) | SARAYBURNU geniş | **Mekanizma:** Ateş sönüyor ve iki sade kanat açılıyor (yapı belirsiz). Siluet yay çizip köşkün önünde denize "şap" diye iniyor. Kafası sudan çıkıyor ve köşke doğru yüzüyor. | "Barut bitince kanatlarını açıyor. Süzülüp köşkün önünde denize iniyor." | **Sonra yüzerek padişaha döndü.** |
 | P07 | 26.0–30.5 (4.5) | SARAYBURNU köşk önü (insert) | Islak Lagâri eğiliyor. Bir el ona bir kese uzatıyor ve kese avucuna "şıngır" diye düşüyor. | "Ödülü: bir kese para ve her gün maaş." | **1 kese gümüş + günde 70 akçe** |
 | P08 | 30.5–34.5 (4.0) | GALATA-TEPE gündüz | Taş kule gövdesi, kurşun gri külah (biçimi nötr) ve tepe galerisi görünüyor. Hezarfen galerinin kenarında duruyor, kolları yanda, kanatları sade ve belirsiz. | "İkinci uçuş. Hezarfen Ahmed Çelebi, Galata Kulesi'nin tepesinde." | **2. UÇUŞ · Hezarfen = "bin hünerli"** |
@@ -78,10 +78,10 @@ Karşılıksız öğe yok. Dışarıda bırakılanlar (açıklamaya): Okmeydanı
 ### Ses kapalı (görsel + ekran yazısı)
 ```
 P01 TEK TANIK: BİR KİTAP              (fişek yükselir · kule tepesinde kanatlı siluet)
-P02 1. UÇUŞ · Sarayburnu, ~1633        (köşk, padişah pencerede, şenlik fişekleri)
+P02 1. UÇUŞ · Sarayburnu, 1630'lar        (köşk, padişah pencerede, şenlik fişekleri)
 P03 İçinde ~64 kilo barut              (adam barut demetine oturur)
 P04 "Padişahım, İsa peygamberle konuşmaya gidiyorum!"
-P05 Tahmin: ~250 metre                 (fitil, yükseliş, deniz aydınlanır)
+P05 Bugünkü bir hesap: ~250 m                 (fitil, yükseliş, deniz aydınlanır)
 P06 Sonra yüzerek padişaha döndü.      (kanat açılır, köşk önünde denize iniş, yüzme)
 P07 1 kese gümüş + günde 70 akçe       (kese avuca düşer)
 P08 2. UÇUŞ · Hezarfen = "bin hünerli" (Galata tepesi)
@@ -103,7 +103,7 @@ P14 Sence uçtular mı?                  (çizim canlanır → başa döner)
 | P02 | "Şenlik neden önemli?" | Bu plan uçuşun sahnesini ve seyircisini kuruyor. Köşk P06 ve P10'da karşılık buluyor. Ses kapalı izleyen "1. UÇUŞ" yazısını okuyor. |
 | P03 | "Fişeğe binmek ne demek?" | Görsel cevap veriyor: adam barut demetinin üstünde oturuyor. Ekrandaki "64 kilo" ağırlığı somutlaştırıyor. |
 | P04 | "Neden İsa peygamber?" | Gökyüzüne gidiyorum demek istiyor. P06'da denize inmesi şakayı kapatıyor. Doğruluk notu: söz Evliya'ya ait, ekranda belirtiliyor. |
-| P05 | "Ne kadar yükseldi?" | Ekranda "Tahmin: ~250 metre" yazıyor ve bunun bir tahmin olduğu açık. |
+| P05 | "Ne kadar yükseldi?" | Ekranda "Bugünkü bir hesap: ~250 m" yazıyor ve bunun bir tahmin olduğu açık. |
 | P06 | "Nasıl indi, öldü mü?" | Mekanizma tek cümlede veriliyor: barut biter, kanat açılır, süzülür, denize iner. Yüzerek dönüyor. |
 | P07 | "Eee, ne oldu ona?" | Ödülü alıyor ve hikâye mutlu bitiyor. Bu, P11'deki ters son için zemin oluyor. |
 | P08 | "Hezarfen kim?" | Ekran adını açıklıyor. Tepede durması "atlayacak" beklentisini kuruyor. |
@@ -156,3 +156,6 @@ Kalan soru: yok. Zayıf nokta: P02'de "kızı doğmuş" bilgisi yalnız bağlam 
 7. **"Dört yüz yıl":** Gerçek süre yaklaşık 390 yıl. Kapanış cümlesindeki bu yuvarlama sizin kararınız; olduğu gibi bırakıyorum.
 
 Tasarıma soru (araştırmacıya): 1630'larda Galata külahının biçimi ve Doğancılar meydanının görünümü doğrulanamadı. Görselde nötr kalıyorlar.
+
+## Kullanıcı kararları (2026-11-07, onay)
+Senaryo onaylandı. 1) "TEK TANIK: BİR KİTAP" kalır · 2) Lagâri gece, Hezarfen gündüz · 3) P02 "1630'lar" · 4) "her gün maaş" kalır · 5) "sıska" eklenmez · 6) Lagâri ve Padişah replikleri ayrı seslerle · 7) "dört yüz yıl" kalır · 8) P05 ekran: "Bugünkü bir hesap: ~250 m".
