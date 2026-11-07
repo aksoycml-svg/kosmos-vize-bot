@@ -1144,3 +1144,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 ## motion · 2026-11-07 · Kit eki: foley + müzik oynatma
 - Ne yaptım: `src/kit/ses.tsx` (FoleyKatmani: temaslar[].ses → foley.json, tepe_ms temas karesine hizalı, db önceliği temas > istisna > onerilen > varsayılan; MuzikKatmani: tek Audio, fade, anlatım duck'ı), `Bolum.tsx` props `foley`/`miks` (varsayılan: aynı klasör), `tools/bolum_dogrula.mjs` ses uyarıları, KATALOG. Dosyalar: src/kit/ses.tsx, src/kit/Bolum.tsx, tools/bolum_dogrula.mjs, src/kit/KATALOG.md.
 - Kararlar: bolum.json'a dokunulmadı; eksik json/dosya render'da sessiz atlanır; foley plan kesmesinde kesilmez; `duck.anlatim_db` MUTLAK seviye kabul edildi (kurgucu göreli yazdıysa düzeltilmeli). Açık: 52 temastan 33'ü test foley'inde tanımsız çıktı — kurgucu foley.json'u temas listesindeki tüm adlarla yazmalı; tsc temiz, render alınmadı.
+
+## kurgucu · 2026-11-07 · İlk kurgu sesi (müzik + foley + miks)
+- Yaptım: 37 ses adı → public/blanc/sfx-v3 (4 mevcut arşivden, 30 ElevenLabs SFX, sessizlik 0.3 sn boş dosya), tepe_ms ölçüldü (foley.json); Chopin Nocturne B.108 (CC0, archive.org) 64.23 sn kesim, P14'te açılış notası geri dönüşü; miks.json (mutlak dB: müzik -8, anlatımda -18).
+- Dosyalar: public/blanc/sfx-v3/, public/blanc/muzik/, foley.json, miks.json, muzik/lisanslar.md. Karar: Chopin dönem uygun; istisnalar {ses:db}, müzik istisnaları `muzik_istisnalari`.
+- Doğrulayıcı: --tam GEÇTİ. Not: ortam kanalı üretilmedi; kayıt hakkı beyanı IA metadata'ya dayanır.

@@ -1,0 +1,196 @@
+{
+ "fps": 60,
+ "toplam_kare": 3854,
+ "referans": "Anlatım/replik 0 dB. Foley dosyaları ~-20 LUFS'a normalize; 'onerilen_db' bunun üstüne kazanç (miks bus -2/-6 dB kuralı; kullanıcı foley'i yüksek bulur, temkinli).",
+ "muzik": {
+  "dosya": "blanc/muzik/chopin-nocturne-b108-blanc.mp3",
+  "bas_kare": 0,
+  "sure_kare": 3854,
+  "db": -8,
+  "not": "db = sessiz anlarda seviye (-8 dB); anlatım altında duck uygulanır. Parça -20 LUFS'a normalize.",
+  "fade_in_kare": 9,
+  "fade_out_kare": 160,
+  "fade_out_bas_kare": 3694,
+  "geri_donus": {
+   "kare": 3635,
+   "aciklama": "P14 başında açılış notası geri döner (P01 ile aynı nota); dosya içinde 36.3 s'de 0.5 sn crossfade ile yerleşik, ek işlem gerekmez."
+  },
+  "duck": {
+   "anlatim_db": -18,
+   "sessiz_db": -8,
+   "attack_kare": 18,
+   "release_kare": 30,
+   "kaynaklar": [
+    {
+     "plan": "P01",
+     "dosya": "blanc/ses-v3/P01.mp3",
+     "bas_kare": 6,
+     "bit_kare": 183
+    },
+    {
+     "plan": "P02",
+     "dosya": "blanc/ses-v3/P02.mp3",
+     "bas_kare": 202,
+     "bit_kare": 478
+    },
+    {
+     "plan": "P03",
+     "dosya": "blanc/ses-v3/P03.mp3",
+     "bas_kare": 496,
+     "bit_kare": 936
+    },
+    {
+     "plan": "P04",
+     "dosya": "blanc/ses-v3/P04-francois.mp3",
+     "bas_kare": 955,
+     "bit_kare": 1099
+    },
+    {
+     "plan": "P05",
+     "dosya": "blanc/ses-v3/P05.mp3",
+     "bas_kare": 1195,
+     "bit_kare": 1375
+    },
+    {
+     "plan": "P05",
+     "dosya": "blanc/ses-v3/P05-louis.mp3",
+     "bas_kare": 1391,
+     "bit_kare": 1507
+    },
+    {
+     "plan": "P06",
+     "dosya": "blanc/ses-v3/P06.mp3",
+     "bas_kare": 1527,
+     "bit_kare": 1936
+    },
+    {
+     "plan": "P07",
+     "dosya": "blanc/ses-v3/P07.mp3",
+     "bas_kare": 1963,
+     "bit_kare": 2283
+    },
+    {
+     "plan": "P09",
+     "dosya": "blanc/ses-v3/P09.mp3",
+     "bas_kare": 2421,
+     "bit_kare": 2694
+    },
+    {
+     "plan": "P10",
+     "dosya": "blanc/ses-v3/P10.mp3",
+     "bas_kare": 2712,
+     "bit_kare": 2881
+    },
+    {
+     "plan": "P10",
+     "dosya": "blanc/ses-v3/P10-memur.mp3",
+     "bas_kare": 2897,
+     "bit_kare": 3002
+    },
+    {
+     "plan": "P11",
+     "dosya": "blanc/ses-v3/P11.mp3",
+     "bas_kare": 3020,
+     "bit_kare": 3211
+    },
+    {
+     "plan": "P12",
+     "dosya": "blanc/ses-v3/P12.mp3",
+     "bas_kare": 3230,
+     "bit_kare": 3453
+    },
+    {
+     "plan": "P13",
+     "dosya": "blanc/ses-v3/P13.mp3",
+     "bas_kare": 3471,
+     "bit_kare": 3623
+    },
+    {
+     "plan": "P14",
+     "dosya": "blanc/ses-v3/P14.mp3",
+     "bas_kare": 3641,
+     "bit_kare": 3842
+    }
+   ],
+   "not": "Tüm dB değerleri MUTLAK seviyedir: müzik sessiz anda db=-8, anlatım sırasında anlatim_db=-18."
+  }
+ },
+ "foley_varsayilan_db": -6,
+ "foley_dosya": "bolumler/blanc-kardesler/foley.json",
+ "foley_yerlestirme": "Her temas: baslangic_kare = temas.kare - round(tepe_ms*60/1000). Liste temaslar.json.",
+ "final": {
+  "lufs": -14,
+  "tepe_dbtp": -1.5,
+  "kanallar": [
+   "anlatim",
+   "foley",
+   "muzik",
+   "ortam"
+  ],
+  "not": "Ortam kanalı bu görevde üretilmedi (gerekirse distant gece-ruzgar/laterna kısık, -24 dB)."
+ },
+ "muzik_istisnalari": [
+  {
+   "kare": [
+    1108,
+    1174
+   ],
+   "plan": "P04",
+   "aciklama": "Fare anı: müzik 1.1 sn tam sessizlik (senaryo); yalnız izgara-tinkir/adim-islak/baston-tak/fare-ciyak/tink duyulur. Müzik -60 dB, 6 kare fade.",
+   "muzik_db": -60
+  },
+  {
+   "kare": [
+    2295,
+    2415
+   ],
+   "plan": "P08",
+   "aciklama": "Anlatımsız 2 sn ironi: müzik sessiz seviyede (-8 dB) kalır, tek taşıyıcı; esneme -6, kol-klak ve makara tik temkinli (-12/-10).",
+   "muzik_db": -8
+  },
+  {
+   "kare": [
+    3002,
+    3014
+   ],
+   "plan": "P10",
+   "aciklama": "Son 0.3 sn tam sessizlik: müzik, foley, ortam hepsi -60 dB (agir-nefes 3002'de kesilir). Müzik 3014'ten sonra 12 kare fade-in ile P11'e girer.",
+   "muzik_db": -60,
+   "foley_db": -60
+  },
+  {
+   "kare": [
+    3090,
+    3125
+   ],
+   "plan": "P11",
+   "aciklama": "Mahkeme anı: müzik salon-ic-cekis (3097) öncesi -60'a iner, dosya-tok (3109) sonrası 20 kare ile geri.",
+   "muzik_db": -60
+  },
+  {
+   "kare": [
+    3269,
+    3330
+   ],
+   "plan": "P12",
+   "aciklama": "Boş sayfa bölümü: müzik -14 dB'ye iner, sayfa sesleri öne çıkar.",
+   "muzik_db": -14
+  },
+  {
+   "kare": 2155,
+   "plan": "P07",
+   "aciklama": "kol-klak-sert 0 dB (senaryo vurgusu); 'ani sert çentik' için müzik 6 kare -14 dB'ye dip.",
+   "foley_db": 0
+  },
+  {
+   "kare": 3635,
+   "plan": "P14",
+   "aciklama": "Müzik geri dönüş notası; dugum-tok (3842) sonrası fade-out başlar (3694'te başlayan fade-out ile uyumlu).",
+   "muzik_db": -8
+  }
+ ],
+ "istisnalar": {
+  "kol-klak-sert": 0,
+  "sessizlik": -60
+ }
+}
