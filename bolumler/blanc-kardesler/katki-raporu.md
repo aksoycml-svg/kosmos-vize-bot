@@ -1137,3 +1137,6 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 
 ## teknisyen · 2026-11-07 · Blanc storyboard v3.2 kontrol kareleri
 - v3.1 betikleri (render/sayfa) storyboard-v32'ye kopyalanıp çalıştırıldı; 14 plan × 4 kare = 56 still, 0 hata, 0 EKSIK; sayfa-1.jpg ve sayfa-2.jpg üretildi; ara commitler 8'erli yapıldı.
+
+## elestirmen · 2026-11-07 · Blanc storyboard v3.2 kalite kapısı
+- Ne yaptım: sayfa-1/2 + P12-kontrol, P14-son incelendi; v3.1 açıkları tek tek kapatıldı/kısmen etiketlendi. Dosya: bolumler/blanc-kardesler/storyboard-v32/elestiri.md. Kararlar: tabloda kapanma kanıtı; açık: P12 güve ölçeği, P07 yazı çakışması, P14 ara kare doğrulaması; kullanıcıya sunulabilir: evet.
