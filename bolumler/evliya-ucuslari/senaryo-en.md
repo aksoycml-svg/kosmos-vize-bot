@@ -1,7 +1,7 @@
 # Script EN ONAYLI v2 (2026-11-07): Evliya Flights — "A man rode a rocket into the sky over Istanbul. Another glided across the Bosphorus."
 
 Source: approved `senaryo.md` (TR) + `arastirma.md`. Channel: EN. Same 14 plans, same numbers, same visuals, same decisions as TR. Not a literal translation: English rhythm, short spoken sentences.
-Format: 1080x1920 · plan timing identical to TR (61.0 s) · **138 spoken words** ("400" counted as "four hundred"; ≈55.2 s speech at 2.5 w/s; TR 115 words ≈54.8 s at 2.1 w/s) · locations: SARAYBURNU (seaside pavilion + shore, night), GALATA-TOP (tower top, day), BOSPHORUS (wide + map line), BOOK-INSERT (Seyahatname).
+Format: 1080x1920 · plan timing identical to TR (61.0 s) · **139 spoken words** ("400" counted as "four hundred"; ≈55.6 s speech at 2.5 w/s; TR 115 words ≈54.8 s at 2.1 w/s) · locations: SARAYBURNU (seaside pavilion + shore, night), GALATA-TOP (tower top, day), BOSPHORUS (wide + map line), BOOK-INSERT (Seyahatname).
 
 Accuracy locks (same as TR):
 - Evliya never "saw" or "witnessed". He is the one who wrote it down. The hook ("rode a rocket… glided across") is flat, unhedged (user decision); the hedge is carried by the screen text ("ONE WITNESS: A BOOK"), P13 ("Only from Evliya Çelebi's book") and the "So, no proof." ending instead of the Turkish -mış ending.
@@ -43,7 +43,7 @@ Light as in TR: Lagâri night, Hezarfen day. Screen text in the top band (y 240�
 | P03 | 11.0–15.5 (4.5) | SARAYBURNU shore | A bundle of gunpowder tubes on the shore (neutral, not "arms"). Lagâri sits on it. Helpers hold torches. | "Lagâri sits on a rocket and calls to the sultan:" | **Inside: ~64 kg (140 lb) of gunpowder** | none |
 | P04 | 15.5–19.0 (3.5) | SARAYBURNU shore (waist shot) | Lagâri turns toward the pavilion from the rocket, shouts, raises a hand, then grips. | LAGÂRI (dramatization): "Sultan! Off to talk with Jesus!" | top: *Lagâri (according to Evliya)* · bottom: quote subtitle | backup EV-Y1 |
 | P05 | 19.0–22.5 (3.5) | SARAYBURNU wide | Torch touches the fuse. Rocket spits fire and rises, the sea lights up. | "The fuse burns, and the rocket hurls him skyward!" | **A modern estimate: ~250 m (820 ft) up** | EV-D1 (helper's hat) |
-| P06 | 22.5–27.5 (5.0) | SARAYBURNU wide | **Mechanism:** fire dies, two plain wings open (structure vague). The silhouette arcs down and lands in the sea in front of the pavilion with a splash. His head surfaces, he swims toward the pavilion. | "Powder gone, he opens his wings and glides into the sea." | **Then he swam back to the sultan.** | EV-D2 (bundle drops, he glides) |
+| P06 | 22.5–27.5 (5.0) | SARAYBURNU wide | **Mechanism:** fire dies, two plain wings open (structure vague). The silhouette arcs down and lands in the sea in front of the pavilion with a splash. His head surfaces, he swims toward the pavilion. | "Powder gone, wings open, he glides down in front of the pavilion." | **Then he swam back to the sultan.** | EV-D2 (bundle drops, he glides) |
 | P07 | 27.5–32.0 (4.5) | SARAYBURNU pavilion front (insert) | Wet Lagâri bows. A hand offers a purse; it drops into his palm with a jingle. | "For it, he gets a purse and a daily salary." | **1 purse of silver + 70 silver coins a day** | none |
 | P08 | 32.0–36.0 (4.0) | GALATA-TOP day | Stone tower, lead-grey cone roof (shape neutral), top gallery. Hezarfen at the gallery edge, arms at his sides, wings plain and vague. | "And the other man? Hezarfen, atop the Galata Tower." | **FLIGHT 2 · Hezarfen = “a thousand skills”** | EV-D3 (falling stone) |
 | P09 | 36.0–40.5 (4.5) | BOSPHORUS wide + map line | Fabric ripples in the wind. Hezarfen jumps and glides over the strait. A thin route line runs Galata → Üsküdar; the silhouette lands in an open field. | "With a southwest wind, he jumps and glides across the Bosphorus." | **EUROPE → ASIA · ~3 km (2 mi)** | EV-D4 (seagull) |
@@ -94,13 +94,13 @@ P14 Did they really fly?                     (drawing comes alive → back to st
 ```
 
 ### Sound on (narration + quotes only)
-"A man rode a rocket into the sky over Istanbul. Another glided across the Bosphorus. / The first was at the sultan's party. Who'll amaze him? / Lagâri sits on a rocket and calls to the sultan: / Sultan! Off to talk with Jesus! / The fuse burns, and the rocket hurls him skyward! / Powder gone, he opens his wings and glides into the sea. / For it, he gets a purse and a daily salary. / And the other man? Hezarfen, atop the Galata Tower. / With a southwest wind, he jumps and glides across the Bosphorus. / Who's watching? The sultan again. From the very same pavilion. / He gets a purse of gold. But then he's banished. / Because he's too dangerous. He can do anything. / How do we know? Only from Evliya Çelebi's book. / So, no proof. Yet we've told it for 400 years."
+"A man rode a rocket into the sky over Istanbul. Another glided across the Bosphorus. / The first was at the sultan's party. Who'll amaze him? / Lagâri sits on a rocket and calls to the sultan: / Sultan! Off to talk with Jesus! / The fuse burns, and the rocket hurls him skyward! / Powder gone, wings open, he glides down in front of the pavilion. / For it, he gets a purse and a daily salary. / And the other man? Hezarfen, atop the Galata Tower. / With a southwest wind, he jumps and glides across the Bosphorus. / Who's watching? The sultan again. From the very same pavilion. / He gets a purse of gold. But then he's banished. / Because he's too dangerous. He can do anything. / How do we know? Only from Evliya Çelebi's book. / So, no proof. Yet we've told it for 400 years."
 
 ### "So what?" scan
 | Plan | Viewer's question | Status |
 |---|---|---|
 | P01 | "Which book? Did they really fly?" | Open on purpose. Screen "ONE WITNESS: A BOOK" answered in P13, "did they fly?" in P14. |
-| P02 | "Who is 'the first'? Why is the sultan there?" | "The first" ties to the rocket man in P01; "Who'll amaze him?" pushes to P03 (answer: Lagâri). Pavilion is on screen ("Shore pavilion") and in the image, not in the spoken line; it pays off in P10 ("the very same pavilion"). Sound-only viewers first hear "pavilion" in P10: weak spot (see below). If time runs short, trim first: "the sultan's party" stays, nothing else to cut. |
+| P02 | "Who is 'the first'? Why is the sultan there?" | "The first" ties to the rocket man in P01; "Who'll amaze him?" pushes to P03 (answer: Lagâri). Pavilion is on screen ("Shore pavilion") and in the image, not in the spoken line; it pays off in P10 ("the very same pavilion"). P06 now says "in front of the pavilion", so sound-only viewers meet the pavilion before P10. |
 | P03 | "What does 'sits on a rocket' mean?" | Image answers it; "64 kg" makes the weight real. |
 | P04 | "Why Jesus? Will he die?" | The line means "I'm going up." P06 closes the joke: he lands in the sea. Optional note in the description (Jesus is a prophet in Islam too). |
 | P05 | "How high?" | Screen says "a modern estimate", so it is clearly a guess. |
@@ -125,7 +125,7 @@ Remaining "so what?": none. Weak spot: P04 for a viewer who does not know Jesus 
 | P03 | 10 | 4.0 | 8 | 3.8 | +5% | 4.5 |
 | P04 | 6 | 2.4 | 5 | 2.4 | 0% | 3.5 |
 | P05 | 9 | 3.6 | 7 | 3.3 | +9% | 3.5 (EN over by 0.1) |
-| P06 | 11 | 4.4 | 9 | 4.3 | +2% | 5.0 |
+| P06 | 12 | 4.8 | 9 | 4.3 | +12% | 5.0 |
 | P07 | 10 | 4.0 | 9 | 4.3 | -7% | 4.5 |
 | P08 | 9 | 3.6 | 7 | 3.3 | +9% | 4.0 |
 | P09 | 10 | 4.0 | 9 | 4.3 | -7% | 4.5 |
@@ -134,7 +134,7 @@ Remaining "so what?": none. Weak spot: P04 for a viewer who does not know Jesus 
 | P12 | 8 | 3.2 | 7 | 3.3 | -3% | 3.5 |
 | P13 | 9 | 3.6 | 8 | 3.8 | -5% | 4.5 |
 | P14 | 11 ("400" = "four hundred") | 4.4 | 8 | 3.8 | +16% | 4.0 (EN over by 0.4) |
-| **Total** | **138** | **≈55.2 s** | **115** | **≈54.8 s** | **+0.7%** | **61.0 s** |
+| **Total** | **139** | **≈55.6 s** | **115** | **≈54.8 s** | **+1.5%** | **61.0 s** |
 
 - Within ±15% of TR speech time everywhere except P14 (+16%).
 - Plan time = longer of the two languages + tail (project rule). With the real voice: P05 (EN 3.6 vs 3.5) and P14 (EN 4.4 vs 4.0) overrun the plan; P10 (4.0 vs 4.0) has no tail. Options for the director: extend P05 to 3.8 and P14 to 4.5 (total 61.8 s), or trim EN (P14 drop "So,"; P05 "The fuse burns. The rocket hurls him skyward!", 8 words). Not changed here: texts are user-approved.
@@ -197,5 +197,7 @@ No seals or signs in the image: nothing else is baked in. Map: only "Bosphorus" 
 2. P09 screen text "EUROPE → ASIA · ~3 km (2 mi)" stays.
 3. Units: metric + imperial together (P03 ~64 kg (140 lb), P05 ~250 m (820 ft), P09 ~3 km (2 mi)).
 4. P02 "A royal baby!" stays. (Superseded by v2: P02 is now "The first was at the sultan's party. Who'll amaze him?")
+
+**2026-11-07 v2 (user-approved): EN simplifications stay as they are** — P02 without "birth/daughter", P09 without "Üsküdar" in speech (screen/map only), no full names (Hasan Çelebi, Ahmed Çelebi). **P06 gets "pavilion"** ("Powder gone, wings open, he glides down in front of the pavilion." 12 words, ≈4.8 s of 5.0 s) so the pavilion is set up before P10.
 
 **2026-11-07 v2: kopukluk revizyonu, kullanıcı onaylı (same as TR).** New hook ("A man rode a rocket… Another glided…"), P01 4.5 → 6.5 s (0–3.2 rocket, 3.2–6.5 tower top + silhouette), P05 4.0 → 3.5 s; P02–P05 +2.0 s, P06 onward +1.5 s; total 61.0 s. New lines in P02, P03, P05, P07, P08, P09, P11, P12 ("Because"), P13 ("How do we know?"), P14 ("So, no proof."); screen texts P02, P10, P13 changed.
