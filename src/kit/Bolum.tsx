@@ -5,7 +5,8 @@ import React from "react";
 import { AbsoluteFill, CalculateMetadataFunction, Sequence, interpolate, useCurrentFrame } from "remotion";
 import { ArsivKatmani } from "../doku/ArsivKatmani";
 import { GuvenliAlan, KilitNokta } from "../doku/GuvenliAlan";
-import { Altyazi, FormulYazisi, IddiaYazisi, IsimEtiketi } from "../components/EkranYazisi";
+import { IsimEtiketi } from "../components/EkranYazisi";
+import { KitEkranYazisi, KitReplik } from "./yazi";
 import type { BolumJson, Plan } from "./tipler";
 import { SABLONLAR } from "./sablonlar";
 import { cl, GIRIS } from "./zaman";
@@ -36,12 +37,13 @@ const YaziKatmani: React.FC<{ plan: Plan; p: number }> = ({ plan, p }) => (
     {(plan.ekran_yazisi ?? []).map((y, i) => {
       const bas = y.bas ?? 0, bit = y.bit ?? plan.sure_kare;
       if (p < bas || p >= bit) return null;
-      return <Giris key={`y${i}`} p={p} bas={bas}>{y.tur === "formul" ? <FormulYazisi metin={y.metin} kagitSerit={y.kagitSerit} boyut={y.boyut} /> : <IddiaYazisi metin={y.metin} vurgu={y.vurgu} kagitSerit={y.kagitSerit} bant={y.bant} boyut={y.boyut} />}</Giris>;
+      // K2 yazı standardı: kâğıt şerit + Playfair, tek vurgu kelimesi (kagitSerit/boyut alanları yok sayılır — geri uyum için şemada)
+      return <Giris key={`y${i}`} p={p} bas={bas}><KitEkranYazisi metin={y.metin} vurgu={y.vurgu} tur={y.tur} bant={y.bant} /></Giris>;
     })}
     {(plan.replik ?? []).map((r, i) => {
       if (p < r.bas || p >= r.bit) return null;
       const okunan = r.kelimeKare ? r.kelimeKare.reduce((a, k, j) => (p >= k ? j : a), -1) : -1;
-      return <Giris key={`r${i}`} p={p} bas={r.bas}><Altyazi metin={r.metin} kim={r.kim} vurgu={r.vurgu} bant={r.bant} okunan={okunan} kimKontrast /></Giris>;
+      return <Giris key={`r${i}`} p={p} bas={r.bas}><KitReplik metin={r.metin} kim={r.kim} vurgu={r.vurgu} bant={r.bant} okunan={okunan} /></Giris>;
     })}
   </>
 );

@@ -68,7 +68,10 @@ const J: Record<string, JestFn> = {
   },
   esne: (pz, p, c) => {
     const w = zarf(p, c.bas, c.bit, 0.35, 0.25);
-    karis(pz, { headTilt: -11, blinkF: 0.9, blinkB: 0.9, browF: 0.9, browB: 0.9, agiz: "O", lookY: -0.3 }, w);
+    // K2 (D5): yakın planda kocaman "esneme" ağzı (çene düşer, gözler sıkı kapalı, kaşlar kalkar); genel planda küçük "O".
+    // ops.agiz ile ezilebilir ("O" | "esneme"). Ağız zarf > .5'te açılır — tepe anı = esneme sesi (temas listesine yazılır).
+    const buyuk = String(c.ops?.agiz ?? (pz.yakin ? "esneme" : "O")) === "esneme";
+    karis(pz, { headTilt: buyuk ? -16 : -11, headY: buyuk ? -4 : 0, blinkF: buyuk ? 1 : 0.9, blinkB: buyuk ? 1 : 0.9, browF: buyuk ? 1.4 : 0.9, browB: buyuk ? 1.4 : 0.9, agiz: buyuk ? "esneme" : "O", lookY: -0.3 }, w);
   },
   "it-cek": (pz, p, c) => {
     const w = zarf(p, c.bas, c.bit, 0.15, 0.15);

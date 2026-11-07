@@ -5,7 +5,7 @@ import { Bolge, KuklaIsik, RigCtx, useInk, useRig, YuzTonu } from "./RigIsik";
 // Karakter sağa bakan 3/4 pozda çizilir; facing=-1 ile aynalanır.
 // Açılar derece; 0 = uzuv aşağı sarkar. Negatif açı = ileri (bakış yönüne).
 
-export type Agiz = "dinlen" | "gulumse" | "sirit" | "A" | "E" | "O" | "M" | "S";
+export type Agiz = "dinlen" | "gulumse" | "sirit" | "A" | "E" | "O" | "M" | "S" | "esneme";
 
 export type Poz = {
   x: number; y: number; scale?: number; facing?: 1 | -1;
@@ -144,6 +144,8 @@ const AGIZ: Record<Agiz, React.ReactNode> = {
   O: <g><ellipse cx={20} cy={44} rx={7.5} ry={9.5} fill="#4a1a17" stroke="#3a1410" strokeWidth={2} /></g>,
   M: <path d="M 9 40 Q 19 39 30 40" stroke="#5a2a22" strokeWidth={3.6} strokeLinecap="round" fill="none" />,
   S: <g><path d="M 8 39 Q 19 37 31 39 Q 27 45 19 46 Q 11 45 8 39 Z" fill="#4a1a17" stroke="#3a1410" strokeWidth={2} /><rect x={10} y={39} width={19} height={3.5} fill="#f3eee6" /></g>,
+  // K2 (D5): kocaman esneme — çene düşer (yüz konturunun altına; çene uzantısı başta ten rengiyle çizilir), dikey oval ağız, üst diş sırası, dil
+  esneme: <g><path d="M 4 36 Q 20 31 36 36 Q 38 62 21 72 Q 4 64 4 36 Z" fill="#3a1210" stroke="#2a0e0c" strokeWidth={2.2} /><path d="M 8 37 Q 20 34 32 37 L 31 41 Q 20 39 9 41 Z" fill="#f3eee6" /><path d="M 10 64 Q 21 56 32 63 Q 26 71 21 71 Q 14 70 10 64 Z" fill="#b8544a" /></g>,
 };
 
 const Sapka: React.FC<{ p: Palet; tall?: number; a?: number }> = ({ p, tall = 1, a = 0 }) => {
@@ -257,6 +259,7 @@ const Kafa: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }
       <path d="M 33 23 Q 36 21 39 23" stroke="#7a4030" strokeWidth={1.8} fill="none" />
       {!I && <path d="M 40 6 Q 44 13 45 18" stroke="#fff3e6" strokeWidth={1.8} opacity={0.5} fill="none" />}
       {/* ağız */}
+      {pz.agiz === "esneme" && <path d="M -10 48 Q 0 76 22 82 Q 40 76 44 40 L 38 40 Q 30 60 20 56 Q 2 58 -10 48 Z" fill={sk} stroke={skd} strokeWidth={SW} />}
       <g transform="translate(2,0)">{AGIZ[pz.agiz ?? "dinlen"]}</g>
       {pz.yakin && (pz.agiz === "gulumse" || pz.agiz === "sirit" || pz.agiz === "dinlen" || pz.agiz === "M") && <g transform="translate(2,0)">
         {/* alt dudak hacmi + ağız köşesi (yakın plan) */}
@@ -272,7 +275,7 @@ const Kafa: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }
       {p.sakal && <path d="M -30 10 Q -26 44 -10 56 Q 8 66 24 60 Q 40 52 44 30 Q 36 50 20 52 Q 4 54 -8 44 Q -20 30 -30 10 Z" fill={p.hair} opacity={0.95} />}
       {/* çene */}
       {!p.yuzsuz && <>
-      <path d="M 2 54 Q 20 52 36 42" stroke={skd} strokeWidth={1.8} fill="none" opacity={0.6} />
+      {pz.agiz !== "esneme" && <path d="M 2 54 Q 20 52 36 42" stroke={skd} strokeWidth={1.8} fill="none" opacity={0.6} />}
       </>}
       {!I && <path d="M 43 -14 Q 47 4 43 22" stroke={RIM} strokeWidth={2} opacity={0.3} fill="none" />}
       {pz.hat === null || pz.hat === undefined ? <g transform="translate(4,-46) rotate(-4)"><Sapka p={p} tall={louis ? 1.15 : 1} a={aKafa - 4} /></g> : null}
