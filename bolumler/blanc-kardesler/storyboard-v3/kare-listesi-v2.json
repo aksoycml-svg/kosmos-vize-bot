@@ -1,0 +1,301 @@
+{
+  "yol": "blanc-kardesler/bolum.json",
+  "fps": 60,
+  "toplamKare": 3854,
+  "planlar": [
+    {
+      "id": "P01",
+      "sablon": "MASA-INSERT",
+      "bas": 0,
+      "sure": 196,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 0,
+        "son": 195
+      },
+      "mutlak": {
+        "ilk": 0,
+        "kontrol": 0,
+        "son": 195
+      },
+      "sn": {
+        "ilk": 0,
+        "kontrol": 0,
+        "son": 3.25
+      }
+    },
+    {
+      "id": "P02",
+      "sablon": "SOKAK",
+      "bas": 196,
+      "sure": 294,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 90,
+        "son": 293
+      },
+      "mutlak": {
+        "ilk": 196,
+        "kontrol": 286,
+        "son": 489
+      },
+      "sn": {
+        "ilk": 3.267,
+        "kontrol": 4.767,
+        "son": 8.15
+      }
+    },
+    {
+      "id": "P03",
+      "sablon": "HARITA",
+      "bas": 490,
+      "sure": 459,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 447,
+        "son": 458
+      },
+      "mutlak": {
+        "ilk": 490,
+        "kontrol": 937,
+        "son": 948
+      },
+      "sn": {
+        "ilk": 8.167,
+        "kontrol": 15.617,
+        "son": 15.8
+      }
+    },
+    {
+      "id": "P04",
+      "sablon": "SOKAK",
+      "bas": 949,
+      "sure": 240,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 180,
+        "son": 239
+      },
+      "mutlak": {
+        "ilk": 949,
+        "kontrol": 1129,
+        "son": 1188
+      },
+      "sn": {
+        "ilk": 15.817,
+        "kontrol": 18.817,
+        "son": 19.8
+      }
+    },
+    {
+      "id": "P05",
+      "sablon": "IC-ODA",
+      "bas": 1189,
+      "sure": 330,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 252,
+        "son": 329
+      },
+      "mutlak": {
+        "ilk": 1189,
+        "kontrol": 1441,
+        "son": 1518
+      },
+      "sn": {
+        "ilk": 19.817,
+        "kontrol": 24.017,
+        "son": 25.3
+      }
+    },
+    {
+      "id": "P06",
+      "sablon": "MASA-INSERT",
+      "bas": 1519,
+      "sure": 438,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 320,
+        "son": 437
+      },
+      "mutlak": {
+        "ilk": 1519,
+        "kontrol": 1839,
+        "son": 1956
+      },
+      "sn": {
+        "ilk": 25.317,
+        "kontrol": 30.65,
+        "son": 32.6
+      }
+    },
+    {
+      "id": "P07",
+      "sablon": "KULE-DIS",
+      "bas": 1957,
+      "sure": 338,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 230,
+        "son": 337
+      },
+      "mutlak": {
+        "ilk": 1957,
+        "kontrol": 2187,
+        "son": 2294
+      },
+      "sn": {
+        "ilk": 32.617,
+        "kontrol": 36.45,
+        "son": 38.233
+      }
+    },
+    {
+      "id": "P08",
+      "sablon": "YAKIN-YUZ",
+      "bas": 2295,
+      "sure": 120,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 70,
+        "son": 119
+      },
+      "mutlak": {
+        "ilk": 2295,
+        "kontrol": 2365,
+        "son": 2414
+      },
+      "sn": {
+        "ilk": 38.25,
+        "kontrol": 39.417,
+        "son": 40.233
+      }
+    },
+    {
+      "id": "P09",
+      "sablon": "IC-ODA",
+      "bas": 2415,
+      "sure": 291,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 149,
+        "son": 290
+      },
+      "mutlak": {
+        "ilk": 2415,
+        "kontrol": 2564,
+        "son": 2705
+      },
+      "sn": {
+        "ilk": 40.25,
+        "kontrol": 42.733,
+        "son": 45.083
+      }
+    },
+    {
+      "id": "P10",
+      "sablon": "YAKIN-YUZ",
+      "bas": 2706,
+      "sure": 308,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 230,
+        "son": 307
+      },
+      "mutlak": {
+        "ilk": 2706,
+        "kontrol": 2936,
+        "son": 3013
+      },
+      "sn": {
+        "ilk": 45.1,
+        "kontrol": 48.933,
+        "son": 50.217
+      }
+    },
+    {
+      "id": "P11",
+      "sablon": "MASA-INSERT",
+      "bas": 3014,
+      "sure": 210,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 142,
+        "son": 209
+      },
+      "mutlak": {
+        "ilk": 3014,
+        "kontrol": 3156,
+        "son": 3223
+      },
+      "sn": {
+        "ilk": 50.233,
+        "kontrol": 52.6,
+        "son": 53.717
+      }
+    },
+    {
+      "id": "P12",
+      "sablon": "MASA-INSERT",
+      "bas": 3224,
+      "sure": 241,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 120,
+        "son": 240
+      },
+      "mutlak": {
+        "ilk": 3224,
+        "kontrol": 3344,
+        "son": 3464
+      },
+      "sn": {
+        "ilk": 53.733,
+        "kontrol": 55.733,
+        "son": 57.733
+      }
+    },
+    {
+      "id": "P13",
+      "sablon": "KULE-DIS",
+      "bas": 3465,
+      "sure": 170,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 135,
+        "son": 169
+      },
+      "mutlak": {
+        "ilk": 3465,
+        "kontrol": 3600,
+        "son": 3634
+      },
+      "sn": {
+        "ilk": 57.75,
+        "kontrol": 60,
+        "son": 60.567
+      }
+    },
+    {
+      "id": "P14",
+      "sablon": "MASA-INSERT",
+      "bas": 3635,
+      "sure": 219,
+      "ic": {
+        "ilk": 0,
+        "kontrol": 58,
+        "son": 218
+      },
+      "mutlak": {
+        "ilk": 3635,
+        "kontrol": 3693,
+        "son": 3853
+      },
+      "sn": {
+        "ilk": 60.583,
+        "kontrol": 61.55,
+        "son": 64.217
+      }
+    }
+  ]
+}

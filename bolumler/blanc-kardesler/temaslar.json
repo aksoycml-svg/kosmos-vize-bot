@@ -75,8 +75,8 @@
     },
     {
       "plan": "P03",
-      "kare": 938,
-      "sn": 15.633,
+      "kare": 937,
+      "sn": 15.617,
       "olay": "mühür TOK (konuşma 446'da biter)",
       "ses": "muhur-tok",
       "db": null
@@ -155,16 +155,16 @@
     },
     {
       "plan": "P05",
-      "kare": 1433,
-      "sn": 23.883,
+      "kare": 1430,
+      "sn": 23.833,
       "olay": "it-çek tik 2 (Louis cümle arası)",
       "ses": "makara-tik",
       "db": -10
     },
     {
       "plan": "P05",
-      "kare": 1479,
-      "sn": 24.65,
+      "kare": 1474,
+      "sn": 24.567,
       "olay": "it-çek tik 3",
       "ses": "makara-tik",
       "db": -10
@@ -411,8 +411,8 @@
     },
     {
       "plan": "P14",
-      "kare": 3845,
-      "sn": 64.083,
+      "kare": 3842,
+      "sn": 64.033,
       "olay": "düğüm tok (konuşma 207'de biter)",
       "ses": "dugum-tok",
       "db": -6
