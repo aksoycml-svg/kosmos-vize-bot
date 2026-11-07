@@ -236,7 +236,7 @@
     {
      "kim": "francois",
      "z": 2.4,
-     "u": 0.46,
+     "u": 0.4,
      "yon": 1,
      "yuz": {
       "ifade": "gulumse",
@@ -272,7 +272,7 @@
     {
      "kim": "louis",
      "z": 2.4,
-     "u": 0.64,
+     "u": 0.58,
      "yon": -1,
      "aksesuar": [
       "baston"
@@ -295,23 +295,6 @@
       "ad": "Louis",
       "alt": "BLANC"
      }
-    },
-    {
-     "kim": "tuccar",
-     "z": 2.7,
-     "u": 0.2,
-     "yon": 1,
-     "jestler": [
-      {
-       "ad": "bak",
-       "bas": 0,
-       "bit": 246,
-       "ops": {
-        "x": 0.6,
-        "y": 0
-       }
-      }
-     ]
     }
    ],
    "ekran_yazisi": [
@@ -337,7 +320,7 @@
    ],
    "dokunus": null,
    "kontrol_kare": 120,
-   "not": "v4: v3 P02 yeniden; süre 258 (ses 6–240, kuyruk 18). isaret 100–190 'Paris'teki' ile."
+   "not": "v4: v3 P02 yeniden; süre 258 (ses 6–240, kuyruk 18). isaret 100–190 'Paris'teki' ile. v4-son: tüccar komparsı çıkarıldı (kardeşlere benziyordu); kadraj yalnız François+Louis, u 0.40/0.58."
   },
   {
    "id": "P03",
@@ -1350,10 +1333,28 @@
      "db": -6
     },
     {
+     "kare": 60,
+     "olay": "kule 2 ilk MESAJ varışı",
+     "ses": "klak-uzak",
+     "db": -12
+    },
+    {
+     "kare": 84,
+     "olay": "kule 3 ilk MESAJ varışı",
+     "ses": "klak-uzak",
+     "db": -13
+    },
+    {
      "kare": 96,
      "olay": "yakın kule HATA — sert klak ('hata' ile)",
      "ses": "kol-klak-sert",
-     "db": 0
+     "db": -3
+    },
+    {
+     "kare": 108,
+     "olay": "kule 4 ilk MESAJ varışı",
+     "ses": "klak-uzak",
+     "db": -14
     },
     {
      "kare": 126,
@@ -1405,7 +1406,7 @@
     "bit": 274
    },
    "kontrol_kare": 190,
-   "not": "v4 hilenin kalbi: yakın kol MESAJ(36) → HATA(96, halo) → MESAJ(184); uzaklar 30'ar kare gecikmeyle aynı ikiliyi kopyalar (son varış 274). Yazı üst bantta (kolla bitişik değil), geri dönüş karesinde (184)."
+   "not": "v4 hilenin kalbi: yakın kol MESAJ(36) → HATA(96, halo) → MESAJ(184); uzaklar 30'ar kare gecikmeyle aynı ikiliyi kopyalar (son varış 274). Yazı üst bantta (kolla bitişik değil), geri dönüş karesinde (184). v4-son: kol varışları temaslarla tam eşlendi (kule1 36/96/184; k2 60/126/214; k3 84/156/244; k4 108/186/274). Kurgucunun saydığı p84,p172 (k1), p114,p202 (k2), p144,p232 (k3), p174,p262 (k4) aynı-poz bekleme anahtarları (MESAJ→MESAJ, HATA→HATA): hareket yok, ses yok; silinirse sonraki hareket 60 kareye yayılırdı, bu yüzden korundu. kol-klak-sert −3 dB."
   },
   {
    "id": "P08",
@@ -1648,7 +1649,7 @@
    "karakterler": [
     {
      "kim": "katip",
-     "z": 3.2,
+     "z": 3.6,
      "u": 0.62,
      "yon": -1,
      "yuz": {
@@ -1692,6 +1693,12 @@
      "db": -8
     },
     {
+     "kare": 40,
+     "olay": "uzak kol ilk MESAJ varışı",
+     "ses": "klak-uzak",
+     "db": -14
+    },
+    {
      "kare": 96,
      "olay": "uzak kol HATA klak",
      "ses": "klak-uzak",
@@ -1716,12 +1723,12 @@
     "bit": 200
    },
    "kontrol_kare": 160,
-   "not": "v4: kamera lucarne'a yakın (cs 2.0) başlar, T okunur; 90–150 pervaza iner. Kol MESAJ→HATA(96)→MESAJ(186); bıçak 126–200, kırt 160. Kit K4: bıçak katibin kendi ön kolunda (IK, rig ışığı; çakı plan başından elde); pencere T'si kol parametresini izler, HATA'da kırmızı halka."
+   "not": "v4: kamera lucarne'a yakın (cs 2.0) başlar, T okunur; 90–150 pervaza iner. Kol MESAJ→HATA(96)→MESAJ(186); bıçak 126–200, kırt 160. Kit K4: bıçak katibin kendi ön kolunda (IK, rig ışığı; çakı plan başından elde); pencere T'si kol parametresini izler, HATA'da kırmızı halka. v4-son: katip z 3.2→3.6 (kol derinliği); cs 2.0 başlangıcı render edildi (kare 0): pencere + T okunur, geniş değil."
   },
   {
    "id": "P10",
    "sablon": "YAKIN-YUZ",
-   "sure_kare": 330,
+   "sure_kare": 370,
    "olcek": "yakın",
    "ses": [
     {
@@ -1783,7 +1790,7 @@
       {
        "ad": "fisilda",
        "bas": 182,
-       "bit": 304,
+       "bit": 350,
        "ops": {
         "hiz": 1
        }
@@ -1791,7 +1798,7 @@
       {
        "ad": "konus",
        "bas": 184,
-       "bit": 304,
+       "bit": 348,
        "ops": {
         "metin": "Hatalar… kasıtlıydı."
        }
@@ -1809,7 +1816,7 @@
      "kagitSerit": true,
      "tur": "iddia",
      "bas": 10,
-     "bit": 330
+     "bit": 370
     }
    ],
    "replik": [
@@ -1818,7 +1825,7 @@
      "metin": "Hatalar… kasıtlıydı.",
      "bant": "alt",
      "bas": 184,
-     "bit": 304,
+     "bit": 348,
      "vurgu": [
       "kasıtlıydı"
      ]
@@ -1830,21 +1837,15 @@
      "olay": "ağır nefes",
      "ses": "agir-nefes",
      "db": -8
-    },
-    {
-     "kare": 302,
-     "olay": "son 0.3 sn tam sessizlik başlar",
-     "ses": "sessizlik",
-     "db": -60
     }
    ],
    "dokunus": null,
-   "kontrol_kare": 240,
-   "not": "v4: anlatıcı 6–156, nefes 0.4 sn, memur 180 (söz ~184–302), 302–320 tam sessizlik, plan 330. Kamera yüze yaklaşır (cs 1.0→1.3). Kit K4: yorgan {kalinlik .5, sarkma 30} → kk 240'ta yorgan alt üçte birin ≈%18'i.",
+   "kontrol_kare": 300,
+   "not": "v4-son: memur sesi 2.85 sn (kare 180–351); plan 330→370 (ses bitişinden 19 kare nefes). Anlatıcı 6–156, nefes 0.4 sn, söz ~184–348. 'sessizlik' teması silindi. Kamera yüze yaklaşır (cs 1.0→1.3, 0–370). Kit K4: yorgan {kalinlik .5, sarkma 30} alt üçte birde ≈%18.",
    "kamera": {
     "kare": [
      0,
-     330
+     370
     ],
     "cs": [
      1.0,
@@ -2183,7 +2184,7 @@
      "gerilme": 201,
      "x": 540,
      "y": 1150,
-     "olcek": 1.3
+     "olcek": 1.0
     }
    },
    "kamera": {
@@ -2207,7 +2208,7 @@
      "id": "dosya",
      "x": 540,
      "y": 1010,
-     "olcek": 1.6,
+     "olcek": 1.4,
      "kare": [
       0,
       12,
@@ -2261,7 +2262,7 @@
     "bit": 228
    },
    "kontrol_kare": 201,
-   "not": "v4: dosya 1.6x (cilt tahtası eldivenden büyük = eldivenin üstünde durduğu şey okunur), eldiven boğum y 1150. Kapağı sol elden giren el kapatır (TOK 30), el 54'te çıkar; eldiven giyme 36'da duraksamadan başlar (TOK'tan 6 kare sonra), gerilme 201 ('geç.'), bit 228.",
+   "not": "v4: dosya 1.6x (cilt tahtası eldivenden büyük = eldivenin üstünde durduğu şey okunur), eldiven boğum y 1150. Kapağı sol elden giren el kapatır (TOK 30), el 54'te çıkar; eldiven giyme 36'da duraksamadan başlar (TOK'tan 6 kare sonra), gerilme 201 ('geç.'), bit 228. v4-son ölçek: eldiven olcek 1.3→1.0, dosya 1.6→1.4, görevli el 1.9→2.2 (eldiven bir el boyu; dosya eldivenden büyük).",
    "el": [
     {
      "tip": "gorevli",
@@ -2269,7 +2270,7 @@
       -80,
       1000
      ],
-     "olcek": 1.9,
+     "olcek": 2.2,
      "kare": [
       0,
       12,
@@ -2822,7 +2823,7 @@
    ],
    "dokunus": null,
    "kontrol_kare": 160,
-   "not": "v4 + kit K4: tek paket nesnesi, ölçek/konum sabit (690,1340 x1.15). Eldiven 50'de yatağa; el dört kanadı sırayla katlar (paket.durum.kapan, el.takip ile kıstırma kanat kenarını izler), 172–196 ip sarılır ve düğüm sıkılır (durum.ip), etiket ipin ucunda düğüme gelir. El 212'de kadrajdan çıkar (plan sonundan 16 önce). Döngü: kapalı paket P01'in açık paketiyle aynı yer/ölçek/kamera (cs 1.14, cy 40)."
+   "not": "v4 + kit K4: tek paket nesnesi, ölçek/konum sabit (690,1340 x1.15). Eldiven 50'de yatağa; el dört kanadı sırayla katlar (paket.durum.kapan, el.takip ile kıstırma kanat kenarını izler), 172–196 ip sarılır ve düğüm sıkılır (durum.ip), etiket ipin ucunda düğüme gelir. El 212'de kadrajdan çıkar (plan sonundan 16 önce). Döngü: kapalı paket P01'in açık paketiyle aynı yer/ölçek/kamera (cs 1.14, cy 40). v4-son: P14 sonu kapalı paket → P01 açık paket kesmesi aynı yer/ölçek/kamerada 'yeni paket' okunuyor (P01'de yeni eldiven eliyle gelir); bırakıldı."
   }
  ]
 }
