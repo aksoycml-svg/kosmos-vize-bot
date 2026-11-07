@@ -1213,3 +1213,10 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Ne yaptım: bolum_dogrula --tam (0 hata, 13 uyarı); sessiz 4 parça h264 (p2 ortak webpack önbellek çakışmasıyla düştü, tek başına yeniden render edildi); ses mp3; concat -c copy; loudnorm. Çıktı: out/blanc-v4-ilk-kurgu.mp4 (1080x1920, 60 fps, 3730 kare, 62.17 sn), önizleme out/blanc-v4-ilk-kurgu-540.mp4.
 - Ölçüm: önceki zincir (limit 0.70) I=-14'e TP ≤ -1.5 ile ulaşamadı (kaynak PLR ~21 dB). limit 0.11 + linear loudnorm (I=-14.2, TP=-2.0) ile AAC 320k sonrası I=-14.0, TP=-2.1 dBTP; önizleme I=-14.1, TP=-1.2 dBTP (kısma gerekmedi).
 - Açık: tavan ≈-19 dBFS ile sıkı limit ses kalitesini etkileyebilir, dinleme gerekli; validator'daki 7 "klak" ve 6 foley uyarısı çözülmedi.
+
+## elestirmen · 2026-11-07 · blanc v4 ilk kurgu kalite kapısı
+- Ne yaptım: 14 plan × 3 kare kontak + ek şeritler, ebur128/silencedetect/RMS, v3 hata listesi (7 madde) ve foley örneklemi. Karar: GEÇMEZ.
+- Dosyalar: bolumler/blanc-kardesler/ilk-kurgu-elestiri-v4.md, katki-raporu.md.
+- Engelleyici: P09 yazısı T kolunu örtüyor. Orta: müzik erken bitiyor (miks.json bayat, toplam_kare 3690), boşlukta müzik ≈−30 dB; P05 gölge-T okunmuyor.
+- Kurallar: v3 maddeleri 1–7 doğrulandı (6'sı geçer, müzik bitişi kısmen); renk/theme betiği ve P07 klak kulak testi yapılmadı.
+- Sonraki ajana: P09 yazı/kol düzeltmesi (yönetmen), miks fade_out/tail (kurgucu), limiter gevşetme (teknisyen); sonra yalnız P09 + son 3 sn yeniden kontrol.
