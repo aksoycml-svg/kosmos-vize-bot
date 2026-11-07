@@ -104,9 +104,14 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - **Temas = ses:** görünür her çarpma/basma/vurma/açılma-kapanma/bırakma anı kendi foley'ini alır, tam o karede. Temas anları olay listesine yazılır, sesler aynı listeden yerleştirilir.
 - **Görünürlük–ses:** görmediğimiz dokunuşun sesi olmaz. Görünmeyen kaynaklar sadece kısık ortam sesi olabilir (uzak çan, laterna, rüzgâr). Seviye ekrandaki büyüklükle orantılı.
 - Miks: anlatım 0 dB ref, foley −2/−6 dB (kullanıcı foley'i yüksek bulur — temkinli ol), müzik anlatım altında ~−18 dB. Final −14 LUFS, tepe −1.5 dBTP.
+- **Müzik akar:** müzik plan sınırında kesilmez, ani düşüşle "gitmez"; vurgu müzikal cümleyle (dinamik, enstrüman, cümle sonu) yapılır. Tam sessizlik yalnız kullanıcı onaylı bir karardır. Ses efekti oyunculuğa uyar (esneme acı gibi, hasta sesi sağlıklı gibi duyulmaz); anlamsız efekt (iç çekiş vb.) konmaz.
 - Müzik kaynakları: kamu malı klasik (dönem uygunsa öncelik, ör. Chopin Paris 1831+), Incompetech (CC-BY), Pixabay Music. Her parçanın lisansı `muzik/lisanslar.md`.
 
 ### Senaryo ve yazı
+- **Hikâyenin mekanizması net:** olayın "nasıl"ı (hile, keşif) tek görsel + tek cümleyle anlatılır; izleyici "bu neden işe yaradı?" sorusunun cevabını görür. (Blanc v3: "hata"nın düzeltildiği söylenmedi → "Tek bir hata" anlamsız kaldı.)
+- **Her kurulum karşılık bulur:** senaryoda "Kurulum → Karşılık" tablosu zorunlu; karşılıksız öğe çıkar ("Eldiven… çorap…" → "eee yani?").
+- **Son tamamlanır:** son cümle askıda kalmaz ("Sadece…" yok); döngü bir vuruşla kapanır.
+- **İlk kez izleyen testi:** senarist teslimden önce, ana oturum kullanıcıya göstermeden önce senaryoyu ses kapalı/açık izleyici gözüyle okur; "eee yani?" kalan plan geri gider.
 - Üç katmanlı kanca (ilk kare + söz + ekran yazısı). Önce ses kapalı izleyen için yaz; ekran yazısı anlatımı tekrar etmez, tamamlar. Döngülü son. Her 2–4 sn görsel değişim.
 - Güvenli alan (1080x1920): üst 220 px, alt 420 px, yan 80 px. Ayaklar, temas noktaları ve kurulum nesneleri de güvenli alanın içinde kalır (Instagram arayüzü altında kalmaz).
 - **Yazı bantları:** üst bant y 240–400 (anlatım ekran yazısı), alt bant y 1290–1490 (replik altyazısı). **Replik altyazısı ayakları, temas anını ya da kurulum nesnesini örtecekse üst banda alınır.** Yazı hiçbir zaman dokunuşun üstüne binmez.
