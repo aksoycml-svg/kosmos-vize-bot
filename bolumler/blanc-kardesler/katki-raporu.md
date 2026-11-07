@@ -1165,3 +1165,10 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Karar: kullanıcıya gitmez; 3 kritik (P14 paket sıçraması, P01 yarım jest, P09 kol/gölge), 3 orta.
 - Yakalanan: hareket tamamlanma, süreklilik; ertelenen P07/P10/P12 sürüyor, P14 geçişi doğrulandı: hatalı.
 - Not: P01/P06/P09 bulguları tek kareye dayalı, düzeltmeden önce doğrulanmalı.
+
+## senarist · 2026-11-07 · Senaryo v4 (yapımcı notu: "hikâyeyi harcamış")
+- Ne yaptım: Omurga (7 madde), 14 plan (60.0 sn, 104 kelime), 3 kanca (K1 korundu), kurulum → karşılık tablosu, ses kapalı/açık "eee yani?" taraması, v3 farkları ve paylaşım metni yazdım.
+- Dokunduğum dosyalar: bolumler/blanc-kardesler/senaryo-v4.md (yeni), bu rapor.
+- Kararlar: Hilenin kalbi P05 (Louis: "Hata yap. Hemen geri al.") → P07 (kol çentik + geri dönüş, "HATA + GERİ AL = TEMİZ MESAJ") → P08 → P09 ("Devlete: hata · Onlara: haber") zincirine bağlandı. Fısıltı "Hatalar… kasıtlıydı." oldu. Mühür ≈10. sn'ye alındı. Kitap beraatten önceye geçti. Son: "Silahı klavye değildi. Bir eldivendi." (P01 ile döngü).
+- Kurallar/ihlaller: Yalnız arastirma.md kullanıldı. Düzeltme sinyalinin biçimi uydurulmadı (kol yalnızca geri döner). "Dürbün" tek kaynaklı olduğu için anlatımda geçmiyor, yalnız açıklamada var. Wi-Fi gündüz (katalog). Planlar 3–5 sn. Yeni şablon yok.
+- Açık: kit_eksik doğrulaması: P08 uykulu esneme varyantı, P11 güvenin son sayfadan önce gizli olması, P09 IC-ODA kolunda HATA/halo. D1 fare isteğe bağlı kesilebilir. Brif yalnız TR istediği için EN yazılmadı. Kullanıcı onayı gerekli.
