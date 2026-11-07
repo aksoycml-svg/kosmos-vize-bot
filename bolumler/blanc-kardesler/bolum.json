@@ -236,7 +236,7 @@
     {
      "kim": "francois",
      "z": 2.4,
-     "u": 0.4,
+     "u": 0.28,
      "yon": 1,
      "yuz": {
       "ifade": "gulumse",
@@ -272,7 +272,7 @@
     {
      "kim": "louis",
      "z": 2.4,
-     "u": 0.58,
+     "u": 0.72,
      "yon": -1,
      "aksesuar": [
       "baston"
@@ -702,7 +702,7 @@
     {
      "kim": "memur",
      "z": 3.65,
-     "u": -0.35,
+     "u": 0.0,
      "yon": 1,
      "yuz": {
       "bakis": [
@@ -1674,7 +1674,7 @@
    ],
    "ekran_yazisi": [
     {
-     "bant": "ust",
+     "bant": "alt",
      "metin": "Devlete: hata · Onlara: haber",
      "vurgu": [
       "haber"
@@ -2377,7 +2377,7 @@
     ],
     "cs": [
      1.0,
-     2.0
+     1.7
     ],
     "cx": [
      0,

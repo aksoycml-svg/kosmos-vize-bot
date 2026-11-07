@@ -1220,3 +1220,8 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Engelleyici: P09 yazısı T kolunu örtüyor. Orta: müzik erken bitiyor (miks.json bayat, toplam_kare 3690), boşlukta müzik ≈−30 dB; P05 gölge-T okunmuyor.
 - Kurallar: v3 maddeleri 1–7 doğrulandı (6'sı geçer, müzik bitişi kısmen); renk/theme betiği ve P07 klak kulak testi yapılmadı.
 - Sonraki ajana: P09 yazı/kol düzeltmesi (yönetmen), miks fade_out/tail (kurgucu), limiter gevşetme (teknisyen); sonra yalnız P09 + son 3 sn yeniden kontrol.
+
+## yonetmen · 2026-11-07 · Blanc v4 eleştiri düzeltmesi (yalnız bolum.json)
+- Ne yaptım: P09 yazı bandı ust→alt (T kol + HATA halkası açıkta); P05 memur u −0.35→0.0 (T gölgesi memurun arkasında, pencere yanında); P02 u 0.40/0.58→0.28/0.72 (etiketler başlara yakın); P13 kamera cs 2.0→1.7, cy 460→330 (kule tabanı görünür). Süreler/ses kareleri aynı, 3730 kare, doğrulayıcı 0 hata.
+- kit_eksik: P01 yazı fade-in (Giris 0→14 kare; bas<0 doğrulayıcıda HATA, ilk kare yazısız → şablon: ilk karede opak seçeneği); P12 3034–3070 el yönü (json parametresi yok); P05 gölge T eğik/kısmi okunur (kit "SAK" izdüşümü, memur–mum açısı).
+- Kontak: scratchpad/k/kontak-v4fix.png
