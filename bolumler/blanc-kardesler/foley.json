@@ -13,7 +13,8 @@
   "sure_ms": 1887,
   "tepe_dbfs": -40.9,
   "onerilen_db": -8,
-  "kaynak": "elevenlabs-sfx"
+  "kaynak": "elevenlabs-sfx",
+  "not": "v4: hasta nefesi zaten çok kısık (tepe -40.9 dBFS); temas db -8 ile hasta ama duyulur."
  },
  "ahsap-tik": {
   "dosya": "blanc/sfx-v3/ahsap-tik.mp3",
@@ -80,12 +81,13 @@
   "kaynak": "elevenlabs-sfx"
  },
  "esneme": {
-  "dosya": "blanc/sfx-v3/esneme.mp3",
+  "dosya": "blanc/sfx-v4/esneme-a.mp3",
   "tepe_ms": 0,
-  "sure_ms": 1480,
-  "tepe_dbfs": -11.9,
+  "sure_ms": 1646,
+  "tepe_dbfs": -13.0,
   "onerilen_db": -6,
-  "kaynak": "elevenlabs-sfx"
+  "kaynak": "elevenlabs-sfx",
+  "not": "v4: uykulu/rahat esneme. Dosyaya -6 dB gömülü (bolum.json temas db=-6 onerilen_db'yi ezdiği için); yine kısık: etkin ≈ -12 dB. Aday B: blanc/sfx-v4/esneme-b.mp3 (aynı gömülü -6 dB, sure_ms 1802, daha nefesli, sonda küçük mırıltı). Yalnız dosya adı değiştirilerek geçilir. Dinlenmeden seçildi (a: ses tepesi 0.5 sn'de, yumuşak çıkış)."
  },
  "fare-ciyak": {
   "dosya": "blanc/sfx-v3/fare-ciyak.mp3",

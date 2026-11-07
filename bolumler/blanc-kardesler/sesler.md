@@ -72,3 +72,36 @@ Toplam gerçek süre tahmini (her plan max(plan, ses+0.4)): **61.3 sn** (plan to
 ### Harcanan kredi (tahmin)
 - Gönderilen karakter: ana set 690 (anlatıcı + FRANÇOIS) + adaylar 82 (A 20, B 31, C 31; `[whispers]` etiketi dahil) = **≈772 karakter**. ElevenLabs `/v1/user/subscription` sayacı üretimden önce ve sonra 678 okundu (değişmedi; sayaç gecikmeli güncellenebilir). Creator planında 129 065 karakter limitinin çok altında.
 - Yeniden üretim (kredi tekrarı) yapılmadı; bir ses dosyası üretilirken hata olmadı.
+
+## v4 miks (kesintisiz müzik)
+
+**Müzik:** `public/blanc/muzik/chopin-nocturne-b108-blanc-v4.mp3` (61.62 sn = 3697 kare; v3 kesimden yeniden düzenlendi: gövde 0–58.65 sn + 0.5 sn crossfade + açılış motifi; motif P14'te ~kare 3490'da geri döner). Hiç `muzik_istisnalari` yok (−60, −14 dipleri kaldırıldı); yalnız anlatım duck'ı: −8 (anlatımsız) ↔ −18 (anlatım), atak 18 / bırakma 36 kare, en dik eğim 0.56 dB/kare. Fade-in 12, fade-out 60 kare (3630–3690, P14 sonu).
+
+| Plan | Müzik aralığı (dB) | Not |
+|---|---|---|
+| P01 | −14.7 → −18 | Açılış notası, anlatım altında |
+| P02–P03 | −18 .. −13.7 | Boşluklar 23–28 kare: müzik dalgalanır, kesilmez |
+| P04 | −18 .. −11.3 | v3'teki 1.1 sn sessizlik kaldırıldı; fare anı müzikle taşınır |
+| P05 | −18 .. −8 | P05→P06 arası 90 karelik boşlukta −8'e açılır |
+| P06 | −18 .. −10.5 | |
+| P07 | −18 .. −8 | Hile planı: P07→P08 boşluğunda açılır |
+| P08 | −18 .. −10.2 | Esneme sırasında −18 (anlatım altında) |
+| P09 | −18 .. −8 | P09→P10 boşluğunda −8 |
+| P10 | −18 .. −11.9 | Sonda kesinti/dalış yok; memur fısıltısı −18 altında |
+| P11 | −18 .. −10.2 | −60 dalışı kaldırıldı; salon iç çekişi efekti kullanılmıyor |
+| P12 | −18 .. −11.3 | Eldiven giyerken müzik sürer (−18..−14) |
+| P13 | −18 .. −8 | |
+| P14 | −18 → −8 → fade-out | Tema dönüşü kare ~3490; bitişte fade-out |
+
+**Esneme adayları (uykulu/rahat, −6 dB gömülü):**
+- A (seçili, foley.json): `public/blanc/sfx-v4/esneme-a.mp3` (1.65 sn)
+- B: `public/blanc/sfx-v4/esneme-b.mp3` (1.80 sn, daha nefesli). Geçiş için `foley.json > esneme.dosya` değiştirilir.
+- Dinlenmeden seçildi; kullanıcı dinleyip onaylamalı.
+
+**Ortam (yağmur):** eklenmedi. Kit sürekli ortam katmanı desteklemiyor; yalnız `temaslar[].ses` var ve temaslar `bolum.json` (yönetmen) sahipliğinde. İstenirse P04 kare 0'a "yagmur" temas + kısık (−24) dosya eklenebilir.
+
+**Yönetmene notlar:**
+1. P07 11 kol varışının sesi yok (doğrulayıcı uyarısı): kule1 p84, p172; kule2 p60, p114, p202; kule3 p84, p144, p232; kule4 p108, p174, p262. Pozlar aynıysa anahtarı sil, kol gerçekten hareket ediyorsa kule 1 için `kol-klak` (−6), diğerleri `klak-uzak` (−12..−14) temas ekle (kule 2 p60 ilk MESAJ'ın sesi de yok).
+2. P10 kare 302 `sessizlik` (−60) temasını sil: tam sessizlik kullanılmıyor.
+3. P08 `esneme` temas `db`'si (−6) miks'i ezer; dosyada −6 gömülü, yani etkin ≈ −12. `db` alanını kaldırmak ya da −6'da bırakmak serbest, ayrıca düşürme.
+4. P07 `kol-klak-sert` temas `db: 0` kullanıcı "foley yüksek" geri bildirimine aykırı; −3 önerilir (miks istisnası −3 ama temas.db onu ezer).

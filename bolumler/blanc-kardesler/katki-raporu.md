@@ -1189,3 +1189,10 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Kararlar: P03 mühür 198 (3.3 sn); P07 kol MESAJ→HATA→MESAJ + 3 uzak kopya, yazı üst bantta; P12 dosya 1.6x, eldiven giyme TOK'tan 6 kare sonra; P11 güve 3 prop ile geçici gizlendi; dokunuş ID'leri kütüphaneye göre (D7 eldiven giyme P12, D8 kitap+güve P11; senaryodaki D7/D8 ters yazılmıştı).
 - Kurallar: 2 (animasyonlar ≥12 kare önce biter), 3 (kontrol_kare), 6 (doğrulayıcı), 7 (kör ayar yok); kit_eksik 8 madde (kit-eksik-v4.md).
 - Açık: P08 esneme hâlâ acı gibi, P09 uzak kol Bordeaux penceresinde animasyonsuz + kol "kütük", P10 yorgan ≈%35, P14 paket kapanmıyor (acik .5'te bitiyor, ip/düğüm sesleri çıkarıldı); P03 posta/telgraf art arda (anlatım sırasıyla ters).
+
+## kurgucu · 2026-11-07 · v4 miks + foley (müzik kesintisiz)
+- Ne yaptım: Müzik v4 kesimi (tema dönüşü P14'e), miks.json v4 (istisnasız, duck −8/−18, atak 18/bırakma 36, fade-out 60), 2 uykulu esneme adayı, foley.json esneme güncellemesi, sesler.md "v4 miks".
+- Dosyalar: bolumler/blanc-kardesler/miks.json, foley.json, sesler.md, katki-raporu.md; public/blanc/muzik/chopin-nocturne-b108-blanc-v4.mp3; public/blanc/sfx-v4/esneme-a.mp3, esneme-b.mp3; muzik/lisanslar.md.
+- Kararlar: Tüm −60/−14 istisnaları kaldırıldı (Müzik akar); salon iç çekişi kullanılmıyor; esneme −6 dB dosyaya gömüldü (temas.db miks'i ezdiği için); ortam yağmuru kit desteklemediği için eklenmedi; beraat yükselmesi için kit yalnız düşürebildiğinden ek mekanizma yok.
+- Kurallar: Müzik akar, temas=ses (P07'de 11 kol varışı sessiz, yönetmene not), doğrulayıcı --tam 0 hata/18 uyarı.
+- Açık: Esneme ve müzik dikişi (58.15 sn) dinlenmedi; P07 temasları, P10 sessizlik temas ve kol-klak-sert db yönetmende.
