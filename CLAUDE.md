@@ -116,6 +116,7 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 
 ### Senaryo ve yazı
 - **Güçlü, meraklı, çok basit anlatım** (kullanıcı kararı): her cümle bir sonrakini merak ettirir (açık soru → cevap → yeni soru). Dil "bebeğe anlatır gibi" sade: kısa cümle, günlük kelime, terim yok ya da hemen açıklanır; izleyici hiçbir an "ne dedi?" demez. Akıllı görünmeye çalışan cümle değil, net cümle.
+- **Kopuk yazım yok** (kullanıcı kararı, Evliya): anlatım bir zincirdir; her plan bir öncekinin sorusuna cevaptır ya da onun sonucudur (çünkü / bu yüzden / ama / o sırada). Art arda dizilmiş bağımsız bilgi cümlesi, nedeni söylenmeyen olay ("ikinci uçuş" — neden?), karakterin neden orada olduğunu söylemeyen bağlam yok. Slogan kalıbı ("O tek kişi: X.", "Tek X: Y.") ve yapay ikili paralellik yok; konuşur gibi yazılır. Senarist teslimden önce planları sırayla okuyup her geçiş için "bu neden buradan buraya geçti?" sorusunu cevaplar.
 - **Hikâyenin mekanizması net:** olayın "nasıl"ı (hile, keşif) tek görsel + tek cümleyle anlatılır; izleyici "bu neden işe yaradı?" sorusunun cevabını görür. (Blanc v3: "hata"nın düzeltildiği söylenmedi → "Tek bir hata" anlamsız kaldı.)
 - **Her kurulum karşılık bulur:** senaryoda "Kurulum → Karşılık" tablosu zorunlu; karşılıksız öğe çıkar ("Eldiven… çorap…" → "eee yani?").
 - **Son tamamlanır:** son cümle askıda kalmaz ("Sadece…" yok); döngü bir vuruşla kapanır.

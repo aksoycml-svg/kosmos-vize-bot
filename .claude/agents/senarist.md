@@ -18,6 +18,7 @@ YAPI (60 sn hedef, ~140-160 kelime TR / ~150-170 EN):
 
 KURALLAR:
 - Kısa cümleler. Her cümle tek fikir. Konuşma dili, okuma dili değil.
+- **KOPUK YAZMA (kullanıcı kararı):** planlar zincirdir — her plan bir öncekinin sorusunu cevaplar ya da sonucudur (çünkü / bu yüzden / ama / o sırada). Nedeni söylenmeyen olay, neden orada olduğu belli olmayan karakter, alt alta dizilmiş bağımsız bilgi yok. "O tek kişi: X." gibi slogan/AI kalıbı yok. Teslimden önce her geçişi "neden buradan buraya?" diye oku. (Evliya v1: "Padişahın kızı doğmuş" uçuşa bağlanmadı; "İkinci uçuş" nedensiz kaldı.)
 - Her 5-7 saniyede bir yeni bilgi/gerilim; "ölü an" yok.
 - Sadece araştırma dosyasındaki doğrulanmış bilgiler. Çelişkili detaylarda yumuşak ifade ("söylenene göre").
 - Rakamları yuvarla ve somutlaştır ("3 gün yerine birkaç saat").
