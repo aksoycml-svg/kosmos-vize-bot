@@ -1,0 +1,280 @@
+{
+ "adim-islak": {
+  "dosya": "blanc/sfx-v3/adim-islak.mp3",
+  "tepe_ms": 24,
+  "sure_ms": 449,
+  "tepe_dbfs": -0.4,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "agir-nefes": {
+  "dosya": "blanc/sfx-v3/agir-nefes.mp3",
+  "tepe_ms": 1,
+  "sure_ms": 1887,
+  "tepe_dbfs": -40.9,
+  "onerilen_db": -8,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "ahsap-tik": {
+  "dosya": "blanc/sfx-v3/ahsap-tik.mp3",
+  "tepe_ms": 11,
+  "sure_ms": 480,
+  "tepe_dbfs": -0.5,
+  "onerilen_db": -8,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "altin-singirti": {
+  "dosya": "blanc/sfx-v3/altin-singirti.mp3",
+  "tepe_ms": 2,
+  "sure_ms": 2000,
+  "tepe_dbfs": -9.5,
+  "onerilen_db": -6,
+  "kaynak": "mevcut-arsiv"
+ },
+ "baston-tak": {
+  "dosya": "blanc/sfx-v3/baston-tak.mp3",
+  "tepe_ms": 2,
+  "sure_ms": 680,
+  "tepe_dbfs": -1.7,
+  "onerilen_db": -6,
+  "kaynak": "mevcut-arsiv"
+ },
+ "bicak-kirt": {
+  "dosya": "blanc/sfx-v3/bicak-kirt.mp3",
+  "tepe_ms": 168,
+  "sure_ms": 600,
+  "tepe_dbfs": -15.2,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "dosya-tok": {
+  "dosya": "blanc/sfx-v3/dosya-tok.mp3",
+  "tepe_ms": 29,
+  "sure_ms": 413,
+  "tepe_dbfs": -2.4,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "dugum-tok": {
+  "dosya": "blanc/sfx-v3/dugum-tok.mp3",
+  "tepe_ms": 35,
+  "sure_ms": 480,
+  "tepe_dbfs": -4.1,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "eldiven-fit": {
+  "dosya": "blanc/sfx-v3/eldiven-fit.mp3",
+  "tepe_ms": 11,
+  "sure_ms": 549,
+  "tepe_dbfs": 0.0,
+  "onerilen_db": -8,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "eldiven-gerilme": {
+  "dosya": "blanc/sfx-v3/eldiven-gerilme.mp3",
+  "tepe_ms": 71,
+  "sure_ms": 1196,
+  "tepe_dbfs": -8.6,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "esneme": {
+  "dosya": "blanc/sfx-v3/esneme.mp3",
+  "tepe_ms": 0,
+  "sure_ms": 1480,
+  "tepe_dbfs": -11.9,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "fare-ciyak": {
+  "dosya": "blanc/sfx-v3/fare-ciyak.mp3",
+  "tepe_ms": 27,
+  "sure_ms": 1186,
+  "tepe_dbfs": -19.6,
+  "onerilen_db": -8,
+  "kaynak": "mevcut-arsiv"
+ },
+ "ip-zit": {
+  "dosya": "blanc/sfx-v3/ip-zit.mp3",
+  "tepe_ms": 7,
+  "sure_ms": 600,
+  "tepe_dbfs": -11.3,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "izgara-tinkir": {
+  "dosya": "blanc/sfx-v3/izgara-tinkir.mp3",
+  "tepe_ms": 25,
+  "sure_ms": 600,
+  "tepe_dbfs": -15.8,
+  "onerilen_db": -10,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "kagit-acilis": {
+  "dosya": "blanc/sfx-v3/kagit-acilis.mp3",
+  "tepe_ms": 58,
+  "sure_ms": 1000,
+  "tepe_dbfs": -5.8,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "kagit-hisirti": {
+  "dosya": "blanc/sfx-v3/kagit-hisirti.mp3",
+  "tepe_ms": 39,
+  "sure_ms": 1000,
+  "tepe_dbfs": -1.4,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "kagit-katlama": {
+  "dosya": "blanc/sfx-v3/kagit-katlama.mp3",
+  "tepe_ms": 198,
+  "sure_ms": 1000,
+  "tepe_dbfs": -18.6,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "kagit-yatis": {
+  "dosya": "blanc/sfx-v3/kagit-yatis.mp3",
+  "tepe_ms": 131,
+  "sure_ms": 505,
+  "tepe_dbfs": -6.8,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "kalem-cizirti": {
+  "dosya": "blanc/sfx-v3/kalem-cizirti.mp3",
+  "tepe_ms": 126,
+  "sure_ms": 974,
+  "tepe_dbfs": -6.7,
+  "onerilen_db": -8,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "kese-kayma": {
+  "dosya": "blanc/sfx-v3/kese-kayma.mp3",
+  "tepe_ms": 54,
+  "sure_ms": 680,
+  "tepe_dbfs": -12.2,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "klak-uzak": {
+  "dosya": "blanc/sfx-v3/klak-uzak.mp3",
+  "tepe_ms": 8,
+  "sure_ms": 600,
+  "tepe_dbfs": -0.4,
+  "onerilen_db": -12,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "kol-klak-sert": {
+  "dosya": "blanc/sfx-v3/kol-klak-sert.mp3",
+  "tepe_ms": 7,
+  "sure_ms": 600,
+  "tepe_dbfs": -1.2,
+  "onerilen_db": 0,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "kol-klak": {
+  "dosya": "blanc/sfx-v3/kol-klak.mp3",
+  "tepe_ms": 3,
+  "sure_ms": 480,
+  "tepe_dbfs": -1.4,
+  "onerilen_db": -12,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "makara-tik": {
+  "dosya": "blanc/sfx-v3/makara-tik.mp3",
+  "tepe_ms": 15,
+  "sure_ms": 446,
+  "tepe_dbfs": -1.2,
+  "onerilen_db": -10,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "muhur-tok": {
+  "dosya": "blanc/sfx-v3/muhur-tok.mp3",
+  "tepe_ms": 38,
+  "sure_ms": 982,
+  "tepe_dbfs": -4.7,
+  "onerilen_db": -6,
+  "kaynak": "mevcut-arsiv"
+ },
+ "salon-ic-cekis": {
+  "dosya": "blanc/sfx-v3/salon-ic-cekis.mp3",
+  "tepe_ms": 78,
+  "sure_ms": 1480,
+  "tepe_dbfs": -12.7,
+  "onerilen_db": -10,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "sayac-tik": {
+  "dosya": "blanc/sfx-v3/sayac-tik.mp3",
+  "tepe_ms": 11,
+  "sure_ms": 448,
+  "tepe_dbfs": -3.9,
+  "onerilen_db": -8,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "sayfa-cevirme": {
+  "dosya": "blanc/sfx-v3/sayfa-cevirme.mp3",
+  "tepe_ms": 32,
+  "sure_ms": 602,
+  "tepe_dbfs": -0.7,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "sayfa-yatis": {
+  "dosya": "blanc/sfx-v3/sayfa-yatis.mp3",
+  "tepe_ms": 124,
+  "sure_ms": 480,
+  "tepe_dbfs": -6.2,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "tahta-gicirti": {
+  "dosya": "blanc/sfx-v3/tahta-gicirti.mp3",
+  "tepe_ms": 80,
+  "sure_ms": 1280,
+  "tepe_dbfs": -18.1,
+  "onerilen_db": -8,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "tekerlek-gicirti": {
+  "dosya": "blanc/sfx-v3/tekerlek-gicirti.mp3",
+  "tepe_ms": 25,
+  "sure_ms": 1480,
+  "tepe_dbfs": -4.3,
+  "onerilen_db": -14,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "teleskop-tik": {
+  "dosya": "blanc/sfx-v3/teleskop-tik.mp3",
+  "tepe_ms": 11,
+  "sure_ms": 415,
+  "tepe_dbfs": -0.3,
+  "onerilen_db": -8,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "tink": {
+  "dosya": "blanc/sfx-v3/tink.mp3",
+  "tepe_ms": 7,
+  "sure_ms": 480,
+  "tepe_dbfs": -5.0,
+  "onerilen_db": -12,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "yun-flop": {
+  "dosya": "blanc/sfx-v3/yun-flop.mp3",
+  "tepe_ms": 11,
+  "sure_ms": 593,
+  "tepe_dbfs": -0.1,
+  "onerilen_db": -6,
+  "kaynak": "elevenlabs-sfx"
+ },
+ "sessizlik": {
+  "dosya": null,
+  "tepe_ms": 0,
+  "onerilen_db": -60,
+  "not": "Ses dosyası yok: P10 son 0.3 sn müzik+foley tam kesilir (miks istisnası)."
+ }
+}
