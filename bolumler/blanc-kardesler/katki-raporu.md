@@ -1064,3 +1064,9 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Replikler aynı ses (Umut Canbay) ile geçici; karakter sesi kararı bekliyor.
 - Kota: metin 760 karakter (Creator limit 129.065; önceki kullanım 0).
 - Hata/çözüm: yok. P11 metni "bin sekiz yüz otuz yedi." küçük harfle başladı (okunuş etkilenmedi, düzeltilebilir).
+
+## teknisyen · 2026-11-07 · Blanc v3 karakter sesleri
+- Ne yaptım / çalıştırdığım komutlar: hesap sesleri ve shared-voices (tr) listelendi; Creator slot 1/30; 6 aday shared ses hesaba eklendi (`voices/add`); her karakter için 2 aday ElevenLabs with-timestamps ile üretildi; kaba perde ölçümü (ffmpeg + otokorelasyon, python -I). Seçimler: FRANÇOIS=Batuhan Altınova, LOUIS=Levent, MEMUR=Nihat.
+- Üretilen dosyalar: `public/blanc/ses-v3/P04-francois.{mp3,json}`, `P05-louis.{mp3,json}`, `P10-memur.{mp3,json}` (yeni sesler); `aday/` altında a1/a2 sürümleri; eski Umut sürümleri `aday/umut/`; `bolumler/blanc-kardesler/sesler.md`.
+- Hatalar ve çözümler: işitsel dinleme yapılamadı, seçim etiket + kaba perde ölçümüne dayanıyor (sesler.md'de belirtildi, kullanıcı onayı bekliyor). MEMUR fısıltısı tam sağlanamadı (fısıltı modu yok; stabilite 0.25, hız 0.80 denendi). Arslan (memur a2) ölçümü güvenilmez (≈74 Hz, oktav hatası olası).
+- Kota: 3 karakter × 2 aday, toplam ~45 karakter TTS + 6 ses ekleme; çıktı ses dosyaları Remotion süreleri ile hizalanmadı (süre farkı: FRANÇOIS 2.40 sn, LOUIS 1.93 sn, MEMUR 1.75 sn).
