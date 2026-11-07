@@ -339,6 +339,7 @@
           "saat": "{n} HOURS",
           "gun": "DAY {n}"
         },
+        "sayac_sag": 96,
         "posta": {
           "bas": 88,
           "bit": 170,
@@ -1196,8 +1197,8 @@
               "kare": [
                 0,
                 36,
-                84,
-                96,
+                108,
+                120,
                 172,
                 184
               ],
@@ -1211,7 +1212,7 @@
               ]
             },
             "halo": [
-              96,
+              120,
               184
             ]
           },
@@ -1223,8 +1224,8 @@
               "kare": [
                 0,
                 60,
-                114,
-                126,
+                138,
+                150,
                 202,
                 214
               ],
@@ -1238,7 +1239,7 @@
               ]
             },
             "halo": [
-              126,
+              150,
               214
             ]
           },
@@ -1250,8 +1251,8 @@
               "kare": [
                 0,
                 84,
-                144,
-                156,
+                168,
+                180,
                 232,
                 244
               ],
@@ -1265,7 +1266,7 @@
               ]
             },
             "halo": [
-              156,
+              180,
               244
             ]
           },
@@ -1277,8 +1278,8 @@
               "kare": [
                 0,
                 108,
-                174,
-                186,
+                198,
+                210,
                 262,
                 274
               ],
@@ -1292,7 +1293,7 @@
               ]
             },
             "halo": [
-              186,
+              210,
               274
             ]
           }
@@ -1320,7 +1321,7 @@
       "ekran_yazisi": [
         {
           "bant": "ust",
-          "metin": "ERROR + UNDO = CLEAN MESSAGE",
+          "metin": "ERROR + UNDO =\nCLEAN MESSAGE",
           "vurgu": [
             "ERROR"
           ],
@@ -1349,25 +1350,25 @@
           "db": -13
         },
         {
-          "kare": 96,
-          "olay": "yakın kule HATA — sert klak ('hata' ile)",
-          "ses": "kol-klak-sert",
-          "db": -3
-        },
-        {
           "kare": 108,
           "olay": "kule 4 ilk MESAJ varışı",
           "ses": "klak-uzak",
           "db": -14
         },
         {
-          "kare": 126,
+          "kare": 120,
+          "olay": "yakın kule HATA — sert klak ('hata' ile)",
+          "ses": "kol-klak-sert",
+          "db": -3
+        },
+        {
+          "kare": 150,
           "olay": "kule 2 HATA kopya",
           "ses": "klak-uzak",
           "db": -8
         },
         {
-          "kare": 156,
+          "kare": 180,
           "olay": "kule 3 HATA kopya",
           "ses": "klak-uzak",
           "db": -10
@@ -1379,7 +1380,7 @@
           "db": -6
         },
         {
-          "kare": 186,
+          "kare": 210,
           "olay": "kule 4 HATA kopya",
           "ses": "klak-uzak",
           "db": -12
@@ -1406,11 +1407,11 @@
       "dokunus": {
         "id": "D4",
         "ad": "Çentik + geri dönüş + kopya dalgası",
-        "bas": 96,
+        "bas": 120,
         "bit": 274
       },
       "kontrol_kare": 190,
-      "not": "v4 hilenin kalbi: yakın kol MESAJ(36) → HATA(96, halo) → MESAJ(184); uzaklar 30'ar kare gecikmeyle aynı ikiliyi kopyalar (son varış 274). Yazı üst bantta (kolla bitişik değil), geri dönüş karesinde (184). v4-son: kol varışları temaslarla tam eşlendi (kule1 36/96/184; k2 60/126/214; k3 84/156/244; k4 108/186/274). Kurgucunun saydığı p84,p172 (k1), p114,p202 (k2), p144,p232 (k3), p174,p262 (k4) aynı-poz bekleme anahtarları (MESAJ→MESAJ, HATA→HATA): hareket yok, ses yok; silinirse sonraki hareket 60 kareye yayılırdı, bu yüzden korundu. kol-klak-sert −3 dB. | EN (bolum-en): sure 300→286; ses başlangıç [60]; ses sonu +20 nefes ya da son animasyon+12."
+      "not": "v4 hilenin kalbi: yakın kol MESAJ(36) → HATA(96, halo) → MESAJ(184); uzaklar 30'ar kare gecikmeyle aynı ikiliyi kopyalar (son varış 274). Yazı üst bantta (kolla bitişik değil), geri dönüş karesinde (184). v4-son: kol varışları temaslarla tam eşlendi (kule1 36/96/184; k2 60/126/214; k3 84/156/244; k4 108/186/274). Kurgucunun saydığı p84,p172 (k1), p114,p202 (k2), p144,p232 (k3), p174,p262 (k4) aynı-poz bekleme anahtarları (MESAJ→MESAJ, HATA→HATA): hareket yok, ses yok; silinirse sonraki hareket 60 kareye yayılırdı, bu yüzden korundu. kol-klak-sert −3 dB. | EN (bolum-en): sure 300→286; ses başlangıç [60]; ses sonu +20 nefes ya da son animasyon+12. | EN revize: HATA 96→120 ('error' sözü 123), kopya dalgası +24; geri alma 184 sabit (okunur süre 64 kare)."
     },
     {
       "id": "P08",
@@ -1679,7 +1680,7 @@
       "ekran_yazisi": [
         {
           "bant": "alt",
-          "metin": "State: error · Them: news",
+          "metin": "State: error\nThem: news",
           "vurgu": [
             "news"
           ],
@@ -1825,7 +1826,7 @@
       ],
       "replik": [
         {
-          "kim": "MEMUR",
+          "kim": "OPERATOR",
           "metin": "The errors… on purpose.",
           "bant": "alt",
           "bas": 184,
@@ -2183,7 +2184,7 @@
         "pencere": "yok",
         "elYukseklik": 120,
         "eldivenGiy": {
-          "bas": 36,
+          "bas": 108,
           "bit": 228,
           "gerilme": 201,
           "x": 540,
@@ -2216,10 +2217,12 @@
           "kare": [
             0,
             12,
-            30
+            78,
+            96
           ],
           "durum": {
             "kapak": [
+              0,
               0,
               0,
               1
@@ -2236,14 +2239,14 @@
           ],
           "kagitSerit": true,
           "tur": "iddia",
-          "bas": 30,
+          "bas": 96,
           "bit": 246
         }
       ],
       "temaslar": [
         {
-          "kare": 30,
-          "olay": "dosya kapağı TOK ('Beraat.')",
+          "kare": 96,
+          "olay": "dosya kapağı TOK ('Acquitted.' sözü 99)",
           "ses": "dosya-tok"
         },
         {
@@ -2262,11 +2265,11 @@
       "dokunus": {
         "id": "D7",
         "ad": "Eldiven giyme",
-        "bas": 36,
+        "bas": 108,
         "bit": 228
       },
       "kontrol_kare": 201,
-      "not": "v4: dosya 1.6x (cilt tahtası eldivenden büyük = eldivenin üstünde durduğu şey okunur), eldiven boğum y 1150. Kapağı sol elden giren el kapatır (TOK 30), el 54'te çıkar; eldiven giyme 36'da duraksamadan başlar (TOK'tan 6 kare sonra), gerilme 201 ('geç.'), bit 228. v4-son ölçek: eldiven olcek 1.3→1.2 (katalog alt sınırı), dosya 1.6→1.7, görevli el 1.9→2.6 (eldiven bir el boyu; dosya eldivenden büyük). | EN (bolum-en): sure 246→246; ses başlangıç [99]; ses sonu +20 nefes ya da son animasyon+12.",
+      "not": "v4: dosya 1.6x (cilt tahtası eldivenden büyük = eldivenin üstünde durduğu şey okunur), eldiven boğum y 1150. Kapağı sol elden giren el kapatır (TOK 30), el 54'te çıkar; eldiven giyme 36'da duraksamadan başlar (TOK'tan 6 kare sonra), gerilme 201 ('geç.'), bit 228. v4-son ölçek: eldiven olcek 1.3→1.2 (katalog alt sınırı), dosya 1.6→1.7, görevli el 1.9→2.6 (eldiven bir el boyu; dosya eldivenden büyük). | EN (bolum-en): sure 246→246; ses başlangıç [99]; ses sonu +20 nefes ya da son animasyon+12. | EN revize: TOK/yazı 30→96 ('Acquitted.' 99); el bekler 12–78, kapatır 96, çıkar 120; eldiven giy bas 36→108 (gerilme 201, bit 228 sabit).",
       "el": [
         {
           "tip": "gorevli",
@@ -2278,13 +2281,23 @@
           "kare": [
             0,
             12,
-            30,
-            54
+            60,
+            78,
+            96,
+            120
           ],
           "bilek": [
             [
               160,
               1000
+            ],
+            [
+              230,
+              980
+            ],
+            [
+              238,
+              984
             ],
             [
               230,
@@ -2309,6 +2322,14 @@
               1020
             ],
             [
+              4,
+              1022
+            ],
+            [
+              0,
+              1020
+            ],
+            [
               160,
               1030
             ],
@@ -2321,6 +2342,8 @@
             -10,
             -10,
             -10,
+            -10,
+            -10,
             -10
           ],
           "poz": [
@@ -2329,7 +2352,7 @@
               "poz": "kistir"
             },
             {
-              "kare": 30,
+              "kare": 96,
               "poz": "gevsek"
             }
           ]
@@ -2396,7 +2419,7 @@
       "ekran_yazisi": [
         {
           "bant": "ust",
-          "metin": "No wires. No electricity.",
+          "metin": "No wires.\nNo electricity.",
           "vurgu": [
             "wires"
           ],

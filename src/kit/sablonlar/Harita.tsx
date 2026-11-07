@@ -66,8 +66,8 @@ const KuleIkon: React.FC<{ x: number; y: number; on: number }> = ({ x, y, on }) 
 );
 
 type Vurus = { bas: number; bit: number; kule?: number; gun?: number; saat?: number };
-const SayacKutu: React.FC<{ y: number; giris: number; ikon: React.ReactNode; metin: string }> = ({ y, giris, ikon, metin }) => (
-  <div style={{ position: "absolute", right: 80, top: y, transform: `translateX(${(1 - giris) * 700}px)`, display: "flex", alignItems: "center", gap: 18, fontFamily: mono, fontSize: 44, letterSpacing: 4, padding: "12px 26px", color: "#f1e4c4", background: "rgba(30,18,8,0.88)", border: "2px solid #b8862b" }}>
+const SayacKutu: React.FC<{ y: number; giris: number; ikon: React.ReactNode; metin: string; sag?: number }> = ({ y, giris, ikon, metin, sag = 80 }) => (
+  <div style={{ position: "absolute", right: sag, top: y, transform: `translateX(${(1 - giris) * 700}px)`, display: "flex", alignItems: "center", gap: 18, fontFamily: mono, fontSize: 44, letterSpacing: 4, padding: "12px 26px", color: "#f1e4c4", background: "rgba(30,18,8,0.88)", border: "2px solid #b8862b" }}>
     <svg width={52} height={52} viewBox="-26 -26 52 52">{ikon}</svg>{metin}
   </div>
 );
@@ -78,6 +78,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const muhur = param<{ kare: number; metin: string } | null>(plan, "muhur", null);
   const gunSayisi = posta?.gun ?? param<number>(plan, "gun", 3), saatSayisi = tel?.saat ?? param<number>(plan, "saat", 4);
   const etiket = param<{ saat?: string; gun?: string }>(plan, "sayac_etiket", {});
+  const sayacSag = param<number>(plan, "sayac_sag", 80); // sayaç kutusu sağ kenar boşluğu (px, varsayılan 80)
   const etSaat = (n: number) => (etiket.saat ?? "{n} SAAT").replace("{n}", String(n));
   const etGun = (n: number) => (etiket.gun ?? "{n}. GÜN").replace("{n}", String(n));
   const k = kameraHesapla(plan.kamera, p);
@@ -119,8 +120,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
         {posta && <Img src={staticFile("blanc/img/araba.png")} style={{ position: "absolute", left: ax - 100, top: ay - 82 + bob, width: 200 }} />}
       </div>
       {/* K4 çift sayaç: telgraf üstte, posta altta (ikisi birden varsa); tek vuruşta tek kutu eski yerinde */}
-      {tel && p >= tel.bas && <SayacKutu y={posta ? 1290 : 1320} giris={interpolate(p, [tel.bas, tel.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={<TIkon renk="#f1e4c4" />} metin={etSaat(saat)} />}
-      {posta && p >= posta.bas && <SayacKutu y={tel ? 1400 : 1320} giris={interpolate(p, [posta.bas, posta.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={gece ? <Ay /> : <Gunes />} metin={etGun(gun)} />}
+      {tel && p >= tel.bas && <SayacKutu y={posta ? 1290 : 1320} giris={interpolate(p, [tel.bas, tel.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={<TIkon renk="#f1e4c4" />} metin={etSaat(saat)} sag={sayacSag} />}
+      {posta && p >= posta.bas && <SayacKutu y={tel ? 1400 : 1320} giris={interpolate(p, [posta.bas, posta.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={gece ? <Ay /> : <Gunes />} metin={etGun(gun)} sag={sayacSag} />}
     </div>
   );
 };

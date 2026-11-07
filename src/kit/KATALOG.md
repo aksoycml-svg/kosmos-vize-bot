@@ -24,6 +24,7 @@ Dosya adı `bolum*.json` olmalı (bundle'a `require.context` ile girer). Kareler
   "props": [{ "tur": "paket", "id": "paket", "x": 690, "y": 1340, "olcek": 1.15, "kare": [0, 54], "durum": { "acik": [0.5, 1] } }],
   "el": [ ... ],                                    // yalnız MASA-INSERT
   "ekran_yazisi": [{ "bant": "ust", "metin": "1834. Bilgisayar yok.", "vurgu": ["yok"], "kagitSerit": true, "tur": "iddia|formul", "bas": 0, "bit": 180 }],
+  // ekran_yazisi.metin içinde "\n" = elle satır sonu (yetim kırılımı önler; yoksa otomatik). replik.kim serbest metin etiketidir (EN: "OPERATOR").
   "replik": [{ "kim": "FRANÇOIS", "metin": "…", "bant": "ust", "bas": 4, "bit": 196, "vurgu": ["kazanır"], "kelimeKare": [4, 20, 40] }],
   "temaslar": [{ "kare": 108, "olay": "baston TAK", "ses": "baston-tak", "db": -4 }],
   "dokunus": { "id": "D1", "ad": "Baston–fare" }
@@ -145,6 +146,7 @@ Parşömen + Fransa + dönem rotası. Font dışı glif yok (sayaç ikonları SV
 | `posta` | `{bas, bit, gun}` araba rota boyunca; sayaç "N. GÜN" + gün/ay diski (`gun`: 3) |
 | `telgraf` | `{bas, bit, kule, saat}` sinyal + kule ikonları; sayaç "N SAAT" (`saat`: 4) |
 | `sayac_etiket` | `{saat, gun}` sayaç metin şablonu, `{n}` sayıyı alır (EN: `{"saat":"{n} HOURS","gun":"DAY {n}"}`); verilmezse TR: "{n} SAAT" / "{n}. GÜN" |
+| `sayac_sag` | sayaç kutularının sağ kenar boşluğu px (varsayılan 80; EN'de 96) |
 | `muhur` | `{kare, metin}` kırmızı mühür (540, 880) iner; kare = TOK teması (zorunlu) |
 - Sayaç kutusu sağ-alt (y 1320–1400). **K4 çift sayaç:** `posta` ve `telgraf` birlikte verilirse iki ayrı kutu (telgraf üstte y 1290, posta altta y 1400); her kutu kendi `bas`'ında sağdan kayarak girer, son değerinde kalır. Vuruşlar art arda ya da üst üste olabilir; sırayı anlatıma göre ver. Sayaç değişimleri (saat: qt .375/.625/.875; gün: qp 1/3, 2/3) `sayac-tik` teması alır. Kamera cs 1.0–1.6. Gece karartma katmanı yok.
 

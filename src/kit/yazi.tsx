@@ -53,7 +53,10 @@ export const KitEkranYazisi: React.FC<{ metin: string; vurgu?: string[]; tur?: "
     const uzun = Math.max(...parca.map((q) => q.length));
     return { satirlar, px: Math.min(60, ic / (uzun * en)) };
   };
-  const { satirlar, px } = formul ? formulYer() : yerlesim(metin, 72, 0.52, 64);
+  // opsiyonel elle satır sonu ("\n"): verilirse satırlar aynen alınır (EN yetim kırılımı için); yoksa eski otomatik akış
+  const elle = metin.includes("\n") ? metin.split("\n").map((q) => q.split(" ").filter(Boolean)) : null;
+  const elleEn = elle ? Math.max(...metin.split("\n").map((q) => q.length)) : 0;
+  const { satirlar, px } = elle ? { satirlar: elle, px: Math.min(formul ? 60 : 64, (YAZI.kutuW - 52) / (elleEn * (formul ? 0.6 : 0.52))) } : formul ? formulYer() : yerlesim(metin, 72, 0.52, 64);
   const tum = satirlar.flat();
   const vi = formul ? -1 : vurguIndeks(tum, vurgu);
   let j = 0;
