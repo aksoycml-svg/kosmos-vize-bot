@@ -1055,3 +1055,12 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Kararlar: P07'de 5 kule (senaryo kol dizisi); P09 suç ortağı = `katip`; P05 kol sabit "BEKLE"; P10 replik alt bant (yüz y 780, ayak yok); P11 tek louis eli, dosya kapağı prop animasyonuyla.
 - Kurallar: dokunuş tekrarı yok, ekran yazıları ust bant, temaslar listelendi; `kit_eksik` alanları D2, D3, D5, D6, D7, D8, P11 karar kâğıdı, P13 morf.
 - Açık: Bash yok, `bolum_dogrula.mjs` ÇALIŞTIRILMADI; el koordinatları (P06, P11, P12, P14) tahmini, kıstırma y>1290 uyarısı çıkabilir (P14); jest/yuz alan adları (ifade "yorgun/hasta", `ter`) katalogda tanımsız olabilir; replik zamanları zamanlama.json gelince kelimeKare ile güncellenmeli.
+
+## teknisyen · 2026-11-07 · Blanc v3 seslendirme (Umut Canbay)
+- Ne yaptım / komutlar: ses kimliği repoda yoktu; `GET /v1/voices` ile "Umut Canbay" = `jZQNewKOZcubZDDwBxdL` (betik varsayılanı). `tools/seslendir.mjs` ile 15 dosya (anlatım P01–P14, replik P04/P05/P10); ffprobe ölçümü; kota kontrolü (`/v1/user/subscription`).
+- Üretilen dosyalar: `public/blanc/ses-v3/*.mp3` + `*.json` (kelime zamanlaması); `bolumler/blanc-kardesler/zamanlama.json`.
+- Plan sapmaları (ses − plan, sn): P06 +2.32 (6.82 / 4.5), P03 +0.84, P14 +0.84, P07 +0.83, P02 +0.60. Kısa kalanlar: P10 −2.18, P05 −2.00, P12 −1.29, P11 −1.31. P04 ve P08 anlatım satırı yok (P04 yalnız replik, P08 sessiz) → dosya yok.
+- Hız: anlatım ortalama 2.17 kel/sn (senaryo varsayımı 2.5); P06 1.17 kel/sn en yavaş.
+- Replikler aynı ses (Umut Canbay) ile geçici; karakter sesi kararı bekliyor.
+- Kota: metin 760 karakter (Creator limit 129.065; önceki kullanım 0).
+- Hata/çözüm: yok. P11 metni "bin sekiz yüz otuz yedi." küçük harfle başladı (okunuş etkilenmedi, düzeltilebilir).

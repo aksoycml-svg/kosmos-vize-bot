@@ -1,0 +1,657 @@
+{
+  "kaynak": "tools/seslendir.mjs",
+  "ses": "Umut Canbay (jZQNewKOZcubZDDwBxdL)",
+  "model": "eleven_multilingual_v2",
+  "dosyalar": {
+    "P01": {
+      "plan": "P01",
+      "metin": "Bu eldiven, Fransız devletinin ağını hackledi.",
+      "dur_ffprobe": 2.952,
+      "words": [
+        {
+          "t": "Bu",
+          "s": 0,
+          "e": 0.186
+        },
+        {
+          "t": "eldiven,",
+          "s": 0.221,
+          "e": 0.685
+        },
+        {
+          "t": "Fransız",
+          "s": 0.766,
+          "e": 1.196
+        },
+        {
+          "t": "devletinin",
+          "s": 1.242,
+          "e": 1.741
+        },
+        {
+          "t": "ağını",
+          "s": 1.858,
+          "e": 2.101
+        },
+        {
+          "t": "hackledi.",
+          "s": 2.136,
+          "e": 2.926
+        }
+      ]
+    },
+    "P02": {
+      "plan": "P02",
+      "metin": "Bordeaux'lu kardeşler François ve Louis Blanc, devlet tahviline oynuyor.",
+      "dur_ffprobe": 4.598,
+      "words": [
+        {
+          "t": "Bordeaux'lu",
+          "s": 0,
+          "e": 0.546
+        },
+        {
+          "t": "kardeşler",
+          "s": 0.592,
+          "e": 1.184
+        },
+        {
+          "t": "François",
+          "s": 1.277,
+          "e": 1.695
+        },
+        {
+          "t": "ve",
+          "s": 1.718,
+          "e": 1.8
+        },
+        {
+          "t": "Louis",
+          "s": 1.858,
+          "e": 2.043
+        },
+        {
+          "t": "Blanc,",
+          "s": 2.078,
+          "e": 2.496
+        },
+        {
+          "t": "devlet",
+          "s": 2.775,
+          "e": 3.158
+        },
+        {
+          "t": "tahviline",
+          "s": 3.181,
+          "e": 3.75
+        },
+        {
+          "t": "oynuyor.",
+          "s": 3.773,
+          "e": 4.551
+        }
+      ]
+    },
+    "P03": {
+      "plan": "P03",
+      "metin": "Haber Paris'ten Bordeaux'ya üç günde geliyor. Devletin telgrafı birkaç saatte getiriyor. Ama sadece devlete.",
+      "dur_ffprobe": 7.34,
+      "words": [
+        {
+          "t": "Haber",
+          "s": 0,
+          "e": 0.348
+        },
+        {
+          "t": "Paris'ten",
+          "s": 0.43,
+          "e": 0.987
+        },
+        {
+          "t": "Bordeaux'ya",
+          "s": 1.103,
+          "e": 1.649
+        },
+        {
+          "t": "üç",
+          "s": 1.73,
+          "e": 1.858
+        },
+        {
+          "t": "günde",
+          "s": 1.927,
+          "e": 2.159
+        },
+        {
+          "t": "geliyor.",
+          "s": 2.218,
+          "e": 2.728
+        },
+        {
+          "t": "Devletin",
+          "s": 3.053,
+          "e": 3.506
+        },
+        {
+          "t": "telgrafı",
+          "s": 3.564,
+          "e": 4.075
+        },
+        {
+          "t": "birkaç",
+          "s": 4.133,
+          "e": 4.516
+        },
+        {
+          "t": "saatte",
+          "s": 4.551,
+          "e": 4.865
+        },
+        {
+          "t": "getiriyor.",
+          "s": 4.911,
+          "e": 5.468
+        },
+        {
+          "t": "Ama",
+          "s": 5.747,
+          "e": 5.968
+        },
+        {
+          "t": "sadece",
+          "s": 6.026,
+          "e": 6.42
+        },
+        {
+          "t": "devlete.",
+          "s": 6.467,
+          "e": 7.291
+        }
+      ]
+    },
+    "P04-francois": {
+      "plan": "P04",
+      "metin": "Herkesten önce bilen… kazanır.",
+      "dur_ffprobe": 2.821,
+      "words": [
+        {
+          "t": "Herkesten",
+          "s": 0,
+          "e": 0.639
+        },
+        {
+          "t": "önce",
+          "s": 0.708,
+          "e": 0.894
+        },
+        {
+          "t": "bilen…",
+          "s": 0.952,
+          "e": 1.335
+        },
+        {
+          "t": "kazanır.",
+          "s": 1.939,
+          "e": 2.786
+        }
+      ]
+    },
+    "P05": {
+      "plan": "P05",
+      "metin": "Tours istasyonunda iki memuru satın aldılar.",
+      "dur_ffprobe": 3.004,
+      "words": [
+        {
+          "t": "Tours",
+          "s": 0,
+          "e": 0.372
+        },
+        {
+          "t": "istasyonunda",
+          "s": 0.441,
+          "e": 1.242
+        },
+        {
+          "t": "iki",
+          "s": 1.324,
+          "e": 1.533
+        },
+        {
+          "t": "memuru",
+          "s": 1.579,
+          "e": 1.892
+        },
+        {
+          "t": "satın",
+          "s": 1.927,
+          "e": 2.183
+        },
+        {
+          "t": "aldılar.",
+          "s": 2.241,
+          "e": 2.972
+        }
+      ]
+    },
+    "P05-louis": {
+      "plan": "P05",
+      "metin": "Tek bir hata. Fazlası değil.",
+      "dur_ffprobe": 2.508,
+      "words": [
+        {
+          "t": "Tek",
+          "s": 0,
+          "e": 0.232
+        },
+        {
+          "t": "bir",
+          "s": 0.29,
+          "e": 0.418
+        },
+        {
+          "t": "hata.",
+          "s": 0.453,
+          "e": 0.824
+        },
+        {
+          "t": "Fazlası",
+          "s": 1.265,
+          "e": 1.753
+        },
+        {
+          "t": "değil.",
+          "s": 1.811,
+          "e": 2.461
+        }
+      ]
+    },
+    "P06": {
+      "plan": "P06",
+      "metin": "Paris'ten paketle şifre geliyor. Eldiven: yükseliş. Çorap: düşüş.",
+      "dur_ffprobe": 6.818,
+      "words": [
+        {
+          "t": "Paris'ten",
+          "s": 0,
+          "e": 0.604
+        },
+        {
+          "t": "paketle",
+          "s": 0.72,
+          "e": 1.161
+        },
+        {
+          "t": "şifre",
+          "s": 1.207,
+          "e": 1.498
+        },
+        {
+          "t": "geliyor.",
+          "s": 1.544,
+          "e": 1.997
+        },
+        {
+          "t": "Eldiven:",
+          "s": 2.38,
+          "e": 3.007
+        },
+        {
+          "t": "yükseliş.",
+          "s": 3.39,
+          "e": 4.156
+        },
+        {
+          "t": "Çorap:",
+          "s": 4.667,
+          "e": 5.306
+        },
+        {
+          "t": "düşüş.",
+          "s": 5.909,
+          "e": 6.78
+        }
+      ]
+    },
+    "P07": {
+      "plan": "P07",
+      "metin": "Memur, resmî mesaja küçük bir hata gizliyor. Kuleler aynen kopyalıyor.",
+      "dur_ffprobe": 5.329,
+      "words": [
+        {
+          "t": "Memur,",
+          "s": 0,
+          "e": 0.58
+        },
+        {
+          "t": "resmî",
+          "s": 0.697,
+          "e": 1.091
+        },
+        {
+          "t": "mesaja",
+          "s": 1.138,
+          "e": 1.533
+        },
+        {
+          "t": "küçük",
+          "s": 1.579,
+          "e": 1.892
+        },
+        {
+          "t": "bir",
+          "s": 1.95,
+          "e": 2.067
+        },
+        {
+          "t": "hata",
+          "s": 2.101,
+          "e": 2.334
+        },
+        {
+          "t": "gizliyor.",
+          "s": 2.415,
+          "e": 2.995
+        },
+        {
+          "t": "Kuleler",
+          "s": 3.437,
+          "e": 3.866
+        },
+        {
+          "t": "aynen",
+          "s": 3.982,
+          "e": 4.319
+        },
+        {
+          "t": "kopyalıyor.",
+          "s": 4.377,
+          "e": 5.294
+        }
+      ]
+    },
+    "P09": {
+      "plan": "P09",
+      "metin": "Bordeaux'da bir suç ortağı kuleyi izliyor. İki yıl herkesten önce bildiler.",
+      "dur_ffprobe": 4.545,
+      "words": [
+        {
+          "t": "Bordeaux'da",
+          "s": 0,
+          "e": 0.557
+        },
+        {
+          "t": "bir",
+          "s": 0.615,
+          "e": 0.743
+        },
+        {
+          "t": "suç",
+          "s": 0.778,
+          "e": 0.94
+        },
+        {
+          "t": "ortağı",
+          "s": 1.01,
+          "e": 1.3
+        },
+        {
+          "t": "kuleyi",
+          "s": 1.335,
+          "e": 1.637
+        },
+        {
+          "t": "izliyor.",
+          "s": 1.707,
+          "e": 2.299
+        },
+        {
+          "t": "İki",
+          "s": 2.473,
+          "e": 2.717
+        },
+        {
+          "t": "yıl",
+          "s": 2.74,
+          "e": 2.844
+        },
+        {
+          "t": "herkesten",
+          "s": 2.937,
+          "e": 3.471
+        },
+        {
+          "t": "önce",
+          "s": 3.529,
+          "e": 3.692
+        },
+        {
+          "t": "bildiler.",
+          "s": 3.75,
+          "e": 4.505
+        }
+      ]
+    },
+    "P10": {
+      "plan": "P10",
+      "metin": "Bir memur ağır hastalandı. Ve anlattı.",
+      "dur_ffprobe": 2.821,
+      "words": [
+        {
+          "t": "Bir",
+          "s": 0,
+          "e": 0.221
+        },
+        {
+          "t": "memur",
+          "s": 0.29,
+          "e": 0.615
+        },
+        {
+          "t": "ağır",
+          "s": 0.673,
+          "e": 0.894
+        },
+        {
+          "t": "hastalandı.",
+          "s": 0.94,
+          "e": 1.602
+        },
+        {
+          "t": "Ve",
+          "s": 1.776,
+          "e": 1.881
+        },
+        {
+          "t": "anlattı.",
+          "s": 1.927,
+          "e": 2.786
+        }
+      ]
+    },
+    "P10-memur": {
+      "plan": "P10",
+      "metin": "Eldiven… çorap…",
+      "dur_ffprobe": 1.515,
+      "words": [
+        {
+          "t": "Eldiven…",
+          "s": 0,
+          "e": 0.615
+        },
+        {
+          "t": "çorap…",
+          "s": 0.731,
+          "e": 1.486
+        }
+      ]
+    },
+    "P11": {
+      "plan": "P11",
+      "metin": "bin sekiz yüz otuz yedi. Mahkeme. Beraat.",
+      "dur_ffprobe": 3.187,
+      "words": [
+        {
+          "t": "bin",
+          "s": 0,
+          "e": 0.209
+        },
+        {
+          "t": "sekiz",
+          "s": 0.279,
+          "e": 0.604
+        },
+        {
+          "t": "yüz",
+          "s": 0.639,
+          "e": 0.766
+        },
+        {
+          "t": "otuz",
+          "s": 0.824,
+          "e": 1.045
+        },
+        {
+          "t": "yedi.",
+          "s": 1.103,
+          "e": 1.428
+        },
+        {
+          "t": "Mahkeme.",
+          "s": 1.544,
+          "e": 2.101
+        },
+        {
+          "t": "Beraat.",
+          "s": 2.345,
+          "e": 3.158
+        }
+      ]
+    },
+    "P12": {
+      "plan": "P12",
+      "metin": "Suç sayan bir yasa yoktu. Telgraf yasası aynı yıl geldi.",
+      "dur_ffprobe": 3.709,
+      "words": [
+        {
+          "t": "Suç",
+          "s": 0,
+          "e": 0.279
+        },
+        {
+          "t": "sayan",
+          "s": 0.325,
+          "e": 0.557
+        },
+        {
+          "t": "bir",
+          "s": 0.604,
+          "e": 0.731
+        },
+        {
+          "t": "yasa",
+          "s": 0.789,
+          "e": 0.987
+        },
+        {
+          "t": "yoktu.",
+          "s": 1.033,
+          "e": 1.486
+        },
+        {
+          "t": "Telgraf",
+          "s": 1.637,
+          "e": 2.067
+        },
+        {
+          "t": "yasası",
+          "s": 2.136,
+          "e": 2.438
+        },
+        {
+          "t": "aynı",
+          "s": 2.508,
+          "e": 2.74
+        },
+        {
+          "t": "yıl",
+          "s": 2.763,
+          "e": 2.856
+        },
+        {
+          "t": "geldi.",
+          "s": 2.937,
+          "e": 3.669
+        }
+      ]
+    },
+    "P13": {
+      "plan": "P13",
+      "metin": "Bazıları buna ilk siber saldırı diyor.",
+      "dur_ffprobe": 2.534,
+      "words": [
+        {
+          "t": "Bazıları",
+          "s": 0,
+          "e": 0.569
+        },
+        {
+          "t": "buna",
+          "s": 0.604,
+          "e": 0.813
+        },
+        {
+          "t": "ilk",
+          "s": 0.929,
+          "e": 1.068
+        },
+        {
+          "t": "siber",
+          "s": 1.161,
+          "e": 1.416
+        },
+        {
+          "t": "saldırı",
+          "s": 1.486,
+          "e": 1.892
+        },
+        {
+          "t": "diyor.",
+          "s": 1.927,
+          "e": 2.508
+        }
+      ]
+    },
+    "P14": {
+      "plan": "P14",
+      "metin": "Kablo yok. Bilgisayar yok. Sadece…",
+      "dur_ffprobe": 3.344,
+      "words": [
+        {
+          "t": "Kablo",
+          "s": 0,
+          "e": 0.395
+        },
+        {
+          "t": "yok.",
+          "s": 0.43,
+          "e": 0.731
+        },
+        {
+          "t": "Bilgisayar",
+          "s": 1.057,
+          "e": 1.614
+        },
+        {
+          "t": "yok.",
+          "s": 1.672,
+          "e": 2.009
+        },
+        {
+          "t": "Sadece…",
+          "s": 2.45,
+          "e": 3.297
+        }
+      ]
+    }
+  }
+}
