@@ -8,6 +8,7 @@ import { PaketKagidi } from "../../bolumler/blanc/props/PaketKagidi";
 import { Eldiven } from "../../bolumler/blanc/props/Eldiven";
 import type { Prop, PropTur } from "../tipler";
 import { deger } from "../zaman";
+import { Guve } from "./EldivenGiyme";
 
 export type PropCiz = { durum: Record<string, number | string | boolean>; seed: number; golge?: boolean; golgeRenk?: string; fl?: number };
 const sayi = (d: PropCiz["durum"], k: string, v = 0) => (typeof d[k] === "number" ? (d[k] as number) : v);
@@ -68,6 +69,8 @@ const Kitap: React.FC<PropCiz> = (o) => {
       {!bos && satir(0, 14)}
       {!o.golge && <line x1={0} y1={-H / 2} x2={0} y2={H / 2} stroke="#8a7a5a" strokeWidth={3} />}
       {t > 0 && t < 1 && <polygon points={poly([[0, -H / 2], [sx, -H / 2 - 18 * Math.sin(t * Math.PI)], [sx, H / 2 - 10 * Math.sin(t * Math.PI)], [0, H / 2]])} fill={G(o, t < 0.5 ? "#ece2c8" : "#d8ccae")} {...st("#e2d6b8")} />}
+      {/* K2 (D8): güve — durum.guve 0..1 (kare ile anahtarla): 0 boş sayfada kanat kapalı, .1'den sonra uçar, 1'de kadraj üstünden çıkmış */}
+      {!o.golge && typeof o.durum.guve === "number" && <Guve g={o.durum.guve as number} x0={W * 0.5} y0={10} golge={o.golge} />}
     </g>
   );
 };

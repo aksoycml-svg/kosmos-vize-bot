@@ -23,6 +23,7 @@ import { cl, deger, GIRIS, kameraHesapla, ekranNokta } from "../zaman";
 import { param, Sablon, SablonProps } from "../ortak";
 import { PROPLAR, propDurum, FENER_ALEV_Y } from "../props";
 import { DisManzara, DisTur, PEN0 } from "./disManzara";
+import { EldivenGiyme, EldivenGiyParam, eldivenGerilme } from "../props/EldivenGiyme";
 
 const S = DOKU_SEED.tours;
 const PEN = PEN0;
@@ -114,6 +115,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const kose = [[PEN.x, PEN.y], [PEN.x + PEN.w, PEN.y], [PEN.x + PEN.w, PEN.y + PEN.h], [PEN.x, PEN.y + PEN.h]].map(([x, y]) => ({ p: [x, y] as P, ayak: [x, ARKA] as P, h: ARKA - y }));
   const golgeKay = (h: number): P => { const q = izdusum(GUNES, [0, 0], h); return [q[0], q[1] + h * 0.2]; };
   const elH = param<number>(plan, "elYukseklik", 120);
+  const egiy = param<EldivenGiyParam | null>(plan, "eldivenGiy", null);
+  if (egiy) { const s0 = egiy.olcek ?? 1.3; kilit.push({ ad: "eldiven gerilme", p: ekranNokta(k, [(egiy.x ?? 540) + 92 * s0, (egiy.y ?? 1000) + 218 * s0]), tur: p >= eldivenGerilme(egiy) ? "temas" : "dokunus" }); }
   // kilit noktaları
   for (const e of eller) kilit.push({ ad: "kıstırma", p: ekranNokta(k, e.kist), tur: "dokunus" });
   for (const pr of serbest) kilit.push({ ad: pr.id ?? pr.tur, p: ekranNokta(k, [deger(pr.x, pr.kare, p), deger(pr.y, pr.kare, p)]), tur: "kurulum" });
@@ -171,12 +174,17 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           {/* el + tutulan prop gölgeleri (TEK güneş): ton + tarama, masa düzlemine kırpılı */}
           <g clipPath="url(#kmMasaKlip)" style={{ mixBlendMode: "multiply" }}>
             {eller.map((e, i) => { const g = golgeKay(elH); return <g key={i} transform={`translate(${g[0]},${g[1]})`}><KolEl {...kolProps(e)} golge golgeRenk="#a08a70" /><KolEl {...kolProps(e)} golge golgeRenk="url(#kmTar)" /></g>; })}
+            {/* K2: tutulan prop'un gölgesi — aynı güneşten, el gölgesiyle aynı kayma (prop elde, masadan elYukseklik kadar yukarıda) */}
+            {eller.map((e, i) => { const t = e.el.tut ? tutma.get(e.el.tut.prop) : undefined; const pr = tutulan.find((q) => q.id === e.el.tut?.prop); if (!t || t.birak || !pr) return null; const g = golgeKay(elH); return <g key={`tg${i}`} transform={`translate(${t.yer[0] + g[0]},${t.yer[1] + g[1]})`}><PropCiz pr={pr} p={p} konum={[0, 0]} aci={t.aci} golge golgeRenk="#a08a70" /></g>; })}
+            {egiy && (() => { const g = golgeKay(elH * 1.6); return <g transform={`translate(${g[0]},${g[1]})`}><EldivenGiyme e={egiy} p={p} golge golgeRenk="#a08a70" /></g>; })()}
           </g>
           {fenerVar && <g transform={`translate(${FX},${FT})`}><ellipse cx={2} cy={2} rx={70} ry={10} fill="#14110d" opacity={0.6} />{React.createElement(PROPLAR.fener, { durum: {}, seed: S, fl })}</g>}
           {/* bırakılmış tutulan prop'lar (bıraktığı yerde) */}
           {tutulan.map((pr, i) => { const t = tutma.get(pr.id!)!; return t.birak ? <PropCiz key={`b${i}`} pr={pr} p={p} konum={t.yer} aci={t.aci} fl={fl} /> : null; })}
           {eller.map((e, i) => <KolEl key={`e${i}`} {...kolProps(e)} isik={kolIsigi(GUNES, e.bilek, { murekkep: "#2a1c10" })} poz={e.poz} tutulan={tutulanCiz(e)} />)}
           {serbest.filter((pr) => pr.tur === "paket").map((pr, i) => <PropCiz key={`u${i}`} pr={pr} p={p} katman="ust" />)}
+          {/* K2 (D7): parmak parmak eldiven giyme — eller masanın üstünde, insert'te ≥ %20 */}
+          {egiy && <EldivenGiyme e={egiy} p={p} />}
           {/* masa ön kenarı + ön yüz + döşeme */}
           <AhsapYuzey m={dikdortgen(-140, MASA_ON, 1360, ON_YUZ)} boyut={[1360, ON_YUZ]} tur="mese" taban="#6a4a2c" tahta={1} seed={S + 8} derinlik="yakin" kenarKontur={false} />
           <MasaKenari sol={[-140, MASA_ON]} sag={[1220, MASA_ON]} kalin={30} renk="#8a5e36" />

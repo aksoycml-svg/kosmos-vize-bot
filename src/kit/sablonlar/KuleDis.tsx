@@ -13,7 +13,38 @@ import { cl, GIRIS, kameraHesapla, ekranNokta } from "../zaman";
 import { param, Sablon, SablonProps } from "../ortak";
 import { kolHesapla, KolParam } from "./MasaInsert";
 
-export type KuleTanim = { x: number; taban: number; L: number; konum: KolParam; halo?: [number, number]; govde?: boolean };
+export type KuleTanim = { x: number; taban: number; L: number; konum: KolParam; halo?: [number, number]; govde?: boolean; wifi?: { bas: number; bit: number } };
+
+// K2 (P13) T kollarının ahşap Wi-Fi ikonuna morfu: sağ gösterge → küçük yay, sol gösterge → orta yay, regülatör → büyük yay,
+// sırayla (her biri [bas,bit]'in üçte biri; varış karesi = "tak" teması). Pivot topuzu = ikon noktası. Neon/parlama YOK:
+// siyah boyalı ahşap (kol rengi) + açık kenar çizgisi + kontur. Direk gök mavisi kalır.
+export const wifiVaris = (w: { bas: number; bit: number }) => { const D = (w.bit - w.bas) / 3; return [0, 1, 2].map((i) => Math.round(w.bas + D * (i + 1))); };
+const WifiMorf: React.FC<{ top: [number, number]; L: number; kol: { reg: number; sol: number; sag: number }; w: { bas: number; bit: number }; p: number }> = ({ top, L, kol, w, p }) => {
+  const D = (w.bit - w.bas) / 3, N = 16;
+  const tG = L * CHAPPE_ORAN.gosKalin, yHalf = L / 2 - tG * 0.3, Li = L * CHAPPE_ORAN.gosterge;
+  const r0 = (kol.reg * Math.PI) / 180;
+  const R = (q: [number, number]): [number, number] => [top[0] + q[0] * Math.cos(r0) - q[1] * Math.sin(r0), top[1] + q[0] * Math.sin(r0) + q[1] * Math.cos(r0)];
+  const gosUc = (side: -1 | 1): [[number, number], [number, number]] => { const a = ((side === -1 ? -kol.sol : 180 + kol.sag) * Math.PI) / 180; const b: [number, number] = [side * yHalf, 0]; return [R(b), R([b[0] + Math.cos(a) * Li, b[1] + Math.sin(a) * Li])]; };
+  const kaynak: [[number, number], [number, number]][] = [gosUc(1), gosUc(-1), [R([-L / 2, 0]), R([L / 2, 0])]];
+  const yaricap = [0.3, 0.58, 0.86].map((f) => f * L);
+  return (
+    <g>
+      {kaynak.map(([a, b], i) => {
+        const m = interpolate(p, [w.bas + D * i, w.bas + D * (i + 1), w.bas + D * (i + 1) + 4, w.bas + D * (i + 1) + 8], [0, 1.04, 0.99, 1], { ...cl, easing: GIRIS });
+        const pts = Array.from({ length: N + 1 }).map((_, j) => { const u = j / N; const s: [number, number] = [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u]; const ang = ((-135 + 90 * u) * Math.PI) / 180; const t: [number, number] = [top[0] + Math.cos(ang) * yaricap[i], top[1] + Math.sin(ang) * yaricap[i]]; return [s[0] + (t[0] - s[0]) * m, s[1] + (t[1] - s[1]) * m] as [number, number]; });
+        const kal = (i === 2 ? L * CHAPPE_ORAN.regKalin : tG) * (1 + 0.45 * Math.min(1, m));
+        return (
+          <g key={i}>
+            <polyline points={poly(pts)} stroke={ink(BL.kolSiyah)} strokeWidth={kal + 3} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            <polyline points={poly(pts)} stroke={BL.kolSiyah} strokeWidth={kal} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            <polyline points={poly(pts.map(([x, y]) => [x, y - kal * 0.28] as [number, number]))} stroke={BL.kolKenar} strokeWidth={Math.max(1, kal * 0.12)} fill="none" opacity={0.7} />
+          </g>
+        );
+      })}
+      <circle cx={top[0]} cy={top[1]} r={L * 0.07} fill={BL.kolSiyah} stroke={ink(BL.kolSiyah)} strokeWidth={2} />
+    </g>
+  );
+};
 const VARSAYILAN: KuleTanim[] = [
   { x: 330, taban: 1470, L: 280, konum: "BEKLE" },
   { x: 700, taban: 1060, L: 120, konum: "BEKLE" },
@@ -46,7 +77,14 @@ const Kule: React.FC<{ k: KuleTanim; p: number; siluet: boolean }> = ({ k, p, si
         {!siluet && <ellipse cx={k.x + bw * 0.25} cy={k.taban + 2} rx={bw * 0.75} ry={Math.max(2, L * 0.03)} fill="#14110d" opacity={0.3} />}
       </g>}
       {halo > 0 && <circle cx={k.x} cy={ust - L * 0.14 - H} r={L * (0.55 + 0.1 * halo)} fill="none" stroke={BL.redLit} strokeWidth={Math.max(3, L * 0.03)} opacity={0.85 * halo} />}
-      <ChappeKule x={k.x} y={ust - L * 0.1} L={L} konum={kol} detay={detay} siluetRenk={siluet ? "#1c1826" : undefined} payanda={false} />
+      {(() => {
+        const w = k.wifi && p >= k.wifi.bas ? k.wifi : null;
+        const top: [number, number] = [k.x, ust - L * 0.1 - H];
+        return <>
+          <ChappeKule x={k.x} y={ust - L * 0.1} L={L} konum={kol} detay={detay} siluetRenk={siluet ? "#1c1826" : undefined} payanda={false} gizle={w ? { reg: true, sol: true, sag: true } : undefined} />
+          {w && <WifiMorf top={top} L={L} kol={kol} w={w} p={p} />}
+        </>;
+      })()}
     </g>
   );
 };

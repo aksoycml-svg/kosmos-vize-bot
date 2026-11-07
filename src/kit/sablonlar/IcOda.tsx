@@ -20,6 +20,11 @@ import { KarakterCiz, karakterKilit, param, Sablon, SablonProps } from "../ortak
 import { PROPLAR, propDurum, MUM_ALEV_Y } from "../props";
 import { DisManzara, DisTur, PEN0 } from "./disManzara";
 import { kolHesapla, KolParam } from "./MasaInsert";
+import { GolgeT, GolgeTParam } from "../props/GolgeT";
+import { Manipulator, manipAci, manipUygula } from "../props/Manipulator";
+import { KolEl, KISTIR_YEREL } from "../../rig/KolEl";
+import { interpolate, Easing } from "remotion";
+import { cl, GIRIS, CIKIS } from "../zaman";
 
 const F = 1150, UFUK = 760, GOZ = 1.6, TAVAN = 2.5, YARI = 2.6;
 const X = (u: number, z: number) => 540 + (u * F) / z;
@@ -87,6 +92,20 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const PW = pb[0] - pa[0], PH = pb[1] - pa[1];
   const disOlcek = Math.max(PW / PEN0.w, PH / PEN0.h);
   const kar = (plan.karakterler ?? []).map((c, i) => ({ c, i, d: karakterPoz(c, p, ODA_YER), z: deger(c.z, c.kare, p, 3) }));
+  // K2 kumanda (manipulateur): it-çek eden karakterin önünde direk; kol açısı it-çek fazından, el kol ucuna IK ile (el koldan kopmaz)
+  const manip = param<{ kim: string; ileri?: number; h?: number; yari?: number } | null>(plan, "manipulator", null);
+  const manipCiz: { z: number; el: React.ReactNode }[] = [];
+  if (manip) {
+    const m = kar.find((q) => q.c.kim === manip.kim);
+    if (m) {
+      const u = deger(m.c.u, m.c.kare, p, 0), yon = m.c.yon ?? 1;
+      const up = u + yon * (manip.ileri ?? 0.75), hp = manip.h ?? 1.0, sF = F / m.z;
+      const piv = Q(up, hp, m.z);
+      const { tut, karsi } = manipUygula(m.d.pz, piv, (manip.yari ?? 0.3) * sF, manipAci(m.c, p), yon);
+      manipCiz.push({ z: m.z + 0.02, el: <Manipulator key="manip" pivot={piv} tut={tut} karsi={karsi} zemin={Y(0, m.z)} tavan={Y(TAVAN, m.z)} s={sF} murekkep={mur} /> });
+      kilit.push({ ad: "kumanda tutamak", p: ekranNokta(k, tut), tur: "dokunus" });
+    }
+  }
   kar.forEach(({ c, d }) => kilit.push(...karakterKilit(c.kim, d, k)));
   // derinlik sırası: uzak önce (karakterler + masa)
   const nesneler: { z: number; el: React.ReactNode }[] = kar.map(({ c, i, d, z }) => ({ z, el: <KarakterCiz key={`k${i}`} d={d} isik={isik} kamera={k} murekkep={mur} seed={S + 300 + i * 11} cepEldiven={c.aksesuar?.includes("cep-eldiven")} golgeAlfa={mum ? 0.5 : 0.35} /> }));
@@ -101,13 +120,49 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     ) });
     kilit.push({ ad: "masa", p: ekranNokta(k, Q(masa.u, masa.h ?? 0.75, masa.z)), tur: "kurulum" });
   }
+  nesneler.push(...manipCiz);
   nesneler.sort((a, b) => b.z - a.z);
   const yatakZ = ARKA - 0.05;
+  // K2 (D2) gölge → T kol: mum alevinden arka duvara izdüşüm (pencere camına düşmez: kırpma deliği)
+  const gT = param<GolgeTParam | null>(plan, "golgeT", null);
+  const gTk = gT && mum ? kar.find((q) => q.c.kim === gT.kim) : undefined;
+  const gTD = gT ? gT.donusum ?? 36 : 0;
+  const gTt = gT ? (p < gT.bit - gTD * 0.5 ? interpolate(p, [gT.bas, gT.bas + gTD], [0, 1], { ...cl, easing: GIRIS }) : interpolate(p, [gT.bit - gTD * 0.5, gT.bit], [1, 0], { ...cl, easing: CIKIS })) : 0;
+  const duvarSol = Q(-YARI, TAVAN, ARKA), duvarSag = Q(YARI, 0, ARKA);
+  // K2 (D6) pervaza bıçakla çentik: el sağ-alttan girer (kadraj kenarı; push-in planında), bıçak ucu yeni çentiği çizer (kare = "kırt")
+  const bicak = param<{ bas: number; kare: number; bit: number; tip?: "gomlek" | "ceket" | "gorevli" | "louis" } | null>(plan, "pervazBicak", null);
+  const centikN = centik + (centikYeni !== null && p >= centikYeni ? 1 : 0);
+  const centikAdim = Math.min(12, (PW - 20) / (centik + 1));
+  const bicakCiz = (() => {
+    if (!bicak || p < bicak.bas || p > bicak.bit) return null;
+    const sF = F / ARKA, x = pa[0] + 10 + centik * centikAdim;
+    const ucA: P = [x, pb[1] + 2], ucB: P = [x + 3, pb[1] + 17];
+    const yaklas = interpolate(p, [bicak.bas, bicak.kare - 14], [1, 0], { ...cl, easing: GIRIS });
+    const kes = interpolate(p, [bicak.kare - 10, bicak.kare], [0, 1], { ...cl, easing: Easing.in(Easing.quad) });
+    const cek = interpolate(p, [bicak.kare + 8, bicak.bit], [0, 1], { ...cl, easing: CIKIS });
+    const uc: P = [ucA[0] + (ucB[0] - ucA[0]) * kes, ucA[1] + (ucB[1] - ucA[1]) * kes - 4 * (1 - kes) * (p < bicak.kare - 10 ? 1 : 0)];
+    const off: P = [(yaklas + cek) * 0.55 * sF, (yaklas + cek) * 0.7 * sF];
+    const bl = 0.11 * sF; // bıçak ağzı ≈ 11 cm
+    const bd: P = [Math.cos((118 * Math.PI) / 180), Math.sin((118 * Math.PI) / 180)]; // ağız aşağı-sol, sap yukarı-sağ
+    const ucE: P = [uc[0] + off[0], uc[1] + off[1]];
+    const kist: P = [ucE[0] - bd[0] * bl, ucE[1] - bd[1] * bl];
+    const olc = (0.19 * sF) / 140, aci = 212, r = aci * Math.PI / 180;
+    const bilek: P = [kist[0] - (KISTIR_YEREL[0] * Math.cos(r) - KISTIR_YEREL[1] * Math.sin(r)) * olc, kist[1] - (KISTIR_YEREL[0] * Math.sin(r) + KISTIR_YEREL[1] * Math.cos(r)) * olc];
+    const g = olc / 1.9;
+    return (
+      <g>
+        <KolEl giris={[bilek[0] + 0.62 * sF, bilek[1] + 0.95 * sF]} dirsek={[bilek[0] + 0.3 * sF, bilek[1] + 0.32 * sF]} bilek={bilek} gen={[210 * g * 1.3, 172 * g, 92 * g]} tip={bicak.tip ?? "ceket"} elAci={aci} olcek={olc} poz="kistir"
+          tutulan={<g><line x1={0} y1={0} x2={ucE[0] - kist[0]} y2={ucE[1] - kist[1]} stroke="#9aa0a6" strokeWidth={Math.max(2.5, 0.016 * sF)} strokeLinecap="round" /><line x1={0} y1={0} x2={-(ucE[0] - kist[0]) * 0.7} y2={-(ucE[1] - kist[1]) * 0.7} stroke="#4a3220" strokeWidth={Math.max(4, 0.024 * sF)} strokeLinecap="round" /></g>} />
+      </g>
+    );
+  })();
+  if (bicak && p >= bicak.bas && p <= bicak.bit) kilit.push({ ad: "bıçak ucu / çentik", p: ekranNokta(k, [pa[0] + 10 + centik * centikAdim, pb[1] + 10]), tur: p >= bicak.kare ? "temas" : "dokunus" });
   return (
     <svg width={1080} height={1920} viewBox="0 0 1080 1920">
       <defs>
         <radialGradient id="ioMum"><stop offset="0" stopColor="#ffcf70" stopOpacity={0.42} /><stop offset="0.5" stopColor="#ffb357" stopOpacity={0.14} /><stop offset="1" stopColor="#ffb357" stopOpacity={0} /></radialGradient>
         <clipPath id="ioPen"><rect x={pa[0]} y={pa[1]} width={PW} height={PH} /></clipPath>
+        <clipPath id="ioDuvar"><path clipRule="evenodd" d={`M ${duvarSol[0]} ${duvarSol[1]} H ${duvarSag[0]} V ${duvarSag[1]} H ${duvarSol[0]} Z M ${pa[0]} ${pa[1]} H ${pb[0]} V ${pb[1]} H ${pa[0]} Z`} /></clipPath>
       </defs>
       <rect x={0} y={0} width={1080} height={1920} fill={tonla("#3b2c1c", ton)} />
       <RenkKaydi>
@@ -129,7 +184,9 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           <Kemer m={(u, v) => [pa[0] + u * PW, pa[1] + v * PH]} W={pen.w} H={pen.h} tip="basik" dolgu="#e8d4a4" kayit={null} sove={{ gen: 0.05, renk: "#4a3220" }} esik={{ renk: tonla("#d8cfb4", ton) }} kontur={2.5}
             ic={<g clipPath="url(#ioPen)"><g transform={`translate(${pa[0] + PW / 2},${pa[1] + PH / 2}) scale(${disOlcek}) translate(${-(PEN0.x + PEN0.w / 2)},${-(PEN0.y + PEN0.h / 2)})`}><DisManzara tur={dis} kol={kol} /></g></g>} />
           {/* pervaz çentikleri (D6 "iki yıl"): bıçak izi sırası; yeni çentik temas karesinde belirir */}
-          {centik > 0 && Array.from({ length: centik + (centikYeni !== null && p >= centikYeni ? 1 : 0) }).map((_, i) => { const x = pa[0] + 10 + i * Math.min(12, (PW - 20) / (centik + 1)); return <line key={i} x1={x} y1={pb[1] + 4} x2={x + 3} y2={pb[1] + 16} stroke="#3a2a18" strokeWidth={2.4} />; })}
+          {centikN > 0 && Array.from({ length: centikN }).map((_, i) => { const x = pa[0] + 10 + i * centikAdim; return <line key={i} x1={x} y1={pb[1] + 2} x2={x + 3} y2={pb[1] + 17} stroke="#3a2a18" strokeWidth={3} strokeLinecap="round" />; })}
+          {gTk && <GolgeT pz={gTk.d.pz} z={gTk.z} isik={{ u: mumYer.u, h: mumYer.h + 0.165, z: mumYer.z }} arka={ARKA} t={gTt} konum={gT!.konum} klip="url(#ioDuvar)"
+            ekranDunya={(q, z) => ({ u: ((q[0] - 540) * z) / F, h: GOZ - ((q[1] - UFUK) * z) / F })} dunyaEkran={(u, h, z) => Q(u, h, z)} />}
           {teleskop && <g transform={`translate(${pa[0] + PW * 0.65},${pb[1] + 2})`}><rect x={-6} y={-24} width={12} height={24} fill="#4a3220" /><g transform="rotate(-14)"><rect x={-70} y={-40} width={130} height={18} rx={4} fill="#c9a24a" stroke={ink("#c9a24a")} strokeWidth={2} /><rect x={50} y={-43} width={18} height={24} rx={3} fill="#a8862e" /></g></g>}
           {odaAd === "yatak" && <g>
             {/* yatak: ahşap çerçeve, keten (eldiven beyazının altında L*), arka duvara dayalı */}
@@ -142,6 +199,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           <polyline points={poly([Q(-YARI, 0, ARKA), Q(YARI, 0, ARKA)])} stroke={mur} strokeWidth={4} />
           {mum && <circle cx={alev[0]} cy={alev[1]} r={(F * 1.6) / mumYer.z} fill="url(#ioMum)" style={{ mixBlendMode: "screen" }} />}
           {nesneler.map((n) => n.el)}
+          {bicakCiz}
         </g>
       </RenkKaydi>
     </svg>

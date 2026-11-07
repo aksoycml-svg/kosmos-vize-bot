@@ -40,8 +40,8 @@ const Serit: React.FC<{ children: React.ReactNode; padY?: number }> = ({ childre
 // EKRAN YAZISI (iddia / formül). bant "alt" yalnız istisna (alt bant replik içindir): kutu alt kenarı y 1490.
 export const KitEkranYazisi: React.FC<{ metin: string; vurgu?: string[]; tur?: "iddia" | "formul"; bant?: "ust" | "alt" }> = ({ metin, vurgu, tur = "iddia", bant = "ust" }) => {
   const formul = tur === "formul";
-  // en/oran: Playfair 900 ≈ 0.56 em/harf, Plex Mono = 0.6. İki satırda boyut ≤ 60 (Playfair) → kutu ≤ 150 px (bant 160)
-  const { satirlar, px } = formul ? yerlesim(metin, 44, 0.6, 40) : yerlesim(metin, 72, 0.56, 60);
+  // en/oran: Playfair 900 ≈ 0.52 em/harf (ölçüldü), Plex Mono = 0.6. İki satırda boyut ≤ 64 → kutu ≈ 152 px (bant 160)
+  const { satirlar, px } = formul ? yerlesim(metin, 44, 0.6, 40) : yerlesim(metin, 72, 0.52, 64);
   const tum = satirlar.flat();
   const vi = formul ? -1 : vurguIndeks(tum, vurgu);
   let j = 0;

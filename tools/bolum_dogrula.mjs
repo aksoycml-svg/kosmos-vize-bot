@@ -55,6 +55,27 @@ for (const plan of B.planlar ?? []) {
     if (prm.saat === "alacakaranlik") kl.forEach((k, i) => { if (typeof k.konum !== "string") H(Y, `kule ${i + 1}: alacakaranlıkta kollar SABİT olmalı (telgraf gece/siste çalışmaz)`); });
     kl.forEach((k, i) => { if (typeof k.konum === "object") { artan(`${Y} kule ${i + 1}`, k.konum.kare); k.konum.kare.slice(1).forEach((q) => { if (!temasVar(plan, q)) U(Y, `kule ${i + 1} kol varışı p${q}: "klak" teması yok`); }); } });
   }
+  // K2 kit parçaları
+  if (plan.sablon === "IC-ODA") {
+    const kar0 = plan.karakterler ?? [];
+    const O = S.ortusme;
+    if (O) {
+      const anlar = [...new Set([0, sure - 1, ...kar0.flatMap((c) => c.kare ?? [])])];
+      const dg = (v, kare, p) => { if (!Array.isArray(v)) return v; if (!kare || v.length < 2) return v[0]; let i = 0; while (i < kare.length - 1 && p > kare[i + 1]) i++; if (p <= kare[0]) return v[0]; if (p >= kare[kare.length - 1]) return v[v.length - 1]; const t = (p - kare[i]) / (kare[i + 1] - kare[i]); return v[i] + (v[i + 1] - v[i]) * t; };
+      for (let a = 0; a < kar0.length; a++) for (let b = a + 1; b < kar0.length; b++) {
+        const A = kar0[a], Bk = kar0[b];
+        const kotu = anlar.find((p) => { const za = dg(A.z, A.kare, p), zb = dg(Bk.z, Bk.kare, p), ua = dg(A.u, A.kare, p), ub = dg(Bk.u, Bk.kare, p); if (Math.abs(za - zb) > O.dz) return false; const xa = 540 + (ua * O.F) / za, xb = 540 + (ub * O.F) / zb; return Math.abs(xa - xb) < 0.5 * (O.omuzM * O.F / za + O.omuzM * O.F / zb); });
+        if (kotu !== undefined) U(Y, `${A.kim} ↔ ${Bk.kim} örtüşüyor (p${kotu}: aynı derinlik yakınında ekran x farkı omuz genişliğinden az) — u farkını aç ya da z ayır`);
+      }
+    }
+    if (prm.golgeT) { const g = prm.golgeT; if (prm.isik !== "mum") H(Y, "golgeT: duvar gölgesi yalnız isik=mum (tek nokta ışık)"); const c = kar0.find((q) => q.kim === g.kim); if (!c) H(Y, `golgeT.kim "${g.kim}" planda yok`); else if (prm.masa && Math.max(...dizi(c.z)) <= prm.masa.z) U(Y, "golgeT: karakter mumun önünde (z ≤ masa z) → gölge arka duvara düşmez"); if (!(g.bas < g.bit) || g.bit > sure) H(Y, "golgeT zamanı geçersiz"); }
+    if (prm.manipulator) { const c = kar0.find((q) => q.kim === prm.manipulator.kim); if (!c) H(Y, `manipulator.kim "${prm.manipulator.kim}" planda yok`); else if (!(c.jestler ?? []).some((j) => j.ad === "it-cek")) U(Y, "manipulator: karakterin it-cek jesti yok (kol sabit kalır)"); }
+    if (prm.pervazBicak) { const b = prm.pervazBicak; if (!(b.bas < b.kare && b.kare < b.bit)) H(Y, "pervazBicak: bas < kare < bit olmalı"); if (!temasVar(plan, b.kare, 1)) H(Y, `pervazBicak kesik p${b.kare}: temas ("kırt") yok`); if (prm.pervazCentikYeni !== undefined && prm.pervazCentikYeni !== b.kare) U(Y, "pervazCentikYeni pervazBicak.kare ile aynı olmalı (bıçak çizerken belirir)"); }
+  }
+  if (plan.sablon === "MASA-INSERT" && prm.eldivenGiy) { const e = prm.eldivenGiy, g = e.gerilme ?? Math.round(e.bas + (e.bit - e.bas) * 0.86); if (!temasVar(plan, g, 1)) H(Y, `eldivenGiy gerilme p${g}: temas yok (TEMAS = SES)`); if ((e.olcek ?? 1.3) < 1.2) U(Y, "eldivenGiy olcek < 1.2: eller ekranın %20'sinin altına iner"); }
+  if (plan.sablon === "KULE-DIS") (prm.kuleler ?? []).forEach((k, i) => { if (!k.wifi) return; if (prm.saat === "alacakaranlik") H(Y, `kule ${i + 1}: wifi morfu yalnız gün`); const D = (k.wifi.bit - k.wifi.bas) / 3; [1, 2, 3].forEach((j) => { const q = Math.round(k.wifi.bas + D * j); if (!temasVar(plan, q)) U(Y, `kule ${i + 1} wifi yay ${j} varışı p${q}: temas yok`); }); });
+  { const ey = (plan.ekran_yazisi ?? []).filter((y) => y.bant === "ust"), rp = (plan.replik ?? []).filter((y) => y.bant === "ust"); for (const a of ey) for (const r of rp) if ((a.bas ?? 0) < r.bit && r.bas < (a.bit ?? sure)) U(Y, `üst bantta ekran yazısı ile replik aynı anda ("${a.metin}" / "${r.metin}") — üst üste biner`); }
+  for (const yz of plan.ekran_yazisi ?? []) if ((yz.vurgu ?? []).length > 1) U(Y, `ekran yazısı "${yz.metin}": vurgu tek kelime (yalnız ilk eşleşen kırmızı)`);
   if (plan.sablon === "HARITA" && prm.muhur && !temasVar(plan, prm.muhur.kare, 1)) H(Y, `mühür p${prm.muhur.kare}: temas (TOK) yok`);
   if (plan.sablon === "YAKIN-YUZ") {
     if (!prm.arka?.sablon || !SN.sablonlar[prm.arka.sablon] || prm.arka.sablon === "YAKIN-YUZ") H(Y, "arka.sablon geçerli bir şablon olmalı (YAKIN-YUZ hariç)");

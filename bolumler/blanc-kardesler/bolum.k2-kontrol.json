@@ -1,0 +1,477 @@
+{
+ "slug": "blanc-kardesler",
+ "baslik": "Kit K2 kontrol — yeni parçalar (D2, D5, D6, D7, D8, P13, kumanda, tutulan prop gölgesi)",
+ "fps": 60,
+ "planlar": [
+  {
+   "id": "K2-D2-GOLGE",
+   "sablon": "IC-ODA",
+   "sure_kare": 240,
+   "parametreler": {
+    "oda": "tours-buro",
+    "isik": "mum",
+    "masa": {
+     "z": 3.0,
+     "u": 0.1,
+     "w": 1.4,
+     "d": 0.8
+    },
+    "kol": "BEKLE",
+    "golgeT": {
+     "kim": "memur",
+     "bas": 30,
+     "bit": 230,
+     "donusum": 40,
+     "konum": "MESAJ"
+    },
+    "manipulator": {
+     "kim": "memur",
+     "ileri": 0.75,
+     "h": 1.0,
+     "yari": 0.3
+    }
+   },
+   "karakterler": [
+    {
+     "kim": "memur",
+     "z": 3.65,
+     "u": -0.3,
+     "yon": 1,
+     "yuz": {
+      "bakis": [
+       1,
+       0.2
+      ]
+     },
+     "jestler": [
+      {
+       "ad": "it-cek",
+       "bas": 20,
+       "bit": 200,
+       "ops": {
+        "tekrar": 4
+       }
+      }
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Gölgesi bile telgraf kolu",
+     "vurgu": [
+      "telgraf"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 31,
+     "olay": "makara tik",
+     "db": -12
+    },
+    {
+     "kare": 76,
+     "olay": "makara tik",
+     "db": -12
+    },
+    {
+     "kare": 121,
+     "olay": "makara tik",
+     "db": -12
+    },
+    {
+     "kare": 166,
+     "olay": "makara tik",
+     "db": -12
+    }
+   ],
+   "dokunus": {
+    "id": "D2",
+    "ad": "El–gölge T kol"
+   },
+   "kamera": {
+    "kare": [
+     0,
+     240
+    ],
+    "cs": [
+     1.25,
+     1.32
+    ],
+    "cx": [
+     60,
+     60
+    ],
+    "cy": [
+     160,
+     150
+    ],
+    "egri": "lineer"
+   }
+  },
+  {
+   "id": "K2-D6-CENTIK",
+   "sablon": "IC-ODA",
+   "sure_kare": 120,
+   "parametreler": {
+    "oda": "bordeaux-cati",
+    "isik": "gun",
+    "pencere": {
+     "u": 0.1,
+     "h0": 0.95,
+     "w": 1.0,
+     "h": 1.15
+    },
+    "pervazCentik": 14,
+    "pervazCentikYeni": 56,
+    "pervazBicak": {
+     "bas": 6,
+     "kare": 56,
+     "bit": 110,
+     "tip": "ceket"
+    },
+    "teleskop": false
+   },
+   "kamera": {
+    "kare": [
+     0,
+     120
+    ],
+    "cs": [
+     2.5,
+     2.6
+    ],
+    "cx": [
+     -95,
+     -100
+    ],
+    "cy": [
+     40,
+     30
+    ],
+    "egri": "lineer"
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "İki yıl boyunca her gün bir çentik",
+     "vurgu": [
+      "İki"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 56,
+     "olay": "bıçak kırt",
+     "db": -6
+    }
+   ],
+   "dokunus": {
+    "id": "D6",
+    "ad": "Pervaz çentiği"
+   }
+  },
+  {
+   "id": "K2-D5-ESNE",
+   "sablon": "YAKIN-YUZ",
+   "sure_kare": 300,
+   "parametreler": {
+    "arka": {
+     "sablon": "KULE-DIS",
+     "parametreler": {
+      "saat": "gun"
+     }
+    },
+    "yuz": [
+     500,
+     760
+    ],
+    "olcek": 3.6,
+    "manipulator": {
+     "yari": 72
+    }
+   },
+   "karakterler": [
+    {
+     "kim": "telgrafci",
+     "z": 3,
+     "u": 0,
+     "yon": 1,
+     "jestler": [
+      {
+       "ad": "esne",
+       "bas": 20,
+       "bit": 140
+      },
+      {
+       "ad": "it-cek",
+       "bas": 160,
+       "bit": 290,
+       "ops": {
+        "tekrar": 3
+       }
+      }
+     ]
+    }
+   ],
+   "replik": [
+    {
+     "kim": "TELGRAFÇI",
+     "metin": "Yine mi Bordeaux…",
+     "bant": "alt",
+     "bas": 170,
+     "bit": 290
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 70,
+     "olay": "esneme",
+     "db": -8
+    },
+    {
+     "kare": 171,
+     "olay": "makara tik",
+     "db": -12
+    },
+    {
+     "kare": 214,
+     "olay": "makara tik",
+     "db": -12
+    },
+    {
+     "kare": 258,
+     "olay": "makara tik",
+     "db": -12
+    }
+   ],
+   "dokunus": {
+    "id": "D5",
+    "ad": "Esneme"
+   }
+  },
+  {
+   "id": "K2-D7-ELDIVEN",
+   "sablon": "MASA-INSERT",
+   "sure_kare": 220,
+   "parametreler": {
+    "aci": "tepe-onden",
+    "isik": "gun",
+    "pencere": "bordeaux",
+    "eldivenGiy": {
+     "bas": 0,
+     "bit": 200,
+     "x": 500,
+     "y": 930,
+     "olcek": 1.3
+    }
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Beyaz eldiven = Paris yükseldi",
+     "vurgu": [
+      "Beyaz"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 172,
+     "olay": "eldiven gerilme",
+     "db": -6
+    }
+   ],
+   "dokunus": {
+    "id": "D7",
+    "ad": "Eldiven giyme"
+   }
+  },
+  {
+   "id": "K2-D8-KITAP",
+   "sablon": "MASA-INSERT",
+   "sure_kare": 180,
+   "parametreler": {
+    "aci": "tepe-egik",
+    "isik": "gun"
+   },
+   "props": [
+    {
+     "tur": "kitap",
+     "x": 540,
+     "y": 1150,
+     "olcek": 1.4,
+     "kare": [
+      0,
+      40,
+      170
+     ],
+     "durum": {
+      "sayfa": [
+       0,
+       1,
+       1
+      ],
+      "guve": [
+       0,
+       0,
+       1
+      ]
+     }
+    },
+    {
+     "tur": "hokka",
+     "x": 880,
+     "y": 1480,
+     "olcek": 1.2
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Kanunda tek satır yok",
+     "vurgu": [
+      "yok"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 40,
+     "olay": "sayfa çevirme",
+     "db": -10
+    }
+   ],
+   "dokunus": {
+    "id": "D8",
+    "ad": "Boş kitap + güve"
+   }
+  },
+  {
+   "id": "K2-P13-WIFI",
+   "sablon": "KULE-DIS",
+   "sure_kare": 200,
+   "parametreler": {
+    "saat": "gun",
+    "kuleler": [
+     {
+      "x": 540,
+      "taban": 1500,
+      "L": 240,
+      "konum": "BEKLE",
+      "wifi": {
+       "bas": 30,
+       "bit": 150
+      }
+     },
+     {
+      "x": 860,
+      "taban": 980,
+      "L": 60,
+      "konum": "BEKLE"
+     }
+    ]
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "İlk veri hırsızlığı. Kablosuz.",
+     "vurgu": [
+      "Kablosuz"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 70,
+     "olay": "tak"
+    },
+    {
+     "kare": 110,
+     "olay": "tak"
+    },
+    {
+     "kare": 150,
+     "olay": "tak"
+    }
+   ],
+   "dokunus": {
+    "id": "P13",
+    "ad": "T → Wi-Fi"
+   }
+  },
+  {
+   "id": "K2-TUT-GOLGE",
+   "sablon": "MASA-INSERT",
+   "sure_kare": 120,
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "gun"
+   },
+   "props": [
+    {
+     "tur": "dosya",
+     "id": "dosya",
+     "x": 540,
+     "y": 1100,
+     "durum": {
+      "kapak": 1
+     }
+    }
+   ],
+   "el": [
+    {
+     "tip": "gorevli",
+     "giris": [
+      1200,
+      1500
+     ],
+     "kare": [
+      0,
+      110
+     ],
+     "bilek": [
+      [
+       700,
+       1000
+      ],
+      [
+       640,
+       980
+      ]
+     ],
+     "dirsek": [
+      [
+       980,
+       1250
+      ],
+      [
+       940,
+       1240
+      ]
+     ],
+     "aci": [
+      200,
+      196
+     ],
+     "tut": {
+      "prop": "dosya",
+      "bas": 0,
+      "bit": 110,
+      "tutulAci": -10,
+      "birakAci": 0
+     }
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 110,
+     "olay": "dosya bırak"
+    }
+   ],
+   "dokunus": null
+  }
+ ]
+}

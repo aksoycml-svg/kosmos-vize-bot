@@ -13,6 +13,8 @@ import { karakterPoz, Yerlesim } from "../jestler";
 import { kameraHesapla } from "../zaman";
 import { param, Sablon, SablonProps } from "../ortak";
 import { SABLON_KAYIT } from "./kayit";
+import { dunyaya } from "../../rig/kinematik";
+import { Manipulator, manipAci, manipUygula } from "../props/Manipulator";
 
 const YUZ_YEREL: [number, number] = [20, -450];
 
@@ -29,6 +31,15 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const yon = c?.yon ?? 1;
   const Y: Yerlesim = { yer: () => ({ x: yx - YUZ_YEREL[0] * olcek * yon, y: yy - YUZ_YEREL[1] * olcek, s: olcek }), faz: () => 0 };
   const d = c ? karakterPoz({ ...c, yuz: { ...c.yuz, yakin: true } }, p, Y) : null;
+  // K2 kumanda (manipulateur): yakın planda göğüs önünde kol; it-çek fazı kolu döndürür, el IK ile tutamağa oturur; kablolar kadraj üstüne
+  const manip = param<{ ileri?: [number, number]; yari?: number } | null>(plan, "manipulator", null);
+  let manipEl: React.ReactNode = null;
+  if (manip && d && c) {
+    const piv = dunyaya(d.pz, manip.ileri ?? [175, -280]);
+    const { tut, karsi } = manipUygula(d.pz, piv, (manip.yari ?? 72) * olcek, manipAci(c, p), yon);
+    manipEl = <Manipulator pivot={piv} tut={tut} karsi={karsi} zemin={2300} tavan={-300} s={olcek * 260} />;
+    kilit.push({ ad: "kumanda tutamak", p: [540 + k.cx + (tut[0] - 540) * k.cs, 960 + k.cy + (tut[1] - 960) * k.cs], tur: "dokunus" });
+  }
   const isik: Isik = mum ? { tip: "nokta", ad: "mum", zemin: [120, 1900], yukseklik: 900, renk: "#ffcf70" } : { tip: "yonlu", ad: "güneş", yon: [0.4, 0.2], renk: "#fff1c8" };
   if (d) kilit.push({ ad: `${c!.kim} yüz`, p: [540 + k.cx + (yx - 540) * k.cs, 960 + k.cy + (yy - 960) * k.cs], tur: "yuz" });
   const arkaPlan: Plan | null = arka ? { ...plan, sablon: arka.sablon, parametreler: arka.parametreler, kamera: arka.kamera, karakterler: [], props: [], el: [] } : null;
@@ -39,6 +50,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{ position: "absolute" }}>
         <g transform={`translate(${540 + k.cx},${960 + k.cy}) scale(${k.cs}) translate(-540,-960) rotate(${egim},${yx},${yy})`}>
           {yastik && <path d={`M ${yx - 520} ${yy - 120} Q ${yx - 40} ${yy - 260} ${yx + 480} ${yy - 140} Q ${yx + 560} ${yy + 200} ${yx + 420} ${yy + 420} L ${yx - 500} ${yy + 420} Q ${yx - 600} ${yy + 120} ${yx - 520} ${yy - 120} Z`} fill="#cfc4a8" stroke="#6a5e48" strokeWidth={5} />}
+          {manipEl}
           {d && <Kukla louis={d.louis} p={d.palet} pz={d.pz} golgesiz isik={kuklaIsigi(isik, [yx, 1920], 1900, { murekkep: "#2a1c10", kamera: k.cs * olcek, seed: 91 })} />}
         </g>
       </svg>

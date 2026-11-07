@@ -68,7 +68,8 @@ export const ChappeKule: React.FC<{
   direkRenk?: string; kolRenk?: string; karsiAgirlik?: string; kenarIsik?: string;
   sicakIsik?: number; siluetRenk?: string; payanda?: boolean; direkGorunen?: number; direkKalin?: number; topuz?: number;
   karsiKisa?: boolean; // P01 TC2: karşı ağırlık kısa ve kola hizalı kalın blok (ince çubuk + sarkan ağırlık "ip/ilmik" okunmasın)
-}> = ({ x, y, L, konum, detay = "orta", direkRenk = BL.direkMavi, kolRenk = BL.kolSiyah, karsiAgirlik = BL.karsiAgirlik, kenarIsik = BL.kolKenar, sicakIsik = 0, siluetRenk, payanda = true, direkGorunen = 1, direkKalin = 1, topuz = 1, karsiKisa = false }) => {
+  gizle?: { reg?: boolean; sol?: boolean; sag?: boolean }; // K2: morf sırasında (KULE-DIS wifi) dışarıda çizilen kollar
+}> = ({ x, y, L, konum, detay = "orta", direkRenk = BL.direkMavi, kolRenk = BL.kolSiyah, karsiAgirlik = BL.karsiAgirlik, kenarIsik = BL.kolKenar, sicakIsik = 0, siluetRenk, payanda = true, direkGorunen = 1, direkKalin = 1, topuz = 1, karsiKisa = false, gizle }) => {
   const id = "ck" + useId().replace(/:/g, "");
   const k: KolKonum = typeof konum === "string" ? KONUMLAR[konum] : konum;
   const O = CHAPPE_ORAN;
@@ -109,12 +110,12 @@ export const ChappeKule: React.FC<{
       {!sil && direkGorunen >= 1 && <rect x={x - dw / 2} y={y - dw * 1.5} width={dw} height={dw * 1.5} fill={BL.direkAsinma} opacity={0.35} />}
       {/* regülatör + göstergeler */}
       <g transform={`translate(${top[0]},${top[1]}) rotate(${k.reg})`}>
-        <Kanat len={L} th={tR} x0={-L / 2} detay={detay} renk={kR} kenar={kenarIsik} seed={`${id}r`} />
-        {gos(-1)}
-        {gos(1)}
+        {!gizle?.reg && <Kanat len={L} th={tR} x0={-L / 2} detay={detay} renk={kR} kenar={kenarIsik} seed={`${id}r`} />}
+        {!gizle?.sol && gos(-1)}
+        {!gizle?.sag && gos(1)}
         {pirinc(0, tR * 0.38 * topuz)}
-        {pirinc(-yHalf, tG * 0.26)}
-        {pirinc(yHalf, tG * 0.26)}
+        {!gizle?.sol && pirinc(-yHalf, tG * 0.26)}
+        {!gizle?.sag && pirinc(yHalf, tG * 0.26)}
       </g>
     </g>
   );

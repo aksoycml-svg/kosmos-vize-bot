@@ -15,7 +15,8 @@
       "parametreler": { "oda": ["tours-buro", "bordeaux-cati", "yatak"], "isik": ["mum", "gun"] },
       "zorunlu": ["oda", "isik"],
       "kamera": { "cs": [0.95, 2.6], "cx": [-220, 220], "cy": [-400, 200] },
-      "karakterMaks": 3, "z": [2.2, 4.0], "u": [-2.0, 2.0]
+      "karakterMaks": 3, "z": [2.2, 4.0], "u": [-2.0, 2.0],
+      "ortusme": { "dz": 0.6, "omuzM": 0.6, "F": 1150, "_not": "K2: |Δz| ≤ dz iken ekran x farkı < ½·(omuzM·F/z1 + omuzM·F/z2) ⇒ UYARI (karakterler örtüşüyor)" }
     },
     "MASA-INSERT": {
       "parametreler": { "aci": ["tepe-onden", "tepe", "tepe-egik"], "isik": ["fener", "gun"] },
