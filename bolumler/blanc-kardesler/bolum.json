@@ -618,14 +618,21 @@
         "oda": "tours-buro",
         "isik": "mum",
         "masa": {
-          "z": 2.7,
-          "u": 0.0,
+          "z": 3.0,
+          "u": 0.45,
           "w": 1.4,
           "d": 0.7,
           "h": 0.8
         },
         "dis": "tours",
-        "kol": "BEKLE"
+        "kol": "BEKLE",
+        "golgeT": {
+          "kim": "memur",
+          "bas": 170,
+          "bit": 290,
+          "donusum": 36,
+          "konum": "SAK"
+        }
       },
       "kamera": {
         "kare": [
@@ -676,8 +683,8 @@
         },
         {
           "kim": "mudur",
-          "z": 3.1,
-          "u": 0.5,
+          "z": 3.9,
+          "u": 1.1,
           "yon": -1,
           "yuz": {
             "bakis": [
@@ -700,12 +707,12 @@
         },
         {
           "kim": "memur",
-          "z": 3.8,
-          "u": 1.0,
-          "yon": -1,
+          "z": 3.65,
+          "u": -0.2,
+          "yon": 1,
           "yuz": {
             "bakis": [
-              -0.4,
+              0.4,
               0.2
             ],
             "kas": 0.5
@@ -730,17 +737,17 @@
         {
           "tur": "mum",
           "id": "mum",
-          "x": -0.4,
-          "y": 2.5
+          "x": 0.45,
+          "y": 3.0
         },
         {
           "tur": "kese",
           "id": "kese",
           "x": [
-            -0.5,
-            0.25
+            0.0,
+            0.8
           ],
-          "y": 2.6,
+          "y": 3.15,
           "kare": [
             20,
             80
@@ -810,10 +817,7 @@
         "bas": 170,
         "bit": 290
       },
-      "kit_eksik": [
-        "D2: duvara düşen karakter gölgesinin T kola dönüşmesi; yalnız zemin gölgesi var"
-      ],
-      "not": "Replik ust bantta (ayaklar alt bantta olmaz: z≥2.6 ⇒ ayak ≤1468; |u|/z ≤ 0.33)."
+      "not": "Replik ust bantta (ayaklar alt bantta olmaz: z≥2.6 ⇒ ayak ≤1468; |u|/z ≤ 0.33). K2 yerleşim: masa u .45 z 3.0, mum masada u .45; memur masanın arkasında (z 3.65, u -.2) → gölge sola düşer; müdür z 3.9 u 1.1 masa dışı. manipulator konmadı (direk masa içine girerdi)."
     },
     {
       "id": "P06",
@@ -1018,9 +1022,7 @@
         "bas": 100,
         "bit": 210
       },
-      "kit_eksik": [
-        "D3: ok ↓ grafiği yok; ekran yazısındaki ↓ ile aynı karede verilir"
-      ]
+      "not": "↓ oku katalogda yok: ekran yazısındaki ↓ ile aynı karede verilir."
     },
     {
       "id": "P07",
@@ -1244,7 +1246,14 @@
         ],
         "olcek": 3.6,
         "bulanik": 16,
-        "isik": "gun"
+        "isik": "gun",
+        "manipulator": {
+          "ileri": [
+            175,
+            -280
+          ],
+          "yari": 72
+        }
       },
       "karakterler": [
         {
@@ -1269,7 +1278,10 @@
             {
               "ad": "esne",
               "bas": 90,
-              "bit": 170
+              "bit": 170,
+              "ops": {
+                "agiz": "esneme"
+              }
             }
           ]
         }
@@ -1325,10 +1337,7 @@
         "bas": 90,
         "bit": 170
       },
-      "kit_eksik": [
-        "D5: kocaman esneme ağzı rig'de küçük O"
-      ],
-      "not": "Anlatım yok: 3 sn sessiz ironi."
+      "not": "Anlatım yok: 3 sn sessiz ironi. K2: esne → kocaman ağız, manipulator elde (it-çek → esneme sürekliliği)."
     },
     {
       "id": "P09",
@@ -1340,7 +1349,7 @@
         "isik": "gun",
         "dis": "bordeaux",
         "pencere": {
-          "u": 0.9,
+          "u": 0.1,
           "h0": 0.95,
           "w": 1.0,
           "h": 1.15
@@ -1358,24 +1367,34 @@
         "arka": 4.2,
         "pervazCentik": 24,
         "pervazCentikYeni": 150,
-        "teleskop": true
+        "teleskop": true,
+        "pervazBicak": {
+          "bas": 120,
+          "kare": 150,
+          "bit": 190,
+          "tip": "ceket"
+        }
       },
       "kamera": {
         "kare": [
           0,
+          110,
           300
         ],
         "cs": [
           1.0,
-          1.5
+          2.5,
+          2.5
         ],
         "cx": [
           0,
-          -150
+          -20,
+          -20
         ],
         "cy": [
           0,
-          -120
+          10,
+          10
         ],
         "egri": "inout"
       },
@@ -1384,10 +1403,10 @@
           "kim": "katip",
           "z": 2.8,
           "u": 0.55,
-          "yon": 1,
+          "yon": -1,
           "yuz": {
             "bakis": [
-              0.8,
+              -0.8,
               -0.2
             ],
             "kas": 0.3
@@ -1398,7 +1417,7 @@
               "bas": 0,
               "bit": 300,
               "ops": {
-                "x": 0.8,
+                "x": -0.8,
                 "y": -0.2
               }
             }
@@ -1443,10 +1462,7 @@
         "bas": 120,
         "bit": 190
       },
-      "kit_eksik": [
-        "D6: bıçak/el görünmez; çentik kendiliğinden belirir"
-      ],
-      "not": "Gündüz, dış kol çalışır."
+      "not": "Gündüz, dış kol çalışır. K2: pencere u .1 (sola), katip sağda pencereye bakar; cs 2.5 push-in, bıçak sağ-alttan girer, kırt = 150."
     },
     {
       "id": "P10",
@@ -1563,7 +1579,15 @@
         "aci": "tepe-egik",
         "isik": "gun",
         "pencere": "yok",
-        "elYukseklik": 120
+        "elYukseklik": 120,
+        "eldivenGiy": {
+          "bas": 130,
+          "bit": 250,
+          "gerilme": 233,
+          "x": 540,
+          "y": 1000,
+          "olcek": 1.3
+        }
       },
       "kamera": {
         "kare": [
@@ -1598,100 +1622,6 @@
               0,
               1
             ]
-          }
-        },
-        {
-          "tur": "eldiven",
-          "id": "eldiven",
-          "x": 800,
-          "y": 1120,
-          "durum": {
-            "elBoyu": 266
-          }
-        }
-      ],
-      "el": [
-        {
-          "tip": "louis",
-          "giris": [
-            1160,
-            1160
-          ],
-          "olcek": 1.9,
-          "kare": [
-            0,
-            130,
-            190,
-            230,
-            250
-          ],
-          "bilek": [
-            [
-              1100,
-              1180
-            ],
-            [
-              880,
-              1130
-            ],
-            [
-              800,
-              1120
-            ],
-            [
-              800,
-              1100
-            ],
-            [
-              900,
-              1150
-            ]
-          ],
-          "dirsek": [
-            [
-              1220,
-              1260
-            ],
-            [
-              1100,
-              1220
-            ],
-            [
-              1060,
-              1200
-            ],
-            [
-              1060,
-              1200
-            ],
-            [
-              1120,
-              1230
-            ]
-          ],
-          "aci": [
-            10,
-            10,
-            0,
-            0,
-            10
-          ],
-          "poz": [
-            {
-              "kare": 130,
-              "poz": "kistir"
-            },
-            {
-              "kare": 250,
-              "poz": "gevsek"
-            }
-          ],
-          "tut": {
-            "prop": "eldiven",
-            "bas": 130,
-            "bit": 250,
-            "tutulAci": 0,
-            "birakAci": 0
           }
         }
       ],
@@ -1732,7 +1662,7 @@
           "ses": "dosya-tok"
         },
         {
-          "kare": 190,
+          "kare": 233,
           "olay": "eldiven gerilmesi",
           "ses": "eldiven-gerilme",
           "db": -6
@@ -1750,11 +1680,7 @@
         "bas": 130,
         "bit": 250
       },
-      "kit_eksik": [
-        "D7: parmak parmak eldiven giyme animasyonu yok; eldiven prop'u tutulup bırakılır",
-        "karar kâğıdı prop'u yok (başkanın eli kâğıdı bırakmaz; yalnız dosya kapanır)"
-      ],
-      "not": "Başkan eli (gorevli) dosya kapanışını kapak animasyonuyla verir; ayrı el kaydı katalogda tut-dışı kapanışı desteklemiyor."
+      "not": "K2 eldivenGiy (Louis eli + KolEl manşet); karar kâğıdı katalogda yok → dosya kapağı (TOK) ile bırakıldı. Eldiven prop'u/el kaydı kaldırıldı (eldivenGiy yerine)."
     },
     {
       "id": "P12",
@@ -1791,15 +1717,23 @@
           "kare": [
             0,
             120,
-            200
+            200,
+            270
           ],
           "durum": {
             "sayfa": [
               0,
               0.6,
+              1,
               1
             ],
-            "bos": true
+            "bos": true,
+            "guve": [
+              0,
+              0,
+              0,
+              1
+            ]
           }
         }
       ],
@@ -1905,12 +1839,6 @@
           "olay": "sayfa yatar (boş bölüm)",
           "ses": "sayfa-yatis",
           "db": -6
-        },
-        {
-          "kare": 200,
-          "olay": "güve kanat pırpırı",
-          "ses": "guve-kanat",
-          "db": -14
         }
       ],
       "dokunus": {
@@ -1919,9 +1847,7 @@
         "bas": 130,
         "bit": 270
       },
-      "kit_eksik": [
-        "D8: güve prop'u/animasyonu yok; yalnız bos:true kitap"
-      ]
+      "not": "K2: güve boş sayfada konar (130–200), 200'den sonra uçar, 270'te kadraj üstünden çıkar; ses yok."
     },
     {
       "id": "P13",
@@ -1929,13 +1855,17 @@
       "sure_kare": 210,
       "olcek": "geniş → yakın (push-in)",
       "parametreler": {
-        "saat": "alacakaranlik",
+        "saat": "gun",
         "kuleler": [
           {
             "x": 540,
-            "taban": 1400,
-            "L": 280,
-            "konum": "BEKLE"
+            "taban": 1500,
+            "L": 240,
+            "konum": "BEKLE",
+            "wifi": {
+              "bas": 100,
+              "bit": 190
+            }
           },
           {
             "x": 250,
@@ -1966,7 +1896,7 @@
         ],
         "cy": [
           0,
-          -300
+          -260
         ],
         "egri": "inout"
       },
@@ -1991,28 +1921,26 @@
           "db": -8
         },
         {
-          "kare": 150,
+          "kare": 130,
           "olay": "yay 1 tık",
           "ses": "ahsap-tik",
           "db": -8
         },
         {
-          "kare": 165,
+          "kare": 160,
           "olay": "yay 2 tık",
           "ses": "ahsap-tik",
           "db": -8
         },
         {
-          "kare": 180,
+          "kare": 190,
           "olay": "yay 3 tık",
           "ses": "ahsap-tik",
           "db": -8
         }
       ],
       "dokunus": null,
-      "kit_eksik": [
-        "P13: T kolların Wi-Fi ikonuna ahşap boyalı morfu yok; yalnız sabit siluet + push-in"
-      ]
+      "not": "K2 wifi yalnız saat:gun → alacakaranlıktan gün ışığına geçti (kolların morfu için zorunlu); tikler bas+(bit-bas)·i/3 = 130/160/190."
     },
     {
       "id": "P14",

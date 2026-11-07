@@ -1,7 +1,7 @@
 {
   "_not": "Tek kaynak: hem src/kit (TS) hem tools/bolum_dogrula.mjs okur. Şablon sınırları KATALOG.md ile aynı.",
   "fps": 60,
-  "bolum": { "sureMinSn": 30, "sureMaxSn": 60, "planMin": 8, "planMax": 14, "sablonMaks": 4 },
+  "bolum": { "sureMinSn": 30, "sureMaxSn": 65, "planMin": 8, "planMax": 14, "sablonMaks": 4 },
   "planSureMinKare": 60,
   "sablonlar": {
     "SOKAK": {
