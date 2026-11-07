@@ -68,7 +68,7 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - Fransız mahkemesinde tokmak yok (kanıt yok). 1830'larda koparmalı yaprak takvim yok. Kanıtsız dönem detayı (cübbe rengi, haç, arma) görsel olarak nötr kalır.
 
 ### Dokunuş (yaratıcı yönetmen)
-- Her plana **en az bir** dokunuş; filmde **hiçbiri tekrar etmez**; dokunuş **kendi planında başlar ve biter**.
+- Bölüm başına **6–8 güçlü dokunuş** (kanca ve kapanış planları hariç; her plana zorunlu değil — kullanıcı kararı, günlük format); filmde **hiçbiri tekrar etmez**; dokunuş **kendi planında başlar ve biter**. Kullanılan dokunuşlar `kit/DOKUNUS-KUTUPHANESI.md`'ye eklenir; kanal genelinde aynı dokunuş üst üste bölümlerde tekrarlanmaz.
 - **Okunabilir:** telefonda fark edilir — ekran yüksekliğinin ≥%10'u ya da yakın plan/insert, ≥1 sn net; göz oraya yönlendirilir.
 - **Küçük jest = yakın kamera:** göz kırpma, kaş, dudak, parmak gibi küçük jestler okunacaksa yüz/el ekran yüksekliğinin ≥%12'si (~230 px) olur. Değilse kamera o ana push-in yapar, yakın plana keser ya da karakter kameraya daha yakın konumlanır. Uzak planda küçük jest oynanmaz.
 - **Önemli oyunculuk = yakın plan:** duygu, karar, ifade değişimi, replik sonu gibi oyunculuk anları yakın plan (yüz) ya da bel plan ile çekilir; geniş/boy plan mekânı kurmak ve fiziksel eylem için kullanılır. Yönetmen her plan için çekim ölçeği (geniş · boy · bel · göğüs · yakın · insert) ve ölçek değişimlerini yazar. Rig yüzü yakın planda da detaylı (göz kapağı, kaş, ağız) olmalıdır.
