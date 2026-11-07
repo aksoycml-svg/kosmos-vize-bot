@@ -1209,3 +1209,7 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
 - Dosyalar: bolum.json, temaslar.json, katki-raporu.md. Toplam 3730 kare = 62.17 sn; doğrulayıcı --tam 0 hata.
 - P07: kurgucunun saydığı 8 anahtar (k1 84/172, k2 114/202, k3 144/232, k4 174/262) aynı-poz bekleme; silinirse hareket 60 kareye yayılır, korundu → doğrulayıcıda 7 uyarı kalır (aracın aynı-poz ayrımı yok). 6 foley uyarısı kullanılmayan tanımlar (foley.json, kurgucu).
 - Kural 7: P02, P09 (kare 0 + 160), P10, P12 kontrol kareleri render edildi; kontak scratchpad/v4/son/kontak.png.
+## teknisyen · 2026-11-07 · blanc v4 ilk kurgu render
+- Ne yaptım: bolum_dogrula --tam (0 hata, 13 uyarı); sessiz 4 parça h264 (p2 ortak webpack önbellek çakışmasıyla düştü, tek başına yeniden render edildi); ses mp3; concat -c copy; loudnorm. Çıktı: out/blanc-v4-ilk-kurgu.mp4 (1080x1920, 60 fps, 3730 kare, 62.17 sn), önizleme out/blanc-v4-ilk-kurgu-540.mp4.
+- Ölçüm: önceki zincir (limit 0.70) I=-14'e TP ≤ -1.5 ile ulaşamadı (kaynak PLR ~21 dB). limit 0.11 + linear loudnorm (I=-14.2, TP=-2.0) ile AAC 320k sonrası I=-14.0, TP=-2.1 dBTP; önizleme I=-14.1, TP=-1.2 dBTP (kısma gerekmedi).
+- Açık: tavan ≈-19 dBFS ile sıkı limit ses kalitesini etkileyebilir, dinleme gerekli; validator'daki 7 "klak" ve 6 foley uyarısı çözülmedi.
