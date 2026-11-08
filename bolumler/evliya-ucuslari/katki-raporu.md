@@ -170,6 +170,19 @@
 - Kararlar: Kavuk ucu kaldırılmak yerine gölge tonunda tutuldu, ama kaldırma da serbest. Sarığın asıl imza ayrıntısı tümsekli kontur; kavuk ucu ikincil.
 - Açık: V1 (padişah sarığının başın üstünde havada durması) motion hatası; tarif zaten bunu yasaklıyor.
 
+## tasarimci · 2026-11-08 · tasarim.md revizyon v1.6 (K4 eleştirisi)
+- Ne yaptım: K4 eleştirisinin tasarıma düşen üç maddesini işledim.
+  - **U1, sarık ve göz.** Padişah profilinde sarığın ön alt kenarı kaş çizgisinin en az 0.06 H_y üstünde. Göz alanı (0.42–0.62 H_y) açık ten; saç yalnız ense ve kulak arkasında.
+  - **U1, ışık şeridi.** Yüzdeki şerit, kanat kapanırken göz ile burun kökü arasında ince dikey bir çizgiye daralır (yüzde ≤ 30 px). Yüzün geri kalanı gölge tonunda `#2a2420`.
+  - **U7, yüz ayrıntısı.** Karar (a): profilde tek göz kapağı çizgisi ve kaş kenarı; kişiye özel portre değil.
+  - **Palet.** İç mekân el gölgesi `#7a5848` §1.3 ve §3.5'e kaydedildi.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/tasarim.md, bolumler/evliya-ucuslari/katki-raporu.md
+- Kararlar:
+  - U7 için (a): P12 kararın verildiği oyunculuk anı ve yakın plan. (b) seçilseydi ışık gözden çekilirdi ve EV-D6 dokunuşu kaybolurdu.
+  - Şerit 30 px'e sığmazsa kanadın son açısı 12°'den küçültülür (yönetmen/motion).
+- Kurallar: önemli oyunculuk = yakın plan, rig yüzü yakın planda detaylı, dokunuş okunur. Başlık değişikliği her görünümde ayrı kontrol edilir (K4 dersi 1): profil kuralı P02/P10 siluetini değiştirmez.
+- Açık: Şeridin yüzde 30 px'e inmesi mekanlar §1.6 yarık geometrisine bağlı (12°'de cs 2.6 → yaklaşık 83 px); yönetmen ve mekân sorumlusu kontrol etmeli.
+
 ## arastirmaci · 2026-11-08 · Evliya uçuşları tasarım doğrulama eki (tasarim.md §9, madde 4–10)
 - Ne yaptım: Tasarımcının 7 [G] sorusunu (sarık/sakal, fişek kılıfı, kese/sikke/akçe, yazı yüzeyi, renkli havai fişek, konut çatısı, köşk pencereleri) 20+ `WebSearch` sorgusuyla taradım ve `arastirma.md` sonuna "## 10. Tasarım doğrulama eki" ekledim: özet tablo + her madde için cevap, kaynak, güven, tasarıma etkisi.
 - Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/arastirma.md (yalnız sona ek, mevcut bölümlere dokunulmadı), /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/katki-raporu.md (bu bölüm).

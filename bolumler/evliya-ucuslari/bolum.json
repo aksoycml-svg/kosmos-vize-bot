@@ -412,13 +412,13 @@
     },
     "sol_grup": {
      "x": [
-      70,
+      78,
       148
      ],
      "ayak_y": 1387,
      "figur_px": 50,
-     "sira": "soldan Y2 (x 78), Y1 meşaleli (98, meşale 106), Lagâri AYAKTA (118), demet (138)",
-     "not": "V4 + mekanlar R2: grubun sağ ucu ≤ x 148 (köşk gövdesiyle ≥12 px), ayak y 1387 < köşk rıhtımı 1415; cs 0.97'de ekran x≥92; P03 p0 sırasıyla aynı"
+     "sira": "soldan Y2 (x 85), Y1 meşaleli (102, meşale 110), Lagâri AYAKTA (119), demet (138)",
+     "not": "V4 + mekanlar R2: grubun sağ ucu ≤ x 148 (köşk gövdesiyle ≥12 px), ayak y 1387 < köşk rıhtımı 1415; cs 0.97'de ekran x≥92; P03 p0 sırasıyla aynı | U10: Y2 x 85 (yan güvenli alan ≥80 içinde)"
     }
    },
    "sure_kare": 324,
@@ -462,7 +462,7 @@
     },
     {
      "kim": "lagari",
-     "x": 118,
+     "x": 119,
      "y": 1387,
      "olcek": 0.075,
      "yon": 1,
@@ -473,7 +473,7 @@
     },
     {
      "kim": "yardimci-1",
-     "x": 98,
+     "x": 102,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -482,7 +482,7 @@
     },
     {
      "kim": "yardimci-2",
-     "x": 78,
+     "x": 85,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -504,7 +504,7 @@
     {
      "tur": "mesale",
      "id": "mesale1",
-     "x": 106,
+     "x": 110,
      "y": 1345,
      "olcek": 0.075,
      "kit_eksik": [
@@ -2931,7 +2931,7 @@
     "tr": "Onu kim izliyor? Yine padişah. Yine aynı köşkten.",
     "en": "Who's watching? The sultan again. From the very same pavilion."
    },
-   "olcek": "geniş (P02 ile AYNI kadraj p0, cs 0.9) 0.4 sn tutulur -> push-in p24-66 cs 0.9->2.4 -> göğüs/büst (padişah ≥ %12) ile baş çevirme p70-112; son kare cx -108, cy 420 (V7: sol üst yarım baca dilimi kadraj dışı; pencere ekran x≈480, sağda Üsküdar yönüne boşluk)",
+   "olcek": "geniş (P02 ile AYNI kadraj p0, cs 0.9) 0.4 sn tutulur -> push-in p24-66 cs 0.9->2.4 -> göğüs/büst (padişah ≥ %12) ile baş çevirme p70-112; son kare cx -120, cy 420 (V7: sol üst yarım baca dilimi kadraj dışı; pencere ekran x≈480, sağda Üsküdar yönüne boşluk)",
    "kamera": {
     "kare": [
      0,
@@ -2948,8 +2948,8 @@
     "cx": [
      0,
      0,
-     -90,
-     -108
+     -120,
+     -120
     ],
     "cy": [
      0,
@@ -3042,7 +3042,7 @@
      "db": 0
     }
    ],
-   "not": "Baş çevirme p70-112: TR 'Yine padişah' p74-144 ile eşzamanlı. Çevirme sağa (Üsküdar yönü); P09'daki uçuş yönüyle aynı. [2026-11-08 mekanlar §7.2] cs 0.9->2.4: p0'da P02 ile aynı kadraj (0.9), 0.4 sn sonra push-in; çevirme tam cs 2.4'te. [K3] tasarim §3.5 'P10 cs 1.6'da ≥240 px' eskimiş: mekanlar hesabı cs 2.4 (büst 1.1 m x 92 px/m x 2.4 = 242 px); tasarımcı güncellesin. [K3] V7: cx -28 → -108 (render: sol üst köşedeki yarım baca ekran x<72 idi). V2 zamanlama: çevirme p70-116, cs 2.4'e p66'da erişildi (cs ≥2.2 tamam).",
+   "not": "Baş çevirme p70-112: TR 'Yine padişah' p74-144 ile eşzamanlı. Çevirme sağa (Üsküdar yönü); P09'daki uçuş yönüyle aynı. [2026-11-08 mekanlar §7.2] cs 0.9->2.4: p0'da P02 ile aynı kadraj (0.9), 0.4 sn sonra push-in; çevirme tam cs 2.4'te. [K3] tasarim §3.5 'P10 cs 1.6'da ≥240 px' eskimiş: mekanlar hesabı cs 2.4 (büst 1.1 m x 92 px/m x 2.4 = 242 px); tasarımcı güncellesin. [K3] V7: cx -28 → -108 (render: sol üst köşedeki yarım baca ekran x<72 idi). V2 zamanlama: çevirme p70-116, cs 2.4'e p66'da erişildi (cs ≥2.2 tamam). [K4 U8] cx -108 → -120 ve p66'dan itibaren sabit (p66/p112'de sol üst baca dilimi kadraj dışı).",
    "ayna": {
     "es": "P02",
     "kare": 0,
@@ -3660,7 +3660,7 @@
      "ayak_y": 1267,
      "not": "profil siluet (göz/kaş/ağız çizilmez); ışık şeridi göz hizasında profil konturunda (şeridin üst ucu x 457'de y 739); gün: kaftan #36302c, çıplak el #b88470"
     },
-    "kamera_dogrulama": "cs 1.8-2.6, cx 150-216, cy 130-210 sınırlar içinde; kapı sağ pervazı ekran x≈267 (p50-120) / 296 (p204); zemin ekran y≥1612 kadraj dışı"
+    "kamera_dogrulama": "K4 U2/U3/U5/U9: p0-36 cs 1.7 cx -10 cy -10: kanat kenarı (x 738) ekran 863 ≤ 880; ayak 1472 ≤ 1490; sarık tepesi dekor y≈660 → 440. p70+ cs 2.6 cy 250: sarık tepesi 430, ayak ekran 2000 (kadraj dışı). cx 380: işaret eli dekor x≈235-297 → ekran ≥127; kapı sağ pervaz 431"
    },
    "sure_kare": 216,
    "sure_sn": 3.6,
@@ -3668,35 +3668,35 @@
     "tr": "Çünkü bu adamdan korkulur. Ne isterse yapar.",
     "en": "Because he's too dangerous. He can do anything."
    },
-   "olcek": "bel (p0-10) -> göğüs push-in cs 1.8->2.6 (p10-50, yüz ≈ %12) -> 2.2 (p204)",
+   "olcek": "geniş/boy (p0-36: padişahın tamamı güvenli alanda, ayak ekran y≈1472, sarık tepesi y≈440, kanat kenarı x≈863) → push-in p36-70 cs 1.7→2.6 → göğüs/bel (zemin ve ayak kadraj dışı, sarık tepesi y≈430 ≥ yazı bandı+20, yüz ≈%12) → p204 aynı kadraj (pull-back yok: ayak kadraj dışı kalsın); işaret eli ekran x ≥ 120, kapı sağ pervazı ekran x≈430",
    "kamera": {
     "kare": [
      0,
-     10,
-     50,
+     36,
+     70,
      120,
      204
     ],
     "cs": [
-     1.8,
-     1.8,
+     1.7,
+     1.7,
      2.6,
      2.6,
-     2.2
+     2.6
     ],
     "cx": [
-     150,
-     150,
-     216,
-     216,
-     170
+     -10,
+     -10,
+     260,
+     380,
+     380
     ],
     "cy": [
-     130,
-     130,
-     210,
-     210,
-     170
+     -10,
+     -10,
+     250,
+     250,
+     250
     ],
     "egri": "inout"
    },
@@ -3873,11 +3873,12 @@
     "bas": 4,
     "bit": 110
    },
-   "kontrol_kare": 66,
+   "kontrol_kare": 80,
    "kontrol_ek": [
     0,
     30,
     34,
+    66,
     100,
     150,
     204
@@ -3912,7 +3913,7 @@
      "db": 0
     }
    ],
-   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok). [mekanlar R2] yarık p50'den sonra kadraj dışı, şerit sağdan girer (mekân kabul etti); cx azaltılmadı: azalınca kapı sağ pervazı (ekran x≈267) ve işaret hedefi kadrajdan çıkar."
+   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok). [mekanlar R2] yarık p50'den sonra kadraj dışı, şerit sağdan girer (mekân kabul etti); cx azaltılmadı: azalınca kapı sağ pervazı (ekran x≈267) ve işaret hedefi kadrajdan çıkar. [K4] kamera kare [0,36,70,120,204] (motion önerisi) ama değerler U2/U3/U5/U9'a göre yeniden hesaplandı; kural 7: p30/p34/p80/p150/p204 render edildi. U1: yüz p66-100'de ≥%12 (cs 2.6); göz-şerit çizimi motion/tasarımcı."
   },
   {
    "id": "P13",
