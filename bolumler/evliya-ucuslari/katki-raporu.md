@@ -57,3 +57,26 @@
 - Açık sorular / bir sonraki ajana notlar: (1) Kurulum ekibi şablonları ve `sinirlar.json` eklemelerini (KE-Y6) yapınca bu json gerçek doğrulayıcıdan geçmeli. (2) Kalibrasyon: önce P05-P06 (kadraj eşleşmesi, tilt), P07/P11 (aynı kadraj, kese %10), P12 (profil+şerit), P14→P01 eşleşmesi. (3) `foley.json` ve `miks.json` yok (teknisyen/kurgucu); temas listesi `--temas` ile çıkar. (4) `DOKUNUS-KUTUPHANESI.md` güncellenmedi (orkestra). (5) Kullanıcı soruları: P11'de Hezarfen yüzünün görünmemesi; P05-P06 yükseklik ölçeğinin stilize olması.
 
 - ana oturum · 2026-11-08 · kullanıcı: P11 yüzsüz insert ve P05–P06 stilize yükseklik olduğu gibi onaylı. DEVAM.md kurulum ekibi adımına güncellendi.
+
+## tasarimci · 2026-11-08 · Evliya uçuşları tasarim.md (kurulum ekibi, adım 5a)
+- Ne yaptım: `tasarim.md` yazıldı. İçinde gece, gündüz, iç ve kitap paletleri (hex), renk ölçüm hedefleri, imza nesnesi (fişek demeti) ve tekrar eden motif (fitil kıvılcımı), tekillik yasakları ve ΔE ayrışmaları var. Karakter kartları: Lagâri (oturan + ıslak), Hezarfen, padişah siluet bileşeni, yüzsüz yardımcılar, 4 el tipi. 360 px ayrışma tablosu da eklendi. Prop'lar gerçek ölçü, ekran ölçüsü ve 360 px değeriyle verildi; efekt dili, tipografi/harita etiketleri, rig ihtiyaçları (R1–R13), mekân sorumlusuna devredilenler ve 3 kalibrasyon karesi de belgede. Gemini kullanılmadı, kod yazılmadı.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/tasarim.md (yeni), bolumler/evliya-ucuslari/katki-raporu.md
+- Aldığım kararlar ve gerekçeleri:
+  - İmza nesnesi fişek demeti oldu, kanat olmadı. Martı kanadı P09'da aynı kadrajda olduğu için kanat tekil kalamaz; kanat ayrıntısız da olmak zorunda. Demet ise P01↔P14 döngüsünü ve hikâyenin "nasıl"ını taşıyor. Rengi `#c4a874`, başka hiçbir nesne ya da kostümde kullanılmıyor. Demet 5 görünen tüple çizilir: 7 sayılabilir öğe olursa "yedi kollu" yorumu iddiaya dönüşür.
+  - Gündüz saati sabah, güneş ENE (az. ≈ 65°, yük. ≈ 15°). P09'da kamera kuzeye bakıyor; bu yüzden güney güneşiyle kontra fiziksel olarak mümkün değil. Bu güneş P12'de pencereden giren ışığı da tutarlı kılıyor.
+  - Görüntüde kırmızı yok. Altın yalnız sikkede; bu yüzden rota çizgisi altın değil, kâğıt + mürekkep. Şenlik fişekleri renksiz ve "düşen çizgi" biçiminde, kıvılcım yıldızıyla karışmaz.
+  - Kanat iki karakterde de aynı çizim: düz, mat, tutamaksız, eller ön kenarın altında gizli.
+  - Lagâri ile Hezarfen kaftan rengiyle (çivit ↔ zeytin), sakal/bıyıkla ve sarık oranıyla ayrışır. Padişah Kukla değil, ayrı siluet bileşeni: önden profile morf, göz/ağız yok, çene yaka gölgesinde.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Uygulanan kurallar: imza tekilliği; kompars ayrışması (kısa entari + takke + yüzsüz); dönem dışı kostüm parçalarının nötr kalması (sorguç, kürk, arma, kafes, sırma yok); görüntüde dil yok (hat çizgileri dil-nötr, harita etiketleri yazı katmanında); saf siyah/beyaz yok; gravürün telefonda okunması (0.5 px altı çizgi yok).
+  - (1) Sanat yönetmeni kalıbında "imza: Chappe kulesi" yazıyor; bu Blanc'tan kalmış.
+  - (2) Sahne planında "ahşap masa" geçiyor. 17. yy. Osmanlı'da yazı yüzeyi rahle ya da diz olabilir [G]; bu yüzden masa kenarı ve ayağı çizilmeyecek.
+  - (3) Rig'in varsayılan mavi `RIM`'i ay ışığı ima eder, bu bölümde ay yok; kenar ışığı sahne ışığından alınmalı.
+  - (4) Mevcut Kukla yalnız 1830 Avrupa kostümünü çiziyor (frak, yelek, kravat, silindir). Osmanlı gövdesi ve başlık için yeni rig parçası gerekiyor.
+  - (5) P06–P07 arasında kanadın nerede olduğu tanımsız; süreklilik açığı var.
+  - (6) Köşk bacaları demet silindirlerine benzeyebilir; mekân sorumlusuna not düşüldü.
+- Açık sorular / bir sonraki ajana notlar:
+  - Kullanıcı onayı gereken 3 konu: imza nesnesi demet mi; gündüz saati sabah ENE mi; sakal/bıyık ayrımı kalsın mı.
+  - Araştırmacıya 7 [G] madde: sarık rengi/sakal, fişek kılıfı, kese ve sikke çapı, yazı yüzeyi, renkli havai fişeğin dönemi, çatı malzemesi, pencere kanadı.
+  - Efektler.tsx okunmadı; motion mevcut efektleri §5'e göre eşleyecek.
+  - Kalibrasyon sırası: K1 P06 p76 + P05 p78 · K2 P11 p128 + P07 p72 · K3 P14 son ↔ P01 p0 · (4) P12 p66.

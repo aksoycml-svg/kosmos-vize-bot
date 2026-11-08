@@ -1,0 +1,403 @@
+# Evliya Uçuşları — Görsel Tasarım (kurulum ekibi, adım 5a)
+
+Hazırlayan: tasarimci · 2026-11-08 · Girdi: `arastirma.md` §4–§5, `sahne-plani.md` §6, `dokunuslar.md`, `src/theme.ts`, `src/kit/KATALOG.md`, `src/kit/karakterler.ts`, `src/rig/Kukla.tsx`.
+Bu belge **spesifikasyondur, kod değildir.** Hex/oran/px değerleri motion'a doğrudan uygulanacak önerilerdir; mimari ve doku `mekanlar.md`'nin (mekân sorumlusu) işidir.
+
+Etiketler: **[A]** arastirma.md'de kaynaklı · **[S]** senaryo/sahne planı (dramatizasyon) · **[G]** genel bilgi, **doğrulanmalı** (araştırmacıya soruldu, bkz. §9) · **[T]** tasarım kararı (tarihî iddia değil).
+Kural: [G] olan hiçbir ayrıntı tek başına dokunuş taşımaz ve okunur metin içermez; doğrulanmazsa nötr kalır.
+
+---
+
+## 0. Kimlik ve yön
+
+### 0.1 Kanal kimliği (değişmez, `theme.ts`)
+`paper #e9dfc9` · `paperDark #d6c7a6` · `ink #1c1915` · `inkSoft #4a4237` · `red #b3261e` · `gold #b8862b` · `night #14120f`. Fontlar: Playfair Display 900, Inter 500/800, IBM Plex Mono 500. **Yeni font yok.**
+
+### 0.2 Yön: "gravür iskelet, minyatür nefesi" [T]
+- **Canlı sahneler (P01–P12) = kanalın 1830 gravür/kukla tiyatrosu dili:** düz katmanlı paneller, ortak kontur, gölgede tek yön tarama, kâğıt tanesi. Bölüm ayrı bir "minyatür stili"ne geçmez; geçerse kanal kimliği kopar.
+- **Minyatürden alınan yalnız üç şey:** (1) geniş, gradyansız düz renk alanları (gök, su, sur yüzü: en fazla 2 ton basamağı, yumuşak gradyan yok); (2) sınırlı, toprak-mineral palet (lapis gecesi, malakit-gri su, aşı boyası taş), doygunluk ≤ %45; (3) **yalnız kitap insert'inde (P13–P14)** mürekkep çizgi dili: kenar çizimleri tek kalınlıkta kalem çizgisi, tarama yok, tek renk (yalnız kıvılcım renkli).
+- Kırmızı **görüntüde yok** (kaftan, sarık, kese, fişek, kitap rubriği dahil). Kırmızı yalnız yazı katmanındaki tek vurgu kelimesi. Minyatürlerin kırmızı kaftanları bilerek alınmadı.
+- Altın yalnız Hezarfen'in sikkesi (P11) ve gündüz güneş kenar ışığı. Kostümde altın işleme, sırma, düğme yok (kanıtsız + sikkeyle yarışır).
+- **Saf siyah/beyaz yok:** en koyu `#12141c`, en açık `#f6ecd0`. Yeni kodda `#000`/`#fff` yerine `ink`/`#f6ecd0` kullanılır (Kukla'daki mevcut `#000` gölge bindirmeleri α ile çalıştığı için dokunulmaz; yeni Osmanlı gövdesinde kullanılmaz).
+
+### 0.3 Sistem notu: "imza nesnesi = Chappe kulesi" talimatı
+Sanat yönetmeni kalıbındaki "bu bölüm: Chappe kulesi" Blanc'tan kalmış; bu bölümde Chappe yok (1630'lar İstanbul). İmza nesnesi aşağıda (§2) seçildi. Orkestra kalıbı güncellesin.
+
+### 0.4 Kontur ve çizgi kalınlığı (her şablonda aynı)
+| Öğe | Kalınlık | Renk |
+|---|---|---|
+| Karakter ve kanat | rig `SW = 2` yerel birim (ekranda ≈ 2–6 px; ölçek 1.0–2.7) | `ink(fill)` (dolgunun %55 koyusu) |
+| Prop (demet, kese, sikke, takke, kanat kanadı, pencere kanadı) | ekranda **2.5 px** (geniş) – **4 px** (insert), ölçekle büyür ama 6 px'i geçmez | `ink(fill)` |
+| Dekor | 3 px (uzak) – 6 px (yakın) | mekanlar.md |
+| Kitap kenar çizimi | dekor **1.4 px** (cs 2.2'de 3 px, cs 4.6'da 6.4 px ≈ P01 dekor konturu) | `#4a4237` |
+| Rota çizgisi | 6 px, kesik 22/16 | §6 |
+`strokeLinejoin="round"`. 360 px telefonda 0.5 px altına inen çizgi (ekranda < 1.5 px) yok sayılır: o ölçekte çizilmez.
+
+---
+
+## 1. Bölüm paleti
+
+### 1.1 GECE — Sarayburnu kıyı/köşk/insert (P01 A, P02–P07)
+Işık sözleşmesi: **anahtar = meşale** (yardımcının elinde, sahne solu, alçak; amber), **dolgu = şenlik patlamaları** (üstten, soluk saman, kısa süreli), **uzak nokta = köşk penceresi** (sağ, amber, çevresine küçük havuz düşürür). P05 p56'dan sonra anahtar **püskürmenin kendisi** olur (aşağıdan, sıcak). Ay **yok** (kaynak yok; rig'in varsayılan `RIM #c4d6ff` mavi kenar ışığı bu bölümde **kullanılmaz**; kenar ışığı sahnenin `KuklaIsik` tanımından amber gelir).
+
+| Ad | Hex | Not |
+|---|---|---|
+| gök tepe / orta / ufuk | `#12141c` / `#1c2232` / `#2c3246` | 3 düz basamak, lapis-mürekkep |
+| şenlik dumanı bandı | `#3e3834` α .5 | ufkun 60 px üstü, P02 sonrası kalıcı |
+| deniz taban / dalga çizgisi | `#161c26` / `#2c3444` | yatay kısa çizgiler, 3 px |
+| deniz yansıması (meşale / şenlik) | `#e0a050` / `#e8d6a6` | kesik yatay şeritler, ışık kaynağının altında dikey kolon |
+| meşale çekirdek / alev / alev kenarı | `#ffd890` / `#f0a040` / `#b8622c` | kenar kahve-turuncu; kırmızıya kaymaz |
+| meşale ışık havuzu | `#f0a848` α .35 → 0 | yarıçap ekranda 380 px (cs 1.0), zemine elips |
+| köşk penceresi (içten) | `#f2c070` | pencere altına `#f2c070` α .2 havuz |
+| köşk taşı gölge / ışıklı | `#4e4a46` / `#8a7458` | doku mekanlar.md |
+| rıhtım taşı / derz / meşale ışığında | `#45444a` / `#2a2a30` / `#7e6a52` | |
+| rıhtım ıslak (P07) | `#3a3e48` + parlama `#a9bccb` α .4 | ayak izi §4.12 |
+| karakter kenar ışığı (gece) | `#f0b060` α .55 | meşale yanı; püskürmeden sonra alttan |
+
+### 1.2 GÜNDÜZ — Galata, Boğaz, Sarayburnu gün (P01 B, P08–P11)
+**Güneş [T, fiziksel türetme]:** kaynak saat vermez [A §5.5]. Hezarfen'in "kontra" okunması ve P12'de pencereden giren ışık için **sabah erken, güneş doğu-kuzeydoğuda alçak (azimut ≈ 65°, yükseklik ≈ 15°)** seçildi. Gerekçe: P09 kamerası kuzeye bakar (Galata solda, Üsküdar sağda); güney güneşi bu kadrajda kontra veremez (kamera arkasında kalır). Doğu-kuzeydoğu güneşi: Hezarfen sağa (doğuya) uçarken önünde/sağında kalır → yan-kontra siluet; P08'de Üsküdar'a bakan yüzü güneşe dönüktür (kamera arkasından = kontra); P12'de Boğaz'a bakan köşk penceresinden ışık girer. Bütün gündüz planlarının gölge yönü bu tek tanımdan türetilir (batı-güneybatıya, yani ekranda sola ve hafif kameraya doğru). Lodos [A] = ılık, nemli, puslu hava → gök pus tonlu.
+
+| Ad | Hex | Not |
+|---|---|---|
+| gök tepe / orta / ufuk (lodos pusu) | `#a9b6bf` / `#cfcfc4` / `#e6dcc0` | sağ ufukta güneş parlaması `#f6e8c0` α .4, disk çizilmez |
+| Boğaz suyu taban / orta / güneş yolu | `#5e7378` / `#7c9090` / `#e4dcc4` | güneş yolu kadraj sağında |
+| Galata taş / gölge / tarama | `#9a8f7e` / `#6b6357` / `#4e473f` | |
+| Galata külahı kurşun / ışıklı | `#7c8288` / `#a3a8aa` | biçim nötr [A §5.1] |
+| Galata/Üsküdar çatıları | `#9a6a4c` / `#7a5038` | kiremit [G — doğrulanmalı]; doğrulanmazsa "koyu toprak çatı" tek ton |
+| uzak Üsküdar siluet | `#9aa2a4` | atmosfer, tek ton |
+| Doğancılar meydanı ot / toprak | `#a8a07a` / `#8a7a5c` | ağaç/çadır/bina yok [A §5.3] |
+| Sarayburnu köşk gün / gölge | `#b4a88e` / `#7e7462` | |
+| rıhtım gün | `#a09682` | |
+| karakter kenar ışığı (gün) | `#f0d79a` α .6 | güneş yanı |
+| kontra siluet dolgu | `#3a3634` | P01 B, P09 Hezarfen |
+
+### 1.3 İÇ — köşk içi gündüz (P12)
+| Ad | Hex | Not |
+|---|---|---|
+| oda gölge / duvar ışıklı | `#3a3430` / `#cbbfa4` | duvar sade kireç sıva; kalem işi, çini, kafes, arma yok (kanıtsız) |
+| pencere kanadı ahşap ışıklı / gölge | `#6a4a30` / `#3a2a1e` | §4.10 |
+| ışık şeridi (pencere aralığından) | `#f6e4b0` α .55 | kenarları NET, toz zerresi 6–8 adet `#f6e4b0` α .6 |
+| dış (pencere açıklığından görünen) | gündüz paleti, %30 aşırı pozlanmış `#ece2c4` | |
+| minder/halı kenarı | `#5a4a3e` | desen yok |
+
+### 1.4 KİTAP INSERT (P13–P14)
+| Ad | Hex | Not |
+|---|---|---|
+| yüzey (ahşap) / gölge | `#4a3222` / `#2e2016` | masa ayağı/kenarı çizilmez (§4.8 dönem notu) |
+| sayfa / sayfa kenarı-kıvrım | `#e9dfc9` / `#d6c7a6` | **kanal kâğıdının kendisi** = Seyahatname sayfası (kimlik bağı) |
+| hat çizgisi | `#2a2420` | dil-nötr §4.8 |
+| kenar çizimi | `#4a4237` | tek kalınlık, tarama yok |
+| kıvılcım (P14) | §2.3 renkleri | sayfadaki TEK renkli öğe |
+| defter kapakları (3) | `#3e2e24` / `#4a4038` / `#34302c` | sade deri, süs yok |
+| hokka / kapak | `#5a5048` / `#8a7a4a` | |
+| ışık | üst-sol tek kaynak, gölge sağ-aşağı | |
+
+### 1.5 Renk ölçüm tablosu hedefleri (FilmLook/arşiv derecelendirmesi sonrası)
+Derecelendirme gece ile gündüzü aynılaştırmaz. Eleştirmen kontrol karesinde ölçer (±8 L\*):
+| Bölge | Hedef | Plan |
+|---|---|---|
+| gece gök orta | `#1c2232` | P02, P05 |
+| gece deniz | `#161c26` | P06 |
+| gündüz gök orta | `#cfcfc4` | P09 |
+| Boğaz suyu | `#7c9090` | P09 |
+| Galata taşı | `#9a8f7e` | P08 |
+| köşk gündüz | `#b4a88e` | P10 |
+| sayfa | `#e9dfc9` | P13 |
+| demet kâğıdı (imza) | `#c4a874` (gece meşale altında L\* 55–72) | P03, P05 |
+
+---
+
+## 2. İmza nesnesi: FİŞEK DEMETİ
+
+### 2.1 Seçim ve gerekçe [T]
+**Fişek demeti** (kanat değil). Gerekçeler:
+1. **Kanat tekil olamaz:** P09'da martı kanadı aynı kadrajda (EV-D4). Kanadı imza yaparsak martı imzanın biçimini tekrarlar; ayrıca kanat "tek siluet, ayrıntısız" kalmak zorunda (yapı kaynakta yok), imza nesnesi ise ayırt edici biçim/renk ister.
+2. **Döngüyü demet taşır:** kanca ilk karesi (P01 kıvılcım fitilde) ve kapanış (P14 kenar çizimindeki fitil) aynı demettir. Tekrar eden motif = **fitil kıvılcımı** (P01, P05, P14).
+3. Demet bölümün "nasıl"ıdır (EV-D1 başlığı uçuran güç, EV-D2 bırakılan boş demet).
+Hezarfen yarısında demet yok; bu bilinçli: P14 kenar çizimi iki hikâyeyi aynı sayfada (demet + kanatlı adam) toplar.
+
+### 2.2 Demet tanımı (biçim nötr: kaynak yapıyı anlatmaz [A Çelişki 6])
+- **Ölçü (gerçek):** tüp gövdesi 1.00 m yükseklik × 0.36 m genişlik (≈ 70 L; 50 okka ≈ 64 kg barut macununa [A] makul hacim, model iddiası değil [T]); oturak tahtası 0.42 × 0.05 m; ayak dayama çubuğu oturağın 0.45 m altında, iki yana 0.18 m taşar; taban kızağı (yerde duran ahşap çerçeve) 0.50 × 0.08 m.
+- **Tüpler:** görünen **5 silindir** (önde 3, arkada aralardan 2), her biri ≈ 0.11 m çap. **7 tüp çizilmez, sayılabilir 7 öğe yok** ("yedi kollu"nun ne olduğu belirsiz [A]; 7 görünen öğe yorum iddiası olur). Tüplerin üstü oturak altında kaybolur, altları **açık ağızlı** (koyu halka).
+- **Malzeme görünümü:** tüp yüzü kâğıt sargı gibi düz mat yüzey, 2 ince sargı çizgisi/tüp [G — "kâğıt/kil kılıf" yalnız araştırmacının görsel önerisi, doğrulanmalı; doğrulanmazsa sargı çizgileri kalkar, düz mat silindir kalır]. Demeti **3 sicim bağı** sarar (alt, orta, üst; her biri 3 tur, 2 px çizgi). Metal çember, perçin, süs, yazı yok.
+- **Renk (TEKİL):** kâğıt `#c4a874` · gölge yanı `#8e7650` · sicim `#3a2e22` · ağız halkası (is) `#2a2420` · oturak/ayak dayama/kızak ahşap `#6a4a30` (gölge `#3a2a1e`) · fitil `#6a5a40`, yanmış kısmı `#2a2420`.
+- **Fitil:** demetin alt ağızlarından çıkar, rıhtım üstünde sola, yardımcıya doğru gevşek S eğrisiyle uzanır (x 330–520, zemin y 1330); 3 px (ekran, cs 1.0), zemine temas gölgeli.
+- **Durumlar:** `puskurme` (alt ağızlardan), `titreme` (±3 px, 30 Hz değil 12 Hz, P05 p56–112), `sonuk` (ağızlar is rengi, duman ince), `bos` (P06: kâğıt %15 koyu `#a8905e`, ağızlardan ince duman), düşüşte `aci` yolu.
+- **Ekran ölçüsü / okunurluk:** P05–P06 geniş planda demet ≈ 220–400 px (≥ %11), 360 px telefonda 73–133 px: silindir demeti + oturak okunur. P04 göğüs planında tüpler ekranın alt %20'si (y 1300–1500), sargı çizgileri görünür.
+
+### 2.3 Tekrar eden motif: fitil kıvılcımı
+- Biçim: **4 köşeli yıldız** (uzun kollar dikey/yatay, 45°'de kısa kollar) + 6–10 kıvılcım parçacığı (2–4 px, 8–20 karede söner) + yumuşak hale.
+- Renk: çekirdek `#fff0c4` · yıldız `#ffd27a` · hale `#ffc860` α .45 · parçacık `#f0a040`.
+- Ölçü: çekirdek yıldız **48 px**, hale çapı **140 px** (P01 p0; telefonda 16/47 px). Fitil üzerinde 2 px/kare yürür, arkasında fitil `#2a2420`'ye döner.
+- **P14 son kare = P01 p0:** kıvılcım ekran noktası, yıldız boyu ve fitilin ekran açısı birebir aynı. Motion P01 p0 kamerasından kıvılcım ekran noktasını hesaplar; P14 kenar çiziminin sayfadaki yeri ve cs 4.6 bundan geriye türetilir (sahne-plani: binici+demet x≈390–640, y≈640–1330).
+
+### 2.4 Tekillik yasakları (eleştirmen ve betik kontrolü)
+| Yasak | Neden |
+|---|---|
+| `#c4a874` ±ΔE76 15 aralığında başka nesne/kostüm yok (sarık, entari, kese, takke, kanat, taş, sikke dahil) | imza rengi |
+| Demet biçiminde başka silindir kümesi yok. **Köşkün 4 bacası** taş renginde, taş örgülü, başlıklı; kâğıt-tan silindir okunmaz (mekanlar.md'ye not) | biçim tekrarı |
+| Meşale sapı tek koyu sopa `#4a3424`, sargılı başı katran-is rengi `#2e2620`; kâğıt tüp görünmez | biçim tekrarı |
+| 4 köşeli yıldız biçimi yalnız fitil kıvılcımında. Şenlik fişeği **yıldız değil, düşen çizgi** (§5) | motif tekrarı |
+| Rulo kâğıt, tomar, borulu nesne P13 masasında yok | P14 çizimiyle karışır |
+Ölçülen ayrışmalar (elle, D65; motion `kontrol` betiğiyle doğrular): demet `#c4a874` (L≈70 a≈3 b≈29) ↔ altın sikke `#c9a24a` ΔE76 ≈ 23 · ↔ Lagâri sarığı `#d9cfb6` ≈ 20 · ↔ kese `#5e4630` ≈ 42 · ↔ takke `#5b4a3a` ≈ 40 · ↔ kanat `#6e6a64` ≈ 34. Hedef: her ışıkta ΔE2000 ≥ 12.
+
+---
+
+## 3. Karakterler
+
+### 3.0 Ortak kostüm kuralı (17. yy. İstanbul, genel) [A §5.4]
+Erkek giyimi: don, çakşır/şalvar, gömlek, entari, kaftan, başlık; elit ile halkı ayıran **kumaş kalitesi ve başlık biçimi** [A]. Buna göre:
+- **Ana kadro (Lagâri, Hezarfen):** ayak bileğine inen **entari** + üstte **önü açık kaftan** (entari önde 40–60 px şerit olarak görünür) + bel **kuşağı** + başta **sarık** (yuvarlak sargı) [A genel; sarığın biçimi/rengi kişiye özel kanıtsız → nötr]. Ayakta koyu kahve mest/çizme `#2e241c`.
+- **Kompars (yardımcılar):** **diz boyu** entari/cepken + şalvar + **takke** (sargısız keçe başlık). Ana kadrodan biçimle ayrışır (uzunluk + başlık).
+- **Kanıtsız, çizilmeyecekler:** sorguç, mücevher, sırma, arma, kürk yaka (padişah dahil), renkli kemer tokası, rütbe işareti, yeniçeri börkü, okunur yazı.
+- **Sakal/bıyık [G — doğrulanmalı]:** 17. yy. yetişkin Müslüman erkekte sakal yaygın kabul edilir; kişiye özel kanıt yok. Ayrışma aracı olarak kullanıldı (Hezarfen sakallı, Lagâri bıyıklı), dokunuş/iddia taşımaz.
+- **Beyaz sarık [G — doğrulanmalı]:** halk için açık renk sarık genel görünüm; saf beyaz değil, krem/gri-bej.
+
+### 3.1 Oranlar (rig birimi; Kukla ayakta ≈ 620 birim şapkalı)
+| Karakter | Boy (sarıksız) | Sarık/takke ek | Toplam | `scale` | Not |
+|---|---|---|---|---|---|
+| Lagâri | 560 | +70 (sarık) | 630 | 1.00 | gövde `zayif` 0.4 (ince yapı [T]; "sıska" iddiası anlatıda yok, görüntüde vurgu yapılmaz) |
+| Hezarfen | 560 | +62 (sıkı sarık) | 622 ×1.04 | 1.04 | omuz 1.06× |
+| Padişah | 560 | +110 (büyük sarık) | 670 | 1.00 | yalnız siluet (§3.4) |
+| Yardımcı 1–2 | 545 | +38 (takke) | 583 | 0.98 | yüzsüz |
+Gerçek boy eşleşmesi: yetişkin 1.65 m sarıksız. Kıyı şablonunda (P05) yardımcı 670 px ⇒ **≈ 406 px/m** (z yakın); demet 1.0 m ≈ 406 px; ufuk y 720 = baş hizası (ufuk–ölçek kuralı).
+
+### 3.2 LAGÂRİ (KE-K1) — P01 A, P03–P07
+| Öğe | Değer |
+|---|---|
+| Kaftan / gölge / ışık | çivit `#34405e` / `#222a40` / `#4c5a7c` |
+| Entari | soluk çivit-gri `#7c8494` |
+| Kuşak | koyu kahve `#4a3426`, 34 birim yüksek, 2 sargı çizgisi |
+| Şalvar (yalnız bilekte) + mest | `#3e3a38` + `#2e241c` |
+| Sarık | krem `#d9cfb6`, gölge `#a89e86`; yuvarlak sargı, **yatay 3 sargı çizgisi**, sargı ucu yok (P06 ıslakta ucu çözülür) |
+| Ten / ten gölge | `#d9a77f` / `#a8745a` |
+| Saç (yalnız ense + favori) / bıyık | `#3a2416` |
+| Yüz (YUZLER `lagari`) | `genislik 0.92, uzunluk 1.06, burunTip "duz", kasAci −3 (açık, hafif meraklı), sac "sarikalti", zayif 0.4, yasCizgi 0` · `biyik "duz"`, `sakal false`, `sideburn 0.5`, `browHeavy 1.0`, `burun 1.0` |
+| Kanat (sırtta) | §4.2, `acik 0` P01 A–P05, açılır P06 |
+| Yakın plan (P04, yüz %11–12, cs 2.5–2.7) | `yakin: true` zorunlu: göz kapağı, dolgulu kaş, alt dudak hacmi; ağız `A/O/dinlen` visem (`konus`), kaş `browF` +0.3 replik başında (kararlı neşe) |
+**Oturan poz (KE-K6, P01 A–P05):** oturak tahtasında, **ayaklar ayak dayama çubuğunda** (ayak sallanmaz: "ayak her karede zemine basar" bu pozda dayamaya basar). `thighF/B −84`, `kneeF/B 78`, `bodyY +110`, `lean +4`. Eller: `tutun` = ön el yan tüpün sicim bağını kavrar (parmaklar sicimin önünde), arka el oturak kenarında. Etek: kaftan + entari diz üstünden **yumuşak** sarkar, alt kenar baldır ortasına iner, oturak kenarından 20–30 birim aşağı dalgalı düşer (katı kalıp değil). Kanat sırtta katlı, oturağın arkasından yukarı taşar.
+**Islak hâl (P06 p232+, P07) — `islak: 0→1` (12 karede):**
+- Kumaş %25 koyu, doygunluk +%10: kaftan `#232c42`, entari `#59606e`, sarık `#b0aa98` (yarı saydam değil, koyulaşmış).
+- Siluet daralır: etek genişliği ×0.88, kumaş bacağa yapışır (etek alt kenarı düz değil, bacak konturunu izler); kollar sarkık, yen ağızları aşağı çekilmiş.
+- Sarık: sargı ucu çözülmüş, sol omza 60 birim sarkar; sarık %10 basık.
+- Parlama: omuz ve sarık üstünde `#a9bccb` α .45 ince kenar çizgisi (ışık yanı).
+- Damlalar: yen ucu, etek ucu, sarık ucundan 3 kaynak; her 10–14 karede bir damla (teardrop 6×9 px ekran, `#a9bccb` + `#e6eef0` α .7 nokta), zemine inince 1 karelik halka. P07 rıhtımda ıslak ayak izi (§4.11).
+- Kanat ıslakta **gövdede yok** (P06 inişte açık kanat suya iner; P07'de kanat çizilmez — süreklilik: P06 sonunda kanat suda geride kalır, Lagâri ondan sıyrılıp yüzer; motion bunu P06 p215–288'de gösterir. Gösterilemezse kanat P07'de sırtta ıslak-katlı olarak kalır; ikisinden biri, **arada kaybolma yok**.)
+
+### 3.3 HEZARFEN (KE-K2) — P01 B, P08, P09, P11
+| Öğe | Değer |
+|---|---|
+| Kaftan / gölge / ışık | zeytin `#55603f` / `#3a4228` / `#6e7a54` |
+| Entari | soluk deve tüyü `#7a6a50` |
+| Kuşak | `#3e3a30` |
+| Şalvar + mest | `#3e3a38` + `#2e241c` |
+| Sarık | gri-bej `#c9c2b0`, gölge `#958e7c`; Lagâri'ninkinden **daha basık ve dar** (yükseklik 62 / genişlik 0.9×), **çapraz 3 sargı çizgisi** (Lagâri yatay) |
+| Ten / gölge | `#c99872` / `#95654a` (güneşte daha esmer) |
+| Saç / sakal | `#2a2018`; kısa dolgun sakal (`sakal: true`), `biyik "duz"` |
+| Yüz (YUZLER `hezarfen`) | `genislik 0.98, uzunluk 1.12, burunTip "sivri", kasAci 5 (kararlı), sac "sarikalti", yasCizgi 0.3` · `browHeavy 1.3`, `burun 1.05` |
+| Kanat | §4.2; P01 B/P08 sırtta `acik 0`, P09 açık |
+| Gündüz kontra | P01 B ve P09: düz siluet `#3a3634`, güneş yanında `#f0d79a` kenar (2 px). P08 göğüs: yüz yarı gölgede, okunur ama küçük jest yok (bakış = baş çevirme, sahne-plani) |
+
+### 3.4 360 px'te Lagâri ↔ Hezarfen ayrışması (tek kişi sanılmasın)
+Aynı karede hiç durmazlar; ama izleyici "aynı adam mı?" dememeli.
+| Ayırıcı | Lagâri | Hezarfen | 360 px'te |
+|---|---|---|---|
+| Kaftan rengi | çivit (soğuk, koyu) | zeytin (sıcak-yeşil) | ana ayırıcı; gece/gündüz farkı bunu güçlendirir |
+| Sakal | yok (bıyık) | kısa sakal | yüz siluetinin alt kontur farkı |
+| Sarık | yüksek yuvarlak, krem, yatay sargı | basık, gri-bej, çapraz sargı | baş silueti oranı (yükseklik/genişlik 0.95 ↔ 0.72) |
+| Yapı | ince | omuz 1.06×, boy 1.04× | |
+| Duruş | oturan / kollar açık | ayakta, dik, eller kuşakta | |
+Eleştirmen testi: P04 göğüs karesi ile P08 göğüs karesi 360 px'te yan yana; iki kişi olarak okunmalı.
+
+### 3.5 PADİŞAH (KE-K3) — P02, P10, P12 · yalnız siluet, yüz yok
+Portre referansı yok (Murad IV portreleri 19. yy. [A §5.4]). Kukla değil, **ayrı siluet bileşeni** (`PadisahSiluet`):
+- **Biçim:** büyük yuvarlak sarık (baş genişliğinin 1.7×, yükseklik 1.1× baş; Lagâri sarığının 1.35×'i), sorguç/mücevher **yok**; geniş omuzlu kaftan siluet (omuz 1.15×), kollar gövdede. Sarık sargı çizgisi yalnız P12 yakınında 2 adet, ton farkıyla.
+- **Renk:** siluet gece `#1e1c22` (ışıklı pencerenin önünde, P02) · gündüz `#2a2622` (P10) · kenar ışığı gece `#f2c070` (içteki ışık arkadan), gündüz `#f0d79a` (güneş).
+- **`bas_aci` 0 → 1 (P10):** 0 = önden (baş + sarık simetrik elips), 1 = sağa profil (alın–burun–dudak çıkıntısı belirir, sarık arkaya doğru asimetrik). Ara değerler morf; omuz sabit. Okunurluk: P10 cs 1.6'da siluet ≥ 240 px (%12).
+- **P12 profil (göğüs, cs 1.8–2.6):** profil konturu alın → burun → dudak → çene; **göz, kaş, ağız çizilmez.** Çene kaftan yakasının gölgesinde kaybolur (sakal sorusu açılmaz [G]). Yüzün gölge yanı `#2a2420`; ışık şeridi göz hizasında konturda `#e3b98e` (ten, ışıklı) bant olarak parlar, bant genişliği = pencere aralığından türeyen şerit genişliği. Kaftan `#36302c`, yakada tek ton farkı, süs yok. Eli (kapıyı gösterir, P12 p130–170): çıplak el `#c49a78`, yen geniş, yen rengi kaftanla aynı.
+- Kim plakası (P12 replik): yazı katmanında, siluetin üstünde, yüz alanını örtmez.
+
+### 3.6 YARDIMCILAR (KE-K4) — P01 A, P02, P03, P05, P06 · yüzsüz kompars
+- Kukla `palet.yuzsuz: true` (mevcut) + **kısa Osmanlı gövdesi** (`kostum: "osmanli-kisa"`): diz boyu entari, şalvar diz altında görünür (`#4a4038`), kuşak, takke.
+| | Entari | Takke | Kuşak | Ten |
+|---|---|---|---|---|
+| Yardımcı 1 (meşaleci, P05 başlığı uçan) | `#6a5a48` | koyu keçe `#5b4a3a` | `#3a3026` | `#b88a68` |
+| Yardımcı 2 | `#5a5448` | `#4a3e34` | `#3a3026` | `#a87c5c` |
+- Gece meşale ışığında yüz yeri düz ten + ışık yanı; göz/ağız/kaş yok. P05'te yüz %35 boyda (≈ 120 px baş) — yüzsüzlük okunur ama "yüzü silinmiş insan" ürkütücülüğü olmasın diye baş meşale tarafına 3/4 dönük, yüzün çoğu kendi gölgesinde.
+- Duruş farkı: Y1 meşaleyi ön elde, kol gergin, meşaleyi vücuttan uzak tutar (P05 sıçrama: geri adım + kol yüze, `lean −12`); Y2 elleri kuşakta, geride.
+
+### 3.7 Eller (KE-K5) — P07, P11 insert
+Mevcut `KolEl` yapısı (MASA-INSERT) temel; bölüme 4 `tip` eklenir. Ölçek: el (bilekten parmak ucuna) **≈ 260 px** (insert, cs 1.0), kese ≈ 0.85× el.
+| tip | Yen | Ten | Ayırıcı | Giriş |
+|---|---|---|---|---|
+| `entari-yen` (veren, saray) | **geniş, bilekten 1.6× açılan yen**, ince kumaş, soluk murdum `#4b4250`, gölge `#2e2834`; yen ağzında tek kıvrım | `#d6a882` | geniş yen + bakımlı el | sağdan (köşk tarafı) |
+| `lagari` | dar yen, çivit `#34405e` (P07 ıslak: `#232c42` + damla), entari yeni `#7c8494` bilekte 12 px şerit | `#d9a77f` (ıslak: %8 koyu + 2 parlama noktası) | çivit + ıslaklık | alttan |
+| `hezarfen` (avuç) | dar yen, zeytin `#55603f`, entari şeridi `#7a6a50` | `#c99872` | zeytin + daha esmer | alttan |
+| `muhafiz` | **kalın, kaba yün** yen `#3e3a34`, düz, kıvrımsız, yen ağzı kalın kenar | `#b08260`, boğum çizgileri belirgin, el 1.1× | ağır + kaba; işaret/arma yok | soldan, P11 p80, omza iner p104 |
+Avuç pozları: `ac` (avuç yukarı, parmaklar hafif kıvrık), `kapa` (keseyi saran), `gevse` (parmaklar açılır, bilek 12° düşer: EV-D5). Omuz: `muhafiz` el P11'de omuza bastığında parmaklar kumaşı **4–6 px içeri bastırır** (kumaş kıvrımı), sert yapışık sticker gibi değil.
+P07/P11 aynı kadraj: kese avucunun ekran yeri ±10 px aynı; yalnız el tipi, ışık (gece/gün) ve kese içeriği değişir → ayna okunur.
+
+---
+
+## 4. Prop'lar
+
+Genel: ekran ölçüsü gerçeğe göre; stilize büyütme **yalnız** tabloda "stilize ×" yazanlarda ve en fazla ×1.6 (sikke hariç, açıklamalı).
+
+| # | Prop | Gerçek ölçü | Ekran ölçü (plan) | 360 px'te | Stilize |
+|---|---|---|---|---|---|
+| KE-P1 | fişek demeti | 1.00 × 0.36 m | 220–400 px (P05–P06) | 73–133 px | — |
+| KE-P2 | kanat (açık, iki kanat toplam) | açıklık 3.1 m [T] | P06 ≈ 520 px, P09 ≈ 260 px | 87 / 87 px | — |
+| KE-P3 | kese | 0.15 × 0.11 m | 220–240 px (%11–12) | 75 px | ×1.4 (sahne-plani onaylı) |
+| KE-P3 | sikke (altın) | ≈ 0.02 m [G] | 96 px (%5) | 32 px | ×3 (ek ayrıntı; okunurluk keseye ait) |
+| KE-P4 | takke | çap 0.18 m, yük. 0.10 m | 117 px (olcek 1.6) | 39 px | ×1.6 |
+| KE-P5 | taş | 0.25 m [T] | 190 px takipte (%10) | 63 px | kamera yaklaşması (cs 2.0) |
+| KE-P6 | martı | açıklık 1.3 m | 420 px (ön plan) | 140 px | ön plan perspektifi |
+| KE-P7 | meşale | 1.1 m sap, baş 0.18 m | 450 px (P05) | 150 px | — |
+| KE-P8 | defter/kitap | 0.32 × 0.22 m (açık 0.44) | P13 cs 1.0: kitap 640 px | 213 px | — |
+| KE-P9 | pencere kanadı | 0.55 × 1.30 m | ≈ 576 px (%30, P12) | 192 px | — |
+
+### 4.1 Fişek demeti — §2.2.
+
+### 4.2 Kanat (KE-P2) — tek siluet, ayrıntısız, iki karakterde AYNI çizim
+Yapı kaynakta yok [A §2]: tüy, kaburga, iskelet, kumaş gerdirme, kayış, tutamak **çizilmez**.
+- **Açık biçim (her kanat):** uzun, sivrilen yaprak; ön kenar düz ve hafif kavisli (kalın taraf), arka kenarda **3 büyük, yumuşak oyuk** (yalnızca "kartal" fikrine işaret; tek tek tüy yok). Kök genişliği 0.22 × açıklık, uç sivri yuvarlak. 3/4 görünüşte kameraya yakın kanat 1.0×, uzak kanat 0.7× ve kısmen gövde arkasında.
+- **Bağlantı:** kanat kökü omuz arkasında gizli; kollar kanadın altında ön kenar boyunca uzanır, **eller ön kenarın altında kaybolur** (tutamak gösterilmez). Böylece "nasıl tutuyor?" sorusu yapı iddiasıyla cevaplanmaz.
+- **Katlı (`acik 0`):** iki kanat sırtta dikey üst üste, başın 0.15H üstünden dize kadar, genişlik 0.35H, tek kıvrım çizgisi ortada. P01 B'de "belirsiz siluet" böyle okunur.
+- **Açılma (`acik 0→1`, 18 kare):** kökten döner + uzar; yarı yolda (0.5) kanatlar 60° yukarı. Arka kenar oyukları son 6 karede belirir.
+- **Renk:** düz mat, doku yok. Işıklı yüz `#6e6a64` · gölge `#4a4642` · kontra siluet `#3a3634` (gün) / `#2a2828` (gece) · kenar ışığı gün `#f0d79a`, gece `#f0b060` (2 px). Lagâri ve Hezarfen'de **aynı dosya, aynı renk**.
+- **Martı ile karşılaştırma önlemi:** martı kanadı kırık "M" biçimli, mafsallı, beyaz-gri + koyu uçlu; kanat düz, rijit, tek renk. P09'da Hezarfen yalnız kontra siluet.
+
+### 4.3 Kese + sikke (KE-P3)
+- **Kese [G — doğrulanmalı biçim]:** büzgülü bez/deri torba, ağzı ipli büzgü, ip uçları 2 kısa sarkan uç. Gövde armut biçimi (alt geniş), dolu olduğu için tabanı yuvarlak ağır, 2 kıvrım çizgisi büzgüden aşağı. Renk koyu deri `#5e4630`, gölge `#3a2a1c`, büzgü ipi `#8a7a5c`. Süs, mühür, yazı yok.
+- **İçerik göstergesi (iki kese aynı nesne tipi, aynı biçim; ayna):** büzgü ağzında görünen 2 sikke kenarı: P07 **gümüş akçe** `#a9aaa4` / ışık `#d8d8d0` (gece meşalede ısınır `#c8b89a`); P11 **altın** `#c9a24a` / ışık `#f0d890`. Altın/gümüşün "kese" karşılığı doğrulanmadı [A Çelişki 5]: renk yalnız göstergedir, miktar iddiası yok.
+- **Sikke (P11, düşen):** daire, kalınlık çapın 0.12'si (kenar görünür). Yüz **dil-nötr**: dış halka + iç halka + ortada 3 kısa kıvrık soyut çizgi (hat çağrışımı; harf/rakam/tuğra **yok**). Dönme: elips yatay yarıçapı cos(θ) ile; yatarken son 3 salınım, kenar parlaması her yarım turda 1 kare `#f0d890`. Gölge `#2e2620` α .4, yatınca net elips.
+- Ölçü: kese ekranda 220–240 px yüksek; sikke 96 px.
+
+### 4.4 Başlık / takke (KE-P4, EV-D1)
+- Yardımcı 1'in takkesi: yarım kubbe keçe, tabanı hafif içe dönük, üstte 1 dikiş çizgisi; `#5b4a3a`, gölge `#3a2e24`. Sargı yok (sarıkla karışmasın).
+- Ayrılma karesinde baştaki takke gizlenir, prop aynı konum/açıdan devralır (kopukluk 0 px). Yol: sağa yay, rıhtıma iner (temas "fıt", gölge temas karesinde netleşir), 2 yuvarlanma (yuvarlanırken elips silueti, 1 tur ≈ 14 kare), ağzı aşağı ya da yana yatar. Takkenin altı (iç) `#2e241c`.
+
+### 4.5 Taş (KE-P5, P08)
+Galata galerisi çıkıntısından kopan düzensiz kesme taş parçası (5 köşeli, köşeler hafif yuvarlak), Galata taş paleti `#9a8f7e` / gölge `#6b6357`, 1 kırık yüz açık `#b4aa96`. Düşerken 1 tur/40 kare yavaş döner. Toz §5.
+
+### 4.6 Martı (KE-P6, P09)
+4 poz döngüsü (kanat yukarı / yatay / aşağı / yatay, 4 kare/poz ≈ 1 vuruş/16 kare) + süzülme pozu. Gövde `#dcdcd6`, kanat üstü `#a9adb0`, kanat ucu `#3a3a3e`, gaga `#c8a04a` (küçük; kırmızı benek yok). Ön planda bulanık (blur 6 px) — Hezarfen net. Kontur yok (bulanık ön plan), yalnız ton.
+
+### 4.7 Meşale (KE-P7)
+Sopa `#4a3424` (1.1 m), baş: katran emdirilmiş bez sargı `#2e2620` [G], alev §1.1. Alev 3 dilli, 8 karede bir şekil değiştirir (seed sabit, döngü), yukarı + rüzgârla hafif sağa. Işık havuzu ve karakter kenar ışığı alevin **ekran noktasından** türetilir (tek kaynak). Dumanı ince `#4a4440` α .4.
+
+### 4.8 Defterler ve Seyahatname (KE-P8, P13–P14)
+- **Seyahatname (açık):** iki sayfa, ortada cilt oluğu gölgesi. Her sayfada metin bloğu kenarlardan %12 boşluklu, çevresinde **çift ince cetvel çizgisi** `#4a4237` (renkli cetvel/rubrik yok).
+- **Hat çizgileri (dil-nötr):** 15 satır/sayfa; her satır sağdan sola dalgalı kalın-ince çizgi dizisi: 4–7 "kelime kümesi" (kısa yatay vuruş + 1–2 dikey çıkıntı + ara sıra nokta), kümeler arasında boşluk, satırlar iki yana yaslı, bazı satırlarda uzatılmış yatay vuruş (keşide çağrışımı). **Hiçbir küme Arap/Latin harfi olarak okunmaz** (eleştirmen: 360 px ve 1080 px'te harf aranır). Çizgi `#2a2420`, kalınlık dekor 1.6–3 px değişken (kamış kalem hissi).
+- **Kenar çizimleri (sağ sayfa dış kenarı, iki adet):** (1) **demet + binici:** P01 p0 kompozisyonunun mürekkep çizgisi hâli — demet silindirleri (5), oturak, oturan siluet (yüz yok), sırtta katlı kanat, solda fitil ve fitil ucunda kıvılcım yeri; (2) **kanatlı adam:** açık kanat §4.2 biçimi, gövde küçük. Her biri dekor 140 px yükseklik, tek kalınlık 1.4 px, tarama yok, `#4a4237`. Çizimler sayfadaki hat bloğunun **dışında**, kenar boşluğunda.
+- **3 defter:** kapalı, sade deri kapak §1.4, köşeler hafif aşınmış (açık ton köşe), sırtta 3 bant çizgisi. Açılınca **iki boş sayfa**, cetvel bile yok (mürekkep yok = kaynak yok).
+- **Hokka + kamış kalem [G]:** küçük yuvarlak hokka, kamış kalem hokkaya dayalı; masa kenarına değil yüzeye gölge.
+- **Dönem notu (yakalanan risk):** sahne-plani "ahşap masa" diyor. 17. yy. Osmanlı yazıcısı çoğunlukla yerde oturup diz üstünde ya da alçak yazı sehpası/rahle üzerinde yazar [G — doğrulanmalı]. Batı tipi masa iddiası doğmasın diye: **yalnız ahşap yüzey görünür, masa kenarı/ayağı/sandalye çizilmez** (tepe insert zaten bunu sağlar; P13 geri çekilmede cs 1.0'da kenar kadraja girmemeli → mekanlar.md/motion yüzeyi kadrajdan taşırır).
+
+### 4.9 Pencere ışığı ve aralık (P12) — §5.6.
+
+### 4.10 Pencere kanadı (KE-P9)
+Tek ahşap kanat (kepenk): çerçeve + 2 düz içe gömme panel (üst kısa, alt uzun), demir menteşe 2 adet (koyu `#2e2a26`, küçük), sürgü/mandal 1 adet (kapanışta "tık"). Kafes, oyma, çini, cam **yok** (kanıtsız). Renk §1.3. Menteşe `aci` 80° (açık) → 12° (aralık kalır); kalan aralık genişliği = ışık şeridi genişliği (ekranda ≈ 70 px, cs 2.2). Kanat kalınlığı kenardan görünür (24 px, ışıklı kenar).
+
+### 4.11 Islak ayak izi (P07)
+Rıhtım taşında 2–4 iz, `#3a3e48` α .6 düzensiz yaprak biçimi (mest tabanı, parmak ayrımı yok), en yenisi en koyu; P07 boyunca kurumaz.
+
+---
+
+## 5. Efekt dili (KE-E1…E6)
+`Efektler.tsx` kapsamını okumadım (brifte yok); aşağıdakiler biçim/renk sözleşmesidir, mevcut efekt uyuyorsa yeniden kullanılır. Hepsi **seed sabit**, fade ile kaybolma yok (sönme = küçülme + koyulaşma).
+
+| Efekt | Biçim | Renk | Süre / ölçü | Plan |
+|---|---|---|---|---|
+| E1 fitil kıvılcımı | §2.3 4 köşeli yıldız + parçacık | `#fff0c4` / `#ffd27a` / `#f0a040` | 48 px çekirdek, 140 px hale | P01, P05, P14 |
+| E1 püskürme | demet ağızlarından aşağı koni, 3 katman (çekirdek dar, alev, kıvılcım yağmuru); koni uzunluğu titreşimde 0.6–1.0 m, kalkışta 1.6 m | çekirdek `#ffe6a8` → `#f0a040` → kenar `#a8642e` | kalkış anında ekranın %25'ine kadar aydınlatma: rıhtım ve deniz `#f0a040` α .3 | P01, P05 |
+| E1 duman | yuvarlak bulut kümeleri, düz 2 ton, kenarı tırtıklı (gravür) | ışıklı `#8a7e70` / gölge `#4e4844` α .7 | yukarı + rüzgârla sağa, büyür | P01, P05, P06 |
+| E2 şenlik fişeği | yükselen ince iz (2 px) → patlama: **merkezden düşen 18–24 kavisli çizgi** (söğüt), uçları sönerken koyulaşır; yıldız/küre yok | çizgi `#e8d6a0` → uç `#8a7a5a`; patlama anında gök `#e8d6a0` α .12 | yarıçap 220–320 px, 70 karede düşer | P02 (P01 A arka planda) |
+| E3 su halkası | 2–3 eş merkezli elips (perspektifte basık 1:4), dışa açılır, kalınlaşmaz incelir | `#9fb0bf` α .7 (gece) / `#e4dcc4` (gün) | 40 kare | P06 |
+| E3 buhar | boş, sıcak demet suya değince 4–6 yuvarlak puf, dik yükselir | `#b8b4aa` α .5 | 30 kare | P06 (EV-D2) |
+| E3 sıçrama + damla | taç biçimli 5–7 damla yayı; damlalar §3.2 | `#a9bccb` | 20 kare | P06 iniş, P07 |
+| E4 toz | yere yayılan basık yarım halka + 3–5 küçük taş parçası | `#b8a888` α .6 | < %5, 24 kare | P08 taş, P09 iniş |
+| E5 ışık şeridi | pencere aralığının **geometrik izdüşümü** (aralık kenarlarından güneş yönünde çizilen paralel kenarlı bant); yüz/duvar/zemine düşer | `#f6e4b0` α .55, kenar net | kanat açısıyla anlık genişler/daralır | P12 |
+| E6 rota çizgisi | Galata tepesinden Doğancılar'a hafif kavisli kesik çizgi (dash 22 / gap 16), uçar gibi çizilir (baştan uca), başta ve sonda 10 px nokta | `#e9dfc9` + 1.5 px `#1c1915` kontur (harita dili; altın değil — sikkeyle karışmaz) | 6 px | P09 |
+**Dönem notu [G — doğrulanmalı]:** renkli (kırmızı/yeşil/mavi) havai fişek 19. yy. kimyasıdır; 17. yy. fişekleri kömür/demir kıvılcımıyla altın-turuncu-saman tonlardadır. Bu yüzden şenlik **renksiz/saman**; renkli patlama çizilmez.
+
+---
+
+## 6. Tipografi (yazı katmanı, TR/EN ayrı)
+Görüntü **yazısız** render edilir; aşağıdakilerin hepsi dil başına ayrı şeffaf katman (KE-Y1, KE-Y3).
+- **Ekran yazısı:** kit standardı aynen (`src/kit/yazi.tsx`, K2/K4): kâğıt şerit + Playfair Display 900, üst bant y 240–400, tek kırmızı vurgu kelimesi. Tarih/sayı içeren yazılar (`1630'LAR`, `~64 KG`, `~3 KM`) `tur: formul` → IBM Plex Mono 500. Bölüme özel stil yok.
+- **Replik:** kit standardı (konuşan plakası + Inter 800 + yarı saydam koyu bant `#14120f` α .72). Plaka metni `replik.kim`'den dil başına (TR `LAGÂRİ`, `PADİŞAH`; EN senaryo-en'deki karşılık). Â, İ, Ş, Ğ glifleri `latin`/`latin-ext` alt kümelerinde var (theme.ts aralıkları). P04 üst bant, P12 alt bant (sahne-plani).
+- **Harita etiketleri (P09, `harita_etiketleri[]`):** IBM Plex Mono 500, 30 px, BÜYÜK HARF, harf aralığı 0.08em, `#1c1915`; kâğıt fiş `#e9dfc9` α .92, 1.5 px `#1c1915` kenar, iç boşluk 8/14 px; noktaya 2 px `#4a4237` ince işaret çizgisi (≤ 60 px). TR: `GALATA` · `ÜSKÜDAR` · `BOĞAZ`; EN: `GALATA` · `ÜSKÜDAR` · `BOSPHORUS`.
+  - Yerleşim: etiketler **dekor koordinatına bağlı** ve görüntüyle **aynı kamera dönüşümünü** alır (P09 yatay pan cx 500→−500); yazı katmanı ayrı render olsa da kamera fonksiyonu ortak olmalı (motion notu). y aralığı 520–1250 (üst/alt bant dışı); `BOĞAZ` su ortasında y≈1060; `GALATA` kule tepesinin 90 px üstünde değil, **yanında** (kule silueti örtülmez); `ÜSKÜDAR` meydanın üstünde, iniş noktasını örtmeden. Rota çizgisi ve martı yolunun üstüne binmez (martı y ≥ 1100 bölgesine etiket konmaz p112–195).
+- **Görüntüde gömülü dil yok:** kese, sikke, kitap, pencere, köşk, kule üzerinde okunur yazı yok (hat çizgileri dil-nötr §4.8).
+
+---
+
+## 7. Rig / kit ihtiyaçları (mevcut Kukla ne yapar, ne yapamaz)
+
+**Mevcut `Kukla.tsx` ile yapılabilenler:** 3/4 poz, yürüme, `konus` visem, `yakin` yüz ayrıntısı (göz kapağı, dolgulu kaş, dudak), `lookX/Y`, `headTilt`, `lean`, `bodyY` ile oturma açıları, `palet.yuzsuz` (kompars), YUZLER yüz varyantı (`genislik/uzunluk/burunTip/kasAci/zayif/yasCizgi`, `biyik duz`, `sakal`), sahne ışığı (`KuklaIsik`, kenar ışığı rengi sahneden).
+**Yapamadıkları (1830 Avrupa kostümüne sabit):** frak etekleri, yelek + düğmeler, kolalı yaka + kravat, pantolon bacağı, silindir/kasket/geniş şapka. Osmanlı kıyafeti bunları **kapatmayı** ve yeni parçalar eklemeyi gerektirir.
+
+| Kimlik | Parça | Kim | Not |
+|---|---|---|---|
+| R1 | `palet.kostum: "osmanli"` gövde: ayak bileğine entari + önü açık kaftan (iki ön panel, aradan entari şeridi) + kuşak; frak etekleri/yelek/düğme/yaka/kravat **çizilmez**; yen ağzı bilekte 1.25× açılır; şalvar yalnız bilekte, mest | Lagâri, Hezarfen | Etek iki panel, uyluk açısına bağlı (yürüme + oturma); alt kenar bileğin 20 birim üstü |
+| R2 | `palet.kostum: "osmanli-kisa"`: diz boyu entari + şalvar + kuşak | yardımcılar | R1'in kısa varyantı |
+| R3 | `palet.sapka: "sarik" \| "sarik-basik" \| "takke"` + palet `sarikCizgi: "yatay" \| "capraz"`; sarık alın çizgisinden (yerel y ≈ −28) yukarıyı ve kulak üstünü örter | Lagâri, Hezarfen, yardımcılar | |
+| R4 | `YuzTip.sac: "sarikalti"` — üst saç kütlesi çizilmez, yalnız ense + favori | Lagâri, Hezarfen | bukle saç sarığın dışına taşmasın |
+| R5 | YUZLER `lagari`, `hezarfen` (§3.2, §3.3) + `sinirlar.json yuzVaryant` | | K3 doğrulayıcı aynı varyant uyarısı yok |
+| R6 | `poz: "oturan"` (Blanc'ta yalnız açı denemesi vardı): etek dizden sarkar, ayaklar dayamaya kilitli (ayak kilidi zemin yerine prop noktası) | Lagâri | KE-K6 |
+| R7 | `aksesuar: kanat` + `durum.acik` 0–1, katlı/açık; açıkken kollar kanadın altına kilitlenir, eller gizli | Lagâri, Hezarfen | KE-P2, KE-J3 |
+| R8 | `poz: "ucus"` (süzülme: gövde 30° öne, bacaklar bitişik geride, etek rüzgârla geriye 15°) | Lagâri P06, Hezarfen P09 | KE-J4 |
+| R9 | `islak` 0–1 (palet koyulaşma, siluet daralma, sarık ucu, damla yayıcı 3 nokta) | Lagâri | KE-J10 |
+| R10 | `PadisahSiluet` bileşeni (Kukla değil): `bas_aci` 0–1 önden→profil morf, `profil` (P12) + kenar ışığı + şerit bandı + işaret eden el | padişah | KE-K3, KE-J11 |
+| R11 | `KolEl.tip`: `entari-yen`, `lagari` (+ıslak), `hezarfen`, `muhafiz`; avuç `ac/kapa/gevse`; `omuz-bas` (kumaş içe basma) | P07, P11 | `el` kuralı SARAYBURNU insert'e açılmalı (sahne-plani KE-Y6) |
+| R12 | Kenar ışığı: bu bölümde rig `RIM #c4d6ff` sabiti devre dışı; tüm kenar ışığı `KuklaIsik`'tan (gece amber, gün `#f0d79a`) | hepsi | ay yok |
+| R13 | Prop'lar: `fisek-demet`, `kanat` (ayrık, P06 suda kalan), `kese` (17. yy. biçim + içerik), `sikke`, `takke`, `tas`, `marti`, `mesale`, `defter`, `kitap seyahatname` (hat + kenar çizimi), `pencere-kanat`, `ayak-izi` | | KE-P1…P9 |
+
+---
+
+## 8. Mekân sorumlusuna devredilen noktalar (mimari onların)
+1. **Palet bağlayıcı:** §1 gece/gündüz/iç/kitap tabloları; mekanlar.md doku/tarama tonlarını bu hex'lerden türetir. Gök/su düz basamaklı (gradyansız) minyatür alanı kuralı.
+2. **Güneş tanımı (tüm gündüz şablonları):** azimut ≈ 65° (ENE), yükseklik ≈ 15°, sabah [T]. P09 kamerası kuzeye bakar; P12 pencere Boğaz'a (doğu-kuzeydoğu) bakar. Gölge yönleri buradan.
+3. **Gece ışığı:** ay yok; meşale + köşk penceresi + şenlik. Köşk penceresi çevresine havuz düşürür.
+4. **Köşk bacaları** taş örgülü, başlıklı, taş renginde; demet silindirlerini çağrıştırmasın (§2.4).
+5. Köşk kubbesi/çatısı (Eldem ahşap çatı ↔ gravür piramit kubbe [A §5.2]), Galata külahının eğimi/pencereleri [A §5.1], Doğancılar meydanı [A §5.3], Galata/Üsküdar çatı malzemesi (kiremit [G]) — mekanlar.md kararı; nötr kalanlar nötr.
+6. **Ölçek ilişkisi:** kıyı şablonu yakın z'de **≈ 406 px/m** (yardımcı 1.65 m = 670 px, baş ≈ ufuk y 720). Demet 1.0 m, meşale 1.1 m, rıhtım basamağı 0.2 m. Köşk uzakta (P05: taban y≈900, üst y≈640 ⇒ ≈ 260 px), karakterle oranı ufuk kuralına uymalı. GALATA-TEPE: Hezarfen %22 boy (≈ 420 px) ⇒ ≈ 255 px/m; galeri korkuluğu 1.0 m ≈ 255 px, kapı 1.9 m. BOGAZ: Hezarfen 130 px.
+7. Kitap yüzeyi: masa kenarı/ayağı kadraja girmez (§4.8 dönem notu).
+8. Pencere (P12) açıklığı ile kanat ölçüsü §4.10; içeride kafes/kalem işi yok.
+9. FilmLook derecelendirmesi §1.5 hedeflerini korumalı.
+
+---
+
+## 9. Kalibrasyon: öncelikli 3 kare
+Sıra riske göre (yeni parça sayısı × okunurluk riski). P12 profil + pencere 4. sırada: yedeği var (dokunuslar EV-D6 yedek) ve tek plana özgü.
+
+| # | Kare | Neden ilk | Bakılacaklar (eleştirmen + betik) |
+|---|---|---|---|
+| **K1** | **P06 p76** (gece kıyı; demet yarı yolda, Lagâri kanat açık) + aynı kadrajın **P05 p78**'i (tek render turu, şablon aynı) | En çok yeni parça: gece paleti, imza demet, kanat dili, Osmanlı gövdesi (R1), oturan poz (R6, P05), uçuş pozu (R8), yardımcı yüzsüz + takke, meşale tek ışık, deniz | demet 360 px'te "silindir demeti" okunur mu, 7 sayılabilir öğe yok mu · demet rengi başka hiçbir yerde yok (ΔE ≥ 12) · kanat ayrıntısız tek siluet, el/tutamak görünmüyor · Lagâri ayakları P05'te dayamada · yardımcı başı ufka yakın (y≈720), ayaklar y ≤ 1480 · kenar ışığı amber (mavi RIM yok) · meşale havuzu ve gölge aynı noktadan · kırmızı piksel yok · gök/deniz §1.5 hedefleri · demet/kanat zonları ayrı (EV-D2) |
+| **K2** | **P11 p128** (gün insert; kese havada, avuç gevşek, muhafız eli omuzda) ve eşi **P07 p72** | Gündüz paleti + 4 el tipi + kese/sikke + P07/P11 ayna kadrajı | kese ≥ %10 (≥ 192 px), 360 px'te "kese" okunur · iki el tipi 360 px'te ayrışır (zeytin ↔ kaba yün ↔ murdum yen) · omuza basan el kumaşı bastırıyor · sikke yüzünde harf/rakam yok · P07 ile kese konumu ±10 px · gümüş/altın gösterge ayırt edilir · ayak/temas y ≤ 1480 · Lagâri ıslaklığı (P07) okunur |
+| **K3** | **P14 son kare ↔ P01 p0** (yan yana) | İmza motifi + döngü + kitap dili + dil-nötr hat | kıvılcım ekran noktası/boyutu iki karede aynı (±6 px) · kenar çizimi konturu cs 4.6'da P01 dekor konturuyla aynı kalınlık sınıfında (5–7 px) · hat çizgilerinde okunur harf yok (1080 ve 360 px) · sayfada kıvılcımdan başka renk yok · P01 p0'da Lagâri oturan, demet + fitil + kıvılcım alt üçte birde, güvenli alan içinde |
+| (4) | P12 p66 | profil + şerit | göz/ağız çizilmemiş; şerit pencere aralığından türemiş, yüz konturunda göz hizasında; yüz alanı ≥ %12 |
+
+---
+
+## 10. Açık sorular
+
+**Kullanıcı kararı gerektirenler**
+1. **İmza nesnesi = fişek demeti** (kanat değil; gerekçe §2.1). Onay?
+2. **Gündüz saati = sabah, güneş doğu-kuzeydoğuda** [T]: kaynak saat vermiyor; kontra ve P12 pencere ışığı için fiziksel olarak tek tutarlı seçenek. Onay? (Alternatif: öğle/öğleden sonra → P09 kontra siluet düşer, Hezarfen önden aydınlık olur.)
+3. **Ayırıcı olarak sakal (Hezarfen) / bıyık (Lagâri)** — kişiye özel kanıt yok, tasarım kararı. Kabul mü, yoksa ikisi de aynı (nötr) mu?
+
+**Araştırmacıya (doğrulanmalı, [G])**
+4. 17. yy. İstanbul'da halk erkeğinin sarık rengi (açık/krem genel mi), sakal geleneği.
+5. Fişek kılıfı malzemesi (kâğıt/karton/kamış/kil) — doğrulanmazsa düz mat silindir.
+6. Kese biçimi (büzgülü bez/deri) ve 17. yy. altın sikke çapı (≈ 20 mm?).
+7. 17. yy. Osmanlı yazıcısının yazı yüzeyi (rahle/diz/alçak sehpa) — "masa" ifadesi.
+8. Renkli havai fişeğin 19. yy. olduğu (şenlik renksiz kararı buna dayanıyor).
+9. Galata/Üsküdar çatı malzemesi 1630'larda (kiremit?).
+10. Köşk pencere kanadı/kepenk biçimi (ahşap düz panel varsayıldı).
+
+**Orkestraya / sonraki ajana**
+11. Sanat yönetmeni kalıbındaki "imza nesnesi: Chappe kulesi" bu bölüme ait değil; kalıp güncellenmeli.
+12. P06–P07 kanat sürekliliği: kanat suda kalır mı (P06'da gösterilmeli) yoksa ıslak-katlı sırtta mı? Motion/yönetmen birini seçer; ikisi arasında kaybolma yok (§3.2).
+13. `Efektler.tsx` kapsamı okunmadı; motion mevcut efektleri §5 sözleşmesine göre eşler.
