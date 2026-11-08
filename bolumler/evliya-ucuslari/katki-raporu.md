@@ -277,3 +277,38 @@
     - kontrol_ek kareleri (P05 p110, P06 p215/p286) render edilmedi.
   - Teknik: makinede Chrome indirilemiyor (remotion.media DNS). Render için `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell` gerekli. `npm install` yapıldı.
   - Öz puan: K1 kareleri 6/10. Ham P06 bolum.json ölçeği yüzünden kullanılamaz; öneri kareleri değerlendirilmeli.
+
+## elestirmen (opus) · 2026-11-08 · K1 şablon kalibrasyonu (SARAYBURNU kiyi gece, P05 p78 / P06 p76)
+- Ne yaptım:
+  - Öneri karelerini (tam, telefon, güvenli alan) ve renk ölçümünü inceledim.
+  - Kodu değiştirmeden `oneri-props.json` ile ek kareleri render ettim: P05 p0/p30/p78 (1080)/p110/p204, P06 p0/p50/p100/p215/p290.
+  - Sarık, ten, gök ve deniz kromasını ve imzaya ΔE76 değerlerini render üzerinden ölçtüm.
+  - Karar: **KALDI**. 6 kritik, 12 orta, 6 küçük bulgu ve 10 ders yazdım.
+- Dokunduğum dosyalar: `bolumler/evliya-ucuslari/kalibrasyon/K1/elestiri.md` (yeni), `bolumler/evliya-ucuslari/katki-raporu.md` (ek). Render'lar scratchpad'de, repoya girmedi.
+- Aldığım kararlar ve gerekçeleri:
+  - Motion sapmalarından ayak dayama 0.333 m'yi ve meşale taşıma pozunu kabul ettim; rig ile tutarlılar ve iddia taşımıyorlar.
+  - Katlı kanat enini (100) reddettim; tahta gibi okunuyor.
+  - Meşale sap boyunu ve yolunu reddettim; Lagâri'nin yüzünü ve demeti örtüyor.
+  - P05 ve P06 ölçek önerilerini reddettim. Yükselişi siliyorlar ve "köşkün önünde iniş" ile çelişiyorlar. Bunun yerine yönetmene tek ve tutarlı bir yol önerdim: dik yükseliş, birlikte bırakma, yakına düşen demet, köşke push-in.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - İmza tekilliği: sarık render'da ΔE 12.0; imza tonunun çoğu demetin dışında.
+  - Fizik: fitil gerili ip gibi uzuyor; demet suda köşesinin üstünde dikiliyor; Lagâri suyun üstünde havada.
+  - Süreklilik: P05→P06'da püskürme sönüp yeniden yanıyor; Lagâri demetten ayrılıyor.
+  - Okunabilirlik: meşale alevi yüzün üstünde; sıçrama ve kol jesti yok.
+  - Ufuk–ölçek ve doğruluk: iniş köşkün önünde değil.
+  - Dönem ve kostüm: kubbe + minare silueti; kompars klapası ve pantolonu; çizgili kumaş taraması; sarık bere gibi.
+  - Renk tonu: gece kroması hedefin %30'u.
+  - Güvenli alan: P06'da Y1 ayağı y 1530.
+  - Kontrol protokolü: ilk ve kapanış kareleri pakette yoktu.
+- Açık sorular / bir sonraki ajana notlar:
+  - Tasarımcı:
+    - Sarık tonu ve biçimi.
+    - Ten muafiyeti (önerim: muaf değil, render'da ΔE ≥ 15).
+    - Kompars kostümü ve duruşu (sırtı ya da arka 3/4'ü kameraya).
+    - Kanat oyukları ve katlı kanat.
+    - §2.2'de dayama 0.333 m.
+  - Mekân sorumlusu: baca ve örtü silueti (minare okunmamalı); pencere halesi; gece kroma hedefi.
+  - Yönetmen: P05 ve P06 yolu, `bagli`, `puskurme.bit 210`, P06 Y1 y'si ya da cy.
+  - Motion: K1–K6, O9–O11, S1/S3/S4; ArsivKatmani gece doygunluğu; `renk_olcum.py`'ye C\* ve kostüm parçası başına imza raporu.
+  - Kontrol paketine ilk, temas ve kapanış kareleri ile eşleşen kesmenin iki tarafı eklenmeli.
+  - Bir sonraki eleştiri turunda P05 p204 ↔ P06 p0 yan yana bakılmalı.
