@@ -184,3 +184,96 @@
   - Motion: `sinirlar.json`'a `kanat-birak` jesti ve `suda` kanat durumu eklenmeli (KE-Y6); kalibrasyonda P06 p76/p215/p286, P10 son kare, P12 p66, P13 p60 öncelik.
   - Mekân sorumlusu: (b) ve (d) için karar; P13 kamera önerisi cx -390, cy 80 (hesap, render yok).
   - Orkestra: `DOKUNUS-KUTUPHANESI.md` hâlâ güncellenmedi (önceki turdan).
+
+## motion · 2026-11-08 · Kurulum AŞAMA 1: K1 kalibrasyonu (SARAYBURNU `kiyi` gece; P05 p78, P06 p76)
+- Ne yaptım:
+  - `SARAYBURNU` şablonu: `gorunum` + `saat`. Yalnız `kiyi` + `gece` kuruldu. Diğer görünümler açık hata verir; yer tutucu çizilmez.
+  - Kıyı dekoru mekanlar §1.2 tablosundan: gök 3 basamak + duman bandı, Asya kıyısı, ağaç, sur + kare kule, Sinan Paşa Köşkü, deniz, rıhtım dudağı, döşeme.
+    - Köşk metre geometrisiyle çizildi: 17 px/m, osmanlı çifte kemer, çeşme nişi, cumba + ışıklı orta pencere, basık örtü, 4 kare baca.
+    - Deniz düz taban + perspektif dalga çizgileri + yansıma kolonları.
+    - Döşeme ufuk noktasına yakınsar, odak 2550.
+  - Fizik:
+    - Rıhtımdaki figürün ölçeği ufuk–ölçek kuralından gelir. Havadakiler `olcek` alır.
+    - `oturan` + `bagli`: kalça oturakta, ayaklar dayamada, eller sicim bağında ve oturak kenarında (IK).
+    - Tek ışık: püskürme (bas+6'dan) ya da meşale. Gölgeler ve kukla kenar ışığı aynı tanımdan; mavi RIM yok.
+  - Kukla genişletildi:
+    - `kostum: osmanli | osmanli-kisa` (entari, önü açık kaftan, kuşak, yen ağzı; etek uyluk/baldır açısını izler).
+    - `sapka: sarik | sarik-basik | takke`, `sac: sarikalti`, `cene: olgun`, `biyikOlcek`.
+    - `arka / arkaUst / on` yuvaları (kanat). Osmanlı mestte #000 yok.
+  - Prop'lar: `fisek-demet` (5 tüp, 3 sicim bağı, oturak, dayama, kızak; titreme, boş, dönüş), `mesale`, `kanat` (katlı ↔ açık morf), `baslik`, fitil.
+  - Efektler (`GravurEfekt.tsx`): püskürme (koni + zemine çarpan alev dilleri + kıvılcım), duman, fitil kıvılcımı.
+  - Jestler: `sicra`, `kanat-ac`, `ucus`. `yuz` ve `kanat-birak` şemada var ama kurulumda: çizilmiyor, doğrulayıcı uyarıyor.
+  - `bolum.json` `gorsel_yazisiz: true` olunca Bolum yazı ve etiket çizmiyor.
+  - `sinirlar.json` + `bolum_dogrula.mjs` SARAYBURNU için genişletildi:
+    - `konum: xy`, `kurulu` (kurulmamış görünüm = HATA), `jestlerKurulumda`, `propSablon`, `propKurulumda`.
+    - Ufuk–ölçek uyarısı, `bagli` denetimi, `oturan` pozu.
+  - Renk ölçüm betiği `tools/renk_olcum.py`: L*/ΔE00/ΔH, imza tonu taraması, kırmızı ve mavi RIM taraması.
+  - Render: P05 p78 ve P06 p76, her biri "ham" (bolum.json olduğu gibi) ve "öneri" (aşağıdaki değerler). Her biri tam (scale 0.5), telefon 360x640 ve güvenli alan bindirmeli.
+- Dokunduğum dosyalar:
+  - Yeni:
+    - `src/kit/sablonlar/sarayburnu/{index.tsx, Kiyi.tsx, KiyiDekor.tsx, SinanPasaKosk.tsx, geo.ts}`
+    - `src/kit/props/evliya.tsx`, `src/kit/paletler/evliya.ts`, `src/components/GravurEfekt.tsx`
+    - `tools/renk_olcum.py`
+    - `bolumler/evliya-ucuslari/kalibrasyon/K1/*` (12 PNG, `oneri-props*.json`, `renk-olcum.json/.md`)
+  - Değişen:
+    - `src/rig/Kukla.tsx`, `src/rig/kinematik.ts` (`govdeDunya`)
+    - `src/doku/Kemer.tsx` (`osmanli` tipi), `src/doku/sabitler.ts` (seed'ler)
+    - `src/kit/{tipler.ts, karakterler.ts, Bolum.tsx, sinirlar.json, KATALOG.md}`
+    - `src/kit/props/index.tsx`, `src/kit/sablonlar/kayit.ts`, `tools/bolum_dogrula.mjs`
+  - `bolum.json`'a DOKUNMADIM (sahibi yönetmen); öneri değerleri ayrı props dosyasında.
+- Aldığım kararlar ve gerekçeleri:
+  - **Kukla genişletildi, yeni `KuklaOsmanli` yazılmadı.**
+    - İskelet, IK/kinematik, jest kütüphanesi, RigIsik ve yüz sistemi ortak. Yalnız kostüm katmanı farklı.
+    - Ayrı bileşen bunları kopyalardı.
+    - Osmanlı dalı yalnız `palet.kostum` verilince çalışır. Blanc yolu değişmedi: 4 Blanc karesi piksel farkı 0, doğrulayıcı sonuçları birebir aynı.
+  - Konum dili `xy` (zemin teması) seçildi; ölçek ufuk–ölçekten. bolum.json zaten dekor px veriyordu. Havadaki nesnenin derinliği y'den çıkarılamadığı için `olcek` istenir.
+  - Kurulmamış görünüm hata verir. "En yakınla doldurma" yok.
+  - Işık havuzu gradyan yerine 2 düz basamak (minyatür düz alan kuralı; iç ton ≈ #786857, hedef #7e6a52).
+- Kareye uyarlarken değişen değerler (yönetmen plana işlesin):
+
+  | Öğe | bolum.json / şartname | K1'de | Gerekçe |
+  |---|---|---|---|
+  | P05 Lagâri `bagli.dy −350` | json | yok sayıldı | Oturak fiziği uygulandı: kalça oturakta, ayak dayamada |
+  | Demet ayak dayaması | tasarim: oturak −0.45 m | −0.333 m | KE-K6 açılarıyla (uyluk −84, diz 78) ayak buraya iner |
+  | Katlı kanat eni | tasarim: 0.35H ≈ 200 birim | 100 birim, iki kat üst üste | 200 birimde Y1'i örten üçgen yelken gibi okunuyordu |
+  | P05 `mesale` p78 (216,1039) | json | taşıma pozu | Baş omuza 0.5 m: gövdenin içine düşüyordu. Omuzdan ≥ 0.9 m'de json yolu izlenir |
+  | P06 `mesale` | json'da yok | yardımcı-1'in elinde | mekanlar §0.6: kıyı gecede anahtar ışık meşale |
+  | P05 kanat | json'da yok | Lagâri sırtında katlı | tasarim §3.2 (P01 A–P05) |
+  | P05/P06 yardımcı-2 | x 240, y 1290 | öneri: x 112, y 1282 | Y1'in sıçrama yolu (300→190) Y2'nin üstünden geçiyor |
+  | P05 demet `olcek` | yok (1) | öneri [1,1,.92,.78,.62] @ [0,112,130,160,198] | Kalkıştan sonra denize uzaklaşır |
+  | P06 demet `olcek` | yok (1) | öneri [.62,.6,.59,.53,.47] | y 1200'de su düzlemi 192 px/m = 0.47 |
+  | P06 Lagâri `olcek` | [1…,.9,.85] | öneri [.62,.6,.58,.55,.52,.48,.45,.45,.44,.43] | İniş y 1180'de su = 0.45. Ham değerle kanat ≈1260 px'tir, kadrajdan taşar (tasarim ≈520 px) |
+
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Uyguladıklarım:
+    - Ufuk–ölçek: yardımcı başları ufuk y 720'de.
+    - Tek ışık: gölgeler kaynağın tersine; püskürmede sola, meşalede sola.
+    - Saf siyah/beyaz yok. Görüntüde yazı yok. İmza demet: 5 tüp, 7 sayılabilir öğe yok. Meşale eli izler. Takke ayrılınca baştan gizlenir.
+    - Güvenli alan: P05 p78'de 0 ihlal.
+    - Doğrulayıcı: P05/P06'da 0 hata. P06'da 4 uyarı: `yuz`/`kanat-birak`/`suda` kurulumda, `oturan` bağsız.
+  - Yakaladıklarım:
+    - (1) TEN tonu imza bandında: Lagâri #d9a77f ΔE76 10.8, yardımcı-1 #b88a68 ΔE76 14.7. Bölge dışındaki imza örneklerinin kaynağı bu. Kostüm ve prop'lar ≥ 21.8.
+    - (2) Ham P06'da ölçek ve kadraj taşması.
+    - (3) Y1/Y2 üst üste.
+    - (4) P06 p76'da yardımcı-1 ayağı y 1530, alt 420 içinde. Kamera cy 200; sahne planında kabul edilmiş, temas yok.
+  - Renk ölçümü: 23 TAMAM.
+    - Demet tüp yüzü L* 61.6: tasarımın 55–72 aralığında.
+    - Gök L* tolerans içinde, ama ArsivKatmani sonrası kroması düşük (#2b2c31, b* < 0 korunuyor).
+    - Kırmızı ≤ 1 örnek, mavi RIM 0.
+- Açık sorular / bir sonraki ajana notlar:
+  - Tasarımcıya: ten ↔ imza ΔE (yukarıdaki 1).
+  - Yönetmene:
+    - Öneri tablosu.
+    - P06 Lagâri p0–46 demette oturuyor ama `bagli` yok; json x/y demetten 500 px yukarıda. `bagli {prop, bit: 46}` önerilir.
+    - P05 meşale yolu p30 fitil teması render edilmedi.
+  - Eleştirmene:
+    - Köşkün 4 bacası 360 px'te minare/kule gibi okunuyor mu?
+    - Açık kanadın 3 oyuğu yarasa kanadı gibi okunuyor mu?
+    - Katlı kanat "tahta" gibi mi okunuyor?
+    - Sarık biçimi.
+    - Yüzsüz yardımcıda burun konturu kaldırıldı (gülümseme gibi okunuyordu).
+  - Kurulmayanlar:
+    - `yuz`, `kanat-birak`, suda kanat, E3 halka ve buhar, `islak`, damlalar, başlığın iniş/yuvarlanma kapanışı (yol json'dan izleniyor, iniş gölgesi var).
+    - kontrol_ek kareleri (P05 p110, P06 p215/p286) render edilmedi.
+  - Teknik: makinede Chrome indirilemiyor (remotion.media DNS). Render için `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell` gerekli. `npm install` yapıldı.
+  - Öz puan: K1 kareleri 6/10. Ham P06 bolum.json ölçeği yüzünden kullanılamaz; öneri kareleri değerlendirilmeli.

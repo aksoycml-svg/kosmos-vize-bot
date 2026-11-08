@@ -3,7 +3,7 @@
 // Kare sayıları 60 fps; plan içi kareler 0'dan başlar (plan karesi p).
 import type { Agiz, Palet } from "../rig/Kukla";
 
-export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ";
+export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU";
 export type Bant = "ust" | "alt";
 export type P = [number, number];
 
@@ -13,27 +13,34 @@ export type Sayi = number | number[];
 // Kamera: kare dizisi + cs (ölçek), cx/cy (ekran kayması px). egri: giris (bezier .16,1,.3,1) | inout | lineer (kaymalar)
 export type Kamera = { kare: number[]; cs: number[]; cx?: number[]; cy?: number[]; egri?: "giris" | "inout" | "lineer" };
 
-export type JestAdi = "yuru" | "konus" | "isaret" | "sapka-kaldir" | "baston-vur" | "esne" | "it-cek" | "eldiven-giy" | "fisilda" | "yaz" | "bak";
+export type JestAdi = "yuru" | "konus" | "isaret" | "sapka-kaldir" | "baston-vur" | "esne" | "it-cek" | "eldiven-giy" | "fisilda" | "yaz" | "bak"
+  | "sicra" | "kanat-ac" | "ucus" | "yuz" | "kanat-birak"; // Evliya (SARAYBURNU kıyı); yuz/kanat-birak kurulumda (doğrulayıcı uyarır)
 export type JestCagri = { ad: JestAdi; bas: number; bit: number; ops?: Record<string, number | string | boolean | number[]> };
 
 export type Karakter = {
   kim: string;                 // karakterler.ts kaydı (francois, louis, memur, ...)
-  z: Sayi; u: Sayi;            // derinlik / yanal; dizi ise `kare` ile anahtarlanır (yürüyüş yolu)
+  z?: Sayi; u?: Sayi;          // derinlik / yanal; dizi ise `kare` ile anahtarlanır (yürüyüş yolu). SARAYBURNU: x/y kullanılır
+  x?: Sayi; y?: Sayi;          // SARAYBURNU: dekor px, ayak tabanı noktası (ölçek ufuk–ölçek kuralından; havada `olcek`)
+  olcek?: Sayi;                // SARAYBURNU: derinlik çarpanı (1 = rıhtım y 1330, 406 px/m); zemindeki figürde y'den türetilir
+  bagli?: { prop: string; dx?: number; dy?: number }; // SARAYBURNU: oturan karakter prop'un oturağına bağlı (ayaklar dayamada)
+  durum?: Record<string, Sayi | boolean[]>;          // SARAYBURNU: islak, kanat (anahtarlı)
   kare?: number[];
   yon?: 1 | -1;                // 1 = sağa bakar, -1 = sola
   jestler?: JestCagri[];
   yuz?: { ifade?: Agiz | "hasta"; bakis?: P; kas?: number; yakin?: boolean; ter?: boolean }; // K3: "hasta" = solgun + göz altı + yarı kapalı göz
-  poz?: "ayakta" | "yatik";    // K3: yatik = yatakta sırtüstü (IC-ODA oda=yatak → yatağa oturur; YAKIN-YUZ yatik: true)
+  poz?: "ayakta" | "yatik" | "oturan"; // K3: yatik = yatakta sırtüstü (IC-ODA oda=yatak → yatağa oturur; YAKIN-YUZ yatik: true). Evliya: oturan (demet oturağı)
   yuzVaryant?: string;         // K3: kayıttaki yüzü ezer (YUZLER anahtarı); bölümde iki kişi aynı varyantı kullanırsa doğrulayıcı uyarır
   palet?: Partial<Palet>;      // bölüme özel kostüm/ten (ör. solgun memur)
   aksesuar?: ("cep-eldiven" | "baston")[];
   etiket?: { ad: string; alt?: string; bas?: number; bit?: number };
 };
 
-export type PropTur = "paket" | "eldiven" | "corap" | "dosya" | "kitap" | "kese" | "hokka" | "mum" | "fener";
+export type PropTur = "paket" | "eldiven" | "corap" | "dosya" | "kitap" | "kese" | "hokka" | "mum" | "fener"
+  | "fisek-demet" | "mesale" | "baslik" | "kanat"; // Evliya (SARAYBURNU kıyı)
 export type Prop = {
   tur: PropTur; id?: string;
-  x: Sayi; y: Sayi; kare?: number[];           // MASA-INSERT: ekran px (masa düzlemi). IC-ODA: x = u (m), y = z (m)
+  x?: Sayi; y?: Sayi; kare?: number[];         // MASA-INSERT: ekran px (masa düzlemi). IC-ODA: x = u (m), y = z (m). SARAYBURNU: dekor px (zemin teması)
+  bagli?: string;                              // SARAYBURNU: tutan/taşıyan karakter (mesale → el, kanat → sırt)
   olcek?: number; aci?: Sayi;
   durum?: Record<string, Sayi | string | boolean>; // ör. paket {acik: [0.5,1]}, dosya {kapak: [0,1]}, kitap {sayfa: [0,1]}
   // K4 (IC-ODA) el–prop teması: `it` = karakterin ön eli prop'u masada iter (bas–bit eli prop'un arkasında izler; prop yolu x/y anahtarı);
@@ -78,5 +85,6 @@ export type Plan = {
 
 export type BolumJson = {
   slug: string; baslik: string; fps: 60; dil?: "tr" | "en";
+  gorsel_yazisiz?: boolean; // true: görüntü yazısız render edilir (yazı/etiket dil katmanında, KE-Y)
   planlar: Plan[];
 };

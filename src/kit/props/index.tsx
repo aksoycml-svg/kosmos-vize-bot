@@ -138,7 +138,10 @@ const paketGolge = (o: PropCiz) => { const k = Math.min(1, sayi(o.durum, "kapan"
 const Paket: React.FC<PropCiz> = (o) => o.golge ? paketGolge(o) : <PaketKagidi x={0} y={0} acik={sayi(o.durum, "acik", 1)} ipCozuk={o.durum.ipCozuk !== false} kabarti={sayi(o.durum, "kabarti", 0)} etiket={o.durum.etiket !== false} seed={o.seed} />;
 const EldivenP: React.FC<PropCiz> = (o) => <Eldiven elBoyu={sayi(o.durum, "elBoyu", 266)} golge={o.golge} golgeRenk={o.golgeRenk} />;
 
-export const PROPLAR: Record<PropTur, React.FC<PropCiz>> = { paket: Paket, eldiven: EldivenP, corap: Corap, dosya: Dosya, kitap: Kitap, kese: Kese, hokka: Hokka, mum: Mum, fener: Fener };
+// Evliya prop'ları (fisek-demet, mesale, baslik, kanat) ışık/karakter bağlamı ister: yalnız SARAYBURNU şablonu çizer (props/evliya). Başka şablonda açık hata.
+const YalnizSarayburnu = (tur: string): React.FC<PropCiz> => () => { throw new Error(`[kit] prop "${tur}" yalnız SARAYBURNU şablonunda çizilir`); };
+export const PROPLAR: Record<PropTur, React.FC<PropCiz>> = { paket: Paket, eldiven: EldivenP, corap: Corap, dosya: Dosya, kitap: Kitap, kese: Kese, hokka: Hokka, mum: Mum, fener: Fener,
+  "fisek-demet": YalnizSarayburnu("fisek-demet"), mesale: YalnizSarayburnu("mesale"), baslik: YalnizSarayburnu("baslik"), kanat: YalnizSarayburnu("kanat") };
 
 // Prop'un p anındaki durum değerleri (dizi → kare ile anahtarlanır)
 export const propDurum = (pr: Prop, p: number): PropCiz["durum"] => {

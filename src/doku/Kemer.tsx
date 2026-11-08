@@ -6,8 +6,9 @@ import { Basamak, Tarama } from "./Tarama";
 // tip: duz (lento) · basik (segmentaire, yükselti 0.10–0.15 W) · yarimDaire (plein cintre, 0.5 W) · sivri (gotik — YALNIZ Saint-Michel).
 // Kemer yükseltisi DÜNYA biriminde açıklık GENİŞLİĞİNDEN hesaplanır (W, H metre), sonra eşlemeyle perspektife gider.
 // Varsayılan klasik: yarimDaire. Doğrama paralel dikey + yatay kayıtlar (tepeye yakınsayan kayıt YOK).
-export type KemerTip = "duz" | "basik" | "yarimDaire" | "sivri";
-export const KEMER_YUKSELTI: Record<KemerTip, number> = { duz: 0, basik: 0.13, yarimDaire: 0.5, sivri: 0.87 };
+// osmanli (Evliya, mekanlar.md §0.4): iki merkezli basık-sivri; merkezler üzengi hattında ortadan ±0.134 W, R = 0.634 W, yükselti 0.62 W.
+export type KemerTip = "duz" | "basik" | "yarimDaire" | "sivri" | "osmanli";
+export const KEMER_YUKSELTI: Record<KemerTip, number> = { duz: 0, basik: 0.13, yarimDaire: 0.5, sivri: 0.87, osmanli: 0.62 };
 
 // Açıklığın üst eğrisi: u ∈ [0,1] → yükseklik (açıklık tabanından, metre)
 export const kemerEgri = (tip: KemerTip, W: number, H: number, rise = KEMER_YUKSELTI[tip] * W) => (u: number) => {
@@ -16,6 +17,7 @@ export const kemerEgri = (tip: KemerTip, W: number, H: number, rise = KEMER_YUKS
   if (tip === "duz" || rise <= 0) return H;
   if (tip === "yarimDaire") return sp + Math.sqrt(Math.max(0, (W / 2) ** 2 - x * x)) * (rise / (W / 2));
   if (tip === "basik") { const R = (W * W / 4 + rise * rise) / (2 * rise); return sp + Math.sqrt(Math.max(0, R * R - x * x)) - (R - rise); }
+  if (tip === "osmanli") { const c = 0.134 * W, R = 0.634 * W, tepe = Math.sqrt(R * R - c * c); const xc = x < 0 ? x - c : x + c; return sp + (Math.sqrt(Math.max(0, R * R - xc * xc)) * rise) / tepe; }
   const d = W / 2 - Math.abs(x); // sivri: iki merkezli (eşkenar)
   return sp + Math.sqrt(Math.max(0, W * W - (W - d) ** 2)) * (rise / (W * 0.866));
 };

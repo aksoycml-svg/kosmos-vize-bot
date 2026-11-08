@@ -53,3 +53,6 @@ export const kolIK = (pz: Poz, hedef: [number, number], on = true, ofset: [numbe
   for (let sh = b0.sh - 3; sh <= b0.sh + 3; sh += 0.25) for (let el = b0.el - 3; el <= b0.el + 3; el += 0.25) dene(sh, el);
   return { ...best, hata: err };
 };
+
+// Gövde çerçevesindeki (Kukla arka/on yuvaları: bodyY + lean dönüşü ÖNCESİ yerel) noktanın dünya koordinatı
+export const govdeDunya = (pz: Poz, q: [number, number]): [number, number] => ap(mul(mul(T(pz.x, pz.y), S((pz.scale ?? 1) * (pz.facing ?? 1), pz.scale ?? 1)), mul(T(0, pz.bodyY ?? 0), R(pz.lean ?? 0, 0, -226))), q);

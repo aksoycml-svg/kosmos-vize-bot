@@ -81,6 +81,8 @@ for (const plan of B.planlar ?? []) {
   for (const [ad, izin] of Object.entries(S.parametreler)) if (prm[ad] !== undefined && !izin.includes(prm[ad])) H(Y, `${ad}="${prm[ad]}" geçersiz (${izin.join(" | ")})`);
   // şablona özel kurallar
   if (plan.sablon === "SOKAK" && prm.saat === "gun" && prm.sehir !== "bordeaux") H(Y, "SOKAK gün yalnız bordeaux (paris yalnız gece)");
+  // Evliya: kurulmamış görünüm/saat render'da hata verir (yer tutucu çizilmez)
+  if (S.kurulu && prm.gorunum !== undefined && !(S.kurulu[prm.gorunum] ?? []).includes(prm.saat)) H(Y, `${plan.sablon} gorunum "${prm.gorunum}" / saat "${prm.saat}" henüz kurulmadı (kurulu: ${Object.entries(S.kurulu).map(([g, s]) => `${g}+${s.join("/")}`).join(", ")})`);
   if (plan.sablon === "SOKAK" && prm.insert) { if (prm.insert.tur !== "fare") H(Y, "insert.tur yalnız 'fare'"); if (prm.insert.bas + 66 > sure) H(Y, `fare insert'i (66 kare) plan sonunu aşıyor`); }
   if (plan.sablon === "KULE-DIS") {
     const kl = prm.kuleler ?? [];
@@ -130,6 +132,19 @@ for (const plan of B.planlar ?? []) {
     const y = `${Y} ${c.kim ?? `karakter${i}`}`;
     if (!SN.karakterler.includes(c.kim)) H(y, `bilinmeyen karakter (kayıt: ${SN.karakterler.join(", ")})`);
     if (S.z && plan.sablon !== "YAKIN-YUZ") { aralik(y, "z", c.z, S.z); aralik(y, "u", c.u, S.u); }
+    if (S.konum === "xy") {
+      // SARAYBURNU: x/y dekor px yolu; olcek anahtarlı; ufuk–ölçek (kiyi: rıhtımdaki figürün ölçeği y'den — json olcek farkı uyarılır)
+      for (const ad of ["x", "y", "olcek"]) anahtarUzunluk(y, ad, c[ad], c.kare);
+      for (const [ad, v] of Object.entries(c.durum ?? {})) anahtarUzunluk(y, `durum.${ad}`, v, c.kare);
+      if (Array.isArray(c.x) || Array.isArray(c.y) || Array.isArray(c.olcek)) bitis(y, "yol (kare)", son(c.kare));
+      if (c.x === undefined && !c.bagli) H(y, "x/y yok (SARAYBURNU konum dili: dekor px, zemin teması)");
+      if (c.bagli && !(plan.props ?? []).some((q) => q.id === c.bagli.prop)) H(y, `bagli.prop "${c.bagli.prop}" planda yok`);
+      if (c.poz === "oturan" && !c.bagli) U(y, "poz oturan ama bagli yok: oturak/dayama bilinmez, ayaklar havada kalır — bagli {prop} ver ya da süreyi böl");
+      if (prm.gorunum === "kiyi" && c.olcek !== undefined && !c.bagli) {
+        const ys = dizi(c.y), os = dizi(c.olcek);
+        ys.forEach((yy, i) => { const o = os[Math.min(i, os.length - 1)]; if (yy >= 1256 && Math.abs(o - (yy - 720) / 610) / ((yy - 720) / 610) > 0.08) U(y, `ufuk–ölçek: y ${yy} rıhtımda → ölçek ${((yy - 720) / 610).toFixed(2)} (json olcek ${o} yok sayılır)`); });
+      }
+    }
     anahtarUzunluk(y, "z", c.z, c.kare); anahtarUzunluk(y, "u", c.u, c.kare); if (c.kare) artan(y, c.kare);
     if (Array.isArray(c.z) || Array.isArray(c.u)) bitis(y, "yol (kare)", son(c.kare));
     // K3: ifade / poz / yüz varyantı
@@ -141,6 +156,7 @@ for (const plan of B.planlar ?? []) {
     if (varyant) { if (!yuzKullanim.has(varyant)) yuzKullanim.set(varyant, new Map()); const m = yuzKullanim.get(varyant); if (!m.has(kisi)) m.set(kisi, plan.id); }
     for (const j of c.jestler ?? []) {
       if (!SN.jestler.includes(j.ad)) H(y, `bilinmeyen jest ${j.ad}`);
+      else if ((SN.jestlerKurulumda ?? []).includes(j.ad)) U(y, `jest ${j.ad} kurulumda: şemada var, henüz ÇİZİLMİYOR (kit_eksik; render'da etkisiz)`);
       if (!(j.bas < j.bit) || j.bas < 0) H(y, `jest ${j.ad} zamanı [${j.bas}, ${j.bit}] geçersiz`);
       else bitis(y, `jest ${j.ad}`, j.bit);
       if (j.ad === "yuru" && !Array.isArray(c.z) && !Array.isArray(c.u)) U(y, "yuru jesti var ama z/u yolu (dizi) yok — yerinde sayar");
@@ -154,6 +170,10 @@ for (const plan of B.planlar ?? []) {
   const propIdler = new Set();
   for (const pr of plan.props ?? []) {
     if (!SN.props.includes(pr.tur)) H(Y, `bilinmeyen prop ${pr.tur}`);
+    if (SN.propSablon?.[pr.tur] && !SN.propSablon[pr.tur].includes(plan.sablon)) H(Y, `prop ${pr.tur} yalnız ${SN.propSablon[pr.tur].join(", ")} şablonunda çizilir`);
+    for (const alan of SN.propKurulumda?.[pr.tur] ?? []) if (pr[alan] !== undefined) U(`${Y} ${pr.tur}`, `${alan} kurulumda: henüz ÇİZİLMİYOR (kit_eksik)`);
+    if (pr.bagli && typeof pr.bagli === "string" && !(plan.karakterler ?? []).some((c) => c.kim === pr.bagli)) H(`${Y} ${pr.tur}`, `bagli "${pr.bagli}" planda yok`);
+    if (pr.olcek !== undefined) anahtarUzunluk(`${Y} ${pr.tur}`, "olcek", pr.olcek, pr.kare);
     if (pr.id) propIdler.add(pr.id);
     anahtarUzunluk(`${Y} ${pr.tur}`, "x", pr.x, pr.kare); anahtarUzunluk(`${Y} ${pr.tur}`, "y", pr.y, pr.kare);
     for (const [k, v] of Object.entries(pr.durum ?? {})) anahtarUzunluk(`${Y} ${pr.tur}`, `durum.${k}`, v, pr.kare);

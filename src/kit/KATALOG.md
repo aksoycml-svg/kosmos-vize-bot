@@ -40,7 +40,7 @@ Dosya adı `bolum*.json` olmalı (bundle'a `require.context` ile girer). Kareler
 - **Dokunuş:** plan başına en çok bir `dokunus.id`; bölümde tekrar ederse doğrulayıcı hata verir. Kütüphane: `DOKUNUS-KUTUPHANESI.md`.
 
 ### Karakter kaydı (`kim`)
-`francois, louis, louis-eldivenli, memur, mudur, telgrafci, katip, tuccar, yargic` (src/kit/karakterler.ts). Bölüme özel kostüm/ten: `palet` override. Yeni karakter = kurulum ekibi (palet ekler).
+`francois, louis, louis-eldivenli, memur, mudur, telgrafci, katip, tuccar, yargic` (src/kit/karakterler.ts) · Evliya: `lagari, yardimci-1, yardimci-2` (src/kit/paletler/evliya.ts; Kukla `kostum: osmanli | osmanli-kisa`, `sapka: sarik | sarik-basik | takke`). Bölüme özel kostüm/ten: `palet` override. Yeni karakter = kurulum ekibi (palet ekler).
 
 ### Jest kütüphanesi (`jestler[].ad`, ops)
 | jest | ops | not |
@@ -159,6 +159,22 @@ Tek karakter yakın (rig `yakin` yüz), arka başka şablonun bulanık sahnesi.
 | `olcek` | 3.6 (≥ 3.5 ⇒ yüz ≥ %15) · `egim` (yastığa yaslanma °) · `yastik` · `bulanik` (16) · `isik` `gun`|`mum` |
 - 1 karakter; `z/u` yok sayılır. `esne` jesti burada kocaman `esneme` ağzı verir (K2).
 - `manipulator` (K2): `{ileri: [x, y] rig yerel (175, −280), yari (72)}` — göğüs önünde kumanda kolu; it-çek fazı kolu döndürür, el IK ile tutamakta; kablolar kadraj üstüne. Kol jest dışında da elde kalır (süreklilik).
+
+## SARAYBURNU (Evliya, İstanbul 1630'lar — kurulum K1: yalnız `kiyi` + `gece`)
+Sinan Paşa (İncili) Köşkü kıyısı (mekanlar.md §1). `src/kit/sablonlar/sarayburnu/`. Kurulmamış görünüm/saat render'da AÇIK HATA verir; doğrulayıcı da HATA.
+| parametre | değerler |
+|---|---|
+| `gorunum` * | `kiyi` (KURULU) · `kosk` · `insert` · `ic` (sonraki kalibrasyonlar) |
+| `saat` * | `gece` (KURULU) · `gun` |
+| `fitil` | `{bas, bit}` kıvılcım x 330'dan demet ağzına yürür (4 köşeli yıldız; yalnız burada) |
+| `puskurme` | `{bas, bit, sonuk}` demet ağızlarından püskürme; bas+6'dan anahtar ışık püskürme (meşale gölge payını devreder); yerdeyken zemine çarpan alev + kıvılcım, duman |
+| `kosk_konum` | `{su_cizgisi 762, ust 534, x [740, 928], px_m 17}` |
+- **Konum dili `xy`:** karakter/prop `x/y` = dekor px, ZEMİN TEMASI (ayak tabanı / kızak altı). Rıhtımdaki (y ≥ 1256) figürün ölçeği ufuk–ölçekten (ufuk 720, göz 1.5 m: px/m = (y − 720)/1.5; json `olcek` yok sayılır, doğrulayıcı farkı uyarır). Havadaki/sudaki nesne `olcek` (1 = y 1330, 406.7 px/m) ister — y'den türetilemez.
+- **Karakterler:** `lagari` (osmanli kostüm, sarık, bıyık, sırtta kanat varsayılan) · `yardimci-1` (yüzsüz, takke; **meşale ön elinde varsayılan** — mekanlar §0.6 tek ışık) · `yardimci-2` (yüzsüz, eller kuşakta). En çok 4.
+- **`poz: oturan` + `bagli: {prop: "<demet id>"}`:** kalça oturakta, ayaklar dayama çubuğunda, ön el üst sicim bağında, arka el oturak kenarında (x/y yok sayılır).
+- **Jestler:** `sicra` (geri adım + kol yüze, lean −12; meşale bele iner) · `kanat-ac` (kanat prop `durum.acik` 0→1; kollar ön kenar altına) · `ucus` (gövde 30° öne, bacaklar geride) · `yuz`, `kanat-birak` = KURULUMDA (şemada var, çizilmez; doğrulayıcı uyarır).
+- **Prop'lar (yalnız SARAYBURNU):** `fisek-demet` (İMZA #c4a874; durum `puskurme`, `titreme`, `bos`; `aci`; havada `olcek`) · `mesale` (`bagli` yardımcı; x/y = baş hedefi: omuzdan ≥ 0.9 m ise izlenir, değilse taşıma pozu; meşale her zaman eli izler) · `baslik` (takke; `kare[1]`'de sahibinin başından ayrılır, `olcek` 1.6 stilize; sahip varsayılan `yardimci-1`) · `kanat` (`bagli` karakter, `durum.acik`; `suda` KURULUMDA).
+- Kamera cs 0.9–3.0, cx ±300, cy −200…600; parallaks yok (mekanlar §0.1: hepsi f = 1).
 
 ## AVLU-SALON (kayıtlı değil)
 `src/kit/sablonlar/avlu-salon/AvluSalon.tsx` = SB2-BORSA P02 kodu (portikli avlu, kalabalık, tahta). Parametrelenmedi; `SB2-BORSA` kompozisyonu olarak çalışır. Gerektiğinde kurulum ekibi şablonlaştırır.

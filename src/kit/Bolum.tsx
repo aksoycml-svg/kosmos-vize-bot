@@ -78,7 +78,7 @@ const KilitBindirme: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> = 
   return <GuvenliAlan noktalar={kilit} aktifBant={alt ? "alt" : ust ? "ust" : null} baslik={`${plan.id} ${plan.sablon} p${p}`} />;
 };
 
-const PlanGoster: React.FC<{ plan: Plan; guvenli?: boolean }> = ({ plan, guvenli }) => {
+const PlanGoster: React.FC<{ plan: Plan; guvenli?: boolean; yazisiz?: boolean }> = ({ plan, guvenli, yazisiz }) => {
   const p = useCurrentFrame();
   const S = SABLONLAR[plan.sablon];
   if (!S) throw new Error(`[Bolum] bilinmeyen şablon: ${plan.sablon}`);
@@ -87,8 +87,9 @@ const PlanGoster: React.FC<{ plan: Plan; guvenli?: boolean }> = ({ plan, guvenli
   return (
     <AbsoluteFill style={{ backgroundColor: "#14110d" }}>
       {S.arsivAtla?.(plan, p) ? sahne : <ArsivKatmani mod={S.arsiv(plan)}>{sahne}</ArsivKatmani>}
-      <Etiketler plan={plan} p={p} kilit={kilit} />
-      <YaziKatmani plan={plan} p={p} />
+      {/* gorsel_yazisiz (iki dil): görüntüde yazı/etiket yok — dil başına ayrı şeffaf katman (KE-Y, sonraki aşama) */}
+      {!yazisiz && <Etiketler plan={plan} p={p} kilit={kilit} />}
+      {!yazisiz && <YaziKatmani plan={plan} p={p} />}
       {guvenli && <KilitBindirme plan={plan} p={p} kilit={kilit} />}
     </AbsoluteFill>
   );
@@ -114,7 +115,7 @@ export const Bolum: React.FC<BolumProps> = ({ yol, bolum, guvenli, foley, miks, 
     <AbsoluteFill style={{ backgroundColor: "#14110d" }}>
       {b.planlar.map((plan) => {
         const from = bas; bas += plan.sure_kare;
-        return <Sequence key={plan.id} from={from} durationInFrames={plan.sure_kare} name={`${plan.id} · ${plan.sablon}`}>{!katman && <PlanGoster plan={plan} guvenli={guvenli} />}{(!katman || katman === "anlatim") && <PlanSesleri plan={plan} />}</Sequence>;
+        return <Sequence key={plan.id} from={from} durationInFrames={plan.sure_kare} name={`${plan.id} · ${plan.sablon}`}>{!katman && <PlanGoster plan={plan} guvenli={guvenli} yazisiz={!!b.gorsel_yazisiz} />}{(!katman || katman === "anlatim") && <PlanSesleri plan={plan} />}</Sequence>;
       })}
       {(!katman || katman === "foley") && <FoleyKatmani b={b} foley={fj} miks={mj} fps={60} />}
       {(!katman || katman === "muzik") && <MuzikKatmani miks={mj} toplam={toplam} anlatim={anlatimAraliklari(b, sesSure, 60)} />}

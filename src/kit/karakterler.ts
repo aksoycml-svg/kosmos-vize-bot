@@ -4,6 +4,7 @@
 import type { Palet } from "../rig/Kukla";
 import SN from "./sinirlar.json";
 import { FRANCOIS_TABA, LOUIS_ELSIZ, LOUIS_ELDIVENLI, MEMUR, TELGRAFCI, KATIP, TUCCAR, KATIP_ACIK } from "../bolumler/blanc/palet";
+import { LAGARI, YARDIMCI_1, YARDIMCI_2 } from "./paletler/evliya";
 
 export type KarakterKayit = { palet: Palet; louis?: boolean; ad: string; yuzVaryant: string };
 
@@ -21,6 +22,8 @@ export const YUZLER: Record<string, Partial<Palet>> = {
   mudur: { yuz: { genislik: 1.05, yasCizgi: 0.8, burunTip: "yuvarlak" } },
   tuccar: { yuz: { genislik: 1.1, uzunluk: 0.97, yasCizgi: 0.3 }, sakal: true },
   yargic: { yuz: { uzunluk: 1.08, sac: "seyrek", yasCizgi: 1, kasAci: 4 }, biyik: "yok", hair: "#8a8478" },
+  // Evliya (KE-K1): yüz paletin içinde (LAGARI.yuz); varyant boş = kayıttaki yüz
+  lagari: {},
 };
 const VARYANT = (SN as { yuzVaryant: Record<string, string> }).yuzVaryant;
 const yuzlu = (kim: string, p: Palet): Palet => ({ ...p, ...(YUZLER[VARYANT[kim]] ?? {}) });
@@ -38,6 +41,10 @@ const HAM: Record<string, Omit<KarakterKayit, "yuzVaryant">> = {
   katip: { palet: KATIP, ad: "KATİP" },
   tuccar: { palet: TUCCAR, ad: "TÜCCAR" },
   yargic: { palet: { ...KATIP_ACIK, coat: "#2d2b28", coatDark: "#1a1917", coatLight: "#4a4742" }, ad: "YARGIÇ" },
+  // Evliya Uçuşları (İstanbul 1630'lar). ad = kayıt kimliği (ekranda yazı yok; replik plakası dil katmanından gelir)
+  lagari: { palet: LAGARI, ad: "lagari" },
+  "yardimci-1": { palet: YARDIMCI_1, ad: "yardimci-1" },
+  "yardimci-2": { palet: YARDIMCI_2, ad: "yardimci-2" },
 };
 export const KARAKTERLER: Record<string, KarakterKayit> = Object.fromEntries(
   Object.entries(HAM).map(([kim, k]) => [kim, { ...k, palet: yuzlu(kim, k.palet), yuzVaryant: VARYANT[kim] ?? kim }]),

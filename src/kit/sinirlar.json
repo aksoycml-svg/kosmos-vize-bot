@@ -1,57 +1,368 @@
 {
   "_not": "Tek kaynak: hem src/kit (TS) hem tools/bolum_dogrula.mjs okur. Şablon sınırları KATALOG.md ile aynı.",
   "fps": 60,
-  "bolum": { "sureMinSn": 30, "sureMaxSn": 65, "planMin": 8, "planMax": 14, "sablonMaks": 4 },
+  "bolum": {
+    "sureMinSn": 30,
+    "sureMaxSn": 65,
+    "planMin": 8,
+    "planMax": 14,
+    "sablonMaks": 4
+  },
   "planSureMinKare": 60,
   "sablonlar": {
     "SOKAK": {
-      "parametreler": { "sehir": ["bordeaux", "paris"], "saat": ["gece", "gun"] },
-      "zorunlu": ["sehir", "saat"],
-      "kamera": { "cs": [0.9, 3.4], "cx": [-200, 200], "cy": [-520, 120] },
-      "karakterMaks": 3, "z": [1.25, 4.5], "u": [0.12, 0.88],
+      "parametreler": {
+        "sehir": [
+          "bordeaux",
+          "paris"
+        ],
+        "saat": [
+          "gece",
+          "gun"
+        ]
+      },
+      "zorunlu": [
+        "sehir",
+        "saat"
+      ],
+      "kamera": {
+        "cs": [
+          0.9,
+          3.4
+        ],
+        "cx": [
+          -200,
+          200
+        ],
+        "cy": [
+          -520,
+          120
+        ]
+      },
+      "karakterMaks": 3,
+      "z": [
+        1.25,
+        4.5
+      ],
+      "u": [
+        0.12,
+        0.88
+      ],
       "not": "paris yalnız gece (Proto sokağı). insert.tur=fare 66 kare sürer."
     },
     "IC-ODA": {
-      "parametreler": { "oda": ["tours-buro", "bordeaux-cati", "yatak"], "isik": ["mum", "gun"] },
-      "zorunlu": ["oda", "isik"],
-      "kamera": { "cs": [0.95, 2.6], "cx": [-220, 220], "cy": [-400, 200] },
-      "karakterMaks": 3, "z": [2.2, 4.0], "u": [-2.0, 2.0],
-      "ortusme": { "dz": 0.6, "omuzM": 0.6, "F": 1150, "_not": "K2: |Δz| ≤ dz iken ekran x farkı < ½·(omuzM·F/z1 + omuzM·F/z2) ⇒ UYARI (karakterler örtüşüyor)" }
+      "parametreler": {
+        "oda": [
+          "tours-buro",
+          "bordeaux-cati",
+          "yatak"
+        ],
+        "isik": [
+          "mum",
+          "gun"
+        ]
+      },
+      "zorunlu": [
+        "oda",
+        "isik"
+      ],
+      "kamera": {
+        "cs": [
+          0.95,
+          2.6
+        ],
+        "cx": [
+          -220,
+          220
+        ],
+        "cy": [
+          -400,
+          200
+        ]
+      },
+      "karakterMaks": 3,
+      "z": [
+        2.2,
+        4.0
+      ],
+      "u": [
+        -2.0,
+        2.0
+      ],
+      "ortusme": {
+        "dz": 0.6,
+        "omuzM": 0.6,
+        "F": 1150,
+        "_not": "K2: |Δz| ≤ dz iken ekran x farkı < ½·(omuzM·F/z1 + omuzM·F/z2) ⇒ UYARI (karakterler örtüşüyor)"
+      }
     },
     "MASA-INSERT": {
-      "parametreler": { "aci": ["tepe-onden", "tepe", "tepe-egik"], "isik": ["fener", "gun"] },
-      "zorunlu": ["aci", "isik"],
-      "kamera": { "cs": [1.0, 1.5], "cx": [-120, 120], "cy": [-160, 160] },
-      "karakterMaks": 0, "elMaks": 2
+      "parametreler": {
+        "aci": [
+          "tepe-onden",
+          "tepe",
+          "tepe-egik"
+        ],
+        "isik": [
+          "fener",
+          "gun"
+        ]
+      },
+      "zorunlu": [
+        "aci",
+        "isik"
+      ],
+      "kamera": {
+        "cs": [
+          1.0,
+          1.5
+        ],
+        "cx": [
+          -120,
+          120
+        ],
+        "cy": [
+          -160,
+          160
+        ]
+      },
+      "karakterMaks": 0,
+      "elMaks": 2
     },
     "KULE-DIS": {
-      "parametreler": { "saat": ["gun", "alacakaranlik"] },
-      "zorunlu": ["saat"],
-      "kamera": { "cs": [0.9, 4.0], "cx": [-500, 500], "cy": [-300, 900] },
-      "karakterMaks": 0, "kuleMaks": 5
+      "parametreler": {
+        "saat": [
+          "gun",
+          "alacakaranlik"
+        ]
+      },
+      "zorunlu": [
+        "saat"
+      ],
+      "kamera": {
+        "cs": [
+          0.9,
+          4.0
+        ],
+        "cx": [
+          -500,
+          500
+        ],
+        "cy": [
+          -300,
+          900
+        ]
+      },
+      "karakterMaks": 0,
+      "kuleMaks": 5
     },
     "HARITA": {
-      "parametreler": { "rota": ["paris-bordeaux"] },
-      "zorunlu": ["rota"],
-      "kamera": { "cs": [1.0, 1.6], "cx": [-300, 300], "cy": [-300, 300] },
+      "parametreler": {
+        "rota": [
+          "paris-bordeaux"
+        ]
+      },
+      "zorunlu": [
+        "rota"
+      ],
+      "kamera": {
+        "cs": [
+          1.0,
+          1.6
+        ],
+        "cx": [
+          -300,
+          300
+        ],
+        "cy": [
+          -300,
+          300
+        ]
+      },
       "karakterMaks": 0
     },
     "YAKIN-YUZ": {
       "parametreler": {},
-      "zorunlu": ["arka"],
-      "kamera": { "cs": [0.9, 1.3], "cx": [-120, 120], "cy": [-160, 160] },
-      "karakterMaks": 1, "yuzMinOran": 0.15
+      "zorunlu": [
+        "arka"
+      ],
+      "kamera": {
+        "cs": [
+          0.9,
+          1.3
+        ],
+        "cx": [
+          -120,
+          120
+        ],
+        "cy": [
+          -160,
+          160
+        ]
+      },
+      "karakterMaks": 1,
+      "yuzMinOran": 0.15
+    },
+    "SARAYBURNU": {
+      "parametreler": {
+        "gorunum": [
+          "kiyi",
+          "kosk",
+          "insert",
+          "ic"
+        ],
+        "saat": [
+          "gece",
+          "gun"
+        ]
+      },
+      "zorunlu": [
+        "gorunum",
+        "saat"
+      ],
+      "kamera": {
+        "cs": [
+          0.9,
+          3.0
+        ],
+        "cx": [
+          -300,
+          300
+        ],
+        "cy": [
+          -200,
+          600
+        ]
+      },
+      "karakterMaks": 4,
+      "konum": "xy",
+      "kurulu": {
+        "kiyi": [
+          "gece"
+        ]
+      },
+      "not": "Evliya KE-S1. x/y dekor px (zemin teması). kiyi: rıhtımdaki figürün ölçeği y'den (ufuk 720, göz 1.5 m), havadaki/sudaki `olcek` ile (1 = y 1330, 406.7 px/m). kurulu dışındaki görünüm/saat render'da hata verir (K2+)."
     }
   },
-  "karakterler": ["francois", "louis", "louis-eldivenli", "memur", "mudur", "telgrafci", "katip", "tuccar", "yargic"],
-  "jestler": ["yuru", "konus", "isaret", "sapka-kaldir", "baston-vur", "esne", "it-cek", "eldiven-giy", "fisilda", "yaz", "bak"],
-  "jestTemas": { "baston-vur": ["vurus"], "it-cek": ["tik"], "eldiven-giy": ["gerilme"] },
-  "props": ["paket", "eldiven", "corap", "dosya", "kitap", "kese", "hokka", "mum", "fener"],
-  "bantlar": ["ust", "alt"],
+  "karakterler": [
+    "francois",
+    "louis",
+    "louis-eldivenli",
+    "memur",
+    "mudur",
+    "telgrafci",
+    "katip",
+    "tuccar",
+    "yargic",
+    "lagari",
+    "yardimci-1",
+    "yardimci-2"
+  ],
+  "jestler": [
+    "yuru",
+    "konus",
+    "isaret",
+    "sapka-kaldir",
+    "baston-vur",
+    "esne",
+    "it-cek",
+    "eldiven-giy",
+    "fisilda",
+    "yaz",
+    "bak",
+    "sicra",
+    "kanat-ac",
+    "ucus",
+    "yuz",
+    "kanat-birak"
+  ],
+  "jestTemas": {
+    "baston-vur": [
+      "vurus"
+    ],
+    "it-cek": [
+      "tik"
+    ],
+    "eldiven-giy": [
+      "gerilme"
+    ]
+  },
+  "props": [
+    "paket",
+    "eldiven",
+    "corap",
+    "dosya",
+    "kitap",
+    "kese",
+    "hokka",
+    "mum",
+    "fener",
+    "fisek-demet",
+    "mesale",
+    "baslik",
+    "kanat"
+  ],
+  "bantlar": [
+    "ust",
+    "alt"
+  ],
   "_k3": "K3: yuzVaryant = kim → yüz varyantı (src/kit/karakterler.ts YUZLER; tek kaynak). ayniKisi: aynı kişinin kostüm kaydı. Bölümde iki farklı kişi aynı varyant ⇒ UYARI",
-  "yuzVaryant": { "francois": "francois", "louis": "louis", "louis-eldivenli": "louis", "memur": "memur", "mudur": "mudur", "telgrafci": "telgrafci", "katip": "katip", "tuccar": "tuccar", "yargic": "yargic" },
-  "ayniKisi": { "louis-eldivenli": "louis" },
-  "ifadeler": ["dinlen", "gulumse", "sirit", "A", "E", "O", "M", "S", "esneme", "fisilti", "uykulu", "hasta"],
-  "pozlar": ["ayakta", "yatik"],
-  "bitisPayiKare": 12
+  "yuzVaryant": {
+    "francois": "francois",
+    "louis": "louis",
+    "louis-eldivenli": "louis",
+    "memur": "memur",
+    "mudur": "mudur",
+    "telgrafci": "telgrafci",
+    "katip": "katip",
+    "tuccar": "tuccar",
+    "yargic": "yargic",
+    "lagari": "lagari"
+  },
+  "ayniKisi": {
+    "louis-eldivenli": "louis"
+  },
+  "ifadeler": [
+    "dinlen",
+    "gulumse",
+    "sirit",
+    "A",
+    "E",
+    "O",
+    "M",
+    "S",
+    "esneme",
+    "fisilti",
+    "uykulu",
+    "hasta"
+  ],
+  "pozlar": [
+    "ayakta",
+    "yatik",
+    "oturan"
+  ],
+  "bitisPayiKare": 12,
+  "jestlerKurulumda": [
+    "yuz",
+    "kanat-birak"
+  ],
+  "propSablon": {
+    "fisek-demet": [
+      "SARAYBURNU"
+    ],
+    "mesale": [
+      "SARAYBURNU"
+    ],
+    "baslik": [
+      "SARAYBURNU"
+    ],
+    "kanat": [
+      "SARAYBURNU"
+    ]
+  },
+  "propKurulumda": {
+    "kanat": [
+      "suda"
+    ]
+  }
 }

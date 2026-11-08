@@ -1,0 +1,257 @@
+{
+ "kareler": [
+  {
+   "ad": "P05 p78 ham",
+   "dosya": "bolumler/evliya-ucuslari/kalibrasyon/K1/P05_p78_ham_tam.png",
+   "olcek": 0.5,
+   "noktalar": [
+    [
+     "gece gök orta (p78'de cy 0: y 300)",
+     300,
+     300,
+     "#1c2232"
+    ],
+    [
+     "gece gök (300,500) — p78'de ufuk basamağı",
+     300,
+     500,
+     "#2c3246"
+    ],
+    [
+     "gece gök ufuk",
+     980,
+     690,
+     "#2c3246"
+    ],
+    [
+     "gece deniz",
+     980,
+     1000,
+     "#161c26"
+    ],
+    [
+     "gece rıhtım (havuz dışı)",
+     900,
+     1700,
+     "#45444a"
+    ],
+    [
+     "köşk ana kat (cephe)",
+     776,
+     640,
+     "#4e4a46"
+    ],
+    [
+     "köşk altyapı (A2 sağı)",
+     918,
+     700,
+     "#4e4a46"
+    ],
+    [
+     "demet tüp yüzü orta (imza, L* 55–72)",
+     528,
+     1130,
+     "#c4a874"
+    ],
+    [
+     "sur",
+     680,
+     700,
+     "#2e2e34"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     440,
+     860,
+     600,
+     1345
+    ]
+   },
+   "yasak": [
+    [
+     "mavi RIM",
+     "#c4d6ff",
+     12
+    ]
+   ]
+  },
+  {
+   "ad": "P05 p78 oneri",
+   "dosya": "bolumler/evliya-ucuslari/kalibrasyon/K1/P05_p78_oneri_tam.png",
+   "olcek": 0.5,
+   "noktalar": [
+    [
+     "gece gök orta (p78'de cy 0: y 300)",
+     300,
+     300,
+     "#1c2232"
+    ],
+    [
+     "gece gök (300,500) — p78'de ufuk basamağı",
+     300,
+     500,
+     "#2c3246"
+    ],
+    [
+     "gece gök ufuk",
+     980,
+     690,
+     "#2c3246"
+    ],
+    [
+     "gece deniz",
+     980,
+     1000,
+     "#161c26"
+    ],
+    [
+     "gece rıhtım (havuz dışı)",
+     900,
+     1700,
+     "#45444a"
+    ],
+    [
+     "köşk ana kat (cephe)",
+     776,
+     640,
+     "#4e4a46"
+    ],
+    [
+     "köşk altyapı (A2 sağı)",
+     918,
+     700,
+     "#4e4a46"
+    ],
+    [
+     "demet tüp yüzü orta (imza, L* 55–72)",
+     528,
+     1130,
+     "#c4a874"
+    ],
+    [
+     "sur",
+     680,
+     700,
+     "#2e2e34"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     440,
+     860,
+     600,
+     1345
+    ]
+   },
+   "yasak": [
+    [
+     "mavi RIM",
+     "#c4d6ff",
+     12
+    ]
+   ]
+  },
+  {
+   "ad": "P06 p76 ham",
+   "dosya": "bolumler/evliya-ucuslari/kalibrasyon/K1/P06_p76_ham_tam.png",
+   "olcek": 0.5,
+   "noktalar": [
+    [
+     "gece gök orta",
+     300,
+     500,
+     "#1c2232"
+    ],
+    [
+     "gece deniz",
+     980,
+     1000,
+     "#161c26"
+    ],
+    [
+     "köşk ana kat (cephe)",
+     776,
+     840,
+     "#4e4a46"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     380,
+     800,
+     800,
+     1340
+    ]
+   },
+   "yasak": [
+    [
+     "mavi RIM",
+     "#c4d6ff",
+     12
+    ]
+   ]
+  },
+  {
+   "ad": "P06 p76 oneri",
+   "dosya": "bolumler/evliya-ucuslari/kalibrasyon/K1/P06_p76_oneri_tam.png",
+   "olcek": 0.5,
+   "noktalar": [
+    [
+     "gece gök orta",
+     300,
+     500,
+     "#1c2232"
+    ],
+    [
+     "gece deniz",
+     980,
+     1000,
+     "#161c26"
+    ],
+    [
+     "köşk ana kat (cephe)",
+     776,
+     840,
+     "#4e4a46"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     430,
+     1010,
+     720,
+     1340
+    ]
+   },
+   "yasak": [
+    [
+     "mavi RIM",
+     "#c4d6ff",
+     12
+    ]
+   ]
+  },
+  {
+   "ad": "ten (Lagâri, tasarım paleti)",
+   "dosya": "bolumler/evliya-ucuslari/kalibrasyon/K1/P05_p78_ham_tam.png",
+   "olcek": 0.5,
+   "noktalar": [
+    [
+     "Lagâri yanak (püskürme ışığında)",
+     520,
+     560,
+     "#c4a874"
+    ]
+   ]
+  }
+ ]
+}
