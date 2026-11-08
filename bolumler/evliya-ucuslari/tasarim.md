@@ -2,6 +2,7 @@
 
 Hazırlayan: tasarimci · 2026-11-08 · Girdi: `arastirma.md` §4–§5, `sahne-plani.md` §6, `dokunuslar.md`, `src/theme.ts`, `src/kit/KATALOG.md`, `src/kit/karakterler.ts`, `src/rig/Kukla.tsx`.
 **v1.1 (2026-11-08):** kullanıcı kararları (imza = demet, sabah ENE, Lagâri bıyık / Hezarfen sakal, P06 kanat suda kalır) ve `arastirma.md` §10 (tasarım doğrulama eki) işlendi. Değişenler: çatı (§1.2, §8), demet malzemesi (§2.2, §2.4), sarık rengi + yeşil yasağı (§3.0, §3.5), Lagâri yüzü (§3.2), kanat sürekliliği (§3.2, §7), sikke 0.022 m ve kese (§4, §4.3), rahle + kalem/hokka (§1.4, §4.8), pencere kanadı (§4.10), efekt dönem notu (§5), sorular (§10).
+**v1.2 (2026-11-08):** mekanlar.md notları karara bağlandı: ot `#a8a07a` → `#989c76` (imza tekilliği), mekân sorumlusunun 11 ek tonu onaylandı (§1.1, §1.2), pencere kanadı ölçüsü mekanlar.md §1.6 ile eşlendi (§4, §4.10).
 Bu belge **spesifikasyondur, kod değildir.** Hex/oran/px değerleri motion'a doğrudan uygulanacak önerilerdir; mimari ve doku `mekanlar.md`'nin (mekân sorumlusu) işidir.
 
 Etiketler: **[A]** arastirma.md'de kaynaklı · **[S]** senaryo/sahne planı (dramatizasyon) · **[G]** genel bilgi, **doğrulanmalı** (araştırmacıya soruldu, bkz. §9) · **[T]** tasarım kararı (tarihî iddia değil).
@@ -106,6 +107,7 @@ Derecelendirme gece ile gündüzü aynılaştırmaz. Eleştirmen kontrol karesin
 | Galata taşı | `#9a8f7e` | P08 |
 | köşk gündüz | `#b4a88e` | P10 |
 | sayfa | `#e9dfc9` | P13 |
+| Doğancılar otu | `#989c76` | P09 |
 | demet tüp yüzü (imza) | `#c4a874` (gece meşale altında L\* 55–72) | P03, P05 |
 
 ---
@@ -259,7 +261,7 @@ Genel: ekran ölçüsü gerçeğe göre; stilize büyütme **yalnız** tabloda "
 | KE-P6 | martı | açıklık 1.3 m | 420 px (ön plan) | 140 px | ön plan perspektifi |
 | KE-P7 | meşale | 1.1 m sap, baş 0.18 m | 450 px (P05) | 150 px | — |
 | KE-P8 | defter/kitap | 0.32 × 0.22 m (açık 0.44) | P13 cs 1.0: kitap 640 px | 213 px | — |
-| KE-P9 | pencere kanadı | 0.55 × 1.30 m | ≈ 576 px (%30, P12) | 192 px | — |
+| KE-P9 | pencere kanadı | 0.55 × 1.30 m | pencere duvarında 324 px/m ⇒ dekor 178 × 421 px; ekranda **cs 1.8: 758 px (%39) · cs 2.2: 926 px (%48) · cs 2.6: 1095 px (%57)** yükseklik (v1.2, mekanlar.md §1.6) | 253–365 px (yükseklik) | — |
 
 ### 4.1 Fişek demeti — §2.2.
 
@@ -302,7 +304,7 @@ Sopa `#4a3424` (1.1 m), baş: katran emdirilmiş bez sargı `#2e2620` [G], alev 
 ### 4.9 Pencere ışığı ve aralık (P12) — §5.6.
 
 ### 4.10 Pencere kanadı (KE-P9)
-**Çift kanatlı ahşap kepenk ailesinin bir kanadı** [A §10.10, dolaylı]: padişahın çektiği kanat görünür; ikinci kanat/çerçeve kenarı aralıkta belirsiz kalır (sabit, gölgede). Kanat: çerçeve + içe gömme düz paneller, **panel sayısı nötr** (köşk için kanıt yok; çizimde 2–3 arası, okunur ritim yaratmayacak sade bölüntü). Menteşe ve mandal **nötr basit** (koyu `#2e2a26` küçük, biçim iddiası yok; mandal kapanışta "tık"). **Cam çizilmez (nötr)** — "cam yok" iddiası değil (saray revzeni belgeli [A §10.10]). Kafes, oyma, çini çizilmez (nötr). Renk §1.3. Menteşe `aci` 80° (açık) → 12° (aralık kalır); kalan aralık genişliği = ışık şeridi genişliği (ekranda ≈ 70 px, cs 2.2). Kanat kalınlığı kenardan görünür (24 px, ışıklı kenar).
+**Çift kanatlı ahşap kepenk ailesinin bir kanadı** [A §10.10, dolaylı]: padişahın çektiği kanat görünür; ikinci kanat/çerçeve kenarı aralıkta belirsiz kalır (sabit, gölgede). Kanat: çerçeve + içe gömme düz paneller, **panel sayısı nötr** (köşk için kanıt yok; çizimde 2–3 arası, okunur ritim yaratmayacak sade bölüntü). Menteşe ve mandal **nötr basit** (koyu `#2e2a26` küçük, biçim iddiası yok; mandal kapanışta "tık"). **Cam çizilmez (nötr)** — "cam yok" iddiası değil (saray revzeni belgeli [A §10.10]). Kafes, oyma, çini çizilmez (nötr). Renk §1.3. **Ölçü ve yer (v1.2, mekanlar.md §1.6 ile birebir):** görünen **sol kanat**, menteşe sol pervazda; açıklık dekor **x 560–738, y 560–981** (0.55 × 1.30 m, 324 px/m), pervaz 26 px, denizlik y 981–1000; ikinci kanat x 738–916 kadraj dışı. Ekran yüksekliği cs'ye bağlı (§4 tablosu: %39–57; eski "≈ 576 px / %30" değeri kaldırıldı). Menteşe `aci` 80° (açık) → 12° (aralık kalır); 12°'de yarık dekor x 706–738 = **32 px** (cs 2.2'de 70 px, cs 2.6'da 83 px); yarık genişliği = ışık şeridi genişliği. Kanat kalınlığı kenardan görünür (dekor 10 px ≈ 3 cm, cs 2.2'de 22 px, ışıklı kenar).
 
 ### 4.11 Islak ayak izi (P07)
 Rıhtım taşında 2–4 iz, `#3a3e48` α .6 düzensiz yaprak biçimi (mest tabanı, parmak ayrımı yok), en yenisi en koyu; P07 boyunca kurumaz.
