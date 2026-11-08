@@ -99,6 +99,20 @@
 - Kurallar: Kanıtsız ayrıntılar ya nötr bırakıldı ya [T] etiketi aldı. "Yokluk iddiası" (cam yok) kaldırıldı.
 - Açık: §10 bulgularının hepsi arama özeti düzeyinde. Sayfalar açılırsa çatı, sarık ve pencere yeniden gözden geçirilecek. Chappe kalıbı notu hâlâ açık.
 
+## tasarimci · 2026-11-08 · tasarim.md revizyon v1.2 (mekanlar.md notları)
+- Ne yaptım: Mekân sorumlusunun 3 notunu karara bağlayıp `tasarim.md`'ye işledim:
+  - (1) Ot rengi `#a8a07a` → `#989c76`. Eski ton imza demetine ΔE76 12.4 uzaklıktaydı, eşik 15; yenisi 17.2. Ölçüm tablosuna eklendi.
+  - (2) Mekân sorumlusunun 11 ek tonu palete girdi (ağaç, konut duvarı, sur, Asya kıyısı, uzak şehir, Galata koyu sıra, su orta). Hepsi imzaya ΔE ≥ 20 uzaklıkta; hiçbiri kırmızı değil.
+  - (3) Pencere kanadı ölçüsü mekanlar.md §1.6 ile eşlendi:
+    - Açıklık dekor x 560–738, y 560–981; ölçek 324 px/m.
+    - Ekranda yüksekliği %39–57 (cs 1.8–2.6).
+    - 12°'de kalan yarık 32 px dekor.
+    - Eski "576 px / %30" değeri kaldırıldı.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/tasarim.md, bolumler/evliya-ucuslari/katki-raporu.md
+- Kararlar: Köşkün gündüz tonu `#b4a88e` imzaya ΔE 15.9 uzaklıkta, sınırda. Kabul ettim, çünkü demet gündüz planlarında yok; eleştirmen yine ölçecek. P12'de zemin kadraja girmediği için minder rengi kullanılmayabilir notu düşüldü.
+- Kurallar: İmza tekilliği tüm palete uygulandı (yüzey başına eşik ΔE76 ≥ 15). Kırmızı yasağı korundu.
+- Açık: mekanlar.md'nin değişmesi gerekmiyor. §3.1'de ot için "öneri" diye yazılan ifade artık onaylı sayılabilir; yalnızca yazım farkı.
+
 ## arastirmaci · 2026-11-08 · Evliya uçuşları tasarım doğrulama eki (tasarim.md §9, madde 4–10)
 - Ne yaptım: Tasarımcının 7 [G] sorusunu (sarık/sakal, fişek kılıfı, kese/sikke/akçe, yazı yüzeyi, renkli havai fişek, konut çatısı, köşk pencereleri) 20+ `WebSearch` sorgusuyla taradım ve `arastirma.md` sonuna "## 10. Tasarım doğrulama eki" ekledim: özet tablo + her madde için cevap, kaynak, güven, tasarıma etkisi.
 - Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/arastirma.md (yalnız sona ek, mevcut bölümlere dokunulmadı), /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/katki-raporu.md (bu bölüm).
