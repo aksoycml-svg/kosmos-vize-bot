@@ -3,6 +3,12 @@
 Hazırlayan: mekân sorumlusu · 2026-11-08 · Girdi: `tasarim.md` v1.1 (palet ve ışık bağlayıcı), `arastirma.md` §5 ve §10, `sahne-plani.md` §1 ve §6.1, `bolum.json` (kamera değerleri). Kod yalnızca okundu: `src/kit/sablonlar/KuleDis.tsx`, `src/doku/{Kemer,Tarama,Isik,TasDuvar,ArsivKatmani,sabitler}`.
 Bu belge **şartnamedir, kod değildir.** Bütün sayılar motion içindir. Motion bunlarla `src/kit/sablonlar/` altında 4 şablon kurar.
 
+> **R1 (2026-11-08, K1 eleştirisi):**
+> - Köşk siluetinde cami okunması giderildi: örtü kesik kırma piramit + saçak, bacalar küt ve düz başlıklı, platonun altında; 360 px imzası ve yasak benzerlik tablosu §1.1a'da (O1).
+> - Pencere halesi kaldırıldı, yerine yalnız alta düşen 2 basamaklı havuz geldi (§1.2a, S2).
+> - Gece kroması: C\* hedefleri §6a'da, ArsivKatmani gece derecelendirmesi §8'de (O5).
+> - Hex hedefleri değişmedi.
+
 Etiketler: **[A]** arastirma.md · **[A10]** arastirma.md §10 (yalnızca arama özeti) · **[S]** sahne-plani/senaryo · **[G]** genel bilgi, kaynağı yok, **doğrulanmalı** · **[T]** tasarım kararı (tarihî iddia değil). Kanıtsız ayrıntı **nötr** kalır.
 
 ---
@@ -70,14 +76,14 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 ### 0.7 İstanbul imzası: karar ve gerekçe
 - **Karar:** şehir imzası **yalnızca kanıtlı iki yapı** üzerinden kurulur.
   - **Galata Kulesi:** taş gövde, kurşun külah, kemerli tepe katı [A §5.1]. Gündüzün ana imzasıdır, P01 p176'dan itibaren görünür.
-  - **Sinan Paşa (İncili) Köşkü:** çifte kemer, cumba, kubbe, 4 baca, sur üstünde [A §5.2]. Gecenin imzasıdır.
+  - **Sinan Paşa (İncili) Köşkü:** çifte kemer, cumba, kurşun örtü, 4 baca, sur üstünde [A §5.2]. Gecenin imzasıdır. 360 px'te cami okunmaması için siluet kuralları §1.1a'da (K1 O1).
   - Yanlarına Boğaz'ın iki kıyısı (Asya kıyısı tepe silueti) ve saray bahçesi ağaç kütlesi eklenir [A §5.2 "ağaçlı bahçe"].
 - **Kubbe + minare silueti (Ayasofya, Süleymaniye, Sultan Ahmed) çizilmez.**
   - (1) `arastirma.md` bunları doğrulamıyor.
   - (2) Seçilen kamera yönlerinde tarihî yarımada kadraj dışında kalıyor: BOGAZ ve GALATA kuzeye bakar, yarımada kameranın arkasındadır. Kıyı ve köşk görünümünde yarımada sağdaki Topkapı sırtı ve ağaçların arkasında kalır.
   - Uydurma siluet "yanlış yer" okunur.
 - **P01 A ilk karesinde İstanbul'u ne okutuyor:**
-  - Osmanlı köşk silueti: basık-sivri çifte kemer, geniş saçaklı cumba, kurşun kubbe.
+  - Osmanlı kıyı köşkü silueti: su üstünde iki koyu kemer ağzı, boydan boya koyu saçak çizgisi, tek ışıklı pencere, alçak düz kenarlı örtü.
   - Sarık ve kostüm.
   - Deniz ve karşı kıyı.
   - Şehir adını anlatım ve ekran yazısı taşır.
@@ -93,15 +99,29 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 |---|---|
 | Dönem ve üslup | 1589–91, mimar Dâvud Ağa; 17.–18. yy.'da ayakta ve gösterişli [A §5.2]. Klasik Osmanlı sahil kasrı [G] |
 | Yapı tipi | Saray sahil köşkü. Topkapı'nın en dış sınırında, **Bizans Marmara surlarının üstünde**, kesme taş kemerli altyapı üzerinde [A] |
-| Kat düzeni (ölçüler [T], kaynak boyut vermiyor) | Rıhtım deniz seviyesinden 1.0 m yüksek · **altyapı 5.0 m** (kesme taş, çifte kemer + çeşme) · **ana kat 5.0 m** (dikdörtgen taş gövde) · **örtü 2.4 m** · bacalar korniş üstüne +2.0 m. Gövde **11.1 m** genişlik |
+| Kat düzeni (ölçüler [T], kaynak boyut vermiyor) | Rıhtım deniz seviyesinden 1.0 m yüksek · **altyapı 5.0 m** (kesme taş, çifte kemer + çeşme) · **ana kat 5.0 m** (dikdörtgen taş gövde) · **örtü 2.4 m** (kesik kırma piramit, saçaklı) · bacaların tepesi korniş üstüne +1.6 m, **örtü platosunun altında**. Gövde **11.1 m** genişlik |
 | Açıklıklar | Altyapı: **denize bakan çifte kemer** [A], tip `osmanli` (§0.4); her biri açıklık 2.8 m, yükseklik 4.0 m, iki kemerin arasında **çeşme** [A]. Çeşme: `osmanli` niş 0.8 × 1.5 m + taş tekne (yalak) çıkıntısı 0.15 m. Lüle ve kitabe yok (yazı yok, kanıtsız). Ana kat: 4 dikdörtgen pencere `duz`, 1.0 × 1.6 m; çoğu cumbanın arkasında kalır. Cam ve kafes çizilmez, iç taraf koyudur (nötr [A10 §10]) |
 | Cumba | **Önde geniş saçaklı, ahşap çatılı cumba** [A]: ana kat hizasında, 5.6 m genişlik, 1.5 m dışarı taşar. Alt kenarı tek kalın taşıyıcı kirişle biter (konsol biçimi kanıtsız, süs yok). Cephede **3 dikdörtgen pencere** (1.0 × 1.4 m, `duz`), aralarında ahşap dikme. Saçak 1.2 m taşar. Orta pencere = padişah penceresi |
-| Örtü | TDV "kubbe" der, gravür piramit gösterir, Eldem ahşap çatı der [A]. **Karar: basık, hafif şişkin piramit-kubbe arası nötr siluet.** Yükseklik/genişlik 0.33, kenarlar hafif dışbükey, alem yok. Renk kurşun gri `#7c8288` [G: Osmanlı kubbe örtüsü genelde kurşun; köşk için doğrulanmadı]. Alçak kameradan yüzeyi görünmez, **yalnızca sırt silueti** görünür |
-| Bacalar (süsleme imzası 1) | **Dört köşede** [A]. Kare kesitli prizma, 0.6 × 0.6 m, taş örgü (2 sıra çizgisi), üstte dışa taşan taş başlık + küçük piramit kapak. **Silindir değil, kum tonunda değil** (demetle karışmaz, `tasarim.md` §2.4) |
+| Örtü (R1, K1 O1) | TDV "kubbe" der, gravür piramit gösterir, Eldem ahşap çatı der [A]. **Karar: kubbe DEĞİL, kesik kırma piramit** (gravür yönü). Taban = gövde + her yanda **0.6 m saçak taşması** (12.3 m); **kenarlar düz**, eğri yok; tepede **düz plato** 3.0 m (sivri tepe ve alem yok); yükseklik 2.4 m (önceki kartla aynı yükseklik, eğim ≈ 27°). Saçak çizgisi, kubbede olmayan ve "çatı" okutan öğedir. Renk kurşun gri `#7c8288` [G]. Görünürlük: kıyı görünümünde (85 m, kamera alçak, bakış açısı ≈ 6°) yüzeyi görünür; köşk görünümünde (17.5 m, bakış ≈ 28.5° > eğim 27°) **görünmez**, yalnız saçak altı görünür |
+| Bacalar (R1, K1 O1) | **Dört köşede** [A]. Kare kesitli, **0.8 × 0.8 m, küt**: örtü yüzeyinden çıkan görünür boy 1.2 m (**görünür oran ≤ 1:1.5**; sınır 1:2.5). Gövde köşelerinin 1.0 m içinden çatı yüzeyini delerek çıkar; **saçak çizgisinin dışında ve gövdenin yanında serbest durmaz**. Tepeleri korniş + 1.6 m, yani **örtü platosundan 0.8 m aşağıda**: hiçbir baca çatının en yüksek noktasını geçmez. **Başlık: düz taş plaka 1.2 × 0.15 m** (gövdeden her yana 0.2 m taşar). Piramit kapak, sivri uç, külah ve şerefe benzeri bilezik **yok**. Taş örgü: 1 sıra çizgisi. Arka çift ön çiftten **≥ 18 px (kıyı) / ≥ 60 px (köşk) içeride** ve biraz yukarıda: dört baca ayrı ayrı görünür. Silindir değil, kum tonunda değil (`tasarim.md` §2.4) |
 | Süsleme imzası 2 | **Cumba saçağının derin gölgesi** + altında çifte kemerin iki koyu ağzı. Kitabe, çini, kalem işi ve arma yok (kanıtsız; "İznik çinisi" iddiası zayıf [A10 §10]) |
 | Sur | Köşkün iki yanında devam eder. Yükseklik altyapıyla aynı (5 m). Moloz ve kesme taş karışık, köşk taşından daha koyu ve eski. Mazgal ve tuğla hatıl çizilmez [G, doğrulanmalı] |
 | Arka plan | Saray bahçesi ağaçları [A §5.2]: yuvarlak tepe kütleleri, iki ton. Servi ve saray binası çizilmez (nötr) |
-| Kameradan görünen | Bütün dış görünümlerde kamera köşkün altındadır (denizden ya da rıhtımdan). **Cumba saçak altı görünür, çatı ve kubbe yüzeyleri görünmez.** Yalnızca kubbe sırtı ve baca uçları gökle kesişir |
+| Kameradan görünen | Köşk görünümünde (yakın, alçak) cumba ve ana saçak altı görünür, örtü yüzeyi görünmez; gökle yalnız saçak çizgisi ve 4 küt baca kesişir. Kıyı görünümünde (uzak) örtünün düz kenarlı yüzü ve platosu görünür |
+
+#### 1.1a 360 px imzası ve yasak benzerlikler (K1 O1)
+- **Köşkü 360 px'te "kıyı köşkü" yapan imza (önem sırasıyla):**
+  1. **Su çizgisine oturan yatay taş kütle + iki koyu kemer ağzı** (köşk suya "ayak basar"). Sur bandı köşkün iki yanında altyapı üst hizasında devam eder; köşk + sur birlikte **yatay** okunur.
+  2. **Boydan boya koyu saçak çizgisi** (cumba saçağı + ana saçak). Kıyıda telefonda ≥ 3 px kalınlık (dekor ≥ 8 px).
+  3. **Tek ışıklı pencere** (§1.2 pencere ışığı).
+  4. Üstte alçak, düz kenarlı örtü ve çatının içinden çıkan **4 küt baca**. Bacalar ikinci sıradadır, imzayı taşımaz.
+- **Yasak benzerlik testi (eleştirmen 360 px'te sorar: "bu ne?"):**
+| Benzerlik | Neden olur | Önlem |
+|---|---|---|
+| cami (kubbe + minare) | yarım küre örtü + yanında ince sivri kule | örtü kesik piramit + saçak; baca küt, düz başlıklı, plato altında, çatıdan çıkar |
+| kilise/çan kulesi | tek yüksek dikey öğe | hiçbir öğe gövde yüksekliğinin %20'sinden fazla korniş üstüne çıkmaz |
+| kale/burç | mazgal dişleri | sur ve köşk üstü düz; diş yok |
+| çadır | yüksek sivri piramit | plato + saçak + basık eğim |
 
 ### 1.2 Görünüm `kiyi` (gece: P01 A, P03, P04, P05, P06)
 - **Duygusal amaç:** geniş, karanlık bir sahnede tek sıcak ışık adası. Adam küçük, gök büyük.
@@ -119,12 +139,17 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | 1 | Gök | −1300 → 720 | tümü | 3 düz basamak: tepe y < −200 · orta −200…460 · ufuk 460…720. Şenlik duman bandı y 600–660 | `#12141c` / `#1c2232` / `#2c3246`; bant `#3e3834` α .5 |
 | 2 | Asya kıyısı | 696 → 720 | −200…620 | alçak, dalgalı tek ton tepe şeridi; ışık noktası yok (kanıtsız) | `#232838` (ufuk basamağından ΔL −6) |
 | 3 | Sur + ağaç kütlesi | ağaç 560–665 · sur üstü 660 (köşk yanı) → 615 (x 1180) · sur altı (su çizgisi) 762 → 795 | 560…1180 | Sur sağa doğru kameraya yaklaşır (ölçek 17 → 30 px/m). Sol ucu x 560'ta kare bir kule kütlesiyle biter (9 m, üstü y 609) | sur `#2e2e34`, ağaç `#181c26` / `#1e2230` |
-| 4 | **Köşk** (17 px/m, uzak/orta sınırı) | su çizgisi 762 · rıhtım üstü 745 · altyapı 745→660 · ana kat 660→575 · örtü sırtı 534 · baca ucu 541 | **740…928** | Çifte kemer: 48 px ağız, koyu. Cumba saçağı tek koyu çizgi. 4 baca: önde iki, arkadakiler 6 px içeride ve 4 px yukarıda. Orta cumba penceresi **17×24 px ışıklı** + hale r 40 | cephe `#4e4a46`, pencere `#f2c070`, hale α .2 |
+| 4 | **Köşk** (17 px/m, uzak/orta sınırı) | su çizgisi 762 · rıhtım üstü 745 · altyapı 745→660 · ana kat 660→575 · **saçak çizgisi 575, koyu bant 575–583** · örtü (kesik piramit) taban x 730–938 → **plato y 534, x 809–860** · **baca tepesi 548** (ön), 543 (arka) | **740…928** (saçakla 730…938) | Çifte kemer: 48 px ağız, koyu. **Bacalar 14 × 20 px** (görünür), başlık 20 × 3 px; ön çift merkez x 757 ve 911, arka çift x 777 ve 891 (≥ 18 px içeride). Cumba saçağı + ana saçak tek koyu bant. Orta cumba penceresi **17 × 24 px ışıklı**, **hale yok** → pencere ışığı §1.2a | cephe `#4e4a46`, saçak bandı `#2a2830`, örtü `#3a3e46` (gece kurşun), pencere `#f2c070` |
 | 5 | Deniz | 720 → 1250 | tümü | Taban düz. Dalga çizgileri yatay, 3 px, boyu 20–60 px. Aralık ufukta 8 px, y 1250'de 40 px (perspektif). Yansıma kolonları: meşale altında `#e0a050` kesik şeritler; pencere altında y 762–1000 `#f2c070` α .5; şenlik patlarken patlama x'inde `#e8d6a6` | `#161c26` / çizgi `#2c3444` |
 | 6 | Rıhtım dudağı | 1238 → 1256 | tümü | Kenar taş sırası, hafif açık ton, 3–4 kırık çentik | `#55545a` |
 | 7 | Rıhtım döşemesi | 1256 → 2000 | tümü | Kesme taş, blok 0.6 × 0.4 m. Sıra yüksekliği y 1256'da 30 px, y 1920'de 140 px. Dikey derzler ufuk noktasına (540, 720) yakınsar | `#45444a`, derz `#2a2a30`, meşale havuzunda `#7e6a52` |
 | 8 | Ön plan çerçeve | yok | — | Alt üçte birde rıhtım, fitil, ışık havuzu ve ayaklar var; başka çerçeve öğesi gerekmez | — |
 
+- **1.2a Pencere ışığı (K1 S2; kıyı ve köşk görünümünde aynı kural):** daire hale **kaldırıldı** (cephede "saat/ay" okunuyordu).
+  - Pencere: düz `#f2c070` dolgu + iç kenarında 1 basamak açık ton `#ffd890` (pencere eninin %15'i), sert kenar.
+  - Işık havuzu yalnız **pencerenin altına**, denizlik çizgisinden başlayan basık yarım elips: rx = 1.2 × pencere eni, ry = 0.5 × pencere boyu. **2 düz basamak**: iç α .20, dış (rx ×1.6) α .08, `#f2c070`, gradyan yok. Pencerenin üstüne ve yanına ışık düşmez (saçak keser).
+  - Kıyı: havuz rx 20, ry 12 (dekor). Köşk görünümü: rx 102, ry 60, cumba gövdesine ve altyapı üst sırasına düşer.
+  - Suya yansıma kolonu (§1.2 katman 5) değişmez.
 - **Oyun yüzeyleri:** demet tabanı x 520 / y 1330 · fitil hattı x 330–520 (S eğrisi) · yardımcılar x 240–300 · başlığın düşüp yuvarlandığı yer y 1315 · Lagâri'nin iniş suyu y 1180 (su bandının alt kenarı, rıhtım dudağının hemen önü).
 - **P06 kanat suda kalır (kullanıcı kararı):**
   - Kanat `suda: true` olarak su katmanına (5) yatar, iniş noktasının 40–120 px solunda, y 1170–1200.
@@ -152,10 +177,10 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 
 | # | Katman | Dekor y | x | İçerik |
 |---|---|---|---|---|
-| 1 | Gök | ≤ 565 (örtü ve baca araları) | tümü | gece 3 basamak (§1.1) · gün `#a9b6bf` / `#cfcfc4` / `#e6dcc0`. Şenlik patlama merkezleri **y 150–250** (§7.1) |
-| 2 | Ağaç kütlesi | 470–565 (baca ile örtü arası) + 900–1100 (sol uç, sur arkası) | −60…300, 960…1100 | gece `#181c26` · gün `#7e8478` (YENİ hex, §8) |
+| 1 | Gök | ≤ 565 (saçak üstü, baca araları) | tümü | gece 3 basamak (§1.1) · gün `#a9b6bf` / `#cfcfc4` / `#e6dcc0`. Şenlik patlama merkezleri **y 150–250** (§7.1) |
+| 2 | Ağaç kütlesi | 470–565 (bacalar arası, saçak üstü) + 900–1100 (sol uç, sur arkası) | −60…300, 960…1100 | gece `#181c26` · gün `#7e8478` (YENİ hex, §8) |
 | 3 | Sol uç: uzak kıyı | sur 1180–1417 · rıhtım üstü 1387 | −60…160 | Kıyı sola doğru uzaklaşır (30 px/m). **Küçük grup + demet + meşale** x 40–140, ayak y 1387, figürler ≈ 50 px, meşale halesi r 60 (P03'ün kurulumu) |
-| 4 | **Köşk** | su çizgisi 1500 · rıhtım üstü 1415 · altyapı 1415→990 · ana kat 990→565 · korniş 565 · örtü sırtı 360 · baca ucu 395 | **160…1100** | Altyapı: kemer A1 x 268–506, A2 x 614–852. Uç y 1075, üzengi 1223. Çeşme nişi x 526–594, y 1244–1372, yalak y 1372–1385 · ana kat pencereleri (cumba dışında kalan) x 200–285 ve 975–1060, y 760–896 · **bacalar** x 160–211 ve 1049–1100 (ön), arkadakiler +30 px içeride, 25 px yukarıda · örtü x 300–960 |
+| 4 | **Köşk** | su çizgisi 1500 · rıhtım üstü 1415 · altyapı 1415→990 · ana kat 990→565 · **ana saçak 565, taşma 51 px (x 109–1151), saçak altı bandı 565–585** · örtü **görünmez** (§1.1) · **baca tepesi 429** (ön), 445 (arka) | **160…1100** | Altyapı: kemer A1 x 268–506, A2 x 614–852. Uç y 1075, üzengi 1223. Çeşme nişi x 526–594, y 1244–1372, yalak y 1372–1385 · ana kat pencereleri (cumba dışında kalan) x 200–285 ve 975–1060, y 760–896 · **bacalar** 68 px en, başlık 102 × 13 px: ön çift x 211–279 ve 981–1049, arka çift (×0.9) x 281–343 ve 917–979 · pencere ışığı §1.2a |
 | 5 | **Cumba** (92 px/m) | gövde 990→650 · saçak altı 650→620 (görünür soffit) · saçak dış kenarı 612 | **320…800** (orta 560) | Pencereler: x 368–453 · **518–603 (padişah)** · 668–753, y 700–819. Denizlik y 819. Dikmeler 2 tahta genişliğinde. Saçak altı II tarama |
 | 6 | Önündeki rıhtım | 1415 → 1500 (ön yüz) | 160…1100 | Üst yüzey ince şerit olarak görünür (kamera 0.5 m yukarıda). Ön yüzde tek taş sırası |
 | 7 | Deniz (alt üçte bir) | 1500 → 2030 | tümü | Dalga çizgileri, aralık 12 px → 44 px. **Pencere yansıma kolonu** x 540–580 (gece) · köşkün ters yansıması: gün `#8a8270` düz kütle, 3 yatay kesikle bölünmüş · şenlik yansımaları |
@@ -173,7 +198,7 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
   - Önden güneş. Cephe ışıklı `#b4a88e`, kemer içi ve niş `#3a3430` (III + ton), saçak altı `#7e7462` (II).
   - Saçak gölge bandı cumba gövdesinin üst 0.4 m'sine düşer (37 px, 15° güneş × 1.2 m taşma).
   - Baca gölge yüzü solda, II.
-  - Gölge vektörü (−0.97, −0.15): bacaların gölgesi örtüye sola doğru kısa düşer.
+  - Gölge vektörü (−0.97, −0.15): örtü görünmediği için baca gölgesi kadrajda yok; başlık plakası kendi gövdesine 4 px gölge bandı düşürür.
   - Pencere içi `#3a3430`, padişah `#2a2622` + sağda `#f0d79a` 2 px kenar.
 
 ### 1.4 Görünüm `insert` (P07 gece, P11 gün, AYNI dekor, cs 1.0 sabit)
@@ -209,8 +234,8 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | Köşk altyapı + ana kat | kesme taş, düzgün sıralar [A "kesme taş"] | İzodom sıralar, blok 0.9 × 0.45 m, derz ince. Köşelerde hafif aşınma. Yağmur izi yok (minyatür düz alan) | `TasDuvar` yeni `tip: "kosk"` | gün taban `#b4a88e`, gölge `#7e7462`, derz `#8e8470` α .5 w 1.5 · gece ışıklı `#8a7458`, gölge `#4e4a46` · blok [0.9, 0.45] m · seed 131 · bulut yok |
 | Sur | moloz + kesme karışık [G] | Düzensiz blok boyları (0.3–0.7 m), derzler daha koyu, köşkten bir ton koyu | `TasDuvar` `tip: "sur"` | gün `#8e8472` / `#6a6252` · gece `#2e2e34` · seed 132 |
 | Cumba | ahşap [A] | Dikey kaplama tahtaları, 0.15 m (yakında çizgi, orta mesafede yok). Dikmeler 1 ton koyu | `AhsapYuzey` `boyali` → yeni tür `"cumba"` | ışıklı `#6a4a30`, gölge `#3a2a1e` (`tasarim.md` §1.3), çizgi α .25, seed 133 |
-| Örtü (kubbe) | kurşun [G] | Yakında ve gündüzde sırta yakınsayan 5–7 dikiş çizgisi, 1.5 px, `#a3a8aa` α .35. Orta mesafede ve gecede yok | yol + çizgi | `#7c8288` / ışıklı `#a3a8aa` |
-| Baca | taş | 2 sıra çizgisi + başlık bandı | `TasDuvar kosk` küçük ölçek | gölge yüzü II tarama |
+| Örtü (kesik piramit) | kurşun [G] | Yakında ve gündüzde plato kenarına yakınsayan 5–7 düz dikiş çizgisi, 1.5 px, `#a3a8aa` α .35. Orta mesafede ve gecede yok | yol + çizgi | `#7c8288` / ışıklı `#a3a8aa` |
+| Baca | taş | 1 sıra çizgisi + düz başlık plakası (§1.1) | `TasDuvar kosk` küçük ölçek | gölge yüzü II tarama |
 | Rıhtım döşemesi | kesme taş | Perspektif bloklar, kırık köşe (her 7. blokta) | yeni `Doseme` (UN yakınsamalı) | gece `#45444a` / `#2a2a30` · gün `#a09682` / `#7a7262` · seed 134 |
 | Deniz | düz | 2 ton basamak + dalga çizgisi + yansıma kolonu. **Gradyan ve gürültü yok** | yeni `DuzSu` | gece `#161c26` / `#2c3444` · gün `#5e7378` / `#7c9090` |
 | Islak taş (P07) | — | Ayak izi lekeleri + basamaklarda ıslak koyulaşma | ton | `#3a3e48` + parlama `#a9bccb` α .4 |
@@ -402,7 +427,7 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 ## 5. 360x640 telefon okunurluğu (imza siluetler)
 | Plan / görünüm | Öğe | Telefonda | Okunur mu / önlem |
 |---|---|---|---|
-| P01 A (cs 1.25) | Köşk (çifte kemer + kubbe + baca) | 78 × 93 px; kemer ağzı 20 px, baca 4 px | Kemer ağızları ve ışıklı pencere okunur. Bacalar ince çizgi kalır, kabul (uzak = siluet) |
+| P01 A (cs 1.25) | Köşk (çifte kemer + saçak + örtü + baca) | 87 × 95 px; kemer ağzı 20 px, saçak bandı 3.3 px, baca 6 × 8 px küt, plato 21 px | Test: "bu ne?" → "su kenarında kemerli bina / köşk". Cami okunursa §1.1a önlemleri eksik uygulanmıştır |
 | P02 (cs 0.9) | Köşk bütün | 282 × 340 px; kemer 71 px, pencere 25 × 36 px | **Okunur:** 4 baca, saçak altı bandı, iki kemer, tek ışıklı pencere |
 | P10 (cs 2.4 son) | Padişah büstü pencerede | 81 px (%12.6) | Okunur. Baş çevirme siluet olarak görünür |
 | P01 B / P08 (cs 1) | Galata tepe katı + külah + Hezarfen | külah yüzeyi üst 160 px, kemerli kapı 85 × 204 px, Hezarfen 140 px | Kemerli açıklık + kurşun koni + taş sıra: "kule tepesi" okunur. Külahın tam konisi P09'da |
@@ -429,12 +454,41 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | İç duvar gölge | `#3a3430` | P12 · (200, 700) |
 | Rahle | `#4a3222` | P13 p190 · (180, 520) |
 | Sayfa | `#e9dfc9` | P13 · (380, 700) |
-Not: ArsivKatmani siyah noktası `#14110d`, gece gök tepesini (`#12141c`) ΔE ≈ 4 kaydırır. Kabul edilebilir, ama gece mavisinin kahveye kaymadığını eleştirmen gözle kontrol eder (b\* < 0 kalmalı).
+~~Not: ArsivKatmani siyah noktası kabul edilebilir~~ **geçersiz (K1 O5):** mevcut derecelendirme gece mavisini siliyor, bkz. §6a.
+
+### 6a. Kroma (C\*) ve ton açısı hedefi (K1 O5, R1)
+- **L\* ve ΔE tek başına yetmez:** düşük kromada ΔH anlamsızlaşır, gri bir gök "TAMAM" alır. Hex hedefleri değişmedi (`tasarim.md` §1.1 ile aynı); her ölçüm noktasına C\* ve h° hedefi eklendi.
+- **Kural:**
+  - Ölçülen C\* ≥ hedefin **%70'i** olmalı.
+  - h° hedefe ±20° yakın olmalı (C\* < 5 olan yüzeylerde h° aranmaz).
+  - `renk_olcum.py` iki sütun ekler: `C* oranı` ve `Δh°`.
+
+| Bölge | Hex | L\* | **C\* hedef (alt sınır %70)** | h° | K1 ölçümü |
+|---|---|---|---|---|---|
+| gece gök tepe | `#12141c` | 6.4 | 6.0 (≥ 4.2) | 283 | — |
+| gece gök orta | `#1c2232` | 13.4 | **11.6 (≥ 8.1)** | 281 | 3.5 ✗ |
+| gece gök ufuk | `#2c3246` | 21.1 | **13.6 (≥ 9.5)** | 283 | ≈4 ✗ |
+| Asya kıyısı gece | `#232838` | 16.3 | 11.3 (≥ 7.9) | 283 | — |
+| gece deniz | `#161c26` | 10.1 | **7.7 (≥ 5.4)** | 273 | 0.8 ✗ |
+| dalga çizgisi | `#2c3444` | 21.6 | 11.1 (≥ 7.8) | 276 | — |
+| gece rıhtım | `#45444a` | 29.1 | 3.9 (≥ 2.7) | (297) | 2.3 ✗ |
+| gece köşk cephe | `#4e4a46` | 31.7 | 3.1 | (74) | ✓ |
+| gündüz gök orta | `#cfcfc4` | 82.8 | 5.8 (≥ 4.1) | 110 | K2'de ölçülür |
+| Boğaz suyu | `#7c9090` | 58.3 | **7.5 (≥ 5.3)** | 199 | K2'de ölçülür |
+| Galata taşı | `#9a8f7e` | 59.9 | 10.6 (≥ 7.4) | 84 | — |
+| köşk gündüz | `#b4a88e` | 69.2 | 15.0 (≥ 10.5) | 90 | — |
+| rahle | `#4a3222` | 23.2 | 16.9 (≥ 11.8) | 59 | — |
+
+- **Neden kayboldu (ölçülerek doğrulandı):** `ArsivKatmani` derecelendirmesi `saturate .86` ve ardından sıcak siyah nokta (`#14110d`) ile doğrusal `bp + x·(wp − bp)` eşlemesi uyguluyor. Bu eşleme koyu değerleri sıcak yöne kaldırıp mavi kanalı bastırıyor.
+- Simülasyon render'ı birebir veriyor:
+  - `#1c2232` → `#2d2e33` (C\* 3.5); render'da `#2b2c31`.
+  - `#161c26` → `#28292a` (C\* 0.8); render'da `#262728`.
+- Yani kayıp çizimde değil, derecelendirmede. Gündüz de aynı eşleme kullanılıyor; Boğaz suyu ve gök K2'de aynı testten geçmeli.
 
 ## 7. Yönetmene notlar (sahne-planı / bolum.json değişiklik önerileri)
 1. **Kıyı görünümünde köşk konumu:** sahne-planı köşkü taban y≈900, üst y≈640 olarak veriyor. Bu ufuk–ölçek kuralına aykırı: ufuk 720 olduğunda 260 px'lik bir köşk 2.2 m yüksekliğinde bir oyuncak olurdu.
    - **Öneri:** su çizgisi **y 762**, üst **y 534**, x 740–928 (17 px/m).
-   - P01 p0'da (cs 1.25) kubbe ekranda y ≈ 427'ye düşer, üst yazı bandının (240–400) altında kalır.
+   - P01 p0'da (cs 1.25) örtü platosu ekranda y ≈ 427'ye düşer, üst yazı bandının (240–400) altında kalır.
    - Şenlik patlamaları P02'de **y 150–250** (dekor) olmalı: y 600 köşk cephesinin önüne düşer. Düşen çizgiler köşk örtüsünün arkasında kalır (köşk önde örter).
 2. **Köşk görünümünün kamerası:** **P02 cs 0.9 → 1.05**, **P10 cs 0.9 → 2.4 (son kare cx −28, cy 420)**. Gerekçe §1.3: padişah %12 için gerekli.
    - P02'de grubun ayakları ekran y ≈ 1344'te (alt bant içinde). P02'de replik yok, sorun değil.
@@ -466,6 +520,16 @@ Not: ArsivKatmani siyah noktası `#14110d`, gece gök tepesini (`#12141c`) ΔE �
   - `Isik.tsx` (`nokta` / `yonlu`, `AciklikIsigi`, `Golge`).
   - `Tarama.tsx`, `KonturTitreme`, `ArsivKatmani` (gece/gündüz).
   - `disManzara.tsx`'teki kırpma tekniği (P12 pencere dışı).
+- **ArsivKatmani gece derecelendirmesi (K1 O5; zorunlu, kodu motion yazar):** derecelendirme parametreleri moda bağlanır (`AYAR[mod]` içine).
+  - **`gece`:**
+    - `doygunluk 1.0` (`saturate` yok).
+    - **Siyah nokta `#12141c`** (`tasarim.md` §0.2 en koyusu, mavi).
+    - Kanal eğrisi **doğrusal kaldırma değil**, kanal başına `out = max(in, bp_c)` (≈ 0.02 genişliğinde yumuşak diz).
+    - Gölgeye soğuk karışım yok (palet zaten soğuk). Işık ucunda (x ≥ .75) sıcak karışım `#ffe2a8` α .04 kalır (alev ve pencere).
+    - Sonuç: gece paletindeki her renk siyah noktanın üstünde olduğundan derecelendirmeden **değişmeden** çıkar. Doğrulandı: `#1c2232`, `#161c26`, `#2c3246`, `#45444a` birebir korunur.
+    - Kâğıt lifi (multiply .13, nötr gri), gren (overlay .12) ve gece vinyeti (`rgba(6,6,14,.58)`) olduğu gibi kalır. Toplamda C\*'den en çok ≈ %10 alırlar, %70 sınırının içinde.
+  - **`gunduz` / `kagit`:** mevcut ayar korunur, ama K2'de Boğaz suyu ve gök C\* oranı ölçülür. %70'in altına düşerse gündüze de `doygunluk 1.0` + `max(in, bp)` uygulanır (gündüz siyah noktası `#14110d` kalabilir).
+  - **Yasak:** gece rengini kurtarmak için kaynak hex'leri "ön-telafi" amacıyla doygunlaştırmak. Palet tek gerçek kaynaktır; düzeltme derecelendirmede yapılır.
 - **Arşiv modu:** kıyı, köşk ve insert gece = `gece`; GALATA, BOGAZ, köşk ve insert gün, iç = `gunduz`; KITAP = `kagit`.
 - **YENİ hex'ler (paleti değiştirmez, eksik alanı doldurur; orkestra onaylamalı):**
   - Ağaç gece `#181c26` / `#1e2230`, gün `#7e8478`.
