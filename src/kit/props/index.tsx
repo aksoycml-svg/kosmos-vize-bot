@@ -141,7 +141,7 @@ const EldivenP: React.FC<PropCiz> = (o) => <Eldiven elBoyu={sayi(o.durum, "elBoy
 // Evliya prop'ları (fisek-demet, mesale, baslik, kanat) ışık/karakter bağlamı ister: yalnız SARAYBURNU şablonu çizer (props/evliya). Başka şablonda açık hata.
 const YalnizSarayburnu = (tur: string): React.FC<PropCiz> => () => { throw new Error(`[kit] prop "${tur}" yalnız SARAYBURNU şablonunda çizilir`); };
 export const PROPLAR: Record<PropTur, React.FC<PropCiz>> = { paket: Paket, eldiven: EldivenP, corap: Corap, dosya: Dosya, kitap: Kitap, kese: Kese, hokka: Hokka, mum: Mum, fener: Fener,
-  "fisek-demet": YalnizSarayburnu("fisek-demet"), mesale: YalnizSarayburnu("mesale"), baslik: YalnizSarayburnu("baslik"), kanat: YalnizSarayburnu("kanat") };
+  "fisek-demet": YalnizSarayburnu("fisek-demet"), mesale: YalnizSarayburnu("mesale"), baslik: YalnizSarayburnu("baslik"), kanat: YalnizSarayburnu("kanat"), sikke: YalnizSarayburnu("sikke") };
 
 // Prop'un p anındaki durum değerleri (dizi → kare ile anahtarlanır)
 export const propDurum = (pr: Prop, p: number): PropCiz["durum"] => {

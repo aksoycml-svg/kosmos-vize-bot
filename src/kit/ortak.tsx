@@ -13,7 +13,8 @@ import { KameraDurum, ekranNokta } from "./zaman";
 
 // Şablon: Sahne (yalnız görüntü; yazı ve arşiv katmanı Bolum'de) + arşiv modu.
 // kilit: güvenli alan denetimi için ekran noktaları (ayak, temas, yüz, kurulum) — Sahne render sırasında doldurur.
-export type SablonProps = { plan: Plan; p: number; kilit: KilitNokta[] };
+// onceki: bölümde bir önceki plan (eşleşen kesmede efekt durumu devralınır: duman, halka — K1-2 Y1). Yalnız okunur.
+export type SablonProps = { plan: Plan; p: number; kilit: KilitNokta[]; onceki?: Plan };
 export type Sablon = { Sahne: React.FC<SablonProps>; arsiv: (plan: Plan) => ArsivMod; arsivAtla?: (plan: Plan, p: number) => boolean };
 
 export const param = <T,>(plan: Plan, ad: string, v: T): T => (plan.parametreler?.[ad] as T | undefined) ?? v;

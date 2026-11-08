@@ -17,7 +17,7 @@ import { DOKU_SEED, karistir, P } from "../../../doku/sabitler";
 import { Kukla, Palet, Poz } from "../../../rig/Kukla";
 import { kuklaIsigi } from "../../../rig/RigIsik";
 import { AYAK_TABAN, elDunya, govdeDunya, kolIK } from "../../../rig/kinematik";
-import { Buhar, Duman, FitilKivilcimi, Puskurme, Sicrama, SuHalkasi } from "../../../components/GravurEfekt";
+import { Buhar, Duman, FitilKivilcimi, Puskurme, Sicrama, SuHalkasi, TacSicrama } from "../../../components/GravurEfekt";
 import { Baslik, DemetDurum, demetAgizlar, demetFitilUcu, demetOturak, demetOturakKenar, demetTutamak, FisekDemet, Fitil, fitilKivilcimNoktasi, fitilNoktalari, kanatEl, KanatCiz, kanatGeo, Mesale, mesaleAlev, SudaKanat } from "../../props/evliya";
 import { karakterBul } from "../../karakterler";
 import { karakterPoz, KarakterDurum } from "../../jestler";
@@ -89,10 +89,20 @@ const HavuzDuz: React.FC<{ isik: Isik; guc?: number }> = ({ isik, guc = 1 }) => 
   );
 };
 
+// K1-2 Y2 okutma: yüzen figürün arkasında 3 kesik dalga izi (V, köşke doğru yüzüş yönünün tersine açılır). Yalnız `okutma.dalga_izi` parametresiyle.
+const DalgaIzi: React.FC<{ x: number; y: number; pxm: number; p: number; yon: number; bas: number }> = ({ x, y, pxm, p, yon, bas }) => {
+  if (p < bas) return null;
+  const t = Math.min(1, (p - bas) / 24);
+  return <g>{[0, 1, 2].map((i) => {
+    const d0 = (0.35 + i * 0.45) * pxm, d1 = d0 + 0.32 * pxm * t, ac = (0.1 + i * 0.13) * pxm, kay = ((p * 0.6) % (0.45 * pxm));
+    return [-1, 1].map((s) => <path key={`${i}${s}`} d={`M ${x - yon * (d0 + kay * 0.3)} ${y + s * ac * 0.18} Q ${x - yon * ((d0 + d1) / 2 + kay * 0.3)} ${y + s * ac * 0.32 - 1} ${x - yon * (d1 + kay * 0.3)} ${y + s * ac * 0.45}`} fill="none" stroke="#9fb0bf" strokeWidth={Math.max(1.2, 0.035 * pxm)} strokeOpacity={0.75 - i * 0.18} strokeLinecap="round" />);
+  })}</g>;
+};
+
 export type KiyiParam = { fitil?: { bas: number; bit: number }; puskurme?: { bas: number; bit: number; sonuk?: boolean }; kosk_konum?: KoskKonum; su?: { halka?: { bas: number; bit: number }; y_demet?: number }; kosk_basamak?: { x: [number, number]; y: number; adim: number } };
 type SudaParam = { bas: number; bit: number; kare: number[]; x: number[]; y: number[]; olcek?: number; halka?: { bas: number } };
 
-export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> = ({ plan, p, kilit }) => {
+export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[]; onceki?: Plan }> = ({ plan, p, kilit, onceki }) => {
   const k = kameraHesapla(plan.kamera, p);
   const fitil = param<KiyiParam["fitil"] | null>(plan, "fitil", null);
   const pusk = param<KiyiParam["puskurme"] | null>(plan, "puskurme", null);
@@ -154,10 +164,12 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }>
     pz.scale = s;
     let suY: number | undefined;
     if (suda) {
-      // su çizgisi = y (iniş noktası). Göğüs (yerel boyun altı) su çizgisinde: baş + omuz üstü görünür
+      // su çizgisi = y (iniş noktası). Göğüs (yerel boyun altı) su çizgisinde: baş + omuz üstü görünür.
+      // K1-2 Y5: temas karesinde (ucus.bit) gövde su yüzündedir, 10 karede batar (öncesinde baş suda değil)
       suY = y;
       const boyun = govdeDunya(pz, [10, -400]);
-      pz.y += y - boyun[1] + 0.12 * pxm;
+      const bat = interpolate(p, [ucusJ!.bit, ucusJ!.bit + 10], [0, 1], { ...cl, easing: (u) => 1 - (1 - u) ** 2 });
+      pz.y += (y - boyun[1] + 0.12 * pxm) * bat;
     }
     if (baslikPr && baslikKalkti && c.kim === baslikSahip) d.palet = { ...d.palet, sapka: "yok" };
     const out: KC = { c, d, pxm, zemin, derinlik: zemin ? y : bagli ? bagli.d.y + 0.01 : KIYI.ufuk + pxm * KIYI.goz, ayak: [x, y], suY };
@@ -205,8 +217,8 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }>
     if ((KANATLI.has(c.kim) || kp) && takili > 0.5 && !(sudaK && p >= sudaK.bas)) {
       const acik = kp ? Math.max(0, Math.min(1, n(propDurum(kp, p).acik, 0))) : 0;
       const oturuyor = c.poz === "oturan" && !(ucus && p >= ucus.bas);
-      // katlı: başın 0.15H üstünden dize (oturanda oturak hizası, ayak dayamasına inmez); sırtın 30–40 birim gerisinde, en 150
-      const g = kanatGeo(acik, pz.lean ?? 0, RIG_BIRIM_M, -606, oturuyor ? -96 + ((pz.bodyY ?? 0) - 110) : -122, -46);
+      // katlı (v1.4 Y8): omuz üstünden (−400) diz hizasına: oturanda uyluk yatay → diz ≈ kalça hizası (−214), ayakta −122; sırt hattı −56
+      const g = kanatGeo(acik, pz.lean ?? 0, RIG_BIRIM_M, -400, oturuyor ? -214 : -122, -56);
       if (acik > 0.05) { ikEl(true, govdeDunya(pz, kanatEl(g.yakinAcik)), acik); ikEl(false, govdeDunya(pz, kanatEl(g.uzakAcik)), acik); }
       out.kanat = { g, acik };
     }
@@ -244,10 +256,12 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }>
     const pz = q.d.pz;
     const kanat = q.kanat;
     const ekranOlcek = (pz.scale ?? 1) * k.cs;
-    const isikYakin = Math.hypot(isik.zemin[0] - q.ayak[0], isik.zemin[1] - isik.yukseklik - (q.ayak[1] - 300)) < 2.2 * q.pxm;
+    // Z3: ışık yakınlığı sürekli ağırlık (eşik atlaması yok → kanat tonu komşu karede sıçramaz)
+    const isikW = interpolate(Math.hypot(isik.zemin[0] - q.ayak[0], isik.zemin[1] - isik.yukseklik - (q.ayak[1] - 300)) / q.pxm, [1.8, 2.8], [1, 0], cl);
     const katli = kanat ? 1 - kanat.acik : 0;
     const kat = kanat?.g.katli;
-    const kanatCiz = (pts: P[], uzak: boolean) => <KanatCiz pts={pts} katli={katli} ton={isikYakin ? "isikli" : "kontra"} kenar="#f0b060" olcekEkran={ekranOlcek} uzak={uzak} kat={kat} />;
+    const alttan = puskurmeAnahtar && q.c.poz === "oturan" ? pg : 0;
+    const kanatCiz = (pts: P[], uzak: boolean) => <KanatCiz pts={pts} katli={katli} isik={isikW} olcekEkran={ekranOlcek} uzak={uzak} kat={kat} alttan={alttan} />;
     // katlıyken iki kat gövdenin arkasında (arka kat önce); açıkken uzak kanat arka elin üstünde, yakın kanat ön kolun üstünde
     const arka = kanat && kanat.acik < 0.35 ? <>{kanatCiz(kanat.g.uzak, true)}{kanatCiz(kanat.g.yakin, false)}</> : undefined;
     const arkaUst = kanat && kanat.acik >= 0.35 ? kanatCiz(kanat.g.uzak, true) : undefined;
@@ -273,6 +287,8 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }>
   });
   // Lagâri suya iniş: ucus bitiş karesinde sıçrama + halka (temas su-sap)
   const inen = kc.find((q) => q.suY !== undefined);
+  const okutma = param<{ dalga_izi?: { adet?: number } } | null>(plan, "okutma", null);
+  const yuzerken = (q: (typeof kc)[number]) => !!okutma?.dalga_izi && q.suY !== undefined && (q.c.jestler ?? []).some((j) => j.ad === "yuz" && p >= j.bas);
   const inisKare = inen ? ((inen.c.jestler ?? []).find((j) => j.ad === "ucus")?.bit ?? 0) : 0;
   if (demet) {
     const dd = demet.d;
@@ -318,6 +334,17 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }>
   // duman: kaynak = ağız ortası (o karedeki demet konumu) — tabana bağlı, kalkıştan sonra iz
   const agizAt = (t: number): P => { if (!demetPr) return [540, 1330]; const dc = demetCoz(demetPr, t, null, suDemet); const a = demetAgizlar(dc.d); const o: P = [a.reduce((s0, q) => s0 + q[0], 0) / a.length, a.reduce((s0, q) => s0 + q[1], 0) / a.length]; return zemindeMi(dc.d.y) ? [o[0], dc.d.y] : o; };
   const pxmAt = (t: number) => (demetPr ? demetCoz(demetPr, t, null).d.pxm : REF_PXM);
+  // K1-2 Y1 (eşleşen kesme): püskürme önceki plandan sürüyorsa (bas 0) duman ÖNCEKİ planın kaynağıyla, aynı seed ve mutlak yaşla devralınır.
+  // Bulut i, iki planda aynı doğum karesine (önceki planın bas'ı − süresi) hizalanır → kesmenin iki yanında aynı bulutlar, aynı boy.
+  const oPusk = onceki && onceki.sablon === plan.sablon ? param<KiyiParam["puskurme"] | null>(onceki, "puskurme", null) : null;
+  const oDemetPr = oPusk ? (onceki!.props ?? []).find((q) => q.tur === "fisek-demet") : undefined;
+  const devral = !!(pusk && pusk.bas === 0 && oPusk && oDemetPr);
+  const oL = onceki?.sure_kare ?? 0, oSu = onceki ? param<KiyiParam["su"] | null>(onceki, "su", null)?.y_demet : undefined;
+  const oAgizAt = (t: number): P => { const dc = demetCoz(oDemetPr!, t, null, oSu); const a = demetAgizlar(dc.d); const o: P = [a.reduce((s0, q) => s0 + q[0], 0) / a.length, a.reduce((s0, q) => s0 + q[1], 0) / a.length]; return zemindeMi(dc.d.y) ? [o[0], dc.d.y] : o; };
+  const dumanBas = devral ? oPusk!.bas - oL : pusk ? (pusk.bas === 0 ? -90 : pusk.bas) : 0;
+  const dumanKaynak = (t: number): P => (t >= 0 ? agizAt(t) : devral ? oAgizAt(oL + t) : (() => { const q = agizAt(0); return [q[0], q[1] - t * 2.4] as P; })());
+  const dumanPxm = (t: number) => (t < 0 && devral ? demetCoz(oDemetPr!, oL + t, null).d.pxm : pxmAt(Math.max(0, t)));
+  const dumanYogun = (t: number) => (t < 0 && devral ? (oPusk!.sonuk ? 0.7 : 1) : pusk?.sonuk ? 0.7 : 1);
   const halka = su?.halka;
 
   return (
@@ -336,16 +363,19 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }>
             <Sicrama x={demet.d.x} y={demet.suda.suY} pxm={demet.d.pxm} p={p} bas={demet.suda.bas} seed={S + 71} />
           </>}
           {inen && inisKare > 0 && <>
-            <Sicrama x={inen.ayak[0]} y={inen.suY ?? inen.ayak[1]} pxm={inen.pxm} p={p} bas={inisKare} seed={S + 73} olcek={1.4} />
             <SuHalkasi x={inen.ayak[0]} y={inen.suY ?? inen.ayak[1]} pxm={inen.pxm} p={p} bas={inisKare} sure={40} olcek={1.4} />
+            <TacSicrama x={inen.ayak[0]} y={inen.suY ?? inen.ayak[1]} H={0.75 * inen.pxm} W={1.3 * inen.pxm} p={p} bas={inisKare} seed={S + 73} yari="arka" />
           </>}
           <KiyiRihtim />
           <HavuzDuz isik={isik} />
           {puskurmeAnahtar && mesaleIsik && <HavuzDuz isik={mesaleIsik} guc={0.5} />}
           {fitilPts && <Fitil pts={fitilPts} yanma={yanma} tukendi={!!fitil && p >= fitil.bit} />}
           {kivilcim && <FitilKivilcimi x={kivilcim[0]} y={kivilcim[1]} p={p} seed={S + 21} />}
-          {demet && pusk && p >= pusk.bas && <Duman kaynakAt={(t) => (t < 0 ? (() => { const q = agizAt(0); return [q[0], q[1] - t * 2.4] as P; })() : agizAt(t))} pxmAt={(t) => pxmAt(Math.max(0, t))} p={p} bas={pusk.bas === 0 ? -90 : pusk.bas} bit={pusk.bit} seed={S + 31} yogun={pusk.sonuk ? 0.7 : 1} />}
+          {demet && pusk && p >= pusk.bas && <Duman kaynakAt={dumanKaynak} pxmAt={dumanPxm} p={p} bas={dumanBas} bit={pusk.bit} seed={S + 31} yogunAt={dumanYogun} />}
           {cizim.map((c) => c.el)}
+          {/* K1-2 Y5: iniş taç sıçramasının ön yarısı figürün önünde (su-sap teması bu karede görünür) */}
+          {inen && inisKare > 0 && <TacSicrama x={inen.ayak[0]} y={inen.suY ?? inen.ayak[1]} H={0.75 * inen.pxm} W={1.3 * inen.pxm} p={p} bas={inisKare} seed={S + 73} yari="on" />}
+          {inen && yuzerken(inen) && <DalgaIzi x={inen.ayak[0]} y={inen.suY!} pxm={inen.pxm} p={p} yon={inen.d.pz.facing ?? 1} bas={inisKare + 6} />}
           {demet?.suda && <Buhar x={demet.d.x} y={demet.suda.suY} pxm={demet.d.pxm} p={p} bas={demet.suda.bas + 2} seed={S + 75} />}
           {demet && pg > 0 && <Puskurme agizlar={agiz} asagi={[-Math.sin((demet.d.aci * Math.PI) / 180), Math.cos((demet.d.aci * Math.PI) / 180)]} pxm={demet.d.pxm} p={p} guc={pg} uzunluk={demetYerde ? 0.8 : 1.3} zeminY={demetZemin} seed={S + 13} />}
         </g>

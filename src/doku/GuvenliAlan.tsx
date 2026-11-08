@@ -25,11 +25,14 @@ export const kilitKontrol = (k: KilitNokta, aktifBant: "ust" | "alt" | null): st
   if (k.tur !== "yazi" && aktifBant) { const [a, b] = BANTLAR[aktifBant]; if (y > a && y < b) return `${k.ad}: ${aktifBant === "ust" ? "ÜST" : "ALT"} yazı bandında (y ${Math.round(y)})`; }
   return null;
 };
-export const kilitRapor = (noktalar: KilitNokta[], aktifBant: "ust" | "alt" | null) => noktalar.map((k) => ({ k, hata: kilitKontrol(k, aktifBant) }));
+// K1-2 Z1: kadraj DIŞINDAKİ nokta (x ∉ [0,1080] ya da y ∉ [0,1920]) ihlal sayılmaz — "dışarıda" raporlanır (görünmeyen öğe arayüz altında kalamaz)
+export const kadrajDisi = (k: KilitNokta) => k.p[0] < 0 || k.p[0] > 1080 || k.p[1] < 0 || k.p[1] > 1920;
+export const kilitRapor = (noktalar: KilitNokta[], aktifBant: "ust" | "alt" | null) => noktalar.map((k) => (kadrajDisi(k) ? { k, hata: null, disarida: true } : { k, hata: kilitKontrol(k, aktifBant), disarida: false }));
 
 export const GuvenliAlan: React.FC<{ noktalar?: KilitNokta[]; aktifBant?: "ust" | "alt" | null; baslik?: string }> = ({ noktalar = [], aktifBant = null, baslik }) => {
   const rapor = kilitRapor(noktalar, aktifBant);
   const hatalar = rapor.filter((r) => r.hata);
+  const disari = rapor.filter((r) => r.disarida);
   if (hatalar.length) console.warn(`[GuvenliAlan] ${baslik ?? ""}: ${hatalar.map((h) => h.hata).join(" | ")}`);
   const kirmizi = "rgba(229,72,60,0.28)";
   return (
@@ -54,7 +57,8 @@ export const GuvenliAlan: React.FC<{ noktalar?: KilitNokta[]; aktifBant?: "ust" 
             <text x={k.p[0] + 16} y={k.p[1] - 14} fontFamily="monospace" fontSize={20} fill={hata ? "#ff3020" : "#30e060"} stroke="#000" strokeWidth={4} paintOrder="stroke">{k.ad}</text>
           </g>
         ))}
-        <text x={90} y={60} fontFamily="monospace" fontSize={26} fill="#fff" stroke="#000" strokeWidth={5} paintOrder="stroke">{`${baslik ?? ""}  kilit: ${rapor.length}  ihlal: ${hatalar.length}`}</text>
+        <text x={90} y={60} fontFamily="monospace" fontSize={26} fill="#fff" stroke="#000" strokeWidth={5} paintOrder="stroke">{`${baslik ?? ""}  kilit: ${rapor.length}  ihlal: ${hatalar.length}${disari.length ? `  dışarıda: ${disari.length}` : ""}`}</text>
+        {disari.map((d, i) => <text key={`d${i}`} x={990} y={100 + i * 26} textAnchor="end" fontFamily="monospace" fontSize={18} fill="#c8c8c8" stroke="#000" strokeWidth={4} paintOrder="stroke">{`${d.k.ad}: kadraj dışında (${Math.round(d.k.p[0])}, ${Math.round(d.k.p[1])})`}</text>)}
         {hatalar.map((h, i) => <text key={i} x={90} y={100 + i * 30} fontFamily="monospace" fontSize={22} fill="#ff6050" stroke="#000" strokeWidth={5} paintOrder="stroke">{h.hata}</text>)}
       </svg>
     </AbsoluteFill>

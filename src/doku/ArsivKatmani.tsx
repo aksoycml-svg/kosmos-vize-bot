@@ -12,7 +12,9 @@ import { AbsoluteFill, Img, staticFile, useCurrentFrame } from "remotion";
 // geceLapis (Evliya, mekanlar.md §8 / K1 O5): doygunluk 1.0, siyah nokta #12141c, kanal başına max(in, bp) (yumuşak diz ≈ .02),
 // gölgeye soğuk karışım yok, ışık ucunda sıcak #ffe2a8 α .04. Gece paleti siyah noktanın üstünde → derecelendirmeden değişmeden çıkar.
 // "gece" (Blanc) değişmedi: eski bölümler aynı piksellerle render olur.
-export type ArsivMod = "gunduz" | "gece" | "kagit" | "geceLapis";
+// gunduzMineral (Evliya gün, mekanlar §8 "gündüze de doygunluk 1.0 + max(in, bp)"; K2 ölçümü: "gunduz" Boğaz/deniz tonunu yeşil-griye
+// kaydırıyordu, Δh −63°): doygunluk 1.0, kanal başına max(in, bp) (bp #14110d), ışık ucunda sıcak α .04, vinyet daha açık. "gunduz" (Blanc) değişmedi.
+export type ArsivMod = "gunduz" | "gece" | "kagit" | "geceLapis" | "gunduzMineral";
 
 const GREN_OFSET: [number, number][] = [[0, 0], [211, 87], [97, 301], [389, 173], [43, 419], [257, 29], [151, 233], [331, 367]];
 const AYAR: Record<ArsivMod, { lif: number; gren: number; vinyet: string }> = {
@@ -21,11 +23,13 @@ const AYAR: Record<ArsivMod, { lif: number; gren: number; vinyet: string }> = {
   gece: { lif: 0.13, gren: 0.12, vinyet: "rgba(6,6,14,0.58)" },
   kagit: { lif: 0.18, gren: 0.08, vinyet: "rgba(40,24,8,0.42)" },
   geceLapis: { lif: 0.13, gren: 0.12, vinyet: "rgba(6,6,14,0.58)" },
+  gunduzMineral: { lif: 0.14, gren: 0.08, vinyet: "rgba(40,24,8,0.26)" },
 };
 const BP_LAPIS = [0x12, 0x14, 0x1c].map((v) => v / 255);
+const BP_GUN = [0x14, 0x11, 0x0d].map((v) => v / 255);
 // max(x, bp) yumuşak dizle; x ≥ .75'te sıcak karışım (α .04) — 33 noktalı tablo
-const tabloLapis = (c: number) => Array.from({ length: 33 }, (_, i) => {
-  const x = i / 32, bp = BP_LAPIS[c], k = 0.02;
+const tabloLapis = (c: number, BPx: number[] = BP_LAPIS) => Array.from({ length: 33 }, (_, i) => {
+  const x = i / 32, bp = BPx[c], k = 0.02;
   let v = x <= bp - k ? bp : x >= bp + k ? x : bp + ((x - (bp - k)) ** 2) / (4 * k);
   if (x >= 0.75) v = v * (1 - 0.04 * ((x - 0.75) / 0.25)) + SICAK[c] * 0.04 * ((x - 0.75) / 0.25);
   return v.toFixed(4);
@@ -53,12 +57,12 @@ export const ArsivKatmani: React.FC<{ mod: ArsivMod; children: React.ReactNode; 
     <AbsoluteFill>
       <svg width={0} height={0} style={{ position: "absolute" }}>
         <filter id={`derece-${id}`} colorInterpolationFilters="sRGB">
-          {mod !== "geceLapis" && <feColorMatrix type="saturate" values="0.86" />}
+          {mod !== "geceLapis" && mod !== "gunduzMineral" && <feColorMatrix type="saturate" values="0.86" />}
           {/* gölgeler soğuk (#1b2236 α.06), ışıklar sıcak (#ffe2a8 α.04): kanal başına hafif eğri */}
           <feComponentTransfer>
-            <feFuncR type="table" tableValues={mod === "geceLapis" ? tabloLapis(0) : tablo(0)} />
-            <feFuncG type="table" tableValues={mod === "geceLapis" ? tabloLapis(1) : tablo(1)} />
-            <feFuncB type="table" tableValues={mod === "geceLapis" ? tabloLapis(2) : tablo(2)} />
+            <feFuncR type="table" tableValues={mod === "geceLapis" ? tabloLapis(0) : mod === "gunduzMineral" ? tabloLapis(0, BP_GUN) : tablo(0)} />
+            <feFuncG type="table" tableValues={mod === "geceLapis" ? tabloLapis(1) : mod === "gunduzMineral" ? tabloLapis(1, BP_GUN) : tablo(1)} />
+            <feFuncB type="table" tableValues={mod === "geceLapis" ? tabloLapis(2) : mod === "gunduzMineral" ? tabloLapis(2, BP_GUN) : tablo(2)} />
           </feComponentTransfer>
         </filter>
       </svg>

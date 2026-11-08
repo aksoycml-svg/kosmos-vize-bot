@@ -239,9 +239,35 @@
       "kurulu": {
         "kiyi": [
           "gece"
+        ],
+        "insert": [
+          "gece",
+          "gun"
         ]
       },
-      "not": "Evliya KE-S1. x/y dekor px (zemin teması). kiyi: rıhtımdaki figürün ölçeği y'den (ufuk 720, göz 1.5 m), havadaki/sudaki `olcek` ile (1 = y 1330, 406.7 px/m). kurulu dışındaki görünüm/saat render'da hata verir (K2+)."
+      "not": "Evliya KE-S1. x/y dekor px (zemin teması). kiyi: rıhtımdaki figürün ölçeği y'den (ufuk 720, göz 1.5 m), havadaki/sudaki `olcek` ile (1 = y 1330, 406.7 px/m). kurulu dışındaki görünüm/saat render'da hata verir (K2+). insert (K2): x/y = ayak tabanı (ölçek y'den, göz 1.95 m), el.* ekran px; el rol veren/alan/omuz; kese/sikke x/y = temas (taban) noktası.",
+      "elMaks": 3,
+      "elTip": [
+        "entari-yen",
+        "lagari",
+        "hezarfen",
+        "muhafiz"
+      ],
+      "elRol": [
+        "veren",
+        "alan",
+        "omuz"
+      ],
+      "elPoz": [
+        "kistir",
+        "gevsek",
+        "ac",
+        "kapa",
+        "gevse"
+      ],
+      "durumAralik": [
+        "damla"
+      ]
     }
   },
   "karakterler": [
@@ -256,7 +282,8 @@
     "yargic",
     "lagari",
     "yardimci-1",
-    "yardimci-2"
+    "yardimci-2",
+    "hezarfen"
   ],
   "jestler": [
     "yuru",
@@ -274,7 +301,9 @@
     "kanat-ac",
     "ucus",
     "yuz",
-    "kanat-birak"
+    "kanat-birak",
+    "egil",
+    "dogrul"
   ],
   "jestTemas": {
     "baston-vur": [
@@ -300,7 +329,8 @@
     "fisek-demet",
     "mesale",
     "baslik",
-    "kanat"
+    "kanat",
+    "sikke"
   ],
   "bantlar": [
     "ust",
@@ -317,7 +347,8 @@
     "katip": "katip",
     "tuccar": "tuccar",
     "yargic": "yargic",
-    "lagari": "lagari"
+    "lagari": "lagari",
+    "hezarfen": "hezarfen"
   },
   "ayniKisi": {
     "louis-eldivenli": "louis"
@@ -354,6 +385,9 @@
       "SARAYBURNU"
     ],
     "kanat": [
+      "SARAYBURNU"
+    ],
+    "sikke": [
       "SARAYBURNU"
     ]
   },

@@ -135,7 +135,12 @@ for (const plan of B.planlar ?? []) {
     if (S.konum === "xy") {
       // SARAYBURNU: x/y dekor px yolu; olcek anahtarlı; ufuk–ölçek (kiyi: rıhtımdaki figürün ölçeği y'den — json olcek farkı uyarılır)
       for (const ad of ["x", "y", "olcek"]) anahtarUzunluk(y, ad, c[ad], c.kare);
-      for (const [ad, v] of Object.entries(c.durum ?? {})) anahtarUzunluk(y, `durum.${ad}`, v, c.kare);
+      for (const [ad, v] of Object.entries(c.durum ?? {})) {
+        // aralık durumları (S.durumAralik, ör. damla [bas, bit]): anahtar dizisi değil — plan içinde ve bitiş payı
+        if ((S.durumAralik ?? []).includes(ad)) { if (!Array.isArray(v) || v.length !== 2 || !(v[0] < v[1]) || v[0] < 0) H(y, `durum.${ad} [bas, bit] aralığı olmalı`); else bitis(y, `durum.${ad}`, v[1]); continue; }
+        if (typeof v === "boolean") continue;
+        anahtarUzunluk(y, `durum.${ad}`, v, c.kare);
+      }
       if (Array.isArray(c.x) || Array.isArray(c.y) || Array.isArray(c.olcek)) bitis(y, "yol (kare)", son(c.kare));
       if (c.x === undefined && !c.bagli) H(y, "x/y yok (SARAYBURNU konum dili: dekor px, zemin teması)");
       if (c.bagli && !(plan.props ?? []).some((q) => q.id === c.bagli.prop)) H(y, `bagli.prop "${c.bagli.prop}" planda yok`);
@@ -186,7 +191,17 @@ for (const plan of B.planlar ?? []) {
   }
   for (const [i, el] of (plan.el ?? []).entries()) {
     const y = `${Y} el${i}`;
-    if (plan.sablon !== "MASA-INSERT") H(y, "el yalnız MASA-INSERT'te");
+    if (!(S.elMaks > 0)) H(y, "el bu şablonda yok (MASA-INSERT, SARAYBURNU insert)");
+    if (plan.sablon === "SARAYBURNU") {
+      if (prm.gorunum !== "insert") H(y, "el SARAYBURNU'da yalnız gorunum insert");
+      if (S.elTip && !S.elTip.includes(el.tip)) H(y, `el tip "${el.tip}" (${S.elTip.join(" | ")})`);
+      if (S.elRol && !S.elRol.includes(el.rol)) H(y, `el rol "${el.rol}" (${S.elRol.join(" | ")})`);
+      for (const z of el.poz ?? []) if (S.elPoz && !S.elPoz.includes(z.poz)) H(y, `el poz "${z.poz}" (${S.elPoz.join(" | ")})`);
+      // omuz eli: inişin bittiği anahtar (kare[2]) temas karesidir (TEMAS = SES)
+      if (el.rol === "omuz" && el.kare?.length > 2 && !temasVar(plan, el.kare[2], 1)) H(y, `omuz eli inişi p${el.kare[2]}: temas yok`);
+      // alan eli: ilk anahtar zemine yakınsa (P07 basamak) temas p${el.kare[0]} olmalı
+      if (el.rol === "alan" && el.bilek?.[0] && (plan.karakterler?.[0]?.y ?? 1450) - el.bilek[0][1] < 0.4 * (((plan.karakterler?.[0]?.y ?? 1450) - 180) / 1.95) && !temasVar(plan, el.kare[0], 1)) H(y, `alan eli p${el.kare[0]} basamak teması: temas yok`);
+    } else if (plan.sablon !== "MASA-INSERT") H(y, "el yalnız MASA-INSERT'te");
     for (const ad of ["bilek", "dirsek", "aci"]) if (el[ad]?.length !== el.kare?.length) H(y, `${ad} (${el[ad]?.length}) ile kare (${el.kare?.length}) eşit değil`);
     artan(y, el.kare);
     bitis(y, "el hareketi", son(el.kare));

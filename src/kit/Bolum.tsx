@@ -78,12 +78,12 @@ const KilitBindirme: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> = 
   return <GuvenliAlan noktalar={kilit} aktifBant={alt ? "alt" : ust ? "ust" : null} baslik={`${plan.id} ${plan.sablon} p${p}`} />;
 };
 
-const PlanGoster: React.FC<{ plan: Plan; guvenli?: boolean; yazisiz?: boolean }> = ({ plan, guvenli, yazisiz }) => {
+const PlanGoster: React.FC<{ plan: Plan; guvenli?: boolean; yazisiz?: boolean; onceki?: Plan }> = ({ plan, guvenli, yazisiz, onceki }) => {
   const p = useCurrentFrame();
   const S = SABLONLAR[plan.sablon];
   if (!S) throw new Error(`[Bolum] bilinmeyen şablon: ${plan.sablon}`);
   const kilit: KilitNokta[] = [];
-  const sahne = <AbsoluteFill><S.Sahne plan={plan} p={p} kilit={kilit} /></AbsoluteFill>;
+  const sahne = <AbsoluteFill><S.Sahne plan={plan} p={p} kilit={kilit} onceki={onceki} /></AbsoluteFill>;
   return (
     <AbsoluteFill style={{ backgroundColor: "#14110d" }}>
       {S.arsivAtla?.(plan, p) ? sahne : <ArsivKatmani mod={S.arsiv(plan)}>{sahne}</ArsivKatmani>}
@@ -113,9 +113,9 @@ export const Bolum: React.FC<BolumProps> = ({ yol, bolum, guvenli, foley, miks, 
   let bas = 0;
   return (
     <AbsoluteFill style={{ backgroundColor: "#14110d" }}>
-      {b.planlar.map((plan) => {
+      {b.planlar.map((plan, i) => {
         const from = bas; bas += plan.sure_kare;
-        return <Sequence key={plan.id} from={from} durationInFrames={plan.sure_kare} name={`${plan.id} · ${plan.sablon}`}>{!katman && <PlanGoster plan={plan} guvenli={guvenli} yazisiz={!!b.gorsel_yazisiz} />}{(!katman || katman === "anlatim") && <PlanSesleri plan={plan} />}</Sequence>;
+        return <Sequence key={plan.id} from={from} durationInFrames={plan.sure_kare} name={`${plan.id} · ${plan.sablon}`}>{!katman && <PlanGoster plan={plan} guvenli={guvenli} yazisiz={!!b.gorsel_yazisiz} onceki={i > 0 ? b.planlar[i - 1] : undefined} />}{(!katman || katman === "anlatim") && <PlanSesleri plan={plan} />}</Sequence>;
       })}
       {(!katman || katman === "foley") && <FoleyKatmani b={b} foley={fj} miks={mj} fps={60} />}
       {(!katman || katman === "muzik") && <MuzikKatmani miks={mj} toplam={toplam} anlatim={anlatimAraliklari(b, sesSure, 60)} />}

@@ -64,7 +64,8 @@ export const Puskurme: React.FC<{ agizlar: P[]; asagi: P; pxm: number; p: number
 // E1 duman (v2, K1 S3): her bulut doğduğu karede kaynağın (ağzın) o anki konumunda doğar → duman tabana bağlı; kaynak yükselince arkada İZ kalır.
 // Bulut yükselir + rüzgârla sağa, büyür; fade yok (eski bulutlar kadrajdan çıkar / iz olarak durur). Kenar tırtıklı (gravür), düz 2 ton.
 // kaynakAt(t): t karesindeki ağız noktası; bit: üretimin bittiği kare (püskürme sönünce yeni bulut doğmaz, mevcutlar kalır).
-export const Duman: React.FC<{ kaynakAt: (t: number) => P; pxmAt: (t: number) => number; p: number; bas: number; bit?: number; seed: number; yogun?: number }> = ({ kaynakAt, pxmAt, p, bas, bit = Infinity, seed, yogun = 1 }) => {
+// yogunAt(t): doğduğu karedeki yoğunluk (eşleşen kesmede önceki plandan devralınan bulut eski yoğunluğunu korur; K1-2 Y1)
+export const Duman: React.FC<{ kaynakAt: (t: number) => P; pxmAt: (t: number) => number; p: number; bas: number; bit?: number; seed: number; yogun?: number; yogunAt?: (t: number) => number }> = ({ kaynakAt, pxmAt, p, bas, bit = Infinity, seed, yogun = 1, yogunAt }) => {
   if (p < bas) return null;
   const aralik = 4;
   const bulut = (cx: number, cy: number, r: number, i: number) => {
@@ -80,7 +81,7 @@ export const Duman: React.FC<{ kaynakAt: (t: number) => P; pxmAt: (t: number) =>
   const parcalar: { x: number; y: number; r: number; i: number }[] = [];
   for (let dg = bas, i = 0; dg <= son; dg += aralik, i++) {
     const yas = p - dg, k0 = kaynakAt(dg), m = pxmAt(dg);
-    const r = (0.1 + Math.min(yas, 140) * 0.0045) * m * yogun * (0.8 + 0.4 * rnd(seed, `r${i}`));
+    const r = (0.1 + Math.min(yas, 140) * 0.0045) * m * (yogunAt ? yogunAt(dg) : yogun) * (0.8 + 0.4 * rnd(seed, `r${i}`));
     parcalar.push({ x: k0[0] + (rnd(seed, `x${i}`) - 0.5) * 0.35 * m + yas * 0.006 * m, y: k0[1] - 0.06 * m - yas * 0.011 * m, r, i });
   }
   const son40 = parcalar.slice(-60);
@@ -127,4 +128,36 @@ export const FitilKivilcimi: React.FC<{ x: number; y: number; p: number; olcek?:
       {Array.from({ length: 8 }).map((_, i) => { const omur = 8 + Math.round(rnd(seed, `o${i}`) * 12); const t = ((p + i * 3) % omur) / omur; const a = rnd(seed, `a${i}${Math.floor((p + i * 3) / omur)}`) * Math.PI * 2; return <circle key={i} cx={x + Math.cos(a) * t * 40 * olcek} cy={y + Math.sin(a) * t * 30 * olcek + t * t * 20 * olcek} r={Math.max(1, (1 - t) * 3 * olcek)} fill="#f0a040" />; })}
     </g>
   );
+};
+
+// E3 taç sıçrama (K1-2 Y5: iniş "şap" teması karede görünür): su yüzündeki basık halkadan 7 sivri dil yükselir (taç), uçlarından damla
+// kopar ve parabolle suya döner; 20 kare. H = taç yüksekliği (px; tasarım: baş boyunun ≈1.5×'i), W = taç eni (px). Fade yok: diller
+// küçülerek suya iner, damlalar suya değince biter. Ön yarı figürün önünde çizilir (çağıran sıralar), arka yarı `arka` ile.
+export const TacSicrama: React.FC<{ x: number; y: number; H: number; W: number; p: number; bas: number; seed: number; yari?: "on" | "arka" | "hepsi" }> = ({ x, y, H, W, p, bas, seed, yari = "hepsi" }) => {
+  const t = (p - bas) / 20; if (t < 0 || t > 1) return null;
+  // temas karesinde (t=0) taç zaten açılıyor (şap anı görünür); tepe ≈ 7. kare, sonra diller suya iner
+  const yuk = Math.sin(Math.PI * Math.min(1, 0.14 + t * 1.0)) ** 0.6;
+  const rx = W * (0.32 + 0.22 * t), ry = rx * 0.26, N = 7;
+  const diller: React.ReactNode[] = [], damlalar: React.ReactNode[] = [];
+  for (let i = 0; i < N; i++) {
+    const a = Math.PI * 2 * (i / N) + 0.35 + (rnd(seed, `a${i}`) - 0.5) * 0.3;
+    const on = Math.sin(a) > 0; // ekran altı yarı = kameraya yakın (ön)
+    if ((yari === "on" && !on) || (yari === "arka" && on)) continue;
+    const bx = x + Math.cos(a) * rx, by = y + Math.sin(a) * ry;
+    const h = H * yuk * (0.75 + 0.45 * rnd(seed, `h${i}`)) * (on ? 1 : 0.85);
+    const egim = Math.cos(a) * W * 0.12 * (0.5 + t);
+    const w = Math.max(2.5, W * 0.085 * (1 - 0.4 * t));
+    const uc: P = [bx + egim, by - h];
+    diller.push(<path key={`d${i}`} d={`M ${bx - w} ${by} Q ${bx - w * 0.3 + egim * 0.4} ${by - h * 0.55} ${uc[0]} ${uc[1]} Q ${bx + w * 0.3 + egim * 0.4} ${by - h * 0.55} ${bx + w} ${by} Z`} fill="#a9bccb" stroke="#e6eef0" strokeWidth={Math.max(1, w * 0.25)} strokeLinejoin="round" />);
+    if (t > 0.35) {
+      // uçtan kopan damla: kopma anındaki uçtan parabol (suya dönünce biter)
+      const td = (t - 0.35) / 0.65, vx = Math.cos(a) * W * 0.5, vy = -H * 0.9;
+      const dx = uc[0] + vx * td, dy = by - H * 0.95 * (0.75 + 0.45 * rnd(seed, `h${i}`)) + vy * td + H * 3.2 * td * td;
+      if (dy < y + ry) damlalar.push(<path key={`k${i}`} d={`M ${dx} ${dy - w * 0.9} q ${w * 0.7} ${w * 1.1} 0 ${w * 1.6} q ${-w * 0.7} ${-w * 0.5} 0 ${-w * 1.6} Z`} fill="#a9bccb" stroke="#e6eef0" strokeWidth={Math.max(0.8, w * 0.2)} />);
+    }
+  }
+  return <g>
+    {yari !== "on" && <ellipse cx={x} cy={y} rx={rx} ry={ry} fill="none" stroke="#e6eef0" strokeWidth={Math.max(1.2, W * 0.03 * (1 - t))} strokeOpacity={0.8} />}
+    {diller}{damlalar}
+  </g>;
 };

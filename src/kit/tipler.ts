@@ -14,7 +14,8 @@ export type Sayi = number | number[];
 export type Kamera = { kare: number[]; cs: number[]; cx?: number[]; cy?: number[]; egri?: "giris" | "inout" | "lineer" };
 
 export type JestAdi = "yuru" | "konus" | "isaret" | "sapka-kaldir" | "baston-vur" | "esne" | "it-cek" | "eldiven-giy" | "fisilda" | "yaz" | "bak"
-  | "sicra" | "kanat-ac" | "ucus" | "yuz" | "kanat-birak"; // Evliya (SARAYBURNU kıyı); yuz/kanat-birak kurulumda (doğrulayıcı uyarır)
+  | "sicra" | "kanat-ac" | "ucus" | "yuz" | "kanat-birak" // Evliya (SARAYBURNU kıyı)
+  | "egil" | "dogrul"; // Evliya (SARAYBURNU insert): gövde eğimi (ops.aci) / doğrulma
 export type JestCagri = { ad: JestAdi; bas: number; bit: number; ops?: Record<string, number | string | boolean | number[]> };
 
 export type Karakter = {
@@ -36,7 +37,8 @@ export type Karakter = {
 };
 
 export type PropTur = "paket" | "eldiven" | "corap" | "dosya" | "kitap" | "kese" | "hokka" | "mum" | "fener"
-  | "fisek-demet" | "mesale" | "baslik" | "kanat"; // Evliya (SARAYBURNU kıyı)
+  | "fisek-demet" | "mesale" | "baslik" | "kanat" // Evliya (SARAYBURNU kıyı)
+  | "sikke"; // Evliya (SARAYBURNU insert; kese de insert'te Osmanlı kumaş torba çizilir)
 export type Prop = {
   tur: PropTur; id?: string;
   x?: Sayi; y?: Sayi; kare?: number[];         // MASA-INSERT: ekran px (masa düzlemi). IC-ODA: x = u (m), y = z (m). SARAYBURNU: dekor px (zemin teması)
@@ -50,11 +52,13 @@ export type Prop = {
 };
 
 // MASA-INSERT eli: KolEl anahtarları (ekran px)
+// SARAYBURNU insert (Evliya K2): tip entari-yen | lagari | hezarfen | muhafiz; rol veren | alan | omuz; poz ac/kapa/gevse (gevsek/kistir eşlenir)
 export type El = {
-  tip: "ceket" | "gomlek" | "parisManset" | "gorevli" | "yazici" | "louis";
+  tip: "ceket" | "gomlek" | "parisManset" | "gorevli" | "yazici" | "louis"; // SARAYBURNU insert: json'da Osmanlı tipleri (şablon OsmanliElTip'e çevirir)
+  rol?: "veren" | "alan" | "omuz";
   giris: P; kare: number[]; bilek: P[]; dirsek: P[]; aci: number[];
   olcek?: number;
-  poz?: { kare: number; poz: "kistir" | "gevsek" }[];
+  poz?: { kare: number; poz: "kistir" | "gevsek" }[]; // SARAYBURNU insert: ac/kapa/gevse de kabul (json)
   tut?: { prop: string; bas: number; bit: number; tutulAci?: number; birakAci?: number }; // prop.id; bit = bırakma (temas)
   takip?: { prop: string; kare: [number, number] }[]; // K4: pencerede kıstırma prop'un tutma noktasını izler (paket kapan/ip)
 };

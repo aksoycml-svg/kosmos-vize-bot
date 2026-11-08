@@ -160,12 +160,12 @@ Tek karakter yakın (rig `yakin` yüz), arka başka şablonun bulanık sahnesi.
 - 1 karakter; `z/u` yok sayılır. `esne` jesti burada kocaman `esneme` ağzı verir (K2).
 - `manipulator` (K2): `{ileri: [x, y] rig yerel (175, −280), yari (72)}` — göğüs önünde kumanda kolu; it-çek fazı kolu döndürür, el IK ile tutamakta; kablolar kadraj üstüne. Kol jest dışında da elde kalır (süreklilik).
 
-## SARAYBURNU (Evliya, İstanbul 1630'lar — kurulum K1: yalnız `kiyi` + `gece`)
+## SARAYBURNU (Evliya, İstanbul 1630'lar — kurulu: `kiyi` + `gece` (K1), `insert` + `gece`/`gun` (K2))
 Sinan Paşa (İncili) Köşkü kıyısı (mekanlar.md §1). `src/kit/sablonlar/sarayburnu/`. Kurulmamış görünüm/saat render'da AÇIK HATA verir; doğrulayıcı da HATA.
 | parametre | değerler |
 |---|---|
-| `gorunum` * | `kiyi` (KURULU) · `kosk` · `insert` · `ic` (sonraki kalibrasyonlar) |
-| `saat` * | `gece` (KURULU) · `gun` |
+| `gorunum` * | `kiyi` (KURULU, gece) · `insert` (KURULU, gece+gün) · `kosk` · `ic` (sonraki kalibrasyonlar) |
+| `saat` * | `gece` · `gun` (gün = arşiv `gunduzMineral`) |
 | `fitil` | `{bas, bit}` kıvılcım x 330'dan demet ağzına yürür (4 köşeli yıldız; yalnız burada) |
 | `puskurme` | `{bas, bit, sonuk}` demet ağızlarından püskürme; bas+6'dan anahtar ışık püskürme (meşale gölge payını devreder); yerdeyken zemine çarpan alev + kıvılcım, duman |
 | `kosk_konum` | `{su_cizgisi 762, ust 534, x [740, 928], px_m 17}` |
@@ -174,7 +174,14 @@ Sinan Paşa (İncili) Köşkü kıyısı (mekanlar.md §1). `src/kit/sablonlar/s
 - **`poz: oturan` + `bagli: {prop: "<demet id>"}`:** kalça oturakta, ayaklar dayama çubuğunda, ön el üst sicim bağında, arka el oturak kenarında (x/y yok sayılır).
 - **Jestler:** `sicra` (geri adım + kol yüze, lean −12; meşale bele iner) · `kanat-ac` (kanat prop `durum.acik` 0→1; kollar ön kenar altına) · `ucus` (gövde 30° öne, bacaklar geride) · `yuz`, `kanat-birak` = KURULUMDA (şemada var, çizilmez; doğrulayıcı uyarır).
 - **Prop'lar (yalnız SARAYBURNU):** `fisek-demet` (İMZA #c4a874; durum `puskurme`, `titreme`, `bos`; `aci`; havada `olcek`) · `mesale` (`bagli` yardımcı; x/y = baş hedefi: omuzdan ≥ 0.9 m ise izlenir, değilse taşıma pozu; meşale her zaman eli izler) · `baslik` (takke; `kare[1]`'de sahibinin başından ayrılır, `olcek` 1.6 stilize; sahip varsayılan `yardimci-1`) · `kanat` (`bagli` karakter, `durum.acik`; `suda` KURULUMDA).
-- Kamera cs 0.9–3.0, cx ±300, cy −200…600; parallaks yok (mekanlar §0.1: hepsi f = 1).
+- Kamera cs 0.9–3.0, cx ±740, cy −200…600; parallaks yok (mekanlar §0.1: hepsi f = 1).
+- **Eşleşen kesme:** önceki plan aynı şablonsa ve `puskurme.bas = 0` ise duman önceki planın kaynağı/seed'i/yaşıyla devralınır (Bolum → `onceki`).
+- **`okutma.dalga_izi`** (kıyı): yüzen figürün arkasında 3 kesik V dalga izi. İniş (`ucus.bit`) = taç sıçrama (E3, 20 kare) + 10 karede batış.
+- **`insert` (K2, P07/P11):** mekanlar §1.4 kamera (göz 1.0 m, UN (560,180), zemin y = 180 + 3793/d, px/m = y − 180). Sağda köşk altyapı duvarı + kemer iç köşesi, solda deniz, rıhtım kenarında denize inen 3 basamak (0.2 m; d 3.5–4.55 m), döşeme sıraları 0.4 m.
+  - **Gövdeler kadraj dışında:** alıcı (`karakterler[0]`: `lagari`/`hezarfen`) solda — kadrajda yalnız sağ omuz başı + kolu; omuz avuç yüksekliğini izler (çömelir/doğrulur), `egil` omzu öne, `dogrul` yukarı alır. Karakter `x/y` insert'te çizimde kullanılmaz (durum `islak`, `damla [bas,bit]`, jestler kullanılır).
+  - **`el[]`** (en çok 3; ekran px): `rol: alan` (tip `lagari`/`hezarfen`; dirsek json'dan, bilek json'dan; ilk anahtar zemine yakınsa avuç basamağa BASAR = temas o karede) · `rol: veren` (tip `entari-yen`, sağdan; `tut {prop, bas, bit}` kese kıstırmada, `bit`'te kese tabanı alıcı avucuna oturur; çıkışta el tümüyle sağdan çıkar) · `rol: omuz` (tip `muhafiz`, soldan; `kare[2]` = omza iniş teması; json yolu, gerçek omuz başına bağlanır; kumaş 6 px içeri). Poz: `gevsek`(önce)=avuç açık, `kistir`=kapa, `gevsek`(sonra)=gevşe (bilek 12° düşer, kese kayar). El boyu 0.19 m (≈ 240 px), kese = 0.85 × el.
+  - **Prop:** `kese` (kumaş torba #625646, `durum.icerik gumus|altin`; x/y = taban teması; elde iken eli izler, json yolu yalnız serbest düşüş/yerde) · `sikke` (altın, `durum.donus`, `yatis`; x/y = zemin teması, 22 mm × 3).
+  - **Işık:** gece köşk penceresi (`isik_nokta`, gölge sola, döşemenin sağ yarısında amber havuz) · gün güneş tam soldan (yönlü (3.7, −0.15), gölge sağa uzun; muhafız eli gölgesi omza iniş öncesi ışıktan türer).
 
 ## AVLU-SALON (kayıtlı değil)
 `src/kit/sablonlar/avlu-salon/AvluSalon.tsx` = SB2-BORSA P02 kodu (portikli avlu, kalabalık, tahta). Parametrelenmedi; `SB2-BORSA` kompozisyonu olarak çalışır. Gerektiğinde kurulum ekibi şablonlaştırır.

@@ -160,12 +160,10 @@ export const Mesale: React.FC<{ tutamak: P; yon: P; pxm: number; p: number; seed
   );
 };
 
-// ---------------- KE-P2 KANAT (tek siluet, ayrıntısız; Lagâri ve Hezarfen'de aynı çizim) — tasarim v1.3 §4.2 ----------------
-// Açık: ön kenar kalın tek eğri; arka kenar TEK sığ sürekli kavis (sehim = boyun %6'sı; oyuk/tırnak/sivri köşe yok); uç yuvarlak,
-// "kartal" işareti yalnız uçta 3 kısa ayrık yuvarlak parmak (boyun %10–12'si, aralar dar V, dip yuvarlak). Kök eni 0.24 × açıklık.
-// Katlı: başın 0.15H üstünden dize (oturanda oturak hizası); en 150 birim, sırtın 30–40 birim gerisinde; iki kat (ön #6e6a64, arka 1 ton koyu,
-// 6–10 birim taşar), 4 birimlik kalınlık şeridi, 2 yumuşak kıvrım, köşeler yuvarlak (r ≥ 12), altta TEK yumuşak çentik.
-// Açılma: iki biçim aynı sayıda örnek noktaya yeniden örneklenir ve noktadan noktaya karışır (sprite atlaması yok).
+// ---------------- KE-P2 KANAT (tek siluet, ayrıntısız; Lagâri ve Hezarfen'de aynı çizim) — tasarim v1.4 §4.2 ----------------
+// Açık: ön kenar kalın tek eğri, profil kökten uca incelir (uç = kök eninin %45'i), arka kenar TEK sığ kavis, uçta 3 kısa sivri-yuvarlak parmak.
+// Katlı: ters damla (omuz → diz/oturak hizası), figürün arkasında, gölge tonu #3e3a38 + amber kenar; püskürmede alttan sıcak şerit.
+// Açılma: iki biçim aynı sayıda örnek noktaya yeniden örneklenir ve noktadan noktaya karışır (sprite atlaması yok); ton sürekli (Z3).
 // Tüy, kaburga, kayış, tutamak ÇİZİLMEZ; kök omuz arkasında gizli, eller ön kenarın altında kaybolur. Kukla YEREL birimi (≈306/m).
 export const KANAT_M = { aciklik: 3.1, kok: 0.24 };
 export type KanatGeo = { kok: P; aci: number; L: number; c: number };
@@ -181,36 +179,52 @@ const kanatEksen = (g: KanatGeo) => {
   let nrm: P = [-Math.sin(r), Math.cos(r)]; if (nrm[1] < 0 || (Math.abs(nrm[1]) < 1e-3 && nrm[0] > 0)) nrm = [-nrm[0], -nrm[1]];
   return (u: number, v: number): P => [g.kok[0] + dir[0] * u * g.L + nrm[0] * v * g.c, g.kok[1] + dir[1] * u * g.L + nrm[1] * v * g.c];
 };
-// açık kanat dış çizgisi (yoğun nokta), (u,v): u boy, v kök eni biriminde (− ön kenar)
+// açık kanat dış çizgisi (yoğun nokta), (u,v): u boy (L), v kök eni (c) biriminde (− ön kenar).
+// v1.4 (K1-2 Y7): profil kökten uca SÜREKLİ incelir (uçta kök eninin %45'i); arka kenar tek sığ kavis (sehim = boyun %6'sı);
+// uçta 3 kısa sivri-yuvarlak parmak (boy ≤ o noktadaki kanat eninin %25'i), aralarında dar V. Sabit genişlikli bölüm yok.
+const KANAT_UC = 0.9;
 export const kanatAcikNoktalar = (g: KanatGeo): P[] => {
   const W = kanatEksen(g), uv: [number, number][] = [];
-  for (let i = 0; i <= 20; i++) { const u = (0.86 * i) / 20; uv.push([u, -0.32 - 0.06 * Math.sin((Math.PI * u) / 0.86) + 0.06 * (u / 0.86) ** 2]); }
-  // 3 uç parmağı (yuvarlak uçlu), aralarda yuvarlak dipli dar V
-  const parmak = (v0: number, v1: number, boy: number) => { for (let i = 0; i <= 8; i++) { const t = (i / 8) * Math.PI; uv.push([0.86 + 0.02 + boy * Math.sin(t) * 0.9 + 0.01, v0 + (v1 - v0) * (1 - Math.cos(t)) / 2]); } };
-  parmak(-0.26, -0.11, 0.11); uv.push([0.885, -0.085]);
-  parmak(-0.07, 0.07, 0.12); uv.push([0.885, 0.095]);
-  parmak(0.11, 0.27, 0.105);
   const sehim = (0.06 * g.L) / Math.max(1, g.c);
-  for (let i = 0; i <= 20; i++) { const u = 0.86 * (1 - i / 20); uv.push([u, 0.29 + 0.39 * (1 - u / 0.86) - sehim * Math.sin((Math.PI * u) / 0.86)]); }
+  const vOn = (u: number) => -0.32 - 0.05 * Math.sin((Math.PI * u) / KANAT_UC);
+  const en = (u: number) => 1 - 0.55 * (u / KANAT_UC);
+  // kök: gövde arkasında gizli kalsın diye arka kenar kökte yuvarlanır (kök kirişi 0.45c'den başlar, u 0.26'da tam profile ulaşır) — "pelerin" okunmaz
+  const kok = (u: number) => 0.45 + 0.55 * Math.sin((Math.PI / 2) * Math.min(1, u / 0.26));
+  const vArka = (u: number) => vOn(u) + en(u) * kok(u) - sehim * Math.sin((Math.PI * u) / KANAT_UC);
+  for (let i = 0; i <= 24; i++) { const u = (KANAT_UC * i) / 24; uv.push([u, vOn(u)]); }
+  const a = vOn(KANAT_UC), b = vArka(KANAT_UC), uE = (b - a) * g.c; // uç eni (yerel birim)
+  const gap = (b - a) * 0.05;
+  const parmak = (v0: number, v1: number, oran: number) => {
+    const boy = (oran * uE) / g.L; // u biriminde (≤ %25 uç eni)
+    for (let i = 0; i <= 10; i++) { const t = (i / 10) * Math.PI; uv.push([KANAT_UC + boy * Math.sin(t) ** 2.2, v0 + (v1 - v0) * (1 - Math.cos(t)) / 2]); }
+  };
+  const d = (b - a) / 3;
+  parmak(a, a + d - gap, 0.16); uv.push([KANAT_UC - 0.006, a + d]);
+  parmak(a + d + gap, a + 2 * d - gap, 0.18); uv.push([KANAT_UC - 0.006, a + 2 * d]);
+  parmak(a + 2 * d + gap, b, 0.12);
+  for (let i = 0; i <= 24; i++) { const u = KANAT_UC * (1 - i / 24); uv.push([u, vArka(u)]); }
   return uv.map(([u, v]) => W(u, v));
 };
-// katlı kat (yerel mutlak): yuvarlak köşeli, uzun kenarları hafif dışbükey, altta tek yumuşak çentik
-export const kanatKatliNoktalar = (cx: number, ust: number, alt: number, en: number): P[] => {
-  // katlı kanat: üstte geniş (en 150; kanat bileği yuvarlak çıkıntı, ön kenar tarafı), aşağı doğru düzgün daralır (alt en ≈ %55),
-  // uzun kenarlar hafif dışbükey, köşeler yuvarlak, altta TEK yumuşak çentik (uç parmaklarının izi). Tahta/levha değil: konik + asimetrik tepe.
-  const pts: P[] = [], w0 = en / 2;
-  const yari = (t: number) => w0 * (1 - 0.45 * t) + 5 * Math.sin(Math.PI * t);
-  for (let i = 0; i <= 14; i++) { const a = Math.PI + (Math.PI * i) / 14; const sk = i > 9 ? 1.18 : 1; pts.push([cx + Math.cos(a) * w0 * sk, ust + w0 * 0.7 + Math.sin(a) * w0 * 0.7 * (i > 9 ? 1.12 : 1)]); }
-  const y0 = ust + w0 * 0.7;
-  for (let i = 1; i <= 16; i++) { const t = i / 16; pts.push([cx + yari(t * 0.95), y0 + (alt - 16 - y0) * t]); }
-  const wa = yari(1);
-  for (let i = 0; i <= 16; i++) { const t = i / 16, x = cx + wa - 2 * wa * t; const centik = 12 * Math.exp(-(((x - (cx + 6)) / 9) ** 2)); pts.push([x, alt - 16 + 16 * Math.sin(Math.PI * t) - centik]); }
-  for (let i = 1; i < 16; i++) { const t = 1 - i / 16; pts.push([cx - yari(t * 0.95), y0 + (alt - 16 - y0) * t]); }
-  return pts;
+// v1.4 (K1-2 Y8) katlı kanat: katlanmış kuş kanadı silueti, TERS DAMLA. Üst kenar omuz çizgisini izler (omzun ≤ 15 birim üstü,
+// yuvarlak tepe yok, başın üstüne çıkmaz); en geniş yer omuz hizasında (≈130 birim; 40–55'i sırttan taşar, kalanı gövde arkasında),
+// aşağı SÜREKLİ sivrilir, alt uç sivri (r≈4) diz hizasında (oturanda oturak/diz hizası). Dış kenar tek dışbükey kavis.
+// Yerel gövde çerçevesi (−x = sırt). ust: omuz üstü y, alt: uç y, sirt: sırt hattı x (≈ −56).
+export const kanatKatliNoktalar = (sirt: number, ust: number, alt: number, dx = 0, dy = 0): P[] => {
+  const dis = sirt - 44, ic = sirt + 80, uc: P = [sirt + 6, alt];
+  const pts: P[] = [];
+  // üst kenar: içten dışa, omuz dikişi eğrisini izler (ortada yüksek, dışta alçalır)
+  for (let i = 0; i <= 10; i++) { const t = i / 10, x = ic + (dis + 10 - ic) * t; pts.push([x, ust + 4 + 16 * t * t]); }
+  // omuz köşesi (yuvarlak, r≈10) + dış kenar: tepede dolgun, aşağıda hızla sivrilen tek dışbükey kavis (ters damla), uç sivri
+  pts.push([dis + 2, ust + 26]);
+  for (let i = 1; i <= 18; i++) { const t = i / 18; const x = dis + (uc[0] - dis) * t ** 1.7 - 6 * Math.sin(Math.PI * t) * (1 - t); const y = ust + 30 + (alt - ust - 30) * t; pts.push([x, y]); }
+  // iç kenar (gövde arkasında gizli): uçtan yukarı, hafif içbükey
+  for (let i = 1; i < 14; i++) { const t = i / 14; pts.push([uc[0] + (ic - uc[0]) * t ** 0.8, alt + (ust + 4 - alt) * t]); }
+  return pts.map(([x, y]) => [x + dx, y + dy] as P);
 };
 export const kanatEl = (g: KanatGeo): P => kanatEksen(g)(0.42, -0.12);
-// acik 0..1 → iki kanat (yakın + uzak): dış çizgi noktaları + açık geometri (eller için). lean: gövde eğimi
-export const kanatGeo = (acik: number, lean: number, birimM: number, katliUst = -606, katliAlt = -110, katliCx = -88) => {
+// acik 0..1 → iki kanat (yakın + uzak): dış çizgi noktaları + açık geometri (eller için). lean: gövde eğimi.
+// katliUst/katliAlt: katlı damlanın omuz üstü ve uç y'si (yerel); sirt: sırt hattı x.
+export const kanatGeo = (acik: number, lean: number, birimM: number, katliUst = -400, katliAlt = -122, sirt = -56) => {
   const L = (KANAT_M.aciklik / 2) * birimM, c = KANAT_M.kok * KANAT_M.aciklik * birimM;
   const t = Math.max(0, Math.min(1, acik));
   const yakinAcik: KanatGeo = { kok: [-10, -330], aci: -5 - lean, L, c };
@@ -221,29 +235,41 @@ export const kanatGeo = (acik: number, lean: number, birimM: number, katliUst = 
     const b = [...b0.slice(k), ...b0.slice(0, k)];
     return a.map((q, i) => [q[0] + (b[i][0] - q[0]) * tt, q[1] + (b[i][1] - q[1]) * tt] as P);
   };
-  const onKat = kanatKatliNoktalar(katliCx, katliUst, katliAlt, 150), arkaKat = kanatKatliNoktalar(katliCx - 9, katliUst + 8, katliAlt + 2, 150);
-  // açılma: kanat kökten döner + uzar (yarı yolda ≈60° yukarı); katlı panelden çıkış yalnız ilk %35'te nokta karışımıyla (atlama yok)
-  const ara = (A: KanatGeo): KanatGeo => { const u = Math.min(1, t / 0.85), e = 1 - (1 - u) ** 2; let da = A.aci - -90; while (da > 180) da -= 360; while (da < -180) da += 360; return { kok: [katliCx + (A.kok[0] - katliCx) * e, katliUst + 0.55 * (katliAlt - katliUst) + (A.kok[1] - (katliUst + 0.55 * (katliAlt - katliUst))) * e], aci: -90 + da * e, L: (katliAlt - katliUst) * 0.75 + (A.L - (katliAlt - katliUst) * 0.75) * e, c: 150 + (A.c - 150) * e }; };
+  const onKat = kanatKatliNoktalar(sirt, katliUst, katliAlt), arkaKat = kanatKatliNoktalar(sirt, katliUst, katliAlt, 10, -4);
+  const cx = sirt - 10;
+  // açılma: kanat kökten döner + uzar (yarı yolda ≈60° yukarı); katlı damladan çıkış yalnız ilk %35'te nokta karışımıyla (atlama yok)
+  const ara = (A: KanatGeo): KanatGeo => { const u = Math.min(1, t / 0.85), e = 1 - (1 - u) ** 2; let da = A.aci - -90; while (da > 180) da -= 360; while (da < -180) da += 360; return { kok: [cx + (A.kok[0] - cx) * e, katliUst + 0.55 * (katliAlt - katliUst) + (A.kok[1] - (katliUst + 0.55 * (katliAlt - katliUst))) * e], aci: -90 + da * e, L: (katliAlt - katliUst) * 0.75 + (A.L - (katliAlt - katliUst) * 0.75) * e, c: 130 + (A.c - 130) * e }; };
   const w = Math.min(1, t / 0.35);
-  return { yakin: t >= 1 ? kanatAcikNoktalar(yakinAcik) : kar2(onKat, kanatAcikNoktalar(ara(yakinAcik)), w), uzak: t >= 1 ? kanatAcikNoktalar(uzakAcik) : kar2(arkaKat, kanatAcikNoktalar(ara(uzakAcik)), w), yakinAcik, uzakAcik, katli: { cx: katliCx, ust: katliUst, alt: katliAlt } };
+  return { yakin: t >= 1 ? kanatAcikNoktalar(yakinAcik) : kar2(onKat, kanatAcikNoktalar(ara(yakinAcik)), w), uzak: t >= 1 ? kanatAcikNoktalar(uzakAcik) : kar2(arkaKat, kanatAcikNoktalar(ara(uzakAcik)), w), yakinAcik, uzakAcik, katli: { sirt, ust: katliUst, alt: katliAlt } };
 };
-// ton: "isikli" (yakın sıcak ışık: ön kat #6e6a64) · "kontra" (uzak ışık: gece siluet #2a2828). kenar: ışık yanı amber 2 px (ekran)
-export const KanatCiz: React.FC<{ pts: P[]; katli: number; ton: "isikli" | "kontra"; kenar: string; olcekEkran: number; uzak?: boolean; kat?: { cx: number; ust: number; alt: number } }> = ({ pts, katli, ton, kenar, olcekEkran, uzak, kat }) => {
+// v1.4 tek ton ailesi (K1-2 Z3: açılmada ton sıçraması yok). isik 0..1 (0 = kontra siluet, 1 = ışık yanı) sürekli; katlı ↔ açık sürekli karışım.
+export const KANAT_TON = {
+  gece: { katli: "#3e3a38", ust: "#3e3a38", alt: "#302c2a", kontra: "#2a2828", kenar: "#f0b060", uzakKatli: "#34302e", uzakUst: "#302c2a", uzakKontra: "#232222", kat: "#2e2a28" },
+  gun: { katli: "#5a5652", ust: "#5a5652", alt: "#46423e", kontra: "#3a3634", kenar: "#f0d79a", uzakKatli: "#4e4a46", uzakUst: "#46423e", uzakKontra: "#33302e", kat: "#46423e" },
+} as const;
+export const kanatDolgu = (aile: "gece" | "gun", katli: number, isik: number, uzak?: boolean) => {
+  const T = KANAT_TON[aile];
+  const acikR = uzak ? karistir(T.uzakKontra, T.uzakUst, isik) : karistir(T.kontra, T.ust, isik);
+  return karistir(acikR, uzak ? T.uzakKatli : T.katli, Math.max(0, Math.min(1, katli)));
+};
+// alttan 0..1: püskürme anında alt kenarda ≤ 8 birimlik sıcak şerit (#8a6a4a α .6). kenar: ışık yanı amber 2 px (ekran).
+export const KanatCiz: React.FC<{ pts: P[]; katli: number; isik: number; olcekEkran: number; uzak?: boolean; kat?: { sirt: number; ust: number; alt: number }; aile?: "gece" | "gun"; alttan?: number }> = ({ pts, katli, isik, olcekEkran, uzak, kat, aile = "gece", alttan = 0 }) => {
   const id = "kn" + React.useId().replace(/:/g, "");
+  const T = KANAT_TON[aile];
   const d = yumusakYol(pts);
-  const isikli = ton === "isikli" || katli > 0.5;
-  const dolgu = uzak ? (isikli ? "#4a4642" : "#232222") : isikli ? "#6e6a64" : "#2a2828";
+  const dolgu = kanatDolgu(aile, katli, isik, uzak);
   const px = 1 / Math.max(0.05, olcekEkran);
   return (
     <g>
       <defs><clipPath id={`${id}c`}><path d={d} /></clipPath></defs>
-      <path d={d} fill={dolgu} stroke={ink(isikli ? "#6e6a64" : "#4a4642")} strokeWidth={2.5 * px} strokeLinejoin="round" />
-      {/* katlıyken: kalınlık şeridi (4 birim, ışık yanında açık) + uzunlamasına 2 yumuşak kıvrım (uçları söner) */}
-      {kat && katli > 0.4 && <g clipPath={`url(#${id}c)`} opacity={Math.min(1, (katli - 0.4) / 0.4)}>
-        <path d={d} fill="none" stroke={karistir(dolgu, "#c8c0b0", 0.35)} strokeWidth={8} transform={`translate(-4,0)`} />
-        {[-26, 22].map((dx) => <line key={dx} x1={kat.cx + dx} y1={kat.ust + 90} x2={kat.cx + dx + 4} y2={kat.alt - 60} stroke={ink(dolgu)} strokeWidth={2.2} strokeLinecap="round" opacity={0.55} strokeDasharray={`0 30 ${Math.max(10, kat.alt - kat.ust - 210)} 1000`} />)}
+      <path d={d} fill={dolgu} stroke={ink(dolgu)} strokeWidth={2.5 * px} strokeLinejoin="round" />
+      {/* katlı: uzunlamasına TEK ince kat çizgisi (uçları söner), omuzdan sivri uca */}
+      {kat && !uzak && katli > 0.4 && <g clipPath={`url(#${id}c)`} opacity={Math.min(1, (katli - 0.4) / 0.4)}>
+        <path d={`M ${kat.sirt + 4} ${kat.ust + 40} Q ${kat.sirt - 26} ${(kat.ust + kat.alt) / 2} ${kat.sirt - 13} ${kat.alt - 14}`} stroke={T.kat} strokeWidth={Math.max(2, 2.2 * px)} fill="none" strokeLinecap="round" strokeDasharray={`0 24 ${Math.max(10, kat.alt - kat.ust - 90)} 1000`} />
       </g>}
-      {!uzak && katli < 0.5 && <path d={d} fill="none" stroke={kenar} strokeWidth={2 * px} strokeOpacity={0.7} clipPath={`url(#${id}c)`} transform={`translate(0,${-1.5 * px})`} />}
+      {/* ışık yanı amber kenar: katlıda sırt (dış, −x) kenarı, açıkta ön kenar */}
+      {!uzak && <path d={d} fill="none" stroke={T.kenar} strokeWidth={2 * px} strokeOpacity={0.75 * Math.max(katli, 1 - katli)} clipPath={`url(#${id}c)`} transform={katli >= 0.5 ? `translate(${2 * px},0)` : `translate(0,${-1.5 * px})`} />}
+      {alttan > 0 && <path d={d} fill="none" stroke="#8a6a4a" strokeWidth={8} strokeOpacity={0.6 * alttan} clipPath={`url(#${id}c)`} transform="translate(0,-4)" />}
     </g>
   );
 };
@@ -259,7 +285,7 @@ export const SudaKanat: React.FC<{ x: number; y: number; pxm: number; p: number;
     <g>
       <defs><clipPath id={`${id}c`}><rect x={x - 3 * L} y={suY - 4 * L} width={6 * L} height={4 * L} /></clipPath></defs>
       <g clipPath={`url(#${id}c)`}>
-        <path d={yumusakYol(pts)} fill="#2a2828" stroke="#6e6a64" strokeWidth={2} />
+        <path d={yumusakYol(pts)} fill={KANAT_TON.gece.alt} stroke={ink(KANAT_TON.gece.alt)} strokeWidth={2} />
         <path d={yumusakYol(pts)} fill="none" stroke={kenar} strokeWidth={2} strokeOpacity={0.7} transform="translate(0,1.5)" />
       </g>
       <line x1={x - L * 0.75} y1={suY + 1} x2={x + L * 0.75} y2={suY + 1} stroke="#2c3444" strokeWidth={2.5} strokeDasharray="14 9" />
