@@ -2,35 +2,35 @@
  "id": "P04",
  "lang": "tr",
  "text": "Padişahım, İsa peygamberle konuşmaya gidiyorum!",
- "dur": 4.127,
+ "dur": 4.493,
  "words": [
   {
    "t": "Padişahım,",
-   "s": 0.1,
-   "e": 1.08
+   "s": 0.12,
+   "e": 0.92
   },
   {
    "t": "İsa",
-   "s": 1.78,
-   "e": 2.14
+   "s": 1.96,
+   "e": 2.36
   },
   {
    "t": "peygamberle",
-   "s": 2.22,
-   "e": 2.86
+   "s": 2.44,
+   "e": 3.06
   },
   {
    "t": "konuşmaya",
-   "s": 2.92,
-   "e": 3.44
+   "s": 3.14,
+   "e": 3.68
   },
   {
    "t": "gidiyorum!",
-   "s": 3.48,
-   "e": 4.019
+   "s": 3.72,
+   "e": 4.26
   }
  ],
  "voice": "7VqWGAWwo2HMrylfKrcm",
  "model": "eleven_v3",
- "kaynak": "public/evliya/ses-aday/lagari-4-fatih-tr.mp3"
+ "kaynak": "public/evliya/ses-aday/lagari-4-fatih-tr-cekim1.mp3"
 }

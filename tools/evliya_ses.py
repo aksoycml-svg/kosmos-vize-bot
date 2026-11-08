@@ -15,6 +15,8 @@ REPLIK = {
     "P12": ("padisah-2-nihat", "MuOq11XzQTthwLhmGZ2V", "eleven_multilingual_v2"),
 }
 ADAY = "public/evliya/ses-aday"
+# Dil bazında farklı kaynak dosya: ilk TR kayıt sonda kesikti (cıt) -> yeniden üretilen temiz çekim
+KAYNAK = {("P04", "tr"): "lagari-4-fatih-tr-cekim1"}
 # Yalnız TTS'e giden yazım (ekran metni değişmez)
 TTS_EN = {"Lagâri": "Lagari", "Çelebi": "Chelebi", "400": "four hundred"}
 
@@ -65,12 +67,13 @@ for lang in ("tr", "en"):
         if not os.path.exists(js):
             if pid in REPLIK:
                 ad, vid, model = REPLIK[pid]
-                shutil.copy(f"{ADAY}/{ad}-{lang}.mp3", mp3)
+                src = f"{ADAY}/{KAYNAK.get((pid, lang), f'{ad}-{lang}')}.mp3"
+                shutil.copy(src, mp3)
                 try:
                     words = hizala(mp3, metin)
                 except Exception as e:
                     print(pid, lang, "hizalama yok:", e); words = []
-                meta = {"voice": vid, "model": model, "kaynak": f"{ADAY}/{ad}-{lang}.mp3"}
+                meta = {"voice": vid, "model": model, "kaynak": src}
             else:
                 tts = metin
                 if lang == "en":

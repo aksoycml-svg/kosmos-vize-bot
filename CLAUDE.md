@@ -155,6 +155,7 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - Rig: `src/rig/Kukla.tsx` (François/Louis paletleri, yürüme döngüsü `yuru`, dudak senkronu `visem`). Sokak: `src/bolumler/blanc/proto/Sokak.tsx` (perspektif cephe sistemi `cephe/zemin/sokakGenislik`). Prototip: `proto/Proto.tsx`, `FareInsert.tsx`. Efektler: `src/components/Efektler.tsx`. Harita: `src/bolumler/blanc/Harita.tsx`.
 - Görsel üretim: `node tools/gorsel.mjs <prompt.txt> <out.png> [ref...] --ar 9:16 --size 2K` (Gemini, anahtar `Value` ortam değişkeninde; asla yazdırma). Model: gemini-3-pro-image.
 - Ses: `tools/seslendir.mjs` (ElevenLabs, `elevenlabs_api_key`), `tools/sfx.mjs` (ses efekti). Ücretsiz plan: kütüphane sesleri (Umut Canbay, TR) ve müzik API'si kapalı; ticari kullanım için Starter plan gerekli.
+- **Ses klibi kenarı (cıt yok, kullanıcı kararı Evliya):** her üretilen ses klibi `python3 -I tools/ses_kenar.py kontrol` ile ölçülür. `CIT` (baş/son 5 ms > −40 dBFS) → `duzelt` (öne 40 ms sessizlik + fade, .json zamanları kayar). `KESIK` (son > −20 dBFS: kelime yarıda; eleven_v3 sık yapar) → yeniden üretilir, birkaç çekimden temiz biteni seçilir. Kullanıcıya dinletilen her birleştirmede klipler loudnorm ile eşitlenir (anlatım −18, replik −19 LUFS). Dalga formu (`showwavespic`) kullanıcıya göndermeden önce bakılır.
 - Ses efekti zamanlaması: tepe noktasını ölç (ffmpeg → python), ses dosyasını temas karesine hizala.
 - Wikimedia bu sunucudan 429 verir; Wikipedia aynası (kiwix) çalışır.
 
