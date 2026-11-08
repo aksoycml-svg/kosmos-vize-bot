@@ -23,7 +23,7 @@ export const HEZARFEN: Palet = {
   coat: "#55603f", coatDark: "#3a4228", coatLight: "#6e7a54", entari: "#7a6a50", kusak: "#3e3a30", ...frakYok("#7a6a50"),
   pants: "#3e3a38", shoe: "#2e241c", glove: "#a87256", skin: "#a87256", skinDark: "#7a4c36", hair: "#2a2018",
   sapka: "sarik-basik", sarikYon: -1, hat: "#cfd0c8", hatBand: "#9a9c94", sarikIc: "#4a3e34",
-  sideburn: 0.9, browHeavy: 1.3, biyik: "duz", sakal: true, burun: 1.05,
+  sideburn: 1.0, browHeavy: 1.3, biyik: "duz", sakal: true, sakalKutle: 1, biyikKalin: 0.55, biyikTasma: 0, burun: 1.05, // K6 B12: sakal kütlesi + küçük bıyık (tasarim v1.7 §3.3)
   yuz: { genislik: 0.98, uzunluk: 1.12, burunTip: "sivri", kasAci: 5, sac: "sarikalti", yasCizgi: 0.3, cene: "olgun" },
 };
 

@@ -209,17 +209,32 @@ export const kanatAcikNoktalar = (g: KanatGeo): P[] => {
 // yuvarlak tepe yok, başın üstüne çıkmaz); en geniş yer omuz hizasında (≈130 birim; 40–55'i sırttan taşar, kalanı gövde arkasında),
 // aşağı SÜREKLİ sivrilir, alt uç sivri (r≈4) diz hizasında (oturanda oturak/diz hizası). Dış kenar tek dışbükey kavis.
 // Yerel gövde çerçevesi (−x = sırt). ust: omuz üstü y, alt: uç y, sirt: sırt hattı x (≈ −56).
+// v1.7 (K5 B11: "kalkan/levha" okundu): asimetrik ters damla. Üst kenar omuz çizgisini izler, sırt ucunda omzun 13 birim üstüne çıkıp
+// ≈10° dışa eğilir (yassı tepe yok); en ≈ 130 (58'i sırttan taşar); dış kenar tek dışbükey kavis; iç kenar hafif içbükey S;
+// alt uç sivri, gövde konturunun ≈ 20 birim dışında, dikeyden ≈ 9° arkaya açık (en/boy ≈ 0.47).
+export const KATLI = { tasma: 58, ic: 72, ucDis: 20 };
 export const kanatKatliNoktalar = (sirt: number, ust: number, alt: number, dx = 0, dy = 0): P[] => {
-  const dis = sirt - 44, ic = sirt + 80, uc: P = [sirt + 6, alt];
+  const dis = sirt - KATLI.tasma, ic = sirt + KATLI.ic, uc: P = [sirt - KATLI.ucDis, alt];
   const pts: P[] = [];
-  // üst kenar: içten dışa, omuz dikişi eğrisini izler (ortada yüksek, dışta alçalır)
-  for (let i = 0; i <= 10; i++) { const t = i / 10, x = ic + (dis + 10 - ic) * t; pts.push([x, ust + 4 + 16 * t * t]); }
-  // omuz köşesi (yuvarlak, r≈10) + dış kenar: tepede dolgun, aşağıda hızla sivrilen tek dışbükey kavis (ters damla), uç sivri
-  pts.push([dis + 2, ust + 26]);
-  for (let i = 1; i <= 18; i++) { const t = i / 18; const x = dis + (uc[0] - dis) * t ** 1.7 - 6 * Math.sin(Math.PI * t) * (1 - t); const y = ust + 30 + (alt - ust - 30) * t; pts.push([x, y]); }
-  // iç kenar (gövde arkasında gizli): uçtan yukarı, hafif içbükey
-  for (let i = 1; i < 14; i++) { const t = i / 14; pts.push([uc[0] + (ic - uc[0]) * t ** 0.8, alt + (ust + 4 - alt) * t]); }
+  // üst kenar: içten dışa, omuz çizgisini izler; sırt ucunda 13 birim yükselir (10° dışa)
+  for (let i = 0; i <= 10; i++) { const t = i / 10, x = ic + (dis + 8 - ic) * t; pts.push([x, ust + 6 - 19 * t ** 1.6]); }
+  pts.push([dis + 2, ust - 9], [dis - 1, ust + 4]); // dış üst köşe (yuvarlak, r≈6)
+  // dış kenar: tepede dolgun, aşağıda sivrilen tek dışbükey kavis → sivri uç
+  for (let i = 1; i <= 20; i++) { const t = i / 20; const x = dis + (uc[0] - dis) * t ** 1.9 - 8 * Math.sin(Math.PI * t) * (1 - t); pts.push([x, ust + 6 + (alt - ust - 6) * t]); }
+  // iç kenar (çoğu gövde arkasında): uçtan yukarı, hafif içbükey S
+  for (let i = 1; i < 16; i++) { const t = i / 16; pts.push([uc[0] + (ic - uc[0]) * t ** 0.85 + 7 * Math.sin(2 * Math.PI * t) * (1 - t), alt + (ust + 6 - alt) * t]); }
   return pts.map(([x, y]) => [x + dx, y + dy] as P);
+};
+// v1.7: 3 kaburga çizgisi (kökten sivri uca yakınsayan yelpaze; boy %85 / %68 / %50; en dıştaki dış kenardan %18 en içeride, aralık %16, %14).
+// Her biri yerel nokta listesi (kökten uca).
+export const kanatKaburgalar = (sirt: number, ust: number, alt: number): P[][] => {
+  const en = KATLI.tasma + KATLI.ic, dis = sirt - KATLI.tasma, uc: P = [sirt - KATLI.ucDis, alt - 10];
+  const kok = [0.18, 0.34, 0.48].map((f) => dis + f * en), boy = [0.85, 0.68, 0.5];
+  return kok.map((x0, i) => {
+    const y0 = ust + 4 - 14 * (1 - (x0 - dis) / en) ** 1.6;
+    const L = (boy[i] * (alt - ust)) / Math.max(1, uc[1] - y0);
+    return Array.from({ length: 13 }).map((_, j) => { const t = (j / 12) * Math.min(1, L); return [x0 + (uc[0] - x0) * t ** 1.5 - 6 * Math.sin(Math.PI * t) * (1 - t), y0 + (uc[1] - y0) * t] as P; });
+  });
 };
 export const kanatEl = (g: KanatGeo): P => kanatEksen(g)(0.42, -0.12);
 // acik 0..1 → iki kanat (yakın + uzak): dış çizgi noktaları + açık geometri (eller için). lean: gövde eğimi.
@@ -263,10 +278,22 @@ export const KanatCiz: React.FC<{ pts: P[]; katli: number; isik: number; olcekEk
     <g>
       <defs><clipPath id={`${id}c`}><path d={d} /></clipPath></defs>
       <path d={d} fill={dolgu} stroke={ink(dolgu)} strokeWidth={2.5 * px} strokeLinejoin="round" />
-      {/* katlı: uzunlamasına TEK ince kat çizgisi (uçları söner), omuzdan sivri uca */}
-      {kat && !uzak && katli > 0.4 && <g clipPath={`url(#${id}c)`} opacity={Math.min(1, (katli - 0.4) / 0.4)}>
-        <path d={`M ${kat.sirt + 4} ${kat.ust + 40} Q ${kat.sirt - 26} ${(kat.ust + kat.alt) / 2} ${kat.sirt - 13} ${kat.alt - 14}`} stroke={T.kat} strokeWidth={Math.max(2, 2.2 * px)} fill="none" strokeLinecap="round" strokeDasharray={`0 24 ${Math.max(10, kat.alt - kat.ust - 90)} 1000`} />
-      </g>}
+      {/* v1.7 (K5 B11): katlı hâlde 3 kaburga (yelpaze, sivri uca yakınsar, uca varmadan söner); kalınlık ekranda 3 → 1 px (incelen dolgu,
+          α geçişi yok). Açılmada (katli 1 → 0.6) kalınlık 0'a iner. Figür ekranda < 420 px ise yalnız en dıştaki çizgi, 3 px sabit (tasarım §4.2).
+          Işık yanında 1 px açık eş (çift ton). */}
+      {kat && !uzak && katli > 0.6 && (() => {
+        const kucuk = 616 * olcekEkran < 420, kalin = Math.min(1, (katli - 0.6) / 0.4);
+        const ks = kanatKaburgalar(kat.sirt, kat.ust, kat.alt).slice(0, kucuk ? 1 : 3);
+        const serit = (q: P[], w0: number, w1: number, dxl = 0) => {
+          const n = q.length, sol: P[] = [], sag: P[] = [];
+          for (let i = 0; i < n; i++) { const a = q[Math.max(0, i - 1)], b = q[Math.min(n - 1, i + 1)], L = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1, nx = -(b[1] - a[1]) / L, ny = (b[0] - a[0]) / L, w = ((w0 + (w1 - w0) * (i / (n - 1))) * px * kalin) / 2; sol.push([q[i][0] + nx * w + dxl, q[i][1] + ny * w]); sag.push([q[i][0] - nx * w + dxl, q[i][1] - ny * w]); }
+          return poly([...sol, ...sag.reverse()]);
+        };
+        return <g clipPath={`url(#${id}c)`}>{ks.map((q, i) => <g key={i}>
+          <polygon points={serit(q, kucuk ? 3 : 2.8, kucuk ? 3 : 1)} fill={isik < 0.4 ? KANAT_TON[aile].kontra === "#3a3634" ? "#2a2828" : "#1e1c1c" : T.kat} />
+          {!kucuk && isik >= 0.4 && <polygon points={serit(q, 1, 0.6, 1.6 * px)} fill={aile === "gun" ? "#6c6862" : "#4a4644"} />}
+        </g>)}</g>;
+      })()}
       {/* ışık yanı amber kenar: katlıda sırt (dış, −x) kenarı, açıkta ön kenar */}
       {!uzak && <path d={d} fill="none" stroke={T.kenar} strokeWidth={2 * px} strokeOpacity={0.75 * Math.max(katli, 1 - katli)} clipPath={`url(#${id}c)`} transform={katli >= 0.5 ? `translate(${2 * px},0)` : `translate(0,${-1.5 * px})`} />}
       {alttan > 0 && <path d={d} fill="none" stroke="#8a6a4a" strokeWidth={8} strokeOpacity={0.6 * alttan} clipPath={`url(#${id}c)`} transform="translate(0,-4)" />}

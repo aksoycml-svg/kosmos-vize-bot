@@ -57,6 +57,10 @@ export type Palet = {
   sarikYon?: 1 | -1;               // v1.3 R15: sargı katmanı yönü (1 = ön yüzde sol-alt → sağ-üst, Lagâri; −1 ters, Hezarfen)
   sarikIc?: string;                // sarığın ortasından görünen iç başlık tepesi (koyu keçe)
   biyikOlcek?: number;             // bıyık genişlik/kalınlık çarpanı (Lagâri 1.2: uçlar ağız köşesinin dışına taşar)
+  // K6 (tasarim v1.7 §3.3, K5 B12): biyikKalin = bıyık kalınlık/genişlik çarpanı (verilirse biyikOlcek yerine; Hezarfen 0.55),
+  // biyikTasma = uçların ağız köşesinden dışa taşması (rig birimi; 0 = köşeyi aşmaz), sakalKutle 0..1 = çene altını dolduran kütle
+  // (1: favoriden başlar, çene konturunu kaplar, çene ucundan 0.22 H_y sarkar; 0/yok = eski çene çizgisi sakal)
+  biyikKalin?: number; biyikTasma?: number; sakalKutle?: number;
   yuz?: YuzTip; // K3
   yuzsuz?: boolean; // kompars (A5r): yüz ayrıntısı (göz, kaş, ağız, bıyık, yanak) çizilmez — baş/saç/şapka/kostüm biçimi + ışık kalır
 };
@@ -215,7 +219,15 @@ const AGIZ: Record<Agiz, React.ReactNode> = {
 // üst konturda 4 yumuşak tümsek (katman kabarıklığı), alt kenar alına iner (kaşın ≈16 birim üstü), kulağın üst yarısını örter, ensede 10 birim daha aşağı.
 // Yerel orijin = şapka tabanı (Kafa: baş y −46). Ortadan içteki başlığın (kavuk/takke) alçak koyu tepesi görünür.
 export const sarikYol = (basik: boolean) => {
-  const gx = basik ? 1.3 / 1.4 : 1, W = 123 * gx, h = W * (basik ? 0.42 : 0.5);
+  if (basik) {
+    // K6 (tasarim v1.7 §3.0b, K5 B10): Hezarfen `sarik-basik` = SIKI YUVARLAK SARGI. Yerel birimde baş genişliği B ≈ 83 (alın 41 / ense −42).
+    // Alt kenar (en geniş, alt üçte bir) −58…43 ≈ 1.22 B (öne alından en çok 2 birim; arkaya 0.14 B), üst %25 çizgisinde ≈ 1.04 B,
+    // yükseklik ≈ 0.51 B (44), en yüksek nokta baş merkezinde (x ≈ 0); tek büyük kubbe + 2 tümsek (genlik 2–3); alt kenar alına iner
+    // (kaşın ≈16 birim üstü), arkada enseye 10+ birim iner. Kavuk ucu yok. gx = 1 (basık oran yolun kendisinde).
+    const d = "M 42 10 C 45 1 45 -12 37 -22 C 31 -30 22 -34 12 -34.5 Q 6 -37 -2 -34.8 Q -10 -37 -18 -34 C -32 -31 -44 -25 -51 -13 C -57 -3 -59 8 -58 18 C -57 26 -56 31 -53 34 C -44 36 -32 30 -20 22 C -6 14 22 10 42 10 Z";
+    return { d, h: 44, gx: 1 };
+  }
+  const gx = 1, W = 123 * gx, h = W * 0.5;
   const X = (x: number) => (x * gx).toFixed(1), Yy = (y: number) => ((y * h) / 62).toFixed(1);
   const ust = [[-40, -55], [-20, -60], [2, -61], [24, -59], [44, -52]];
   let d = `M ${X(64)} ${Yy(8)} C ${X(74)} ${Yy(-8)} ${X(70)} ${Yy(-34)} ${X(56)} ${Yy(-46)}`;
@@ -235,15 +247,18 @@ const Sapka: React.FC<{ p: Palet; tall?: number; a?: number }> = ({ p, tall = 1,
     const id = "sk" + useId().replace(/:/g, "");
     const cizgiRenk = shade(p.hatBand, -0.15);
     // 5 katman: küre yüzeyini izleyen eğri (ortada aşağı sarkar), ~20° çapraz, uçları kaydırılmış (tuğla örgüsü); çift ton (ışık + gölge çizgisi)
-    const katman = [0, 1, 2, 3, 4].map((i) => {
+    const basik = p.sapka === "sarik-basik";
+    // basik (v1.7): 4 katman, ters çapraz (sağ-alt → sol-üst), ön yüzde ≥ 25° eğik, küre eğrisi; kavuk ucu yok
+    const katman = (basik ? [0, 1, 2, 3] : [0, 1, 2, 3, 4]).map((i) => {
+      if (basik) { const y0 = 18 - i * 11, egim = 40 * yon, kay = ((i * 37) % 23) - 11; return `M ${-62 + kay} ${(y0 + egim / 2).toFixed(1)} Q ${-4 + kay * 0.3} ${(y0 + 9).toFixed(1)} ${48 + kay * 0.4} ${(y0 - egim / 2).toFixed(1)}`; }
       const y0 = (40 - i * 15) * (h / 62), egim = 44 * (h / 62) * yon, kay = ((i * 37) % 23) - 11;
       const xa = (-70 + kay) * gx, xb = (74 + kay * 0.6) * gx;
       return `M ${xa.toFixed(1)} ${(y0 + egim / 2).toFixed(1)} Q ${(4 * gx).toFixed(1)} ${(y0 + 10).toFixed(1)} ${xb.toFixed(1)} ${(y0 - egim / 2).toFixed(1)}`;
     });
     return (
       <g>
-        {/* içteki başlığın tepesi (sargının ortasından alçak koyu kubbe; en %30, yükseklik 11) */}
-        <path d={`M ${-19 * gx} ${-h * 0.82} Q ${2 * gx} ${-h * 0.82 - 22} ${23 * gx} ${-h * 0.82} Z`} fill={p.sarikIc ?? "#4a3e34"} stroke={ink(p.sarikIc ?? "#4a3e34")} strokeWidth={1.4} />
+        {/* içteki başlığın tepesi (sargının ortasından alçak koyu kubbe; en %30, yükseklik 11) — basik'te yok (v1.7) */}
+        {!basik && <path d={`M ${-19 * gx} ${-h * 0.82} Q ${2 * gx} ${-h * 0.82 - 22} ${23 * gx} ${-h * 0.82} Z`} fill={p.sarikIc ?? "#4a3e34"} stroke={ink(p.sarikIc ?? "#4a3e34")} strokeWidth={1.4} />}
         <defs><clipPath id={`${id}c`}><path d={d} /></clipPath></defs>
         <path d={d} fill={p.hat} stroke={ink(p.hat)} strokeWidth={SW} strokeLinejoin="round" />
         <g clipPath={`url(#${id}c)`}>
@@ -439,16 +454,33 @@ const Kafa: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }
       </g>}
       {/* bıyık: uçları kıvrık */}
       {p.biyik === "ince" && <path d="M 5 32 Q 14 28.5 22 30.5 Q 32 28.5 41 32 Q 32 31.5 22 33 Q 13 31.5 5 32 Z" fill={p.hair} stroke={p.hair} strokeWidth={0.8} />}
-      {(p.biyik ?? (louis ? "duz" : "kivrik")) !== "yok" && p.biyik !== "ince" && <g transform={p.biyikOlcek ? `translate(22,31) scale(${p.biyikOlcek},${1 + (p.biyikOlcek - 1) * 1.5}) translate(-22,-31)` : undefined}>
+      {(p.biyik ?? (louis ? "duz" : "kivrik")) !== "yok" && p.biyik !== "ince" && p.biyikKalin === undefined && <g transform={p.biyikOlcek ? `translate(22,31) scale(${p.biyikOlcek},${1 + (p.biyikOlcek - 1) * 1.5}) translate(-22,-31)` : undefined}>
         <path d={(p.biyik ?? (louis ? "duz" : "kivrik")) === "duz" ? "M 0 32 Q 10 27 22 30 Q 34 27 45 32 Q 38 38 22 35 Q 8 38 0 32 Z" : "M -6 34 Q 4 24 22 29 Q 40 24 50 34 Q 56 40 50 40 Q 54 34 46 34 Q 34 32 22 35 Q 6 33 -4 40 Q -12 38 -6 34 Z"} fill={p.hair} />
         <path d="M 6 30 Q 22 26 40 30" stroke={shade(p.hair, 0.4)} strokeWidth={1.4} fill="none" opacity={0.6} />
       </g>}
       </>}
-      {p.sakal && <path d="M -30 10 Q -26 44 -10 56 Q 8 66 24 60 Q 40 52 44 30 Q 36 50 20 52 Q 4 54 -8 44 Q -20 30 -30 10 Z" fill={p.hair} opacity={0.95} />}
+      {p.sakal && !(p.sakalKutle ?? 0) && <path d="M -30 10 Q -26 44 -10 56 Q 8 66 24 60 Q 40 52 44 30 Q 36 50 20 52 Q 4 54 -8 44 Q -20 30 -30 10 Z" fill={p.hair} opacity={0.95} />}
+      {/* K6 (tasarim v1.7 §3.3, K5 B12): sakal KÜTLESİ — favoriden (−32, −4) başlar, yanak altını ve çene konturunu KAPLAR, çene ucundan (≈ y 56)
+          0.22 H_y (≈ 24 birim) sarkar, ortada hafif sivri uç; genişlik çene ×1.15; tek düz ton, iç çizgi yok. Ağız sakalın içinde açık oyuk
+          (alt dudak altında kütle devam eder): ağız bölgesi ten tonunda küçük boşluk olarak bırakılır. */}
+      {p.sakal && (p.sakalKutle ?? 0) > 0 && (() => {
+        const k = p.sakalKutle!, sark = 24 * k;
+        return <g>
+          <path d={`M -33 -6 Q -36 18 -30 36 Q -22 ${58 + sark * 0.6} 0 ${64 + sark * 0.8} L 14 ${70 + sark} L 24 ${63 + sark * 0.8} Q 42 ${54 + sark * 0.4} 47 26 Q 46 20 43 18 Q 40 30 36 34 L 30 32 Q 22 31 14 32 L 8 32 Q 0 30 -8 26 Q -20 18 -24 -6 Z`} fill={p.hair} />
+          {/* ağız oyuğu (dudak çizgisi görünür kalır) */}
+          <path d="M 9 37 Q 21 34 33 37 Q 30 44 21 44.5 Q 12 44 9 37 Z" fill={p.skin} />
+          <path d="M 11 40 Q 21 42 31 39" stroke="#4a3028" strokeWidth={2.4} fill="none" strokeLinecap="round" />
+        </g>;
+      })()}
+      {/* K6 (B12): biyikKalin/biyikTasma — ağız köşeleri (≈10 / 32, y 40) arasında; kalınlık çarpanı, uç taşması rig birimi; sakala birleşir, ayrı kontur yok */}
+      {p.biyikKalin !== undefined && p.biyik !== "yok" && (() => {
+        const k = p.biyikKalin, t = p.biyikTasma ?? 0, a = 10 - t, b = 34 + t, ust = 33 - 3.5 * k, alt = 35 + 3 * k;
+        return <path d={`M ${a} ${alt - 1} Q ${a + 3} ${ust + 1} 22 ${ust + 0.5} Q ${b - 3} ${ust + 1} ${b} ${alt - 1} Q ${b - 6} ${alt} 22 ${alt - 0.5} Q ${a + 6} ${alt} ${a} ${alt - 1} Z`} fill={p.hair} />;
+      })()}
       {/* çene */}
       {!p.yuzsuz && <>
-      {pz.agiz !== "esneme" && pz.agiz !== "uykulu" && <path d="M 2 54 Q 20 52 36 42" stroke={skd} strokeWidth={1.8} fill="none" opacity={0.6} />}
-      {Y_.cene === "olgun" && <><path d="M -24 40 Q -16 54 -2 58 L 22 57 Q 36 52 42 36" stroke={skd} strokeWidth={2.2} fill="none" strokeLinejoin="round" opacity={0.8} /><path d="M -4 62 Q 10 65 24 61" stroke={skd} strokeWidth={1.8} fill="none" opacity={0.6} /></>}
+      {pz.agiz !== "esneme" && pz.agiz !== "uykulu" && !(p.sakal && p.sakalKutle) && <path d="M 2 54 Q 20 52 36 42" stroke={skd} strokeWidth={1.8} fill="none" opacity={0.6} />}
+      {Y_.cene === "olgun" && !(p.sakal && p.sakalKutle) && <><path d="M -24 40 Q -16 54 -2 58 L 22 57 Q 36 52 42 36" stroke={skd} strokeWidth={2.2} fill="none" strokeLinejoin="round" opacity={0.8} /><path d="M -4 62 Q 10 65 24 61" stroke={skd} strokeWidth={1.8} fill="none" opacity={0.6} /></>}
       </>}
       {!I && <path d="M 43 -14 Q 47 4 43 22" stroke={RIM} strokeWidth={2} opacity={0.3} fill="none" />}
       {pz.ter && !p.yuzsuz && [[-16, -40, 1], [24, -44, 0.85], [41, -28, 1.1], [-28, -12, 0.8]].map(([x, y, r], i) => (
