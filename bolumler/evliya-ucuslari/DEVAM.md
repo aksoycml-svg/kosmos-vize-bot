@@ -16,6 +16,11 @@
 - EN: P06 "pavilion" eklendi; P02/P09/tam adlardaki sadeleştirmeler onaylı.
 - Sahne planı: **P11 yüzsüz insert** (omuz + avuç) olduğu gibi; **P05–P06 stilize yükseklik** (kukla tiyatrosu: tilt + ön plan yardımcı + köşk silueti) olduğu gibi. Yeni plan eklenmez.
 
+### Kullanıcı kararları (tasarım sonrası, 2026-11-08)
+- İmza nesnesi = **fişek demeti** (5 görünür tüp). Gündüz = **sabah, güneş ENE**. Ayrım: **Lagâri bıyık, Hezarfen sakal**.
+- P06→P07 kanat sürekliliği: **kanat suda kalır** (P06'da suda görünür, P07'de Lagâri kanatsız). → yönetmen `sahne-plani.md`/`bolum.json`'a işleyecek.
+- tasarim.md §9 madde 4–10 araştırmacıya gönderildi (`arastirma.md` ek bölüm).
+
 ## Sıradaki: kurulum ekibi (opus) — `sahne-plani.md` §6 iş tanımıdır
 Sıra (CLAUDE.md "Ajan çalışma sırası"):
 1. **tasarımcı** → `tasarim.md` (palet, Lagâri/Hezarfen/padişah siluet, yardımcılar, prop'lar: fişek demeti, kanat, kese/sikke, taş, martı, defter; tipografi). Girdi: `arastirma.md` §5, `sahne-plani.md` §6.
