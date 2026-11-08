@@ -919,3 +919,10 @@
     - `Toz` yeniden yazılsın, halka kaldırılsın.
     - Sırt çizgisi (690 → apeks) kaldırılsın.
   - **Eleştirmen:** renk ölçüm noktaları eklendi: pus (1000, 980), dip zemini (400, 1700). Galata ışıklı taş ölçüm noktası 690'dan 650'ye taşındı.
+
+## yonetmen · 2026-11-08 · K5 küçük json turu (P12 etiket, P01 yol/güvenli alan)
+- Ne yaptım: P12 etiketi "Padişah" / "The Sultan"; P01 Hezarfen yürüyüş x/y anahtarları §2.3a formülüne bağlandı (son adım y 1250); P01 p172 yardımcı ayağı güvenli alana alındı (kamera cy 500→140); 2 kontrol karesi render.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/bolum.json, sahne-plani.md, katki-raporu.md; kalibrasyon/K5-yonetmen/P01-p172.png, P01-p100.png (+ P01-p172-once.png eski hâl).
+- Kararlar: yürüyüş anahtarları foley kareleri (229/246/262) etrafında; x değerleri (481.5/672.8) doğrulayıcının adım hesabı foley ±2'ye düşsün diye ayarlandı (mekan formülündeki y değerleri korunur). Yardımcıyı kadrajdan yürütmek yerine kamerayı alçalttım: yön (yon) tek değerli, sola yürümek sırt dönmeyi gerektirirdi.
+- Kurallar: kural 7 (kamera değişti → p172 + p100 render, okunur), kural 6 (doğrulayıcı: 5 hata önceki ile aynı, yeni hata yok, 2 uyarı).
+- Açık: p172 dışında cy 140 ile tilt azaldı (gök payı); fişek p150'de zaten çıkıyor, motion/eleştirmen p120-150 kadrajına baksın. Kalan 5 hata (bilinmeyen jest bin/tutun, BOGAZ, KITAP-INSERT) kit_eksik, önceden vardı. Caption'a "Evliya'ya göre" yazılacak (senarist/orkestra).
