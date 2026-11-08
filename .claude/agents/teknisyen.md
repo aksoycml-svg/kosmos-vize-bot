@@ -17,3 +17,7 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA ekle v
 - Ne yaptım / çalıştırdığım komutlar:
 - Üretilen dosyalar:
 - Hatalar ve çözümler:
+
+## Ses kenarı ve dalga formu kontrolü (zorunlu, kullanıcı kararı Evliya)
+- Ürettiğin / miksine koyduğun her ses klibini `python3 -I tools/ses_kenar.py kontrol <mp3...>` ile ölç. `CIT` → `duzelt`; `KESIK` (kelime yarıda, eleven_v3'te sık) → yeniden üret, temiz biteni seç. Geçmeyen klip teslim edilmez.
+- Kullanıcıya giden her birleştirmede klipleri loudnorm ile eşitle (anlatım −18, replik −19 LUFS) ve `ffmpeg … showwavespic` ile dalga formu görüntüsünü çıkarıp bak: ani kesik, sıçrayan seviye, üst üste binme yok. Görüntüyü katkı raporunda belirt.
