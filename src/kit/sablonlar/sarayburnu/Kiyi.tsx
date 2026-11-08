@@ -88,7 +88,8 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }>
   const kc: KC[] = karakterler.map((c) => {
     const kayit = karakterBul(c.kim);
     let x = deger(c.x, c.kare, p, 540), y = deger(c.y, c.kare, p, 1330), pxm: number, zemin = false;
-    const bagli = c.bagli && demet && (c.bagli.prop === demet.pr.id || c.bagli.prop === "demet") ? demet : null;
+    const bagBit = (c.bagli as { bit?: number } | undefined)?.bit;
+    const bagli = c.bagli && demet && (c.bagli.prop === demet.pr.id || c.bagli.prop === "demet") && !(bagBit !== undefined && p >= bagBit) ? demet : null;
     if (bagli) pxm = bagli.d.pxm;
     else if (zemindeMi(y)) { pxm = pxmZemin(y); zemin = true; }
     else pxm = REF_PXM * deger(c.olcek, c.kare, p, 1);

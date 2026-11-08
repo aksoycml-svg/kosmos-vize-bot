@@ -1023,7 +1023,7 @@
     "yukselis": {
      "tur": "dik",
      "olcek_min": 0.9,
-     "tilt": "kamera demeti izler; arka plan aşağı kayar"
+     "tilt": "kamera demeti izler (cy 0→220); arka plan aşağı kayar; binici+demet yığını ≈850 px olduğundan ekran kazancı ~110 px, asıl okuma rıhtım/yardımcıların aşağı kayması"
     }
    },
    "sure_kare": 210,
@@ -1032,7 +1032,7 @@
     "tr": "Fitil yanıyor ve fişek onu göğe fırlatıyor!",
     "en": "The fuse burns, and the rocket hurls him skyward!"
    },
-   "olcek": "geniş/boy (yardımcı boyu %35 ön planda + demet); demet DİK yükselir (olcek ≥0.9), p112'den tilt cy 0→200 demeti izler (ayaklar ≤ y 1500)",
+   "olcek": "geniş/boy (cs 0.9: yardımcı boyu ≈%33 ön planda + demet); demet DİK yükselir (olcek ≥0.9, y 1330→960), p112'den tilt cy 0→220 demeti izler; binici başı ekran y≈415 (üst bant 240-400 altı), Y1 ayağı ≤ 1485",
    "kamera": {
     "kare": [
      0,
@@ -1040,9 +1040,9 @@
      198
     ],
     "cs": [
-     1,
-     1,
-     1
+     0.9,
+     0.9,
+     0.9
     ],
     "cx": [
      0,
@@ -1052,7 +1052,7 @@
     "cy": [
      0,
      0,
-     200
+     220
     ],
     "egri": "inout"
    },
@@ -1090,7 +1090,7 @@
      "x": [
       300,
       300,
-      230
+      270
      ],
      "y": 1296,
      "kare": [
@@ -1120,7 +1120,7 @@
     },
     {
      "kim": "yardimci-2",
-     "x": 112,
+     "x": 95,
      "y": 1268,
      "olcek": 0.9,
      "yon": 1,
@@ -1144,9 +1144,9 @@
      "y": [
       1330,
       1330,
-      1230,
-      1020,
-      790
+      1240,
+      1100,
+      960
      ],
      "kare": [
       0,
@@ -1186,18 +1186,18 @@
      "tur": "mesale",
      "id": "mesale1",
      "x": [
-      280,
       330,
       330,
       330,
-      200
+      330,
+      150
      ],
      "y": [
-      1140,
-      1180,
+      1250,
+      1280,
       1322,
       1322,
-      1060
+      1180
      ],
      "kare": [
       0,
@@ -1363,7 +1363,7 @@
      "db": 0
     }
    ],
-   "not": "Kalkış p112 (başlık p110'da yerde): dokunuş doc'unun açık sorusu 1 -> p112. Yükseliş ekranda yalnız ~120 px; yüksekliğin okunması tilt + yardımcı büyük ön plan + P06 ile verilir (stilize ölçek, fizik notu sahne-plani'nda). [2026-11-08 K1 eleştirisi] Demet dik yükselir (y 1330→790, olcek ≥0.92); fitil p56'da tükenir; puskurme.bit 210 (P06 p0 ile kesintisiz); meşale alevi x ≤ 330 / koridor dışında; Y1 y 1296 (ayak ≤ 1500), Y2 x 112 geride; Y1 sıçrama x 300→230."
+   "not": "Kalkış p112 (başlık p110'da yerde): dokunuş doc'unun açık sorusu 1 -> p112. Yükseliş ekranda yalnız ~120 px; yüksekliğin okunması tilt + yardımcı büyük ön plan + P06 ile verilir (stilize ölçek, fizik notu sahne-plani'nda). [2026-11-08 K1 eleştirisi] Demet dik yükselir (y 1330→790, olcek ≥0.92); fitil p56'da tükenir; puskurme.bit 210 (P06 p0 ile kesintisiz); meşale alevi x ≤ 330 / koridor dışında; Y1 y 1296 (ayak ≤ 1500), Y2 x 95 geride; Y1 sıçrama x 300→270 (Y2 x 95: ≥1 gövde aralık, ikiz okunmasın). Kamera cs 0.9 (P06 p0 ile aynı): cs 1.0'da binici başı y≈140 ile güvenli alan/yazı bandına çıkıyordu."
   },
   {
    "id": "P06",
@@ -1411,7 +1411,7 @@
      "adim": 3,
      "not": "köşk rıhtımından denize inen basamaklar; kıyı görünümünde kit_eksik (KE-S1)"
     },
-    "inis": "köşkün önünde: iniş (810, 775), olcek 0.25; kamera p150-230 köşke push-in (cs 1→2.0, katalog cx sınırı -300; cs 2.5 köşk-merkezli cx -735 sınır dışı)"
+    "inis": "köşkün önünde: iniş (810, 775), olcek 0.25; kamera p150-230 köşke push-in (cs 0.9→2.0, katalog cx sınırı -300; cs 2.5 köşk-merkezli cx -735 sınır dışı)"
    },
    "sure_kare": 300,
    "sure_sn": 5.0,
@@ -1419,7 +1419,7 @@
     "tr": "Barut bitince kanatlarını açıyor. Süzülüp köşkün önünde denize iniyor.",
     "en": "Powder gone, wings open, he glides down in front of the pavilion."
    },
-   "olcek": "geniş (P05 sonuyla AYNI kadraj p0-150: Lagâri+demet havada, bırakma, boş demet yakına düşer); p150-230 köşke push-in cs 1→2.0 (köşk su çizgisi ekran y≈1130); iniş köşkün önünde",
+   "olcek": "geniş (P05 sonuyla AYNI kadraj p0-150: Lagâri+demet havada, bırakma, boş demet yakına düşer); p150-230 köşke push-in cs 0.9→2.0 (köşk su çizgisi ekran y≈1130); iniş köşkün önünde",
    "kamera": {
     "kare": [
      0,
@@ -1428,8 +1428,8 @@
      288
     ],
     "cs": [
-     1,
-     1,
+     0.9,
+     0.9,
      2.0,
      2.0
     ],
@@ -1440,8 +1440,8 @@
      -300
     ],
     "cy": [
-     200,
-     200,
+     220,
+     220,
      536,
      536
     ],
@@ -1453,8 +1453,8 @@
      "poz": "oturan",
      "yon": 1,
      "x": [
-      550,
-      552,
+      548,
+      548,
       590,
       660,
       740,
@@ -1464,11 +1464,11 @@
       828
      ],
      "y": [
-      700,
-      700,
-      690,
-      690,
-      720,
+      780,
+      780,
+      750,
+      735,
+      745,
       775,
       772,
       770,
@@ -1563,7 +1563,7 @@
     },
     {
      "kim": "yardimci-1",
-     "x": 230,
+     "x": 270,
      "y": 1296,
      "yon": 1,
      "kit_eksik": [
@@ -1572,7 +1572,7 @@
     },
     {
      "kim": "yardimci-2",
-     "x": 112,
+     "x": 95,
      "y": 1268,
      "olcek": 0.9,
      "yon": 1,
@@ -1594,10 +1594,10 @@
       560
      ],
      "y": [
-      790,
-      760,
-      760,
-      1000,
+      960,
+      930,
+      930,
+      1170,
       1200
      ],
      "kare": [
@@ -1701,13 +1701,25 @@
     {
      "tur": "mesale",
      "id": "mesale1",
-     "x": 200,
-     "y": 1060,
+     "x": 150,
+     "y": 1180,
      "bagli": "yardimci-1",
      "kit_eksik": [
       "KE-P7"
      ],
      "kosul": "alev x ≤ 330 (P05 p88 ile aynı durum)"
+    },
+    {
+     "tur": "baslik",
+     "id": "baslik",
+     "x": 170,
+     "y": 1322,
+     "aci": -720,
+     "olcek": 1.6,
+     "kit_eksik": [
+      "KE-P4"
+     ],
+     "kosul": "P05 son karesi ile aynı: başlık rıhtımda yerde (kesme sürekliliği)"
     }
    ],
    "ekran_yazisi": [
@@ -1801,7 +1813,7 @@
     "net_sn": 1.7,
     "not": "Lagâri+demet birlikte havada p0-46, bırakma p46 (EV-D2 okunur); boş demet olcek ≈0.85-0.92 yakına düşer; iniş olcek 0.25 (köşkten ≈6x, ufuk-ölçek tavanı <10x). Yazı p208-282 üst bantta: iniş sonrası Lagâri baş ekran y ≈ 900 (çakışmaz)."
    },
-   "alt_ucte_bir": "p0-150: rıhtım + Y1/Y2 (ayak ≤ 1496), demet su halkası/buharı (ekran y≈1400). p150+: köşk tabanı ve su (ekran y 1000-1500), suda yatan kanat, yüzen Lagâri; yardımcılar kadrajdan çıkar.",
+   "alt_ucte_bir": "p0-150: rıhtım + Y1/Y2 (ayak ≤ 1485), demet su halkası/buharı (ekran y≈1400). p150+: köşk tabanı ve su (ekran y 1000-1500), suda yatan kanat, yüzen Lagâri; yardımcılar kadrajdan çıkar.",
    "kit_eksik": [
     "KE-S1",
     "KE-K1",
@@ -1828,7 +1840,7 @@
      "db": 0
     }
    ],
-   "not": "Dokunuş zamanı doc'a göre p40-130: 'kanatlarını açıyor' kelimeleri TR p56, EN p50 -> kanat p40-58. İniş p215: TR 'denize' p209-230, EN 'pavilion' p178-222 ile uyumlu. Yüzme+basamak p222-288 (1.1 sn); yazı p208'de başlar, dokunuştan sonra. [2026-11-08 kullanıcı kararı] Kanat Lagâri'den p222-250'de ayrılır, suda iniş noktasının solunda kalır (Lagâri sağa yüzer, kanattan uzaklaşır); P07'de Lagâri kanatsız. [2026-11-08 K1 eleştirisi] P05 son durumu ile kesintisiz: demet (540,790), puskurme yanıyor, Lagâri demette oturuyor (bagli bit 46 → ucus 46). Boş demet yakına (y 1200) düşer; kamera köşke push-in; iniş (810,775). Y1 ayağı y 1296+cy 200 = 1496 ≤ 1500."
+   "not": "Dokunuş zamanı doc'a göre p40-130: 'kanatlarını açıyor' kelimeleri TR p56, EN p50 -> kanat p40-58. İniş p215: TR 'denize' p209-230, EN 'pavilion' p178-222 ile uyumlu. Yüzme+basamak p222-288 (1.1 sn); yazı p208'de başlar, dokunuştan sonra. [2026-11-08 kullanıcı kararı] Kanat Lagâri'den p222-250'de ayrılır, suda iniş noktasının solunda kalır (Lagâri sağa yüzer, kanattan uzaklaşır); P07'de Lagâri kanatsız. [2026-11-08 K1 eleştirisi] P05 son durumu ile kesintisiz: demet (540,960), puskurme yanıyor, Lagâri demette oturuyor (bagli bit 46 → ucus 46). Boş demet yakına (y 1200) düşer; kamera köşke push-in; iniş (810,775). Y1 ayağı y 1296+cy 200 = 1485 ≤ 1500."
   },
   {
    "id": "P07",

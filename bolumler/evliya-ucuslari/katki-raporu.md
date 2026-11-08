@@ -357,3 +357,17 @@
 - Dokunduğum dosyalar: bolumler/evliya-ucuslari/mekanlar.md, bolumler/evliya-ucuslari/katki-raporu.md
 - Kararlar: Hex hedefleri değişmedi, `tasarim.md` ile çelişki yok. Örtü yüksekliği 2.4 m korundu; taban saçakla genişlediği için eğim ≈ 27° oldu ve köşk görünümünde örtü görünmez hâle geldi (yalnız saçak + bacalar).
 - Açık: Gündüz derecelendirmesi aynı kayba açık; K2'de C\* oranı ölçülmeli. `renk_olcum.py`'ye C\* oranı ve Δh° sütunları eklenmeli (motion/teknisyen).
+
+## yonetmen · 2026-11-08 · K1 kalibrasyon revizyonu (P05/P06)
+- Ne yaptım: `kalibrasyon/K1/elestiri.md` (KALDI) yönetmen maddelerini `bolum.json` + `sahne-plani.md` §1/§5.0/§7'ye işledim ve P05 p0/p78/p204, P06 p0/p76/p215/p290 karelerini render edip baktım.
+  - P05: demet dik (y 1330→960, olcek ≥0.92); kamera cs 0.9, cy 0→220; fitil p56'da tükenir; `puskurme.bit` 210; meşale alçak (p0 (330,1250), p88 (150,1180)): alev x ≤ 330, koridor dışı; Y1 y 1296 (sıçrama 300→270), Y2 x 95 y 1268 arka 3/4; `kanat` (sırtta katlı) prop; Lagâri `tutun` sicim bağı.
+  - P06: P05 son durumuyla aynı başlangıç (başlık dahil); Lagâri `bagli {demet, bit 46}` + `ucus` 46; boş demet y 960→1200 yakına; Lagâri iniş (810,775) olcek 0.25 köşkün önünde; kamera p150-230 cs 0.9→2.0 (cx -300, cy 536); kanat suda (770,778); `mesale1`, `baslik`, `kosk_basamak` eklendi; Y1 ayak ≤ 1485.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/bolum.json, sahne-plani.md, katki-raporu.md; **src/kit/sablonlar/sarayburnu/Kiyi.tsx** (2 satır, `bagli.bit` desteği — motion'ın dosyası, doğrulama için gerekliydi).
+- Aldığım kararlar ve gerekçeleri:
+  - cs 1.0 yerine 0.9: yığın ≈850 px; cs 1'de binici başı y≈140 (güvenli alan + üst bant dışı). Ödünleşim: ekran kazancı ~110 px, yükseliş tilt/kayma ile okunuyor (açık soru 7).
+  - Köşke push-in cs 2.0 (cx -300): katalog cx sınırı ±300; cs 2.5 için cx -735 gerek (kit_eksik, soru 8).
+  - Y2 x 112 yerine 95: Y1 sıçraması 270'e çekildi, aralık ≈1 gövde.
+  - Meşale p0'da fitil başında alçak: taşıma pozu alevi Lagâri yüzüne taşıyordu; json yolu (omuzdan ≥0.9 m) ile koridor dışı tutuldu.
+- Uyguladığım kurallar / yakaladığım ihlaller: kural 1 (eksik prop beyanı, `kit_eksik`), kural 7 (render edildi), O12 güvenli alan (ayak 1485/1457), K3 süreklilik (p204 ↔ P06 p0 aynı), ufuk-ölçek (iniş köşkten ≈6x). Yakalanan: `bagli.bit` kodda yoktu (Lagâri dev ölçekte kalıyordu).
+- Doğrulayıcı: gerçek `bolum_dogrula.mjs` P05/P06'da 0 hata (3 "kurulumda" uyarısı: yuz, kanat-birak, suda); bölümde 30 hata hep henüz kurulmamış görünüm/jest/karakter (P07, P10-P12, P03/P04 jestleri). Genişletilmiş kopya: GEÇTİ 0 hata.
+- Açık sorular: (1) yükseliş ekran kazancı (soru 7); (2) cx sınırı (soru 8); (3) motion: `bagli.bit` kalıcı uygulaması, `tutun` jesti, `kanat suda`, E3 halka/buhar, kosk_basamak çizimi; (4) P05/P06 kanat çizimi ve kompars/sarık/köşk bulguları (O1-O8) motion/tasarımcıda.
