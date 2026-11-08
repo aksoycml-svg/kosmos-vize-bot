@@ -22,7 +22,7 @@ export type Karakter = {
   z?: Sayi; u?: Sayi;          // derinlik / yanal; dizi ise `kare` ile anahtarlanır (yürüyüş yolu). SARAYBURNU: x/y kullanılır
   x?: Sayi; y?: Sayi;          // SARAYBURNU: dekor px, ayak tabanı noktası (ölçek ufuk–ölçek kuralından; havada `olcek`)
   olcek?: Sayi;                // SARAYBURNU: derinlik çarpanı (1 = rıhtım y 1330, 406 px/m); zemindeki figürde y'den türetilir
-  bagli?: { prop: string; dx?: number; dy?: number }; // SARAYBURNU: oturan karakter prop'un oturağına bağlı (ayaklar dayamada)
+  bagli?: { prop: string; dx?: number; dy?: number; bit?: number }; // SARAYBURNU: oturan karakter prop'un oturağına bağlı (ayaklar dayamada); bit = bırakma karesi (sonra x/y/olcek yolu)
   durum?: Record<string, Sayi | boolean[]>;          // SARAYBURNU: islak, kanat (anahtarlı)
   kare?: number[];
   yon?: 1 | -1;                // 1 = sağa bakar, -1 = sola

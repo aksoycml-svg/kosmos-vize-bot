@@ -10,24 +10,26 @@ const frakYok = (entari: string) => ({ vest: entari, vestDark: entari, vestDesen
 export const LAGARI: Palet = {
   kostum: "osmanli",
   coat: "#34405e", coatDark: "#222a40", coatLight: "#4c5a7c", entari: "#7c8494", kusak: "#4a3426", ...frakYok("#7c8494"),
-  pants: "#3e3a38", shoe: "#2e241c", glove: "#d9a77f", skin: "#d9a77f", skinDark: "#a8745a", hair: "#3a2416",
-  sapka: "sarik", sarikCizgi: "yatay", hat: "#d9cfb6", hatBand: "#a89e86",
+  pants: "#3e3a38", shoe: "#2e241c", glove: "#c08468", skin: "#c08468", skinDark: "#8e5a46", hair: "#3a2416",
+  // v1.3: sarık soğuk kırık beyaz (b* ≤ 5; amber ışıkta imza bandına kaymasın), sargı yönü sol-alt → sağ-üst; ten pembe-kızıl (a* ≥ 15)
+  sapka: "sarik", sarikYon: 1, hat: "#dcdcd2", hatBand: "#a8aaa2", sarikIc: "#4a3e34",
   sideburn: 0.8, browHeavy: 1.1, biyik: "duz", biyikOlcek: 1.2, sakal: false, burun: 1.05,
   yuz: { genislik: 0.94, uzunluk: 1.08, burunTip: "duz", kasAci: -3, sac: "sarikalti", zayif: 0.4, yasCizgi: 0.25, cene: "olgun" },
 };
 
-// KE-K4 yardımcılar: yüzsüz kompars, diz boyu entari + şalvar + takke (sargısız keçe). Ana kadronun yüzünü kopyalamaz.
-const yardimci = (entari: string, takke: string, ten: string): Palet => ({
+// KE-K4 yardımcılar (v1.3 §3.6): yüzsüz kompars, ARKA 3/4 kameraya (Kiyi şablonu `arka`), yakasız çapraz kavuşan diz altı entari + sarılı kuşak
+// + bol şalvar (paça büzgülü) + takke. Takkesiz baş = tek parça kısa saç kütlesi. İki yardımcı ayrışır (ton, ölçek 1.0 / 0.90, duruş).
+const yardimci = (entari: string, salvar: string, takke: string, kusak: string, ten: string): Palet => ({
   kostum: "osmanli-kisa",
-  coat: entari, coatDark: shadeKoyu(entari), coatLight: entari, entari, kusak: "#3a3026", ...frakYok(entari),
-  pants: "#4a4038", shoe: "#2e241c", glove: ten, skin: ten, skinDark: shadeKoyu(ten), hair: "#2a2018",
-  sapka: "takke", hat: takke, hatBand: "#3a2e24",
+  coat: entari, coatDark: shadeKoyu(entari), coatLight: entari, entari, kusak, ...frakYok(entari),
+  pants: salvar, shoe: "#2e241c", glove: ten, skin: ten, skinDark: shadeKoyu(ten), hair: "#2a2018",
+  sapka: "takke", hat: takke, hatBand: shadeKoyu(takke),
   sideburn: 0.4, browHeavy: 1, biyik: "yok", sakal: false, yuzsuz: true,
-  yuz: { sac: "duz" }, // kısa koyu saç: takke uçunca (P05 EV-D1) kel kubbe değil saçlı baş okunur; takke altında örtülü
+  yuz: { sac: "kisa" },
 });
 function shadeKoyu(hex: string) {
   const n = parseInt(hex.slice(1), 16);
   return "#" + [n >> 16, (n >> 8) & 255, n & 255].map((v) => Math.round(v * 0.68).toString(16).padStart(2, "0")).join("");
 }
-export const YARDIMCI_1 = yardimci("#6a5a48", "#5b4a3a", "#b88a68");
-export const YARDIMCI_2 = yardimci("#5a5448", "#4a3e34", "#a87c5c");
+export const YARDIMCI_1 = yardimci("#6a5a48", "#4a4038", "#5b4a3a", "#3a3026", "#9c6a50");
+export const YARDIMCI_2 = yardimci("#4e5658", "#3a3a38", "#3e3a34", "#5a4a36", "#8e6048");

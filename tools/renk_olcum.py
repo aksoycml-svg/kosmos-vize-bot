@@ -7,10 +7,12 @@ olcum.json:
   { "kareler": [ { "ad": "P05 p78", "dosya": "…png", "olcek": 0.5,
                    "noktalar": [["gece gök orta", 300, 300, "#1c2232"], …],      # tam boy (1080x1920) ekran koordinatı
                    "imza": {"hex": "#c4a874", "esik": 15, "bolge": [x0, y0, x1, y1]},  # bölge dışında imza tonu aranır
-                   "yasak": [["mavi RIM", "#c4d6ff", 12]] } ] }
+                   "yasak": [["mavi RIM", "#c4d6ff", 12]],
+                   "parcalar": [["Lagâri sarık", x, y], …] } ] }                         # imzaya ΔE76 (render'dan, kostüm parçası başına; ≥ 15)
 Ölçüm: 7x7 px ortalama (ölçekli karede). L* = CIELAB (D65), ΔE76 + ΔE2000, ΔH° = ton açısı farkı.
 Ayrıca: kırmızı piksel taraması (ton 340–12°, doygunluk > .5, parlaklık > .3) — kırmızı yalnız yazı katmanında olmalı.
-Hedef tolerans: |ΔL*| ≤ 8 (mekanlar.md §6).
+Hedef tolerans: |ΔL*| ≤ 8 (mekanlar.md §6); C* ≥ hedefin %70'i, Δh° ≤ ±20 (hedef C* < 5 ise h aranmaz) (mekanlar §6a).
+İmza tekilliği (tasarim v1.3 §2.4): parça başına ΔE76 ≥ 15; demet dışı imza pikseli ≤ demet içinin %25'i.
 """
 import json, math, sys
 from PIL import Image
@@ -67,15 +69,26 @@ def ortalama(im, x, y, r=3):
 def main():
     cfg = json.load(open(sys.argv[1]))
     cikti = sys.argv[2] if len(sys.argv) > 2 else None
-    sat = ["| Kare | Nokta | (x,y) | Ölçülen | Hedef | L* ölç/hedef | ΔL* | ΔH° | ΔE76 | ΔE00 | Sonuç |", "|---|---|---|---|---|---|---|---|---|---|---|"]
+    sat = ["| Kare | Nokta | (x,y) | Ölçülen | Hedef | L* ölç/hedef | ΔL* | C* ölç/hedef | C* oranı | Δh° | ΔE00 | Sonuç |", "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    parca = ["| Kare | Parça | (x,y) | Ölçülen | L* | ΔE76 imza | Sonuç |", "|---|---|---|---|---|---|---|"]
     ek = []
     for k in cfg["kareler"]:
         im = Image.open(k["dosya"]).convert("RGB"); s = k.get("olcek", 1)
         for ad, x, y, hedef in k["noktalar"]:
             rgb = ortalama(im, round(x * s), round(y * s)); lo, lh = lab(rgb), lab(hex2rgb(hedef))
             dL = lo[0] - lh[0]; dH = ((ton(lo) - ton(lh) + 180) % 360) - 180
-            sonuc = "TAMAM" if abs(dL) <= 8 else ("KOYU" if dL < 0 else "AÇIK")
-            sat.append(f"| {k['ad']} | {ad} | ({x},{y}) | `#{''.join(f'{v:02x}' for v in rgb)}` | `{hedef}` | {lo[0]:.1f} / {lh[0]:.1f} | {dL:+.1f} | {dH:+.0f} | {de76(lo, lh):.1f} | {de2000(lo, lh):.1f} | {sonuc} |")
+            co, ch = math.hypot(lo[1], lo[2]), math.hypot(lh[1], lh[2]); oran = co / ch if ch > 0 else 1
+            hata = []
+            if abs(dL) > 8: hata.append("KOYU" if dL < 0 else "AÇIK")
+            if ch >= 5 and oran < 0.7: hata.append("KROMA")
+            if ch >= 5 and abs(dH) > 20: hata.append("TON")
+            sonuc = "TAMAM" if not hata else "+".join(hata)
+            sat.append(f"| {k['ad']} | {ad} | ({x},{y}) | `#{''.join(f'{v:02x}' for v in rgb)}` | `{hedef}` | {lo[0]:.1f} / {lh[0]:.1f} | {dL:+.1f} | {co:.1f} / {ch:.1f} | {oran * 100:.0f}% | {dH:+.0f} | {de2000(lo, lh):.1f} | {sonuc} |")
+        if "imza" in k:
+            li0 = lab(hex2rgb(k["imza"]["hex"]))
+            for ad, x, y in k.get("parcalar", []):
+                rgb = ortalama(im, round(x * s), round(y * s), 2); lo = lab(rgb); e = de76(lo, li0)
+                parca.append(f"| {k['ad']} | {ad} | ({x},{y}) | `#{''.join(f'{v:02x}' for v in rgb)}` | {lo[0]:.1f} | {e:.1f} | {'TAMAM' if e >= 15 else 'İHLAL'} |")
         # imza tonu taraması (bölge dışı) + yasak tonlar + kırmızı
         w, h = im.size; px = im.load()
         if "imza" in k:
@@ -91,7 +104,8 @@ def main():
                             dis += 1; dis_kutu = (min(dis_kutu[0], xx), min(dis_kutu[1], yy), max(dis_kutu[2], xx), max(dis_kutu[3], yy)) if dis_kutu else (xx, yy, xx, yy)
                             key = (xx // 40, yy // 40); ornek[key] = ornek.get(key, 0) + 1
             top = sorted(ornek.items(), key=lambda t: -t[1])[:4]
-            ek.append(f"- {k['ad']}: imza {I['hex']} ΔE76<{I.get('esik', 15)} — demet bölgesinde {ic} örnek, DIŞINDA {dis} örnek" + (f" (kutu {tuple(round(v / s) for v in dis_kutu)} tam boy; yoğun hücreler {[(round(a * 40 / s), round(b * 40 / s), n) for (a, b), n in top]})" if dis else ""))
+            oran = dis / ic if ic else float("inf")
+            ek.append(f"- {k['ad']}: imza {I['hex']} ΔE76<{I.get('esik', 15)} — demet bölgesinde {ic} örnek, DIŞINDA {dis} örnek → oran %{oran * 100:.0f} ({'TAMAM' if oran <= 0.25 else 'İHLAL'} ≤ %25)" + (f" (kutu {tuple(round(v / s) for v in dis_kutu)} tam boy; yoğun hücreler {[(round(a * 40 / s), round(b * 40 / s), n) for (a, b), n in top]})" if dis else ""))
         for ad, hx, esik in k.get("yasak", []):
             ly = lab(hex2rgb(hx)); n = sum(1 for yy in range(0, h, 2) for xx in range(0, w, 2) if de76(lab(px[xx, yy]), ly) < esik)
             ek.append(f"- {k['ad']}: {ad} {hx} ΔE76<{esik}: {n} örnek")
@@ -103,7 +117,7 @@ def main():
                 hh = (60 * ((g - b) / (mx - mn)) % 360) if mx == r else (60 * ((b - r) / (mx - mn)) + 120 if mx == g else 60 * ((r - g) / (mx - mn)) + 240)
                 if hh >= 340 or hh <= 12: kir += 1
         ek.append(f"- {k['ad']}: kırmızı piksel (ton 340–12°, S>.5, V>.3): {kir} örnek")
-    metin = "\n".join(sat + [""] + ek) + "\n"
+    metin = "\n".join(sat + [""] + (parca + [""] if len(parca) > 2 else []) + ek) + "\n"
     print(metin)
     if cikti: open(cikti, "w").write(metin)
 

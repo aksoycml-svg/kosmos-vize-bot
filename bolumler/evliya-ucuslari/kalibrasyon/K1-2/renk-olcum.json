@@ -1,0 +1,198 @@
+{
+ "kareler": [
+  {
+   "ad": "P05 p78",
+   "dosya": "bolumler/evliya-ucuslari/kalibrasyon/K1-2/P05_p78_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "gece gök orta",
+     300,
+     300,
+     "#1c2232"
+    ],
+    [
+     "gece gök ufuk basamağı (dekor y 516)",
+     980,
+     560,
+     "#2c3246"
+    ],
+    [
+     "gece deniz",
+     980,
+     1000,
+     "#161c26"
+    ],
+    [
+     "gece rıhtım (havuz dışı)",
+     900,
+     1700,
+     "#45444a"
+    ],
+    [
+     "köşk ana kat",
+     740,
+     625,
+     "#4e4a46"
+    ],
+    [
+     "köşk altyapı",
+     800,
+     712,
+     "#4e4a46"
+    ],
+    [
+     "demet tüp yüzü (L* 55–72)",
+     520,
+     1080,
+     "#c4a874"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     440,
+     870,
+     610,
+     1340
+    ]
+   },
+   "yasak": [
+    [
+     "mavi RIM",
+     "#c4d6ff",
+     12
+    ]
+   ],
+   "parcalar": [
+    [
+     "Lagâri sarık",
+     600,
+     520
+    ],
+    [
+     "Lagâri yüz (yanak)",
+     580,
+     610
+    ],
+    [
+     "Lagâri el",
+     580,
+     905
+    ],
+    [
+     "Lagâri kaftan",
+     500,
+     710
+    ],
+    [
+     "Lagâri kuşak",
+     500,
+     810
+    ],
+    [
+     "Y1 entari",
+     310,
+     920
+    ],
+    [
+     "Y1 el",
+     295,
+     910
+    ],
+    [
+     "Y1 saç (ense)",
+     270,
+     760
+    ],
+    [
+     "Y2 entari",
+     140,
+     880
+    ],
+    [
+     "Y2 takke",
+     140,
+     700
+    ],
+    [
+     "katlı kanat",
+     420,
+     690
+    ],
+    [
+     "Lagâri entari",
+     552,
+     786
+    ]
+   ]
+  },
+  {
+   "ad": "P06 p76",
+   "dosya": "bolumler/evliya-ucuslari/kalibrasyon/K1-2/P06_p76_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "gece gök orta",
+     300,
+     300,
+     "#1c2232"
+    ],
+    [
+     "gece deniz",
+     980,
+     1150,
+     "#161c26"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     400,
+     980,
+     720,
+     1400
+    ]
+   },
+   "yasak": [
+    [
+     "mavi RIM",
+     "#c4d6ff",
+     12
+    ]
+   ]
+  },
+  {
+   "ad": "P05 p204",
+   "dosya": "bolumler/evliya-ucuslari/kalibrasyon/K1-2/P05_p204_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "gece gök orta",
+     300,
+     300,
+     "#1c2232"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     430,
+     600,
+     640,
+     1180
+    ]
+   },
+   "yasak": [
+    [
+     "mavi RIM",
+     "#c4d6ff",
+     12
+    ]
+   ]
+  }
+ ]
+}

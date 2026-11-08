@@ -14,5 +14,6 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   // TODO(K2): insert gece/gün (P07/P11) · TODO(K3): kosk gece/gün (P02/P10) · TODO: ic gün (P12)
   throw new Error(`[SARAYBURNU] gorunum "${g}" / saat "${saat}" henüz kurulmadı (${plan.id}); kurulu: kiyi+gece`);
 };
-const arsiv = (plan: Plan) => (param<string>(plan, "saat", "gece") === "gece" ? "gece" : "gunduz") as "gece" | "gunduz";
+// gece: mekanlar §8 derecelendirmesi (geceLapis: gece mavisi korunur, K1 O5)
+const arsiv = (plan: Plan) => (param<string>(plan, "saat", "gece") === "gece" ? "geceLapis" : "gunduz") as "geceLapis" | "gunduz";
 export const SARAYBURNU: Sablon = { Sahne, arsiv };

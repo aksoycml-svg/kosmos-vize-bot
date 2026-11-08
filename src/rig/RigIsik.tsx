@@ -41,7 +41,8 @@ export const kuklaIsigi = (isik: Isik, ayak: P, boyPx: number, ek: { murekkep?: 
 };
 
 // ---- Kukla içi bağlam ----
-export type RigBaglam = { I: KuklaIsik | null; f: 1 | -1; s: number };
+// bant (Evliya R16): verilirse kumaş taraması yalnız terminatör bandına (rig birimi) kırpılır; ton bloğu tüm gölge yanında kalır (düz 2 ton)
+export type RigBaglam = { I: KuklaIsik | null; f: 1 | -1; s: number; bant?: number };
 export const RigCtx = createContext<RigBaglam>({ I: null, f: 1, s: 1 });
 export const useRig = () => useContext(RigCtx);
 
@@ -70,7 +71,7 @@ export const useInk = (temel: (c: string) => string) => {
 // ---- Bölge: bir uzvun gölge yanı (ton bloğu + tarama) + ışık yanı kenar ışığı ----
 // d: uzvun yerel yolu (kırpma), k: yerel kutu [x0, x1, y0, y1], a: uzvun toplam yerel dönüşü (lean + omuz + dirsek…)
 export const Bolge: React.FC<{ d: string; k: [number, number, number, number]; a: number; renk: string; tarama?: boolean; kenar?: boolean; ton?: number }> = ({ d, k, a, renk, tarama = true, kenar = true, ton = 1 }) => {
-  const { I, f, s } = useRig();
+  const { I, f, s, bant } = useRig();
   const id = "rb" + useId().replace(/:/g, "");
   if (!I) return null;
   const { yan, oran } = golgeYani(I, f, a);
@@ -92,7 +93,11 @@ export const Bolge: React.FC<{ d: string; k: [number, number, number, number]; a
       </defs>
       <g clipPath={`url(#${id}c)`}>
         <rect x={gx[0]} y={y0 - 20} width={gx[1] - gx[0]} height={y1 - y0 + 40} fill={mk} fillOpacity={0.2 * I.sertlik * ton} />
-        {tarama && <rect x={gx[0]} y={y0 - 20} width={gx[1] - gx[0]} height={y1 - y0 + 40} fill={`url(#${id}p)`} />}
+        {tarama && (() => {
+          // R16: bant varsa tarama yalnız terminatöre bitişik dar şeritte
+          const tx = bant === undefined ? gx : yan < 0 ? [Math.max(gx[0], gx[1] - bant), gx[1]] : [gx[0], Math.min(gx[1], gx[0] + bant)];
+          return <rect x={tx[0]} y={y0 - 20} width={tx[1] - tx[0]} height={y1 - y0 + 40} fill={`url(#${id}p)`} />;
+        })()}
         {kenar && <g clipPath={`url(#${id}i)`}><path d={d} fill="none" stroke={I.renk} strokeWidth={rimW * 2} strokeOpacity={0.7} strokeLinejoin="round" /></g>}
       </g>
     </g>

@@ -17,7 +17,7 @@ export const KOSK_VARSAYILAN: KoskKonum = { su_cizgisi: 762, ust: 534, x: [740, 
 
 const S = DOKU_SEED.sarayburnu;
 
-export const KiyiUzak: React.FC<{ kosk: KoskKonum }> = ({ kosk }) => {
+export const KiyiUzak: React.FC<{ kosk: KoskKonum; basamak?: { x: [number, number]; adim: number } }> = ({ kosk, basamak }) => {
   const R = KIYI_GECE;
   const kx = (kosk.x[0] + kosk.x[1]) / 2;
   // Asya kıyısı: alçak dalgalı tek ton şerit (ışık noktası yok)
@@ -45,7 +45,7 @@ export const KiyiUzak: React.FC<{ kosk: KoskKonum }> = ({ kosk }) => {
         <polygon points={poly(surSol)} fill={R.sur} stroke={ink(R.sur)} strokeWidth={2} />
         <rect x={560} y={609} width={70} height={kosk.su_cizgisi - 609} fill={R.sur} stroke={ink(R.sur)} strokeWidth={2} />
         <polygon points={poly(surSag)} fill={R.sur} stroke={ink(R.sur)} strokeWidth={2} />
-        <SinanPasaKosk x={kx} suY={kosk.su_cizgisi} pxm={kosk.px_m} saat="gece" kontur={2.4} />
+        <SinanPasaKosk x={kx} suY={kosk.su_cizgisi} pxm={kosk.px_m} saat="gece" kontur={2.4} basamak={basamak} />
       </KonturTitreme>
     </g>
   );

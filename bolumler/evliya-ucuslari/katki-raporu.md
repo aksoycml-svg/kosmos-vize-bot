@@ -371,3 +371,64 @@
 - Uyguladığım kurallar / yakaladığım ihlaller: kural 1 (eksik prop beyanı, `kit_eksik`), kural 7 (render edildi), O12 güvenli alan (ayak 1485/1457), K3 süreklilik (p204 ↔ P06 p0 aynı), ufuk-ölçek (iniş köşkten ≈6x). Yakalanan: `bagli.bit` kodda yoktu (Lagâri dev ölçekte kalıyordu).
 - Doğrulayıcı: gerçek `bolum_dogrula.mjs` P05/P06'da 0 hata (3 "kurulumda" uyarısı: yuz, kanat-birak, suda); bölümde 30 hata hep henüz kurulmamış görünüm/jest/karakter (P07, P10-P12, P03/P04 jestleri). Genişletilmiş kopya: GEÇTİ 0 hata.
 - Açık sorular: (1) yükseliş ekran kazancı (soru 7); (2) cx sınırı (soru 8); (3) motion: `bagli.bit` kalıcı uygulaması, `tutun` jesti, `kanat suda`, E3 halka/buhar, kosk_basamak çizimi; (4) P05/P06 kanat çizimi ve kompars/sarık/köşk bulguları (O1-O8) motion/tasarımcıda.
+
+## motion · 2026-11-08 · K1 ikinci tur (eleştiri KALDI → kod güncellemesi, K1-2 kontrol paketi)
+- Ne yaptım:
+  - Eleştirmen bulgularını, tasarim v1.3, mekanlar R1 ve yönetmenin yeni P05/P06 json'unu koda işledim.
+  - Render paketi `kalibrasyon/K1-2/`: P05 p0/30/78/110/204 ve P06 p0/50/76/100/215/290. Her kare tam (1080), telefon (360x640) ve güvenli alan bindirmeli. Ek olarak P05 p204 ↔ P06 p0 yan yana karşılaştırma ve telefon sayfası.
+- Dokunduğum dosyalar:
+  - `src/doku/ArsivKatmani.tsx` (yeni `geceLapis` modu)
+  - `src/rig/Kukla.tsx`, `src/rig/RigIsik.tsx`
+  - `src/kit/sablonlar/sarayburnu/{Kiyi.tsx, KiyiDekor.tsx, SinanPasaKosk.tsx, index.tsx, geo.ts}`
+  - `src/kit/props/evliya.tsx`, `src/kit/paletler/evliya.ts`, `src/components/GravurEfekt.tsx`
+  - `src/kit/{tipler.ts, sinirlar.json}`, `tools/bolum_dogrula.mjs`, `tools/renk_olcum.py`
+  - `bolumler/evliya-ucuslari/kalibrasyon/K1-2/*`
+- Düzeltilen bulgular:
+  - K1: fitil p56'da ağızda tükenir. Rıhtımda kısa kömür parçası kalır; fitil demetin p0 konumuna bağlı, kalkan demetle gerilmez.
+  - K2: meşale json yolunu izler (alev x ≤ 330). O9: sap + baş 1.28 m, alev 0.26 m.
+  - K3:
+    - `bagli.bit` kalıcı (tip ve doğrulayıcıda; bırakmanın temas karesi denetlenir).
+    - Püskürme konisi demetle aynı ölçekte ve demetin derinliğindeki zemine çarpar.
+    - Duman ağızdan doğar, kalkışta iz bırakır. Püskürme önceki plandan sürüyorsa (bas 0) iz kesmenin öncesine uzanır.
+  - K4: json'daki dik yükseliş ve ölçeklerle render edildi.
+  - K5: sarık #dcdcd2; render'da imzaya ΔE76 27.4.
+  - K6:
+    - Boş demet `su.y_demet` karesinde suya değer, 12 karede yatar, %50 batık yüzer, ±3 px salınır.
+    - E3 halka, buhar ve sıçrama (demet + Lagâri inişi).
+    - Lagâri suya gömülür ve su çizgisinde kırpılır; `yuz` (yüzme döngüsü), `islak` (kumaş koyulaşır).
+    - `kanat-birak` → suda kanat: %40 görünür, ±4 px, sabit halka.
+    - Köşk basamağı (`kosk_basamak`) ve ıslak elin ona uzanması.
+  - O10: `sicra`: geri adım + lean −12 + yakın kol yüze (`kol_yuze` aralığı).
+  - O11: ön el üst sicim bağında. Kol boyu yetmediği için tutunurken gövde öne eğik (lean 16).
+  - S1: meşale dumanı artık disk değil, ince tırtıklı iz.
+  - S3: duman tabana bağlı, kenarı tırtıklı, iz olarak kalıyor.
+  - S4: oturak görünür (etek uyluğun altına sıkı, ön kenarında açık ton).
+  - Tasarım/mekân maddeleri:
+    - Sarık R15: başı saran basık yastık, tümsekli kontur, çapraz eğri katmanlar, iç başlık tepesi, `sarikYon`.
+    - Ten tonları v1.3.
+    - Yardımcılar R14/R17: arka 3/4 görünüm (`pz.arka`), yakasız çapraz kavuşan entari, sarılı kuşak ve sarkan ucu, bol şalvar + paça büzgüsü, tek parça kısa saç, Y2 ayrı ton.
+    - R16: kostüm taraması yalnız 14 birimlik terminatör bandında.
+    - Kanat O6: tek sığ kavis, yuvarlak uç, 3 parmak.
+    - Kanat O7: en 150, konik, iki kat, kalınlık şeridi, tek çentik. Açılma: dönen geometri, panelden çıkış ilk %35'te karışımla.
+    - Köşk O1/S2: kesik kırma piramit + saçak bandı, küt bacalar düz başlıklı ve plato altında, pencere halesi yok (yalnız alta 2 basamaklı havuz).
+    - O5: gece derecelendirmesi `geceLapis` (doygunluk 1, siyah nokta #12141c, max(in, bp)).
+- Aldığım kararlar ve gerekçeleri:
+  - O5 düzeltmesi Blanc'ın `gece` moduna değil yeni `geceLapis` moduna yazıldı; Blanc'ın gece kareleri değişmesin diye.
+  - Y2'nin "0.90" değeri derinlikten geliyor (y 1268 → 0.90). Kayıt boy oranı 0.98'de kaldı; çift küçültme yok.
+  - Demetin suya düştüğünü yalnız y'den çıkaramıyorum: havadaki demet de su bandının y aralığında olabiliyor (P05 p204'te bu hata çıktı). Bu yüzden plan parametresi `su.y_demet` ile bağlandı.
+- Ölçüm (`K1-2/renk-olcum.md`):
+  - 10/10 nokta TAMAM. Gök orta C* %94, gök ufuk %92, deniz %100.
+  - Demet tüp yüzü L* 72.0.
+  - Parça başına imza ΔE76 ≥ 21 (Lagâri sarık 27.4, yanak 21.2, el 21.0; Y1 el 27.9; kanat 37.1).
+  - Demet dışı imza pikseli %3–10 (sınır %25). Mavi RIM 0.
+  - Blanc: 4 karenin yeniden render'ında piksel farkı 0; doğrulayıcı sonuçları birebir aynı.
+  - Doğrulayıcı: P05/P06'da 0 hata, 0 uyarı.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - (Yönetmen) P06 iniş: `olcek 0.25` (101 px/m), y 775'teki su düzlemi ise ≈22 px/m. Köşk 17 px/m. Lagâri köşke göre ≈5 kat büyük; push-in kadrajında makul görünüyor ama ufuk–ölçek kuralına uymuyor.
+  - (Yönetmen) Boş demetin "yakın suya" düştüğü yer y 1200, `olcek 0.85`. O derinlikte su yüzü rıhtım dudağının arkasında kalır (görünmez ölü bölge); stilize kabul edildi.
+- Açık sorular / bir sonraki ajana notlar:
+  - Kurulmayanlar: ıslak damlalar (P07 kapsamı), sarık ucunun çözülmesi.
+  - Köşk basamağı 17 px/m'de küçük: cs 2.0'da basamak başına ≈11 px. Tutunma 360 px'te zayıf okunabilir.
+  - Katlı kanat hâlâ "panel"e yakın okunabilir; eleştirmen 360 px testiyle baksın.
+  - P06 p100'de demet suya köşesiyle değiyor ve p112'de yatıyor (temas karesi bilinçli).
+  - Öz puan: 6.5/10.

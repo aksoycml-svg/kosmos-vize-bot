@@ -139,7 +139,8 @@ for (const plan of B.planlar ?? []) {
       if (Array.isArray(c.x) || Array.isArray(c.y) || Array.isArray(c.olcek)) bitis(y, "yol (kare)", son(c.kare));
       if (c.x === undefined && !c.bagli) H(y, "x/y yok (SARAYBURNU konum dili: dekor px, zemin teması)");
       if (c.bagli && !(plan.props ?? []).some((q) => q.id === c.bagli.prop)) H(y, `bagli.prop "${c.bagli.prop}" planda yok`);
-      if (c.poz === "oturan" && !c.bagli) U(y, "poz oturan ama bagli yok: oturak/dayama bilinmez, ayaklar havada kalır — bagli {prop} ver ya da süreyi böl");
+      if (c.bagli?.bit !== undefined) { if (!(c.bagli.bit > 0 && c.bagli.bit < sure)) H(y, `bagli.bit ${c.bagli.bit} plan içinde değil`); else bitis(y, "bırakma (bagli.bit)", c.bagli.bit); if (!temasVar(plan, c.bagli.bit, 2)) U(y, `bırakma p${c.bagli.bit}: temas yok`); }
+      if (c.poz === "oturan" && !c.bagli && !(c.jestler ?? []).some((j) => j.ad === "ucus")) U(y, "poz oturan ama bagli yok: oturak/dayama bilinmez, ayaklar havada kalır — bagli {prop} ver ya da süreyi böl");
       if (prm.gorunum === "kiyi" && c.olcek !== undefined && !c.bagli) {
         const ys = dizi(c.y), os = dizi(c.olcek);
         ys.forEach((yy, i) => { const o = os[Math.min(i, os.length - 1)]; if (yy >= 1256 && Math.abs(o - (yy - 720) / 610) / ((yy - 720) / 610) > 0.08) U(y, `ufuk–ölçek: y ${yy} rıhtımda → ölçek ${((yy - 720) / 610).toFixed(2)} (json olcek ${o} yok sayılır)`); });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { Bolge, KuklaIsik, RigCtx, useInk, useRig, YuzTonu } from "./RigIsik";
 
 // ===== Vektör kukla düzeneği (rig) v2 =====
@@ -30,6 +30,7 @@ export type Poz = {
   yorganKalinlik?: number; // K4 (v4 P10): yorgan kabartısının yüksekliği (1 = varsayılan; 0.4–1). Yakın planda yorgan alt bandı kaplamasın
   // K3: hasta yüz (0–1: solgun ten, göz altı morluğu, yarı kapalı göz, yanak kızarıklığı yok) + ter damlaları
   hasta?: number; ter?: boolean;
+  arka?: boolean; // Evliya R14: arka 3/4 görünüm (yüz yüzeyi yok; ense + saç/takke + kulak kenarı; kol/bacak katman sırası ters). Yalnız Osmanlı gövdesi
 };
 
 // K3 yüz varyantı (karakter kaydı `src/kit/karakterler.ts` YUZLER). Hepsi isteğe bağlı; boş = François/Louis görünümü (değişmez).
@@ -37,7 +38,7 @@ export type YuzTip = {
   genislik?: number; uzunluk?: number;           // yüz oranı (1 = varsayılan; memur .86 × 1.12 uzun-zayıf, telgrafçı 1.14 × .93 yuvarlak)
   burunTip?: "duz" | "sivri" | "yuvarlak";
   kasAci?: number;                               // derece; + iç uç aşağı (sert), − iç uç yukarı (endişeli). Kalınlık = palet.browHeavy
-  sac?: "bukle" | "seyrek" | "duz" | "sarikalti"; // seyrek = açık alın, yanlarda ince tutam; duz = yağlı yana taranmış; sarikalti (Evliya R4) = yalnız ense + favori
+  sac?: "bukle" | "seyrek" | "duz" | "sarikalti" | "kisa"; // seyrek = açık alın, yanlarda ince tutam; duz = yağlı yana taranmış; sarikalti (Evliya R4) = yalnız ense + favori; kisa (Evliya v1.3) = kafaya yapışık tek parça kısa saç kütlesi
   cene?: "olgun";                                // Evliya: köşeli çene konturu + çene altı gölge çizgisi ("genç/yeniçeri" okunmasın)
   yasCizgi?: number;                             // 0–1 alın + burun-dudak + kaz ayağı çizgisi
   zayif?: number;                                // 0–1 yanak çukuru
@@ -52,7 +53,9 @@ export type Palet = {
   // Evliya (R1–R4): kostum "osmanli" = bileğe entari + önü açık kaftan (coat) + kuşak, yen ağzı açılır; "osmanli-kisa" = diz boyu entari (coat) + şalvar (pants) + kuşak.
   // Verilmezse "frak" (1830 Avrupa) — Blanc görünümü birebir.
   kostum?: "frak" | "osmanli" | "osmanli-kisa"; entari?: string; kusak?: string;
-  sarikCizgi?: "yatay" | "capraz"; // sarık sargı çizgisi yönü (Lagâri yatay, Hezarfen çapraz)
+  sarikCizgi?: "yatay" | "capraz"; // (eski) sarık sargı çizgisi — v1.3'te yerine sarikYon
+  sarikYon?: 1 | -1;               // v1.3 R15: sargı katmanı yönü (1 = ön yüzde sol-alt → sağ-üst, Lagâri; −1 ters, Hezarfen)
+  sarikIc?: string;                // sarığın ortasından görünen iç başlık tepesi (koyu keçe)
   biyikOlcek?: number;             // bıyık genişlik/kalınlık çarpanı (Lagâri 1.2: uçlar ağız köşesinin dışına taşar)
   yuz?: YuzTip; // K3
   yuzsuz?: boolean; // kompars (A5r): yüz ayrıntısı (göz, kaş, ağız, bıyık, yanak) çizilmez — baş/saç/şapka/kostüm biçimi + ışık kalır
@@ -99,6 +102,13 @@ const Bacak: React.FC<{ x: number; thigh: number; knee: number; foot: number; p:
         {!I && <path d="M -15 -4 Q -14 50 -12 100 L -4 100 Q -6 50 -6 -4 Z" fill="#000" opacity={0.22} />}
         <Bolge d={BALDIR} k={[-15, 15, -4, 100]} a={a0 + thigh + knee} renk={c} kenar={!arka} />
         <path d="M -6 2 Q 0 8 8 4" stroke={ink(c)} strokeWidth={1.5} fill="none" opacity={0.7} />
+        {p.kostum === "osmanli-kisa" && <>
+          {/* R17 bol şalvar: baldır ×1.6, 2 dikey kıvrım, paçada büzgü (bileğe toplanan kısa kıvrımlar) */}
+          <path d="M -24 -6 Q -27 44 -20 82 Q -14 94 -13 98 L 13 98 Q 14 94 20 82 Q 27 44 24 -6 Z" fill={c} stroke={ink(c)} strokeWidth={SW} strokeLinejoin="round" />
+          <path d="M -8 8 Q -11 46 -6 80 M 9 10 Q 12 46 7 80" stroke={ink(c)} strokeWidth={1.4} fill="none" opacity={0.55} />
+          <path d="M -15 86 l 4 9 M -6 88 l 2 9 M 4 88 l -1 9 M 13 86 l -3 9" stroke={ink(c)} strokeWidth={1.3} opacity={0.7} />
+          <Bolge d="M -24 -6 Q -27 44 -20 82 L 20 82 Q 27 44 24 -6 Z" k={[-27, 27, -6, 98]} a={a0 + thigh + knee} renk={c} kenar={!arka} />
+        </>}
         {/* paça + ayak bağı */}
         <path d="M -13 92 L 13 92 L 14 102 L -14 102 Z" fill={shade(c, -0.15)} />
         <g transform={`translate(0,99) rotate(${-(thigh + knee) + foot},0,0)`}>
@@ -164,7 +174,10 @@ const Kol: React.FC<{ x: number; sh: number; el: number; p: Palet; arka?: boolea
         <path d={ON_KOL} fill={c} stroke={ink(c)} strokeWidth={SW} strokeLinejoin="round" />
         {!I && <path d="M -14 -2 Q -13 40 -12 76 L -4 76 Q -5 40 -5 -2 Z" fill="#000" opacity={0.25} />}
         <Bolge d={ON_KOL} k={[-14, 14, -2, 78]} a={a0 + sh + el} renk={c} kenar={!arka} />
-        {osm(p)
+        {p.kostum === "osmanli-kisa"
+          // R17: dar yen, bilekte kısa kıvrım (manşet/ceket dikişi yok)
+          ? <path d="M -11 70 Q -2 74 9 69 M -12 76 Q 0 79 12 75" stroke={ink(c)} strokeWidth={1.4} fill="none" opacity={0.7} />
+          : osm(p)
           // Evliya R1: yen ağzı bilekte ≈1.25× açılır (gömlek manşeti yok)
           ? <path d="M -13 60 L 13 60 L 17 82 Q 0 86 -17 82 Z" fill={shade(c, 0.08)} stroke={ink(c)} strokeWidth={1.6} strokeLinejoin="round" />
           : <>
@@ -198,11 +211,19 @@ const AGIZ: Record<Agiz, React.ReactNode> = {
 
 // Evliya R3: sarık (yuvarlak sargı; alın çizgisinden yukarıyı ve kulak üstünü örter) · sarık-basik (Hezarfen: basık, dar, çapraz sargı) · takke (sargısız keçe).
 // Yerel orijin = şapka tabanı (Kafa: yüz tepesinin 8 birim altı); +y aşağı. Sarık tabanı alnın ortasına (+18) iner.
+// v1.3 R15 (tasarim §3.0b): başı SARAN basık yastık (en = baş × 1.40; y/g 0.50 — basik: × 1.30, 0.42). En geniş yer alt üçte birde, üst hafif yassı,
+// üst konturda 4 yumuşak tümsek (katman kabarıklığı), alt kenar alına iner (kaşın ≈16 birim üstü), kulağın üst yarısını örter, ensede 10 birim daha aşağı.
+// Yerel orijin = şapka tabanı (Kafa: baş y −46). Ortadan içteki başlığın (kavuk/takke) alçak koyu tepesi görünür.
 export const sarikYol = (basik: boolean) => {
-  const h = basik ? 62 : 70, gx = basik ? 0.9 : 1;
-  const X = (x: number) => (x * gx).toFixed(1);
-  // basık küre (eni boyundan büyük), yuvarlak tepe — aşçı külahı/silindir okunmasın
-  return { d: `M ${X(-54)} 8 C ${X(-70)} ${-h * 0.42} ${X(-44)} ${-h * 1.02} ${X(4)} ${-h} C ${X(52)} ${-h * 1.0} ${X(74)} ${-h * 0.46} ${X(60)} 12 Q ${X(4)} 20 ${X(-54)} 8 Z`, h, gx };
+  const gx = basik ? 1.3 / 1.4 : 1, W = 123 * gx, h = W * (basik ? 0.42 : 0.5);
+  const X = (x: number) => (x * gx).toFixed(1), Yy = (y: number) => ((y * h) / 62).toFixed(1);
+  const ust = [[-40, -55], [-20, -60], [2, -61], [24, -59], [44, -52]];
+  let d = `M ${X(64)} ${Yy(8)} C ${X(74)} ${Yy(-8)} ${X(70)} ${Yy(-34)} ${X(56)} ${Yy(-46)}`;
+  let onceki = [56, -46];
+  for (const [x, y] of [...ust].reverse()) { const mx = (onceki[0] + x) / 2, my = Math.min(onceki[1], y) - 6; d += ` Q ${X(mx)} ${Yy(my)} ${X(x)} ${Yy(y)}`; onceki = [x, y]; }
+  d += ` C ${X(-58)} ${Yy(-48)} ${X(-68)} ${Yy(-22)} ${X(-64)} ${Yy(2)} C ${X(-62)} ${Yy(24)} ${X(-60)} ${Yy(38)} ${X(-54)} ${Yy(44)}`;
+  d += ` C ${X(-42)} ${Yy(50)} ${X(-32)} ${Yy(44)} ${X(-22)} ${Yy(30)} C ${X(-8)} ${Yy(18)} ${X(30)} ${Yy(10)} ${X(64)} ${Yy(8)} Z`;
+  return { d, h, gx };
 };
 export const TAKKE_YOL = "M -47 8 Q -52 -28 -4 -40 Q 44 -42 51 4 Q 46 12 2 13 Q -40 14 -47 8 Z";
 const Sapka: React.FC<{ p: Palet; tall?: number; a?: number }> = ({ p, tall = 1, a = 0 }) => {
@@ -210,15 +231,25 @@ const Sapka: React.FC<{ p: Palet; tall?: number; a?: number }> = ({ p, tall = 1,
   if (p.sapka === "yok") return null;
   if (p.sapka === "sarik" || p.sapka === "sarik-basik") {
     const { d, h, gx } = sarikYol(p.sapka === "sarik-basik");
-    const capraz = (p.sarikCizgi ?? (p.sapka === "sarik-basik" ? "capraz" : "yatay")) === "capraz";
-    const cizgi = capraz
-      ? [0, 1, 2].map((i) => `M ${(-44 + i * 26) * gx} ${12 - i * 4} Q ${(-20 + i * 30) * gx} ${-h * 0.45} ${(6 + i * 26) * gx} ${-h * 0.95 + i * 10}`)
-      : [0.18, 0.46, 0.72].map((t) => { const y = 10 - t * (h + 4); const w = Math.sqrt(Math.max(0.05, 1 - Math.pow(t * 1.05, 2.4))); return `M ${-60 * w * gx} ${y} Q ${4 * gx} ${y + 12 * w} ${66 * w * gx} ${y - 2}`; });
+    const yon = p.sarikYon ?? (p.sapka === "sarik-basik" ? -1 : 1);
+    const id = "sk" + useId().replace(/:/g, "");
+    const cizgiRenk = shade(p.hatBand, -0.15);
+    // 5 katman: küre yüzeyini izleyen eğri (ortada aşağı sarkar), ~20° çapraz, uçları kaydırılmış (tuğla örgüsü); çift ton (ışık + gölge çizgisi)
+    const katman = [0, 1, 2, 3, 4].map((i) => {
+      const y0 = (40 - i * 15) * (h / 62), egim = 44 * (h / 62) * yon, kay = ((i * 37) % 23) - 11;
+      const xa = (-70 + kay) * gx, xb = (74 + kay * 0.6) * gx;
+      return `M ${xa.toFixed(1)} ${(y0 + egim / 2).toFixed(1)} Q ${(4 * gx).toFixed(1)} ${(y0 + 10).toFixed(1)} ${xb.toFixed(1)} ${(y0 - egim / 2).toFixed(1)}`;
+    });
     return (
       <g>
+        {/* içteki başlığın tepesi (sargının ortasından alçak koyu kubbe; en %30, yükseklik 11) */}
+        <path d={`M ${-19 * gx} ${-h * 0.82} Q ${2 * gx} ${-h * 0.82 - 22} ${23 * gx} ${-h * 0.82} Z`} fill={p.sarikIc ?? "#4a3e34"} stroke={ink(p.sarikIc ?? "#4a3e34")} strokeWidth={1.4} />
+        <defs><clipPath id={`${id}c`}><path d={d} /></clipPath></defs>
         <path d={d} fill={p.hat} stroke={ink(p.hat)} strokeWidth={SW} strokeLinejoin="round" />
-        {cizgi.map((c, i) => <path key={i} d={c} stroke={p.hatBand} strokeWidth={2.4} fill="none" strokeLinecap="round" opacity={0.9} />)}
-        <Bolge d={d} k={[-60 * gx, 64 * gx, -h - 14, 24]} a={a} renk={p.hat} tarama={false} />
+        <g clipPath={`url(#${id}c)`}>
+          {katman.map((c, i) => <g key={i}><path d={c} stroke={cizgiRenk} strokeWidth={2.4} fill="none" strokeLinecap="round" /><path d={c} transform="translate(0,-2.6)" stroke={shade(p.hat, 0.45)} strokeWidth={1.3} fill="none" opacity={0.7} /></g>)}
+        </g>
+        <Bolge d={d} k={[-68 * gx, 74 * gx, -h - 6, 50]} a={a} renk={p.hat} tarama={false} />
       </g>
     );
   }
@@ -317,7 +348,7 @@ const Kafa: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }
       <g transform={olc}>
       <path d="M -11 32 L 15 32 L 17 64 L -9 64 Z" fill={skd} />
       {/* arka saç kütlesi (seyrek saçta yalnız ense) */}
-      {sac === "seyrek" || sac === "sarikalti"
+      {sac === "seyrek" || sac === "sarikalti" || sac === "kisa"
         ? <path d="M -42 6 Q -52 -24 -38 -40 Q -40 -14 -32 14 Z" fill={p.hair} />
         : <path d="M -42 6 Q -56 -40 -14 -58 Q 28 -68 46 -34 Q 52 -14 44 -6 Q 32 -44 0 -42 Q -30 -36 -32 14 Z" fill={p.hair} />}
       {/* yüz */}
@@ -347,6 +378,13 @@ const Kafa: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }
       {[[-26, -52, 10], [-6, -60, 11], [14, -60, 10], [32, -50, 9], [40, -36, 7]].map(([x, y, r], i) => <circle key={i} cx={x} cy={y} r={r} fill={p.hair} />)}
       {[[-30, -44, -12, -58], [-10, -48, 8, -62], [10, -48, 28, -56]].map(([a, b, c, d], i) => <path key={i} d={`M ${a} ${b} Q ${(a + c) / 2} ${d - 4} ${c} ${d}`} stroke={shade(p.hair, 0.35)} strokeWidth={1.6} fill="none" opacity={0.6} />)}
       <path d="M -24 -60 Q -4 -70 20 -64" stroke={I ? I.renk : RIM} strokeWidth={2.4} opacity={I ? 0.4 : 0.55} fill="none" />
+      </>}
+      {sac === "kisa" && !pz.arka && <path d="M -42 6 Q -56 -42 -12 -60 Q 30 -68 46 -30 Q 40 -40 16 -44 Q -10 -44 -26 -32 Q -34 -18 -32 10 Z" fill={p.hair} />}
+      {pz.arka && <>
+        {/* R14 arka 3/4: yüz yüzeyi yok — başın arkası saç kütlesi (kafaya yapışık, tek parça), yanakta ≤ 8 birim ten kenarı, kulak kenarı */}
+        <path d="M -46 10 Q -60 -42 -14 -62 Q 30 -70 44 -34 L 38 18 Q 12 30 -18 28 Q -40 24 -46 10 Z" fill={p.hair} />
+        <path d="M -30 -40 Q -6 -54 24 -48" stroke={shade(p.hair, 0.3)} strokeWidth={1.6} fill="none" opacity={0.6} />
+        <path d={KULAK} fill={sk} stroke={skd} strokeWidth={SW} />
       </>}
       {sac === "seyrek" && <>
         {/* açık alın: kulak üstünde ince tutam + tepede birkaç tel */}
@@ -379,8 +417,8 @@ const Kafa: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }
       </>}
       </>}
       {/* burun */}
-      <g transform={`translate(33,-3) scale(${p.burun ?? 1}) translate(-33,3)`}><path d={BURUN[Y_.burunTip ?? "duz"]} fill={sk} stroke={p.yuzsuz && osm(p) ? sk : skd} strokeWidth={SW} strokeLinejoin="round" />
-        <YuzTonu d={BURUN[Y_.burunTip ?? "duz"] + " Z"} x0={-46} x1={48} a={aKafa} renk={skd} azami={0.7} isikRenk={false} /></g>
+      {!pz.arka && <g transform={`translate(33,-3) scale(${p.burun ?? 1}) translate(-33,3)`}><path d={BURUN[Y_.burunTip ?? "duz"]} fill={sk} stroke={p.yuzsuz && osm(p) ? sk : skd} strokeWidth={SW} strokeLinejoin="round" />
+        <YuzTonu d={BURUN[Y_.burunTip ?? "duz"] + " Z"} x0={-46} x1={48} a={aKafa} renk={skd} azami={0.7} isikRenk={false} /></g>}
       {!p.yuzsuz && <>
       <path d="M 33 23 Q 36 21 39 23" stroke="#7a4030" strokeWidth={1.8} fill="none" />
       {!I && <path d="M 40 6 Q 44 13 45 18" stroke="#fff3e6" strokeWidth={1.8} opacity={0.5} fill="none" />}
@@ -427,7 +465,7 @@ export const Kukla: React.FC<{ pz: Poz; p: Palet; louis?: boolean; golgesiz?: bo
   const s = pz.scale ?? 1;
   const f = pz.facing ?? 1;
   return (
-    <RigCtx.Provider value={{ I: isik ?? null, f: f < 0 ? -1 : 1, s }}>
+    <RigCtx.Provider value={{ I: isik ?? null, f: f < 0 ? -1 : 1, s, bant: osm(p) ? 14 : undefined }}>
       <KuklaGovde pz={pz} p={p} louis={louis} golgesiz={golgesiz} arka={arka} arkaUst={arkaUst} on={on} />
     </RigCtx.Provider>
   );
@@ -530,13 +568,14 @@ const bacakFK = (x: number, thigh: number, knee: number) => {
 export const etekYol = (pz: Poz, kisa: boolean) => {
   const F = bacakFK(14, pz.thighF, pz.kneeF), B = bacakFK(-10, pz.thighB, pz.kneeB);
   const otur = Math.min(1, Math.abs(Math.sin(rad((pz.thighF + pz.thighB) / 2)))); // 0 ayakta … 1 uyluk yatay
-  const L = kisa ? 128 : 190;
+  const L = kisa ? 152 : 190; // kisa (v1.3 R17): diz kapağının ≈30 birim altı
   const boy = (b: typeof F) => Math.max(kisa ? 4 : 10, L - Math.hypot(b.diz[0] - b.kalca[0], b.diz[1] + 240) - 34 * otur);
   const uF = top(F.diz, F.baldir, Math.min(99, boy(F))), uB = top(B.diz, B.baldir, Math.min(99, boy(B)));
   const genis = kisa ? 16 : 20;
   const bel: V2[] = [[-50, -244], [46, -244]];
   const onKenar: V2[] = [top(top(F.kalca, F.nU, 24), dondur(pz.thighF, [0, 46])), top(F.diz, F.nU, 22), top(uF, F.nB, genis)];
-  const arkaKenar: V2[] = [top(uB, B.nB, -genis), top(B.diz, B.nU, -22), top(B.kalca, B.nU, -26), [-52, -226 + 22 + 26 * otur]];
+  // S4: oturunca etek uyluk altına sıkı oturur (oturak tahtası görünür), arkada kısa yumuşak sarkma
+  const arkaKenar: V2[] = [top(uB, B.nB, -genis), top(B.diz, B.nU, -22 + 6 * otur), top(B.kalca, B.nU, -26 + 8 * otur), [-52, -226 + 22 + 12 * otur]];
   return { d: yumusakYol([...bel, ...onKenar, ...arkaKenar]), onKenar, uF, nF: F.nB, nUF: F.nU, otur };
 };
 const OsmanliEtek: React.FC<{ pz: Poz; p: Palet }> = ({ pz, p }) => {
@@ -560,25 +599,29 @@ const OsmanliEtek: React.FC<{ pz: Poz; p: Palet }> = ({ pz, p }) => {
 };
 const OsmanliGovde: React.FC<{ pz: Poz; p: Palet }> = ({ pz, p }) => {
   const { I } = useRig(); const ink = useInk(inkTemel);
-  const c = p.coat, kisa = p.kostum === "osmanli-kisa";
+  const c = p.coat, kisa = p.kostum === "osmanli-kisa", arka = !!pz.arka;
   const ent = p.entari ?? shade(c, 0.3), kus = p.kusak ?? shade(c, -0.4);
-  const KUSAK = "M -50 -270 Q 2 -280 56 -270 L 50 -228 Q 2 -236 -40 -228 Z";
+  // kuşak = sarılı kumaş (v1.3): kenarlar hafif dalgalı, 3 tur eğri çizgisi; kemer bandı/toka yok. Kısa kostümde bir yanda sarkan uç.
+  const KUSAK = "M -50 -268 Q -24 -276 4 -272 Q 30 -278 56 -268 Q 54 -248 50 -230 Q 24 -236 2 -232 Q -20 -236 -42 -229 Q -48 -248 -50 -268 Z";
   return (
     <g>
       <path d={GOVDE} fill={c} stroke={ink(c)} strokeWidth={SW} strokeLinejoin="round" />
-      {kisa
-        ? <path d="M 12 -398 L 22 -270" stroke={ink(c)} strokeWidth={1.6} opacity={0.7} />
+      {arka
+        ? <path d="M 2 -400 Q 6 -330 4 -270" stroke={ink(c)} strokeWidth={1.6} fill="none" opacity={0.6} />
+        : kisa
+        // R17: yakasız, önü çapraz kavuşan entari (sağ panel solun üstünde; boyundan kuşağa tek eğik kenar). Klapa/devrik yaka/düğme yok
+        ? <><path d="M -10 -400 Q 10 -340 40 -270 L 52 -270 Q 26 -330 30 -398 Z" fill={shade(c, -0.12)} /><path d="M -10 -400 Q 10 -340 40 -270" stroke={ink(c)} strokeWidth={2} fill="none" /></>
         : <>
           {/* entari önden şerit + kaftanın açık ön kenarları */}
           <path d="M -4 -398 L 30 -398 L 40 -268 L 12 -268 Z" fill={ent} stroke={ink(c)} strokeWidth={1.6} strokeLinejoin="round" />
           <path d="M -4 -398 L 12 -268 M 30 -398 L 40 -268" stroke={p.coatDark} strokeWidth={3} opacity={0.8} />
         </>}
-      {/* yuvarlak yaka (kolalı yaka/kravat yok) */}
-      <path d="M -10 -401 Q 12 -386 34 -401" stroke={ink(c)} strokeWidth={2} fill="none" />
+      {/* yuvarlak yaka çizgisi (kolalı yaka/kravat yok) */}
+      {!arka && <path d="M -10 -401 Q 12 -388 34 -401" stroke={ink(c)} strokeWidth={2} fill="none" />}
       <Bolge d={GOVDE} k={[-60, 62, -404, -226]} a={pz.lean ?? 0} renk={c} />
-      {/* kuşak: 34 birim, 2 sargı çizgisi */}
       <path d={KUSAK} fill={kus} stroke={ink(kus)} strokeWidth={SW} strokeLinejoin="round" />
-      <path d="M -46 -256 Q 2 -264 54 -256 M -44 -242 Q 2 -250 52 -242" stroke={shade(kus, 0.25)} strokeWidth={1.6} fill="none" opacity={0.7} />
+      <path d="M -46 -258 Q -10 -250 52 -262 M -44 -244 Q 6 -238 50 -250" stroke={shade(kus, 0.25)} strokeWidth={1.6} fill="none" opacity={0.7} />
+      {kisa && <path d={arka ? "M -30 -236 Q -36 -206 -30 -184 L -18 -186 Q -22 -208 -16 -236 Z" : "M -40 -236 Q -48 -206 -42 -184 L -30 -186 Q -34 -208 -28 -236 Z"} fill={kus} stroke={ink(kus)} strokeWidth={1.6} />}
       <Bolge d={KUSAK} k={[-50, 56, -280, -228]} a={pz.lean ?? 0} renk={kus} tarama={false} />
       <path d="M -56 -378 Q 0 -404 60 -378" stroke={I ? I.renk : shade(c, 0.3)} strokeWidth={3} fill="none" opacity={0.35} />
     </g>
@@ -604,16 +647,17 @@ const KuklaGovde: React.FC<{ pz: Poz; p: Palet; louis?: boolean; golgesiz?: bool
     <g transform={`translate(${pz.x},${pz.y}) scale(${s * f},${s})`}>
       <g transform={gov}>
         {arka}
-        <Kol x={-30 - (pz.sway ?? 0) * 3} sh={pz.shB} el={pz.elB} p={p} arka a0={lean} />
+        {pz.arka ? (!pz.onKolYok && onKol()) : <Kol x={-30 - (pz.sway ?? 0) * 3} sh={pz.shB} el={pz.elB} p={p} arka a0={lean} />}
         {arkaUst}
-        <Bacak x={-10} thigh={pz.thighB} knee={pz.kneeB} foot={pz.footB ?? 0} p={p} arka a0={lean} />
-        <Bacak x={14} thigh={pz.thighF} knee={pz.kneeF} foot={pz.footF ?? 0} p={p} a0={lean} />
+        {pz.arka
+          ? <><Bacak x={14} thigh={pz.thighF} knee={pz.kneeF} foot={pz.footF ?? 0} p={p} arka a0={lean} /><Bacak x={-10} thigh={pz.thighB} knee={pz.kneeB} foot={pz.footB ?? 0} p={p} a0={lean} /></>
+          : <><Bacak x={-10} thigh={pz.thighB} knee={pz.kneeB} foot={pz.footB ?? 0} p={p} arka a0={lean} /><Bacak x={14} thigh={pz.thighF} knee={pz.kneeF} foot={pz.footF ?? 0} p={p} a0={lean} /></>}
         <OsmanliEtek pz={pz} p={p} />
         <g transform={`translate(${(pz.sway ?? 0) * 2},-226) scale(1,${br}) translate(0,226)`}>
           <OsmanliGovde pz={pz} p={p} />
           <Kafa pz={pz} p={p} louis={louis} />
         </g>
-        {!pz.onKolYok && onKol()}
+        {pz.arka ? <Kol x={-30 - (pz.sway ?? 0) * 3} sh={pz.shB} el={pz.elB} p={p} a0={lean} /> : !pz.onKolYok && onKol()}
         {on}
       </g>
     </g>

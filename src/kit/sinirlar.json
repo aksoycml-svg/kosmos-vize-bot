@@ -226,8 +226,8 @@
           3.0
         ],
         "cx": [
-          -300,
-          300
+          -740,
+          740
         ],
         "cy": [
           -200,
@@ -342,10 +342,7 @@
     "oturan"
   ],
   "bitisPayiKare": 12,
-  "jestlerKurulumda": [
-    "yuz",
-    "kanat-birak"
-  ],
+  "jestlerKurulumda": [],
   "propSablon": {
     "fisek-demet": [
       "SARAYBURNU"
@@ -360,9 +357,5 @@
       "SARAYBURNU"
     ]
   },
-  "propKurulumda": {
-    "kanat": [
-      "suda"
-    ]
-  }
+  "propKurulumda": {}
 }

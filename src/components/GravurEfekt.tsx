@@ -61,35 +61,57 @@ export const Puskurme: React.FC<{ agizlar: P[]; asagi: P; pxm: number; p: number
   );
 };
 
-// E1 duman: yuvarlak bulut kümeleri, düz 2 ton, tırtıklı kenar (gravür); yukarı + rüzgârla sağa, büyür. Fade yok: yükselip kadrajdan çıkar / incelir.
-export const Duman: React.FC<{ kaynak: P; pxm: number; p: number; bas: number; seed: number; yogun?: number; ustSinir?: number }> = ({ kaynak, pxm, p, bas, seed, yogun = 1, ustSinir }) => {
+// E1 duman (v2, K1 S3): her bulut doğduğu karede kaynağın (ağzın) o anki konumunda doğar → duman tabana bağlı; kaynak yükselince arkada İZ kalır.
+// Bulut yükselir + rüzgârla sağa, büyür; fade yok (eski bulutlar kadrajdan çıkar / iz olarak durur). Kenar tırtıklı (gravür), düz 2 ton.
+// kaynakAt(t): t karesindeki ağız noktası; bit: üretimin bittiği kare (püskürme sönünce yeni bulut doğmaz, mevcutlar kalır).
+export const Duman: React.FC<{ kaynakAt: (t: number) => P; pxmAt: (t: number) => number; p: number; bas: number; bit?: number; seed: number; yogun?: number }> = ({ kaynakAt, pxmAt, p, bas, bit = Infinity, seed, yogun = 1 }) => {
   if (p < bas) return null;
-  const N = 14, aralik = 5;
+  const aralik = 4;
   const bulut = (cx: number, cy: number, r: number, i: number) => {
-    const k = 9; let d = "";
+    const k = 16; let d = "";
     for (let j = 0; j <= k; j++) {
-      const a = (j / k) * Math.PI * 2, rr = r * (0.88 + 0.16 * rnd(seed, `b${i}${j}`));
-      const x = cx + Math.cos(a) * rr, y = cy + Math.sin(a) * rr * 0.86;
-      d += j === 0 ? `M ${x.toFixed(1)} ${y.toFixed(1)}` : ` Q ${(cx + Math.cos(a - Math.PI / k) * rr * 1.12).toFixed(1)} ${(cy + Math.sin(a - Math.PI / k) * rr * 0.96).toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)}`;
+      const a = (j / k) * Math.PI * 2, rr = r * (j % 2 ? 0.82 : 1.0) * (0.92 + 0.12 * rnd(seed, `b${i}${j}`));
+      const x = cx + Math.cos(a) * rr, y = cy + Math.sin(a) * rr * 0.84;
+      d += j === 0 ? `M ${x.toFixed(1)} ${y.toFixed(1)}` : ` Q ${(cx + Math.cos(a - Math.PI / k) * rr * 1.16).toFixed(1)} ${(cy + Math.sin(a - Math.PI / k) * rr * 0.98).toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)}`;
     }
     return d + " Z";
   };
-  const parcalar = Array.from({ length: N }).map((_, i) => {
-    const dogum = bas + i * aralik; const yas = p - dogum;
-    if (yas < 0) return null;
-    const dongu = (yas % (N * aralik)) / (N * aralik); // yükselir, yeniden alttan doğar (seed sabit)
-    const r = (0.12 + dongu * 0.42) * pxm * yogun * (0.8 + 0.4 * rnd(seed, `r${i}`));
-    const x = kaynak[0] + (rnd(seed, `x${i}`) - 0.5) * 0.4 * pxm + dongu * 0.9 * pxm;
-    const y = kaynak[1] - dongu * 2.4 * pxm - 0.1 * pxm;
-    if (ustSinir !== undefined && y < ustSinir) return null;
-    return { x, y, r, i };
-  }).filter(Boolean) as { x: number; y: number; r: number; i: number }[];
+  const son = Math.min(p, bit);
+  const parcalar: { x: number; y: number; r: number; i: number }[] = [];
+  for (let dg = bas, i = 0; dg <= son; dg += aralik, i++) {
+    const yas = p - dg, k0 = kaynakAt(dg), m = pxmAt(dg);
+    const r = (0.1 + Math.min(yas, 140) * 0.0045) * m * yogun * (0.8 + 0.4 * rnd(seed, `r${i}`));
+    parcalar.push({ x: k0[0] + (rnd(seed, `x${i}`) - 0.5) * 0.35 * m + yas * 0.006 * m, y: k0[1] - 0.06 * m - yas * 0.011 * m, r, i });
+  }
+  const son40 = parcalar.slice(-60);
   return (
     <g>
-      {parcalar.map((b) => <path key={`g${b.i}`} d={bulut(b.x + b.r * 0.12, b.y + b.r * 0.1, b.r, b.i)} fill="#4e4844" opacity={0.7} />)}
-      {parcalar.map((b) => <path key={`i${b.i}`} d={bulut(b.x - b.r * 0.1, b.y - b.r * 0.12, b.r * 0.78, b.i + 50)} fill="#8a7e70" opacity={0.7} />)}
+      {son40.map((b) => <path key={`g${b.i}`} d={bulut(b.x + b.r * 0.12, b.y + b.r * 0.1, b.r, b.i)} fill="#4e4844" opacity={0.7} />)}
+      {son40.map((b) => <path key={`i${b.i}`} d={bulut(b.x - b.r * 0.1, b.y - b.r * 0.12, b.r * 0.76, b.i + 500)} fill="#8a7e70" opacity={0.7} />)}
     </g>
   );
+};
+
+// E3 su halkası: 2–3 eş merkezli basık elips (1:4), dışa açılır, kalınlaşmaz incelir. sabit: plan sonuna dek duran tek halka (kanat).
+export const SuHalkasi: React.FC<{ x: number; y: number; pxm: number; p: number; bas: number; sure?: number; renk?: string; sabit?: boolean; olcek?: number }> = ({ x, y, pxm, p, bas, sure = 40, renk = "#9fb0bf", sabit, olcek = 1 }) => {
+  if (p < bas) return null;
+  if (sabit) { const t = Math.min(1, (p - bas) / 20); return <ellipse cx={x} cy={y} rx={(0.5 + 0.3 * t) * pxm * olcek} ry={(0.5 + 0.3 * t) * pxm * olcek * 0.25} fill="none" stroke={renk} strokeWidth={Math.max(1.2, 2.4 - t)} strokeOpacity={0.4} />; }
+  if (p > bas + sure) return null;
+  return <g>{[0, 1, 2].map((i) => { const t = (p - bas - i * 7) / sure; if (t < 0 || t > 1) return null; const r = (0.2 + t * 1.2) * pxm * olcek; return <ellipse key={i} cx={x} cy={y} rx={r} ry={r * 0.25} fill="none" stroke={renk} strokeWidth={Math.max(0.8, 3 * (1 - t))} strokeOpacity={0.7} />; })}</g>;
+};
+// E3 buhar: sıcak boş demet suya değince 4–6 yuvarlak puf, dik yükselir (30 kare), α .5; fade yok → küçülerek söner
+export const Buhar: React.FC<{ x: number; y: number; pxm: number; p: number; bas: number; seed: number }> = ({ x, y, pxm, p, bas, seed }) => {
+  if (p < bas || p > bas + 34) return null;
+  return <g>{[0, 1, 2, 3, 4].map((i) => { const t = (p - bas - i * 2) / 30; if (t < 0 || t > 1) return null; const r = 0.09 * pxm * Math.sin(Math.PI * Math.min(1, t * 1.2)) + 1; return <circle key={i} cx={x + (rnd(seed, `b${i}`) - 0.5) * 0.5 * pxm} cy={y - t * 0.9 * pxm - i * 0.05 * pxm} r={r} fill="#b8b4aa" opacity={0.5} />; })}</g>;
+};
+// E3 sıçrama: taç biçimli 5–7 damla yayı (20 kare), damlalar parabolle iner ve suya döner
+export const Sicrama: React.FC<{ x: number; y: number; pxm: number; p: number; bas: number; seed: number; olcek?: number }> = ({ x, y, pxm, p, bas, seed, olcek = 1 }) => {
+  const t = (p - bas) / 20; if (t < 0 || t > 1) return null;
+  const m = pxm * olcek;
+  return <g>
+    <path d={`M ${x - 0.35 * m} ${y} Q ${x - 0.25 * m} ${y - 0.45 * m * Math.sin(Math.PI * t)} ${x} ${y - 0.15 * m * Math.sin(Math.PI * t)} Q ${x + 0.25 * m} ${y - 0.45 * m * Math.sin(Math.PI * t)} ${x + 0.35 * m} ${y} Z`} fill="#a9bccb" opacity={0.55} />
+    {Array.from({ length: 6 }).map((_, i) => { const a = Math.PI * (0.15 + 0.7 * (i / 5)), v = (0.9 + 0.4 * rnd(seed, `v${i}`)) * m; const dx = Math.cos(a) * v * t, dy = -Math.sin(a) * v * t * 1.4 + 2.2 * m * t * t; return <path key={i} d={`M ${x + dx} ${y + dy - 0.04 * m} q ${0.02 * m} ${0.03 * m} 0 ${0.05 * m} q ${-0.02 * m} ${-0.02 * m} 0 ${-0.05 * m} Z`} fill="#a9bccb" stroke="#e6eef0" strokeWidth={0.6} />; })}
+  </g>;
 };
 
 // E1 fitil kıvılcımı (İMZA MOTİFİ — 4 köşeli yıldız yalnız burada): çekirdek yıldız 48 px, hale 140 px, 6–10 parçacık (8–20 karede söner)

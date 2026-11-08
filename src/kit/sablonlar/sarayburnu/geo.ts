@@ -17,4 +17,4 @@ export const zemindeMi = (y: number) => y >= KIYI.rihtimUst;
 export const zeminY = (d: number) => KIYI.ufuk + (KIYI.goz * KIYI.f) / d;
 export const zeminD = (y: number) => (KIYI.goz * KIYI.f) / (y - KIYI.ufuk);
 // karakter kayıt boy oranı (tasarim §3.1)
-export const BOY_OLCEK: Record<string, number> = { lagari: 1, "yardimci-1": 0.98, "yardimci-2": 0.98 };
+export const BOY_OLCEK: Record<string, number> = { lagari: 1, "yardimci-1": 0.98, "yardimci-2": 0.98 } // Y2 "0.90" (tasarim v1.3) derinlikten gelir: y 1268 → (1268−720)/610 ≈ 0.90;
