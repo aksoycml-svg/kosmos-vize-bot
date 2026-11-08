@@ -814,3 +814,26 @@
     - B14 kart güncellemesi.
     - §1.6a/§1.6b'de p204 = cs 1.6.
   - Araştırmacı: uzak siluete cami/kubbe eklenecekse (B1), 1630'larda Tophane/Galata'dan görünen yapılar doğrulansın.
+
+## tasarimci · 2026-11-08 · tasarim.md v1.7 (K5 eleştirisi: B10–B13, A7, `don` zamanı, B15 notu)
+- Ne yaptım:
+  - **B10:** Hezarfen `sarik-basik` yeniden: alt 1.22 B, tepe ≤ 1.10 B, öne taşma ≤ 2 birim, yükseklik ≈ 0.51 B (y/g 0.42), 2 tümsek (2–3 birim), kavuk ucu yok, 4 katman; yedek: yükseklik 0.46 B. §3.1 sarık ek +62 → +56.
+  - **B11:** katlı kanat: 3 kaburga yelpazesi (%85/%68/%50 boy), gölge tonu çizgileri (gündüz `#46423e`/ışık eşi `#6c6862`; gece `#2e2a28`/`#4a4644`), asimetrik ters damla (en/boy ≈ 0.46, iç kenar S, sivri uç gövdeden 15–25 birim dışta ve 8–10° arkada), taşma 50–60 birim; 360 px ölçüleri (figür ≥ 420 px → kanat ≥ 190 px, taşan ≥ 32 px, kaburga aralığı ≥ 11 px; uzakta 1 kaburga). Açılmada kaburga kalınlığı 0'a iner.
+  - **B12:** Hezarfen sakalı = çene altını dolduran kütle (0.22 H_y sarkar, çene ×1.15, ortada hafif sivri uç); bıyık `biyikKalin 0.55` (Lagâri 1.2 → oran 0.46), `biyikTasma 0`, sakala birleşik.
+  - **B13:** P01 B kontra dolgu α .94 → .72 (üst sınır .75); kaftan bölgesinde dolgu `#3a3a2e`; ölçüt kaftan G − R ≥ +3.
+  - **A7:** padişah boynu `#2a2420`, kaftan yakasıyla birleşik (8 birim yaka kenarı, ensede 1.15× huni, yatay keskin kenar yok).
+  - **`don`:** p95–125 → **p100–130**; `isaret` p135–175; push-in p36–60, çizgi p50–100 net, `isik_serit.bit` ≥ 105, kontrol_kare p90.
+  - **B15:** P01 p100 püskürme imza uyarısı demetin kendi eylemi olarak kabul notu §2.4'e.
+  - Başlıkta v1.7 satırı.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/tasarim.md, bolumler/evliya-ucuslari/katki-raporu.md
+- Aldığım kararlar ve gerekçeleri:
+  - Sarık: pompadour'u yükseklik değil **tepe genişliği + öne taşma + tümsek genliği** üretiyordu; daralan kubbe kontrada yumurta/damla okur. Lagâri'nin ×1.40 yastığı değişmedi (ayrışma korunur).
+  - Kaburga: "kaburga/tüy çizilmez" kuralına **tek istisna** yazıldı (yalnız katlı, yapı iddiası değil, [T]); açıkta çizgi yok. Gerekçe: tek kat çizgisi + simetri "kalkan" okutuyordu. Asimetri ve sırttan ayrılan uç, çizgiler okunmasa bile siluette kalır.
+  - B13: yalnız α düşürmek kaftanı yeşillendirmez (hesap: α .75'te G−R ≈ 3–4 ancak dolgu kaftana doğru tonlanırsa); bu yüzden kaftan bölgesinde dolgu rengi `#3a3a2e` ve ölçülebilir ölçüt verildi.
+  - Boyun: siyah blok yerine gölge tonu + yaka birleşimi; ikisi birlikte (eleştirmen "ya da" demişti, ikisi çelişmez).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: tek sahiplik (yalnız tasarim.md; json zamanlaması yönetmende, `don` tasarım belgesi tarafı güncellendi); kanıtsız dönem detayı eklenmedi (sarık/sakal/kanat [T]); saf siyah/beyaz yok; kırmızı yok; imza tekilliği (kaburga/sarık tonları imza bandının dışında); kanadın tek ton ailesi korundu. Kendi hatam: v1.4'te tek kat çizgisini kabul edilebilir saymıştım, K5 telefonda yetersiz çıktı.
+- Açık sorular / bir sonraki ajana notlar:
+  - Motion: sakal/bıyık parametreleri (`sakalKutle`, `biyikKalin`, `biyikTasma`) rigde yoksa eklenmeli; sarık +56 ve kavuk ucu kaldırma R15'e işlenmeli; kaburga çizgisi rig `kanat` prop'unda; P01 B α .72 + `#3a3a2e` kaftan dolgusu; render edip P08 p0/36/40, P01 B ve P01 p324'ün 360 px'inde bakılmalı (kural 5). 
+  - Kaburga için özet kuralın sınırı: telefonda hâlâ "levha" okunursa kaburga sayısı 4'e ya da sivri uç ayrışması 30 birime çıkarılabilir (eleştirmenle).
+  - Yönetmen: json `don` aralığı hâlâ 60–100 ise p100–130 ve `isaret` p135–175'e çekilmeli, `isik_serit.bit` ≥ 105, `kontrol_kare` 90 (eleştirmen A1).
+  - Boyun yakası ve sarık kenarı P12 kamerasında 360 px'te ayrışmıyorsa (ΔL ≤ 4 kasıtlı) sorun değil; ayrışıyorsa motion bildirsin.
