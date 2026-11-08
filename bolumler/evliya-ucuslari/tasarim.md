@@ -1,6 +1,7 @@
 # Evliya Uçuşları — Görsel Tasarım (kurulum ekibi, adım 5a)
 
 Hazırlayan: tasarimci · 2026-11-08 · Girdi: `arastirma.md` §4–§5, `sahne-plani.md` §6, `dokunuslar.md`, `src/theme.ts`, `src/kit/KATALOG.md`, `src/kit/karakterler.ts`, `src/rig/Kukla.tsx`.
+**v1.1 (2026-11-08):** kullanıcı kararları (imza = demet, sabah ENE, Lagâri bıyık / Hezarfen sakal, P06 kanat suda kalır) ve `arastirma.md` §10 (tasarım doğrulama eki) işlendi. Değişenler: çatı (§1.2, §8), demet malzemesi (§2.2, §2.4), sarık rengi + yeşil yasağı (§3.0, §3.5), Lagâri yüzü (§3.2), kanat sürekliliği (§3.2, §7), sikke 0.022 m ve kese (§4, §4.3), rahle + kalem/hokka (§1.4, §4.8), pencere kanadı (§4.10), efekt dönem notu (§5), sorular (§10).
 Bu belge **spesifikasyondur, kod değildir.** Hex/oran/px değerleri motion'a doğrudan uygulanacak önerilerdir; mimari ve doku `mekanlar.md`'nin (mekân sorumlusu) işidir.
 
 Etiketler: **[A]** arastirma.md'de kaynaklı · **[S]** senaryo/sahne planı (dramatizasyon) · **[G]** genel bilgi, **doğrulanmalı** (araştırmacıya soruldu, bkz. §9) · **[T]** tasarım kararı (tarihî iddia değil).
