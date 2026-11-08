@@ -680,3 +680,25 @@
   - Tasarımcı: P12 iç mekânda el gölge tonu `#7a5848` (çıplak el `#b88470`'in odaya karışımı); onay bekliyor.
   - OsmanliKol'un mevcut gölge bandı P07'de ışığın ters yanında (sağda) duruyor (K2'den kalma, dokunmadım). Kenar ışığı artık doğru yanda (sağ).
   - Öz puan: 6/10. K3 açıkları kapandı (V5 1 px sınır hariç), K4 kuruldu ve okunuyor. Ama p30 teması kadraj dışında ve ayak alt bantta (ikisi json kararı); figür telefonda sade ve koyu.
+
+## elestirmen (opus) · 2026-11-08 · K4 (iç P12) + K3 nihai kapanış
+- Ne yaptım: K4 paketini inceledim. P12 öneri kamera ve kontrol karelerini, padişah başını telefon boyunda ve P10son↔P12p0 karşılaştırmasını kırparak baktım. P02/P12 kararlarının `bolum.json`'a işlendiğini kontrol ettim. K3 kapanış tablosunu ve K4 bulgularını yazdım. Kararlar: **K3 GEÇTİ** (V7 küçük, U8'e taşındı), **K4 KOŞULLU** (2 kritik, 5 orta).
+- Dokunduğum dosyalar: `bolumler/evliya-ucuslari/kalibrasyon/K4/elestiri.md` (yeni), `bolumler/evliya-ucuslari/katki-raporu.md` (ek).
+- Aldığım kararlar ve gerekçeleri:
+  - P12 öneri kamera kabul, iki şartla: kanat kenarı Instagram düğme sütununun dışında (x ≤ 880), kural 7 render'ı.
+  - Ayağın alt bantta görünmesi kabul edilmez: geniş evrede figür güvenli alanda, push-in'de zemin kadraj dışı.
+  - V5 kabul: alan yok, 1 px sınır, geçici.
+  - El gölge tonu `#7a5848` kabul.
+  - P12 p0'daki yüzsüz aydınlık profil için tasarımcıya iki seçenek sundum; tercihim tek göz kapağı çizgisi.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Dokunuş okunmuyor: EV-D6'da göz bandı, sarık gözü örtüyor (U1).
+  - Temas = ses: p30/p34 kadraj dışı (U2).
+  - Güvenli alan: ayak alt bantta (U3); işaret eli yan bantta (U5); öneri kamerada kanat kenarı Instagram düğmelerinin altında (§2.1a); Y2 x 78 (U10).
+  - Okunurluk: pencere kapı gibi (U4); jest anlamı ters (U5); ışık deseni kostüm gibi (U6); manken profil (U7).
+  - Tek ışık kanıtı (U6); üst yazı bandı ile sarık çakışması (U9).
+- Açık sorular / bir sonraki ajana notlar:
+  - Yönetmen: U2, U3, U5 (cx), U8, U9, U10.
+  - Tasarımcı: U1 (sarığın profildeki alt kenarı), U7, el gölge tonunun kaydı.
+  - Motion: U1 (şerit daralması), U4, U5 (poz), U6; P02/P10 ölçüm noktaları.
+  - Mekân: U3 (§1.6 hesabı), U4, U8.
+  - Sonraki şablonlar K4'ü beklemez; P12 kullanıcıya gitmeden U1–U7 kapanır.
