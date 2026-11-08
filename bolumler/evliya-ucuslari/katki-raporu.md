@@ -581,3 +581,26 @@
   - Mekân: P10 cs 2.4'te sol üst köşede arka baca dilimi (x < 40, yan güvenli alan) görünüyor; köşk ekseni asimetrisi teyidi.
   - Eleştirmen: P10 baş çevirme gün içinde koyu iç mekânda yalnız sağ kenar ışığıyla okunuyor (sarık + burun çıkıntısı); 360 px'te yeterli mi?
   - Öz puan: 6/10 (K3 dekor ve padişah okunur; Z8 ve şenlik/yazı bandı açık, P07 p0 eli gece düşük kontrast).
+
+## elestirmen (opus) · 2026-11-08 · K3 (köşk P02 gece / P10 gün) + K1/K2 nihai kapanış
+- Ne yaptım: K3 paketini inceledim. Padişah başını gece/gün, tam ve telefon boyunda; P07 p0 elini; P02 sol grubunu (mevcut ve öneri) kırparak baktım. Sikke parlaması karışım yollarının imzaya ΔE'sini hesapladım. K1/K2 kapanış tablosunu ve K3 bulgularını yazdım. Kararlar: **K1 GEÇTİ**, **K2 GEÇTİ** (Z8 → V5 izleniyor), **K3 KOŞULLU** (1 kritik, 4 orta).
+- Dokunduğum dosyalar: `bolumler/evliya-ucuslari/kalibrasyon/K3/elestiri.md` (yeni), `bolumler/evliya-ucuslari/katki-raporu.md` (ek).
+- Aldığım kararlar ve gerekçeleri:
+  - Işık imza sayacından muaf, 3 şartla: tekillik kuralı nesne ve kostüm içindir.
+  - Sikke parlamasında ton değişikliği önerisi red: `#f6e6b0` karışımda ΔE 12.4'e düşüyor. Çözüm sert kenarlı iki ton (motion).
+  - P02 yazısı alt banda: şart, sol kurulum grubunu örtmemesi.
+  - P02↔P03 sürekliliği için motion önerisi (Lagâri ayakta) kabul.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Fizik: gece padişah sarığı başın üstünde havada (V1, kritik).
+  - Okunurluk: baş çevirme zayıf (V2); kavuk ucu kulp gibi (V6); P07 kolu karanlıkta (V10).
+  - Süreklilik: P02 oturan Lagâri (V4).
+  - Yazı bandı: şenlik üst bantta (V3).
+  - İmza: sikke parlama karışımı (V5).
+  - Güvenli alan / anlamsız parça: baca dilimi (V7).
+  - Ölü alan algısı: opak yansıma (V8).
+- Açık sorular / bir sonraki ajana notlar:
+  - Motion: V1, V2, V5, V9, V10.
+  - Yönetmen: V3, V4, V7; V2 için dönüş zamanlaması.
+  - Tasarımcı: V6.
+  - Mekân + motion: V8.
+  - K4 bu koşulları beklemez. P02/P10 kullanıcıya gitmeden önce V1–V5 kapanır.
