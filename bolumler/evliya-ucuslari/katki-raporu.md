@@ -1015,3 +1015,19 @@
     - B5 dip mekânı K7'ye (sur + avlu).
     - Şu anki dip çizimi cs 1 karelerinin en altında (y 1837–1920, IG bandında) küçük kahverengi saçak dilimleri bırakıyor. K7'de kalkacak.
   - **Uzak şehir:** öbekler telefonda küçük. "Tepeden bakış" okunuyor mu, eleştirmen baksın.
+
+## elestirmen · 2026-11-08 · K6 kritik kare kontrolü (K4 P12 + K5 Galata)
+- **Ne yaptım:** P12 p90, P08 p44/p148 ve P01 p229/238/250 karelerini tam, güvenli ve telefon sürümlerinde inceledim; telefon sayfasına ve renk ölçümüne baktım. Yeni kare render etmedim. Rapor: `kalibrasyon/K6/elestiri.md`.
+- **Dokunduğum dosyalar:** `bolumler/evliya-ucuslari/kalibrasyon/K6/elestiri.md`, bu rapor.
+- **Kararlar:**
+  - K4 KOŞULLU: A2 yüz %9.4; ya json gerekçesi ya yaklaşma. Ayrıca `el-ahsap` `belirsiz` → false.
+  - K5 KOŞULLU: B1–B4 kapandı, kritik kalmadı. Açık kalan B8 itme (orta) ve P01 p250'deki geniş adım/çömelme (orta, json).
+  - Kenar ışığı `isik` önerisini kabul ettim. Şart: bölge kutu değil, ≤6 px kontur şeridi olacak.
+- **Kurallar / ihlaller:**
+  - Okunurluk: B8 itme telefonda görünmüyor.
+  - Ölçek/yakın plan: A2 yüz <%12.
+  - Anlamsız nesne: P01 alt IG bandında siyah sivri dilim.
+  - Toz zerresi yüzde ben gibi okunuyor (küçük).
+- **Açık sorular:**
+  - B13 siluet açılınca kanca gizemi azaldı. Kullanıcıya bilgi olarak iletilsin.
+  - B6 foley bu turda doğrulanmadı (kurgucu).

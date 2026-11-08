@@ -45,6 +45,12 @@
   - **Oturum 3 (2026-11-08): 1 ve 2 TAMAM.** yönetmen (`sahne-plani.md` §5.0f; doğrulayıcıda yalnız 5 şablon-eksik hatası: P03 `bin`, P04 `tutun`, P09 BOGAZ, P13/P14 KITAP-INSERT), tasarım v1.7, mekanlar R4 (uzak şehir elle öbek, kule ekseni x 300 + ∩/∪ kavis, P08 dip 255 px/m, toz öbekleri). Kontrol kareleri `kalibrasyon/K5-yonetmen/`.
     - Açık: P12 etiketi "Padişah (Evliya'ya göre)" 0.47 sn (kullanıcı kararı); P01 B yürüyüş y = `1250 − 97·e((x−300)/560)` json'a işlenmeli (yönetmen, motion turu öncesi küçük iş); P01 p172 yardımcı ayağı y≈1530; araştırmacıya: 1630'lar Tophane/Fındıklı yönü yapı, kule dibi evler/sokak genişliği.
     - Sıradaki: **3. motion** (A4, A5+p14 temas, A7, B1, B2, B3, B5, B8, B9, B10–B13 rig, B15) → 4. eleştirmen.
+  - **Oturum 3 sonu:** P12 etiketi "Padişah"/"The Sultan" (kullanıcı). Araştırma §11 (Galata kule dibi; sayfalar açılamadı, arama özeti). **Kullanıcı kararı: P08 dip = sur + avlu** → `mekanlar.md` R5 §2.4b (`SurAvlu` modülü). Motion K6 tamam. Eleştirmen (kullanıcı kararı: **yalnız kritik kareler**) `kalibrasyon/K6/elestiri.md`: **K4 KOŞULLU, K5 KOŞULLU, kritik yok.**
+  - **SIRADAKİ (K7):**
+    1. yönetmen: A2 (padişah yaklaşma ya da %9.4 gerekçesi json'a), `el-ahsap` belirsiz→false, P01 B adım sayısı 4–5 (p250 çömelme), P08 metin "çatılar/sokak"→"sur + avlu", `sokak_bosluk_x`→`avlu_koridor_x` (isteğe bağlı).
+    2. motion: `SurAvlu` (mekanlar §2.4b), B8 itme (bacak düz uzanır, gövde ≥12° öne, serbest kol açılır), renk ölçümünde kenar ışığı = kontur içi ≤6 px şerit, P12 yanağa düşen toz zerresi, P01 alt IG bandındaki siyah dilim, **Kosk/Kiyi şablonlarında Lagâri kanadı aynı arka katman hatası** (B2 kökü), uzak şehir pus bandı kumsal okunmasın.
+    3. eleştirmen kritik kareler: P08 p44/p148/p170, P01 p250, P12 p90.
+    - Sonra: KITAP-INSERT (P13/P14), P03/P04 jestleri, BOGAZ (P09), TR/EN yazı katmanı, kurgucu (foley B6 doğrulama), render.
 - (eski) **Sıradaki:** motion turu = K1 Y10/Y11 + K2 W1/W3/W4/küçükler + K3 kurulum (`kosk` gece/gün, padişah R10, şenlik). Sonra eleştirmen. Kalan şablonlar: SARAYBURNU `ic` (P12), GALATA-TEPE, BOGAZ, KITAP-INSERT; Hezarfen tam rig; TR/EN yazı katmanı sistemi (KE-Y1..Y5).
 
 ## Sıradaki: kurulum ekibi (opus) — `sahne-plani.md` §6 iş tanımıdır
