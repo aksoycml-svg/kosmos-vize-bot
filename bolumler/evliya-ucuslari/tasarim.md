@@ -3,6 +3,7 @@
 Hazırlayan: tasarimci · 2026-11-08 · Girdi: `arastirma.md` §4–§5, `sahne-plani.md` §6, `dokunuslar.md`, `src/theme.ts`, `src/kit/KATALOG.md`, `src/kit/karakterler.ts`, `src/rig/Kukla.tsx`.
 **v1.1 (2026-11-08):** kullanıcı kararları (imza = demet, sabah ENE, Lagâri bıyık / Hezarfen sakal, P06 kanat suda kalır) ve `arastirma.md` §10 (tasarım doğrulama eki) işlendi. Değişenler: çatı (§1.2, §8), demet malzemesi (§2.2, §2.4), sarık rengi + yeşil yasağı (§3.0, §3.5), Lagâri yüzü (§3.2), kanat sürekliliği (§3.2, §7), sikke 0.022 m ve kese (§4, §4.3), rahle + kalem/hokka (§1.4, §4.8), pencere kanadı (§4.10), efekt dönem notu (§5), sorular (§10).
 **v1.2 (2026-11-08):** mekanlar.md notları karara bağlandı: ot `#a8a07a` → `#989c76` (imza tekilliği), mekân sorumlusunun 11 ek tonu onaylandı (§1.1, §1.2), pencere kanadı ölçüsü mekanlar.md §1.6 ile eşlendi (§4, §4.10).
+**v1.3 (2026-11-08, K1 kalibrasyonu KALDI → tasarım maddeleri):** sarık rengi soğuk kırık beyaz + render ölçüm kuralı (§3.0, §2.4); sarık siluet tarifi (yeni §3.0b); ten muafiyeti yok, tüm ten tonları kaydırıldı (§3.0, §3.2, §3.3, §3.5, §3.6, §3.7); kostüm taraması yalnız terminatör bandında (§3.0); kompars yeniden tanımlandı (§3.6); kanat açık/katlı siluet yeniden (§4.2); ayak dayama 0.333 m (§2.2); meşale 1.28 m notu (§4, §4.7); rig ihtiyaçları R14–R17 (§7).
 Bu belge **spesifikasyondur, kod değildir.** Hex/oran/px değerleri motion'a doğrudan uygulanacak önerilerdir; mimari ve doku `mekanlar.md`'nin (mekân sorumlusu) işidir.
 
 Etiketler: **[A]** arastirma.md'de kaynaklı · **[S]** senaryo/sahne planı (dramatizasyon) · **[G]** genel bilgi, **doğrulanmalı** (araştırmacıya soruldu, bkz. §9) · **[T]** tasarım kararı (tarihî iddia değil).
@@ -122,7 +123,7 @@ Derecelendirme gece ile gündüzü aynılaştırmaz. Eleştirmen kontrol karesin
 Hezarfen yarısında demet yok; bu bilinçli: P14 kenar çizimi iki hikâyeyi aynı sayfada (demet + kanatlı adam) toplar.
 
 ### 2.2 Demet tanımı (biçim nötr: kaynak yapıyı anlatmaz [A Çelişki 6])
-- **Ölçü (gerçek):** tüp gövdesi 1.00 m yükseklik × 0.36 m genişlik (≈ 70 L; 50 okka ≈ 64 kg barut macununa [A] makul hacim, model iddiası değil [T]); oturak tahtası 0.42 × 0.05 m; ayak dayama çubuğu oturağın 0.45 m altında, iki yana 0.18 m taşar; taban kızağı (yerde duran ahşap çerçeve) 0.50 × 0.08 m.
+- **Ölçü (gerçek):** tüp gövdesi 1.00 m yükseklik × 0.36 m genişlik (≈ 70 L; 50 okka ≈ 64 kg barut macununa [A] makul hacim, model iddiası değil [T]); oturak tahtası 0.42 × 0.05 m; ayak dayama çubuğu oturağın **0.333 m** altında (v1.3: motion'ın rig açılarıyla tutarlı ölçüsü, K1'de eleştirmen kabul etti; ölçü iddiası değil [T]), iki yana 0.18 m taşar; taban kızağı (yerde duran ahşap çerçeve) 0.50 × 0.08 m.
 - **Tüpler:** görünen **5 silindir** (önde 3, arkada aralardan 2), her biri ≈ 0.11 m çap. **7 tüp çizilmez, sayılabilir 7 öğe yok** ("yedi kollu"nun ne olduğu belirsiz [A]; 7 görünen öğe yorum iddiası olur). Tüplerin üstü oturak altında kaybolur, altları **açık ağızlı** (koyu halka).
 - **Malzeme görünümü (KARAR, v1.1):** **düz mat silindir**, sargı çizgisi yok, malzeme iddiası yok (Osmanlı fişek kılıfı doğrulanamadı [A §10.5]; renk adı "ham kum", "kâğıt" diye anılmaz). Demeti **3 sicim bağı** sarar (alt, orta, üst; her biri 3 tur, 2 px çizgi) [T]. Metal çember, perçin, süs, yazı yok.
 - **Renk (TEKİL):** tüp yüzü "ham kum" `#c4a874` · gölge yanı `#8e7650` · sicim `#3a2e22` · ağız halkası (is) `#2a2420` · oturak/ayak dayama/kızak ahşap `#6a4a30` (gölge `#3a2a1e`) · fitil `#6a5a40`, yanmış kısmı `#2a2420`.
@@ -144,8 +145,9 @@ Hezarfen yarısında demet yok; bu bilinçli: P14 kenar çizimi iki hikâyeyi ay
 | Meşale sapı tek koyu sopa `#4a3424`, sargılı başı katran-is rengi `#2e2620`; kum tonlu tüp görünmez | biçim tekrarı |
 | 4 köşeli yıldız biçimi yalnız fitil kıvılcımında. Şenlik fişeği **yıldız değil, düşen çizgi** (§5) | motif tekrarı |
 | Rulo kâğıt, tomar, borulu nesne P13 masasında yok | P14 çizimiyle karışır |
-Ölçülen ayrışmalar (elle, D65; motion `kontrol` betiğiyle doğrular): demet `#c4a874` (L≈70 a≈3 b≈29) ↔ altın sikke `#c9a24a` ΔE76 ≈ 23 · ↔ Lagâri sarığı `#d9cfb6` ≈ 20 · ↔ kese `#625646` ≈ 33 · ↔ takke `#5b4a3a` ≈ 40 · ↔ kanat `#6e6a64` ≈ 34. Hedef: her ışıkta ΔE2000 ≥ 12.
+Ölçülen ayrışmalar (elle, D65; motion `kontrol` betiğiyle doğrular): demet `#c4a874` (L≈70 a≈3 b≈29) ↔ altın sikke `#c9a24a` ΔE76 ≈ 23 · ↔ Lagâri sarığı `#dcdcd2` ≈ 27 (v1.3; eski `#d9cfb6` palette 20 ama **render'da 12.0** idi) · ↔ Lagâri teni `#c08468` ≈ 20 · ↔ kese `#625646` ≈ 33 · ↔ takke `#5b4a3a` ≈ 40 · ↔ kanat `#6e6a64` ≈ 34. Hedef: her ışıkta ΔE2000 ≥ 12.
 **v1.2 palet geneli kontrolü (mekanlar.md §5 ölçümü, sRGB→Lab D65):** tüm yüzeyler imzaya **ΔE76 ≥ 15** olmalı. Ot `#a8a07a` (12.4) **değiştirildi → `#989c76`** (17.2). Sınırda: köşk gün `#b4a88e` 15.9 — kabul (P10/P11/P12'de demet yok, demetin geçtiği gece planlarında köşk `#4e4a46`/`#8a7458`); eleştirmen yine ölçer. Ek tonlar: konut duvarı 24.8, sur 24.5, uzak şehir 24.0, toprak 21.8.
+**v1.3 ölçüm kuralı (K1 dersi):** tekillik **render'dan** ölçülür, paletten değil (amber/güneş açık krem ve ten tonlarını imza bandına çeker). `renk_olcum.py` kostüm parçası başına (sarık, ten-yüz, ten-el, entari, kuşak) ΔE76 raporlar; eşik **≥ 15, ten dahil, muafiyet yok**. Demet bölgesi dışında imza bandındaki piksel sayısı demet içindekinin %25'ini geçemez.
 
 ---
 
@@ -154,10 +156,23 @@ Hezarfen yarısında demet yok; bu bilinçli: P14 kenar çizimi iki hikâyeyi ay
 ### 3.0 Ortak kostüm kuralı (17. yy. İstanbul, genel) [A §5.4]
 Erkek giyimi: don, çakşır/şalvar, gömlek, entari, kaftan, başlık; elit ile halkı ayıran **kumaş kalitesi ve başlık biçimi** [A]. Buna göre:
 - **Ana kadro (Lagâri, Hezarfen):** ayak bileğine inen **entari** + üstte **önü açık kaftan** (entari önde 40–60 px şerit olarak görünür) + bel **kuşağı** + başta **sarık** (yuvarlak sargı) [A genel; sarığın biçimi/rengi kişiye özel kanıtsız → nötr]. Ayakta koyu kahve mest/çizme `#2e241c`.
-- **Kompars (yardımcılar):** **diz boyu** entari/cepken + şalvar + **takke** (sargısız keçe başlık). Ana kadrodan biçimle ayrışır (uzunluk + başlık).
+- **Kompars (yardımcılar):** **diz boyu** entari/cepken + bol şalvar + **takke** (sargısız keçe başlık). Ana kadrodan biçimle ayrışır (uzunluk + başlık). Batılı kalıp yasak (v1.3, K1 O2): klapa/devrik yaka, kemer bandı + toka, dar düz pantolon, düğme sırası yok — §3.6.
 - **Kanıtsız, çizilmeyecekler:** sorguç, mücevher, sırma, arma, kürk yaka (padişah dahil), renkli kemer tokası, rütbe işareti, yeniçeri börkü, okunur yazı.
 - **Sakal/bıyık (kullanıcı kararı 2026-11-08):** Hezarfen sakallı, Lagâri bıyıklı — yalnız ayrışma aracı [T], yaş/statü iddiası taşımaz (yaşa bağlı sakal kalıbı doğrulanamadı [A §10.4b]). Risk önlemi: sakalsız yüz dönemde "sakalsız genç" ya da "yeniçeri" okunabilir; Lagâri ise sipahilik alan yetişkindir [A] → bıyığı belirgin, çenesi olgun (§3.2).
-- **Sarık rengi:** beyaz sarık Müslüman erkeğin temel işareti [A §10.4a, tek kaynak] → ana kadro sarıkları beyazın doğal tonu (krem/gri-bej), saf beyaz değil. **Yeşil sarık hiçbir figürde yok — padişah dahil** (dönemde seyyid/emir ayrıcalığı [A §10.4a]; yanlış okunur). Renkli sarık da yok.
+- **Sarık rengi:** beyaz sarık Müslüman erkeğin temel işareti [A §10.4a, tek kaynak] → ana kadro sarıkları beyazın doğal tonu, saf beyaz değil. **v1.3 (K1 K5):** krem/bej tonlar amber ışıkta imza bandına kaydı (render `#bbac8b`, ΔE 12.0) → sarıklar **soğuk kırık beyaz** (b\* ≤ 5): Lagâri `#dcdcd2`, Hezarfen `#cfd0c8`, padişah `#d6d3c6`. Hedef **render'da, arşiv katmanı sonrası, amber ışık altında imzaya ΔE76 ≥ 15** (motion `renk_olcum.py` kostüm parçası başına ölçer). Tutmazsa b\* daha da düşürülür (yedek `#d8dad6`), krem/sarıya geri dönülmez. **Yeşil sarık hiçbir figürde yok — padişah dahil** (dönemde seyyid/emir ayrıcalığı [A §10.4a]; yanlış okunur). Renkli sarık da yok.
+- **Ten (v1.3, K1 ten ↔ imza ΔE 10.8): MUAFİYET YOK.** Gerekçe: Lagâri'nin yüzü ve elleri demetin hemen üstünde/üzerinde; sarık + ten + demet aynı ton bandında birleşince imza tekilliği kaybolur. Kural: her ten tonu imzadan **a\* ile ayrışır** (kızıl-pembe yön, a\* ≥ 15), **render'da ΔE76 ≥ 15**; kaydırma sarıya/açığa değil pembeye/koyuya yapılır. Esmerlik sırası (açıktan koyuya): veren el → Lagâri → Hezarfen → yardımcılar ≈ muhafız. Değerler §3.2, §3.3, §3.5, §3.6, §3.7.
+- **Kostüm taraması (v1.3, K1 O3) — bütün karakterler aynı dil:** kumaş **düz 2 ton** (ışık yanı + gölge yanı, net sınır). Tarama yalnız (a) gölge sınırındaki **terminatör bandında** (en çok 14 rig birimi geniş, 3–5 kısa çizgi, açı sahnenin tek θ'sı) ve (b) derin kıvrım gölgesinde (kuşak altı, kol iç dirseği; en çok 3 çizgi). Giysinin tamamına yayılan çizgi **yasak** (çizgili kumaş deseni okunur). Rig'in `Bolge` tarama katmanı kostümde bu banda kırpılır.
+
+### 3.0b Sarık siluet tarifi (v1.3, K1 O8: "bere" okunuyordu)
+Kaynak düzeyi: beyaz sarığın bir başlık (kavuk/takke) üstüne sarıldığı [A §10.4a "beyaz sarık sarılmış kavuk"]; kişiye özel biçim kanıtsız → aşağıdaki biçim [T].
+- **Yapı:** sarık başın üstüne konan bir şapka değil, **başı saran** kumaş halkasıdır. İçteki başlığın (kavuk/takke) yalnız **tepesi** sargının ortasından görünür.
+- **Oturuş:** alt kenar **alına iner** (kaşın 14–18 rig birimi üstü), **kulağın üst yarısını örter**, arkada enseye doğru 10 birim daha aşağı iner (önden arkaya eğik oturur, ~8°). Altından saç görünmez (yalnız favori ve ense, `sac: "sarikalti"`). Alt kenar kafa konturuna oturur, düz kesik çizgi değil.
+- **Oran:** genişlik = baş genişliği × **1.40** (Lagâri), ×1.30 (Hezarfen), ×1.70 (padişah). Sargı kütlesinin yüksekliği / genişliği: Lagâri **0.50**, Hezarfen **0.42** (basık), padişah 0.62. Biçim yarım küre değil, **basık yastık/soğan**: en geniş yer alt üçte birde, üst hafif yassı.
+- **Sargı katmanları:** 4–5 katman, her biri **küre yüzeyini izleyen eğri** (düz yatay çizgi yok). Katmanlar **çapraz sarılır**: ön yüzde sol-alttan sağ-üste ~20° eğik (Lagâri), Hezarfen'de ters yön (sağ-alttan sol-üste). Katman uçları birbirine **kaydırılmış** (tuğla örgüsü gibi; aynı noktada başlayıp biten çizgi yok). Her katman sınırı = ışık yanı ince açık çizgi + gölge yanı koyu çizgi (çift ton, tarama değil).
+- **360 px'te okunacak 2 imza ayrıntı:**
+  1. **Tümsekli dış kontur:** sargı katmanlarının kabarıklığı siluete taşar: üst kontur 3–4 yumuşak tümsek (genlik 4–6 rig birimi), pürüzsüz kubbe değil. (Bere = pürüzsüz; sarık = katmanlı.)
+  2. **Tepede içteki başlığın görünen ucu:** sargının ortasından çıkan alçak koyu kubbe, genişlik sarığın %30'u, yükseklik 10–12 birim, renk koyu keçe `#4a3e34` (kırmızı/yeşil değil). [G — içteki başlığın tepesinin görünürlüğü kişiye göre değişir; doğrulanmazsa da kalabilir: biçim nötr, renk nötr.] Padişahta bu uç daha yüksek değil, aynı oranda (sorguç izlenimi vermesin).
+- **Yasak benzerlikler (360 px testi):** bere/örgü şapka (pürüzsüz yarım küre + düz alt kenar), aşçı şapkası (dik silindir), Sih türbanı (sivri ön düğüm), fes (silindir + püskül).
 
 ### 3.1 Oranlar (rig birimi; Kukla ayakta ≈ 620 birim şapkalı)
 | Karakter | Boy (sarıksız) | Sarık/takke ek | Toplam | `scale` | Not |
@@ -165,7 +180,7 @@ Erkek giyimi: don, çakşır/şalvar, gömlek, entari, kaftan, başlık; elit il
 | Lagâri | 560 | +70 (sarık) | 630 | 1.00 | gövde `zayif` 0.4 (ince yapı [T]; "sıska" iddiası anlatıda yok, görüntüde vurgu yapılmaz) |
 | Hezarfen | 560 | +62 (sıkı sarık) | 622 ×1.04 | 1.04 | omuz 1.06× |
 | Padişah | 560 | +110 (büyük sarık) | 670 | 1.00 | yalnız siluet (§3.4) |
-| Yardımcı 1–2 | 545 | +38 (takke) | 583 | 0.98 | yüzsüz |
+| Yardımcı 1 / 2 | 545 | +38 (takke) | 583 | 0.98 / **0.90** (v1.3) | yüzsüz, sırtı/arka 3/4 kameraya (§3.6) |
 Gerçek boy eşleşmesi: yetişkin 1.65 m sarıksız. Kıyı şablonunda (P05) yardımcı 670 px ⇒ **≈ 406 px/m** (z yakın); demet 1.0 m ≈ 406 px; ufuk y 720 = baş hizası (ufuk–ölçek kuralı).
 
 ### 3.2 LAGÂRİ (KE-K1) — P01 A, P03–P07
@@ -175,16 +190,16 @@ Gerçek boy eşleşmesi: yetişkin 1.65 m sarıksız. Kıyı şablonunda (P05) y
 | Entari | soluk çivit-gri `#7c8494` |
 | Kuşak | koyu kahve `#4a3426`, 34 birim yüksek, 2 sargı çizgisi |
 | Şalvar (yalnız bilekte) + mest | `#3e3a38` + `#2e241c` |
-| Sarık | krem `#d9cfb6`, gölge `#a89e86`; yuvarlak sargı, **yatay 3 sargı çizgisi**, sargı ucu yok (P06 ıslakta ucu çözülür) |
-| Ten / ten gölge | `#d9a77f` / `#a8745a` |
+| Sarık (v1.3) | soğuk kırık beyaz `#dcdcd2`, gölge `#a8aaa2`, katman çizgisi `#8e9088`; biçim §3.0b (×1.40, y/g 0.50, sol-alt→sağ-üst sargı), sargı ucu yok (P06 ıslakta ucu çözülür) |
+| Ten / ten gölge (v1.3) | `#c08468` / `#8e5a46` (imzaya ΔE76 ≈ 20 palet; render ≥ 15 hedef; eski `#d9a77f` render'da 8.6) |
 | Saç (yalnız ense + favori) / bıyık | `#3a2416` |
 | Yüz (YUZLER `lagari`) | `genislik 0.94, uzunluk 1.08, burunTip "duz", kasAci −3 (açık, hafif meraklı), sac "sarikalti", zayif 0.4, yasCizgi 0.25` · `biyik "duz"` **belirgin: bıyık %20 kalın/geniş, uçları ağız köşesinin 4 birim dışına taşar**, `sakal false`, `sideburn 0.8`, `browHeavy 1.1`, `burun 1.05` |
-| Olgun çene (v1.1) | çene konturu köşeli (yuvarlak bebek çenesi değil), çene altında 1 gölge çizgisi `#a8745a`, yanak çukuru `zayif 0.4` ile; amaç "genç/yeniçeri" okunmaması [A §10.4b risk notu]. Yaş iddiası yok |
+| Olgun çene (v1.1) | çene konturu köşeli (yuvarlak bebek çenesi değil), çene altında 1 gölge çizgisi `#8e5a46`, yanak çukuru `zayif 0.4` ile; amaç "genç/yeniçeri" okunmaması [A §10.4b risk notu]. Yaş iddiası yok |
 | Kanat (sırtta) | §4.2, `acik 0` P01 A–P05, açılır P06 |
 | Yakın plan (P04, yüz %11–12, cs 2.5–2.7) | `yakin: true` zorunlu: göz kapağı, dolgulu kaş, alt dudak hacmi; ağız `A/O/dinlen` visem (`konus`), kaş `browF` +0.3 replik başında (kararlı neşe) |
 **Oturan poz (KE-K6, P01 A–P05):** oturak tahtasında, **ayaklar ayak dayama çubuğunda** (ayak sallanmaz: "ayak her karede zemine basar" bu pozda dayamaya basar). `thighF/B −84`, `kneeF/B 78`, `bodyY +110`, `lean +4`. Eller: `tutun` = ön el yan tüpün sicim bağını kavrar (parmaklar sicimin önünde), arka el oturak kenarında. Etek: kaftan + entari diz üstünden **yumuşak** sarkar, alt kenar baldır ortasına iner, oturak kenarından 20–30 birim aşağı dalgalı düşer (katı kalıp değil). Kanat sırtta katlı, oturağın arkasından yukarı taşar.
 **Islak hâl (P06 p232+, P07) — `islak: 0→1` (12 karede):**
-- Kumaş %25 koyu, doygunluk +%10: kaftan `#232c42`, entari `#59606e`, sarık `#b0aa98` (yarı saydam değil, koyulaşmış).
+- Kumaş %25 koyu, doygunluk +%10: kaftan `#232c42`, entari `#59606e`, sarık `#a8aaa4` (soğuk kalır; yarı saydam değil, koyulaşmış).
 - Siluet daralır: etek genişliği ×0.88, kumaş bacağa yapışır (etek alt kenarı düz değil, bacak konturunu izler); kollar sarkık, yen ağızları aşağı çekilmiş.
 - Sarık: sargı ucu çözülmüş, sol omza 60 birim sarkar; sarık %10 basık.
 - Parlama: omuz ve sarık üstünde `#a9bccb` α .45 ince kenar çizgisi (ışık yanı).
@@ -198,8 +213,8 @@ Gerçek boy eşleşmesi: yetişkin 1.65 m sarıksız. Kıyı şablonunda (P05) y
 | Entari | soluk deve tüyü `#7a6a50` |
 | Kuşak | `#3e3a30` |
 | Şalvar + mest | `#3e3a38` + `#2e241c` |
-| Sarık | gri-bej `#c9c2b0`, gölge `#958e7c`; Lagâri'ninkinden **daha basık ve dar** (yükseklik 62 / genişlik 0.9×), **çapraz 3 sargı çizgisi** (Lagâri yatay) |
-| Ten / gölge | `#c99872` / `#95654a` (güneşte daha esmer) |
+| Sarık (v1.3) | soğuk açık gri `#cfd0c8`, gölge `#9a9c94`; §3.0b: Lagâri'ninkinden **basık ve dar** (×1.30, y/g 0.42), sargı yönü **ters** (sağ-alt→sol-üst) |
+| Ten / gölge (v1.3) | `#a87256` / `#7a4c36` (Lagâri'den esmer; imzaya ΔE76 ≈ 23) |
 | Saç / sakal | `#2a2018`; kısa dolgun sakal (`sakal: true`), `biyik "duz"` |
 | Yüz (YUZLER `hezarfen`) | `genislik 0.98, uzunluk 1.12, burunTip "sivri", kasAci 5 (kararlı), sac "sarikalti", yasCizgi 0.3` · `browHeavy 1.3`, `burun 1.05` |
 | Kanat | §4.2; P01 B/P08 sırtta `acik 0`, P09 açık |
@@ -211,36 +226,51 @@ Aynı karede hiç durmazlar; ama izleyici "aynı adam mı?" dememeli.
 |---|---|---|---|
 | Kaftan rengi | çivit (soğuk, koyu) | zeytin (sıcak-yeşil) | ana ayırıcı; gece/gündüz farkı bunu güçlendirir |
 | Sakal | yok (bıyık) | kısa sakal | yüz siluetinin alt kontur farkı |
-| Sarık | yüksek yuvarlak, krem, yatay sargı | basık, gri-bej, çapraz sargı | baş silueti oranı (yükseklik/genişlik 0.95 ↔ 0.72) |
+| Sarık | dolgun yastık (y/g 0.50), kırık beyaz, sol-alt→sağ-üst sargı | basık (y/g 0.42), açık gri, ters sargı | baş silueti oranı |
+| Ten | orta, pembe-kızıl | daha esmer | |
 | Yapı | ince | omuz 1.06×, boy 1.04× | |
 | Duruş | oturan / kollar açık | ayakta, dik, eller kuşakta | |
 Eleştirmen testi: P04 göğüs karesi ile P08 göğüs karesi 360 px'te yan yana; iki kişi olarak okunmalı.
 
 ### 3.5 PADİŞAH (KE-K3) — P02, P10, P12 · yalnız siluet, yüz yok
 Portre referansı yok (Murad IV portreleri 19. yy. [A §5.4]). Kukla değil, **ayrı siluet bileşeni** (`PadisahSiluet`):
-- **Biçim:** büyük yuvarlak sarık (baş genişliğinin 1.7×, yükseklik 1.1× baş; Lagâri sarığının 1.35×'i), sorguç/mücevher **yok**; sarık tonu (görünürse) beyaz/krem `#d8ccb0`, **yeşil asla** (§3.0); geniş omuzlu kaftan siluet (omuz 1.15×), kollar gövdede. Sarık sargı çizgisi yalnız P12 yakınında 2 adet, ton farkıyla.
+- **Biçim:** büyük yuvarlak sarık (baş genişliğinin 1.7×, yükseklik 1.1× baş; Lagâri sarığının 1.35×'i), sorguç/mücevher **yok**; sarık tonu (görünürse) kırık beyaz `#d6d3c6`, **yeşil asla** (§3.0), biçim §3.0b (×1.70, y/g 0.62); geniş omuzlu kaftan siluet (omuz 1.15×), kollar gövdede. Sarık sargı çizgisi yalnız P12 yakınında 2 adet, ton farkıyla.
 - **Renk:** siluet gece `#1e1c22` (ışıklı pencerenin önünde, P02) · gündüz `#2a2622` (P10) · kenar ışığı gece `#f2c070` (içteki ışık arkadan), gündüz `#f0d79a` (güneş).
 - **`bas_aci` 0 → 1 (P10):** 0 = önden (baş + sarık simetrik elips), 1 = sağa profil (alın–burun–dudak çıkıntısı belirir, sarık arkaya doğru asimetrik). Ara değerler morf; omuz sabit. Okunurluk: P10 cs 1.6'da siluet ≥ 240 px (%12).
-- **P12 profil (göğüs, cs 1.8–2.6):** profil konturu alın → burun → dudak → çene; **göz, kaş, ağız çizilmez.** Çene kaftan yakasının gölgesinde kaybolur (sakal sorusu açılmaz [G]). Yüzün gölge yanı `#2a2420`; ışık şeridi göz hizasında konturda `#e3b98e` (ten, ışıklı) bant olarak parlar, bant genişliği = pencere aralığından türeyen şerit genişliği. Kaftan `#36302c`, yakada tek ton farkı, süs yok. Eli (kapıyı gösterir, P12 p130–170): çıplak el `#c49a78`, yen geniş, yen rengi kaftanla aynı.
+- **P12 profil (göğüs, cs 1.8–2.6):** profil konturu alın → burun → dudak → çene; **göz, kaş, ağız çizilmez.** Çene kaftan yakasının gölgesinde kaybolur (sakal sorusu açılmaz [G]). Yüzün gölge yanı `#2a2420`; ışık şeridi göz hizasında konturda `#dca08a` (ten, ışıklı; v1.3, imzaya ΔE ≈ 17) bant olarak parlar, bant genişliği = pencere aralığından türeyen şerit genişliği. Kaftan `#36302c`, yakada tek ton farkı, süs yok. Eli (kapıyı gösterir, P12 p130–170): çıplak el `#b88470` (v1.3), yen geniş, yen rengi kaftanla aynı.
 - Kim plakası (P12 replik): yazı katmanında, siluetin üstünde, yüz alanını örtmez.
 
 ### 3.6 YARDIMCILAR (KE-K4) — P01 A, P02, P03, P05, P06 · yüzsüz kompars
-- Kukla `palet.yuzsuz: true` (mevcut) + **kısa Osmanlı gövdesi** (`kostum: "osmanli-kisa"`): diz boyu entari, şalvar diz altında görünür (`#4a4038`), kuşak, takke.
-| | Entari | Takke | Kuşak | Ten |
-|---|---|---|---|---|
-| Yardımcı 1 (meşaleci, P05 başlığı uçan) | `#6a5a48` | koyu keçe `#5b4a3a` | `#3a3026` | `#b88a68` |
-| Yardımcı 2 | `#5a5448` | `#4a3e34` | `#3a3026` | `#a87c5c` |
-- Gece meşale ışığında yüz yeri düz ten + ışık yanı; göz/ağız/kaş yok. P05'te yüz %35 boyda (≈ 120 px baş) — yüzsüzlük okunur ama "yüzü silinmiş insan" ürkütücülüğü olmasın diye baş meşale tarafına 3/4 dönük, yüzün çoğu kendi gölgesinde.
-- Duruş farkı: Y1 meşaleyi ön elde, kol gergin, meşaleyi vücuttan uzak tutar (P05 sıçrama: geri adım + kol yüze, `lean −12`); Y2 elleri kuşakta, geride.
+**v1.3 (K1 O2, O3, O4): kostüm, yön ve ayrışma yeniden tanımlandı.**
+- **Kostüm (`kostum: "osmanli-kisa"`) — çizim kuralı:**
+  - **Entari/cepken diz altına (diz kapağının 30 birim altı) iner; YAKASIZ**, önü **çapraz kavuşur** (sağ panel sol panelin üstüne, boyundan kuşağa giden tek eğik kenar çizgisi; V yaka değil, klapa/devrik yaka yok). Düğme sırası yok.
+  - **Kuşak = sarılı kumaş:** 2–3 tur, tur çizgileri hafif eğri, bir yanda kısa sarkan uç (40–60 birim); **kemer bandı, toka yok**.
+  - **Şalvar bol:** diz altında entari eteğinden çıkan bacak, baldır genişliği rig bacağının **1.6×**'i, kumaş 2–3 dikey kıvrım; **paçada büzgü** (bileğe toplanan 3–4 kısa kıvrım çizgisi), dar düz pantolon değil.
+  - Ayakta düz mest/yemeni `#2e241c`, topuksuz.
+  - Kollar: dar yen, bilekte kısa kıvrım; manşet/ceket kolu dikişi yok.
+  - Kumaş taraması §3.0 kuralı (düz 2 ton + terminatör bandı).
+- **Yön (yüzsüz yumurta yüz sorununun çözümü):** yardımcılar **sırtı ya da arka 3/4'ü kameraya dönük** durur, **olaya (demete, Lagâri'ye, denize) bakar**. Kameradan yüz yüzeyi görünmez: baş arkadan görünür (ense + takke/saç arka kütlesi + kulak kenarı); yanakta en çok 6–8 birimlik ten kenarı (ışık yanı). Göz/ağız/kaş zaten yok. P05 sıçramada bile baş kameraya dönmez; kol yüze kalkar (O10), gövde arkaya `lean −12`.
+- **İki yardımcı ayrışır (ikiz/çift görüntü yasak):**
+| | Y1 (meşaleci, P05 takkesi uçan) | Y2 |
+|---|---|---|
+| Ölçek / derinlik | 1.0, önde | **0.90**, geride (z daha uzak, ufuk–ölçeğe göre ayak y'si yukarıda) |
+| Aralık | — | Y1'den **≥ 1 gövde genişliği** (ekranda ≥ 110 px) yanda; üst üste binmez |
+| Duruş | ayakta, ağırlık arka bacakta, meşale ön elde vücuttan uzak, alçak (alev ekran x ≤ 330, y ≥ 900 — K2) | **çömelmiş ya da bir dizi yerde** (fitil hattının başında, fitili hazırlayan) ya da elleri kuşakta öne eğik; Y1'den farklı siluet şart |
+| Entari | `#6a5a48` (toprak kahve) | **`#4e5658`** (soğuk koyu gri; v1.3, eski `#5a5448` Y1'e çok yakındı) |
+| Şalvar | `#4a4038` | `#3a3a38` |
+| Takke | koyu keçe `#5b4a3a` | `#3e3a34` |
+| Kuşak | `#3a3026` | `#5a4a36` |
+| Ten (yalnız el/ense) | `#9c6a50` | `#8e6048` |
+- **Takkesiz baş (Y1, P05 p90 sonrası):** kısa, kafaya yapışık **tek parça koyu saç kütlesi** `#2a2018` (kulak açık, ense çizgisi yumuşak); şerit, tepe bandı ya da yan blok ("kulaklık") yok. Takke uçarken başta ayrılma çizgisi olmaz: saç kütlesi takkenin altında hep vardır.
 
 ### 3.7 Eller (KE-K5) — P07, P11 insert
 Mevcut `KolEl` yapısı (MASA-INSERT) temel; bölüme 4 `tip` eklenir. Ölçek: el (bilekten parmak ucuna) **≈ 260 px** (insert, cs 1.0), kese ≈ 0.85× el.
 | tip | Yen | Ten | Ayırıcı | Giriş |
 |---|---|---|---|---|
-| `entari-yen` (veren, saray) | **geniş, bilekten 1.6× açılan yen**, ince kumaş, soluk murdum `#4b4250`, gölge `#2e2834`; yen ağzında tek kıvrım | `#d6a882` | geniş yen + bakımlı el | sağdan (köşk tarafı) |
-| `lagari` | dar yen, çivit `#34405e` (P07 ıslak: `#232c42` + damla), entari yeni `#7c8494` bilekte 12 px şerit | `#d9a77f` (ıslak: %8 koyu + 2 parlama noktası) | çivit + ıslaklık | alttan |
-| `hezarfen` (avuç) | dar yen, zeytin `#55603f`, entari şeridi `#7a6a50` | `#c99872` | zeytin + daha esmer | alttan |
-| `muhafiz` | **kalın, kaba yün** yen `#3e3a34`, düz, kıvrımsız, yen ağzı kalın kenar | `#b08260`, boğum çizgileri belirgin, el 1.1× | ağır + kaba; işaret/arma yok | soldan, P11 p80, omza iner p104 |
+| `entari-yen` (veren, saray) | **geniş, bilekten 1.6× açılan yen**, ince kumaş, soluk murdum `#4b4250`, gölge `#2e2834`; yen ağzında tek kıvrım | `#c48c72` (v1.3) | geniş yen + bakımlı el | sağdan (köşk tarafı) |
+| `lagari` | dar yen, çivit `#34405e` (P07 ıslak: `#232c42` + damla), entari yeni `#7c8494` bilekte 12 px şerit | `#c08468` (v1.3; ıslak: %8 koyu + 2 parlama noktası) | çivit + ıslaklık | alttan |
+| `hezarfen` (avuç) | dar yen, zeytin `#55603f`, entari şeridi `#7a6a50` | `#a87256` (v1.3) | zeytin + daha esmer | alttan |
+| `muhafiz` | **kalın, kaba yün** yen `#3e3a34`, düz, kıvrımsız, yen ağzı kalın kenar | `#94644a` (v1.3; P11'de Hezarfen'den esmer kalır), boğum çizgileri belirgin, el 1.1× | ağır + kaba; işaret/arma yok | soldan, P11 p80, omza iner p104 |
 Avuç pozları: `ac` (avuç yukarı, parmaklar hafif kıvrık), `kapa` (keseyi saran), `gevse` (parmaklar açılır, bilek 12° düşer: EV-D5). Omuz: `muhafiz` el P11'de omuza bastığında parmaklar kumaşı **4–6 px içeri bastırır** (kumaş kıvrımı), sert yapışık sticker gibi değil.
 P07/P11 aynı kadraj: kese avucunun ekran yeri ±10 px aynı; yalnız el tipi, ışık (gece/gün) ve kese içeriği değişir → ayna okunur.
 
@@ -259,7 +289,7 @@ Genel: ekran ölçüsü gerçeğe göre; stilize büyütme **yalnız** tabloda "
 | KE-P4 | takke | çap 0.18 m, yük. 0.10 m | 117 px (olcek 1.6) | 39 px | ×1.6 |
 | KE-P5 | taş | 0.25 m [T] | 190 px takipte (%10) | 63 px | kamera yaklaşması (cs 2.0) |
 | KE-P6 | martı | açıklık 1.3 m | 420 px (ön plan) | 140 px | ön plan perspektifi |
-| KE-P7 | meşale | 1.1 m sap, baş 0.18 m | 450 px (P05) | 150 px | — |
+| KE-P7 | meşale | 1.1 m sap + 0.18 m baş = **1.28 m** | 406 px/m'de **≈ 520 px** (alev hariç; P05) | 173 px | — |
 | KE-P8 | defter/kitap | 0.32 × 0.22 m (açık 0.44) | P13 cs 1.0: kitap 640 px | 213 px | — |
 | KE-P9 | pencere kanadı | 0.55 × 1.30 m | pencere duvarında 324 px/m ⇒ dekor 178 × 421 px; ekranda **cs 1.8: 758 px (%39) · cs 2.2: 926 px (%48) · cs 2.6: 1095 px (%57)** yükseklik (v1.2, mekanlar.md §1.6) | 253–365 px (yükseklik) | — |
 
@@ -267,10 +297,22 @@ Genel: ekran ölçüsü gerçeğe göre; stilize büyütme **yalnız** tabloda "
 
 ### 4.2 Kanat (KE-P2) — tek siluet, ayrıntısız, iki karakterde AYNI çizim
 Yapı kaynakta yok [A §2]: tüy, kaburga, iskelet, kumaş gerdirme, kayış, tutamak **çizilmez**.
-- **Açık biçim (her kanat):** uzun, sivrilen yaprak; ön kenar düz ve hafif kavisli (kalın taraf), arka kenarda **3 büyük, yumuşak oyuk** (yalnızca "kartal" fikrine işaret; tek tek tüy yok). Kök genişliği 0.22 × açıklık, uç sivri yuvarlak. 3/4 görünüşte kameraya yakın kanat 1.0×, uzak kanat 0.7× ve kısmen gövde arkasında.
+- **Açık biçim (her kanat) — v1.3 (K1 O6: 3 oyuk + sivri uç "yarasa" okundu):**
+  - Ön kenar: kalın, yuvarlak, hafif yukarı kavisli tek eğri (kökten uca).
+  - **Arka kenar: TEK, sığ, sürekli kavis** (kökten uca hafif içbükey, en derin yerde sehim = kanat uzunluğunun %6'sı). **Oyuk, tırnak, sivri köşe yok**; kavis boyunca kırılma yok.
+  - **Kanat ucu: yuvarlak**, sivri değil. "Kartal" işareti yalnız uçta: **3 kısa, ayrık, yuvarlak uçlu parmak** (yarıklı kanat ucu), her biri kanat uzunluğunun %10–12'si, aralarında dar V boşluk (dip yuvarlak), parmaklar hafif yukarı kıvrık. Arka kenar boyunca başka yarık yok.
+  - Kök genişliği 0.24 × açıklık; kanat kökten uca düzgün daralır, uçta yeniden hafif genişler (parmakların tabanı).
+  - 3/4 görünüşte kameraya yakın kanat 1.0×, uzak kanat 0.7× ve kısmen gövde arkasında.
+  - **Yasak benzerlikler (360 px testi):** yarasa/ejderha (arka kenarda dişli oyuk, sivri tırnak, kemik çizgisi), uçak kanadı (düz kesik uç), martı (kırık M biçimi).
 - **Bağlantı:** kanat kökü omuz arkasında gizli; kollar kanadın altında ön kenar boyunca uzanır, **eller ön kenarın altında kaybolur** (tutamak gösterilmez). Böylece "nasıl tutuyor?" sorusu yapı iddiasıyla cevaplanmaz.
-- **Katlı (`acik 0`):** iki kanat sırtta dikey üst üste, başın 0.15H üstünden dize kadar, genişlik 0.35H, tek kıvrım çizgisi ortada. P01 B'de "belirsiz siluet" böyle okunur.
-- **Açılma (`acik 0→1`, 18 kare):** kökten döner + uzar; yarı yolda (0.5) kanatlar 60° yukarı. Arka kenar oyukları son 6 karede belirir.
+- **Katlı (`acik 0`) — v1.3 (K1 O7: eni 100 birim "tahta/sörf tahtası" okundu):**
+  - Boy: başın 0.15H üstünden **diz hizasına** kadar (ayakta: diz; oturan pozda: diz = oturak hizası, ayak dayamasına inmez). **Sapma kabul edilmez.**
+  - **En 150 birim** (140–160 aralığı; rig birimi), yani omuz genişliğinden geniş; Lagâri'nin **sağ arkasına** kaydırılır (sırt hizasından 30–40 birim arkaya), böylece Y1'i örtmesi konumla çözülür, enle değil.
+  - **İki kat görünür:** ön kat ışıklı ton `#6e6a64`, arka kat 1 ton koyu `#4a4642`, arka kat ön katın kenarından 6–10 birim taşar (kat olduğu okunur). Her katın kenarında **4 birimlik kalınlık şeridi** (ışık yanında açık).
+  - **Kumaş/germe yumuşaklığı:** uzun kenarlar düz cetvel çizgisi değil, hafif dışbükey ve dipte hafif sarkık; ortada **2 yumuşak kıvrım çizgisi** (uzunlamasına, uçları sönen). Köşe yok, hepsi yuvarlatılmış (r ≥ 12 birim).
+  - Alt kenarda açık biçimin izi: uç parmaklarından **tek bir yumuşak çentik** (yuvarlak dipli, sığ), katlı kanat olduğu okunsun; birden fazla çentik yok.
+  - **Yasak benzerlik:** tahta, sörf tahtası, kalkan, kapı (düz kenar + sert köşe + tek ton).
+- **Açılma (`acik 0→1`, 18 kare):** kökten döner + uzar; yarı yolda (0.5) kanatlar 60° yukarı. Arka kenar kavisi ve uç parmakları son 6 karede belirir (katlı hâldeki çentik uç parmaklarına açılır).
 - **Renk:** düz mat, doku yok. Işıklı yüz `#6e6a64` · gölge `#4a4642` · kontra siluet `#3a3634` (gün) / `#2a2828` (gece) · kenar ışığı gün `#f0d79a`, gece `#f0b060` (2 px). Lagâri ve Hezarfen'de **aynı dosya, aynı renk**.
 - **Martı ile karşılaştırma önlemi:** martı kanadı kırık "M" biçimli, mafsallı, beyaz-gri + koyu uçlu; kanat düz, rijit, tek renk. P09'da Hezarfen yalnız kontra siluet.
 
@@ -291,7 +333,7 @@ Galata galerisi çıkıntısından kopan düzensiz kesme taş parçası (5 köş
 4 poz döngüsü (kanat yukarı / yatay / aşağı / yatay, 4 kare/poz ≈ 1 vuruş/16 kare) + süzülme pozu. Gövde `#dcdcd6`, kanat üstü `#a9adb0`, kanat ucu `#3a3a3e`, gaga `#c8a04a` (küçük; kırmızı benek yok). Ön planda bulanık (blur 6 px) — Hezarfen net. Kontur yok (bulanık ön plan), yalnız ton.
 
 ### 4.7 Meşale (KE-P7)
-Sopa `#4a3424` (1.1 m), baş: katran emdirilmiş bez sargı `#2e2620` [G], alev §1.1. Alev 3 dilli, 8 karede bir şekil değiştirir (seed sabit, döngü), yukarı + rüzgârla hafif sağa. Işık havuzu ve karakter kenar ışığı alevin **ekran noktasından** türetilir (tek kaynak). Dumanı ince `#4a4440` α .4.
+Sopa `#4a3424` (1.1 m), baş: katran emdirilmiş bez sargı `#2e2620` [G], alev §1.1. **Toplam 1.28 m (şartname doğru, v1.3 notu):** K1'de motion 1.65 m (≈ 670 px) çizdi; 406 px/m'de sap ucundan baş tepesine **≈ 520 px** olmalı. Taşıma pozu kabul edildi. Meşale yolu ana eylem koridoruna (ekran x 400–700) girmez; P05 p56'dan sonra alev ekran x ≤ 330, y ≥ 900 (K2; yönetmen/motion). Alev 3 dilli, 8 karede bir şekil değiştirir (seed sabit, döngü), yukarı + rüzgârla hafif sağa. Işık havuzu ve karakter kenar ışığı alevin **ekran noktasından** türetilir (tek kaynak). Dumanı ince `#4a4440` α .4.
 
 ### 4.8 Defterler ve Seyahatname (KE-P8, P13–P14)
 - **Seyahatname (açık):** iki sayfa, ortada cilt oluğu gölgesi. Her sayfada metin bloğu kenarlardan %12 boşluklu, çevresinde **çift ince cetvel çizgisi** `#4a4237` (renkli cetvel/rubrik yok).
@@ -351,7 +393,7 @@ Görüntü **yazısız** render edilir; aşağıdakilerin hepsi dil başına ayr
 |---|---|---|---|
 | R1 | `palet.kostum: "osmanli"` gövde: ayak bileğine entari + önü açık kaftan (iki ön panel, aradan entari şeridi) + kuşak; frak etekleri/yelek/düğme/yaka/kravat **çizilmez**; yen ağzı bilekte 1.25× açılır; şalvar yalnız bilekte, mest | Lagâri, Hezarfen | Etek iki panel, uyluk açısına bağlı (yürüme + oturma); alt kenar bileğin 20 birim üstü |
 | R2 | `palet.kostum: "osmanli-kisa"`: diz boyu entari + şalvar + kuşak | yardımcılar | R1'in kısa varyantı |
-| R3 | `palet.sapka: "sarik" \| "sarik-basik" \| "takke"` + palet `sarikCizgi: "yatay" \| "capraz"`; sarık alın çizgisinden (yerel y ≈ −28) yukarıyı ve kulak üstünü örter | Lagâri, Hezarfen, yardımcılar | |
+| R3 | `palet.sapka: "sarik" \| "sarik-basik" \| "takke"` + palet `sarikYon: 1 \| -1` (v1.3: iki sarıkta da eğri çapraz katman, yalnız yön farklı; biçim R15/§3.0b); sarık alın çizgisinden (yerel y ≈ −28) yukarıyı ve kulak üstünü örter | Lagâri, Hezarfen, yardımcılar | |
 | R4 | `YuzTip.sac: "sarikalti"` — üst saç kütlesi çizilmez, yalnız ense + favori | Lagâri, Hezarfen | bukle saç sarığın dışına taşmasın |
 | R5 | YUZLER `lagari`, `hezarfen` (§3.2, §3.3) + `sinirlar.json yuzVaryant` | | K3 doğrulayıcı aynı varyant uyarısı yok |
 | R6 | `poz: "oturan"` (Blanc'ta yalnız açı denemesi vardı): etek dizden sarkar, ayaklar dayamaya kilitli (ayak kilidi zemin yerine prop noktası) | Lagâri | KE-K6 |
@@ -361,6 +403,10 @@ Görüntü **yazısız** render edilir; aşağıdakilerin hepsi dil başına ayr
 | R10 | `PadisahSiluet` bileşeni (Kukla değil): `bas_aci` 0–1 önden→profil morf, `profil` (P12) + kenar ışığı + şerit bandı + işaret eden el | padişah | KE-K3, KE-J11 |
 | R11 | `KolEl.tip`: `entari-yen`, `lagari` (+ıslak), `hezarfen`, `muhafiz`; avuç `ac/kapa/gevse`; `omuz-bas` (kumaş içe basma) | P07, P11 | `el` kuralı SARAYBURNU insert'e açılmalı (sahne-plani KE-Y6) |
 | R12 | Kenar ışığı: bu bölümde rig `RIM #c4d6ff` sabiti devre dışı; tüm kenar ışığı `KuklaIsik`'tan (gece amber, gün `#f0d79a`) | hepsi | ay yok |
+| R14 (v1.3) | **Arka / arka 3/4 görünüm** (`gorunum: "arka34"`): rig şu an yalnız ön 3/4 çiziyor. Arka görünümde yüz yüzeyi yok (ense + saç/takke arka kütlesi + kulak kenarı + yanakta ≤ 8 birim ten), kuşak sarkan ucu arkada, kol katman sırası ters (ön kol gövdenin arkasında) | yardımcılar | K1 O4 |
+| R15 (v1.3) | `sarik` çizimi §3.0b: başı saran basık yastık, alına/kulak üstüne iner, eğri çapraz katmanlar (yön parametresi), tümsekli kontur, tepede içteki başlık ucu | Lagâri, Hezarfen, padişah | K1 O8 |
+| R16 (v1.3) | Kostüm taraması: `Bolge` tarama katmanı giyside terminatör bandına (≤ 14 birim) ve derin kıvrım gölgesine kırpılır; geri kalan kumaş düz 2 ton | hepsi | K1 O3 |
+| R17 (v1.3) | `osmanli-kisa` kalıbı §3.6: yakasız çapraz kavuşan ön, sarılı kuşak (toka yok), bol şalvar (×1.6) + paça büzgüsü; takkesiz baş = tek parça kısa saç kütlesi | yardımcılar | K1 O2 |
 | R13 | Prop'lar: `fisek-demet`, `kanat` (ayrık, P06 suda kalan), `kese` (17. yy. biçim + içerik), `sikke`, `takke`, `tas`, `marti`, `mesale`, `defter`, `kitap seyahatname` (hat + kenar çizimi), `pencere-kanat`, `ayak-izi` | | KE-P1…P9 |
 
 ---

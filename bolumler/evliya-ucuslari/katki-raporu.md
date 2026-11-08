@@ -113,6 +113,42 @@
 - Kurallar: İmza tekilliği tüm palete uygulandı (yüzey başına eşik ΔE76 ≥ 15). Kırmızı yasağı korundu.
 - Açık: mekanlar.md'nin değişmesi gerekmiyor. §3.1'de ot için "öneri" diye yazılan ifade artık onaylı sayılabilir; yalnızca yazım farkı.
 
+## tasarimci · 2026-11-08 · tasarim.md revizyon v1.3 (K1 eleştirisi, tasarım maddeleri)
+- Ne yaptım: K1 kalibrasyon eleştirisindeki (elestiri.md) tasarıma düşen 7 maddeyi işledim:
+  - (1) Sarık rengi soğuk kırık beyaz: Lagâri `#dcdcd2`, Hezarfen `#cfd0c8`, padişah `#d6d3c6`. Hedef: render'da, amber ışık altında imzaya ΔE ≥ 15.
+  - (2) Sarık siluet tarifi (yeni §3.0b):
+    - Sarık başı saran basık bir yastık; alına ve kulak üstüne iner.
+    - Genişlik başın 1.40× (Lagâri), 1.30× (Hezarfen), 1.70× (padişah); yükseklik/genişlik 0.50 / 0.42 / 0.62.
+    - Sargı katmanları eğri ve çapraz; iki sarıkta yön ters.
+    - 360 px'te okunacak 2 imza ayrıntı: tümsekli dış kontur ve tepede içteki başlığın ucu.
+    - Yasak benzerlikler: bere, aşçı şapkası, fes.
+  - (3) Ten için muafiyet yok. Tüm ten tonları pembe/koyu yöne kaydırıldı (Lagâri `#c08468`, Hezarfen `#a87256`, eller, padişah, yardımcılar).
+  - (4) Kompars kostümü Osmanlı kısa kalıba alındı:
+    - Yakasız, önü çapraz kavuşan entari; sarılı kuşak (toka yok); bol şalvar, paçada büzgü.
+    - Yardımcılar sırtı ya da arka 3/4'ü kameraya dönük durur.
+    - Y2 0.90 ölçekte, farklı pozda, ≥1 gövde genişliği aralıkta; entarisi `#4e5658`.
+    - Takkesiz başta tek parça saç kütlesi.
+  - (5) Kostüm taraması yalnız terminatör bandında ve kıvrım gölgesinde.
+  - (6) Kanat:
+    - Açık kanat: tek sığ arka kavis, yuvarlak uç, uçta 3 kısa yuvarlak parmak; yarasa oyuğu yok.
+    - Katlı kanat: en 150 birim, iki kat ve kenar kalınlığı, yumuşak kenarlar, tek çentik, alt uç diz hizasında, Lagâri'nin sağ arkasında.
+  - (7) Ayak dayama 0.333 m olarak işlendi; meşale 1.28 m ≈ 520 px notu düşüldü.
+  - Rig ihtiyaçlarına R14–R17 eklendi (arka 3/4 görünüm, sarık, tarama kırpma, kısa Osmanlı kostümü).
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/tasarim.md, bolumler/evliya-ucuslari/katki-raporu.md
+- Kararlar ve gerekçeleri:
+  - Ten muafiyetini reddettim: Lagâri'nin yüzü ve elleri demetin hemen üstünde; sarık, ten ve demet aynı ton bandında birleşiyordu.
+  - Tonları sarıya/açığa değil a\* (pembe) yönüne kaydırdım; amber ışık b\*'yi artırdığı için ayrışmayı a\* korur.
+  - Yardımcıların sırtını kameraya çevirmek, şartnamedeki "3/4 meşaleye dönük + yüz gölgede" çelişkisini fiziksel olarak çözüyor. Bu, rig'e yeni bir arka görünüm parçası gerektiriyor (R14).
+  - Kanat için "kartal" işaretini arka kenardan uca taşıdım; yarasa benzerliğini arka kenardaki oyuklar yaratıyordu.
+- Kurallar / ihlaller:
+  - İmza tekilliği artık render ölçümüyle denetleniyor; demet dışındaki imza pikselleri demet içindekinin %25'ini geçemez.
+  - "Tarama ışığın biçimi anlattığı yerde" kuralı kostüme uygulandı.
+  - Kompars ayrışması ve Batılı kalıp yasağı (klapa, kemer, dar pantolon) işlendi.
+- Açık:
+  - Elle hesaplanan ΔE değerleri ±3 hassasiyette; bağlayıcı olan motion'ın render ölçümü.
+  - Sarığın tepesinde içteki başlığın ucunun görünmesi [G].
+  - K1'in KRİTİK maddeleri (fitil, meşale yolu, P05→P06 sürekliliği, ölçek, P06 kapanışı) yönetmen ve motion'da; köşk/baca (O1) ve gece kroması (O5) mekân sorumlusu ve motion'da.
+
 ## arastirmaci · 2026-11-08 · Evliya uçuşları tasarım doğrulama eki (tasarim.md §9, madde 4–10)
 - Ne yaptım: Tasarımcının 7 [G] sorusunu (sarık/sakal, fişek kılıfı, kese/sikke/akçe, yazı yüzeyi, renkli havai fişek, konut çatısı, köşk pencereleri) 20+ `WebSearch` sorgusuyla taradım ve `arastirma.md` sonuna "## 10. Tasarım doğrulama eki" ekledim: özet tablo + her madde için cevap, kaynak, güven, tasarıma etkisi.
 - Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/arastirma.md (yalnız sona ek, mevcut bölümlere dokunulmadı), /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/katki-raporu.md (bu bölüm).
@@ -312,3 +348,12 @@
   - Motion: K1–K6, O9–O11, S1/S3/S4; ArsivKatmani gece doygunluğu; `renk_olcum.py`'ye C\* ve kostüm parçası başına imza raporu.
   - Kontrol paketine ilk, temas ve kapanış kareleri ile eşleşen kesmenin iki tarafı eklenmeli.
   - Bir sonraki eleştiri turunda P05 p204 ↔ P06 p0 yan yana bakılmalı.
+
+## mekan-sorumlusu · 2026-11-08 · mekanlar.md R1 (K1 kalibrasyon eleştirisi: O1, S2, O5)
+- Ne yaptım: K1 eleştirisinde mekâna düşen 3 madde düzeltildi.
+  - **O1 köşk = küçük cami:** örtü kesik kırma piramit oldu: düz kenar, 0.6 m saçak, tepede plato, alem yok. Bacalar küt (0.8 m, görünür oran ≤ 1:1.5), düz taş plaka başlıklı; çatıdan çıkıyor ve platonun altında kalıyor. Arka çift ≥ 18 px kaydırıldı, dört baca da görünür. 360 px imzası ve yasak benzerlik tablosu §1.1a'ya eklendi.
+  - **S2 pencere halesi:** daire hale kaldırıldı; yerine pencere altına 2 basamaklı basık havuz (§1.2a).
+  - **O5 gece kroması:** C\* ve h° hedef tablosu eklendi (§6a). Kaybın nedeni ölçüldü: ArsivKatmani `saturate .86` + sıcak siyah noktalı doğrusal kaldırma; simülasyon render değerlerini birebir veriyor. Gece derecelendirmesi yeniden tanımlandı (§8): doygunluk 1.0, siyah nokta `#12141c`, `max(in, bp)`.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/mekanlar.md, bolumler/evliya-ucuslari/katki-raporu.md
+- Kararlar: Hex hedefleri değişmedi, `tasarim.md` ile çelişki yok. Örtü yüksekliği 2.4 m korundu; taban saçakla genişlediği için eğim ≈ 27° oldu ve köşk görünümünde örtü görünmez hâle geldi (yalnız saçak + bacalar).
+- Açık: Gündüz derecelendirmesi aynı kayba açık; K2'de C\* oranı ölçülmeli. `renk_olcum.py`'ye C\* oranı ve Δh° sütunları eklenmeli (motion/teknisyen).
