@@ -1,0 +1,275 @@
+{
+ "kareler": [
+  {
+   "ad": "P08 p0 (Galata gündüz, cs 1)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K6/P08_p0_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "uzak şehir pus",
+     1000,
+     980,
+     "#a49c90"
+    ],
+    [
+     "Galata taşı ışıklı (tepe katı sağ)",
+     650,
+     700,
+     "#9a8f7e"
+    ],
+    [
+     "Galata taşı gölge",
+     300,
+     620,
+     "#6b6357"
+    ],
+    [
+     "kurşun külah gölge",
+     200,
+     150,
+     "#7c8288"
+    ],
+    [
+     "gök orta",
+     900,
+     450,
+     "#cfcfc4"
+    ],
+    [
+     "Boğaz şeridi",
+     840,
+     850,
+     "#7c9090"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "isik": [
+    [
+     "Hezarfen sarık kenar ışığı (B15)",
+     680,
+     700,
+     800,
+     810
+    ],
+    [
+     "Hezarfen gövde/kanat kenar ışığı (öneri, onay bekliyor)",
+     600,
+     800,
+     860,
+     1260
+    ]
+   ]
+  },
+  {
+   "ad": "P08 p44 (itme)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K6/P08_p44_tam.png",
+   "olcek": 1,
+   "noktalar": [],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "Hezarfen kaftan",
+     760,
+     700
+    ],
+    [
+     "katlı kanat (gün)",
+     560,
+     800
+    ]
+   ],
+   "isik": [
+    [
+     "Hezarfen sarık kenar ışığı (B15)",
+     600,
+     260,
+     840,
+     430
+    ],
+    [
+     "Hezarfen gövde/kanat kenar ışığı (öneri, onay bekliyor)",
+     480,
+     430,
+     1000,
+     1500
+    ]
+   ]
+  },
+  {
+   "ad": "P08 p148 (dip)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K6/P08_p148_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "gövde gölge (dip)",
+     300,
+     300,
+     "#6b6357"
+    ],
+    [
+     "dip sokak zemini",
+     400,
+     1700,
+     "#7a6c52"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "ad": "P01 p229 (kontra yürüyüş)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K6/P01_p229_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "seki üst yüz",
+     120,
+     1230,
+     "#7e7466"
+    ],
+    [
+     "uzak şehir pus",
+     1000,
+     980,
+     "#a49c90"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "isik": [
+    [
+     "Hezarfen sarık kenar ışığı (B15)",
+     320,
+     780,
+     470,
+     880
+    ],
+    [
+     "Hezarfen gövde/kanat kenar ışığı (öneri, onay bekliyor)",
+     220,
+     880,
+     560,
+     1290
+    ]
+   ]
+  },
+  {
+   "ad": "P12 p14",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K6/P12_p14_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "iç duvar gölge",
+     600,
+     250,
+     "#3a3430"
+    ],
+    [
+     "pencere dışı",
+     760,
+     700,
+     "#ece2c4"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "padişah el (ışıkta)",
+     680,
+     840
+    ]
+   ],
+   "isik": [
+    [
+     "pencere açıklığı + sütun + kanıt lekesi",
+     280,
+     350,
+     1080,
+     1400
+    ]
+   ]
+  },
+  {
+   "ad": "P12 p90 (ışık çizgisi gözde)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K6/P12_p90_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "padişah kaftan gölge",
+     300,
+     1100,
+     "#36302c"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "padişah kaftan (bant dışı)",
+     250,
+     1300
+    ]
+   ],
+   "isik": [
+    [
+     "yüz çizgisi + kaftan/kol bandı + yarık",
+     330,
+     0,
+     1080,
+     1920
+    ]
+   ]
+  }
+ ]
+}

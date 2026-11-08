@@ -240,8 +240,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
 
   // ---- Hezarfen ----
   const isikAd = String(param<string>(plan, "isik", "kontra"));
-  // K6 (B13, tasarım v1.7 §1.2): kontra siluet katmanı α .72 (≤ .75; eski .94 "gölge adam"), kaftan yeşili sezilsin
-  const siluet = param<number | undefined>(plan, "siluet", undefined) ?? (isikAd.includes("siluet") ? 0.72 : 0.3);
+  // K6 (B13, tasarım v1.7 §1.2): kontra siluet katmanı α .68 (≤ .75; .72 ile kaftan G−R 2.8 ölçüldü < 3; eski .94 "gölge adam"), kaftan yeşili sezilsin
+  const siluet = param<number | undefined>(plan, "siluet", undefined) ?? (isikAd.includes("siluet") ? 0.68 : 0.3);
   const hz = (plan.karakterler ?? []).find((c) => c.kim === "hezarfen");
   type HD = { pz: Poz; palet: ReturnType<typeof karakterBul>["palet"]; ayak: P; pxm: number; adimlar: number[]; ayaklar: { x: number; gy: number; h: number }[] };
   const adimTemas = (plan.temaslar ?? []).filter((t) => t.ses === "adim-tas").map((t) => t.kare);
@@ -343,7 +343,13 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     const kg = kanatGeo(0, pz.lean ?? 0, RIG_BIRIM_M, -400, -122, -56);
     const kanatIsik = 1 - siluet;
     const arka = <>{<KanatCiz pts={kg.uzak} katli={1} isik={kanatIsik} olcekEkran={(pz.scale ?? 1) * k.cs} uzak kat={kg.katli} aile="gun" />}{<KanatCiz pts={kg.yakin} katli={1} isik={kanatIsik} olcekEkran={(pz.scale ?? 1) * k.cs} kat={kg.katli} aile="gun" />}</>;
-    return <Kukla p={hd.palet} pz={pz} golgesiz isik={ki} arka={arka} />;
+    // K6 (B2): kanat Kukla'nın `arka` yuvası yerine aynı dönüşümle (pz.x/y · ölçek · bodyY · lean) figürün ARKASINA ayrı çizilir — `arka`
+    // yuvasında Chromium bazı karelerde (P08 p216/p240) kanadı hiç boyamıyordu (taban kopyada yok, maskelerde var → "hayalet")
+    const s0 = pz.scale ?? 1, f0 = pz.facing ?? 1;
+    return <g>
+      <g transform={`translate(${pz.x},${pz.y}) scale(${s0 * f0},${s0}) translate(0,${pz.bodyY ?? 0}) rotate(${pz.lean ?? 0},0,-226)`}>{arka}</g>
+      <Kukla p={hd.palet} pz={pz} golgesiz isik={ki} />
+    </g>;
   })() : null;
 
   const sahne = (
@@ -361,7 +367,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           katmanları (kanat, arka kol) düşürüp yarı saydam "hayalet" bırakıyordu. Kanat her karede opak; durum değişimi yok. */}
       {figur && <g>
         {figur}
-        {siluet > 0 && <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill={siluet >= 0.5 ? "#3a3a2e" : R.kontra} opacity={siluet} mask={`url(#${uid}fa)`} />}
+        {siluet > 0 && <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill={siluet >= 0.5 ? "#383b2e" : R.kontra} opacity={siluet} mask={`url(#${uid}fa)`} />}
         <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill={R.kenar} mask={`url(#${uid}km)`} />
       </g>}
       {/* taş (dudakta figürün 0.02 m önünde → onu örter; düşerken gövdenin önünde; yerde iki çatı arasındaki sokakta) */}
@@ -622,7 +628,7 @@ const Seki: React.FC<{ kn: (c: string, w?: number) => object }> = ({ kn }) => {
 };
 // ---------------- K6 toz (E4, mekanlar R4 §2.4, B5): 4 (+1 sekmede) düzensiz 6 loblu öbek, yerde kalır; halka/elips/beyaz yok ----------------
 // dx, r dekor (taşın çarpma x'ine göre). p0–8: 0.3r → r, yükselir; p8–28: yere iner (dy → −0.3r), basıklaşır (ry ×0.55), yayılır (rx ×1.25); sonra sabit.
-const TOZ_OBEK: { dx: number; r: number; tepe: number; gec?: boolean }[] = [{ dx: -45, r: 12, tepe: -24 }, { dx: -22, r: 18, tepe: -32 }, { dx: 8, r: 20, tepe: -28 }, { dx: 36, r: 12, tepe: -18 }, { dx: 30, r: 9, tepe: -12, gec: true }];
+const TOZ_OBEK: { dx: number; r: number; tepe: number; gec?: boolean }[] = [{ dx: -40, r: 12, tepe: -24 }, { dx: -22, r: 18, tepe: -32 }, { dx: 8, r: 20, tepe: -28 }, { dx: 36, r: 12, tepe: -18 }, { dx: 30, r: 9, tepe: -12, gec: true }];
 const Toz: React.FC<{ x: number; y: number; p: number; sekme: number }> = ({ x, y, p, sekme }) => (
   <g>
     {TOZ_OBEK.map((o, i) => {

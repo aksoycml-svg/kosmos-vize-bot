@@ -950,3 +950,68 @@
   - **Yönetmen (§7.8):** `sokak_bosluk_x` [560, 845] değeri kalabilir, anlamı artık "avlu içi çarpma koridoru" (önerilen ad `avlu_koridor_x`). Fiziksel sol sınır sur köşesi x 480. `alt_serit` metni ve sahne-plani P08 "çatılar" ifadesi güncellenmeli. Kamera p100–166 cs 2.0 / cx −260 / cy −5300 değişirse VP yeniden hesaplanmalı.
   - **Motion:** `SokakAgzi` yerine `SurAvlu` modülü (§8). Değerler §2.4b'de.
   - **Araştırmacı:** Merian 1635 / Lorichs 1559'da kule dibi; sur kolunun bağlanma açısı ve yüksekliği; mazgal; avlu zemini.
+
+## motion · 2026-11-08 · K4 kapanış (P12) + K5 tur 2 (GALATA-TEPE, Hezarfen rig) — K6
+- **Ne yaptım:**
+  - **P12:**
+    - A4: kaftan ışık bandı = yüzdeki çizgi genişliği (wFig); kıvrım yalnız dar yarıkta ±%15. Geniş yarıkta bant tüm gövdeyi kaplıyor (kuşakta koyu "kama" yok).
+    - A4: kanıt lekesi. Gölge ötelemesi 110 → 0.4 m × 340 × 1.73 ≈ 235 px. Leke şimdi kapı pervazı ile sırt arasındaki duvarda eğik şerit, içinde profil gölgesi var; boy planda (p14/p150) kadrajda.
+    - A5: kol gövde ışık katmanlarının üstünde yeniden çiziliyor (gölge tonu + kendi ışık bandı). Yen ve el ışıkta görünüyor.
+    - A5: elin kanada değdiği kare json `el-ahsap` temasından okunuyor (14). Avuç çizilen kanat kenarına konuyor. **p14'te el kanada değiyor** → foley kalsın, `belirsiz` kaldırılabilir.
+    - A7: boyun huni biçiminde (`#2a2420`), yuvarlak yaka kenarı kaftanla birleşiyor, ense saçı boyuna iniyor.
+    - `don` (100–130) ve `isaret` (135–175) json jestlerinden okunuyor ✓.
+  - **GALATA-TEPE:**
+    - B1: şehir satır döngüsü kaldırıldı. y 870–1100 tek ton pus, kıyı çizgisi seed 138. §2.3b tablosundaki evler elle yerleştirildi (ön eğim, ışıklı sağ kalça, saçak bandı, duvar); S1/S2 sokak yarıkları.
+    - B9: silindir yasası eksen 300, gerçek elips, a/A değerleri §2.3a. Korniş/saçak ∩, seki dudağı ∪. Külah apeks (300, −1260), ışıklı yüz 419–760 + 30 px II, 27 dikiş apekse tam boy; sırt çizgisi kaldırıldı. Duvar terminatörü 560–600, ışıklı 600–700; çıkıntı düz levha.
+    - B5 toz: 4+1 öbek, 6 loblu, yere oturuyor, halka yok. Ölçüm p170: ekran x 656–876 (taş merkezi ≈770: sol 114, sağ 106 px ≤ 130; IG sütunu x ≥ 920 dışında).
+    - B5 dip: §2.4 sokak ağzı çizildi. **Kullanıcı kararıyla dip mekânı K7'ye** (sur + avlu); ev köşesi/saçak çizimi olduğu gibi bırakıldı.
+    - B2: hayaletin iki kaynağı vardı.
+      - (1) Kukla `arka` yuvasındaki kanat Chromium'da bazı karelerde (p44/p216/p240) hiç boyanmıyordu. Taban figürde kanat yoktu, siluet/kenar kopyalarında vardı; sonuç yarı saydam hayalet. Kanat artık aynı dönüşümle figürün arkasına ayrı çiziliyor.
+      - (2) SVG filtreleri (flood/composite) alfa maskeleriyle değiştirildi. Aynı maskenin iki yerden kullanılması da arka katmanı düşürüyordu; kenar ışığı için ayrı kopya kullanılıyor.
+      - p44'teki "taş biçimli leke", aynı hatayla saydamlaşan arka eldi.
+      - İz kopyaları yalnız gövde şeridinde (|hız| > 40); kanat ve taş kopyalanmıyor.
+    - B3: düzlemde basan yürüyüş (analitik iki kemik IK).
+      - Basma kareleri json `adim-tas` temaslarından (229/246/262), yani ses ile aynı liste.
+      - Arka ayak kalkmadan önce parmak ucuna kalkıyor; konan ayak topukla değiyor.
+      - Kalça yüksekliği iki bacağın erişiminden hesaplanıyor; diz yere yaklaşmıyor.
+      - Konum pchip ile sürekli hız; anahtar karelerde durma yok.
+      - Her ayağın altında yumuşak çift elips temas gölgesi var. Golge'nin keskin "delik" çekirdeği kapatıldı.
+    - B8: itme taşı 30 px sürüyor ve bacak uzanıyor. Gövde 0.05 m öne kayıp 5° öne eğiliyor; arka ayak IK ile yerinde kalıyor. Taş p44–46'da dudakta öne/sağa 40°'ye devriliyor (p46 karesi). Sokak gölgesinde taş #8e8472.
+  - **Hezarfen rig:**
+    - B10: `sarik-basik` yeni yol. Alt ≈1.22 B, üst ≈1.04 B, yükseklik ≈0.51 B, 2 tümsek, öne taşma ≤ 2; kavuk ucu yok; 4 ters katman.
+    - B11: katlı kanat. Asimetrik ters damla (58 taşma, uç gövdenin 20 birim dışında), 3 kaburga (%85/68/50). Figür < 420 px ise yalnız tek kaburga.
+    - B12: Kukla'ya `sakalKutle`, `biyikKalin`, `biyikTasma` eklendi. Hezarfen değerleri 1 / 0.55 / 0; çene çizgileri sakal üstünde kapalı.
+    - B13: P01 B siluet α .68, dolgu `#383b2e`. Kaftan G−R = **+4.8** (P01 p229, x 285–340, y 1130–1190).
+  - **B15:** `renk_olcum.py` belgesine kenar ışığı = `isik` bölgesi kuralı eklendi. K6 ölçümünde sarık kutusu ayrı `isik` satırı olarak verildi.
+- **Dokunduğum dosyalar:** `src/kit/sablonlar/galata/GalataTepe.tsx`, `src/kit/sablonlar/sarayburnu/Ic.tsx`, `src/kit/props/padisah.tsx`, `src/kit/props/evliya.tsx`, `src/rig/Kukla.tsx`, `src/kit/paletler/evliya.ts`, `tools/renk_olcum.py`, `bolumler/evliya-ucuslari/kalibrasyon/K6/*` (15 kare × tam/güvenli/telefon, `telefon-sayfa.png`, `renk-olcum.json/.md`), bu rapor.
+- **Aldığım kararlar ve gerekçeleri (sapmalar tablo):**
+
+| Değer | Belge | Uygulanan | Gerekçe |
+|---|---|---|---|
+| P01 B siluet α | .72 (tasarım) | .68 | .72 ile kaftan G−R +2.8 (< 3) |
+| Kontra dolgu (kaftan) | `#3a3a2e` | `#383b2e` | α ≤ .75'te `#3a3a2e` ile ölçüt (G−R ≥ +3) tutmuyor |
+| Toz Ö1 dx | −45 | −40 | Lob taşmasıyla sol yarı genişlik 139 > 130 çıktı |
+| P12 gölge ötelemesi | (yok; 110 elle) | 235 px (0.4 m × 340 × 1.73) | Lekenin pervaz/duvara düşmesi; huzme duvara ≈30° yatık varsayımı [T] |
+| P12 el temas karesi | tb+6 = 10 | json `el-ahsap` = 14 | Temas = ses aynı listeden |
+| P01 B kalça x | json anahtarları 229: 481.5, 246: 672.8 | basışta iki ayağın ortası (229 ≈ 383, 246 ≈ 588) | Aşağıdaki json notu |
+
+- **Uyguladığım kurallar / yakaladığım ihlaller:**
+  - Temas = ses: basma ve el teması json temas listesinden.
+  - Hareket tamamlanır: taş dudakta devriliyor, toz yerde kalıyor.
+  - Nesne fade ile durum değiştirmez: kanat opak, hayalet giderildi.
+  - Tek ışık: bant = çizgi genişliği, leke aynı huzmeden.
+  - Ayak teması: düzlemde basan IK + ayak başına gölge.
+  - Güvenli alan: p148 taş + toz IG sütunu dışında (güvenli bindirmede 0 ihlal).
+  - Yakalanan ihlal (kit geneli): Kukla `arka` yuvası Chromium'da kare kare düşebiliyor. Kosk/Kiyi'de Lagâri kanadı da bu yuvadan çiziliyor, **o şablonlara dokunmadım; risk**.
+- **Açık sorular / bir sonraki ajana notlar:**
+  - **Yönetmen (json, değiştirmedim):**
+    - (1) P12 `el-ahsap` `belirsiz: true` → false (p14'te temas var).
+    - (2) P01 B ara x anahtarları (229: 481.5) fiziksel olarak imkânsız. İlk basışta gövde 0.75 m ilerlemiş olur, oysa arka ayak 0.71 m bacakla erişemez. Şablon ara anahtarları değil, başlangıç/bitiş + temas karelerini kullanıyor. Anahtarlar basış ortasına (≈383 / 588) çekilsin ya da adım sayısı artırılsın (4–5 adım daha doğal; şu an adım ≈0.8 m, geniş).
+    - (3) P12 `isik_serit {bas, bit}` şablonda okunmuyor: ışık pencere geometrisinden türüyor, çizgi `don`a kadar (≈p105) kalıyor.
+  - **Eleştirmen:**
+    - P01/P08 kenar ışığının imza bandı örnekleri: sarık 19–134, gövde/kanat 265–712. Maske düzeltmesiyle kenar ışığı her karede gerçekten çiziliyor; geçiş pikselleri imza bandına düşüyor. Gövde kenarı da `isik` sayılsın mı? Satırda "öneri, onay bekliyor" yazıyor.
+    - Kalan 4–5 örnek, K5'te kabul edilen güneş parlaması kenarı.
+  - **Mekân / K7:**
+    - B5 dip mekânı K7'ye (sur + avlu).
+    - Şu anki dip çizimi cs 1 karelerinin en altında (y 1837–1920, IG bandında) küçük kahverengi saçak dilimleri bırakıyor. K7'de kalkacak.
+  - **Uzak şehir:** öbekler telefonda küçük. "Tepeden bakış" okunuyor mu, eleştirmen baksın.

@@ -11,6 +11,9 @@ olcum.json:
                    "parcalar": [["Lagâri sarık", x, y], …],                         # imzaya ΔE76 (render'dan, kostüm parçası başına; ≥ 15)
                    "isik": [["pencere + havuz", x0, y0, x1, y1], …] } ] }            # K3 V9: ışık katmanı bölgeleri (tam boy) — imza bandındaki
                                                                                    # pikselleri AYRI satırda sayılır, oranın dışında tutulur (eleştirmen §2.1)
+                                                                                   # K6 (K5 B15): karakterin güneş KENAR IŞIĞI (Galata kontra: sarık kenarı
+                                                                                   # #f0d79a ve kenar–kumaş geçiş pikselleri) da bir `isik` bölgesidir — kare
+                                                                                   # başına sarık kutusu ayrı satır olarak verilir (ör. K6/renk-olcum.json)
 Ölçüm: 7x7 px ortalama (ölçekli karede). L* = CIELAB (D65), ΔE76 + ΔE2000, ΔH° = ton açısı farkı.
 Ayrıca: kırmızı piksel taraması (ton 340–12°, doygunluk > .5, parlaklık > .3) — kırmızı yalnız yazı katmanında olmalı.
 Hedef tolerans: |ΔL*| ≤ 8 (mekanlar.md §6); C* ≥ hedefin %70'i, Δh° ≤ ±20 (hedef C* < 5 ise h aranmaz) (mekanlar §6a).
