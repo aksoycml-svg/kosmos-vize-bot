@@ -412,13 +412,13 @@
     },
     "sol_grup": {
      "x": [
-      85,
-      160
+      70,
+      148
      ],
      "ayak_y": 1387,
      "figur_px": 50,
-     "sira": "soldan Y2 (x 92), Y1 meşaleli (x 110, meşale 118), Lagâri AYAKTA (x 130), demet (x 152)",
-     "not": "V4: P02 Lagâri ayakta, demet yanında; P03 p0 ile tutarlı (P03'te Y2 240, Y1 300, Lagâri 440 yürüyor, demet 520: aynı sıra). Ekran x≥105 (cs 0.97)"
+     "sira": "soldan Y2 (x 78), Y1 meşaleli (98, meşale 106), Lagâri AYAKTA (118), demet (138)",
+     "not": "V4 + mekanlar R2: grubun sağ ucu ≤ x 148 (köşk gövdesiyle ≥12 px), ayak y 1387 < köşk rıhtımı 1415; cs 0.97'de ekran x≥92; P03 p0 sırasıyla aynı"
     }
    },
    "sure_kare": 324,
@@ -462,7 +462,7 @@
     },
     {
      "kim": "lagari",
-     "x": 130,
+     "x": 118,
      "y": 1387,
      "olcek": 0.075,
      "yon": 1,
@@ -473,7 +473,7 @@
     },
     {
      "kim": "yardimci-1",
-     "x": 110,
+     "x": 98,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -482,7 +482,7 @@
     },
     {
      "kim": "yardimci-2",
-     "x": 92,
+     "x": 78,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -494,7 +494,7 @@
     {
      "tur": "fisek-demet",
      "id": "demet",
-     "x": 152,
+     "x": 138,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -504,7 +504,7 @@
     {
      "tur": "mesale",
      "id": "mesale1",
-     "x": 118,
+     "x": 106,
      "y": 1345,
      "olcek": 0.075,
      "kit_eksik": [
@@ -535,7 +535,7 @@
        1330,
        1450
       ],
-      "not": "V3 istisnası: üst üçte birin tek dolgusu şenlik; yazı alt banda, sol grubu (ekran x≈90-200, y≈1250-1370) örtmez: x ≥ 260 ve y ≥ 1330"
+      "not": "V3 istisnası: üst üçte birin tek dolgusu şenlik; yazı alt banda, sol grubu (ekran x≈90-200, y≈1250-1370; grup x 78-148) örtmez: x ≥ 260 ve y ≥ 1330"
      }
     }
    ],
@@ -599,7 +599,7 @@
      "db": 0
     }
    ],
-   "not": "Sol rıhtımda 4-5 px'lik grup P03 için kurulum nesnesidir (25 px telefonda ışık lekesi + demet silueti). [2026-11-08 mekanlar §7] Grup x 40-140, ayak y 1387, figür ≈50 px (olcek 0.075). [K3] cs 0.97 + grup x 90-160: sol grup ekran x≥103, sağ ön baca kadrajda. [K3] şenlik merkezi y 250/230, yarıçap ≈240 (üst yazı bandıyla kısmen örtüşür: arka plan etkisi, dokunuş değil). [K3] V3: ekran yazısı alt banda (kutu x 260-1000, y 1330-1450; sol grup açık). V4: Lagâri ayakta, grup sırası Y2,Y1,Lagâri,demet.",
+   "not": "Sol rıhtımda 4-5 px'lik grup P03 için kurulum nesnesidir (25 px telefonda ışık lekesi + demet silueti). [2026-11-08 mekanlar §7] Grup x 40-140, ayak y 1387, figür ≈50 px (olcek 0.075). [K3] cs 0.97 + grup x 90-160: sol grup ekran x≥103, sağ ön baca kadrajda. [K3] şenlik merkezi y 250/230, yarıçap ≈240 (üst yazı bandıyla kısmen örtüşür: arka plan etkisi, dokunuş değil). [K3] V3: ekran yazısı alt banda (kutu x 260-1000, y 1330-1450; sol grup açık). V4: Lagâri ayakta, grup sırası Y2,Y1,Lagâri,demet. [R2] grup x 78-138 (sağ uç ≤148).",
    "ayna": {
     "es": "P10",
     "kare": 0,
@@ -3912,7 +3912,7 @@
      "db": 0
     }
    ],
-   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok)."
+   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok). [mekanlar R2] yarık p50'den sonra kadraj dışı, şerit sağdan girer (mekân kabul etti); cx azaltılmadı: azalınca kapı sağ pervazı (ekran x≈267) ve işaret hedefi kadrajdan çıkar."
   },
   {
    "id": "P13",

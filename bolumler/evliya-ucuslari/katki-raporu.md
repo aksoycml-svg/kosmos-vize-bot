@@ -634,3 +634,4 @@
 - Kurallar: yazı bandı istisnası gerekçeli; kural 7 (P02/P10 render); P12'de hareket tamamlanır (kanat p30, işaret p170, plan 216).
 - Doğrulayıcı: P02/P10'da 0 hata; bölümde 10 hata, hepsi kurulmamış P12 `ic` görünümü/jestleri (pencere-kapat, don, pencere-kanat) ve P03/P04/P08-P09/P13-P14 parçaları.
 - Açık: motion: V1, V2 profil çizimi, V5, V6, V8, V9 ve K4 `ic` şablonu; eleştirmen: P02 yazı kutusu alt bantta EN/TR genişliği.
+- [yonetmen ek, mekanlar R2] P02 sol grup x 78-138 (Y2 78, Y1 98 + meşale 106, Lagâri ayakta 118, demet 138; sağ uç ≤ 148, ayak y 1387 < köşk rıhtımı 1415). P12 cx azaltılmadı (kapı sağ pervazı kadrajda kalsın). Dosyalar: bolum.json, sahne-plani.md.
