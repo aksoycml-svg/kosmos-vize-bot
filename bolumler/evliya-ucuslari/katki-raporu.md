@@ -105,3 +105,39 @@
 - Aldığım kararlar ve gerekçeleri: `WebFetch` bu oturumda tüm sitelerde DNS hatası verdi (TDV, Küre, Wikipedia + aynaları, arastirmax, istanbultarihi, Bilgi), hiçbir sayfa açılamadı. Bu yüzden her bilgi "arama özeti" etiketli; hiçbir madde "kesin" yapılmadı. Arama çıktısında cümle–bağlantı eşleşmesi belirsiz olan yerlerde "olası/aday" yazdım, kaynağı uydurarak tek bağlantıya bağlamadım. Çıkarımlar "çıkarım" etiketli (ör. Lagâri'nin sakalsız yüzünün genç/yeniçeri okunma riski; "ham kum" rengi).
 - Uyguladığım kurallar / yakaladığım kural ihlalleri: Tek kaynak = "tek kaynak"; açılamayan = "arama özeti"; bulunamayan = "doğrulanamadı → nötr kalsın". Yakalanan sorunlar: (1) tasarımdaki "kiremit" çatı dayanaksız (doğrulanamadı, 18. yy. öncesi eğimli çatı bile tartışmalı); (2) "kese = koyu deri" dayanaksız, kaynak kumaş torba der; (3) "cam yok" pencere notu yokluk iddiasıdır, saray revzeni 16. yy.'dan belgeli; (4) tasarımdaki "17. yy. fişekleri kömür/demir kıvılcımıyla altın-turuncu" cümlesi kaynaksızdı (yalnız zayıf bir ticari blog "1800 öncesi turuncu/altın" der); (5) "yıldız değil düşen çizgi" tarihî değil motif-tekilliği kararı (1582 Osmanlı şenliğinde yıldız türü geçer); (6) yeşil sarık seyyid/emir ayrıcalığı olduğundan hiçbir figürde (padişah siluet dahil) yeşil sarık olmamalı.
 - Açık sorular / bir sonraki ajana notlar: Tasarımcı şu düzeltmeleri yapmalı: çatı "kiremit" → "koyu toprak, tek ton"; kese "deri" → "bez/nötr"; "cam yok" → "cam çizilmez (nötr)"; fişek sargı çizgileri kalksın ("kâğıt" iddiası yok); sikke 0,022 m. Tutan varsayımlar: krem/gri-bej sarık, sakal/bıyık ayrımı (iddiasız), yazı yüzeyi (masa ayağı/kenarı çizilmez), renksiz şenlik fişeği, sikke ölçüsü. Ağ izni gelirse öncelik: Ralamb albümü makalesi, Karateke/Bilgi 1675 (fişek kılıfı), Millî Saraylar revzen makalesi, Merian 1635 çatı ayrıntısı. Akçe çapı hâlâ doğrulanamadı.
+
+## mekan-sorumlusu · 2026-11-08 · mekanlar.md (kurulum ekibi adım 5b: 4 şablonun mimari kartı + doku + ışık)
+- Ne yaptım: `mekanlar.md` yazıldı.
+  - Ortak sistem: kamera/parallaks kuralı, mesafe-ayrıntı tablosu, 3 doku katmanı, seed, yeni `osmanli` kemer tipi, tarama yerleri, görünüm başına tek kaynaklı ışık ve gölge vektörü, İstanbul imza kararı.
+  - KE-S1 SARAYBURNU: İncili Köşk mimari kartı + 4 görünüm (kıyı, köşk, insert, iç).
+  - KE-S2 GALATA-TEPE: mimari kart, katmanlar, vinç şeridi.
+  - KE-S3 BOGAZ: panorama.
+  - KE-S4 KITAP-INSERT: rahle.
+  - Ayrıca 360x640 okunurluk tablosu, renk ölçüm tablosu, yönetmene ve motion'a notlar.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/mekanlar.md (yeni), bolumler/evliya-ucuslari/katki-raporu.md (bu ek).
+- Aldığım kararlar ve gerekçeleri:
+  - **Ölçek fizikten türetildi:**
+    - Kıyıdaki köşk 17 px/m (su çizgisi y 762, üst 534); sahne-planındaki 900/640 ufuk kuralına aykırı.
+    - Köşk görünümü 85 px/m. P10 cs 2.4'e çıkmalı, padişah %12 başka türlü fiziksel olarak tutmuyor.
+    - BOGAZ'da Hezarfen derinlikle büyür (10 → 130 px).
+  - **Kamera yönleri güneşten türetildi:** Galata 20°, Boğaz 0°, köşk 235°, insert 155°, iç 35°. Bunun sonucu olarak P11'de ışık soldan, P07'de sağdan gelir: ayna ters döner.
+  - **P12 huzmesi geometriden çıkar:** yarığın üst ucu göz hizasına (y 739) iner.
+  - **Galata:** tepe katında yarım daire kemer (doğrulanmalı), korkuluk yok (kanıtsız ve ayakları örterdi), seki + çıkıntı. Külah nötr koni (h = çap); dik olduğu için alçak kameradan yüzeyi görünür.
+  - **Köşk:** basık-sivri Osmanlı kemeri (gotik `sivri` değil), basık piramit-kubbe arası nötr örtü, kurşun gri. Kare kesitli taş bacalar, demet silindirine benzemez.
+  - **Kubbe/minare silueti çizilmedi** (kanıtsız; seçilen yönlerde kadraj dışı).
+  - **Minyatür düz alan kuralı gereği** TasDuvar'ın bulutlanma katmanı bu bölümde kapalı.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Ufuk–ölçek, kamera yüksekliği (çatı ve kubbe yüzeyi görünmez, saçak altı görünür), tek ışık kaynağı, ölü alan, güvenli alan, görüntüde dil yok, kanıtsız → nötr.
+  - **Yakalanan ihlaller:**
+    - (1) Tasarım paletindeki ot `#a8a07a` imza demet rengine ΔE76 12.4 uzaklıkta (< 15). Öneri `#989c76`, karar tasarımcının.
+    - (2) BOGAZ'da iniş x 1800, pan cx 500 → −500 ile hiç kadraja girmiyor.
+    - (3) P12 kapısı x≈120'de kadraj dışında kalıyor. Zemin, minder ve zemin ışık lekesi o kameralarda hiç görünmüyor.
+    - (4) P02 şenlik y 600 köşk cephesinin önüne düşüyor.
+    - (5) P13 defter d3 y 1650 alt güvenli alanda.
+    - (6) `tasarim.md` §4.10'daki pencere kanadı ekran ölçüsü (576 px) ile sahne-planındaki pencere boyu tutarsız (cs 2.2'de ≈ 926 px).
+- Açık sorular / bir sonraki ajana notlar:
+  - Yönetmen: `mekanlar.md` §7'deki 7 önerinin `bolum.json`'a işlenmesi.
+  - Tasarımcı: ot rengi ve yeni hex listesinin onayı (§8: ağaç, konut duvarı, sur, Asya kıyısı, su orta).
+  - Kullanıcı: P01 A ilk karesinde minare silueti yok (varsayılan: eklenmez).
+  - Araştırmacı (sonra): Galata kemer tipi, köşk örtüsü, sur tuğla hatılı, Galata gövde yarıkları.
+  - Motion: kalibrasyon sırası §8 (P05/P06 → P11/P07 → P02/P10 → P08).
