@@ -83,6 +83,15 @@ for (const plan of B.planlar ?? []) {
   if (plan.sablon === "SOKAK" && prm.saat === "gun" && prm.sehir !== "bordeaux") H(Y, "SOKAK gün yalnız bordeaux (paris yalnız gece)");
   // Evliya: kurulmamış görünüm/saat render'da hata verir (yer tutucu çizilmez)
   if (S.kurulu && prm.gorunum !== undefined && !(S.kurulu[prm.gorunum] ?? []).includes(prm.saat)) H(Y, `${plan.sablon} gorunum "${prm.gorunum}" / saat "${prm.saat}" henüz kurulmadı (kurulu: ${Object.entries(S.kurulu).map(([g, s]) => `${g}+${s.join("/")}`).join(", ")})`);
+  // K3 kosk: şenlik fişeği (E2) — bas < patlama, düşme plan sonundan ≥ bitiş payı önce biter, patlama karesinde temas (görünür → ses)
+  if (plan.sablon === "SARAYBURNU" && Array.isArray(prm.senlik)) prm.senlik.forEach((sn, i) => {
+    const y = `${Y} senlik ${i + 1}`;
+    if (!(sn.bas < sn.patlama)) H(y, "bas < patlama olmalı");
+    bitis(y, "şenlik düşüşü (patlama + dusme_kare)", sn.patlama + (sn.dusme_kare ?? 70));
+    if (!temasVar(plan, sn.patlama, 1)) H(y, `patlama p${sn.patlama}: temas yok (görünür patlama = ses)`);
+    if (prm.gorunum !== "kosk") U(y, "senlik yalnız kosk görünümünde çizilir");
+  });
+  if (plan.sablon === "SARAYBURNU" && prm.gorunum === "kosk" && prm.padisah?.bas_aci && typeof prm.padisah.bas_aci === "object") { const b = prm.padisah.bas_aci; if (!(Array.isArray(b.kare) && b.kare.length === (b.deger ?? []).length && b.kare.length > 1)) H(`${Y} padisah`, "bas_aci {kare, deger} eşit uzunlukta dizi olmalı"); else { artan(`${Y} padisah bas_aci`, b.kare); bitis(`${Y} padisah`, "baş çevirme", son(b.kare)); } }
   if (plan.sablon === "SOKAK" && prm.insert) { if (prm.insert.tur !== "fare") H(Y, "insert.tur yalnız 'fare'"); if (prm.insert.bas + 66 > sure) H(Y, `fare insert'i (66 kare) plan sonunu aşıyor`); }
   if (plan.sablon === "KULE-DIS") {
     const kl = prm.kuleler ?? [];
@@ -145,7 +154,9 @@ for (const plan of B.planlar ?? []) {
       if (c.x === undefined && !c.bagli) H(y, "x/y yok (SARAYBURNU konum dili: dekor px, zemin teması)");
       if (c.bagli && !(plan.props ?? []).some((q) => q.id === c.bagli.prop)) H(y, `bagli.prop "${c.bagli.prop}" planda yok`);
       if (c.bagli?.bit !== undefined) { if (!(c.bagli.bit > 0 && c.bagli.bit < sure)) H(y, `bagli.bit ${c.bagli.bit} plan içinde değil`); else bitis(y, "bırakma (bagli.bit)", c.bagli.bit); if (!temasVar(plan, c.bagli.bit, 2)) U(y, `bırakma p${c.bagli.bit}: temas yok`); }
-      if (c.poz === "oturan" && !c.bagli && !(c.jestler ?? []).some((j) => j.ad === "ucus")) U(y, "poz oturan ama bagli yok: oturak/dayama bilinmez, ayaklar havada kalır — bagli {prop} ver ya da süreyi böl");
+      // K3 kosk: aynı x'te (±0.5 m) fisek-demet varsa oturan karakter demetin oturağına bağlanır (sol uzak grup)
+      const koskDemet = prm.gorunum === "kosk" && (plan.props ?? []).some((q) => q.tur === "fisek-demet" && Math.abs((dizi(q.x)[0] ?? 0) - (dizi(c.x)[0] ?? -999)) <= 0.5 * 406.7 * (dizi(c.olcek)[0] ?? 0.075));
+      if (c.poz === "oturan" && !c.bagli && !koskDemet && !(c.jestler ?? []).some((j) => j.ad === "ucus")) U(y, "poz oturan ama bagli yok: oturak/dayama bilinmez, ayaklar havada kalır — bagli {prop} ver ya da süreyi böl");
       if (prm.gorunum === "kiyi" && c.olcek !== undefined && !c.bagli) {
         const ys = dizi(c.y), os = dizi(c.olcek);
         ys.forEach((yy, i) => { const o = os[Math.min(i, os.length - 1)]; if (yy >= 1256 && Math.abs(o - (yy - 720) / 610) / ((yy - 720) / 610) > 0.08) U(y, `ufuk–ölçek: y ${yy} rıhtımda → ölçek ${((yy - 720) / 610).toFixed(2)} (json olcek ${o} yok sayılır)`); });

@@ -160,11 +160,12 @@ Tek karakter yakın (rig `yakin` yüz), arka başka şablonun bulanık sahnesi.
 - 1 karakter; `z/u` yok sayılır. `esne` jesti burada kocaman `esneme` ağzı verir (K2).
 - `manipulator` (K2): `{ileri: [x, y] rig yerel (175, −280), yari (72)}` — göğüs önünde kumanda kolu; it-çek fazı kolu döndürür, el IK ile tutamakta; kablolar kadraj üstüne. Kol jest dışında da elde kalır (süreklilik).
 
-## SARAYBURNU (Evliya, İstanbul 1630'lar — kurulu: `kiyi` + `gece` (K1), `insert` + `gece`/`gun` (K2))
+## SARAYBURNU (Evliya, İstanbul 1630'lar — kurulu: `kiyi` + `gece` (K1), `insert` + `gece`/`gun` (K2), `kosk` + `gece`/`gun` (K3))
 Sinan Paşa (İncili) Köşkü kıyısı (mekanlar.md §1). `src/kit/sablonlar/sarayburnu/`. Kurulmamış görünüm/saat render'da AÇIK HATA verir; doğrulayıcı da HATA.
 | parametre | değerler |
 |---|---|
-| `gorunum` * | `kiyi` (KURULU, gece) · `insert` (KURULU, gece+gün) · `kosk` · `ic` (sonraki kalibrasyonlar) |
+| `gorunum` * | `kiyi` (KURULU, gece) · `insert` (KURULU, gece+gün) · `kosk` (KURULU K3, gece+gün; P02/P10 aynı dekor) · `ic` (sonraki kalibrasyon) |
+| `kosk` parametreleri | `senlik [{x,y,bas,patlama,yaricap,dusme_kare}]` (E2 düşen çizgi, köşk arkasında; patlama karesinde temas zorunlu) · `pencere_isigi` · `padisah {renk, kenar_isik, bas_aci: sayı \| {kare, deger}}` (karakter `padisah` = `PadisahSiluet`, Kukla değil; yoksa `bak` jesti) · `kosk_konum.pencere_x/y` (mekanlar §1.3 ile aynı olmalı) · sol uzak grup: karakter `olcek` × 406.7 px/m, `poz oturan` + aynı x'te `fisek-demet` → demete bağlı |
 | `saat` * | `gece` · `gun` (gün = arşiv `gunduzMineral`) |
 | `fitil` | `{bas, bit}` kıvılcım x 330'dan demet ağzına yürür (4 köşeli yıldız; yalnız burada) |
 | `puskurme` | `{bas, bit, sonuk}` demet ağızlarından püskürme; bas+6'dan anahtar ışık püskürme (meşale gölge payını devreder); yerdeyken zemine çarpan alev + kıvılcım, duman |

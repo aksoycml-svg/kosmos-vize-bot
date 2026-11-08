@@ -145,19 +145,84 @@ export const TacSicrama: React.FC<{ x: number; y: number; H: number; W: number; 
     if ((yari === "on" && !on) || (yari === "arka" && on)) continue;
     const bx = x + Math.cos(a) * rx, by = y + Math.sin(a) * ry;
     const h = H * yuk * (0.75 + 0.45 * rnd(seed, `h${i}`)) * (on ? 1 : 0.85);
-    const egim = Math.cos(a) * W * 0.12 * (0.5 + t);
-    const w = Math.max(2.5, W * 0.085 * (1 - 0.4 * t));
+    // K1 Y10 (buz/diken okunuyordu): dil = dışa kavislenen SU ŞERİDİ; kenarlar Bézier (düz kenar yok), ucu yuvarlak damla (koni ucu yok).
+    // Kavis: taban → dışa yatar → uç biraz daha dışa kıvrılır (taç yaprağı). Dolgu #a9bccb, kenar açık ton (düz beyaz değil).
+    const dis = Math.cos(a) >= 0 ? 1 : -1;
+    const egim = Math.cos(a) * W * 0.22 * (0.6 + t) + dis * W * 0.05;   // taç: diller dışa açılır
+    const w = Math.max(2, W * 0.05 * (1 - 0.35 * t));                      // ince şerit (taban yarı eni)
     const uc: P = [bx + egim, by - h];
-    diller.push(<path key={`d${i}`} d={`M ${bx - w} ${by} Q ${bx - w * 0.3 + egim * 0.4} ${by - h * 0.55} ${uc[0]} ${uc[1]} Q ${bx + w * 0.3 + egim * 0.4} ${by - h * 0.55} ${bx + w} ${by} Z`} fill="#a9bccb" stroke="#e6eef0" strokeWidth={Math.max(1, w * 0.25)} strokeLinejoin="round" />);
+    const r = Math.max(2, w * 1.15);                                       // uçta yuvarlak damla (şeritten kalın: "boncuk")
+    const kol: P = [bx + egim * 0.15, by - h * 0.6];
+    diller.push(<g key={`d${i}`}>
+      <path d={`M ${bx - w} ${by} C ${bx - w * 0.8} ${by - h * 0.35} ${kol[0] - w * 0.45} ${kol[1]} ${uc[0] - w * 0.3} ${uc[1] + r * 0.8} L ${uc[0] + w * 0.3} ${uc[1] + r * 0.8} C ${kol[0] + w * 0.45} ${kol[1] + h * 0.06} ${bx + w * 0.8} ${by - h * 0.3} ${bx + w} ${by} Z`} fill="#a9bccb" stroke="#c9d6de" strokeWidth={Math.max(0.8, w * 0.35)} strokeLinejoin="round" />
+      <circle cx={uc[0]} cy={uc[1]} r={r} fill="#a9bccb" stroke="#c9d6de" strokeWidth={Math.max(0.8, w * 0.35)} />
+    </g>);
     if (t > 0.35) {
       // uçtan kopan damla: kopma anındaki uçtan parabol (suya dönünce biter)
       const td = (t - 0.35) / 0.65, vx = Math.cos(a) * W * 0.5, vy = -H * 0.9;
       const dx = uc[0] + vx * td, dy = by - H * 0.95 * (0.75 + 0.45 * rnd(seed, `h${i}`)) + vy * td + H * 3.2 * td * td;
-      if (dy < y + ry) damlalar.push(<path key={`k${i}`} d={`M ${dx} ${dy - w * 0.9} q ${w * 0.7} ${w * 1.1} 0 ${w * 1.6} q ${-w * 0.7} ${-w * 0.5} 0 ${-w * 1.6} Z`} fill="#a9bccb" stroke="#e6eef0" strokeWidth={Math.max(0.8, w * 0.2)} />);
+      if (dy < y + ry) damlalar.push(<path key={`k${i}`} d={`M ${dx} ${dy - w * 0.9} C ${dx + w * 0.35} ${dy - w * 0.2} ${dx + w * 0.75} ${dy + w * 0.35} ${dx} ${dy + w * 0.75} C ${dx - w * 0.75} ${dy + w * 0.35} ${dx - w * 0.35} ${dy - w * 0.2} ${dx} ${dy - w * 0.9} Z`} fill="#a9bccb" stroke="#c9d6de" strokeWidth={Math.max(0.8, w * 0.2)} />);
     }
   }
+  const duvarH = H * 0.22 * yuk;
+  const duvar = (on: boolean) => { const pts: P[] = []; for (let j = 0; j <= 24; j++) { const a = on ? (Math.PI * j) / 24 : Math.PI + (Math.PI * j) / 24; pts.push([x + Math.cos(a) * rx, y + Math.sin(a) * ry]); } const ust = pts.map(([px, py]) => [px, py - duvarH * (0.7 + 0.3 * Math.sin(px * 0.3))] as P).reverse(); return <polygon points={poly([...pts, ...ust])} fill="#a9bccb" opacity={0.75} stroke="#c9d6de" strokeWidth={1} />; };
   return <g>
+    {yari !== "on" && duvar(false)}
+    {yari !== "arka" && duvar(true)}
     {yari !== "on" && <ellipse cx={x} cy={y} rx={rx} ry={ry} fill="none" stroke="#e6eef0" strokeWidth={Math.max(1.2, W * 0.03 * (1 - t))} strokeOpacity={0.8} />}
     {diller}{damlalar}
   </g>;
+};
+
+// ===== E2 şenlik fişeği (tasarim v1.4 §5; mekanlar §1.3) — renksiz saman tonu, "DÜŞEN ÇİZGİ" (söğüt) =====
+// Yükselen ince iz (2–3 px, başında küçük nokta; 4 köşeli yıldız YOK: o fitil kıvılcımının imzası) → patlama karesinde merkezden
+// 18–24 kavisli çizgi dışa açılır, sürtünmeyle yavaşlar, yerçekimiyle sarkar (söğüt). Sönme: çizgi kısalır + ucu #e8d6a0 → #8a7a5a
+// koyulaşır (fade yok); alt uçlar köşk/ağaç katmanının ARKASINA iner (çağıran katman sırasıyla). Patlama karesinde çizgiler görünür
+// (temas = ses o karede). Süre `dusme` kare (70) — plan sonundan ≥ 12 kare önce biter (doğrulayıcı).
+export type SenlikTanim = { x: number; y: number; bas: number; patlama: number; yaricap: number; dusme_kare?: number; cikis_y?: number };
+export const senlikCizgileri = (s: SenlikTanim, p: number, seed: number): { iz: P[] | null; cizgiler: { pts: P[]; t: number }[]; tau: number } => {
+  const T = s.dusme_kare ?? 70, R = s.yaricap;
+  if (p < s.bas) return { iz: null, cizgiler: [], tau: -1 };
+  if (p < s.patlama) {
+    // yükseliş: köşkün arkasından (cikis_y) merkeze, yavaşlayarak; iz 10 karelik yol
+    const y0 = s.cikis_y ?? s.y + 420, x0 = s.x + (rnd(seed, "sx") - 0.5) * 40;
+    const at = (q: number): P => { const u = Math.max(0, Math.min(1, (q - s.bas) / (s.patlama - s.bas))); const e = 1 - (1 - u) ** 2; return [x0 + (s.x - x0) * e, y0 + (s.y - y0) * e]; };
+    return { iz: Array.from({ length: 7 }).map((_, i) => at(p - i * 1.6)), cizgiler: [], tau: -1 };
+  }
+  const tau = p - s.patlama + 2; // patlama karesinde çizgiler zaten açılmış (ses o karede)
+  if (tau > T) return { iz: null, cizgiler: [], tau };
+  const N = 18 + Math.floor(rnd(seed, "n") * 7);
+  const g = (0.11 * R) / 240; // px/kare² (R 240'ta 20. karede ≈ 45 px, 70'te ≈ 540 px sarkma: söğüt; alt uçlar köşk arkasına iner)
+  const yol = (a: number, v: number, q: number): P => { const s0 = v * (1 - Math.exp(-q / 7)); return [s.x + Math.cos(a) * s0, s.y + Math.sin(a) * s0 * 0.92 + g * q * q]; };
+  const cizgiler: { pts: P[]; t: number }[] = [];
+  for (let i = 0; i < N; i++) {
+    const a = (Math.PI * 2 * i) / N + (rnd(seed, `a${i}`) - 0.5) * 0.25;
+    const v = R * (0.82 + 0.3 * rnd(seed, `v${i}`));
+    const omur = T * (0.78 + 0.22 * rnd(seed, `o${i}`));
+    if (tau > omur) continue;
+    const t = tau / omur;
+    // iz boyu (kare): patlama anında KISA (merkez boş, kısa çizgi halkası: yıldız/küre okunmaz), açılırken uzar, sönerken kısalır
+    const L = Math.max(0, Math.min(tau * 0.45, 18 * (1 - t) ** 0.7 + 2));
+    cizgiler.push({ pts: Array.from({ length: 9 }).map((_, k) => yol(a, v, tau - (L * k) / 8)), t });
+  }
+  return { iz: null, cizgiler, tau };
+};
+export const SenlikFisegi: React.FC<{ s: SenlikTanim; p: number; seed: number; kalin?: number }> = ({ s, p, seed, kalin = 3 }) => {
+  const { iz, cizgiler } = senlikCizgileri(s, p, seed);
+  const kar = (t: number) => { const a = [0xe8, 0xd6, 0xa0], b = [0x8a, 0x7a, 0x5a]; const c = a.map((v, i) => Math.round(v + (b[i] - v) * Math.min(1, t * 1.15))); return `rgb(${c[0]},${c[1]},${c[2]})`; };
+  return (
+    <g>
+      {iz && <>
+        <polyline points={poly(iz)} stroke="#e8d6a0" strokeWidth={kalin * 0.75} fill="none" strokeLinecap="round" strokeOpacity={0.85} />
+        <circle cx={iz[0][0]} cy={iz[0][1]} r={kalin * 0.9} fill="#f4e6bc" />
+      </>}
+      {cizgiler.map((c, i) => (
+        <g key={i}>
+          {/* gövde (koyu, kuyruk) + baş (açık, kısa) → uç koyulaşarak söner */}
+          <polyline points={poly(c.pts)} stroke={kar(0.55 + 0.45 * c.t)} strokeWidth={kalin * (1 - 0.35 * c.t)} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <polyline points={poly(c.pts.slice(0, 4))} stroke={kar(c.t)} strokeWidth={kalin * (1.15 - 0.4 * c.t)} fill="none" strokeLinecap="round" />
+        </g>
+      ))}
+    </g>
+  );
 };

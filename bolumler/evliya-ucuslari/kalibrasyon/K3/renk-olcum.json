@@ -1,0 +1,198 @@
+{
+ "kareler": [
+  {
+   "ad": "P02 p80 (gece)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K3/P02_p80_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "gece gök orta",
+     540,
+     300,
+     "#1c2232"
+    ],
+    [
+     "gece deniz (kolon dışı)",
+     300,
+     1760,
+     "#161c26"
+    ],
+    [
+     "gece köşk cephesi (altyapı)",
+     953,
+     1191,
+     "#4e4a46"
+    ],
+    [
+     "köşk önü rıhtım ön yüzü",
+     944,
+     1448,
+     "#45444a"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     140,
+     1320,
+     177,
+     1368
+    ]
+   },
+   "parcalar": [
+    [
+     "padişah sarığı (gece, arkadan ışık)",
+     556,
+     762
+    ],
+    [
+     "köşk cephesi gece",
+     953,
+     1191
+    ]
+   ]
+  },
+  {
+   "ad": "P10 p0 (gün)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K3/P10_p0_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "gündüz gök orta",
+     540,
+     300,
+     "#cfcfc4"
+    ],
+    [
+     "gün deniz (yansıma dışı, köşk solu)",
+     170,
+     1650,
+     "#5e7378"
+    ],
+    [
+     "köşk gündüz (altyapı)",
+     950,
+     1250,
+     "#b4a88e"
+    ],
+    [
+     "kemer içi gün",
+     351,
+     1293,
+     "#3a3430"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     1,
+     1
+    ]
+   },
+   "parcalar": [
+    [
+     "köşk cephe gün",
+     950,
+     1250
+    ],
+    [
+     "köşk ana kat gün",
+     684,
+     726
+    ],
+    [
+     "padişah sarığı (gün)",
+     555,
+     756
+    ],
+    [
+     "rıhtım ön yüzü gün",
+     936,
+     1428
+    ]
+   ]
+  },
+  {
+   "ad": "P10 p280 (gün, cs 2.4)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K3/P10_p280_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "köşk altyapı gün (yakın, cs 2.4)",
+     560,
+     1476,
+     "#b4a88e"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     1,
+     1
+    ]
+   },
+   "parcalar": [
+    [
+     "padişah sarığı (gün, yakın)",
+     553,
+     835
+    ],
+    [
+     "padişah gövde",
+     560,
+     972
+    ],
+    [
+     "cumba ahşap",
+     320,
+     1236
+    ],
+    [
+     "köşk altyapı gün (yakın)",
+     560,
+     1476
+    ]
+   ]
+  },
+  {
+   "ad": "P11 p192 (gün, sikke parlama)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K3/P11_p192_tam.png",
+   "olcek": 1,
+   "noktalar": [],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     1,
+     1
+    ]
+   },
+   "parcalar": [
+    [
+     "altın sikke parlama (en açık yüz)",
+     772,
+     1404
+    ],
+    [
+     "altın sikke parlama (yüz, halka yanı)",
+     778,
+     1396
+    ],
+    [
+     "altın sikke parlama (alt yüz)",
+     790,
+     1418
+    ]
+   ]
+  }
+ ]
+}

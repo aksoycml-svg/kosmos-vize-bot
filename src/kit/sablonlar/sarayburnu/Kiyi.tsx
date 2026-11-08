@@ -68,7 +68,7 @@ const karis = (pz: Poz, h: Partial<Poz>, w: number) => {
   if (w <= 0) return;
   for (const [k, v] of Object.entries(h)) { if (typeof v !== "number") continue; const a = ((pz as unknown as Record<string, number | undefined>)[k]) ?? 0; (pz as Record<string, unknown>)[k] = a + (v - a) * w; }
 };
-const OTURAN: Partial<Poz> = { thighF: -84, kneeF: 78, thighB: -84, kneeB: 78, footF: 0, footB: 0, bodyY: 110, lean: 4 };
+export const OTURAN: Partial<Poz> = { thighF: -84, kneeF: 78, thighB: -84, kneeB: 78, footF: 0, footB: 0, bodyY: 110, lean: 4 };
 const UCUS: Partial<Poz> = { lean: 30, thighF: 18, kneeF: 16, thighB: 26, kneeB: 10, footF: 28, footB: 28, bodyY: 0 };
 // sicra (O10): gövde geri (lean −12), iki ayakla küçük geri adım; serbest kol (arka 3/4'te YAKIN kol) yüze kalkar
 const SICRA: Partial<Poz> = { lean: -12, thighF: -12, kneeF: 14, thighB: 12, kneeB: 6, headTilt: -8 };

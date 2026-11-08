@@ -275,20 +275,36 @@ export const KanatCiz: React.FC<{ pts: P[]; katli: number; isik: number; olcekEk
 };
 // Suda kanat (KE-P2s): açık biçim su yüzüne yatık (dikey basık), %40'ı su çizgisinin üstünde, ±4 px dalga, kesik dalga çizgisi üstünden geçer,
 // altında amber kenar 2 px. Fade ile kaybolmaz; plan sonuna dek yerinde.
-export const SudaKanat: React.FC<{ x: number; y: number; pxm: number; p: number; seed: number; kenar: string }> = ({ x, y, pxm, p, seed, kenar }) => {
+// v2 (K1-2 Y11: "kalas/sopa" okunuyordu): kanat EĞİK BATAR — kök tarafı suyun altında, UÇ ve 3 parmak yukarıda (eğim ≈ 18°, ±1.5° salınım).
+// Suyun üstü: inen ön kenar + uç parmak silueti (dolgu #302c2a + amber kenar), su çizgisinin altı: koyu gölge (#0c1018 α .55, ayrıntısız).
+// Biçim kanat profilinin kendisi (dikey 0.72 basık: kısmen yatık düzlem) → 360 px'te "kanat ucu" okunur. x,y = su çizgisi noktası (halka merkezi).
+export const SudaKanat: React.FC<{ x: number; y: number; pxm: number; p: number; seed: number; kenar: string; egim?: number }> = ({ x, y, pxm, p, seed, kenar, egim = 20 }) => {
   const id = "sk" + React.useId().replace(/:/g, "");
   const L = (KANAT_M.aciklik / 2) * pxm, c = KANAT_M.kok * KANAT_M.aciklik * pxm;
   const sal = 4 * Math.sin(p * 0.11 + seed);
-  const pts = kanatAcikNoktalar({ kok: [0, 0], aci: 180, L, c }).map(([px_, py]) => [x + px_ + L * 0.5, y + sal + py * 0.5 - c * 0.08] as P);
-  const ys = pts.map((q) => q[1]), ust = Math.min(...ys), alt = Math.max(...ys), suY = ust + (alt - ust) * 0.4;
+  const a = ((egim + 1.5 * Math.sin(p * 0.07 + seed * 0.3)) * Math.PI) / 180;
+  // kanat sola uzanır (uç solda); kök su çizgisinin 0.12 c altında, uç yukarı kalkar (ekranda +a döndürme: (−1,0) → (−cos, −sin))
+  const yerel = kanatAcikNoktalar({ kok: [0, 0], aci: 180, L, c }).map(([qx, qy]) => [qx, qy * 0.9] as P);
+  const pts = yerel.map(([qx, qy]) => [x + L * 0.42 + qx * Math.cos(a) - qy * Math.sin(a), y + sal + 0.12 * c + qx * Math.sin(a) + qy * Math.cos(a)] as P);
+  const suY = y + sal;
+  const d = yumusakYol(pts);
   return (
     <g>
-      <defs><clipPath id={`${id}c`}><rect x={x - 3 * L} y={suY - 4 * L} width={6 * L} height={4 * L} /></clipPath></defs>
-      <g clipPath={`url(#${id}c)`}>
-        <path d={yumusakYol(pts)} fill={KANAT_TON.gece.alt} stroke={ink(KANAT_TON.gece.alt)} strokeWidth={2} />
-        <path d={yumusakYol(pts)} fill="none" stroke={kenar} strokeWidth={2} strokeOpacity={0.7} transform="translate(0,1.5)" />
+      <defs>
+        <clipPath id={`${id}u`}><rect x={x - 3 * L} y={suY - 4 * L} width={6 * L} height={4 * L} /></clipPath>
+        <clipPath id={`${id}a`}><rect x={x - 3 * L} y={suY} width={6 * L} height={4 * L} /></clipPath>
+      </defs>
+      {/* su altı: koyu gölge kütle (biçim sezilir, ayrıntı yok) */}
+      <path d={d} fill="#0c1018" opacity={0.55} clipPath={`url(#${id}a)`} />
+      {/* su üstü: uç + parmaklar + inen ön kenar */}
+      <g clipPath={`url(#${id}u)`}>
+        <path d={d} fill={KANAT_TON.gece.alt} stroke={ink(KANAT_TON.gece.alt)} strokeWidth={Math.max(1, 0.025 * pxm)} strokeLinejoin="round" />
+        {/* amber kenar (meşale yanı) yalnız ön kenarda: ince, içte */}
+        <path d={yumusakYol(pts.slice(0, 26), false)} fill="none" stroke={kenar} strokeWidth={Math.max(0.8, 0.02 * pxm)} strokeOpacity={0.8} transform={`translate(0,${0.015 * pxm})`} />
       </g>
-      <line x1={x - L * 0.75} y1={suY + 1} x2={x + L * 0.75} y2={suY + 1} stroke="#2c3444" strokeWidth={2.5} strokeDasharray="14 9" />
+      {/* kanadın suya girdiği yerde kesik dalga çizgisi + iki küçük kırışık */}
+      <line x1={x - L * 0.7} y1={suY + 1} x2={x + L * 0.75} y2={suY + 1} stroke="#2c3444" strokeWidth={Math.max(2, 0.05 * pxm)} strokeDasharray={`${0.3 * pxm} ${0.18 * pxm}`} />
+      {[-0.2, 0.25].map((u, i) => <path key={i} d={`M ${x + u * L - 0.12 * pxm} ${suY + 2} q ${0.12 * pxm} ${-0.05 * pxm} ${0.24 * pxm} 0`} stroke="#9fb0bf" strokeWidth={Math.max(1, 0.03 * pxm)} fill="none" strokeOpacity={0.6} />)}
     </g>
   );
 };
