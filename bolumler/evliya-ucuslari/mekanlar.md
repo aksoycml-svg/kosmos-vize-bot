@@ -8,6 +8,8 @@ Bu belge **şartnamedir, kod değildir.** Bütün sayılar motion içindir. Moti
 > - Pencere halesi kaldırıldı, yerine yalnız alta düşen 2 basamaklı havuz geldi (§1.2a, S2).
 > - Gece kroması: C\* hedefleri §6a'da, ArsivKatmani gece derecelendirmesi §8'de (O5).
 > - Hex hedefleri değişmedi.
+>
+> **R2 (2026-11-08, K3/K4):** gündüz yansıması yeniden tarif edildi (§1.3a, V8). Motion'ın iki sorusu cevaplandı (§1.3b: eksen asimetrisi kasıtlı; P02 cs 0.97 + grup onaylandı, sağ ucu ≤ 148). P12 kartı gözden geçirildi (§1.6): etkin yarık formülü düzeltildi, havadaki huzme yalnız kenar çizgisi olacak.
 
 Etiketler: **[A]** arastirma.md · **[A10]** arastirma.md §10 (yalnızca arama özeti) · **[S]** sahne-plani/senaryo · **[G]** genel bilgi, kaynağı yok, **doğrulanmalı** · **[T]** tasarım kararı (tarihî iddia değil). Kanıtsız ayrıntı **nötr** kalır.
 
@@ -179,11 +181,11 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 |---|---|---|---|---|
 | 1 | Gök | ≤ 565 (saçak üstü, baca araları) | tümü | gece 3 basamak (§1.1) · gün `#a9b6bf` / `#cfcfc4` / `#e6dcc0`. Şenlik patlama merkezleri **y 150–250** (§7.1) |
 | 2 | Ağaç kütlesi | 470–565 (bacalar arası, saçak üstü) + 900–1100 (sol uç, sur arkası) | −60…300, 960…1100 | gece `#181c26` · gün `#7e8478` (YENİ hex, §8) |
-| 3 | Sol uç: uzak kıyı | sur 1180–1417 · rıhtım üstü 1387 | −60…160 | Kıyı sola doğru uzaklaşır (30 px/m). **Küçük grup + demet + meşale** x 40–140, ayak y 1387, figürler ≈ 50 px, meşale halesi r 60 (P03'ün kurulumu) |
+| 3 | Sol uç: uzak kıyı | sur 1180–1417 · rıhtım üstü 1387 | −60…160 | Kıyı sola doğru uzaklaşır (30 px/m). **Küçük grup + demet + meşale** x 90–148 (K3, §1.3b), ayak y 1387, figürler ≈ 50 px, meşale halesi r 60 (P03'ün kurulumu) |
 | 4 | **Köşk** | su çizgisi 1500 · rıhtım üstü 1415 · altyapı 1415→990 · ana kat 990→565 · **ana saçak 565, taşma 51 px (x 109–1151), saçak altı bandı 565–585** · örtü **görünmez** (§1.1) · **baca tepesi 429** (ön), 445 (arka) | **160…1100** | Altyapı: kemer A1 x 268–506, A2 x 614–852. Uç y 1075, üzengi 1223. Çeşme nişi x 526–594, y 1244–1372, yalak y 1372–1385 · ana kat pencereleri (cumba dışında kalan) x 200–285 ve 975–1060, y 760–896 · **bacalar** 68 px en, başlık 102 × 13 px: ön çift x 211–279 ve 981–1049, arka çift (×0.9) x 281–343 ve 917–979 · pencere ışığı §1.2a |
 | 5 | **Cumba** (92 px/m) | gövde 990→650 · saçak altı 650→620 (görünür soffit) · saçak dış kenarı 612 | **320…800** (orta 560) | Pencereler: x 368–453 · **518–603 (padişah)** · 668–753, y 700–819. Denizlik y 819. Dikmeler 2 tahta genişliğinde. Saçak altı II tarama |
 | 6 | Önündeki rıhtım | 1415 → 1500 (ön yüz) | 160…1100 | Üst yüzey ince şerit olarak görünür (kamera 0.5 m yukarıda). Ön yüzde tek taş sırası |
-| 7 | Deniz (alt üçte bir) | 1500 → 2030 | tümü | Dalga çizgileri, aralık 12 px → 44 px. **Pencere yansıma kolonu** x 540–580 (gece) · köşkün ters yansıması: gün `#8a8270` düz kütle, 3 yatay kesikle bölünmüş · şenlik yansımaları |
+| 7 | Deniz (alt üçte bir) | 1500 → 2030 | tümü | Dalga çizgileri, aralık 12 px → 44 px. **Pencere yansıma kolonu** x 540–580 (gece) · köşkün ters yansıması (gündüz) **§1.3a** · şenlik yansımaları |
 
 - **Kamera önerisi (yönetmene not, §7.2):** P02 cs 0.9 → 1.05. P10 cs 0.9 → **2.4**, son kare cx −28, cy 420.
 - **Neden:** padişah büstü (pencere içinde 1.1 m) 92 px/m'de 101 dekor px eder. %12 için (≥ 230 px) cs ≥ 2.3 gerekir.
@@ -200,6 +202,32 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
   - Baca gölge yüzü solda, II.
   - Gölge vektörü (−0.97, −0.15): örtü görünmediği için baca gölgesi kadrajda yok; başlık plakası kendi gövdesine 4 px gölge bandı düşürür.
   - Pencere içi `#3a3430`, padişah `#2a2622` + sağda `#f0d79a` 2 px kenar.
+
+#### 1.3a Gündüz yansıması (K3 V8, R2)
+- **Sorun:** P10 p0'da yansıma opak bir düz kütleydi ve alt üçte birde "ikinci bina" okundu.
+- **Yalnız koyu kütleler yansır:** iki kemer ağzı, çeşme nişi, cumba gövdesi (ahşap) ve saçak bandı. Açık taş cephe **ayrı bir kütle olarak yansımaz**: yerinde su tonu kalır, en çok `#7c9090` + `#b4a88e` %20 karışımı, yani su ile neredeyse aynı.
+- **Opaklık:** koyu kütle yansımaları **α .55–.60**, renk = kaynağın %70 koyusu ile su tabanının karışımı. Kemer içi yansıması `#3e4446`; cumba yansıması `#4e4438`.
+- **Boy:** kaynağın 0.6'sı (su çizgisi y 1500'den aşağı). Kemer uçlarının yansıması y ≈ 1750'de biter; kemerin sivri tepesi yansımada **görünmez**, dalga keser.
+- **Kırılma:**
+  - Yansıma **7 yatay dilime** bölünür (dilim yüksekliği 22–40 px, aşağıya doğru artar).
+  - Dilimler arasında 4–8 px su aralığı bırakılır.
+  - Her dilim yanlara **±6–14 px** kayar (seed 135, sabit; dilim başına işaret değişir).
+  - Dilim kenarları düz yatay kesiktir, dalgalı eğri yoktur.
+  - Su dalga çizgileri yansımanın **üstünden** geçer.
+- **Alt kenar, iki düz basamak (gradyan yok):** son iki dilim α .30, en alttaki α .15. Ondan sonra yalnız su.
+- **Gece (P02):** köşk yansıması çizilmez. Yalnız pencere kolonu (§1.2a) ve şenlik şeritleri vardır.
+- **Telefon testi:** alt üçte bir "su" okunmalı. Yansımadaki iki koyu kemer lekesi bina değil, kırık leke olarak görünür.
+
+#### 1.3b Motion soruları (K3)
+1. **Eksen asimetrisi (gövde ortası 630, cumba/kemer/çeşme ekseni 560): kasıtlı, doğru [T].**
+   - Asıl kompozisyon ekseni 560'tır: iki kemer + çeşme + cumba + padişah penceresi. P10 kalibrasyonu bu eksene bağlıdır.
+   - Gövdenin sağda kalan bölümü (x 852–1100, ≈ 2.9 m) ana kat penceresi ve sağ baca ile **yan kanat** okunur.
+   - Köşkün cephe simetrisi kaynakta yok. Sol tarafı daraltmanın nedeni P02'deki sol şerit (grup). Değiştirilmez.
+   - Okunurluk şartı: sağ kanatta kemer ya da ikinci cumba **olmaz**. Sağ kanadın tek penceresi 975–1060 kalır. Böylece asimetri "eksik çizim" değil "yan kanat" okunur.
+2. **P02 sapması (cs 0.97, grup x 90–160): ONAY, iki şartla.**
+   - (a) Grubun sağ ucu ≤ x 148 olur: köşk gövdesiyle (x 160) arasında ≥ 12 px boşluk kalır ve grup uzak sur önünde ayrı durur (K3 karesinde gövdeye yapışık, köşkün rıhtımındaymış gibi okunuyor).
+   - (b) Grubun rıhtım çizgisi (y 1387) köşk rıhtımından (1415) yukarıda kalır: derinlik bunu okutur.
+   - §1.3 katman 3'teki x 40–140 değeri buna göre **x 90–148** olarak güncellendi.
 
 ### 1.4 Görünüm `insert` (P07 gece, P11 gün, AYNI dekor, cs 1.0 sabit)
 - **Duygusal amaç:** her şey avucun içinde olup biter. Zemin taş, soğuk ve kalıcı.
@@ -269,6 +297,23 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
   - Yarık kendi yönünde süpürülür. Yarığın üst ucunun (y 560) izdüşümü x 457'de **y 739**'a düşer. Yani **bandın üst kenarı göz hizasından geçer**: alın ve sarık gölgede, gözden çeneye kadar ön kontur ve göğüste dikey şerit ışıklıdır. "Işık gözlerde şeride iner" (EV-D6) geometriden kendiliğinden çıkar.
   - Kanat 80°'de (açık) yarık x 560–738 olur ve band padişahı geniş biçimde yıkar.
   - Toz zerreleri yalnızca bandın içinde.
+- **K4 gözden geçirme (R2):**
+  - **Yarık genişliği:** kanat 12°'deyken bile 32 px'lik etkin aralık, kanadın ışık yönündeki izdüşümünden gelir: L·sin θ = 0.55 × sin 12° = 0.11 m ≈ 37 px; düzlem içi açıklık yalnız 4 px'tir. Motion yarığı **etkin açıklık = 0.55·sin θ** ile hesaplar; düzlem içi açıklığı kullanmaz, kullanırsa şerit kaybolur.
+  - **Havadaki huzme şerit değildir:** dikey yarık (32 × 421) (−0.83, +0.56) yönünde süpürülünce havada ≈ 370 px kalınlığında bir sütun olur. Okunan "şerit" yalnız **yüzeyde** oluşur: pencereye dönük ön kontur (alın altı, burun, dudak, çene) ve kaftanın ön kenarı, 32 px × cs genişliğinde (cs 2.6'da 83 px).
+    - Bu yüzden havadaki sütun **yalnız iki ince kenar çizgisi** (1.5 px, `#f6e4b0` α .2) + toz zerreleri (α .5) olarak çizilir. Dolgu en çok α .06.
+    - Önceki "α .25 → .08 dolgu" tarifi iptal: dolgu geniş sütunu yüzü yıkayan bir sis gibi gösterir ve şeridi öldürür.
+    - Alt üçte biri kaftan şeridi + sütun kenar çizgileri doldurur.
+  - **Kadraj:**
+    - cs 1.8 / cx 150'de (p0–10) pencere ekranda x 726–1046: kanat kapanışı görünür ✓.
+    - p50'den sonra (cs 2.6 / cx 216) yarık ekranda x ≈ 1190–1270, **kadraj dışında**. Şerit sağ kenardan girer. Kabul: kaynak kapanışta kurulmuştu.
+    - Göz y 740 ekranda y ≈ 598 (yazı bantlarının dışında) ✓.
+    - Kapı pervazı x 352, cs 2.4 / cx 190'da ekranda x ≈ 279 ✓ (işaret anında görünür).
+  - **Ölçü tutarlılığı:**
+    - Kapı 0.9 × 2.0 m (292 × 648 px, y 602–1250) ve pencere 0.55 × 1.30 m (178 × 421), aynı 324 px/m düzleminde ✓.
+    - Pencere üstü (y 560) kapı üstünden (602) 0.13 m yüksekte: kabul.
+    - Denizlik 0.83 m.
+    - Padişah gövdesi x ≈ 380–520, pencereye (560) 40 px kala durur. Yüzü pencereye ve dışarıya bakar, kanadı uzanarak çeker (kol yolu kanadın serbest kenarına, x ≈ 738'e varır).
+  - **Sonuç:** kart geçerli. Yalnız etkin yarık formülü ve havadaki huzme tarifi düzeltildi.
 - **Alt üçte bir:**
   - Kaftan + göğüsteki ışık şeridi.
   - Bandın havadaki devamı (α .25 → .08, sol-alt köşeye doğru).
