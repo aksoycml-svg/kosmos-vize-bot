@@ -149,6 +149,18 @@
   - Sarığın tepesinde içteki başlığın ucunun görünmesi [G].
   - K1'in KRİTİK maddeleri (fitil, meşale yolu, P05→P06 sürekliliği, ölçek, P06 kapanışı) yönetmen ve motion'da; köşk/baca (O1) ve gece kroması (O5) mekân sorumlusu ve motion'da.
 
+## tasarimci · 2026-11-08 · tasarim.md revizyon v1.4 (K1-2 KOŞULLU, tasarım açıkları)
+- Ne yaptım: K1-2 eleştirisinin tasarıma düşen 4 maddesini kapattım.
+  - **Y8, katlı kanat.** v1.3 tarifi iptal edildi. Yeni biçim katlanmış kuş kanadı: ters damla, üst kenar omuz çizgisini izler, başın üstüne çıkmaz, sivri alt uç diz hizasında biter. En geniş yeri ≈130 birim; en çok 40–55 birimi figürün sırt tarafına taşar. Tonu gece `#3e3a38` (L\* ≈ 25), tek kat çizgisi var, amber kenarlı. Işıklı şerit yalnız püskürme anında görünür.
+  - **Y7, açık kanat.** Uca doğru sürekli incelir (uçta kök eninin %45'i). Gergin ve rijit, kıvrımı yok. Uçtaki 3 parmak sivri-yuvarlak ve o noktadaki kanat eninin ≤ %25'i. Yakın kanadın ön kenarı omuzdan çıkıp yüzün altından geçer. Katman sırası: uzak kanat < gövde < yakın kanat < baş.
+  - **Z3, ton sıçraması.** Katlı ve açık kanat tek ton ailesinde (gece ve gündüz tablosu); komşu iki karede ortalama L\* farkı ≤ 6. Eski `#6e6a64` kanattan kaldırıldı.
+  - **Y6, kompars arka başı.** Saç başın ≥ %80'ini örter ve enseye iner; kulak görünür; ten yalnız kulak ve ≤ 8 birimlik ense şeridinde. Yanak ve çene çizilmez. Takke ile saç arasında açık şerit yok.
+  - K2 notu düşüldü: eleştirmenin andığı el tenleri v1.3'te zaten kaydırılmıştı.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/tasarim.md, bolumler/evliya-ucuslari/katki-raporu.md
+- Kararlar: Katlı kanat tonunu eleştirmenin önerdiği `#4a4642`'den (L\* 30) biraz koyu seçtim (`#3e3a38`, L\* 25). Gerekçe: "figürden koyu" şartı ve kanca karesinde odak çalmaması. Gökten ayrışmayı amber kenar ve ılık/soğuk ton farkı taşıyor.
+- Kurallar: kanca karesinde tek odak; "kompars yüzsüz bakmaz" ve "açık-gri büyük prop gece ikinci odak olur" dersleri uygulandı.
+- Açık: Kanadın gece ufku (`#2c3246`, L\* ≈ 21) önünde L\* farkı küçük kalabilir. Ayrışma amber kenara bağlı; motion K2 turunda ölçmeli.
+
 ## arastirmaci · 2026-11-08 · Evliya uçuşları tasarım doğrulama eki (tasarim.md §9, madde 4–10)
 - Ne yaptım: Tasarımcının 7 [G] sorusunu (sarık/sakal, fişek kılıfı, kese/sikke/akçe, yazı yüzeyi, renkli havai fişek, konut çatısı, köşk pencereleri) 20+ `WebSearch` sorgusuyla taradım ve `arastirma.md` sonuna "## 10. Tasarım doğrulama eki" ekledim: özet tablo + her madde için cevap, kaynak, güven, tasarıma etkisi.
 - Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/arastirma.md (yalnız sona ek, mevcut bölümlere dokunulmadı), /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/katki-raporu.md (bu bölüm).
