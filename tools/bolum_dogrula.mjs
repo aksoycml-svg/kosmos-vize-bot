@@ -101,6 +101,47 @@ for (const plan of B.planlar ?? []) {
     if (!pd) H(Y, "ic: padisah karakteri yok");
     if (prm.padisah && typeof prm.padisah.yuz_on_kontur_x !== "number") U(Y, "ic: padisah.yuz_on_kontur_x yok (varsayılan 457)");
   }
+  // K5 GALATA-TEPE: taş itme / düşüş temasları, kamera takibi, yürüyüş adımları
+  if (plan.sablon === "GALATA-TEPE") galataKurallari(plan, Y, plan.karakterler ?? [], plan.props ?? [], plan.kamera, sure);
+  // K5 plan içi kesme (devam_plan): kesme karesi tutarlı, ilk bölümün animasyonları kesmeden önce biter, devam şablonu/karakter/prop/kamera kuralları
+  if (plan.devam_plan || prm.plan_ici_kesme) {
+    const d = plan.devam_plan, yk = `${Y} devam`;
+    if (!d) H(yk, "parametreler.plan_ici_kesme var ama devam_plan yok");
+    else {
+      const kb = d.kare_bas;
+      if (!Number.isInteger(kb) || kb <= 0 || kb >= sure - PAY) H(yk, `kare_bas ${kb} plan içinde olmalı (0, ${sure - PAY})`);
+      if (prm.plan_ici_kesme && (prm.plan_ici_kesme.kare !== kb || prm.plan_ici_kesme.sonraki_sablon !== d.sablon)) H(yk, `plan_ici_kesme {kare ${prm.plan_ici_kesme.kare}, ${prm.plan_ici_kesme.sonraki_sablon}} ↔ devam_plan {kare_bas ${kb}, ${d.sablon}} uyuşmuyor`);
+      const DS = SN.sablonlar[d.sablon];
+      if (!DS) H(yk, `bilinmeyen şablon ${d.sablon}`);
+      else {
+        const dp = d.parametreler ?? {};
+        for (const z of DS.zorunlu) if (dp[z] === undefined) H(yk, `zorunlu parametre yok: ${z}`);
+        for (const [ad, izin] of Object.entries(DS.parametreler)) if (dp[ad] !== undefined && !izin.includes(dp[ad])) H(yk, `${ad}="${dp[ad]}" geçersiz (${izin.join(" | ")})`);
+        if (DS.kurulu && dp.gorunum !== undefined && !(DS.kurulu[dp.gorunum] ?? []).includes(dp.saat)) H(yk, `${d.sablon} gorunum "${dp.gorunum}" / saat "${dp.saat}" kurulmadı`);
+        const K2 = d.kamera;
+        if (K2) { artan(`${yk} kamera`, K2.kare); for (const ad of ["cs", "cx", "cy"]) if (K2[ad]) { anahtarUzunluk(`${yk} kamera`, ad, K2[ad], K2.kare); aralik(`${yk} kamera`, ad, K2[ad], DS.kamera[ad]); } if ((K2.kare ?? []).some((q) => q < kb || q > sure)) H(yk, `kamera kareleri [${kb}, ${sure}] dışında`); }
+        if ((d.karakterler ?? []).length > DS.karakterMaks) H(yk, `karakter sayısı > ${DS.karakterMaks}`);
+        for (const c of d.karakterler ?? []) {
+          const yc = `${yk} ${c.kim}`;
+          if (!SN.karakterler.includes(c.kim)) H(yc, "bilinmeyen karakter");
+          for (const ad of ["x", "y", "olcek"]) anahtarUzunluk(yc, ad, c[ad], c.kare);
+          if (c.kare) { artan(yc, c.kare); if (c.kare.some((q) => q < kb)) H(yc, `yol kareleri kesmeden (p${kb}) önce`); bitis(yc, "yol (kare)", son(c.kare)); }
+          for (const j of c.jestler ?? []) { if (!SN.jestler.includes(j.ad)) H(yc, `bilinmeyen jest ${j.ad}`); if (j.bas < kb) H(yc, `jest ${j.ad} p${j.bas} kesmeden önce başlıyor`); bitis(yc, `jest ${j.ad}`, j.bit); }
+        }
+        for (const pr of d.props ?? []) {
+          if (!SN.props.includes(pr.tur)) H(yk, `bilinmeyen prop ${pr.tur}`);
+          if (SN.propSablon?.[pr.tur] && !SN.propSablon[pr.tur].includes(d.sablon)) H(yk, `prop ${pr.tur} yalnız ${SN.propSablon[pr.tur].join(", ")} şablonunda çizilir`);
+          if (pr.bagli && typeof pr.bagli === "string" && !(d.karakterler ?? []).some((c) => c.kim === pr.bagli)) H(yk, `prop ${pr.tur} bagli "${pr.bagli}" devamda yok`);
+        }
+        if (d.sablon === "GALATA-TEPE") galataKurallari(plan, yk, d.karakterler ?? [], d.props ?? [], d.kamera, sure);
+      }
+      // kesme hareketin ortasına gelmez: ilk bölümün kamera/prop/jest anahtarları kesmeden önce biter
+      const once = (yer, ad, q) => { if (typeof q === "number" && q > kb) H(yer, `${ad} p${q} kesmeden (p${kb}) sonra bitiyor — ilk bölümün hareketi kesmede yarım kalır`); };
+      once(Y, "kamera", son(plan.kamera?.kare));
+      for (const pr of plan.props ?? []) once(`${Y} ${pr.tur}`, "prop anahtarı", son(pr.kare));
+      for (const c of plan.karakterler ?? []) for (const j of c.jestler ?? []) once(`${Y} ${c.kim}`, `jest ${j.ad}`, j.bit);
+    }
+  }
   if (plan.sablon === "SOKAK" && prm.insert) { if (prm.insert.tur !== "fare") H(Y, "insert.tur yalnız 'fare'"); if (prm.insert.bas + 66 > sure) H(Y, `fare insert'i (66 kare) plan sonunu aşıyor`); }
   if (plan.sablon === "KULE-DIS") {
     const kl = prm.kuleler ?? [];
@@ -262,6 +303,47 @@ for (const plan of B.planlar ?? []) {
   if (plan.dokunus) { if (dokunuslar.has(plan.dokunus.id)) H(Y, `dokunuş ${plan.dokunus.id} tekrar ediyor (ilk: ${dokunuslar.get(plan.dokunus.id)})`); dokunuslar.set(plan.dokunus.id, plan.id); }
   toplam += sure || 0;
 }
+
+// K5 GALATA-TEPE kuralları (plan ya da devam_plan için)
+function galataKurallari(plan, Y, kar, props, kamera, sure) {
+  const PAY = SN.bitisPayiKare ?? 12;
+  const tas = props.find((q) => q.tur === "tas");
+  for (const c of kar) for (const j of c.jestler ?? []) {
+    if (j.ad === "tas-it") {
+      const t = j.ops?.temas;
+      if (!tas) H(`${Y} ${c.kim}`, "tas-it: planda tas prop'u yok");
+      if (typeof t !== "number" || t <= j.bas || t >= j.bit) H(`${Y} ${c.kim}`, "tas-it ops.temas (ayağın taşa değdiği kare) bas < temas < bit olmalı");
+      else if (!temasVar(plan, t, 1)) H(`${Y} ${c.kim}`, `tas-it p${t}: temas yok (TEMAS = SES)`);
+    }
+    if (j.ad === "yuru") {
+      if (!Array.isArray(c.x)) U(`${Y} ${c.kim}`, "yuru: x yolu (dizi) yok — yerinde sayar");
+      else {
+        // adım = 0.75 m; px/m = (ayak y − 829)/1.65 — her basma görünür temas (TEMAS = SES)
+        const y0 = Array.isArray(c.y) ? c.y[0] : (c.y ?? 1250), pxm = Math.max(1, (y0 - 829) / 1.65);
+        const xAt = (q) => { const k = c.kare ?? []; if (q <= k[0]) return c.x[0]; for (let i = 1; i < k.length; i++) if (q <= k[i]) { const u = (q - k[i - 1]) / (k[i] - k[i - 1]); const e = u < 0.5 ? 4 * u * u * u : 1 - (-2 * u + 2) ** 3 / 2; return c.x[i - 1] + (c.x[i] - c.x[i - 1]) * e; } return c.x[c.x.length - 1]; };
+        const adim = []; let yol = 0, n = 1, x0 = xAt(j.bas);
+        for (let q = j.bas + 1; q <= j.bit; q++) { const x1 = xAt(q); yol += Math.abs(x1 - x0) / pxm; x0 = x1; if (yol >= n * 0.75) { adim.push(q); n++; } }
+        const eksik = adim.filter((q) => !temasVar(plan, q, 2));
+        if (eksik.length) U(`${Y} ${c.kim}`, `yuru: ${adim.length} adım basması görünür (p${adim.join(", p")}); temas yok: p${eksik.join(", p")} — "adim" foley teması ekle`);
+      }
+    }
+  }
+  if (tas && Array.isArray(tas.kare)) {
+    artan(`${Y} tas`, tas.kare);
+    const k = tas.kare;
+    if (k.length >= 2 && !temasVar(plan, k[1], 1)) H(`${Y} tas`, `taş p${k[1]}'de itilir: temas yok`);
+    if (!temasVar(plan, k[k.length - 1], 1)) H(`${Y} tas`, `taş p${k[k.length - 1]}'de yere çarpar: temas yok`);
+    const sk = k[k.length - 1]; if (sk > sure - PAY) H(`${Y} tas`, `taş yere çarpma p${sk} plan sonuna ${sure - sk} kare (≥ ${PAY})`);
+  }
+  const tk = kamera?.takip;
+  if (tk) {
+    if (!props.some((q) => (q.id ?? q.tur) === tk.prop)) H(`${Y} kamera.takip`, `prop "${tk.prop}" yok`);
+    if (!(Array.isArray(tk.kare) && tk.kare.length === 2 && tk.kare[0] < tk.kare[1])) H(`${Y} kamera.takip`, "kare [bas, bit] olmalı");
+    else if (tk.kare[0] < (kamera.kare?.[0] ?? 0) || tk.kare[1] > sure) H(`${Y} kamera.takip`, "takip aralığı plan/kamera dışında");
+    if (typeof tk.ekran_y !== "number" || tk.ekran_y < 400 || tk.ekran_y > 1290) U(`${Y} kamera.takip`, `ekran_y ${tk.ekran_y} yazı bantlarına/güvenli alana yakın`);
+  }
+}
+
 
 // ses eki özeti
 const sesliTemas = tumTemas.filter((t) => t.ses).length;

@@ -78,12 +78,20 @@ const KilitBindirme: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> = 
   return <GuvenliAlan noktalar={kilit} aktifBant={alt ? "alt" : ust ? "ust" : null} baslik={`${plan.id} ${plan.sablon} p${p}`} />;
 };
 
-const PlanGoster: React.FC<{ plan: Plan; guvenli?: boolean; yazisiz?: boolean; onceki?: Plan }> = ({ plan, guvenli, yazisiz, onceki }) => {
+// K5 plan içi kesme: devam_plan.kare_bas'tan itibaren görüntü devam şablonundan (aynı plan karesi p; ses/yazı/temas planın kendisinde)
+export const etkinPlan = (plan: Plan, p: number): Plan => {
+  const d = plan.devam_plan;
+  if (!d || p < d.kare_bas) return plan;
+  return { ...plan, sablon: d.sablon, parametreler: d.parametreler, kamera: d.kamera, karakterler: d.karakterler ?? [], props: d.props ?? [], el: [] };
+};
+
+const PlanGoster: React.FC<{ plan: Plan; guvenli?: boolean; yazisiz?: boolean; onceki?: Plan }> = ({ plan: ham, guvenli, yazisiz, onceki }) => {
   const p = useCurrentFrame();
+  const plan = etkinPlan(ham, p);
   const S = SABLONLAR[plan.sablon];
   if (!S) throw new Error(`[Bolum] bilinmeyen şablon: ${plan.sablon}`);
   const kilit: KilitNokta[] = [];
-  const sahne = <AbsoluteFill><S.Sahne plan={plan} p={p} kilit={kilit} onceki={onceki} /></AbsoluteFill>;
+  const sahne = <AbsoluteFill><S.Sahne plan={plan} p={p} kilit={kilit} onceki={plan === ham ? onceki : undefined} /></AbsoluteFill>;
   return (
     <AbsoluteFill style={{ backgroundColor: "#14110d" }}>
       {S.arsivAtla?.(plan, p) ? sahne : <ArsivKatmani mod={S.arsiv(plan)}>{sahne}</ArsivKatmani>}

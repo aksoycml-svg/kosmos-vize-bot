@@ -66,15 +66,16 @@ export type OsmanliKolProps = {
   tip: OsmanliElTip; elAci: number; olc: number; poz: ElPoz; islak?: number; isik?: KolIsik; seed?: number;
   avucNesne?: React.ReactNode; // avuçta tutulan (kapa'da parmaklar önünde kalır)
   omuzKoyu?: boolean;          // omuz ucunu kadraj dışına uzat (giriş kenarı)
+  aynaY?: boolean;             // K4 U5: el yerel y aynası (sola dönük figürde avuç aşağı kalsın; elAci ≈180° dönüşü avucu yukarı çeviriyordu)
   kenarIsik?: { renk: string; px: number; yon: P }; // K3 V10 (yon: ekranda ışığa doğru birim yön): ışığa bakan kol kenarında ince kenar ışığı (tek kaynak: isik.yon), kolun içinde kalır
 };
 // El dünya noktası: yerel → ekran
 export const elNokta = (bilek: P, aci: number, olc: number, q: P): P => { const v = rot([q[0] * olc, q[1] * olc], aci); return [bilek[0] + v[0], bilek[1] + v[1]]; };
 
-export const OsmanliKol: React.FC<OsmanliKolProps> = ({ omuz, dirsek, bilek, gen, tip, elAci, olc, poz, islak = 0, isik, avucNesne, kenarIsik }) => {
+export const OsmanliKol: React.FC<OsmanliKolProps> = ({ omuz, dirsek, bilek, gen, tip, elAci, olc, poz, islak = 0, isik, avucNesne, kenarIsik, aynaY }) => {
   const K = islakEl(EL_PALET[tip], islak);
   const g = elGeometri(poz);
-  const E = (q: P) => elNokta(bilek, elAci, olc * K.elOlcek, q);
+  const E = (q: P) => elNokta(bilek, elAci, olc * K.elOlcek, aynaY ? [q[0], -q[1]] : q);
   const sw = Math.max(1.6, 2.2 * olc);
   // ---- kol konisi + yen ağzı ----
   const w0 = gen[0] / 2, w2 = gen[1] / 2, w1 = (w0 + w2) / 2 * 1.04;

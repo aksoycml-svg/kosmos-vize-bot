@@ -430,7 +430,8 @@ const Kafa: React.FC<{ pz: Poz; p: Palet; louis?: boolean }> = ({ pz, p, louis }
       {/* ağız */}
       {pz.agiz === "uykulu" && <path d="M -6 47 Q 2 64 21 69 Q 37 64 41 41 L 36 41 Q 30 56 20 54 Q 4 55 -6 47 Z" fill={sk} stroke={skd} strokeWidth={SW} />}
       {pz.agiz === "esneme" && <path d="M -10 48 Q 0 76 22 82 Q 40 76 44 40 L 38 40 Q 30 60 20 56 Q 2 58 -10 48 Z" fill={sk} stroke={skd} strokeWidth={SW} />}
-      <g transform="translate(2,0)">{AGIZ[pz.agiz ?? "dinlen"]}</g>
+      {/* Evliya K5: Osmanlı kostümünde dinlen dudak çizgisi kahve (#5a2a22 kırmızı eşiğine giriyordu; kırmızı yalnız yazı vurgusu). Blanc değişmez */}
+      <g transform="translate(2,0)">{osm(p) && (pz.agiz ?? "dinlen") === "dinlen" ? <path d="M 8 40 Q 19 42 30 39" stroke="#4a3028" strokeWidth={2.6} fill="none" strokeLinecap="round" /> : AGIZ[pz.agiz ?? "dinlen"]}</g>
       {pz.yakin && (pz.agiz === "gulumse" || pz.agiz === "sirit" || pz.agiz === "dinlen" || pz.agiz === "M") && <g transform="translate(2,0)">
         {/* alt dudak hacmi + ağız köşesi (yakın plan) */}
         <path d={pz.agiz === "sirit" ? "M 12 45 Q 22 48 32 38" : "M 10 44 Q 19 49 29 43"} stroke="#b8705e" strokeWidth={3.4} fill="none" opacity={0.55} strokeLinecap="round" />

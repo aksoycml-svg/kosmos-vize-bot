@@ -3,7 +3,7 @@
 // Kare sayıları 60 fps; plan içi kareler 0'dan başlar (plan karesi p).
 import type { Agiz, Palet } from "../rig/Kukla";
 
-export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU";
+export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU" | "GALATA-TEPE";
 export type Bant = "ust" | "alt";
 export type P = [number, number];
 
@@ -11,11 +11,15 @@ export type P = [number, number];
 export type Sayi = number | number[];
 
 // Kamera: kare dizisi + cs (ölçek), cx/cy (ekran kayması px). egri: giris (bezier .16,1,.3,1) | inout | lineer (kaymalar)
-export type Kamera = { kare: number[]; cs: number[]; cx?: number[]; cy?: number[]; egri?: "giris" | "inout" | "lineer" };
+export type Kamera = { kare: number[]; cs: number[]; cx?: number[]; cy?: number[]; egri?: "giris" | "inout" | "lineer";
+  // Evliya K5: takip — [kare0, kare1] aralığında kamera cy'si prop'u ekranda sabit y'de tutar (vinç; prop sabit boyut). Şablon uygular.
+  takip?: { prop: string; ekran_y: number; kare: [number, number] } };
 
 export type JestAdi = "yuru" | "konus" | "isaret" | "sapka-kaldir" | "baston-vur" | "esne" | "it-cek" | "eldiven-giy" | "fisilda" | "yaz" | "bak"
   | "sicra" | "kanat-ac" | "ucus" | "yuz" | "kanat-birak" // Evliya (SARAYBURNU kıyı)
-  | "egil" | "dogrul"; // Evliya (SARAYBURNU insert): gövde eğimi (ops.aci) / doğrulma
+  | "egil" | "dogrul" // Evliya (SARAYBURNU insert): gövde eğimi (ops.aci) / doğrulma
+  | "pencere-kapat" | "don" // Evliya (SARAYBURNU ic, K4)
+  | "tas-it"; // Evliya (GALATA-TEPE, K5): ön ayak taşı iter (ops.temas = ayağın taşa değdiği kare)
 export type JestCagri = { ad: JestAdi; bas: number; bit: number; ops?: Record<string, number | string | boolean | number[]> };
 
 export type Karakter = {
@@ -39,7 +43,8 @@ export type Karakter = {
 export type PropTur = "paket" | "eldiven" | "corap" | "dosya" | "kitap" | "kese" | "hokka" | "mum" | "fener"
   | "fisek-demet" | "mesale" | "baslik" | "kanat" // Evliya (SARAYBURNU kıyı)
   | "sikke" // Evliya (SARAYBURNU insert; kese de insert'te Osmanlı kumaş torba çizilir)
-  | "pencere-kanat"; // Evliya (SARAYBURNU ic, K4: KE-P9)
+  | "pencere-kanat" // Evliya (SARAYBURNU ic, K4: KE-P9)
+  | "tas"; // Evliya (GALATA-TEPE, K5: KE-P5)
 export type Prop = {
   tur: PropTur; id?: string;
   x?: Sayi; y?: Sayi; kare?: number[];         // MASA-INSERT: ekran px (masa düzlemi). IC-ODA: x = u (m), y = z (m). SARAYBURNU: dekor px (zemin teması)
@@ -86,6 +91,9 @@ export type Plan = {
   ses?: PlanSes[];
   dokunus?: Dokunus | null;
   not?: string;
+  // Evliya K5: plan içi sert kesme — kare_bas'tan itibaren aynı plan başka şablonla (kendi parametre/kamera/karakter/prop'uyla) devam eder.
+  // Kareler plan karesidir (0 = plan başı). Ses/yazı/temaslar planın kendisinde kalır.
+  devam_plan?: { kare_bas: number; sablon: SablonAdi; parametreler: Record<string, unknown>; kamera?: Kamera; karakterler?: Karakter[]; props?: Prop[] };
 };
 
 export type BolumJson = {

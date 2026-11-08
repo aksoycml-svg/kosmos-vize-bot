@@ -30,11 +30,15 @@ export const IC = {
   pen: { x: [560, 738] as [number, number], y: [560, 981] as [number, number] }, kayit: [738, 752] as [number, number], kanat2: [752, 916] as [number, number],
   pervaz: 26, denizlik: [981, 1000] as [number, number],
   kapi: { x: [60, 352] as [number, number], y: [602, 1250] as [number, number], pervaz: 39 },
-  zemin: 1250, isik: [-0.83, 0.56] as P, merkez: [540, 760] as P, mesafe: 6 * 324,
+  zemin: 1250, isik: [-0.86, 0.51] as P, merkez: [540, 760] as P, mesafe: 6 * 324,
+  // K5 (U1): yarık = iç açıklık 154 px · sin θ (yönetmen §5.0e; θ 4° → 10.7 px → figürde ×340/324 → cs 2.6'da ≈29 px ≤ 30).
+  // Işık yönü (−0.83, 0.56) → (−0.86, 0.51): sütunun üst kenarı göz–burun kökü hattında (x≈455) kaş hizasına (y≈730) iner; eski yönde göz altından geçiyordu.
+  yarikIc: 154, lento: 49, esik: [1238, 1254] as [number, number],
 };
 const RENK = {
   duvar: "#3a3430", duvarIsik: "#cbbfa4", ahsap: "#6a4a30", ahsapGolge: "#3a2a1e", pervaz: "#4a3828", disari: "#ece2c4", ufuk: "#d2d4c6",
   kapiIc: "#2a2420", zemin: "#2e2824", denizlik: "#4e443a", demir: "#2e2a26", serit: "#f6e4b0",
+  hali: "#5a4a3e", dipGolge: "#221e1a", esik: "#6a6258", denizlikGolge: "#2a2420", yarikDis: "#f6ecd0", golge: "#2a2420",
 };
 // perspektif: duvar düzleminden odaya z px (324 px/m) çıkan nokta
 const proj = (x: number, y: number, z: number): P => { const f = IC.mesafe / (IC.mesafe - z); return [IC.merkez[0] + (x - IC.merkez[0]) * f, IC.merkez[1] + (y - IC.merkez[1]) * f]; };
@@ -65,7 +69,7 @@ export const IcSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> =
       : p < tTok ? interpolate(p, [tBirak, tTok], [thBirak, thSon], { ...cl, easing: (u) => 0.55 * u + 0.45 * u * u }) // savrulma (hafif ivmeli)
         : p < tTik ? thSon + 2.5 * Math.sin((Math.PI * (p - tTok)) / (tTik - tTok)) // sekme
           : thSon;
-  const w = KANAT_L * Math.sin((th * Math.PI) / 180); // etkin yarık (R2)
+  const w = IC.yarikIc * Math.sin((th * Math.PI) / 180); // etkin yarık (R2; iç açıklık 154 px, yönetmen §5.0e)
   const yarik: [number, number] = [IC.pen.x[1] - w, IC.pen.x[1]];
 
   // ---- padişah ----
@@ -100,16 +104,17 @@ export const IcSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> =
       return { bilek: [lerp(h.bilek[0], dinlen[0], u), lerp(h.bilek[1], dinlen[1], u)], aci: lerp(h.aci, dAci, u), poz: u < 0.3 ? "bas" : "gevse" };
     }
     if (ji && p >= ji.bas) {
-      // kapıyı gösterir: dirsek hafif bükük, el göğüs önünde kapıya doğru (işaret parmağı açık); kadraj kenarına (yan güvenli alan) taşmaz
-      const hedef: P = [omuz[0] + g.yon * 0.2 * fP, omuz[1] + 0.27 * fP];
+      // K4 U5 "dışarı": kol öne uzanır (dirsek neredeyse açık), avuç AŞAĞI (aynaY), işaret parmağı uzun ve kapıya doğru (hafif aşağı),
+      // diğer parmaklar kapalı. Bilek omuzdan 0.30 m öne / 0.13 m aşağı: cs 1.6 / cx 60'ta parmak ucu ekran x ≳ 100, bilek ≈ 190 (el ≥ 120; yan bant 80 dışı)
+      const hedef: P = [omuz[0] + g.yon * 0.3 * fP, omuz[1] + 0.13 * fP];
       const u = GIRIS(interpolate(p, [ji.bas, ji.bit], [0, 1], cl));
-      return { bilek: [lerp(dinlen[0], hedef[0], u), lerp(dinlen[1], hedef[1], u)], aci: lerp(dAci, g.yon > 0 ? 18 : 162, u), poz: u < 0.35 ? "gevse" : "isaret" };
+      return { bilek: [lerp(dinlen[0], hedef[0], u), lerp(dinlen[1], hedef[1], u)], aci: lerp(dAci, g.yon > 0 ? 12 : 168, u), poz: u < 0.3 ? "gevse" : "isaret" };
     }
     return { bilek: dinlen, aci: dAci, poz: "gevse" };
   };
   const kh = kolHedef();
   const ik = kolIK2(omuz, kh.bilek, L1, L2, g.yon > 0 ? 1 : -1);
-  const kol: FigurKol = { omuz, dirsek: ik.dirsek, bilek: ik.bilek, elAci: kh.aci, poz: kh.poz };
+  const kol: FigurKol = { omuz, dirsek: ik.dirsek, bilek: ik.bilek, elAci: kh.aci, poz: kh.poz, aynaY: g.yon < 0 };
 
   // ---- ışık sütunu (2B paralelkenar) ----
   const Ld = 2400, d = IC.isik;
@@ -129,17 +134,21 @@ export const IcSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> =
   // ---- dekor ----
   const K = 5;
   const kn = (c: string, wd = K) => ({ stroke: ink(c), strokeWidth: wd, strokeLinejoin: "round" as const });
-  const kanatKose = { h0: kanatNokta(th, 0, IC.pen.y[0]), h1: kanatNokta(th, 0, IC.pen.y[1]), s0: kanatNokta(th, 1, IC.pen.y[0]), s1: kanatNokta(th, 1, IC.pen.y[1]) };
+  // K5 (U4): kanadın ekrandaki serbest kenarı yarığın sol sınırını geçmez (perspektif küçük açıda kenarı orta kayda yapıştırıyordu → yarık
+  // görünmüyordu). Serbest kenar x = min(izdüşüm, 738 − w): yarık her karede ışık çizgisi olarak okunur.
+  const kanatS = (y: number, n = 0): P => { const q = kanatNokta(th, 1, y, n); return [Math.min(q[0], yarik[0] - (n ? 0 : 0)), q[1]]; };
+  const kanatKose = { h0: kanatNokta(th, 0, IC.pen.y[0]), h1: kanatNokta(th, 0, IC.pen.y[1]), s0: kanatS(IC.pen.y[0]), s1: kanatS(IC.pen.y[1]) };
   const kanatM = dortgen(kanatKose.h0, kanatKose.s0, kanatKose.s1, kanatKose.h1);
   // serbest kenar kalınlığı (3 cm = 10 px): ışığa döndükçe aydınlanır (yüz normali (cos θ, 0, sin θ) · ışığa doğru)
   const r = (th * Math.PI) / 180;
   const kenarIsik = Math.max(0, Math.min(1, (Math.cos(r) * 0.83 - Math.sin(r) * 0.45) / 0.83));
-  const kalin = [kanatNokta(th, 1, IC.pen.y[0]), kanatNokta(th, 1, IC.pen.y[1]), kanatNokta(th, 1, IC.pen.y[1], 10), kanatNokta(th, 1, IC.pen.y[0], 10)];
-  const panel = (m: typeof kanatM, key: string) => [[0.16, 0.84, 0.05, 0.33], [0.16, 0.84, 0.36, 0.64], [0.16, 0.84, 0.67, 0.95]].map(([u1, u2, v1, v2], i) => <polygon key={`${key}${i}`} points={poly(parca(m, u1, u2, v1, v2))} fill={tonla(RENK.ahsapGolge, -0.12)} stroke={ink(RENK.ahsapGolge)} strokeWidth={2.5} strokeOpacity={0.8} />);
+  const kalin = [kanatKose.s0, kanatKose.s1, [kanatKose.s1[0] - 10 * Math.cos(r), kanatKose.s1[1]] as P, [kanatKose.s0[0] - 10 * Math.cos(r), kanatKose.s0[1]] as P];
+  // K5 (U4, mekanlar §1.6b): kanat bölüntüsü ÜSTTE KARE panel (0.42 × 0.42 m) + ALTTA tek alçak panel (0.42 × 0.62 m), kayıt 0.06 m — kapı (uzun dikdörtgen) ile karışmaz
+  const panel = (m: typeof kanatM, key: string) => [[0.12, 0.88, 0.045, 0.368], [0.12, 0.88, 0.414, 0.89]].map(([u1, u2, v1, v2], i) => <polygon key={`${key}${i}`} points={poly(parca(m, u1, u2, v1, v2))} fill={tonla(RENK.ahsapGolge, -0.12)} stroke={ink(RENK.ahsapGolge)} strokeWidth={2.5} strokeOpacity={0.8} />);
   const kanat2M = dortgen([IC.kanat2[0], IC.pen.y[0]], [IC.kanat2[1], IC.pen.y[0]], [IC.kanat2[1], IC.pen.y[1]], [IC.kanat2[0], IC.pen.y[1]]);
-  // mandal (orta kayıtta demir tutucu): kanat 12°'de değer; tTok→tTik arası dili düşer (0 → 22°)
+  // mandal (orta kayıtta demir tutucu): tTok→tTik arası dili düşer
   const mandalDus = interpolate(p, [tTok, tTik], [0, 1], { ...cl, easing: CIKIS });
-  const mK: P = proj(IC.kayit[0] + 4, 770, 0), mUc: P = proj(IC.kayit[0] - 6, 770 - 14 * (1 - mandalDus) + 3 * mandalDus, KANAT_L * Math.sin((thSon * Math.PI) / 180));
+  const mK: P = proj(IC.kayit[0] + 4, 770, 0), mUc: P = [yarik[0] - 2, 770 - 14 * (1 - mandalDus) + 3 * mandalDus];
   // toz zerreleri: sütunun içinde, padişahın önünde (yavaş süzülür)
   const toz = Array.from({ length: 7 }).map((_, i) => {
     const u = rnd(S, `tu${i}`), v = rnd(S, `tv${i}`);
@@ -149,12 +158,40 @@ export const IcSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> =
     return q;
   }).filter((q) => q[0] > solSinir + 6);
 
+  // ---- ışık şeridi (tek kaynak: sütun) ----
+  // f > 0 (yüz pencereye dönük): yüzde ŞERİT = göz–burun kökü arasında dikey bant (genişlik = yarık izdüşümü wFig), üstte kaş, altta burun ucu
+  // (dar yarıkta burun alt yüzü gölgeler; geniş yarıkta bant tüm başı kaplar); kaftanda bant ön kenardan wFig, iç kenarı kumaş kıvrımını izler (U6).
+  // f < 0 (dönmüş): eski kontur bandı (siluet ∖ kaydır(siluet, −wFig)).
+  const yuzW = Math.max(0, Math.min(1, f * 3)); // önden profile geçiş ağırlığı
+  const dar = Math.max(0, Math.min(1, (40 - wFig) / 25));
+  // bant göz üstünde başlar (göz merkezinin 0.005 m gerisi) ve burun köküne doğru wFig genişler: göz kapağı çizgisi ışıkta kalır
+  const bxL = lerp(g.burunKoku[0] - wFig, g.goz[0] - 0.005 * fP * g.yon, dar), bxR = bxL + wFig;
+  const byT = lerp(-2000, g.kasY + 0.002 * fP, dar), byB = lerp(4000, g.burunUcuY, dar);
+  // kaftan bandı: ön kontur x(y) (gövde çokgeninin baktığı yöndeki uç) − w(y) · (1 + kıvrım)
+  const onKontur = (y: number) => { let best = -Infinity; const q = g.gov; for (let i = 0; i < q.length; i++) { const a = q[i], b = q[(i + 1) % q.length]; if ((a[1] - y) * (b[1] - y) <= 0 && a[1] !== b[1]) { const x = a[0] + ((y - a[1]) / (b[1] - a[1])) * (b[0] - a[0]); best = Math.max(best, x); } } return best; };
+  const kY0 = Math.min(...g.gov.map((q) => q[1])), kY1 = Math.max(...g.gov.map((q) => q[1]));
+  const kaftanBant: P[] = (() => {
+    const sag: P[] = [], sol: P[] = [];
+    for (let i = 0; i <= 28; i++) {
+      const y = lerp(kY0 - 4, kY1 + 4, i / 28), x = onKontur(Math.min(kY1 - 1, Math.max(kY0 + 1, y)));
+      if (!isFinite(x)) continue;
+      const u = (y - kY0) / fP; // metre (yukarıdan)
+      // kıvrım: göğüste dar, belde (kuşak) içe, etekte iki kumaş dalgası; genlik bandın %40'ı, en az 3 px
+      const kivrim = 0.4 * Math.sin(u * 7.5 + 0.6) + 0.25 * Math.sin(u * 15 + 1.3) + 0.35 * interpolate(u, [0.45, 0.6, 0.75], [0, -0.6, 0], cl);
+      const wb = Math.max(4, wFig * (1 + kivrim)) + 4 * dar * Math.sin(u * 11);
+      sag.push([x + 6, y]); sol.push([x - wb, y]);
+    }
+    return [...sag, ...sol.reverse()];
+  })();
+  // ışık lekesi (U6, mekanlar §1.6a): sütunun padişahın ARKASINDA kalan kısmı yüzeye (kapı pervazı / zemin / duvar; kapı boşluğu ve pencere
+  // hariç) düşer; içinde padişahın kesik gölgesi (siluet ışık yönünde ötelenmiş). Elle konmaz: sütun ∩ yüzey ∖ gölge.
+  const golgeD = 110; const golgeTr = `translate(${d[0] * golgeD},${d[1] * golgeD})`;
+
   // şerit maskesi: siluet (beyaz) eksi ışığa uzak kopya (siyah); sütun kırpar. Işık sağdan → kaydırma −wFig.
   const beyaz = `${uid}w`, siyah = `${uid}b`;
-  // kol ışığa doğru uzanıyorsa (yüz pencereye dönük) çıkarma kopyasına girmez: kolun satırındaki yüz/kaftan kendi kenarından aydınlanır
-  // (aksi halde kol yüzde yatay koyu bant = "sakal" bırakıyordu; tasarım §3.5 sakal sorusu açılmaz). Işıktan dönükken kol kopyada kalır.
   const kolCikar = g.yon < 0;
   const figurSiluet = (fill: string, tr?: string) => <g transform={tr} filter={`url(#${fill === "w" ? beyaz : siyah})`}><PadisahFigur g={g} kol={fill === "w" || kolCikar ? kol : null} ton={FIGUR_GOLGE} /></g>;
+  const [kx0, kx1] = IC.kapi.x, [ky0, ky1] = IC.kapi.y, pv = IC.kapi.pervaz;
 
   return (
     <svg width={1080} height={1920} viewBox="0 0 1080 1920">
@@ -166,44 +203,66 @@ export const IcSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> =
             <mask id={`${uid}m`} maskUnits="userSpaceOnUse" x={-2000} y={-2000} width={6000} height={6000}>
               {figurSiluet("w")}
               {figurSiluet("b", `translate(${-wFig},0)`)}
+              {/* yüz pencereye dönükken baş + sarık + kaftan ayrı bantlarla aydınlanır (aşağıda) → kontur bandından çıkar */}
+              {yuzW > 0 && <g fill="#000000" opacity={yuzW}>{[g.bas, g.sar, g.kav, g.gov, g.boyun, g.sac].map((q, i) => <polygon key={i} points={poly(q)} />)}</g>}
+            </mask>
+            <mask id={`${uid}l`} maskUnits="userSpaceOnUse" x={-2000} y={-2000} width={6000} height={6000}>
+              <rect x={-2000} y={-2000} width={6000} height={6000} fill="#ffffff" />
+              <rect x={kx0} y={ky0} width={kx1 - kx0} height={ky1 - ky0} fill="#000000" />
+              <rect x={IC.pen.x[0] - IC.pervaz} y={IC.pen.y[0] - IC.pervaz} width={2000} height={IC.denizlik[1] + 40 - IC.pen.y[0]} fill="#000000" />
+              <g transform={golgeTr}>{figurSiluet("b")}</g>
             </mask>
             <clipPath id={`${uid}s`}><polygon points={poly(sutun)} /></clipPath>
             <clipPath id={`${uid}h`}><rect x={solSinir} y={-2000} width={6000} height={6000} /></clipPath>
+            <clipPath id={`${uid}g`}><rect x={-2000} y={-2000} width={2000 + solSinir} height={6000} /></clipPath>
             <clipPath id={`${uid}a`}><rect x={IC.pen.x[0]} y={IC.pen.y[0]} width={IC.pen.x[1] - IC.pen.x[0]} height={IC.pen.y[1] - IC.pen.y[0]} /></clipPath>
+            {/* yüz çizgisi: göz–burun kökü arasında dikey, kaştan burun ucu hizasına (tasarım v1.6 U1) */}
+            <clipPath id={`${uid}yb`}><polygon points={poly([[bxL, byT], [bxR, byT], [bxR, byB], [bxL, byB]])} /></clipPath>
+            <clipPath id={`${uid}bs`}>{[g.bas, g.sar, g.kav].map((q, i) => <polygon key={i} points={poly(q)} />)}</clipPath>
+            <clipPath id={`${uid}kb`}><polygon points={poly(kaftanBant)} /></clipPath>
+            <clipPath id={`${uid}gv`}><polygon points={poly(g.gov)} /></clipPath>
           </defs>
-          {/* duvar (gölgede düz ton) + zemin */}
+          {/* duvar (gölgede düz ton) + zemin: düz tek ton döşeme, duvar dibi temas gölgesi bandı, desensiz halı (R3 §1.6a) */}
           <rect x={-1200} y={-1200} width={3600} height={IC.zemin + 1200} fill={RENK.duvar} />
           <rect x={-1200} y={IC.zemin} width={3600} height={1600} fill={RENK.zemin} />
+          <rect x={-1200} y={IC.zemin + 12} width={3600} height={1600} fill={RENK.hali} />
+          <rect x={-1200} y={IC.zemin} width={3600} height={12} fill={RENK.dipGolge} />
           <KonturTitreme derinlik="yakin" seed={S}>
-            {/* duvar dibi: ahşap süpürgelik (tek koyu bant) */}
-            <rect x={-1200} y={IC.zemin - 22} width={3600} height={22} fill={tonla(RENK.duvar, -0.2)} {...kn(RENK.duvar, 3)} />
-            {/* ---- kapı (açık, ardı koyu): pervaz + lento düz; kapı ağzında III + ton ---- */}
-            {(() => { const [x0, x1] = IC.kapi.x, [y0, y1] = IC.kapi.y, pv = IC.kapi.pervaz; return <g>
-              <rect x={x0 - pv} y={y0 - pv} width={x1 - x0 + 2 * pv} height={y1 - y0 + pv} fill={RENK.pervaz} {...kn(RENK.pervaz)} />
-              <rect x={x0} y={y0} width={x1 - x0} height={y1 - y0} fill={RENK.kapiIc} {...kn(RENK.kapiIc, 3)} />
-              <Tarama sekil={[[x0, y0], [x1, y0], [x1, y0 + 70], [x0, y0 + 70]]} basamak="III" aci={60} renk={ink(RENK.kapiIc)} derinlik="yakin" seed={S + 3} />
-              <Tarama sekil={[[x1 - 60, y0], [x1, y0], [x1, y1], [x1 - 60, y1]]} basamak="III" aci={60} renk={ink(RENK.kapiIc)} derinlik="yakin" seed={S + 4} />
-              {/* pervazın gölge tarafı (ışıktan uzak sol kenar): II */}
-              <Tarama sekil={[[x0 - pv, y0 - pv], [x0, y0], [x0, y1], [x0 - pv, y1]]} basamak="II" aci={60} renk={ink(RENK.pervaz)} derinlik="yakin" seed={S + 5} />
-              <line x1={x1 + pv} y1={y0 - pv} x2={x1 + pv} y2={y1} stroke={tonla(RENK.pervaz, 0.25)} strokeWidth={3} />
-            </g>; })()}
-            {/* ---- pencere: pervaz (iki kanadın çevresi) + açıklık (dışarısı aşırı pozlanmış) + orta kayıt + kapalı ikinci kanat ---- */}
+            {/* ---- kapı (açık, ardı koyu): kalın pervaz 0.10 m + düz lento 0.15 m + taş eşik (zemine basar); kapı ağzında III + ton ---- */}
+            <g>
+              <rect x={kx0 - pv} y={ky0 - IC.lento} width={kx1 - kx0 + 2 * pv} height={ky1 - ky0 + IC.lento} fill={RENK.pervaz} {...kn(RENK.pervaz)} />
+              <line x1={kx0 - pv} y1={ky0} x2={kx1 + pv} y2={ky0} stroke={ink(RENK.pervaz)} strokeWidth={3} />
+              <rect x={kx0} y={ky0} width={kx1 - kx0} height={ky1 - ky0} fill={RENK.kapiIc} {...kn(RENK.kapiIc, 3)} />
+              <Tarama sekil={[[kx0, ky0], [kx1, ky0], [kx1, ky0 + 70], [kx0, ky0 + 70]]} basamak="III" aci={60} renk={ink(RENK.kapiIc)} derinlik="yakin" seed={S + 3} />
+              <Tarama sekil={[[kx1 - 60, ky0], [kx1, ky0], [kx1, ky1], [kx1 - 60, ky1]]} basamak="III" aci={60} renk={ink(RENK.kapiIc)} derinlik="yakin" seed={S + 4} />
+              <Tarama sekil={[[kx0 - pv, ky0 - IC.lento], [kx0, ky0 - IC.lento], [kx0, ky1], [kx0 - pv, ky1]]} basamak="II" aci={60} renk={ink(RENK.pervaz)} derinlik="yakin" seed={S + 5} />
+              <line x1={kx1 + pv} y1={ky0 - IC.lento} x2={kx1 + pv} y2={ky1} stroke={tonla(RENK.pervaz, 0.25)} strokeWidth={3} />
+              <rect x={kx0 - pv - 6} y={IC.esik[0]} width={kx1 - kx0 + 2 * pv + 12} height={IC.esik[1] - IC.esik[0]} fill={RENK.esik} {...kn(RENK.esik, 3)} />
+            </g>
+            {/* ---- pencere: pervaz + açıklık (dışarısı aşırı pozlanmış) + kapalı ikinci kanat (kenarı orta kayıtta, her karede) ---- */}
             <rect x={IC.pen.x[0] - IC.pervaz} y={IC.pen.y[0] - IC.pervaz} width={IC.kanat2[1] - IC.pen.x[0] + 2 * IC.pervaz} height={IC.pen.y[1] - IC.pen.y[0] + IC.pervaz} fill={RENK.pervaz} {...kn(RENK.pervaz)} />
             <rect x={IC.pen.x[0]} y={IC.pen.y[0]} width={IC.pen.x[1] - IC.pen.x[0]} height={IC.pen.y[1] - IC.pen.y[0]} fill={RENK.disari} />
             <rect x={IC.pen.x[0]} y={872} width={IC.pen.x[1] - IC.pen.x[0]} height={IC.pen.y[1] - 872} fill={RENK.ufuk} clipPath={`url(#${uid}a)`} />
+            {/* yarık: aşırı pozlanmış dış ışık çizgisi (pencerenin kimliği; mekanlar §1.6b) */}
+            <rect x={yarik[0]} y={IC.pen.y[0]} width={w} height={IC.pen.y[1] - IC.pen.y[0]} fill={RENK.yarikDis} />
             <polygon points={poly(parca(kanat2M, 0, 1, 0, 1))} fill={RENK.ahsapGolge} {...kn(RENK.ahsapGolge, 3)} />
             {panel(kanat2M, "k2")}
-            <rect x={IC.kayit[0]} y={IC.pen.y[0]} width={IC.kayit[1] - IC.kayit[0]} height={IC.pen.y[1] - IC.pen.y[0]} fill={RENK.pervaz} {...kn(RENK.pervaz, 3)} />
+            {/* ikinci kanadın kenarı (kapalı, gölgede) x 738–752 */}
+            <rect x={IC.kayit[0]} y={IC.pen.y[0]} width={IC.kayit[1] - IC.kayit[0]} height={IC.pen.y[1] - IC.pen.y[0]} fill={RENK.ahsapGolge} {...kn(RENK.ahsapGolge, 2.5)} />
+            <line x1={IC.kayit[1]} y1={IC.pen.y[0]} x2={IC.kayit[1]} y2={IC.pen.y[1]} stroke={ink(RENK.ahsapGolge)} strokeWidth={3} />
             <Tarama sekil={[[IC.pen.x[0] - IC.pervaz, IC.pen.y[0] - IC.pervaz], [IC.pen.x[0], IC.pen.y[0] - IC.pervaz], [IC.pen.x[0], IC.pen.y[1]], [IC.pen.x[0] - IC.pervaz, IC.pen.y[1]]]} basamak="II" aci={60} renk={ink(RENK.pervaz)} derinlik="yakin" seed={S + 6} />
-            {/* denizlik (çıkıntı) + yarığın düştüğü üst yüz ışıklı */}
-            <rect x={IC.pen.x[0] - 40} y={IC.denizlik[0]} width={IC.kanat2[1] - IC.pen.x[0] + 80} height={IC.denizlik[1] - IC.denizlik[0]} fill={RENK.denizlik} {...kn(RENK.denizlik, 3)} />
-            <rect x={yarik[0]} y={IC.denizlik[0]} width={w} height={7} fill={RENK.duvarIsik} />
+            {/* denizlik: 0.12 m kalın çıkıntı (20 px öne taşar), üst yüz bir ton açık + yarığın düştüğü yerde ışıklı; altında 16 px koyu gölge bandı */}
+            <rect x={IC.pen.x[0] - IC.pervaz - 20} y={IC.denizlik[1] + 20} width={IC.kanat2[1] - IC.pen.x[0] + 2 * IC.pervaz + 40} height={16} fill={RENK.denizlikGolge} />
+            <rect x={IC.pen.x[0] - IC.pervaz - 20} y={IC.denizlik[0]} width={IC.kanat2[1] - IC.pen.x[0] + 2 * IC.pervaz + 40} height={IC.denizlik[1] + 20 - IC.denizlik[0]} fill={RENK.denizlik} {...kn(RENK.denizlik, 3)} />
+            <rect x={IC.pen.x[0] - IC.pervaz - 20} y={IC.denizlik[0]} width={IC.kanat2[1] - IC.pen.x[0] + 2 * IC.pervaz + 40} height={9} fill={tonla(RENK.denizlik, 0.22)} />
+            <rect x={yarik[0]} y={IC.denizlik[0]} width={w} height={9} fill={RENK.duvarIsik} />
             {/* menteşeler (nötr, koyu küçük) */}
             {[0.12, 0.88].map((v, i) => { const y = lerp(IC.pen.y[0], IC.pen.y[1], v); return <rect key={`mt${i}`} x={IC.pen.x[0] - 5} y={y - 12} width={10} height={24} fill={RENK.demir} />; })}
-            {/* mandal / tutucu (orta kayıtta) */}
-            <line x1={mK[0]} y1={mK[1]} x2={mUc[0]} y2={mUc[1]} stroke={RENK.demir} strokeWidth={6} strokeLinecap="round" />
-            <circle cx={mK[0]} cy={mK[1]} r={5} fill={RENK.demir} />
           </KonturTitreme>
+          {/* ---- ışık lekesi (U6): sütunun padişahın arkasına geçen kısmı yüzeylere düşer, içinde onun kesik gölgesi ---- */}
+          <g clipPath={`url(#${uid}s)`}><g clipPath={`url(#${uid}g)`}><g mask={`url(#${uid}l)`}>
+            <rect x={-2000} y={-2000} width={6000} height={6000} fill={RENK.duvarIsik} opacity={0.5} />
+          </g></g></g>
           {/* ---- havadaki ışık sütunu: iki ince kenar çizgisi + çok hafif dolgu (≤ .06) — padişahta kesilir ---- */}
           <g clipPath={`url(#${uid}h)`}>
             <polygon points={poly(sutun)} fill={RENK.serit} opacity={0.05} />
@@ -213,14 +272,22 @@ export const IcSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> =
           <polygon points={poly([kanatKose.h0, kanatKose.s0, kanatKose.s1, kanatKose.h1])} fill={RENK.ahsapGolge} {...kn(RENK.ahsapGolge, 3)} />
           {panel(kanatM, "k1")}
           <polygon points={poly(kalin)} fill={karistir(RENK.ahsapGolge, "#e8c890", 0.15 + 0.7 * kenarIsik)} {...kn(RENK.ahsap, 2)} />
-          {/* serbest kenar kalınlığı ışığa döndükçe aydınlanır: gerçek izdüşüm ≈2 px → telefonda okunsun diye 6 px (abartı, raporlu) */}
           {kenarIsik > 0.2 && <line x1={kanatKose.s0[0] - 3} y1={kanatKose.s0[1]} x2={kanatKose.s1[0] - 3} y2={kanatKose.s1[1]} stroke={karistir(RENK.ahsap, "#f0d8a0", kenarIsik)} strokeWidth={6} />}
-          {/* ayak teması: koyu temas gölgesi (ışık zemine bu kamerada düşmez → yalnız temas) */}
-          <ellipse cx={eksenX + g.yon * 0.04 * fP} cy={ayakY + 2} rx={0.34 * fP} ry={0.05 * fP} fill="#14110d" opacity={0.45} />
-          {/* ---- padişah: gölge tonu + şerit (ışık tonu, maskeli) ---- */}
+          {/* mandal / tutucu (orta kayıtta; kanat kenarına oturur) */}
+          <line x1={mK[0]} y1={mK[1]} x2={mUc[0]} y2={mUc[1]} stroke={RENK.demir} strokeWidth={6} strokeLinecap="round" />
+          <circle cx={mK[0]} cy={mK[1]} r={5} fill={RENK.demir} />
+          {/* ayak teması: halı üstünde basık koyu temas gölgesi α .35 (huzme zemine düşmez → yön gölgesi yok) */}
+          <ellipse cx={eksenX + g.yon * 0.04 * fP} cy={ayakY + 2} rx={0.34 * fP} ry={0.045 * fP} fill={RENK.dipGolge} opacity={0.35 / 0.45 * 0.45 + 0.1} />
+          {/* ---- padişah: gölge tonu + şerit (ışık tonu) ---- */}
           <PadisahFigur g={g} kol={kol} ton={FIGUR_GOLGE} />
           <g clipPath={`url(#${uid}s)`}>
             <g mask={`url(#${uid}m)`}><PadisahFigur g={g} kol={kol} ton={FIGUR_ISIK} sargi /></g>
+            {yuzW > 0 && <g opacity={yuzW}>
+              {/* yüz: göz–burun kökü dikey ışık çizgisi */}
+              <g clipPath={`url(#${uid}yb)`}><g clipPath={`url(#${uid}bs)`}><PadisahFigur g={g} kol={null} ton={FIGUR_ISIK} sargi /></g></g>
+              {/* kaftan: ön kenar bandı, iç kenarı kumaş kıvrımını izler */}
+              <g clipPath={`url(#${uid}kb)`}><g clipPath={`url(#${uid}gv)`}><PadisahFigur g={g} kol={null} ton={FIGUR_ISIK} /></g></g>
+            </g>}
           </g>
           {/* toz zerreleri (yalnız sütunda) */}
           <g clipPath={`url(#${uid}s)`}>{toz.map((q, i) => <circle key={i} cx={q[0]} cy={q[1]} r={2.6} fill={RENK.serit} opacity={0.55} />)}</g>

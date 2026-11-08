@@ -160,7 +160,7 @@ Tek karakter yakın (rig `yakin` yüz), arka başka şablonun bulanık sahnesi.
 - 1 karakter; `z/u` yok sayılır. `esne` jesti burada kocaman `esneme` ağzı verir (K2).
 - `manipulator` (K2): `{ileri: [x, y] rig yerel (175, −280), yari (72)}` — göğüs önünde kumanda kolu; it-çek fazı kolu döndürür, el IK ile tutamakta; kablolar kadraj üstüne. Kol jest dışında da elde kalır (süreklilik).
 
-## SARAYBURNU (Evliya, İstanbul 1630'lar — kurulu: `kiyi` + `gece` (K1), `insert` + `gece`/`gun` (K2), `kosk` + `gece`/`gun` (K3), `ic` + `gun` (K4))
+## SARAYBURNU (Evliya, İstanbul 1630'lar — kurulu: `kiyi` + `gece` (K1), `insert` + `gece`/`gun` (K2), `kosk` + `gece`/`gun` (K3), `ic` + `gun` (K4; K5'te U1/U4/U5/U6/U7))
 Sinan Paşa (İncili) Köşkü kıyısı (mekanlar.md §1). `src/kit/sablonlar/sarayburnu/`. Kurulmamış görünüm/saat render'da AÇIK HATA verir; doğrulayıcı da HATA.
 | parametre | değerler |
 |---|---|
@@ -184,6 +184,17 @@ Sinan Paşa (İncili) Köşkü kıyısı (mekanlar.md §1). `src/kit/sablonlar/s
   - **`el[]`** (en çok 3; ekran px): `rol: alan` (tip `lagari`/`hezarfen`; dirsek json'dan, bilek json'dan; ilk anahtar zemine yakınsa avuç basamağa BASAR = temas o karede) · `rol: veren` (tip `entari-yen`, sağdan; `tut {prop, bas, bit}` kese kıstırmada, `bit`'te kese tabanı alıcı avucuna oturur; çıkışta el tümüyle sağdan çıkar) · `rol: omuz` (tip `muhafiz`, soldan; `kare[2]` = omza iniş teması; json yolu, gerçek omuz başına bağlanır; kumaş 6 px içeri). Poz: `gevsek`(önce)=avuç açık, `kistir`=kapa, `gevsek`(sonra)=gevşe (bilek 12° düşer, kese kayar). El boyu 0.19 m (≈ 240 px), kese = 0.85 × el.
   - **Prop:** `kese` (kumaş torba #625646, `durum.icerik gumus|altin`; x/y = taban teması; elde iken eli izler, json yolu yalnız serbest düşüş/yerde) · `sikke` (altın, `durum.donus`, `yatis`; x/y = zemin teması, 22 mm × 3).
   - **Işık:** gece köşk penceresi (`isik_nokta`, gölge sola, döşemenin sağ yarısında amber havuz) · gün güneş tam soldan (yönlü (3.7, −0.15), gölge sağa uzun; muhafız eli gölgesi omza iniş öncesi ışıktan türer).
+
+## GALATA-TEPE (Evliya, Galata Kulesi tepesi 1630'lar — kurulu: `tepe` + `gun` (K5))
+- **Parametreler:** `gorunum: "tepe"`, `saat: "gun"` (zorunlu) · `isik` (metinde "siluet" geçerse Hezarfen kontra siluet 0.94; yoksa 0.3) ya da `siluet` 0–1 · `toz {bas, bit}` (E4, taşın yere çarpması; toz yükselir, yayılır, yere oturur).
+- **Dekor (px):** ufuk 829 (= ayakta baş hizası); figür px/m = (ayak y − 829)/1.65 (ayak 1250 → 255). Tepe katı duvar dibi 1150 (1.2 m geride, 195 px/m, silindir eğriliği), seki üst yüzü 1150→1264 (dudak), çıkıntı x 640–900 + tek konsol, **korkuluk yok**. Kapı (yarım daire kemer) x 163–418; kurşun külah (yükseklik = çap, saçak %10, alemsiz). Gövde dudaktan 3560'a 255 px/m (×5.5 stilize; her 4. sıra koyu), dip: toprak + iki ev çatısı (x 100–560 / 820–1250, sokak 560–820).
+- **Kamera:** cs 0.9–3.2, cx ±400, cy −5400…600. `kamera.takip {prop, ekran_y, kare:[bas,bit]}`: aralıkta cy, prop'u ekranda sabit y'de tutar (vinç; ilk 8 karede yumuşak bağlanır). Hızlı vinç dönüşünde (|Δcy| > 40 px/kare) gövde şeridinin 2 iz kopyası α .25.
+- **Karakter:** `hezarfen` (Kukla, Osmanlı kostümü, sarık-basik ters sargı, sakal; eller kuşakta duruş; sırtta katlı kanat = `kanat` prop `bagli: hezarfen`, gün ton ailesi). Konum x/y (ayak). Jestler: `yuru` (x yolu; adım 0.75 m, diz %60), `bak` (ops.x/y), `egil` (ops.aci), `tas-it` (ops.temas: ön ayak taşa değer; ayak → taşa vurur → dudağa kadar iter → yere döner, bit−4).
+- **Prop:** `tas` (KE-P5, `boyut_dekor_px` ≈95): temas kareleri `tas-surtme` (itme), `tas-kayma` (dudaktan devrilme), `uzak-tik` (yere çarpma) json `temaslar`'ından okunur; düşüş serbest düşüş (g kareden türer), 1 tur/40 kare dönüş, yerde 1 sekme + oturma.
+- **Doğrulayıcı:** tas-it temas, taş itme/çarpma temasları, takip prop/aralık, yürüyüş adım basmaları (temas yoksa UYARI).
+
+## Plan içi kesme (`devam_plan`, K5)
+- `devam_plan {kare_bas, sablon, parametreler, kamera, karakterler, props}`: `kare_bas`'tan itibaren görüntü bu şablondan (plan karesi aynı; ses/yazı/temas planın kendisinde). `parametreler.plan_ici_kesme {kare, sonraki_sablon}` ile aynı olmalı. İlk bölümün kamera/prop/jest anahtarları kesmeden önce biter (doğrulayıcı).
 
 ## AVLU-SALON (kayıtlı değil)
 `src/kit/sablonlar/avlu-salon/AvluSalon.tsx` = SB2-BORSA P02 kodu (portikli avlu, kalabalık, tahta). Parametrelenmedi; `SB2-BORSA` kompozisyonu olarak çalışır. Gerektiğinde kurulum ekibi şablonlaştırır.
