@@ -10,7 +10,7 @@ Kaynak: `src/theme.ts` (renkler, fontlar, güvenli alan). Kimliğin dışına ç
 - Altyazı: alt güvenli alanın hemen üstü, en fazla 2 satır, vurgu kelime kırmızı.
 - Arşiv görselleri: telifsiz olduğunu ve kaynağını `varliklar.md`'ye yaz.
 - Karakterler: minimal SVG siluetler; yüz detayı yok, tutarlı oranlar, her bölümde aynı çizgi kalınlığı.
-- Her bölüm için bir "imza nesnesi" seç (bu bölüm: Chappe kulesi) ve tekrar eden motif yap.
+- Her bölüm için bir "imza nesnesi" seç (bölümün `tasarim.md`'sinde gerekçesiyle; ör. Blanc: beyaz eldiven, Evliya: fişek demeti) ve tekrar eden motif yap.
 
 KATKI RAPORU (zorunlu, görev sonunda):
 Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu biçimde ekle ve aynısını final cevabında ver:

@@ -81,6 +81,24 @@
   - Efektler.tsx okunmadı; motion mevcut efektleri §5'e göre eşleyecek.
   - Kalibrasyon sırası: K1 P06 p76 + P05 p78 · K2 P11 p128 + P07 p72 · K3 P14 son ↔ P01 p0 · (4) P12 p66.
 
+## tasarimci · 2026-11-08 · tasarim.md revizyon v1.1 (kullanıcı kararları + arastirma.md §10)
+- Ne yaptım: 4 kullanıcı kararını ve araştırma ekinin düzeltmelerini `tasarim.md`'ye işledim. Değişen maddeler:
+  - Çatı: koyu toprak `#6e5240`, tek ton; kiremit deseni ve dik çatı yok.
+  - Demet: düz mat silindir; sargı çizgileri kalktı, "kâğıt" adı kalktı.
+  - Kese: bez/kumaş torba `#625646`; içerik göstergesi ölçeksiz sikke kenarı.
+  - Sikke: 0.022 m.
+  - Sarık: beyaz/krem; yeşil sarık hiçbir figürde yok, padişah dahil.
+  - Lagâri: bıyık belirgin, çene olgun (`yasCizgi 0.25`).
+  - Kanat: P06'da suda kalır (ayrık prop), P07'de Lagâri kanatsız (R7).
+  - P13: masa yerine rahle; ayağı, minder ve oturuş çizilmez. Kamış kalem + hokka nötr, divit yok.
+  - Pencere: çift kanatlı kepenk ailesi; panel sayısı nötr; cam "yok" denmez, yalnız çizilmez.
+  - Efekt notu: fişek renkleri ve "düşen çizgi" biçimi tarihî iddia değil, [T] olarak yeniden yazıldı.
+  - §10 soruları "karara bağlandı" olarak işaretlendi.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/tasarim.md, bolumler/evliya-ucuslari/katki-raporu.md
+- Kararlar: Kese rengi yardımcı entarisiyle (`#6a5a48`) aynı olmasın diye `#625646` seçildi. Demet ile ΔE ≈ 33. Pencere kanadının panel sayısı 2–3 arasında serbest bırakıldı (köşk için kanıt yok).
+- Kurallar: Kanıtsız ayrıntılar ya nötr bırakıldı ya [T] etiketi aldı. "Yokluk iddiası" (cam yok) kaldırıldı.
+- Açık: §10 bulgularının hepsi arama özeti düzeyinde. Sayfalar açılırsa çatı, sarık ve pencere yeniden gözden geçirilecek. Chappe kalıbı notu hâlâ açık.
+
 ## arastirmaci · 2026-11-08 · Evliya uçuşları tasarım doğrulama eki (tasarim.md §9, madde 4–10)
 - Ne yaptım: Tasarımcının 7 [G] sorusunu (sarık/sakal, fişek kılıfı, kese/sikke/akçe, yazı yüzeyi, renkli havai fişek, konut çatısı, köşk pencereleri) 20+ `WebSearch` sorgusuyla taradım ve `arastirma.md` sonuna "## 10. Tasarım doğrulama eki" ekledim: özet tablo + her madde için cevap, kaynak, güven, tasarıma etkisi.
 - Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/arastirma.md (yalnız sona ek, mevcut bölümlere dokunulmadı), /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/katki-raporu.md (bu bölüm).
