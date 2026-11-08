@@ -18,6 +18,8 @@ Bu belge **şartnamedir, kod değildir.** Bütün sayılar motion içindir. Moti
 > - B14 duvar dibi 1150 kabul edildi (§2.2, §2.3).
 > - P12 p204 cs 1.6, padişah x 540 (§1.6, §1.6a, §1.6b).
 >
+> **R5 (2026-11-08, kullanıcı kararı seçenek A):** P08 dibi "kuleye dayalı iki ev + dar sokak" (R4) **iptal**; yerine **sur kolu + taş döşeli avlu** (§2.4b, `arastirma.md` §11.2/§11.9). VP, çarpma noktası, toz konum/zamanı aynı; toz rengi avluya uyarlandı. `sokak_bosluk_x` artık "avlu açıklığı" (§7.8).
+>
 > **R2 (2026-11-08, K3/K4):** gündüz yansıması yeniden tarif edildi (§1.3a, V8). Motion'ın iki sorusu cevaplandı (§1.3b: eksen asimetrisi kasıtlı; P02 cs 0.97 + grup onaylandı, sağ ucu ≤ 148). P12 kartı gözden geçirildi (§1.6): etkin yarık formülü düzeltildi, havadaki huzme yalnız kenar çizgisi olacak.
 
 Etiketler: **[A]** arastirma.md · **[A10]** arastirma.md §10 (yalnızca arama özeti) · **[S]** sahne-plani/senaryo · **[G]** genel bilgi, kaynağı yok, **doğrulanmalı** · **[T]** tasarım kararı (tarihî iddia değil). Kanıtsız ayrıntı **nötr** kalır.
@@ -374,7 +376,7 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | Seki ve çıkıntı | Seki kenarında **korkuluk çizilmez** [T: kanıtsız → nötr; ayrıca öndeki korkuluk Hezarfen'in ayaklarını örterdi, yönetmene not §7.3]. **Çıkıntı:** sekinin sağ uçta dışa taşan taş levhası, 0.8 m taşma, altında tek sade taş konsol. Gevşek taş levhanın dış kenarında |
 | Külah (süsleme imzası 1) | **Kurşun kaplı** [A]. Biçim nötr: düz koni, **yükseklik = 1.0 × taban çapı**. Saçak taşması tabanın **%10'u** (R3: deniz feneri / roket benzerliğine karşı, §2.4a). Pencere, çatı penceresi, alem ve bayrak **yok** [A "eğim/pencere kanıtsız"]. Yakında dikiş çizgileri §2.5 |
 | Süsleme imzası 2 | Kemerli tepe katı (koyu açıklık dizisi) + korniş çizgisi. Başka süs yok |
-| Çevre | Galata konutları: ahşap gövde [A10 §10.9], çatı koyu toprak `#6e5240` tek ton, eğim alçak-orta, **kiremit deseni ve dik çatı yok** [A10]. Galata surları çizilmez (doğrulanmadı [A]) |
+| Çevre | Galata konutları: ahşap gövde [A10 §10.9], çatı koyu toprak `#6e5240` tek ton, eğim alçak-orta, **kiremit deseni ve dik çatı yok** [A10]. ~~Galata surları çizilmez~~ **R5:** sur kuleyi çevirir [A §11.2, orta güven]; yalnız P08 dibinde tek sur kolu + avlu çizilir (§2.4b). Tepe kadrajında (p0) sur görünmez [T] |
 | Kameradan görünen | Kamera sekinin dışında, sekiyle aynı seviyede havada; göz 1.65 m yüksekte, tepe katı duvarından 4 m uzakta. **Külah dik olduğu için yüzeyi görünür** (eğim > bakış açısı). Saçak altı görünür. Külahın tepesi kadrajın üstünden taşar: koni, gölge yüzü + sağda geniş ışıklı yüz + apekse yelpaze dikişlerle okunur (R4, §2.3a). Göz hizasının üstündeki kenarlar ∩, altındakiler ∪ kavislidir. Tam siluet P09'dadır |
 
 ### 2.2 Ölçek ve yön
@@ -489,44 +491,66 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
   - Her 4 sırada bir **daha koyu taş sırası** (`#5e574c`): akışı okutur [T]. İskele deliği ya da pencere yok (kanıtsız).
   - Gövdenin sağ ucu x 1060 (cs 2.0'da kadraj dışı). Taş gövdenin önünden düşer.
   - Işık: gölge yüzü düz `#6b6357`, tarama yok (geniş yüzey).
-- **Dip (R4, B5): sokak ağzı, taşın ölçeğinde (255 px/m, f = 1).** Önceki "×1/5.5 stilize iki ev" iptal: taş ev duvarının yarısı kadar duruyor, kaya gibi okunuyordu.
-  - **İlke:** bütün evler gösterilmez. Kuleye dayanan iki evin **sokak yüzü ve saçak ucu** kadrajın iki kenarını çerçeveler. Ortada dar sokak ve kule tabanı kalır.
-  - **Ölçek karşılaştırması** (telefonda okunmalı): taş 95 px = 0.37 m · taş subasman 0.9 m = 230 px. Taş, subasmanın %40'ı boyundadır: kafa büyüklüğünde bir taş.
-  - **Zemin ve ufuk:** kule tabanı **y 3560**, taşın çarpma noktası **(785, 3580)**, kuleden 0.08 m önde.
-    - p148'de kamera gözü sokaktan 1.6 m yüksekte [T]: ufuk d y **3152**.
-    - Ufuk noktası **VP = (670, 3152)**: p148 kamerasında (cs 2.0, cx −260) ekran merkezi.
-    - **Evlerin her yatay kenarı VP'den geçen doğru üzerindedir** (tek nokta perspektif).
-  - **Evler** (kuleye dayalı, sokak yüzleri sokağa bakar; uzak uçları kule düzleminde):
+- **Dip: R5 (kullanıcı kararı, seçenek A) → §2.4b "sur kolu + avlu".** Aşağıdaki R4 "kuleye dayalı iki ev + dar sokak" spesifikasyonu **R4, iptal**. Gerekçe: `arastirma.md` §11.3 kuleye bitişik ev için kaynak bulamadı, §11.9 (A) seçeneği "kaynakla daha az çelişir" diyor.
+  - ~~**R4, iptal:** sol/sağ ev köşesi x 471 / 934, saçak ucu x 560 / 845 (5.4 m), taş subasman 0–0.9 m `#6a6252`, ahşap gövde `#5e5040`, güneşli şerit `#8a7660`, sokak zemini `#7a6c52` + 4 enine çizgi + 3 çakıl, `SokakAgzi` modülü.~~ Bu değerler **kullanılmaz**. Korunanlar: kule tabanı y 3560, çarpma (785, 3580), VP (670, 3152), toz öbeklerinin konum ve zamanı.
 
-| Öğe | Sol ev | Sağ ev |
-|---|---|---|
-| Duvar köşesi (uzak uç, kule düzlemi) | x 471 | x 934 |
-| **Saçak ucu** (0.35 m = 89 px sokağa taşar; yönetmen `sokak_bosluk_x` [560, 845]) | **x 560** | **x 845** |
-| Taş subasman 0–0.9 m (uzak uçta) | y 3560–3330, `#6a6252` | aynı |
-| Ahşap gövde 0.9–5.4 m | y 3330–2183, `#5e5040` (gölgede), 0.25 m aralıklı yatay tahta çizgileri α .25, 1.5 px | aynı |
-| Saçak (5.4 m), alın tahtası 0.15 m | y 2145–2183 `#3e2e24`. Altından görünen saçak altı (soffit) `#4e3a2e`: duvar üst çizgisi ile saçak ucu çizgisi arası | aynı |
-| Güneşli şerit | yalnız sol evin en üst 0.6 m'si (y 2336–2183) `#8a7660`: güneş sağdan, sağ ev sokağı gölgeler | tümü gölgede |
-| Kadraj kenarına uzantı (p148, d x 400 / 940) | saçak çizgisi (471, 2183) → (400, 1837) · zemin çizgisi (471, 3560) → (400, 3706) · saçak ucu çizgisi (560, 2183) → (521, 1837): neredeyse dikey koyu şerit | saçak ucu (845, 2183) → (907, 1837) · duvarı yalnız kenarda (≈ 6 px) |
+#### 2.4b Kule dibi: sur kolu + avlu (R5, P08 p52–200)
+**Kaynak durumu (önce oku):** Galata surunun kuleyi çevirdiği orta güvenle kaynaklı [A §11.2]. Osmanlı döneminde kule avlusunun var olduğu, 1863–64'te yıkıldığı da kaynaklı (tek-iki kaynak, orta-düşük) [A §11.1-1b]. Aşağıdakilerin **hiçbiri kaynaklı değildir**: sur kolunun kuleye hangi açıyla bağlandığı, yüksekliği, taş sıra boyu, mazgalın olup olmadığı, avlu zemin malzemesi. Bunlar [T] tasarım değeri ya da [Ç] çıkarımdır. Merian 1635 görülünce yeniden denetlenir (§9).
 
-  - **Çatı yüzeyi çizilmez:** kamera saçak altındadır; saçağın üstünde kalan çatı görünmez, arkasında kule gövdesi görünür.
-  - **Vinçte görünme sırası** (taş y(p) ≈ 1264 + 0.2226·(p − 46)², kadraj d y [taş − 450, taş + 510]):
-    - **p ≈ 89–124:** iki saçak ucu kadrajın iki kenarında aşağıdan girip yukarı çıkar. **Taş iki saçak ucunun arasından geçer**: düşüş ve "dar sokağa düştü" bilgisi buradadır.
-    - p 110–148: ev sokak yüzleri, subasman ve sokak zemini.
-    - p148 kadrajı: d y 3130–4090. Kule tabanının son 1.7 m'si, iki ev köşesi, sokak zemini.
-  - **Sokak zemini** (y 3560 → kadraj altı):
-    - Sıkıştırılmış toprak, gölgede **`#7a6c52`** (YENİ: toprak `#8a7a5c` bir basamak koyu). Gölgede zemin duvarlardan açıktır, gök ışığını alır.
-    - Kenarlar: iki evin zemin çizgisi (VP doğruları).
-    - **4 kırık enine çizgi**, perspektif aralıkla: y 3621 / 3703 / 3825 / 4009. 2 px, `#4e3a2e`, α .25.
-    - 3 küçük çakıl (14–22 px), seed 141. Taşla karışmasın diye taş tonunda değil, `#6a6252`.
-  - **Işık:** güneş sağ-ileride, 15°. Sağ ev (5.4 m) sokağı tümüyle gölgeler. Kule yüzü de gölgede (`#6b6357`). Taş gölgede `#8e8472`, ışıklı kenarı yok. Çarpma anını toz okutur.
+**Mimari kart (dip)**
+| Madde | Değer |
+|---|---|
+| Dönem/üslup | Ceneviz sur ve kulesi, Osmanlı onarımlarıyla; 1630'larda sur ayakta [A §11.2] (1635 depremi onarımı sahne yılına göre belirsiz → hasar/yıkıntı çizilmez, sade sağlam duvar) |
+| Yapı tipi | Kule tabanı (silindir gövdenin dibi) + kuleye bağlanan **tek sur kolu** (kalın taş perde duvar) + aradaki **avlu** [A §11.1, Ç: bağlanma biçimi] |
+| Sur kolu | Kameraya doğru uzanan düz perde duvar, kule yüzüne dik [T]. Kadrajın **solunda**; kameraya bakan **iç yüzü** görünür. Yükseklik **5.0 m** [T, kaynak yok], üstte **harpuşta** (düz kapak taşı bandı) 4.75–5.0 m, 0.08 m dışa taşar. **Mazgal dişi yok** [kaynak yok + §2.4a yasak benzerlik "satranç kalesi"], ok yarığı, kapı, kule (burç) yok |
+| Açıklıklar | Yok. Kadrajda kapı ya da pencere çizilmez (sur kapısının yeri bilinmiyor) |
+| Kule tabanı | Gövde aynı taş, sıra **0.45 m = 115 px** (gövde şeridiyle aynı ritim, kesintisiz sürer). **Kaide/subasman çıkıntısı yok** [kaynak yok → nötr]. Kadraj genişliği (2.1 m) kule çapının yanında küçük: sıralar düz yatay, uçlarda en çok 8 px dekor ∪ (silindir yasası, §2.3a ile aynı yönde) |
+| Avlu zemini | **Kaba kesme taş döşeme** [T; §11.9 "düz toprak/taş zemin", taş seçildi: derz ritmi ölçeği okutur]. Levha 0.6 m (en) × 0.4 m (derinlik), şaşırtmalı (her sıra yarım levha kayar) |
+| Kameradan görünen | Göz zeminden 1.6 m, kuleden **4.0 m** [T] (p148). Harpuşta göz hizasının çok üstünde: **duvar üst yüzü görünmez**, yalnız harpuştanın alt kenarı ve alnı. Kulenin taban 1.7 m'si, sur iç yüzü, avlu levhalarının 5 sırası. Hendek, mezarlık, ev kadraj dışında (çizilmez) |
+| Dip tek çizimdir | Dip p148 kamerasının tek nokta perspektifiyle **bir kez** çizilir. Vinç inişi 2B kaydırmadır (f = 1), perspektif kare kare değişmez. Bu yüzden vinç sırasında da duvar üstü yüzü görünmez (fiziksel tutarlı) |
+
+**Kamera ve perspektif (bolum.json P08 p100–166: cs 2.0, cx −260, cy −5300)**
+- Dekor → ekran (p148): `ekran_x = 2·d_x − 800`, `ekran_y = 2·d_y − 6260`. Kadraj dekor x **400–940**, y **3130–4090**.
+- **VP = (670, 3152)** = 540 − cx/2 = 670 ✓; ufuk = zemin 3560 − 1.6 m × 255 = 3152 ✓. Ekranda VP (540, 44): ufuk kadrajın tepesinde, kamera avluya bakar.
+- Ölçek: kule düzleminde **255 px/m** (dekor, ekranda 510 px/m). Kameraya yaklaştıkça zemin y'si `y(z) = 3152 + 408 · 4 / (4 − z)` (z = kuleden uzaklık, m).
+- Her yatay kenar (derz, duvar dibi, harpuşta) VP'den geçen doğru üzerinde: `x(y) = 670 + (x₀ − 670) · (y − 3152) / (y₀ − 3152)`, (x₀, y₀) doğrunun kule düzlemindeki noktası.
+
+**Katmanlar (arkadan öne)**
+| # | Öğe | Dekor geometri | Ekran (p148) | Ton |
+|---|---|---|---|---|
+| 1 | Kule tabanı yüzü | x 480–940, y 3130–3560. Sıra derzleri y 3560 / 3445 / 3330 / 3215 (+ 3100 kadraj dışı). Blok 0.5–0.9 m (128–230 px), düşey derzler sıra başına kayar, seed 137. Gövde şeridinin "her 4 sırada koyu sıra" sayacı burada da sürer | x 160–1080, y 0–860 | `#6b6357` gölge (gövdeyle aynı), derz `#4e473f` α .55 w 2. Tarama yok |
+| 2 | **Kule duvar dibi çizgisi** (ölçek öğesi 1) | (480, 3560) → (940, 3560), 4 px | y 860, 8 px | `#3e372e` |
+| 3 | **Sur iç yüzü** | Köşe (kule ile birleşim) düşey çizgi **x 480**, y 2285 → 3560. Dip çizgisi (480, 3560) → (400, **3731**). Harpuşta alt kenarı (480, 2349) → (400, 2011); üst (480, 2285) → (400, 1920) | Köşe x 160 dikey; dip çizgisi (160, 860) → (0, **1202**): kadrajı sol-altta bitiren köşegen | Yüz `#7b7163` (kuleden ΔE 5.9 açık: kameraya dönük düzlem gök ışığını daha çok alır [T]). Derz `#57503f` w 2.5 |
+| 3a | Sur taş sıraları (ölçek öğesi 2) | Sıra **0.30 m** (köşede 76.5 px) [T, kuleden ayrışsın diye 0.45 değil]: köşede y 3560 / 3483 / 3407 / 3330 / 3254 / 3177 …, her biri VP doğrusu; sol kenarda (x 400) y 3731 / 3623 / 3514 / 3405 / 3297 / 3188. Blok **0.4–0.6 m** (köşede 102–153 px), kameraya doğru perspektifle genişler. Düşey derzler dikey | Köşede sıra 153 px, sol kenarda 217 px | Her 7. blok bir ton koyu `#6f6555` (seed 142), kırık köşe her 9. blokta |
+| 3b | Harpuşta | 0.25 m bant, alt kenarında 3 px gölge çizgisi | Yalnız vinçte görünür (aşağıda) | Alın `#6f6555`, alt çizgi `#4a4237`. Üst yüz çizilmez |
+| 4 | Köşe gölgesi | Sur–kule birleşiminde kule yüzüne 10 px düşey koyu bant (iç köşe, gök ışığı az) | x 160–180 | `#57503f` α .6. **Tarama yok** (düz koyu ton, §0.5) |
+| 5 | **Avlu döşemesi** | Zemin: kule dibi 3560 ↔ sur dibi doğrusu ↔ kadraj altı | y 860–1920, x sur dibinin sağı | Levha `#62594a`, derz `#4a4237` w 3 (ekranda 6 px, 360 px'te 2 px ✓) |
+| 5a | Enine derzler (sıra 0.4 m) | y **3605 / 3662 / 3735 / 3832 / 3968** (z 0.4…2.0 m); bir sonraki 4172 kadraj dışı | ekran y 950 / 1064 / 1210 / 1404 / 1676 | Sıra derinliği ekranda 90 → 272 px: alt üçte biri iki büyük levha sırası doldurur |
+| 5b | Boyuna derzler (levha eni 0.6 m = 153 px kule düzleminde) | Sıra r (1 = kuleye bitişik) için taban noktaları `x₀ = 557 + 153k + 76.5·((r+1) mod 2)`, VP doğrusu, yalnız kendi sırasının içinde. **Sıra 1 sabit** (taban 557 / 710 / 863 → y 3580'de x 551 / 712 / **873**): taş (738–840) ve toz (720–841) tek levhanın üstünde kalır, derz taşın altından geçmez. Diğer sıralarda ±12 px titreşim, seed 141 | Sıra 1'de derz ekran x 303 / 625 / 946 | |
+| 5c | Yaşlanma | Sıra 3'te sol yarıda tek kırık levha çizgisi (560, 3668) → (612, 3728), 2 px; çarpma bölgesinden uzak. Çakıl/moloz **yok** (taşla karışır) | | `#4a4237` α .7 |
+| 6 | Temas gölgesi (taş) | Taşın altında elips rx 0.55 × taş eni (≈ 52 px), ry 9 px; taş havadayken yok, p148'de belirir | | `#3e372e` α .5. Güneş gölgesi yok (her yer kule gölgesinde) |
+
+**Taş ↔ avlu ayrışması (zorunlu ölçüm):** taş (gölgede) `#8e8472` L\* 55.6 · avlu levhası `#62594a` L\* 38.3 → **ΔL\* 17.3, ΔE76 17.3**. Taş kontur 4 px `ink` (ekranda 8). Avlu derzi daha koyu (L\* 28.5): taş, levhadan açık, derzden çok açık okunur. Kule yüzüne karşı ΔE 13.6, sur yüzüne karşı 7.7 (taş surun önünden hiç geçmez: taş x ≥ 738, sur ≤ 480). Eski "Sur gün `#8e8472`" (§8 köşk suru) bu dipte **kullanılmaz**: taşın tonudur.
+
+**Vinçte görünme sırası (R5; taş y(p) ≈ 1264 + 0.2226·(p − 46)², kadraj d y [taş − 450, taş + 510], d x 400–940 sabit)**
+- **p ≈ 72–129:** harpuşta, kadrajın sol kenarında (ekran x 0–160) aşağıdan girer, köşegen çizgi olarak (sol uç alçak, köşe yüksek) yukarı çıkıp kaybolur. Altından sur iç yüzü sol şeridi doldurur ve plan dibe inene kadar kalır. **"Taş surun içine, avluya düşüyor" bilgisi buradadır** (R4'teki iki saçak ucunun yerini alır).
+- Taş yolu x 780–785, sur köşesinin (480) 300 px sağında: duvarla hiç kesişmez.
+- p110–148: sur sıraları, kule tabanı, duvar dibi çizgisi, avlu.
+- p148 kadrajı: kule tabanı (üst %45), sur iç yüzü (sol, köşegen dip çizgisi), avlu levhaları (alt %55).
+- **Telefon testi (360 px):** "bu ne?" → "kulenin dibi, taş duvarlı taş avlu". Sokak ya da ev okunmamalı. Levha derzleri 2 px, sur sıraları ≥ 50 px aralıkla görünür olmalı.
+- **Ölçek okuması:** taş 95 px = 0.37 m · avlu levhası eni 153 px (0.6 m): taş levhanın ≈ %60'ı · sur sırası 76.5 px (0.30 m): taş bir sur sırasından biraz büyük · kule sırası 115 px. Kafa büyüklüğünde taş, kaya değil.
+- **Işık:** güneş sağ-ileride, 15° [T]; kule (≈50 m) bütün kadrajı gölgeler. Avlu, sur ve kule gölge tonunda; düşen gölge yok, yalnız temas gölgesi. Çarpma anını toz okutur.
 - **Toz (R4, B5; E4 yeniden):** tek beyaz elips ve halka **iptal** (telefonda "yumurta / su birikintisi" okunuyordu). Duman dilinde düzensiz öbekler kullanılır, yerde kalırlar.
   - **4 öbek** (dx dekor, taşın çarpma x'i 785'ten; r yarıçap, dekor): Ö1 (−45, 12) · Ö2 (−22, 18) · Ö3 (+8, 20) · Ö4 (+36, 12). Sekmenin yere değdiği karede (B6, p ≈ 152–158) **Ö5** (+30, 9) eklenir. Ekranda (cs 2) öbekler 24–40 px yarıçaplı.
-  - **Biçim:** 6 loblu tırtıklı bulut (P01 duman dili), lob yarıçapı 0.35 r, seed 140. Işık üst kenarı `#a9a69c`, gövde `#8e8a80`, α .75. Beyaz yok, halka yok.
+  - **Biçim:** 6 loblu tırtıklı bulut (P01 duman dili), lob yarıçapı 0.35 r, seed 140. Beyaz yok, halka yok.
+  - **R5 renk (avlu tozuna uyarlandı):** ~~`#a9a69c` / `#8e8a80` α .75~~ (R4; `#8e8a80` taştan yalnız ΔE 5.7 uzaktaydı, taş tozun içinde kaybolurdu). Yeni: gövde **`#a8a296`**, ışık üst kenarı **`#b2ac9f`**, **α .85**. Kuru kireçli taş tozu: avlu levhasından (L\* 38) açık, taştan (L\* 56) açık ve daha az doygun (C\* 7.0 / taş 11.1). Avlu üstünde etkin ton ≈ L\* 62 → taşla ΔL\* ≈ 6 + taşın 8 px ekran konturu. İmzadan ΔE 24.1 / 23.4 (≥ 15 ✓).
+  - **R5 katman sırası:** Ö2 ve Ö3 taşın **arkasında** (taş üstte çizilir). Ö1, Ö4, Ö5 taşın önünde ama yalnız taşın alt %35'ini örter; taşın üst yarısı ve konturu her karede açık kalır. Toz sur yüzüne ve kule duvar dibi çizgisine (y 3560) taşmaz: en yüksek öbek tepesi d y ≈ 3580 − 32 − 20 = 3528, kule yüzünün önünde kalır (kule yüzü gölgede `#6b6357`, toz ondan ΔL\* 24 açık, okunur).
   - **Zaman:**
     - p148–156: r·0.3'ten r'ye büyür, yükselir (tepe dy: Ö1 −24, Ö2 −32, Ö3 −28, Ö4 −18, Ö5 −12; dekor).
     - p156–176: yere geri iner (dy → −0.3 r), basıklaşır (ry ×0.55), rx ×1.25 yayılır.
     - **p176'dan sonra sabit, yerde kalır.** Fade yok, plan sonuna kadar görünür.
   - **Sınır** (rx = 1.3 r × 1.25 yayılma dahil): dış kenar d x **720–841**. p148 kamerasında (cx −260) ekranda **x 641–881**: taş merkezi 770'ten sol yarı genişlik 129, sağ 111 (≤ 130 ekran px, yönetmen) ✓. IG düğme sütunu (x ≥ 920) dışında ✓ (B4).
+  - **R5 avlu kontrolü:** çarpma (785, 3580) → ekran (770, 900); sekme (≈ 800, 3580) → (800, 900); yuvarlanma sonu d x 840 → ekran 880. Toz ekran y ≈ 836–940, x 641–881. Hepsi IG sütunu (x ≥ 920, y ≥ 900) dışında ✓. Hepsi sıra 1'de tek levhanın üstünde: levha derzleri ekran x 625 ve 946 ✓. Sur köşesi ekran x 160: toz ve taştan ≥ 480 px uzakta ✓.
 - **Arka katmanlar (çıkıntının sağı) yalnız cs 1'de görünür.** Vinç sırasında kadraj dışında kalırlar, f değerleri bu yüzden kritik değildir: gök/uzak f = 0, şehir f = 0.35.
 - **Takip doğrulaması:** cs 2.0'da dekor y 3580 → ekran y 900 (`bolum.json` P08 takip `ekran_y 900`). Taş d x 785 → cx −260'ta ekran 770 ≤ 785 ✓ (B4). Yuvarlanma 840'a kadar → ekran 880 ✓.
 - **Hızlı dönüş (p148–200):** aynı şerit tersine gider. Hareket bulanıklığı, şeridin iz kopyaları α .25 ile verilir (fade değildir, kamera hareketidir).
@@ -542,8 +566,8 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | Yasak benzerlikler (360 px, "bu ne?") | **Deniz feneri** (silindir + galeri + koni): tepe katında ışık/cam yok, açıklıklar koyu; koni h = çap (ince-uzun değil); gövde taş sıralı (beyaz düz değil). **Roket/kalem** (silindir + sivri koni: bölümün konusu yüzünden en büyük risk): kadrajda koni tek parça yalnız P09'da; korniş taşması + koyu kemer bandı koniyi gövdeden ayırır, koni ucu sivri ama alemsiz, gövdeden geniş saçaklı (taşma %6 → **%10**'a çıkarıldı). **Satranç kalesi / burç**: mazgal dişi yok. **Kilise kulesi**: yarım daire kemer, çan ve haç yok |
 | Ufuk–ölçek | Kamera gözü seki + 1.65 m → ufuk y 829 = Hezarfen'in baş hizası (ayak 1250, 255 px/m) ✓. Uzak şehir ufkun altında küçülerek ✓ |
 | Kamera + dikey şerit | Vinç = taş sabit boyda (K1 dersi 8) ✓, takip y 900 ↔ d 3580 ✓. **Hata (yönetmene):** P08 p36–52 (cs 1.9–2.0, cy 120) çıkıntı ve taş d 1250 → **ekran y 1631**, alt güvenli bantta; tas-surtme p40 ve tas-kayma p44 temasları orada. Taş ≤ 1470 için cs 1.9'da **cy ≤ −41** (öneri −50: taş 1420, Hezarfen başı d 830 → ekran 663). p52 cy −650 zaten daha yukarıda |
-| Kadraj dışı beyanları (K4 dersi 4) | **R4:** p100–148 cs 2.0 / cx −260'ta görünen d x 400–940 → gövde sağ ucu 1060 dışarıda ✓; saçak uçları 560 / 845, taş 738–832 ve toz 720–841 içeride ✓. (Eski: cx −140, d 340–880.) taş p36'da ekran x ≈ 857 < 920 (sağ düğme sütunu) ✓. P01 B cs 1.25 / cx −80: çıkıntı dış ucu ekran x 910, sütun sınırında. Hezarfen 660–785 ✓ |
-| Dip ölçeği | ~~Dipteki iki ev ×1/5.5 stilize~~ **R4 (B5):** dip taşın ölçeğindedir (255 px/m). Yalnız iki ev köşesi, saçak ucu (x 560 / 845) ve sokak görünür (§2.4). Taş 95 px = 0.37 m, subasman 230 px |
+| Kadraj dışı beyanları (K4 dersi 4) | **R4:** p100–148 cs 2.0 / cx −260'ta görünen d x 400–940 → gövde sağ ucu 1060 dışarıda ✓; ~~saçak uçları 560 / 845~~ R5: sur köşesi 480, taş 738–832 ve toz 720–841 içeride ✓. (Eski: cx −140, d 340–880.) taş p36'da ekran x ≈ 857 < 920 (sağ düğme sütunu) ✓. P01 B cs 1.25 / cx −80: çıkıntı dış ucu ekran x 910, sütun sınırında. Hezarfen 660–785 ✓ |
+| Dip ölçeği | ~~Dipteki iki ev ×1/5.5 stilize~~ ~~R4 (B5): iki ev köşesi, saçak ucu (x 560 / 845) ve sokak~~ **R5:** dip taşın ölçeğindedir (255 px/m): sur kolu (sol, köşe x 480) + avlu döşemesi + kule tabanı (§2.4b). Taş 95 px = 0.37 m, avlu levhası 153 px (0.6 m), sur sırası 76.5 px (0.30 m) |
 | İmza tekliği | Bu şablonda `#c4a874` ±15 içinde ton yok: taş 22.7, uzak şehir 24.0, kurşun 38. Hezarfen ten/sarık render'da ölçülür (K1 dersi 1, güneş kenar ışığında) |
 
 ### 2.5 Doku (GALATA-TEPE)
@@ -554,8 +578,9 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | Seki + çıkıntı | kesme taş levha | Üst yüzde 3 levha derzi, ön yüzde tek sıra | `TasDuvar galata` | yukarıda |
 | Açıklık içi | — | düz koyu + kemer iç kenarında III | `Tarama` | `#2a2620` |
 | Şehir (yukarıdan) | ahşap ev [A10] | **R4:** y < 1100 tek ton pus. Yakında konum tablosuyla yerleştirilen 5 ev: ön eğim gölgede, sağ kalça ışıklı, saçak bandı, gölgede duvar. Aralarında 2 sokak yarığı. Satır/ızgara üretimi yok | `KonutKumesi` liste modu (§2.3b tablosu), seed 138 | `#a49c90` · `#4e3a2e` / `#6e5240` / `#3e2e24` / `#5e5040` |
-| Dip sokak (P08) | ahşap ev + taş subasman [A10, G] | 255 px/m, VP (670, 3152) perspektifi. Ahşapta 0.25 m aralıklı yatay tahta çizgileri α .25. Zeminde 4 enine çizgi + 3 çakıl | yeni `SokakAgzi` (§2.4) | `#5e5040` / `#6a6252` / `#8a7660`, zemin `#7a6c52`, seed 141 |
-| Toz (E4) | — | 4 (+1) öbek, 6 loblu tırtıklı, yerde kalır | `Toz` yeniden yazılır | `#a9a69c` / `#8e8a80` α .75, seed 140 |
+| ~~Dip sokak (P08)~~ | **R4, iptal** (iki ev + sokak, `SokakAgzi`) | — | — | — |
+| **Dip avlu (P08, R5)** | sur taşı + kesme taş döşeme [A §11.2 sur; malzeme T] | 255 px/m, VP (670, 3152). Sur sırası 0.30 m, blok 0.4–0.6 m, VP'ye yakınsar; avlu levhası 0.6 × 0.4 m şaşırtmalı, sıra 1 sabit (§2.4b 5b); kule sırası 0.45 m sürer; duvar dibi çizgisi 4 px | yeni `SurAvlu` (§2.4b) | sur `#7b7163` / derz `#57503f` / koyu blok + harpuşta `#6f6555`; avlu `#62594a` / derz `#4a4237`; dip çizgisi `#3e372e`; seed 141 (avlu), 142 (sur) |
+| Toz (E4) | — | 4 (+1) öbek, 6 loblu tırtıklı, yerde kalır; Ö2/Ö3 taşın arkasında | `Toz` yeniden yazılır | **R5:** `#b2ac9f` / `#a8a296` α .85, seed 140 |
 
 ---
 
@@ -724,6 +749,11 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
    - Pencere ölçüsü, `tasarim.md` §4.10'daki "≈ 576 px" değerinden farklı olarak, cs 2.2'de ≈ 926 px eder (pencere kanadı 1.30 m × 324 px/m × 2.2). Tasarımcıya bilgi.
 6. **P13 defterler:** d3 y 1650 alt güvenli alana (> 1500) giriyor. Öneri §4.2: bütün defterler y ≤ 1476, zemin ölçeği 0.67.
 7. **P07/P11 ışığı:** P07'de ışık sağdan, P11'de soldan geliyor (fiziksel). Kese konumu aynı kalır (±10 px), yalnız gölge yönü ters döner.
+8. **P08 dip (R5, seçenek A):**
+   - `taş_dusus.sokak_bosluk_x` [560, 845] artık **avlu içinde çarpma/yuvarlanma koridoru** anlamındadır; değer değişmesine gerek yok (taş 738–840, toz 720–841 içinde). Anahtar adı `avlu_koridor_x` önerilir (yalnız okunurluk; doğrulayıcı anahtara bağlıysa olduğu gibi kalsın). Sol sınır fiziksel olarak sur köşesi **x 480**'dir.
+   - `alt_serit` metni güncellenmeli: "kule duvarı + dipte sur kolu (sol) ve taş döşeli avlu; taş y 3580'de avluya düşer (iki çatı/sokak yok)".
+   - Kamera değişmez. VP (670, 3152) p100–166 **cx −260, cs 2.0, cy −5300** varsayımına bağlıdır; cx değişirse VP x = 540 − cx/2 ve sur köşesi/levha derzleri yeniden hesaplanır.
+   - `sahne-plani.md` P08 satırındaki "akan duvar ve çatılar" → "akan duvar, sur ve avlu"; temas p148 "taş yere çarpar" sesi `uzak-tik` taş-üstü-taş olarak kalır (avlu taş döşeme, toprak değil).
 
 ## 8. Motion için çizim notları
 - **Yeni ortak modüller:**
@@ -732,7 +762,7 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
   - `Doseme`: ufuk noktasına yakınsayan döşeme (rıhtım; P07/P11 ve kıyı).
   - `DuzSu`: basamaklı su + dalga çizgisi + `yansimaKolonu(x, renk)` + `halka`.
   - `KonutKumesi`: yukarıdan ve yandan görünen ev kutuları; `olcek(y)`, seed. **R4:** Galata için `liste` modu (§2.3b tablosu). Satır döngüsü bu şablonda kullanılmaz; P09 yamacı (uzak) için kalabilir.
-  - `SokakAgzi` (R4, yeni): VP + iki köşe + saçak ucu x + kat yükseklikleri (m) + px/m. Dip ve ileride başka sokak ağızları için.
+  - ~~`SokakAgzi` (R4)~~ iptal. **`SurAvlu` (R5, yeni):** girdiler `vp`, `pxm` (kule düzleminde), `zemin_y`, `kamera_uzaklik_m`, `sur: {kose_x, yukseklik_m, sira_m, blok_m:[min,max], taraf:'sol'}`, `doseme: {en_m, derinlik_m, sira1_x0, sasirt}`, seed. Her yatay kenar `x(y) = vp.x + (x₀ − vp.x)(y − vp.y)/(y₀ − vp.y)` ile; zemin sıraları `y(z) = vp.y + (zemin_y − vp.y)·D/(D − z)`. İleride başka kale/avlu dipleri için.
   - `GalataKule` silindir yasası: `silindirY(x, y, eksen 300, a)` tek fonksiyon (§2.3a). Duvar, korniş, saçak, seki, sıra derzleri ve dikiş tabanı aynı fonksiyondan türetilir.
   - `SinanPasaKosk`: `detay: yakin|orta|uzak`, `saat`, `pencereIsik`. Tek geometri metre cinsinden; kıyı (17 px/m) ve köşk (85 px/m) görünümleri aynı bileşeni farklı ölçek ve konumla çağırır.
   - `GalataKule`: `detay: tepe | uzak`. `tepe`, §2.3 parçalarıdır. `uzak` ise P09 silueti.
@@ -758,7 +788,7 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
   - Sur gece `#2e2e34`, gün `#8e8472` / `#6a6252`.
   - Asya kıyısı gece `#232838`.
   - Uzak şehir hava perspektifi `#a49c90`.
-  - R4: dip sokak zemini gölgede `#7a6c52`, toz gövdesi `#8e8a80` (ΔE76 imzadan 27.8 / 28.0).
+  - ~~R4: dip sokak zemini `#7a6c52`, toz `#8e8a80`~~ **R5:** sur iç yüzü `#7b7163`, sur derzi `#57503f`, harpuşta/koyu blok `#6f6555`, avlu levhası `#62594a`, avlu derzi `#4a4237`, duvar dibi `#3e372e`, toz `#a8a296` / `#b2ac9f` (imzadan ΔE76 30.8 / 41.0 / 33.7 / 38.1 / 47.5 / 52.4 / 24.1 / 23.4).
   - Ot önerisi `#989c76` (tasarım paletindeki `#a8a07a` demet tekliğini bozuyor, §5).
   - Galata koyu sıra `#5e574c`.
   - Su orta `#6c8284`.
@@ -782,7 +812,7 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
   - Bizans deniz surlarının tuğla hatıl bandının 1630'larda görünürlüğü.
   - Galata gövdesinde 17. yy. pencere/mazgal yarıkları.
   - **R4 (B1):** 1630'larda Galata Kulesi'nden kuzeydoğuya (≈ 20–50°, Tophane / Fındıklı yamacı ve Boğaz yönü) bakınca görünen anıtsal yapı var mı? Örneğin bir cami kubbesi ya da Tophane binaları. Hangisi, o yıl ayakta mı, kaynak hangisi (Merian 1635 panoraması öncelikli)? Kaynak gelene kadar ek siluet **çizilmez**.
-  - **R4:** Kule tabanı çevresinde 1630'larda bitişik konut ya da dükkân var mıydı, sokak genişliği nedir? Dip sahnesi "kuleye dayalı iki ev + dar sokak" varsayımıyla kuruldu [T].
+  - ~~R4: kule tabanı çevresi~~ **R5:** araştırmacı §11 cevapladı (bitişik ev bilinmiyor, sur + avlu kaynakla daha az çelişir) → kullanıcı seçenek A. **Kalan:** Merian 1635 / Lorichs 1559 gravürlerinde kule dibi; sur kolunun kuleye bağlanma açısı ve yüksekliği; mazgal var mıydı; avlu zemini (taş/toprak). Gravür görülene kadar §2.4b [T] değerleri geçerli, mazgal çizilmez.
   - **R4:** Kamera yönü 20° (KKD) seçildi. Bu yönde arazi Pera sırtına doğru yükselir, Tophane ise doğuda/güneydoğuda aşağı iner [G, doğrulanmalı]. "Şehir aşağıda" okuması kadrajın sağ yarısı (≈ 45–50°) için doğru. Harita ile kontrol edilmeli.
 - **Yönetmene (R4):**
   - P01 B yürüyüşünün `y` anahtarları §2.3a formülünden (1250 → 1221) gelir; son adım çıkıntıya basar ve 1250'ye iner.
