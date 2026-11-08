@@ -34,6 +34,14 @@
 - K4 turu sonucu: **K3 GEÇTİ, K4 (P12 iç) KOŞULLU** (`kalibrasyon/K4/elestiri.md`): U1 [kritik] ışık gözde şerit okunmuyor (sarık gözü örtüyor, ışık tüm alt yüzü yakıyor), U2 [kritik] tok/tık kadraj dışı → kamera.kare [0,36,70,120,204] + kanat kenarı x ≤ 880, U3 ayak/zemin alt bantta (p0–36 ayak y ≤1490, sonra zemin kadraj dışı), U4 kanat kapı gibi, U5 işaret eli 'buyur' + yan güvenli alan, U6 kaftan ışık bandı, U7 yüz p0'da manken, U8 P10 baca dilimi, U9 sarık üst banda değiyor, U10 P02 Y2 x 78. SARAYBURNU 4 görünüm kuruldu.
 - Sıradaki: yönetmen U2/U3/U5-kamera/U8/U9/U10 + K5 hazırlığı (GALATA-TEPE: P01 B, P08); tasarımcı U1 sarık profilde kaş üstü, U7, iç el gölge `#7a5848` kaydı; mekân U3 hesap, U4, Galata kartı gözden geçir → motion U1/U4/U5/U6 + K5.
 - Yönetmen K4 açıklarını ve R3 eşiklerini işledi (§5.0e; P12 kanat son açı 4°, kamera [0,36,70,120,150,204], p204 cs 1.6 R3'ten sapma — mekân onayı açık). Tasarım v1.6, mekanlar R3 commit'li. **Sıradaki: motion = P12 U1/U4/U5/U6/U7 + K5 GALATA-TEPE (P01 B, P08, Hezarfen rig) → eleştirmen.**
+- K5 turu sonucu (`kalibrasyon/K5/elestiri.md`): **K4 (P12) KOŞULLU** — tek kritik A1 (gözdeki ışık ≥1 sn: push-in p36–60, `don` p100–130, `isaret` p135–175, kontrol_kare 90); A2–A7 orta/küçük. p204 cs 1.6 KABUL (mekân R3'e işlesin). **K5 (GALATA-TEPE) KALDI** — kritik B1 uzak şehir kaldırım gibi, B2 katlı kanat opak↔hayalet, B3 P01 yürüyüş diz yerde + temas gölgesi delik, B4 P08 p148 taş düğme sütununda, B5 dip ölçeği (taş ≈1.6 m) + toz elips, B6 foley eksik (P01 p196–262 adımlar, P08 p56, taş sekmesi); orta B7–B12, küçük B13–B16. Duvar dibi 1150 KABUL.
+- **YENİ OTURUMDA SIRADAKİ (B yolu):**
+  1. **yönetmen** → A1, A2, A3, A6, B4, B6 (foley olay listesi), B7, B16 (`bolum.json`/`sahne-plani.md`), doğrulayıcı.
+  2. **tasarımcı** → B10 Hezarfen sarığı, B11 katlı kanat okunurluğu, B12 sakal/bıyık, B13 P01 B saydamlık ≤.75, A7 boyun, `don` zamanı A1'e göre. **mekân** → B1 uzak şehir pus, B5 dip ölçeği, B9 kule kimliği, B14 duvar dibi 1150, R3 p204 = 1.6. (Uzak şehre yapı eklenecekse araştırmacı 1630'lar Tophane/Galata siluetini doğrulasın.)
+  3. **motion** → A4, A5, A7, B1, B2, B3, B5, B8, B9, B15 + render: P12 p14/p66–100/p90, P08 p0/44/46/148/170/185/216, P01 p220–260 (3 kare). İsterse aynı turda K6 kurulumu (BOGAZ P09).
+  4. **eleştirmen** → K4 kapanış + K5 tur 2 (yalnız sorunlu kareler).
+  - Sonra kalanlar: BOGAZ (P09), KITAP-INSERT (P13/P14), P03/P04 jestleri, TR/EN yazı katmanı sistemi (KE-Y1..Y5), kurgucu (müzik + foley.json), render, eleştirmen tek tur, kullanıcı, Premiere paketi.
+  - Kota: motion turu ~480k token, eleştirmen ~160k. Her motion turundan önce kullanıcıya kapsamı söyle.
 - (eski) **Sıradaki:** motion turu = K1 Y10/Y11 + K2 W1/W3/W4/küçükler + K3 kurulum (`kosk` gece/gün, padişah R10, şenlik). Sonra eleştirmen. Kalan şablonlar: SARAYBURNU `ic` (P12), GALATA-TEPE, BOGAZ, KITAP-INSERT; Hezarfen tam rig; TR/EN yazı katmanı sistemi (KE-Y1..Y5).
 
 ## Sıradaki: kurulum ekibi (opus) — `sahne-plani.md` §6 iş tanımıdır
@@ -56,4 +64,4 @@ Sıra (CLAUDE.md "Ajan çalışma sırası"):
 - Premiere paketi: `tools/premiere_paket.py` (xml/sekans adı argümanlı) + `katman` prop ile stem'ler.
 
 ## Yeni oturumda yazılacak
-> Evliya uçuşları kurulumuna devam. bolumler/evliya-ucuslari/DEVAM.md'yi oku, kurulum ekibinden (tasarımcı) başla.
+> Evliya uçuşları kurulumuna devam. bolumler/evliya-ucuslari/DEVAM.md'yi oku, "YENİ OTURUMDA SIRADAKİ" listesinden (yönetmen: K4/K5 açıkları) başla.

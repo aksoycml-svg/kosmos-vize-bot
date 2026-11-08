@@ -771,3 +771,46 @@
   - Mekân: duvar dibi 1150 sapmasının kart ve tabloya işlenmesi.
   - Hızlı vinç dönüşü (p166–200) iz kopyaları render edilip bakılmadı (kontrol karesi listesinde yok).
   - Öz puan: 5.5/10. Şablon, rig, fizik ve ölçüm çalışıyor; ama EV-D6 telefonda küçük, P12/P08'de üç json kaynaklı güvenli alan/temas açığı var, Galata uzak şehri ve Hezarfen silueti tasarım gözü bekliyor.
+
+## elestirmen (opus) · 2026-11-08 · K4 kapanış (P12) + K5 kalibrasyonu (GALATA-TEPE, Hezarfen), tek tur
+- Ne yaptım:
+  - K5 telefon sayfasını, güvenli alan bindirmelerini (P12 p30/p204, P01 p324, P08 p0/36/40/148/240) ve tam kareleri inceledim. P12 yüzünü 360 px'te, Hezarfen yürüyüşünü ve P08 kanadını (p40↔p44↔p216) kırparak baktım. `bolum.json`'daki P01/P08/P12 zamanlamalarını karelerle karşılaştırdım.
+  - Kararlar:
+    - **K4 KOŞULLU:** 1 kritik (A1, json zamanlaması).
+    - **p204 cs 1.6: KABUL.**
+    - **K5 KALDI:** 6 kritik.
+- Dokunduğum dosyalar: `bolumler/evliya-ucuslari/kalibrasyon/K5/elestiri.md` (yeni), `bolumler/evliya-ucuslari/katki-raporu.md` (ek).
+- Aldığım kararlar ve gerekçeleri:
+  - **p204 cs 1.6 kabul.** İşaret, hedefi (kapı) kadrajda olması gereken bir fiziksel eylem; boy plan bunun için doğru ölçek. Oyunculuk anı p70–120'de yakında kalıyor. Ayak güvenli alanda, replik üst bantta.
+  - **EV-D6 çizgisinin 360 px'te 10×17 px olması kabul,** ≥1 sn şartıyla. `don` için json'daki 60–100 değil, yeni A1 zamanlaması (p100–130) geçerli.
+  - **Duvar dibi 1150 kabul** (taşın düşme fiziği). İmza örnekleri (P01 p230'da 4, P08 p36'da 51) kabul: kenar karışımı, demet biçimli değil.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Dokunuş net süresi <1 sn (A1).
+  - Küçük jest = yakın kamera: yüz %9 (A2).
+  - Yazı bandı ↔ ayak (A3).
+  - Tek ışık: bant genişliği (A4).
+  - Okunurluk:
+    - kol hançer gibi (A5);
+    - şehir döşeme gibi (B1);
+    - kanat kalkan gibi (B11);
+    - sarık pompadour gibi (B10).
+  - Süreklilik: kanat hayaleti (B2).
+  - Fizik:
+    - yürüyüş diz çökmüş gibi, kara delik gölge (B3);
+    - dip ölçeği, 1.6 m taş (B5).
+  - Güvenli alan: taş IG sütununda (B4, B7).
+  - Temas = ses: adımlar, ayak dönüşü, sekme (B6).
+  - Kule kimliği ev çatısı gibi okunuyor (B9).
+- Açık sorular / bir sonraki ajana notlar:
+  - Yönetmen: A1, A2, A3, A6, B4, B6, B7, B16.
+  - Motion: A4, A5, A7, B1, B2, B3, B5 (toz), B8, B9, B15 ölçüm maskesi. Render edilsin: P12 p14, p90; P08 p46, p170, p185; P01 p220–260 arası 3 kare.
+  - Tasarımcı:
+    - B10, B11, B12, B13.
+    - Tasarım belgesindeki `don` zamanı A1'e göre güncellenmeli.
+  - Mekân:
+    - B1 spesifikasyon inceltmesi.
+    - B5 dip yeniden tarifi.
+    - B9.
+    - B14 kart güncellemesi.
+    - §1.6a/§1.6b'de p204 = cs 1.6.
+  - Araştırmacı: uzak siluete cami/kubbe eklenecekse (B1), 1630'larda Tophane/Galata'dan görünen yapılar doğrulansın.
