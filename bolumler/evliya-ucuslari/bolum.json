@@ -1,0 +1,3861 @@
+{
+ "slug": "evliya-ucuslari",
+ "baslik": "Evliya Uçuşları: İstanbul'da bir adam fişeğe binip göğe çıkmış",
+ "fps": 60,
+ "dil_katmanlari": [
+  "tr",
+  "en"
+ ],
+ "gorsel_yazisiz": true,
+ "_not": "Görüntü yazısız render edilir. ekran_yazisi/replik/harita_etiketleri: 'metin' = TR (şema alanı), 'en'/'vurgu_en' = EN katmanı; replik'te en{metin,bas,bit,kelimeKare} dilin kendi words json'undan. ses = TR, ses_en = EN (ikisi aynı kareden başlar). x/y (karakter/prop) = dekor px (kamera öncesi 1080x1920 taban); el.* ve sahne-plani 'ekran' koordinatı belirtir. kit_eksik kimlikleri sahne-plani.md sonunda.",
+ "planlar": [
+  {
+   "id": "P01",
+   "tip": "character",
+   "sablon": "SARAYBURNU",
+   "parametreler": {
+    "gorunum": "kiyi",
+    "saat": "gece",
+    "fitil": {
+     "bas": 0,
+     "bit": 40
+    },
+    "puskurme": {
+     "bas": 40,
+     "bit": 150
+    },
+    "plan_ici_kesme": {
+     "kare": 176,
+     "sonraki_sablon": "GALATA-TEPE"
+    },
+    "gok": "uzatilmis (negatif y -1300'e kadar), uzakta 1-2 şenlik patlaması"
+   },
+   "sure_kare": 336,
+   "sure_sn": 5.6,
+   "metin": {
+    "tr": "İstanbul'da bir adam fişeğe binip göğe çıkmış. Bir başkası da Boğaz'ı uçarak geçmiş.",
+    "en": "A man rode a rocket into the sky over Istanbul. Another glided across the Bosphorus."
+   },
+   "olcek": "A (p0-176): boy/orta (binici + demet ≈ %36 yükseklik, cs 1.25) -> yükselişi takip eden tilt, cs 1.0. B (p176-336): boy (Hezarfen siluet %22) -> yavaş push-in cs 1.0->1.25",
+   "kamera": {
+    "kare": [
+     0,
+     72,
+     150,
+     176
+    ],
+    "cs": [
+     1.25,
+     1.25,
+     1.0,
+     1.0
+    ],
+    "cx": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "cy": [
+     0,
+     0,
+     500,
+     500
+    ],
+    "egri": "inout"
+   },
+   "karakterler": [
+    {
+     "kim": "lagari",
+     "x": 520,
+     "y": 1330,
+     "poz": "oturan",
+     "yon": 1,
+     "bagli": {
+      "prop": "demet",
+      "dx": 0,
+      "dy": -350
+     },
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       1,
+       0
+      ]
+     },
+     "kit_eksik": [
+      "KE-K1",
+      "KE-K6"
+     ]
+    },
+    {
+     "kim": "yardimci-1",
+     "x": 300,
+     "y": 1330,
+     "yon": 1,
+     "yuz": {
+      "ifade": "dinlen"
+     },
+     "kit_eksik": [
+      "KE-K4"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tur": "fisek-demet",
+     "id": "demet",
+     "x": [
+      520,
+      520,
+      530,
+      545,
+      560
+     ],
+     "y": [
+      1330,
+      1330,
+      1000,
+      300,
+      -500
+     ],
+     "kare": [
+      0,
+      72,
+      96,
+      120,
+      150
+     ],
+     "olcek": 1.0,
+     "durum": {
+      "puskurme": [
+       0,
+       1,
+       1,
+       1,
+       1
+      ]
+     },
+     "kit_eksik": [
+      "KE-P1"
+     ]
+    },
+    {
+     "tur": "mesale",
+     "id": "mesale",
+     "x": 330,
+     "y": 1325,
+     "bagli": "yardimci-1",
+     "kit_eksik": [
+      "KE-P7"
+     ]
+    }
+   ],
+   "devam_plan": {
+    "kare_bas": 176,
+    "sablon": "GALATA-TEPE",
+    "parametreler": {
+     "gorunum": "tepe",
+     "saat": "gun",
+     "isik": "kontra (güneş arkada, düz siluet)",
+     "kapi": {
+      "x": 290,
+      "y": 1250
+     },
+     "galeri_acikligi": {
+      "x": 700
+     }
+    },
+    "kamera": {
+     "kare": [
+      176,
+      260,
+      324
+     ],
+     "cs": [
+      1.0,
+      1.12,
+      1.25
+     ],
+     "cx": [
+      0,
+      -40,
+      -80
+     ],
+     "cy": [
+      0,
+      0,
+      0
+     ],
+     "egri": "inout"
+    },
+    "karakterler": [
+     {
+      "kim": "hezarfen",
+      "x": [
+       290,
+       290,
+       700
+      ],
+      "y": [
+       1250,
+       1250,
+       1250
+      ],
+      "kare": [
+       176,
+       196,
+       262
+      ],
+      "yon": 1,
+      "jestler": [
+       {
+        "ad": "yuru",
+        "bas": 196,
+        "bit": 262
+       }
+      ],
+      "kit_eksik": [
+       "KE-K2",
+       "KE-J9"
+      ]
+     }
+    ],
+    "props": [
+     {
+      "tur": "kanat",
+      "id": "kanat_h",
+      "bagli": "hezarfen",
+      "durum": {
+       "acik": 0
+      },
+      "kit_eksik": [
+       "KE-P2"
+      ]
+     }
+    ],
+    "kit_eksik": [
+     "KE-S2"
+    ]
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "TEK TANIK: BİR KİTAP",
+     "en": "ONE WITNESS: A BOOK",
+     "tur": "iddia",
+     "bas": 0,
+     "bit": 324,
+     "vurgu": [
+      "KİTAP"
+     ],
+     "vurgu_en": [
+      "BOOK"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 0,
+     "olay": "kıvılcım fitilde yürüyor (ilk karede hareket ortasında)",
+     "ses": "fitil-tiss",
+     "db": -8
+    },
+    {
+     "kare": 40,
+     "olay": "kıvılcım demete ulaşır, fişek ateş alır",
+     "ses": "puskurme",
+     "db": -8
+    },
+    {
+     "kare": 72,
+     "olay": "fişek yerden kalkar",
+     "ses": "fisek-kalkis",
+     "db": -6
+    }
+   ],
+   "gecis": "p176 SERT KESME (gece/rıhtım -> gündüz/kule): fişek kadrajdan çıkmış, kıvılcımlar düşüp sönmüş (p150-172 kapanış); kesmeyle rüzgâr/yükseklik sesi girer. Çıkış (P02'ye): sert kesme.",
+   "sfx": [
+    "fitil-tiss (p0)",
+    "puskurme (p40)",
+    "fisek-kalkis (p72)",
+    "p176 kesme vurgusu: kule rüzgârı"
+   ],
+   "muzik_notu": "Müzik p0'da girer (akar, P02'de kesilmez): alçak davul/ud ostinatosu, p176 kesmede tek vurgu; plan sınırında düşüş yok.",
+   "dokunus": null,
+   "kontrol_kare": 100,
+   "kontrol_ek": [
+    0,
+    230
+   ],
+   "okunurluk": {
+    "nesne": "binici+demet",
+    "oran_pct": 36,
+    "net_sn": 2.5,
+    "not": "ilk kare = kapak: oturan siluet + yanan fitil + yazı şeridi aynı karede"
+   },
+   "alt_ucte_bir": "p0: rıhtım taşı y 1330-1500, fitil hattı + kıvılcım parıltısı, yardımcı bacakları, ıslak taşta meşale yansıması. p100+: tilt ile köşk silueti/şenlik ışığı denizde.",
+   "kit_eksik": [
+    "KE-S1",
+    "KE-S2",
+    "KE-K1",
+    "KE-K2",
+    "KE-K4",
+    "KE-P1",
+    "KE-P2",
+    "KE-P7",
+    "KE-E1",
+    "KE-J9",
+    "KE-Y1",
+    "KE-Y4"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P01.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P01.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Kesme senaryodaki 3.2 sn yerine p176 (2.93 sn): TR 'Bir başkası' 2.62, EN 'Another' 2.96 -> kesme iki dilde ikinci cümleye denk gelir. Fişek p150'de kadrajdan çıkar (kesme hareketin ortasına gelmez). Yazı şeridi rokete p110-125 arası binebilir: kanca kapak yazısı, dokunuş değil."
+  },
+  {
+   "id": "P02",
+   "tip": "archive",
+   "sablon": "SARAYBURNU",
+   "parametreler": {
+    "gorunum": "kosk",
+    "saat": "gece",
+    "kosk": {
+     "altyapi": "cifte-kemer-cesme",
+     "kubbe": "notr",
+     "baca": 4,
+     "cumba": "sacakli"
+    },
+    "pencere_isigi": true,
+    "senlik": [
+     {
+      "x": 760,
+      "y": 600,
+      "bas": 40,
+      "patlama": 62
+     },
+     {
+      "x": 330,
+      "y": 600,
+      "bas": 185,
+      "patlama": 205
+     }
+    ]
+   },
+   "sure_kare": 324,
+   "sure_sn": 5.4,
+   "metin": {
+    "tr": "İlki, padişahın kızının doğum şenliğinde. Padişahı kim şaşırtacak?",
+    "en": "The first was at the sultan's party. Who'll amaze him?"
+   },
+   "olcek": "geniş (köşk cephesi + rıhtım + gök); yavaş push-in cs 1.0->1.15",
+   "kamera": {
+    "kare": [
+     0,
+     300
+    ],
+    "cs": [
+     1.0,
+     1.15
+    ],
+    "cx": [
+     0,
+     0
+    ],
+    "cy": [
+     0,
+     40
+    ],
+    "egri": "lineer"
+   },
+   "karakterler": [
+    {
+     "kim": "padisah",
+     "x": 560,
+     "y": 860,
+     "yon": -1,
+     "siluet": true,
+     "yuz": null,
+     "pencere": true,
+     "kit_eksik": [
+      "KE-K3"
+     ]
+    },
+    {
+     "kim": "lagari",
+     "x": 150,
+     "y": 1230,
+     "olcek": 0.22,
+     "yon": 1,
+     "poz": "oturan",
+     "kit_eksik": [
+      "KE-K1"
+     ]
+    },
+    {
+     "kim": "yardimci-1",
+     "x": 100,
+     "y": 1235,
+     "olcek": 0.22,
+     "kit_eksik": [
+      "KE-K4"
+     ]
+    },
+    {
+     "kim": "yardimci-2",
+     "x": 215,
+     "y": 1235,
+     "olcek": 0.22,
+     "kit_eksik": [
+      "KE-K4"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tur": "fisek-demet",
+     "id": "demet",
+     "x": 150,
+     "y": 1230,
+     "olcek": 0.22,
+     "kit_eksik": [
+      "KE-P1"
+     ]
+    },
+    {
+     "tur": "mesale",
+     "id": "mesale1",
+     "x": 112,
+     "y": 1190,
+     "olcek": 0.22,
+     "kit_eksik": [
+      "KE-P7"
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "1. UÇUŞ · Sahil köşkü, 1630'lar",
+     "en": "FLIGHT 1 · Shore pavilion, 1630s",
+     "tur": "iddia",
+     "bas": 20,
+     "bit": 318,
+     "vurgu": [
+      "UÇUŞ"
+     ],
+     "vurgu_en": [
+      "FLIGHT"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 62,
+     "olay": "şenlik fişeği patlar (uzak, görünür)",
+     "ses": "senlik-patlama",
+     "db": -12
+    },
+    {
+     "kare": 205,
+     "olay": "ikinci şenlik fişeği patlar",
+     "ses": "senlik-patlama",
+     "db": -12
+    }
+   ],
+   "gecis": "P01'den sert kesme. Çıkış: kesme (aynı mekân kıyıya yaklaşır); P03'te sol rıhtımdaki küçük grup büyür (kurulum -> karşılık).",
+   "sfx": [
+    "senlik-patlama x2 (uzak, kısık)",
+    "deniz dalgası (ortam)",
+    "pencere ışığı: ses yok"
+   ],
+   "muzik_notu": "Müzik P01'den akar; tema sakinleşir (mi bemolsüz ud/kanun kamu malı arayışı kurgucuda); EN'de sözün bittiği p170 sonrası müzik boşluğu doldurur.",
+   "dokunus": null,
+   "kontrol_kare": 80,
+   "kontrol_ek": [
+    0
+   ],
+   "okunurluk": {
+    "nesne": "padişah siluet (pencerede)",
+    "oran_pct": 8,
+    "net_sn": 5.0,
+    "not": "mekân kurma planı: köşk imzası (çifte kemer, 4 baca, cumba) okunur; padişah küçük ama sabit, jest yok"
+   },
+   "alt_ucte_bir": "Deniz (şenlik yansıması), rıhtım taşı, sol-altta ışıklı küçük grup + demet (P03 kurulumu).",
+   "kit_eksik": [
+    "KE-S1",
+    "KE-K1",
+    "KE-K3",
+    "KE-K4",
+    "KE-P1",
+    "KE-P7",
+    "KE-E2",
+    "KE-Y1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P02.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P02.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Sol rıhtımda 4-5 px'lik grup P03 için kurulum nesnesidir (25 px telefonda ışık lekesi + demet silueti)."
+  },
+  {
+   "id": "P03",
+   "tip": "character",
+   "sablon": "SARAYBURNU",
+   "parametreler": {
+    "gorunum": "kiyi",
+    "saat": "gece",
+    "kosk_uzakta": true
+   },
+   "sure_kare": 252,
+   "sure_sn": 4.2,
+   "metin": {
+    "tr": "Lagâri Hasan Çelebi fişeğe biniyor ve padişaha sesleniyor.",
+    "en": "Lagâri sits on a rocket and calls to the sultan:"
+   },
+   "olcek": "orta-boy (Lagâri + demet + yardımcılar), cs 1.15->1.3 push-in",
+   "kamera": {
+    "kare": [
+     0,
+     240
+    ],
+    "cs": [
+     1.15,
+     1.3
+    ],
+    "cx": [
+     60,
+     40
+    ],
+    "cy": [
+     0,
+     60
+    ],
+    "egri": "inout"
+   },
+   "karakterler": [
+    {
+     "kim": "lagari",
+     "x": [
+      440,
+      440,
+      495
+     ],
+     "y": [
+      1330,
+      1330,
+      1330
+     ],
+     "kare": [
+      0,
+      20,
+      44
+     ],
+     "yon": 1,
+     "jestler": [
+      {
+       "ad": "bin",
+       "bas": 20,
+       "bit": 100,
+       "ops": {
+        "hedef": "demet",
+        "ayak_temas": 44,
+        "oturma": 92
+       }
+      },
+      {
+       "ad": "bak",
+       "bas": 120,
+       "bit": 160,
+       "ops": {
+        "x": 1,
+        "y": 0
+       }
+      }
+     ],
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       1,
+       0
+      ]
+     },
+     "kit_eksik": [
+      "KE-K1",
+      "KE-J1"
+     ]
+    },
+    {
+     "kim": "yardimci-1",
+     "x": 300,
+     "y": 1330,
+     "yon": 1,
+     "kit_eksik": [
+      "KE-K4"
+     ]
+    },
+    {
+     "kim": "yardimci-2",
+     "x": 240,
+     "y": 1290,
+     "olcek": 0.92,
+     "yon": 1,
+     "kit_eksik": [
+      "KE-K4"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tur": "fisek-demet",
+     "id": "demet",
+     "x": 520,
+     "y": 1330,
+     "olcek": 1.0,
+     "durum": {
+      "fitil": true
+     },
+     "kit_eksik": [
+      "KE-P1"
+     ]
+    },
+    {
+     "tur": "mesale",
+     "id": "mesale1",
+     "x": 330,
+     "y": 1000,
+     "bagli": "yardimci-1",
+     "kit_eksik": [
+      "KE-P7"
+     ]
+    },
+    {
+     "tur": "mesale",
+     "id": "mesale2",
+     "x": 262,
+     "y": 1000,
+     "bagli": "yardimci-2",
+     "kit_eksik": [
+      "KE-P7"
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "İçinde ~64 kilo barut",
+     "en": "Inside: ~64 kg (140 lb) of gunpowder",
+     "tur": "iddia",
+     "bas": 50,
+     "bit": 240,
+     "vurgu": [
+      "64"
+     ],
+     "vurgu_en": [
+      "64"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 44,
+     "olay": "Lagâri ayağını demet tabanındaki çıkıntıya basar",
+     "ses": "ayak-tahta",
+     "db": -10
+    },
+    {
+     "kare": 92,
+     "olay": "Lagâri demetin tepesindeki oturağa oturur",
+     "ses": "oturma-tahta",
+     "db": -10
+    }
+   ],
+   "gecis": "Giriş: P02'den kesme (aynı mekân, gece). Çıkış: P04'e aynı eksende push-in kesmesi (Lagâri aynı poz, köşke bakıyor; hareket tamamlanmış).",
+   "sfx": [
+    "ayak-tahta (p44)",
+    "oturma-tahta (p92)",
+    "meşale çıtırtısı (ortam, kısık)"
+   ],
+   "muzik_notu": "Akar; gerilim tek tutuşlu pedal; konuşma üstünde -18 dB.",
+   "dokunus": null,
+   "kontrol_kare": 100,
+   "kontrol_ek": [
+    44
+   ],
+   "okunurluk": {
+    "nesne": "Lagâri + demet",
+    "oran_pct": 40,
+    "net_sn": 2.6,
+    "not": "binme kaynakta tarif edilmez: nötr (ayaklık çıkıntısı + oturak tahtası); demet barut tüplerinin düz demeti"
+   },
+   "alt_ucte_bir": "Rıhtım taşı y 1330+ , fitil hattı soldan demete, meşale ışık havuzu ve gölgeler, yardımcıların bacakları.",
+   "kit_eksik": [
+    "KE-S1",
+    "KE-K1",
+    "KE-K4",
+    "KE-P1",
+    "KE-P7",
+    "KE-J1",
+    "KE-Y1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P03.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P03.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ]
+  },
+  {
+   "id": "P04",
+   "tip": "character",
+   "sablon": "SARAYBURNU",
+   "parametreler": {
+    "gorunum": "kiyi",
+    "saat": "gece",
+    "kosk_uzakta": true
+   },
+   "sure_kare": 294,
+   "sure_sn": 4.9,
+   "metin": {
+    "tr": "Padişahım, İsa peygamberle konuşmaya gidiyorum!",
+    "en": "Sultan! Off to talk with Jesus!"
+   },
+   "olcek": "bel/göğüs (oturan Lagâri belden yukarı + demet üstü); plan içi push-in cs 2.5->2.7 (yüz ≈ %11-12)",
+   "kamera": {
+    "kare": [
+     0,
+     120,
+     282
+    ],
+    "cs": [
+     2.5,
+     2.6,
+     2.7
+    ],
+    "cx": [
+     -50,
+     -50,
+     -50
+    ],
+    "cy": [
+     300,
+     300,
+     300
+    ],
+    "egri": "inout"
+   },
+   "karakterler": [
+    {
+     "kim": "lagari",
+     "x": 520,
+     "y": 1330,
+     "poz": "oturan",
+     "yon": 1,
+     "jestler": [
+      {
+       "ad": "konus",
+       "bas": 7,
+       "bit": 256,
+       "ops": {
+        "kaynak": "ses_json"
+       }
+      },
+      {
+       "ad": "isaret",
+       "bas": 10,
+       "bit": 70,
+       "ops": {
+        "aci": -150
+       }
+      },
+      {
+       "ad": "tutun",
+       "bas": 125,
+       "bit": 160
+      }
+     ],
+     "yuz": {
+      "ifade": "A",
+      "bakis": [
+       1,
+       0
+      ],
+      "yakin": true
+     },
+     "kit_eksik": [
+      "KE-K1",
+      "KE-J2",
+      "KE-Y5"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tur": "fisek-demet",
+     "id": "demet",
+     "x": 520,
+     "y": 1330,
+     "olcek": 1.0,
+     "kit_eksik": [
+      "KE-P1"
+     ]
+    }
+   ],
+   "replik": [
+    {
+     "kim": "LAGÂRİ (Evliya'ya göre)",
+     "kim_en": "LAGÂRI (according to Evliya)",
+     "bant": "ust",
+     "metin": "Padişahım,",
+     "bas": 7,
+     "bit": 64,
+     "kelimeKare": [
+      7
+     ],
+     "en": {
+      "metin": "Sultan!",
+      "bas": 13,
+      "bit": 88,
+      "kelimeKare": [
+       13
+      ]
+     }
+    },
+    {
+     "kim": "LAGÂRİ (Evliya'ya göre)",
+     "kim_en": "LAGÂRI (according to Evliya)",
+     "bant": "ust",
+     "metin": "İsa peygamberle konuşmaya gidiyorum!",
+     "bas": 117,
+     "bit": 264,
+     "kelimeKare": [
+      117,
+      146,
+      188,
+      223
+     ],
+     "en": {
+      "metin": "Off to talk with Jesus!",
+      "bas": 152,
+      "bit": 263,
+      "kelimeKare": [
+       152,
+       170,
+       181,
+       199,
+       212
+      ]
+     }
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 158,
+     "olay": "Lagâri eliyle oturağı/tüpü sıkıca kavrar",
+     "ses": "tutunma-tup",
+     "db": -10
+    }
+   ],
+   "gecis": "Giriş: P03'ten aynı eksen push-in (poz tamam). Çıkış: sert kesme geniş plana (P05): tutunma p160'ta bitmiş, p160-282 sabit bakış.",
+   "sfx": [
+    "tutunma-tup (p158)"
+   ],
+   "muzik_notu": "Akar; çağrı (p7) ve ikinci yarı (p117) arasındaki sessizlik müzikle taşınır, düşüş yok.",
+   "dokunus": null,
+   "kontrol_kare": 36,
+   "kontrol_ek": [
+    158
+   ],
+   "okunurluk": {
+    "nesne": "yüz + kalkık kol",
+    "oran_pct": 11,
+    "net_sn": 2.0,
+    "not": "yüz %11-12 (cs 2.5-2.7); kalkık kol büyük hareket, küçük jest yok. Boğum solgunluğu (EV-Y1 yedek) kullanılmadı"
+   },
+   "alt_ucte_bir": "Demetin barut tüpleri (y 1300-1500), Lagâri'nin dizleri/ellerinin tutunduğu oturak ve meşale ışığı.",
+   "kit_eksik": [
+    "KE-S1",
+    "KE-K1",
+    "KE-P1",
+    "KE-J2",
+    "KE-Y1",
+    "KE-Y5"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P04.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P04.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Replik üst bantta (ad plakasıyla birleşik): eller/oturak y≈1310-1450 alt bandı kaplıyor, altyazı ayak/kurulum nesnesini örterdi. Ekran yazısı yok (üst bant replikte). Yedek EV-Y1 kullanılmadı: 6 ana dokunuş yeterli."
+  },
+  {
+   "id": "P05",
+   "tip": "character",
+   "sablon": "SARAYBURNU",
+   "parametreler": {
+    "gorunum": "kiyi",
+    "saat": "gece",
+    "fitil": {
+     "bas": 30,
+     "bit": 56
+    },
+    "puskurme": {
+     "bas": 56,
+     "bit": 198
+    },
+    "su": {
+     "y": 1200,
+     "isik": "deniz yüzü fişek ışığıyla aydınlanır p112+"
+    }
+   },
+   "sure_kare": 210,
+   "sure_sn": 3.5,
+   "metin": {
+    "tr": "Fitil yanıyor ve fişek onu göğe fırlatıyor!",
+    "en": "The fuse burns, and the rocket hurls him skyward!"
+   },
+   "olcek": "geniş/boy (yardımcı boy %35 ön planda + fişek); sabit cs 1.0, p120'den sonra tilt cy 0->200 (fişeği izler)",
+   "kamera": {
+    "kare": [
+     0,
+     120,
+     198
+    ],
+    "cs": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "cx": [
+     0,
+     0,
+     0
+    ],
+    "cy": [
+     0,
+     0,
+     200
+    ],
+    "egri": "inout"
+   },
+   "karakterler": [
+    {
+     "kim": "lagari",
+     "x": 520,
+     "y": 1330,
+     "poz": "oturan",
+     "yon": 1,
+     "bagli": {
+      "prop": "demet",
+      "dx": 0,
+      "dy": -350
+     },
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       1,
+       0
+      ]
+     },
+     "kit_eksik": [
+      "KE-K1"
+     ]
+    },
+    {
+     "kim": "yardimci-1",
+     "x": [
+      300,
+      300,
+      190
+     ],
+     "y": [
+      1330,
+      1330,
+      1330
+     ],
+     "kare": [
+      0,
+      58,
+      90
+     ],
+     "yon": 1,
+     "jestler": [
+      {
+       "ad": "sicra",
+       "bas": 58,
+       "bit": 90
+      }
+     ],
+     "kit_eksik": [
+      "KE-K4",
+      "KE-J8"
+     ]
+    },
+    {
+     "kim": "yardimci-2",
+     "x": 240,
+     "y": 1290,
+     "olcek": 0.92,
+     "yon": 1,
+     "kit_eksik": [
+      "KE-K4"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tur": "fisek-demet",
+     "id": "demet",
+     "x": [
+      520,
+      520,
+      525,
+      545,
+      570
+     ],
+     "y": [
+      1330,
+      1330,
+      1290,
+      1180,
+      1020
+     ],
+     "kare": [
+      0,
+      112,
+      130,
+      160,
+      198
+     ],
+     "durum": {
+      "puskurme": [
+       0,
+       1,
+       1,
+       1,
+       1
+      ],
+      "titreme": [
+       0,
+       1,
+       0,
+       0,
+       0
+      ]
+     },
+     "kit_eksik": [
+      "KE-P1"
+     ]
+    },
+    {
+     "tur": "mesale",
+     "id": "mesale1",
+     "x": [
+      310,
+      330,
+      330,
+      330,
+      200
+     ],
+     "y": [
+      1000,
+      1180,
+      1322,
+      1322,
+      1000
+     ],
+     "kare": [
+      0,
+      14,
+      30,
+      56,
+      88
+     ],
+     "bagli": "yardimci-1",
+     "kit_eksik": [
+      "KE-P7"
+     ]
+    },
+    {
+     "tur": "baslik",
+     "id": "baslik",
+     "x": [
+      300,
+      300,
+      230,
+      150,
+      110
+     ],
+     "y": [
+      680,
+      680,
+      480,
+      1315,
+      1325
+     ],
+     "kare": [
+      0,
+      58,
+      80,
+      110,
+      134
+     ],
+     "aci": [
+      0,
+      0,
+      -200,
+      -520,
+      -720
+     ],
+     "olcek": 1.6,
+     "kit_eksik": [
+      "KE-P4"
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Bugünkü bir hesap: ~250 m",
+     "en": "A modern estimate: ~250 m (820 ft) up",
+     "tur": "iddia",
+     "bas": 120,
+     "bit": 198,
+     "vurgu": [
+      "250"
+     ],
+     "vurgu_en": [
+      "250"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 30,
+     "olay": "meşale fitile değer",
+     "ses": "fitil-tiss",
+     "db": -8
+    },
+    {
+     "kare": 56,
+     "olay": "fitil demete ulaşır, püskürme başlar",
+     "ses": "puskurme",
+     "db": -8
+    },
+    {
+     "kare": 60,
+     "olay": "yardımcı geri sıçrar",
+     "ses": "kumas-hisirti",
+     "db": -10
+    },
+    {
+     "kare": 110,
+     "olay": "başlık rıhtıma iner (yumuşak)",
+     "ses": "baslik-inis",
+     "db": -10
+    },
+    {
+     "kare": 112,
+     "olay": "fişek kalkar",
+     "ses": "fisek-kalkis",
+     "db": -6
+    }
+   ],
+   "gecis": "Giriş: sert kesme (P04 tutunma tamam). Çıkış: MATCH CUT P06'ya (aynı kadraj; fişek yavaşlamış, itki sönmek üzere; bilinçli, hareket süreklilik).",
+   "sfx": [
+    "fitil-tiss (p30)",
+    "puskurme (p56)",
+    "kumas-hisirti (p60)",
+    "baslik-inis (p110)",
+    "fisek-kalkis (p112)"
+   ],
+   "muzik_notu": "Akar; p56'dan fişek kalkışına doğru crescendo, p112'de zirve; konuşma 'fırlatıyor' (TR p125, EN p127) üstünde -18 dB.",
+   "dokunus": {
+    "id": "EV-D1",
+    "ad": "Fitil tutuşunca yardımcının başlığı uçar",
+    "bas": 56,
+    "bit": 134
+   },
+   "kontrol_kare": 78,
+   "kontrol_ek": [
+    110
+   ],
+   "okunurluk": {
+    "nesne": "yardımcı figürü + başlık yayı",
+    "oran_pct": 35,
+    "net_sn": 1.3,
+    "not": "başlık olcek 1.6 (≈190 px, %10); yay y 480-1315, x 110-300 (yan marj ≥ 80 ✓). Başlık y≥480 > yazı bandı; yazı p120'de başlık yere inince başlar"
+   },
+   "alt_ucte_bir": "Rıhtım taşı + yardımcı bacakları + yuvarlanan başlık (y 1315) + fitil/duman; p120+ tilt'te ıslak taşa yansıyan fişek ışığı ve deniz.",
+   "kit_eksik": [
+    "KE-S1",
+    "KE-K1",
+    "KE-K4",
+    "KE-P1",
+    "KE-P4",
+    "KE-P7",
+    "KE-J8",
+    "KE-E1",
+    "KE-E3",
+    "KE-Y1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P05.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P05.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Kalkış p112 (başlık p110'da yerde): dokunuş doc'unun açık sorusu 1 -> p112. Yükseliş ekranda yalnız ~120 px; yüksekliğin okunması tilt + yardımcı büyük ön plan + P06 ile verilir (stilize ölçek, fizik notu sahne-plani'nda)."
+  },
+  {
+   "id": "P06",
+   "tip": "character",
+   "sablon": "SARAYBURNU",
+   "parametreler": {
+    "gorunum": "kiyi",
+    "saat": "gece",
+    "puskurme": {
+     "bas": 0,
+     "bit": 36,
+     "sonuk": true
+    },
+    "su": {
+     "y_demet": 1200,
+     "y_inis": 1180,
+     "halka": {
+      "bas": 100,
+      "bit": 130
+     }
+    }
+   },
+   "sure_kare": 300,
+   "sure_sn": 5.0,
+   "metin": {
+    "tr": "Barut bitince kanatlarını açıyor. Süzülüp köşkün önünde denize iniyor.",
+    "en": "Powder gone, wings open, he glides down in front of the pavilion."
+   },
+   "olcek": "geniş (kadraj P05 sonu ile aynı); sonda tilt 200->60 ile iniş izlenir",
+   "kamera": {
+    "kare": [
+     0,
+     150,
+     215,
+     288
+    ],
+    "cs": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "cx": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "cy": [
+     200,
+     200,
+     60,
+     60
+    ],
+    "egri": "inout"
+   },
+   "karakterler": [
+    {
+     "kim": "lagari",
+     "poz": "oturan",
+     "yon": 1,
+     "x": [
+      570,
+      580,
+      590,
+      630,
+      700,
+      740,
+      730,
+      735,
+      760,
+      785
+     ],
+     "y": [
+      520,
+      460,
+      440,
+      420,
+      520,
+      800,
+      1180,
+      1170,
+      1070,
+      985
+     ],
+     "kare": [
+      0,
+      28,
+      40,
+      60,
+      100,
+      160,
+      215,
+      232,
+      260,
+      288
+     ],
+     "olcek": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0.9,
+      0.85
+     ],
+     "jestler": [
+      {
+       "ad": "kanat-ac",
+       "bas": 40,
+       "bit": 58
+      },
+      {
+       "ad": "ucus",
+       "bas": 58,
+       "bit": 215
+      },
+      {
+       "ad": "yuz",
+       "bas": 222,
+       "bit": 288
+      }
+     ],
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       1,
+       0
+      ]
+     },
+     "durum": {
+      "islak": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       1,
+       1
+      ]
+     },
+     "kit_eksik": [
+      "KE-K1",
+      "KE-J3",
+      "KE-J4",
+      "KE-J10"
+     ]
+    },
+    {
+     "kim": "yardimci-1",
+     "x": 190,
+     "y": 1330,
+     "yon": 1,
+     "kit_eksik": [
+      "KE-K4"
+     ]
+    },
+    {
+     "kim": "yardimci-2",
+     "x": 240,
+     "y": 1290,
+     "olcek": 0.92,
+     "yon": 1,
+     "kit_eksik": [
+      "KE-K4"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tur": "fisek-demet",
+     "id": "demet",
+     "x": [
+      570,
+      580,
+      582,
+      570,
+      560
+     ],
+     "y": [
+      1020,
+      960,
+      960,
+      1110,
+      1200
+     ],
+     "kare": [
+      0,
+      28,
+      46,
+      76,
+      100
+     ],
+     "aci": [
+      0,
+      0,
+      0,
+      20,
+      40
+     ],
+     "durum": {
+      "puskurme": [
+       1,
+       0,
+       0,
+       0,
+       0
+      ],
+      "bos": [
+       0,
+       1,
+       1,
+       1,
+       1
+      ]
+     },
+     "kit_eksik": [
+      "KE-P1"
+     ]
+    },
+    {
+     "tur": "kanat",
+     "id": "kanat_l",
+     "bagli": "lagari",
+     "durum": {
+      "acik": [
+       0,
+       0,
+       1,
+       1
+      ]
+     },
+     "kare": [
+      0,
+      40,
+      58,
+      215
+     ],
+     "kit_eksik": [
+      "KE-P2"
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Sonra yüzerek padişaha döndü.",
+     "en": "Then he swam back to the sultan.",
+     "tur": "iddia",
+     "bas": 208,
+     "bit": 282,
+     "vurgu": [
+      "yüzerek"
+     ],
+     "vurgu_en": [
+      "swam"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 44,
+     "olay": "kanatlar açılır (kumaş/ahşap)",
+     "ses": "kanat-hisirti",
+     "db": -12
+    },
+    {
+     "kare": 46,
+     "olay": "Lagâri demeti bırakır",
+     "ses": "birakma-tik",
+     "db": -10
+    },
+    {
+     "kare": 100,
+     "olay": "boş demet suya çarpar",
+     "ses": "su-dump",
+     "db": -8
+    },
+    {
+     "kare": 102,
+     "olay": "buhar halkası yükselir",
+     "ses": "buhar",
+     "db": -12
+    },
+    {
+     "kare": 215,
+     "olay": "Lagâri denize iner (şap)",
+     "ses": "su-sap",
+     "db": -4
+    },
+    {
+     "kare": 286,
+     "olay": "ıslak eli köşk rıhtımı basamağına tutunur",
+     "ses": "islak-el",
+     "db": -12
+    }
+   ],
+   "gecis": "Giriş: MATCH CUT P05'ten. Çıkış: P07'ye eşleşen kesme: Lagâri eli basamağa tutunmuş (p286, kapanış) -> insert'te ıslak el/avuç aynı basamak önünde.",
+   "sfx": [
+    "kanat-hisirti (p44)",
+    "birakma-tik (p46)",
+    "dusme-ruzgar (p50-100, -14)",
+    "su-dump (p100)",
+    "buhar (p102)",
+    "su-sap (p215, en yüksek)",
+    "yuzme su sesi (p222-288, -16)",
+    "islak-el (p286)"
+   ],
+   "muzik_notu": "Akar; p0'da itki sönünce müzik alçalır (müzikal cümle sonu), p215 'şap' sonrası bir an hafifler, yüzerken tema sade devam eder.",
+   "dokunus": {
+    "id": "EV-D2",
+    "ad": "Bırakılan demet düşer, Lagâri süzülür",
+    "bas": 40,
+    "bit": 130
+   },
+   "kontrol_kare": 76,
+   "kontrol_ek": [
+    215,
+    286
+   ],
+   "okunurluk": {
+    "nesne": "düşen demet",
+    "oran_pct": 18,
+    "net_sn": 1.7,
+    "not": "demet ≈350 px yüksekliğinde (stilize), düşüş zonu alt-sol, kanat zonu üst-sağ; ayrı bölgeler. Kanat siluet, yapı belirsiz"
+   },
+   "alt_ucte_bir": "Deniz (ışıltı) y 1000-1450, sol altta yardımcıların gövdeleri/rıhtım taşı, demetin su halkası ve buharı.",
+   "kit_eksik": [
+    "KE-S1",
+    "KE-K1",
+    "KE-K4",
+    "KE-P1",
+    "KE-P2",
+    "KE-J3",
+    "KE-J4",
+    "KE-J10",
+    "KE-E3",
+    "KE-Y1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P06.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P06.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Dokunuş zamanı doc'a göre p40-130: 'kanatlarını açıyor' kelimeleri TR p56, EN p50 -> kanat p40-58. İniş p215: TR 'denize' p209-230, EN 'pavilion' p178-222 ile uyumlu. Yüzme+basamak p222-288 (1.1 sn); yazı p208'de başlar, dokunuştan sonra."
+  },
+  {
+   "id": "P07",
+   "tip": "character",
+   "sablon": "SARAYBURNU",
+   "parametreler": {
+    "gorunum": "insert",
+    "saat": "gece",
+    "zemin_y": 1450,
+    "kose": "rihtim-basamak-solda",
+    "isik": "köşk penceresi/meşale, tek kaynak sağdan"
+   },
+   "sure_kare": 228,
+   "sure_sn": 3.8,
+   "metin": {
+    "tr": "Karşılığında bir kese para ve her gün maaş alıyor.",
+    "en": "For it, he gets a purse and a daily salary."
+   },
+   "olcek": "insert/orta-boy (baş kadrajın üstünde değil: eğilmiş Lagâri; avuç ve kese %10+); cs 1.0 sabit (P11 ile AYNI kadraj)",
+   "kamera": {
+    "kare": [
+     0,
+     228
+    ],
+    "cs": [
+     1.0,
+     1.0
+    ],
+    "cx": [
+     0,
+     0
+    ],
+    "cy": [
+     0,
+     0
+    ],
+    "egri": "lineer"
+   },
+   "karakterler": [
+    {
+     "kim": "lagari",
+     "x": 360,
+     "y": 1450,
+     "yon": 1,
+     "poz": "ayakta",
+     "jestler": [
+      {
+       "ad": "egil",
+       "bas": 0,
+       "bit": 36,
+       "ops": {
+        "aci": 30
+       }
+      },
+      {
+       "ad": "dogrul",
+       "bas": 110,
+       "bit": 170
+      }
+     ],
+     "durum": {
+      "islak": true,
+      "damla": [
+       0,
+       190
+      ]
+     },
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       1,
+       0
+      ]
+     },
+     "kit_eksik": [
+      "KE-K1",
+      "KE-J5",
+      "KE-J10"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tur": "kese",
+     "id": "kese",
+     "x": [
+      1250,
+      1090,
+      790,
+      650,
+      650,
+      590,
+      560
+     ],
+     "y": [
+      790,
+      800,
+      860,
+      960,
+      960,
+      900,
+      860
+     ],
+     "kare": [
+      0,
+      24,
+      52,
+      68,
+      100,
+      150,
+      196
+     ],
+     "olcek": 1.4,
+     "durum": {
+      "icerik": "gumus"
+     },
+     "kit_eksik": [
+      "KE-P3"
+     ]
+    }
+   ],
+   "el": [
+    {
+     "tip": "entari-yen",
+     "rol": "veren",
+     "giris": [
+      1180,
+      760
+     ],
+     "kare": [
+      0,
+      24,
+      52,
+      68,
+      96,
+      130
+     ],
+     "bilek": [
+      [
+       1180,
+       760
+      ],
+      [
+       1020,
+       790
+      ],
+      [
+       780,
+       860
+      ],
+      [
+       700,
+       885
+      ],
+      [
+       820,
+       850
+      ],
+      [
+       1180,
+       770
+      ]
+     ],
+     "dirsek": [
+      [
+       1500,
+       700
+      ],
+      [
+       1380,
+       720
+      ],
+      [
+       1150,
+       780
+      ],
+      [
+       1100,
+       800
+      ],
+      [
+       1250,
+       780
+      ],
+      [
+       1500,
+       720
+      ]
+     ],
+     "aci": [
+      180,
+      180,
+      185,
+      190,
+      185,
+      180
+     ],
+     "olcek": 1.9,
+     "tut": {
+      "prop": "kese",
+      "bas": 24,
+      "bit": 68
+     },
+     "kit_eksik": [
+      "KE-K5"
+     ]
+    },
+    {
+     "tip": "lagari",
+     "rol": "alan",
+     "giris": [
+      520,
+      1100
+     ],
+     "kare": [
+      0,
+      30,
+      60,
+      100,
+      150,
+      196
+     ],
+     "bilek": [
+      [
+       520,
+       1100
+      ],
+      [
+       600,
+       1020
+      ],
+      [
+       650,
+       985
+      ],
+      [
+       650,
+       985
+      ],
+      [
+       590,
+       900
+      ],
+      [
+       560,
+       860
+      ]
+     ],
+     "dirsek": [
+      [
+       430,
+       1150
+      ],
+      [
+       470,
+       1090
+      ],
+      [
+       500,
+       1050
+      ],
+      [
+       500,
+       1050
+      ],
+      [
+       470,
+       1000
+      ],
+      [
+       450,
+       980
+      ]
+     ],
+     "aci": [
+      20,
+      10,
+      0,
+      0,
+      -10,
+      -20
+     ],
+     "olcek": 1.9,
+     "poz": [
+      {
+       "kare": 60,
+       "poz": "gevsek"
+      },
+      {
+       "kare": 100,
+       "poz": "kistir"
+      }
+     ],
+     "kit_eksik": [
+      "KE-K5",
+      "KE-J5"
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "1 kese gümüş + günde 70 akçe",
+     "en": "1 purse of silver + 70 silver coins a day",
+     "tur": "iddia",
+     "bas": 60,
+     "bit": 214,
+     "vurgu": [
+      "70"
+     ],
+     "vurgu_en": [
+      "70"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 68,
+     "olay": "kese Lagâri'nin avucuna düşer",
+     "ses": "kese-singir",
+     "db": -6
+    }
+   ],
+   "gecis": "Giriş: P06'dan eşleşen kesme (ıslak el basamakta). Çıkış: kâğıt kesme (zaman/mekân atlaması: gece köşk önü -> gündüz Galata); el çıkmış, kese Lagâri'nin göğsünde, hareket tamam.",
+   "sfx": [
+    "kese-singir (p68)",
+    "su damlaları (ortam, p0-190, -18)"
+   ],
+   "muzik_notu": "Akar; ödülde tema açılır (majör çözülme), P08 kâğıt kesmesinde tema aynı kalır, ritim hafifler.",
+   "dokunus": null,
+   "kontrol_kare": 72,
+   "kontrol_ek": [
+    130
+   ],
+   "okunurluk": {
+    "nesne": "kese + avuç",
+    "oran_pct": 10,
+    "net_sn": 3.3,
+    "not": "kese olcek 1.4 (≈190 px). P11 ile AYNI kadraj (el y≈985, zemin y 1450): ayna okunur"
+   },
+   "alt_ucte_bir": "Rıhtım taş döşemesi, ıslak ayak izi/su birikintisi ve damlalar (y 1300-1500), Lagâri'nin ayakları.",
+   "kit_eksik": [
+    "KE-S1",
+    "KE-K1",
+    "KE-K5",
+    "KE-P3",
+    "KE-J5",
+    "KE-J10",
+    "KE-E3",
+    "KE-Y1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P07.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P07.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Eli veren el padişahın mı görevlinin mi: belirsiz bırakıldı (nötr entari yeni, kanıtsız renk/arma yok). Giren el sağ kenardan (köşk sağda) fiziksel girer, p130'da sağdan çıkar; fade yok."
+  },
+  {
+   "id": "P08",
+   "tip": "tower",
+   "sablon": "GALATA-TEPE",
+   "parametreler": {
+    "gorunum": "tepe",
+    "saat": "gun",
+    "isik": "kontra",
+    "serit_ekran": 2,
+    "kule": {
+     "govde": "tas",
+     "kulah": "kursun-gri-notr",
+     "galeri": "kemerli-acik"
+    },
+    "alt_serit": "kule duvarı + aşağıda Galata çatıları/sokak (y 3600 zemin)",
+    "toz": {
+     "bas": 148,
+     "bit": 176
+    }
+   },
+   "sure_kare": 252,
+   "sure_sn": 4.2,
+   "metin": {
+    "tr": "Peki öteki adam? Hezarfen, Galata Kulesi'nin tepesinde.",
+    "en": "And the other man? Hezarfen, atop the Galata Tower."
+   },
+   "olcek": "geniş (kule tepesi, Hezarfen boy %22) -> göğüs (p36) -> yakın ayak/taş (p40-52) -> dikey takip insert (taş %10, p52-148) -> kamera yukarı -> göğüs (bak)",
+   "kamera": {
+    "kare": [
+     0,
+     36,
+     52,
+     100,
+     148,
+     166,
+     200,
+     240
+    ],
+    "cs": [
+     1.0,
+     1.9,
+     2.0,
+     2.0,
+     2.0,
+     2.0,
+     1.9,
+     1.95
+    ],
+    "cx": [
+     0,
+     -120,
+     -140,
+     -140,
+     -140,
+     -140,
+     -120,
+     -120
+    ],
+    "cy": [
+     0,
+     120,
+     -650,
+     -1964,
+     -5300,
+     -5300,
+     120,
+     120
+    ],
+    "egri": "inout",
+    "takip": {
+     "prop": "tas",
+     "ekran_y": 900,
+     "kare": [
+      52,
+      148
+     ]
+    }
+   },
+   "karakterler": [
+    {
+     "kim": "hezarfen",
+     "x": 700,
+     "y": 1250,
+     "yon": 1,
+     "jestler": [
+      {
+       "ad": "tas-it",
+       "bas": 36,
+       "bit": 60,
+       "ops": {
+        "hedef": "tas",
+        "temas": 40
+       }
+      },
+      {
+       "ad": "bak",
+       "bas": 200,
+       "bit": 232,
+       "ops": {
+        "x": 1,
+        "y": 0
+       }
+      }
+     ],
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       1,
+       0
+      ]
+     },
+     "kit_eksik": [
+      "KE-K2",
+      "KE-J6"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tur": "tas",
+     "id": "tas",
+     "x": [
+      770,
+      770,
+      790,
+      800,
+      800
+     ],
+     "y": [
+      1250,
+      1250,
+      1255,
+      1912,
+      3600
+     ],
+     "kare": [
+      0,
+      40,
+      46,
+      100,
+      148
+     ],
+     "olcek": 1.0,
+     "boyut_dekor_px": 95,
+     "kit_eksik": [
+      "KE-P5"
+     ]
+    },
+    {
+     "tur": "kanat",
+     "id": "kanat_h",
+     "bagli": "hezarfen",
+     "durum": {
+      "acik": 0
+     },
+     "kit_eksik": [
+      "KE-P2"
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "2. UÇUŞ · Hezarfen = “bin hünerli”",
+     "en": "FLIGHT 2 · Hezarfen = “a thousand skills”",
+     "tur": "iddia",
+     "bas": 16,
+     "bit": 244,
+     "vurgu": [
+      "UÇUŞ"
+     ],
+     "vurgu_en": [
+      "FLIGHT"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 40,
+     "olay": "ayakkabı taşı iter",
+     "ses": "tas-surtme",
+     "db": -8
+    },
+    {
+     "kare": 44,
+     "olay": "taş kenardan kayar",
+     "ses": "tas-kayma",
+     "db": -10
+    },
+    {
+     "kare": 148,
+     "olay": "taş yere çarpar (uzak, toz)",
+     "ses": "uzak-tik",
+     "db": -18
+    }
+   ],
+   "gecis": "Giriş: kâğıt kesme (P07 -> gündüz Galata). Çıkış: MATCH CUT P09'a: Hezarfen aynı pozda ufka bakıyor (p232), panorama aynı bakış doğrultusunda açılır.",
+   "sfx": [
+    "tas-surtme (p40)",
+    "tas-kayma (p44)",
+    "dusme-ruzgar (p52-148, -14)",
+    "uzak-tik (p148, -18)",
+    "kule rüzgârı (ortam)"
+   ],
+   "muzik_notu": "Akar; düşüş boyunca tek sürekli nota, çarpmada alçalır, bakışta (p200) tema yükselir. Konuşma 'tepesinde' p163-220 (TR) kamera yukarı dönerken.",
+   "dokunus": {
+    "id": "EV-D3",
+    "ad": "Düşen taş",
+    "bas": 36,
+    "bit": 232
+   },
+   "kontrol_kare": 100,
+   "kontrol_ek": [
+    0,
+    148,
+    216
+   ],
+   "okunurluk": {
+    "nesne": "düşen taş",
+    "oran_pct": 10,
+    "net_sn": 1.7,
+    "not": "taş dekor 95 px, cs 2.0 -> 190 px (%10), takipte ekran y≈900 sabit; okunurluk taşın yolunda ve duvar paralaksında, tozda değil (toz <%5)"
+   },
+   "alt_ucte_bir": "p0: kule duvarı taş sıraları aşağı doğru + uzakta çatılar; p52-148: akan duvar ve çatılar; p166+: Hezarfen'in altındaki duvar şeridi + kule gölgesi.",
+   "kit_eksik": [
+    "KE-S2",
+    "KE-K2",
+    "KE-P2",
+    "KE-P5",
+    "KE-J6",
+    "KE-E4",
+    "KE-Y1",
+    "KE-C1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P08.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P08.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Dikey şerit 2 ekran (dokunuş doc'u 3 demişti; cs 2.0'da 2 ekran yeter, taş hızı ≈ 50 px/kare). Dokunuş 232'de biter (plan 252, payı 20)."
+  },
+  {
+   "id": "P09",
+   "tip": "map",
+   "sablon": "BOGAZ",
+   "parametreler": {
+    "gorunum": "panorama",
+    "saat": "gun",
+    "rota": "galata-uskudar",
+    "rota_cizgi": {
+     "bas": 70,
+     "bit": 130
+    },
+    "dekor_genislik": 2160,
+    "iniş_meydani": {
+     "x": 1800,
+     "y": 1170,
+     "ot": "acik-meydan-notr"
+    },
+    "kule_sol": {
+     "x": 330,
+     "tepe_y": 780
+    },
+    "ufuk_y": 860
+   },
+   "sure_kare": 282,
+   "sure_sn": 4.7,
+   "metin": {
+    "tr": "Lodos esince atlıyor ve Boğaz'ı süzülerek geçip Üsküdar'a iniyor.",
+    "en": "With a southwest wind, he jumps and glides across the Bosphorus."
+   },
+   "olcek": "geniş panorama; kamera Hezarfen'i izleyen yatay pan; ön planda bulanık martı (cs 1.0 sabit)",
+   "kamera": {
+    "kare": [
+     0,
+     240
+    ],
+    "cs": [
+     1.0,
+     1.0
+    ],
+    "cx": [
+     500,
+     -500
+    ],
+    "cy": [
+     0,
+     0
+    ],
+    "egri": "lineer"
+   },
+   "karakterler": [
+    {
+     "kim": "hezarfen",
+     "x": [
+      330,
+      330,
+      420,
+      900,
+      1450,
+      1700,
+      1800,
+      1860
+     ],
+     "y": [
+      780,
+      780,
+      800,
+      980,
+      1040,
+      1110,
+      1170,
+      1175
+     ],
+     "kare": [
+      0,
+      56,
+      76,
+      100,
+      150,
+      200,
+      238,
+      262
+     ],
+     "olcek": 0.35,
+     "yon": 1,
+     "jestler": [
+      {
+       "ad": "ucus",
+       "bas": 56,
+       "bit": 238
+      },
+      {
+       "ad": "yuru",
+       "bas": 238,
+       "bit": 262
+      }
+     ],
+     "kit_eksik": [
+      "KE-K2",
+      "KE-J4",
+      "KE-J9"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tur": "kanat",
+     "id": "kanat_h",
+     "bagli": "hezarfen",
+     "kare": [
+      0,
+      56,
+      76,
+      238,
+      262
+     ],
+     "durum": {
+      "acik": [
+       0,
+       0,
+       1,
+       1,
+       0
+      ]
+     },
+     "kit_eksik": [
+      "KE-P2"
+     ]
+    },
+    {
+     "tur": "marti",
+     "id": "marti",
+     "uzay": "ekran",
+     "x": [
+      1130,
+      800,
+      640,
+      480,
+      -260
+     ],
+     "y": [
+      1200,
+      1210,
+      1215,
+      1225,
+      1320
+     ],
+     "kare": [
+      112,
+      135,
+      150,
+      170,
+      194
+     ],
+     "olcek": 1.0,
+     "bulanik": 6,
+     "durum": {
+      "kanat": [
+       "cirp",
+       "cirp",
+       "cirp",
+       "suzul",
+       "suzul"
+      ]
+     },
+     "kit_eksik": [
+      "KE-P6"
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Galata → Üsküdar · ~3 km",
+     "en": "EUROPE → ASIA · ~3 km (2 mi)",
+     "tur": "iddia",
+     "bas": 60,
+     "bit": 270,
+     "vurgu": [
+      "~3"
+     ],
+     "vurgu_en": [
+      "~3"
+     ]
+    }
+   ],
+   "harita_etiketleri": [
+    {
+     "ad": "galata",
+     "tr": "Galata",
+     "en": "Galata",
+     "x": 330,
+     "y": 650,
+     "bas": 0,
+     "bit": 120
+    },
+    {
+     "ad": "uskudar",
+     "tr": "Üsküdar",
+     "en": "Üsküdar",
+     "x": 1740,
+     "y": 1040,
+     "bas": 120,
+     "bit": 270
+    },
+    {
+     "ad": "bogaz",
+     "tr": "Boğaz",
+     "en": "Bosphorus",
+     "x": 1050,
+     "y": 1330,
+     "bas": 40,
+     "bit": 270
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 120,
+     "olay": "martı çığlık atar (ön plan, görünür)",
+     "ses": "marti-cigligi",
+     "db": -10
+    },
+    {
+     "kare": 125,
+     "olay": "martı kanat çırpar (4-5 vuruş, p112-170)",
+     "ses": "kanat-hisirti",
+     "db": -12
+    },
+    {
+     "kare": 238,
+     "olay": "Hezarfen Üsküdar meydanına ayak basar (toz)",
+     "ses": "inis-toprak",
+     "db": -10
+    }
+   ],
+   "gecis": "Giriş: MATCH CUT P08'den (aynı poz, aynı bakış). Çıkış: sert kesme P10'a (inişten sonra kapanış: toz oturdu p270, kanat katlı).",
+   "sfx": [
+    "ruzgar/kumas dalgası (ortam, p0-260, -16)",
+    "marti-cigligi (p120)",
+    "kanat-hisirti (p112-170)",
+    "inis-toprak (p238)"
+   ],
+   "muzik_notu": "Akar; süzülüşte açılan geniş tema (uçuş = sürekli uzun nota), iniş p238'de çözülür.",
+   "dokunus": {
+    "id": "EV-D4",
+    "ad": "Martı çırpar, Hezarfen çırpmadan geçer",
+    "bas": 112,
+    "bit": 195
+   },
+   "kontrol_kare": 150,
+   "kontrol_ek": [
+    0,
+    238
+   ],
+   "okunurluk": {
+    "nesne": "martı (ön plan) + Hezarfen siluet",
+    "oran_pct": 11,
+    "net_sn": 1.4,
+    "not": "martı kanat açıklığı 420 px, çırpma genliği 220 px (%11); Hezarfen olcek 0.35 (≈130 px, %7, kontra düz siluet), kamera yatay izler. Martı y≥1100, yazı bandıyla çakışmaz"
+   },
+   "alt_ucte_bir": "Boğaz suyu (y 1000-1500), ön plandaki martı, kayık siluetleri, sağ altta Üsküdar kıyısı/meydan, sol altta Galata yamacı.",
+   "kit_eksik": [
+    "KE-S3",
+    "KE-K2",
+    "KE-P2",
+    "KE-P6",
+    "KE-J4",
+    "KE-J9",
+    "KE-E4",
+    "KE-E6",
+    "KE-Y1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P09.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P09.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Atlayış p56-76: TR 'atlıyor' p48-81 ile örtüşür; EN 'he jumps' p100: görüntü 0.7 sn önde (iki dil tek görüntü). Rota çizgisi p70-130 çizilir, martı p112'de girer (farklı bölge). İniş p238, kanat katlanması p262, toz oturması p270 (plan sonuna 12 kare var)."
+  },
+  {
+   "id": "P10",
+   "tip": "archive",
+   "sablon": "SARAYBURNU",
+   "parametreler": {
+    "gorunum": "kosk",
+    "saat": "gun",
+    "kosk": {
+     "altyapi": "cifte-kemer-cesme",
+     "kubbe": "notr",
+     "baca": 4,
+     "cumba": "sacakli"
+    },
+    "pencere_isigi": false,
+    "ayni_kadraj_p02": true
+   },
+   "sure_kare": 294,
+   "sure_sn": 4.9,
+   "metin": {
+    "tr": "Onu kim izliyor? Yine padişah. Yine aynı köşkten.",
+    "en": "Who's watching? The sultan again. From the very same pavilion."
+   },
+   "olcek": "geniş (P02 ile AYNI kadraj p0) -> push-in cs 1.0->1.6 ile pencere siluetine yaklaşım (baş çevirme göğüs/bel okunurluğu)",
+   "kamera": {
+    "kare": [
+     0,
+     110,
+     282
+    ],
+    "cs": [
+     1.0,
+     1.6,
+     1.7
+    ],
+    "cx": [
+     0,
+     -10,
+     -10
+    ],
+    "cy": [
+     0,
+     130,
+     130
+    ],
+    "egri": "inout"
+   },
+   "karakterler": [
+    {
+     "kim": "padisah",
+     "x": 560,
+     "y": 860,
+     "yon": -1,
+     "siluet": true,
+     "yuz": null,
+     "pencere": true,
+     "jestler": [
+      {
+       "ad": "bak",
+       "bas": 70,
+       "bit": 112,
+       "ops": {
+        "x": 1,
+        "y": 0,
+        "egim": 0
+       }
+      }
+     ],
+     "kit_eksik": [
+      "KE-K3"
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Aynı köşk · Padişah IV. Murad",
+     "en": "The same pavilion · Sultan Murad IV",
+     "tur": "iddia",
+     "bas": 20,
+     "bit": 288,
+     "vurgu": [
+      "Aynı"
+     ],
+     "vurgu_en": [
+      "same"
+     ]
+    }
+   ],
+   "temaslar": [],
+   "gecis": "Giriş: sert kesme (P09 iniş kapanışı) -> P02 ile aynı açı, gündüz. Çıkış: kâğıt kesme (Hezarfen'in huzura gelişi).",
+   "sfx": [
+    "deniz/martı (ortam, kısık)",
+    "ses vurgusu yok: yalnız P02 ile eşleşen kadraj"
+   ],
+   "muzik_notu": "Akar; P09'un açık teması sade bir motife iner (köşk teması P02'den geri gelir).",
+   "dokunus": null,
+   "kontrol_kare": 120,
+   "kontrol_ek": [
+    0
+   ],
+   "okunurluk": {
+    "nesne": "padişah siluet (baş çevirme)",
+    "oran_pct": 12,
+    "net_sn": 3.0,
+    "not": "cs 1.6'da pencere silueti ≈ 240 px; baş çevirme büyük hareket"
+   },
+   "alt_ucte_bir": "Çifte kemerli altyapı, rıhtım ve gündüz denizi (y 1300-1500); P02'de sol rıhtımdaki grup yok, kayıklar/halat.",
+   "kit_eksik": [
+    "KE-S1",
+    "KE-K3",
+    "KE-Y1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P10.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P10.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Baş çevirme p70-112: TR 'Yine padişah' p74-144 ile eşzamanlı. Çevirme sağa (Üsküdar yönü); P09'daki uçuş yönüyle aynı."
+  },
+  {
+   "id": "P11",
+   "tip": "character",
+   "sablon": "SARAYBURNU",
+   "parametreler": {
+    "gorunum": "insert",
+    "saat": "gun",
+    "zemin_y": 1450,
+    "ayni_kadraj_p07": true
+   },
+   "sure_kare": 240,
+   "sure_sn": 4.0,
+   "metin": {
+    "tr": "Ona bir kese altın veriyor. Ama sonra sürgüne yolluyor.",
+    "en": "He gets a purse of gold. But then he's banished."
+   },
+   "olcek": "insert/orta-boy (baş kadraj dışı, omuz ve avuç görünür), cs 1.0 sabit (P07 ile AYNI kadraj)",
+   "kamera": {
+    "kare": [
+     0,
+     240
+    ],
+    "cs": [
+     1.0,
+     1.0
+    ],
+    "cx": [
+     0,
+     0
+    ],
+    "cy": [
+     0,
+     0
+    ],
+    "egri": "lineer"
+   },
+   "karakterler": [
+    {
+     "kim": "hezarfen",
+     "x": 360,
+     "y": 1450,
+     "yon": 1,
+     "poz": "ayakta",
+     "jestler": [
+      {
+       "ad": "egil",
+       "bas": 0,
+       "bit": 10,
+       "ops": {
+        "aci": 30
+       }
+      }
+     ],
+     "yuz": {
+      "ifade": "dinlen",
+      "bakis": [
+       1,
+       0
+      ]
+     },
+     "kit_eksik": [
+      "KE-K2",
+      "KE-J5"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tur": "kese",
+     "id": "kese",
+     "x": [
+      1250,
+      1090,
+      650,
+      646,
+      640,
+      610,
+      600,
+      600
+     ],
+     "y": [
+      790,
+      800,
+      960,
+      965,
+      975,
+      1100,
+      1355,
+      1352
+     ],
+     "kare": [
+      0,
+      10,
+      42,
+      100,
+      112,
+      126,
+      140,
+      214
+     ],
+     "olcek": 1.4,
+     "durum": {
+      "icerik": "altin"
+     },
+     "kit_eksik": [
+      "KE-P3"
+     ]
+    },
+    {
+     "tur": "sikke",
+     "id": "sikke",
+     "x": [
+      610,
+      620,
+      720,
+      820,
+      830,
+      830
+     ],
+     "y": [
+      1345,
+      1380,
+      1420,
+      1432,
+      1440,
+      1440
+     ],
+     "kare": [
+      140,
+      142,
+      170,
+      205,
+      208,
+      214
+     ],
+     "olcek": 1.0,
+     "durum": {
+      "donus": [
+       0,
+       1,
+       0.6,
+       0.2,
+       0,
+       0
+      ],
+      "yatis": [
+       0,
+       0,
+       0.3,
+       0.9,
+       1,
+       1
+      ]
+     },
+     "kit_eksik": [
+      "KE-P3"
+     ]
+    }
+   ],
+   "el": [
+    {
+     "tip": "entari-yen",
+     "rol": "veren",
+     "giris": [
+      1180,
+      760
+     ],
+     "kare": [
+      0,
+      10,
+      38,
+      50,
+      80
+     ],
+     "bilek": [
+      [
+       1180,
+       760
+      ],
+      [
+       1020,
+       800
+      ],
+      [
+       720,
+       885
+      ],
+      [
+       720,
+       885
+      ],
+      [
+       1180,
+       770
+      ]
+     ],
+     "dirsek": [
+      [
+       1500,
+       700
+      ],
+      [
+       1380,
+       730
+      ],
+      [
+       1130,
+       790
+      ],
+      [
+       1130,
+       790
+      ],
+      [
+       1500,
+       720
+      ]
+     ],
+     "aci": [
+      180,
+      180,
+      190,
+      190,
+      180
+     ],
+     "olcek": 1.9,
+     "tut": {
+      "prop": "kese",
+      "bas": 10,
+      "bit": 42
+     },
+     "kit_eksik": [
+      "KE-K5"
+     ]
+    },
+    {
+     "tip": "hezarfen",
+     "rol": "alan",
+     "giris": [
+      520,
+      1100
+     ],
+     "kare": [
+      0,
+      20,
+      42,
+      70,
+      100,
+      112,
+      126,
+      160,
+      210
+     ],
+     "bilek": [
+      [
+       520,
+       1100
+      ],
+      [
+       640,
+       990
+      ],
+      [
+       650,
+       985
+      ],
+      [
+       648,
+       988
+      ],
+      [
+       646,
+       990
+      ],
+      [
+       650,
+       1010
+      ],
+      [
+       640,
+       1040
+      ],
+      [
+       600,
+       1100
+      ],
+      [
+       540,
+       1160
+      ]
+     ],
+     "dirsek": [
+      [
+       430,
+       1150
+      ],
+      [
+       490,
+       1060
+      ],
+      [
+       500,
+       1050
+      ],
+      [
+       500,
+       1052
+      ],
+      [
+       500,
+       1054
+      ],
+      [
+       500,
+       1064
+      ],
+      [
+       495,
+       1080
+      ],
+      [
+       470,
+       1120
+      ],
+      [
+       440,
+       1170
+      ]
+     ],
+     "aci": [
+      20,
+      0,
+      0,
+      0,
+      0,
+      5,
+      15,
+      25,
+      30
+     ],
+     "olcek": 1.9,
+     "poz": [
+      {
+       "kare": 60,
+       "poz": "kistir"
+      },
+      {
+       "kare": 110,
+       "poz": "gevsek"
+      }
+     ],
+     "kit_eksik": [
+      "KE-K5",
+      "KE-J5"
+     ]
+    },
+    {
+     "tip": "muhafiz",
+     "rol": "omuz",
+     "giris": [
+      -400,
+      700
+     ],
+     "kare": [
+      0,
+      80,
+      104,
+      214
+     ],
+     "bilek": [
+      [
+       -400,
+       700
+      ],
+      [
+       -60,
+       720
+      ],
+      [
+       320,
+       800
+      ],
+      [
+       320,
+       810
+      ]
+     ],
+     "dirsek": [
+      [
+       -700,
+       650
+      ],
+      [
+       -380,
+       660
+      ],
+      [
+       -60,
+       720
+      ],
+      [
+       -60,
+       730
+      ]
+     ],
+     "aci": [
+      0,
+      0,
+      10,
+      10
+     ],
+     "olcek": 1.9,
+     "kit_eksik": [
+      "KE-K5"
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Sürgün: Cezayir",
+     "en": "Exile: Algiers",
+     "tur": "iddia",
+     "bas": 60,
+     "bit": 228,
+     "vurgu": [
+      "Cezayir"
+     ],
+     "vurgu_en": [
+      "Algiers"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 42,
+     "olay": "altın kese avuca düşer",
+     "ses": "kese-singir",
+     "db": -6
+    },
+    {
+     "kare": 104,
+     "olay": "muhafız eli omza iner",
+     "ses": "omuz-tok",
+     "db": -8
+    },
+    {
+     "kare": 140,
+     "olay": "kese rıhtıma düşer",
+     "ses": "kese-yere",
+     "db": -6
+    },
+    {
+     "kare": 144,
+     "olay": "sikke dönerek yuvarlanır (p144-205)",
+     "ses": "sikke-donme",
+     "db": -12
+    },
+    {
+     "kare": 208,
+     "olay": "sikke yatar",
+     "ses": "sikke-tin",
+     "db": -10
+    }
+   ],
+   "gecis": "Giriş: kâğıt kesme (P10). Çıkış: SERT KESME + ses vurgusu P12'ye (sikke yatmış p208, el omuzda: hareket tamam).",
+   "sfx": [
+    "kese-singir (p42, P07'den parlak altın tınısı)",
+    "omuz-tok (p104)",
+    "kese-yere (p140)",
+    "sikke-donme (p144-205)",
+    "sikke-tin (p208)"
+   ],
+   "muzik_notu": "Akar; p104 omuz vuruşunda müzikal sert vurgu (akor değişimi/davul); düşüş yok. P12'ye geçişte vurgu 'tok'.",
+   "dokunus": {
+    "id": "EV-D5",
+    "ad": "Düşen kese ve dönen sikke",
+    "bas": 104,
+    "bit": 214
+   },
+   "kontrol_kare": 128,
+   "kontrol_ek": [
+    42,
+    208
+   ],
+   "okunurluk": {
+    "nesne": "kese (avuç/yerde)",
+    "oran_pct": 10,
+    "net_sn": 3.2,
+    "not": "kese olcek 1.4 (≈190 px, %10) avuçta p42-112, düşüşte p126-140, yerde p140-214; sikke %5 ek ayrıntı. Omuz y≈800 (yazı bandı 240-400 dışı)"
+   },
+   "alt_ucte_bir": "Rıhtım taş zemini y 1350-1500: kese, yuvarlanan sikke, Hezarfen'in ayakları ve kese gölgesi.",
+   "kit_eksik": [
+    "KE-S1",
+    "KE-K2",
+    "KE-K5",
+    "KE-P3",
+    "KE-J5",
+    "KE-Y1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P11.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P11.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Insert baş kadraj dışı: Hezarfen'in tepkisi yüzle değil omuz/avuç gevşemesiyle verilir (doc: pasif). 'Omza' el: eğik duran omuz y≈800 (kadrajda). Muhafız eli soldan (Hezarfen'in arkası), veren el sağdan. Sikke fiziği: kese yere çarpınca ağzından fırlar, zeminde dönerek yavaşlar, p208'de yatar."
+  },
+  {
+   "id": "P12",
+   "tip": "character",
+   "sablon": "SARAYBURNU",
+   "parametreler": {
+    "gorunum": "ic",
+    "saat": "gun",
+    "pencere": {
+     "aciklik": [
+      1.0,
+      1.0,
+      0.08
+     ],
+     "kare": [
+      0,
+      4,
+      30
+     ],
+     "x": [
+      560,
+      760
+     ],
+     "y": [
+      560,
+      980
+     ]
+    },
+    "isik_serit": {
+     "bas": 34,
+     "bit": 100
+    },
+    "kapi": {
+     "x": 120,
+     "y": 900
+    },
+    "zemin": "minder-halı-notr",
+    "kafes_yok": true
+   },
+   "sure_kare": 216,
+   "sure_sn": 3.6,
+   "metin": {
+    "tr": "Çünkü bu adamdan korkulur. Ne isterse yapar.",
+    "en": "Because he's too dangerous. He can do anything."
+   },
+   "olcek": "bel (p0-10) -> göğüs push-in cs 1.8->2.6 (p10-50, yüz ≈ %12) -> 2.2 (p204)",
+   "kamera": {
+    "kare": [
+     0,
+     10,
+     50,
+     120,
+     204
+    ],
+    "cs": [
+     1.8,
+     1.8,
+     2.6,
+     2.6,
+     2.2
+    ],
+    "cx": [
+     150,
+     150,
+     216,
+     216,
+     170
+    ],
+    "cy": [
+     130,
+     130,
+     210,
+     210,
+     170
+    ],
+    "egri": "inout"
+   },
+   "karakterler": [
+    {
+     "kim": "padisah",
+     "x": 430,
+     "y": 1500,
+     "yon": [
+      1,
+      1,
+      1,
+      -1
+     ],
+     "kare": [
+      0,
+      60,
+      100,
+      130
+     ],
+     "siluet": true,
+     "yuz": {
+      "golge": true
+     },
+     "jestler": [
+      {
+       "ad": "pencere-kapat",
+       "bas": 4,
+       "bit": 30
+      },
+      {
+       "ad": "don",
+       "bas": 60,
+       "bit": 100,
+       "ops": {
+        "yon_son": -1
+       }
+      },
+      {
+       "ad": "isaret",
+       "bas": 130,
+       "bit": 170,
+       "ops": {
+        "aci": -95
+       }
+      }
+     ],
+     "kit_eksik": [
+      "KE-K3",
+      "KE-J7",
+      "KE-J11"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tur": "pencere-kanat",
+     "id": "kanat_p",
+     "x": 560,
+     "y": 770,
+     "kare": [
+      0,
+      4,
+      30
+     ],
+     "aci": [
+      80,
+      80,
+      12
+     ],
+     "olcek": 1.0,
+     "kit_eksik": [
+      "KE-P9"
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Padişah (Evliya'ya göre)",
+     "en": "The sultan (according to Evliya)",
+     "tur": "iddia",
+     "bas": 24,
+     "bit": 210,
+     "vurgu": [
+      "Padişah"
+     ],
+     "vurgu_en": [
+      "sultan"
+     ]
+    }
+   ],
+   "replik": [
+    {
+     "kim": "PADİŞAH",
+     "kim_en": "SULTAN",
+     "bant": "alt",
+     "metin": "Çünkü bu adamdan korkulur.",
+     "bas": 30,
+     "bit": 115,
+     "kelimeKare": [
+      30,
+      45,
+      52,
+      79
+     ],
+     "en": {
+      "metin": "Because he's too dangerous.",
+      "bas": 28,
+      "bit": 118,
+      "kelimeKare": [
+       28,
+       48,
+       61,
+       73
+      ]
+     }
+    },
+    {
+     "kim": "PADİŞAH",
+     "kim_en": "SULTAN",
+     "bant": "alt",
+     "metin": "Ne isterse yapar.",
+     "bas": 123,
+     "bit": 184,
+     "kelimeKare": [
+      123,
+      129,
+      157
+     ],
+     "en": {
+      "metin": "He can do anything.",
+      "bas": 129,
+      "bit": 198,
+      "kelimeKare": [
+       129,
+       138,
+       151,
+       164
+      ]
+     }
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 30,
+     "olay": "pencere kanadı kapanır (tok)",
+     "ses": "pencere-tok",
+     "db": -6
+    },
+    {
+     "kare": 34,
+     "olay": "mandal/sürgü oturur",
+     "ses": "mandal-tik",
+     "db": -8
+    },
+    {
+     "kare": 30,
+     "olay": "dış ortam sesi kısılır (alçak geçirgen)",
+     "ses": "ortam-kisma",
+     "db": -12
+    }
+   ],
+   "gecis": "Giriş: SERT KESME + ses vurgusu (P11 sikke yatışından; dış gün ışığı -> iç mekân). Çıkış: kâğıt/sayfa geçişi P13'e (anlatıdan kayda); el kapıyı göstermiş p170, kapanış bakışı p170-204.",
+   "sfx": [
+    "pencere-tok (p30)",
+    "mandal-tik (p34)",
+    "ortam-kisma (p30, -12 -> -22)"
+   ],
+   "muzik_notu": "Müzik p30 'tok'ta duyulur biçimde alçalır (dinamik düşüş müzikal cümle sonu olarak, kesilme değil); replik 0.4 sn sessiz nefesten sonra başlar (ses.kare 24).",
+   "dokunus": {
+    "id": "EV-D6",
+    "ad": "Pencere kanadı kapanır, ışık gözlerde şeride iner",
+    "bas": 4,
+    "bit": 110
+   },
+   "kontrol_kare": 66,
+   "kontrol_ek": [
+    0,
+    150
+   ],
+   "okunurluk": {
+    "nesne": "pencere kanadı + ışık şeridi",
+    "oran_pct": 30,
+    "net_sn": 1.1,
+    "not": "kanat %30+ yükseklik, kapanış 0.43 sn; ışık şeridi p34-100 (1.1 sn); yüz ≈ 230 px (%12), yüz gölgede/profil, yüz ayrıntısı çizilmez"
+   },
+   "alt_ucte_bir": "Padişahın kaftanı (gövde), minder/halı kenarı ve pencere eşiğinden düşen ışık şeridinin zemin yansıması (y 1300-1500): karanlık ama dokulu.",
+   "kit_eksik": [
+    "KE-S1",
+    "KE-K3",
+    "KE-P9",
+    "KE-J7",
+    "KE-J11",
+    "KE-E5",
+    "KE-Y1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P12.mp3",
+     "kare": 24,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P12.mp3",
+     "kare": 24,
+     "db": 0
+    }
+   ],
+   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge."
+  },
+  {
+   "id": "P13",
+   "tip": "document",
+   "sablon": "KITAP-INSERT",
+   "parametreler": {
+    "kitap": "seyahatname",
+    "masa": "ahsap",
+    "yazi": "hat-dil-notr",
+    "kenar_cizim": [
+     {
+      "tur": "fisek",
+      "x": 790,
+      "y": 760,
+      "yukseklik": 140
+     },
+     {
+      "tur": "kanatli-adam",
+      "x": 800,
+      "y": 960,
+      "yukseklik": 140
+     }
+    ],
+    "defterler": [
+     {
+      "id": "d1",
+      "x": 180,
+      "y": 1500,
+      "acik": {
+       "bas": 146,
+       "bit": 176
+      }
+     },
+     {
+      "id": "d2",
+      "x": 910,
+      "y": 1510,
+      "acik": {
+       "bas": 164,
+       "bit": 194
+      }
+     },
+     {
+      "id": "d3",
+      "x": 540,
+      "y": 1650,
+      "acik": {
+       "bas": 182,
+       "bit": 212
+      }
+     }
+    ]
+   },
+   "sure_kare": 300,
+   "sure_sn": 5.0,
+   "metin": {
+    "tr": "Peki bunları nereden biliyoruz? Yalnızca Evliya Çelebi'nin kitabından.",
+    "en": "How do we know? Only from Evliya Çelebi's book."
+   },
+   "olcek": "insert (açık sayfa, kenar çizimleri ≈ %16) cs 2.2 -> geri çekilme cs 1.0 (defterler ve masa)",
+   "kamera": {
+    "kare": [
+     0,
+     100,
+     200,
+     280
+    ],
+    "cs": [
+     2.2,
+     2.2,
+     1.0,
+     1.0
+    ],
+    "cx": [
+     -300,
+     -300,
+     0,
+     0
+    ],
+    "cy": [
+     -120,
+     -120,
+     0,
+     0
+    ],
+    "egri": "inout"
+   },
+   "props": [
+    {
+     "tur": "kitap",
+     "id": "seyahatname",
+     "x": 540,
+     "y": 960,
+     "durum": {
+      "acik": 1,
+      "hat": true
+     },
+     "kit_eksik": [
+      "KE-P8"
+     ]
+    },
+    {
+     "tur": "defter",
+     "id": "d1",
+     "x": 180,
+     "y": 1500,
+     "kare": [
+      0,
+      146,
+      176
+     ],
+     "durum": {
+      "acik": [
+       0,
+       0,
+       1
+      ],
+      "bos": true
+     },
+     "kit_eksik": [
+      "KE-P8"
+     ]
+    },
+    {
+     "tur": "defter",
+     "id": "d2",
+     "x": 910,
+     "y": 1510,
+     "kare": [
+      0,
+      164,
+      194
+     ],
+     "durum": {
+      "acik": [
+       0,
+       0,
+       1
+      ],
+      "bos": true
+     },
+     "kit_eksik": [
+      "KE-P8"
+     ]
+    },
+    {
+     "tur": "defter",
+     "id": "d3",
+     "x": 540,
+     "y": 1650,
+     "kare": [
+      0,
+      182,
+      212
+     ],
+     "durum": {
+      "acik": [
+       0,
+       0,
+       1
+      ],
+      "bos": true
+     },
+     "kit_eksik": [
+      "KE-P8"
+     ]
+    },
+    {
+     "tur": "hokka",
+     "id": "hokka",
+     "x": 930,
+     "y": 1180
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Seyahatname · başka kayıt bulunamadı",
+     "en": "SEYAHATNAME (“Book of Travels”) · no other record found",
+     "tur": "iddia",
+     "bas": 20,
+     "bit": 292,
+     "vurgu": [
+      "başka"
+     ],
+     "vurgu_en": [
+      "other"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 146,
+     "olay": "birinci defter açılır (kapak yatar)",
+     "ses": "defter-ac",
+     "db": -10
+    },
+    {
+     "kare": 164,
+     "olay": "ikinci defter açılır",
+     "ses": "defter-ac",
+     "db": -10
+    },
+    {
+     "kare": 182,
+     "olay": "üçüncü defter açılır",
+     "ses": "defter-ac",
+     "db": -10
+    }
+   ],
+   "gecis": "Giriş: kâğıt/sayfa geçişi (P12 anlatıdan kayda). Çıkış: aynı mekân, kamera sürekli (P14 geri çekilmiş kadrajdan yaklaşmaya başlar; defterler açık/boş, hareket tamam p212).",
+   "sfx": [
+    "defter-ac x3 (p146/164/182)",
+    "kâğıt hışırtısı (ortam, kısık)"
+   ],
+   "muzik_notu": "Akar; geri çekilirken tema boşalır (tek nota/çağrı), boş defterlerde sessizlik hissi müzikle: seyrek tek vuruş.",
+   "dokunus": null,
+   "kontrol_kare": 190,
+   "kontrol_ek": [
+    60
+   ],
+   "okunurluk": {
+    "nesne": "kenar fişek çizimi (kurulum) / boş defterler (karşılık)",
+    "oran_pct": 16,
+    "net_sn": 3.3,
+    "not": "p60: çizim ≈ 308 px (%16) net 1.6 sn; p190: üç defter + kitap geniş masada"
+   },
+   "alt_ucte_bir": "p0-100: sayfanın alt yarısı hat satırları; p200+: ahşap masa, hokka, açık defterler y 1350-1700, mum/gölge. Boş değil.",
+   "kit_eksik": [
+    "KE-S4",
+    "KE-P8",
+    "KE-Y1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P13.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P13.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Hat yazısı dil-nötr dekoratif çizgiler (okunur kelime yok). Boş defter mekanizması (Blanc D8 'boş kitap'): güve yok, dokunuş sayılmadı; istenmezse tek satır mürekkep. Fişek çizimi sağ kenarda kurulur, P14'te yaklaşılır."
+  },
+  {
+   "id": "P14",
+   "tip": "document",
+   "sablon": "KITAP-INSERT",
+   "parametreler": {
+    "kitap": "seyahatname",
+    "masa": "ahsap",
+    "yazi": "hat-dil-notr",
+    "kenar_cizim": [
+     {
+      "tur": "fisek",
+      "x": 790,
+      "y": 760,
+      "yukseklik": 140
+     },
+     {
+      "tur": "kanatli-adam",
+      "x": 800,
+      "y": 960,
+      "yukseklik": 140
+     }
+    ],
+    "defterler_acik": true,
+    "kivilcim": {
+     "bas": 110,
+     "bit": 234,
+     "fitil": [
+      0,
+      0.5
+     ]
+    },
+    "son_kare": "P01 p0 ile eşleşir: binici+demet silueti ekranda x≈390-640, y≈640-1330; fitil solda, kıvılcım fitilin yarısında"
+   },
+   "sure_kare": 246,
+   "sure_sn": 4.1,
+   "metin": {
+    "tr": "Yani kanıt yok. Ama dört yüz yıldır anlatıyoruz.",
+    "en": "So, no proof. Yet we've told it for 400 years."
+   },
+   "olcek": "geniş/orta (P13 sonu) -> yakın/insert: kenar çizimine push-in cs 1.0->4.6",
+   "kamera": {
+    "kare": [
+     0,
+     110,
+     234
+    ],
+    "cs": [
+     1.0,
+     3.0,
+     4.6
+    ],
+    "cx": [
+     0,
+     -300,
+     -700
+    ],
+    "cy": [
+     0,
+     250,
+     560
+    ],
+    "egri": "inout"
+   },
+   "props": [
+    {
+     "tur": "kitap",
+     "id": "seyahatname",
+     "x": 540,
+     "y": 960,
+     "durum": {
+      "acik": 1,
+      "hat": true
+     },
+     "kit_eksik": [
+      "KE-P8"
+     ]
+    },
+    {
+     "tur": "kivilcim",
+     "id": "kivilcim",
+     "ustunde": "fisek-cizim",
+     "kare": [
+      110,
+      130,
+      234
+     ],
+     "durum": {
+      "fitil": [
+       0,
+       0.1,
+       0.5
+      ]
+     },
+     "kit_eksik": [
+      "KE-E1"
+     ]
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Sence uçtular mı?",
+     "en": "Did they really fly?",
+     "tur": "iddia",
+     "bas": 60,
+     "bit": 238,
+     "vurgu": [
+      "uçtular"
+     ],
+     "vurgu_en": [
+      "fly"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 110,
+     "olay": "çizimdeki fitilde kıvılcım tutuşur (P01 p0'a bağlanır)",
+     "ses": "fitil-tiss",
+     "db": -10
+    }
+   ],
+   "gecis": "MATCH CUT -> P01 p0: kıvılcım fitilin yarısında, siluet konumu aynı; fitil-tiss sesi iki plan boyunca kesintisiz sürer (döngü).",
+   "sfx": [
+    "fitil-tiss (p110 -> P01 p0 kesintisiz)"
+   ],
+   "muzik_notu": "Akar ve P01'e döner: aynı alçak ostinato sonunda yarım kalır (cümle sonu çözülmez; döngü).",
+   "dokunus": null,
+   "kontrol_kare": 170,
+   "kontrol_ek": [
+    234
+   ],
+   "okunurluk": {
+    "nesne": "kenardaki fişek çizimi + kıvılcım",
+    "oran_pct": 34,
+    "net_sn": 2.0,
+    "not": "çizim cs 4.6'da ≈ 640 px (%33); kıvılcım p110-234 yanıyor (2.1 sn)"
+   },
+   "alt_ucte_bir": "Kitap sayfası dokusu/hat satırları ve çizimin fitil çizgisi (y 1200-1500); ölü alan yok.",
+   "kit_eksik": [
+    "KE-S4",
+    "KE-P8",
+    "KE-E1",
+    "KE-Y1"
+   ],
+   "ses": [
+    {
+     "dosya": "evliya/ses/tr/P14.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "evliya/ses/en/P14.mp3",
+     "kare": 0,
+     "db": 0
+    }
+   ],
+   "not": "Kıvılcım anahtarı p234'te biter (plan sonundan 12 kare) ve P01 p0 ile aynı konumda durur: bilinçli match cut, bitmemiş hareketi yeni planın başı devralır. P01'in gece/yer rengi ile çizim rengi farklı; eşleşme şekil+konum+kıvılcımla."
+  }
+ ]
+}
