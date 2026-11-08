@@ -7,8 +7,8 @@ import React from "react";
 import { ink, karistir, P, poly, rnd, tonla } from "../../doku/sabitler";
 import type { KolIsik } from "../../rig/RigIsik";
 
-export type OsmanliElTip = "entari-yen" | "lagari" | "hezarfen" | "muhafiz";
-export type ElPoz = "ac" | "kapa" | "gevse" | "kistir" | "omuz" | "bas";
+export type OsmanliElTip = "entari-yen" | "lagari" | "hezarfen" | "muhafiz" | "padisah" | "padisah-isik";
+export type ElPoz = "ac" | "kapa" | "gevse" | "kistir" | "omuz" | "bas" | "isaret";
 type ElPalet = { yen: string; yenGolge: string; serit?: string; ten: string; tenGolge: string; acilim: number; kalinKenar?: boolean; elOlcek: number };
 // tasarim §3.7 (v1.3 ten tonları): veren el → Lagâri → Hezarfen → muhafız (açıktan koyuya)
 export const EL_PALET: Record<OsmanliElTip, ElPalet> = {
@@ -16,6 +16,10 @@ export const EL_PALET: Record<OsmanliElTip, ElPalet> = {
   lagari: { yen: "#34405e", yenGolge: "#222a40", serit: "#7c8494", ten: "#c08468", tenGolge: "#8e5a46", acilim: 1.1, elOlcek: 1 },
   hezarfen: { yen: "#55603f", yenGolge: "#3a4228", serit: "#7a6a50", ten: "#a87256", tenGolge: "#7a4c36", acilim: 1.1, elOlcek: 1 },
   muhafiz: { yen: "#3e3a34", yenGolge: "#2a2722", ten: "#94644a", tenGolge: "#6a4432", acilim: 1.05, kalinKenar: true, elOlcek: 1.1 },
+  // P12 padişah (tasarim §3.5): geniş yen kaftanla aynı #36302c; çıplak el #b88470 — köşk içinde gölgede (oda gölgesine %45 karışık),
+  // ışık şeridinde "padisah-isik" (el #dca08a, yen = kaftan + #f6e4b0 α .45)
+  padisah: { yen: "#36302c", yenGolge: "#2a2522", ten: "#7a5848", tenGolge: "#5a4036", acilim: 1.5, elOlcek: 1 },
+  "padisah-isik": { yen: "#8c8167", yenGolge: "#8c8167", ten: "#dca08a", tenGolge: "#b07a66", acilim: 1.5, elOlcek: 1 },
 };
 // ıslak (P07 Lagâri, tasarim §3.2): kumaş %25 koyu (çivit #232c42), ten %8 koyu + parlama
 export const islakEl = (p: ElPalet, w: number): ElPalet => w <= 0 ? p : { ...p, yen: karistir(p.yen, "#232c42", w), yenGolge: karistir(p.yenGolge, "#161c2c", w), serit: p.serit ? karistir(p.serit, "#59606e", w) : p.serit, ten: karistir(p.ten, tonla(p.ten, -0.08), w), tenGolge: karistir(p.tenGolge, tonla(p.tenGolge, -0.08), w) };
@@ -35,6 +39,7 @@ const POZ: Record<ElPoz, { curl: number[]; bas: number; avuc: 1 | -1; yay: numbe
   kistir: { curl: [0.62, 0.5, 0.55, 0.6], bas: 0.9, avuc: -1, yay: 0 },    // başparmak + işaret parmağı ucu buluşur (veren el, avuç aşağı)
   omuz: { curl: [0.4, 0.45, 0.48, 0.5], bas: 0.3, avuc: -1, yay: 3 },      // omza basan: parmaklar kumaşın üstünden aşağı kıvrılır
   bas: { curl: [0.05, 0.06, 0.08, 0.1], bas: 0.15, avuc: -1, yay: 8 },     // basamağa basan ıslak el: avuç aşağı, parmaklar açık
+  isaret: { curl: [0.04, 0.9, 0.95, 0.95], bas: 0.6, avuc: -1, yay: 0 },   // P12: işaret parmağı açık, diğerleri kıvrık (kapıyı gösterir)
 };
 const PARMAK_BOY = [[30, 22, 16], [32, 23, 17], [30, 21, 15], [24, 17, 12]]; // işaret, orta, yüzük, serçe
 const parmakYol = (kok: P, boy: number[], curl: number, avuc: number, yay: number, i: number): P[] => {
@@ -50,7 +55,7 @@ export const elGeometri = (poz: ElPoz) => {
   const parmaklar = kok.map((k, i) => parmakYol(k, PARMAK_BOY[i], P0.curl[i], av, P0.yay, i));
   // başparmak: avuç yüzü kenarından (x 26) öne-avuca doğru; kıstırmada uç işaret parmağı ucuyla buluşur
   const bsKok: P = [24, -12 * av];
-  const bsUc: P = poz === "kistir" ? parmaklar[0][3] : poz === "kapa" ? [64, -44 * av] : poz === "bas" || poz === "omuz" ? [58, -6 * av] : [70, -26 * av];
+  const bsUc: P = poz === "kistir" ? parmaklar[0][3] : poz === "kapa" ? [64, -44 * av] : poz === "isaret" ? [60, -30 * av] : poz === "bas" || poz === "omuz" ? [58, -6 * av] : [70, -26 * av];
   const bsOrta: P = [(bsKok[0] + bsUc[0]) / 2 + 4, (bsKok[1] + bsUc[1]) / 2 - 6 * av];
   return { parmaklar, bas: [bsKok, bsOrta, bsUc] as P[], av, avucNoktasi: [62, -16 * av] as P, kistirNoktasi: (poz === "kistir" ? [parmaklar[0][3][0] + 2, parmaklar[0][3][1] + 2 * -av] : [118, 0]) as P };
 };
@@ -61,11 +66,12 @@ export type OsmanliKolProps = {
   tip: OsmanliElTip; elAci: number; olc: number; poz: ElPoz; islak?: number; isik?: KolIsik; seed?: number;
   avucNesne?: React.ReactNode; // avuçta tutulan (kapa'da parmaklar önünde kalır)
   omuzKoyu?: boolean;          // omuz ucunu kadraj dışına uzat (giriş kenarı)
+  kenarIsik?: { renk: string; px: number; yon: P }; // K3 V10 (yon: ekranda ışığa doğru birim yön): ışığa bakan kol kenarında ince kenar ışığı (tek kaynak: isik.yon), kolun içinde kalır
 };
 // El dünya noktası: yerel → ekran
 export const elNokta = (bilek: P, aci: number, olc: number, q: P): P => { const v = rot([q[0] * olc, q[1] * olc], aci); return [bilek[0] + v[0], bilek[1] + v[1]]; };
 
-export const OsmanliKol: React.FC<OsmanliKolProps> = ({ omuz, dirsek, bilek, gen, tip, elAci, olc, poz, islak = 0, isik, avucNesne }) => {
+export const OsmanliKol: React.FC<OsmanliKolProps> = ({ omuz, dirsek, bilek, gen, tip, elAci, olc, poz, islak = 0, isik, avucNesne, kenarIsik }) => {
   const K = islakEl(EL_PALET[tip], islak);
   const g = elGeometri(poz);
   const E = (q: P) => elNokta(bilek, elAci, olc * K.elOlcek, q);
@@ -110,7 +116,8 @@ export const OsmanliKol: React.FC<OsmanliKolProps> = ({ omuz, dirsek, bilek, gen
       <defs><clipPath id={`${uid}c`}><path d={kolYol} /></clipPath></defs>
       {/* kol + yen */}
       <path d={kolYol} fill={K.yen} stroke={ink(K.yen)} strokeWidth={sw} strokeLinejoin="round" />
-      <g clipPath={`url(#${uid}c)`}><polygon points={poly(bant)} fill={K.yenGolge} opacity={0.85} /></g>
+      <g clipPath={`url(#${uid}c)`}><polygon points={poly(bant)} fill={K.yenGolge} opacity={0.85} />
+        {kenarIsik && <polyline points={poly(((c1[0] - c2[0]) * kenarIsik.yon[0] + (c1[1] - c2[1]) * kenarIsik.yon[1] > 0 ? [c1, d1] : [c2, d2]))} fill="none" stroke={kenarIsik.renk} strokeWidth={kenarIsik.px * 2} strokeLinejoin="round" opacity={0.9} />}</g>
       {/* dirsek iç kıvrımı: 2 kumaş kırışığı */}
       {[0, 1].map((i) => { const c = [dirsek[0] + (kc1[0] - dirsek[0]) * (0.3 + 0.25 * i), dirsek[1] + (kc1[1] - dirsek[1]) * (0.3 + 0.25 * i)]; const L = w1 * 0.5; const a = Math.atan2(bilek[1] - dirsek[1], bilek[0] - dirsek[0]) + 0.5; return <path key={i} d={`M ${c[0]} ${c[1]} q ${Math.cos(a) * L * 0.5} ${Math.sin(a) * L * 0.5 - 4} ${Math.cos(a) * L} ${Math.sin(a) * L}`} stroke={K.yenGolge} strokeWidth={Math.max(2, 2.4 * olc)} fill="none" strokeLinecap="round" />; })}
       {/* yen ağzı: iç (koyu) + kenar; entari şeridi (Lagâri/Hezarfen) bilekte; muhafız kalın yün kenarı */}
@@ -178,15 +185,26 @@ export const Sikke: React.FC<{ x: number; y: number; r: number; faz: number; yat
   const cy = y - ry;                      // alt kenar zeminde
   const kal = Math.max(1.5, r * 0.24 * (1 - yatis) * (1 - kos) + r * 0.12 * yatis);
   const kontur = Math.max(1.2, r * 0.06);
+  // v1.5 (K3 V5): parlama SERT KENARLI iki ton — gövde s.yuz + üst-sol hilal s.isik; kenar yumuşatması kapalı (crispEdges): altın ile parlama
+  // arasında karışım pikseli oluşmaz. Parlama dış konturdan gövde tonunda ≥3 px boşlukla ayrılır (kontur koyu kalır, kontur↔parlama
+  // karışımı — RenkKaydi/arşiv katmanı kenarı yumuşatır — imza bandına düşmez); iç süs halkaları parlama altında kalır (K4 ölçümü).
+  const uid = "sk" + React.useId().replace(/:/g, "");
   return (
-    <g>
+    <g shapeRendering={parlak ? "crispEdges" : undefined}>
       {/* kenar (kalınlık): yatıkken altta, dikken yanda */}
       <ellipse cx={x + (1 - yatis) * kal * 0.5} cy={cy + yatis * kal * 0.5} rx={rx} ry={ry} fill={tonla(s.yuz, -0.35)} stroke={ink(s.yuz)} strokeWidth={kontur} />
-      <ellipse cx={x} cy={cy} rx={rx} ry={ry} fill={parlak ? s.isik : s.yuz} stroke={ink(s.yuz)} strokeWidth={kontur} />
+      <ellipse cx={x} cy={cy} rx={rx} ry={ry} fill={s.yuz} stroke={ink(s.yuz)} strokeWidth={kontur} />
       {rx > r * 0.35 && <>
         <ellipse cx={x} cy={cy} rx={rx * 0.82} ry={ry * 0.82} fill="none" stroke={tonla(s.yuz, -0.25)} strokeWidth={kontur * 0.8} />
         <ellipse cx={x} cy={cy} rx={rx * 0.5} ry={ry * 0.5} fill="none" stroke={tonla(s.yuz, -0.2)} strokeWidth={kontur * 0.6} />
         {[-0.3, 0, 0.3].map((k, i) => <path key={i} d={`M ${x + k * rx - rx * 0.12} ${cy + (i - 1) * ry * 0.1} q ${rx * 0.1} ${-ry * 0.16} ${rx * 0.22} 0`} stroke={tonla(s.yuz, -0.3)} strokeWidth={kontur * 0.7} fill="none" strokeLinecap="round" />)}
+      </>}
+      {parlak && <>
+        <defs><mask id={uid} maskUnits="userSpaceOnUse" x={x - rx - 4} y={cy - ry - 4} width={2 * rx + 8} height={2 * ry + 8}>
+          <ellipse cx={x} cy={cy} rx={Math.max(0.5, rx - kontur * 2.5 - 3)} ry={Math.max(0.5, ry - kontur * 2.5 - 3)} fill="#ffffff" />
+          <ellipse cx={x + rx * 0.38} cy={cy + ry * 0.38} rx={rx} ry={ry} fill="#000000" />
+        </mask></defs>
+        <ellipse cx={x} cy={cy} rx={rx} ry={ry} fill={s.isik} mask={`url(#${uid})`} />
       </>}
     </g>
   );

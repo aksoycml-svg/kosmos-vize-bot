@@ -92,6 +92,15 @@ for (const plan of B.planlar ?? []) {
     if (prm.gorunum !== "kosk") U(y, "senlik yalnız kosk görünümünde çizilir");
   });
   if (plan.sablon === "SARAYBURNU" && prm.gorunum === "kosk" && prm.padisah?.bas_aci && typeof prm.padisah.bas_aci === "object") { const b = prm.padisah.bas_aci; if (!(Array.isArray(b.kare) && b.kare.length === (b.deger ?? []).length && b.kare.length > 1)) H(`${Y} padisah`, "bas_aci {kare, deger} eşit uzunlukta dizi olmalı"); else { artan(`${Y} padisah bas_aci`, b.kare); bitis(`${Y} padisah`, "baş çevirme", son(b.kare)); } }
+  // K4 ic: pencere kanadı kapanışı görünür → kanat son açısına vardığı karede "tok", mandal oturunca "tık" teması; kanat/jest plan içinde biter
+  if (plan.sablon === "SARAYBURNU" && prm.gorunum === "ic") {
+    const kn = (plan.props ?? []).find((q) => q.tur === "pencere-kanat");
+    if (!kn) U(Y, "ic: pencere-kanat prop'u yok (ışık yarığı sabit açık kalır)");
+    else if (Array.isArray(kn.kare)) { artan(`${Y} pencere-kanat`, kn.kare); const sk = son(kn.kare); bitis(`${Y} pencere-kanat`, "kanat kapanışı", sk); if (!temasVar(plan, sk, 1)) H(`${Y} pencere-kanat`, `kanat p${sk}'de durur: temas yok (görünür kapanma = ses)`); if (!(plan.temaslar ?? []).some((t) => t.kare > sk && t.kare <= sk + 8)) U(`${Y} pencere-kanat`, "mandal oturma teması yok (kapanıştan sonraki 8 kare)"); }
+    const pd = (plan.karakterler ?? []).find((c) => c.kim === "padisah");
+    if (!pd) H(Y, "ic: padisah karakteri yok");
+    if (prm.padisah && typeof prm.padisah.yuz_on_kontur_x !== "number") U(Y, "ic: padisah.yuz_on_kontur_x yok (varsayılan 457)");
+  }
   if (plan.sablon === "SOKAK" && prm.insert) { if (prm.insert.tur !== "fare") H(Y, "insert.tur yalnız 'fare'"); if (prm.insert.bas + 66 > sure) H(Y, `fare insert'i (66 kare) plan sonunu aşıyor`); }
   if (plan.sablon === "KULE-DIS") {
     const kl = prm.kuleler ?? [];

@@ -220,12 +220,31 @@ const KoskDeniz: React.FC<{ saat: Saat; p: number }> = ({ saat, p }) => {
     for (let j = 0; j < n; j++) { const x0 = -300 + rnd(S, `x${i}${j}`) * 1700 + Math.sin(p * 0.02 + i) * 3, L = (24 + rnd(S, `l${i}${j}`) * 46) * (0.6 + 0.8 * t); cizgi.push(<line key={`${i}-${j}`} x1={x0} y1={y} x2={x0 + L} y2={y} stroke={R.dalga} strokeWidth={2 + 1.5 * t} strokeLinecap="round" />); }
     y += ara; i++;
   }
-  const H = KG.su - KG.kornis;
-  const yans = saat === "gun" ? <g>
-    <polygon points={poly([[KG.govdeX[0], KG.su], [KG.govdeX[1], KG.su], [KG.govdeX[1], KG.su + H * 0.92], [KG.govdeX[0], KG.su + H * 0.92]])} fill="#8a8270" />
-    {KG.kemer.map(([a, b], k) => <polygon key={k} points={poly(kemerYol(a, b, KG.kemerUc, KG.uzengi, KG.rihtimUst).map(([x, yy]) => [x, 2 * KG.su - yy] as P))} fill="#4e4a42" opacity={0.85} />)}
-    {[0.18, 0.43, 0.71].map((f, k) => <rect key={`c${k}`} x={KG.govdeX[0] - 20} y={KG.su + H * f} width={KG.govdeX[1] - KG.govdeX[0] + 40} height={10 + 4 * k} fill={R.deniz} />)}
-  </g> : null;
+  // gün yansıması (mekanlar §1.3a, K3 V8): YALNIZ koyu kütleler (kemer ağızları, çeşme nişi, cumba gövdesi + kirişi, saçak bantları) ters
+  // ve 0.6 boyda; açık taş cephe yansımaz (su tonu kalır). 7 yatay dilim (22→40 px, aralarında 4–8 px su), dilim başına ±6–14 px kayma
+  // (seed 135, işaret dilim dilim değişir), düz yatay kesik. α: dilim 1–5 .58, 6 .30, 7 .15 (iki düz basamak, gradyan yok); sonra yalnız su.
+  const yans = saat === "gun" ? (() => {
+    const C = KG.cumba;
+    const ayna = `translate(0,${KG.su}) scale(1,-0.6) translate(0,${-KG.su})`;
+    const kutle = <g transform={ayna}>
+      {KG.kemer.map(([a, b], k) => <polygon key={`k${k}`} points={poly(kemerYol(a, b, KG.kemerUc, KG.uzengi, KG.rihtimUst))} fill="#3e4446" />)}
+      <polygon points={poly(kemerYol(KG.cesme.x[0], KG.cesme.x[1], KG.cesme.uc, KG.cesme.uc + 0.62 * (KG.cesme.x[1] - KG.cesme.x[0]) * 0.68, KG.cesme.alt, 14))} fill="#3e4446" />
+      <rect x={C.x[0] - 10} y={C.ust} width={C.x[1] - C.x[0] + 20} height={C.alt - C.ust} fill="#4e4438" />
+      <rect x={C.sacakX[0]} y={C.sacakDis} width={C.sacakX[1] - C.sacakX[0]} height={C.ust - C.sacakDis} fill="#4a4440" />
+      <rect x={KG.sacakX[0]} y={KG.kornis - 9} width={KG.sacakX[1] - KG.sacakX[0]} height={KG.sacakAlt - KG.kornis + 9} fill="#4a4440" />
+    </g>;
+    const boy = [22, 26, 30, 33, 36, 38, 40], ara = [5, 4, 6, 5, 7, 8], alfa = [0.58, 0.58, 0.56, 0.58, 0.56, 0.3, 0.15];
+    let y0 = KG.su + 2;
+    return <g>{boy.map((h, i) => {
+      const ya = y0; y0 += h + (ara[i] ?? 0);
+      const dx = (i % 2 ? 1 : -1) * (6 + rnd(135, `yd${i}`) * 8);
+      const id = `kyd${i}`;
+      return <g key={i}>
+        <defs><clipPath id={id}><rect x={-800} y={ya} width={2700} height={h} /></clipPath></defs>
+        <g clipPath={`url(#${id})`} opacity={alfa[i]}><g transform={`translate(${dx},0)`}>{kutle}</g></g>
+      </g>;
+    })}</g>;
+  })() : null;
   return <g>
     <rect x={-800} y={KG.solKiyi.su} width={2700} height={1200} fill={R.deniz} />
     {yans}
@@ -258,7 +277,7 @@ export const KoskSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }>
     return j && j.bit > j.bas ? interpolate(p, [j.bas, j.bit], [0, Math.abs(Number(j.ops?.x ?? 1))], { ...cl, easing: GIRIS }) : 0;
   })();
   const padX = typeof pc?.x === "number" ? pc.x : (pen.x[0] + pen.x[1]) / 2, padY = typeof pc?.y === "number" ? pc.y : pen.y[1];
-  const padisah = pc ? <PadisahSiluet x={padX} y={padY} pxm={KG.cumba.pxm} basAci={basAci} renk={pp.renk ?? (gece ? "#1e1c22" : "#2a2622")} kenar={pp.kenar_isik ?? (gece ? "#f2c070" : "#f0d79a")} gece={gece} klip={[pen.x[0], pen.y[0], pen.x[1] - pen.x[0], pen.y[1] - pen.y[0]]} kenarPx={2.4 / k.cs} /> : null;
+  const padisah = pc ? <PadisahSiluet x={padX} y={padY} pxm={KG.cumba.pxm} basAci={basAci} renk={pp.renk ?? (gece ? "#1e1c22" : "#2a2622")} kenar={pp.kenar_isik ?? (gece ? "#f2c070" : "#f0d79a")} gece={gece} klip={[pen.x[0], pen.y[0], pen.x[1] - pen.x[0], pen.y[1] - pen.y[0]]} kenarPx={(gece ? 2.4 : 4.5) / k.cs} /> : null;
   if (pc) {
     kilit.push({ ad: "padisah yüz", p: ekranNokta(k, [padX, padY - 0.76 * KG.cumba.pxm]), tur: "yuz" });
     kilit.push({ ad: "padişah büst üstü", p: ekranNokta(k, [padX, padY - PADISAH_BUST_M * KG.cumba.pxm]), tur: "kurulum" });

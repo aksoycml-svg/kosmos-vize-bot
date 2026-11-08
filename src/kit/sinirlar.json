@@ -247,9 +247,12 @@
         "kosk": [
           "gece",
           "gun"
+        ],
+        "ic": [
+          "gun"
         ]
       },
-      "not": "Evliya KE-S1. x/y dekor px (zemin teması). kiyi: rıhtımdaki figürün ölçeği y'den (ufuk 720, göz 1.5 m), havadaki/sudaki `olcek` ile (1 = y 1330, 406.7 px/m). kurulu dışındaki görünüm/saat render'da hata verir (K2+). insert (K2): x/y = ayak tabanı (ölçek y'den, göz 1.95 m), el.* ekran px; el rol veren/alan/omuz; kese/sikke x/y = temas (taban) noktası. kosk (K3): P02 gece / P10 gün AYNI kadraj; karakter 'padisah' = PadisahSiluet (Kukla değil; parametreler.padisah.bas_aci sayı ya da {kare,deger}, yoksa 'bak' jesti); diğer karakterler sol uzak kıyı grubu (olcek ×406.7 px/m), poz oturan + aynı x'te fisek-demet → demete bağlı; senlik [{x,y,bas,patlama,yaricap,dusme_kare}] E2 düşen çizgi, köşk arkasında.",
+      "not": "Evliya KE-S1. x/y dekor px (zemin teması). kiyi: rıhtımdaki figürün ölçeği y'den (ufuk 720, göz 1.5 m), havadaki/sudaki `olcek` ile (1 = y 1330, 406.7 px/m). kurulu dışındaki görünüm/saat render'da hata verir (K2+). insert (K2): x/y = ayak tabanı (ölçek y'den, göz 1.95 m), el.* ekran px; el rol veren/alan/omuz; kese/sikke x/y = temas (taban) noktası. kosk (K3): P02 gece / P10 gün AYNI kadraj; karakter 'padisah' = PadisahSiluet (Kukla değil; parametreler.padisah.bas_aci sayı ya da {kare,deger}, yoksa 'bak' jesti); diğer karakterler sol uzak kıyı grubu (olcek ×406.7 px/m), poz oturan + aynı x'te fisek-demet → demete bağlı; senlik [{x,y,bas,patlama,yaricap,dusme_kare}] E2 düşen çizgi, köşk arkasında. ic (K4): P12 köşk içi gün; karakter 'padisah' = PadisahFigur (ayakta profil; parametreler.padisah.yuz_on_kontur_x / goz_y / ayak_y), jestler pencere-kapat (kanadı iter; kanat fiziği pencere-tok / mandal-tik temas karelerine bağlı), don (ops.yon_son: profil yönü döner), isaret (kapıyı gösterir); prop pencere-kanat (aci dizisi: açık → aralık, ilk/son değer kullanılır; ışık yarığı = 0.55 m·sin θ).",
       "elMaks": 3,
       "elTip": [
         "entari-yen",
@@ -308,7 +311,9 @@
     "yuz",
     "kanat-birak",
     "egil",
-    "dogrul"
+    "dogrul",
+    "pencere-kapat",
+    "don"
   ],
   "jestTemas": {
     "baston-vur": [
@@ -319,6 +324,10 @@
     ],
     "eldiven-giy": [
       "gerilme"
+    ],
+    "pencere-kapat": [
+      "pencere-tok",
+      "mandal-tik"
     ]
   },
   "props": [
@@ -335,7 +344,8 @@
     "mesale",
     "baslik",
     "kanat",
-    "sikke"
+    "sikke",
+    "pencere-kanat"
   ],
   "bantlar": [
     "ust",
@@ -393,6 +403,9 @@
       "SARAYBURNU"
     ],
     "sikke": [
+      "SARAYBURNU"
+    ],
+    "pencere-kanat": [
       "SARAYBURNU"
     ]
   },

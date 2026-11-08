@@ -1,98 +1,151 @@
-// ===== KE-K3 PADİŞAH SİLUETİ (tasarim.md v1.4 §3.5, R10) — Kukla DEĞİL, ayrı siluet bileşeni =====
-// Pencere içinde büst: geniş omuzlu kaftan + baş + büyük yuvarlak sarık (§3.0b: başı saran basık yastık, ×1.70 baş eni, y/g ≈ 0.62–0.7,
-// tümsekli üst kontur, tepede içteki kavuğun alçak koyu ucu). GÖZ, KAŞ, AĞIZ YOK; sorguç / mücevher / kürk yaka / yeşil sarık YOK.
-// bas_aci 0 → 1: önden (baş simetrik oval, sarık simetrik) → SAĞA profil (alın–burun–dudak–çene çıkıntısı belirir, sarık arkaya kayar,
-// asimetrik). Ara değerler yarıçap morfu (atlama yok); omuz sabit. Sargı çizgisi çizilmez (yalnız P12 yakın planında, tasarım §3.5).
-// Koordinat: (x, y) = denizlik (pencere alt kenarı) ortası, dekor px; pxm = o derinlikte px/m (köşk cumbası 92). Büst 1.10 m (sarık ucu).
-// Renk: gövde/baş siluet (gece #1e1c22 ışıklı pencere önünde · gün #2a2622), sarık #d6d3c6 (gece arkadan ışıkta kısık), kenar ışığı
-// gece arkadan (#f2c070, bütün dış kontur) · gün sağdan (#f0d79a). Pencere çerçevesi `klip` ile keser (büst denizlikte biter).
+// ===== KE-K3 PADİŞAH (tasarim.md v1.5 §3.5, §3.0b) — Kukla DEĞİL, ayrı siluet bileşeni =====
+// İki kullanım:
+//  • PadisahSiluet (P02 gece / P10 gün, köşk cumbası penceresinde büst): baş + sarık + gövde TEK KOYU KÜTLE (v1.5, K3 V1) — parçalar arasında
+//    ton farkı / boşluk / iç kontur yok; ayrım YALNIZ kenar ışığıyla: gece arkadan (pencere içi) bütün dış konturda, gün sağdan (güneş).
+//    Kenar ışığı birleşik siluetten türetilir (maske): gece S ∖ aşındır(S), gün S ∖ kaydır(S, −k) → iç sınırlarda (sarık/alın) çizgi oluşmaz.
+//  • PadisahFigur (P12 köşk içi, ayakta, profil): aynı baş/sarık geometrisi + uzun kaftan + tek görünen kol (geniş yen, çıplak el).
+//    Göz/kaş/ağız ÇİZİLMEZ. Gölge tonu (yüz #2a2420, kaftan #36302c) + ışık tonu ayrı katman: ışık şeridi = S ∩ huzme ∩ (ışığa bakan kenardan
+//    w kadar) — şablon (Ic.tsx) maskeyi kurar; bileşen yalnız iki tonu çizer.
+// Sarık (§3.0b): başı saran basık yastık, alt kenar alına iner (başın üst ≈%35'ini örter), arkada enseye doğru eğik iner; tümsekli üst kontur;
+// tepede içteki kavuğun alçak ucu sarığın KENDİ GÖLGE TONUNDA, kontursuz, yükseklik ≈0.025 m (6–8 rig birimi) (v1.5, K3 V6).
+// bas_aci (t) 0 → 1: önden (simetrik) → SAĞA profil: alın–burun–dudak–çene çıkıntısı (burun önden ovalin ≥%25 baş eni dışına), sarık
+// arkaya ≥%20 kayar ve arkası dolgunlaşır (K3 V2). Ara değerler yarıçap morfu.
+// Koordinat (büst): (x, y) = büst tabanı (P02/P10: denizlik ortası), metre ekseni yukarı; baş merkezi 0.76 m, göz ≈0.77 m.
 import React from "react";
-import { ink, karistir, P, poly } from "../../doku/sabitler";
+import { ink, karistir, lerp, P, poly, tonla } from "../../doku/sabitler";
+import { OsmanliKol, ElPoz } from "./evliyaEl";
 
 export type PadisahProps = { x: number; y: number; pxm: number; basAci: number; renk: string; kenar: string; gece: boolean; klip?: [number, number, number, number]; kenarPx?: number };
 
-const N = 56;
-// Baş: merkez (0, 0.76 m) çevresinde açıya göre yarıçap; önden oval, profilde burun/dudak/çene tümsekleri (yüz +x yönüne)
-const basNoktalar = (t: number): P[] => {
+const N = 64;
+const gs = (a: number, m: number, w: number) => { const aa = a > Math.PI ? a - 2 * Math.PI : a; return Math.exp(-((aa - m) ** 2) / (2 * w * w)); };
+// Baş: merkez (0, 0.76 m); a = 0 sağ (+x), a = π/2 yukarı (metre ekseni). Profil tümsekleri yüz +x yönünde.
+export const basNoktalar = (t: number): P[] => {
   const out: P[] = [];
   for (let i = 0; i < N; i++) {
-    const a = (i / N) * Math.PI * 2; // 0 = +x (sağ), y aşağı pozitif (ekran)
-    const c = Math.cos(a), s = Math.sin(a);
-    const rxF = 0.093, ryF = 0.112, rxP = 0.104, ryP = 0.112;
-    const rx = rxF + (rxP - rxF) * t, ry = ryF + (ryP - ryF) * t;
-    let r = 1 / Math.sqrt((c / rx) ** 2 + (s / ry) ** 2);
-    // profil tümsekleri (yalnız sağ yarıda, t ile büyür): burun (a≈0.02), dudak (0.42), çene (0.78); burun altı ve ağız çukuru
-    const g = (m: number, w: number) => Math.exp(-(((a > Math.PI ? a - 2 * Math.PI : a) - m) ** 2) / (2 * w * w));
-    r += t * (0.036 * g(0.02, 0.09) - 0.012 * g(0.26, 0.06) + 0.008 * g(0.42, 0.06) - 0.006 * g(0.58, 0.05) + 0.006 * g(0.8, 0.09));
-    // ense düzlüğü (sol arka, profilde)
-    r -= t * 0.01 * g(2.6, 0.3);
-    out.push([-0.006 * t + r * c, 0.76 - r * s]); // s > 0 = aşağı (metre ekseni yukarı)
-  }
-  return out;
-};
-// Sarık: başı saran basık yastık; alt kenar alına iner (y 0.835 önde), en geniş yer alt üçte birde, üst hafif yassı + 4 tümsek.
-// Profilde (t) arkaya kayar ve arkası dolgunlaşır (asimetri), önü alına dik iner.
-const sarikNoktalar = (t: number): P[] => {
-  const W = 0.16, H = 0.115, cy = 0.95, out: P[] = [];
-  for (let i = 0; i < N; i++) {
     const a = (i / N) * Math.PI * 2, c = Math.cos(a), s = Math.sin(a);
-    let rx = W, ry = H;
-    if (s > 0) { ry = H * 0.95; rx = W * (1 + 0.04 * s); }                       // alt yarı: geniş (alt üçte bir)
-    else { ry = H * (0.9 - 0.12 * Math.abs(c) ** 6); }                            // üst: hafif yassı
-    let x = rx * c, y = ry * s;
-    if (s < 0) y += 0.007 * Math.sin(a * 4 + 0.6) * Math.abs(s);                 // tümsekli kontur (sargı kabarıklığı), pürüzsüz kubbe değil
-    // profil: arkaya kayma + arka dolgunluk
-    x += t * (-0.03 + (c < 0 ? -0.022 * Math.abs(c) : -0.012 * c));
-    out.push([x, cy - y]); // s > 0 = alt yarı
+    const rx = lerp(0.093, 0.1, t), ry = 0.112;
+    let r = 1 / Math.sqrt((c / rx) ** 2 + (s / ry) ** 2);
+    // a < 0 = aşağı (çene tarafı). Alın (a≈+0.35) hafif, burun (−0.05) belirgin, burun altı çukur (−0.3), dudak (−0.45), çene (−0.85)
+    r += t * (0.012 * gs(a, 0.38, 0.14) + 0.052 * gs(a, -0.05, 0.085) - 0.014 * gs(a, -0.3, 0.06) + 0.01 * gs(a, -0.45, 0.06) - 0.008 * gs(a, -0.62, 0.05) + 0.012 * gs(a, -0.85, 0.1));
+    r -= t * 0.012 * gs(a, -2.75, 0.3); // ense düzlüğü (arka-alt)
+    out.push([-0.004 * t + r * c, 0.76 + r * s]);
   }
   return out;
 };
-// kavuk ucu: sargının ortasından alçak koyu kubbe (genişlik sarığın %30'u, yükseklik ≈ 0.035 m)
-const kavukNoktalar = (t: number): P[] => Array.from({ length: 14 }).map((_, i) => { const a = Math.PI + (i / 13) * Math.PI; return [-0.03 * t + 0.048 * Math.cos(a), 1.035 + 0.04 * Math.abs(Math.sin(a))] as P; });
-// Kaftan büst: omuz geniş (≈ 0.62 m), yuvarlak omuz başı, kollar gövdede; denizlikte (0) biter
+// Sarık: alt kenar önde 0.80 m (alın), arkada 0.03 m daha aşağı (~8° eğik oturuş, profilde); en geniş alt üçte birde; üst hafif yassı + 4 tümsek.
+const SARIK = { W: 0.16, H: 0.125, alt: 0.8 };
+export const sarikNoktalar = (t: number): P[] => {
+  const { W, H } = SARIK, cy = SARIK.alt + 0.95 * H, out: P[] = [];
+  for (let i = 0; i < N; i++) {
+    const a = (i / N) * Math.PI * 2, c = Math.cos(a), s = Math.sin(a); // s > 0 üst
+    let x: number, y: number;
+    if (s < 0) { x = W * (1 + 0.04 * -s) * c; y = H * 0.95 * s; }
+    else { x = W * c; y = H * (0.9 - 0.12 * Math.abs(c) ** 6) * s + 0.014 * Math.max(0, Math.sin(a * 5 + 0.3)) * s; }
+    // profil: arkaya kayma (≥ %20 sarık eni = 0.064 m) + arka dolgunluk + arkada enseye doğru iniş
+    x += t * (-0.068 + (c < 0 ? -0.024 * -c : -0.008 * c));
+    if (s < 0 && c < 0) y -= t * 0.03 * -c * -s;
+    out.push([x, cy + y]);
+  }
+  return out;
+};
+const sarikTepe = (t: number) => SARIK.alt + 0.95 * SARIK.H + SARIK.H * 0.9 - 0.004;
+// kavuk ucu: genişlik sarığın %30'u, yükseklik 0.025 m; tabanı sargının içinde (yarısı gömülü)
+export const kavukNoktalar = (t: number): P[] => { const b = sarikTepe(t) - 0.012, x0 = -0.068 * t - 0.01 * t; return Array.from({ length: 16 }).map((_, i) => { const a = (i / 15) * Math.PI; return [x0 + 0.048 * Math.cos(a), b + 0.037 * Math.sin(a)] as P; }); };
+// sarığın kendi gölge tonu (kavuk ucu + iç gölge)
+export const SARIK_RENK = { yuz: "#d6d3c6", golge: "#a8a69a" };
+// Kaftan büst (P02/P10): omuz geniş, yuvarlak omuz başı; taban −0.12 (pencere kırpar)
 const govdeNoktalar = (): P[] => [
-  [-0.36, -0.02], [-0.35, 0.3], [-0.335, 0.44], [-0.31, 0.51], [-0.26, 0.55], [-0.17, 0.585], [-0.075, 0.615], [-0.055, 0.66],
-  [0.055, 0.66], [0.075, 0.615], [0.17, 0.585], [0.26, 0.55], [0.31, 0.51], [0.335, 0.44], [0.35, 0.3], [0.36, -0.02],
+  [-0.36, -0.12], [-0.35, 0.3], [-0.335, 0.44], [-0.31, 0.51], [-0.26, 0.55], [-0.17, 0.585], [-0.075, 0.615], [-0.055, 0.66],
+  [0.055, 0.66], [0.075, 0.615], [0.17, 0.585], [0.26, 0.55], [0.31, 0.51], [0.335, 0.44], [0.35, 0.3], [0.36, -0.12],
 ];
+export const PADISAH_BUST_M = sarikTepe(1) + 0.025; // ≈ 1.05 m (sarık + kavuk ucu)
 
 export const PadisahSiluet: React.FC<PadisahProps> = ({ x, y, pxm, basAci, renk, kenar, gece, klip, kenarPx = 2.2 }) => {
   const id = "pd" + React.useId().replace(/:/g, "");
   const t = Math.max(0, Math.min(1, basAci));
   const D = (q: P): P => [x + q[0] * pxm, y - q[1] * pxm];
   const gov = govdeNoktalar().map(D), bas = basNoktalar(t).map(D), sar = sarikNoktalar(t).map(D), kav = kavukNoktalar(t).map(D);
-  const boyun = [[-0.06, 0.6], [0.06, 0.6], [0.055 - 0.01 * t, 0.7], [-0.06 - 0.01 * t, 0.7]].map((q) => D(q as P));
-  const sarikRenk = gece ? karistir("#d6d3c6", renk, 0.5) : "#d6d3c6";
-  const sarikGolge = gece ? karistir("#a8a69a", renk, 0.6) : "#a8a69a";
-  const kp = kenarPx;
-  // kenar ışığı yalnız siluet içinde (iç yarı): gece bütün dış kontur (pencere arkadan), gün sağ yan
-  const yanKlip = gece ? null : [x, y - 2 * pxm, 2 * pxm, 3 * pxm];
-  const tumSiluet = <><polygon points={poly(gov)} /><polygon points={poly(boyun)} /><polygon points={poly(bas)} /></>;
+  const boyun = ([[-0.06, 0.6], [0.06, 0.6], [0.055 - 0.01 * t, 0.7], [-0.06 - 0.01 * t, 0.7]] as P[]).map(D);
+  const k = kenarPx;
+  const parcalar = [gov, boyun, bas, sar, kav];
+  const S = (fill: string, key: string, tr?: string, filtre?: string) => <g key={key} fill={fill} transform={tr} filter={filtre}>{parcalar.map((q, i) => <polygon key={i} points={poly(q)} />)}</g>;
+  const bb = { x: x - 0.6 * pxm, y: y - 1.3 * pxm, w: 1.2 * pxm, h: 1.6 * pxm };
   return (
     <g clipPath={klip ? `url(#${id}k)` : undefined}>
       <defs>
         {klip && <clipPath id={`${id}k`}><rect x={klip[0]} y={klip[1]} width={klip[2]} height={klip[3]} /></clipPath>}
-        <clipPath id={`${id}s`}>{tumSiluet}</clipPath>
-        <clipPath id={`${id}t`}><polygon points={poly(sar)} /></clipPath>
-        {yanKlip && <clipPath id={`${id}y`}><rect x={yanKlip[0]} y={yanKlip[1]} width={yanKlip[2]} height={yanKlip[3]} /></clipPath>}
+        <filter id={`${id}e`} filterUnits="userSpaceOnUse" x={bb.x} y={bb.y} width={bb.w} height={bb.h}><feMorphology operator="erode" radius={k} /></filter>
+        {/* kenar ışığı maskesi: birleşik siluet eksi (gece) aşındırılmış / (gün) sola kaydırılmış kopyası */}
+        <mask id={`${id}m`} maskUnits="userSpaceOnUse" x={bb.x} y={bb.y} width={bb.w} height={bb.h}>
+          {S("#ffffff", "b")}
+          {gece ? S("#000000", "s", undefined, `url(#${id}e)`) : S("#000000", "s", `translate(${-k},0)`)}
+        </mask>
       </defs>
-      {/* gövde + boyun + baş: düz siluet */}
-      <g fill={renk}>{tumSiluet}</g>
-      <g clipPath={`url(#${id}s)`}>
-        <g clipPath={yanKlip ? `url(#${id}y)` : undefined}>
-          {[gov, bas].map((pts, i) => <polygon key={i} points={poly(pts)} fill="none" stroke={kenar} strokeWidth={kp * 2} strokeOpacity={0.9} strokeLinejoin="round" />)}
-        </g>
-        {/* kaftan önü: tek ton farkı (yaka çizgisi), süs yok */}
-        <path d={`M ${D([-0.05, 0.6])[0]} ${D([-0.05, 0.6])[1]} L ${D([0.02, 0.0])[0]} ${D([0.02, 0.0])[1]}`} stroke={karistir(renk, "#000000", 0.35)} strokeWidth={Math.max(1, 0.012 * pxm)} />
-      </g>
-      {/* sarık: kırık beyaz (gece arkadan ışıkta kısık), gölge yanı alt-sol; üstte kenar ışığı */}
-      <polygon points={poly(sar)} fill={sarikRenk} stroke={ink(sarikRenk)} strokeWidth={Math.max(0.8, 0.012 * pxm)} strokeLinejoin="round" />
-      <g clipPath={`url(#${id}t)`}>
-        <ellipse cx={D([-0.07 - 0.03 * t, 0.89])[0]} cy={D([0, 0.89])[1]} rx={0.16 * pxm} ry={0.06 * pxm} fill={sarikGolge} opacity={0.8} />
-        <g clipPath={yanKlip ? `url(#${id}y)` : undefined}><polygon points={poly(sar)} fill="none" stroke={kenar} strokeWidth={kp * 2} strokeOpacity={gece ? 0.85 : 0.7} /></g>
-      </g>
-      <polygon points={poly(kav)} fill="#4a3e34" stroke={ink("#4a3e34")} strokeWidth={Math.max(0.6, 0.008 * pxm)} />
+      {/* tek koyu kütle: baş + sarık + kavuk + gövde aynı ton, iç kontur yok */}
+      {S(renk, "kutle")}
+      <rect x={bb.x} y={bb.y} width={bb.w} height={bb.h} fill={kenar} opacity={gece ? 0.92 : 0.9} mask={`url(#${id}m)`} />
     </g>
   );
 };
-// Büst ölçüleri (kontrol/okunurluk): sarık ucu denizlikten 1.09 m
-export const PADISAH_BUST_M = 1.09;
+
+// ---------------- P12: ayakta profil figür ----------------
+// Metre, ayak tabanı orijin (eksen x = 0), y yukarı. Büst sistemi 0.78 m yukarıda (göz 1.55 m = 0.77 + 0.78).
+export const FIGUR_BUST_Y = 0.78;
+const PROFIL: P[] = [[-0.23, 0], [-0.19, 0.45], [-0.16, 0.9], [-0.15, 1.18], [-0.13, 1.33], [-0.07, 1.4], [0.06, 1.4], [0.11, 1.32], [0.13, 1.16], [0.145, 0.95], [0.16, 0.6], [0.22, 0]];
+const ONDEN: P[] = [[-0.3, 0], [-0.26, 0.45], [-0.23, 0.9], [-0.24, 1.18], [-0.26, 1.31], [-0.14, 1.39], [0.14, 1.39], [0.26, 1.31], [0.24, 1.18], [0.23, 0.9], [0.26, 0.45], [0.3, 0]];
+const KALCA: P = [0, 0.95];
+export type FigurDurum = { f: number; egim: number }; // f: +1 sağa profil … 0 önden … −1 sola profil; egim (°): baktığı yöne öne eğilme
+export type FigurTon = { kaftan: string; yaka: string; ten: string; sarik: string; sarikGolge: string; ayakkabi: string; kontur: boolean };
+export const FIGUR_GOLGE: FigurTon = { kaftan: "#36302c", yaka: "#2c2724", ten: "#2a2420", sarik: "#44403c", sarikGolge: "#3a3632", ayakkabi: "#221c18", kontur: true };
+// ışık tonları: yüz/el #dca08a (tasarim §3.5), sarık kendi rengi (yalnız şeritte), kaftan = #36302c + #f6e4b0 α .45
+export const FIGUR_ISIK: FigurTon = { kaftan: karistir("#36302c", "#f6e4b0", 0.45), yaka: karistir("#2c2724", "#f6e4b0", 0.4), ten: "#dca08a", sarik: SARIK_RENK.yuz, sarikGolge: SARIK_RENK.golge, ayakkabi: "#5a4a3e", kontur: false };
+
+export const figurGeo = (x: number, y: number, pxm: number, d: FigurDurum) => {
+  const t = Math.abs(d.f), yon = d.f >= 0 ? 1 : -1;
+  const eg = (d.egim * Math.PI) / 180;
+  const egik = (q: P): P => { if (q[1] <= KALCA[1]) return q; const dx = q[0] - KALCA[0], dy = q[1] - KALCA[1]; return [KALCA[0] + dx * Math.cos(eg) + dy * Math.sin(eg), KALCA[1] - dx * Math.sin(eg) + dy * Math.cos(eg)]; };
+  const D = (q: P): P => { const e = egik(q); return [x + yon * e[0] * pxm, y - e[1] * pxm]; };
+  const bust = (q: P): P => D([q[0] + 0.03 * t, q[1] + FIGUR_BUST_Y]);
+  const gov = PROFIL.map((q, i) => [lerp(ONDEN[i][0], q[0], t), lerp(ONDEN[i][1], q[1], t)] as P).map(D);
+  const boyun = ([[-0.05, 1.38], [0.05, 1.38], [0.05, 1.5], [-0.05, 1.5]] as P[]).map(D);
+  const bas = basNoktalar(t).map(bust), sar = sarikNoktalar(t).map(bust), kav = kavukNoktalar(t).map(bust);
+  const ayakkabi = [lerp(-0.1, 0.05, t), lerp(0.1, 0.19, t)].map((ax) => D([ax, 0]));
+  const omuz = D([lerp(0.2, 0.0, t), 1.33]);
+  const yuzOn = bas.reduce((a, q) => (yon * q[0] > yon * a[0] ? q : a), bas[0]); // burun ucu (baktığı yöndeki uç)
+  const goz = bust([0.05, 0.77]);
+  const yaka = ([[0.04 * t, 1.39], [0.07 * t, 1.18], [0.09 * t, 0.95]] as P[]).map(D);
+  // sargı çizgileri (yalnız P12 yakın, ışık katmanında 2 adet, ton farkı): sarık önünde iki kavis
+  const sargi = [0.035, 0.075].map((u) => [[-0.13 - 0.06 * t, SARIK.alt + u - 0.01], [-0.02 - 0.05 * t, SARIK.alt + u + 0.03], [0.1 - 0.06 * t, SARIK.alt + u + 0.045]].map((q) => bust(q as P)));
+  return { gov, boyun, bas, sar, kav, ayakkabi, omuz, yuzOn, goz, yaka, sargi, yon, t, pxm };
+};
+export type FigurGeo = ReturnType<typeof figurGeo>;
+export type FigurKol = { omuz: P; dirsek: P; bilek: P; elAci: number; poz: ElPoz };
+// 2 kemik IK (px): dirsek aşağı/arkaya bükülür (bukum: +1 / −1 ekran yönü seçimi)
+export const kolIK2 = (omuz: P, hedef: P, L1: number, L2: number, bukum: number): { dirsek: P; bilek: P } => {
+  const dx = hedef[0] - omuz[0], dy = hedef[1] - omuz[1], dd = Math.min(L1 + L2 - 0.5, Math.max(Math.abs(L1 - L2) + 0.5, Math.hypot(dx, dy)));
+  const a0 = Math.atan2(dy, dx), cosA = (L1 * L1 + dd * dd - L2 * L2) / (2 * L1 * dd), A = Math.acos(Math.max(-1, Math.min(1, cosA)));
+  const a = a0 + bukum * A;
+  const dirsek: P = [omuz[0] + L1 * Math.cos(a), omuz[1] + L1 * Math.sin(a)];
+  return { dirsek, bilek: [omuz[0] + dd * Math.cos(a0), omuz[1] + dd * Math.sin(a0)] };
+};
+
+export const PadisahFigur: React.FC<{ g: FigurGeo; kol: FigurKol | null; ton: FigurTon; sargi?: boolean }> = ({ g, kol, ton, sargi }) => {
+  const kw = ton.kontur ? Math.max(1.2, 0.006 * g.pxm) : 0;
+  const ks = (c: string) => (ton.kontur ? { stroke: ink(c), strokeWidth: kw, strokeLinejoin: "round" as const } : {});
+  const sarFill = ton.sarik;
+  const elPal = ton.kontur ? "padisah" : "padisah-isik";
+  return (
+    <g>
+      {g.ayakkabi.map((q, i) => <ellipse key={i} cx={q[0] + g.yon * 0.04 * g.pxm} cy={q[1] - 0.02 * g.pxm} rx={0.07 * g.pxm} ry={0.025 * g.pxm} fill={ton.ayakkabi} {...ks(ton.ayakkabi)} />)}
+      <polygon points={poly(g.gov)} fill={ton.kaftan} {...ks(ton.kaftan)} />
+      <polyline points={poly(g.yaka)} fill="none" stroke={ton.yaka} strokeWidth={0.02 * g.pxm} strokeLinejoin="round" />
+      <polygon points={poly(g.boyun)} fill={ton.ten} />
+      <polygon points={poly(g.bas)} fill={ton.ten} {...ks(ton.ten)} />
+      <polygon points={poly(g.sar)} fill={sarFill} {...ks(sarFill)} />
+      {(sargi || ton.kontur) && g.sargi.map((q, i) => <path key={i} d={`M ${q[0][0]} ${q[0][1]} Q ${q[1][0]} ${q[1][1]} ${q[2][0]} ${q[2][1]}`} stroke={ton.kontur ? tonla(ton.sarik, -0.22) : ton.sarikGolge} strokeWidth={0.012 * g.pxm} fill="none" strokeLinecap="round" />)}
+      <polygon points={poly(g.kav)} fill={ton.kontur ? ton.sarik : ton.sarikGolge} />
+      {kol && <OsmanliKol omuz={kol.omuz} dirsek={kol.dirsek} bilek={kol.bilek} gen={[0.15 * g.pxm, 0.12 * g.pxm]} tip={elPal} elAci={kol.elAci} olc={(0.19 * g.pxm) / 140} poz={kol.poz} />}
+    </g>
+  );
+};

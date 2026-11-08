@@ -635,3 +635,48 @@
 - Doğrulayıcı: P02/P10'da 0 hata; bölümde 10 hata, hepsi kurulmamış P12 `ic` görünümü/jestleri (pencere-kapat, don, pencere-kanat) ve P03/P04/P08-P09/P13-P14 parçaları.
 - Açık: motion: V1, V2 profil çizimi, V5, V6, V8, V9 ve K4 `ic` şablonu; eleştirmen: P02 yazı kutusu alt bantta EN/TR genişliği.
 - [yonetmen ek, mekanlar R2] P02 sol grup x 78-138 (Y2 78, Y1 98 + meşale 106, Lagâri ayakta 118, demet 138; sağ uç ≤ 148, ayak y 1387 < köşk rıhtımı 1415). P12 cx azaltılmadı (kapı sağ pervazı kadrajda kalsın). Dosyalar: bolum.json, sahne-plani.md.
+
+## motion · 2026-11-08 · K3 açıkları (V1, V2, V5, V6, V8, V9, V10) + K4 kurulumu (SARAYBURNU `ic` gün, P12), birleşik tur
+- Ne yaptım:
+  - (A) **V1** `PadisahSiluet` yeniden: sarık alta indi (alt kenar önde 0.80 m, başın üst ≈%35'i; arkada enseye 3 cm daha iner). Baş + boyun + sarık + kavuk + gövde **tek kütle tek ton**. Kenar ışığı birleşik siluetten maskeyle türetiliyor: gece `S ∖ aşındır(S)` (feMorphology, bütün dış kontur), gün `S ∖ kaydır(S, −k)` (sağ yan). İç sınırda (sarık/alın) çizgi yok. **V2** profil: burun önden ovalin 0.059 m dışında (baş eninin %32'si); alın, burun altı, dudak ve çene tümsekleri var. Sarık arkaya 0.068 m kayıyor (%21), arkası dolgun. Gün kenar ışığı ekranda 4.5 px. **V6** kavuk ucu sarığın kendi tonunda, 0.025 m, kontursuz. Gece/gün siluette ayrı ton yok. **V5** sikke parlaması: gövde `#c9a24a` + üst-sol hilal `#f0d890`, iki ton, `crispEdges`. Hilal maskeyle çiziliyor ve dış konturdan ≥3 px gövde boşluğuyla ayrılıyor. **V8** gün yansıması mekanlar §1.3a'ya göre: yalnız koyu kütleler ters ve 0.6 boyda. 7 dilim (22→40 px, aralarında 4–8 px su), ±6–14 px kayma (seed 135), α .58/.30/.15. Gece yansıma yok. **V9** `renk_olcum.py`: `isik` bölgeleri ayrı satırda sayılıyor ve orana girmiyor. Demetin 200 px yakınında ışık varsa "ŞART (b)" uyarısı veriyor. Demet kadrajda yoksa "oran %inf İHLAL" yerine net etiket basıyor. **V10** `OsmanliKol.kenarIsik`: ön kolun pencereye (sağ-üst) bakan kenarında amber kenar ışığı (`#eaa956`, kol içinde ≈2 px). Temas karesinde basamaktaki ıslak parlama 4 px, α .85.
+  - (B) **K4** `Ic.tsx` (yeni). Duvar gölgede düz `#3a3430`. Kapı açık, ardı koyu: pervaz 0.12 m, lento düz, ağzında III tarama. Pencere: pervaz, aşırı pozlanmış dış (`#ece2c4` + ufuk şeridi), orta kayıt, kapalı ikinci kanat, denizlik. Kanat (KE-P9) sol pervazda menteşeli ve odaya açılıyor; perspektifle çizildi. 3 sade panel, menteşe, demir mandal; cam/kafes yok. Kanat fiziği: el kenarı p10–18'de 80°→64° itiyor ve bırakıyor; kanat savrulup **p30'da mandala çarpıyor (tok)**; 2 kare sekiyor; **p34'te mandal oturuyor (tık)**. Kareler json `temaslar`'dan okunuyor. Tek ışık güneş (−0.83, +0.56). Yarık = 0.55 m·sin θ. Havadaki sütun yalnız 2 kenar çizgisi (α .2) + 7 toz zerresi; dolgu α .05; sütun padişahta kesiliyor. Şerit yalnız yüzeyde: `S ∖ kaydır(S, −w) ∩ sütun`. Yüz `#dca08a`, kaftan `#36302c`+`#f6e4b0` α .45, sarık kendi rengi; şeritte 2 sargı çizgisi. θ 12°'de bandın üst kenarı x≈457'de y≈725 (göz 740). Kanadın serbest kenar kalınlığı ışığa döndükçe aydınlanıyor. `PadisahFigur` (ayakta profil) aynı baş/sarık geometrisini kullanıyor. Uzun kaftanın profil↔önden morfu var, `don` ile yön dönüyor. Tek görünen kol 2 kemik IK ile, `OsmanliKol` tipleri `padisah` / `padisah-isik`. Göz/kaş/ağız yok. `isaret` için yeni el pozu eklendi (işaret parmağı açık). Kayıtlar: `index.tsx`, `tipler.ts` (`pencere-kanat`), `props/index.tsx`, `sinirlar.json` (`ic: [gun]`, jestler `pencere-kapat`/`don`, prop), doğrulayıcı (ic: kanat son karesinde temas zorunlu, mandal teması uyarısı, padişah var), KATALOG.
+  - Render `kalibrasyon/K4/`: istenen 18 kare (+ P10 p0, V8 için) tam + telefon + güvenli; `P10son_P12p0_yanyana.png`, `telefon-sayfa.png`, `renk-olcum.md/.json`. Öneri: `P12_p30/p34_oneri-kamera_tam.png`.
+- Dokunduğum dosyalar: `src/kit/props/{padisah.tsx, evliyaEl.tsx, index.tsx}`, `src/kit/sablonlar/sarayburnu/{Ic.tsx (yeni), Kosk.tsx, Insert.tsx, index.tsx}`, `src/kit/{tipler.ts, sinirlar.json, KATALOG.md}`, `tools/{bolum_dogrula.mjs, renk_olcum.py}`, `bolumler/evliya-ucuslari/kalibrasyon/K4/*`. `bolum.json`, `sahne-plani.md`, `mekanlar.md`, `tasarim.md`'ye dokunmadım.
+- Aldığım kararlar ve gerekçeleri (json/belge sapmaları — yönetmen plana işlesin):
+
+  | Öğe | json / belge | K4'te | Gerekçe |
+  |---|---|---|---|
+  | Padişah ekseni (ayak x) | x 430 | ≈395 (burun ucu json `yuz_on_kontur_x` 457'ye oturtuldu) | Şeridin göz hizasından geçmesi burun x'ine bağlı; ayak bu kamerada belirleyici değil |
+  | Kanat açı eğrisi | aci [80,80,12] kare [0,4,30] (doğrusal) | 80 sabit → p10–18 itme 80→64 → savrulma 64→12 (p30) → sekme → p34 | Kol 0.6 m; serbest kenar 12°'de omuzdan ≈1 m uzakta. Elin sonuna kadar götürmesi için adım atmak gerekirdi (ayak teması/foley). Uç kareler ve temaslar aynı |
+  | Kanadı tutan | "mandal/sürgü oturur" | orta kayıtta demir tutucu; kanat 12°'de ona çarpar | Aralık kalan kanat sürgüyle kapanmaz; tutucu hem "tok"u hem "aralık kalır"ı açıklıyor |
+  | Yarık genişliği | 32 px (eski) | 37 px (0.55·sin 12°, R2 formülü) | Mekân R2. Bandın üstü x 457'de y 725 (göz 740; ≈4 cm yukarıda) |
+  | Kanat kenar kalınlığı | 10 px ışıklı kenar | ışıklı çizgi 6 px | Gerçek izdüşüm ≈2 px, telefonda kayboluyordu (gravür abartısı) |
+  | Panel | 2–3 nötr | 3 sade panel | 2 uzun panel kapı gibi okunuyordu |
+  | Gövde | x 380–520 | profil kaftan ≈ eksen −0.23…+0.22 m | 520 göğüs, burnun önüne geçerdi; elin uzanması ayrı kol olarak çizildi |
+  | Gün yansıması | cumba gövdesi de yansır | yalnız kemer + çeşme dilimlerde görünür | 0.6 boy + 7 dilimle (y ≤ 1765) cumba yansıması (y ≥ 1806) dilimlerin altında kalıyor, §1.3a "sonra yalnız su" |
+  | Padişah büstü | 1.09 m | 1.05 m (P10 cs 2.4'te ≈232 px, %12.1) | Sarık indi (V1); sarık H 0.125 |
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Ölçüm (`K4/renk-olcum.md`):
+    - P12 iç: duvar `#39332f` (ΔL −0.5), dış `#e7ddbe` (−1.8), kapı içi `#29231f` (−0.5), zemin `#2d2722`; C* oranı %92–113.
+    - Padişah ışıklı bant imzaya ΔE76: ten `#d89d88` 19.6, kaftan `#897e65` 23.2, sarık (şeritte) `#cfccbf` 26.9; gölgede 51–66.
+    - İmza sayacı P12: ışık hariç 0 piksel; ışık (sütun) 26–44 örnek ayrı satırda.
+    - P10 p0: gök/deniz/cephe/yansıma TAMAM (ΔL −2…−3.5).
+    - P02/P10 padişah siluet ΔE 61–62. Kırmızı 0.
+  - **V5 kısmen:** hilal merkezi tek pikselde ΔE 17.6, gövde 17.8. Bant dışı imza örneği 235 → 27; kalanlar parlama↔gövde sınırındaki 1 px çizgi + kese ağzındaki sikke kenarı (arşiv/RenkKaydi kenarı yumuşatıyor). 7x7 ortalama sınırı kestiği için 12.4 okunuyor.
+  - Hareket tamamlanır: kanat p34'te oturuyor, el p34'te dinlenmeye dönüyor, dönüş p100'de bitiyor, işaret p170'te tamamlanıp p204'e kadar tutuluyor (plan 216).
+  - Temas = ses: p30 tok / p34 tık kanat çiziminin kareleri.
+  - Blanc 5 kare piksel farkı 0 (son düzenlemeden sonra yeniden). Blanc doğrulayıcı GEÇTİ. Evliya doğrulayıcı: P02/P05/P06/P07/P10/P11/P12 0 hata (kalan 6 hata P03/P04/P08/P09/P13/P14). tsc temiz.
+  - **İHLAL (json kamerası, yönetmen):** P12 push-in p10'da başlıyor; **p30 "tok" karesinde kanadın serbest kenarı ekran x≈1160, kadraj dışında.** Kontrol kareleri p30/p34'te temas görünmüyor (görünürlük–ses). Öneri: `kamera.kare` [0,10,50,…] → **[0,36,70,120,204]** (değerler aynı). Bu öneriyle p30'da kanat, ışıklı kenar ve aralık görünüyor (`P12_p30_oneri-kamera_tam.png`). Yüz %12'ye p70'te ulaşıyor.
+  - **İHLAL (mekanlar §1.6 hesabı):** "zemin cs 1.8'de ekran y ≥ 1612 → kadraj dışı" yanlış; 1612 < 1920. Zemin ve padişah ayağı p0 (y 1643), p30 ve p204'te (cs 2.2, y≈1770) **görünüyor, alt güvenli bantta** (güvenli alan bindirmesinde "padisah ayak" ihlali). Fiziği bozmamak için zemin, temas gölgesi ve ayakkabı uçları çizildi. Karar yönetmen/mekânın: cy artırmak (cs 1.8'de ≥438) ya da ayağın alt bantta kalmasını kabul etmek.
+- Açık sorular / bir sonraki ajana notlar:
+  - Yönetmen:
+    - P12 kamera önerisi (yukarıda).
+    - Zemin/ayak kararı.
+    - P10 p66/p112'de sol üstte hâlâ küçük bir baca parçası var (ekran x<15, y≈135; V7 artığı).
+    - P12 işaret eli kadrajın sol kenarına yakın (p170: el ≈ekran x 90). Kamera dar olduğu için el göğüs önünde, dirsek bükük.
+  - Eleştirmen:
+    - Hepsi telefonda okunur mu kontrol edilmeli: P12 p66 yüz şeridi (ten bandı gözden çeneye), p100–204 ışıktan dönmüş profil (koyu yüz, koyu kapı önünde; sırtta şerit), kapalı kanadın pencere olarak okunması (denizlik + 3 panel; kapıyla karışma riski).
+    - P02 gök ölçüm noktası şenlik dumanına düştü (ton değişmedi).
+  - Tasarımcı: P12 iç mekânda el gölge tonu `#7a5848` (çıplak el `#b88470`'in odaya karışımı); onay bekliyor.
+  - OsmanliKol'un mevcut gölge bandı P07'de ışığın ters yanında (sağda) duruyor (K2'den kalma, dokunmadım). Kenar ışığı artık doğru yanda (sağ).
+  - Öz puan: 6/10. K3 açıkları kapandı (V5 1 px sınır hariç), K4 kuruldu ve okunuyor. Ama p30 teması kadraj dışında ve ayak alt bantta (ikisi json kararı); figür telefonda sade ve koyu.

@@ -392,7 +392,7 @@ export const InsertSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] 
       <defs><clipPath id={bid2}><polygon points={DENIZ_TARAFI} /></clipPath></defs>
       <polygon points={poly(leke)} fill={C.islak} opacity={0.85} />
       <polygon points={poly(ust)} fill={C.islak} opacity={0.6} />
-      <line x1={parla[0][0]} y1={parla[0][1]} x2={parla[1][0]} y2={parla[1][1]} stroke={C.parla} strokeWidth={3} strokeOpacity={0.5} strokeLinecap="round" />
+      <line x1={parla[0][0]} y1={parla[0][1]} x2={parla[1][0]} y2={parla[1][1]} stroke={C.parla} strokeWidth={pozAlan === "bas" ? 4 : 3} strokeOpacity={pozAlan === "bas" ? 0.85 : 0.5} strokeLinecap="round" />
     </g>;
   })() : null;
 
@@ -476,7 +476,7 @@ export const InsertSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] 
             <OsmanliKol omuz={verenCiz.omuz} dirsek={verenCiz.dirsek} bilek={verenCiz.bilek} gen={[0.15 * qE, 0.1 * qE]} tip={verenEl!.tip as unknown as OsmanliElTip} elAci={verenCiz.aci} olc={olc} poz={verenCiz.poz} isik={elIsik(verenCiz.bilek)} />
           </>}
           {omuzKutle}
-          {kol && omuzA && <OsmanliKol omuz={[omuzA[0], omuzA[1] + omuzCokme]} dirsek={kol.dirsek} bilek={kol.bilek} gen={[0.15 * pxmA, 0.1 * pxmA]} tip={alanTip} elAci={aciAlan} olc={olcA} poz={pozAlan} islak={islakW} isik={elIsik(kol.bilek)} avucNesne={keseDurum?.elde === "alan" ? keseCiz : undefined} />}
+          {kol && omuzA && <OsmanliKol omuz={[omuzA[0], omuzA[1] + omuzCokme]} dirsek={kol.dirsek} bilek={kol.bilek} gen={[0.15 * pxmA, 0.1 * pxmA]} tip={alanTip} elAci={aciAlan} olc={olcA} poz={pozAlan} islak={islakW} isik={elIsik(kol.bilek)} kenarIsik={saat === "gece" && islakW > 0 ? { renk: "#eaa956", px: 4, yon: [0.7, -0.7] } : undefined} avucNesne={keseDurum?.elde === "alan" ? keseCiz : undefined} />}
           {keseDurum && !keseDurum.yerde && !keseDurum.elde && keseCiz}
           {muhGolge}
           {muhCiz && <OsmanliKol omuz={muhCiz.omuz} dirsek={muhCiz.dirsek} bilek={[muhCiz.bilek[0], muhCiz.bilek[1] + omuzCokme]} gen={[0.17 * qE, 0.11 * qE]} tip={omuzEl!.tip as unknown as OsmanliElTip} elAci={muhCiz.aci} olc={muhCiz.olc} poz="omuz" isik={elIsik(muhCiz.bilek)} />}

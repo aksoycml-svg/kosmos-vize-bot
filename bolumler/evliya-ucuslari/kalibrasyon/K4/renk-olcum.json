@@ -1,0 +1,457 @@
+{
+ "kareler": [
+  {
+   "ad": "P12 p0",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K4/P12_p0_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "iç duvar gölge",
+     600,
+     250,
+     "#3a3430"
+    ],
+    [
+     "pencere dışı",
+     920,
+     600,
+     "#ece2c4"
+    ],
+    [
+     "kapı içi",
+     150,
+     1150,
+     "#2a2420"
+    ],
+    [
+     "zemin",
+     700,
+     1800,
+     "#2e2824"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "padişah sarık (şeritte)",
+     370,
+     640
+    ],
+    [
+     "padişah yüz ten ışıklı",
+     459,
+     684
+    ],
+    [
+     "padişah kaftan (şeritte)",
+     440,
+     1300
+    ]
+   ],
+   "isik": [
+    [
+     "pencere açıklığı + sütun",
+     430,
+     350,
+     1080,
+     1400
+    ]
+   ]
+  },
+  {
+   "ad": "P12 p66",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K4/P12_p66_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "iç duvar gölge",
+     700,
+     250,
+     "#3a3430"
+    ],
+    [
+     "kaftan gölge",
+     378,
+     1608,
+     "#36302c"
+    ],
+    [
+     "kapı içi",
+     150,
+     1300,
+     "#2a2420"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "padişah yüz ten ışıklı bant",
+     429,
+     690
+    ],
+    [
+     "padişah kaftan ışıklı bant",
+     483,
+     971
+    ],
+    [
+     "padişah sarık (gölge)",
+     420,
+     450
+    ]
+   ],
+   "isik": [
+    [
+     "sütun (hava)",
+     480,
+     200,
+     1080,
+     1920
+    ]
+   ]
+  },
+  {
+   "ad": "P12 p150",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K4/P12_p150_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "iç duvar gölge",
+     700,
+     250,
+     "#3a3430"
+    ],
+    [
+     "kapı içi",
+     150,
+     1400,
+     "#2a2420"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "el (gölgede)",
+     159,
+     1063
+    ],
+    [
+     "sırt şeridi",
+     470,
+     1100
+    ]
+   ],
+   "isik": [
+    [
+     "sütun (hava)",
+     480,
+     200,
+     1080,
+     1920
+    ]
+   ]
+  },
+  {
+   "ad": "P12 p204",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K4/P12_p204_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "iç duvar gölge",
+     700,
+     120,
+     "#3a3430"
+    ],
+    [
+     "kapı içi",
+     150,
+     1400,
+     "#2a2420"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [],
+   "isik": [
+    [
+     "sütun (hava)",
+     480,
+     200,
+     1080,
+     1920
+    ]
+   ]
+  },
+  {
+   "ad": "P02 p80",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K4/P02_p80_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "gece gök (orta basamak)",
+     540,
+     330,
+     "#1c2232"
+    ],
+    [
+     "deniz",
+     300,
+     1750,
+     "#161c26"
+    ],
+    [
+     "köşk cephe gece",
+     880,
+     1000,
+     "#4e4a46"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     150,
+     1310,
+     205,
+     1385
+    ]
+   },
+   "parcalar": [
+    [
+     "padişah sarık (siluet)",
+     558,
+     759
+    ]
+   ],
+   "isik": [
+    [
+     "pencere + havuz",
+     440,
+     640,
+     690,
+     900
+    ],
+    [
+     "şenlik 1 (düşen çizgiler)",
+     460,
+     100,
+     1080,
+     700
+    ],
+    [
+     "meşale halesi",
+     100,
+     1260,
+     230,
+     1400
+    ]
+   ]
+  },
+  {
+   "ad": "P10 p0",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K4/P10_p0_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "gün gök",
+     540,
+     120,
+     "#a9b6bf"
+    ],
+    [
+     "deniz",
+     540,
+     1880,
+     "#5e7378"
+    ],
+    [
+     "köşk cephe",
+     900,
+     1100,
+     "#b4a88e"
+    ],
+    [
+     "yansıma kemer dilimi",
+     388,
+     1530,
+     "#5e7378"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "padişah (siluet)",
+     558,
+     789
+    ]
+   ],
+   "isik": [
+    [
+     "padişah kenar ışığı",
+     540,
+     700,
+     600,
+     850
+    ]
+   ]
+  },
+  {
+   "ad": "P10 p280",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K4/P10_p280_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "cumba ahşap",
+     300,
+     1100,
+     "#6a4a30"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "padişah (siluet)",
+     468,
+     900
+    ]
+   ],
+   "isik": [
+    [
+     "padişah kenar ışığı",
+     380,
+     650,
+     640,
+     1060
+    ]
+   ]
+  },
+  {
+   "ad": "P11 p192",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K4/P11_p192_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "döşeme",
+     700,
+     1600,
+     "#a09682"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "sikke gövde",
+     830,
+     1405
+    ],
+    [
+     "sikke parlama",
+     790,
+     1395
+    ]
+   ],
+   "isik": []
+  },
+  {
+   "ad": "P07 p0",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K4/P07_p0_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "deniz",
+     150,
+     600,
+     "#161c26"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "ıslak kol (yen)",
+     120,
+     1400
+    ]
+   ],
+   "isik": [
+    [
+     "pencere havuzu",
+     500,
+     1150,
+     1080,
+     1700
+    ]
+   ]
+  }
+ ]
+}

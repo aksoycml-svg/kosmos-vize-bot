@@ -160,15 +160,16 @@ Tek karakter yakın (rig `yakin` yüz), arka başka şablonun bulanık sahnesi.
 - 1 karakter; `z/u` yok sayılır. `esne` jesti burada kocaman `esneme` ağzı verir (K2).
 - `manipulator` (K2): `{ileri: [x, y] rig yerel (175, −280), yari (72)}` — göğüs önünde kumanda kolu; it-çek fazı kolu döndürür, el IK ile tutamakta; kablolar kadraj üstüne. Kol jest dışında da elde kalır (süreklilik).
 
-## SARAYBURNU (Evliya, İstanbul 1630'lar — kurulu: `kiyi` + `gece` (K1), `insert` + `gece`/`gun` (K2), `kosk` + `gece`/`gun` (K3))
+## SARAYBURNU (Evliya, İstanbul 1630'lar — kurulu: `kiyi` + `gece` (K1), `insert` + `gece`/`gun` (K2), `kosk` + `gece`/`gun` (K3), `ic` + `gun` (K4))
 Sinan Paşa (İncili) Köşkü kıyısı (mekanlar.md §1). `src/kit/sablonlar/sarayburnu/`. Kurulmamış görünüm/saat render'da AÇIK HATA verir; doğrulayıcı da HATA.
 | parametre | değerler |
 |---|---|
-| `gorunum` * | `kiyi` (KURULU, gece) · `insert` (KURULU, gece+gün) · `kosk` (KURULU K3, gece+gün; P02/P10 aynı dekor) · `ic` (sonraki kalibrasyon) |
+| `gorunum` * | `kiyi` (KURULU, gece) · `insert` (KURULU, gece+gün) · `kosk` (KURULU K3, gece+gün; P02/P10 aynı dekor) · `ic` (KURULU K4, gün; P12 köşk içi) |
 | `kosk` parametreleri | `senlik [{x,y,bas,patlama,yaricap,dusme_kare}]` (E2 düşen çizgi, köşk arkasında; patlama karesinde temas zorunlu) · `pencere_isigi` · `padisah {renk, kenar_isik, bas_aci: sayı \| {kare, deger}}` (karakter `padisah` = `PadisahSiluet`, Kukla değil; yoksa `bak` jesti) · `kosk_konum.pencere_x/y` (mekanlar §1.3 ile aynı olmalı) · sol uzak grup: karakter `olcek` × 406.7 px/m, `poz oturan` + aynı x'te `fisek-demet` → demete bağlı |
 | `saat` * | `gece` · `gun` (gün = arşiv `gunduzMineral`) |
 | `fitil` | `{bas, bit}` kıvılcım x 330'dan demet ağzına yürür (4 köşeli yıldız; yalnız burada) |
 | `puskurme` | `{bas, bit, sonuk}` demet ağızlarından püskürme; bas+6'dan anahtar ışık püskürme (meşale gölge payını devreder); yerdeyken zemine çarpan alev + kıvılcım, duman |
+| `ic` parametreleri | `padisah {yuz_on_kontur_x (burun ucu, varsayılan 457), goz_y 740, ayak_y 1267}` → karakter `padisah` = `PadisahFigur` (ayakta profil, tek görünen kol; jestler `pencere-kapat` (kanadı iter, bırakır), `don` (`ops.yon_son` −1: profil yönü döner), `isaret` (kapıyı gösterir, el göğüs önünde)) · prop `pencere-kanat` (`aci` [açık…aralık], `kare`; kanat fiziği: it → savrul → `pencere-tok` temas karesinde mandala çarp → 2 kare sek → `mandal-tik`) · ışık: güneş pencereden (−0.83, +0.56); yarık = 0.55 m·sin θ; havadaki sütun yalnız 2 kenar çizgisi + toz; şerit yalnız yüzeyde (yüz ten #dca08a, kaftan, sarık). Pencere x 560–738/y 560–981, kapı x 60–352/y 602–1250, zemin y ≥ 1250 (cs < 2.6'da kadrajda görünür) |
 | `kosk_konum` | `{su_cizgisi 762, ust 534, x [740, 928], px_m 17}` |
 - **Konum dili `xy`:** karakter/prop `x/y` = dekor px, ZEMİN TEMASI (ayak tabanı / kızak altı). Rıhtımdaki (y ≥ 1256) figürün ölçeği ufuk–ölçekten (ufuk 720, göz 1.5 m: px/m = (y − 720)/1.5; json `olcek` yok sayılır, doğrulayıcı farkı uyarır). Havadaki/sudaki nesne `olcek` (1 = y 1330, 406.7 px/m) ister — y'den türetilemez.
 - **Karakterler:** `lagari` (osmanli kostüm, sarık, bıyık, sırtta kanat varsayılan) · `yardimci-1` (yüzsüz, takke; **meşale ön elinde varsayılan** — mekanlar §0.6 tek ışık) · `yardimci-2` (yüzsüz, eller kuşakta). En çok 4.

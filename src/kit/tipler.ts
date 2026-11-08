@@ -38,7 +38,8 @@ export type Karakter = {
 
 export type PropTur = "paket" | "eldiven" | "corap" | "dosya" | "kitap" | "kese" | "hokka" | "mum" | "fener"
   | "fisek-demet" | "mesale" | "baslik" | "kanat" // Evliya (SARAYBURNU kıyı)
-  | "sikke"; // Evliya (SARAYBURNU insert; kese de insert'te Osmanlı kumaş torba çizilir)
+  | "sikke" // Evliya (SARAYBURNU insert; kese de insert'te Osmanlı kumaş torba çizilir)
+  | "pencere-kanat"; // Evliya (SARAYBURNU ic, K4: KE-P9)
 export type Prop = {
   tur: PropTur; id?: string;
   x?: Sayi; y?: Sayi; kare?: number[];         // MASA-INSERT: ekran px (masa düzlemi). IC-ODA: x = u (m), y = z (m). SARAYBURNU: dekor px (zemin teması)

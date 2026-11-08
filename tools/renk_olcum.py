@@ -8,7 +8,9 @@ olcum.json:
                    "noktalar": [["gece gök orta", 300, 300, "#1c2232"], …],      # tam boy (1080x1920) ekran koordinatı
                    "imza": {"hex": "#c4a874", "esik": 15, "bolge": [x0, y0, x1, y1]},  # bölge dışında imza tonu aranır
                    "yasak": [["mavi RIM", "#c4d6ff", 12]],
-                   "parcalar": [["Lagâri sarık", x, y], …] } ] }                         # imzaya ΔE76 (render'dan, kostüm parçası başına; ≥ 15)
+                   "parcalar": [["Lagâri sarık", x, y], …],                         # imzaya ΔE76 (render'dan, kostüm parçası başına; ≥ 15)
+                   "isik": [["pencere + havuz", x0, y0, x1, y1], …] } ] }            # K3 V9: ışık katmanı bölgeleri (tam boy) — imza bandındaki
+                                                                                   # pikselleri AYRI satırda sayılır, oranın dışında tutulur (eleştirmen §2.1)
 Ölçüm: 7x7 px ortalama (ölçekli karede). L* = CIELAB (D65), ΔE76 + ΔE2000, ΔH° = ton açısı farkı.
 Ayrıca: kırmızı piksel taraması (ton 340–12°, doygunluk > .5, parlaklık > .3) — kırmızı yalnız yazı katmanında olmalı.
 Hedef tolerans: |ΔL*| ≤ 8 (mekanlar.md §6); C* ≥ hedefin %70'i, Δh° ≤ ±20 (hedef C* < 5 ise h aranmaz) (mekanlar §6a).
@@ -94,18 +96,24 @@ def main():
         if "imza" in k:
             I = k["imza"]; li = lab(hex2rgb(I["hex"])); x0, y0, x1, y1 = [round(v * s) for v in I["bolge"]]
             ic = dis = 0; dis_kutu = None; ornek = {}
+            isikB = [(a, [round(v * s) for v in b]) for a, *b in k.get("isik", [])]; isikN = {a: 0 for a, _ in isikB}
             for yy in range(0, h, 2):
                 for xx in range(0, w, 2):
                     p = px[xx, yy]
                     if abs(p[0] - 196) > 60 or abs(p[2] - 116) > 60: continue
                     if de76(lab(p), li) < I.get("esik", 15):
                         if x0 <= xx <= x1 and y0 <= yy <= y1: ic += 1
+                        elif any(b[0] <= xx <= b[2] and b[1] <= yy <= b[3] for _, b in isikB):
+                            a = next(a for a, b in isikB if b[0] <= xx <= b[2] and b[1] <= yy <= b[3]); isikN[a] += 1
                         else:
                             dis += 1; dis_kutu = (min(dis_kutu[0], xx), min(dis_kutu[1], yy), max(dis_kutu[2], xx), max(dis_kutu[3], yy)) if dis_kutu else (xx, yy, xx, yy)
                             key = (xx // 40, yy // 40); ornek[key] = ornek.get(key, 0) + 1
             top = sorted(ornek.items(), key=lambda t: -t[1])[:4]
             oran = dis / ic if ic else float("inf")
-            ek.append(f"- {k['ad']}: imza {I['hex']} ΔE76<{I.get('esik', 15)} — demet bölgesinde {ic} örnek, DIŞINDA {dis} örnek → oran %{oran * 100:.0f} ({'TAMAM' if oran <= 0.25 else 'İHLAL'} ≤ %25)" + (f" (kutu {tuple(round(v / s) for v in dis_kutu)} tam boy; yoğun hücreler {[(round(a * 40 / s), round(b * 40 / s), n) for (a, b), n in top]})" if dis else ""))
+            for a, b in isikB:
+                yakin = not (b[2] < x0 - 200 * s or b[0] > x1 + 200 * s or b[3] < y0 - 200 * s or b[1] > y1 + 200 * s) and ic > 0
+                ek.append(f"- {k['ad']}: [ışık] {a}: imza bandında {isikN[a]} örnek (oranın dışında; muafiyet §2.1)" + (" — ŞART (b) İHLAL: demetin 200 px yakınında" if yakin and isikN[a] else ""))
+            ek.append(f"- {k['ad']}: imza {I['hex']} ΔE76<{I.get('esik', 15)} — demet bölgesinde {ic} örnek, DIŞINDA (ışık hariç) {dis} örnek → " + ("demet kadrajda yok, imza pikseli yok (TAMAM)" if ic == 0 and dis == 0 else (f"demet kadrajda yok, {dis} imza pikseli (İHLAL)" if ic == 0 else f"oran %{oran * 100:.0f} ({'TAMAM' if oran <= 0.25 else 'İHLAL'} ≤ %25)")) + (f" (kutu {tuple(round(v / s) for v in dis_kutu)} tam boy; yoğun hücreler {[(round(a * 40 / s), round(b * 40 / s), n) for (a, b), n in top]})" if dis else ""))
         for ad, hx, esik in k.get("yasak", []):
             ly = lab(hex2rgb(hx)); n = sum(1 for yy in range(0, h, 2) for xx in range(0, w, 2) if de76(lab(px[xx, yy]), ly) < esik)
             ek.append(f"- {k['ad']}: {ad} {hx} ΔE76<{esik}: {n} örnek")
