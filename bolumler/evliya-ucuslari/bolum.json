@@ -239,20 +239,23 @@
       "x": [
        290,
        290,
-       481.5,
-       672.8,
+       392,
+       495,
+       597,
        700
       ],
       "y": [
        1250,
        1250,
+       1248,
        1244,
-       1225,
+       1234,
        1250
       ],
       "kare": [
        176,
        196,
+       212,
        229,
        246,
        262
@@ -324,20 +327,26 @@
      "db": -6
     },
     {
-     "kare": 229,
-     "olay": "Hezarfen 1. adım basar (küçük figür, uzak)",
+     "kare": 212,
+     "olay": "Hezarfen 1. adım basar (küçük figür, uzak; adım ≈0.42 m)",
      "ses": "adim-tas",
      "db": -21
     },
     {
-     "kare": 246,
+     "kare": 229,
      "olay": "Hezarfen 2. adım basar",
      "ses": "adim-tas",
      "db": -21
     },
     {
+     "kare": 246,
+     "olay": "Hezarfen 3. adım basar",
+     "ses": "adim-tas",
+     "db": -21
+    },
+    {
      "kare": 262,
-     "olay": "Hezarfen çıkıntıda durur, ayak yerine oturur",
+     "olay": "Hezarfen 4. adım çıkıntıya basar, ayak yerine oturur",
      "ses": "adim-tas",
      "db": -22
     }
@@ -2358,7 +2367,7 @@
      "kulah": "kursun-gri-notr",
      "galeri": "kemerli-acik-seki"
     },
-    "alt_serit": "kule duvarı + aşağıda Galata çatıları/sokak (gövde tabanı y 3600; taş y 3580'de iki çatı arasındaki sokak boşluğuna düşer)",
+    "alt_serit": "kule duvarı + aşağıda sur kolu + taş döşeli avlu (gövde tabanı y 3600; taş y 3580'de avlu açıklığına düşer; mekanlar §2.4b R5)",
     "toz": {
      "bas": 148,
      "bit": 176
@@ -2383,12 +2392,12 @@
     "taş_dusus": {
      "kopus_y": 1250,
      "yere_y": 3580,
-     "sokak_bosluk_x": [
+     "avlu_koridor_x": [
       560,
       845
      ]
     },
-    "kamera_dogrulama": "mekanlar R3: p36-52 cy ≤ -41 (öneri -50): çıkıntı/taş d 1250 → ekran ≈1475 (cs 1.9) ≤ 1490; p40 tas-surtme (cs≈1.93, cy≈-120) taş ≈1398, p44 kayma; p200/p240 de cy -50 (ayak ≤1490, boy plan); taş p36 ekran x≈857 < 920; [K5-yon B4/B7] p36 cx -120→-170 (taş sağ kenarı ≈897 <920); p52-166 cx -140→-260: taş x 785 (düşüş) → ekran merkezi ≈770, sağ kenar ≈865 (+bounce 16 → ≈881) <920; temas p148 x≈770 y 900 (IG sütunu x≥920,y≥900 dışı), toz yarı genişliği ≤130 px olmalı (≤ x 900); sokak_bosluk_x [560,820]→[560,845]: taş 738-832 (+8 yuvarlanma = 840) boşluğa sığsın; mekân B5 'iki saçak ucu' bu aralığı çerçevelesin"
+    "kamera_dogrulama": "mekanlar R3: p36-52 cy ≤ -41 (öneri -50): çıkıntı/taş d 1250 → ekran ≈1475 (cs 1.9) ≤ 1490; p40 tas-surtme (cs≈1.93, cy≈-120) taş ≈1398, p44 kayma; p200/p240 de cy -50 (ayak ≤1490, boy plan); taş p36 ekran x≈857 < 920; [K5-yon B4/B7] p36 cx -120→-170 (taş sağ kenarı ≈897 <920); p52-166 cx -140→-260: taş x 785 (düşüş) → ekran merkezi ≈770, sağ kenar ≈865 (+bounce 16 → ≈881) <920; temas p148 x≈770 y 900 (IG sütunu x≥920,y≥900 dışı), toz yarı genişliği ≤130 px olmalı (≤ x 900); avlu_koridor_x (eski sokak_bosluk_x) [560,820]→[560,845]: taş 738-832 (+8 yuvarlanma = 840) avlu koridoruna sığsın; R5: sur kolu sol şeritte (x ≤ 480), taş surun önünden geçmez"
    },
    "sure_kare": 252,
    "sure_sn": 4.2,
@@ -2609,7 +2618,7 @@
     "net_sn": 1.7,
     "not": "taş dekor 95 px, cs 2.0 -> 190 px (%10), takipte ekran y≈900 sabit; okunurluk taşın yolunda ve duvar paralaksında, tozda değil (toz <%5) [K5-yon] takip cx -260: taş sağ kenarı ≤865, IG sütunu dışında"
    },
-   "alt_ucte_bir": "p0: kule duvarı taş sıraları aşağı doğru + uzakta çatılar; p52-148: akan duvar ve çatılar; p166+: Hezarfen'in altındaki duvar şeridi + kule gölgesi.",
+   "alt_ucte_bir": "p0: kule duvarı taş sıraları aşağı doğru + uzakta çatılar; p52-148: akan duvar, sur iç yüzü ve avlu; p166+: Hezarfen'in altındaki duvar şeridi + kule gölgesi.",
    "kit_eksik": [
     "KE-S2",
     "KE-K2",
@@ -2634,7 +2643,7 @@
      "db": 0
     }
    ],
-   "not": "Dikey şerit 2 ekran (dokunuş doc'u 3 demişti; cs 2.0'da 2 ekran yeter, taş hızı ≈ 50 px/kare). Dokunuş 232'de biter (plan 252, payı 20). [R3] p36 cy 120 → -50 (taş/çıkıntı alt bantta idi, temas y 1631); p200/p240 cy 120 → -50 (ayak y 1631 → 1475). [K5-yon 2026-11-08] B7: p36 cx -170; B4: p52-166 cx -260, taş x son 785; B6: temas p56 (tekme dönüşü), p158 (sekme); B5 kamera tarafı: dipte yalnız iki saçak ucu (mekân spec), sokak_bosluk_x [560,845]."
+   "not": "Dikey şerit 2 ekran (dokunuş doc'u 3 demişti; cs 2.0'da 2 ekran yeter, taş hızı ≈ 50 px/kare). Dokunuş 232'de biter (plan 252, payı 20). [R3] p36 cy 120 → -50 (taş/çıkıntı alt bantta idi, temas y 1631); p200/p240 cy 120 → -50 (ayak y 1631 → 1475). [K5-yon 2026-11-08] B7: p36 cx -170; B4: p52-166 cx -260, taş x son 785; B6: temas p56 (tekme dönüşü), p158 (sekme); B5 kamera tarafı: dipte sur kolu + avlu (mekân R5 §2.4b; iki saçak ucu iptal), avlu_koridor_x [560,845]."
   },
   {
    "id": "P09",
@@ -3719,7 +3728,7 @@
      "ayak_y": 1267,
      "not": "profil siluet (göz/kaş/ağız çizilmez); ışık şeridi göz hizasında profil konturunda (şeridin üst ucu x 457'de y 739); gün: kaftan #36302c, çıplak el #b88470; [K5-yon A2] padişah x 430→540 (+110 dekor px = 0.32 m, pencereye yaklaştı; 340 px/m); burun ucu 457→567"
     },
-    "kamera_dogrulama": "K5-yon: p0-36 cs 1.6 cy 30 (ayak ≤1490, sarık ≥420, kanat kenarı ≤880); push-in p36-60 (24 kare) cs 3.0 cx -140 cy 400: SARAYBURNU katalog üst sınırı cs 3.0 (3.2 sınırı aşar); ekran = 540+cx+(x-540)*cs → yarık x 727-738 → ≈965-994 (≤1000), burun ucu 567 → ≈461, sarık sol kenarı ≈80 (render p90: cx -160'ta 60 idi → -140), göz y 740 → 700, sarık tepesi ≈410 (>400: üst yazı bandı 240-400 dışı), yüz ≈246 px (%12.8, A2 ≥%12 KAPANDI). p126-150 geri çekilme; p204: cs 1.6 cx 80 cy 30 (A6 +20: işaret eli ekran ≥120; padişah +110 dekor px kaydığı için parmak ucu kapıya yaklaşır, kapı sağ pervazı ≈339, yarık ≈949, ayak 1481)"
+    "kamera_dogrulama": "K5-yon: p0-36 cs 1.6 cy 30 (ayak ≤1490, sarık ≥420, kanat kenarı ≤880); push-in p36-60 (24 kare) cs 3.0 cx -140 cy 400: SARAYBURNU katalog üst sınırı cs 3.0 (3.2 sınırı aşar); ekran = 540+cx+(x-540)*cs → yarık x 727-738 → ≈965-994 (≤1000), burun ucu 567 → ≈461, sarık sol kenarı ≈80 (render p90: cx -160'ta 60 idi → -140), göz y 740 → 700, sarık tepesi ≈410 (>400: üst yazı bandı 240-400 dışı), yüz ≈180 px (%9.4; K6 ölçümü, A2 gerekçeyle %9.4 kabul — okunurluk notuna bak). p126-150 geri çekilme; p204: cs 1.6 cx 80 cy 30 (A6 +20: işaret eli ekran ≥120; padişah +110 dekor px kaydığı için parmak ucu kapıya yaklaşır, kapı sağ pervazı ≈339, yarık ≈949, ayak 1481)"
    },
    "sure_kare": 216,
    "sure_sn": 3.6,
@@ -3910,10 +3919,10 @@
    "temaslar": [
     {
      "kare": 14,
-     "olay": "el kanada değer (it başlangıcı) — BELİRSİZ: motion p14'ü render edip değip değmediğini söyleyecek; değiyorsa foley kalır, değmiyorsa kaldırılır",
+     "olay": "el kanada değer (it başlangıcı) — [K7-yon] motion p14'te elin kanada değdiğini doğruladı: foley kalır",
      "ses": "el-ahsap",
      "db": -20,
-     "belirsiz": true
+     "belirsiz": false
     },
     {
      "kare": 30,
@@ -3959,9 +3968,9 @@
    ],
    "okunurluk": {
     "nesne": "pencere kanadı + ışık çizgisi (yüzde)",
-    "oran_pct": 12.8,
+    "oran_pct": 9.4,
     "net_sn": 1.0,
-    "not": "[K5-yon A1/A2] kanat %30+ yükseklik, kapanış 0.43 sn; ışık çizgisi p34'te oturur, cs ≥2.2 p46'dan itibaren (push-in p36-60) ve p108'e kadar görünür = ≈1.0 sn net (kontrol_kare p90); don p100-130 yüzü çizgiden ancak p100'den sonra çevirir; yüz (sarık hariç) ≈246 px = %12.8 (cs 3.0, padişah +0.32 m pencereye); yüz gölgede/profil, yüz ayrıntısı çizilmez"
+    "not": "[K5-yon A1/A2] kanat %30+ yükseklik, kapanış 0.43 sn; ışık çizgisi p34'te oturur, cs ≥2.2 p46'dan itibaren (push-in p36-60) ve p108'e kadar görünür = ≈1.0 sn net (kontrol_kare p90); don p100-130 yüzü çizgiden ancak p100'den sonra çevirir; [K7-yon A2] yüz (sarık hariç) ölçülen ≈180 px = %9.4 (cs 3.0). GEREKÇE: yüz boyu cs ile ölçeklenir, konumla değil (padişahı pencereye yaklaştırmak yüzü büyütmez); %12 (≈230 px) için cs ≈3.84 gerekir, katalog sınırı 3.0. Ek yaklaşma (+100 dekor px) burun ucunu x 667'ye iter: kanat menteşesi (560) ve yarık (727-738) arasına girer, kanat süpürme yoluna biner (fiziksel değil) ve yarık-yüz çizgisi kayar. Bu yüzden %9.4 kabul. Yüz profil siluet: küçük jest yok (göz/kaş çizilmez); okunur olan şey yüzdeki ışık çizgisi (≈17×20 px telefonda seçiliyor, K6 A1 GEÇTİ), 'don' ve yarık, bunlar %9.4'te okunuyor. Yüz gölgede/profil, yüz ayrıntısı çizilmez"
    },
    "alt_ucte_bir": "Padişahın kaftanı + göğsündeki ışık çizgisi/bant, pencere altı duvarı; p36-126 cs 3.0'da kaftan alt üçlüyü doldurur (zemin/minder/zemin lekesi kadrajda YOK). Alt bant yazısı yok (replik 1 ve 2 üst bantta).",
    "kit_eksik": [

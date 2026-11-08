@@ -1031,3 +1031,10 @@
 - **Açık sorular:**
   - B13 siluet açılınca kanca gizemi azaldı. Kullanıcıya bilgi olarak iletilsin.
   - B6 foley bu turda doğrulanmadı (kurgucu).
+
+## yonetmen · 2026-11-08 · K7 öncesi json düzeltmeleri (K6 eleştirisi)
+- Ne yaptım: (1) P12 A2: padişahı yaklaştırmak yüzü büyütmez (yüz boyu cs ile ölçeklenir, konumla değil); %12 için cs ≈3.84 gerekir, katalog sınırı 3.0. Ek +100 dekor px yaklaşma burun ucunu x 667'ye iterdi: kanat süpürme yoluna biner. Bu yüzden %9.4 gerekçesiyle json'a yazıldı (`okunurluk.oran_pct` 12.8 → 9.4, not güncellendi). Kamera/konum değişmedi, yeni render gerekmedi. (2) P12 `el-ahsap` `belirsiz: false`. (3) P01 B yürüyüşü 2 adımdan 4 adıma çıktı: basma kareleri 212/229/246/262, x 392/495/597/700, y 1248/1244/1234/1250 (§2.3a eğrisine göre). Foley'e p212 `adim-tas` -21 eklendi, diğerleri aynı. (4) P08: `alt_serit`, `kamera_dogrulama`, `not`, `alt_ucte_bir` "çatı/sokak" yerine "sur kolu + avlu"; `sokak_bosluk_x` → `avlu_koridor_x` [560,845], eski ad json'da kalmadı.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/bolum.json, katki-raporu.md
+- Kararlar: Adım sayısı 4 (5 olsa ~13 kare/adım, fazla telaşlı). Adım ≈0.42 m (102 px, ≈240 px/m); toplam yol 1.6 m olduğundan 0.55–0.65 m adımla 4–5 adım sığmaz. Bir adım = tek ayak basışı, çift adım (stride) ≈0.84 m. Yol uzatılamaz (çıkıntı ve gevşek taş x 750–790).
+- Kural/ihlal: Doğrulayıcı: yeni HATA yok (5 eski hata: P03 bin, P04 tutun, P09 BOGAZ, P13/P14 KITAP-INSERT). 1 YENİ UYARI: P01 hezarfen yuru "2 adım (p224, p256) temas yok"; doğrulayıcı adımı 0.75 m sabit varsayıyor, 4 adım ona sığmıyor. Foley'i sahte karelere koymadım.
+- Açık/not: Motion `avlu_koridor_x` adını okusun (şablon hâlâ `sokak_bosluk_x` okuyorsa şablon güncellenmeli). Orkestra: `tools/bolum_dogrula.mjs` yürüyüş adım uzunluğunu `yuru.ops.adim` gibi bir parametreyle alsın ya da uyarı kabul edilsin. Motion: P01 yuru p196–262'de 4 basma (212/229/246/262), anahtar x'ler basış ortalarında; yürüyüş eğrisi lineer olursa adımlar eşit dağılır.
