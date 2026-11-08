@@ -469,3 +469,16 @@
   - Tasarımcı → motion: Y8 (P01/P03/P04 kalibrasyonundan önce).
   - Kurgucu: su-sap seviyesi.
   - K2 koşulları elestiri.md §4'te (P07 ilk karede ıslak el teması, gündüz kroması, kese/sikke/el tenleri parça başına imza ölçümü, betik kadraj dışı düzeltmesi).
+
+## yonetmen · 2026-11-08 · K1-2 eleştirisi (KOŞULLU) açıkları + P07/P11 gözden geçirme
+- Ne yaptım: `kalibrasyon/K1-2/elestiri.md` yönetmen maddelerini `bolum.json` + `sahne-plani.md` §1/§5.0b/§7'ye işledim.
+  - Y2: P06 Lagâri iniş olcek 0.12 (≈2.9x köşk); `okutma` (sarık/halka/3 dalga izi); kamera cs 2.5, cx -735, cy 600.
+  - Y3: `islak-el` ve basamak P06'dan çıktı; P07 p0'da ıslak el basamağa değer + foley p0; P06 `eslesme` (son kare ↔ P07 ilk kare).
+  - Y4: Y1 x 70-90, Y2 x 215, meşale p88+ dik (alev x≈345, y≈900); başlık x→320.
+  - Y9: boş demet sola sürüklenip p180'de kadrajdan çıkar. Z2: başlık y 1280 (ekran ≈1467).
+  - P07/P11: basamak, ıslak izler, ışık noktası parametreleri; ayna çifti P07 p72 ↔ P11 p72; kontrol_ek'ler (P07 0/130, P11 42/72/98/208).
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/bolum.json, sahne-plani.md, katki-raporu.md.
+- Kararlar: Y1 sola, Y2 sağa alındı (alev Y2'ye ≥60 px uzak olsun diye; taşıma pozu alevi Y1.x+255'e koyuyor). Demet kadrajdan kamera + sola sürüklenmeyle çıkar (batırmak yerine; boş tüpler yüzer). Kullanıcı kararı (binici başı kadrajda) uygulandı: değişiklik yok.
+- Kurallar: kural 7 P05/P06 için yeniden render ve bakış; P07/P11'de render yok (insert şablonu yok), yalnız mekanlar §1.4 hesabı. Temas=ses: görünmeyen basamak teması/sesi P06'dan çıkarıldı.
+- Doğrulayıcı: P05/P06'da 0 hata (3 "kurulumda" uyarısı); bölümde 30 hata, hepsi kurulmamış görünüm/jest/karakter (P03/P04, P07, P10-P12). 
+- Açık: (1) motion K2: P07 `el` şablon kuralı (insert), `egil/dogrul/tutun` jestleri, KE-E3 dalga izi; (2) P07 el yönü: basamak solda olduğundan el soldan/alttan girer (eleştirmen "sağdan/alttan" yazdı; mekanlar basamağı x 60-260'a koyuyor) — eleştirmen onaylasın.
