@@ -51,6 +51,9 @@
     2. motion: `SurAvlu` (mekanlar §2.4b), B8 itme (bacak düz uzanır, gövde ≥12° öne, serbest kol açılır), renk ölçümünde kenar ışığı = kontur içi ≤6 px şerit, P12 yanağa düşen toz zerresi, P01 alt IG bandındaki siyah dilim, **Kosk/Kiyi şablonlarında Lagâri kanadı aynı arka katman hatası** (B2 kökü), uzak şehir pus bandı kumsal okunmasın.
     3. eleştirmen kritik kareler: P08 p44/p148/p170, P01 p250, P12 p90.
     - Sonra: KITAP-INSERT (P13/P14), P03/P04 jestleri, BOGAZ (P09), TR/EN yazı katmanı, kurgucu (foley B6 doğrulama), render.
+  - **K7 tamam** (kullanıcı: siluet saydam kalır). `kalibrasyon/K7/elestiri.md`: **K4 GEÇTİ, K5 KOŞULLU, kritik yok.** SurAvlu kuruldu, kanat maske kökü Kosk/Kiyi dahil düzeldi, doğrulayıcı adım uzunluğu json'dan.
+  - **Taşınan küçük açıklar (sonraki motion turuna eklenecek, ayrı tur açılmaz):** P08 p110/p125 karesi al — "dışarısı/gök" okunmuyorsa sur tepesi geçişi +10–15 kare (motion); uzak şehir pus bandı kesintisiz 2–3 tırtıklı çatı sırası (motion); P12 kapıdaki toz zerreleri ışık huzmesine (motion); P02 p80 yardımcı 0.15 m sola ya da meşale arka ele (yönetmen). Foley B6 → kurgucu.
+  - **SIRADAKİ:** kalan şablonlar — KITAP-INSERT (P13/P14), P03 `bin` / P04 `tutun` jestleri, BOGAZ (P09) → tasarımcı/mekân (gerekirse) → motion tek tur (+ yukarıdaki küçükler) → eleştirmen kritik kareler. Sonra TR/EN yazı katmanı, kurgucu, render.
 - (eski) **Sıradaki:** motion turu = K1 Y10/Y11 + K2 W1/W3/W4/küçükler + K3 kurulum (`kosk` gece/gün, padişah R10, şenlik). Sonra eleştirmen. Kalan şablonlar: SARAYBURNU `ic` (P12), GALATA-TEPE, BOGAZ, KITAP-INSERT; Hezarfen tam rig; TR/EN yazı katmanı sistemi (KE-Y1..Y5).
 
 ## Sıradaki: kurulum ekibi (opus) — `sahne-plani.md` §6 iş tanımıdır

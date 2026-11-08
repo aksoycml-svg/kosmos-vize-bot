@@ -1098,3 +1098,19 @@
   - **Yeni gözlem (benim değişikliğim değil, onay bekliyor):** P02 p80'de yardımcının meşale başı Lagâri'nin yüzünün önünde koyu bir disk gibi duruyor. Yönetmen/motion sonraki turda baksın.
   - P08 p0 render edilmedi. Dilimin kalktığı P01 B karelerinde doğrulandı; P08 p0 aynı geometri ve kırpmayla çiziliyor.
   - Kurgucu: B6 foley (p56, p148, p158) json temaslarından kontrol edilmeli. Bu turda dokunmadım.
+
+## elestirmen · 2026-11-08 · K7 kritik kare kontrolü (P08 itme/dip, P01 yürüyüş, P12, kanat kit regresyonu)
+- **Ne yaptım:** P08 p44/p148/p170, P01 p229/p250, P12 p90, P05 p78 ve P02 p80 karelerini tam, güvenli ve telefon sürümlerinde inceledim; telefon sayfasına ve renk ölçümüne baktım. K6 ile kıyas için iki kırpma yaptım (scratchpad'de; render yok). Rapor: `kalibrasyon/K7/elestiri.md`.
+- **Dokunduğum dosyalar:** `bolumler/evliya-ucuslari/kalibrasyon/K7/elestiri.md`, bu rapor.
+- **Kararlar:**
+  - K4 GEÇTİ: A2 %9.4 gerekçeli kabul (cs sınırı; dokunuş telefonda okunuyor).
+  - K5 KOŞULLU, kritik yok. Koşullar: P08 vinç karelerinde (p110/p125) "dışarısı" okuması; B6 foley (kurgucu).
+  - Taşın p170'teki duruşu fizik olarak geçerli (tek yüzü üstünde oturuyor).
+- **Kurallar / ihlaller:**
+  - Dip karesi tek başına "oda köşesi" okunuyor (orta).
+  - Pus bandı hâlâ "kumsal" okunuyor (küçük).
+  - P02'de meşale başı Lagâri'nin yüzünü örtüyor (küçük).
+  - P12'de kapıdaki toz zerreleri çivi/leke gibi okunuyor (küçük).
+- **Açık / not:**
+  - Motion bir sonraki turda P08 p110/p125 karelerini versin.
+  - Yönetmen P02 yardımcı/meşale konumuna baksın.
