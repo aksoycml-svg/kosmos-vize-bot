@@ -516,3 +516,26 @@
   - **Eleştirmen:** P07 el yönü (soldan/alttan) p0'da okunuyor mu? Basamağın üç kademesi 360 px'te zayıf (yalnız 1–2 basamak görünüyor). Katlı kanat 360 px'te hâlâ "kalkan" okunabilir; açık kanat parmak ucu "yırtık bez" riski azaldı ama kalktı mı? Muhafız eli gölgesi yaklaşık bir elips (el silueti değil).
   - Kurulmadı: sarık ucunun çözülmesi (P07'de baş kadrajda değil), kol/el zemin gölgeleri elips yaklaşık, suda kanat (P06 p236+) telefonda "tahta/kalas" gibi duruyor (bu turun maddesi değildi).
   - Öz puan: 6/10 (insert okunur ve fiziksel ama el çizimi yalın; kanat biçimi hâlâ sınırda).
+
+## elestirmen (opus) · 2026-11-08 · K1 kapanış + K2 (insert P07 gece / P11 gün)
+- Ne yaptım: K2 paketini (17 kare, 3 yan yana karşılaştırma, telefon sayfası) inceledim. P06 p215/p290, P07 p0, P05 p204 ve duvarın üst kısmını tam boyda kırparak baktım. Renkleri render'dan bağımsız ölçtüm. K1-2 bulgu tablosunu güncelledim, K2 bulgularını yazdım. Karar: **K1 KOŞULLU** (P06'ya ait 2 orta), **K2 KOŞULLU** (2 kritik, 3 orta).
+- Dokunduğum dosyalar: `bolumler/evliya-ucuslari/kalibrasyon/K2/elestiri.md` (yeni), `bolumler/evliya-ucuslari/katki-raporu.md` (ek).
+- Aldığım kararlar ve gerekçeleri:
+  - Alıcı gövdesinin kadraj dışında olması kabul: insert niyetiyle uyumlu, kese okunurluğu korunuyor.
+  - P07'de elin soldan/alttan girmesi kabul: mekân geometrisi. K1-2'deki "sağdan" notumu geri aldım.
+  - Katlı kanadın "kalkan" okunması kabul. Suda kanadın kalas okunması ve buz gibi taç sıçrama red.
+  - P11 p210'daki uzanan el KRİTİK: dokunuşun anlamını tersine çeviriyor.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Fizik ve temas: P07 p0'da el kendi yeninin üstüne katlanmış, basamağa değmiyor (W1).
+  - Dokunuş anlamı: W2.
+  - Okunurluk: basamak blok gibi (W3); suda kanat kalas gibi (Y11); sıçrama buz gibi (Y10).
+  - Tek ışık: gölgeler kopuk elips ve suya düşüyor (W4).
+  - Kural 1: muhafızın hedefi üst kol (W5).
+  - Maske hatası: sıra çizgileri göğe taşıyor (Z5).
+  - Mesafe ayrıntısı: uzak duvar çit gibi (Z7).
+  - İmza sınırı: sikke ΔE 17.3 (Z8).
+- Açık sorular / bir sonraki ajana notlar:
+  - Motion: W1, W4, Y10, Y11, Z5, Z7, Z8.
+  - Yönetmen: W2, W5; P07/P11 `karakterler` ve `alt_ucte_bir`.
+  - Mekân + motion: W3; mekân: Z6.
+  - K3 bu koşulları beklemez. P07/P11 ve P06 kullanıcıya gitmeden önce kapanmalı.
