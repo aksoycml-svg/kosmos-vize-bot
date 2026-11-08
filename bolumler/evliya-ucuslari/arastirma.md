@@ -296,3 +296,81 @@ Gazete / popüler (düşük–orta güven, ayrı etiketli):
 ### Bu ekin açık kalanları
 - Tüm bulgular arama özeti; sayfalar açılabildiğinde öncelik: (1) Ralamb albümü makalesi (sarık/sakal), (2) Karateke/Bilgi 1675 (fişek kılıfı, fişekçi), (3) Millî Saraylar revzen makalesi, (4) Merian 1635 yüksek çözünürlük (çatı, Galata/Üsküdar). `WebFetch` ağ izni olmadan bu dört iş yapılamaz.
 - Akçe çapı, Osmanlı fişek kılıfı, Galata/Üsküdar konut çatı malzemesi, İncili Köşk pencere biçimi, yazıcı oturuşu, yaşa bağlı sakal kalıbı: **doğrulanamadı → nötr kalsın**.
+
+---
+
+## 11. Galata Kulesi dibi ve çevresi, 1630'lar (mekân sorumlusu soruları, P08)
+
+**Yöntem ve sınır (önce oku):** Bu oturumda `WebFetch` yine açamadı (istanbultarihi.ist, core.ac.uk: DNS "ENOTFOUND"; ağ izni gerekir). Aşağıdakilerin **tamamı `WebSearch` arama özetidir**; hiçbir sayfa açılıp metni doğrulanmadı. Merian 1635 / Lorichs 1559 gravürlerinin kendisine **bakılamadı**; gravürden çıkarım yok. "Çıkarım" = benim yorumum, kaynak değil. Soruların çoğunda doğrudan 1630'lar kaynağı **bulunamadı**; bilinmeyenler açıkça yazıldı.
+
+### 11.1 Özet tablo
+| # | Soru | Sonuç | Güven |
+|---|---|---|---|
+| 1a | Kule bir sur içinde miydi? | **Evet**: Galata surları Azapkapı–Şişhane arası, kuleyi çevirip Tophane'ye uzanır; ~3 km, 12 kapı | Orta (iki arama özeti, birbirini tutar) |
+| 1b | Kule dibinde avlu/hendek? | Kuleyle Tophane arası surların önünde ~15 m genişlikte hendek; kulenin "avlusu" 1863–64'te yıkılmış (Osmanlı döneminde avlu vardı) | Tek–iki kaynak, orta-düşük |
+| 1c | Kuleye bitişik ev/dükkân 1630'lar? | **Bilinmiyor** (doğrudan kaynak yok). Dolaylı: kule çevresinde "Türk mimarisi ahşap evler" 19. yy.'da Levanten kâgir evlere yer açmak için yıkıldı | Tek kaynak/dolaylı, düşük |
+| 1d | Sokak genişliği | **Bilinmiyor** (sayı bulunamadı) | — |
+| 2a | Ev tipi | Ahşap ağırlıklı; sık yangınlar sonradan kâgire geçirdi | Orta (genel), 1630 özelinde doğrulanamadı |
+| 2b | Kat sayısı, çatı, çıkma | **Bilinmiyor** (kiremit için bkz. §10-9: doğrulanamadı) | — |
+| 2c | Ceneviz taş evleri | **Doğrulanamadı** (sur ve kule kalmıştır, konut için bulgu yok) | — |
+| 3a | KD–D yönde anıtsal yapı | **Kılıç Ali Paşa Camii** (1580, Sinan) Tophane'de, kıyıda; **Tophane-i Âmire** Tophane'de; ikisi de Galata surlarının **dışında** | Orta-iyi (cami: çok sayfa tutarlı; dökümhane: Belleten/TDV özeti) |
+| 3b | Arazi | Kule zirve çevresinde; kulenin dibinden iki yana (Kasımpaşa ve Tophane) **inen** büyük mezarlık var (Türk dönemi) | Tek kaynak (popüler), düşük-orta |
+
+### 11.2 Sur, kapı, hendek (soru 1)
+- Galata, Tophane, Azapkapı ve Galata Kulesi arasında ≈3 km'lik bir surla çevriliydi, 12 kapısı vardı; sur 12 kapı ve 24 kule ile anılır, 12 kule deniz tarafındaydı [arama özeti: [Galata Kent Surları ve Koruma Önerileri (İTÜ)](https://polen.itu.edu.tr/items/88a03bab-2278-44be-895e-e30e13c43d78); [Marmara Üniv. – Galata Surları](https://openaccess.marmara.edu.tr/entities/publication/2c7d1200-758a-407f-8c82-828fc890d4c3); eşleşme tam kesin değil].
+- Güzergâh: Azapkapı'dan Şişhane'ye çıkar, Galata Kulesi'nin çevresini döner, Tophane'ye iner [arama özeti: aynı Marmara özeti]. Kuleyle Tophane arasında surların önünde ≈15 m genişliğinde hendek vardı [arama özeti, kaynak bağlantısı belirsiz: olası [Marmara özeti](https://openaccess.marmara.edu.tr/entities/publication/2c7d1200-758a-407f-8c82-828fc890d4c3)]. Tek kaynak → olası.
+- Fetihten sonra surların/kulenin bazı bölümleri ve Kastellion Kalesi yıktırılmış, hendekler kısmen doldurulmuş; 1509 depreminde zarar gören surlar II. Bayezid döneminde onarılmış [arama özeti: Marmara Üniv. Galata Surları]. Başka bir özet 1509 ve **1635** depremleri sonrası onarım dışında surların 19. yy. sonuna dek ayakta olduğunu söyler [arama özeti: istanbul.com blog / Arts&Culture, düşük-orta güven] → **1635 depremi sonrası bir onarım dönemi var; sahne yılına (≈1632–38) göre sur durumu belirsiz**.
+- Surların büyük kısmı 19. yy.'da yıkıldı: Melling panoraması (18. yy. sonu) Azapkapı–Şişhane duvarını hâlâ sağlam gösterir [arama özeti: [Google Arts & Culture – Galata Surları](https://artsandculture.google.com/asset/galata-surları-0005/NwGZc71cqH2ZAA)]; belediye imarında 30 Kasım 1863 kararıyla kule avlusu, sur kapıları ve kıyıdaki sur duvarları yıkımına, hendekler doldurulmasına başlandı [arama özeti: kule tarihi sayfaları, olası [TR Vikipedi – Galata Kulesi tarihi](https://tr.wikipedia.org/wiki/Galata_Kulesi_tarihi)]. Başka bir köşe yazısı 1860 der → yıl **çelişkili (1860 / 1863–64)**; 1630'lar için önemsiz, ama "sur 1630'da ayaktaydı" sonucunu destekler.
+- Çıkarım (kaynak değil): kule bir iç kale/burç gibi sur çizgisinin en yüksek noktasındaydı; "kuleyi çevreleyen sur + avlu" resmi tutarlıdır. **Kulenin dibinde meydan mı, dar sokak mı vardı: bilinmiyor.**
+
+### 11.3 Kule dibindeki yapılaşma ve sokak (soru 1, 2)
+- Doğrudan 1630'lar kaynağı (Evliya'da kule dibi ev/dükkân tarifi, Merian gravürü) **bulunamadı/açılamadı**.
+- Dolaylı iki ifade: (a) "Kulenin etrafındaki Türk mimarisi tarzındaki ahşap evlerin çoğu Levanten kâgir evler yapılabilsin diye yıktırıldı; eski fotoğraflarda görülür" [arama özeti: [e-yasamrehberi](https://e-yasamrehberi.com/seyahat-rehberi/galata-kulesi-tarihi.html) olası eşleşme; popüler site, düşük güven]. (b) Sık çıkan yangınlar ahşap evleri yok etti, yerlerine kâgir yapılar geldi; surlar işlevini yitirince özellikle deniz surlarına bitişik atölye ve evler yapıldı [arama özeti: sur çalışması, eşleşme belirsiz]. Yorum (çıkarım): 17. yy.'da Galata'da ahşap Osmanlı evleri vardı, ama kule dibine **bitişik** olduklarına dair kanıt yok; "dayalı iki ev" varsayımı **kanıtlanamaz, çürütülemez**.
+- Kule içi: ambar (tersane levazımı) [TDV-G, bkz. §5.1] → çıkarım: kule resmî/askerî kullanımda, dibinde depo-avlu karakteri **olası** (kanıt yok).
+- Mezarlık: Türk dönemi boyunca kule dibinden bir yanda Kasımpaşa'ya, öbür yanda Tophane'ye inen büyük bir Türk mezarlığı vardı; Levanten evlere yer açmak için servileri ve taşlarıyla yok edildi [arama özeti: tek popüler kaynak, farklı sitelerde tekrarlanıyor ama bağımsızlığı belirsiz → düşük-orta güven]. Eğer doğruysa **kule dışındaki yamaçlarda 1630'larda ev değil mezar taşları ve servi** görülür; "Pera sırtında" görsel için güçlü ve çarpıcı bir ipucu ama **tek kaynak, kullanılırsa "olası"**.
+- **Sokak genişliği: bilinmiyor.** Metre sayısı verecek kaynak çıkmadı. Genel Osmanlı bilgisi (çıkarım): dar, düzensiz. Rakam atamıyorum.
+
+### 11.4 Ev tipi (soru 2)
+- Osmanlı konutları (temel hariç) tamamen ahşap [bkz. §10-9, arama özeti dergipark, eşleşme belirsiz]; İstanbul'da 18. yy. öncesi eğimli çatının varlığı **tartışmalı**, dik çatı 19. yy. sonrası yaygın [WIT Press özeti, bkz. §10-9]. 1630'larda Galata konutlarının kat sayısı, çıkma, çatı malzemesi: **bilinmiyor/doğrulanamadı**.
+- Galata ayrıca ticaret/Levanten (gayrimüslim, yabancı) mahallesiydi: sur içi kent dokusu; kilise, ambar, han, ev, ticaretle şekillenen sokaklar [arama özeti: [istanbul.com blog](https://istanbul.com/blog/imagery-monuments-tower/galata-genoese-history), [Marmara özeti](https://openaccess.marmara.edu.tr/entities/publication/2c7d1200-758a-407f-8c82-828fc890d4c3)]; bina düzeyinde 1635 bilgisi vermez. Ceneviz konutlarından kalma taş ev bulgusu çıkmadı.
+- 1794 yangını kulenin ahşap külahı ve üst katlarını yaktı [arama özeti: kule tarihi sayfası]. **Dikkat — §4 Çelişki 11 ile fark:** orada TDV-G "külah yandı"; burada özet "ahşap külah" diyor. 1630'larda külahın "ahşap iskelet + kurşun kaplama" olması çelişmez; yine de malzeme çelişkili → kurşun gri nötr kal.
+
+### 11.5 Kuzeydoğu–doğu yönde yapılar ve arazi (soru 3)
+- **Kılıç Ali Paşa Camii:** Kaptan-ı Derya Kılıç Ali Paşa yaptırdı, Mimar Sinan; iki kitabede 988 H (1580), külliye 1580–83 [arama özeti: [TR Vikipedi](https://tr.wikipedia.org/wiki/K%C4%B1l%C4%B1%C3%A7_Ali_Pa%C5%9Fa_Camii), [İBB Kültürel Miras](https://kulturelmiras.ibb.istanbul/kilic-ali-pasa-kulliyesi/)]. Tophane'de, inşa edildiğinde kıyıda, Haliç/Boğaz ile Beyoğlu yakası arasındaki ana iskelenin başında; külliye cami, türbe, medrese, mektep, sebil, hamam [arama özeti: aynı]. "Denizin üstüne yapıldı" rivayeti gelenektir, belgesi yok. Bir kaynak camiyi surların **dışında** der [arama özeti, bağlantı belirsiz]. Çok kaynaklı tutarlı → cami 1630'larda **var**. Kubbe/minare sayısı bu aramada **doğrulanmadı** (çıkarım: tek büyük merkezî kubbe + minare, bakılmadı).
+- **Tophane-i Âmire:** Fâtih 1453 sonrası Tophane'de top dökümhanesi ve topçu kışlası yaptırdı; alan fetihten önce Ceneviz surlarının dışında kırlık/bahçelikti; Galata surlarındaki kapı "Tophane Kapısı"; II. Bayezid'de genişletildi, Kanuni'de yıkılıp daha büyük yeniden yapıldı [arama özeti: [Belleten](https://www.belleten.gov.tr/tam-metin/3805/tur), [TDV – Tophane](https://islamansiklopedisi.org.tr/tophane), Ceylan 2003]. Matrakçı'nın 1534–37 minyatüründe **üç bacalı** Tophane-i Âmire görülür [arama özeti: Fevzi Yılmaz makalesi, tek kaynak]. → 1630'larda dökümhane **var**; kubbe/baca silueti 1630 için bilinmiyor, 1537'deki üç baca 1630'a taşınmamalı ("olası").
+- **Yön (çıkarım, harita koordinatlarından, kaynak değil):** Tophane (Kılıç Ali Camii) kuleye göre **yaklaşık doğu–kuzeydoğu (≈ 60–80°)**, yani sorudaki 20–50° aralığından biraz daha "doğuya" düşer; Fındıklı ≈ 60° civarı. Koordinatları ezbere verdim, harita ile **doğrulanmalı**.
+- Fındıklı/Dolmabahçe yönü: 1630'larda anıtsal yapı bulgusu **çıkmadı** (bu aramada). Sarayburnu/Topkapı kıyı silueti için bkz. §5.2.
+- Arazi: kule Pera sırtının tepesinde; Tophane ve Haliç kıyısına doğru eğimli iniş (çıkarım, genel coğrafya; sayı yok). Kasımpaşa ve Tophane yönünde inen mezarlık (§11.3) bu inişi destekler (tek kaynak).
+- **Uçuş sahnesi için not:** Hezarfen'in rotası doğuya, Boğaz'a ve Üsküdar'a; Sarayburnu kuleye göre **güneydoğu–doğu** (çıkarım). P08 "kuzeydoğu–doğu" arka planı Tophane/Boğaz girişi olur; Sarayburnu/Topkapı kuleye göre daha güneyde.
+
+### 11.6 ÇELİŞKİLER (bu bölüm)
+1. **Sur yıkım yılı:** 1860 (köşe yazısı) ↔ 30.11.1863 kararı, 1863–64 (kule tarihi özetleri) [arama özetleri]. *Daha güvenilir:* 1863 kararı belgeli görünüyor; 1630 için fark yok.
+2. **Sur 1635'te sağlam mı?** Özet "1509 ve 1635 depremleri sonrası onarım dışında 19. yy.'a dek ayakta" der; 1635 depremi sahneden hemen sonra olabilir → sahne yılından önce mi sonra mı belirsiz. **Doğrulanamadı.**
+3. **Kule çevresi:** Ahşap Türk evleri (dolaylı kaynak) ↔ kule dibinde mezarlık (başka özet). İkisi aynı anda doğru olabilir (evler bir tarafta, mezarlık yamaçta) ya da farklı dönemleri anlatıyor olabilir; **ayrıştırılamadı**.
+
+### 11.7 Görsel potansiyel (bu bölüm)
+- Merian 1635 (Konstantinopel panoraması, Galata'dan/Galata kulesiyle) ve Lorichs 1559: bu bölümde **açılamadı**; kuleye yakın evlerin gerçek görünümünü ancak onlar verir. Wikimedia 429 → kiwix aynasında ya da Leiden/Gallica'da aranmalı (**doğrulanamadı**). Melling (1800 civarı) panoraması Galata surlarının sağlam halini gösterir (Google Arts & Culture) ama **1630'dan ~170 yıl sonra**; yalnız sur karakteri için ödünç.
+- Telifsiz aday: Matrakçı (1537, kule, sur, Tophane-i Âmire üç baca): kamu malı olması çok olası, erişim doğrulanmadı.
+
+### 11.8 Hikâye altınları (bu bölüm; yalnız arama özetinden, tek kaynak ise işaretli)
+- Ceneviz kulenin adı "İsa Kulesi" (Christea Turris) [arama özeti: kule tarihi sayfası] — yalnız ek bilgi.
+- Hezarfen'in uçtuğu kule, bir zamanlar zindan, o sıra ambar; dibinde ise (tek kaynağa göre) kuleden Tophane'ye inen bir mezarlık vardı — kule tepesinden bakan biri aşağıda servi ve mezar taşı görürdü (**tek kaynak, olası**).
+
+### 11.9 Çizilebilir öneri (mekân sorumlusu için; her satırda güven)
+| Öğe | Öneri | Dayanak | Güven |
+|---|---|---|---|
+| Çerçeve | Kule bir **sur çizgisinin** içinde/üstünde; taş sur duvarı kule dibinde görünsün (ya da kule dibinden bir sur kolu) | 11.2 | Orta |
+| Hendek | Kulenin Tophane yönünde sur önünde ~15 m hendek: yalnız arka planda ince çizgi; **isteğe bağlı**, sahne için zorunlu değil | tek kaynak | Düşük |
+| Kule dibi | "Kuleye dayalı iki ev" **kanıtlanamıyor**; iki seçenek: (A) kule dibinde **taş duvarlı küçük avlu/sur kapısı önü**, düz toprak/taş zemin, taşlar bu zemine düşer; (B) ahşap evler **kuleden birkaç adım uzakta**, aradan dar toprak/kaldırım yolu. Her ikisi de "bilinmiyor" ile uyumlu; **(A) kaynakla daha az çelişir** | 11.2–11.3 | Çıkarım |
+| Sokak genişliği | **Bilinmiyor.** Görsel ölçek için 2,5–4 m ("dar, düzensiz") **tasarım değeri**, kaynak değil | — | Doğrulanamadı |
+| Evler | Ahşap, düzensiz yükseklik; 2–3 kat; üst katta hafif çıkma; **eğim alçak–orta, tek ton koyu toprak çatı** (§10-9 ile aynı: kiremit deseni yok); kat sayısı/çıkma **çıkarım** | §10-9, 11.4 | Düşük |
+| Taş evler | Ceneviz taş konut iddiası yok; taş yalnız kule, sur, cami | 11.4 | — |
+| Arka plan KD–D | Kılıç Ali Paşa kıyıda tek büyük kubbe + minare siluet (kubbe tam biçimi doğrulanmadı → kubbe + minare kabaca, ayrıntı yok); yanında Tophane-i Âmire uzun alçak çatılı yapı **ve bacalar (sayı kanıtsız)**; arkasında Boğaz suyu; Fındıklı yönünde **boş/ağaçlı kıyı** (yapı kanıtı yok) | 11.5 | Orta (cami), düşük (dökümhane silueti) |
+| Arazi | Kule zirvede; Tophane yönünde kıyıya **kademeli iniş**; yamaçta servili mezarlık (tek kaynak, "olası") | 11.3, 11.5 | Düşük-orta |
+| Yön | Cami/Tophane kuleye göre doğu–kuzeydoğu (≈60–80°, harita doğrulanmalı); Sarayburnu daha güneydoğu | 11.5 | Çıkarım |
+
+### 11.10 Açık kalanlar
+- Merian 1635 ve Lorichs 1559 gravürleri kule dibini gösterir; **bu oturumda bakılamadı**. Mekân sorumlusu görsele eriştiğinde bu bölüm önce o gravürle denetlenmeli.
+- Evliya'nın Galata bölümü (Seyahatname I): kule dibi, sokak, ev tarifi için **açılamadı**; bu en kritik eksik birincil kaynak.
+- Sokak genişliği, kat sayısı, çıkma, çatı malzemesi, kuleye bitişik ev: **bilinmiyor**.
+- Erişim: istanbultarihi.ist, core.ac.uk (galata-4.pdf, ECOBARCE PDF'leri, TDV) ağ izni gerektirir.
