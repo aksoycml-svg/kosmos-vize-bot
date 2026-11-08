@@ -412,12 +412,13 @@
     },
     "sol_grup": {
      "x": [
-      90,
+      85,
       160
      ],
      "ayak_y": 1387,
      "figur_px": 50,
-     "not": "K3: grup x 40-140 → 90-160 (cs 0.97'de ekran x≥80: yan güvenli alan); mekanlar §1.3 #3'ten sapma, mekân sorumlusu onaylasın"
+     "sira": "soldan Y2 (x 92), Y1 meşaleli (x 110, meşale 118), Lagâri AYAKTA (x 130), demet (x 152)",
+     "not": "V4: P02 Lagâri ayakta, demet yanında; P03 p0 ile tutarlı (P03'te Y2 240, Y1 300, Lagâri 440 yürüyor, demet 520: aynı sıra). Ekran x≥105 (cs 0.97)"
     }
    },
    "sure_kare": 324,
@@ -461,18 +462,18 @@
     },
     {
      "kim": "lagari",
-     "x": 125,
+     "x": 130,
      "y": 1387,
      "olcek": 0.075,
      "yon": 1,
-     "poz": "oturan",
      "kit_eksik": [
       "KE-K1"
-     ]
+     ],
+     "poz": "ayakta"
     },
     {
      "kim": "yardimci-1",
-     "x": 98,
+     "x": 110,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -481,7 +482,7 @@
     },
     {
      "kim": "yardimci-2",
-     "x": 152,
+     "x": 92,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -493,7 +494,7 @@
     {
      "tur": "fisek-demet",
      "id": "demet",
-     "x": 125,
+     "x": 152,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -503,7 +504,7 @@
     {
      "tur": "mesale",
      "id": "mesale1",
-     "x": 108,
+     "x": 118,
      "y": 1345,
      "olcek": 0.075,
      "kit_eksik": [
@@ -513,7 +514,7 @@
    ],
    "ekran_yazisi": [
     {
-     "bant": "ust",
+     "bant": "alt",
      "metin": "1. UÇUŞ · Sahil köşkü, 1630'lar",
      "en": "FLIGHT 1 · Shore pavilion, 1630s",
      "tur": "iddia",
@@ -524,7 +525,18 @@
      ],
      "vurgu_en": [
       "FLIGHT"
-     ]
+     ],
+     "kutu": {
+      "x": [
+       260,
+       1000
+      ],
+      "y": [
+       1330,
+       1450
+      ],
+      "not": "V3 istisnası: üst üçte birin tek dolgusu şenlik; yazı alt banda, sol grubu (ekran x≈90-200, y≈1250-1370) örtmez: x ≥ 260 ve y ≥ 1330"
+     }
     }
    ],
    "temaslar": [
@@ -587,7 +599,7 @@
      "db": 0
     }
    ],
-   "not": "Sol rıhtımda 4-5 px'lik grup P03 için kurulum nesnesidir (25 px telefonda ışık lekesi + demet silueti). [2026-11-08 mekanlar §7] Grup x 40-140, ayak y 1387, figür ≈50 px (olcek 0.075). [K3] cs 0.97 + grup x 90-160: sol grup ekran x≥103, sağ ön baca kadrajda. [K3] şenlik merkezi y 250/230, yarıçap ≈240 (üst yazı bandıyla kısmen örtüşür: arka plan etkisi, dokunuş değil).",
+   "not": "Sol rıhtımda 4-5 px'lik grup P03 için kurulum nesnesidir (25 px telefonda ışık lekesi + demet silueti). [2026-11-08 mekanlar §7] Grup x 40-140, ayak y 1387, figür ≈50 px (olcek 0.075). [K3] cs 0.97 + grup x 90-160: sol grup ekran x≥103, sağ ön baca kadrajda. [K3] şenlik merkezi y 250/230, yarıçap ≈240 (üst yazı bandıyla kısmen örtüşür: arka plan etkisi, dokunuş değil). [K3] V3: ekran yazısı alt banda (kutu x 260-1000, y 1330-1450; sol grup açık). V4: Lagâri ayakta, grup sırası Y2,Y1,Lagâri,demet.",
    "ayna": {
     "es": "P10",
     "kare": 0,
@@ -2903,13 +2915,13 @@
      "bas_aci": {
       "kare": [
        70,
-       112
+       116
       ],
       "deger": [
        0,
        1
       ],
-      "not": "önden → sağa profil (Üsküdar)"
+      "not": "önden → sağa profil (Üsküdar); cs 2.4 sabitken (p66+) tamamlanır; profil çıkıntısı ≥%25 baş genişliği, sarık ≥%20 arkaya (V2, motion çizer)"
      }
     }
    },
@@ -2919,7 +2931,7 @@
     "tr": "Onu kim izliyor? Yine padişah. Yine aynı köşkten.",
     "en": "Who's watching? The sultan again. From the very same pavilion."
    },
-   "olcek": "geniş (P02 ile AYNI kadraj p0, cs 0.9) 0.4 sn tutulur -> push-in p24-66 cs 0.9->2.4 -> göğüs/büst (padişah ≥ %12) ile baş çevirme p70-112; son kare cx -28, cy 420",
+   "olcek": "geniş (P02 ile AYNI kadraj p0, cs 0.9) 0.4 sn tutulur -> push-in p24-66 cs 0.9->2.4 -> göğüs/büst (padişah ≥ %12) ile baş çevirme p70-112; son kare cx -108, cy 420 (V7: sol üst yarım baca dilimi kadraj dışı; pencere ekran x≈480, sağda Üsküdar yönüne boşluk)",
    "kamera": {
     "kare": [
      0,
@@ -2936,8 +2948,8 @@
     "cx": [
      0,
      0,
-     -10,
-     -28
+     -90,
+     -108
     ],
     "cy": [
      0,
@@ -2960,7 +2972,7 @@
       {
        "ad": "bak",
        "bas": 70,
-       "bit": 112,
+       "bit": 116,
        "ops": {
         "x": 1,
         "y": 0,
@@ -3001,7 +3013,7 @@
    "kontrol_ek": [
     0,
     66,
-    112,
+    116,
     280
    ],
    "okunurluk": {
@@ -3030,7 +3042,7 @@
      "db": 0
     }
    ],
-   "not": "Baş çevirme p70-112: TR 'Yine padişah' p74-144 ile eşzamanlı. Çevirme sağa (Üsküdar yönü); P09'daki uçuş yönüyle aynı. [2026-11-08 mekanlar §7.2] cs 0.9->2.4: p0'da P02 ile aynı kadraj (0.9), 0.4 sn sonra push-in; çevirme tam cs 2.4'te. [K3] tasarim §3.5 'P10 cs 1.6'da ≥240 px' eskimiş: mekanlar hesabı cs 2.4 (büst 1.1 m x 92 px/m x 2.4 = 242 px); tasarımcı güncellesin.",
+   "not": "Baş çevirme p70-112: TR 'Yine padişah' p74-144 ile eşzamanlı. Çevirme sağa (Üsküdar yönü); P09'daki uçuş yönüyle aynı. [2026-11-08 mekanlar §7.2] cs 0.9->2.4: p0'da P02 ile aynı kadraj (0.9), 0.4 sn sonra push-in; çevirme tam cs 2.4'te. [K3] tasarim §3.5 'P10 cs 1.6'da ≥240 px' eskimiş: mekanlar hesabı cs 2.4 (büst 1.1 m x 92 px/m x 2.4 = 242 px); tasarımcı güncellesin. [K3] V7: cx -28 → -108 (render: sol üst köşedeki yarım baca ekran x<72 idi). V2 zamanlama: çevirme p70-116, cs 2.4'e p66'da erişildi (cs ≥2.2 tamam).",
    "ayna": {
     "es": "P02",
     "kare": 0,
@@ -3618,7 +3630,8 @@
     },
     "isik_serit": {
      "bas": 34,
-     "bit": 100
+     "bit": 100,
+     "kaynak": "pencere açıklığından türer (AciklikIsigi, yön (-0.83,+0.56)); kanat 12°'de yarık x 706-738 (cs 2.6'da 83 px)"
     },
     "kapi": {
      "x": [
@@ -3637,7 +3650,17 @@
      "zemin",
      "minder",
      "zemin_isik_lekesi"
-    ]
+    ],
+    "padisah": {
+     "bileşen": "PadisahSiluet",
+     "profil": true,
+     "bas_aci": 1,
+     "yuz_on_kontur_x": 457,
+     "goz_y": 740,
+     "ayak_y": 1267,
+     "not": "profil siluet (göz/kaş/ağız çizilmez); ışık şeridi göz hizasında profil konturunda (şeridin üst ucu x 457'de y 739); gün: kaftan #36302c, çıplak el #b88470"
+    },
+    "kamera_dogrulama": "cs 1.8-2.6, cx 150-216, cy 130-210 sınırlar içinde; kapı sağ pervazı ekran x≈267 (p50-120) / 296 (p204); zemin ekran y≥1612 kadraj dışı"
    },
    "sure_kare": 216,
    "sure_sn": 3.6,
@@ -3853,7 +3876,11 @@
    "kontrol_kare": 66,
    "kontrol_ek": [
     0,
-    150
+    30,
+    34,
+    100,
+    150,
+    204
    ],
    "okunurluk": {
     "nesne": "pencere kanadı + ışık şeridi",
@@ -3885,7 +3912,7 @@
      "db": 0
     }
    ],
-   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı."
+   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok)."
   },
   {
    "id": "P13",

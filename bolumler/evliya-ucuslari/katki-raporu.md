@@ -613,3 +613,24 @@
   - Tasarımcı: V6.
   - Mekân + motion: V8.
   - K4 bu koşulları beklemez. P02/P10 kullanıcıya gitmeden önce V1–V5 kapanır.
+
+## mekan-sorumlusu · 2026-11-08 · mekanlar.md R2 (K3 V8 + motion soruları + K4 iç kartı)
+- Ne yaptım:
+  - **Gündüz yansıması (§1.3a):** yalnız koyu kütleler yansır (kemer, niş, cumba, saçak), α .55–.60. Boy 0.6×, 7 dilim, ±6–14 px kayma, alt kenarda 2 düz basamak. Açık cephe yansımaz.
+  - **Motion soruları (§1.3b):** eksen asimetrisi kasıtlı (560 kompozisyon ekseni, sağ kısım yan kanat). P02 cs 0.97 + grup onaylandı; şart: grubun sağ ucu ≤ 148, köşke ≥ 12 px boşluk.
+  - **P12 kartı gözden geçirildi:** koordinatlar tutarlı. Düzeltilenler: etkin yarık = 0.55·sin θ (düzlem içi açıklık değil); havadaki huzme yalnız kenar çizgisi + toz (dolgu ≤ α .06); okunan şerit yüzde oluşur.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/mekanlar.md, bolumler/evliya-ucuslari/katki-raporu.md
+- Açık: P12'de p50'den sonra yarık kadraj dışında kalıyor (şerit sağ kenardan giriyor); kabul edildi. Yönetmen isterse cx'i azaltabilir.
+
+## yonetmen · 2026-11-08 · K3 eleştirisi (KOŞULLU) + K4 hazırlığı (P12)
+- Ne yaptım: V3/V4/V7/V2-zamanlama'yı `bolum.json` + `sahne-plani.md` §5.0d'ye işledim; P02 p80 ve P10 p0/p282'yi render edip baktım; P12'yi K4 için mekanlar §1.6 / tasarim §4.10, §3.5 ile karşılaştırdım.
+  - V3: P02 ekran yazısı alt banda (kutu x 260-1000, y 1330-1450), istisna gerekçesiyle yazıldı; sol grup açık.
+  - V4: P02 Lagâri ayakta; sıra Y2 92, Y1 110 (meşale 118), Lagâri 130, demet 152 (P03 sırasıyla aynı).
+  - V7: P10 cx -28 → -108 (yarım baca dilimi kadraj dışı; render doğrulandı).
+  - V2: baş çevirme p70-116, cs 2.4'e p66'da erişiliyor (çevirme cs ≥ 2.2'de biter).
+  - K4: P12 tutarlı; `padisah` profil parametresi, şerit kaynağı, kontrol kareleri (0/30/34/66/100/150/204) eklendi.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/bolum.json, sahne-plani.md, katki-raporu.md.
+- Kararlar: V7'de cx'i +40 değil -80 kaydırdım: render'da yarım baca sol kenardaydı, içeri kaydırmak onu daha çok gösterirdi; dışarı kaydırmak pencereyi sol-merkeze, Üsküdar yönüne (sağ) boşluk bırakıyor. Yazı kutusu hem x≥260 hem y≥1330 (iki şart birlikte) alındı.
+- Kurallar: yazı bandı istisnası gerekçeli; kural 7 (P02/P10 render); P12'de hareket tamamlanır (kanat p30, işaret p170, plan 216).
+- Doğrulayıcı: P02/P10'da 0 hata; bölümde 10 hata, hepsi kurulmamış P12 `ic` görünümü/jestleri (pencere-kapat, don, pencere-kanat) ve P03/P04/P08-P09/P13-P14 parçaları.
+- Açık: motion: V1, V2 profil çizimi, V5, V6, V8, V9 ve K4 `ic` şablonu; eleştirmen: P02 yazı kutusu alt bantta EN/TR genişliği.
