@@ -69,8 +69,8 @@
     "cy": [
      0,
      0,
-     500,
-     500
+     140,
+     140
     ],
     "egri": "inout"
    },
@@ -239,16 +239,22 @@
       "x": [
        290,
        290,
+       495,
+       601,
        700
       ],
       "y": [
        1250,
        1250,
+       1244,
+       1235,
        1250
       ],
       "kare": [
        176,
        196,
+       229,
+       246,
        262
       ],
       "yon": 1,
@@ -3834,8 +3840,8 @@
    "ekran_yazisi": [
     {
      "bant": "ust",
-     "metin": "Padişah (Evliya'ya göre)",
-     "en": "The sultan (according to Evliya)",
+     "metin": "Padişah",
+     "en": "The Sultan",
      "tur": "iddia",
      "bas": 0,
      "bit": 28,
@@ -3845,7 +3851,7 @@
      "vurgu_en": [
       "sultan"
      ],
-     "not": "[K5-yon A3] isim etiketi işlevi: padişah sarığının üstünde (üst bant y 240-400, sarık ≈484), p0-28; replik 1 üst banda alındı. Süre 0.47 sn kısa: senarist/orkestra karar versin (etiket kısaltılabilir ya da replik plakası 'PADİŞAH (Evliya'ya göre)' olabilir)"
+     "not": "[K5-yon A3] isim etiketi işlevi: padişah sarığının üstünde (üst bant y 240-400, sarık ≈484), p0-28; replik 1 üst banda alındı. [Kullanıcı kararı] etiket kısaltıldı; 'Evliya'ya göre' bilgisi açıklamaya (caption) gider"
     }
    ],
    "replik": [
