@@ -998,11 +998,13 @@
     "saat": "gece",
     "fitil": {
      "bas": 30,
-     "bit": 56
+     "bit": 56,
+     "tukenir": 56,
+     "kalan": "kısa kömürleşmiş parça rıhtımda kalır; kalkan demete bağlı kalmaz, gerilmez"
     },
     "puskurme": {
      "bas": 56,
-     "bit": 198
+     "bit": 210
     },
     "su": {
      "y": 1200,
@@ -1017,6 +1019,11 @@
      ],
      "px_m": 17,
      "not": "mekanlar.md §7.1: ufuk 720'ye göre 17 px/m; eski 900/640 ufuk-ölçek kuralına aykırıydı"
+    },
+    "yukselis": {
+     "tur": "dik",
+     "olcek_min": 0.9,
+     "tilt": "kamera demeti izler; arka plan aşağı kayar"
     }
    },
    "sure_kare": 210,
@@ -1025,17 +1032,17 @@
     "tr": "Fitil yanıyor ve fişek onu göğe fırlatıyor!",
     "en": "The fuse burns, and the rocket hurls him skyward!"
    },
-   "olcek": "geniş/boy (yardımcı boy %35 ön planda + fişek); sabit cs 1.0, p120'den sonra tilt cy 0->200 (fişeği izler)",
+   "olcek": "geniş/boy (yardımcı boyu %35 ön planda + demet); demet DİK yükselir (olcek ≥0.9), p112'den tilt cy 0→200 demeti izler (ayaklar ≤ y 1500)",
    "kamera": {
     "kare": [
      0,
-     120,
+     112,
      198
     ],
     "cs": [
-     1.0,
-     1.0,
-     1.0
+     1,
+     1,
+     1
     ],
     "cx": [
      0,
@@ -1069,21 +1076,23 @@
       ]
      },
      "kit_eksik": [
-      "KE-K1"
-     ]
+      "KE-K1",
+      "KE-J2"
+     ],
+     "jestler": [],
+     "tutun": {
+      "nesne": "sicim-bagi",
+      "not": "P04 'tutunuyor' kurulumunun karşılığı: ön el yan tüpün sicim bağını kavrar, arka el oturak kenarında (bagli+oturan IK varsayılanı); plan boyunca"
+     }
     },
     {
      "kim": "yardimci-1",
      "x": [
       300,
       300,
-      190
+      230
      ],
-     "y": [
-      1330,
-      1330,
-      1330
-     ],
+     "y": 1296,
      "kare": [
       0,
       58,
@@ -1094,7 +1103,14 @@
       {
        "ad": "sicra",
        "bas": 58,
-       "bit": 90
+       "bit": 90,
+       "ops": {
+        "kol_yuze": [
+         66,
+         90
+        ],
+        "geri_adim": "iki ayakla küçük"
+       }
       }
      ],
      "kit_eksik": [
@@ -1104,13 +1120,14 @@
     },
     {
      "kim": "yardimci-2",
-     "x": 240,
-     "y": 1290,
-     "olcek": 0.92,
+     "x": 112,
+     "y": 1268,
+     "olcek": 0.9,
      "yon": 1,
      "kit_eksik": [
       "KE-K4"
-     ]
+     ],
+     "durus": "arka-3/4, denize/demete bakar (yüzü kameraya dönük değil), kollar önde kenetli; Y1'den farklı poz ve boy (0.9, geride)"
     }
    ],
    "props": [
@@ -1120,16 +1137,16 @@
      "x": [
       520,
       520,
-      525,
-      545,
-      570
+      524,
+      532,
+      540
      ],
      "y": [
       1330,
       1330,
-      1290,
-      1180,
-      1020
+      1230,
+      1020,
+      790
      ],
      "kare": [
       0,
@@ -1156,24 +1173,31 @@
      },
      "kit_eksik": [
       "KE-P1"
+     ],
+     "olcek": [
+      1,
+      1,
+      0.97,
+      0.95,
+      0.92
      ]
     },
     {
      "tur": "mesale",
      "id": "mesale1",
      "x": [
-      310,
+      280,
       330,
       330,
       330,
       200
      ],
      "y": [
-      1000,
+      1140,
       1180,
       1322,
       1322,
-      1000
+      1060
      ],
      "kare": [
       0,
@@ -1185,7 +1209,8 @@
      "bagli": "yardimci-1",
      "kit_eksik": [
       "KE-P7"
-     ]
+     ],
+     "kosul": "alev x 400-700 koridoruna girmez (Lagâri yüzü / uçan demet); p56'dan sonra alev x ≤ 330, y ≥ 900"
     },
     {
      "tur": "baslik",
@@ -1193,16 +1218,16 @@
      "x": [
       300,
       300,
-      230,
-      150,
-      110
+      250,
+      200,
+      170
      ],
      "y": [
       680,
       680,
       480,
       1315,
-      1325
+      1322
      ],
      "kare": [
       0,
@@ -1222,6 +1247,18 @@
      "kit_eksik": [
       "KE-P4"
      ]
+    },
+    {
+     "tur": "kanat",
+     "id": "kanat_l",
+     "bagli": "lagari",
+     "durum": {
+      "acik": 0
+     },
+     "kit_eksik": [
+      "KE-P2"
+     ],
+     "not": "sırtta KATLI (tasarim §3.2); P06'da p40-58 açılır"
     }
    ],
    "ekran_yazisi": [
@@ -1289,7 +1326,9 @@
    },
    "kontrol_kare": 78,
    "kontrol_ek": [
-    110
+    0,
+    110,
+    204
    ],
    "okunurluk": {
     "nesne": "yardımcı figürü + başlık yayı",
@@ -1297,7 +1336,7 @@
     "net_sn": 1.3,
     "not": "başlık olcek 1.6 (≈190 px, %10); yay y 480-1315, x 110-300 (yan marj ≥ 80 ✓). Başlık y≥480 > yazı bandı; yazı p120'de başlık yere inince başlar"
    },
-   "alt_ucte_bir": "Rıhtım taşı + yardımcı bacakları + yuvarlanan başlık (y 1315) + fitil/duman; p120+ tilt'te ıslak taşa yansıyan fişek ışığı ve deniz.",
+   "alt_ucte_bir": "Rıhtım taşı + Y1/Y2 bacakları (ayak ekran y ≤ 1496) + yuvarlanan başlık (y 1322) + kömürleşmiş fitil kalıntısı; tilt sonrası demetin altında kıyı/deniz ve fişek ışığı.",
    "kit_eksik": [
     "KE-S1",
     "KE-K1",
@@ -1324,7 +1363,7 @@
      "db": 0
     }
    ],
-   "not": "Kalkış p112 (başlık p110'da yerde): dokunuş doc'unun açık sorusu 1 -> p112. Yükseliş ekranda yalnız ~120 px; yüksekliğin okunması tilt + yardımcı büyük ön plan + P06 ile verilir (stilize ölçek, fizik notu sahne-plani'nda)."
+   "not": "Kalkış p112 (başlık p110'da yerde): dokunuş doc'unun açık sorusu 1 -> p112. Yükseliş ekranda yalnız ~120 px; yüksekliğin okunması tilt + yardımcı büyük ön plan + P06 ile verilir (stilize ölçek, fizik notu sahne-plani'nda). [2026-11-08 K1 eleştirisi] Demet dik yükselir (y 1330→790, olcek ≥0.92); fitil p56'da tükenir; puskurme.bit 210 (P06 p0 ile kesintisiz); meşale alevi x ≤ 330 / koridor dışında; Y1 y 1296 (ayak ≤ 1500), Y2 x 112 geride; Y1 sıçrama x 300→230."
   },
   {
    "id": "P06",
@@ -1336,11 +1375,12 @@
     "puskurme": {
      "bas": 0,
      "bit": 36,
-     "sonuk": true
+     "sonuk": true,
+     "not": "P05 p209 ile kesintisiz: püskürme sürerken başlar, p36'da söner"
     },
     "su": {
      "y_demet": 1200,
-     "y_inis": 1180,
+     "y_inis": 775,
      "halka": {
       "bas": 100,
       "bit": 130
@@ -1357,10 +1397,21 @@
      "not": "mekanlar.md §7.1: ufuk 720'ye göre 17 px/m; eski 900/640 ufuk-ölçek kuralına aykırıydı"
     },
     "kanat_suda": {
-     "x": 650,
-     "y": 1185,
+     "x": 770,
+     "y": 778,
+     "olcek": 0.25,
      "plan_sonuna_kadar": true
-    }
+    },
+    "kosk_basamak": {
+     "x": [
+      790,
+      830
+     ],
+     "y": 762,
+     "adim": 3,
+     "not": "köşk rıhtımından denize inen basamaklar; kıyı görünümünde kit_eksik (KE-S1)"
+    },
+    "inis": "köşkün önünde: iniş (810, 775), olcek 0.25; kamera p150-230 köşke push-in (cs 1→2.0, katalog cx sınırı -300; cs 2.5 köşk-merkezli cx -735 sınır dışı)"
    },
    "sure_kare": 300,
    "sure_sn": 5.0,
@@ -1368,31 +1419,31 @@
     "tr": "Barut bitince kanatlarını açıyor. Süzülüp köşkün önünde denize iniyor.",
     "en": "Powder gone, wings open, he glides down in front of the pavilion."
    },
-   "olcek": "geniş (kadraj P05 sonu ile aynı); sonda tilt 200->60 ile iniş izlenir",
+   "olcek": "geniş (P05 sonuyla AYNI kadraj p0-150: Lagâri+demet havada, bırakma, boş demet yakına düşer); p150-230 köşke push-in cs 1→2.0 (köşk su çizgisi ekran y≈1130); iniş köşkün önünde",
    "kamera": {
     "kare": [
      0,
      150,
-     215,
+     230,
      288
     ],
     "cs": [
-     1.0,
-     1.0,
-     1.0,
-     1.0
+     1,
+     1,
+     2.0,
+     2.0
     ],
     "cx": [
      0,
      0,
-     0,
-     0
+     -300,
+     -300
     ],
     "cy": [
      200,
      200,
-     60,
-     60
+     536,
+     536
     ],
     "egri": "inout"
    },
@@ -1402,52 +1453,48 @@
      "poz": "oturan",
      "yon": 1,
      "x": [
-      570,
-      580,
+      550,
+      552,
       590,
-      630,
-      700,
+      660,
       740,
-      730,
-      735,
-      760,
-      785
+      810,
+      815,
+      822,
+      828
      ],
      "y": [
-      520,
-      460,
-      440,
-      420,
-      520,
-      800,
-      1180,
-      1170,
-      1070,
-      985
+      700,
+      700,
+      690,
+      690,
+      720,
+      775,
+      772,
+      770,
+      768
      ],
      "kare": [
       0,
-      28,
-      40,
-      60,
-      100,
-      160,
+      46,
+      70,
+      110,
+      150,
       215,
       232,
       260,
       288
      ],
      "olcek": [
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      0.9,
-      0.85
+      0.92,
+      0.92,
+      0.8,
+      0.6,
+      0.4,
+      0.25,
+      0.25,
+      0.24,
+      0.23
      ],
      "jestler": [
       {
@@ -1457,7 +1504,7 @@
       },
       {
        "ad": "ucus",
-       "bas": 58,
+       "bas": 46,
        "bit": 215
       },
       {
@@ -1486,13 +1533,11 @@
        0,
        0,
        0,
-       0,
        1,
        1,
        1
       ],
       "kanat": [
-       1,
        1,
        1,
        1,
@@ -1510,12 +1555,16 @@
       "KE-J4",
       "KE-J10",
       "KE-J12"
-     ]
+     ],
+     "bagli": {
+      "prop": "demet",
+      "bit": 46
+     }
     },
     {
      "kim": "yardimci-1",
-     "x": 190,
-     "y": 1330,
+     "x": 230,
+     "y": 1296,
      "yon": 1,
      "kit_eksik": [
       "KE-K4"
@@ -1523,13 +1572,14 @@
     },
     {
      "kim": "yardimci-2",
-     "x": 240,
-     "y": 1290,
-     "olcek": 0.92,
+     "x": 112,
+     "y": 1268,
+     "olcek": 0.9,
      "yon": 1,
      "kit_eksik": [
       "KE-K4"
-     ]
+     ],
+     "durus": "arka-3/4, denize bakar"
     }
    ],
    "props": [
@@ -1537,17 +1587,17 @@
      "tur": "fisek-demet",
      "id": "demet",
      "x": [
-      570,
-      580,
-      582,
-      570,
+      540,
+      545,
+      548,
+      555,
       560
      ],
      "y": [
-      1020,
-      960,
-      960,
-      1110,
+      790,
+      760,
+      760,
+      1000,
       1200
      ],
      "kare": [
@@ -1582,6 +1632,13 @@
      },
      "kit_eksik": [
       "KE-P1"
+     ],
+     "olcek": [
+      0.92,
+      0.92,
+      0.92,
+      0.88,
+      0.85
      ]
     },
     {
@@ -1621,14 +1678,14 @@
        250
       ],
       "x": [
-       725,
-       690,
-       650
+       800,
+       780,
+       770
       ],
       "y": [
-       1180,
-       1186,
-       1185
+       776,
+       778,
+       778
       ],
       "gorunen_oran": 0.4,
       "dalga_px": 4,
@@ -1637,8 +1694,20 @@
        "sonuna_kadar": true,
        "sabit": true
       },
-      "kural": "iniş noktasının (x 730) 40-120 px solunda, su çizgisi kanadın üstünden geçer, rıhtım dudağının (y 1238) önünde; kullanıcı kararı: kanat plan sonuna kadar suda kalır"
+      "kural": "iniş noktasının (810, 775) solunda, su çizgisi kanadın üstünden geçer; kullanıcı kararı: kanat plan sonuna kadar suda kalır. Konum köşk önüne taşındı (K1 eleştirisi: iniş köşkün önünde)",
+      "olcek": 0.25
      }
+    },
+    {
+     "tur": "mesale",
+     "id": "mesale1",
+     "x": 200,
+     "y": 1060,
+     "bagli": "yardimci-1",
+     "kit_eksik": [
+      "KE-P7"
+     ],
+     "kosul": "alev x ≤ 330 (P05 p88 ile aynı durum)"
     }
    ],
    "ekran_yazisi": [
@@ -1722,16 +1791,17 @@
    },
    "kontrol_kare": 76,
    "kontrol_ek": [
+    0,
     215,
-    286
+    290
    ],
    "okunurluk": {
     "nesne": "düşen demet",
     "oran_pct": 18,
     "net_sn": 1.7,
-    "not": "demet ≈350 px yüksekliğinde (stilize), düşüş zonu alt-sol, kanat zonu üst-sağ; ayrı bölgeler. Kanat siluet, yapı belirsiz"
+    "not": "Lagâri+demet birlikte havada p0-46, bırakma p46 (EV-D2 okunur); boş demet olcek ≈0.85-0.92 yakına düşer; iniş olcek 0.25 (köşkten ≈6x, ufuk-ölçek tavanı <10x). Yazı p208-282 üst bantta: iniş sonrası Lagâri baş ekran y ≈ 900 (çakışmaz)."
    },
-   "alt_ucte_bir": "Deniz (ışıltı) y 1000-1450, sol altta yardımcıların gövdeleri/rıhtım taşı, demetin su halkası ve buharı; p236+ suda yatan kanat (iniş noktasının solunda, y≈1185) ve halkası.",
+   "alt_ucte_bir": "p0-150: rıhtım + Y1/Y2 (ayak ≤ 1496), demet su halkası/buharı (ekran y≈1400). p150+: köşk tabanı ve su (ekran y 1000-1500), suda yatan kanat, yüzen Lagâri; yardımcılar kadrajdan çıkar.",
    "kit_eksik": [
     "KE-S1",
     "KE-K1",
@@ -1758,7 +1828,7 @@
      "db": 0
     }
    ],
-   "not": "Dokunuş zamanı doc'a göre p40-130: 'kanatlarını açıyor' kelimeleri TR p56, EN p50 -> kanat p40-58. İniş p215: TR 'denize' p209-230, EN 'pavilion' p178-222 ile uyumlu. Yüzme+basamak p222-288 (1.1 sn); yazı p208'de başlar, dokunuştan sonra. [2026-11-08 kullanıcı kararı] Kanat Lagâri'den p222-250'de ayrılır, suda iniş noktasının solunda kalır (Lagâri sağa yüzer, kanattan uzaklaşır); P07'de Lagâri kanatsız."
+   "not": "Dokunuş zamanı doc'a göre p40-130: 'kanatlarını açıyor' kelimeleri TR p56, EN p50 -> kanat p40-58. İniş p215: TR 'denize' p209-230, EN 'pavilion' p178-222 ile uyumlu. Yüzme+basamak p222-288 (1.1 sn); yazı p208'de başlar, dokunuştan sonra. [2026-11-08 kullanıcı kararı] Kanat Lagâri'den p222-250'de ayrılır, suda iniş noktasının solunda kalır (Lagâri sağa yüzer, kanattan uzaklaşır); P07'de Lagâri kanatsız. [2026-11-08 K1 eleştirisi] P05 son durumu ile kesintisiz: demet (540,790), puskurme yanıyor, Lagâri demette oturuyor (bagli bit 46 → ucus 46). Boş demet yakına (y 1200) düşer; kamera köşke push-in; iniş (810,775). Y1 ayağı y 1296+cy 200 = 1496 ≤ 1500."
   },
   {
    "id": "P07",
