@@ -161,6 +161,15 @@
 - Kurallar: kanca karesinde tek odak; "kompars yüzsüz bakmaz" ve "açık-gri büyük prop gece ikinci odak olur" dersleri uygulandı.
 - Açık: Kanadın gece ufku (`#2c3246`, L\* ≈ 21) önünde L\* farkı küçük kalabilir. Ayrışma amber kenara bağlı; motion K2 turunda ölçmeli.
 
+## tasarimci · 2026-11-08 · tasarim.md revizyon v1.5 (K3 eleştirisi)
+- Ne yaptım: K3 eleştirisindeki üç tasarım maddesini işledim.
+  - **§3.0b sarık ucu (V6):** siyah uç "kapak kulpu" okunuyordu. Uç artık sarığın kendi gölge tonunda, 6–8 birim ve konturu yok. Okunmazsa kaldırılır.
+  - **§3.5 padişah:** P10 okunurluk değeri cs 2.4 / büst ≈242 px olarak güncellendi. Siluet bütünlüğü (V1) açıkça yazıldı: sarık başa oturur; baş, sarık ve gövde tek koyu kütle; ayrım yalnız kenar ışığıyla.
+  - **§4.3 sikke:** renkler aynı kaldı. Sikke sert kenarlı iki tonla çizilir, gradyan yok.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/tasarim.md, bolumler/evliya-ucuslari/katki-raporu.md
+- Kararlar: Kavuk ucu kaldırılmak yerine gölge tonunda tutuldu, ama kaldırma da serbest. Sarığın asıl imza ayrıntısı tümsekli kontur; kavuk ucu ikincil.
+- Açık: V1 (padişah sarığının başın üstünde havada durması) motion hatası; tarif zaten bunu yasaklıyor.
+
 ## arastirmaci · 2026-11-08 · Evliya uçuşları tasarım doğrulama eki (tasarim.md §9, madde 4–10)
 - Ne yaptım: Tasarımcının 7 [G] sorusunu (sarık/sakal, fişek kılıfı, kese/sikke/akçe, yazı yüzeyi, renkli havai fişek, konut çatısı, köşk pencereleri) 20+ `WebSearch` sorgusuyla taradım ve `arastirma.md` sonuna "## 10. Tasarım doğrulama eki" ekledim: özet tablo + her madde için cevap, kaynak, güven, tasarıma etkisi.
 - Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/arastirma.md (yalnız sona ek, mevcut bölümlere dokunulmadı), /home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/katki-raporu.md (bu bölüm).
