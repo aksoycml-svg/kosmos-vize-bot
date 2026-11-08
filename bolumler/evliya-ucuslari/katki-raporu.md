@@ -715,3 +715,11 @@
   - Motion: U1 (şerit daralması), U4, U5 (poz), U6; P02/P10 ölçüm noktaları.
   - Mekân: U3 (§1.6 hesabı), U4, U8.
   - Sonraki şablonlar K4'ü beklemez; P12 kullanıcıya gitmeden U1–U7 kapanır.
+
+## mekan-sorumlusu · 2026-11-08 · mekanlar.md R3 (K4 U3/U4 + K5 GALATA hazırlığı)
+- Ne yaptım:
+  - **U3:** "zemin y ≥ 1612 → kadraj dışı" hesap hatamı düzelttim (1612 < 1920). Doğru cy eşikleri yazıldı: p0–36 öneri cs 1.6 / cy 30; push-in cs 2.6'da cy ≥ 206, cs 2.2'de cy ≥ 322. Zemin, halı, duvar dibi ve ışık lekesi kanıtı tarif edildi (§1.6a).
+  - **U4:** pencere ↔ kapı ayrışma imzası (§1.6b): denizlik + altında duvar ↔ eşik; panel bölüntüsü kare üst + alçak alt; yarıktaki dış ışık çizgisi; ikinci kanadın kenarı. Yarık ile kapının birlikte kadrajda kalması için cx aralıkları yazıldı.
+  - **K5:** GALATA-TEPE dersler tablosu (§2.4a): `gunduzMineral`, kroma hedefleri, tarama yeri, iki basamaklı güneş parlaması, yasak benzerlikler (deniz feneri, roket, burç, kilise), külah saçağı %6 → %10, dip ölçeğinde stilize kısaltma tutarlılığı.
+- Yakalanan: P08 p36–52'de taş ve çıkıntı ekranda y 1631'de (alt bant, temas anı) → yönetmen cy ≤ −41. P12 p204 cx 170'te yarık kadraj dışında, cy 170'te zemin görünüyor.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/mekanlar.md, bolumler/evliya-ucuslari/katki-raporu.md

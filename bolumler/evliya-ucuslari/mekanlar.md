@@ -9,6 +9,8 @@ Bu belge **şartnamedir, kod değildir.** Bütün sayılar motion içindir. Moti
 > - Gece kroması: C\* hedefleri §6a'da, ArsivKatmani gece derecelendirmesi §8'de (O5).
 > - Hex hedefleri değişmedi.
 >
+> **R3 (2026-11-08, K4 + K5 hazırlığı):** P12 zemin hesabı düzeltildi (§1.6a; 1612 < 1920, zemin görünüyordu). Pencere ↔ kapı ayrışma imzası eklendi (§1.6b). GALATA-TEPE K1–K4 derslerine göre gözden geçirildi (§2.4a): `gunduzMineral`, kroma hedefleri, yasak benzerlikler (deniz feneri, roket), külah saçağı %10, P08 p36–52 taş alt bantta → cy ≤ −41.
+>
 > **R2 (2026-11-08, K3/K4):** gündüz yansıması yeniden tarif edildi (§1.3a, V8). Motion'ın iki sorusu cevaplandı (§1.3b: eksen asimetrisi kasıtlı; P02 cs 0.97 + grup onaylandı, sağ ucu ≤ 148). P12 kartı gözden geçirildi (§1.6): etkin yarık formülü düzeltildi, havadaki huzme yalnız kenar çizgisi olacak.
 
 Etiketler: **[A]** arastirma.md · **[A10]** arastirma.md §10 (yalnızca arama özeti) · **[S]** sahne-plani/senaryo · **[G]** genel bilgi, kaynağı yok, **doğrulanmalı** · **[T]** tasarım kararı (tarihî iddia değil). Kanıtsız ayrıntı **nötr** kalır.
@@ -285,12 +287,12 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 
 | Öğe | Dekor |
 |---|---|
-| Pencere açıklığı (görünen kanat) | x 560–738, y 560–981 · pervaz 26 px · denizlik y 981–1000 (çıkıntı) |
+| Pencere açıklığı (görünen kanat) | x 560–738, y 560–981 · pervaz 26 px · **denizlik y 981–1020** (0.12 m, 20 px öne taşar; üst yüzü ışıklı şerit `#cbbfa4`, altında **16 px koyu gölge bandı** `#2a2420`) · **ikinci kanat kenarı** x 738–752 (kapalı, gölgede `#3a2a1e`), her karede görünür · pencere altı duvarı y 1020–1250 (0.71 m düz sıva) — §1.6b |
 | Pencere dışı | `#ece2c4` (gündüz %30 aşırı pozlanmış) + uzakta tek ton ufuk şeridi; ayrıntı yok |
 | Duvar | ışıklı `#cbbfa4` (yalnız huzmenin vurduğu yerde) · gölgede `#3a3430` |
 | Kapı (sahne-planı x≈120 yerine, §7.4) | **x 60–352**, y 602–1250 |
 | Padişah | yüz ön konturu x ≈ 457, göz y 740 · ayak y 1267 (kadraj dışı) |
-| Zemin | y ≥ 1250, **bu kameralarda kadraja girmez** (cs 1.8'de ekran y ≥ 1612) |
+| Zemin + duvar dibi (R3, K4 U3) | Duvar dibi y 1250. Zemin 1250'den kameraya doğru. **Düzeltme:** önceki "cs 1.8'de ekran y ≥ 1612 → kadraj dışı" hesabı yanlıştı (1612 < 1920): zemin cs 1.8 / cy 130'da ekranda 1612–1920 arasında **görünür** ve alt güvenli bandın içindedir. Doğru kural ve tarif: §1.6a |
 
 - **Huzme (E5, tek kaynaktan):** `AciklikIsigi`, `yonlu` yön (−0.83, +0.56).
   - Kaynak, kanadın serbest kenarıyla orta kayıt arasındaki dikey yarıktır. Kanat 12°'deyken yarık x 706–738 (32 px dekor, cs 2.6'da ekranda 83 px).
@@ -318,7 +320,33 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
   - Kaftan + göğüsteki ışık şeridi.
   - Bandın havadaki devamı (α .25 → .08, sol-alt köşeye doğru).
   - Pencere altı duvarı.
-  - Sahne planındaki "minder/halı kenarı, zemine düşen şerit" **görünmez:** zemin kadraj dışındadır. Ayrıca 15° güneşle denizlikten (0.83 m) düşen leke duvardan 3.1 m ötede, kameranın altında kalır. Yönetmene not §7.4.
+  - Zemin yalnız geniş evrede (p0–36) görünür (§1.6a). Push-in evresinde kadraj dışındadır. Zemine düşen ışık lekesi her durumda görünmez: 15° güneşle denizlikten (0.83 m) düşen leke duvardan 3.1 m ötede, kameranın altında kalır.
+
+#### 1.6a Zemin ve duvar dibi (K4 U3, R3)
+- **Hesap (ekran y = (d − 960)·cs + 960 + cy):** duvar dibi d 1250, padişah ayağı d 1267.
+  - cs 1.8 / cy 130 → ayak 1683, duvar dibi 1612: alt bantta, KABUL EDİLMEZ.
+  - **Geniş evre (p0–36):** ayak ve temas gölgesi ≤ 1490 için cs 1.8'de **cy ≤ −23** (öneri cy −30: ayak 1483, duvar dibi 1452). Sarık tepesi (d ≈ 650) ekranda ≈ 372 olur, yazı bandına (≤ 400) girer. İkisi birden tutmuyorsa yönetmen p0–36'yı cs 1.6'ya düşürür: ayak ≤ 1490 için cy ≤ 39; cy 30 ile sarık 494 ve ayak 1481 olur, ikisi de tutar. **Öneri: p0–36 cs 1.6, cy 30.**
+  - **Push-in evresi (p70+):** zemin kadraj dışı için duvar dibi > 1920 olmalı, yani cs 2.6'da cy ≥ 206 (mevcut 210, sınırda ✓). cs 2.2'de cy ≥ 322 (**mevcut 170 → zemin 1793'te görünür ✗**). Yönetmen p204'te cy ≥ 330 yapar ya da zeminin görünmesini kabul eder (bkz. aşağıdaki tarif; görünürse alt bant ölü alan olmaz, ama ayak kadraja girmez çünkü d 1267 → 2149).
+  - Her beyan kontrol karesinde ölçülür (K4 dersi 4).
+- **Zemin tarifi (görünürse):** düz tek ton döşeme `#2e2824` (oda gölgesinin bir basamak koyusu). Döşeme deseni, tahta çizgisi ve süpürgelik yok (kanıtsız, nötr).
+  - **Halı:** padişahın bastığı yerde düz `#5a4a3e` halı (`tasarim.md` §1.3). Arka kenarı duvara paralel d 1262 çizgisinde, duvardan 0.04 m önde; ön ve yan kenarları kadraj dışında. Desen ve saçak yok.
+  - Duvar dibinde 12 px'lik temas gölgesi bandı `#221e1a`.
+  - Padişahın temas gölgesi yalnız ortam ışığıyla oluşur: halı üstünde basık, yumuşak olmayan koyu elips α .35. Huzme zemine düşmediği için yön gölgesi yok.
+- **Işık kanıtı (K4 U6 ile uyumlu):** huzme kapı pervazına ve arka duvara düşer. Kapı pervazı (x 300–352) ve kapı solundaki duvar, huzme sütunu içindeyse `#cbbfa4` leke alır ve padişahın kesik gölgesi bu lekenin içine düşer. Leke alanı = sütunun (§1.6 K4 gözden geçirme) duvar düzlemiyle kesişimi, elle konmaz.
+
+#### 1.6b Pencere ↔ kapı ayrışma imzası (K4 U4, R3)
+| | **Pencere (sağ)** | **Kapı (sol)** |
+|---|---|---|
+| Alt kenar | **Yerden 0.83 m yüksek.** Kalın denizlik (20 px çıkıntı + 16 px gölge) ve altında **düz sıva duvar** görünür | **Zemine iner:** taş eşik (0.05 m, açık ton `#6a6258`), altında duvar yok |
+| İçi | Kapalı ahşap kanat. Bölüntü **üstte kare panel** (0.42 × 0.42 m) + **altta tek alçak panel** (0.42 × 0.62 m), yatay kayıt 0.06 m. Cam, kafes ve oyma yok | **Açık, karanlık boşluk** `#2a2420`. Kanadı görünmez (dışa açılmış) |
+| Işık | Kanatlar arasındaki **yarıkta aşırı pozlanmış dış çizgi** `#f6e4b0` (etkin açıklık 0.55·sin θ). **Pencerenin kimliği budur, kadrajda kalmalı** (yönetmene not aşağıda) | Kendi ışığı yok, ancak huzme lekesi pervazına düşebilir |
+| Pervaz | İnce (26 px) + sağda ikinci kanadın kenarı (14 px) | Daha kalın (0.10 m = 32 px), üstte düz lento (0.15 m) |
+| Oran | Kanat 1:2.4, **yerden kopuk dikdörtgen** | 1:2.2, **zemine basan dikdörtgen** |
+- **Telefon testi:** "sağdaki pencere, soldaki kapı" yalnız alt kenarlardan (denizlik + duvar ↔ eşik) ve yarıktaki ışık çizgisinden okunmalı.
+- **Yönetmene (kadraj):** yarık (d x 738) ekranda ≤ 1000 ve kapı pervazı (d x 352) ≥ 100 olmalı.
+  - **cs 2.2'de** ikisi birlikte sığar: **cx ∈ [−26, +24]**. Mevcut p204 cx 170'te yarık 1146'da, kadraj dışında.
+  - **cs 2.6'da** birlikte sığmazlar (386 × 2.6 = 1004 > 920). p50–120'de öncelik yarık + yüz: **cx ≤ −55** (yüz ön konturu ekranda ≈ 269). Kapı pervazı bu evrede kadraj dışında kalır; işaret anı (p130+) cs 2.2'ye döndüğünde kapı geri gelir.
+  - Instagram sağ düğme sütunu (x 920–1080, y 900–1700): yarık 1000'e kadar kabul, çünkü yarığın kendisi ince bir ışık çizgisidir, temas noktası değildir. Kanat kenarı **temasında** (p30 "tok") x ≤ 880 (K4 §2.1a).
 - **Tarama:** pervazın gölge tarafında II, kapı ağzında III + ton. Geniş duvar gölgesi düz ton.
 
 ---
@@ -333,7 +361,7 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | Kat düzeni (kadrajda) | **Gövde** (moloz/yonu taş, sıra 0.45 m) → gövdenin üst yüzü = **1.2 m'lik taş seki** (tepe katını çevreleyen yürüme yeri) → **tepe katı** (gövdeden 1.2 m içeride, yüksekliği 3.0 m, `yarimDaire` kemerli açıklıklar) → **korniş** (0.3 m, sade, tek çıkıntı) → **külah** |
 | Açıklıklar | Tepe katında yaklaşık 8 kemerli açıklık [A]: genişlik 1.0 m, yükseklik 2.4 m (üzengi 1.9 m), `yarimDaire` (§0.4, doğrulanmalı). Açıklık içi koyu. Kadrajda biri **kapı** (x 290), biri sağ uçta kısalmış görünür |
 | Seki ve çıkıntı | Seki kenarında **korkuluk çizilmez** [T: kanıtsız → nötr; ayrıca öndeki korkuluk Hezarfen'in ayaklarını örterdi, yönetmene not §7.3]. **Çıkıntı:** sekinin sağ uçta dışa taşan taş levhası, 0.8 m taşma, altında tek sade taş konsol. Gevşek taş levhanın dış kenarında |
-| Külah (süsleme imzası 1) | **Kurşun kaplı** [A]. Biçim nötr: düz koni, **yükseklik = 1.0 × taban çapı**. Saçak taşması tabanın %6'sı. Pencere, çatı penceresi, alem ve bayrak **yok** [A "eğim/pencere kanıtsız"]. Yakında dikiş çizgileri §2.5 |
+| Külah (süsleme imzası 1) | **Kurşun kaplı** [A]. Biçim nötr: düz koni, **yükseklik = 1.0 × taban çapı**. Saçak taşması tabanın **%10'u** (R3: deniz feneri / roket benzerliğine karşı, §2.4a). Pencere, çatı penceresi, alem ve bayrak **yok** [A "eğim/pencere kanıtsız"]. Yakında dikiş çizgileri §2.5 |
 | Süsleme imzası 2 | Kemerli tepe katı (koyu açıklık dizisi) + korniş çizgisi. Başka süs yok |
 | Çevre | Galata konutları: ahşap gövde [A10 §10.9], çatı koyu toprak `#6e5240` tek ton, eğim alçak-orta, **kiremit deseni ve dik çatı yok** [A10]. Galata surları çizilmez (doğrulanmadı [A]) |
 | Kameradan görünen | Kamera sekinin dışında, sekiyle aynı seviyede havada; göz 1.65 m yüksekte, tepe katı duvarından 4 m uzakta. **Külah dik olduğu için yüzeyi görünür** (eğim > bakış açısı). Saçak altı görünür. Külahın tepesi kadrajın üstünden taşar: koni yakınsayan iki kurşun yüzey olarak okunur, tam siluet P09'dadır |
@@ -376,6 +404,20 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 - **Arka katmanlar (çıkıntının sağı) yalnız cs 1'de görünür.** Vinç sırasında kadraj dışında kalırlar, f değerleri bu yüzden kritik değildir: gök/uzak f = 0, şehir f = 0.35.
 - **Takip doğrulaması:** cs 2.0, cy −5300'de dekor y 3580 → ekran y 900 (`bolum.json` P08 takip `ekran_y 900` ile tutarlı).
 - **Hızlı dönüş (p148–200):** aynı şerit tersine gider. Hareket bulanıklığı, şeridin 3 kopyası α .25 ile verilir (fade değildir, kamera hareketidir).
+
+### 2.4a K5 hazırlığı: K1–K4 derslerine göre gözden geçirme (R3)
+| Ders | GALATA-TEPE'de uygulanışı |
+|---|---|
+| Derecelendirme | **`gunduzMineral`** (doygunluk 1.0, `max(in, bp)`, bp `#14110d`). `gunduz` kullanılmaz |
+| Kroma hedefi (§6a) | Galata taşı ışıklı `#9a8f7e` C\* 10.6 (≥ 7.4) · gölge `#6b6357` C\* 8.0 (≥ 5.6) · kurşun `#7c8288` C\* 4.1 (h° aranmaz) · gök orta `#cfcfc4` C\* 5.8 (≥ 4.1) · Boğaz şeridi `#7c9090` C\* 7.5 (≥ 5.3) |
+| Tarama yeri | Yalnız kemer içleri (III + ton), korniş altı (II), terminatör bandı (x 600–680, II, 60 px). Geniş gölge yüzü (tepe katı x < 600, gövde) **düz ton**. Hezarfen kostümünde tarama yok (K1 O3) |
+| Güneş parlaması | `#f6e8c0` α .4 **iki düz basamak** (iç α .4, dış α .18), radyal gradyan yok (minyatür + K3 dersi 1: yumuşak geçiş ara ton üretir) |
+| Yasak benzerlikler (360 px, "bu ne?") | **Deniz feneri** (silindir + galeri + koni): tepe katında ışık/cam yok, açıklıklar koyu; koni h = çap (ince-uzun değil); gövde taş sıralı (beyaz düz değil). **Roket/kalem** (silindir + sivri koni: bölümün konusu yüzünden en büyük risk): kadrajda koni tek parça yalnız P09'da; korniş taşması + koyu kemer bandı koniyi gövdeden ayırır, koni ucu sivri ama alemsiz, gövdeden geniş saçaklı (taşma %6 → **%10**'a çıkarıldı). **Satranç kalesi / burç**: mazgal dişi yok. **Kilise kulesi**: yarım daire kemer, çan ve haç yok |
+| Ufuk–ölçek | Kamera gözü seki + 1.65 m → ufuk y 829 = Hezarfen'in baş hizası (ayak 1250, 255 px/m) ✓. Uzak şehir ufkun altında küçülerek ✓ |
+| Kamera + dikey şerit | Vinç = taş sabit boyda (K1 dersi 8) ✓, takip y 900 ↔ d 3580 ✓. **Hata (yönetmene):** P08 p36–52 (cs 1.9–2.0, cy 120) çıkıntı ve taş d 1250 → **ekran y 1631**, alt güvenli bantta; tas-surtme p40 ve tas-kayma p44 temasları orada. Taş ≤ 1470 için cs 1.9'da **cy ≤ −41** (öneri −50: taş 1420, Hezarfen başı d 830 → ekran 663). p52 cy −650 zaten daha yukarıda |
+| Kadraj dışı beyanları (K4 dersi 4) | cs 2.0 / cx −140'ta görünen d x 340–880 → gövde sağ ucu 1060 dışarıda ✓; sokak boşluğu 560–820 ve taş 750–790 içeride ✓; taş p36'da ekran x ≈ 857 < 920 (sağ düğme sütunu) ✓. P01 B cs 1.25 / cx −80: çıkıntı dış ucu ekran x 910, sütun sınırında. Hezarfen 660–785 ✓ |
+| Dip ölçeği | Dipteki iki ev çatısı gövdeyle **aynı stilize kısaltmayı** alır (×1/5.5 → görünür 46 px/m): 460 px'lik çatı ≈ 10 m'lik bir ev. Taş prop'u 95 px (`tasarim.md` stilize) |
+| İmza tekliği | Bu şablonda `#c4a874` ±15 içinde ton yok: taş 22.7, uzak şehir 24.0, kurşun 38. Hezarfen ten/sarık render'da ölçülür (K1 dersi 1, güneş kenar ışığında) |
 
 ### 2.5 Doku (GALATA-TEPE)
 | Yüzey | Malzeme | Doku | Kod | Parametre |
@@ -546,7 +588,7 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
    - Hezarfen uçuşta derinlikle büyür (§3.2), sabit 130 px değil.
 5. **P12:**
    - Kapı **x 60–352** olmalı. x≈120'de cs 1.8, cx 150 ile kapı tümüyle kadraj dışında kalır, işaret boşluğa düşer.
-   - Zemin, minder ve zemindeki ışık lekesi kadraja girmez. Alt üçte biri kaftan ve huzme doldurur.
+   - Zemin geniş evrede görünür, push-in'de cy şartına bağlı (§1.6a: p0–36 cs 1.6 / cy 30; p204 cy ≥ 330). Zemin ışık lekesi her durumda görünmez. Kapı ile yarık için kadraj şartı §1.6b.
    - Pencere ölçüsü, `tasarim.md` §4.10'daki "≈ 576 px" değerinden farklı olarak, cs 2.2'de ≈ 926 px eder (pencere kanadı 1.30 m × 324 px/m × 2.2). Tasarımcıya bilgi.
 6. **P13 defterler:** d3 y 1650 alt güvenli alana (> 1500) giriyor. Öneri §4.2: bütün defterler y ≤ 1476, zemin ölçeği 0.67.
 7. **P07/P11 ışığı:** P07'de ışık sağdan, P11'de soldan geliyor (fiziksel). Kese konumu aynı kalır (±10 px), yalnız gölge yönü ters döner.

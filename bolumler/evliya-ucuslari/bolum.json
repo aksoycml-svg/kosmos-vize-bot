@@ -3612,7 +3612,7 @@
      "aciklik": [
       1.0,
       1.0,
-      0.08
+      0.027
      ],
      "kare": [
       0,
@@ -3626,12 +3626,13 @@
      "y": [
       560,
       981
-     ]
+     ],
+     "son_aci": "4° (12° idi): yarık = 154·sin θ → 10.7 dekor px = cs 2.6'da ≈28 px ≤ 30 (tasarim v1.6: yüzdeki ışık göz–burun kökü arasında ≤30 px dikey çizgi)"
     },
     "isik_serit": {
      "bas": 34,
      "bit": 100,
-     "kaynak": "pencere açıklığından türer (AciklikIsigi, yön (-0.83,+0.56)); kanat 12°'de yarık x 706-738 (cs 2.6'da 83 px)"
+     "kaynak": "pencere açıklığından türer; kanat son açı 4°: yarık x ≈727-738 (11 dekor px)"
     },
     "kapi": {
      "x": [
@@ -3660,7 +3661,7 @@
      "ayak_y": 1267,
      "not": "profil siluet (göz/kaş/ağız çizilmez); ışık şeridi göz hizasında profil konturunda (şeridin üst ucu x 457'de y 739); gün: kaftan #36302c, çıplak el #b88470"
     },
-    "kamera_dogrulama": "K4 U2/U3/U5/U9: p0-36 cs 1.7 cx -10 cy -10: kanat kenarı (x 738) ekran 863 ≤ 880; ayak 1472 ≤ 1490; sarık tepesi dekor y≈660 → 440. p70+ cs 2.6 cy 250: sarık tepesi 430, ayak ekran 2000 (kadraj dışı). cx 380: işaret eli dekor x≈235-297 → ekran ≥127; kapı sağ pervaz 431"
+    "kamera_dogrulama": "K4 U2/U3/U5/U9: p0-36 cs 1.7 cx -10 cy -10: kanat kenarı (x 738) ekran 863 ≤ 880; ayak 1472 ≤ 1490; sarık tepesi dekor y≈660 → 440. p70+ cs 2.6 cy 285: sarık tepesi ≈430 (render p80/p150'de cy 250'de 388 ölçüldü → cy 285), ayak ekran 2000 (kadraj dışı). cx 380: işaret eli dekor x≈235-297 → ekran ≥127; kapı sağ pervaz 431"
    },
    "sure_kare": 216,
    "sure_sn": 3.6,
@@ -3694,9 +3695,9 @@
     "cy": [
      -10,
      -10,
-     250,
-     250,
-     250
+     285,
+     285,
+     285
     ],
     "egri": "inout"
    },
@@ -3765,12 +3766,13 @@
      "aci": [
       80,
       80,
-      12
+      4
      ],
      "olcek": 1.0,
      "kit_eksik": [
       "KE-P9"
-     ]
+     ],
+     "not": "son açı 4°: p30'da kanat durdurucuya 4° aralık bırakarak oturur ('tok'), p34'te mandal/tutucu aralık açıkken oturur ('tık'); aralık sızan dış ışık çizgisidir (U4 kimlik)"
     }
    ],
    "ekran_yazisi": [
@@ -3913,7 +3915,7 @@
      "db": 0
     }
    ],
-   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok). [mekanlar R2] yarık p50'den sonra kadraj dışı, şerit sağdan girer (mekân kabul etti); cx azaltılmadı: azalınca kapı sağ pervazı (ekran x≈267) ve işaret hedefi kadrajdan çıkar. [K4] kamera kare [0,36,70,120,204] (motion önerisi) ama değerler U2/U3/U5/U9'a göre yeniden hesaplandı; kural 7: p30/p34/p80/p150/p204 render edildi. U1: yüz p66-100'de ≥%12 (cs 2.6); göz-şerit çizimi motion/tasarımcı."
+   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok). [mekanlar R2] yarık p50'den sonra kadraj dışı, şerit sağdan girer (mekân kabul etti); cx azaltılmadı: azalınca kapı sağ pervazı (ekran x≈267) ve işaret hedefi kadrajdan çıkar. [K4] kamera kare [0,36,70,120,204] (motion önerisi) ama değerler U2/U3/U5/U9'a göre yeniden hesaplandı; kural 7: p30/p34/p80/p150/p204 render edildi. U1: yüz p66-100'de ≥%12 (cs 2.6); göz-şerit çizimi motion/tasarımcı. [tasarim v1.6] kanat son açısı 12° → 4° (yarık 28 px ≤30, mandal p34 tutucu aralık bırakır); mekân sorumlusuna not: yarık x 706-738 → ≈727-738, şerit genişliği buna türer; cy 250 → 285 (render: sarık tepesi 388 → ≥420)."
   },
   {
    "id": "P13",
