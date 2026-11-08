@@ -1,0 +1,92 @@
+{
+ "id": "P01",
+ "lang": "en",
+ "text": "A man rode a rocket into the sky over Istanbul. Another glided across the Bosphorus.",
+ "dur": 5.146,
+ "words": [
+  {
+   "t": "A",
+   "s": 0.0,
+   "e": 0.104
+  },
+  {
+   "t": "man",
+   "s": 0.174,
+   "e": 0.337
+  },
+  {
+   "t": "rode",
+   "s": 0.406,
+   "e": 0.592
+  },
+  {
+   "t": "a",
+   "s": 0.615,
+   "e": 0.639
+  },
+  {
+   "t": "rocket",
+   "s": 0.72,
+   "e": 1.045
+  },
+  {
+   "t": "into",
+   "s": 1.08,
+   "e": 1.231
+  },
+  {
+   "t": "the",
+   "s": 1.289,
+   "e": 1.358
+  },
+  {
+   "t": "sky",
+   "s": 1.393,
+   "e": 1.66
+  },
+  {
+   "t": "over",
+   "s": 1.718,
+   "e": 1.858
+  },
+  {
+   "t": "Istanbul.",
+   "s": 1.916,
+   "e": 2.519
+  },
+  {
+   "t": "Another",
+   "s": 2.961,
+   "e": 3.309
+  },
+  {
+   "t": "glided",
+   "s": 3.367,
+   "e": 3.692
+  },
+  {
+   "t": "across",
+   "s": 3.727,
+   "e": 4.052
+  },
+  {
+   "t": "the",
+   "s": 4.098,
+   "e": 4.168
+  },
+  {
+   "t": "Bosphorus.",
+   "s": 4.203,
+   "e": 5.108
+  }
+ ],
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "A man rode a rocket into the sky over Istanbul. Another glided across the Bosphorus.",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

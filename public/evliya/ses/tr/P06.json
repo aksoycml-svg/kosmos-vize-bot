@@ -1,0 +1,62 @@
+{
+ "id": "P06",
+ "lang": "tr",
+ "text": "Barut bitince kanatlarını açıyor. Süzülüp köşkün önünde denize iniyor.",
+ "dur": 4.545,
+ "words": [
+  {
+   "t": "Barut",
+   "s": 0.0,
+   "e": 0.337
+  },
+  {
+   "t": "bitince",
+   "s": 0.395,
+   "e": 0.824
+  },
+  {
+   "t": "kanatlarını",
+   "s": 0.94,
+   "e": 1.533
+  },
+  {
+   "t": "açıyor.",
+   "s": 1.556,
+   "e": 2.009
+  },
+  {
+   "t": "Süzülüp",
+   "s": 2.218,
+   "e": 2.659
+  },
+  {
+   "t": "köşkün",
+   "s": 2.717,
+   "e": 3.1
+  },
+  {
+   "t": "önünde",
+   "s": 3.158,
+   "e": 3.425
+  },
+  {
+   "t": "denize",
+   "s": 3.483,
+   "e": 3.796
+  },
+  {
+   "t": "iniyor.",
+   "s": 3.831,
+   "e": 4.505
+  }
+ ],
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "Barut bitince kanatlarını açıyor. Süzülüp köşkün önünde denize iniyor.",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

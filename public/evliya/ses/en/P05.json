@@ -1,0 +1,62 @@
+{
+ "id": "P05",
+ "lang": "en",
+ "text": "The fuse burns, and the rocket hurls him skyward!",
+ "dur": 3.004,
+ "words": [
+  {
+   "t": "The",
+   "s": 0.0,
+   "e": 0.151
+  },
+  {
+   "t": "fuse",
+   "s": 0.209,
+   "e": 0.476
+  },
+  {
+   "t": "burns,",
+   "s": 0.534,
+   "e": 0.929
+  },
+  {
+   "t": "and",
+   "s": 0.952,
+   "e": 1.033
+  },
+  {
+   "t": "the",
+   "s": 1.068,
+   "e": 1.138
+  },
+  {
+   "t": "rocket",
+   "s": 1.196,
+   "e": 1.544
+  },
+  {
+   "t": "hurls",
+   "s": 1.602,
+   "e": 1.892
+  },
+  {
+   "t": "him",
+   "s": 1.939,
+   "e": 2.043
+  },
+  {
+   "t": "skyward!",
+   "s": 2.113,
+   "e": 2.972
+  }
+ ],
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "The fuse burns, and the rocket hurls him skyward!",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

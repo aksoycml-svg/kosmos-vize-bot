@@ -1,0 +1,67 @@
+{
+ "id": "P02",
+ "lang": "en",
+ "text": "The first was at the sultan's party. Who'll amaze him?",
+ "dur": 2.821,
+ "words": [
+  {
+   "t": "The",
+   "s": 0.0,
+   "e": 0.163
+  },
+  {
+   "t": "first",
+   "s": 0.209,
+   "e": 0.43
+  },
+  {
+   "t": "was",
+   "s": 0.464,
+   "e": 0.58
+  },
+  {
+   "t": "at",
+   "s": 0.627,
+   "e": 0.697
+  },
+  {
+   "t": "the",
+   "s": 0.731,
+   "e": 0.801
+  },
+  {
+   "t": "sultan's",
+   "s": 0.836,
+   "e": 1.196
+  },
+  {
+   "t": "party.",
+   "s": 1.231,
+   "e": 1.602
+  },
+  {
+   "t": "Who'll",
+   "s": 1.672,
+   "e": 1.927
+  },
+  {
+   "t": "amaze",
+   "s": 1.962,
+   "e": 2.252
+  },
+  {
+   "t": "him?",
+   "s": 2.299,
+   "e": 2.786
+  }
+ ],
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "The first was at the sultan's party. Who'll amaze him?",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

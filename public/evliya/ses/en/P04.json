@@ -1,0 +1,41 @@
+{
+ "id": "P04",
+ "lang": "en",
+ "text": "Sultan! Off to talk with Jesus!",
+ "dur": 4.441,
+ "words": [
+  {
+   "t": "Sultan!",
+   "s": 0.22,
+   "e": 1.32
+  },
+  {
+   "t": "Off",
+   "s": 2.54,
+   "e": 2.72
+  },
+  {
+   "t": "to",
+   "s": 2.84,
+   "e": 2.92
+  },
+  {
+   "t": "talk",
+   "s": 3.02,
+   "e": 3.28
+  },
+  {
+   "t": "with",
+   "s": 3.32,
+   "e": 3.48
+  },
+  {
+   "t": "Jesus!",
+   "s": 3.54,
+   "e": 4.24
+  }
+ ],
+ "voice": "7VqWGAWwo2HMrylfKrcm",
+ "model": "eleven_v3",
+ "kaynak": "public/evliya/ses-aday/lagari-4-fatih-en.mp3"
+}

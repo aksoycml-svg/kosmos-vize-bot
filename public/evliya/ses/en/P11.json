@@ -1,0 +1,67 @@
+{
+ "id": "P11",
+ "lang": "en",
+ "text": "He gets a purse of gold. But then he's banished.",
+ "dur": 3.004,
+ "words": [
+  {
+   "t": "He",
+   "s": 0.0,
+   "e": 0.139
+  },
+  {
+   "t": "gets",
+   "s": 0.197,
+   "e": 0.36
+  },
+  {
+   "t": "a",
+   "s": 0.395,
+   "e": 0.418
+  },
+  {
+   "t": "purse",
+   "s": 0.464,
+   "e": 0.708
+  },
+  {
+   "t": "of",
+   "s": 0.743,
+   "e": 0.789
+  },
+  {
+   "t": "gold.",
+   "s": 0.848,
+   "e": 1.231
+  },
+  {
+   "t": "But",
+   "s": 1.672,
+   "e": 1.834
+  },
+  {
+   "t": "then",
+   "s": 1.869,
+   "e": 1.997
+  },
+  {
+   "t": "he's",
+   "s": 2.032,
+   "e": 2.148
+  },
+  {
+   "t": "banished.",
+   "s": 2.206,
+   "e": 2.972
+  }
+ ],
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "He gets a purse of gold. But then he's banished.",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

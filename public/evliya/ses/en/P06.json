@@ -1,0 +1,77 @@
+{
+ "id": "P06",
+ "lang": "en",
+ "text": "Powder gone, wings open, he glides down in front of the pavilion.",
+ "dur": 3.762,
+ "words": [
+  {
+   "t": "Powder",
+   "s": 0.0,
+   "e": 0.372
+  },
+  {
+   "t": "gone,",
+   "s": 0.441,
+   "e": 0.801
+  },
+  {
+   "t": "wings",
+   "s": 0.836,
+   "e": 1.115
+  },
+  {
+   "t": "open,",
+   "s": 1.173,
+   "e": 1.567
+  },
+  {
+   "t": "he",
+   "s": 1.741,
+   "e": 1.823
+  },
+  {
+   "t": "glides",
+   "s": 1.892,
+   "e": 2.241
+  },
+  {
+   "t": "down",
+   "s": 2.287,
+   "e": 2.485
+  },
+  {
+   "t": "in",
+   "s": 2.519,
+   "e": 2.577
+  },
+  {
+   "t": "front",
+   "s": 2.624,
+   "e": 2.763
+  },
+  {
+   "t": "of",
+   "s": 2.786,
+   "e": 2.833
+  },
+  {
+   "t": "the",
+   "s": 2.868,
+   "e": 2.937
+  },
+  {
+   "t": "pavilion.",
+   "s": 2.972,
+   "e": 3.715
+  }
+ ],
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "Powder gone, wings open, he glides down in front of the pavilion.",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

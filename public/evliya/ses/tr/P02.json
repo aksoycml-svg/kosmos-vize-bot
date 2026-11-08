@@ -1,0 +1,57 @@
+{
+ "id": "P02",
+ "lang": "tr",
+ "text": "İlki, padişahın kızının doğum şenliğinde. Padişahı kim şaşırtacak?",
+ "dur": 4.911,
+ "words": [
+  {
+   "t": "İlki,",
+   "s": 0.0,
+   "e": 0.546
+  },
+  {
+   "t": "padişahın",
+   "s": 0.673,
+   "e": 1.347
+  },
+  {
+   "t": "kızının",
+   "s": 1.428,
+   "e": 1.846
+  },
+  {
+   "t": "doğum",
+   "s": 1.904,
+   "e": 2.125
+  },
+  {
+   "t": "şenliğinde.",
+   "s": 2.194,
+   "e": 2.902
+  },
+  {
+   "t": "Padişahı",
+   "s": 3.111,
+   "e": 3.657
+  },
+  {
+   "t": "kim",
+   "s": 3.704,
+   "e": 3.843
+  },
+  {
+   "t": "şaşırtacak?",
+   "s": 3.913,
+   "e": 4.876
+  }
+ ],
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "İlki, padişahın kızının doğum şenliğinde. Padişahı kim şaşırtacak?",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

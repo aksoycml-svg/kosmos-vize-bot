@@ -1,0 +1,62 @@
+{
+ "id": "P08",
+ "lang": "en",
+ "text": "And the other man? Hezarfen, atop the Galata Tower.",
+ "dur": 3.056,
+ "words": [
+  {
+   "t": "And",
+   "s": 0.0,
+   "e": 0.163
+  },
+  {
+   "t": "the",
+   "s": 0.209,
+   "e": 0.279
+  },
+  {
+   "t": "other",
+   "s": 0.337,
+   "e": 0.511
+  },
+  {
+   "t": "man?",
+   "s": 0.557,
+   "e": 0.917
+  },
+  {
+   "t": "Hezarfen,",
+   "s": 1.091,
+   "e": 1.649
+  },
+  {
+   "t": "atop",
+   "s": 1.672,
+   "e": 1.916
+  },
+  {
+   "t": "the",
+   "s": 1.962,
+   "e": 2.032
+  },
+  {
+   "t": "Galata",
+   "s": 2.067,
+   "e": 2.357
+  },
+  {
+   "t": "Tower.",
+   "s": 2.403,
+   "e": 3.019
+  }
+ ],
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "And the other man? Hezarfen, atop the Galata Tower.",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

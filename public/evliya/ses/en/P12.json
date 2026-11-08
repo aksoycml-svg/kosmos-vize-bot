@@ -1,0 +1,51 @@
+{
+ "id": "P12",
+ "lang": "en",
+ "text": "Because he's too dangerous. He can do anything.",
+ "dur": 3.109,
+ "words": [
+  {
+   "t": "Because",
+   "s": 0.08,
+   "e": 0.36
+  },
+  {
+   "t": "he's",
+   "s": 0.4,
+   "e": 0.58
+  },
+  {
+   "t": "too",
+   "s": 0.62,
+   "e": 0.78
+  },
+  {
+   "t": "dangerous.",
+   "s": 0.82,
+   "e": 1.42
+  },
+  {
+   "t": "He",
+   "s": 1.76,
+   "e": 1.86
+  },
+  {
+   "t": "can",
+   "s": 1.9,
+   "e": 2.08
+  },
+  {
+   "t": "do",
+   "s": 2.12,
+   "e": 2.28
+  },
+  {
+   "t": "anything.",
+   "s": 2.34,
+   "e": 2.76
+  }
+ ],
+ "voice": "MuOq11XzQTthwLhmGZ2V",
+ "model": "eleven_multilingual_v2",
+ "kaynak": "public/evliya/ses-aday/padisah-2-nihat-en.mp3"
+}

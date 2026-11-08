@@ -1,0 +1,67 @@
+{
+ "id": "P03",
+ "lang": "en",
+ "text": "Lagâri sits on a rocket and calls to the sultan:",
+ "dur": 2.743,
+ "words": [
+  {
+   "t": "Lagari",
+   "s": 0.0,
+   "e": 0.383
+  },
+  {
+   "t": "sits",
+   "s": 0.441,
+   "e": 0.627
+  },
+  {
+   "t": "on",
+   "s": 0.662,
+   "e": 0.731
+  },
+  {
+   "t": "a",
+   "s": 0.766,
+   "e": 0.801
+  },
+  {
+   "t": "rocket",
+   "s": 0.882,
+   "e": 1.289
+  },
+  {
+   "t": "and",
+   "s": 1.347,
+   "e": 1.486
+  },
+  {
+   "t": "calls",
+   "s": 1.544,
+   "e": 1.776
+  },
+  {
+   "t": "to",
+   "s": 1.8,
+   "e": 1.858
+  },
+  {
+   "t": "the",
+   "s": 1.904,
+   "e": 1.974
+  },
+  {
+   "t": "sultan:",
+   "s": 1.997,
+   "e": 2.694
+  }
+ ],
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "Lagari sits on a rocket and calls to the sultan:",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

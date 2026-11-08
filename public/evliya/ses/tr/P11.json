@@ -1,0 +1,62 @@
+{
+ "id": "P11",
+ "lang": "tr",
+ "text": "Ona bir kese altın veriyor. Ama sonra sürgüne yolluyor.",
+ "dur": 3.579,
+ "words": [
+  {
+   "t": "Ona",
+   "s": 0.0,
+   "e": 0.209
+  },
+  {
+   "t": "bir",
+   "s": 0.267,
+   "e": 0.395
+  },
+  {
+   "t": "kese",
+   "s": 0.453,
+   "e": 0.685
+  },
+  {
+   "t": "altın",
+   "s": 0.743,
+   "e": 1.045
+  },
+  {
+   "t": "veriyor.",
+   "s": 1.08,
+   "e": 1.498
+  },
+  {
+   "t": "Ama",
+   "s": 1.741,
+   "e": 1.939
+  },
+  {
+   "t": "sonra",
+   "s": 1.997,
+   "e": 2.241
+  },
+  {
+   "t": "sürgüne",
+   "s": 2.299,
+   "e": 2.705
+  },
+  {
+   "t": "yolluyor.",
+   "s": 2.752,
+   "e": 3.529
+  }
+ ],
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "Ona bir kese altın veriyor. Ama sonra sürgüne yolluyor.",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

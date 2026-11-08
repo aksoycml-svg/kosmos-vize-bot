@@ -1,0 +1,72 @@
+{
+ "id": "P09",
+ "lang": "en",
+ "text": "With a southwest wind, he jumps and glides across the Bosphorus.",
+ "dur": 3.762,
+ "words": [
+  {
+   "t": "With",
+   "s": 0.0,
+   "e": 0.209
+  },
+  {
+   "t": "a",
+   "s": 0.244,
+   "e": 0.267
+  },
+  {
+   "t": "southwest",
+   "s": 0.348,
+   "e": 0.917
+  },
+  {
+   "t": "wind,",
+   "s": 0.975,
+   "e": 1.358
+  },
+  {
+   "t": "he",
+   "s": 1.509,
+   "e": 1.591
+  },
+  {
+   "t": "jumps",
+   "s": 1.672,
+   "e": 1.916
+  },
+  {
+   "t": "and",
+   "s": 1.95,
+   "e": 2.032
+  },
+  {
+   "t": "glides",
+   "s": 2.078,
+   "e": 2.392
+  },
+  {
+   "t": "across",
+   "s": 2.415,
+   "e": 2.694
+  },
+  {
+   "t": "the",
+   "s": 2.728,
+   "e": 2.798
+  },
+  {
+   "t": "Bosphorus.",
+   "s": 2.821,
+   "e": 3.715
+  }
+ ],
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "With a southwest wind, he jumps and glides across the Bosphorus.",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

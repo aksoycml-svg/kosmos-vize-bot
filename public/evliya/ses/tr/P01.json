@@ -1,0 +1,82 @@
+{
+ "id": "P01",
+ "lang": "tr",
+ "text": "İstanbul'da bir adam fişeğe binip göğe çıkmış. Bir başkası da Boğaz'ı uçarak geçmiş.",
+ "dur": 4.963,
+ "words": [
+  {
+   "t": "İstanbul'da",
+   "s": 0.0,
+   "e": 0.627
+  },
+  {
+   "t": "bir",
+   "s": 0.685,
+   "e": 0.824
+  },
+  {
+   "t": "adam",
+   "s": 0.859,
+   "e": 1.033
+  },
+  {
+   "t": "fişeğe",
+   "s": 1.103,
+   "e": 1.37
+  },
+  {
+   "t": "binip",
+   "s": 1.416,
+   "e": 1.66
+  },
+  {
+   "t": "göğe",
+   "s": 1.718,
+   "e": 1.904
+  },
+  {
+   "t": "çıkmış.",
+   "s": 1.95,
+   "e": 2.45
+  },
+  {
+   "t": "Bir",
+   "s": 2.624,
+   "e": 2.798
+  },
+  {
+   "t": "başkası",
+   "s": 2.856,
+   "e": 3.251
+  },
+  {
+   "t": "da",
+   "s": 3.297,
+   "e": 3.379
+  },
+  {
+   "t": "Boğaz'ı",
+   "s": 3.437,
+   "e": 3.75
+  },
+  {
+   "t": "uçarak",
+   "s": 3.773,
+   "e": 4.122
+  },
+  {
+   "t": "geçmiş.",
+   "s": 4.168,
+   "e": 4.923
+  }
+ ],
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "İstanbul'da bir adam fişeğe binip göğe çıkmış. Bir başkası da Boğaz'ı uçarak geçmiş.",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

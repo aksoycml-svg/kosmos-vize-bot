@@ -1,0 +1,62 @@
+{
+ "id": "P13",
+ "lang": "en",
+ "text": "How do we know? Only from Evliya Çelebi's book.",
+ "dur": 3.239,
+ "words": [
+  {
+   "t": "How",
+   "s": 0.0,
+   "e": 0.221
+  },
+  {
+   "t": "do",
+   "s": 0.279,
+   "e": 0.36
+  },
+  {
+   "t": "we",
+   "s": 0.418,
+   "e": 0.511
+  },
+  {
+   "t": "know?",
+   "s": 0.557,
+   "e": 0.952
+  },
+  {
+   "t": "Only",
+   "s": 1.08,
+   "e": 1.324
+  },
+  {
+   "t": "from",
+   "s": 1.37,
+   "e": 1.521
+  },
+  {
+   "t": "Evliya",
+   "s": 1.602,
+   "e": 2.055
+  },
+  {
+   "t": "Chelebi's",
+   "s": 2.125,
+   "e": 2.566
+  },
+  {
+   "t": "book.",
+   "s": 2.601,
+   "e": 3.204
+  }
+ ],
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "How do we know? Only from Evliya Chelebi's book.",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}

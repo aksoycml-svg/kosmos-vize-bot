@@ -1,0 +1,62 @@
+{
+ "id": "P07",
+ "lang": "tr",
+ "text": "Karşılığında bir kese para ve her gün maaş alıyor.",
+ "dur": 3.37,
+ "words": [
+  {
+   "t": "Karşılığında",
+   "s": 0.0,
+   "e": 0.72
+  },
+  {
+   "t": "bir",
+   "s": 0.766,
+   "e": 0.917
+  },
+  {
+   "t": "kese",
+   "s": 0.975,
+   "e": 1.219
+  },
+  {
+   "t": "para",
+   "s": 1.277,
+   "e": 1.579
+  },
+  {
+   "t": "ve",
+   "s": 1.707,
+   "e": 1.846
+  },
+  {
+   "t": "her",
+   "s": 1.916,
+   "e": 2.078
+  },
+  {
+   "t": "gün",
+   "s": 2.148,
+   "e": 2.276
+  },
+  {
+   "t": "maaş",
+   "s": 2.345,
+   "e": 2.612
+  },
+  {
+   "t": "alıyor.",
+   "s": 2.67,
+   "e": 3.344
+  }
+ ],
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "model": "eleven_multilingual_v2",
+ "tts_text": "Karşılığında bir kese para ve her gün maaş alıyor.",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true
+ }
+}
