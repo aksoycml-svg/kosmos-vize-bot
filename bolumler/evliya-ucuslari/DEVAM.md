@@ -42,6 +42,9 @@
   4. **eleştirmen** → K4 kapanış + K5 tur 2 (yalnız sorunlu kareler).
   - Sonra kalanlar: BOGAZ (P09), KITAP-INSERT (P13/P14), P03/P04 jestleri, TR/EN yazı katmanı sistemi (KE-Y1..Y5), kurgucu (müzik + foley.json), render, eleştirmen tek tur, kullanıcı, Premiere paketi.
   - Kota: motion turu ~480k token, eleştirmen ~160k. Her motion turundan önce kullanıcıya kapsamı söyle.
+  - **Oturum 3 (2026-11-08): 1 ve 2 TAMAM.** yönetmen (`sahne-plani.md` §5.0f; doğrulayıcıda yalnız 5 şablon-eksik hatası: P03 `bin`, P04 `tutun`, P09 BOGAZ, P13/P14 KITAP-INSERT), tasarım v1.7, mekanlar R4 (uzak şehir elle öbek, kule ekseni x 300 + ∩/∪ kavis, P08 dip 255 px/m, toz öbekleri). Kontrol kareleri `kalibrasyon/K5-yonetmen/`.
+    - Açık: P12 etiketi "Padişah (Evliya'ya göre)" 0.47 sn (kullanıcı kararı); P01 B yürüyüş y = `1250 − 97·e((x−300)/560)` json'a işlenmeli (yönetmen, motion turu öncesi küçük iş); P01 p172 yardımcı ayağı y≈1530; araştırmacıya: 1630'lar Tophane/Fındıklı yönü yapı, kule dibi evler/sokak genişliği.
+    - Sıradaki: **3. motion** (A4, A5+p14 temas, A7, B1, B2, B3, B5, B8, B9, B10–B13 rig, B15) → 4. eleştirmen.
 - (eski) **Sıradaki:** motion turu = K1 Y10/Y11 + K2 W1/W3/W4/küçükler + K3 kurulum (`kosk` gece/gün, padişah R10, şenlik). Sonra eleştirmen. Kalan şablonlar: SARAYBURNU `ic` (P12), GALATA-TEPE, BOGAZ, KITAP-INSERT; Hezarfen tam rig; TR/EN yazı katmanı sistemi (KE-Y1..Y5).
 
 ## Sıradaki: kurulum ekibi (opus) — `sahne-plani.md` §6 iş tanımıdır

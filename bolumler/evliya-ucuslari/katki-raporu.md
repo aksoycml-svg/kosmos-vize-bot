@@ -862,3 +862,60 @@
   - Mekân: P08 dip saçak uçları [560,845] boşluğunu çerçevelesin; tasarımcı: `don` p100-130 (tasarım p95-125 güncellensin); mekân §1.6a/b p204 cs 1.6, padişah x 540, yüz_on_kontur 567.
   - Kurgucu: `foley.json` yok; yeni ses adları `adim-tas`, `tas-sekme`, `el-ahsap`.
   - P01 p172: yardimci-1 ayak y≈1530 (>1490) güvenli alan uyarısı (önceden vardı); P01 p100-172 meşale yukarıda, ışık havuzu motion kontrolü.
+
+## mekan-sorumlusu · 2026-11-08 · K5 açıkları (B1, B5, B9, B14) + P12 p204 cs 1.6 (R4)
+- **Ne yaptım:**
+  - K5 eleştirisini ve kareleri inceledim: P01 p176, P08 p0/p36/p148/p240, telefon sayfası. `GalataTepe.tsx` yalnız okundu.
+  - `mekanlar.md` R4 revizyonunu yazdım:
+    - §2.2–§2.4 yeniden yazıldı.
+    - Yeni bölümler: §2.3a (silindir yasası), §2.3b (aşağıdaki şehir).
+    - §2.4 dip sokak ağzı ve toz.
+    - §2.4a, §2.5, §5, §6, §8 ve §9 güncellendi.
+    - §1.6, §1.6a ve §1.6b P12 için güncellendi.
+- **Dokunduğum dosyalar:** `bolumler/evliya-ucuslari/mekanlar.md`, `bolumler/evliya-ucuslari/katki-raporu.md`.
+- **Aldığım kararlar ve gerekçeleri:**
+  - **B1:**
+    - y 870–1100 tek ton `#a49c90`. Koddaki toprak karışımlı taban kaldırılıyor.
+    - y 1090–1264'te elle konumlanan 3 öbek, 5 ev, 2 sokak yarığı (tablo §2.3b). Ön eğim gölgede, sağ kalça ışıklı; sokaklar en koyu ton `#4e3a2e`.
+    - Yakın çatılar ×2 abartıldı [T]. Fiziksel ölçek ≈ 5–7 px/m çıkıyordu, bu ölçekte telefonda yine "tuğla" okunurdu.
+    - Ek siluet eklemedim: `arastirma.md` 1630'lar Galata/Tophane için bu yönde hiçbir yapı kaynaklamıyor.
+  - **B9:**
+    - Silindir ekseni x −178'den (kadraj dışı) x 300'e alındı [T, hafif abartı].
+    - Parabol yerine gerçek elips kullanılıyor, genlik `A = 0.30·|y − 829|`.
+    - Göz üstü kenarlar ∩, göz altı kenarlar ∪. Eleştirmen "seki kenarı aşağı insin" demişti, ama seki göz hizasının altında; fizik gereği uçlarda yukarı kalkar. Bunu düzelttim, gerekçe kartta.
+    - Seki dudağı genliği 100'de tutuldu (fizik 130): ayak 1250 kilidini korumak için.
+    - Çıkıntı düz levha olarak kaldı.
+    - Külah dikişleri apekse (300, −1260) tam boy yelpaze, 26 çizgi.
+    - Işıklı yüz tabanda x 419–760. Güneş 15° ve koni normalinden hesaplandı: yüzeyin çoğu ışık alıyor.
+    - Duvar terminatörü hesapla x ≈ 583'e taşındı: ışıklı şerit 600–700.
+  - **B5:**
+    - Dip taşın ölçeğinde (255 px/m): kuleye dayalı iki ev, saçak uçları x 560 / 845 (yönetmenin `sokak_bosluk_x`'i), köşeler 471 / 934.
+    - Tek nokta perspektif, VP (670, 3152), göz 1.6 m.
+    - Saçaklar vinçte p ≈ 89–124 arasında kadraj kenarlarından geçer: "taş iki saçağın arasından düşer".
+    - Fizik notu: kamera p148'de sokak seviyesinde. Saçak bu ölçekte o karede kadrajın 2 m üstünde kalır, bu yüzden çarpma karesini ev köşeleri çerçeveler.
+    - Toz 4 (+1) gri, 6 loblu öbek; yerde kalır. Ekranda 641–881, taş merkezinin ±130 px'i içinde, x < 920.
+  - **B14:** duvar dibi 1150, seki 1150 → 1264 karta işlendi.
+  - **P12:** p150–204 cs 1.6 / cy 30, cx ∈ [−139, 143]. p60–126 cs 3.0, cx ≤ −134. Padişah x 540, burun 567. Bant üst kenarı burunda y ≈ 655–675; göz bandın içinde, EV-D6 korunuyor.
+- **Uyguladığım kurallar / yakaladığım ihlaller:**
+  - Tek ışık: terminatörler ve gölgeler güneş tanımından hesaplandı.
+  - Kanıtsız siluet yok.
+  - Yeni tonların imzadan uzaklığı ölçüldü: ΔE76 ≥ 24.
+  - Kamera yüksekliği tutarlı: dipte çatı yüzü görünmez.
+  - Nesne fade ile kaybolmaz: toz yerde kalır.
+  - IG sütunu güvenli alanı gözetildi.
+  - Yakalanan ihlal: eski spesifikasyonda (§2.4) dip ×1/5.5 ölçekteydi; vinç taşı 255 px/m'de sabit tuttuğu için ölçek çelişkisi oluşuyordu. Benim önceki hatam, düzeltildi.
+- **Açık sorular / sonraki ajana notlar:**
+  - **Araştırmacı:**
+    - 1630'larda kuleden 20–50° yönünde görünen anıtsal yapı (Merian 1635).
+    - Kule tabanı çevresindeki yapılaşma ve sokak genişliği.
+    - Kamera yönü 20°'de arazi Pera'ya doğru yükseliyor olabilir; harita kontrolü gerekli.
+  - **Yönetmen:**
+    - P01 B yürüyüş `y` değerleri formülden gelir (1250 → 1221); son adım çıkıntıya iner.
+    - P08 dip hesapları cx −260 varsayımıyla yapıldı. cx değişirse VP x = 540 − cx/2.
+    - P12 A6 için cx 100 aralıkta.
+  - **Motion:**
+    - `silindirY` tek fonksiyon olarak yazılsın.
+    - `KonutKumesi` liste modu ve yeni `SokakAgzi` gerekiyor.
+    - `Toz` yeniden yazılsın, halka kaldırılsın.
+    - Sırt çizgisi (690 → apeks) kaldırılsın.
+  - **Eleştirmen:** renk ölçüm noktaları eklendi: pus (1000, 980), dip zemini (400, 1700). Galata ışıklı taş ölçüm noktası 690'dan 650'ye taşındı.

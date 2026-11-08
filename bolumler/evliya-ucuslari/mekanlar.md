@@ -11,6 +11,13 @@ Bu belge **şartnamedir, kod değildir.** Bütün sayılar motion içindir. Moti
 >
 > **R3 (2026-11-08, K4 + K5 hazırlığı):** P12 zemin hesabı düzeltildi (§1.6a; 1612 < 1920, zemin görünüyordu). Pencere ↔ kapı ayrışma imzası eklendi (§1.6b). GALATA-TEPE K1–K4 derslerine göre gözden geçirildi (§2.4a): `gunduzMineral`, kroma hedefleri, yasak benzerlikler (deniz feneri, roket), külah saçağı %10, P08 p36–52 taş alt bantta → cy ≤ −41.
 >
+> **R4 (2026-11-08, K5 eleştirisi):**
+> - B1 uzak şehir yeniden tarif edildi (§2.3b): y < 1100 tek ton pus. y 1100–1264'te 3 öbek, 5 ev ve 2 sokak yarığı.
+> - B9 silindir yasası (§2.3a): eksen x 300, elips kavisi, külah dikişleri apekse yelpaze, ışıklı yüz x ≥ 419.
+> - B5 dip sokak ağzı 255 px/m'de (§2.4): saçak uçları 560 / 845, toz 3–5 öbek.
+> - B14 duvar dibi 1150 kabul edildi (§2.2, §2.3).
+> - P12 p204 cs 1.6, padişah x 540 (§1.6, §1.6a, §1.6b).
+>
 > **R2 (2026-11-08, K3/K4):** gündüz yansıması yeniden tarif edildi (§1.3a, V8). Motion'ın iki sorusu cevaplandı (§1.3b: eksen asimetrisi kasıtlı; P02 cs 0.97 + grup onaylandı, sağ ucu ≤ 148). P12 kartı gözden geçirildi (§1.6): etkin yarık formülü düzeltildi, havadaki huzme yalnız kenar çizgisi olacak.
 
 Etiketler: **[A]** arastirma.md · **[A10]** arastirma.md §10 (yalnızca arama özeti) · **[S]** sahne-plani/senaryo · **[G]** genel bilgi, kaynağı yok, **doğrulanmalı** · **[T]** tasarım kararı (tarihî iddia değil). Kanıtsız ayrıntı **nötr** kalır.
@@ -291,12 +298,12 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | Pencere dışı | `#ece2c4` (gündüz %30 aşırı pozlanmış) + uzakta tek ton ufuk şeridi; ayrıntı yok |
 | Duvar | ışıklı `#cbbfa4` (yalnız huzmenin vurduğu yerde) · gölgede `#3a3430` |
 | Kapı (sahne-planı x≈120 yerine, §7.4) | **x 60–352**, y 602–1250 |
-| Padişah | yüz ön konturu x ≈ 457, göz y 740 · ayak y 1267 (kadraj dışı) |
+| Padişah (R4, K4 A2) | **x 540** (gövde ekseni; pencereye 0.32 m yaklaştı), **burun ucu x 567**, göz y 740 · ayak y 1267. Önceki yüz konturu 457 iptal |
 | Zemin + duvar dibi (R3, K4 U3) | Duvar dibi y 1250. Zemin 1250'den kameraya doğru. **Düzeltme:** önceki "cs 1.8'de ekran y ≥ 1612 → kadraj dışı" hesabı yanlıştı (1612 < 1920): zemin cs 1.8 / cy 130'da ekranda 1612–1920 arasında **görünür** ve alt güvenli bandın içindedir. Doğru kural ve tarif: §1.6a |
 
 - **Huzme (E5, tek kaynaktan):** `AciklikIsigi`, `yonlu` yön (−0.83, +0.56).
   - Kaynak, kanadın serbest kenarıyla orta kayıt arasındaki dikey yarıktır. Kanat 12°'deyken yarık x 706–738 (32 px dekor, cs 2.6'da ekranda 83 px).
-  - Yarık kendi yönünde süpürülür. Yarığın üst ucunun (y 560) izdüşümü x 457'de **y 739**'a düşer. Yani **bandın üst kenarı göz hizasından geçer**: alın ve sarık gölgede, gözden çeneye kadar ön kontur ve göğüste dikey şerit ışıklıdır. "Işık gözlerde şeride iner" (EV-D6) geometriden kendiliğinden çıkar.
+  - Yarık kendi yönünde süpürülür. ~~Yarığın üst ucunun (y 560) izdüşümü x 457'de y 739~~ **R4 (padişah x 540, burun 567):** yarığın üst ucunun izdüşümü x 567'de **y ≈ 655–675**'e düşer (yarık kenarları 706 / 738). Bandın üst kenarı alt alından geçer. Sarık gölgede kalır. Göz (y 740) bandın içinde kalır, gözden çeneye ön kontur ve göğüste dikey şerit ışıklıdır. EV-D6 korunur. Motion şeridi bu formülle yeniden hesaplar, elle kaydırmaz.
   - Kanat 80°'de (açık) yarık x 560–738 olur ve band padişahı geniş biçimde yıkar.
   - Toz zerreleri yalnızca bandın içinde.
 - **K4 gözden geçirme (R2):**
@@ -307,14 +314,14 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
     - Alt üçte biri kaftan şeridi + sütun kenar çizgileri doldurur.
   - **Kadraj:**
     - cs 1.8 / cx 150'de (p0–10) pencere ekranda x 726–1046: kanat kapanışı görünür ✓.
-    - p50'den sonra (cs 2.6 / cx 216) yarık ekranda x ≈ 1190–1270, **kadraj dışında**. Şerit sağ kenardan girer. Kabul: kaynak kapanışta kurulmuştu.
+    - ~~p50'den sonra (cs 2.6 / cx 216) yarık kadraj dışında~~ **R4:** p60–126 cs 3.0 / cx −140'ta yarık ekranda ≈ 994 (kadrajda, §1.6b).
     - Göz y 740 ekranda y ≈ 598 (yazı bantlarının dışında) ✓.
-    - Kapı pervazı x 352, cs 2.4 / cx 190'da ekranda x ≈ 279 ✓ (işaret anında görünür).
+    - Kapı pervazı x 352, **R4: cs 1.6 / cx 80'de ekranda x ≈ 319** ✓ (işaret anında görünür).
   - **Ölçü tutarlılığı:**
     - Kapı 0.9 × 2.0 m (292 × 648 px, y 602–1250) ve pencere 0.55 × 1.30 m (178 × 421), aynı 324 px/m düzleminde ✓.
     - Pencere üstü (y 560) kapı üstünden (602) 0.13 m yüksekte: kabul.
     - Denizlik 0.83 m.
-    - Padişah gövdesi x ≈ 380–520, pencereye (560) 40 px kala durur. Yüzü pencereye ve dışarıya bakar, kanadı uzanarak çeker (kol yolu kanadın serbest kenarına, x ≈ 738'e varır).
+    - ~~Padişah gövdesi x ≈ 380–520~~ **R4:** padişah x 540, burun ucu 567. Burun pencere açıklığının sol kenarını (560) ekranda 7 px geçer. Padişah duvardan 0.4 m önde durduğu için çakışma yok: yüz pencerenin önünde, gövde pencerenin solunda. Yüzü pencereye ve dışarıya bakar, kanadı uzanarak çeker (kol yolu kanadın serbest kenarına, x ≈ 738'e varır).
   - **Sonuç:** kart geçerli. Yalnız etkin yarık formülü ve havadaki huzme tarifi düzeltildi.
 - **Alt üçte bir:**
   - Kaftan + göğüsteki ışık şeridi.
@@ -326,7 +333,8 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 - **Hesap (ekran y = (d − 960)·cs + 960 + cy):** duvar dibi d 1250, padişah ayağı d 1267.
   - cs 1.8 / cy 130 → ayak 1683, duvar dibi 1612: alt bantta, KABUL EDİLMEZ.
   - **Geniş evre (p0–36):** ayak ve temas gölgesi ≤ 1490 için cs 1.8'de **cy ≤ −23** (öneri cy −30: ayak 1483, duvar dibi 1452). Sarık tepesi (d ≈ 650) ekranda ≈ 372 olur, yazı bandına (≤ 400) girer. İkisi birden tutmuyorsa yönetmen p0–36'yı cs 1.6'ya düşürür: ayak ≤ 1490 için cy ≤ 39; cy 30 ile sarık 494 ve ayak 1481 olur, ikisi de tutar. **Öneri: p0–36 cs 1.6, cy 30.**
-  - **Push-in evresi (p70+):** zemin kadraj dışı için duvar dibi > 1920 olmalı, yani cs 2.6'da cy ≥ 206 (mevcut 210, sınırda ✓). cs 2.2'de cy ≥ 322 (**mevcut 170 → zemin 1793'te görünür ✗**). Yönetmen p204'te cy ≥ 330 yapar ya da zeminin görünmesini kabul eder (bkz. aşağıdaki tarif; görünürse alt bant ölü alan olmaz, ama ayak kadraja girmez çünkü d 1267 → 2149).
+  - **Push-in evresi (R4: p60–126, cs 3.0, katalog sınırı):** zeminin kadraj dışında kalması için duvar dibi > 1920 olmalı, yani cs 3.0'da cy ≥ 91. Mevcut cy 400 ile duvar dibi 2230 ✓.
+  - **İşaret evresi p150–204: cs 1.6, cy 30 (R4, eleştirmen K4 kararı: KABUL; önceki "p204 cs 2.2 / cy ≥ 330" iptal).** Duvar dibi 1454, ayak 1481 ≤ 1490 ✓. Zemin alt bantta görünür; tarif aşağıda, ölü alan oluşturmaz. Sarık tepesi ≈ 494.
   - Her beyan kontrol karesinde ölçülür (K4 dersi 4).
 - **Zemin tarifi (görünürse):** düz tek ton döşeme `#2e2824` (oda gölgesinin bir basamak koyusu). Döşeme deseni, tahta çizgisi ve süpürgelik yok (kanıtsız, nötr).
   - **Halı:** padişahın bastığı yerde düz `#5a4a3e` halı (`tasarim.md` §1.3). Arka kenarı duvara paralel d 1262 çizgisinde, duvardan 0.04 m önde; ön ve yan kenarları kadraj dışında. Desen ve saçak yok.
@@ -344,8 +352,11 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | Oran | Kanat 1:2.4, **yerden kopuk dikdörtgen** | 1:2.2, **zemine basan dikdörtgen** |
 - **Telefon testi:** "sağdaki pencere, soldaki kapı" yalnız alt kenarlardan (denizlik + duvar ↔ eşik) ve yarıktaki ışık çizgisinden okunmalı.
 - **Yönetmene (kadraj):** yarık (d x 738) ekranda ≤ 1000 ve kapı pervazı (d x 352) ≥ 100 olmalı.
-  - **cs 2.2'de** ikisi birlikte sığar: **cx ∈ [−26, +24]**. Mevcut p204 cx 170'te yarık 1146'da, kadraj dışında.
-  - **cs 2.6'da** birlikte sığmazlar (386 × 2.6 = 1004 > 920). p50–120'de öncelik yarık + yüz: **cx ≤ −55** (yüz ön konturu ekranda ≈ 269). Kapı pervazı bu evrede kadraj dışında kalır; işaret anı (p130+) cs 2.2'ye döndüğünde kapı geri gelir.
+  - **R4, p150–204 cs 1.6:** ekran = (d − 540)·1.6 + 540 + cx. Yarık ≤ 1000 için cx ≤ 143, pervaz ≥ 100 için cx ≥ −139, yani **cx ∈ [−139, +143]**.
+    - Mevcut cx 80'de yarık 937 ve pervaz 319 ✓.
+    - A6 için (işaret parmağı ≥ 120) cx 100 olursa yarık 957 ✓, pervaz 339 ✓.
+    - (Önceki "cs 2.2 → cx ∈ [−26, +24]" iptal.)
+  - **R4, p60–126 cs 3.0:** yarık (d 738) ≤ 1000 için **cx ≤ −134**. Mevcut cx −140'ta yarık 994 ✓. Burun (567) ekranda 481, göz y (740 → (740 − 960)·3 + 960 + 400) = 700 ✓. Kapı pervazı bu evrede kadraj dışında kalır; p150'de cs 1.6'ya dönülünce geri gelir.
   - Instagram sağ düğme sütunu (x 920–1080, y 900–1700): yarık 1000'e kadar kabul, çünkü yarığın kendisi ince bir ışık çizgisidir, temas noktası değildir. Kanat kenarı **temasında** (p30 "tok") x ≤ 880 (K4 §2.1a).
 - **Tarama:** pervazın gölge tarafında II, kapı ağzında III + ton. Geniş duvar gölgesi düz ton.
 
@@ -364,10 +375,13 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | Külah (süsleme imzası 1) | **Kurşun kaplı** [A]. Biçim nötr: düz koni, **yükseklik = 1.0 × taban çapı**. Saçak taşması tabanın **%10'u** (R3: deniz feneri / roket benzerliğine karşı, §2.4a). Pencere, çatı penceresi, alem ve bayrak **yok** [A "eğim/pencere kanıtsız"]. Yakında dikiş çizgileri §2.5 |
 | Süsleme imzası 2 | Kemerli tepe katı (koyu açıklık dizisi) + korniş çizgisi. Başka süs yok |
 | Çevre | Galata konutları: ahşap gövde [A10 §10.9], çatı koyu toprak `#6e5240` tek ton, eğim alçak-orta, **kiremit deseni ve dik çatı yok** [A10]. Galata surları çizilmez (doğrulanmadı [A]) |
-| Kameradan görünen | Kamera sekinin dışında, sekiyle aynı seviyede havada; göz 1.65 m yüksekte, tepe katı duvarından 4 m uzakta. **Külah dik olduğu için yüzeyi görünür** (eğim > bakış açısı). Saçak altı görünür. Külahın tepesi kadrajın üstünden taşar: koni yakınsayan iki kurşun yüzey olarak okunur, tam siluet P09'dadır |
+| Kameradan görünen | Kamera sekinin dışında, sekiyle aynı seviyede havada; göz 1.65 m yüksekte, tepe katı duvarından 4 m uzakta. **Külah dik olduğu için yüzeyi görünür** (eğim > bakış açısı). Saçak altı görünür. Külahın tepesi kadrajın üstünden taşar: koni, gölge yüzü + sağda geniş ışıklı yüz + apekse yelpaze dikişlerle okunur (R4, §2.3a). Göz hizasının üstündeki kenarlar ∩, altındakiler ∪ kavislidir. Tam siluet P09'dadır |
 
 ### 2.2 Ölçek ve yön
-- **Seki zemini y 1250 = Hezarfen'in ayağı, 255 px/m** (%22 boy, `tasarim.md` §8.6). Ufuk y 829.
+- **Ayak teması y 1250 = Hezarfen'in ayağı, 255 px/m** (%22 boy, `tasarim.md` §8.6). Ufuk y 829.
+- **Seki (R4, B14 KABUL):** tepe katı duvar dibi **y 1150**. Seki üst yüzü 1150 → **1264** (dış dudak). Bu değerler silindir ekseninde (x 300) geçerlidir; uçlarda §2.3a kavisi uygulanır.
+  - Gerekçe: ayak 1250'de, taş ise dudaktan düşüyor. Fizik ancak duvar dibi 1150 olunca çalışıyor (eleştirmen B14).
+  - Tepe katı duvarı ayaktan 1.2 m geride: **195 px/m**, taş sırası 0.45 m = 88 px.
 - Kamera yönü 20°: sağ = doğu (Boğaz / Üsküdar yönü), güneş sağda ve ileride. **Yan-kontra ışık.**
 
 ### 2.3 Katmanlar (cs 1 kadrajı: P01 B, P08 p0)
@@ -375,58 +389,173 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 |---|---|---|---|---|
 | 1 | Gök (lodos pusu) | ≤ 829 | 700…1300 (külahın sağı) | `#a9b6bf` / `#cfcfc4` / `#e6dcc0` düz basamaklar. Sağ üstte güneş parlaması `#f6e8c0` α .4, x 1000–1300, y 500–829, disk yok |
 | 2 | Uzak: Boğaz şeridi + Asya kıyısı | 790–870 | 700…1300 | Asya tepeleri `#9aa2a4` (y 790–829), Boğaz şeridi `#7c9090` (829–870) + güneş yolu kıvılcımları `#e4dcc4`, sağ kenarda |
-| 3 | Aşağıdaki şehir (Galata, Tophane çatıları) | 870 → 2400 | 700…1300 | Yukarıdan bakılan çatı kutuları: ölçek y 870'te 6 px'lik kutu, y 2400'de 60 px. Çatılar `#6e5240`, gölge yüzü `#4e3a2e` sol tarafta; duvarlar `#8a7660` / `#5e5040` (YENİ hex, §8). Yüzeyde hava perspektifi: y < 1100 tek ton `#a49c90` |
-| 4 | Külah | 0 → 485 (saçak altı 485–500) | −540…800 | İki yüzey: sol `#7c8288` (gölge), sağ dar şerit `#a3a8aa` (ışık). Sırt çizgisi sağ üste yakınsar |
-| 5 | Korniş | 485–500 (yükseklik 0.3 m = 77 px, öne taşma) | −540…720 | Altı II tarama |
-| 6 | Tepe katı duvarı | 500 → 1250 | −540…700 (sağ uç kavisli) | Moloz/yonu taş, sıra 0.45 m = 115 px. Taban `#6b6357` (gölge yüzü). x 600–700 terminatör bandı II, **x 680–700 ışıklı `#9a8f7e`** (sağ uç) |
-| 7 | Açıklıklar | Kapı D x 163–418; üzengi y 765, tepe y 637, eşik 1250 | | içi `#2a2620`, kemer içinde III + ton. Sağ uç açıklığı x 560–650 (perspektifle daralmış), koyu |
-| 8 | Seki | üst yüzey 1250 → 1430 (perspektif), ön yüz 1430 → 1575 | −540…860 | Taş levha, ön yüz `#6b6357`, üst yüz bir ton açık `#7e7466`. **Ayak teması y 1250** (sahne-plani ile aynı) |
-| 9 | Çıkıntı | üst 1250–1460, ön yüz 1460–1540, konsol 1540–1650 | **640…900** | Gevşek taş x 750–790 (`tasarim.md` §4.5). Hezarfen'in durduğu yer x 700–800 |
-| 10 | Gövde (aşağıya doğru dikey şerit) | 1575 → 3600 | −540…1060 (gövde, tepe katından 1.2 m geniş) | §2.4 |
+| 3 | **Aşağıdaki şehir (R4, B1)** | 870 → 1264 (+ x > 1060'ta aşağısı) | 700…1300 | **§2.3b.** y 870–1100 tek ton pus `#a49c90`, ayrıntısız. y 1100–1264'te 3 öbek, 5 ev, 2 sokak yarığı |
+| 4 | Külah (R4, B9) | apeks (300, −1260), saçak kavisi §2.3a | −160…760 | Düz koni. Gölge yüzü `#7c8288`, **ışıklı yüz `#a3a8aa` saçakta x 419–760 arası**, tepeye doğru daralan geniş şerit (y 0'da x ≈ 385–613). Dikişler apekse yelpaze (§2.3a). Ayrı "sırt çizgisi" yok: yüzleri terminatör ayırır |
+| 5 | Korniş | ekseninde 507–565, uçlarda kavisli (§2.3a) | −130…730 | 0.3 m, öne 30 px taşar. Üst kenarı 12 px ışık `tonla(#6b6357, +.18)`, altında II tarama. Sağ uç (x 690–730) `#9a8f7e` |
+| 6 | Tepe katı duvarı | ekseninde 565 → **1150**, kavisli (§2.3a) | −100…700 | Moloz/yonu taş, sıra 0.45 m = 88 px (195 px/m), kavisi izler. Taban `#6b6357` (gölge yüzü). **Terminatör II x 560–600; ışıklı `#9a8f7e` x 600–700** (R4: güneş azimutundan hesaplandı, §2.3a) |
+| 7 | Açıklıklar | Kapı D x 163–418, tepe 672, eşik duvar dibi kavisinde · sağ uç açıklığı x 560–650, tepe 700 | | `yarimDaire`. İçi `#2a2620`, kemer içinde III + ton. Sağ açıklık silindir yüzünde daralır, üstü ve eşiği kavisi izler |
+| 8 | Seki | üst yüz: arka kenar = duvar dibi kavisi (ekseninde 1150), ön kenar = dudak kavisi (ekseninde **1264**) | −540…700 | Üst yüz `#7e7466`, dudak 5 px ışık çizgisi. Ön yüz yok: dudaktan aşağısı gövde (katman 10) |
+| 9 | Çıkıntı | üst yüz arka kenarı ≈ 1100 (düz), ön dudak **1264 düz** · ön yüz 1264–1300 · konsol 1300–1364 | **640…900** | Düz dikdörtgen levha: kavis almaz, **ayak 1250 bunun üstünde**. Gevşek taş x 750–790 (`tasarim.md` §4.5). Hezarfen x 700–800 |
+| 10 | Gövde | 1264 → 3560 | −540…1060 | §2.4 |
 
-- **Kontra okuma:** Hezarfen (x 700–800) ve kanat silueti `#3a3634`, arkada açık pus gök ve uzak şehir. Bu yüzden çıkıntının arkasındaki gök/şehir alanı (x 700–1080, y 600–1250) **boş ve açık** kalır. Bulut, kuş ya da baca konmaz.
-- **Gölge:** (−2.64, +1.09). Hezarfen'in gölgesi sekide sola ve aşağıya, uzun düşer; seki ön kenarından aşağı kırılır (y 1430'da kenar).
+- **Kontra okuma:** Hezarfen (x 700–800) ve kanat silueti `#3a3634`. Arkada açık pus ve aşağıdaki şehir. Çıkıntının arkasında y 600–1100 (x 700–1080) boş ve açık kalır: bulut, kuş, baca yok. Yakın çatılar yalnız y ≥ 1090.
+- **Gölge:** (−2.64, +1.09). Hezarfen'in gölgesi çıkıntı/seki üstünde sola ve aşağıya uzun düşer, dudakta (1264) kırılır.
+
+#### 2.3a Silindir yasası (R4, B9): kule "taş ev" değil "silindir + koni" okunmalı
+- **Sorun:** eksen (en yakın nokta) x −178'deydi, yani kadraj dışındaydı. Genlik 50 px ve parabol kullanılıyordu. Korniş neredeyse düz, dikişler neredeyse paraleldi.
+- **Eksen x 300'e alınır** [T]. Kapı D (163–418) eksene oturur, iki uç da kadrajda kavis gösterir.
+  - Gerçekte kamera duvara 4 m mesafeden tek silüet görür. Silindirin ekranda daraltılması "duygu için hafif abartı" kapsamındadır, yapı tipi değişmez.
+- **Yasa (her yatay kenar için):** `u = (x − 300) / a`, `e(u) = 1 − √(1 − u²)` (gerçek elips, parabol değil), `A(y) = 0.30 · |y − 829|`.
+  - Göz hizasının üstündeki kenarlar (y < 829) uçlara doğru **aşağı iner**: `y' = y + A·e`. Kemer biçiminde (∩).
+  - Altındakiler (y > 829) uçlara doğru **yukarı kalkar**: `y' = y − A·e`. Gülümseme biçiminde (∪).
+  - Not: eleştirmen "seki kenarı aşağı insin" demişti, ama seki göz hizasının altında kalır. Fizik gereği seki kenarı uçlarda yukarı kalkar. Silindiri okutan şey üstteki ∩ ile alttaki ∪ çiftidir.
+- **Yarı genişlikler a:** tepe katı duvarı 400 (silüet x −100 / **700**) · korniş 430 (sağ uç 730) · külah saçağı 460 (sağ uç **760**, %10 taşma korunur) · seki dudağı 560 (silüeti çıkıntının arkasında kalır).
+- **Hesaplanmış kontrol değerleri (motion ölçer, ±6 px):**
+
+| Kenar | Eksende y | Sol kadraj kenarı (x 0) | Sağ uç |
+|---|---|---|---|
+| Külah saçağı | 492 | 516 | 593 (x 760) |
+| Korniş üstü | 507 | 535 | 604 (x 730) |
+| Duvar üstü | 565 | 592 | 644 (x 700) |
+| Duvar dibi | 1150 | 1117 | **1054** (x 700) |
+| Seki dudağı (A **100**, sabit [T]) | 1264 | 1248 | 1243 (x 640; daha sağı çıkıntı arkasında) |
+
+  - Dudak genliği fiziksel değerden (0.30 · 435 = 130) küçük tutuldu: çıkıntı ve ayak kilidi (1250) bozulmasın diye.
+- **Taş sıraları:** derz çizgileri aynı yasayla eğrilir. Blok genişliği iki uçta da `× √(1 − u²)` daralır (en az ×0.35).
+- **P01 B yürüyüş yolu** (yönetmen json'a `y` anahtarı olarak yazar): `ayak_y(x) = 1250 − 97 · e((x − 300) / 560)`.
+  - Değerler: x 290 → 1250 · 500 → 1244 · 640 → 1230 · 700 → 1221.
+  - Son adım çıkıntıya basar ve y 1250'ye iner: düz levhada kameraya doğru 0.1 m'lik adım.
+  - Böylece P08 p0'daki duruşla (x 700–800, ayak 1250) süreklilik korunur.
+- **Külah:**
+  - Apeks (300, −1260), kadraj dışında. Kenar çizgileri: sol (−160, 516 → apeks), sağ (760, 593 → apeks), kontur 4 px.
+  - **Dikişler (yelpaze):** 0.6 m aralık → çevrede 73 dikiş, açı adımı 4.93°. Taban noktası `x = 300 + 460·sin φ`, `y = saçak kavisi(x)`, φ = −40° … +88° (≈ 26 çizgi).
+    - Her dikiş tabandan **apekse kadar tam çizilir** (kadraj üstünde kırpılır). Yarım boy kesik çizgi yok.
+    - Eksende tabanda aralık ≈ 39 px, y 0'da ≈ 27 px. Yakınsama telefonda görünür.
+    - 1.8 px. Işık yüzünde `#c2c6c6` α .35, gölge yüzünde `#5e6268` α .35.
+  - **Işıklı yüz:** güneş 15° yükseklikte. Koni yüzeyi yukarı baktığı için kameradan görünen yarının çoğu ışık alır.
+    - Terminatör φ = +15° → tabanda x 419 [hesap φ ≈ 12°, okunurluk için yuvarlandı].
+    - Işıklı yüz `#a3a8aa`: tabanda x 419–760 (341 px), y 0'da x ≈ 385–613 (228 px).
+    - Terminatörün gölge tarafında 30 px II tarama bandı (θ = 60°). Sol kalan `#7c8288`.
+    - Renk ölçüm noktası (200, 150) gölge yüzünde kalır ✓.
+  - **Saçak altı:** saçak kavisi ile korniş üstü kavisi arası koyu bant `#4e473f`. Eksende 15 px, uçlarda kavislerin farkı kadar.
+- **Duvar ışığı:** duvar normali 155° olduğu yerde terminatör oluşur (güneş 65°, yön farkı 90°): `u = sin 45° = .71` → x ≈ 583.
+  - II tarama bandı x 560–600, ışıklı `#9a8f7e` x 600–700. Önceki 20 px'lik şerit dar kalıyordu.
+  - Korniş ve seki dudağının sağ uçları da aynı x'ten sonra ışık tonunu alır.
+- **Telefon testi (360 px):** "bu ne?" sorusunun cevabı "kule tepesi / yuvarlak kule" olmalı. Üstte kemer biçimli saçak, sağ uçta aşağı dönen korniş, tepeye toplanan dikiş yelpazesi ve sağda açık renk koni yüzü okunur. "Taş ev" ya da "şapel" okunuyorsa kavis eksik uygulanmıştır.
+
+#### 2.3b Aşağıdaki şehir (R4, B1): "döşeme" değil "yukarıdan bakılan çatılar"
+- **Sorun:** satır satır, eşit aralıklı kutular ufka kadar keskindi. Telefonda tuğla döşeme gibi okundu ve kule bir meydan kenarındaymış gibi durdu.
+- **Fiziksel çerçeve (ölçek için):** göz sokak seviyesinden ≈ 52 m yüksekte [T], odak f = 780 px (duvar 4 m'de 195 px/m).
+  - `y = 829 + 780·52 / D` bağıntısıyla: y 1264 → D ≈ 93 m (≈ 7 px/m) · y 1100 → 150 m (≈ 5 px/m) · y 900 → 570 m (≈ 1.4 px/m).
+  - Yakın çatılar okunurluk için **×2 abartılır** [T]: bir ev 110–215 px.
+- **Bölge 1, pus (y 870–1100):** **tek ton `#a49c90`, düz.** Kutu, çizgi, gren dışında doku ve gradyan yok.
+  - Üst kenar Tophane kıyı çizgisidir: y 870 ± 3 px, seed 138 ile yumuşak düzensiz.
+  - Koddaki `karistir(pus, toprak, .35)` taban dolgusu kaldırılır, taban doğrudan `#a49c90` olur.
+- **Bölge 2, yakın kenar (y 1090–1264, x 700–1300):** 3 öbek, 5 ev, 2 sokak. Aradaki her yer ya ev ya sokaktır, başka zemin tonu görünmez.
+
+| Öğe | x (saçak hizasında) | Sırt y | En w | Duvar boyu | Not |
+|---|---|---|---|---|---|
+| Öbek A · A1 | 700–850 | 1092 | 150 | 0.30 w | Çıkıntının (üst yüzü ≈ 1100) arkasından yalnız sırt ve kalça ucu görünür: derinlik işareti |
+| Sokak S1 | (915, 1264) → (880, 1100) | — | 18 → 10 px | — | Çapraz yarık, ufuk noktasına doğru sola yatar. `#4e3a2e` |
+| Öbek B · B1 | 930–1050 | 1118 | 120 | 0.30 w (2 kat) | Eğim yüzü 1118–1152, saçak bandı 1152–1158, duvar 1158–1194 |
+| Sokak S2 | 925–1110 | — | y 1194–1208 | — | Enine yarık, sol ucu S1'e bağlanır. `#4e3a2e` |
+| Öbek B · B2 | 945–1105 | 1208 | 160 | 0.45 w (3 kat) | Yükseklik farkı. Duvar 1259'dan aşağı, x < 1060'ta gövdenin arkasında kalır |
+| Öbek C · C1 | 1085–1300 | 1100 | 215 | 0.30 w | cs 1'de yalnız sol kenarı görünür (geniş kadraj ve P08 vinç sonrası için). x > 1060, y > 1264: aynı kurala göre w 240'lık çatılar sürer |
+
+- **Ev çizimi** (yukarıdan, ≈ 18° aşağı bakış; eğim 20° alçak, kiremit deseni yok [A10 §9]):
+  - **Ön eğim yüzü:** sırttan saçağa yamuk, yükseklik 0.28 w, saçakta her yana 0.05 w taşar. Ton `#4e3a2e`: güneşe sırtını döner, dot ≈ 0.
+  - **Sırt:** 0.5 w uzunlukta yatay çizgi.
+  - **Sağ kalça üçgeni:** sırt ucundan saçak köşesine, en 0.22 w. **Işıklı `#6e5240`** (güneş sağ-ileride). Sol kalça `#4e3a2e`.
+  - Arka eğim görünmez: bakış açısı eğime eşit, yüz kenardan görünür.
+  - **Saçak gölge bandı** 6 px `#3e2e24`, ön duvarın üstünde.
+  - **Ön duvar** `#5e5040` (gölgede). Pencere, kapı ve baca yok.
+  - Evler ufuk noktasının (540) sağında kaldığı için sol yan duvarları görünür. Bu duvarlar da gölgede: ön duvarla birleşik tek ton.
+  - Kontur yalnız çatı dış kenarında, 3 px `ink`. İçte yalnız sırt çizgisi.
+- **Gölge:** her ev gölgesini (−2.64, +1.09) yönünde sola ve kameraya doğru S1 ve S2'ye düşürür. Sokaklar en koyu yerdir, evleri birbirinden ayıran şey budur.
+- **Ek siluet (kubbe, minare, Tophane yapıları) YOK.**
+  - `arastirma.md` 1630'lar Galata/Tophane için bu yönde görünen hiçbir yapıyı kaynaklamıyor. Yalnız §5.1 (kule) ve §9 (konut çatısı doğrulanamadı) var.
+  - Araştırmacı doğrulaması gerekir (§9 açık soru).
+- **Telefon testi:** "bu ne?" → "aşağıda şehir çatıları / tepeden bakış". Döşeme, kaldırım ya da meydan okunursa bölge 1'de ayrıntı kalmıştır ya da öbekler eşit aralıklıdır.
+- **Renk ölçümü:** pus `#a49c90`, P08 p0 · (1000, 980). C\* 7.4 (alt sınır ≥ 5.2). Yeni tonların hepsi imza `#c4a874`'ten ΔE76 ≥ 24: zemin `#7a6c52` 27.8, toz `#8e8a80` 28.0.
 
 ### 2.4 Dikey şerit (P08 vinç inişi p52–148)
 - **Kamera türü:** EV-D3 "taş ekranda sabit boyutta, duvar akar" → **vinç** (kamera taşla birlikte iner). Duvarın ölçeği sabit kalır.
-- **Stilize kısaltma:** gerçek yükseklik ≈ 50 m, şerit 2350 px = 20 taş sırası ≈ 9 m. Kısaltma ×5.5 [T].
-  - Yükseklik bilgisini p0 kadrajı taşır: aşağıdaki şehir küçük çatılar olarak görünür.
+- **Stilize kısaltma:** gerçek yükseklik ≈ 50 m, şerit 2300 px = 20 taş sırası ≈ 9 m. Kısaltma ×5.5 [T].
+  - Yükseklik bilgisini p0 kadrajı taşır (§2.3b, tepeden çatılar).
   - P09'da tam siluet görünür.
+  - **Kısaltma yalnız gövdeye uygulanır. Dip, taşın ölçeğindedir (255 px/m, aşağıda).**
 - **Gövde (f = 1):**
   - Sıralar 115 px, sabit. Blok genişliği 0.5–0.9 m düzensiz.
   - Her 4 sırada bir **daha koyu taş sırası** (`#5e574c`): akışı okutur [T]. İskele deliği ya da pencere yok (kanıtsız).
   - Gövdenin sağ ucu x 1060 (cs 2.0'da kadraj dışı). Taş gövdenin önünden düşer.
   - Işık: gölge yüzü düz `#6b6357`, tarama yok (geniş yüzey).
-- **Dip (y 3200–3600, f = 1):**
-  - Gövde tabanı y 3600, zemin `#8a7a5c` (sıkıştırılmış toprak, nötr).
-  - Önde, kameraya yakın **iki ev çatısı** saçak altı ile görünür: sol x 100–560, sağ x 820–1250, saçak y 3420, sırt y 3330. Çatı `#6e5240`, alçak eğimli, desensiz.
-  - Taş, iki çatı arasındaki sokak boşluğuna (x 560–820) **y 3580**'de düşer. Toz efekti E4.
+- **Dip (R4, B5): sokak ağzı, taşın ölçeğinde (255 px/m, f = 1).** Önceki "×1/5.5 stilize iki ev" iptal: taş ev duvarının yarısı kadar duruyor, kaya gibi okunuyordu.
+  - **İlke:** bütün evler gösterilmez. Kuleye dayanan iki evin **sokak yüzü ve saçak ucu** kadrajın iki kenarını çerçeveler. Ortada dar sokak ve kule tabanı kalır.
+  - **Ölçek karşılaştırması** (telefonda okunmalı): taş 95 px = 0.37 m · taş subasman 0.9 m = 230 px. Taş, subasmanın %40'ı boyundadır: kafa büyüklüğünde bir taş.
+  - **Zemin ve ufuk:** kule tabanı **y 3560**, taşın çarpma noktası **(785, 3580)**, kuleden 0.08 m önde.
+    - p148'de kamera gözü sokaktan 1.6 m yüksekte [T]: ufuk d y **3152**.
+    - Ufuk noktası **VP = (670, 3152)**: p148 kamerasında (cs 2.0, cx −260) ekran merkezi.
+    - **Evlerin her yatay kenarı VP'den geçen doğru üzerindedir** (tek nokta perspektif).
+  - **Evler** (kuleye dayalı, sokak yüzleri sokağa bakar; uzak uçları kule düzleminde):
+
+| Öğe | Sol ev | Sağ ev |
+|---|---|---|
+| Duvar köşesi (uzak uç, kule düzlemi) | x 471 | x 934 |
+| **Saçak ucu** (0.35 m = 89 px sokağa taşar; yönetmen `sokak_bosluk_x` [560, 845]) | **x 560** | **x 845** |
+| Taş subasman 0–0.9 m (uzak uçta) | y 3560–3330, `#6a6252` | aynı |
+| Ahşap gövde 0.9–5.4 m | y 3330–2183, `#5e5040` (gölgede), 0.25 m aralıklı yatay tahta çizgileri α .25, 1.5 px | aynı |
+| Saçak (5.4 m), alın tahtası 0.15 m | y 2145–2183 `#3e2e24`. Altından görünen saçak altı (soffit) `#4e3a2e`: duvar üst çizgisi ile saçak ucu çizgisi arası | aynı |
+| Güneşli şerit | yalnız sol evin en üst 0.6 m'si (y 2336–2183) `#8a7660`: güneş sağdan, sağ ev sokağı gölgeler | tümü gölgede |
+| Kadraj kenarına uzantı (p148, d x 400 / 940) | saçak çizgisi (471, 2183) → (400, 1837) · zemin çizgisi (471, 3560) → (400, 3706) · saçak ucu çizgisi (560, 2183) → (521, 1837): neredeyse dikey koyu şerit | saçak ucu (845, 2183) → (907, 1837) · duvarı yalnız kenarda (≈ 6 px) |
+
+  - **Çatı yüzeyi çizilmez:** kamera saçak altındadır; saçağın üstünde kalan çatı görünmez, arkasında kule gövdesi görünür.
+  - **Vinçte görünme sırası** (taş y(p) ≈ 1264 + 0.2226·(p − 46)², kadraj d y [taş − 450, taş + 510]):
+    - **p ≈ 89–124:** iki saçak ucu kadrajın iki kenarında aşağıdan girip yukarı çıkar. **Taş iki saçak ucunun arasından geçer**: düşüş ve "dar sokağa düştü" bilgisi buradadır.
+    - p 110–148: ev sokak yüzleri, subasman ve sokak zemini.
+    - p148 kadrajı: d y 3130–4090. Kule tabanının son 1.7 m'si, iki ev köşesi, sokak zemini.
+  - **Sokak zemini** (y 3560 → kadraj altı):
+    - Sıkıştırılmış toprak, gölgede **`#7a6c52`** (YENİ: toprak `#8a7a5c` bir basamak koyu). Gölgede zemin duvarlardan açıktır, gök ışığını alır.
+    - Kenarlar: iki evin zemin çizgisi (VP doğruları).
+    - **4 kırık enine çizgi**, perspektif aralıkla: y 3621 / 3703 / 3825 / 4009. 2 px, `#4e3a2e`, α .25.
+    - 3 küçük çakıl (14–22 px), seed 141. Taşla karışmasın diye taş tonunda değil, `#6a6252`.
+  - **Işık:** güneş sağ-ileride, 15°. Sağ ev (5.4 m) sokağı tümüyle gölgeler. Kule yüzü de gölgede (`#6b6357`). Taş gölgede `#8e8472`, ışıklı kenarı yok. Çarpma anını toz okutur.
+- **Toz (R4, B5; E4 yeniden):** tek beyaz elips ve halka **iptal** (telefonda "yumurta / su birikintisi" okunuyordu). Duman dilinde düzensiz öbekler kullanılır, yerde kalırlar.
+  - **4 öbek** (dx dekor, taşın çarpma x'i 785'ten; r yarıçap, dekor): Ö1 (−45, 12) · Ö2 (−22, 18) · Ö3 (+8, 20) · Ö4 (+36, 12). Sekmenin yere değdiği karede (B6, p ≈ 152–158) **Ö5** (+30, 9) eklenir. Ekranda (cs 2) öbekler 24–40 px yarıçaplı.
+  - **Biçim:** 6 loblu tırtıklı bulut (P01 duman dili), lob yarıçapı 0.35 r, seed 140. Işık üst kenarı `#a9a69c`, gövde `#8e8a80`, α .75. Beyaz yok, halka yok.
+  - **Zaman:**
+    - p148–156: r·0.3'ten r'ye büyür, yükselir (tepe dy: Ö1 −24, Ö2 −32, Ö3 −28, Ö4 −18, Ö5 −12; dekor).
+    - p156–176: yere geri iner (dy → −0.3 r), basıklaşır (ry ×0.55), rx ×1.25 yayılır.
+    - **p176'dan sonra sabit, yerde kalır.** Fade yok, plan sonuna kadar görünür.
+  - **Sınır** (rx = 1.3 r × 1.25 yayılma dahil): dış kenar d x **720–841**. p148 kamerasında (cx −260) ekranda **x 641–881**: taş merkezi 770'ten sol yarı genişlik 129, sağ 111 (≤ 130 ekran px, yönetmen) ✓. IG düğme sütunu (x ≥ 920) dışında ✓ (B4).
 - **Arka katmanlar (çıkıntının sağı) yalnız cs 1'de görünür.** Vinç sırasında kadraj dışında kalırlar, f değerleri bu yüzden kritik değildir: gök/uzak f = 0, şehir f = 0.35.
-- **Takip doğrulaması:** cs 2.0, cy −5300'de dekor y 3580 → ekran y 900 (`bolum.json` P08 takip `ekran_y 900` ile tutarlı).
-- **Hızlı dönüş (p148–200):** aynı şerit tersine gider. Hareket bulanıklığı, şeridin 3 kopyası α .25 ile verilir (fade değildir, kamera hareketidir).
+- **Takip doğrulaması:** cs 2.0'da dekor y 3580 → ekran y 900 (`bolum.json` P08 takip `ekran_y 900`). Taş d x 785 → cx −260'ta ekran 770 ≤ 785 ✓ (B4). Yuvarlanma 840'a kadar → ekran 880 ✓.
+- **Hızlı dönüş (p148–200):** aynı şerit tersine gider. Hareket bulanıklığı, şeridin iz kopyaları α .25 ile verilir (fade değildir, kamera hareketidir).
+  - Eleştirmen B2: iz kopyaları yalnız `|hız|` eşiği üstündeki karelerde çizilir; kanat ve taş kopyalanmaz.
 
 ### 2.4a K5 hazırlığı: K1–K4 derslerine göre gözden geçirme (R3)
 | Ders | GALATA-TEPE'de uygulanışı |
 |---|---|
 | Derecelendirme | **`gunduzMineral`** (doygunluk 1.0, `max(in, bp)`, bp `#14110d`). `gunduz` kullanılmaz |
 | Kroma hedefi (§6a) | Galata taşı ışıklı `#9a8f7e` C\* 10.6 (≥ 7.4) · gölge `#6b6357` C\* 8.0 (≥ 5.6) · kurşun `#7c8288` C\* 4.1 (h° aranmaz) · gök orta `#cfcfc4` C\* 5.8 (≥ 4.1) · Boğaz şeridi `#7c9090` C\* 7.5 (≥ 5.3) |
-| Tarama yeri | Yalnız kemer içleri (III + ton), korniş altı (II), terminatör bandı (x 600–680, II, 60 px). Geniş gölge yüzü (tepe katı x < 600, gövde) **düz ton**. Hezarfen kostümünde tarama yok (K1 O3) |
+| Tarama yeri | Yalnız kemer içleri (III + ton), korniş altı (II), terminatör bandı (**R4: duvarda x 560–600, külahta ışık sınırının solunda 30 px**, II). Geniş gölge yüzü (tepe katı x < 600, gövde) **düz ton**. Hezarfen kostümünde tarama yok (K1 O3) |
 | Güneş parlaması | `#f6e8c0` α .4 **iki düz basamak** (iç α .4, dış α .18), radyal gradyan yok (minyatür + K3 dersi 1: yumuşak geçiş ara ton üretir) |
 | Yasak benzerlikler (360 px, "bu ne?") | **Deniz feneri** (silindir + galeri + koni): tepe katında ışık/cam yok, açıklıklar koyu; koni h = çap (ince-uzun değil); gövde taş sıralı (beyaz düz değil). **Roket/kalem** (silindir + sivri koni: bölümün konusu yüzünden en büyük risk): kadrajda koni tek parça yalnız P09'da; korniş taşması + koyu kemer bandı koniyi gövdeden ayırır, koni ucu sivri ama alemsiz, gövdeden geniş saçaklı (taşma %6 → **%10**'a çıkarıldı). **Satranç kalesi / burç**: mazgal dişi yok. **Kilise kulesi**: yarım daire kemer, çan ve haç yok |
 | Ufuk–ölçek | Kamera gözü seki + 1.65 m → ufuk y 829 = Hezarfen'in baş hizası (ayak 1250, 255 px/m) ✓. Uzak şehir ufkun altında küçülerek ✓ |
 | Kamera + dikey şerit | Vinç = taş sabit boyda (K1 dersi 8) ✓, takip y 900 ↔ d 3580 ✓. **Hata (yönetmene):** P08 p36–52 (cs 1.9–2.0, cy 120) çıkıntı ve taş d 1250 → **ekran y 1631**, alt güvenli bantta; tas-surtme p40 ve tas-kayma p44 temasları orada. Taş ≤ 1470 için cs 1.9'da **cy ≤ −41** (öneri −50: taş 1420, Hezarfen başı d 830 → ekran 663). p52 cy −650 zaten daha yukarıda |
-| Kadraj dışı beyanları (K4 dersi 4) | cs 2.0 / cx −140'ta görünen d x 340–880 → gövde sağ ucu 1060 dışarıda ✓; sokak boşluğu 560–820 ve taş 750–790 içeride ✓; taş p36'da ekran x ≈ 857 < 920 (sağ düğme sütunu) ✓. P01 B cs 1.25 / cx −80: çıkıntı dış ucu ekran x 910, sütun sınırında. Hezarfen 660–785 ✓ |
-| Dip ölçeği | Dipteki iki ev çatısı gövdeyle **aynı stilize kısaltmayı** alır (×1/5.5 → görünür 46 px/m): 460 px'lik çatı ≈ 10 m'lik bir ev. Taş prop'u 95 px (`tasarim.md` stilize) |
+| Kadraj dışı beyanları (K4 dersi 4) | **R4:** p100–148 cs 2.0 / cx −260'ta görünen d x 400–940 → gövde sağ ucu 1060 dışarıda ✓; saçak uçları 560 / 845, taş 738–832 ve toz 720–841 içeride ✓. (Eski: cx −140, d 340–880.) taş p36'da ekran x ≈ 857 < 920 (sağ düğme sütunu) ✓. P01 B cs 1.25 / cx −80: çıkıntı dış ucu ekran x 910, sütun sınırında. Hezarfen 660–785 ✓ |
+| Dip ölçeği | ~~Dipteki iki ev ×1/5.5 stilize~~ **R4 (B5):** dip taşın ölçeğindedir (255 px/m). Yalnız iki ev köşesi, saçak ucu (x 560 / 845) ve sokak görünür (§2.4). Taş 95 px = 0.37 m, subasman 230 px |
 | İmza tekliği | Bu şablonda `#c4a874` ±15 içinde ton yok: taş 22.7, uzak şehir 24.0, kurşun 38. Hezarfen ten/sarık render'da ölçülür (K1 dersi 1, güneş kenar ışığında) |
 
 ### 2.5 Doku (GALATA-TEPE)
 | Yüzey | Malzeme | Doku | Kod | Parametre |
 |---|---|---|---|---|
 | Gövde + tepe katı | moloz/yonu taş [G] | Sıra yüksekliği 0.45 m sabit, bloklar düzensiz genişlikte (0.5–0.9 m), derz bir ton koyu. Her 9. blokta kırık köşe | `TasDuvar` `tip: "galata"` | taban `#9a8f7e`, gölge `#6b6357`, derz/tarama `#4e473f` α .55 w 2, seed 137, bulut yok |
-| Külah | kurşun [A] | Yakında (P01 B, P08 p0) apekse yakınsayan dikiş çizgileri, aralık 0.6 m, 1.5 px, ışık yüzünde `#c2c6c6` α .3, gölge yüzünde `#5e6268` α .3. Uzakta yok | yol | `#7c8288` / `#a3a8aa` |
+| Külah | kurşun [A] | Yakında (P01 B, P08 p0) **tabandan apekse tam boy** dikişler, yelpaze biçiminde (§2.3a), 0.6 m aralık, 1.8 px. Işık yüzünde `#c2c6c6` α .35, gölge yüzünde `#5e6268` α .35. Işıklı yüz tabanda x 419–760. Uzakta dikiş yok | yol | `#7c8288` / `#a3a8aa`, apeks (300, −1260) |
 | Seki + çıkıntı | kesme taş levha | Üst yüzde 3 levha derzi, ön yüzde tek sıra | `TasDuvar galata` | yukarıda |
 | Açıklık içi | — | düz koyu + kemer iç kenarında III | `Tarama` | `#2a2620` |
-| Şehir (yukarıdan) | ahşap ev [A10] | Kutu: çatı + bir duvar yüzü, ayrıntı yok. Uzakta tek ton | yeni `KonutKumesi` (seed 138, yoğunluk sabit) | §2.3 |
+| Şehir (yukarıdan) | ahşap ev [A10] | **R4:** y < 1100 tek ton pus. Yakında konum tablosuyla yerleştirilen 5 ev: ön eğim gölgede, sağ kalça ışıklı, saçak bandı, gölgede duvar. Aralarında 2 sokak yarığı. Satır/ızgara üretimi yok | `KonutKumesi` liste modu (§2.3b tablosu), seed 138 | `#a49c90` · `#4e3a2e` / `#6e5240` / `#3e2e24` / `#5e5040` |
+| Dip sokak (P08) | ahşap ev + taş subasman [A10, G] | 255 px/m, VP (670, 3152) perspektifi. Ahşapta 0.25 m aralıklı yatay tahta çizgileri α .25. Zeminde 4 enine çizgi + 3 çakıl | yeni `SokakAgzi` (§2.4) | `#5e5040` / `#6a6252` / `#8a7660`, zemin `#7a6c52`, seed 141 |
+| Toz (E4) | — | 4 (+1) öbek, 6 loblu tırtıklı, yerde kalır | `Toz` yeniden yazılır | `#a9a69c` / `#8e8a80` α .75, seed 140 |
 
 ---
 
@@ -517,7 +646,8 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | P01 A (cs 1.25) | Köşk (çifte kemer + saçak + örtü + baca) | 87 × 95 px; kemer ağzı 20 px, saçak bandı 3.3 px, baca 6 × 8 px küt, plato 21 px | Test: "bu ne?" → "su kenarında kemerli bina / köşk". Cami okunursa §1.1a önlemleri eksik uygulanmıştır |
 | P02 (cs 0.9) | Köşk bütün | 282 × 340 px; kemer 71 px, pencere 25 × 36 px | **Okunur:** 4 baca, saçak altı bandı, iki kemer, tek ışıklı pencere |
 | P10 (cs 2.4 son) | Padişah büstü pencerede | 81 px (%12.6) | Okunur. Baş çevirme siluet olarak görünür |
-| P01 B / P08 (cs 1) | Galata tepe katı + külah + Hezarfen | külah yüzeyi üst 160 px, kemerli kapı 85 × 204 px, Hezarfen 140 px | Kemerli açıklık + kurşun koni + taş sıra: "kule tepesi" okunur. Külahın tam konisi P09'da |
+| P01 B / P08 (cs 1) | Galata tepe katı + külah + Hezarfen | külah yüzeyi üst 200 px, ışıklı yüz ≈ 76–114 px, kemerli kapı 85 × 204 px, Hezarfen 140 px; saçak sağ ucu 34 px iner | **R4:** ∩ saçak/korniş + yelpaze dikiş + sağda açık koni yüzü → "yuvarlak kule tepesi". Aşağıda: pus + 5 çatı (≈ 40–55 px) + 2 koyu sokak → "tepeden şehir", döşeme değil |
+| P08 p100–148 (cs 2.0) | Dip sokak | saçak uçları arası 190 px, subasman 153 px, taş ≈ 63 px | Taş subasmanın %40'ı: "kafa büyüklüğünde taş, dar sokak". Toz 4 gri öbek, yumurta okunmaz |
 | P09 (cs 1) | Galata Kulesi uzak | 20 × 75 px | Koni + korniş + kemer noktaları okunur. **Kule ve külah, gök basamağıyla (ufuk `#e6dcc0`) karşıtlık taşır: kule tepesi y 760 olduğundan külah orta gök basamağının (`#cfcfc4`) önündedir. Külah `#7c8288` ile ΔL ≈ 28: yeterli** |
 | P09 | Üsküdar kıyısı + meydan | meydan 133 × 50 px | Düz yeşil-sarı alan + gölge okunur; "açık meydan" |
 | P12 | Pencere kanadı + yarık | kanat 154 × 365 px (cs 2.6); yarık 28 px | Okunur |
@@ -534,7 +664,9 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
 | Gece köşk cephesi | `#4e4a46` | P02 · (950, 800) |
 | Gündüz gök orta | `#cfcfc4` | P09 · (540, 500) |
 | Boğaz suyu | `#7c9090` | P09 · (540, 1000), güneş yolu dışında |
-| Galata taşı ışıklı / gölge | `#9a8f7e` / `#6b6357` | P08 p0 · (690, 900) / (300, 900) |
+| Galata taşı ışıklı / gölge | `#9a8f7e` / `#6b6357` | P08 p0 · (650, 900) / (300, 900) (R4: ışıklı şerit 600–700) |
+| Uzak şehir pusu (R4) | `#a49c90` | P08 p0 · (1000, 980) |
+| Dip sokak zemini (R4) | `#7a6c52` | P08 p148 · (400, 1700), toz dışında |
 | Kurşun külah | `#7c8288` | P01 B · (200, 150) |
 | Köşk gündüz | `#b4a88e` | P10 p0 · (950, 1250) |
 | Rıhtım gün | `#a09682` | P11 · (700, 1600) |
@@ -588,7 +720,7 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
    - Hezarfen uçuşta derinlikle büyür (§3.2), sabit 130 px değil.
 5. **P12:**
    - Kapı **x 60–352** olmalı. x≈120'de cs 1.8, cx 150 ile kapı tümüyle kadraj dışında kalır, işaret boşluğa düşer.
-   - Zemin geniş evrede görünür, push-in'de cy şartına bağlı (§1.6a: p0–36 cs 1.6 / cy 30; p204 cy ≥ 330). Zemin ışık lekesi her durumda görünmez. Kapı ile yarık için kadraj şartı §1.6b.
+   - Zemin geniş evrede görünür, push-in'de cy şartına bağlı (§1.6a: p0–36 ve p150–204 cs 1.6 / cy 30; p60–126 cs 3.0 / cy ≥ 91). Zemin ışık lekesi her durumda görünmez. Kapı ile yarık için kadraj şartı §1.6b.
    - Pencere ölçüsü, `tasarim.md` §4.10'daki "≈ 576 px" değerinden farklı olarak, cs 2.2'de ≈ 926 px eder (pencere kanadı 1.30 m × 324 px/m × 2.2). Tasarımcıya bilgi.
 6. **P13 defterler:** d3 y 1650 alt güvenli alana (> 1500) giriyor. Öneri §4.2: bütün defterler y ≤ 1476, zemin ölçeği 0.67.
 7. **P07/P11 ışığı:** P07'de ışık sağdan, P11'de soldan geliyor (fiziksel). Kese konumu aynı kalır (±10 px), yalnız gölge yönü ters döner.
@@ -599,7 +731,9 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
   - `TasDuvar` için `kosk | sur | galata` tipleri (bulutlanma kapalı).
   - `Doseme`: ufuk noktasına yakınsayan döşeme (rıhtım; P07/P11 ve kıyı).
   - `DuzSu`: basamaklı su + dalga çizgisi + `yansimaKolonu(x, renk)` + `halka`.
-  - `KonutKumesi`: yukarıdan ve yandan görünen ev kutuları; `olcek(y)`, seed.
+  - `KonutKumesi`: yukarıdan ve yandan görünen ev kutuları; `olcek(y)`, seed. **R4:** Galata için `liste` modu (§2.3b tablosu). Satır döngüsü bu şablonda kullanılmaz; P09 yamacı (uzak) için kalabilir.
+  - `SokakAgzi` (R4, yeni): VP + iki köşe + saçak ucu x + kat yükseklikleri (m) + px/m. Dip ve ileride başka sokak ağızları için.
+  - `GalataKule` silindir yasası: `silindirY(x, y, eksen 300, a)` tek fonksiyon (§2.3a). Duvar, korniş, saçak, seki, sıra derzleri ve dikiş tabanı aynı fonksiyondan türetilir.
   - `SinanPasaKosk`: `detay: yakin|orta|uzak`, `saat`, `pencereIsik`. Tek geometri metre cinsinden; kıyı (17 px/m) ve köşk (85 px/m) görünümleri aynı bileşeni farklı ölçek ve konumla çağırır.
   - `GalataKule`: `detay: tepe | uzak`. `tepe`, §2.3 parçalarıdır. `uzak` ise P09 silueti.
 - **Türetilecek mevcut kod:**
@@ -624,6 +758,7 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
   - Sur gece `#2e2e34`, gün `#8e8472` / `#6a6252`.
   - Asya kıyısı gece `#232838`.
   - Uzak şehir hava perspektifi `#a49c90`.
+  - R4: dip sokak zemini gölgede `#7a6c52`, toz gövdesi `#8e8a80` (ΔE76 imzadan 27.8 / 28.0).
   - Ot önerisi `#989c76` (tasarım paletindeki `#a8a07a` demet tekliğini bozuyor, §5).
   - Galata koyu sıra `#5e574c`.
   - Su orta `#6c8284`.
@@ -646,4 +781,11 @@ Gündüz kamera yönleri ve gölge vektörleri (tek tanımdan türetildi, motion
   - Köşk örtüsü: kubbe mi, ahşap çatı mı.
   - Bizans deniz surlarının tuğla hatıl bandının 1630'larda görünürlüğü.
   - Galata gövdesinde 17. yy. pencere/mazgal yarıkları.
+  - **R4 (B1):** 1630'larda Galata Kulesi'nden kuzeydoğuya (≈ 20–50°, Tophane / Fındıklı yamacı ve Boğaz yönü) bakınca görünen anıtsal yapı var mı? Örneğin bir cami kubbesi ya da Tophane binaları. Hangisi, o yıl ayakta mı, kaynak hangisi (Merian 1635 panoraması öncelikli)? Kaynak gelene kadar ek siluet **çizilmez**.
+  - **R4:** Kule tabanı çevresinde 1630'larda bitişik konut ya da dükkân var mıydı, sokak genişliği nedir? Dip sahnesi "kuleye dayalı iki ev + dar sokak" varsayımıyla kuruldu [T].
+  - **R4:** Kamera yönü 20° (KKD) seçildi. Bu yönde arazi Pera sırtına doğru yükselir, Tophane ise doğuda/güneydoğuda aşağı iner [G, doğrulanmalı]. "Şehir aşağıda" okuması kadrajın sağ yarısı (≈ 45–50°) için doğru. Harita ile kontrol edilmeli.
+- **Yönetmene (R4):**
+  - P01 B yürüyüşünün `y` anahtarları §2.3a formülünden (1250 → 1221) gelir; son adım çıkıntıya basar ve 1250'ye iner.
+  - P08 p100–148 cx −260 varsayıldı (VP, saçak uçları ve toz sınırı buna göre). cx değişirse **VP x = ekran merkezinin dekor x'i = 540 − cx/2** olarak yeniden hesaplanır. Toz ekranda taş merkezinin ±130 px'i içinde ve x < 920 kalır.
+  - P12 p150–204 için cx ∈ [−139, +143] (A6 için cx 100 önerisi uyar).
   - Hepsi şimdilik nötr.
