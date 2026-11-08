@@ -1,0 +1,289 @@
+{
+ "kareler": [
+  {
+   "ad": "P08 p44 (itme)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K7/P08_p44_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "Galata taşı gölge (kule)",
+     250,
+     600,
+     "#6b6357"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "Hezarfen kaftan",
+     640,
+     700
+    ],
+    [
+     "katlı kanat (gün)",
+     420,
+     700
+    ]
+   ],
+   "isik": [
+    [
+     "Hezarfen sarık kenar ışığı (B15, kutu)",
+     530,
+     320,
+     780,
+     440
+    ],
+    [
+     "Hezarfen gövde/kanat kenar ışığı (kontur şeridi ≤6 px, maske)",
+     260,
+     440,
+     920,
+     1190,
+     {
+      "kontur": true,
+      "serit": 6,
+      "maske": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K7/P08_p44_figur-maske.png"
+     }
+    ]
+   ]
+  },
+  {
+   "ad": "P08 p148 (dip: sur + avlu)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K7/P08_p148_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "kule tabanı gölge",
+     600,
+     400,
+     "#6b6357"
+    ],
+    [
+     "sur iç yüzü",
+     60,
+     620,
+     "#7b7163"
+    ],
+    [
+     "avlu levhası",
+     520,
+     1380,
+     "#62594a"
+    ],
+    [
+     "avlu levhası 2",
+     800,
+     1600,
+     "#62594a"
+    ],
+    [
+     "taş (gölgede)",
+     790,
+     860,
+     "#8e8472"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "ad": "P08 p170 (toz)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K7/P08_p170_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "toz öbeği (Ö1)",
+     683,
+     918,
+     "#a8a296"
+    ],
+    [
+     "toz öbeği (Ö4)",
+     833,
+     918,
+     "#a8a296"
+    ],
+    [
+     "avlu levhası",
+     520,
+     1380,
+     "#62594a"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "ad": "P01 p229 (kontra yürüyüş)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K7/P01_p229_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "seki üst yüz",
+     120,
+     1230,
+     "#7e7466"
+    ],
+    [
+     "uzak şehir pus",
+     1000,
+     900,
+     "#a49c90"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "isik": [
+    [
+     "Hezarfen sarık kenar ışığı (B15, kutu)",
+     420,
+     790,
+     540,
+     880
+    ],
+    [
+     "Hezarfen gövde/kanat kenar ışığı (kontur şeridi ≤6 px, maske)",
+     340,
+     790,
+     620,
+     1300,
+     {
+      "kontur": true,
+      "serit": 6,
+      "maske": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K7/P01_p229_figur-maske.png"
+     }
+    ],
+    [
+     "güneş parlaması kenarı (K5 kabul)",
+     1030,
+     740,
+     1080,
+     840
+    ]
+   ]
+  },
+  {
+   "ad": "P01 p250",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K7/P01_p250_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "uzak şehir pus",
+     1000,
+     900,
+     "#a49c90"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "isik": [
+    [
+     "Hezarfen sarık kenar ışığı (B15, kutu)",
+     600,
+     770,
+     720,
+     860
+    ],
+    [
+     "Hezarfen gövde/kanat kenar ışığı (kontur şeridi ≤6 px, maske)",
+     500,
+     770,
+     780,
+     1290,
+     {
+      "kontur": true,
+      "serit": 6,
+      "maske": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K7/P01_p250_figur-maske.png"
+     }
+    ],
+    [
+     "güneş parlaması kenarı (K5 kabul)",
+     1030,
+     740,
+     1080,
+     840
+    ]
+   ]
+  },
+  {
+   "ad": "P12 p90 (ışık çizgisi gözde)",
+   "dosya": "/home/user/kosmos-vize-bot/bolumler/evliya-ucuslari/kalibrasyon/K7/P12_p90_tam.png",
+   "olcek": 1,
+   "noktalar": [
+    [
+     "padişah kaftan gölge",
+     300,
+     1100,
+     "#36302c"
+    ]
+   ],
+   "imza": {
+    "hex": "#c4a874",
+    "esik": 15,
+    "bolge": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "parcalar": [
+    [
+     "padişah kaftan (bant dışı)",
+     250,
+     1300
+    ]
+   ],
+   "isik": [
+    [
+     "yüz çizgisi + kaftan/kol bandı + yarık (K6 ile aynı)",
+     330,
+     0,
+     1080,
+     1920
+    ]
+   ]
+  }
+ ]
+}

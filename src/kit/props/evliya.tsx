@@ -349,3 +349,11 @@ export const Baslik: React.FC<{ x: number; y: number; aci: number; pxm: number; 
   );
 };
 export { yumusakYol };
+
+// K7 (K6 B2 kit riski): katlı kanat Kukla'nın `arka` yuvasına VERİLMEZ — bazı karelerde Chromium o yuvayı boyamıyordu (Galata P08 p216/p240).
+// Aynı gövde dönüşümüyle (translate · ölçek·yön · bodyY · lean, kalça pivotu −226) figürün ARKASINA ayrı çizilir. Yalnız Osmanlı gövdesi
+// (KuklaGovde osm dalı ile aynı çerçeve). Kullanım: <GovdeCercevesi pz={pz}>{kanat}</GovdeCercevesi><Kukla … /> (arka verilmeden).
+export const GovdeCercevesi: React.FC<{ pz: { x: number; y: number; scale?: number; facing?: number; bodyY?: number; lean?: number }; children?: React.ReactNode }> = ({ pz, children }) => {
+  const s = pz.scale ?? 1, f = pz.facing ?? 1;
+  return <g transform={`translate(${pz.x},${pz.y}) scale(${s * f},${s}) translate(0,${pz.bodyY ?? 0}) rotate(${pz.lean ?? 0},0,-226)`}>{children}</g>;
+};

@@ -18,7 +18,7 @@ import { Kukla, Palet, Poz } from "../../../rig/Kukla";
 import { kuklaIsigi } from "../../../rig/RigIsik";
 import { AYAK_TABAN, elDunya, govdeDunya, kolIK } from "../../../rig/kinematik";
 import { Buhar, Duman, FitilKivilcimi, Puskurme, Sicrama, SuHalkasi, TacSicrama } from "../../../components/GravurEfekt";
-import { Baslik, DemetDurum, demetAgizlar, demetFitilUcu, demetOturak, demetOturakKenar, demetTutamak, FisekDemet, Fitil, fitilKivilcimNoktasi, fitilNoktalari, kanatEl, KanatCiz, kanatGeo, Mesale, mesaleAlev, SudaKanat } from "../../props/evliya";
+import { Baslik, DemetDurum, demetAgizlar, demetFitilUcu, demetOturak, demetOturakKenar, demetTutamak, FisekDemet, Fitil, fitilKivilcimNoktasi, fitilNoktalari, GovdeCercevesi, kanatEl, KanatCiz, kanatGeo, Mesale, mesaleAlev, SudaKanat } from "../../props/evliya";
 import { karakterBul } from "../../karakterler";
 import { karakterPoz, KarakterDurum } from "../../jestler";
 import type { Karakter, Plan, Prop } from "../../tipler";
@@ -267,7 +267,8 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[]; o
     const arkaUst = kanat && kanat.acik >= 0.35 ? kanatCiz(kanat.g.uzak, true) : undefined;
     const on = kanat && kanat.acik >= 0.35 ? kanatCiz(kanat.g.yakin, false) : undefined;
     const ki = kuklaIsigi(isik, q.ayak, 600 * (pz.scale ?? 1), { murekkep, kamera: k.cs, seed: S + 300 + i * 11 });
-    const kukla = <Kukla p={q.d.palet} pz={pz} golgesiz isik={ki} arka={arka} arkaUst={arkaUst} on={on} />;
+    // K7: katlı kanat `arka` yuvasına verilmez — aynı gövde dönüşümüyle figürün arkasına (K6 B2 Chromium boyamama riski)
+    const kukla = <g>{arka && <GovdeCercevesi pz={pz}>{arka}</GovdeCercevesi>}<Kukla p={q.d.palet} pz={pz} golgesiz isik={ki} arkaUst={arkaUst} on={on} /></g>;
     cizim.push({
       derinlik: q.derinlik,
       el: (

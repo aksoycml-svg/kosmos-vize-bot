@@ -19,7 +19,7 @@ import { Kukla } from "../../../rig/Kukla";
 import { kuklaIsigi } from "../../../rig/RigIsik";
 import { AYAK_TABAN, elDunya, govdeDunya, kolIK } from "../../../rig/kinematik";
 import { SenlikFisegi, senlikCizgileri, SenlikTanim } from "../../../components/GravurEfekt";
-import { demetOturak, demetOturakKenar, demetTutamak, FisekDemet, KanatCiz, kanatGeo, Mesale, mesaleAlev } from "../../props/evliya";
+import { demetOturak, demetOturakKenar, demetTutamak, FisekDemet, GovdeCercevesi, KanatCiz, kanatGeo, Mesale, mesaleAlev } from "../../props/evliya";
 import { PadisahSiluet, PADISAH_BUST_M } from "../../props/padisah";
 import { karakterBul } from "../../karakterler";
 import { karakterPoz } from "../../jestler";
@@ -359,7 +359,9 @@ export const KoskSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }>
         const ki = kuklaIsigi(grupIsik, e.ayak, 600 * e.s, { murekkep: "#1c2030", kamera: k.cs, seed: S + 300 + i * 11 });
         return <g key={i}>
           <Golge isik={grupIsik} ayak={e.ayak} h={600 * e.s * 0.9} genislik={100 * e.s} alfa={0.45} stil="gravur" seed={S + 40 + i} />
-          <Kukla p={e.palet} pz={e.pz} golgesiz isik={ki} arka={e.arka} />
+          {/* K7: kanat arka yuvası yerine aynı dönüşümle figürün arkasına (K6 B2 Chromium boyamama riski) */}
+          {e.arka && <GovdeCercevesi pz={e.pz}>{e.arka}</GovdeCercevesi>}
+          <Kukla p={e.palet} pz={e.pz} golgesiz isik={ki} />
           {g.mesale && <Mesale tutamak={g.mesale.tutamak} yon={g.mesale.yon} pxm={grupPxm} p={p} seed={S + 77} ten={e.palet.skin} tenKoyu={e.palet.skinDark} />}
         </g>;
       })}

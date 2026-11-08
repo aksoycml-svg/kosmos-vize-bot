@@ -20,7 +20,7 @@ import { Golge, Isik } from "../../../doku/Isik";
 import { KonturTitreme } from "../../../doku/KonturTitreme";
 import { RenkKaydi, Tarama } from "../../../doku/Tarama";
 import { DOKU_SEED, ink, karistir, lerp, P, poly, rnd, tonla } from "../../../doku/sabitler";
-import { Kukla, Poz } from "../../../rig/Kukla";
+import { Kukla, Poz, yumusakYol } from "../../../rig/Kukla";
 import { kuklaIsigi } from "../../../rig/RigIsik";
 import { AYAK_TABAN, govdeDunya, kolIK } from "../../../rig/kinematik";
 import { KanatCiz, kanatGeo } from "../../props/evliya";
@@ -30,6 +30,7 @@ import type { Karakter, Prop } from "../../tipler";
 import { cl, CIKIS, deger, ekranNokta, GIRIS, INOUT, kameraHesapla, katDonusum, KameraDurum } from "../../zaman";
 import { param, Sablon, SablonProps } from "../../ortak";
 import { RIG_BIRIM_M } from "../sarayburnu/geo";
+import { SurAvlu } from "./SurAvlu";
 
 const S = DOKU_SEED.galata;
 export const GT = {
@@ -45,7 +46,7 @@ const R = {
   gok: ["#a9b6bf", "#cfcfc4", "#e6dcc0"], parlama: "#f6e8c0", asya: "#9aa2a4", bogaz: "#7c9090", bogazIsik: "#e4dcc4",
   tas: "#9a8f7e", tasGolge: "#6b6357", tasKoyu: "#5e574c", derz: "#4e473f", sekiUst: "#7e7466", tasKirik: "#b4aa96",
   kursun: "#7c8288", kursunIsik: "#a3a8aa", aciklik: "#2a2620", cati: "#6e5240", catiGolge: "#4e3a2e", evDuvar: "#8a7660", evGolge: "#5e5040",
-  sehirPus: "#a49c90", toprak: "#8a7a5c", kontra: "#3a3634", kenar: "#f0d79a", toz: "#a9a69c", // soğuk gri: sıcak kum tonu (#b8a888) toprak üstünde imza bandına (#c4a874 ΔE<15) düşüyordu
+  sehirPus: "#a49c90", toprak: "#8a7a5c", kontra: "#3a3634", kenar: "#f0d79a", toz: "#a8a296", tozIsik: "#b2ac9f", // K7 R5 avlu tozu (imzadan ΔE76 24.1 / 23.4)
 };
 const ISIK: Isik = { tip: "yonlu", yon: [-2.64, 1.09], renk: "#f0d79a", ad: "güneş ENE (kontra-yan)" };
 const pxmY = (y: number) => Math.max(1, (y - GT.ufuk) / GT.goz);
@@ -85,7 +86,7 @@ export const tasCoz = (pr: Prop | undefined, p: number, temas: { surt: number; k
 };
 const TAS_PTS: P[] = [[-0.5, 0], [-0.46, -0.52], [-0.12, -0.78], [0.34, -0.66], [0.5, -0.12], [0.3, 0.02]]; // birim (genişlik 1), taban y 0
 const TasCiz: React.FC<{ d: TasDurum; w: number }> = ({ d, w }) => {
-  // dip sokağında (sağ ev sokağı gölgeler; saçak y 2183'ten aşağı) taş gölgede: #8e8472, ışık kırığı yok — geçiş taşın boyu kadar (gölge kenarı)
+  // K7: düşerken kule gövdesinin gölgesine girer (dip tümüyle kule gölgesinde, R5 §2.4b ışık) taş gölgede: #8e8472, ışık kırığı yok — geçiş taşın boyu kadar (gölge kenarı)
   const gol = Math.max(0, Math.min(1, (d.y - 2183) / w));
   // döndürme taş merkezinde (taban üstü 0.38 w); çizim tabanı d.y'ye oturur
   const c: P = [d.x, d.y - 0.38 * w];
@@ -198,7 +199,8 @@ const pchipJson = (c: Karakter, q: number, alan: "x" | "y", v: number) => {
 };
 const karis = (pz: Poz, h: Partial<Poz>, w: number) => { if (w <= 0) return; for (const [k, v] of Object.entries(h)) { if (typeof v !== "number") continue; const a = ((pz as unknown as Record<string, number | undefined>)[k]) ?? 0; (pz as Record<string, unknown>)[k] = a + (v - a) * w; } };
 
-// yürüyüş: adım uzunluğu 0.75 m (yarım döngü), faz = yol / 1.5 m · 2π; ayak basma kareleri = faz π/2 + nπ geçişleri (temas listesi için)
+// yürüyüş: basışlar json "adim-tas" temaslarından (yuruCoz). Bu yardımcı yalnız temas ÖNERİSİ içindir; adım uzunluğu json'dan
+// (jest ops.adim_m → karakter adim_m), yoksa 0.75 m — tools/bolum_dogrula.mjs ile aynı öncelik (K7)
 const ADIM_M = 0.75;
 export const yuruYol = (c: Karakter, bas: number, p: number, pxm: number) => {
   let yol = 0, x0 = deger(c.x, c.kare, bas, 540);
@@ -208,7 +210,8 @@ export const yuruYol = (c: Karakter, bas: number, p: number, pxm: number) => {
 export const adimKareleri = (c: Karakter, pxm: number): number[] => {
   const j = (c.jestler ?? []).find((q) => q.ad === "yuru"); if (!j) return [];
   const out: number[] = []; let n = 1;
-  for (let p = j.bas; p <= j.bit; p++) { const yol = yuruYol(c, j.bas, p, pxm); if (yol >= n * ADIM_M) { out.push(p); n++; } }
+  const adimM = Number((j.ops as Record<string, unknown> | undefined)?.adim_m ?? (c as unknown as { adim_m?: number }).adim_m ?? ADIM_M);
+  for (let p = j.bas; p <= j.bit; p++) { const yol = yuruYol(c, j.bas, p, pxm); if (yol >= n * adimM) { out.push(p); n++; } }
   return out;
 };
 
@@ -222,6 +225,13 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const tasK = { surt: temas("tas-surtme", 40), kay: temas("tas-kayma", 44), yer: temas("uzak-tik", 148) };
   const tas = tasPr ? tasCoz(tasPr, p, tasK) : null;
   const tasW = (tasPr as (Prop & { boyut_dekor_px?: number }) | undefined)?.boyut_dekor_px ?? 95;
+  // K7 (R5): avlu açıklığı (eski sokak_bosluk_x adı kaldırıldı) — taşın düşüş/yuvarlanma yolu bu koridorda kalmalı (sur köşesi ≤ 480)
+  const koridor = param<{ avlu_koridor_x?: [number, number]; sokak_bosluk_x?: unknown } | null>(plan, "taş_dusus", null);
+  if (koridor?.sokak_bosluk_x !== undefined) throw new Error("[GALATA-TEPE] taş_dusus.sokak_bosluk_x kaldırıldı (R5) → avlu_koridor_x");
+  if (tasPr && koridor?.avlu_koridor_x) {
+    const [k0, k1] = koridor.avlu_koridor_x, son = tasCoz(tasPr, 100000, { surt: temas("tas-surtme", 40), kay: temas("tas-kayma", 44), yer: temas("uzak-tik", 148) }).x;
+    if (son - 0.48 * tasW < k0 || son + 0.48 * tasW > k1) throw new Error(`[GALATA-TEPE] taş son konumu ${son.toFixed(0)}±${(0.48 * tasW).toFixed(0)} avlu_koridor_x [${k0}, ${k1}] dışında`);
+  }
 
   // ---- kamera (+ takip: prop ekranda sabit y; vinç) ----
   const kamAt = (q: number): KameraDurum => {
@@ -291,10 +301,14 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       const dur = ayakUcu(pz, pz.thighF, pz.kneeF, pz.footF ?? 0);
       const bDur = bilekFK(pz, LEG.B, pz.thighB, pz.kneeB);
       const kayma = interpolate(p, [tc - 2, kay, kay + 4, son], [0, 1, 1, 0], { ...cl, easing: INOUT });
-      pz.x += f * 0.05 * pxm * kayma; pz.lean = (pz.lean ?? 0) + 5 * kayma;
-      pz.y += 0.02 * pxm * kayma; // ağırlık öne: kalça hafif iner (arka bacak erişimi)
+      // K7 (B8): itmede gövde ≥12° öne (14°), kalça geri kalır (bacak taşa DÜZ uzansın: kalça–taş mesafesi ≈ bacak boyu), ağırlık destek bacağında
+      const kurma = interpolate(p, [tj.bas, tc - 2], [0, 1], { ...cl, easing: GIRIS }) * (p < tc - 2 ? 1 : 0);
+      // kalça 0.28 m geri (destek bacağının üstüne), 0.05 m iner; gövde kalçadan 15° öne → ön bacak taşa çapraz, dizden düz uzanır
+      const geriK = Math.max(kayma, kurma);
+      pz.x -= f * 0.28 * pxm * geriK; pz.lean = (pz.lean ?? 0) + 16 * Math.max(kayma, 0.6 * kurma);
+      pz.y += 0.05 * pxm * geriK; // ağırlık destek bacağında: kalça iner (arka diz bükülür)
       { const ik = bacakIK2(pz, LEG.B, bDur); pz.thighB = ik.th; pz.kneeB = ik.kn; pz.footB = -(pz.lean ?? 0); }
-      const tasNoktasi = (q: number): P => { const t = tasCoz(tasPr, q, tasK); return [t.x - 0.48 * tasW, t.y - 0.22 * tasW]; };
+      const tasNoktasi = (q: number): P => { const t = tasCoz(tasPr, q, tasK); return [t.x - 0.46 * tasW, t.y - 0.4 * tasW]; }; // K7: taşın yan yüzünün ortası (ayak taşa yukarıdan-çapraz değer)
       const geri: P = [dur[0] - 0.14 * pxm, dur[1] - 0.12 * pxm];
       let hedef: P, w = 1;
       if (p < tc - 2) { const u = GIRIS(interpolate(p, [tj.bas, tc - 2], [0, 1], cl)); hedef = [lerp(dur[0], geri[0], u), lerp(dur[1], geri[1], u)]; }
@@ -302,7 +316,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       else if (p <= kay) hedef = tasNoktasi(p);
       else { const u = interpolate(p, [kay, son], [0, 1], { ...cl, easing: INOUT }); const t = tasNoktasi(kay); hedef = [lerp(t[0], dur[0], u), lerp(t[1] - (u < 0.6 ? 0.06 * pxm * Math.sin(Math.PI * u / 0.6) : 0), dur[1], u)]; w = p > son ? 0 : 1; }
       if (w > 0) { const ik = bacakIK(pz, hedef); pz.thighF = ik.th; pz.kneeF = ik.kn; pz.footF = 0; }
-      karis(pz, { shB: -24, elB: -30 }, interpolate(p, [tj.bas, tc, son, tj.bit], [0, 1, 1, 0], cl)); // arka kol dengede açılır
+      // K7 (B8): kollar kuşaktan çözülür, dengeye açılır — ön kol öne-yukarı, arka kol geriye (telefonda "itti" okunsun)
+      karis(pz, { shF: -55, elF: -25, shB: 42, elB: -20 }, interpolate(p, [tj.bas, tc - 2, son - 2, tj.bit], [0, 1, 1, 0], { ...cl, easing: INOUT }));
       const tF = ayakUcu(pz, pz.thighF, pz.kneeF, pz.footF ?? 0);
       ayaklar = [{ x: tF[0] - f * 27 * s, gy: y, h: Math.max(0, y - (tF[1] + 5 * s)) }, { x: bDur[0] + f * s * 13, gy: y, h: 0 }];
     }
@@ -328,7 +343,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     <g>
       {/* ===== gövde (dikey şerit; dudaktan tabana) ===== */}
       <Govde />
-      {/* dip: sokak toprağı + iki ev (kameraya yakın, saçak altı görünür) */}
+      {/* dip (K7, mekanlar R5 §2.4b): sol sur kolu (iç yüz) + taş döşeli avlu + kule tabanı — SokakAgzi (R4) iptal */}
       <Dip />
       {/* ===== tepe katı + külah ===== */}
       <TepeKati />
@@ -346,10 +361,14 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     // K6 (B2): kanat Kukla'nın `arka` yuvası yerine aynı dönüşümle (pz.x/y · ölçek · bodyY · lean) figürün ARKASINA ayrı çizilir — `arka`
     // yuvasında Chromium bazı karelerde (P08 p216/p240) kanadı hiç boyamıyordu (taban kopyada yok, maskelerde var → "hayalet")
     const s0 = pz.scale ?? 1, f0 = pz.facing ?? 1;
-    return <g>
-      <g transform={`translate(${pz.x},${pz.y}) scale(${s0 * f0},${s0}) translate(0,${pz.bodyY ?? 0}) rotate(${pz.lean ?? 0},0,-226)`}>{arka}</g>
+    const tr = `translate(${pz.x},${pz.y}) scale(${s0 * f0},${s0}) translate(0,${pz.bodyY ?? 0}) rotate(${pz.lean ?? 0},0,-226)`;
+    // K7: maske kopyaları için SADE figür — kanat yalnız dış konturu (KanatCiz'in iç clipPath/defs'i maskede çoğaltılmaz). K7 p44'te (lean 14°)
+    // tam figür maskelerde 3 kez kopyalanınca Chromium ana kanadı yine boyamadı (K6 düzeltmesine rağmen); maske içi clipPath kopyası kaldırıldı.
+    const sade = <g><g transform={tr}><path d={yumusakYol(kg.uzak)} fill="#ffffff" /><path d={yumusakYol(kg.yakin)} fill="#ffffff" /></g><Kukla p={hd.palet} pz={pz} golgesiz isik={ki} /></g>;
+    return { tam: <g>
+      <g transform={tr}>{arka}</g>
       <Kukla p={hd.palet} pz={pz} golgesiz isik={ki} />
-    </g>;
+    </g>, sade };
   })() : null;
 
   const sahne = (
@@ -366,16 +385,45 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       {/* K6 (B2): siluet ve kenar ışığı SVG filtresi yerine ALFA MASKESİYLE (figürün kendi alfası) — filtre bölgesi Chromium'da bazı karelerde arka
           katmanları (kanat, arka kol) düşürüp yarı saydam "hayalet" bırakıyordu. Kanat her karede opak; durum değişimi yok. */}
       {figur && <g>
-        {figur}
+        {figur.tam}
         {siluet > 0 && <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill={siluet >= 0.5 ? "#383b2e" : R.kontra} opacity={siluet} mask={`url(#${uid}fa)`} />}
         <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill={R.kenar} mask={`url(#${uid}km)`} />
       </g>}
       {/* taş (dudakta figürün 0.02 m önünde → onu örter; düşerken gövdenin önünde; yerde iki çatı arasındaki sokakta) */}
+      {/* K7 (R5 §2.4b 6): taşın temas gölgesi (yerdeyken; havada yok), sonra arka toz öbekleri, taş, ön toz öbekleri */}
+      {tas && tas.yerde && <ellipse cx={tas.x} cy={GT.tasYer + 2} rx={0.55 * tasW} ry={9} fill="#3e372e" opacity={0.5 * Math.max(0, 1 - (GT.tasYer - tas.y) / 20)} />}
+      {tas && tozPr && p >= tozPr.bas && <Toz katman="arka" x={tasCoz(tasPr, tasK.yer, tasK).x} y={GT.tasYer} p={p - tozPr.bas} sekme={temas("tas-sekme", tasK.yer + 10) - tozPr.bas} />}
       {tas && <TasCiz d={tas} w={tasW} />}
-      {tas && tozPr && p >= tozPr.bas && <Toz x={tasCoz(tasPr, tasK.yer, tasK).x} y={GT.tasYer} p={p - tozPr.bas} sekme={temas("tas-sekme", tasK.yer + 10) - tozPr.bas} />}
+      {tas && tozPr && p >= tozPr.bas && <Toz katman="on" x={tasCoz(tasPr, tasK.yer, tasK).x} y={GT.tasYer} p={p - tozPr.bas} sekme={temas("tas-sekme", tasK.yer + 10) - tozPr.bas} />}
     </g>
   );
 
+  // K7 (ölçüm aracı): parametreler.figur_maske = true → yalnız figür silueti beyaz / gerisi siyah (tools/renk_olcum.py kontur şeridi maskesi).
+  // Bölüm render'ında kullanılmaz; ölçüm için satır içi bolum json'ında açılır.
+  const figurMaske = param<boolean>(plan, "figur_maske", false);
+  const tanimlar = (
+    <defs>
+      {/* gölge yalnız güneşe açık seki + çıkıntı üst yüzüne düşer; dudaktan aşağısı (gövde yüzü) kontra ışıkta zaten gölgede → görünmez */}
+      <clipPath id={`${uid}gy`}><polygon points={poly(sekiYuz())} /><rect x={GT.cikinti[0]} y={CIKINTI_UST} width={GT.cikinti[1] - GT.cikinti[0]} height={GT.dudak - CIKINTI_UST} /></clipPath>
+      {hd && <>
+        <mask id={`${uid}fa`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} style={{ maskType: "alpha" }}>{figur?.sade}</mask>
+        {/* aynı maske iki yerden (siluet + kenar) kullanılınca Chromium arka katmanları düşürüyordu → kenar için ayrı kopya */}
+        <mask id={`${uid}fa3`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} style={{ maskType: "alpha" }}>{figur?.sade}</mask>
+        <mask id={`${uid}fa2`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} style={{ maskType: "alpha" }}><g transform={`translate(${-kontraKenar},${kontraKenar * 0.4})`}>{figur?.sade}</g></mask>
+        <mask id={`${uid}km`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]}>
+          <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill="#ffffff" mask={`url(#${uid}fa3)`} />
+          <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill="#000000" mask={`url(#${uid}fa2)`} />
+        </mask>
+      </>}
+    </defs>
+  );
+  if (figurMaske) return (
+    <svg width={1080} height={1920} viewBox="0 0 1080 1920">
+      <rect width={1080} height={1920} fill="#000000" />
+      {/* maske birimi yerine figürün kendisi düz beyaz (CSS brightness 0 + invert): SVG mask bölgesi bu modda karo karo düşüyordu (K7 P01 p229) */}
+      <g transform={katDonusum(k, 1)}>{hd && <g style={{ filter: "brightness(0) invert(1)" }}>{figur?.sade}</g>}</g>
+    </svg>
+  );
   return (
     <svg width={1080} height={1920} viewBox="0 0 1080 1920">
       <RenkKaydi>
@@ -385,20 +433,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
         {/* hızlı vinç dönüşü (p166–200): şeridin 2 iz kopyası α .25 (kamera hareketi, fade değil) */}
         {Math.abs(hiz) > 40 && [-0.5, 0.5].map((f, i) => <g key={i} opacity={0.25} transform={`translate(0,${-hiz * f})`}><g transform={katDonusum(k, 1)}><Govde /></g></g>)}
         <g transform={katDonusum(k, 1)}>
-          <defs>
-            {/* gölge yalnız güneşe açık seki + çıkıntı üst yüzüne düşer; dudaktan aşağısı (gövde yüzü) kontra ışıkta zaten gölgede → görünmez */}
-            <clipPath id={`${uid}gy`}><polygon points={poly(sekiYuz())} /><rect x={GT.cikinti[0]} y={CIKINTI_UST} width={GT.cikinti[1] - GT.cikinti[0]} height={GT.dudak - CIKINTI_UST} /></clipPath>
-            {hd && <>
-              <mask id={`${uid}fa`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} style={{ maskType: "alpha" }}>{figur}</mask>
-              {/* aynı maske iki yerden (siluet + kenar) kullanılınca Chromium arka katmanları düşürüyordu → kenar için ayrı kopya */}
-              <mask id={`${uid}fa3`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} style={{ maskType: "alpha" }}>{figur}</mask>
-              <mask id={`${uid}fa2`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} style={{ maskType: "alpha" }}><g transform={`translate(${-kontraKenar},${kontraKenar * 0.4})`}>{figur}</g></mask>
-              <mask id={`${uid}km`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]}>
-                <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill="#ffffff" mask={`url(#${uid}fa3)`} />
-                <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill="#000000" mask={`url(#${uid}fa2)`} />
-              </mask>
-            </>}
-          </defs>
+          {tanimlar}
           {sahne}
         </g>
       </RenkKaydi>
@@ -454,6 +489,17 @@ const Sehir: React.FC = () => {
   const kiyi: P[] = Array.from({ length: 41 }).map((_, i) => [-2000 + i * 125, 870 + (rnd(138, `k${i}`) - 0.5) * 6] as P);
   return <g>
     <polygon points={poly([...kiyi, [3000, 4000], [-2000, 4000]])} fill={R.sehirPus} />
+    {/* K7 (K6 küçük not): boş bej pus "kumsal" okunmasın — iki çok soluk uzak çatı kümesi (hava perspektifi: pusa ΔL* ≈ 4–6, uzak = küçük, kontursuz) */}
+    {[{ x: [705, 880], y: 948, h: 9, w: [22, 34], ton: 0.22 }, { x: [880, 1080], y: 1028, h: 13, w: [30, 48], ton: 0.3 }].map((k, i) => {
+      const out: React.ReactNode[] = []; let x = k.x[0], j = 0;
+      while (x < k.x[1]) {
+        const w = k.w[0] + rnd(139, `cw${i}${j}`) * (k.w[1] - k.w[0]), dy = (rnd(139, `cy${i}${j}`) - 0.5) * k.h * 1.6, y = k.y + dy, hh = k.h * (0.8 + 0.4 * rnd(139, `ch${i}${j}`));
+        out.push(<polygon key={j} points={poly([[x, y + hh], [x + 0.22 * w, y], [x + 0.78 * w, y], [x + w, y + hh]])} fill={karistir(R.sehirPus, R.catiGolge, k.ton)} />);
+        out.push(<rect key={`d${j}`} x={x + 2} y={y + hh} width={w - 4} height={hh * 0.6} fill={karistir(R.sehirPus, R.evGolge, k.ton * 0.8)} />);
+        x += w + 4 + rnd(139, `cg${i}${j}`) * 14; j++;
+      }
+      return <g key={i}>{out}</g>;
+    })}
     {/* bölge 2 (y ≥ 1120, x ≥ 690): ev kütlesi — gölgede ev duvarları tek ton; aralar sokak yarığı */}
     <polygon points={poly([[690, 1150], [860, 1128], [930, 1140], [1100, 1126], [3000, 1126], [3000, 4000], [690, 4000]])} fill="#5e5040" />
     {EVLER.slice(0, 3).map((e, i) => <EvCiz key={i} e={e} />)}
@@ -497,51 +543,17 @@ const Govde: React.FC = () => {
     <line x1={x1} y1={GT.dudak} x2={x1} y2={GT.govdeTaban} stroke={ink(R.tas)} strokeWidth={4} />
   </g>;
 };
-// ---------------- K6 dip = sokak ağzı, taşın ölçeğinde (255 px/m; mekanlar R4 §2.4, B5) ----------------
-// Tek nokta perspektif VP (670, 3152) [p148 kamerasının merkezi, göz sokaktan 1.6 m]; evlerin her yatay kenarı VP doğrusu üzerinde.
-// Kuleye dayalı iki ev: duvar köşesi (kule düzlemi) x 471 / 934, saçak ucu x 560 / 845 (0.35 m taşar). Subasman 0–0.9 m (3560–3330),
-// ahşap gövde 0.9–5.4 m (3330–2183), alın tahtası 2145–2183, saçak altı #4e3a2e. Çatı yüzü görünmez (kamera saçak altında).
+// ---------------- K7 dip = sur kolu + avlu (mekanlar R5 §2.4b; p148 kamerası: cs 2.0, cx −260, göz 1.6 m, kuleden 4.0 m) ----------------
+// VP (670, 3152) = 540 − cx/2 ; ufuk = 3560 − 1.6·255. Sur köşesi x 480 (kule yüzüne dik, kameraya doğru, solda), 5.0 m, sıra 0.30 m.
+// Avlu levhası 0.6 × 0.4 m şaşırtmalı; sıra 1 sabit (taban 557 / 710 / 863) → taş + toz tek levhanın üstünde. ustKirp 1925: P01 B / P08 p0
+// (cs 1) kadrajının altı dekor 1920 — VP doğrusunun yukarı uzantısı (eski saçak dilimi gibi) yakın planlara sızmaz.
 const VP: P = [670, 3152];
-const vpN = (q: P, t: number): P => [VP[0] + (q[0] - VP[0]) * t, VP[1] + (q[1] - VP[1]) * t];
-const Dip: React.FC = () => {
-  // VP doğruları p148 kadrajının kenarına (d x 400 / 940) kadar uzar (mekanlar §2.4 tablo "kadraj kenarına uzantı"); ötesi çizilmez
-  const tKenar = (xk: number) => (xk < VP[0] ? (400 - VP[0]) / (xk - VP[0]) : (940 - VP[0]) / (xk - VP[0]));
-  const duvar = (xk: number, sol: boolean) => {
-    const T = tKenar(xk);
-    const ust: P = [xk, 2183], alt: P = [xk, GT.govdeTaban], sub: P = [xk, 3330];
-    const yuz = (a: P, b: P, renk: string, k?: string) => <polygon key={k} points={poly([a, b, vpN(b, T), vpN(a, T)])} fill={renk} />;
-    return <g>
-      {yuz(ust, alt, "#5e5040")}
-      {yuz(sub, alt, "#6a6252")}
-      {sol && yuz([xk, 2336], ust, "#8a7660")}
-      {/* 0.25 m aralıklı yatay tahta çizgileri (VP doğruları) α .25 */}
-      {Array.from({ length: 18 }).map((_, i) => { const y = 3330 - 64 * (i + 1); if (y <= 2190) return null; const a: P = [xk, y], b = vpN(a, T); return <line key={i} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="#3e2e24" strokeWidth={1.5} strokeOpacity={0.25} />; })}
-      <line x1={xk} y1={2183} x2={xk} y2={GT.govdeTaban} stroke={ink("#5e5040")} strokeWidth={4} />
-      <line x1={sub[0]} y1={sub[1]} x2={vpN(sub, T)[0]} y2={vpN(sub, T)[1]} stroke={ink("#6a6252")} strokeWidth={3} />
-    </g>;
-  };
-  const sacak = (xk: number, xu: number) => {
-    const T = tKenar(xk);
-    const d0: P = [xk, 2183], u0: P = [xu, 2183], u1: P = [xu, 2145];
-    return <g>
-      <polygon points={poly([d0, u0, vpN(u0, T), vpN(d0, T)])} fill="#4e3a2e" />
-      <polygon points={poly([u1, u0, vpN(u0, T), vpN(u1, T)])} fill="#3e2e24" stroke={ink("#3e2e24")} strokeWidth={3} strokeLinejoin="round" />
-    </g>;
-  };
-  const zSol = (y: number) => VP[0] + (471 - VP[0]) * ((y - VP[1]) / (GT.govdeTaban - VP[1])), zSag = (y: number) => VP[0] + (934 - VP[0]) * ((y - VP[1]) / (GT.govdeTaban - VP[1]));
-  return <g>
-    {/* sokak zemini (sıkıştırılmış toprak, gölgede) + kule taban çizgisi */}
-    <rect x={-1200} y={GT.govdeTaban} width={3600} height={2400} fill="#7a6c52" />
-    <line x1={-1200} y1={GT.govdeTaban} x2={1060} y2={GT.govdeTaban} stroke={ink(R.tasGolge)} strokeWidth={5} />
-    <rect x={-1200} y={GT.govdeTaban} width={2260} height={8} fill="#4e473f" opacity={0.5} />
-    {/* 4 kırık enine çizgi (perspektif aralık) + 3 çakıl */}
-    {[3621, 3703, 3825, 4009].map((y, i) => { const a = zSol(y) + 10, b = zSag(y) - 10, m = lerp(a, b, 0.35 + 0.3 * rnd(141, `z${i}`)); return <g key={i} stroke="#4e3a2e" strokeWidth={2} strokeOpacity={0.25}><line x1={a} y1={y} x2={m - 14} y2={y + 2} /><line x1={m + 10} y1={y + 1} x2={b} y2={y - 1} /></g>; })}
-    {/* 3 küçük çakıl (14–22 px): düzensiz basık beşgen, taş tonundan ayrı #6a6252, alt kenarı bir ton koyu (kontur halkası yok: "vida/delik" okunmasın) */}
-    {[[600, 3660, 18], [690, 3900, 22], [880, 3720, 14]].map(([x, y, r], i) => { const cx = x + (rnd(141, `c${i}`) - 0.5) * 20; const pts = Array.from({ length: 6 }).map((_, j) => { const a = (j / 6) * Math.PI * 2 + rnd(141, `a${i}${j}`) * 0.5; const rr = (r / 2) * (0.75 + 0.35 * rnd(141, `r${i}${j}`)); return [cx + Math.cos(a) * rr, y + Math.sin(a) * rr * 0.55] as P; }); return <g key={i}><polygon points={poly(pts.map(([a, b]) => [a, b + 2] as P))} fill="#4e473f" opacity={0.6} /><polygon points={poly(pts)} fill="#6a6252" /></g>; })}
-    {duvar(471, true)}{duvar(934, false)}
-    {sacak(471, 560)}{sacak(934, 845)}
-  </g>;
-};
+const Dip: React.FC = () => (
+  <SurAvlu vp={VP} pxm={GT.pxm} zemin_y={GT.govdeTaban} kamera_uzaklik_m={4.0}
+    sur={{ kose_x: 480, yukseklik_m: 5.0, sira_m: 0.30, blok_m: [0.4, 0.6], taraf: "sol", sol_x: 400 }}
+    doseme={{ en_m: 0.6, derinlik_m: 0.4, sira1_x0: 557, sasirt: true, sag_x: 1100 }}
+    seed={[141, 142]} ustKirp={1925} kirikLevha={[[560, 3668], [612, 3728]]} />
+);
 const kemerYol = (x0: number, x1: number, tepe: number, taban: number, n = 18): P[] => {
   const r = (x1 - x0) / 2, cx = (x0 + x1) / 2, uz = tepe + r;
   const pts: P[] = [[x0, taban], [x0, uz]];
@@ -628,19 +640,22 @@ const Seki: React.FC<{ kn: (c: string, w?: number) => object }> = ({ kn }) => {
 };
 // ---------------- K6 toz (E4, mekanlar R4 §2.4, B5): 4 (+1 sekmede) düzensiz 6 loblu öbek, yerde kalır; halka/elips/beyaz yok ----------------
 // dx, r dekor (taşın çarpma x'ine göre). p0–8: 0.3r → r, yükselir; p8–28: yere iner (dy → −0.3r), basıklaşır (ry ×0.55), yayılır (rx ×1.25); sonra sabit.
-const TOZ_OBEK: { dx: number; r: number; tepe: number; gec?: boolean }[] = [{ dx: -40, r: 12, tepe: -24 }, { dx: -22, r: 18, tepe: -32 }, { dx: 8, r: 20, tepe: -28 }, { dx: 36, r: 12, tepe: -18 }, { dx: 30, r: 9, tepe: -12, gec: true }];
-const Toz: React.FC<{ x: number; y: number; p: number; sekme: number }> = ({ x, y, p, sekme }) => (
+// K7 (R5): Ö2, Ö3 taşın ARKASINDA (katman "arka"), Ö1, Ö4, Ö5 önünde ama yalnız taşın alt %35'i (alçak öbekler). Renk avlu tozu #a8a296 /
+// ışık üst kenar #b2ac9f α .85 (levha L* 38 → toz ≈ L* 62; taş L* 56 + 8 px kontur ile ayrışır).
+const TOZ_OBEK: { dx: number; r: number; tepe: number; gec?: boolean; arka?: boolean }[] = [{ dx: -45, r: 12, tepe: -24 }, { dx: -22, r: 18, tepe: -32, arka: true }, { dx: 8, r: 20, tepe: -28, arka: true }, { dx: 36, r: 12, tepe: -18 }, { dx: 30, r: 9, tepe: -12, gec: true }];
+const Toz: React.FC<{ x: number; y: number; p: number; sekme: number; katman: "arka" | "on" }> = ({ x, y, p, sekme, katman }) => (
   <g>
     {TOZ_OBEK.map((o, i) => {
+      if (!!o.arka !== (katman === "arka")) return null;
       const q = o.gec ? p - sekme : p; if (q < 0) return null;
       const buyu = interpolate(q, [0, 8], [0.3, 1], { ...cl, easing: GIRIS }), in_ = interpolate(q, [8, 28], [0, 1], { ...cl, easing: INOUT });
       const r = o.r * buyu, dy = lerp(o.tepe * Math.min(1, q / 8), -0.3 * o.r, in_), sx = 1.3 * lerp(1, 1.25, in_), sy = lerp(1, 0.55, in_);
       const cx = x + o.dx, cy = y + dy;
       // 6 loblu tırtıklı bulut: lob yarıçapı 0.35 r, merkez çemberi üstünde (seed 140)
       const lob = Array.from({ length: 6 }).map((_, j) => { const a = (j / 6) * Math.PI * 2 + rnd(140, `a${i}${j}`) * 0.6; const rr = r * (0.62 + 0.18 * rnd(140, `r${i}${j}`)); return [cx + Math.cos(a) * rr * sx, cy + Math.sin(a) * rr * sy, 0.35 * r * (1 + 0.3 * rnd(140, `l${i}${j}`))] as [number, number, number]; });
-      return <g key={i} opacity={0.75}>
-        <ellipse cx={cx} cy={cy} rx={0.72 * r * sx} ry={0.72 * r * sy} fill="#8e8a80" />
-        {lob.map(([lx, ly, lr], j) => <ellipse key={j} cx={lx} cy={ly} rx={lr * sx} ry={lr * sy} fill={ly < cy ? "#a9a69c" : "#8e8a80"} />)}
+      return <g key={i} opacity={0.85}>
+        <ellipse cx={cx} cy={cy} rx={0.72 * r * sx} ry={0.72 * r * sy} fill={R.toz} />
+        {lob.map(([lx, ly, lr], j) => <ellipse key={j} cx={lx} cy={ly} rx={lr * sx} ry={lr * sy} fill={ly < cy ? R.tozIsik : R.toz} />)}
       </g>;
     })}
   </g>

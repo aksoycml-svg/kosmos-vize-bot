@@ -14,6 +14,13 @@ olcum.json:
                                                                                    # K6 (K5 B15): karakterin güneş KENAR IŞIĞI (Galata kontra: sarık kenarı
                                                                                    # #f0d79a ve kenar–kumaş geçiş pikselleri) da bir `isik` bölgesidir — kare
                                                                                    # başına sarık kutusu ayrı satır olarak verilir (ör. K6/renk-olcum.json)
+                   # K7 (K6 eleştiri şartı): figür kenar ışığı KUTU değil KONTUR ŞERİDİ olmalı → 6. öğe {"kontur": true, "serit": 6, "L_max": 34}:
+                   #   kutu yalnız arama sınırıdır; içinde figür = L* < L_max koyu siluet (delikler doldurulur), siluet S = figür ⊕ 4 px (kenar
+                   #   ışığı piksellerini içine alır), şerit = S ∖ (S ⊖ serit). Yalnız şeritteki imza tonlu piksel `isik` sayılır; kaftan/kanat
+                   #   YÜZEYİNDEKİ (konturdan > serit px içeride) ya da siluet dışındaki imza pikseli ihlal sayılmaya devam eder.
+                   #   Sınır: kutu içinde figürle birleşen başka koyu alan (kemer içi) varsa o kenarda şerit oluşmaz → kutuyu dar tut.
+                   #   Kesin yol: {"kontur": true, "serit": 6, "maske": "<figür maskesi png>"} — maske şablonun `figur_maske` parametresiyle
+                   #   (satır içi bolum json, yazısız) render edilir; siluet = maske beyazı, şerit = M ∖ (M ⊖ serit). (GALATA-TEPE'de kurulu)
 Ölçüm: 7x7 px ortalama (ölçekli karede). L* = CIELAB (D65), ΔE76 + ΔE2000, ΔH° = ton açısı farkı.
 Ayrıca: kırmızı piksel taraması (ton 340–12°, doygunluk > .5, parlaklık > .3) — kırmızı yalnız yazı katmanında olmalı.
 Hedef tolerans: |ΔL*| ≤ 8 (mekanlar.md §6); C* ≥ hedefin %70'i, Δh° ≤ ±20 (hedef C* < 5 ise h aranmaz) (mekanlar §6a).
@@ -21,6 +28,48 @@ Hedef tolerans: |ΔL*| ≤ 8 (mekanlar.md §6); C* ≥ hedefin %70'i, Δh° ≤ 
 """
 import json, math, sys
 from PIL import Image
+import numpy as np
+
+
+def _kaydir(m, dx, dy):
+    o = np.zeros_like(m); h, w = m.shape
+    o[max(0, dy):h + min(0, dy), max(0, dx):w + min(0, dx)] = m[max(0, -dy):h + min(0, -dy), max(0, -dx):w + min(0, -dx)]
+    return o
+
+
+def _genislet(m, n):
+    for _ in range(n):
+        m = m | _kaydir(m, 1, 0) | _kaydir(m, -1, 0) | _kaydir(m, 0, 1) | _kaydir(m, 0, -1) | _kaydir(m, 1, 1) | _kaydir(m, -1, -1) | _kaydir(m, 1, -1) | _kaydir(m, -1, 1)
+    return m
+
+
+def _asindir(m, n): return ~_genislet(~m, n)
+
+
+def kontur_serit(im, b, serit=6, L_max=34, maske=None, kayma=(1.5, 1.0), dis=1):
+    """kutu b (ölçekli) içinde figür konturundan içe ≤ serit px şerit maskesi (kutu boyutunda bool dizi).
+    maske: figür siluet PNG'si (beyaz = figür; şablonun `figur_maske` ölçüm modu) — verilirse siluet kesin, L* yöntemi kullanılmaz."""
+    if maske:
+        # RenkKaydi (doku/Tarama.tsx): renk katmanı mürekkebe göre (dx 1.5, dy 1.0) px kayık basılır → maske aynı kaymayla ötelenir;
+        # dışa `dis` px tolerans (yarım piksel kenar yumuşatması). İçe yine ≤ serit px.
+        sx = im.size[0] / 1080
+        M0 = np.asarray(Image.open(maske).convert("L").resize(im.size)) > 128
+        M0 = _kaydir(M0, round(kayma[0] * sx), round(kayma[1] * sx))
+        M = M0[b[1]:b[3] + 1, b[0]:b[2] + 1]
+        return _genislet(M, dis) & ~_asindir(M, serit)
+    a = np.asarray(im.crop((b[0], b[1], b[2] + 1, b[3] + 1)), dtype=np.float64) / 255
+    lin = np.where(a <= 0.04045, a / 12.92, ((a + 0.055) / 1.055) ** 2.4)
+    Y = lin @ np.array([0.2126, 0.7152, 0.0722])
+    L = np.where(Y > 216 / 24389, 116 * np.cbrt(Y) - 16, Y * 24389 / 27)
+    F = L < L_max
+    # delik doldurma: kutu kenarından ~F içinde jeodezik yayılma; ulaşılamayan ~F = delik
+    dis = np.zeros_like(F); dis[0, :] = ~F[0, :]; dis[-1, :] = ~F[-1, :]; dis[:, 0] = ~F[:, 0]; dis[:, -1] = ~F[:, -1]
+    while True:
+        y = _genislet(dis, 1) & ~F
+        if (y == dis).all(): break
+        dis = y
+    S = _genislet(~dis, 4)
+    return S & ~_asindir(S, serit)
 
 
 def hex2rgb(h):
@@ -99,15 +148,23 @@ def main():
         if "imza" in k:
             I = k["imza"]; li = lab(hex2rgb(I["hex"])); x0, y0, x1, y1 = [round(v * s) for v in I["bolge"]]
             ic = dis = 0; dis_kutu = None; ornek = {}
-            isikB = [(a, [round(v * s) for v in b]) for a, *b in k.get("isik", [])]; isikN = {a: 0 for a, _ in isikB}
+            isikB = [(a, [round(v * s) for v in b[:4]]) for a, *b in k.get("isik", [])]; isikN = {a: 0 for a, _ in isikB}
+            # K7: kontur şeridi modu (6. öğe dict) → kutu içi maske; yoksa kutunun tamamı
+            maske = {}
+            for a, *b in k.get("isik", []):
+                if len(b) > 4 and isinstance(b[4], dict) and b[4].get("kontur"):
+                    bb = [round(v * s) for v in b[:4]]; maske[a] = kontur_serit(im, bb, round(b[4].get("serit", 6) * s) or 1, b[4].get("L_max", 34), b[4].get("maske"))
+            def isikta(a, b, xx, yy):
+                if not (b[0] <= xx <= b[2] and b[1] <= yy <= b[3]): return False
+                return a not in maske or bool(maske[a][yy - b[1], xx - b[0]])
             for yy in range(0, h, 2):
                 for xx in range(0, w, 2):
                     p = px[xx, yy]
                     if abs(p[0] - 196) > 60 or abs(p[2] - 116) > 60: continue
                     if de76(lab(p), li) < I.get("esik", 15):
                         if x0 <= xx <= x1 and y0 <= yy <= y1: ic += 1
-                        elif any(b[0] <= xx <= b[2] and b[1] <= yy <= b[3] for _, b in isikB):
-                            a = next(a for a, b in isikB if b[0] <= xx <= b[2] and b[1] <= yy <= b[3]); isikN[a] += 1
+                        elif any(isikta(a, b, xx, yy) for a, b in isikB):
+                            a = next(a for a, b in isikB if isikta(a, b, xx, yy)); isikN[a] += 1
                         else:
                             dis += 1; dis_kutu = (min(dis_kutu[0], xx), min(dis_kutu[1], yy), max(dis_kutu[2], xx), max(dis_kutu[3], yy)) if dis_kutu else (xx, yy, xx, yy)
                             key = (xx // 40, yy // 40); ornek[key] = ornek.get(key, 0) + 1
@@ -115,7 +172,7 @@ def main():
             oran = dis / ic if ic else float("inf")
             for a, b in isikB:
                 yakin = not (b[2] < x0 - 200 * s or b[0] > x1 + 200 * s or b[3] < y0 - 200 * s or b[1] > y1 + 200 * s) and ic > 0
-                ek.append(f"- {k['ad']}: [ışık] {a}: imza bandında {isikN[a]} örnek (oranın dışında; muafiyet §2.1)" + (" — ŞART (b) İHLAL: demetin 200 px yakınında" if yakin and isikN[a] else ""))
+                ek.append(f"- {k['ad']}: [ışık{' · kontur şeridi' if a in maske else ' · kutu'}] {a}: imza bandında {isikN[a]} örnek (oranın dışında; muafiyet §2.1)" + (" — ŞART (b) İHLAL: demetin 200 px yakınında" if yakin and isikN[a] else ""))
             ek.append(f"- {k['ad']}: imza {I['hex']} ΔE76<{I.get('esik', 15)} — demet bölgesinde {ic} örnek, DIŞINDA (ışık hariç) {dis} örnek → " + ("demet kadrajda yok, imza pikseli yok (TAMAM)" if ic == 0 and dis == 0 else (f"demet kadrajda yok, {dis} imza pikseli (İHLAL)" if ic == 0 else f"oran %{oran * 100:.0f} ({'TAMAM' if oran <= 0.25 else 'İHLAL'} ≤ %25)")) + (f" (kutu {tuple(round(v / s) for v in dis_kutu)} tam boy; yoğun hücreler {[(round(a * 40 / s), round(b * 40 / s), n) for (a, b), n in top]})" if dis else ""))
         for ad, hx, esik in k.get("yasak", []):
             ly = lab(hex2rgb(hx)); n = sum(1 for yy in range(0, h, 2) for xx in range(0, w, 2) if de76(lab(px[xx, yy]), ly) < esik)

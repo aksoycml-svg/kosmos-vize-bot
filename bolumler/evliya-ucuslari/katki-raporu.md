@@ -1038,3 +1038,63 @@
 - Kararlar: Adım sayısı 4 (5 olsa ~13 kare/adım, fazla telaşlı). Adım ≈0.42 m (102 px, ≈240 px/m); toplam yol 1.6 m olduğundan 0.55–0.65 m adımla 4–5 adım sığmaz. Bir adım = tek ayak basışı, çift adım (stride) ≈0.84 m. Yol uzatılamaz (çıkıntı ve gevşek taş x 750–790).
 - Kural/ihlal: Doğrulayıcı: yeni HATA yok (5 eski hata: P03 bin, P04 tutun, P09 BOGAZ, P13/P14 KITAP-INSERT). 1 YENİ UYARI: P01 hezarfen yuru "2 adım (p224, p256) temas yok"; doğrulayıcı adımı 0.75 m sabit varsayıyor, 4 adım ona sığmıyor. Foley'i sahte karelere koymadım.
 - Açık/not: Motion `avlu_koridor_x` adını okusun (şablon hâlâ `sokak_bosluk_x` okuyorsa şablon güncellenmeli). Orkestra: `tools/bolum_dogrula.mjs` yürüyüş adım uzunluğunu `yuru.ops.adim` gibi bir parametreyle alsın ya da uyarı kabul edilsin. Motion: P01 yuru p196–262'de 4 basma (212/229/246/262), anahtar x'ler basış ortalarında; yürüyüş eğrisi lineer olursa adımlar eşit dağılır.
+
+## motion · 2026-11-08 · K7 turu (P08 dip sur + avlu, B8 itme, P01 B yürüyüş, renk ölçümü kontur şeridi, küçükler, kanat kit riski, doğrulayıcı adım uzunluğu)
+- **Ne yaptım:**
+  - **P08 dip:** `SokakAgzi` (iki ev + sokak) kaldırıldı. Yerine yeni genel modül `SurAvlu` geldi (mekanlar R5 §2.4b + §8 girdileri). Modülde sol sur kolunun iç yüzü (köşe x 480, 5.0 m, 0.30 m sıra, 0.4–0.6 m blok, her 7. blok koyu), harpuşta alnı, köşe gölgesi, kule duvar dibi çizgisi ve şaşırtmalı avlu levhaları var. Avluda sıra 1 sabit (557/710/863); diğer sıralarda ±12 px titreşim, kırık levha ve taş temas gölgesi var. Tüm kenarlar VP (670, 3152) formülünden çiziliyor.
+  - **Toz (R5):** renkler `#a8a296` / `#b2ac9f`, α .85. Ö2 ve Ö3 taşın arkasında, Ö1/Ö4/Ö5 önünde; Ö1 dx −45.
+  - **Koridor kontrolü:** şablon `taş_dusus.avlu_koridor_x` değerini okuyor ve taşın son konumu koridor dışındaysa hata veriyor. Eski `sokak_bosluk_x` adı görülürse de hata veriyor.
+  - **B8 `tas-it`:** kurma ve itme boyunca kalça 0.28 m geri gidip 0.05 m iniyor, gövde 16° öne eğiliyor. Ön ayak taşın yan yüzünün ortasına (0.40 w) çapraz uzanıyor. Kollar kuşaktan çözülüp dengeye açılıyor: ön kol öne-yukarı, arka kol geriye.
+  - **Kanat boyanmama hatası:** K7 p44'te hata tekrar çıktı; kanat yine boyanmamış, yerinde siluet hayaleti vardı. Gerçek kök neden: tam figür (KanatCiz'in iç clipPath/defs'i dahil) 3 maskede kopyalanıyordu. Artık maskelerde sade figür kullanılıyor: kanat yalnız dış kontur, artı Kukla. Render'da kanat opak.
+  - **Kosk / Kiyi:** katlı kanat Kukla'nın `arka` yuvasından çıkarıldı. Yeni `GovdeCercevesi` (props/evliya.tsx) aynı gövde dönüşümüyle kanadı figürün arkasına çiziyor.
+  - **Küçükler:**
+    - P12: toz zerreleri figürün arkasına alındı; yüze zerre düşmüyor.
+    - P01: IG bandındaki siyah sivri dilim kalktı (eski saçak VP uzantısıydı). `SurAvlu` `ustKirp 1925` ile sınırlandı.
+    - Uzak pus bandına iki çok soluk uzak çatı kümesi eklendi (pusa ΔL* ≈ 4–6, kontursuz).
+  - **`tools/renk_olcum.py`:** `isik` girdisine 6. öğe olarak kontur şeridi modu eklendi: `{"kontur": true, "serit": 6, "maske": png}`.
+    - Siluet maskesi şablonun yeni `figur_maske` ölçüm parametresiyle render ediliyor (satır içi bolum json, yazısız).
+    - Şerit = maske ∖ (maske ⊖ 6 px). RenkKaydi kayması (1.5, 1.0) px uygulanıyor, dışa 1 px tolerans var.
+    - Maskesiz yedek yöntem L* eşiği; Galata'da kaftan ile kule taşı aynı L*'da olduğu için orada kullanılmaz.
+  - **`tools/bolum_dogrula.mjs`:** adım uzunluğu öncelik sırasıyla okunuyor: `ops.adim_m` → karakter `adim_m` → plan `adim_m` → `adim*` temaslarından çıkarım (yol / temas sayısı) → 0.75. Temaslardan çıkarılırsa 0.3–0.9 m aralığı ve aralık düzenliliği denetleniyor. P01 B uyarısı kalktı (çıkarım ≈0.40 m).
+- **Dokunduğum dosyalar:**
+  - Kod: `src/kit/sablonlar/galata/GalataTepe.tsx`, `src/kit/sablonlar/galata/SurAvlu.tsx` (yeni), `src/kit/sablonlar/sarayburnu/Kosk.tsx`, `src/kit/sablonlar/sarayburnu/Kiyi.tsx`, `src/kit/sablonlar/sarayburnu/Ic.tsx`, `src/kit/props/evliya.tsx`
+  - Araçlar: `tools/renk_olcum.py`, `tools/bolum_dogrula.mjs`
+  - Kit belgeleri: `src/kit/KATALOG.md`, `src/kit/sinirlar.json`
+  - Kareler: `bolumler/evliya-ucuslari/kalibrasyon/K7/*` (P08 p44/p148/p170, P01 p229/p250, P12 p90, P02 p80 [Kosk], P05 p78 [Kiyi] × tam/güvenli/telefon; `*_figur-maske.png` ×3; `telefon-sayfa.png`; `renk-olcum.json/.md`)
+  - Bu rapor.
+- **Aldığım kararlar ve gerekçeleri:**
+  - Sur yalnız spesifikasyondaki x 400–480 şeridinde çizildi. p166–200 hızlı dönüşte kadraj x 330'a kayıyor; bu karelerde sur 400'de bitiyor. Bulanık iz karelerinde fark edilmez, eleştirmen baksın.
+  - `ustKirp 1925`: harpuştanın VP uzantısı cs 1 planlarına (P01 B, P08 p0) sızmasın diye. Eski siyah dilim tam olarak buydu.
+  - Ölçüm maskesi SVG mask yerine CSS `brightness(0) invert(1)` ile alındı. SVG mask bu modda karo karo düşüyordu (P01 p229'da figürün üstü maskesizdi). Bölüm render'ını etkilemiyor.
+  - Değiştirdiğim değerler:
+
+| Öğe | Önce | Sonra |
+|---|---|---|
+| tas-it kalça x (kurma/itme) | +0.05 m öne | −0.28 m geri |
+| tas-it kalça y | +0.02 m | +0.05 m |
+| tas-it gövde eğimi | 5° | 16° (kurmada 9.6°) |
+| ayak–taş temas yüksekliği | 0.22 w | 0.40 w (yan yüz ortası) |
+| kollar (itme) | arka kol shB −24 | ön shF −55 / elF −25, arka shB +42 / elB −20 |
+| toz Ö1 dx | −40 | −45 |
+| toz rengi | `#8e8a80`/`#a9a69c` α .75 | `#a8a296`/`#b2ac9f` α .85 |
+| taş temas gölgesi | yok | elips rx 0.55 w, ry 9, `#3e372e` α .5 (yerdeyken) |
+
+- **Uyguladığım kurallar / yakaladığım kural ihlalleri:**
+  - Renk ölçümünde ΔL* ≤ 8 ve imza tekliği:
+    - Sur yüzü −3.2, avlu −0.8/−1.2, taş −0.8, toz 0.0/−1.5; hepsi TAMAM.
+    - Taş ile avlu arası ΔL* ≈ 17, toz ile taş arası ΔL* ≈ 12.
+    - Kontur şeridi dışında imza pikseli: P08 p44 0, P01 p229 0, P01 p250 0, P12 p90 0. Kırmızı yok.
+  - Güvenli alan P08 p148: kilit ihlali 0, taş IG sütunu dışında.
+  - **Yakalanan ihlal:** K6'nın B2 "kanat opak" düzeltmesi bu turda yeni pozda yeniden kırıldı. Kök neden yukarıda; düzeltildi.
+  - Yeni öğe eklemedim. Uzak çatı kümeleri şehrin devamıdır, kanıtsız anıt değil.
+- **Açık sorular / bir sonraki ajana notlar:**
+  - Eleştirmen:
+    - P08 p44 itme telefonda okunuyor mu ("itti")? Etek bacağı örttüğü için okuma çapraz etek + baldır + kalkık ayakla geliyor.
+    - P01 B adımları doğal mı? p229 ve p250'de çömelme gözlemedim.
+    - Uzak çatı kümeleri "kumsal" okumasını kırıyor mu, yoksa "çadır sırası" mı okunuyor?
+  - Kanat kanıtı:
+    - Kiyi P05 p78'de kanat gri ve opak.
+    - Kosk P02 p80'de Lagâri uzak grupta ≈30 px. Kanat koyu gece tonuyla sırtta görünüyor ama küçük; büyük kare yok. Kosk'ta yakın Lagâri olan plan yok.
+  - **Yeni gözlem (benim değişikliğim değil, onay bekliyor):** P02 p80'de yardımcının meşale başı Lagâri'nin yüzünün önünde koyu bir disk gibi duruyor. Yönetmen/motion sonraki turda baksın.
+  - P08 p0 render edilmedi. Dilimin kalktığı P01 B karelerinde doğrulandı; P08 p0 aynı geometri ve kırpmayla çiziliyor.
+  - Kurgucu: B6 foley (p56, p148, p158) json temaslarından kontrol edilmeli. Bu turda dokunmadım.

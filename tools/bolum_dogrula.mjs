@@ -318,13 +318,27 @@ function galataKurallari(plan, Y, kar, props, kamera, sure) {
     if (j.ad === "yuru") {
       if (!Array.isArray(c.x)) U(`${Y} ${c.kim}`, "yuru: x yolu (dizi) yok — yerinde sayar");
       else {
-        // adım = 0.75 m; px/m = (ayak y − 829)/1.65 — her basma görünür temas (TEMAS = SES)
+        // px/m = (ayak y − 829)/1.65 — her basma görünür temas (TEMAS = SES)
+        // K7: adım uzunluğu sabit 0.75 m DEĞİL; öncelik: jest ops.adim_m → karakter adim_m → plan parametreler.adim_m → temaslardan çıkarım → 0.75.
+        //   Çıkarım: yürüyüş aralığında "adim*" temasları varsa şablon (GALATA-TEPE yuruCoz) basışları ZATEN bu listeden alır; adım = yol / temas sayısı.
+        //   Bu durumda denetim: adım uzunluğu yürüyüş aralığında mı (0.3–0.9 m) ve temaslar eşit aralıklı mı (±%35).
         const y0 = Array.isArray(c.y) ? c.y[0] : (c.y ?? 1250), pxm = Math.max(1, (y0 - 829) / 1.65);
         const xAt = (q) => { const k = c.kare ?? []; if (q <= k[0]) return c.x[0]; for (let i = 1; i < k.length; i++) if (q <= k[i]) { const u = (q - k[i - 1]) / (k[i] - k[i - 1]); const e = u < 0.5 ? 4 * u * u * u : 1 - (-2 * u + 2) ** 3 / 2; return c.x[i - 1] + (c.x[i] - c.x[i - 1]) * e; } return c.x[c.x.length - 1]; };
-        const adim = []; let yol = 0, n = 1, x0 = xAt(j.bas);
-        for (let q = j.bas + 1; q <= j.bit; q++) { const x1 = xAt(q); yol += Math.abs(x1 - x0) / pxm; x0 = x1; if (yol >= n * 0.75) { adim.push(q); n++; } }
-        const eksik = adim.filter((q) => !temasVar(plan, q, 2));
-        if (eksik.length) U(`${Y} ${c.kim}`, `yuru: ${adim.length} adım basması görünür (p${adim.join(", p")}); temas yok: p${eksik.join(", p")} — "adim" foley teması ekle`);
+        let yolTop = 0; { let x0 = xAt(j.bas); for (let q = j.bas + 1; q <= j.bit; q++) { const x1 = xAt(q); yolTop += Math.abs(x1 - x0) / pxm; x0 = x1; } }
+        const adimT = (plan.temaslar ?? []).filter((t) => /^adim/.test(t.ses ?? "") && t.kare > j.bas && t.kare <= j.bit + 1).map((t) => t.kare).sort((a, b) => a - b);
+        const beyan = j.ops?.adim_m ?? c.adim_m ?? plan.parametreler?.adim_m;
+        const ADIM = typeof beyan === "number" ? beyan : adimT.length ? yolTop / adimT.length : 0.75;
+        const kaynak = typeof beyan === "number" ? "beyan" : adimT.length ? "temaslardan" : "varsayılan";
+        if (ADIM < 0.3 || ADIM > 0.9) U(`${Y} ${c.kim}`, `yuru: adım ${ADIM.toFixed(2)} m (${kaynak}) yürüyüş aralığı 0.3–0.9 m dışında`);
+        if (kaynak === "temaslardan") {
+          const ara = adimT.slice(1).map((q, i) => q - adimT[i]), ort = ara.reduce((a, b) => a + b, 0) / Math.max(1, ara.length);
+          if (ara.some((d) => Math.abs(d - ort) > 0.35 * ort)) U(`${Y} ${c.kim}`, `yuru: adım temasları düzensiz aralıklı (p${adimT.join(", p")})`);
+        } else {
+          const adim = []; let yol = 0, n = 1, x0 = xAt(j.bas);
+          for (let q = j.bas + 1; q <= j.bit; q++) { const x1 = xAt(q); yol += Math.abs(x1 - x0) / pxm; x0 = x1; if (yol >= n * ADIM) { adim.push(q); n++; } }
+          const eksik = adim.filter((q) => !temasVar(plan, q, 2));
+          if (eksik.length) U(`${Y} ${c.kim}`, `yuru: adım ${ADIM} m (${kaynak}) → ${adim.length} adım basması görünür (p${adim.join(", p")}); temas yok: p${eksik.join(", p")} — "adim" foley teması ekle`);
+        }
       }
     }
   }

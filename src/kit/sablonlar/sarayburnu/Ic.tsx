@@ -294,6 +294,8 @@ export const IcSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> =
           <circle cx={mK[0]} cy={mK[1]} r={5} fill={RENK.demir} />
           {/* ayak teması: halı üstünde basık koyu temas gölgesi α .35 (huzme zemine düşmez → yön gölgesi yok) */}
           <ellipse cx={eksenX + g.yon * 0.04 * fP} cy={ayakY + 2} rx={0.34 * fP} ry={0.045 * fP} fill={RENK.dipGolge} opacity={0.35 / 0.45 * 0.45 + 0.1} />
+          {/* toz zerreleri (yalnız sütunda) — K7: figürün ARKASINDA (figür örter); yüze düşen zerre "ben" gibi okunuyordu (K6 küçük not) */}
+          <g clipPath={`url(#${uid}s)`}>{toz.map((q, i) => <circle key={i} cx={q[0]} cy={q[1]} r={2.6} fill={RENK.serit} opacity={0.55} />)}</g>
           {/* ---- padişah: gölge tonu + şerit (ışık tonu) ---- */}
           <PadisahFigur g={g} kol={kol} ton={FIGUR_GOLGE} />
           <g clipPath={`url(#${uid}s)`}>
@@ -308,8 +310,6 @@ export const IcSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> =
           {/* K6 (A5): kol gövdenin ÖNÜNDE — gövde ışık katmanları kolu örtmesin: kol gölge tonunda yeniden, sonra kendi ışık bandı (yen + el ışıkta) */}
           <PadisahFigur g={g} kol={kol} ton={FIGUR_GOLGE} yalnizKol />
           <g clipPath={`url(#${uid}s)`}><g mask={`url(#${uid}kb2)`}><PadisahFigur g={g} kol={kol} ton={FIGUR_ISIK} yalnizKol /></g></g>
-          {/* toz zerreleri (yalnız sütunda) */}
-          <g clipPath={`url(#${uid}s)`}>{toz.map((q, i) => <circle key={i} cx={q[0]} cy={q[1]} r={2.6} fill={RENK.serit} opacity={0.55} />)}</g>
         </g>
       </RenkKaydi>
     </svg>
