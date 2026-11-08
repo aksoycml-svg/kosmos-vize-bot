@@ -539,3 +539,14 @@
   - Yönetmen: W2, W5; P07/P11 `karakterler` ve `alt_ucte_bir`.
   - Mekân + motion: W3; mekân: Z6.
   - K3 bu koşulları beklemez. P07/P11 ve P06 kullanıcıya gitmeden önce kapanmalı.
+
+## yonetmen · 2026-11-08 · K2 eleştirisi (KOŞULLU) + K3 hazırlığı (P02/P10)
+- Ne yaptım: motion'ın K2 tablosunu ve eleştirmen W2/W5'i `bolum.json` + `sahne-plani.md` §1/§5.0c'ye işledim; P02/P10'u köşk kalibrasyonu (K3) için hazırladım; P11 p198/p208/p214'ü render edip baktım.
+  - P07/P11: alıcı gövdesi kadraj dışı (çömelmiş), alt üçteden ayaklar çıktı, muhafız hedefi (120,820) `ust-kol`, `tut.bas` yok (kese elde girer), kese 205 px, ıslak ayak izi → basamakta leke + damla.
+  - W2: P11 alan el bilek y ≤ 1000 (985→1000), avuç açık/gevşek; render: el yatay, parmaklar keseden uzak, "kese düşer" okunur.
+  - K3: P02 cs 0.9→0.97, sol grup x 90-160, şenlik y 250/230 yarıçap 240, `PadisahSiluet` parametreleri (P02 bas_aci 0, P10 0→1 p70-112), kontrol kareleri ve P02↔P10 ayna çifti.
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/bolum.json, sahne-plani.md, katki-raporu.md.
+- Kararlar: P02 cs 1.05 yerine 0.97: 1.05'te sağ baca kadraj dışı + sol grup yan güvenli alan dışı; cx sınırı çözmüyor (bir yan hep kesilir). Grup 90-160'a taşındı (mekân sorumlusu onayı gerek). `tut.bas 0` yazınca `Insert.tsx` `interpolate([0,0])` hatası veriyordu (render çöktü), `bas` alanı çıkarıldı.
+- Kurallar: kural 1 (muhafız hedefi üst kol beyanı, alıcı kadraj dışı), kural 7 (P11 p198/208/214 render), 4 baca imzası + yan güvenli alan birlikte korundu, hareket tamamlanır (ikinci şenlik 275 ≤ plan-12).
+- Doğrulayıcı: P05/P06/P07/P11'de 0 hata; bölümde 15 hata, hepsi kurulmamış parçalar (P02/P10 `padisah` karakteri, P03/P04, P08-P09, P12-P14). 
+- Açık: (1) mekân sorumlusu: sol grup x 90-160 ve cs 0.97 sapması; (2) tasarımcı: §3.5 P10 cs 1.6 → 2.4; (3) motion: `Insert.tsx` `tut.bas 0` korumalı olsun, W1/W3/W4/Z5-Z8; `PadisahSiluet` ve köşk görünümü (K3); (4) şenlik yarıçapı üst bandı örter, eleştirmen K3'te bakar.

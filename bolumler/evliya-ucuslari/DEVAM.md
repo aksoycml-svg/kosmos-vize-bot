@@ -27,6 +27,10 @@
 - K1 (P05/P06): tur 1 KALDI → tur 2 **KOŞULLU** (`kalibrasyon/K1-2/elestiri.md`). Açık: Y1 kesmede duman sıçraması, Y2 iniş ölçeği ≤3×, Y3 basamak tutunması P07'ye, Y4 meşale alevi kompars giysisinde, Y5 iniş sıçraması, Y6 yardımcı başı, Y7 açık kanat, Y8 katlı kanat (tasarımcı→motion), Y9 demet kalıntısı, Z1–Z4. K2'ye taşınan koşullar §4.
 - Render: `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`.
 - Kota: kurulum çok pahalı (motion tur başına 450–625k token). Sonraki tura geçmeden kullanıcıya danışıldı.
+- **Kullanıcı kararı: B yolu** — yönetmen/tasarımcı açıkları belgeye işler, motion her turda önceki açıklar + bir sonraki kalibrasyonu birlikte yapar. Kalkışta binici başı kadraj dışına çıkmaz.
+- K2 (P07/P11 insert gece/gün): kuruldu, **KOŞULLU** (`kalibrasyon/K2/elestiri.md`). K1 KOŞULLU: Y10 iniş sıçraması diken gibi, Y11 suda kanat kalas gibi. K2 açık: W1 P07 p0 el basamağa değmiyor (ses var), W3 basamaklar blok, W4 gölgeler elips, küçükler (duvar çizgisi göğe taşıyor, kemer köşesi, derz çit, sikke ΔE 17.3). W2/W5 yönetmen kapattı.
+- K3 hazırlığı (P02 gece / P10 gün, `kosk` görünümü, padişah siluet): json hazır (yönetmen §5.0c). Açık: mekân sorumlusu P02 grup x 90–160 + cs 0.97 onayı; tasarım §3.5 "P10 cs 1.6" eskidi (cs 2.4); şenlik yarıçapı üst bantla örtüşüyor mu.
+- **Sıradaki:** motion turu = K1 Y10/Y11 + K2 W1/W3/W4/küçükler + K3 kurulum (`kosk` gece/gün, padişah R10, şenlik). Sonra eleştirmen. Kalan şablonlar: SARAYBURNU `ic` (P12), GALATA-TEPE, BOGAZ, KITAP-INSERT; Hezarfen tam rig; TR/EN yazı katmanı sistemi (KE-Y1..Y5).
 
 ## Sıradaki: kurulum ekibi (opus) — `sahne-plani.md` §6 iş tanımıdır
 Sıra (CLAUDE.md "Ajan çalışma sırası"):

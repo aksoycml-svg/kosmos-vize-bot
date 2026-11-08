@@ -372,20 +372,24 @@
     "senlik": [
      {
       "x": 760,
-      "y": 200,
+      "y": 250,
       "bas": 40,
       "patlama": 62,
+      "yaricap": 240,
+      "dusme_kare": 70,
       "katman": "kosk-arkasi"
      },
      {
       "x": 330,
-      "y": 160,
+      "y": 230,
       "bas": 185,
       "patlama": 205,
+      "yaricap": 240,
+      "dusme_kare": 70,
       "katman": "kosk-arkasi"
      }
     ],
-    "senlik_not": "patlama merkezleri y 150-250 (mekanlar §7.1); düşen çizgiler köşk örtüsünün arkasında kalır",
+    "senlik_not": "E2 (tasarim): yıldız değil, merkezden düşen 18-24 kavisli çizgi (söğüt); merkez y 150-250, düşen çizgiler köşk örtüsünün arkasında; ikinci patlama p205+70=275 ≤ plan sonu-12",
     "kosk_konum": {
      "cephe_px_m": 85,
      "su_cizgisi": 1500,
@@ -398,6 +402,22 @@
       700,
       819
      ]
+    },
+    "padisah": {
+     "bileşen": "PadisahSiluet",
+     "bas_aci": 0,
+     "renk": "#1e1c22",
+     "kenar_isik": "#f2c070",
+     "pencere": "orta (x 518-603, y 700-819)"
+    },
+    "sol_grup": {
+     "x": [
+      90,
+      160
+     ],
+     "ayak_y": 1387,
+     "figur_px": 50,
+     "not": "K3: grup x 40-140 → 90-160 (cs 0.97'de ekran x≥80: yan güvenli alan); mekanlar §1.3 #3'ten sapma, mekân sorumlusu onaylasın"
     }
    },
    "sure_kare": 324,
@@ -406,7 +426,7 @@
     "tr": "İlki, padişahın kızının doğum şenliğinde. Padişahı kim şaşırtacak?",
     "en": "The first was at the sultan's party. Who'll amaze him?"
    },
-   "olcek": "geniş (köşk cephesi + rıhtım + gök); yavaş push-in cs 0.9->1.05",
+   "olcek": "geniş (köşk cephesi + rıhtım + gök); yavaş push-in cs 0.9->0.97 (cs 1.05'te sağ ön baca kadraj dışı ve sol grup yan güvenli alanın dışında; ikisi birden ancak ≤0.97'de tutuyor)",
    "kamera": {
     "kare": [
      0,
@@ -414,7 +434,7 @@
     ],
     "cs": [
      0.9,
-     1.05
+     0.97
     ],
     "cx": [
      0,
@@ -441,7 +461,7 @@
     },
     {
      "kim": "lagari",
-     "x": 95,
+     "x": 125,
      "y": 1387,
      "olcek": 0.075,
      "yon": 1,
@@ -452,7 +472,7 @@
     },
     {
      "kim": "yardimci-1",
-     "x": 50,
+     "x": 98,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -461,7 +481,7 @@
     },
     {
      "kim": "yardimci-2",
-     "x": 140,
+     "x": 152,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -473,7 +493,7 @@
     {
      "tur": "fisek-demet",
      "id": "demet",
-     "x": 95,
+     "x": 125,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -483,7 +503,7 @@
     {
      "tur": "mesale",
      "id": "mesale1",
-     "x": 62,
+     "x": 108,
      "y": 1345,
      "olcek": 0.075,
      "kit_eksik": [
@@ -531,7 +551,10 @@
    "dokunus": null,
    "kontrol_kare": 80,
    "kontrol_ek": [
-    0
+    0,
+    62,
+    205,
+    310
    ],
    "okunurluk": {
     "nesne": "padişah siluet (pencerede)",
@@ -564,7 +587,12 @@
      "db": 0
     }
    ],
-   "not": "Sol rıhtımda 4-5 px'lik grup P03 için kurulum nesnesidir (25 px telefonda ışık lekesi + demet silueti). [2026-11-08 mekanlar §7] Grup x 40-140, ayak y 1387, figür ≈50 px (olcek 0.075). cs 1.05 sonunda grup ekran x≈15-120 (sol yan güvenli 80'in 65 px dışı): kurulum nesnesi, açık soru."
+   "not": "Sol rıhtımda 4-5 px'lik grup P03 için kurulum nesnesidir (25 px telefonda ışık lekesi + demet silueti). [2026-11-08 mekanlar §7] Grup x 40-140, ayak y 1387, figür ≈50 px (olcek 0.075). [K3] cs 0.97 + grup x 90-160: sol grup ekran x≥103, sağ ön baca kadrajda. [K3] şenlik merkezi y 250/230, yarıçap ≈240 (üst yazı bandıyla kısmen örtüşür: arka plan etkisi, dokunuş değil).",
+   "ayna": {
+    "es": "P10",
+    "kare": 0,
+    "not": "P02 p0 ↔ P10 p0 AYNI kadraj (cs 0.9, cx 0, cy 0): dekor ortak, yalnız gece/gün ve grup/şenlik farkı; yan yana karşılaştırma"
+   }
   },
   {
    "id": "P03",
@@ -1877,24 +1905,6 @@
      "adim": 3,
      "not": "mekanlar §1.4 #4: tutunma burada, P07 p0"
     },
-    "islak_izler": [
-     [
-      230,
-      1290
-     ],
-     [
-      330,
-      1350
-     ],
-     [
-      430,
-      1320
-     ],
-     [
-      540,
-      1390
-     ]
-    ],
     "isik_nokta": {
      "zemin": [
       1250,
@@ -1903,6 +1913,11 @@
      "yukseklik": 1100,
      "golge": "sola kısa",
      "not": "mekanlar §1.1 tablosu; P11'de güneş soldan, gölgeler sağa"
+    },
+    "basamak_islak": {
+     "leke": true,
+     "damla": true,
+     "not": "basamakta ıslak leke + damlalar (ayak izi yok: gövde basamakta, yürümedi)"
     }
    },
    "sure_kare": 228,
@@ -1911,7 +1926,7 @@
     "tr": "Karşılığında bir kese para ve her gün maaş alıyor.",
     "en": "For it, he gets a purse and a daily salary."
    },
-   "olcek": "insert/orta-boy (baş kadrajın üstünde değil: eğilmiş Lagâri; avuç ve kese %10+); cs 1.0 sabit (P11 ile AYNI kadraj)",
+   "olcek": "insert (omuz başı + kol + avuç; alıcı gövdesi solda kadraj dışı, çömelmiş); kese boyu ≈205 px (0.85x el); cs 1.0 sabit (P11 ile AYNI kadraj)",
    "kamera": {
     "kare": [
      0,
@@ -1934,10 +1949,9 @@
    "karakterler": [
     {
      "kim": "lagari",
-     "x": 360,
+     "x": -40,
      "y": 1450,
      "yon": 1,
-     "poz": "ayakta",
      "jestler": [
       {
        "ad": "egil",
@@ -1972,7 +1986,9 @@
       "KE-J5",
       "KE-J10"
      ],
-     "kanat": "yok"
+     "kanat": "yok",
+     "kadraj_disi": true,
+     "gorunum": "comelmis, gövde solda kadraj dışı; kadrajda yalnız sağ omuz başı + kol (K2 kararı)"
     }
    ],
    "props": [
@@ -2012,7 +2028,8 @@
      },
      "kit_eksik": [
       "KE-P3"
-     ]
+     ],
+     "boy_px": 205
     }
    ],
    "el": [
@@ -2094,8 +2111,8 @@
      "olcek": 1.9,
      "tut": {
       "prop": "kese",
-      "bas": 24,
-      "bit": 68
+      "bit": 68,
+      "not": "bas yok = kese elde girer (p0; Insert.tsx 'bas 0' aralığı sıfır uzunlukta interpolate hatası verir)"
      },
      "kit_eksik": [
       "KE-K5"
@@ -2242,7 +2259,7 @@
     "net_sn": 3.3,
     "not": "kese olcek 1.4 (≈190 px). P11 ile AYNI kadraj (el y≈985, zemin y 1450): ayna okunur"
    },
-   "alt_ucte_bir": "Rıhtım taş döşemesi, ıslak ayak izi/su birikintisi ve damlalar (y 1300-1500), Lagâri'nin ayakları.",
+   "alt_ucte_bir": "Rıhtım taş döşemesi (y 1300-1500), basamakta ıslak leke + damlalar, kolun/kesenin zemin gölgesi. Ayak yok: alıcı gövdesi kadraj dışı.",
    "kit_eksik": [
     "KE-S1",
     "KE-K1",
@@ -2267,7 +2284,7 @@
      "db": 0
     }
    ],
-   "not": "Eli veren el padişahın mı görevlinin mi: belirsiz bırakıldı (nötr entari yeni, kanıtsız renk/arma yok). Giren el sağ kenardan (köşk sağda) fiziksel girer, p130'da sağdan çıkar; fade yok. Lagâri KANATSIZ (kanat P06'da suda kaldı, kullanıcı kararı). [K1-2] Basamak teması P06'dan P07 p0'a taşındı (el p0'da basamakta). Değerler mekanlar §1.4 hesabı; insert şablonu henüz yok, render yok.",
+   "not": "Eli veren el padişahın mı görevlinin mi: belirsiz bırakıldı (nötr entari yeni, kanıtsız renk/arma yok). Giren el sağ kenardan (köşk sağda) fiziksel girer, p130'da sağdan çıkar; fade yok. Lagâri KANATSIZ (kanat P06'da suda kaldı, kullanıcı kararı). [K1-2] Basamak teması P06'dan P07 p0'a taşındı (el p0'da basamakta). Değerler mekanlar §1.4 hesabı; insert şablonu henüz yok, render yok. [K2] Alıcı gövdesi kadraj dışı (eleştirmen kabul); veren el tut.bas 0 (kese elde girer); ıslak ayak izi yerine basamak lekesi+damla. W1/W3/W4/Z5-Z7 motion/mekân.",
    "ayna": {
     "es": "P11",
     "kare": 72,
@@ -2878,7 +2895,23 @@
     },
     "pencere_isigi": false,
     "ayni_kadraj_p02": true,
-    "gunes": "sabah-ENE"
+    "gunes": "sabah-ENE",
+    "padisah": {
+     "bileşen": "PadisahSiluet",
+     "renk": "#2a2622",
+     "kenar_isik": "#f0d79a",
+     "bas_aci": {
+      "kare": [
+       70,
+       112
+      ],
+      "deger": [
+       0,
+       1
+      ],
+      "not": "önden → sağa profil (Üsküdar)"
+     }
+    }
    },
    "sure_kare": 294,
    "sure_sn": 4.9,
@@ -2966,7 +2999,10 @@
    "dokunus": null,
    "kontrol_kare": 120,
    "kontrol_ek": [
-    0
+    0,
+    66,
+    112,
+    280
    ],
    "okunurluk": {
     "nesne": "padişah siluet (baş çevirme)",
@@ -2994,7 +3030,12 @@
      "db": 0
     }
    ],
-   "not": "Baş çevirme p70-112: TR 'Yine padişah' p74-144 ile eşzamanlı. Çevirme sağa (Üsküdar yönü); P09'daki uçuş yönüyle aynı. [2026-11-08 mekanlar §7.2] cs 0.9->2.4: p0'da P02 ile aynı kadraj (0.9), 0.4 sn sonra push-in; çevirme tam cs 2.4'te."
+   "not": "Baş çevirme p70-112: TR 'Yine padişah' p74-144 ile eşzamanlı. Çevirme sağa (Üsküdar yönü); P09'daki uçuş yönüyle aynı. [2026-11-08 mekanlar §7.2] cs 0.9->2.4: p0'da P02 ile aynı kadraj (0.9), 0.4 sn sonra push-in; çevirme tam cs 2.4'te. [K3] tasarim §3.5 'P10 cs 1.6'da ≥240 px' eskimiş: mekanlar hesabı cs 2.4 (büst 1.1 m x 92 px/m x 2.4 = 242 px); tasarımcı güncellesin.",
+   "ayna": {
+    "es": "P02",
+    "kare": 0,
+    "not": "p0 ↔ P02 p0 AYNI kadraj; son kare cx -28, cy 420 cs 2.4: büst 242 px"
+   }
   },
   {
    "id": "P11",
@@ -3034,7 +3075,7 @@
     "tr": "Ona bir kese altın veriyor. Ama sonra sürgüne yolluyor.",
     "en": "He gets a purse of gold. But then he's banished."
    },
-   "olcek": "insert/orta-boy (baş kadraj dışı, omuz ve avuç görünür), cs 1.0 sabit (P07 ile AYNI kadraj)",
+   "olcek": "insert (omuz başı + kol + avuç; alıcı gövdesi solda kadraj dışı, çömelmiş), cs 1.0 sabit (P07 ile AYNI kadraj); kese ≈205 px",
    "kamera": {
     "kare": [
      0,
@@ -3057,10 +3098,9 @@
    "karakterler": [
     {
      "kim": "hezarfen",
-     "x": 360,
+     "x": -40,
      "y": 1450,
      "yon": 1,
-     "poz": "ayakta",
      "jestler": [
       {
        "ad": "egil",
@@ -3081,7 +3121,9 @@
      "kit_eksik": [
       "KE-K2",
       "KE-J5"
-     ]
+     ],
+     "kadraj_disi": true,
+     "gorunum": "comelmis, gövde solda kadraj dışı; yalnız omuz başı + kol"
     }
    ],
    "props": [
@@ -3124,7 +3166,8 @@
      },
      "kit_eksik": [
       "KE-P3"
-     ]
+     ],
+     "boy_px": 205
     },
     {
      "tur": "sikke",
@@ -3246,8 +3289,8 @@
      "olcek": 1.9,
      "tut": {
       "prop": "kese",
-      "bas": 10,
-      "bit": 42
+      "bit": 42,
+      "not": "bas yok = kese elde girer (p0; Insert.tsx 'bas 0' aralığı sıfır uzunlukta interpolate hatası verir)"
      },
      "kit_eksik": [
       "KE-K5"
@@ -3294,19 +3337,19 @@
       ],
       [
        650,
-       1010
+       995
       ],
       [
-       640,
-       1040
+       648,
+       1000
       ],
       [
-       600,
-       1100
+       646,
+       1000
       ],
       [
-       540,
-       1160
+       644,
+       1000
       ]
      ],
      "dirsek": [
@@ -3332,19 +3375,19 @@
       ],
       [
        500,
-       1064
+       1058
       ],
       [
-       495,
-       1080
+       500,
+       1062
       ],
       [
-       470,
-       1120
+       498,
+       1066
       ],
       [
-       440,
-       1170
+       496,
+       1070
       ]
      ],
      "aci": [
@@ -3354,9 +3397,9 @@
       0,
       0,
       5,
-      15,
-      25,
-      30
+      10,
+      10,
+      10
      ],
      "olcek": 1.9,
      "poz": [
@@ -3372,7 +3415,8 @@
      "kit_eksik": [
       "KE-K5",
       "KE-J5"
-     ]
+     ],
+     "not": "W2: bilek y ≤ 1000 tüm plan; avuç açık, aşağı dönük, gevşek; muhafız bastırmasıyla yalnız 10-20 px çöker (985→1000); parmaklar yerdeki keseden ≥80 px uzak; 'gevşeyen avuç, kese düşer' (keseyi almaz/geri kapamaz)"
     },
     {
      "tip": "muhafiz",
@@ -3393,16 +3437,16 @@
        700
       ],
       [
-       -60,
+       -120,
        720
       ],
       [
-       320,
-       800
+       120,
+       820
       ],
       [
-       320,
-       810
+       120,
+       826
       ]
      ],
      "dirsek": [
@@ -3411,15 +3455,15 @@
        650
       ],
       [
-       -380,
+       -420,
        660
       ],
       [
-       -60,
+       -160,
        720
       ],
       [
-       -60,
+       -160,
        730
       ]
      ],
@@ -3432,7 +3476,10 @@
      "olcek": 1.9,
      "kit_eksik": [
       "KE-K5"
-     ]
+     ],
+     "hedef": "ust-kol",
+     "hedef_not": "W5: el omuz başından çok üst kola iner (≈(120,820), alıcı gövdesine bağlı); anlam 'kolundan tutuldu' kabul; kumaş 4-6 px içeri çöker (temas p104, kontrol p98/p104)",
+     "kumas_cokme_px": 6
     }
    ],
    "ekran_yazisi": [
@@ -3460,7 +3507,7 @@
     },
     {
      "kare": 104,
-     "olay": "muhafız eli omza iner",
+     "olay": "muhafız eli üst koluna iner (kumaş içeri çöker)",
      "ses": "omuz-tok",
      "db": -8
     },
@@ -3503,6 +3550,7 @@
     42,
     72,
     98,
+    198,
     208
    ],
    "okunurluk": {
@@ -3511,7 +3559,7 @@
     "net_sn": 3.2,
     "not": "kese olcek 1.4 (≈190 px, %10) avuçta p42-112, düşüşte p126-140, yerde p140-214; sikke %5 ek ayrıntı. Omuz y≈800 (yazı bandı 240-400 dışı)"
    },
-   "alt_ucte_bir": "Rıhtım taş zemini y 1350-1500: kese, yuvarlanan sikke, Hezarfen'in ayakları ve kese gölgesi.",
+   "alt_ucte_bir": "Rıhtım taş zemini y 1350-1500: kese, yuvarlanan sikke, kese/el gölgeleri. Ayak yok: alıcı gövdesi kadraj dışı.",
    "kit_eksik": [
     "KE-S1",
     "KE-K2",
@@ -3534,7 +3582,7 @@
      "db": 0
     }
    ],
-   "not": "Insert baş kadraj dışı: Hezarfen'in tepkisi yüzle değil omuz/avuç gevşemesiyle verilir (doc: pasif). 'Omza' el: eğik duran omuz y≈800 (kadrajda). Muhafız eli soldan (Hezarfen'in arkası), veren el sağdan. Sikke fiziği: kese yere çarpınca ağzından fırlar, zeminde dönerek yavaşlar, p208'de yatar. [2026-11-08 karar: muhafız eli gölgesi omza temastan 8 kare önce (p96) düşer: tek ışık kaynağından kendiliğinden çıkar, ek ses/kod yok, EV-D5'e 'geliyor' vurgusu verir; sürpriz korunur çünkü el zaten p80'de kadraja girer, gölge yalnız omuz+kese eli üstünde p96-104.) [K1-2] K2 paketi için P07↔P11 ayna çifti p72/p72; EV-D5 karesi p128 ayrı. Gün paleti C* oranı ≥%70 ve el tonu ΔE (#d6a882, #c99872, #b08260) kontrolü eleştirmende. Değerler mekanlar §1.4, render yok.",
+   "not": "Insert baş kadraj dışı: Hezarfen'in tepkisi yüzle değil omuz/avuç gevşemesiyle verilir (doc: pasif). 'Omza' el: eğik duran omuz y≈800 (kadrajda). Muhafız eli soldan (Hezarfen'in arkası), veren el sağdan. Sikke fiziği: kese yere çarpınca ağzından fırlar, zeminde dönerek yavaşlar, p208'de yatar. [2026-11-08 karar: muhafız eli gölgesi omza temastan 8 kare önce (p96) düşer: tek ışık kaynağından kendiliğinden çıkar, ek ses/kod yok, EV-D5'e 'geliyor' vurgusu verir; sürpriz korunur çünkü el zaten p80'de kadraja girer, gölge yalnız omuz+kese eli üstünde p96-104.) [K1-2] K2 paketi için P07↔P11 ayna çifti p72/p72; EV-D5 karesi p128 ayrı. Gün paleti C* oranı ≥%70 ve el tonu ΔE (#d6a882, #c99872, #b08260) kontrolü eleştirmende. Değerler mekanlar §1.4, render yok. [K2] W2: p112-210 alan el bilek y ≤ 1000 (eski p210 (540,1160) yerdeki keseye uzanır gibiydi). W5 üst kol. Muhafız bilek (120,820). Kese boyu 205 px.",
    "ayna": {
     "es": "P07",
     "kare": 72,
