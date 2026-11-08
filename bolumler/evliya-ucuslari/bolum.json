@@ -153,12 +153,26 @@
     {
      "tur": "mesale",
      "id": "mesale",
-     "x": 330,
-     "y": 1325,
+     "x": [
+      330,
+      330,
+      330
+     ],
+     "y": [
+      1325,
+      1325,
+      1000
+     ],
      "bagli": "yardimci-1",
      "kit_eksik": [
       "KE-P7"
-     ]
+     ],
+     "kare": [
+      0,
+      60,
+      100
+     ],
+     "not": "[K5-yon B16] fitil işi p40'ta bitti; p60-100'de meşale yerden kalkar (taşıma pozu, baş omuz yanında); p172'de alev ayakkabı dibinde değil"
     }
    ],
    "devam_plan": {
@@ -302,6 +316,24 @@
      "olay": "fişek yerden kalkar",
      "ses": "fisek-kalkis",
      "db": -6
+    },
+    {
+     "kare": 229,
+     "olay": "Hezarfen 1. adım basar (küçük figür, uzak)",
+     "ses": "adim-tas",
+     "db": -21
+    },
+    {
+     "kare": 246,
+     "olay": "Hezarfen 2. adım basar",
+     "ses": "adim-tas",
+     "db": -21
+    },
+    {
+     "kare": 262,
+     "olay": "Hezarfen çıkıntıda durur, ayak yerine oturur",
+     "ses": "adim-tas",
+     "db": -22
     }
    ],
    "gecis": "p176 SERT KESME (gece/rıhtım -> gündüz/kule): fişek kadrajdan çıkmış, kıvılcımlar düşüp sönmüş (p150-172 kapanış); kesmeyle rüzgâr/yükseklik sesi girer. Çıkış (P02'ye): sert kesme.",
@@ -2347,10 +2379,10 @@
      "yere_y": 3580,
      "sokak_bosluk_x": [
       560,
-      820
+      845
      ]
     },
-    "kamera_dogrulama": "mekanlar R3: p36-52 cy ≤ -41 (öneri -50): çıkıntı/taş d 1250 → ekran ≈1475 (cs 1.9) ≤ 1490; p40 tas-surtme (cs≈1.93, cy≈-120) taş ≈1398, p44 kayma; p200/p240 de cy -50 (ayak ≤1490, boy plan); taş p36 ekran x≈857 < 920"
+    "kamera_dogrulama": "mekanlar R3: p36-52 cy ≤ -41 (öneri -50): çıkıntı/taş d 1250 → ekran ≈1475 (cs 1.9) ≤ 1490; p40 tas-surtme (cs≈1.93, cy≈-120) taş ≈1398, p44 kayma; p200/p240 de cy -50 (ayak ≤1490, boy plan); taş p36 ekran x≈857 < 920; [K5-yon B4/B7] p36 cx -120→-170 (taş sağ kenarı ≈897 <920); p52-166 cx -140→-260: taş x 785 (düşüş) → ekran merkezi ≈770, sağ kenar ≈865 (+bounce 16 → ≈881) <920; temas p148 x≈770 y 900 (IG sütunu x≥920,y≥900 dışı), toz yarı genişliği ≤130 px olmalı (≤ x 900); sokak_bosluk_x [560,820]→[560,845]: taş 738-832 (+8 yuvarlanma = 840) boşluğa sığsın; mekân B5 'iki saçak ucu' bu aralığı çerçevelesin"
    },
    "sure_kare": 252,
    "sure_sn": 4.2,
@@ -2382,11 +2414,11 @@
     ],
     "cx": [
      0,
-     -120,
-     -140,
-     -140,
-     -140,
-     -140,
+     -170,
+     -260,
+     -260,
+     -260,
+     -260,
      -120,
      -120
     ],
@@ -2456,9 +2488,9 @@
      "x": [
       770,
       770,
-      790,
-      800,
-      800
+      780,
+      785,
+      785
      ],
      "y": [
       1250,
@@ -2522,10 +2554,22 @@
      "db": -10
     },
     {
+     "kare": 56,
+     "olay": "tekme ayağı yere döner",
+     "ses": "adim-tas",
+     "db": -16
+    },
+    {
      "kare": 148,
      "olay": "taş yere çarpar (uzak, toz)",
      "ses": "uzak-tik",
      "db": -18
+    },
+    {
+     "kare": 158,
+     "olay": "taş sekip ikinci kez yere değer (sekme p148+10)",
+     "ses": "tas-sekme",
+     "db": -22
     }
    ],
    "gecis": "Giriş: kâğıt kesme (P07 -> gündüz Galata). Çıkış: MATCH CUT P09'a: Hezarfen aynı pozda ufka bakıyor (p232), panorama aynı bakış doğrultusunda açılır.",
@@ -2557,7 +2601,7 @@
     "nesne": "düşen taş",
     "oran_pct": 10,
     "net_sn": 1.7,
-    "not": "taş dekor 95 px, cs 2.0 -> 190 px (%10), takipte ekran y≈900 sabit; okunurluk taşın yolunda ve duvar paralaksında, tozda değil (toz <%5)"
+    "not": "taş dekor 95 px, cs 2.0 -> 190 px (%10), takipte ekran y≈900 sabit; okunurluk taşın yolunda ve duvar paralaksında, tozda değil (toz <%5) [K5-yon] takip cx -260: taş sağ kenarı ≤865, IG sütunu dışında"
    },
    "alt_ucte_bir": "p0: kule duvarı taş sıraları aşağı doğru + uzakta çatılar; p52-148: akan duvar ve çatılar; p166+: Hezarfen'in altındaki duvar şeridi + kule gölgesi.",
    "kit_eksik": [
@@ -2584,7 +2628,7 @@
      "db": 0
     }
    ],
-   "not": "Dikey şerit 2 ekran (dokunuş doc'u 3 demişti; cs 2.0'da 2 ekran yeter, taş hızı ≈ 50 px/kare). Dokunuş 232'de biter (plan 252, payı 20). [R3] p36 cy 120 → -50 (taş/çıkıntı alt bantta idi, temas y 1631); p200/p240 cy 120 → -50 (ayak y 1631 → 1475)."
+   "not": "Dikey şerit 2 ekran (dokunuş doc'u 3 demişti; cs 2.0'da 2 ekran yeter, taş hızı ≈ 50 px/kare). Dokunuş 232'de biter (plan 252, payı 20). [R3] p36 cy 120 → -50 (taş/çıkıntı alt bantta idi, temas y 1631); p200/p240 cy 120 → -50 (ayak y 1631 → 1475). [K5-yon 2026-11-08] B7: p36 cx -170; B4: p52-166 cx -260, taş x son 785; B6: temas p56 (tekme dönüşü), p158 (sekme); B5 kamera tarafı: dipte yalnız iki saçak ucu (mekân spec), sokak_bosluk_x [560,845]."
   },
   {
    "id": "P09",
@@ -3639,8 +3683,8 @@
     },
     "isik_serit": {
      "bas": 34,
-     "bit": 100,
-     "kaynak": "pencere açıklığından türer; kanat son açı 4°: yarık x ≈727-738 (11 dekor px)"
+     "bit": 110,
+     "kaynak": "pencere açıklığından türer; kanat son açı 4°: yarık x ≈727-738 (11 dekor px); [K5-yon A1] bas 34 / bit 110: cs ≥2.2 (p46'dan) ile p46-108 arası ≈1.0 sn net"
     },
     "kapi": {
      "x": [
@@ -3664,12 +3708,12 @@
      "bileşen": "PadisahSiluet",
      "profil": true,
      "bas_aci": 1,
-     "yuz_on_kontur_x": 457,
+     "yuz_on_kontur_x": 567,
      "goz_y": 740,
      "ayak_y": 1267,
-     "not": "profil siluet (göz/kaş/ağız çizilmez); ışık şeridi göz hizasında profil konturunda (şeridin üst ucu x 457'de y 739); gün: kaftan #36302c, çıplak el #b88470"
+     "not": "profil siluet (göz/kaş/ağız çizilmez); ışık şeridi göz hizasında profil konturunda (şeridin üst ucu x 457'de y 739); gün: kaftan #36302c, çıplak el #b88470; [K5-yon A2] padişah x 430→540 (+110 dekor px = 0.32 m, pencereye yaklaştı; 340 px/m); burun ucu 457→567"
     },
-    "kamera_dogrulama": "mekanlar R3 + K4: p0-36 cs 1.6 cy 30 (ayak ≤1490, sarık ≥420, kanat kenarı ≤880); p50-120 cx ≤ -55 (yarık ve yüz öncelikli, yarık 28 px); p204: R3 önerisi cs 2.2/cy≥330/cx ±24 ile U5 (işaret eli x≥120) birlikte tutmaz (el dekor x≈235-297 kadraj dışı kalır); gerekçeyle ayrıldı: p204 cs 1.6 cx 60 cy 30 (el ekran ≥~115-120, kapı sağ pervaz ≈304, yarık ≈917, ayak 1481). Birlikte tutma koşulu: cs ≤ 1.6"
+    "kamera_dogrulama": "K5-yon: p0-36 cs 1.6 cy 30 (ayak ≤1490, sarık ≥420, kanat kenarı ≤880); push-in p36-60 (24 kare) cs 3.0 cx -140 cy 400: SARAYBURNU katalog üst sınırı cs 3.0 (3.2 sınırı aşar); ekran = 540+cx+(x-540)*cs → yarık x 727-738 → ≈965-994 (≤1000), burun ucu 567 → ≈461, sarık sol kenarı ≈80 (render p90: cx -160'ta 60 idi → -140), göz y 740 → 700, sarık tepesi ≈410 (>400: üst yazı bandı 240-400 dışı), yüz ≈246 px (%12.8, A2 ≥%12 KAPANDI). p126-150 geri çekilme; p204: cs 1.6 cx 80 cy 30 (A6 +20: işaret eli ekran ≥120; padişah +110 dekor px kaydığı için parmak ucu kapıya yaklaşır, kapı sağ pervazı ≈339, yarık ≈949, ayak 1481)"
    },
    "sure_kare": 216,
    "sure_sn": 3.6,
@@ -3677,37 +3721,37 @@
     "tr": "Çünkü bu adamdan korkulur. Ne isterse yapar.",
     "en": "Because he's too dangerous. He can do anything."
    },
-   "olcek": "boy (p0-36, cs 1.6: padişahın tamamı güvenli alanda, ayak ≈1481, sarık ≈484, kanat kenarı ≈857) → push-in p36-70 → göğüs/bel p70-120 (cs 2.6, cx -55: yarık ekran x 972-1000 kadrajda, yüz ≈%12, zemin/ayak dışarıda, sarık ≈423) → hızlı geri çekilme p120-150 → boy p150-204 (cs 1.6, cx 60: işaret eli + kapı + yarık aynı kadrajda, ayak ≈1481)",
+   "olcek": "boy (p0-36, cs 1.6: padişahın tamamı güvenli alanda, ayak ≈1481, sarık ≈484, kanat kenarı ≈857) → PUSH-IN p36-60 → bel/göğüs p60-126 (cs 3.0, cx -140, cy 400: yüz ≈%12.8, yarık ekran x ≈965-994, sarık ≈410, ayak/zemin dışarıda; ışık çizgisi cs ≥2.2'den p46-108 ≈1.0 sn net) → geri çekilme p126-150 → boy p150-204 (cs 1.6, cx 80: işaret eli + kapı + yarık aynı kadrajda, ayak ≈1481)",
    "kamera": {
     "kare": [
      0,
      36,
-     70,
-     120,
+     60,
+     126,
      150,
      204
     ],
     "cs": [
      1.6,
      1.6,
-     2.6,
-     2.6,
+     3.0,
+     3.0,
      1.6,
      1.6
     ],
     "cx": [
      0,
      0,
-     -55,
-     -55,
-     60,
-     60
+     -140,
+     -140,
+     80,
+     80
     ],
     "cy": [
      30,
      30,
-     285,
-     285,
+     400,
+     400,
      30,
      30
     ],
@@ -3716,7 +3760,7 @@
    "karakterler": [
     {
      "kim": "padisah",
-     "x": 430,
+     "x": 540,
      "y": 1267,
      "yon": [
       1,
@@ -3742,16 +3786,16 @@
       },
       {
        "ad": "don",
-       "bas": 60,
-       "bit": 100,
+       "bas": 100,
+       "bit": 130,
        "ops": {
         "yon_son": -1
        }
       },
       {
        "ad": "isaret",
-       "bas": 130,
-       "bit": 170,
+       "bas": 135,
+       "bit": 175,
        "ops": {
         "aci": -95
        }
@@ -3793,21 +3837,22 @@
      "metin": "Padişah (Evliya'ya göre)",
      "en": "The sultan (according to Evliya)",
      "tur": "iddia",
-     "bas": 24,
-     "bit": 120,
+     "bas": 0,
+     "bit": 28,
      "vurgu": [
       "Padişah"
      ],
      "vurgu_en": [
       "sultan"
-     ]
+     ],
+     "not": "[K5-yon A3] isim etiketi işlevi: padişah sarığının üstünde (üst bant y 240-400, sarık ≈484), p0-28; replik 1 üst banda alındı. Süre 0.47 sn kısa: senarist/orkestra karar versin (etiket kısaltılabilir ya da replik plakası 'PADİŞAH (Evliya'ya göre)' olabilir)"
     }
    ],
    "replik": [
     {
      "kim": "PADİŞAH",
      "kim_en": "SULTAN",
-     "bant": "alt",
+     "bant": "ust",
      "metin": "Çünkü bu adamdan korkulur.",
      "bas": 30,
      "bit": 115,
@@ -3827,7 +3872,8 @@
        61,
        73
       ]
-     }
+     },
+     "not": "[K5-yon A3] alt bantta p30-36 ayaklar (y≈1481) örtülürdü; üst banda alındı (üst yazı etiketi p28'de biter, replik 1 p30'da başlar; replik 2 p123 ile arada 8 kare)"
     },
     {
      "kim": "PADİŞAH",
@@ -3856,6 +3902,13 @@
     }
    ],
    "temaslar": [
+    {
+     "kare": 14,
+     "olay": "el kanada değer (it başlangıcı) — BELİRSİZ: motion p14'ü render edip değip değmediğini söyleyecek; değiyorsa foley kalır, değmiyorsa kaldırılır",
+     "ses": "el-ahsap",
+     "db": -20,
+     "belirsiz": true
+    },
     {
      "kare": 30,
      "olay": "pencere kanadı kapanır (tok)",
@@ -3888,23 +3941,23 @@
     "bas": 4,
     "bit": 110
    },
-   "kontrol_kare": 80,
+   "kontrol_kare": 90,
    "kontrol_ek": [
     0,
     30,
     34,
-    66,
-    100,
-    170,
+    60,
+    130,
+    175,
     204
    ],
    "okunurluk": {
-    "nesne": "pencere kanadı + ışık şeridi",
-    "oran_pct": 30,
-    "net_sn": 1.1,
-    "not": "kanat %30+ yükseklik, kapanış 0.43 sn; ışık şeridi p34-100 (1.1 sn); yüz ≈ 230 px (%12), yüz gölgede/profil, yüz ayrıntısı çizilmez"
+    "nesne": "pencere kanadı + ışık çizgisi (yüzde)",
+    "oran_pct": 12.8,
+    "net_sn": 1.0,
+    "not": "[K5-yon A1/A2] kanat %30+ yükseklik, kapanış 0.43 sn; ışık çizgisi p34'te oturur, cs ≥2.2 p46'dan itibaren (push-in p36-60) ve p108'e kadar görünür = ≈1.0 sn net (kontrol_kare p90); don p100-130 yüzü çizgiden ancak p100'den sonra çevirir; yüz (sarık hariç) ≈246 px = %12.8 (cs 3.0, padişah +0.32 m pencereye); yüz gölgede/profil, yüz ayrıntısı çizilmez"
    },
-   "alt_ucte_bir": "Padişahın kaftanı + göğsündeki ışık şeridi, bandın havadaki devamı (α .25->.08, sol-alta), pencere altı duvarı. Zemin/minder/zemin lekesi kadrajda YOK (cs 1.8'de zemin ekran y≥1612).",
+   "alt_ucte_bir": "Padişahın kaftanı + göğsündeki ışık çizgisi/bant, pencere altı duvarı; p36-126 cs 3.0'da kaftan alt üçlüyü doldurur (zemin/minder/zemin lekesi kadrajda YOK). Alt bant yazısı yok (replik 1 ve 2 üst bantta).",
    "kit_eksik": [
     "KE-S1",
     "KE-K3",
@@ -3928,7 +3981,7 @@
      "db": 0
     }
    ],
-   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok). [mekanlar R2] yarık p50'den sonra kadraj dışı, şerit sağdan girer (mekân kabul etti); cx azaltılmadı: azalınca kapı sağ pervazı (ekran x≈267) ve işaret hedefi kadrajdan çıkar. [K4] kamera kare [0,36,70,120,204] (motion önerisi) ama değerler U2/U3/U5/U9'a göre yeniden hesaplandı; kural 7: p30/p34/p80/p150/p204 render edildi. U1: yüz p66-100'de ≥%12 (cs 2.6); göz-şerit çizimi motion/tasarımcı. [tasarim v1.6] kanat son açısı 12° → 4° (yarık 28 px ≤30, mandal p34 tutucu aralık bırakır); mekân sorumlusuna not: yarık x 706-738 → ≈727-738, şerit genişliği buna türer; cy 250 → 285 (render: sarık tepesi 388 → ≥420). [R3] kamera 6 anahtar: [0,36,70,120,150,204]. p0-36 cs 1.6/cy 30 (R3 önerisi), p70-120 cx -55 (R3), p204 R3'ten gerekçeyle ayrıldı (cs 1.6: U5 + yarık + kapı)."
+   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok). [mekanlar R2] yarık p50'den sonra kadraj dışı, şerit sağdan girer (mekân kabul etti); cx azaltılmadı: azalınca kapı sağ pervazı (ekran x≈267) ve işaret hedefi kadrajdan çıkar. [K4] kamera kare [0,36,70,120,204] (motion önerisi) ama değerler U2/U3/U5/U9'a göre yeniden hesaplandı; kural 7: p30/p34/p80/p150/p204 render edildi. U1: yüz p66-100'de ≥%12 (cs 2.6); göz-şerit çizimi motion/tasarımcı. [tasarim v1.6] kanat son açısı 12° → 4° (yarık 28 px ≤30, mandal p34 tutucu aralık bırakır); mekân sorumlusuna not: yarık x 706-738 → ≈727-738, şerit genişliği buna türer; cy 250 → 285 (render: sarık tepesi 388 → ≥420). [R3] kamera 6 anahtar: [0,36,70,120,150,204]. p0-36 cs 1.6/cy 30 (R3 önerisi), p70-120 cx -55 (R3), p204 R3'ten gerekçeyle ayrıldı (cs 1.6: U5 + yarık + kapı). [K5-yon 2026-11-08] A1: push-in p36-60, don p100-130, isaret p135-175 (plan 216; bit+14 pay ≥12), isik_serit.bit 110, kontrol_kare 90. Yazı–jest uyumu: ekran yazısı bit 120 (don'un ortası; replik 1 bit 115 don başlarken söz biter), replik 2 bas 123 ('Ne' don sürerken, 'isterse' p129 dönüş biter, 'yapar' p157 işaretin ortasında). A2: padişah x 540; cs 3.0 (katalog sınırı; 3.2 değil). A6: p204 cx 80. A3: p30'u yazı katmanıyla render etme yolu yok (görüntü yazısız): karar ağacı 2. dal uygulandı (etiket p0-28, replik 1 üst bant)."
   },
   {
    "id": "P13",

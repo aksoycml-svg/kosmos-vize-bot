@@ -23,7 +23,7 @@ Mutlak başlangıç = önceki planların toplamı. Süre = `plan-sureleri.json` 
 | P09 | 36.6-41.3 | 282 | BOGAZ panorama gün | geniş; yatay pan | cs 1.0, cx 500→-500 (dekor x -540…1620; kule x 100, iniş (1250,1170)) | Hezarfen atlar, derinlikle büyüyerek süzülür (10→70→130 px), Üsküdar meydanına iner | **EV-D4** p112-195 | marti-cigligi 120 · kanat-hisirti 125 · inis-toprak 238 | 150 (+0, 238) | Boğaz suyu, ön plan martı, iki kıyı |
 | P10 | 41.3-46.2 | 294 | SARAYBURNU köşk gün (P02 ile aynı kadraj p0, cs 0.9) | geniş (p0-24) → push-in p24-66 cs 0.9→**2.4** (son kare cx -108, cy 420); büst ≥ %12 | inout | padişah siluet başını Üsküdar yönüne çevirir | - | (yok) | 120 (+0, 66, 116, 280; ayna P02 p0) | kesme taş çifte kemerli altyapı (kemer tepeleri, dekor y 920-1185); rıhtım/deniz cs 2.4'te kadraj dışı |
 | P11 | 46.2-50.2 | 240 | SARAYBURNU insert gün (P07 ile aynı kadraj, ışık ters: güneş soldan, gölgeler sağa) | insert: omuz başı + kol + avuç, alıcı gövdesi kadraj dışı (çömelmiş); cs 1.0 sabit | lineer | kese avuca konur, muhafız eli üst kola iner, kese düşer, sikke yatar | **EV-D5** p104-214 | kese-singir 42 · omuz-tok 104 · kese-yere 140 · sikke-donme 144 · sikke-tin 208 | 128 (+42, 72 ayna çifti P07 p72, 98 muhafız gölgesi, 198, 208) | rıhtım zemini, kese, sikke, kese/el gölgeleri (ayak yok) |
-| P12 | 50.2-53.8 | 216 | SARAYBURNU iç gün | boy (cs 1.6) → göğüs/bel push-in cs 2.6 (p70-120) → boy (cs 1.6, p150-204) | inout | padişah pencere kanadını kapatır, ışıktan döner, kapıyı gösterir (kapı x 60-352) | **EV-D6** p4-110 | pencere-tok 30 · mandal-tik 34 · ortam-kisma 30 | 80 (+0, 30, 34, 66, 100, 170, 204) | kaftan + göğüsteki ışık şeridi, bandın havadaki devamı, pencere altı duvarı (zemin/minder kadraj dışı) |
+| P12 | 50.2-53.8 | 216 | SARAYBURNU iç gün | boy (cs 1.6) → PUSH-IN p36-60 → bel/göğüs cs 3.0 (p60-126) → boy (cs 1.6, p150-204) [K5-yön] | inout | padişah pencere kanadını kapatır, ışıktan döner, kapıyı gösterir (kapı x 60-352) | **EV-D6** p4-110 | pencere-tok 30 · mandal-tik 34 · ortam-kisma 30 | 90 (+0, 30, 34, 60, 130, 175, 204) [K5-yön] | kaftan + göğüsteki ışık şeridi, bandın havadaki devamı, pencere altı duvarı (zemin/minder kadraj dışı) |
 | P13 | 53.8-58.8 | 300 | KITAP-INSERT (rahle) | insert (çizim %16) → geri çekilme cs 2.2→1.0 | inout | kitap geri çekilir, üç defter açılır, sayfalar boş | - | defter-ac 146, 164, 182 | 190 (+60) | hat satırları → rahle tablası, kalemdan/hokka, zeminde açık defterler (y 1150-1476) |
 | P14 | 58.8-62.9 | 246 | KITAP-INSERT | geniş → insert: fişek çizimine push-in cs 1.0→4.6 | inout | kıvılcım çizimin fitilinde yürür (P01'e eşleşen kesme) | - | fitil-tiss 110 | 170 (+234) | sayfa dokusu, çizimin fitil çizgisi |
 
@@ -261,3 +261,17 @@ Kullanıcıya gerek olmayan, kurulum ekibine not: fişek yapısı ve binme biçi
 
 7. **[KAPANDI, kullanıcı kararı: binici başı kadraj dışına çıkmaz; mevcut hâl kalır] Yükseliş ekran kazancı (K1):** binici+demet yığını ≈850 px olduğundan, başı güvenli alanda tutarak demet ekranda yalnız ~110 px yükselir (cs 0.9, cy 0→220); yükseliş rıhtımın aşağı kayması ve P06'daki alçalma ile okunur. Daha dramatik yükseliş için seçenekler: kamera cs < 0.9 (katalog sınırı 0.9) ya da binici başının üst bantta kısa süre kadraj dışına çıkması (kullanıcı kararı gerekir).
 8. **[ÇÖZÜLDÜ: cx sınırı ±740, cs 2.5 uygulandı] P06 push-in cs 2.5 / köşk-merkezli** için SARAYBURNU `cx` sınırı ±300 → ≥ ±740 gerek (şu an cs 2.0, cx -300 ile köşk sağ-orta).
+
+
+### 5.0f K5 yönetmen turu: K4/K5 eleştiri açıkları (A1-A3, A6, B4, B6, B7, B16), 2026-11-08
+Tek gerçek kaynak `bolum.json`; değerler orada. Render: `kalibrasyon/K5-yonetmen/` (P12 p30/p90/p204, P08 p148, P01 p172).
+| Madde | Karar / değer |
+|---|---|
+| A1 P12 zaman | kamera kare [0,36,60,126,150,204]; push-in p36-60; `don` p100-130; `isaret` p135-175 (plan 216, pay 41); `isik_serit.bit` 110; `kontrol_kare` 90; dokunuş bit 110. Çizgi cs ≥2.2'den (p46) p108'e ≈1.0 sn. Yazı: ekran yazısı artık p0-28 (isim etiketi); replik 1 p30-115 (söz biterken dönüş başlar), replik 2 p123-184 (dönüş p130'da biter, 'yapar' p157 işaretin ortasında) |
+| A2 yüz | padişah x 430→540 (+0.32 m), burun ucu 567; cs **3.0** (SARAYBURNU katalog sınırı; 3.2 sınır dışı), cx -140, cy 400. Yüz ≈246 px = %12.8; sarık tepesi ≈443 (>400), sarık sol kenarı ≈80, yarık ≈965-994. KAPANDI |
+| A3 ayak/replik | p30 yazı katmanıyla render edilemedi (görüntü yazısız render). Karar ağacının 2. dalı: etiket p0-28 (üst bant), replik 1 üst bant. Etiket 0.47 sn: orkestra/senarist kararı gerek |
+| A6 | p204 cx 60→80; render: işaret parmak ucu ekran x ≈300 (≥120), ayak 1480 |
+| B4/B7 P08 | cx [0,-170,-260,-260,-260,-260,-120,-120] (p36 sağ kenar ≈897; p52-166 taş merkezi ≈770, sağ kenar ≈865); taş x [770,770,780,785,785]; render p148: taş x ≈756, y ≈886, IG sütunu dışında; `sokak_bosluk_x` [560,845] |
+| B5 kamera | dipte yalnız iki saçak ucu çerçevesi (render p148'de görünüyor, taş ölçeğinde); kamera değeri bu çerçeveye uygun |
+| B6 foley | P01 p229, p246, p262 (adim-tas -21/-21/-22); P08 p56 (adim-tas -16), p158 (tas-sekme -22; sekme = yer(148)+10); P12 p14 el-ahsap -20 `belirsiz` |
+| B16 | P01 meşale prop'u x/y/kare [0,60,100] ile yerden kalkar (taşıma pozu); render p172: meşale elde yukarıda, alev ayakkabıda değil |

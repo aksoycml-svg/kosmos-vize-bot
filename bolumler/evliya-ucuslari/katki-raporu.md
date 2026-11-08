@@ -837,3 +837,28 @@
   - Kaburga için özet kuralın sınırı: telefonda hâlâ "levha" okunursa kaburga sayısı 4'e ya da sivri uç ayrışması 30 birime çıkarılabilir (eleştirmenle).
   - Yönetmen: json `don` aralığı hâlâ 60–100 ise p100–130 ve `isaret` p135–175'e çekilmeli, `isik_serit.bit` ≥ 105, `kontrol_kare` 90 (eleştirmen A1).
   - Boyun yakası ve sarık kenarı P12 kamerasında 360 px'te ayrışmıyorsa (ΔL ≤ 4 kasıtlı) sorun değil; ayrışıyorsa motion bildirsin.
+
+## yonetmen · 2026-11-08 · K4/K5 açıklarını kapatma turu (A1-A3, A6, B4, B5 kamera, B6, B7, B16)
+- Ne yaptım:
+  - `bolum.json` P12/P08/P01 düzeltildi; `sahne-plani.md` §5.0f eklendi, P12 satırı güncellendi. Doğrulayıcı: yeni hata yok (5 hata yalnız şablon eksikliği: P03 `bin`, P04 `tutun`, P09 BOGAZ, P13/P14 KITAP-INSERT), P01 adım uyarısı kapandı, kalan uyarı `foley.json` yok (38 temas).
+  - Kural 7: P12 p30/p90/p204, P08 p148, P01 p172 render edilip bakıldı (`kalibrasyon/K5-yonetmen/`; p30 yazısız `_tam`, kalanlar `_guvenli` 0.25).
+  - A1: kamera kare [0,36,60,126,150,204]; `don` 100-130; `isaret` 135-175; `isik_serit.bit` 110; `kontrol_kare` 90.
+  - A2: padişah x 540 (+0.32 m), cs 3.0, cx -140, cy 400 → yüz ≈%12.8 (KAPANDI).
+  - A3: etiket p0-28, replik 1 üst bant.
+  - A6: p204 cx 80 (parmak ucu ≈300).
+  - B4/B7: P08 cx p36 -170, p52-166 -260; taş x son 785; `sokak_bosluk_x` [560,845]; render p148 taş x ≈756, sütun dışında.
+  - B6: P01 p229/p246/p262; P08 p56, p158 (sekme = 148+10); P12 p14 el-ahsap -20 `belirsiz`.
+  - B16: meşale x/y/kare [0,60,100] ile yerden kalkar; render p172'de alev ayakkabıda değil.
+- Dokunduğum dosyalar: `bolumler/evliya-ucuslari/bolum.json`, `sahne-plani.md`, `katki-raporu.md`, `kalibrasyon/K5-yonetmen/*`. (`npm install` ile node_modules kuruldu.)
+- Aldığım kararlar ve gerekçeleri:
+  - cs 3.2 yerine 3.0: SARAYBURNU katalog sınırı 3.0; 3.0'da yüz %12.8 yetiyor. cx -160 ilk denemede sarığı sol güvenli kenarın dışına çıkardı (render p90) → -140.
+  - A3: yazı katmanı render alınamadığından rapordaki 2. dal.
+  - P08: yalnız cx -140 yetmezdi (taş kenarı ≈1111+cx); cx -260 + taş x 785 gerekti.
+  - `sokak_bosluk_x` 820→845 (taş + yuvarlanma 840'a kadar).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: kural 2 (jest bit+14 ≤ plan, ≥12 pay; doğrulayıcı geçti), kural 3 (kontrol_kare 90), kural 4 (okunurluk %12.8 / 1.0 sn), kural 7 (render). Tek ışık: bant genişliği A4 motion'da.
+- Açık sorular / bir sonraki ajana notlar:
+  - Orkestra/senarist: etiket "Padişah (Evliya'ya göre)" 0.47 sn okunmaz; kısalt ya da replik plakasına taşı. Şu an Evliya'ya göre bilgisi pratikte kayıp.
+  - Motion: p14 el-kanat temasını render edip `belirsiz`i çöz; P08 toz yarı genişliği ≤130 px (taş merkezi ≈770, sütun x≥920); P12 p90'da çizgi göz hizasında ama küçük, A4 bant genişliği; P12 ışık bandı kaftanda hâlâ geniş kama.
+  - Mekân: P08 dip saçak uçları [560,845] boşluğunu çerçevelesin; tasarımcı: `don` p100-130 (tasarım p95-125 güncellensin); mekân §1.6a/b p204 cs 1.6, padişah x 540, yüz_on_kontur 567.
+  - Kurgucu: `foley.json` yok; yeni ses adları `adim-tas`, `tas-sekme`, `el-ahsap`.
+  - P01 p172: yardimci-1 ayak y≈1530 (>1490) güvenli alan uyarısı (önceden vardı); P01 p100-172 meşale yukarıda, ışık havuzu motion kontrolü.
