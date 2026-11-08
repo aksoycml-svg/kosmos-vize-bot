@@ -723,3 +723,14 @@
   - **K5:** GALATA-TEPE dersler tablosu (§2.4a): `gunduzMineral`, kroma hedefleri, tarama yeri, iki basamaklı güneş parlaması, yasak benzerlikler (deniz feneri, roket, burç, kilise), külah saçağı %6 → %10, dip ölçeğinde stilize kısaltma tutarlılığı.
 - Yakalanan: P08 p36–52'de taş ve çıkıntı ekranda y 1631'de (alt bant, temas anı) → yönetmen cy ≤ −41. P12 p204 cx 170'te yarık kadraj dışında, cy 170'te zemin görünüyor.
 - Dokunduğum dosyalar: bolumler/evliya-ucuslari/mekanlar.md, bolumler/evliya-ucuslari/katki-raporu.md
+
+## yonetmen · 2026-11-08 · K4 eleştirisi (P12 KOŞULLU) + mekanlar R3 + tasarim v1.6 + K5 hazırlığı (Galata)
+- Ne yaptım: U1(kamera)/U2/U3/U5/U8/U9/U10'u ve mekanlar R3 eşiklerini `bolum.json` + `sahne-plani.md` §5.0e'ye işledim; P02/P10/P12 karelerini render edip baktım; P01 B/P08'i K5 için kontrol ettim.
+  - P12 kamera 6 anahtar: [0,36,70,120,150,204], cs [1.6,1.6,2.6,2.6,1.6,1.6], cx [0,0,-55,-55,60,60], cy [30,30,285,285,30,30]. Kanat son açısı 12°→4° (yarık ≈28 px, tasarim v1.6). Replik 2 üst banda, ekran yazısı p120'de biter.
+  - P10 cx -120 (p66'dan sabit; baca dilimi gitti). P02 Y2 x 85, Y1 102, Lagâri 119, demet 138.
+  - P08 p36/p200/p240 cy -50 (R3). P01/P08 kontrol kareleri (p172↔p176 kesme, taş temasları).
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/bolum.json, sahne-plani.md, katki-raporu.md.
+- Kararlar: R3'ün p204 önerisinden (cs 2.2, cy≥330, cx ±24) ayrıldım: o kadrajda işaret eli ekran dışında (U5 el x ≥ 120 ihlali); el+yarık+kapı birlikte yalnız cs ≤ 1.6'da sığıyor, bu yüzden son evre boy plan (ayak 1481 güvenli). Kanat 12° yerine 4°: 30 px ışık çizgisi için sin hesabı (154·sin4°=10.7 dekor px ×2.6=28 px); mandal tutucuyla aralık açıkken oturur.
+- Kurallar: kural 7 (P02 p80, P10 p66/p282, P12 p0/p34/p80/p150/p170/p204 render); yazı bandı kuralı (replik ayakları örtecekse üst banda); güvenli alan (ayak ≤1490, kanat kenarı ≤880, sarık ≥420).
+- Doğrulayıcı: P01/P08/P12 'bilinmeyen şablon' dışında hata yok (P01 B GALATA-TEPE şablonu yok).
+- Açık: mekân sorumlusu: p204 sapması ve yarık 727-738 notu; motion: GALATA-TEPE şablonu + `sinirlar.json` girişi, P12 U1 (göz-burun kökü ışık çizgisi), U4, U5 el pozu, U6; eleştirmen: P12 replik 2 üst bant.

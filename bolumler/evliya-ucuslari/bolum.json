@@ -316,7 +316,10 @@
    "kontrol_kare": 100,
    "kontrol_ek": [
     0,
-    230
+    172,
+    176,
+    230,
+    324
    ],
    "okunurluk": {
     "nesne": "binici+demet",
@@ -353,7 +356,7 @@
      "db": 0
     }
    ],
-   "not": "Kesme senaryodaki 3.2 sn yerine p176 (2.93 sn): TR 'Bir başkası' 2.62, EN 'Another' 2.96 -> kesme iki dilde ikinci cümleye denk gelir. Fişek p150'de kadrajdan çıkar (kesme hareketin ortasına gelmez). Yazı şeridi rokete p110-125 arası binebilir: kanca kapak yazısı, dokunuş değil."
+   "not": "Kesme senaryodaki 3.2 sn yerine p176 (2.93 sn): TR 'Bir başkası' 2.62, EN 'Another' 2.96 -> kesme iki dilde ikinci cümleye denk gelir. Fişek p150'de kadrajdan çıkar (kesme hareketin ortasına gelmez). Yazı şeridi rokete p110-125 arası binebilir: kanca kapak yazısı, dokunuş değil. [K5 hazırlık] kontrol: p0 ilk kare (kapak), p100 (kontrol), p172 A son (fişek çıkmış, kıvılcım söndü), p176 B ilk (plan içi sert kesme), p230 (Hezarfen yürüyor), p324 B kapanış (çıkıntıya vardı p262, durdu)."
   },
   {
    "id": "P02",
@@ -2346,7 +2349,8 @@
       560,
       820
      ]
-    }
+    },
+    "kamera_dogrulama": "mekanlar R3: p36-52 cy ≤ -41 (öneri -50): çıkıntı/taş d 1250 → ekran ≈1475 (cs 1.9) ≤ 1490; p40 tas-surtme (cs≈1.93, cy≈-120) taş ≈1398, p44 kayma; p200/p240 de cy -50 (ayak ≤1490, boy plan); taş p36 ekran x≈857 < 920"
    },
    "sure_kare": 252,
    "sure_sn": 4.2,
@@ -2388,13 +2392,13 @@
     ],
     "cy": [
      0,
-     120,
+     -50,
      -650,
      -1964,
      -5300,
      -5300,
-     120,
-     120
+     -50,
+     -50
     ],
     "egri": "inout",
     "takip": {
@@ -2542,8 +2546,12 @@
    "kontrol_kare": 100,
    "kontrol_ek": [
     0,
+    36,
+    40,
+    44,
     148,
-    216
+    216,
+    240
    ],
    "okunurluk": {
     "nesne": "düşen taş",
@@ -2576,7 +2584,7 @@
      "db": 0
     }
    ],
-   "not": "Dikey şerit 2 ekran (dokunuş doc'u 3 demişti; cs 2.0'da 2 ekran yeter, taş hızı ≈ 50 px/kare). Dokunuş 232'de biter (plan 252, payı 20)."
+   "not": "Dikey şerit 2 ekran (dokunuş doc'u 3 demişti; cs 2.0'da 2 ekran yeter, taş hızı ≈ 50 px/kare). Dokunuş 232'de biter (plan 252, payı 20). [R3] p36 cy 120 → -50 (taş/çıkıntı alt bantta idi, temas y 1631); p200/p240 cy 120 → -50 (ayak y 1631 → 1475)."
   },
   {
    "id": "P09",
@@ -3661,7 +3669,7 @@
      "ayak_y": 1267,
      "not": "profil siluet (göz/kaş/ağız çizilmez); ışık şeridi göz hizasında profil konturunda (şeridin üst ucu x 457'de y 739); gün: kaftan #36302c, çıplak el #b88470"
     },
-    "kamera_dogrulama": "K4 U2/U3/U5/U9: p0-36 cs 1.7 cx -10 cy -10: kanat kenarı (x 738) ekran 863 ≤ 880; ayak 1472 ≤ 1490; sarık tepesi dekor y≈660 → 440. p70+ cs 2.6 cy 285: sarık tepesi ≈430 (render p80/p150'de cy 250'de 388 ölçüldü → cy 285), ayak ekran 2000 (kadraj dışı). cx 380: işaret eli dekor x≈235-297 → ekran ≥127; kapı sağ pervaz 431"
+    "kamera_dogrulama": "mekanlar R3 + K4: p0-36 cs 1.6 cy 30 (ayak ≤1490, sarık ≥420, kanat kenarı ≤880); p50-120 cx ≤ -55 (yarık ve yüz öncelikli, yarık 28 px); p204: R3 önerisi cs 2.2/cy≥330/cx ±24 ile U5 (işaret eli x≥120) birlikte tutmaz (el dekor x≈235-297 kadraj dışı kalır); gerekçeyle ayrıldı: p204 cs 1.6 cx 60 cy 30 (el ekran ≥~115-120, kapı sağ pervaz ≈304, yarık ≈917, ayak 1481). Birlikte tutma koşulu: cs ≤ 1.6"
    },
    "sure_kare": 216,
    "sure_sn": 3.6,
@@ -3669,35 +3677,39 @@
     "tr": "Çünkü bu adamdan korkulur. Ne isterse yapar.",
     "en": "Because he's too dangerous. He can do anything."
    },
-   "olcek": "geniş/boy (p0-36: padişahın tamamı güvenli alanda, ayak ekran y≈1472, sarık tepesi y≈440, kanat kenarı x≈863) → push-in p36-70 cs 1.7→2.6 → göğüs/bel (zemin ve ayak kadraj dışı, sarık tepesi y≈430 ≥ yazı bandı+20, yüz ≈%12) → p204 aynı kadraj (pull-back yok: ayak kadraj dışı kalsın); işaret eli ekran x ≥ 120, kapı sağ pervazı ekran x≈430",
+   "olcek": "boy (p0-36, cs 1.6: padişahın tamamı güvenli alanda, ayak ≈1481, sarık ≈484, kanat kenarı ≈857) → push-in p36-70 → göğüs/bel p70-120 (cs 2.6, cx -55: yarık ekran x 972-1000 kadrajda, yüz ≈%12, zemin/ayak dışarıda, sarık ≈423) → hızlı geri çekilme p120-150 → boy p150-204 (cs 1.6, cx 60: işaret eli + kapı + yarık aynı kadrajda, ayak ≈1481)",
    "kamera": {
     "kare": [
      0,
      36,
      70,
      120,
+     150,
      204
     ],
     "cs": [
-     1.7,
-     1.7,
+     1.6,
+     1.6,
      2.6,
      2.6,
-     2.6
+     1.6,
+     1.6
     ],
     "cx": [
-     -10,
-     -10,
-     260,
-     380,
-     380
+     0,
+     0,
+     -55,
+     -55,
+     60,
+     60
     ],
     "cy": [
-     -10,
-     -10,
+     30,
+     30,
      285,
      285,
-     285
+     30,
+     30
     ],
     "egri": "inout"
    },
@@ -3782,7 +3794,7 @@
      "en": "The sultan (according to Evliya)",
      "tur": "iddia",
      "bas": 24,
-     "bit": 210,
+     "bit": 120,
      "vurgu": [
       "Padişah"
      ],
@@ -3820,7 +3832,7 @@
     {
      "kim": "PADİŞAH",
      "kim_en": "SULTAN",
-     "bant": "alt",
+     "bant": "ust",
      "metin": "Ne isterse yapar.",
      "bas": 123,
      "bit": 184,
@@ -3839,7 +3851,8 @@
        151,
        164
       ]
-     }
+     },
+     "not": "p150-184'te cs 1.6'da ayaklar alt bantta görünür (y≈1481): replik 2 üst banda (kural: replik ayakları örtecekse üst banda); ekran yazısı p120'de biter, aynı anda üst bantta iki yazı olmaz"
     }
    ],
    "temaslar": [
@@ -3882,7 +3895,7 @@
     34,
     66,
     100,
-    150,
+    170,
     204
    ],
    "okunurluk": {
@@ -3915,7 +3928,7 @@
      "db": 0
     }
    ],
-   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok). [mekanlar R2] yarık p50'den sonra kadraj dışı, şerit sağdan girer (mekân kabul etti); cx azaltılmadı: azalınca kapı sağ pervazı (ekran x≈267) ve işaret hedefi kadrajdan çıkar. [K4] kamera kare [0,36,70,120,204] (motion önerisi) ama değerler U2/U3/U5/U9'a göre yeniden hesaplandı; kural 7: p30/p34/p80/p150/p204 render edildi. U1: yüz p66-100'de ≥%12 (cs 2.6); göz-şerit çizimi motion/tasarımcı. [tasarim v1.6] kanat son açısı 12° → 4° (yarık 28 px ≤30, mandal p34 tutucu aralık bırakır); mekân sorumlusuna not: yarık x 706-738 → ≈727-738, şerit genişliği buna türer; cy 250 → 285 (render: sarık tepesi 388 → ≥420)."
+   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok). [mekanlar R2] yarık p50'den sonra kadraj dışı, şerit sağdan girer (mekân kabul etti); cx azaltılmadı: azalınca kapı sağ pervazı (ekran x≈267) ve işaret hedefi kadrajdan çıkar. [K4] kamera kare [0,36,70,120,204] (motion önerisi) ama değerler U2/U3/U5/U9'a göre yeniden hesaplandı; kural 7: p30/p34/p80/p150/p204 render edildi. U1: yüz p66-100'de ≥%12 (cs 2.6); göz-şerit çizimi motion/tasarımcı. [tasarim v1.6] kanat son açısı 12° → 4° (yarık 28 px ≤30, mandal p34 tutucu aralık bırakır); mekân sorumlusuna not: yarık x 706-738 → ≈727-738, şerit genişliği buna türer; cy 250 → 285 (render: sarık tepesi 388 → ≥420). [R3] kamera 6 anahtar: [0,36,70,120,150,204]. p0-36 cs 1.6/cy 30 (R3 önerisi), p70-120 cx -55 (R3), p204 R3'ten gerekçeyle ayrıldı (cs 1.6: U5 + yarık + kapı)."
   },
   {
    "id": "P13",
