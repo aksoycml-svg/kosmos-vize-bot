@@ -21,6 +21,13 @@
 - P06→P07 kanat sürekliliği: **kanat suda kalır** (P06'da suda görünür, P07'de Lagâri kanatsız). → yönetmen `sahne-plani.md`/`bolum.json`'a işleyecek.
 - tasarim.md §9 madde 4–10 araştırmacıya gönderildi (`arastirma.md` ek bölüm).
 
+### Kurulum ilerlemesi (2026-11-08 oturum 2)
+- ✔ `tasarim.md` v1.3, `mekanlar.md` (K1 revizyonlu), `arastirma.md` §10, `bolum.json` P05/P06 yeniden yazıldı.
+- ✔ Kod: SARAYBURNU `kiyi` gece (`src/kit/sablonlar/sarayburnu/`), Kukla'ya Osmanlı kostümü/sarık/takke/kanat, `props/evliya.tsx`, `paletler/evliya.ts`, `geceLapis` derecelendirme, `tools/renk_olcum.py`.
+- K1 (P05/P06): tur 1 KALDI → tur 2 **KOŞULLU** (`kalibrasyon/K1-2/elestiri.md`). Açık: Y1 kesmede duman sıçraması, Y2 iniş ölçeği ≤3×, Y3 basamak tutunması P07'ye, Y4 meşale alevi kompars giysisinde, Y5 iniş sıçraması, Y6 yardımcı başı, Y7 açık kanat, Y8 katlı kanat (tasarımcı→motion), Y9 demet kalıntısı, Z1–Z4. K2'ye taşınan koşullar §4.
+- Render: `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`.
+- Kota: kurulum çok pahalı (motion tur başına 450–625k token). Sonraki tura geçmeden kullanıcıya danışıldı.
+
 ## Sıradaki: kurulum ekibi (opus) — `sahne-plani.md` §6 iş tanımıdır
 Sıra (CLAUDE.md "Ajan çalışma sırası"):
 1. **tasarımcı** → `tasarim.md` (palet, Lagâri/Hezarfen/padişah siluet, yardımcılar, prop'lar: fişek demeti, kanat, kese/sikke, taş, martı, defter; tipografi). Girdi: `arastirma.md` §5, `sahne-plani.md` §6.

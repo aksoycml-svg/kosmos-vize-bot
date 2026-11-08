@@ -432,3 +432,28 @@
   - Katlı kanat hâlâ "panel"e yakın okunabilir; eleştirmen 360 px testiyle baksın.
   - P06 p100'de demet suya köşesiyle değiyor ve p112'de yatıyor (temas karesi bilinçli).
   - Öz puan: 6.5/10.
+
+## elestirmen (opus) · 2026-11-08 · K1-2 kalibrasyon ikinci tur (SARAYBURNU kiyi gece, P05/P06)
+- Ne yaptım: K1-2 paketini (11 kare, tam/telefon/güvenli alan, yan yana karşılaştırma, telefon sayfası) inceledim. Güncel kod + bolum.json ile 8 temas karesini kendim render ettim: P05 p209; P06 p46, p100, p215, p220, p226, p236, p286. Renkleri render'dan bağımsız ölçtüm (medyan, Lab D65). K1 bulgularını kapandı/açık tablosuna döktüm; yeni bulguları yazdım. Karar **KOŞULLU**: şablon dili geçti, P05/P06 plan düzeyinde koşullar var.
+- Dokunduğum dosyalar: `bolumler/evliya-ucuslari/kalibrasyon/K1-2/elestiri.md` (yeni), `bolumler/evliya-ucuslari/katki-raporu.md` (ek). Render'lar geçici klasörde, repoya girmedi.
+- Aldığım kararlar ve gerekçeleri:
+  - İniş ölçeği ≈5× → red. Sarık kemer ağzına yakın büyüklükte; ufuk–ölçek ihlali. Hedef ≤ 3× ve okunurluk ölçekle değil sarık, halka ve izle.
+  - Basamak teması P06'dan çıkar, P07 insert'e taşınır: görünmeyen temas sesli olmaz.
+  - Boş demetin düşüşü kabul. Push-in'de kalan "iskele" görüntüsü red.
+  - Katlı kanat red: mezar taşı gibi, P01 kanca karesine yayılır.
+  - K2 bu koşulları beklemez.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Süreklilik: eşleşen kesmede duman sıçrıyor.
+  - Görünürlük–ses: p286 islak-el sesi var, temas görünmüyor; su-sap −4 dB ama sıçrama küçük.
+  - Fizik: meşale alevi kompars giysisinde.
+  - Ufuk–ölçek: iniş ölçeği.
+  - Okunabilirlik: maskeli yüz gibi okunan kompars başı; bez gibi okunan açık kanat; tahta gibi okunan katlı kanat; iskele gibi okunan demet.
+  - Güvenli alan: başlık y ≈1530; betik kadraj dışı öğeleri ihlal sayıyor.
+  - Kapandı: K1, K2, K5, O1–O3, O5, O8–O12, S1–S6.
+- Açık sorular / bir sonraki ajana notlar:
+  - Orkestra: katalog cx sınırı ±750 (cs 2.5 köşk push-in) onayı.
+  - Yönetmen: Y2, Y3, Y4, Y9, Z2.
+  - Motion: Y1, Y5, Y6, Y7, Z1.
+  - Tasarımcı → motion: Y8 (P01/P03/P04 kalibrasyonundan önce).
+  - Kurgucu: su-sap seviyesi.
+  - K2 koşulları elestiri.md §4'te (P07 ilk karede ıslak el teması, gündüz kroması, kese/sikke/el tenleri parça başına imza ölçümü, betik kadraj dışı düzeltmesi).
