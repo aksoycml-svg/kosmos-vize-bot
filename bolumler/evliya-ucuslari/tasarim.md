@@ -45,6 +45,7 @@ Işık sözleşmesi: **anahtar = meşale** (yardımcının elinde, sahne solu, a
 |---|---|---|
 | gök tepe / orta / ufuk | `#12141c` / `#1c2232` / `#2c3246` | 3 düz basamak, lapis-mürekkep |
 | şenlik dumanı bandı | `#3e3834` α .5 | ufkun 60 px üstü, P02 sonrası kalıcı |
+| **v1.2 onaylı ek tonlar (mekanlar.md §8)** | ağaç `#181c26` / `#1e2230` · sur `#2e2e34` · Asya kıyısı `#232838` | gece; imza/kırmızıdan uzak |
 | deniz taban / dalga çizgisi | `#161c26` / `#2c3444` | yatay kısa çizgiler, 3 px |
 | deniz yansıması (meşale / şenlik) | `#e0a050` / `#e8d6a6` | kesik yatay şeritler, ışık kaynağının altında dikey kolon |
 | meşale çekirdek / alev / alev kenarı | `#ffd890` / `#f0a040` / `#b8622c` | kenar kahve-turuncu; kırmızıya kaymaz |
@@ -66,7 +67,8 @@ Işık sözleşmesi: **anahtar = meşale** (yardımcının elinde, sahne solu, a
 | Galata külahı kurşun / ışıklı | `#7c8288` / `#a3a8aa` | biçim nötr [A §5.1] |
 | Galata/Üsküdar konut çatıları | `#6e5240` (tek ton), gölge yüzü `#4e3a2e` | **koyu toprak çatı, tek ton**; malzeme iddiası yok (kiremit doğrulanamadı [A §10.9]): kiremit sırası/deseni çizilmez, kırmızıya kaymaz; eğim alçak-orta, **dik/mansard çatı yok** (İstanbul'da dik çatı 19. yy. sonrası [A §10.9]). Kurşun yalnız Galata külahında ve cami kubbelerinde |
 | uzak Üsküdar siluet | `#9aa2a4` | atmosfer, tek ton |
-| Doğancılar meydanı ot / toprak | `#a8a07a` / `#8a7a5c` | ağaç/çadır/bina yok [A §5.3] |
+| Doğancılar meydanı ot / toprak | **`#989c76`** (v1.2; eski `#a8a07a` imzaya ΔE76 12.4 idi) / `#8a7a5c` | ağaç/çadır/bina yok [A §5.3] |
+| **v1.2 onaylı ek tonlar (mekanlar.md §8)** | ağaç gün `#7e8478` · konut duvarı `#8a7660` / gölge `#5e5040` · sur gün `#8e8472` / `#6a6252` · uzak şehir hava perspektifi `#a49c90` · Galata koyu taş sırası `#5e574c` · Boğaz su orta `#6c8284` | hepsi imzaya ΔE76 ≥ 20, kırmızı değil (§2.4) |
 | Sarayburnu köşk gün / gölge | `#b4a88e` / `#7e7462` | |
 | rıhtım gün | `#a09682` | |
 | karakter kenar ışığı (gün) | `#f0d79a` α .6 | güneş yanı |
@@ -79,7 +81,7 @@ Işık sözleşmesi: **anahtar = meşale** (yardımcının elinde, sahne solu, a
 | pencere kanadı ahşap ışıklı / gölge | `#6a4a30` / `#3a2a1e` | §4.10 |
 | ışık şeridi (pencere aralığından) | `#f6e4b0` α .55 | kenarları NET, toz zerresi 6–8 adet `#f6e4b0` α .6 |
 | dış (pencere açıklığından görünen) | gündüz paleti, %30 aşırı pozlanmış `#ece2c4` | |
-| minder/halı kenarı | `#5a4a3e` | desen yok |
+| minder/halı kenarı | `#5a4a3e` | desen yok; v1.2: P12 kamerasında zemin kadraja girmez (mekanlar.md §1.6), kullanılmayabilir |
 
 ### 1.4 KİTAP INSERT (P13–P14)
 | Ad | Hex | Not |
@@ -141,6 +143,7 @@ Hezarfen yarısında demet yok; bu bilinçli: P14 kenar çizimi iki hikâyeyi ay
 | 4 köşeli yıldız biçimi yalnız fitil kıvılcımında. Şenlik fişeği **yıldız değil, düşen çizgi** (§5) | motif tekrarı |
 | Rulo kâğıt, tomar, borulu nesne P13 masasında yok | P14 çizimiyle karışır |
 Ölçülen ayrışmalar (elle, D65; motion `kontrol` betiğiyle doğrular): demet `#c4a874` (L≈70 a≈3 b≈29) ↔ altın sikke `#c9a24a` ΔE76 ≈ 23 · ↔ Lagâri sarığı `#d9cfb6` ≈ 20 · ↔ kese `#625646` ≈ 33 · ↔ takke `#5b4a3a` ≈ 40 · ↔ kanat `#6e6a64` ≈ 34. Hedef: her ışıkta ΔE2000 ≥ 12.
+**v1.2 palet geneli kontrolü (mekanlar.md §5 ölçümü, sRGB→Lab D65):** tüm yüzeyler imzaya **ΔE76 ≥ 15** olmalı. Ot `#a8a07a` (12.4) **değiştirildi → `#989c76`** (17.2). Sınırda: köşk gün `#b4a88e` 15.9 — kabul (P10/P11/P12'de demet yok, demetin geçtiği gece planlarında köşk `#4e4a46`/`#8a7458`); eleştirmen yine ölçer. Ek tonlar: konut duvarı 24.8, sur 24.5, uzak şehir 24.0, toprak 21.8.
 
 ---
 
