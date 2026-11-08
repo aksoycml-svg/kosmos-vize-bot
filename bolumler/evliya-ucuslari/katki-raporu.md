@@ -155,3 +155,32 @@
   - Kullanıcı: P01 A ilk karesinde minare silueti yok (varsayılan: eklenmez).
   - Araştırmacı (sonra): Galata kemer tipi, köşk örtüsü, sur tuğla hatılı, Galata gövde yarıkları.
   - Motion: kalibrasyon sırası §8 (P05/P06 → P11/P07 → P02/P10 → P08).
+
+## yonetmen · 2026-11-08 · Sahne planı güncellemesi (mekanlar.md §7 + kullanıcı kararları)
+- Ne yaptım:
+  - `mekanlar.md` §7'nin 7 notunu ve DEVAM.md kullanıcı kararlarını `bolum.json` + `sahne-plani.md`'ye işledim. Süreler, ses, senaryo, plan sayısı değişmedi (3774 kare, 62.90 sn).
+  - Köşk kıyı konumu (su 762, üst 534, x 740-928): P01, P03, P05, P06 `kosk_konum`; P04 kadraj dışı notu.
+  - P02: cs 0.9→1.05; şenlik merkezleri y 200/160 (köşkün arkasında); sol grup x 40-140, ayak y 1387, olcek 0.075; padişah y 819.
+  - P10: cs 0.9→2.4 (kare 0/24/66/282; son kare cx -28, cy 420), çevirme tam cs 2.4'te.
+  - P09/BOGAZ: kule x 100, iniş (1250,1170), dekor x -540…1620; Hezarfen yolu yeniden hesaplandı, ölçek derinlikle büyür (0.027→0.35); etiketler taşındı.
+  - P12: kapı x 60-352; zemin/minder/zemin lekesi parametrelerden çıktı; pencere ve padişah ayak y düzeltildi.
+  - P13/P14: rahle; defterler y ≤ 1476; kitap y 795; hokka kalemdan bölgesine.
+  - Galata (P01 B, P08): korkuluk yok, seki + çıkıntı; taş yere y 3580 (takip ekran y 900 ile tutarlı).
+  - P06: kanat suda kalır (`kanat-birak` p222-250, x 725→650, y≈1185, sabit halka, `su-yatma` temas p236); P07 Lagâri kanatsız.
+  - P08-P12: `gunes: sabah-ENE`.
+  - P11 muhafız eli gölgesi: KULLAN (p96, ışık tanımından türer).
+- Dokunduğum dosyalar: bolumler/evliya-ucuslari/bolum.json, bolumler/evliya-ucuslari/sahne-plani.md, bolumler/evliya-ucuslari/katki-raporu.md. (Yedek ve betik yalnız scratchpad'de.)
+- Aldığım kararlar ve gerekçeleri:
+  - P11 gölge kullanıldı: tek ışıktan türer, ek kod/ses yok, EV-D5'e 8 karelik "geliyor" verir; el zaten p80'de girdiği için sürpriz bozulmaz. 360 px'te okunmazsa sessizce düşürülür.
+  - P10'da push-in p24-66'ya sıkıştırıldı (0.4 sn P02 eşleşmesi tutulur), çünkü baş çevirme (p70-112) padişah ≥ %12 (cs 2.4) iken oynanmalı; eski 1.6 değeriyle çevirme %8'de kalıyordu.
+  - P09 etiketi "Galata" p100'de bitirildi: pan ile kule x 100 ekran sol marjına p120'de iner.
+  - P06 kanat: kullanıcı kararı (suda kalır); Lagâri sağa yüzer, kanattan uzaklaşır; kanat rıhtım dudağının önünde.
+  - Mekanlar'ın vermediği (kör) hiçbir değeri uydurmadım; hesapla türeyenler (P09 Hezarfen yolu/ölçek, P02 grup olcek 0.075, P13 defter merkezleri) `sahne-plani.md` §5.1'de listelendi.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Kural 1 (eşleme): kanat suda ve kanatsız Lagâri için `kit_eksik` (KE-J12, KE-P2s) işaretlendi, en yakınla doldurulmadı. Kural 2: yeni animasyonlar plan sonundan ≥12 kare önce biter (kanat p250/288). Kural 3: `kontrol_kare` korundu, P11'e `kontrol_ek` 98 eklendi. Kural 7: render edilemedi (şablon yok), §5'e açıkça yazıldı.
+  - Yakaladığım sorunlar (açık, bu turda dokunulmadı): (a) P13 cs 2.2/cx -300/cy -120'de fişek çizimi ekran y 246-554, üst yazı bandıyla çakışıyor; (b) P02 cs 1.05'te sol grup yan güvenli alanın 65 px dışında; (c) P06 sonu Lagâri (785, 985, olcek 0.85) yeni köşk tabanıyla (y 762) ve ufuk-ölçek kuralıyla tutmuyor; (d) mekanlar §4.2 d1/d3 açık hâlde 17 px örtüşüyor.
+- Açık sorular / bir sonraki ajana notlar:
+  - Doğrulayıcı: gerçek = GEÇMEDİ (15 hata, hepsi bilinmeyen şablon + süre 0). Genişletilmiş kopya = GEÇTİ, 0 hata, 2 uyarı (P09 yuru x/y, foley.json yok).
+  - Motion: `sinirlar.json`'a `kanat-birak` jesti ve `suda` kanat durumu eklenmeli (KE-Y6); kalibrasyonda P06 p76/p215/p286, P10 son kare, P12 p66, P13 p60 öncelik.
+  - Mekân sorumlusu: (b) ve (d) için karar; P13 kamera önerisi cx -390, cy 80 (hesap, render yok).
+  - Orkestra: `DOKUNUS-KUTUPHANESI.md` hâlâ güncellenmedi (önceki turdan).

@@ -28,7 +28,17 @@
      "kare": 176,
      "sonraki_sablon": "GALATA-TEPE"
     },
-    "gok": "uzatilmis (negatif y -1300'e kadar), uzakta 1-2 şenlik patlaması"
+    "gok": "uzatilmis (negatif y -1300'e kadar), uzakta 1-2 şenlik patlaması",
+    "kosk_konum": {
+     "su_cizgisi": 762,
+     "ust": 534,
+     "x": [
+      740,
+      928
+     ],
+     "px_m": 17,
+     "not": "mekanlar.md §7.1: ufuk 720'ye göre 17 px/m; eski 900/640 ufuk-ölçek kuralına aykırıydı"
+    }
    },
    "sure_kare": 336,
    "sure_sn": 5.6,
@@ -36,7 +46,7 @@
     "tr": "İstanbul'da bir adam fişeğe binip göğe çıkmış. Bir başkası da Boğaz'ı uçarak geçmiş.",
     "en": "A man rode a rocket into the sky over Istanbul. Another glided across the Bosphorus."
    },
-   "olcek": "A (p0-176): boy/orta (binici + demet ≈ %36 yükseklik, cs 1.25) -> yükselişi takip eden tilt, cs 1.0. B (p176-336): boy (Hezarfen siluet %22) -> yavaş push-in cs 1.0->1.25",
+   "olcek": "A (p0-176): boy/orta (binici + demet ≈ %36 yükseklik, cs 1.25) -> yükselişi takip eden tilt, cs 1.0. B (p176-336): boy (Hezarfen siluet %22) -> yavaş push-in cs 1.0->1.25 | p0 cs 1.25'te köşk kubbe sırtı ekran y≈427 (üst yazı bandı 240-400'ün altında).",
    "kamera": {
     "kare": [
      0,
@@ -160,10 +170,30 @@
      "isik": "kontra (güneş arkada, düz siluet)",
      "kapi": {
       "x": 290,
-      "y": 1250
+      "y": 1250,
+      "aralik_x": [
+       163,
+       418
+      ]
      },
      "galeri_acikligi": {
       "x": 700
+     },
+     "gunes": "sabah-ENE",
+     "korkuluk": false,
+     "seki": {
+      "y": 1250,
+      "not": "1.2 m taş seki; korkuluk çizilmez (kanıtsız, ayakları örterdi)"
+     },
+     "cikinti": {
+      "x": [
+       640,
+       900
+      ],
+      "gevsek_tas_x": [
+       750,
+       790
+      ]
      }
     },
     "kamera": {
@@ -342,17 +372,33 @@
     "senlik": [
      {
       "x": 760,
-      "y": 600,
+      "y": 200,
       "bas": 40,
-      "patlama": 62
+      "patlama": 62,
+      "katman": "kosk-arkasi"
      },
      {
       "x": 330,
-      "y": 600,
+      "y": 160,
       "bas": 185,
-      "patlama": 205
+      "patlama": 205,
+      "katman": "kosk-arkasi"
      }
-    ]
+    ],
+    "senlik_not": "patlama merkezleri y 150-250 (mekanlar §7.1); düşen çizgiler köşk örtüsünün arkasında kalır",
+    "kosk_konum": {
+     "cephe_px_m": 85,
+     "su_cizgisi": 1500,
+     "sirt_y": 360,
+     "pencere_x": [
+      518,
+      603
+     ],
+     "pencere_y": [
+      700,
+      819
+     ]
+    }
    },
    "sure_kare": 324,
    "sure_sn": 5.4,
@@ -360,15 +406,15 @@
     "tr": "İlki, padişahın kızının doğum şenliğinde. Padişahı kim şaşırtacak?",
     "en": "The first was at the sultan's party. Who'll amaze him?"
    },
-   "olcek": "geniş (köşk cephesi + rıhtım + gök); yavaş push-in cs 1.0->1.15",
+   "olcek": "geniş (köşk cephesi + rıhtım + gök); yavaş push-in cs 0.9->1.05",
    "kamera": {
     "kare": [
      0,
      300
     ],
     "cs": [
-     1.0,
-     1.15
+     0.9,
+     1.05
     ],
     "cx": [
      0,
@@ -384,7 +430,7 @@
     {
      "kim": "padisah",
      "x": 560,
-     "y": 860,
+     "y": 819,
      "yon": -1,
      "siluet": true,
      "yuz": null,
@@ -395,9 +441,9 @@
     },
     {
      "kim": "lagari",
-     "x": 150,
-     "y": 1230,
-     "olcek": 0.22,
+     "x": 95,
+     "y": 1387,
+     "olcek": 0.075,
      "yon": 1,
      "poz": "oturan",
      "kit_eksik": [
@@ -406,18 +452,18 @@
     },
     {
      "kim": "yardimci-1",
-     "x": 100,
-     "y": 1235,
-     "olcek": 0.22,
+     "x": 50,
+     "y": 1387,
+     "olcek": 0.075,
      "kit_eksik": [
       "KE-K4"
      ]
     },
     {
      "kim": "yardimci-2",
-     "x": 215,
-     "y": 1235,
-     "olcek": 0.22,
+     "x": 140,
+     "y": 1387,
+     "olcek": 0.075,
      "kit_eksik": [
       "KE-K4"
      ]
@@ -427,9 +473,9 @@
     {
      "tur": "fisek-demet",
      "id": "demet",
-     "x": 150,
-     "y": 1230,
-     "olcek": 0.22,
+     "x": 95,
+     "y": 1387,
+     "olcek": 0.075,
      "kit_eksik": [
       "KE-P1"
      ]
@@ -437,9 +483,9 @@
     {
      "tur": "mesale",
      "id": "mesale1",
-     "x": 112,
-     "y": 1190,
-     "olcek": 0.22,
+     "x": 62,
+     "y": 1345,
+     "olcek": 0.075,
      "kit_eksik": [
       "KE-P7"
      ]
@@ -489,11 +535,11 @@
    ],
    "okunurluk": {
     "nesne": "padişah siluet (pencerede)",
-    "oran_pct": 8,
+    "oran_pct": 5,
     "net_sn": 5.0,
-    "not": "mekân kurma planı: köşk imzası (çifte kemer, 4 baca, cumba) okunur; padişah küçük ama sabit, jest yok"
+    "not": "mekân kurma planı: köşk imzası (çifte kemer, 4 baca, cumba) okunur; padişah cs 0.9-1.05'te büst ≈ 91-106 px (%5), jest yok, sabit. Küçük grup 50 px figür: P03 kurulumu"
    },
-   "alt_ucte_bir": "Deniz (şenlik yansıması), rıhtım taşı, sol-altta ışıklı küçük grup + demet (P03 kurulumu).",
+   "alt_ucte_bir": "Önünde rıhtım ön yüzü (dekor y 1415-1500), altında deniz (1500-2030, şenlik yansıması + pencere yansıma kolonu); sol uçta ışıklı küçük grup + demet + meşale (ayak ekran y≈1344-1448).",
    "kit_eksik": [
     "KE-S1",
     "KE-K1",
@@ -518,7 +564,7 @@
      "db": 0
     }
    ],
-   "not": "Sol rıhtımda 4-5 px'lik grup P03 için kurulum nesnesidir (25 px telefonda ışık lekesi + demet silueti)."
+   "not": "Sol rıhtımda 4-5 px'lik grup P03 için kurulum nesnesidir (25 px telefonda ışık lekesi + demet silueti). [2026-11-08 mekanlar §7] Grup x 40-140, ayak y 1387, figür ≈50 px (olcek 0.075). cs 1.05 sonunda grup ekran x≈15-120 (sol yan güvenli 80'in 65 px dışı): kurulum nesnesi, açık soru."
   },
   {
    "id": "P03",
@@ -527,7 +573,17 @@
    "parametreler": {
     "gorunum": "kiyi",
     "saat": "gece",
-    "kosk_uzakta": true
+    "kosk_uzakta": true,
+    "kosk_konum": {
+     "su_cizgisi": 762,
+     "ust": 534,
+     "x": [
+      740,
+      928
+     ],
+     "px_m": 17,
+     "not": "mekanlar.md §7.1: ufuk 720'ye göre 17 px/m; eski 900/640 ufuk-ölçek kuralına aykırıydı"
+    }
    },
    "sure_kare": 252,
    "sure_sn": 4.2,
@@ -733,7 +789,8 @@
      "kare": 0,
      "db": 0
     }
-   ]
+   ],
+   "not": "Köşk (x 740-928, üst 534) cs 1.15-1.3'te ekran x≈830-1084 sağ kenarda; kubbe sırtı ekran y≈470."
   },
   {
    "id": "P04",
@@ -742,7 +799,12 @@
    "parametreler": {
     "gorunum": "kiyi",
     "saat": "gece",
-    "kosk_uzakta": true
+    "kosk_uzakta": true,
+    "kosk_konum": {
+     "kadraj_disi": true,
+     "ekran_x": 1265,
+     "not": "cs 2.5-2.7'de köşk kadraj dışı; Lagâri sağa seslenir"
+    }
    },
    "sure_kare": 294,
    "sure_sn": 4.9,
@@ -945,6 +1007,16 @@
     "su": {
      "y": 1200,
      "isik": "deniz yüzü fişek ışığıyla aydınlanır p112+"
+    },
+    "kosk_konum": {
+     "su_cizgisi": 762,
+     "ust": 534,
+     "x": [
+      740,
+      928
+     ],
+     "px_m": 17,
+     "not": "mekanlar.md §7.1: ufuk 720'ye göre 17 px/m; eski 900/640 ufuk-ölçek kuralına aykırıydı"
     }
    },
    "sure_kare": 210,
@@ -1273,6 +1345,21 @@
       "bas": 100,
       "bit": 130
      }
+    },
+    "kosk_konum": {
+     "su_cizgisi": 762,
+     "ust": 534,
+     "x": [
+      740,
+      928
+     ],
+     "px_m": 17,
+     "not": "mekanlar.md §7.1: ufuk 720'ye göre 17 px/m; eski 900/640 ufuk-ölçek kuralına aykırıydı"
+    },
+    "kanat_suda": {
+     "x": 650,
+     "y": 1185,
+     "plan_sonuna_kadar": true
     }
    },
    "sure_kare": 300,
@@ -1377,6 +1464,11 @@
        "ad": "yuz",
        "bas": 222,
        "bit": 288
+      },
+      {
+       "ad": "kanat-birak",
+       "bas": 222,
+       "bit": 250
       }
      ],
      "yuz": {
@@ -1398,13 +1490,26 @@
        1,
        1,
        1
+      ],
+      "kanat": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       0,
+       0
       ]
      },
      "kit_eksik": [
       "KE-K1",
       "KE-J3",
       "KE-J4",
-      "KE-J10"
+      "KE-J10",
+      "KE-J12"
      ]
     },
     {
@@ -1488,6 +1593,9 @@
        0,
        0,
        1,
+       1,
+       1,
+       1,
        1
       ]
      },
@@ -1495,11 +1603,42 @@
       0,
       40,
       58,
-      215
+      215,
+      222,
+      236,
+      250
      ],
      "kit_eksik": [
-      "KE-P2"
-     ]
+      "KE-P2",
+      "KE-P2s"
+     ],
+     "suda": {
+      "bas": 222,
+      "bit": 250,
+      "kare": [
+       222,
+       236,
+       250
+      ],
+      "x": [
+       725,
+       690,
+       650
+      ],
+      "y": [
+       1180,
+       1186,
+       1185
+      ],
+      "gorunen_oran": 0.4,
+      "dalga_px": 4,
+      "halka": {
+       "bas": 240,
+       "sonuna_kadar": true,
+       "sabit": true
+      },
+      "kural": "iniş noktasının (x 730) 40-120 px solunda, su çizgisi kanadın üstünden geçer, rıhtım dudağının (y 1238) önünde; kullanıcı kararı: kanat plan sonuna kadar suda kalır"
+     }
     }
    ],
    "ekran_yazisi": [
@@ -1550,6 +1689,12 @@
      "db": -4
     },
     {
+     "kare": 236,
+     "olay": "çözülen kanat suya yatar, tek sabit halka açılır",
+     "ses": "su-yatma",
+     "db": -16
+    },
+    {
      "kare": 286,
      "olay": "ıslak eli köşk rıhtımı basamağına tutunur",
      "ses": "islak-el",
@@ -1565,7 +1710,8 @@
     "buhar (p102)",
     "su-sap (p215, en yüksek)",
     "yuzme su sesi (p222-288, -16)",
-    "islak-el (p286)"
+    "islak-el (p286)",
+    "su-yatma (p236, -16)"
    ],
    "muzik_notu": "Akar; p0'da itki sönünce müzik alçalır (müzikal cümle sonu), p215 'şap' sonrası bir an hafifler, yüzerken tema sade devam eder.",
    "dokunus": {
@@ -1585,7 +1731,7 @@
     "net_sn": 1.7,
     "not": "demet ≈350 px yüksekliğinde (stilize), düşüş zonu alt-sol, kanat zonu üst-sağ; ayrı bölgeler. Kanat siluet, yapı belirsiz"
    },
-   "alt_ucte_bir": "Deniz (ışıltı) y 1000-1450, sol altta yardımcıların gövdeleri/rıhtım taşı, demetin su halkası ve buharı.",
+   "alt_ucte_bir": "Deniz (ışıltı) y 1000-1450, sol altta yardımcıların gövdeleri/rıhtım taşı, demetin su halkası ve buharı; p236+ suda yatan kanat (iniş noktasının solunda, y≈1185) ve halkası.",
    "kit_eksik": [
     "KE-S1",
     "KE-K1",
@@ -1612,7 +1758,7 @@
      "db": 0
     }
    ],
-   "not": "Dokunuş zamanı doc'a göre p40-130: 'kanatlarını açıyor' kelimeleri TR p56, EN p50 -> kanat p40-58. İniş p215: TR 'denize' p209-230, EN 'pavilion' p178-222 ile uyumlu. Yüzme+basamak p222-288 (1.1 sn); yazı p208'de başlar, dokunuştan sonra."
+   "not": "Dokunuş zamanı doc'a göre p40-130: 'kanatlarını açıyor' kelimeleri TR p56, EN p50 -> kanat p40-58. İniş p215: TR 'denize' p209-230, EN 'pavilion' p178-222 ile uyumlu. Yüzme+basamak p222-288 (1.1 sn); yazı p208'de başlar, dokunuştan sonra. [2026-11-08 kullanıcı kararı] Kanat Lagâri'den p222-250'de ayrılır, suda iniş noktasının solunda kalır (Lagâri sağa yüzer, kanattan uzaklaşır); P07'de Lagâri kanatsız."
   },
   {
    "id": "P07",
@@ -1623,7 +1769,8 @@
     "saat": "gece",
     "zemin_y": 1450,
     "kose": "rihtim-basamak-solda",
-    "isik": "köşk penceresi/meşale, tek kaynak sağdan"
+    "isik": "köşk penceresi sağ-üstten (tek kaynak), gölgeler SOLA kısa; P11'de ters döner",
+    "kanat_yok": true
    },
    "sure_kare": 228,
    "sure_sn": 3.8,
@@ -1691,7 +1838,8 @@
       "KE-K1",
       "KE-J5",
       "KE-J10"
-     ]
+     ],
+     "kanat": "yok"
     }
    ],
    "props": [
@@ -1978,7 +2126,7 @@
      "db": 0
     }
    ],
-   "not": "Eli veren el padişahın mı görevlinin mi: belirsiz bırakıldı (nötr entari yeni, kanıtsız renk/arma yok). Giren el sağ kenardan (köşk sağda) fiziksel girer, p130'da sağdan çıkar; fade yok."
+   "not": "Eli veren el padişahın mı görevlinin mi: belirsiz bırakıldı (nötr entari yeni, kanıtsız renk/arma yok). Giren el sağ kenardan (köşk sağda) fiziksel girer, p130'da sağdan çıkar; fade yok. Lagâri KANATSIZ (kanat P06'da suda kaldı, kullanıcı kararı)."
   },
   {
    "id": "P08",
@@ -1992,12 +2140,37 @@
     "kule": {
      "govde": "tas",
      "kulah": "kursun-gri-notr",
-     "galeri": "kemerli-acik"
+     "galeri": "kemerli-acik-seki"
     },
-    "alt_serit": "kule duvarı + aşağıda Galata çatıları/sokak (y 3600 zemin)",
+    "alt_serit": "kule duvarı + aşağıda Galata çatıları/sokak (gövde tabanı y 3600; taş y 3580'de iki çatı arasındaki sokak boşluğuna düşer)",
     "toz": {
      "bas": 148,
      "bit": 176
+    },
+    "gunes": "sabah-ENE",
+    "korkuluk": false,
+    "seki": {
+     "y": 1250,
+     "not": "korkuluk yerine 1.2 m taş seki"
+    },
+    "cikinti": {
+     "x": [
+      640,
+      900
+     ],
+     "gevsek_tas_x": [
+      750,
+      790
+     ],
+     "not": "taş çıkıntı levhasının dış kenarından kopar"
+    },
+    "taş_dusus": {
+     "kopus_y": 1250,
+     "yere_y": 3580,
+     "sokak_bosluk_x": [
+      560,
+      820
+     ]
     }
    },
    "sure_kare": 252,
@@ -2113,7 +2286,7 @@
       1250,
       1255,
       1912,
-      3600
+      3580
      ],
      "kare": [
       0,
@@ -2244,15 +2417,31 @@
     },
     "dekor_genislik": 2160,
     "iniş_meydani": {
-     "x": 1800,
+     "x": 1250,
      "y": 1170,
-     "ot": "acik-meydan-notr"
+     "ot": "acik-meydan-notr",
+     "ot_hex": "#989c76"
     },
     "kule_sol": {
-     "x": 330,
-     "tepe_y": 780
+     "x": 100,
+     "tepe_y": 760
     },
-    "ufuk_y": 860
+    "ufuk_y": 860,
+    "dekor_x": [
+     -540,
+     1620
+    ],
+    "gunes": "sabah-ENE",
+    "rota_noktalari": [
+     [
+      100,
+      760
+     ],
+     [
+      1250,
+      1170
+     ]
+    ]
    },
    "sure_kare": 282,
    "sure_sn": 4.7,
@@ -2284,22 +2473,22 @@
     {
      "kim": "hezarfen",
      "x": [
-      330,
-      330,
-      420,
-      900,
-      1450,
-      1700,
-      1800,
-      1860
+      100,
+      100,
+      169,
+      549,
+      974,
+      1170,
+      1250,
+      1298
      ],
      "y": [
-      780,
-      780,
-      800,
-      980,
-      1040,
-      1110,
+      760,
+      760,
+      785,
+      965,
+      1035,
+      1105,
       1170,
       1175
      ],
@@ -2313,7 +2502,16 @@
       238,
       262
      ],
-     "olcek": 0.35,
+     "olcek": [
+      0.027,
+      0.027,
+      0.04,
+      0.1,
+      0.2,
+      0.29,
+      0.35,
+      0.35
+     ],
      "yon": 1,
      "jestler": [
       {
@@ -2331,7 +2529,8 @@
       "KE-K2",
       "KE-J4",
       "KE-J9"
-     ]
+     ],
+     "olcek_not": "derinlikle büyür (mekanlar §3.2): kalkışta ≈10 px, p150 ≈70 px, inişte ≈130 px (0.35)"
     }
    ],
    "props": [
@@ -2421,17 +2620,17 @@
      "ad": "galata",
      "tr": "Galata",
      "en": "Galata",
-     "x": 330,
+     "x": 100,
      "y": 650,
      "bas": 0,
-     "bit": 120
+     "bit": 100
     },
     {
      "ad": "uskudar",
      "tr": "Üsküdar",
      "en": "Üsküdar",
-     "x": 1740,
-     "y": 1040,
+     "x": 1250,
+     "y": 930,
      "bas": 120,
      "bit": 270
     },
@@ -2488,7 +2687,7 @@
     "nesne": "martı (ön plan) + Hezarfen siluet",
     "oran_pct": 11,
     "net_sn": 1.4,
-    "not": "martı kanat açıklığı 420 px, çırpma genliği 220 px (%11); Hezarfen olcek 0.35 (≈130 px, %7, kontra düz siluet), kamera yatay izler. Martı y≥1100, yazı bandıyla çakışmaz"
+    "not": "martı kanat açıklığı 420 px, çırpma genliği 220 px (%11); Hezarfen kontra düz siluet derinlikle büyür 10->70->130 px (p112-195'te ≈40-105 px); kamera yatay izler; martı y≥1100. Galata etiketi p100'de biter (pan ile sol marjı geçmesin)"
    },
    "alt_ucte_bir": "Boğaz suyu (y 1000-1500), ön plandaki martı, kayık siluetleri, sağ altta Üsküdar kıyısı/meydan, sol altta Galata yamacı.",
    "kit_eksik": [
@@ -2516,7 +2715,7 @@
      "db": 0
     }
    ],
-   "not": "Atlayış p56-76: TR 'atlıyor' p48-81 ile örtüşür; EN 'he jumps' p100: görüntü 0.7 sn önde (iki dil tek görüntü). Rota çizgisi p70-130 çizilir, martı p112'de girer (farklı bölge). İniş p238, kanat katlanması p262, toz oturması p270 (plan sonuna 12 kare var)."
+   "not": "Atlayış p56-76: TR 'atlıyor' p48-81 ile örtüşür; EN 'he jumps' p100: görüntü 0.7 sn önde (iki dil tek görüntü). Rota çizgisi p70-130 çizilir, martı p112'de girer (farklı bölge). İniş p238, kanat katlanması p262, toz oturması p270 (plan sonuna 12 kare var). [2026-11-08] Kule x 100, iniş (1250,1170); pan cx 500->-500 dekor x -500..1580 gösterir, Hezarfen ekran x≈367-850 kalır."
   },
   {
    "id": "P10",
@@ -2532,7 +2731,8 @@
      "cumba": "sacakli"
     },
     "pencere_isigi": false,
-    "ayni_kadraj_p02": true
+    "ayni_kadraj_p02": true,
+    "gunes": "sabah-ENE"
    },
    "sure_kare": 294,
    "sure_sn": 4.9,
@@ -2540,27 +2740,31 @@
     "tr": "Onu kim izliyor? Yine padişah. Yine aynı köşkten.",
     "en": "Who's watching? The sultan again. From the very same pavilion."
    },
-   "olcek": "geniş (P02 ile AYNI kadraj p0) -> push-in cs 1.0->1.6 ile pencere siluetine yaklaşım (baş çevirme göğüs/bel okunurluğu)",
+   "olcek": "geniş (P02 ile AYNI kadraj p0, cs 0.9) 0.4 sn tutulur -> push-in p24-66 cs 0.9->2.4 -> göğüs/büst (padişah ≥ %12) ile baş çevirme p70-112; son kare cx -28, cy 420",
    "kamera": {
     "kare": [
      0,
-     110,
+     24,
+     66,
      282
     ],
     "cs": [
-     1.0,
-     1.6,
-     1.7
+     0.9,
+     0.9,
+     2.4,
+     2.4
     ],
     "cx": [
      0,
+     0,
      -10,
-     -10
+     -28
     ],
     "cy": [
      0,
-     130,
-     130
+     0,
+     400,
+     420
     ],
     "egri": "inout"
    },
@@ -2568,7 +2772,7 @@
     {
      "kim": "padisah",
      "x": 560,
-     "y": 860,
+     "y": 819,
      "yon": -1,
      "siluet": true,
      "yuz": null,
@@ -2622,9 +2826,9 @@
     "nesne": "padişah siluet (baş çevirme)",
     "oran_pct": 12,
     "net_sn": 3.0,
-    "not": "cs 1.6'da pencere silueti ≈ 240 px; baş çevirme büyük hareket"
+    "not": "cs 2.4'te büst ≈ 242 px (%12.6), baş çevirme p70-112 cs 2.4'te; kadraj dekor x 315-765, y 385-1185"
    },
-   "alt_ucte_bir": "Çifte kemerli altyapı, rıhtım ve gündüz denizi (y 1300-1500); P02'de sol rıhtımdaki grup yok, kayıklar/halat.",
+   "alt_ucte_bir": "Kesme taş çifte kemerli altyapı (kemer tepeleri, dekor y 920-1185), kemer arası; deniz ve rıhtım cs 2.4'te kadraj dışı. Gündüz taşı + kemer içi koyu.",
    "kit_eksik": [
     "KE-S1",
     "KE-K3",
@@ -2644,7 +2848,7 @@
      "db": 0
     }
    ],
-   "not": "Baş çevirme p70-112: TR 'Yine padişah' p74-144 ile eşzamanlı. Çevirme sağa (Üsküdar yönü); P09'daki uçuş yönüyle aynı."
+   "not": "Baş çevirme p70-112: TR 'Yine padişah' p74-144 ile eşzamanlı. Çevirme sağa (Üsküdar yönü); P09'daki uçuş yönüyle aynı. [2026-11-08 mekanlar §7.2] cs 0.9->2.4: p0'da P02 ile aynı kadraj (0.9), 0.4 sn sonra push-in; çevirme tam cs 2.4'te."
   },
   {
    "id": "P11",
@@ -2654,7 +2858,15 @@
     "gorunum": "insert",
     "saat": "gun",
     "zemin_y": 1450,
-    "ayni_kadraj_p07": true
+    "ayni_kadraj_p07": true,
+    "gunes": "sabah-ENE",
+    "isik": "güneş tam soldan, gölgeler SAĞA uzun (3.7x); P07 ile aynı kadraj, ışık ters",
+    "el_golge": {
+     "muhafiz_omza_once": true,
+     "kaynak": "Isik.yonlu (güneş), türetilir; elle konmaz",
+     "omuz_golge_bas": 96,
+     "temas": 104
+    }
    },
    "sure_kare": 240,
    "sure_sn": 4.0,
@@ -3129,6 +3341,7 @@
    "kontrol_kare": 128,
    "kontrol_ek": [
     42,
+    98,
     208
    ],
    "okunurluk": {
@@ -3160,7 +3373,7 @@
      "db": 0
     }
    ],
-   "not": "Insert baş kadraj dışı: Hezarfen'in tepkisi yüzle değil omuz/avuç gevşemesiyle verilir (doc: pasif). 'Omza' el: eğik duran omuz y≈800 (kadrajda). Muhafız eli soldan (Hezarfen'in arkası), veren el sağdan. Sikke fiziği: kese yere çarpınca ağzından fırlar, zeminde dönerek yavaşlar, p208'de yatar."
+   "not": "Insert baş kadraj dışı: Hezarfen'in tepkisi yüzle değil omuz/avuç gevşemesiyle verilir (doc: pasif). 'Omza' el: eğik duran omuz y≈800 (kadrajda). Muhafız eli soldan (Hezarfen'in arkası), veren el sağdan. Sikke fiziği: kese yere çarpınca ağzından fırlar, zeminde dönerek yavaşlar, p208'de yatar. [2026-11-08 karar: muhafız eli gölgesi omza temastan 8 kare önce (p96) düşer: tek ışık kaynağından kendiliğinden çıkar, ek ses/kod yok, EV-D5'e 'geliyor' vurgusu verir; sürpriz korunur çünkü el zaten p80'de kadraja girer, gölge yalnız omuz+kese eli üstünde p96-104.)"
   },
   {
    "id": "P12",
@@ -3182,11 +3395,11 @@
      ],
      "x": [
       560,
-      760
+      738
      ],
      "y": [
       560,
-      980
+      981
      ]
     },
     "isik_serit": {
@@ -3194,11 +3407,23 @@
      "bit": 100
     },
     "kapi": {
-     "x": 120,
-     "y": 900
+     "x": [
+      60,
+      352
+     ],
+     "y": [
+      602,
+      1250
+     ],
+     "ici": "koyu açık (#2a2420)"
     },
-    "zemin": "minder-halı-notr",
-    "kafes_yok": true
+    "kafes_yok": true,
+    "gunes": "sabah-ENE",
+    "kadraj_disi": [
+     "zemin",
+     "minder",
+     "zemin_isik_lekesi"
+    ]
    },
    "sure_kare": 216,
    "sure_sn": 3.6,
@@ -3242,7 +3467,7 @@
     {
      "kim": "padisah",
      "x": 430,
-     "y": 1500,
+     "y": 1267,
      "yon": [
       1,
       1,
@@ -3422,7 +3647,7 @@
     "net_sn": 1.1,
     "not": "kanat %30+ yükseklik, kapanış 0.43 sn; ışık şeridi p34-100 (1.1 sn); yüz ≈ 230 px (%12), yüz gölgede/profil, yüz ayrıntısı çizilmez"
    },
-   "alt_ucte_bir": "Padişahın kaftanı (gövde), minder/halı kenarı ve pencere eşiğinden düşen ışık şeridinin zemin yansıması (y 1300-1500): karanlık ama dokulu.",
+   "alt_ucte_bir": "Padişahın kaftanı + göğsündeki ışık şeridi, bandın havadaki devamı (α .25->.08, sol-alta), pencere altı duvarı. Zemin/minder/zemin lekesi kadrajda YOK (cs 1.8'de zemin ekran y≥1612).",
    "kit_eksik": [
     "KE-S1",
     "KE-K3",
@@ -3446,7 +3671,7 @@
      "db": 0
     }
    ],
-   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge."
+   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı."
   },
   {
    "id": "P13",
@@ -3454,7 +3679,6 @@
    "sablon": "KITAP-INSERT",
    "parametreler": {
     "kitap": "seyahatname",
-    "masa": "ahsap",
     "yazi": "hat-dil-notr",
     "kenar_cizim": [
      {
@@ -3473,8 +3697,19 @@
     "defterler": [
      {
       "id": "d1",
-      "x": 180,
-      "y": 1500,
+      "x": 168,
+      "y": 1257,
+      "kapali_kutu": [
+       90,
+       1150,
+       246,
+       1364
+      ],
+      "acik_olcu": [
+       312,
+       214
+      ],
+      "ust_sinir_y": 1476,
       "acik": {
        "bas": 146,
        "bit": 176
@@ -3482,8 +3717,19 @@
      },
      {
       "id": "d2",
-      "x": 910,
-      "y": 1510,
+      "x": 758,
+      "y": 1277,
+      "kapali_kutu": [
+       680,
+       1170,
+       836,
+       1384
+      ],
+      "acik_olcu": [
+       312,
+       214
+      ],
+      "ust_sinir_y": 1476,
       "acik": {
        "bas": 164,
        "bit": 194
@@ -3491,14 +3737,60 @@
      },
      {
       "id": "d3",
-      "x": 540,
-      "y": 1650,
+      "x": 463,
+      "y": 1369,
+      "kapali_kutu": [
+       385,
+       1262,
+       541,
+       1476
+      ],
+      "acik_olcu": [
+       312,
+       214
+      ],
+      "ust_sinir_y": 1476,
       "acik": {
        "bas": 182,
        "bit": 212
       }
      }
-    ]
+    ],
+    "yuzey": "rahle",
+    "rahle": {
+     "tabla": {
+      "x": [
+       140,
+       940
+      ],
+      "y": [
+       470,
+       1110
+      ]
+     },
+     "kitap": {
+      "x": [
+       220,
+       860
+      ],
+      "y": [
+       545,
+       1045
+      ]
+     },
+     "zemin_olcek": 0.67,
+     "ayak_oyma_minder": false,
+     "kalemdan": {
+      "x": [
+       330,
+       750
+      ],
+      "y": [
+       482,
+       538
+      ]
+     }
+    }
    },
    "sure_kare": 300,
    "sure_sn": 5.0,
@@ -3539,7 +3831,7 @@
      "tur": "kitap",
      "id": "seyahatname",
      "x": 540,
-     "y": 960,
+     "y": 795,
      "durum": {
       "acik": 1,
       "hat": true
@@ -3551,8 +3843,8 @@
     {
      "tur": "defter",
      "id": "d1",
-     "x": 180,
-     "y": 1500,
+     "x": 168,
+     "y": 1257,
      "kare": [
       0,
       146,
@@ -3573,8 +3865,8 @@
     {
      "tur": "defter",
      "id": "d2",
-     "x": 910,
-     "y": 1510,
+     "x": 758,
+     "y": 1277,
      "kare": [
       0,
       164,
@@ -3595,8 +3887,8 @@
     {
      "tur": "defter",
      "id": "d3",
-     "x": 540,
-     "y": 1650,
+     "x": 463,
+     "y": 1369,
      "kare": [
       0,
       182,
@@ -3617,8 +3909,18 @@
     {
      "tur": "hokka",
      "id": "hokka",
-     "x": 930,
-     "y": 1180
+     "x": 540,
+     "y": 510,
+     "kalemdan": {
+      "x": [
+       330,
+       750
+      ],
+      "y": [
+       482,
+       538
+      ]
+     }
     }
    ],
    "ekran_yazisi": [
@@ -3674,7 +3976,7 @@
     "net_sn": 3.3,
     "not": "p60: çizim ≈ 308 px (%16) net 1.6 sn; p190: üç defter + kitap geniş masada"
    },
-   "alt_ucte_bir": "p0-100: sayfanın alt yarısı hat satırları; p200+: ahşap masa, hokka, açık defterler y 1350-1700, mum/gölge. Boş değil.",
+   "alt_ucte_bir": "p0-100: sayfanın alt yarısı hat satırları; p200+: rahle tablası (koyu zemin), zeminde üç açık defter (y 1150-1476, hepsi ≤ 1476), tablanın zemine gölgesi. Boş değil.",
    "kit_eksik": [
     "KE-S4",
     "KE-P8",
@@ -3694,7 +3996,7 @@
      "db": 0
     }
    ],
-   "not": "Hat yazısı dil-nötr dekoratif çizgiler (okunur kelime yok). Boş defter mekanizması (Blanc D8 'boş kitap'): güve yok, dokunuş sayılmadı; istenmezse tek satır mürekkep. Fişek çizimi sağ kenarda kurulur, P14'te yaklaşılır."
+   "not": "Hat yazısı dil-nötr dekoratif çizgiler (okunur kelime yok). Boş defter mekanizması (Blanc D8 'boş kitap'): güve yok, dokunuş sayılmadı; istenmezse tek satır mürekkep. Fişek çizimi sağ kenarda kurulur, P14'te yaklaşılır. [2026-11-08] Yüzey = rahle (masa değil, kullanıcı kararı); defterler zeminde (x0.67), y ≤ 1476."
   },
   {
    "id": "P14",
@@ -3702,7 +4004,6 @@
    "sablon": "KITAP-INSERT",
    "parametreler": {
     "kitap": "seyahatname",
-    "masa": "ahsap",
     "yazi": "hat-dil-notr",
     "kenar_cizim": [
      {
@@ -3727,7 +4028,8 @@
       0.5
      ]
     },
-    "son_kare": "P01 p0 ile eşleşir: binici+demet silueti ekranda x≈390-640, y≈640-1330; fitil solda, kıvılcım fitilin yarısında"
+    "son_kare": "P01 p0 ile eşleşir: binici+demet silueti ekranda x≈390-640, y≈640-1330; fitil solda, kıvılcım fitilin yarısında",
+    "yuzey": "rahle"
    },
    "sure_kare": 246,
    "sure_sn": 4.1,
@@ -3764,7 +4066,7 @@
      "tur": "kitap",
      "id": "seyahatname",
      "x": 540,
-     "y": 960,
+     "y": 795,
      "durum": {
       "acik": 1,
       "hat": true
