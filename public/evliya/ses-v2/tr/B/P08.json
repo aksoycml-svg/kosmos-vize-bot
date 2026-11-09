@@ -1,52 +1,53 @@
 {
- "text": "[curious] Peki öteki adam? [mysterious] Hezarfen, Galata Kulesi'nin tepesinde.",
+ "text": "[curious] Peki öteki adam? [intrigued] Hezarfen, Galata Kulesi'nin tepesinde.",
  "words": [
   {
    "t": "Peki",
-   "s": 0.264,
-   "e": 0.36
+   "s": 0.2,
+   "e": 0.28
   },
   {
    "t": "öteki",
-   "s": 0.48,
-   "e": 0.84
+   "s": 0.32,
+   "e": 0.68
   },
   {
    "t": "adam?",
-   "s": 0.92,
-   "e": 1.32
+   "s": 0.744,
+   "e": 1.56
   },
   {
    "t": "Hezarfen,",
-   "s": 2.342,
-   "e": 2.929
+   "s": 2.181,
+   "e": 2.808
   },
   {
    "t": "Galata",
-   "s": 2.989,
-   "e": 3.329
+   "s": 2.838,
+   "e": 3.088
   },
   {
    "t": "Kulesi'nin",
-   "s": 3.369,
-   "e": 3.809
+   "s": 3.128,
+   "e": 3.568
   },
   {
    "t": "tepesinde.",
-   "s": 3.869,
-   "e": 4.769
+   "s": 3.628,
+   "e": 4.368
   }
  ],
- "dur": 4.81,
+ "dur": 4.441,
  "voice": "jZQNewKOZcubZDDwBxdL",
  "model": "eleven_v3",
  "ayar": {
   "speed": 1.1,
-  "stability": 0.0,
+  "stability": 0.5,
   "similarity_boost": 0.8,
   "style": 0.5,
   "use_speaker_boost": true
  },
  "varyant": "B",
- "on_bosluk_ms": 40
+ "on_bosluk_ms": 40,
+ "not_": "dip ses nedeniyle yeniden (kullanıcı 41. sn)"
 }
