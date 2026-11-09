@@ -37,6 +37,7 @@ Ağ notu: archive.org / incompetech / pixabay / musopen bu sunucudan erişilemed
 | Lisans | ElevenLabs hizmet şartları: ücretli planda üretilen çıktı ticari kullanıma uygun; atıf zorunlu değil. DOĞRULAMA AÇIK: hesabın Music için ticari kullanım hakkı plan sayfasından kullanıcı tarafından teyit edilmeli (ücretsiz planda API kapalıydı; çağrı 200 döndü, plan Creator/Starter+ olarak varsayıldı) |
 | Atıf | Gerekmez. İsteğe bağlı: "Müzik: ElevenLabs Music" |
 | Kullanım | `public/evliya/muzik/evliya-hicaz-62.9.mp3`: ham 0–62.9 sn, 0.4 sn giriş + 1.4 sn çıkış fade; müzik zarfı (vurgu/alçalma) `tools/evliya_miks.py` içinde |
+| 77 sn sürüm | `public/evliya/muzik/evliya-hicaz-77.mp3` (77.067 sn = 4624 kare): kaynak `ham-a.mp3` (aynı ElevenLabs Music üretimi, 70.06 sn); 63.56 sn'de (72 bpm, 10.04 sn = 12 vuruş = 3 ölçü periyot) 0.5 sn eşit-güç crossfade ile 53.5 sn'ye geri döngü (ek 10 sn ostinato; kesim noktası korelasyonla seçildi, 0.986), 0.4 sn giriş + 1.4 sn çıkış fade (sonda ostinato çözülmeden söner, P01'e döngü). Yeni lisans/atıf gerekmez; yukarıdaki "DOĞRULAMA AÇIK" notu aynen geçerli. Eski `evliya-hicaz-62.9.mp3` kullanımdan çıktı. Mikste seviye: konuşmada −22 dB, aralarda ≤ −16 dB (anlatıma göre). |
 | Not | Dönem otantikliği düşük (üretim "Osmanlı havası"); kamu malı klasik/Osmanlı kayıt bulunursa değiştirilebilir. |
 
 ### Foley / ambiyans

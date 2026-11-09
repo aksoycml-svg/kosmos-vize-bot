@@ -9,7 +9,7 @@ import numpy as np
 SR, FPS = 44100, 60
 B = "bolumler/evliya-ucuslari"; PUB = "public/"
 OUT = PUB + "evliya/miks/"
-MUZIK = PUB + "evliya/muzik/evliya-hicaz-62.9.mp3"
+MUZIK = PUB + "evliya/muzik/evliya-hicaz-77.mp3"
 
 
 def oku(f):
@@ -32,7 +32,9 @@ def yaz(f, x):
 
 
 def koy(buf, x, t):
-    i = max(0, int(round(t * SR))); n = min(len(x), len(buf) - i)
+    i = int(round(t * SR))
+    if i < 0: x = x[-i:]; i = 0   # bölüm başından önceye taşan baş kırpılır
+    n = min(len(x), len(buf) - i)
     if n > 0: buf[i:i + n] += x[:n]
 
 
@@ -66,29 +68,30 @@ def lp(x, fc):
 bolum = json.load(open(f"{B}/bolum.json")); FOL = json.load(open(f"{B}/foley.json"))
 bas, t0 = {}, 0
 for p in bolum["planlar"]: bas[p["id"]] = t0; t0 += p["sure_kare"]
-TOP = t0 / FPS; N = int(round((TOP + 0.5) * SR))
+TOP = t0 / FPS; N = int(round(TOP * SR))   # tam 4624/60 sn (kuyruk yok)
 tp = lambda pid, k: (bas[pid] + k) / FPS
 
-# ambiyans: (plan, ad, kare_bas, kare_bit|None, db, lp_fc)
-AMB = [("P01", "deniz-ortam", 0, None, -22), ("P02", "deniz-ortam", 0, None, -22), ("P03", "mesale-ortam", 0, None, -22),
-       ("P04", "deniz-ortam", 0, None, -24), ("P05", "deniz-ortam", 0, None, -24), ("P06", "ruzgar-dusme", 46, 86, -14),
-       ("P06", "yuzme-su", 222, 288, -16), ("P07", "su-damla", 0, 190, -18), ("P08", "ruzgar-kule", 0, None, -20),
-       ("P08", "ruzgar-dusme", 52, 148, -14), ("P09", "ruzgar-bogaz", 0, 260, -16), ("P10", "marti-ortam", 0, None, -22),
+# ambiyans: (plan, ad, kare_bas, kare_bit|None, db[, lp_fc]) -- 77 sn sürüm (ses-v3), kareler plan içi, temas karelerine bağlı
+AMB = [("P01", "deniz-ortam", 0, 242, -22), ("P01", "ruzgar-kule", 242, None, -22),  # p242 sert kesme: gece rıhtım -> gündüz kule
+       ("P02", "deniz-ortam", 0, None, -22), ("P03", "mesale-ortam", 0, None, -22),
+       ("P04", "deniz-ortam", 0, None, -24), ("P05", "deniz-ortam", 0, None, -24), ("P06", "ruzgar-dusme", 76, 116, -14),
+       ("P06", "yuzme-su", 325, 391, -16), ("P07", "su-damla", 0, 232, -18), ("P08", "ruzgar-kule", 0, None, -20),
+       ("P08", "ruzgar-dusme", 122, 218, -14), ("P09", "ruzgar-bogaz", 0, 330, -16), ("P10", "marti-ortam", 0, None, -22),
        ("P11", "deniz-ortam", 0, None, -22), ("P12", "sehir-ortam", 0, 30, -12), ("P12", "sehir-ortam", 30, None, -22, 1200),
        ("P13", "kagit-ortam", 0, None, -22), ("P14", "kagit-ortam", 0, None, -22)]
-# özel kare vurguları (ortam seviyesi): P01 p176 kule rüzgârı
-EK = [("P01", "kule-vurgu", 176, -14)]
-# müzik zarfı: (zaman sn, dB ek) kontrol noktaları; müzikal cümle - ani düşüş yok
+# özel kare vurguları (ortam seviyesi): P01 p242 kesmede kule rüzgârı
+EK = [("P01", "kule-vurgu", 242, -14)]
+# müzik zarfı: (zaman sn, dB ek) kontrol noktaları; müzikal cümle - ani düşüş yok. Kareler ses-v3 temas karelerine kaydırıldı.
 def muzik_ek():
     pts = [(0, 0)]
     f = lambda pid, k: tp(pid, k)
-    pts += [(f("P01", 150), 0), (f("P01", 176), 1.5), (f("P01", 230), 0),     # kesmede tek vurgu
-            (f("P05", 56), 0), (f("P05", 112), 3.5), (f("P05", 150), 0),     # crescendo -> kalkış
-            (f("P06", 0), -3), (f("P06", 90), -3), (f("P06", 215), 0),       # itki söner, yüzerken sade
-            (f("P07", 68), 1.5), (f("P07", 200), 0),                         # ödülde açılır
-            (f("P08", 148), -3), (f("P08", 200), 1.5), (f("P09", 20), 0),   # çarpmada alçalır, bakışta yükselir
-            (f("P09", 120), 2), (f("P09", 238), 0),                          # süzülüş / iniş çözülür
-            (f("P11", 100), 0), (f("P11", 104), 3), (f("P11", 150), 0),     # omuz vurgusu
+    pts += [(f("P01", 216), 0), (f("P01", 242), 1.5), (f("P01", 296), 0),     # kesmede tek vurgu
+            (f("P05", 80), 0), (f("P05", 136), 3.5), (f("P05", 174), 0),     # crescendo -> kalkış (fisek p136)
+            (f("P06", 0), -3), (f("P06", 120), -3), (f("P06", 320), 0),      # itki söner, yüzerken sade
+            (f("P07", 84), 1.5), (f("P07", 232), 0),                         # ödülde açılır
+            (f("P08", 218), -3), (f("P08", 270), 1.5), (f("P09", 30), 0),   # çarpmada alçalır, bakışta yükselir
+            (f("P09", 200), 2), (f("P09", 352), 0),                          # süzülüş / iniş çözülür
+            (f("P11", 164), 0), (f("P11", 168), 3), (f("P11", 214), 0),     # omuz vurgusu
             (f("P12", 26), 0), (f("P12", 34), -4), (f("P12", 120), -3),     # tok'ta dinamik düşüş
             (f("P13", 140), -3), (f("P13", 240), -5),                        # defterler boş
             (f("P14", 90), -1), (TOP, 0)]
@@ -107,7 +110,7 @@ for dil in (sys.argv[1:] or ["tr", "en"]):
     ses = np.zeros((N, 2)); key = "ses" if dil == "tr" else "ses_en"
     for p in bolum["planlar"]:
         for s in p[key]:
-            x = oku(PUB + s["dosya"]); x = x * g(-18 - lufs(x)) * g(s.get("db", 0))
+            x = oku(PUB + s["dosya"]); x = x * g((-19 if "replik" in p else -18) - lufs(x)) * g(s.get("db", 0))   # replik -19 LUFS
             koy(ses, kenar(x), tp(p["id"], s["kare"]))
     # klip başına -18 LUFS eşitlenmiş; toplam anlatım ölç
     # --- foley
@@ -120,6 +123,13 @@ for dil in (sys.argv[1:] or ["tr", "en"]):
                 x = oku(PUB + FOL[a]["dosya"]); cache[a] = x / max(np.abs(x).max(), 1e-6) * g(-3)
             x = cache[a] * g(t["db"])
             koy(fol, kenar(x, 3), tp(p["id"], t["kare"]) - FOL[a]["tepe_ms"] / 1000)
+    # --- foley, anlatım varken anlatımın en az 4 dB altında kalır (en çok -8 dB indirim; kalkış/püskürme/su anlatımı örtmesin)
+    hb = int(.05 * SR); nb = len(ses) // hb
+    rms = lambda x, w: np.sqrt(np.convolve(x[:nb * hb].mean(1).reshape(nb, hb).__pow__(2).mean(1), np.ones(w) / w, "same"))
+    ra, rf = rms(ses, 4), rms(fol, 1)          # anlatım 0.2 sn pencere, foley 50 ms blok
+    k = np.where(ra > .02, np.clip(ra * g(-4) / (rf + 1e-9), g(-8), 1), 1.0)
+    k = np.minimum(np.minimum(k, np.roll(k, 1)), np.roll(k, -1)); k = np.convolve(k, np.ones(3) / 3, "same")
+    fol *= np.interp(np.arange(len(fol)), (np.arange(nb) + .5) * hb, k)[:, None]
     # --- ortam
     amb = np.zeros((N, 2)); ac = {}
     for r in AMB:
@@ -136,13 +146,19 @@ for dil in (sys.argv[1:] or ["tr", "en"]):
         koy(amb, x, tp(pid, kb) - (.2 if kb else 0))
     for pid, ad, k, db in EK:
         x = oku(PUB + FOL[ad]["dosya"]); x = x / np.abs(x).max() * g(-3 + db); koy(amb, kenar(x, 20), tp(pid, k) - FOL[ad]["tepe_ms"] / 1000)
-    # --- müzik: anlatımın -8 dB altı (sessiz an), konuşmada -18 dB; zarf anlatımdan
+    # --- müzik: konuşmada -22 dB, aralarda ≤ -16 dB (anlatıma göre); zarf anlatımdan
     m = oku(MUZIK); m = np.resize(m, (N, 2)) if len(m) < N else m[:N]
     m = m[:N]; m = np.vstack([m, np.zeros((N - len(m), 2))]) if len(m) < N else m
-    m = m * g(-18 - lufs(m))                    # önce anlatımla aynı LUFS
+    m = m * g(-18 - lufs(m))                    # önce anlatımla aynı LUFS (0 dB ref)
     e = env(ses, .12, .6)                       # konuşma etkinliği
-    duck = g(-8) * (1 - e) + g(-18) * e         # -8 -> -18 dB
-    m = m * (duck * musikal_zarf(N))[:, None]
+    # kullanıcı kararı (77 sn önizleme): konuşmada -22 dB, aralarda en fazla -16 dB; vurgu zarfı bu tavanı aşamaz
+    # (konuşma varken artış yarıya iner)
+    duck_db = -16 * (1 - e) + -22 * e
+    z_db = 20 * np.log10(musikal_zarf(N))
+    z_db = np.where(z_db > 0, z_db * (1 - .5 * e), z_db)
+    m = m * g(np.minimum(duck_db + z_db, -16))[:, None]
+    nf = int(.6 * SR)                          # bölüm sonu: ortam/foley kuyruğu ani kesilmez
+    for x in (amb, fol): x[-nf:] *= np.linspace(1, 0, nf)[:, None]
     for nm, x in (("anlatim", ses), ("foley", fol), ("muzik", m), ("ortam", amb)): yaz(f"{OUT}{dil}/{nm}.wav", x)
     top = ses + fol + m + amb
     # --- final: loudnorm iki geçiş (-14 LUFS, -1.5 dBTP)
