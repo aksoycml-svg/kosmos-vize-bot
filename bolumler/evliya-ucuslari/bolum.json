@@ -1389,14 +1389,15 @@
      "metin": "Bugünkü bir hesap: ~250 m",
      "en": "A modern estimate: ~250 m (820 ft) up",
      "tur": "iddia",
-     "bas": 144,
+     "bas": 100,
      "bit": 222,
      "vurgu": [
       "250"
      ],
      "vurgu_en": [
       "250"
-     ]
+     ],
+     "not": "[FINAL3] bas 144→100 (EN okunsun)"
     }
    ],
    "temaslar": [
@@ -1863,14 +1864,15 @@
      "metin": "Sonra yüzerek padişaha döndü.",
      "en": "Then he swam back to the sultan.",
      "tur": "iddia",
-     "bas": 309,
-     "bit": 373,
+     "bas": 270,
+     "bit": 385,
      "vurgu": [
       "yüzerek"
      ],
      "vurgu_en": [
       "swam"
-     ]
+     ],
+     "not": "[FINAL3] 270–385 (≥1.9 sn)"
     }
    ],
    "temaslar": [
@@ -3108,14 +3110,15 @@
      "metin": "Aynı köşk · Padişah IV. Murad",
      "en": "The same pavilion · Sultan Murad IV",
      "tur": "iddia",
-     "bas": 20,
+     "bas": 116,
      "bit": 327,
      "vurgu": [
       "Aynı"
      ],
      "vurgu_en": [
       "same"
-     ]
+     ],
+     "not": "[FINAL3] bas 20→116: soru sorulurken cevap verilmesin"
     }
    ],
    "temaslar": [],

@@ -52,6 +52,9 @@ npx remotion bundle src/index.ts --out-dir="$IS_D/bundle" --log=error >>"$LOG" 2
 B="$IS_D/bundle"
 
 # ---- 2) görüntü: parçalar sırayla ----
+if [ "${YALNIZ_YAZI:-0}" = 1 ] && [ -s "$IS_D/gorsel.mov" ]; then
+  log "YALNIZ_YAZI=1: görüntü yeniden render edilmiyor, mevcut gorsel.mov kullanılıyor"
+else
 : > "$IS_D/gorsel.txt"
 p=$BAS; i=0
 while [ $p -le $BIT ]; do
@@ -69,6 +72,7 @@ while [ $p -le $BIT ]; do
 done
 log "görüntü birleştirme (concat, -c copy; ProRes intra → kare-kesin)"
 ffmpeg -loglevel error -y -f concat -safe 0 -i "$IS_D/gorsel.txt" -c copy "$IS_D/gorsel.mov"
+fi
 NG=$(kare_say "$IS_D/gorsel.mov")
 [ "$NG" = "$N" ] || { log "HATA: görüntü $NG kare, beklenen $N"; exit 1; }
 
