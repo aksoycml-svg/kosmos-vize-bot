@@ -1,0 +1,62 @@
+{
+ "text": "[curious] And the other man? [mysterious] Hezarfen, atop the Galata Tower.",
+ "words": [
+  {
+   "t": "And",
+   "s": 0.152,
+   "e": 0.227
+  },
+  {
+   "t": "the",
+   "s": 0.24,
+   "e": 0.28
+  },
+  {
+   "t": "other",
+   "s": 0.3,
+   "e": 0.44
+  },
+  {
+   "t": "man?",
+   "s": 0.48,
+   "e": 0.7
+  },
+  {
+   "t": "Hezarfen,",
+   "s": 1.705,
+   "e": 2.532
+  },
+  {
+   "t": "atop",
+   "s": 2.628,
+   "e": 3.012
+  },
+  {
+   "t": "the",
+   "s": 3.032,
+   "e": 3.092
+  },
+  {
+   "t": "Galata",
+   "s": 3.152,
+   "e": 3.572
+  },
+  {
+   "t": "Tower.",
+   "s": 3.652,
+   "e": 4.132
+  }
+ ],
+ "dur": 4.17,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B",
+ "on_bosluk_ms": 40
+}

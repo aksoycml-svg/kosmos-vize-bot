@@ -1,0 +1,57 @@
+{
+ "text": "[storytelling] İlki, padişahın kızının doğum şenliğinde. [curious] Padişahı kim şaşırtacak?",
+ "words": [
+  {
+   "t": "İlki,",
+   "s": 0.182,
+   "e": 0.56
+  },
+  {
+   "t": "padişahın",
+   "s": 0.62,
+   "e": 1.32
+  },
+  {
+   "t": "kızının",
+   "s": 1.38,
+   "e": 1.8
+  },
+  {
+   "t": "doğum",
+   "s": 1.86,
+   "e": 2.12
+  },
+  {
+   "t": "şenliğinde.",
+   "s": 2.2,
+   "e": 2.96
+  },
+  {
+   "t": "Padişahı",
+   "s": 3.23,
+   "e": 3.8
+  },
+  {
+   "t": "kim",
+   "s": 3.86,
+   "e": 4.04
+  },
+  {
+   "t": "şaşırtacak?",
+   "s": 4.12,
+   "e": 5.08
+  }
+ ],
+ "dur": 5.13,
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B",
+ "on_bosluk_ms": 40
+}

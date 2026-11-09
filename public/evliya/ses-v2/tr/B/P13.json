@@ -1,0 +1,56 @@
+{
+ "text": "[curious] Peki bunları nereden biliyoruz? [thoughtful] Yalnızca Evliya Çelebi'nin kitabından.",
+ "words": [
+  {
+   "t": "Peki",
+   "s": 0.07,
+   "e": 0.24
+  },
+  {
+   "t": "bunları",
+   "s": 0.29,
+   "e": 0.64
+  },
+  {
+   "t": "nereden",
+   "s": 0.68,
+   "e": 1.12
+  },
+  {
+   "t": "biliyoruz?",
+   "s": 1.16,
+   "e": 1.761
+  },
+  {
+   "t": "Yalnızca",
+   "s": 2.76,
+   "e": 3.04
+  },
+  {
+   "t": "Evliya",
+   "s": 3.12,
+   "e": 3.44
+  },
+  {
+   "t": "Çelebi'nin",
+   "s": 3.52,
+   "e": 4.0
+  },
+  {
+   "t": "kitabından.",
+   "s": 4.053,
+   "e": 4.96
+  }
+ ],
+ "dur": 4.989,
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B"
+}

@@ -15,11 +15,27 @@ ETIKET = {
  "tr": {"P01": "[curious] İstanbul'da bir adam fişeğe binip göğe çıkmış. [mysterious] Bir başkası da Boğaz'ı uçarak geçmiş.",
         "P05": "[excited] Fitil yanıyor ve fişek onu göğe fırlatıyor!",
         "P10": "[curious] Onu kim izliyor? [knowing] Yine padişah. Yine aynı köşkten.",
-        "P14": "[thoughtful] Yani kanıt yok. [warm] Ama dört yüz yıldır anlatıyoruz."},
+        "P14": "[thoughtful] Yani kanıt yok. [warm] Ama dört yüz yıldır anlatıyoruz.",
+        "P02": "[storytelling] İlki, padişahın kızının doğum şenliğinde. [curious] Padişahı kim şaşırtacak?",
+        "P03": "[playful] Lagâri Hasan Çelebi fişeğe biniyor [excited] ve padişaha sesleniyor.",
+        "P06": "[tense] Barut bitince kanatlarını açıyor. [awe] Süzülüp köşkün önünde denize iniyor.",
+        "P07": "[knowing] Karşılığında bir kese para ve her gün maaş alıyor.",
+        "P08": "[curious] Peki öteki adam? [mysterious] Hezarfen, Galata Kulesi'nin tepesinde.",
+        "P09": "[determined] Lodos esince atlıyor [awe] ve Boğaz'ı süzülerek geçip Üsküdar'a iniyor.",
+        "P11": "[warm] Ona bir kese altın veriyor. [ominous] Ama sonra sürgüne yolluyor.",
+        "P13": "[curious] Peki bunları nereden biliyoruz? [thoughtful] Yalnızca Evliya Çelebi'nin kitabından."},
  "en": {"P01": "[curious] A man rode a rocket into the sky over Istanbul. [mysterious] Another glided across the Bosphorus.",
         "P05": "[excited] The fuse burns, and the rocket hurls him skyward!",
         "P10": "[curious] Who's watching? [knowing] The sultan again. From the very same pavilion.",
-        "P14": "[thoughtful] So, no proof. [warm] Yet we've told it for 400 years."}}
+        "P14": "[thoughtful] So, no proof. [warm] Yet we've told it for 400 years.",
+        "P02": "[storytelling] The first was at the sultan's party. [curious] Who'll amaze him?",
+        "P03": "[playful] Lagâri sits on a rocket [excited] and calls to the sultan:",
+        "P06": "[tense] Powder gone, wings open, [awe] he glides down in front of the pavilion.",
+        "P07": "[knowing] For it, he gets a purse and a daily salary.",
+        "P08": "[curious] And the other man? [mysterious] Hezarfen, atop the Galata Tower.",
+        "P09": "[determined] With a southwest wind, he jumps [awe] and glides across the Bosphorus.",
+        "P11": "[warm] He gets a purse of gold. [ominous] But then he's banished.",
+        "P13": "[curious] How do we know? [thoughtful] Only from Evliya Çelebi's book."}}
 
 def post(path, body):
     r = urllib.request.Request(API + path, data=json.dumps(body).encode(), headers={"xi-api-key": KEY, "Content-Type": "application/json"})
@@ -79,7 +95,7 @@ if mod == "anlatim":
             for var in (sys.argv[3].split(",") if len(sys.argv) > 3 else ("A", "B")):
                 os.makedirs(f"{ROOT}/ses-v2/{lang}/{var}", exist_ok=True)
                 mp3 = f"{ROOT}/ses-v2/{lang}/{var}/{pid}.mp3"; js = mp3[:-4] + ".json"
-                limit = plan[pid] - 0.25
+                limit = plan[pid] - 0.25 if var == 'A' else 99
                 metin = eski[lang][pid]["text"]
                 def tts(t):
                     if lang == "en":

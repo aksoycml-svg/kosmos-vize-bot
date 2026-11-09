@@ -1,0 +1,67 @@
+{
+ "text": "[storytelling] The first was at the sultan's party. [curious] Who'll amaze him?",
+ "words": [
+  {
+   "t": "The",
+   "s": 0.11,
+   "e": 0.12
+  },
+  {
+   "t": "first",
+   "s": 0.187,
+   "e": 0.52
+  },
+  {
+   "t": "was",
+   "s": 0.58,
+   "e": 0.76
+  },
+  {
+   "t": "at",
+   "s": 0.787,
+   "e": 0.84
+  },
+  {
+   "t": "the",
+   "s": 0.88,
+   "e": 1.0
+  },
+  {
+   "t": "sultan's",
+   "s": 1.08,
+   "e": 1.56
+  },
+  {
+   "t": "party.",
+   "s": 1.627,
+   "e": 2.76
+  },
+  {
+   "t": "Who'll",
+   "s": 2.896,
+   "e": 3.0
+  },
+  {
+   "t": "amaze",
+   "s": 3.08,
+   "e": 3.48
+  },
+  {
+   "t": "him?",
+   "s": 3.58,
+   "e": 3.96
+  }
+ ],
+ "dur": 4.01,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B",
+ "on_bosluk_ms": 40
+}

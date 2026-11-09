@@ -1,0 +1,62 @@
+{
+ "text": "[curious] How do we know? [thoughtful] Only from Evliya Chelebi's book.",
+ "words": [
+  {
+   "t": "How",
+   "s": 0.105,
+   "e": 0.12
+  },
+  {
+   "t": "do",
+   "s": 0.147,
+   "e": 0.2
+  },
+  {
+   "t": "we",
+   "s": 0.28,
+   "e": 0.44
+  },
+  {
+   "t": "know?",
+   "s": 0.488,
+   "e": 0.76
+  },
+  {
+   "t": "Only",
+   "s": 1.752,
+   "e": 1.8
+  },
+  {
+   "t": "from",
+   "s": 1.864,
+   "e": 2.12
+  },
+  {
+   "t": "Evliya",
+   "s": 2.253,
+   "e": 2.76
+  },
+  {
+   "t": "Chelebi's",
+   "s": 2.82,
+   "e": 3.4
+  },
+  {
+   "t": "book.",
+   "s": 3.48,
+   "e": 3.8
+  }
+ ],
+ "dur": 3.85,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B",
+ "on_bosluk_ms": 40
+}

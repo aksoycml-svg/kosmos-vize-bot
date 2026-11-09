@@ -1,0 +1,62 @@
+{
+ "text": "[warm] Ona bir kese altın veriyor. [ominous] Ama sonra sürgüne yolluyor.",
+ "words": [
+  {
+   "t": "Ona",
+   "s": 0.173,
+   "e": 0.28
+  },
+  {
+   "t": "bir",
+   "s": 0.32,
+   "e": 0.44
+  },
+  {
+   "t": "kese",
+   "s": 0.52,
+   "e": 0.84
+  },
+  {
+   "t": "altın",
+   "s": 0.92,
+   "e": 1.32
+  },
+  {
+   "t": "veriyor.",
+   "s": 1.38,
+   "e": 1.88
+  },
+  {
+   "t": "Ama",
+   "s": 2.802,
+   "e": 2.842
+  },
+  {
+   "t": "sonra",
+   "s": 2.922,
+   "e": 3.322
+  },
+  {
+   "t": "sürgüne",
+   "s": 3.455,
+   "e": 4.042
+  },
+  {
+   "t": "yolluyor.",
+   "s": 4.082,
+   "e": 5.402
+  }
+ ],
+ "dur": 5.45,
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B",
+ "on_bosluk_ms": 40
+}
