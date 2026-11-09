@@ -1295,3 +1295,10 @@
      - P04'te yüz %10'a indi.
      - P09 p0–92 arası tek etiket var (GALATA, 10 px Hezarfen'in yanında).
      - Tam render henüz alınmadı.
+
+## yonetmen · 2026-11-09 · K8/K9 motion json değişikliklerinin onayı
+- Ne yaptım: Motion K8 ve K9 tablolarındaki tüm json değişikliklerini (P02, P03, P04, P09, P13, P14) bolum.json ile karşılaştırdım; doğrulayıcıyı çalıştırdım (GEÇTİ, 0 hata, 12 uyarı). Plan tablosunu güncelledim ve §5.0g'yi ekledim.
+- Dokunduğum dosyalar: `bolumler/evliya-ucuslari/sahne-plani.md`, `bolumler/evliya-ucuslari/katki-raporu.md` (bolum.json ve src/ dokunulmadı).
+- Aldığım kararlar ve gerekçeleri: Hepsi onaylandı. P04 (yüz ≈%10) ve P03 (Y1 kenarda) koşullu, çünkü ana eylem güvenli alanda ve küçük jest yok. Render çalışırken json değişmesin diye düzeltmeler yalnız notlandı.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: Kural 2 (animasyon plan sonundan ≥12 kare önce biter): P09 p262/282, P13 p212/300, P14 p234/246 sağlanıyor. Güvenli alan ve yazı bantları: P04 ayak y≈1470, P09 fişleri y 520–1250, P13 çizimi üst bandın altında. Yakaladıklarım: P13 kontrol_kare 190'da ikinci kapak henüz yatmamış (kural 3); P04 okunurluk notu eski ve yeni metni karışık taşıyor.
+- Açık sorular / bir sonraki ajana notlar: Düzeltme turu için §5.0g'deki 5 madde (P13 kontrol_kare 216, P04 not temizliği, P03 Y1 kenar kontrolü, P04 yüz okunurluğu, P09 alt yarı).
