@@ -22,3 +22,22 @@
 
 ### v4 ek foley
 - `public/blanc/sfx-v4/esneme-a.mp3`, `esneme-b.mp3`: ElevenLabs Sound Generation (Creator plan, ticari kullanım uygun, atıf gerekmez); v4'te yeniden üretildi.
+
+## Evliya Çelebi'nin uçuşları (bolumler/evliya-ucuslari)
+
+Ağ notu: archive.org / incompetech / pixabay / musopen bu sunucudan erişilemedi (proxy 403 / bağlantı yok); yalnız api.elevenlabs.io açık. Kamu malı Osmanlı kaydı indirilemedi, bu yüzden müzik ElevenLabs Music ile üretildi.
+
+### Müzik
+| Alan | Değer |
+|---|---|
+| Eser | "Evliya hicaz ostinato" — ElevenLabs Music ile üretilmiş özgün enstrümantal (ney, ud, tanbur, kanun, def; hicaz makamı havası, 72 bpm) |
+| Besteci/icracı | Yok (yapay zekâ üretimi; insan icracı/besteci yok) |
+| Kaynak | ElevenLabs Music API (`POST /v1/music`, `force_instrumental`, 70 sn) — ham dosya `public/evliya/muzik/ham-a.mp3` |
+| Prompt | Instrumental, 17th century Ottoman court music mood, Istanbul 1630s: ney, oud, tanbur, kanun, frame drum, makam hicaz; low oud ostinato, rising ney melody in middle, returns to ostinato unresolved for loop |
+| Lisans | ElevenLabs hizmet şartları: ücretli planda üretilen çıktı ticari kullanıma uygun; atıf zorunlu değil. DOĞRULAMA AÇIK: hesabın Music için ticari kullanım hakkı plan sayfasından kullanıcı tarafından teyit edilmeli (ücretsiz planda API kapalıydı; çağrı 200 döndü, plan Creator/Starter+ olarak varsayıldı) |
+| Atıf | Gerekmez. İsteğe bağlı: "Müzik: ElevenLabs Music" |
+| Kullanım | `public/evliya/muzik/evliya-hicaz-62.9.mp3`: ham 0–62.9 sn, 0.4 sn giriş + 1.4 sn çıkış fade; müzik zarfı (vurgu/alçalma) `tools/evliya_miks.py` içinde |
+| Not | Dönem otantikliği düşük (üretim "Osmanlı havası"); kamu malı klasik/Osmanlı kayıt bulunursa değiştirilebilir. |
+
+### Foley / ambiyans
+- 43 klip `public/evliya/sfx/` (`tools/evliya_sfx.py`): ElevenLabs Sound Generation (aynı abonelik, ticari uygun, atıf gerekmez). Promptlar betikte.

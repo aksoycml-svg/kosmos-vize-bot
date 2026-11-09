@@ -1,2 +1,4 @@
 node_modules/
 out/
+public/evliya/miks/**/*.wav
+public/evliya/miks/*.wav

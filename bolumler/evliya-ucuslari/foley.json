@@ -1,0 +1,355 @@
+{
+ "adim-tas": {
+  "dosya": "evliya/sfx/adim-tas.mp3",
+  "tepe_ms": 65,
+  "sure_ms": 690,
+  "tepe_dbfs": -25.1,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -21
+ },
+ "ayak-tahta": {
+  "dosya": "evliya/sfx/ayak-tahta.mp3",
+  "tepe_ms": 270,
+  "sure_ms": 890,
+  "tepe_dbfs": -0.8,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -10
+ },
+ "baslik-inis": {
+  "dosya": "evliya/sfx/baslik-inis.mp3",
+  "tepe_ms": 245,
+  "sure_ms": 800,
+  "tepe_dbfs": -5.9,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -10
+ },
+ "birakma-tik": {
+  "dosya": "evliya/sfx/birakma-tik.mp3",
+  "tepe_ms": 175,
+  "sure_ms": 600,
+  "tepe_dbfs": 0.0,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -10
+ },
+ "buhar": {
+  "dosya": "evliya/sfx/buhar.mp3",
+  "tepe_ms": 95,
+  "sure_ms": 2570,
+  "tepe_dbfs": -2.2,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -12
+ },
+ "defter-ac": {
+  "dosya": "evliya/sfx/defter-ac.mp3",
+  "tepe_ms": 645,
+  "sure_ms": 1200,
+  "tepe_dbfs": -8.8,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -10
+ },
+ "deniz-ortam": {
+  "dosya": "evliya/sfx/deniz-ortam.mp3",
+  "tepe_ms": 770,
+  "sure_ms": 12090,
+  "tepe_dbfs": -2.8,
+  "kaynak": "elevenlabs-sfx",
+  "tip": "ortam"
+ },
+ "el-ahsap": {
+  "dosya": "evliya/sfx/el-ahsap.mp3",
+  "tepe_ms": 140,
+  "sure_ms": 570,
+  "tepe_dbfs": -5.6,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -20
+ },
+ "fisek-kalkis": {
+  "dosya": "evliya/sfx/fisek-kalkis.mp3",
+  "tepe_ms": 170,
+  "sure_ms": 4090,
+  "tepe_dbfs": 0.0,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -6
+ },
+ "fitil-tiss": {
+  "dosya": "evliya/sfx/fitil-tiss.mp3",
+  "tepe_ms": 45,
+  "sure_ms": 2091,
+  "tepe_dbfs": -14.1,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -8
+ },
+ "inis-toprak": {
+  "dosya": "evliya/sfx/inis-toprak.mp3",
+  "tepe_ms": 65,
+  "sure_ms": 1290,
+  "tepe_dbfs": -2.1,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -10
+ },
+ "islak-el": {
+  "dosya": "evliya/sfx/islak-el.mp3",
+  "tepe_ms": 210,
+  "sure_ms": 600,
+  "tepe_dbfs": -2.0,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -12
+ },
+ "kagit-ortam": {
+  "dosya": "evliya/sfx/kagit-ortam.mp3",
+  "tepe_ms": 210,
+  "sure_ms": 10000,
+  "tepe_dbfs": -29.9,
+  "kaynak": "elevenlabs-sfx",
+  "tip": "ortam"
+ },
+ "kanat-hisirti": {
+  "dosya": "evliya/sfx/kanat-hisirti.mp3",
+  "tepe_ms": 235,
+  "sure_ms": 1200,
+  "tepe_dbfs": -3.5,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -12
+ },
+ "kese-singir": {
+  "dosya": "evliya/sfx/kese-singir.mp3",
+  "tepe_ms": 20,
+  "sure_ms": 1200,
+  "tepe_dbfs": -4.1,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -6
+ },
+ "kese-yere": {
+  "dosya": "evliya/sfx/kese-yere.mp3",
+  "tepe_ms": 40,
+  "sure_ms": 1000,
+  "tepe_dbfs": -5.6,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -6
+ },
+ "kule-vurgu": {
+  "dosya": "evliya/sfx/kule-vurgu.mp3",
+  "tepe_ms": 265,
+  "sure_ms": 2000,
+  "tepe_dbfs": -0.6,
+  "kaynak": "elevenlabs-sfx",
+  "tip": "ortam"
+ },
+ "kumas-hisirti": {
+  "dosya": "evliya/sfx/kumas-hisirti.mp3",
+  "tepe_ms": 65,
+  "sure_ms": 890,
+  "tepe_dbfs": -2.1,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -10
+ },
+ "mandal-tik": {
+  "dosya": "evliya/sfx/mandal-tik.mp3",
+  "tepe_ms": 85,
+  "sure_ms": 690,
+  "tepe_dbfs": -5.5,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -8
+ },
+ "marti-cigligi": {
+  "dosya": "evliya/sfx/marti-cigligi.mp3",
+  "tepe_ms": 45,
+  "sure_ms": 1850,
+  "tepe_dbfs": -0.6,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -10
+ },
+ "marti-ortam": {
+  "dosya": "evliya/sfx/marti-ortam.mp3",
+  "tepe_ms": 195,
+  "sure_ms": 12090,
+  "tepe_dbfs": -29.0,
+  "kaynak": "elevenlabs-sfx",
+  "tip": "ortam"
+ },
+ "mesale-ortam": {
+  "dosya": "evliya/sfx/mesale-ortam.mp3",
+  "tepe_ms": 1110,
+  "sure_ms": 8000,
+  "tepe_dbfs": -29.1,
+  "kaynak": "elevenlabs-sfx",
+  "tip": "ortam"
+ },
+ "omuz-tok": {
+  "dosya": "evliya/sfx/omuz-tok.mp3",
+  "tepe_ms": 45,
+  "sure_ms": 680,
+  "tepe_dbfs": -9.0,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -8
+ },
+ "oturma-tahta": {
+  "dosya": "evliya/sfx/oturma-tahta.mp3",
+  "tepe_ms": 290,
+  "sure_ms": 1290,
+  "tepe_dbfs": -3.9,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -10
+ },
+ "pencere-tok": {
+  "dosya": "evliya/sfx/pencere-tok.mp3",
+  "tepe_ms": 220,
+  "sure_ms": 890,
+  "tepe_dbfs": -0.9,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -6
+ },
+ "puskurme": {
+  "dosya": "evliya/sfx/puskurme.mp3",
+  "tepe_ms": 425,
+  "sure_ms": 2091,
+  "tepe_dbfs": -0.0,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -8
+ },
+ "ruzgar-bogaz": {
+  "dosya": "evliya/sfx/ruzgar-bogaz.mp3",
+  "tepe_ms": 370,
+  "sure_ms": 12000,
+  "tepe_dbfs": -13.0,
+  "kaynak": "elevenlabs-sfx",
+  "tip": "ortam"
+ },
+ "ruzgar-dusme": {
+  "dosya": "evliya/sfx/ruzgar-dusme.mp3",
+  "tepe_ms": 620,
+  "sure_ms": 8090,
+  "tepe_dbfs": -3.1,
+  "kaynak": "elevenlabs-sfx",
+  "tip": "ortam"
+ },
+ "ruzgar-kule": {
+  "dosya": "evliya/sfx/ruzgar-kule.mp3",
+  "tepe_ms": 3835,
+  "sure_ms": 12000,
+  "tepe_dbfs": -8.7,
+  "kaynak": "elevenlabs-sfx",
+  "tip": "ortam"
+ },
+ "sehir-ortam": {
+  "dosya": "evliya/sfx/sehir-ortam.mp3",
+  "tepe_ms": 50,
+  "sure_ms": 12090,
+  "tepe_dbfs": -36.4,
+  "kaynak": "elevenlabs-sfx",
+  "tip": "ortam"
+ },
+ "senlik-patlama": {
+  "dosya": "evliya/sfx/senlik-patlama.mp3",
+  "tepe_ms": 45,
+  "sure_ms": 3090,
+  "tepe_dbfs": -23.1,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -12
+ },
+ "sikke-donme": {
+  "dosya": "evliya/sfx/sikke-donme.mp3",
+  "tepe_ms": 865,
+  "sure_ms": 3090,
+  "tepe_dbfs": 0.0,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -12
+ },
+ "sikke-tin": {
+  "dosya": "evliya/sfx/sikke-tin.mp3",
+  "tepe_ms": 90,
+  "sure_ms": 1090,
+  "tepe_dbfs": -0.7,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -10
+ },
+ "su-damla": {
+  "dosya": "evliya/sfx/su-damla.mp3",
+  "tepe_ms": 2245,
+  "sure_ms": 12000,
+  "tepe_dbfs": -21.4,
+  "kaynak": "elevenlabs-sfx",
+  "tip": "ortam"
+ },
+ "su-dump": {
+  "dosya": "evliya/sfx/su-dump.mp3",
+  "tepe_ms": 40,
+  "sure_ms": 2570,
+  "tepe_dbfs": 0.0,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -8
+ },
+ "su-sap": {
+  "dosya": "evliya/sfx/su-sap.mp3",
+  "tepe_ms": 65,
+  "sure_ms": 1850,
+  "tepe_dbfs": -0.7,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -4
+ },
+ "su-yatma": {
+  "dosya": "evliya/sfx/su-yatma.mp3",
+  "tepe_ms": 45,
+  "sure_ms": 1570,
+  "tepe_dbfs": -36.9,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -16
+ },
+ "tas-kayma": {
+  "dosya": "evliya/sfx/tas-kayma.mp3",
+  "tepe_ms": 195,
+  "sure_ms": 890,
+  "tepe_dbfs": -6.8,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -10
+ },
+ "tas-sekme": {
+  "dosya": "evliya/sfx/tas-sekme.mp3",
+  "tepe_ms": 45,
+  "sure_ms": 690,
+  "tepe_dbfs": -10.1,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -22
+ },
+ "tas-surtme": {
+  "dosya": "evliya/sfx/tas-surtme.mp3",
+  "tepe_ms": 210,
+  "sure_ms": 1000,
+  "tepe_dbfs": -1.1,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -8
+ },
+ "tutunma-tup": {
+  "dosya": "evliya/sfx/tutunma-tup.mp3",
+  "tepe_ms": 125,
+  "sure_ms": 800,
+  "tepe_dbfs": -34.8,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -10
+ },
+ "uzak-tik": {
+  "dosya": "evliya/sfx/uzak-tik.mp3",
+  "tepe_ms": 0,
+  "sure_ms": 1000,
+  "tepe_dbfs": -56.3,
+  "kaynak": "elevenlabs-sfx",
+  "onerilen_db": -18
+ },
+ "yuzme-su": {
+  "dosya": "evliya/sfx/yuzme-su.mp3",
+  "tepe_ms": 2035,
+  "sure_ms": 8090,
+  "tepe_dbfs": -4.9,
+  "kaynak": "elevenlabs-sfx",
+  "tip": "ortam"
+ },
+ "ortam-kisma": {
+  "dosya": "evliya/sfx/sehir-ortam.mp3",
+  "tepe_ms": 0,
+  "sure_ms": 12090,
+  "onerilen_db": -12,
+  "tip": "ortam-filtre",
+  "kaynak": "elevenlabs-sfx",
+  "not": "Ses olayı değil: P12 p30'da dış ortam -12 -> -22 dB + alçak geçirgen 1200 Hz (tools/evliya_miks.py AMB)."
+ }
+}

@@ -1114,3 +1114,22 @@
 - **Açık / not:**
   - Motion bir sonraki turda P08 p110/p125 karelerini versin.
   - Yönetmen P02 yardımcı/meşale konumuna baksın.
+
+## kurgucu · 2026-11-09 · müzik + foley + miks planı
+- Ne yaptım: (1) Müzik: ElevenLabs Music ile 70 sn Osmanlı havalı (ney/ud/tanbur/def, hicaz) enstrümantal üretildi, 62.9 sn'ye kesildi (`evliya-hicaz-62.9.mp3`, 0.4 sn giriş / 1.4 sn çıkış fade). (2) `tools/evliya_sfx.py` ile 43 foley/ambiyans klibi üretildi (`public/evliya/sfx/`), hepsi `ses_kenar.py kontrol`: KESIK yok, CIT'ler `duzelt` ile giderildi, hepsi temiz; 3 klip (uzak-tik, su-yatma, tutunma-tup) çok kısık çıktığı için daha net promptla yeniden üretildi. (3) `bolumler/evliya-ucuslari/foley.json`: 43 giriş, tepe_ms (ilk −6 dB geçişi) ile; 39 temasın hepsi tanımlı. Doğrulayıcıda "foley.json yok"/"tanımsız" uyarısı kalmadı (kalan: ortam klipleri "temasta kullanılmıyor" = bilinçli ambiyans; ve motion'a ait 5 kit HATA'sı: bin/tutun jestleri, BOGAZ/KITAP-INSERT şablonları). (4) `tools/evliya_miks.py`: TR/EN ayrı stem'ler (anlatım, foley, müzik, ortam) + final. Sonuç ikisinde de −14.3 LUFS, TP −1.9 dBTP, 62.9 sn (`public/evliya/miks/{tr,en}.wav`, stem'ler `miks/{tr,en}/*.wav`). Dalga formu: `miks/{tr,en}-dalga.png` ve stem görünümü incelendi: ani kesik, sıçrama, üst üste binme yok; foley tepeleri −5.8 dBFS (anlatım −0.1), müzik −32.5 LUFS, ortam −36.3 LUFS (anlatım −18).
+- Dokunduğum dosyalar: tools/evliya_sfx.py, tools/evliya_miks.py, bolumler/evliya-ucuslari/foley.json, muzik/lisanslar.md, public/evliya/muzik/*, public/evliya/sfx/*, public/evliya/miks/*, bu rapor.
+- Aldığım kararlar ve gerekçeleri:
+  - Kamu malı kayıt indirilemedi (archive.org 403, incompetech/pixabay/musopen erişilemez) → ElevenLabs Music (çağrı çalıştı). Lisans açık soruda.
+  - Müzik sabit tempolu ostinato yatağı; dinamik cümleler gain zarfıyla verildi (P01 p176 +1.5, P05 p56→112 crescendo +3.5, P06 itki sönünce −3, P07 ödül +1.5, P08 çarpmada −3 / bakışta +1.5, P09 süzülüş +2, P11 p104 omuz +3, P12 p30 'tok'ta −4, P13 boş defterlerde −3/−5). 250 ms yumuşatma, ani düşüş yok. Müzik plan sınırlarında kesilmez (tek sürekli parça).
+  - Ducking: konuşma yokken anlatımın −8 dB altı, konuşmada −18 dB (zarf: 120 ms atak / 600 ms salım).
+  - Foley: klip tepesi −3 dBFS'e eşitlenir, sonra temas dB'si (−4…−22) uygulanır; ses `tepe_ms` kadar öne konup tepe temas karesine oturur. Küçük figür (adım-tas −21/−22, tas-sekme −22) korundu. Görünürlük–ses: P01–P12 görünmeyen kaynak yok; ortam yalnız kısık (−12…−24 dB, anlatım −18 LUFS'e göre).
+  - `ortam-kisma` ses değil filtre: P12 p30'da dış ortam −12→−22 dB + 1200 Hz alçak geçirgen; foley.json'da `tip: ortam-filtre` olarak tanımlandı.
+  - Anlatım klipleri tek tek −18 LUFS'e eşitlendi (replik P04/P12 aynı mp3'in içinde olduğundan ayrı −19 uygulanamadı).
+  - Final: loudnorm iki geçiş (TP −2.0) + alimiter 0.84, 48 kHz 24-bit WAV; ±0.3 içinde −14.3 (hedefi tutturmak için istenirse +0.3 dB kazanç).
+- Uyguladığım kurallar / yakaladığım ihlaller: temas = ses (39/39 temas yerleşti), görünürlük–ses, müzik akar, ses kenarı kontrolü, loudnorm + dalga formu. İhlal: sahne-plani'nda "dusme-ruzgar/yuzme-su/su-damla" gibi ortam sesleri temas listesinde yok, ambiyans katmanı olarak miksere AMB tablosuyla eklendi (bolum.json'a dokunulmadı).
+- Açık sorular / sonraki ajana notlar:
+  1. MÜZİK LİSANSI/OTANTİKLİK: ElevenLabs Music'in ticari kullanımı kullanıcının planına bağlı; teyit edilmeli. Dönem otantikliği için kamu malı Osmanlı/klasik kayıt (ağ açılınca) tercih edilir; yerine konursa yalnız `MUZIK` yolu değişir.
+  2. Müzik kulakla dinlenmedi (yalnız zarf/seviye ölçümü + dalga formu); makam/enstrüman karakteri, döngü dikişi (62.9 sn'de 1.4 sn fade → P01 başı) kullanıcı/eleştirmen kulağıyla doğrulanmalı. Ostinato 5 sn periyotlu olduğundan kesim ölçü sınırında değil.
+  3. Foley sesleri ElevenLabs çıktısı, kulakla tek tek doğrulanmadı (kenar + tepe ölçümü yapıldı); sikke-donme/su-dump uzun kuyruklu, plan sonuna taşabilir (P11 p208 sikke-tin ile çakışması izlenmeli).
+  4. Zamanlama bolum.json'a bağlı: temas karesi kayarsa `python3 -I tools/evliya_miks.py` yeniden çalıştırılır (~45 sn). Premiere için dört stem WAV hazır (anlatım/foley/müzik/ortam).
+  5. Doğrulayıcı hâlâ GEÇMEDİ: kit HATA'ları motion'a ait (jest bin/tutun, şablon BOGAZ, KITAP-INSERT), ses tarafı temiz.
