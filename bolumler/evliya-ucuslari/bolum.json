@@ -4296,7 +4296,7 @@
      "metin": "Seyahatname · başka kayıt bulunamadı",
      "en": "“Book of Travels” · no other record found",
      "tur": "iddia",
-     "bas": 20,
+     "bas": 146,
      "bit": 319,
      "vurgu": [
       "başka"
@@ -4304,7 +4304,7 @@
      "vurgu_en": [
       "other"
      ],
-     "not": "[FINAL2 O3] EN metin kutudan/sağ 80 px marjdan taşıyordu (SEYAHATNAME (“Book of Travels”) …): kısaltıldı"
+     "not": "[FINAL2 O3] EN metin kutudan/sağ 80 px marjdan taşıyordu (SEYAHATNAME (“Book of Travels”) …): kısaltıldı · [K10] bas 20→146: soru sorulurken cevap verilmesin ('Yalnızca' ile gelir)"
     }
    ],
    "temaslar": [
