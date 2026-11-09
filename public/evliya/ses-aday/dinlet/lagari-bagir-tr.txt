@@ -1,0 +1,9 @@
+1: fatih çekim 1 (4.36 sn)
+2: fatih çekim 2 (5.56 sn, UZUN >4.5)
+3: fatih çekim 3 (5.09 sn, UZUN >4.5)
+4: ali çekim 1 (4.52 sn, UZUN >4.5)
+5: ali çekim 2 (5.02 sn, UZUN >4.5)
+6: cavit çekim 1 (4.28 sn)
+7: cavit çekim 2 (4.28 sn)
+
+-19 LUFS, aralar 1 sn

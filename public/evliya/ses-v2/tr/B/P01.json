@@ -1,0 +1,82 @@
+{
+ "text": "[curious] İstanbul'da bir adam fişeğe binip göğe çıkmış. [mysterious] Bir başkası da Boğaz'ı uçarak geçmiş.",
+ "words": [
+  {
+   "t": "İstanbul'da",
+   "s": 0.476,
+   "e": 0.76
+  },
+  {
+   "t": "bir",
+   "s": 0.78,
+   "e": 0.84
+  },
+  {
+   "t": "adam",
+   "s": 0.904,
+   "e": 1.16
+  },
+  {
+   "t": "fişeğe",
+   "s": 1.267,
+   "e": 1.72
+  },
+  {
+   "t": "binip",
+   "s": 1.76,
+   "e": 1.96
+  },
+  {
+   "t": "göğe",
+   "s": 2.013,
+   "e": 2.28
+  },
+  {
+   "t": "çıkmış.",
+   "s": 2.307,
+   "e": 3.08
+  },
+  {
+   "t": "Bir",
+   "s": 3.385,
+   "e": 3.4
+  },
+  {
+   "t": "başkası",
+   "s": 3.46,
+   "e": 3.88
+  },
+  {
+   "t": "da",
+   "s": 3.933,
+   "e": 4.04
+  },
+  {
+   "t": "Boğaz'ı",
+   "s": 4.147,
+   "e": 4.68
+  },
+  {
+   "t": "uçarak",
+   "s": 4.733,
+   "e": 5.08
+  },
+  {
+   "t": "geçmiş.",
+   "s": 5.171,
+   "e": 5.72
+  }
+ ],
+ "dur": 5.77,
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B",
+ "on_bosluk_ms": 40
+}

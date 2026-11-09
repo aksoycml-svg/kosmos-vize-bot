@@ -1,0 +1,70 @@
+{
+ "text": "So, no proof. Yet we've told it for four hundred years.",
+ "words": [
+  {
+   "t": "So,",
+   "s": 0.0,
+   "e": 0.267
+  },
+  {
+   "t": "no",
+   "s": 0.325,
+   "e": 0.476
+  },
+  {
+   "t": "proof.",
+   "s": 0.569,
+   "e": 1.045
+  },
+  {
+   "t": "Yet",
+   "s": 1.37,
+   "e": 1.533
+  },
+  {
+   "t": "we've",
+   "s": 1.579,
+   "e": 1.741
+  },
+  {
+   "t": "told",
+   "s": 1.776,
+   "e": 1.974
+  },
+  {
+   "t": "it",
+   "s": 2.02,
+   "e": 2.078
+  },
+  {
+   "t": "for",
+   "s": 2.125,
+   "e": 2.241
+  },
+  {
+   "t": "four",
+   "s": 2.322,
+   "e": 2.531
+  },
+  {
+   "t": "hundred",
+   "s": 2.577,
+   "e": 2.833
+  },
+  {
+   "t": "years.",
+   "s": 2.879,
+   "e": 3.576
+  }
+ ],
+ "dur": 3.605,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.3,
+  "similarity_boost": 0.8,
+  "style": 0.6,
+  "use_speaker_boost": true
+ },
+ "varyant": "A"
+}

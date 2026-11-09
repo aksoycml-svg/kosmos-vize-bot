@@ -1,0 +1,45 @@
+{
+ "text": "[excited] [shouting] SULTAN! Off to talk with JESUS! [laughs]",
+ "words": [
+  {
+   "t": "SULTAN!",
+   "s": 0.232,
+   "e": 1.04
+  },
+  {
+   "t": "Off",
+   "s": 1.1,
+   "e": 1.28
+  },
+  {
+   "t": "to",
+   "s": 1.307,
+   "e": 1.36
+  },
+  {
+   "t": "talk",
+   "s": 1.44,
+   "e": 1.76
+  },
+  {
+   "t": "with",
+   "s": 1.808,
+   "e": 2.0
+  },
+  {
+   "t": "JESUS!",
+   "s": 2.2,
+   "e": 3.08
+  }
+ ],
+ "dur": 4.049,
+ "voice": "lxZLq5dcyw12UangGJgN",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.6,
+  "use_speaker_boost": true
+ },
+ "etiket": "[excited] [shouting] SULTAN! Off to talk with JESUS! [laughs]"
+}

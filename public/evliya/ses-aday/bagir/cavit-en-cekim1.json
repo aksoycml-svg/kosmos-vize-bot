@@ -1,0 +1,46 @@
+{
+ "text": "[shouting] Sultan! Off to talk with Jesus! [laughs]",
+ "words": [
+  {
+   "t": "Sultan!",
+   "s": 0.623,
+   "e": 0.96
+  },
+  {
+   "t": "Off",
+   "s": 1.01,
+   "e": 1.16
+  },
+  {
+   "t": "to",
+   "s": 1.213,
+   "e": 1.32
+  },
+  {
+   "t": "talk",
+   "s": 1.368,
+   "e": 1.56
+  },
+  {
+   "t": "with",
+   "s": 1.592,
+   "e": 1.72
+  },
+  {
+   "t": "Jesus!",
+   "s": 1.827,
+   "e": 2.36
+  }
+ ],
+ "dur": 3.53,
+ "voice": "lxZLq5dcyw12UangGJgN",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.6,
+  "use_speaker_boost": true
+ },
+ "etiket": "[shouting] Sultan! Off to talk with Jesus! [laughs]",
+ "on_bosluk_ms": 40
+}

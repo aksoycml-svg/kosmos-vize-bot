@@ -1,0 +1,15 @@
+1: P01 eski
+2: P01 A
+3: P01 B
+4: P05 eski
+5: P05 A
+6: P05 B
+7: P10 eski
+8: P10 A
+9: P10 B
+10: P14 eski
+11: P14 A
+12: P14 B
+
+eski = mevcut klip; A = multilingual_v2 + previous/next_text + stab .30 style .60; B = eleven_v3 + duygu etiketleri
+Aralar: 0.6 sn (varyantlar), 1 sn (planlar). -18 LUFS

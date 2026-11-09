@@ -1,0 +1,55 @@
+{
+ "text": "Yani kanıt yok. Ama dört yüz yıldır anlatıyoruz.",
+ "words": [
+  {
+   "t": "Yani",
+   "s": 0.0,
+   "e": 0.337
+  },
+  {
+   "t": "kanıt",
+   "s": 0.395,
+   "e": 0.685
+  },
+  {
+   "t": "yok.",
+   "s": 0.755,
+   "e": 1.115
+  },
+  {
+   "t": "Ama",
+   "s": 1.811,
+   "e": 2.02
+  },
+  {
+   "t": "dört",
+   "s": 2.078,
+   "e": 2.299
+  },
+  {
+   "t": "yüz",
+   "s": 2.345,
+   "e": 2.496
+  },
+  {
+   "t": "yıldır",
+   "s": 2.531,
+   "e": 2.775
+  },
+  {
+   "t": "anlatıyoruz.",
+   "s": 2.81,
+   "e": 3.762
+  }
+ ],
+ "dur": 3.788,
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.3,
+  "similarity_boost": 0.8,
+  "style": 0.6,
+  "use_speaker_boost": true
+ },
+ "varyant": "A"
+}

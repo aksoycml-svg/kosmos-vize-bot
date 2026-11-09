@@ -1,0 +1,40 @@
+{
+ "text": "[excited] [shouting] PADİŞAHIM! İsa peygamberle konuşmaya GİDİYORUM! [laughs]",
+ "words": [
+  {
+   "t": "PADİŞAHIM!",
+   "s": 0.22,
+   "e": 1.24
+  },
+  {
+   "t": "İsa",
+   "s": 1.42,
+   "e": 1.76
+  },
+  {
+   "t": "peygamberle",
+   "s": 1.84,
+   "e": 2.64
+  },
+  {
+   "t": "konuşmaya",
+   "s": 2.707,
+   "e": 3.44
+  },
+  {
+   "t": "GİDİYORUM!",
+   "s": 3.56,
+   "e": 4.64
+  }
+ ],
+ "dur": 5.564,
+ "voice": "7VqWGAWwo2HMrylfKrcm",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.6,
+  "use_speaker_boost": true
+ },
+ "etiket": "[excited] [shouting] PADİŞAHIM! İsa peygamberle konuşmaya GİDİYORUM! [laughs]"
+}

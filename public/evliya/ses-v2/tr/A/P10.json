@@ -1,0 +1,55 @@
+{
+ "text": "Onu kim izliyor? Yine padişah. Yine aynı köşkten.",
+ "words": [
+  {
+   "t": "Onu",
+   "s": 0.0,
+   "e": 0.267
+  },
+  {
+   "t": "kim",
+   "s": 0.313,
+   "e": 0.464
+  },
+  {
+   "t": "izliyor?",
+   "s": 0.522,
+   "e": 1.033
+  },
+  {
+   "t": "Yine",
+   "s": 1.242,
+   "e": 1.521
+  },
+  {
+   "t": "padişah.",
+   "s": 1.579,
+   "e": 2.241
+  },
+  {
+   "t": "Yine",
+   "s": 2.566,
+   "e": 2.798
+  },
+  {
+   "t": "aynı",
+   "s": 2.821,
+   "e": 3.03
+  },
+  {
+   "t": "köşkten.",
+   "s": 3.077,
+   "e": 3.994
+  }
+ ],
+ "dur": 4.023,
+ "voice": "jZQNewKOZcubZDDwBxdL",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.3,
+  "similarity_boost": 0.8,
+  "style": 0.6,
+  "use_speaker_boost": true
+ },
+ "varyant": "A"
+}
