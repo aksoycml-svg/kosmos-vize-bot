@@ -1,0 +1,22 @@
+Sira: her aday = v3 P01, v3 P08, multilingual_v2 P01 (aralar 1 sn, adaylar arasi 1.5 sn). Klipler loudnorm -18 LUFS (baska islem yok). Olcumler normalize sonrasi.
+ 1. aday1 | Doga - Audiobook Master (kutuphane Y: ctoYieZ4J7WwcdhujpMq) | eleven_v3 P01 | 7.53 sn | noise floor -100.1 dBFS | hisirti(>6k) -116.1 dB | baslangic 0.0 sn
+ 2. aday1 | Doga - Audiobook Master (kutuphane Y: ctoYieZ4J7WwcdhujpMq) | eleven_v3 P08 | 4.97 sn | noise floor -102.7 dBFS | hisirti(>6k) -113.8 dB | baslangic 8.5 sn
+ 3. aday1 | Doga - Audiobook Master (kutuphane Y: ctoYieZ4J7WwcdhujpMq) | multilingual_v2 P01 | 5.15 sn | noise floor -99.0 dBFS | hisirti(>6k) -103.9 dB | baslangic 14.5 sn
+ 4. aday2 | Seyfullah Kartal - Deep and Muffled (mF7tIc9VLrznhGooGjaT) | eleven_v3 P01 | 7.05 sn | noise floor -100.6 dBFS | hisirti(>6k) -116.6 dB | baslangic 21.2 sn
+ 5. aday2 | Seyfullah Kartal - Deep and Muffled (mF7tIc9VLrznhGooGjaT) | eleven_v3 P08 | 5.13 sn | noise floor -97.8 dBFS | hisirti(>6k) -105.7 dB | baslangic 29.2 sn
+ 6. aday2 | Seyfullah Kartal - Deep and Muffled (mF7tIc9VLrznhGooGjaT) | multilingual_v2 P01 | 7.34 sn | noise floor -91.1 dBFS | hisirti(>6k) -104.3 dB | baslangic 35.3 sn
+ 7. aday3 | blanc-vwmWyM, hesapta (vwmWyMlmlJtiiXeCVRKn) | eleven_v3 P01 | 6.73 sn | noise floor -95.5 dBFS | hisirti(>6k) -107.0 dB | baslangic 44.2 sn
+ 8. aday3 | blanc-vwmWyM, hesapta (vwmWyMlmlJtiiXeCVRKn) | eleven_v3 P08 | 4.97 sn | noise floor -95.0 dBFS | hisirti(>6k) -95.9 dB | baslangic 51.9 sn
+ 9. aday3 | blanc-vwmWyM, hesapta (vwmWyMlmlJtiiXeCVRKn) | multilingual_v2 P01 | 5.11 sn | noise floor -76.2 dBFS | hisirti(>6k) -89.3 dB | baslangic 57.9 sn
+10. aday4 | Alex - Deep, Clear and Fluent (KediIz7pebzt5TaDHiiZ) | eleven_v3 P01 | 6.64 sn | noise floor -87.8 dBFS | hisirti(>6k) -100.5 dB | baslangic 64.5 sn
+11. aday4 | Alex - Deep, Clear and Fluent (KediIz7pebzt5TaDHiiZ) | eleven_v3 P08 | 5.37 sn | noise floor -102.5 dBFS | hisirti(>6k) -110.8 dB | baslangic 72.1 sn
+12. aday4 | Alex - Deep, Clear and Fluent (KediIz7pebzt5TaDHiiZ) | multilingual_v2 P01 | 5.11 sn | noise floor -78.5 dBFS | hisirti(>6k) -99.3 dB | baslangic 78.5 sn
+13. aday5 | Yusuf Suratli - Storyteller (tOqnHSMt5y3uRBgH7e8J) | eleven_v3 P01 | 5.13 sn | noise floor -101.3 dBFS | hisirti(>6k) -110.7 dB | baslangic 85.1 sn
+14. aday5 | Yusuf Suratli - Storyteller (tOqnHSMt5y3uRBgH7e8J) | eleven_v3 P08 | 4.08 sn | noise floor -86.9 dBFS | hisirti(>6k) -106.0 dB | baslangic 91.2 sn
+15. aday5 | Yusuf Suratli - Storyteller (tOqnHSMt5y3uRBgH7e8J) | multilingual_v2 P01 | 5.67 sn | noise floor -82.0 dBFS | hisirti(>6k) -95.4 dB | baslangic 96.3 sn
+16. aday6 | Ozan Karaca - Rich, Warm and Calm (5nr6ATQepuidiLb6OT3B) | eleven_v3 P01 | 6.40 sn | noise floor -90.5 dBFS | hisirti(>6k) -106.4 dB | baslangic 103.5 sn
+17. aday6 | Ozan Karaca - Rich, Warm and Calm (5nr6ATQepuidiLb6OT3B) | eleven_v3 P08 | 4.33 sn | noise floor -104.1 dBFS | hisirti(>6k) -106.2 dB | baslangic 110.9 sn
+18. aday6 | Ozan Karaca - Rich, Warm and Calm (5nr6ATQepuidiLb6OT3B) | multilingual_v2 P01 | 4.88 sn | noise floor -87.0 dBFS | hisirti(>6k) -103.2 dB | baslangic 116.2 sn
+19. aday7 | REFERANS: Umut Canbay (mevcut, jZQNewKOZcubZDDwBxdL) | eleven_v3 P01 | 7.12 sn | noise floor -62.0 dBFS | hisirti(>6k) -67.2 dB | baslangic 122.6 sn
+20. aday7 | REFERANS: Umut Canbay (mevcut, jZQNewKOZcubZDDwBxdL) | eleven_v3 P08 | 4.73 sn | noise floor -78.9 dBFS | hisirti(>6k) -82.4 dB | baslangic 130.7 sn
+21. aday7 | REFERANS: Umut Canbay (mevcut, jZQNewKOZcubZDDwBxdL) | multilingual_v2 P01 | 5.25 sn | noise floor -57.3 dBFS | hisirti(>6k) -68.6 dB | baslangic 136.4 sn
