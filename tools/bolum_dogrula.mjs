@@ -101,11 +101,11 @@ for (const plan of B.planlar ?? []) {
     if (!pd) H(Y, "ic: padisah karakteri yok");
     if (prm.padisah && typeof prm.padisah.yuz_on_kontur_x !== "number") U(Y, "ic: padisah.yuz_on_kontur_x yok (varsayılan 457)");
   }
-  // K8 KITAP-INSERT: defter açılışı temas; kıvılcım plan içinde biter. BOGAZ: iniş teması, martı ekran yolu
+  // K8 KITAP-INSERT: defter açılışı temas (K9: kapağın tablaya yattığı kare = acik.bit); kıvılcım plan içinde biter. BOGAZ: iniş teması, martı ekran yolu
   if (plan.sablon === "KITAP-INSERT") {
     (prm.defterler ?? []).forEach((df, i) => {
       const yd = `${Y} defter ${df.id ?? i + 1}`;
-      if (df.acik) { if (!(df.acik.bas < df.acik.bit)) H(yd, "acik {bas < bit}"); bitis(yd, "açılma", df.acik.bit); if (!temasVar(plan, df.acik.bas, 2)) H(yd, `açılma p${df.acik.bas}: temas yok (TEMAS = SES)`); }
+      if (df.acik) { if (!(df.acik.bas < df.acik.bit)) H(yd, "acik {bas < bit}"); bitis(yd, "açılma", df.acik.bit); if (!temasVar(plan, df.acik.bit, 2)) H(yd, `kapak tablaya yatar p${df.acik.bit} (acik.bit): temas yok (TEMAS = SES)`); }
       if (Array.isArray(df.kapali_kutu) && (df.kapali_kutu[3] > 1500 || df.kapali_kutu[0] < 80)) H(yd, "kapali_kutu güvenli alan dışında (y ≤ 1500, x ≥ 80)");
     });
     if (prm.kivilcim) bitis(Y, "kıvılcım", prm.kivilcim.bit);
@@ -117,6 +117,23 @@ for (const plan of B.planlar ?? []) {
     if (prm.rota_cizgi) bitis(Y, "rota çizgisi", prm.rota_cizgi.bit);
     const im = prm["iniş_meydani"]; if (im && hz && Array.isArray(hz.x) && Math.abs((hz.x[hz.x.length - 2] ?? 0) - im.x) > 120) U(Y, `iniş x ${hz.x[hz.x.length - 2]} meydandan (x ${im.x}) uzak`);
     const dx = prm.dekor_x; if (Array.isArray(dx) && plan.kamera) for (const c of plan.kamera.cx ?? []) { const sol = 540 - c - 540 / 1, sag = 540 - c + 540; if (sol < dx[0] - 1 || sag > dx[1] + 1) H(Y, `kamera cx ${c}: görünen dekor x ${sol}…${sag} dekor_x ${dx.join("…")} dışında`); }
+  }
+  // K9 iki dil yazı katmanı: dil_katmanlari'ndaki her dil için metin var mı; harita etiketi fişi bant dışında, işaret çizgisi ≤ 60 px
+  {
+    const ana = B.dil ?? "tr", diller = B.dil_katmanlari ?? [ana];
+    const var_ = (v, ek, d) => (v && typeof v === "object" ? v[d] != null : d === ana ? v != null : ek != null);
+    for (const d of diller) {
+      (plan.ekran_yazisi ?? []).forEach((y, i) => { if (!var_(y.metin, y[d], d)) H(`${Y} ekran_yazisi[${i}]`, `'${d}' metni yok`); });
+      (plan.replik ?? []).forEach((r, i) => { const ek = r[d]; if (!var_(r.metin, typeof ek === "object" ? ek?.metin : ek, d)) H(`${Y} replik[${i}]`, `'${d}' metni yok`); if (r.kim != null && !var_(r.kim, r[`kim_${d}`], d)) H(`${Y} replik[${i}]`, `'${d}' konuşan adı (kim_${d}) yok`); });
+      (plan.harita_etiketleri ?? []).forEach((h, i) => { if (!var_(h.metin ?? { tr: h.tr, en: h.en }, undefined, d)) H(`${Y} harita_etiketleri[${i}]`, `'${d}' metni yok`); });
+      if (d !== ana && (plan.ses ?? []).length && !(plan[`ses_${d}`] ?? []).length) H(Y, `ses_${d} yok`);
+    }
+    (plan.harita_etiketleri ?? []).forEach((h, i) => {
+      const yh = `${Y} harita_etiketleri[${i}]`, k = h.kutu ?? [h.x, h.y];
+      if (!(Number(h.bas ?? 0) < Number(h.bit ?? sure)) || Number(h.bit ?? sure) > sure) H(yh, "bas < bit ≤ sure_kare olmalı");
+      if (k[1] < 520 || k[1] > 1250) U(yh, `fiş y ${k[1]} tasarım aralığı 520–1250 dışında (üst/alt yazı bandı)`);
+      const L = Math.hypot(k[0] - h.x, k[1] - h.y); if (L > 60 + 140) U(yh, `işaret çizgisi uzun olabilir (nokta–fiş merkezi ${L.toFixed(0)} px; ≤ 60 px kenardan)`);
+    });
   }
   // K5 GALATA-TEPE: taş itme / düşüş temasları, kamera takibi, yürüyüş adımları
   if (plan.sablon === "GALATA-TEPE") galataKurallari(plan, Y, plan.karakterler ?? [], plan.props ?? [], plan.kamera, sure);

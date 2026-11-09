@@ -796,16 +796,6 @@
      "kit_eksik": [
       "KE-P7"
      ]
-    },
-    {
-     "tur": "mesale",
-     "id": "mesale2",
-     "x": 262,
-     "y": 1000,
-     "bagli": "yardimci-2",
-     "kit_eksik": [
-      "KE-P7"
-     ]
     }
    ],
    "ekran_yazisi": [
@@ -910,19 +900,19 @@
      282
     ],
     "cs": [
-     2.4,
-     2.45,
-     2.5
+     1.86,
+     1.89,
+     1.92
     ],
     "cx": [
-     -50,
-     -50,
-     -50
+     -105,
+     -105,
+     -105
     ],
     "cy": [
-     600,
-     600,
-     600
+     300,
+     300,
+     300
     ],
     "egri": "inout"
    },
@@ -1055,9 +1045,9 @@
    ],
    "okunurluk": {
     "nesne": "yüz + kalkık kol",
-    "oran_pct": 11,
+    "oran_pct": 10,
     "net_sn": 2.0,
-    "not": "yüz %11-12 (cs 2.5-2.7); kalkık kol büyük hareket, küçük jest yok. Boğum solgunluğu (EV-Y1 yedek) kullanılmadı"
+    "not": "yüz %11-12 (cs 2.5-2.7); kalkık kol büyük hareket, küçük jest yok. Boğum solgunluğu (EV-Y1 yedek) kullanılmadı [K9 motion] kamera cs 1.86→1.92, cx -105, cy 300: çizme tabanı y≈1470 (≤1490, IG alt alanı dışında), sarık tepesi ≈240, gözler ≈510; yüz ≈%10 (küçük jest yok; replik + kalkık kol). p36 işaret eli köşk penceresini gösterir (x≈990), yan 80 px dışı."
    },
    "alt_ucte_bir": "Demetin barut tüpleri (y 1300-1500), Lagâri'nin dizleri/ellerinin tutunduğu oturak ve meşale ışığı.",
    "kit_eksik": [
@@ -2867,28 +2857,40 @@
      "ad": "galata",
      "tr": "Galata",
      "en": "Galata",
-     "x": 100,
-     "y": 650,
+     "x": 130,
+     "y": 700,
      "bas": 0,
-     "bit": 100
+     "bit": 100,
+     "kutu": [
+      255,
+      695
+     ]
     },
     {
      "ad": "uskudar",
      "tr": "Üsküdar",
      "en": "Üsküdar",
-     "x": 1250,
-     "y": 930,
-     "bas": 120,
-     "bit": 270
+     "x": 1100,
+     "y": 935,
+     "bas": 196,
+     "bit": 270,
+     "kutu": [
+      1100,
+      868
+     ]
     },
     {
      "ad": "bogaz",
      "tr": "Boğaz",
      "en": "Bosphorus",
-     "x": 1050,
-     "y": 1330,
-     "bas": 40,
-     "bit": 270
+     "x": 760,
+     "y": 1060,
+     "bas": 92,
+     "bit": 270,
+     "kutu": [
+      760,
+      1060
+     ]
     }
    ],
    "temaslar": [
@@ -2968,7 +2970,8 @@
      "db": 0
     }
    ],
-   "not": "Atlayış p56-76: TR 'atlıyor' p48-81 ile örtüşür; EN 'he jumps' p100: görüntü 0.7 sn önde (iki dil tek görüntü). Rota çizgisi p70-130 çizilir, martı p112'de girer (farklı bölge). İniş p238, kanat katlanması p262, toz oturması p270 (plan sonuna 12 kare var). [2026-11-08] Kule x 100, iniş (1250,1170); pan cx 500->-500 dekor x -500..1580 gösterir, Hezarfen ekran x≈367-850 kalır."
+   "not": "Atlayış p56-76: TR 'atlıyor' p48-81 ile örtüşür; EN 'he jumps' p100: görüntü 0.7 sn önde (iki dil tek görüntü). Rota çizgisi p70-130 çizilir, martı p112'de girer (farklı bölge). İniş p238, kanat katlanması p262, toz oturması p270 (plan sonuna 12 kare var). [2026-11-08] Kule x 100, iniş (1250,1170); pan cx 500->-500 dekor x -500..1580 gösterir, Hezarfen ekran x≈367-850 kalır.",
+   "harita_etiketleri_not": "K9 motion: x,y = işaret noktası (dekor px), kutu = fiş merkezi (dekor px); kamera fonksiyonu görüntüyle ortak (Bolum HaritaEtiketleri, kameraHesapla+ekranNokta). Fiş görünür olduğu sürece ekran x 80–1000 içinde (pan cx 500→−500 ile bas/bit hesaplandı: GALATA p0–100 kule sağında, rota çizgisinin üstünde; BOĞAZ p92–270 su ortası y 1060 — martı bölgesi y≥1100 ve rota çizgisi (y≈995) arasında; ÜSKÜDAR p196–270 (EV-D4 dokunuşu p112–195 bittikten sonra; işaret çizgisi uçan figüre değmez) uzak kıyı x 1100, iniş/meydanı (1250,1170) örtmez)."
   },
   {
    "id": "P10",
@@ -4277,20 +4280,20 @@
    ],
    "temaslar": [
     {
-     "kare": 146,
-     "olay": "birinci defter açılır (kapak yatar)",
+     "kare": 176,
+     "olay": "birinci defter kapağı tablaya yatar",
      "ses": "defter-ac",
      "db": -10
     },
     {
-     "kare": 164,
-     "olay": "ikinci defter açılır",
+     "kare": 194,
+     "olay": "ikinci defter kapağı tablaya yatar",
      "ses": "defter-ac",
      "db": -10
     },
     {
-     "kare": 182,
-     "olay": "üçüncü defter açılır",
+     "kare": 212,
+     "olay": "üçüncü defter kapağı tablaya yatar",
      "ses": "defter-ac",
      "db": -10
     }

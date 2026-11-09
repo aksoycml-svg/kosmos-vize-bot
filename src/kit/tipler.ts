@@ -38,7 +38,7 @@ export type Karakter = {
   yuzVaryant?: string;         // K3: kayıttaki yüzü ezer (YUZLER anahtarı); bölümde iki kişi aynı varyantı kullanırsa doğrulayıcı uyarır
   palet?: Partial<Palet>;      // bölüme özel kostüm/ten (ör. solgun memur)
   aksesuar?: ("cep-eldiven" | "baston")[];
-  etiket?: { ad: string; alt?: string; bas?: number; bit?: number };
+  etiket?: { ad: DilMetinT; alt?: DilMetinT; ad_en?: string; alt_en?: string; bas?: number; bit?: number };
 };
 
 export type PropTur = "paket" | "eldiven" | "corap" | "dosya" | "kitap" | "kese" | "hokka" | "mum" | "fener"
@@ -72,8 +72,14 @@ export type El = {
   takip?: { prop: string; kare: [number, number] }[]; // K4: pencerede kıstırma prop'un tutma noktasını izler (paket kapan/ip)
 };
 
-export type EkranYazisi = { bant: Bant; metin: string; vurgu?: string[]; tur?: "iddia" | "formul"; kagitSerit?: boolean; bas?: number; bit?: number; boyut?: number };
-export type Replik = { kim: string; metin: string; bant: Bant; bas: number; bit: number; vurgu?: string[]; kelimeKare?: number[] };
+// İki dil (K9): metin/vurgu ya ana dilde (bolum.dil ?? "tr") + `en`/`vurgu_en` alanları, ya da {tr,en} (src/kit/dil.ts)
+export type DilMetinT = string | { tr?: string; en?: string };
+export type DilListeT = string[] | { tr?: string[]; en?: string[] };
+export type EkranYazisi = { bant: Bant; metin: DilMetinT; vurgu?: DilListeT; en?: string; vurgu_en?: string[]; tur?: "iddia" | "formul"; kagitSerit?: boolean; bas?: number; bit?: number; boyut?: number };
+export type Replik = { kim: DilMetinT; kim_en?: string; metin: DilMetinT; bant: Bant; bas: number; bit: number; vurgu?: DilListeT; vurgu_en?: string[]; kelimeKare?: number[];
+  en?: string | { metin: string; bas?: number; bit?: number; kelimeKare?: number[] } }; // en: dilin kendi zamanlaması
+// Harita etiketi (yazı katmanı; dekora bağlı, görüntüyle aynı kamera): x,y = işaret noktası, kutu = fiş merkezi (dekor px)
+export type HaritaEtiketi = { ad?: string; tr?: string; en?: string; metin?: DilMetinT; x: number; y: number; kutu?: [number, number]; bas?: number; bit?: number };
 export type Temas = { kare: number; olay: string; ses?: string; db?: number };
 // Plan sesi: dosya public/ altından göreli (ör. "blanc/ses-v3/P05.mp3"), kare = plan içi başlangıç, db = kazanç (0 = ref)
 export type PlanSes = { dosya: string; kare: number; db?: number };
@@ -92,6 +98,8 @@ export type Plan = {
   replik?: Replik[];
   temaslar?: Temas[];
   ses?: PlanSes[];
+  ses_en?: PlanSes[]; // KE-Y2: EN anlatım (aynı karelerden)
+  harita_etiketleri?: HaritaEtiketi[];
   dokunus?: Dokunus | null;
   not?: string;
   // Evliya K5: plan içi sert kesme — kare_bas'tan itibaren aynı plan başka şablonla (kendi parametre/kamera/karakter/prop'uyla) devam eder.

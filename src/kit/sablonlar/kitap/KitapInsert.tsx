@@ -22,8 +22,9 @@ import { param, Sablon, SablonProps } from "../../ortak";
 const S = DOKU_SEED.kitap;
 const R = {
   zemin: "#2e2016", zeminGolge: "#1e140c", tabla: "#4a3222", tablaKenar: "#5e4230", damar: "#2e2016",
-  sayfa: "#e9dfc9", sayfaKenar: "#d6c7a6", oluk: "#c4b594", hat: "#2a2420", cizim: "#4a4237",
-  kalemdan: "#5a5048", kamis: "#a08a5c", hokka: "#2a2420", kapak: ["#3e2e24", "#4a4038", "#34302c"], kapakIc: "#ded3bb",
+  sayfa: "#e9dfc9", sayfaKenar: "#d4ccbb", oluk: "#b3ab9c", // K9: kenar/oluk/kamış imzadan (#c4a874) uzak — gri-krem, ΔE76 ≥ 22 (eski #d6c7a6/#c4b594 < 15)
+  hat: "#2a2420", cizim: "#4a4237",
+  kalemdan: "#5a5048", kamis: "#857560", hokka: "#2a2420", kapak: ["#3e2e24", "#4a4038", "#34302c"], kapakIc: "#ded3bb",
 };
 export const KITAP = { tabla: { x: [140, 940], y: [470, 1110] }, kitap: { x: [220, 860], y: [545, 1045] }, kalemdan: { x: [330, 750], y: [482, 538] }, oluk: 540 } as const;
 // K3 eşleşme sabitleri (P01 p0 ekran ↔ çizim dekor). P01 p0 değişirse (demet x/y, kamera) burası yeniden hesaplanır.
@@ -193,9 +194,9 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const kv = kvPr && kvPr.kare && p >= kvPr.kare[0] ? D(yolNokta(FITIL_E, Number(propDurum(kvPr, p).fitil ?? 0))) : null;
   const { x: [bx0, bx1], y: [by0, by1] } = KITAP.kitap;
   const metinY: [number, number] = [by0 + 60, by1 - 60];
-  // kilit: kenar çizimi (kurulum) + defter açılışları (temas) + kıvılcım
+  // kilit: kenar çizimi (kurulum) + defter kapağının tablaya yattığı kare (temas, K9: acik.bit) + kıvılcım
   kilit.push({ ad: "fişek çizimi", p: ekranNokta(k, D([515, 1000])), tur: "kurulum" });
-  defterler.forEach((df) => { const kk = df.kapali_kutu; if (df.acik && Math.abs(p - df.acik.bas) <= 1) kilit.push({ ad: `defter ${df.id} açılır`, p: ekranNokta(k, [kk[2], (kk[1] + kk[3]) / 2]), tur: "temas" }); });
+  defterler.forEach((df) => { const kk = df.kapali_kutu; if (df.acik && Math.abs(p - df.acik.bit) <= 1) kilit.push({ ad: `defter ${df.id} kapak yatar`, p: ekranNokta(k, [kk[2], (kk[1] + kk[3]) / 2]), tur: "temas" }); });
   if (kv) kilit.push({ ad: "kıvılcım", p: ekranNokta(k, kv), tur: "dokunus" });
   return (
     <svg width={1080} height={1920} viewBox="0 0 1080 1920">

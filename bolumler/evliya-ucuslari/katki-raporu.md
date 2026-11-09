@@ -1226,3 +1226,72 @@
     - `tools/bolum_dogrula.mjs`
   - Json: `bolumler/evliya-ucuslari/bolum.json`
   - Kareler: `bolumler/evliya-ucuslari/kalibrasyon/K8/*` (18 kare × tam/güvenli/telefon, `telefon-sayfa.png`, `P14son_P01p0_yanyana.png`, `renk-olcum.json/.md`)
+
+## motion · 2026-11-09 · K9: TR/EN yazı katmanı sistemi + küçük düzeltmeler + tam render betiği
+- **Ne yaptım:**
+  - **Yazı katmanı sistemi (KE-Y1..Y5):**
+    - `Bolum` iki yeni prop aldı: `mod: "gorsel" | "yazi" | "tam"` ve `dil: "tr" | "en"`.
+      - `gorsel`: yazısız görüntü.
+      - `yazi`: yalnız ekran yazısı, replik altyazısı, isim etiketi ve harita etiketi. Zemin şeffaf, ses yok.
+      - `tam`: görüntü ve yazı birlikte.
+      - Mod verilmezse eski davranış sürer: `gorsel_yazisiz` ise `gorsel`, değilse `tam`.
+    - Dil çözümü `src/kit/dil.ts`'te. İki şemayı da kabul ediyor:
+      - Kalıcı şema: `metin: {tr, en}`.
+      - Evliya'daki gerçek alanlar: `metin` + `en` / `vurgu_en` / `kim_en`, replikte `en {metin, bas, bit, kelimeKare}` (dilin kendi zamanlaması), harita etiketinde `{tr, en}`.
+      - İstenen dilde metin yoksa render hata verir; sessizce ana dile düşmez.
+    - Anlatım sesi dile göre seçiliyor: EN'de `ses_en` (KE-Y2).
+    - Harita etiketleri (P09) yeni `KitHaritaEtiketi` ile çiziliyor (tasarım §6: Plex Mono 30, kâğıt fiş, 2 px işaret çizgisi). Dekora bağlılar ve görüntüyle aynı kamera fonksiyonunu kullanıyorlar (`kameraHesapla` + `ekranNokta`, plan içi kesmede o anki planın kamerası).
+    - İsim etiketi yazı modunda yüz noktasına ihtiyaç duyuyor. Bunun için sahne yalnız kilit noktaları için gizli render ediliyor (`display:none`); karakterde etiket yoksa sahne hiç render edilmiyor.
+    - Doğrulayıcıya iki kontrol eklendi:
+      - `dil_katmanlari`'ndaki her dil için ekran yazısı, replik, konuşan adı, harita etiketi ve `ses_<dil>` var mı.
+      - Harita fişi y 520–1250 içinde mi.
+  - **Kit yazı düzeltmeleri (iki dilde de görüldü):**
+    - Okunan kelimenin ölçeği 1.06 + 13 px aralık kelimeleri birleştiriyordu ("peygamberlekonuşmaya"). Ölçek 1.04, aralık 18 px yapıldı.
+    - İddia yazısı iki satıra düşerse artık " · " noktasından kırılıyor ve ayırıcı düşüyor. Önceden EN'de satır "· ~3 km" ile başlıyordu.
+    - `kutu.x` destekleniyor (P02 "x ≥ 260" istisnası).
+  - **Küçük düzeltmeler:** aşağıdaki json tablosu. KITAP renklerinde sayfa kenarı `#d6c7a6` → `#d4ccbb`, cilt oluğu `#c4b594` → `#b3ab9c`, kamış kalem `#a08a5c` → `#857560` (kalem de imzaya ΔE76 12.2 uzaklıktaydı). Defter teması `acik.bit` karesine taşındı: kilit noktası `KitapInsert` içinde, kural doğrulayıcıda. TR/EN miksi yeniden üretildi: `python3 -I tools/evliya_miks.py` → iki dil de −14.3 LUFS, TP −1.9; dalga formuna baktım, sorun yok.
+  - **Render betiği** `tools/evliya_render.sh`: 120 karelik aralıkta denendi (880–999; 60'lık iki parça, P03/P04 sınırını kesiyor). İki dilde 120/120 kare. Kare-kesinlik kanıtı: p939/p940/p970 bağımsız still ile karşılaştırıldı; her seferinde doğru indeks en yüksek PSNR'ı verdi, komşu kareler daha düşük kaldı.
+- **Dokunduğum dosyalar:**
+  - `src/kit/dil.ts` (yeni), `src/kit/Bolum.tsx`, `src/kit/yazi.tsx`, `src/kit/tipler.ts`, `src/kit/sablonlar/kitap/KitapInsert.tsx`
+  - `tools/bolum_dogrula.mjs`, `tools/evliya_render.sh` (yeni)
+  - `bolumler/evliya-ucuslari/bolum.json`
+  - `public/evliya/miks/{tr,en}.wav`, stem'ler, `*-dalga.png` (yeniden üretildi)
+  - `bolumler/evliya-ucuslari/kalibrasyon/K9/*` (kareler, telefon sayfaları, `renk-olcum.json/.md`)
+- **json değişiklikleri (yönetmen plana işlesin):**
+  | Plan | Alan | Eski → yeni | Gerekçe |
+  |---|---|---|---|
+  | P04 | kamera cs · cx · cy | [2.4, 2.45, 2.5] · −50 · 600 → [1.86, 1.89, 1.92] · −105 · 300 | Çizme y≈1760 (IG alanı) → ≈1470. Gözler ≈510, sarık tepesi ≈240, yüz ≈%10 (küçük jest yok). p36'da işaret eli köşk penceresinde (x≈990). Güvenli alan ihlali 0 (p36/p158/p281) |
+  | P04 | okunurluk.oran_pct | 11 → 10 (+ not) | Yeni kameraya göre |
+  | P03 | props `mesale2` | silindi | Kitte çizilmiyordu (tek ışık) |
+  | P13 | temaslar defter-ac | 146/164/182 → 176/194/212 | Kapak tablaya `acik.bit` karesinde yatıyor. Miks yeniden üretildi |
+  | P09 | harita_etiketleri | x/y/bas değişti, `kutu` eklendi | GALATA nokta (130,700), fiş (255,695), p0–100: kulenin sağında, rota çizgisinin üstünde. BOĞAZ (760,1060), p92–270: önceden y 1330 alt banttaydı ve pan sonunda sol kenardan kesiliyordu. ÜSKÜDAR nokta (1100,935), fiş (1100,868), p196–270: önceden kenardan yarım giriyordu, p175'te işaret çizgisi uçan Hezarfen'e (EV-D4) 40 px yaklaşıyordu |
+- **Aldığım kararlar ve gerekçeleri:**
+  - Görüntü parçaları ProRes 422 (intra-only) olarak alınıp `concat -c copy` ile birleştiriliyor. H.264 parça birleştirmede sınırda kare kayması riski var; ProRes'te yok.
+  - Yazı katmanı ProRes 4444 + `yuva444p10le` alfa. İstenirse `--yazi-png` ile PNG dizisi de çıkıyor.
+  - Son kodlama: H.264 high, CRF 16, yuv420p, bt709 etiketli. Ses wav'dan AAC 320k, 48 kHz (soxr). Çıktının loudness'ı betikte ölçülüp loga yazılıyor.
+  - Parça boyu varsayılan 600 kare. Var olan geçerli parça atlanıyor (yarıda kalan render devam eder). Kod değiştiyse `out/evliya/_is` silinmeli.
+  - Harita etiketleri yazı olduğu için 14 karede yumuşak giriyor, 8 karede hızlı çıkıyor. Fiziksel nesne değil, "fade ile kaybolmaz" kuralının konusu değil.
+  - P04 replik kutusu (TR iki satır, y 244–435) sarığın üstünü örtüyor, kaşlar ≈480'de açık. K8'de de kabul edilmişti; P04'te dokunuş yok.
+- **Uyguladığım kurallar / yakaladığım kural ihlalleri:**
+  - Güvenli alan: P04 ayakları alt IG alanından çıktı. P04 eli ve köşk penceresi yan 80 px şeridinden çıktı. P09 fişleri ekran x 80–1000 içinde.
+  - Yazı dokunuşu örtmüyor: ÜSKÜDAR dokunuş bitince başlıyor. BOĞAZ martı bölgesinin (y ≥ 1100) ve rota çizgisinin arasında.
+  - TEMAS = SES: defter sesi kapağın yattığı karede.
+  - İmza tekilliği: P13 p176 ve P14 p245'te imza ihlali 0. P14'teki 107 imza tonlu piksel fitil kıvılcımının halesi (ışık kaynağı); ölçümde `isik` bölgesine alındı.
+  - Kitte gömülü dil metni: Evliya şablonlarında yok.
+  - Doğrulayıcı: GEÇTİ (0 hata, 12 uyarı; hepsi önceden vardı). `tsc` temiz.
+- **Tahmini tam render süresi (4 çekirdek, angle):** toplam ≈ 45–60 dk. Disk tepe ≈ 3 GB (21 GB boş).
+  - Görüntü: ≈0.55 sn/kare × 3774 kare ≈ 35 dk (7 parça).
+  - Yazı katmanı: dil başına ≈ 5 dk.
+  - Son kodlama: dil başına ≈ 3 dk.
+- **Açık sorular / bir sonraki ajana notlar:**
+  1. **Teknisyen:** komut `tools/evliya_render.sh`, ön planda, tek sefer. Çıktılar `out/evliya/evliya-{tr,en}.mp4`, log `out/evliya/render.log`. Logda iki dilin I/TP değerine bak (hedef −14 ±0.3 / ≤ −1.5; wav −14.3 / −1.9 geldi). Tolerans dışıysa miksi +0.3 dB ile yeniden üret. Premiere stem'leri için `katman` prop'u değişmedi.
+  2. **Yönetmen:** `sahne-plani.md` tablosu hâlâ eski değerleri gösteriyor (P13 "defter-ac 146, 164, 182", P04 kamera). Tek sahiplik gereği o dosyaya dokunmadım.
+  3. **Kit (Blanc şablonları, Evliya'yı etkilemiyor):** iki yerde sabit metin kaldı.
+     - `Harita.tsx` şehir adları özel isim, iki dilde aynı; mühür metni json'dan geliyor.
+     - `AvluSalon.tsx` kara tahtadaki "PARIS · RENTE 3%" sahne içi Fransızca, dil-nötr sayılabilir.
+     - Yeni bir İngilizce Blanc render'ında gözden geçirilmeli.
+  4. **Eleştirmen (K9 tek tur):** kareler `kalibrasyon/K9/`. Telefon sayfaları: `telefon-sayfa-yazi.png` (5 kare × TR/EN × tam/güvenli) ve `telefon-sayfa-duzeltme.png`.
+  5. **Öz puan: 7.5/10.** Sistem ve betik kanıtlı. Açık noktalar:
+     - P04'te yüz %10'a indi.
+     - P09 p0–92 arası tek etiket var (GALATA, 10 px Hezarfen'in yanında).
+     - Tam render henüz alınmadı.
