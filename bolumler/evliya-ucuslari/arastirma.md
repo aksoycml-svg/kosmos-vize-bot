@@ -374,3 +374,17 @@ Gazete / popüler (düşük–orta güven, ayrı etiketli):
 - Evliya'nın Galata bölümü (Seyahatname I): kule dibi, sokak, ev tarifi için **açılamadı**; bu en kritik eksik birincil kaynak.
 - Sokak genişliği, kat sayısı, çıkma, çatı malzemesi, kuleye bitişik ev: **bilinmiyor**.
 - Erişim: istanbultarihi.ist, core.ac.uk (galata-4.pdf, ECOBARCE PDF'leri, TDV) ağ izni gerektirir.
+
+---
+
+## 12. "Hezarfen" lakabının anlamı ("bin hünerli" ifadesi) — eleştirmen notu üzerine
+
+**Yöntem ve sınır:** `WebFetch` islamansiklopedisi.org.tr'yi açamadı (DNS "ENOTFOUND"; ağ izni gerekir). Aşağıdakiler **arama özeti**dir; sayfa açılıp doğrulanmadı. Nişanyan Sözlük'te "hezarfen" maddesi bulunamadı; TDK sözlüğüne de erişilemedi (**doğrulanamadı**).
+
+- **TDV İslâm Ansiklopedisi (Mustafa Kaçar, 1998)**, "Hezarfen Ahmed Çelebi": "Çeşitli fen ve sanatlardan anladığı için **"bin fenli"** anlamında Hezarfen unvanıyla anılan Ahmed Çelebi…" [arama özeti: [TDV – Hezarfen Ahmed Çelebi](https://islamansiklopedisi.org.tr/hezarfen-ahmed-celebi)]. Güven: orta-yüksek (saygın ansiklopedi; cümle özetten alındı, sayfa açılamadı).
+- **Hezar = "bin" (Farsça):** bir İngilizce kaynak ve ikincil sayfalar belirtir [arama özeti: [EN Vikipedi](https://en.wikipedia.org/wiki/Hez%C3%A2rfen_Ahmed_%C3%87elebi) ve diğer sonuçlar; eşleşme tam kesin değil]. Güven: orta.
+- **Anlam "çok bilgili":** bir eğitim sitesi cevap anahtarı ve Türkçe popüler sayfalar "çok bilgili / çeşitli bilim dallarında uzman" der [arama özeti: [egitim.net.tr](https://www.egitim.net.tr/amp/soru-cevap/7-sinif-ozgun-yayinlari-turkce-1-tema-bilim-ve-teknoloji-ogrendiklerimizi-4709h)]. Güven: düşük (ikincil).
+- **"fen" = Arapça (فن) "ilim/sanat dalı":** hiçbir sonuç açıkça yazmadı; **çıkarım** (dil bilgisi, kaynak değil). Not: eski Türkçede "fen" bugünkü "science"tan çok "bilgi dalı / sanat / hüner" anlamındadır (TDV'nin "fen ve sanat" ikilisi bunu destekler).
+- Tek kaynaklılık: Hezarfen'in kendisi hakkındaki bilgi yalnız Evliya'ya dayanır [TDV]; **lakabın Evliya'dan mı, sonraki anlatımdan mı geldiği doğrulanamadı**.
+
+**Sonuç / öneri:** "Bin fenli" TDV'de doğrudan geçtiği için "bin hünerli" **savunulabilir** ve "bin bilgili/bin ilimli"den daha uygundur; çünkü "fen" burada hem bilgi hem sanat/hüner demektir. Yine de **yumuşat**: "bin hünerli" yerine "'bin fenli' yani çok şeyden anlayan" ya da "ona 'Hezarfen' derlerdi: kabaca 'bin hünerli, çok şeyden anlayan'" de; kesin tercüme gibi sunma (tek ansiklopedi cümlesi + ikincil kaynak; birincil/sözlük teyidi yok). Film metninde kaynak notu: "TDV İslâm Ansiklopedisi". Sözlük teyidi (TDK/Nişanyan) ağ izni açılınca yapılmalı.
