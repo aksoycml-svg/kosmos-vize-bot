@@ -69,7 +69,8 @@
   "sure_ms": 4090,
   "tepe_dbfs": 0.0,
   "kaynak": "elevenlabs-sfx",
-  "onerilen_db": -6
+  "onerilen_db": -12,
+  "not": "FINAL2 O1: −6 dB (anlatımı örtüyordu)"
  },
  "fitil-tiss": {
   "dosya": "evliya/sfx/fitil-tiss.mp3",
@@ -205,7 +206,8 @@
   "sure_ms": 2091,
   "tepe_dbfs": -0.0,
   "kaynak": "elevenlabs-sfx",
-  "onerilen_db": -8
+  "onerilen_db": -14,
+  "not": "FINAL2 O1: −6 dB (anlatımı örtüyordu)"
  },
  "ruzgar-bogaz": {
   "dosya": "evliya/sfx/ruzgar-bogaz.mp3",

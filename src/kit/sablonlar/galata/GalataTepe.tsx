@@ -71,7 +71,8 @@ export const tasCoz = (pr: Prop | undefined, p: number, temas: { surt: number; k
   const y0 = GT.dudak - 8, yKenar = GT.dudak + 4, yYer = GT.tasYer;
   const { surt, kay, yer } = temas;
   const dus = kay + 2;
-  if (p < surt) return { x: x0, y: y0, aci: 0, yerde: false, dustu: false };
+  // FINAL2 (O4): `sabit: true` — taş yerinde durur (P01 B: P08 p0 ile aynı an, aynı taş; itme/düşüş bu planda yok)
+  if (p < surt || (pr as Prop & { sabit?: boolean } | undefined)?.sabit) return { x: x0, y: y0, aci: 0, yerde: false, dustu: false };
   // K6 (B8): itme taşı 30 px sağa-öne sürer (bacak bu mesafede uzanır); kayma → devrilme (p kay → kay+2) dudak üstünde öne/sağa 4° → 40°,
   // merkez +10 sağa, +14 aşağı (dudağın dışına) → serbest düşüş bu açıdan devam eder
   const IT = 30;
@@ -384,10 +385,13 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       </g>; })}
       {/* K6 (B2): siluet ve kenar ışığı SVG filtresi yerine ALFA MASKESİYLE (figürün kendi alfası) — filtre bölgesi Chromium'da bazı karelerde arka
           katmanları (kanat, arka kol) düşürüp yarı saydam "hayalet" bırakıyordu. Kanat her karede opak; durum değişimi yok. */}
+      {/* FINAL2 (K4): kenar ışığı iç içe maske (figür − kaydırılmış figür) yerine figürün ARKASINA, güneşe doğru kaydırılmış tek alfa maskesi:
+          çok kareli render'da iç içe maske karo düşürüp yüz/gövde üstünde kopuk sarı çizgiler bırakıyordu. Şerit yalnız dış konturda görünür
+          (iç dikiş boşlukları üstteki opak figürle örtülür). */}
       {figur && <g>
+        <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill={R.kenar} mask={`url(#${uid}fa2)`} />
         {figur.tam}
         {siluet > 0 && <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill={siluet >= 0.5 ? "#383b2e" : R.kontra} opacity={siluet} mask={`url(#${uid}fa)`} />}
-        <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill={R.kenar} mask={`url(#${uid}km)`} />
       </g>}
       {/* taş (dudakta figürün 0.02 m önünde → onu örter; düşerken gövdenin önünde; yerde iki çatı arasındaki sokakta) */}
       {/* K7 (R5 §2.4b 6): taşın temas gölgesi (yerdeyken; havada yok), sonra arka toz öbekleri, taş, ön toz öbekleri */}
@@ -407,13 +411,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       <clipPath id={`${uid}gy`}><polygon points={poly(sekiYuz())} /><rect x={GT.cikinti[0]} y={CIKINTI_UST} width={GT.cikinti[1] - GT.cikinti[0]} height={GT.dudak - CIKINTI_UST} /></clipPath>
       {hd && <>
         <mask id={`${uid}fa`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} style={{ maskType: "alpha" }}>{figur?.sade}</mask>
-        {/* aynı maske iki yerden (siluet + kenar) kullanılınca Chromium arka katmanları düşürüyordu → kenar için ayrı kopya */}
-        <mask id={`${uid}fa3`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} style={{ maskType: "alpha" }}>{figur?.sade}</mask>
-        <mask id={`${uid}fa2`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} style={{ maskType: "alpha" }}><g transform={`translate(${-kontraKenar},${kontraKenar * 0.4})`}>{figur?.sade}</g></mask>
-        <mask id={`${uid}km`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]}>
-          <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill="#ffffff" mask={`url(#${uid}fa3)`} />
-          <rect x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} fill="#000000" mask={`url(#${uid}fa2)`} />
-        </mask>
+        {/* kenar: ayrı kopya, güneşe doğru (sağ-yukarı) kaydırılmış; iç içe maske YOK (FINAL2 K4) */}
+        <mask id={`${uid}fa2`} maskUnits="userSpaceOnUse" x={fb[0]} y={fb[1]} width={fb[2]} height={fb[3]} style={{ maskType: "alpha" }}><g transform={`translate(${kontraKenar},${-kontraKenar * 0.4})`}>{figur?.sade}</g></mask>
       </>}
     </defs>
   );

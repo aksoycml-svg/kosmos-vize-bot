@@ -1313,3 +1313,45 @@
 ## arastirmaci · 2026-11-09 · "Hezarfen = bin hünerli" kaynak doğrulaması (arastirma.md §12)
 - Ne yaptım: 4 `WebSearch` ile lakabın anlamını taradım; `arastirma.md` sonuna §12 ekledim. TDV (Kaçar) özeti "bin fenli" der, "bin hünerli" savunulabilir ama yumuşatılmalı ("bin fenli, yani çok şeyden anlayan"). Dokunduğum dosyalar: bolumler/evliya-ucuslari/arastirma.md, bolumler/evliya-ucuslari/katki-raporu.md.
 - Kararlar/kurallar: `WebFetch` islamansiklopedisi.org.tr'yi açamadı (DNS), tüm bilgi "arama özeti"; Nişanyan/TDK maddesi bulunamadı; "fen = Arapça" çıkarım olarak etiketlendi. Açık: sözlük teyidi için ağ izni gerekir.
+
+## motion · 2026-11-09 · FINAL düzeltme turu 2 (K1–K4 + hızlı ORTA'lar, tam render)
+- Ne yaptım:
+  - **K4 (P08 tekme, sarı kopuk çizgiler):** Kökü buldum. Çizgi rig'den değil, kenar ışığı maskesinden geliyordu. Kenar ışığı iç içe maskeyle (figür eksi kaydırılmış figür) yapılıyordu. Çok kareli render'da (concurrency 4) Chromium iç içe maskede parça düşürüyor ve figürün iç dikişlerinde (yüz/sakal, bacak arası, kaftan) sarı çizgi kalıyordu. Tek kare `still` render'ı temiz çıktığı için önceki turlarda görülmemişti. Çözüm: iç içe maske kaldırıldı. Güneşe doğru kaydırılmış tek alfa maskeli kenar şeridi artık figürün **arkasına** çiziliyor. İç dikişleri üstteki opak figür örtüyor. Bu değişiklik P01 B ve P08'i, yani GALATA-TEPE'nin tamamını etkiliyor.
+  - **K1/K2 (meşale yayı):** Kiyi şablonuna meşale `tasi_egim` / `tasi_el` / `bant` / `tasi_kare` parametreleri eklendi. Sopa artık açı üzerinden dönüyor; eskiden vektör karışımı yüzünden bir karede ters dönüyordu. Geri tutuşta (`tasi_egim` < 0) dönüş figürün arkasından geçiyor ve kol 0.45 m geriye salınıyor, böylece sap ucu da demete uzanmıyor. Kaldırma artık zamana bağlı: P01'de p64–88, P05'te p60–86, yani 0.4 sn'lik görünür bir yay. Alev her karede sopanın ucunda, yerde ayrı alev kalmıyor.
+  - **K3 (P06 demet):** Kiyi `demetCoz` içine `dusus: {bas, bit}` eklendi. Bu bir serbest düşüş: derinlik doğrusal (ileri momentum), düşey t² (g≈9.7 m/s²), ekran konumu ufuk-ölçek izdüşümünden hesaplanıyor. Demet p46'da bırakılıyor ve p84'te suya değiyor (0.63 sn). Olcek 0.92→0.45 ile su noktasının (y 1178) pxmSu ölçeğine oturuyor. Rıhtım üstünde değil, dudağın gerisindeki suda. Yolu x 548→610, yardımcıların sağında ve arkasında kalıyor. Sonra yüzüyor ve push-in sırasında (yaklaşık p200) kamera hareketiyle alt kenardan kadraj dışına çıkıyor.
+  - **O4:** GALATA-TEPE `tasCoz`'a `sabit` bayrağı eklendi. P01 B'de Hezarfen'in ayağının dibinde P08 p0'daki taş var (x 770, y 1250).
+  - **Miks:** `python3 -I tools/evliya_miks.py` çalıştı. `evliya_miks.py` içinde P06 `ruzgar-dusme` ortamı 50–100 yerine 46–86 oldu (yeni düşüş).
+  - **Tam render:** 3774/3774 kare, TR −14.3 LUFS / −1.9 dBTP, EN −14.3 / −1.9. Render sonrası mp4'ten kare şeritleri çıkarıldı (R_*). Hiçbir kritik madde kalmadı.
+- Dokunduğum dosyalar: src/kit/sablonlar/galata/GalataTepe.tsx, src/kit/sablonlar/sarayburnu/Kiyi.tsx, bolumler/evliya-ucuslari/bolum.json, bolumler/evliya-ucuslari/foley.json, tools/evliya_miks.py, bolumler/evliya-ucuslari/kalibrasyon/FINAL2/*.png, out/evliya/evliya-{tr,en}.mp4, public/evliya/miks/{tr,en}*.
+- bolum.json değişiklikleri (yönetmen onayına):
+
+| Plan | Alan | Eski | Yeni | Neden |
+|---|---|---|---|---|
+| P01 | props.mesale | x[330,330,330] y[1325,1325,1000] kare[0,60,100] | x 330, y 1325, tasi_egim −12, tasi_el [0.08,0.32], bant [0.55,1.0], tasi_kare [64,88] | K1 |
+| P01 | temaslar puskurme / fisek-kalkis db | −8 / −6 | −14 / −12 | O1 |
+| P01 | ekran_yazisi | bas 0 bit 324 (tek) | bas 0 bit 68 + bas 150 bit 324 | O9, yükselen binici yazı altında kalmasın |
+| P01 | devam_plan.props | — | tas (x 770, y 1250, sabit) | O4 |
+| P04 | replik kim / kim_en | "LAGÂRİ (Evliya'ya göre)" / "LAGÂRI (according to Evliya)" | "LAGÂRİ" / "LAGARI" | P12 kararıyla tutarlılık, P12'deki "PADİŞAH" gibi büyük harf |
+| P05 | props.mesale1 | x[..,345] y[..,900] kare[0,14,30,56,88] | x[330,330,330] y[1250,1280,1322] kare[0,14,30] + aynı tutuş parametreleri, tasi_kare [60,86] | K2 |
+| P05 | temaslar puskurme / fisek-kalkis db | −8 / −6 | −14 / −12 | O1 |
+| P06 | props.demet | 6 anahtar, p148'de x 200'de bitiş, olcek 0.85 | x[540,545,548,610] y[960,930,930,1178] kare[0,28,46,84] aci[0,0,0,30] olcek[.92,.92,.92,.45] dusus{46,84} | K3 |
+| P06 | parametreler.su | y_demet 1200, halka 100–130 | y_demet 1178, halka 84–114 | K3 |
+| P06 | temaslar su-dump / buhar | p100 / p102 | p84 / p86 | K3, temas = ses |
+| P06 | props.mesale1 | x 345 y 900 | x 100 y 880 + tutuş parametreleri | K2 sürekliliği (P05 sonu = P06 başı) |
+| P06 | sfx metni | dusme-ruzgar p50-100, su-dump p100, buhar p102 | p50-84, p84, p86 | not |
+| P08 | ekran_yazisi bas | 16 | 80 | O9: tekmede yüz/omuz yazı altındaydı, p54–70'te de kaftan altındaydı |
+| P13 | ekran_yazisi en | SEYAHATNAME (“Book of Travels”) · no other record found | “Book of Travels” · no other record found | O3, kutu ve sağ marj taşması |
+| P13 | kontrol_kare | 190 | 216 | küçük madde |
+
+  foley.json: `puskurme.onerilen_db` −8→−14, `fisek-kalkis.onerilen_db` −6→−12 (not eklendi). Miks seviyeyi temaslar[].db'den okuyor; asıl değişiklik orada.
+- Aldığım kararlar ve gerekçeleri:
+  - P12 "Padişah" etiketi uzatılmadı. Replik 1 p30'da üst bantta başlıyor. Alt bant p0–36'da ayakları örtüyor. Etiket ≥60 kareye çıkarılırsa ya yazı üst üste biner ya ayaklar örtülür, bu yüzden olduğu gibi bırakıldı.
+  - P08 yazısı ikiye bölünmedi. 16–26 arası bir parça 0.2 sn olurdu ve okunmazdı. Onun yerine yazı p80'den başlatıldı (2.7 sn).
+  - P13 EN'de "SEYAHATNAME" adı düştü, EN izleyici için anlamlı olan "Book of Travels" kaldı. Senaryo EN onaylı metnin kısaltılmış hâli: **kullanıcı onayı bekliyor**.
+  - P04 etiketi büyük harf ("LAGÂRİ"/"LAGARI"). Brif "Lagâri"/"Lagari" diyordu ama P12 "PADİŞAH" ile aynı biçim seçildi.
+- Uyguladığım kurallar / yakaladığım ihlaller: Hareket tamamlanır (demet suya girip yüzüyor, kadrajdan kamera hareketiyle çıkıyor, fade yok). Temas = ses (su-dump onseti miks stem'inde tam 25.00 sn = g1500 = P06 p84). Derinlik sırası (demet hep yardımcıların arkasında). Fiziksel düşüş süresi. Çıkış kuralı (P01/P05 kaldırışında meşale başı 2–4 kare sol kadraj kenarından çıkıp dönüyor; duvarsız kenar). Hiçbir şey nesne içinden geçmiyor (sap ucu demet sınırına en çok ~10 px yaklaşıyor, girmiyor). Yeni ders: **maske/kenar ışığı hataları tek kare `still`'de görünmüyor; ancak çok kareli render'da çıkıyor.** Kenar efekti olan şablonlar `remotion render --sequence` ile denetlenmeli.
+- Açık sorular / bir sonraki ajana notlar:
+  - O5: Araştırmacı "bin fenli" yazmayı önerdi (§12). P08 yazısı hâlâ "bin hünerli". Yönetmen/kullanıcı karar verecek, bu turda dokunulmadı.
+  - Yapılmadı (bilinen sorun): O6 P12 ışık çizgisi, O7 P09 düz su, O8 P06 yükseklik (kullanıcıya soruluyor), O10 P08 gök, P03/P07/P11 küçük maddeler.
+  - P05 kontrol karesi p78'de meşale başı sol kenarda yarım görünüyor (kaldırış yayının ortası). Başlık dokunuşu etkilenmiyor.
+  - Öz puan: 7.5/10. Kritikler kapandı ama O6–O10 açık.

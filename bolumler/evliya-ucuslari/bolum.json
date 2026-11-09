@@ -153,26 +153,26 @@
     {
      "tur": "mesale",
      "id": "mesale",
-     "x": [
-      330,
-      330,
-      330
-     ],
-     "y": [
-      1325,
-      1325,
-      1000
-     ],
+     "x": 330,
+     "y": 1325,
      "bagli": "yardimci-1",
      "kit_eksik": [
       "KE-P7"
      ],
-     "kare": [
-      0,
-      60,
-      100
+     "not": "[K5-yon B16] fitil işi p40'ta bitti; p60-100'de meşale yerden kalkar (taşıma pozu, baş omuz yanında); p172'de alev ayakkabı dibinde değil | [FINAL2 K1] kaldırışta sopa figürün ARKASINDAN döner (tasi_egim −12, geri), alev Y1'in başı üstünde x≈300-360; demet x aralığına (430-610) girmez",
+     "tasi_egim": -12,
+     "tasi_el": [
+      0.08,
+      0.32
      ],
-     "not": "[K5-yon B16] fitil işi p40'ta bitti; p60-100'de meşale yerden kalkar (taşıma pozu, baş omuz yanında); p172'de alev ayakkabı dibinde değil"
+     "bant": [
+      0.55,
+      1.0
+     ],
+     "tasi_kare": [
+      64,
+      88
+     ]
     }
    ],
    "devam_plan": {
@@ -285,6 +285,19 @@
       "kit_eksik": [
        "KE-P2"
       ]
+     },
+     {
+      "tur": "tas",
+      "id": "tas",
+      "x": 770,
+      "y": 1250,
+      "olcek": 1.0,
+      "boyut_dekor_px": 95,
+      "sabit": true,
+      "not": "[FINAL2 O4] P08 p0 ile süreklilik: aynı an, Hezarfen'in çıkıntıdaki ayağının dibinde aynı gevşek taş (P08 props.tas x[0]/y[0])",
+      "kit_eksik": [
+       "KE-P5"
+      ]
      }
     ],
     "kit_eksik": [
@@ -298,13 +311,29 @@
      "en": "ONE WITNESS: A BOOK",
      "tur": "iddia",
      "bas": 0,
+     "bit": 68,
+     "vurgu": [
+      "KİTAP"
+     ],
+     "vurgu_en": [
+      "BOOK"
+     ],
+     "not": "[FINAL2 O9] yükselen binici (p72-150) yazının altından geçiyordu: yazı p68'de kalkar, fişek kadrajdan çıkınca (p150) döner"
+    },
+    {
+     "bant": "ust",
+     "metin": "TEK TANIK: BİR KİTAP",
+     "en": "ONE WITNESS: A BOOK",
+     "tur": "iddia",
+     "bas": 150,
      "bit": 324,
      "vurgu": [
       "KİTAP"
      ],
      "vurgu_en": [
       "BOOK"
-     ]
+     ],
+     "not": "[FINAL2 O9] ikinci gösterim (fişek çıktıktan sonra, B kesmesi boyunca)"
     }
    ],
    "temaslar": [
@@ -318,13 +347,13 @@
      "kare": 40,
      "olay": "kıvılcım demete ulaşır, fişek ateş alır",
      "ses": "puskurme",
-     "db": -8
+     "db": -14
     },
     {
      "kare": 72,
      "olay": "fişek yerden kalkar",
      "ses": "fisek-kalkis",
-     "db": -6
+     "db": -12
     },
     {
      "kare": 212,
@@ -980,8 +1009,8 @@
    ],
    "replik": [
     {
-     "kim": "LAGÂRİ (Evliya'ya göre)",
-     "kim_en": "LAGÂRI (according to Evliya)",
+     "kim": "LAGÂRİ",
+     "kim_en": "LAGARI",
      "bant": "ust",
      "metin": "Padişahım,",
      "bas": 7,
@@ -999,8 +1028,8 @@
      }
     },
     {
-     "kim": "LAGÂRİ (Evliya'ya göre)",
-     "kim_en": "LAGÂRI (according to Evliya)",
+     "kim": "LAGÂRİ",
+     "kim_en": "LAGARI",
      "bant": "ust",
      "metin": "İsa peygamberle konuşmaya gidiyorum!",
      "bas": 117,
@@ -1273,29 +1302,36 @@
      "x": [
       330,
       330,
-      330,
-      330,
-      345
+      330
      ],
      "y": [
       1250,
       1280,
-      1322,
-      1322,
-      900
+      1322
      ],
      "kare": [
       0,
       14,
-      30,
-      56,
-      88
+      30
      ],
      "bagli": "yardimci-1",
      "kit_eksik": [
       "KE-P7"
      ],
-     "kosul": "Y4: p88'den sonra meşale DİK (taşıma pozu), alev Y1'in dış yanında x≈325-345, y ≤ 1000; Y2'den ≥ 60 px, demet koridorundan (x ≥ 440) uzak; fitile değme (p30) alçak. Y1 x 70-90'a çekildi (taşıma pozunda alev ≈ Y1.x+255)"
+     "kosul": "[FINAL2 K2] geri sıçramada meşale figürün ARKASINDAN (sola) döner; p88'den sonra geri tutuş, alev Y1'in başı üstünde/dış yanında x≈80-150 (dekor), Y2 ve demetten uzak. Alev hep sopanın ucunda (ayrı yer alevi yok).",
+     "tasi_egim": -12,
+     "tasi_el": [
+      0.08,
+      0.32
+     ],
+     "bant": [
+      0.55,
+      1.0
+     ],
+     "tasi_kare": [
+      60,
+      86
+     ]
     },
     {
      "tur": "baslik",
@@ -1374,7 +1410,7 @@
      "kare": 56,
      "olay": "fitil demete ulaşır, püskürme başlar",
      "ses": "puskurme",
-     "db": -8
+     "db": -14
     },
     {
      "kare": 60,
@@ -1392,7 +1428,7 @@
      "kare": 112,
      "olay": "fişek kalkar",
      "ses": "fisek-kalkis",
-     "db": -6
+     "db": -12
     }
    ],
    "gecis": "Giriş: sert kesme (P04 tutunma tamam). Çıkış: MATCH CUT P06'ya (aynı kadraj; fişek yavaşlamış, itki sönmek üzere; bilinçli, hareket süreklilik).",
@@ -1465,11 +1501,11 @@
      "not": "P05 p209 ile kesintisiz: püskürme sürerken başlar, p36'da söner"
     },
     "su": {
-     "y_demet": 1200,
+     "y_demet": 1178,
      "y_inis": 775,
      "halka": {
-      "bas": 100,
-      "bit": 130
+      "bas": 84,
+      "bit": 114
      }
     },
     "kosk_konum": {
@@ -1682,47 +1718,35 @@
       540,
       545,
       548,
-      555,
-      560,
-      200
+      610
      ],
      "y": [
       960,
       930,
       930,
-      1170,
-      1200,
-      1205
+      1178
      ],
      "kare": [
       0,
       28,
       46,
-      76,
-      100,
-      148
+      84
      ],
      "aci": [
       0,
       0,
       0,
-      20,
-      40,
-      50
+      30
      ],
      "durum": {
       "puskurme": [
        1,
        0,
        0,
-       0,
-       0,
        0
       ],
       "bos": [
        0,
-       1,
-       1,
        1,
        1,
        1
@@ -1735,11 +1759,13 @@
       0.92,
       0.92,
       0.92,
-      0.88,
-      0.85,
-      0.85
+      0.45
      ],
-     "kosul": "Y9: boş demet p100-148'de dalgayla sola sürüklenir; kamera p150-180'de sağa/aşağı döndükçe sol kenardan TAMAMEN çıkar (ekran x<0, p180). Push-in karelerinde (p215+) kırpılmış kalıntı yok"
+     "kosul": "[FINAL2 K3] bırakma p46 → serbest düşüş (0.63 sn, g≈9.7 m/s², ileri momentumla derinleşir: olcek 0.92→0.45) → p84 suya değer (su y 1178 = pxmSu ölçeğiyle tutarlı, rıhtım dudağının gerisinde), yatar ve yüzer. Yol yardımcıların sağında ve arkasında (x 548→610), kimsenin önünden geçmez. Push-in (p180-215) sırasında kamera hareketiyle alt kenardan kadraj dışına çıkar.",
+     "dusus": {
+      "bas": 46,
+      "bit": 84
+     }
     },
     {
      "tur": "kanat",
@@ -1801,13 +1827,22 @@
     {
      "tur": "mesale",
      "id": "mesale1",
-     "x": 345,
-     "y": 900,
+     "x": 100,
+     "y": 880,
      "bagli": "yardimci-1",
      "kit_eksik": [
       "KE-P7"
      ],
-     "kosul": "P05 p88 ile aynı durum: dik, alev x≈345, y ≤ 1000"
+     "kosul": "[FINAL2 K2] geri sıçramada meşale figürün ARKASINDAN (sola) döner; p88'den sonra geri tutuş, alev Y1'in başı üstünde/dış yanında x≈80-150 (dekor), Y2 ve demetten uzak. Alev hep sopanın ucunda (ayrı yer alevi yok).",
+     "tasi_egim": -12,
+     "tasi_el": [
+      0.08,
+      0.32
+     ],
+     "bant": [
+      0.55,
+      1.0
+     ]
     },
     {
      "tur": "baslik",
@@ -1852,13 +1887,13 @@
      "db": -10
     },
     {
-     "kare": 100,
-     "olay": "boş demet suya çarpar",
+     "kare": 84,
+     "olay": "boş demet suya çarpar (dusus.bit)",
      "ses": "su-dump",
      "db": -8
     },
     {
-     "kare": 102,
+     "kare": 86,
      "olay": "buhar halkası yükselir",
      "ses": "buhar",
      "db": -12
@@ -1880,9 +1915,9 @@
    "sfx": [
     "kanat-hisirti (p44)",
     "birakma-tik (p46)",
-    "dusme-ruzgar (p50-100, -14)",
-    "su-dump (p100)",
-    "buhar (p102)",
+    "dusme-ruzgar (p50-84, -14)",
+    "su-dump (p84)",
+    "buhar (p86)",
     "su-sap (p215, en yüksek)",
     "yuzme su sesi (p222-288, -16)",
     "su-yatma (p236, -16)"
@@ -2540,14 +2575,15 @@
      "metin": "2. UÇUŞ · Hezarfen = “bin hünerli”",
      "en": "FLIGHT 2 · Hezarfen = “a thousand skills”",
      "tur": "iddia",
-     "bas": 16,
+     "bas": 80,
      "bit": 244,
      "vurgu": [
       "UÇUŞ"
      ],
      "vurgu_en": [
       "FLIGHT"
-     ]
+     ],
+     "not": "[FINAL2 O9] tekmede (p26-60) Hezarfen'in başı/omzu yazının altındaydı: yazı tekme bitip kamera taşı izlemeye başlayınca (p80; p54-70'te kaftan hâlâ yazı altındaydı) girer"
     }
    ],
    "temaslar": [
@@ -4266,7 +4302,7 @@
     {
      "bant": "ust",
      "metin": "Seyahatname · başka kayıt bulunamadı",
-     "en": "SEYAHATNAME (“Book of Travels”) · no other record found",
+     "en": "“Book of Travels” · no other record found",
      "tur": "iddia",
      "bas": 20,
      "bit": 292,
@@ -4275,7 +4311,8 @@
      ],
      "vurgu_en": [
       "other"
-     ]
+     ],
+     "not": "[FINAL2 O3] EN metin kutudan/sağ 80 px marjdan taşıyordu (SEYAHATNAME (“Book of Travels”) …): kısaltıldı"
     }
    ],
    "temaslar": [
@@ -4305,7 +4342,7 @@
    ],
    "muzik_notu": "Akar; geri çekilirken tema boşalır (tek nota/çağrı), boş defterlerde sessizlik hissi müzikle: seyrek tek vuruş.",
    "dokunus": null,
-   "kontrol_kare": 190,
+   "kontrol_kare": 216,
    "kontrol_ek": [
     60
    ],

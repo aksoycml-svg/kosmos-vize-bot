@@ -50,7 +50,23 @@ const demetCoz = (pr: Prop, p: number, puskurmeAralik: { bas: number; bit: numbe
   const kare = pr.kare ?? [], sonK = kare.length ? kare[kare.length - 1] : 0;
   const ySon = Array.isArray(pr.y) ? pr.y[pr.y.length - 1] : n(pr.y, 1330);
   let x = deger(pr.x, pr.kare, p, 520), y = deger(pr.y, pr.kare, p, 1330), aci = deger(pr.aci, pr.kare, p, 0);
-  const pxm = demetPxm(pr, p, y);
+  let pxm = demetPxm(pr, p, y);
+  // FINAL2 (K3): `dusus: {bas, bit}` — bırakılan demetin serbest düşüşü. Anahtarlar bas ve bit karelerinde (konum, olcek, aci) verilir;
+  // arada 3B'de: derinlik doğrusal (ileri momentum), düşey düşüş t² (durağandan yerçekimi), yanal doğrusal; ekran = ufuk-ölçek izdüşümü.
+  // (deger()'in segment başına yumuşatması düşüşü süzülür gösteriyordu.)
+  const dus = (pr as Prop & { dusus?: { bas: number; bit: number } }).dusus;
+  if (dus && p > dus.bas && p < dus.bit) {
+    const ol = (pr as Prop & { olcek?: number | number[] }).olcek as number | number[] | undefined;
+    const at = (q: number) => ({ x: deger(pr.x, pr.kare, q, 520), y: deger(pr.y, pr.kare, q, 1330), o: deger(ol, pr.kare, q, 1), a: deger(pr.aci, pr.kare, q, 0) });
+    const A = at(dus.bas), B = at(dus.bit), t = (p - dus.bas) / (dus.bit - dus.bas);
+    const o = 1 / (1 / A.o + (1 / B.o - 1 / A.o) * t);
+    const pA = REF_PXM * A.o, pB = REF_PXM * B.o;
+    const vA = (A.y - KIYI.ufuk) / pA, vB = (B.y - KIYI.ufuk) / pB, uA = (A.x - KIYI.un[0]) / pA, uB = (B.x - KIYI.un[0]) / pB;
+    pxm = REF_PXM * o;
+    x = KIYI.un[0] + (uA + (uB - uA) * t) * pxm;
+    y = KIYI.ufuk + (vA + (vB - vA) * t * t) * pxm;
+    aci = A.a + (B.a - A.a) * t;
+  }
   const du = propDurum(pr, p);
   const aktif = puskurmeAralik ? p >= puskurmeAralik.bas && p < puskurmeAralik.bit : true;
   let suda: DemetCoz["suda"] = null;
@@ -251,20 +267,39 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[]; o
       // yakınsa taşıma pozu (el önde-aşağıda, sopa dik + 20° ileri). Meşale her durumda ELİ izler.
       const omuz = govdeDunya(pz, [40, -380]);
       const f = pz.facing ?? 1;
-      const tasiHedef: P = [omuz[0] + f * 0.3 * pxm, omuz[1] + 0.3 * pxm];
-      const egim = (20 * Math.PI) / 180;
+      // FINAL2 (K1/K2): mesale prop'u `tasi_egim` (derece; + = bakış yönüne/demete, − = geriye) ve `tasi_el` ([ileri, aşağı] m) ile taşıma pozu;
+      // `bant` ([m, m]) yol↔taşıma geçişinin omuz mesafesi aralığı. Geri tutuşta (egim < 0) sopa dönüşü figürün ARKASINDAN geçer (demetin
+      // önünden/içinden asla). Dönüş açı üzerinden karışır (vektör karışımında yön bir karede ters dönüyordu → 3 karelik savurma).
+      const mp = mesalePr as (Prop & { tasi_egim?: number; tasi_el?: number[]; bant?: number[] }) | undefined;
+      const egimD = n(mp?.tasi_egim, 20), elOf = mp?.tasi_el ?? [0.3, 0.3], bant = mp?.bant ?? [0.75, 0.9];
+      const tasiHedef: P = [omuz[0] + f * elOf[0] * pxm, omuz[1] + elOf[1] * pxm];
+      const egim = (egimD * Math.PI) / 180;
       const tasiYon: P = [f * Math.sin(egim), -Math.cos(egim)];
       let hedef: P = tasiHedef, yon: P = tasiYon;
       if (mesalePr && mesalePr.x !== undefined) {
         const bas: P = [deger(mesalePr.x, mesalePr.kare, p), deger(mesalePr.y, mesalePr.kare, p)];
         const dx = bas[0] - omuz[0], dy = bas[1] - omuz[1], L = Math.hypot(dx, dy) || 1;
-        const w = interpolate(L / pxm, [0.75, 0.9], [0, 1], cl);
+        // `tasi_kare: [a, b]` verilirse geçiş ZAMANA bağlı (a'da yol, b'de taşıma; INOUT) — kaldırış hızı mesafe eşiğine takılmaz
+        const tk = (mp as { tasi_kare?: number[] } | undefined)?.tasi_kare;
+        const w = tk ? interpolate(p, tk, [1, 0], { ...cl, easing: INOUT_K }) : interpolate(L / pxm, bant, [0, 1], { ...cl, easing: INOUT_K });
         if (w > 0) {
           const yy: P = [dx / L, dy / L];
           const hy: P = [bas[0] - yy[0] * 0.8 * pxm, bas[1] - yy[1] * 0.8 * pxm];
           hedef = [tasiHedef[0] + (hy[0] - tasiHedef[0]) * w, tasiHedef[1] + (hy[1] - tasiHedef[1]) * w];
-          const ym: P = [tasiYon[0] + (yy[0] - tasiYon[0]) * w, tasiYon[1] + (yy[1] - tasiYon[1]) * w]; const Lm = Math.hypot(ym[0], ym[1]) || 1;
-          yon = [ym[0] / Lm, ym[1] / Lm];
+          const aT = Math.atan2(tasiYon[1], tasiYon[0]), aY = Math.atan2(yy[1], yy[0]);
+          let dA = aY - aT;
+          while (dA > Math.PI) dA -= 2 * Math.PI;
+          while (dA <= -Math.PI) dA += 2 * Math.PI;
+          if (egimD < 0) {
+            // ara açı figürün arkasını (−f) göstermeli; göstermiyorsa öbür yoldan dön
+            const orta = aT + dA / 2;
+            if (Math.cos(orta) * f > 0) dA = dA > 0 ? dA - 2 * Math.PI : dA + 2 * Math.PI;
+          }
+          const a = aT + dA * w;
+          yon = [Math.cos(a), Math.sin(a)];
+          // geri dönüşte kol geriye salınır (alttan yay): sopa yataya geldiğinde el omzun 0.45 m gerisinde → sopanın sap ucu da
+          // demete/öndeki figüre uzanmaz
+          if (egimD < 0) { const sal = Math.sin(Math.PI * w); hedef = [hedef[0] - f * 0.45 * pxm * sal, hedef[1] + 0.05 * pxm * sal]; }
         }
       }
       ikEl(true, hedef);

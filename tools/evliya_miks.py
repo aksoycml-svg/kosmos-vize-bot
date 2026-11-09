@@ -71,7 +71,7 @@ tp = lambda pid, k: (bas[pid] + k) / FPS
 
 # ambiyans: (plan, ad, kare_bas, kare_bit|None, db, lp_fc)
 AMB = [("P01", "deniz-ortam", 0, None, -22), ("P02", "deniz-ortam", 0, None, -22), ("P03", "mesale-ortam", 0, None, -22),
-       ("P04", "deniz-ortam", 0, None, -24), ("P05", "deniz-ortam", 0, None, -24), ("P06", "ruzgar-dusme", 50, 100, -14),
+       ("P04", "deniz-ortam", 0, None, -24), ("P05", "deniz-ortam", 0, None, -24), ("P06", "ruzgar-dusme", 46, 86, -14),
        ("P06", "yuzme-su", 222, 288, -16), ("P07", "su-damla", 0, 190, -18), ("P08", "ruzgar-kule", 0, None, -20),
        ("P08", "ruzgar-dusme", 52, 148, -14), ("P09", "ruzgar-bogaz", 0, 260, -16), ("P10", "marti-ortam", 0, None, -22),
        ("P11", "deniz-ortam", 0, None, -22), ("P12", "sehir-ortam", 0, 30, -12), ("P12", "sehir-ortam", 30, None, -22, 1200),
