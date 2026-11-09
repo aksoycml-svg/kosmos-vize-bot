@@ -1,0 +1,64 @@
+{
+ "id": "P10",
+ "lang": "tr",
+ "text": "[curious] Onu kim izliyor? [knowing] Yine padişah. Yine aynı köşkten.",
+ "words": [
+  {
+   "t": "Onu",
+   "s": 0.173,
+   "e": 0.28
+  },
+  {
+   "t": "kim",
+   "s": 0.34,
+   "e": 0.52
+  },
+  {
+   "t": "izliyor?",
+   "s": 0.573,
+   "e": 1.08
+  },
+  {
+   "t": "Yine",
+   "s": 1.928,
+   "e": 1.96
+  },
+  {
+   "t": "padişah.",
+   "s": 2.04,
+   "e": 3.08
+  },
+  {
+   "t": "Yine",
+   "s": 3.16,
+   "e": 3.48
+  },
+  {
+   "t": "aynı",
+   "s": 3.576,
+   "e": 3.96
+  },
+  {
+   "t": "köşkten.",
+   "s": 4.04,
+   "e": 4.68
+  }
+ ],
+ "dur": 4.73,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "varyant": "B",
+ "ses": "Alex - Deep, Clear and Fluent",
+ "on_bosluk_ms": 40,
+ "cekim": 1,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -87.5,
+ "hisirti_6k_dbfs": -97.1
+}

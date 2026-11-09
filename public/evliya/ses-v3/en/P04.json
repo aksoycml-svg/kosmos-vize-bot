@@ -1,0 +1,50 @@
+{
+ "text": "[shouting] Sultan!! Off to talk with Jesus!! [laughing]",
+ "words": [
+  {
+   "t": "Sultan!!",
+   "s": 0.504,
+   "e": 0.68
+  },
+  {
+   "t": "Off",
+   "s": 0.8,
+   "e": 1.16
+  },
+  {
+   "t": "to",
+   "s": 1.213,
+   "e": 1.32
+  },
+  {
+   "t": "talk",
+   "s": 1.368,
+   "e": 1.56
+  },
+  {
+   "t": "with",
+   "s": 1.592,
+   "e": 1.72
+  },
+  {
+   "t": "Jesus!!",
+   "s": 1.827,
+   "e": 2.361
+  }
+ ],
+ "dur": 3.69,
+ "voice": "7VqWGAWwo2HMrylfKrcm",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.6,
+  "use_speaker_boost": true
+ },
+ "etiket": "[shouting] Sultan!! Off to talk with Jesus!! [laughing]",
+ "on_bosluk_ms": 40,
+ "id": "P04",
+ "lang": "en",
+ "kaynak": "public/evliya/ses-aday/bagir/fatih-en-cekim3.mp3",
+ "varyant": "B"
+}

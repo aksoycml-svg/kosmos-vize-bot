@@ -1,0 +1,68 @@
+{
+ "text": "[knowing] For it, he gets a purse, and a daily salary. [pause]",
+ "words": [
+  {
+   "t": "For",
+   "s": 0.176,
+   "e": 0.2
+  },
+  {
+   "t": "it,",
+   "s": 0.253,
+   "e": 0.44
+  },
+  {
+   "t": "he",
+   "s": 0.467,
+   "e": 0.52
+  },
+  {
+   "t": "gets",
+   "s": 0.568,
+   "e": 0.76
+  },
+  {
+   "t": "a",
+   "s": 0.8,
+   "e": 0.84
+  },
+  {
+   "t": "purse,",
+   "s": 0.933,
+   "e": 1.72
+  },
+  {
+   "t": "and",
+   "s": 1.8,
+   "e": 2.04
+  },
+  {
+   "t": "a",
+   "s": 2.08,
+   "e": 2.12
+  },
+  {
+   "t": "daily",
+   "s": 2.187,
+   "e": 2.52
+  },
+  {
+   "t": "salary.",
+   "s": 2.589,
+   "e": 3.08
+  }
+ ],
+ "dur": 3.527,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B",
+ "on_bosluk_ms": 40,
+ "not": "v3 [pause] etiketli cekim; sondaki 2.2 sn sessizlik kirpildi (metin degismedi, 'purse,' virgul eklendi)"
+}

@@ -1,0 +1,59 @@
+{
+ "id": "P05",
+ "lang": "tr",
+ "text": "[excited] Fitil yanıyor ve fişek onu göğe fırlatıyor!",
+ "words": [
+  {
+   "t": "Fitil",
+   "s": 0.25,
+   "e": 0.44
+  },
+  {
+   "t": "yanıyor",
+   "s": 0.48,
+   "e": 1.0
+  },
+  {
+   "t": "ve",
+   "s": 1.133,
+   "e": 1.4
+  },
+  {
+   "t": "fişek",
+   "s": 1.507,
+   "e": 2.04
+  },
+  {
+   "t": "onu",
+   "s": 2.16,
+   "e": 2.52
+  },
+  {
+   "t": "göğe",
+   "s": 2.653,
+   "e": 3.08
+  },
+  {
+   "t": "fırlatıyor!",
+   "s": 3.12,
+   "e": 3.8
+  }
+ ],
+ "dur": 3.85,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "varyant": "B",
+ "ses": "Alex - Deep, Clear and Fluent",
+ "on_bosluk_ms": 40,
+ "cekim": 4,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -70.5,
+ "hisirti_6k_dbfs": -74.1
+}

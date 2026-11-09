@@ -1,0 +1,47 @@
+{
+ "id": "P12",
+ "lang": "tr",
+ "text": "Çünkü bu adamdan korkulur. Ne isterse yapar.",
+ "dur": 2.873,
+ "words": [
+  {
+   "t": "Çünkü",
+   "s": 0.1,
+   "e": 0.34
+  },
+  {
+   "t": "bu",
+   "s": 0.36,
+   "e": 0.44
+  },
+  {
+   "t": "adamdan",
+   "s": 0.48,
+   "e": 0.84
+  },
+  {
+   "t": "korkulur.",
+   "s": 0.92,
+   "e": 1.38
+  },
+  {
+   "t": "Ne",
+   "s": 1.66,
+   "e": 1.74
+  },
+  {
+   "t": "isterse",
+   "s": 1.76,
+   "e": 2.18
+  },
+  {
+   "t": "yapar.",
+   "s": 2.22,
+   "e": 2.52
+  }
+ ],
+ "voice": "MuOq11XzQTthwLhmGZ2V",
+ "model": "eleven_multilingual_v2",
+ "kaynak": "public/evliya/ses-aday/padisah-2-nihat-tr.mp3",
+ "varyant": "B (padisah Nihat, degismedi)"
+}

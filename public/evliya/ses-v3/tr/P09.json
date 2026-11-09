@@ -1,0 +1,69 @@
+{
+ "id": "P09",
+ "lang": "tr",
+ "text": "[determined] Lodos esince atlıyor [awe] ve Boğaz'ı süzülerek geçip Üsküdar'a iniyor.",
+ "words": [
+  {
+   "t": "Lodos",
+   "s": 0.11,
+   "e": 0.52
+  },
+  {
+   "t": "esince",
+   "s": 0.68,
+   "e": 1.32
+  },
+  {
+   "t": "atlıyor",
+   "s": 1.373,
+   "e": 1.8
+  },
+  {
+   "t": "ve",
+   "s": 2.324,
+   "e": 2.36
+  },
+  {
+   "t": "Boğaz'ı",
+   "s": 2.467,
+   "e": 3.0
+  },
+  {
+   "t": "süzülerek",
+   "s": 3.08,
+   "e": 3.64
+  },
+  {
+   "t": "geçip",
+   "s": 3.7,
+   "e": 4.04
+  },
+  {
+   "t": "Üsküdar'a",
+   "s": 4.28,
+   "e": 4.92
+  },
+  {
+   "t": "iniyor.",
+   "s": 4.973,
+   "e": 6.6
+  }
+ ],
+ "dur": 6.65,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "varyant": "B",
+ "ses": "Alex - Deep, Clear and Fluent",
+ "on_bosluk_ms": 40,
+ "cekim": 1,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -89.1,
+ "hisirti_6k_dbfs": -100.2
+}

@@ -1,0 +1,59 @@
+{
+ "id": "P08",
+ "lang": "tr",
+ "text": "[curious] Peki öteki adam? [intrigued] Hezarfen, Galata Kulesi'nin tepesinde.",
+ "words": [
+  {
+   "t": "Peki",
+   "s": 0.32,
+   "e": 0.44
+  },
+  {
+   "t": "öteki",
+   "s": 0.52,
+   "e": 0.92
+  },
+  {
+   "t": "adam?",
+   "s": 1.0,
+   "e": 1.68
+  },
+  {
+   "t": "Hezarfen,",
+   "s": 2.101,
+   "e": 3.008
+  },
+  {
+   "t": "Galata",
+   "s": 3.028,
+   "e": 3.248
+  },
+  {
+   "t": "Kulesi'nin",
+   "s": 3.328,
+   "e": 3.728
+  },
+  {
+   "t": "tepesinde.",
+   "s": 3.808,
+   "e": 4.848
+  }
+ ],
+ "dur": 4.89,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "varyant": "B",
+ "ses": "Alex - Deep, Clear and Fluent",
+ "on_bosluk_ms": 40,
+ "cekim": 1,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -88.3,
+ "hisirti_6k_dbfs": -105.0
+}

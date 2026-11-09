@@ -1,0 +1,64 @@
+{
+ "id": "P14",
+ "lang": "tr",
+ "text": "[thoughtful] Yani kanıt yok. [warm] Ama dört yüz yıldır anlatıyoruz.",
+ "words": [
+  {
+   "t": "Yani",
+   "s": 0.376,
+   "e": 0.44
+  },
+  {
+   "t": "kanıt",
+   "s": 0.547,
+   "e": 1.08
+  },
+  {
+   "t": "yok.",
+   "s": 1.16,
+   "e": 1.64
+  },
+  {
+   "t": "Ama",
+   "s": 1.983,
+   "e": 2.283
+  },
+  {
+   "t": "dört",
+   "s": 2.411,
+   "e": 2.923
+  },
+  {
+   "t": "yüz",
+   "s": 2.983,
+   "e": 3.163
+  },
+  {
+   "t": "yıldır",
+   "s": 3.22,
+   "e": 3.563
+  },
+  {
+   "t": "anlatıyoruz.",
+   "s": 3.616,
+   "e": 4.363
+  }
+ ],
+ "dur": 4.41,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "varyant": "B",
+ "ses": "Alex - Deep, Clear and Fluent",
+ "on_bosluk_ms": 40,
+ "cekim": 1,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -88.9,
+ "hisirti_6k_dbfs": -101.1
+}

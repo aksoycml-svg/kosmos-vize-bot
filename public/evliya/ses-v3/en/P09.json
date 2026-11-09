@@ -1,0 +1,71 @@
+{
+ "text": "[determined] With a southwest wind, he jumps [awe] and glides across the Bosphorus.",
+ "words": [
+  {
+   "t": "With",
+   "s": 0.064,
+   "e": 0.08
+  },
+  {
+   "t": "a",
+   "s": 0.16,
+   "e": 0.24
+  },
+  {
+   "t": "southwest",
+   "s": 0.296,
+   "e": 0.8
+  },
+  {
+   "t": "wind,",
+   "s": 0.88,
+   "e": 1.28
+  },
+  {
+   "t": "he",
+   "s": 1.36,
+   "e": 1.52
+  },
+  {
+   "t": "jumps",
+   "s": 1.6,
+   "e": 2.0
+  },
+  {
+   "t": "and",
+   "s": 2.46,
+   "e": 2.48
+  },
+  {
+   "t": "glides",
+   "s": 2.56,
+   "e": 3.04
+  },
+  {
+   "t": "across",
+   "s": 3.097,
+   "e": 3.44
+  },
+  {
+   "t": "the",
+   "s": 3.46,
+   "e": 3.52
+  },
+  {
+   "t": "Bosphorus.",
+   "s": 3.6,
+   "e": 4.72
+  }
+ ],
+ "dur": 4.754,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B"
+}

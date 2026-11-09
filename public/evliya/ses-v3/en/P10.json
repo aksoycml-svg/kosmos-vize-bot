@@ -1,0 +1,66 @@
+{
+ "text": "[curious] Who's watching? [knowing] The sultan again. From the very same pavilion.",
+ "words": [
+  {
+   "t": "Who's",
+   "s": 0.13,
+   "e": 0.32
+  },
+  {
+   "t": "watching?",
+   "s": 0.373,
+   "e": 1.16
+  },
+  {
+   "t": "The",
+   "s": 1.546,
+   "e": 1.606
+  },
+  {
+   "t": "sultan",
+   "s": 1.726,
+   "e": 2.086
+  },
+  {
+   "t": "again.",
+   "s": 2.166,
+   "e": 2.846
+  },
+  {
+   "t": "From",
+   "s": 2.902,
+   "e": 3.126
+  },
+  {
+   "t": "the",
+   "s": 3.146,
+   "e": 3.206
+  },
+  {
+   "t": "very",
+   "s": 3.286,
+   "e": 3.606
+  },
+  {
+   "t": "same",
+   "s": 3.67,
+   "e": 3.926
+  },
+  {
+   "t": "pavilion.",
+   "s": 3.986,
+   "e": 4.646
+  }
+ ],
+ "dur": 5.146,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B"
+}

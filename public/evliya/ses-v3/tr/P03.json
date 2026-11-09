@@ -1,0 +1,63 @@
+{
+ "id": "P03",
+ "lang": "tr",
+ "text": "[playful] Lagâri Hasan Çelebi fişeğe biniyor [excited] ve padişaha sesleniyor.",
+ "words": [
+  {
+   "t": "Lagâri",
+   "s": 0.204,
+   "e": 0.4
+  },
+  {
+   "t": "Hasan",
+   "s": 0.453,
+   "e": 0.72
+  },
+  {
+   "t": "Çelebi",
+   "s": 0.76,
+   "e": 1.12
+  },
+  {
+   "t": "fişeğe",
+   "s": 1.253,
+   "e": 1.76
+  },
+  {
+   "t": "biniyor",
+   "s": 1.8,
+   "e": 2.24
+  },
+  {
+   "t": "ve",
+   "s": 2.613,
+   "e": 2.64
+  },
+  {
+   "t": "padişaha",
+   "s": 2.76,
+   "e": 3.44
+  },
+  {
+   "t": "sesleniyor.",
+   "s": 3.52,
+   "e": 4.24
+  }
+ ],
+ "dur": 4.754,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "varyant": "B",
+ "ses": "Alex - Deep, Clear and Fluent",
+ "cekim": 2,
+ "kenar": "temiz",
+ "nf_dbfs": -88.4,
+ "hisirti_6k_dbfs": -102.9
+}

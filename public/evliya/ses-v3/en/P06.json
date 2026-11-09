@@ -1,0 +1,77 @@
+{
+ "text": "[tense] Powder gone, wings open, [awe] he glides down in front of the pavilion.",
+ "words": [
+  {
+   "t": "Powder",
+   "s": 0.291,
+   "e": 0.36
+  },
+  {
+   "t": "gone,",
+   "s": 0.456,
+   "e": 0.92
+  },
+  {
+   "t": "wings",
+   "s": 1.053,
+   "e": 1.72
+  },
+  {
+   "t": "open,",
+   "s": 1.832,
+   "e": 2.76
+  },
+  {
+   "t": "he",
+   "s": 2.869,
+   "e": 2.922
+  },
+  {
+   "t": "glides",
+   "s": 3.002,
+   "e": 3.482
+  },
+  {
+   "t": "down",
+   "s": 3.546,
+   "e": 3.802
+  },
+  {
+   "t": "in",
+   "s": 3.855,
+   "e": 3.962
+  },
+  {
+   "t": "front",
+   "s": 3.989,
+   "e": 4.122
+  },
+  {
+   "t": "of",
+   "s": 4.149,
+   "e": 4.202
+  },
+  {
+   "t": "the",
+   "s": 4.222,
+   "e": 4.282
+  },
+  {
+   "t": "pavilion.",
+   "s": 4.362,
+   "e": 5.642
+  }
+ ],
+ "dur": 5.69,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B",
+ "on_bosluk_ms": 40
+}

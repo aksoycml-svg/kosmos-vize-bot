@@ -1,0 +1,88 @@
+{
+ "id": "P01",
+ "lang": "tr",
+ "text": "[curious] İstanbul'da bir adam fişeğe binip göğe çıkmış. [intrigued] Bir başkası da Boğaz'ı uçarak geçmiş.",
+ "words": [
+  {
+   "t": "İstanbul'da",
+   "s": 0.373,
+   "e": 0.64
+  },
+  {
+   "t": "bir",
+   "s": 0.68,
+   "e": 0.8
+  },
+  {
+   "t": "adam",
+   "s": 0.88,
+   "e": 1.2
+  },
+  {
+   "t": "fişeğe",
+   "s": 1.36,
+   "e": 1.92
+  },
+  {
+   "t": "binip",
+   "s": 1.96,
+   "e": 2.24
+  },
+  {
+   "t": "göğe",
+   "s": 2.373,
+   "e": 2.8
+  },
+  {
+   "t": "çıkmış.",
+   "s": 2.853,
+   "e": 3.64
+  },
+  {
+   "t": "Bir",
+   "s": 4.068,
+   "e": 4.08
+  },
+  {
+   "t": "başkası",
+   "s": 4.14,
+   "e": 4.56
+  },
+  {
+   "t": "da",
+   "s": 4.64,
+   "e": 4.8
+  },
+  {
+   "t": "Boğaz'ı",
+   "s": 4.88,
+   "e": 5.36
+  },
+  {
+   "t": "uçarak",
+   "s": 5.467,
+   "e": 6.0
+  },
+  {
+   "t": "geçmiş.",
+   "s": 6.08,
+   "e": 7.2
+  }
+ ],
+ "dur": 7.236,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "varyant": "B",
+ "ses": "Alex - Deep, Clear and Fluent",
+ "cekim": 1,
+ "kenar": "temiz",
+ "nf_dbfs": -89.3,
+ "hisirti_6k_dbfs": -104.3
+}

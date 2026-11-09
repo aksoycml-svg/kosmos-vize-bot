@@ -1,0 +1,67 @@
+{
+ "text": "[playful] Lagari sits on a rocket [excited] and calls to the sultan:",
+ "words": [
+  {
+   "t": "Lagari",
+   "s": 0.25,
+   "e": 0.52
+  },
+  {
+   "t": "sits",
+   "s": 0.568,
+   "e": 0.76
+  },
+  {
+   "t": "on",
+   "s": 0.813,
+   "e": 0.92
+  },
+  {
+   "t": "a",
+   "s": 0.96,
+   "e": 1.0
+  },
+  {
+   "t": "rocket",
+   "s": 1.057,
+   "e": 1.4
+  },
+  {
+   "t": "and",
+   "s": 1.541,
+   "e": 1.561
+  },
+  {
+   "t": "calls",
+   "s": 1.628,
+   "e": 1.961
+  },
+  {
+   "t": "to",
+   "s": 1.988,
+   "e": 2.041
+  },
+  {
+   "t": "the",
+   "s": 2.061,
+   "e": 2.121
+  },
+  {
+   "t": "sultan:",
+   "s": 2.201,
+   "e": 2.761
+  }
+ ],
+ "dur": 2.81,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B",
+ "on_bosluk_ms": 40
+}

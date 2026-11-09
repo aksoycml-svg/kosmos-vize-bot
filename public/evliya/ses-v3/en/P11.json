@@ -1,0 +1,66 @@
+{
+ "text": "[warm] He gets a purse of gold. [ominous] But then he's banished.",
+ "words": [
+  {
+   "t": "He",
+   "s": 0.187,
+   "e": 0.24
+  },
+  {
+   "t": "gets",
+   "s": 0.304,
+   "e": 0.56
+  },
+  {
+   "t": "a",
+   "s": 0.6,
+   "e": 0.64
+  },
+  {
+   "t": "purse",
+   "s": 0.693,
+   "e": 0.96
+  },
+  {
+   "t": "of",
+   "s": 1.013,
+   "e": 1.12
+  },
+  {
+   "t": "gold.",
+   "s": 1.216,
+   "e": 1.92
+  },
+  {
+   "t": "But",
+   "s": 2.345,
+   "e": 2.405
+  },
+  {
+   "t": "then",
+   "s": 2.485,
+   "e": 2.805
+  },
+  {
+   "t": "he's",
+   "s": 2.992,
+   "e": 3.525
+  },
+  {
+   "t": "banished.",
+   "s": 3.585,
+   "e": 4.725
+  }
+ ],
+ "dur": 4.754,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "speed": 1.1,
+  "stability": 0.0,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true
+ },
+ "varyant": "B"
+}
