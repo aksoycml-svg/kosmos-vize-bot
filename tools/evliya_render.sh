@@ -9,7 +9,7 @@
 #      (H.264 high, yuv420p, bt709, 60 fps; AAC 320k 48 kHz; çıktı loudness ölçülür: hedef −14 ±0.3 LUFS, TP ≤ −1.5)
 #
 # Kullanım:
-#   tools/evliya_render.sh                    # tam bölüm (3774 kare) → out/evliya/evliya-{tr,en}.mp4
+#   tools/evliya_render.sh                    # tam bölüm (bolum.json toplamı; 77 sn sürümde 4624 kare) → out/evliya/evliya-{tr,en}.mp4
 #   tools/evliya_render.sh --aralik 880-999   # deneme: yalnız bu kare aralığı (dahil) → out/evliya/deneme/
 #   seçenekler: --parca N (görüntü parça boyu, varsayılan 600) · --diller "tr en" · --is "4" (concurrency, varsayılan nproc)
 #               --tut (ara dosyaları silme) · --yazi-png (yazı katmanını ayrıca PNG dizi olarak da yaz: <is>/yazi_<dil>_png/)
