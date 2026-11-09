@@ -467,7 +467,7 @@
      ],
      "ayak_y": 1387,
      "figur_px": 50,
-     "sira": "soldan Y2 (x 85), Y1 meşaleli (102, meşale 110), Lagâri AYAKTA (119), demet (138)",
+     "sira": "soldan Y2 (x 85), Y1 meşaleli (95, meşale 103), Lagâri AYAKTA (119), demet (138)",
      "not": "V4 + mekanlar R2: grubun sağ ucu ≤ x 148 (köşk gövdesiyle ≥12 px), ayak y 1387 < köşk rıhtımı 1415; cs 0.97'de ekran x≥92; P03 p0 sırasıyla aynı | U10: Y2 x 85 (yan güvenli alan ≥80 içinde)"
     }
    },
@@ -523,7 +523,7 @@
     },
     {
      "kim": "yardimci-1",
-     "x": 102,
+     "x": 95,
      "y": 1387,
      "olcek": 0.075,
      "kit_eksik": [
@@ -554,7 +554,7 @@
     {
      "tur": "mesale",
      "id": "mesale1",
-     "x": 110,
+     "x": 103,
      "y": 1345,
      "olcek": 0.075,
      "kit_eksik": [
@@ -755,8 +755,8 @@
     },
     {
      "kim": "yardimci-1",
-     "x": 300,
-     "y": 1330,
+     "x": 90,
+     "y": 1296,
      "yon": 1,
      "kit_eksik": [
       "KE-K4"
@@ -764,9 +764,9 @@
     },
     {
      "kim": "yardimci-2",
-     "x": 240,
-     "y": 1290,
-     "olcek": 0.92,
+     "x": 215,
+     "y": 1268,
+     "olcek": 0.9,
      "yon": 1,
      "kit_eksik": [
       "KE-K4"
@@ -910,9 +910,9 @@
      282
     ],
     "cs": [
-     2.5,
-     2.6,
-     2.7
+     2.4,
+     2.45,
+     2.5
     ],
     "cx": [
      -50,
@@ -920,9 +920,9 @@
      -50
     ],
     "cy": [
-     300,
-     300,
-     300
+     600,
+     600,
+     600
     ],
     "egri": "inout"
    },
@@ -947,7 +947,7 @@
        "bas": 10,
        "bit": 70,
        "ops": {
-        "aci": -150
+        "aci": -115
        }
       },
       {
@@ -968,7 +968,12 @@
       "KE-K1",
       "KE-J2",
       "KE-Y5"
-     ]
+     ],
+     "bagli": {
+      "prop": "demet",
+      "dx": 0,
+      "dy": -350
+     }
     }
    ],
    "props": [
@@ -2805,7 +2810,7 @@
      "id": "marti",
      "uzay": "ekran",
      "x": [
-      1130,
+      1300,
       800,
       640,
       480,
@@ -2904,6 +2909,12 @@
      "olay": "Hezarfen Üsküdar meydanına ayak basar (toz)",
      "ses": "inis-toprak",
      "db": -10
+    },
+    {
+     "kare": 252,
+     "olay": "Hezarfen iniş sonrası ikinci adımı basar (arka ayak öne)",
+     "ses": "inis-toprak",
+     "db": -18
     }
    ],
    "gecis": "Giriş: MATCH CUT P08'den (aynı poz, aynı bakış). Çıkış: sert kesme P10'a (inişten sonra kapanış: toz oturdu p270, kanat katlı).",
@@ -4010,7 +4021,7 @@
       "tur": "fisek",
       "x": 790,
       "y": 760,
-      "yukseklik": 140
+      "yukseklik": 252
      },
      {
       "tur": "kanatli-adam",
@@ -4144,8 +4155,8 @@
      0
     ],
     "cy": [
-     -120,
-     -120,
+     220,
+     220,
      0,
      0
     ],
@@ -4335,7 +4346,7 @@
       "tur": "fisek",
       "x": 790,
       "y": 760,
-      "yukseklik": 140
+      "yukseklik": 252
      },
      {
       "tur": "kanatli-adam",
@@ -4376,13 +4387,13 @@
     ],
     "cx": [
      0,
-     -300,
-     -700
+     -760,
+     -1175
     ],
     "cy": [
      0,
-     250,
-     560
+     560,
+     807
     ],
     "egri": "inout"
    },

@@ -22,7 +22,8 @@ import { Baslik, DemetDurum, demetAgizlar, demetFitilUcu, demetOturak, demetOtur
 import { karakterBul } from "../../karakterler";
 import { karakterPoz, KarakterDurum } from "../../jestler";
 import type { Karakter, Plan, Prop } from "../../tipler";
-import { cl, deger, ekranNokta, kameraHesapla, katDonusum, zarf } from "../../zaman";
+import { cl, deger, ekranNokta, GIRIS as GIRIS_K, INOUT as INOUT_K, kameraHesapla, katDonusum, zarf } from "../../zaman";
+import { bacakIK2, bilekFK } from "../galata/GalataTepe";
 import { param } from "../../ortak";
 import { propDurum } from "../../props";
 import { BOY_OLCEK, KIYI, pxmSu, pxmZemin, REF_PXM, RIG_BIRIM_M, zemindeMi } from "./geo";
@@ -124,7 +125,7 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[]; o
   const baslikSahip = baslikPr ? String((baslikPr as Prop & { sahip?: string }).sahip ?? MESALECI) : "";
 
   // ---- karakterler: poz + ölçek + konum ----
-  type KC = { c: Karakter; d: KarakterDurum; pxm: number; zemin: boolean; derinlik: number; ayak: P; mesale?: { tutamak: P; yon: P }; kanat?: { g: ReturnType<typeof kanatGeo>; acik: number }; suY?: number };
+  type KC = { c: Karakter; d: KarakterDurum; pxm: number; zemin: boolean; derinlik: number; ayak: P; mesale?: { tutamak: P; yon: P }; kanat?: { g: ReturnType<typeof kanatGeo>; acik: number }; suY?: number; golgeAyak?: P };
   const kc: KC[] = karakterler.map((c) => {
     const kayit = karakterBul(c.kim);
     let x = deger(c.x, c.kare, p, 540), y = deger(c.y, c.kare, p, 1330), pxm: number, zemin = false;
@@ -162,6 +163,54 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[]; o
       x = pz.x; y = oy;
     } else { pz.x = x; pz.y = y + AYAK_TABAN * s; }
     pz.scale = s;
+    // ---- K8 `bin` (P03, KE-J1): yerden demete binme. Ön ayak kalkar ve dayamaya basar (ops.ayak_temas = temas), arka ayak itip
+    // kalkar, kalça yay çizerek oturağa iner (ops.oturma = temas); son poz `bagli + oturan` ile birebir (P04 kesmesi). Merdiven kuralı:
+    // ayak önce uzanır, sonra ağırlık aktarılır; gövde öne (≤ 24°), baş aşağı (dayamaya) bakar. Eller: ön el sicim bağını, arka el oturak
+    // kenarını kavrar (çekiş). Basılı ayak kaymaz: bilek hedefi sabit, bacak analitik IK; kalça basılı bacağın erişimini aşamaz.
+    const binJ = (c.jestler ?? []).find((j) => j.ad === "bin");
+    let binEl: { tA: number; tT: number } | null = null;
+    let binOturuyor = false, binZemin = true;
+    if (binJ && demet && !bagli && p >= binJ.bas) {
+      const dd = demet.d;
+      const tA = binJ.bas, tT = n(binJ.ops?.ayak_temas, Math.round(binJ.bas + 0.3 * (binJ.bit - binJ.bas))), tO = n(binJ.ops?.oturma, binJ.bit - 8);
+      const tB0 = Math.min(tT + 8, tO - 14);
+      const pz0: Poz = { ...pz };
+      const B: Poz = { ...pz, ...OTURAN, lean: 16 } as Poz;
+      const [ox, oy] = demetOturak(dd);
+      B.x = ox - 0.06 * pxm - 2 * s; B.y = oy - (-226 + (B.bodyY ?? 0) + 22) * s;
+      const ankBF = bilekFK(B, 14, B.thighF, B.kneeF), ankBB = bilekFK(B, -10, B.thighB, B.kneeB);
+      const xAt = (q: number) => deger(c.x, c.kare, q, x);
+      const ayakta = (q: number): Poz => ({ ...pz0, x: xAt(q), y: y + AYAK_TABAN * s });
+      const fK = tA + 2;
+      const fBas = bilekFK(ayakta(fK), 14, pz0.thighF, pz0.kneeF), bBas = bilekFK(ayakta(tA), -10, pz0.thighB, pz0.kneeB);
+      const uF = interpolate(p, [fK, tT], [0, 1], { ...cl, easing: INOUT_K });
+      const uB = interpolate(p, [tB0, tO], [0, 1], { ...cl, easing: INOUT_K });
+      const ankF: P = [fBas[0] + (ankBF[0] - fBas[0]) * uF, fBas[1] + (ankBF[1] - fBas[1]) * uF - 0.14 * pxm * Math.sin(Math.PI * uF)];
+      const ankB: P = [bBas[0] + (ankBB[0] - bBas[0]) * uB, bBas[1] + (ankBB[1] - bBas[1]) * uB - 0.12 * pxm * Math.sin(Math.PI * uB)];
+      const w = interpolate(p, [tB0 - 4, tO], [0, 1], { ...cl, easing: INOUT_K });
+      const hipA = y + AYAK_TABAN * s - 226 * s, hipB = B.y + (-226 + (B.bodyY ?? 0)) * s;
+      const xA = xAt(Math.min(p, tT));
+      pz.bodyY = (B.bodyY ?? 0) * w;
+      pz.lean = p < tT ? interpolate(p, [tA, tT], [0, 8], cl) : p < (tT + tO) / 2 ? interpolate(p, [tT, (tT + tO) / 2], [8, 24], { ...cl, easing: INOUT_K }) : interpolate(p, [(tT + tO) / 2, tO], [24, 16], { ...cl, easing: INOUT_K });
+      let hipX = xA + (B.x - xA) * w, hipY = hipA + (hipB - hipA) * w - 0.06 * pxm * Math.sin(Math.PI * w);
+      // basılı ayağın erişimi (bacak 202.5 birim): arka ayak yerdeyken (p < tB0) ve ön ayak dayamadayken (p ≥ tT) kalça bu sınırı aşamaz
+      const R = 202 * s;
+      const sinir = (ank: P, legX: number) => { const dx = ank[0] - (hipX + legX * s); const dy = Math.sqrt(Math.max(0, R * R - dx * dx)); if (hipY < ank[1] - dy) hipY = ank[1] - dy; };
+      if (p < tB0) sinir(ankB, -10);
+      if (p >= tT) sinir(ankF, 14);
+      pz.x = hipX; pz.y = hipY - (-226 + (pz.bodyY ?? 0)) * s;
+      const ikF = bacakIK2(pz, 14, ankF), ikB = bacakIK2(pz, -10, ankB);
+      pz.thighF = ikF.th; pz.kneeF = ikF.kn; pz.footF = -(pz.lean ?? 0) * (1 - uF);
+      pz.thighB = ikB.th; pz.kneeB = ikB.kn; pz.footB = -(pz.lean ?? 0) * (1 - uB);
+      if (p >= tO) { const t = interpolate(p, [tO, tO + 6], [0, 1], cl); for (const kk of ["thighF", "kneeF", "thighB", "kneeB", "footF", "footB", "bodyY", "lean"] as const) (pz as unknown as Record<string, number>)[kk] = ((pz[kk] as number) ?? 0) + (((B[kk] as number) ?? 0) - ((pz[kk] as number) ?? 0)) * t; pz.x = B.x; pz.y = B.y; }
+      karis(pz, { lookY: 0.55, headTilt: 7 }, zarf(p, tA, tO + 4, 0.2, 0.25));
+      binEl = { tA, tT };
+      binOturuyor = w > 0.5;
+      binZemin = p < tB0;
+      x = pz.x;
+      if (p === tT || p === tT + 1) kilit.push({ ad: "ayak dayamada", p: ekranNokta(k, ankBF), tur: "temas" });
+      if (p === tO || p === tO + 1) kilit.push({ ad: "oturak", p: ekranNokta(k, [ox, oy]), tur: "temas" });
+    }
     let suY: number | undefined;
     if (suda) {
       // su çizgisi = y (iniş noktası). Göğüs (yerel boyun altı) su çizgisinde: baş + omuz üstü görünür.
@@ -172,11 +221,31 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[]; o
       pz.y += (y - boyun[1] + 0.12 * pxm) * bat;
     }
     if (baslikPr && baslikKalkti && c.kim === baslikSahip) d.palet = { ...d.palet, sapka: "yok" };
-    const out: KC = { c, d, pxm, zemin, derinlik: zemin ? y : bagli ? bagli.d.y + 0.01 : KIYI.ufuk + pxm * KIYI.goz, ayak: [x, y], suY };
+    const out: KC = { c, d, pxm, zemin: binEl ? binZemin : zemin, derinlik: binEl ? y + 0.01 : zemin ? y : bagli ? bagli.d.y + 0.01 : KIYI.ufuk + pxm * KIYI.goz, ayak: [x, y], suY, golgeAyak: binEl ? [pz.x, y] : undefined };
     // ---- eller ----
     const ikEl = (on: boolean, hedef: P, w = 1) => { if (w <= 0) return; const r = kolIK(pz, hedef, on); if (on) { pz.shF += (r.sh - pz.shF) * w; pz.elF += (r.el - pz.elF) * w; } else { pz.shB += (r.sh - pz.shB) * w; pz.elB += (r.el - pz.elB) * w; } };
     // tutun (O11): gövde öne eğilir (lean 16) ki ön el oturağın 0.13 m altındaki üst sicim bağına yetişsin (kol ≈ 0.58 m)
-    if (bagli && c.poz === "oturan" && !(ucus && p >= ucus.bas)) { pz.lean = 16; ikEl(true, demetTutamak(bagli.d)); ikEl(false, demetOturakKenar(bagli.d)); }
+    if (bagli && c.poz === "oturan" && !(ucus && p >= ucus.bas)) {
+      pz.lean = 16;
+      // K8 (P04): isaret + tutun oturan figürde de oynar. Ön elin dinlenme hedefi: tutun jesti varsa işaretin ortasından sonra el
+      // uyluğa iner (rahat), tutun [bas → temas] eli sicim bağına götürür ve temas karesinde kavrar (gövde öne, sıkı tutuş).
+      const isJ = (c.jestler ?? []).find((j) => j.ad === "isaret");
+      const tuJ = (c.jestler ?? []).find((j) => j.ad === "tutun");
+      let onH: P = demetTutamak(bagli.d);
+      if (tuJ) {
+        const temasK = n(tuJ.ops?.temas, tuJ.bit - 2);
+        const uyluk = govdeDunya(pz, [92, -246]);
+        const once = isJ && p < (isJ.bas + isJ.bit) / 2 ? onH : uyluk;
+        const t = interpolate(p, [tuJ.bas, temasK], [0, 1], { ...cl, easing: INOUT_K });
+        onH = [once[0] + (onH[0] - once[0]) * t, once[1] + (onH[1] - once[1]) * t];
+        const sik = interpolate(p, [temasK - 6, temasK, temasK + 4], [0, 1, 0.8], cl);
+        pz.lean = 16 + 6 * sik;
+        karis(pz, { lookY: 0.25, headTilt: 4 }, sik);
+      }
+      ikEl(true, onH); ikEl(false, demetOturakKenar(bagli.d));
+      if (isJ) karis(pz, { shF: n(isJ.ops?.aci, -95), elF: -6 }, zarf(p, isJ.bas, isJ.bit));
+    }
+    if (binEl) { ikEl(true, demetTutamak(demet!.d), interpolate(p, [binEl.tA, binEl.tT - 4], [0, 1], { ...cl, easing: GIRIS_K })); ikEl(false, demetOturakKenar(demet!.d), interpolate(p, [binEl.tT, binEl.tT + 20], [0, 1], { ...cl, easing: GIRIS_K })); }
     if (c.kim === MESALECI) {
       // json `mesale` x/y = meşale BAŞI hedefi. Baş omuzdan ≥ 0.9 m uzaktaysa yol izlenir (el omuz→baş doğrultusunda, baş elden 0.8 m);
       // yakınsa taşıma pozu (el önde-aşağıda, sopa dik + 20° ileri). Meşale her durumda ELİ izler.
@@ -216,7 +285,7 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[]; o
     const takili = deger(c.durum?.kanat as number[] | number | undefined, c.kare, p, 1);
     if ((KANATLI.has(c.kim) || kp) && takili > 0.5 && !(sudaK && p >= sudaK.bas)) {
       const acik = kp ? Math.max(0, Math.min(1, n(propDurum(kp, p).acik, 0))) : 0;
-      const oturuyor = c.poz === "oturan" && !(ucus && p >= ucus.bas);
+      const oturuyor = (c.poz === "oturan" && !(ucus && p >= ucus.bas)) || binOturuyor;
       // katlı (v1.4 Y8): omuz üstünden (−400) diz hizasına: oturanda uyluk yatay → diz ≈ kalça hizası (−214), ayakta −122; sırt hattı −56
       const g = kanatGeo(acik, pz.lean ?? 0, RIG_BIRIM_M, -400, oturuyor ? -214 : -122, -56);
       if (acik > 0.05) { ikEl(true, govdeDunya(pz, kanatEl(g.yakinAcik)), acik); ikEl(false, govdeDunya(pz, kanatEl(g.uzakAcik)), acik); }
@@ -273,7 +342,7 @@ export const KiyiSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[]; o
       derinlik: q.derinlik,
       el: (
         <g key={`k${i}`}>
-          {q.zemin && <Golge isik={isik} ayak={q.ayak} h={600 * (pz.scale ?? 1) * 0.9} genislik={100 * (pz.scale ?? 1)} alfa={0.5} stil="gravur" seed={S + 40 + i} />}
+          {(q.zemin || q.golgeAyak) && <Golge isik={isik} ayak={q.golgeAyak ?? q.ayak} h={600 * (pz.scale ?? 1) * 0.9} genislik={100 * (pz.scale ?? 1)} alfa={0.5} stil="gravur" seed={S + 40 + i} />}
           {q.suY !== undefined
             ? <g>
               <defs><clipPath id={`su${i}`}><rect x={-3000} y={-6000} width={8000} height={q.suY + 6000} /></clipPath></defs>

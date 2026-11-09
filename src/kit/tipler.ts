@@ -3,7 +3,7 @@
 // Kare sayıları 60 fps; plan içi kareler 0'dan başlar (plan karesi p).
 import type { Agiz, Palet } from "../rig/Kukla";
 
-export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU" | "GALATA-TEPE";
+export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU" | "GALATA-TEPE" | "BOGAZ" | "KITAP-INSERT";
 export type Bant = "ust" | "alt";
 export type P = [number, number];
 
@@ -19,7 +19,8 @@ export type JestAdi = "yuru" | "konus" | "isaret" | "sapka-kaldir" | "baston-vur
   | "sicra" | "kanat-ac" | "ucus" | "yuz" | "kanat-birak" // Evliya (SARAYBURNU kıyı)
   | "egil" | "dogrul" // Evliya (SARAYBURNU insert): gövde eğimi (ops.aci) / doğrulma
   | "pencere-kapat" | "don" // Evliya (SARAYBURNU ic, K4)
-  | "tas-it"; // Evliya (GALATA-TEPE, K5): ön ayak taşı iter (ops.temas = ayağın taşa değdiği kare)
+  | "tas-it" // Evliya (GALATA-TEPE, K5): ön ayak taşı iter (ops.temas = ayağın taşa değdiği kare)
+  | "bin" | "tutun"; // Evliya (SARAYBURNU kiyi, K8): demete binme (ops.ayak_temas, ops.oturma) / oturakta sıkı tutunma (ops.temas)
 export type JestCagri = { ad: JestAdi; bas: number; bit: number; ops?: Record<string, number | string | boolean | number[]> };
 
 export type Karakter = {
@@ -44,7 +45,9 @@ export type PropTur = "paket" | "eldiven" | "corap" | "dosya" | "kitap" | "kese"
   | "fisek-demet" | "mesale" | "baslik" | "kanat" // Evliya (SARAYBURNU kıyı)
   | "sikke" // Evliya (SARAYBURNU insert; kese de insert'te Osmanlı kumaş torba çizilir)
   | "pencere-kanat" // Evliya (SARAYBURNU ic, K4: KE-P9)
-  | "tas"; // Evliya (GALATA-TEPE, K5: KE-P5)
+  | "tas" // Evliya (GALATA-TEPE, K5: KE-P5)
+  | "marti" // Evliya (BOGAZ, K8: KE-P6; uzay ekran)
+  | "defter" | "kivilcim"; // Evliya (KITAP-INSERT, K8: KE-P8 defter; kıvılcım = çizimdeki fitilde KE-E1)
 export type Prop = {
   tur: PropTur; id?: string;
   x?: Sayi; y?: Sayi; kare?: number[];         // MASA-INSERT: ekran px (masa düzlemi). IC-ODA: x = u (m), y = z (m). SARAYBURNU: dekor px (zemin teması)

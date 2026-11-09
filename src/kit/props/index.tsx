@@ -142,7 +142,10 @@ const EldivenP: React.FC<PropCiz> = (o) => <Eldiven elBoyu={sayi(o.durum, "elBoy
 const YalnizSarayburnu = (tur: string): React.FC<PropCiz> => () => { throw new Error(`[kit] prop "${tur}" yalnız SARAYBURNU şablonunda çizilir`); };
 export const PROPLAR: Record<PropTur, React.FC<PropCiz>> = { paket: Paket, eldiven: EldivenP, corap: Corap, dosya: Dosya, kitap: Kitap, kese: Kese, hokka: Hokka, mum: Mum, fener: Fener,
   "fisek-demet": YalnizSarayburnu("fisek-demet"), mesale: YalnizSarayburnu("mesale"), baslik: YalnizSarayburnu("baslik"), kanat: YalnizSarayburnu("kanat"), sikke: YalnizSarayburnu("sikke"), "pencere-kanat": YalnizSarayburnu("pencere-kanat"),
-  tas: () => { throw new Error('[kit] prop "tas" yalnız GALATA-TEPE şablonunda çizilir'); } };
+  tas: () => { throw new Error('[kit] prop "tas" yalnız GALATA-TEPE şablonunda çizilir'); },
+  marti: () => { throw new Error('[kit] prop "marti" yalnız BOGAZ şablonunda çizilir'); },
+  defter: () => { throw new Error('[kit] prop "defter" yalnız KITAP-INSERT şablonunda çizilir'); },
+  kivilcim: () => { throw new Error('[kit] prop "kivilcim" yalnız KITAP-INSERT şablonunda çizilir'); } };
 
 // Prop'un p anındaki durum değerleri (dizi → kare ile anahtarlanır)
 export const propDurum = (pr: Prop, p: number): PropCiz["durum"] => {

@@ -153,10 +153,10 @@ export const IcSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> =
   // mandal (orta kayıtta demir tutucu): tTok→tTik arası dili düşer
   const mandalDus = interpolate(p, [tTok, tTik], [0, 1], { ...cl, easing: CIKIS });
   const mK: P = proj(IC.kayit[0] + 4, 770, 0), mUc: P = [yarik[0] - 2, 770 - 14 * (1 - mandalDus) + 3 * mandalDus];
-  // toz zerreleri: sütunun içinde, padişahın önünde (yavaş süzülür)
+  // toz zerreleri: sütunun içinde, yarığın hemen önünde (yavaş süzülür)
   const toz = Array.from({ length: 7 }).map((_, i) => {
     const u = rnd(S, `tu${i}`), v = rnd(S, `tv${i}`);
-    const t0 = 60 + u * 230; // yarıktan uzaklık (ışık yönünde)
+    const t0 = 25 + u * 110; // yarıktan uzaklık (ışık yönünde) — K8 (K7 küçük not): zerreler yarığın önündeki huzmede toplanır; kapı yüzeyine düşen zerre çivi/leke okunuyordu
     const q0: P = [lerp(A[0], B[0], 0.5) + d[0] * t0, lerp(IC.pen.y[0] + 70, IC.pen.y[1] - 20, v) + d[1] * t0];
     const q: P = [q0[0] + 6 * Math.sin(p * 0.03 + i * 1.7), q0[1] - 0.12 * p + 8 * Math.cos(p * 0.025 + i)];
     return q;
@@ -294,8 +294,8 @@ export const IcSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[] }> =
           <circle cx={mK[0]} cy={mK[1]} r={5} fill={RENK.demir} />
           {/* ayak teması: halı üstünde basık koyu temas gölgesi α .35 (huzme zemine düşmez → yön gölgesi yok) */}
           <ellipse cx={eksenX + g.yon * 0.04 * fP} cy={ayakY + 2} rx={0.34 * fP} ry={0.045 * fP} fill={RENK.dipGolge} opacity={0.35 / 0.45 * 0.45 + 0.1} />
-          {/* toz zerreleri (yalnız sütunda) — K7: figürün ARKASINDA (figür örter); yüze düşen zerre "ben" gibi okunuyordu (K6 küçük not) */}
-          <g clipPath={`url(#${uid}s)`}>{toz.map((q, i) => <circle key={i} cx={q[0]} cy={q[1]} r={2.6} fill={RENK.serit} opacity={0.55} />)}</g>
+          {/* toz zerreleri (yalnız sütunda; K8: yarık önünde toplanır + parıldar/hale → çivi/leke değil toz okunur) — K7: figürün ARKASINDA (figür örter); yüze düşen zerre "ben" gibi okunuyordu (K6 küçük not) */}
+          <g clipPath={`url(#${uid}s)`}>{toz.map((q, i) => { const pr = 0.5 + 0.5 * Math.sin(p * 0.21 + i * 2.3); return <g key={i}><circle cx={q[0]} cy={q[1]} r={7} fill={RENK.serit} opacity={0.12 + 0.12 * pr} /><circle cx={q[0]} cy={q[1]} r={2.2 + 1.2 * pr} fill={RENK.serit} opacity={0.5 + 0.4 * pr} /></g>; })}</g>
           {/* ---- padişah: gölge tonu + şerit (ışık tonu) ---- */}
           <PadisahFigur g={g} kol={kol} ton={FIGUR_GOLGE} />
           <g clipPath={`url(#${uid}s)`}>

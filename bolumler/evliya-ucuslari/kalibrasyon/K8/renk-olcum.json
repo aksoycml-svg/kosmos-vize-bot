@@ -1,0 +1,7 @@
+{"kareler":[
+ {"ad":"P09 p150","dosya":"P09_p150_tam.png","olcek":1,"noktalar":[["gündüz gök orta",540,500,"#cfcfc4"],["Boğaz suyu",300,1000,"#7c9090"],["Üsküdar uzak siluet",900,950,"#9aa2a4"]],"imza":{"hex":"#c4a874","esik":15,"bolge":[0,0,1,1]}},
+ {"ad":"P09 p238","dosya":"P09_p238_tam.png","olcek":1,"noktalar":[["Doğancılar otu",870,1160,"#989c76"],["Boğaz suyu",300,1000,"#7c9090"]],"imza":{"hex":"#c4a874","esik":15,"bolge":[0,0,1,1]}},
+ {"ad":"P13 p190","dosya":"P13_p190_tam.png","olcek":1,"noktalar":[["rahle",180,520,"#4a3222"],["sayfa",700,1000,"#e9dfc9"]],"imza":{"hex":"#c4a874","esik":15,"bolge":[0,0,1,1]}},
+ {"ad":"P14 p245","dosya":"P14_p245_tam.png","olcek":1,"noktalar":[["sayfa",500,700,"#e9dfc9"]],"imza":{"hex":"#c4a874","esik":15,"bolge":[0,0,1,1]}},
+ {"ad":"P03 p100","dosya":"P03_p100_tam.png","olcek":1,"noktalar":[["gece rıhtım",900,1700,"#45444a"]],"imza":{"hex":"#c4a874","esik":15,"bolge":[560,700,820,1450]}}
+]}

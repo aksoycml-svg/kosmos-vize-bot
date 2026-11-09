@@ -252,7 +252,7 @@
           "gun"
         ]
       },
-      "not": "Evliya KE-S1. x/y dekor px (zemin teması). kiyi: rıhtımdaki figürün ölçeği y'den (ufuk 720, göz 1.5 m), havadaki/sudaki `olcek` ile (1 = y 1330, 406.7 px/m). kurulu dışındaki görünüm/saat render'da hata verir (K2+). insert (K2): x/y = ayak tabanı (ölçek y'den, göz 1.95 m), el.* ekran px; el rol veren/alan/omuz; kese/sikke x/y = temas (taban) noktası. kosk (K3): P02 gece / P10 gün AYNI kadraj; karakter 'padisah' = PadisahSiluet (Kukla değil; parametreler.padisah.bas_aci sayı ya da {kare,deger}, yoksa 'bak' jesti); diğer karakterler sol uzak kıyı grubu (olcek ×406.7 px/m), poz oturan + aynı x'te fisek-demet → demete bağlı; senlik [{x,y,bas,patlama,yaricap,dusme_kare}] E2 düşen çizgi, köşk arkasında. ic (K4): P12 köşk içi gün; karakter 'padisah' = PadisahFigur (ayakta profil; parametreler.padisah.yuz_on_kontur_x / goz_y / ayak_y), jestler pencere-kapat (kanadı iter; kanat fiziği pencere-tok / mandal-tik temas karelerine bağlı), don (ops.yon_son: profil yönü döner), isaret (kapıyı gösterir); prop pencere-kanat (aci dizisi: açık → aralık, ilk/son değer kullanılır; ışık yarığı = 0.55 m·sin θ).",
+      "not": "Evliya KE-S1. x/y dekor px (zemin teması). kiyi: rıhtımdaki figürün ölçeği y'den (ufuk 720, göz 1.5 m), havadaki/sudaki `olcek` ile (1 = y 1330, 406.7 px/m). kurulu dışındaki görünüm/saat render'da hata verir (K2+). insert (K2): x/y = ayak tabanı (ölçek y'den, göz 1.95 m), el.* ekran px; el rol veren/alan/omuz; kese/sikke x/y = temas (taban) noktası. kosk (K3): P02 gece / P10 gün AYNI kadraj; karakter 'padisah' = PadisahSiluet (Kukla değil; parametreler.padisah.bas_aci sayı ya da {kare,deger}, yoksa 'bak' jesti); diğer karakterler sol uzak kıyı grubu (olcek ×406.7 px/m), poz oturan + aynı x'te fisek-demet → demete bağlı; senlik [{x,y,bas,patlama,yaricap,dusme_kare}] E2 düşen çizgi, köşk arkasında. ic (K4): P12 köşk içi gün; karakter 'padisah' = PadisahFigur (ayakta profil; parametreler.padisah.yuz_on_kontur_x / goz_y / ayak_y), jestler pencere-kapat (kanadı iter; kanat fiziği pencere-tok / mandal-tik temas karelerine bağlı), don (ops.yon_son: profil yönü döner), isaret (kapıyı gösterir); prop pencere-kanat (aci dizisi: açık → aralık, ilk/son değer kullanılır; ışık yarığı = 0.55 m·sin θ). K8: jest bin (kiyi; ops.hedef demet, ayak_temas, oturma — iki temas zorunlu; son poz bagli+oturan ile aynı) ve tutun (oturan+bagli; ops.temas ya da bit−2 = kavrama teması; isaret ile birlikte: işaret ortasından sonra el uyluğa iner, tutun sicim bağını kavrar).",
       "elMaks": 3,
       "elTip": [
         "entari-yen",
@@ -311,6 +311,72 @@
         ]
       },
       "not": "Evliya KE-S2 (K5). Galata Kulesi tepesi 1630'lar, sabah ENE güneş (yan-kontra). x/y dekor px; figür ölçeği ayak y'den (ufuk 829, göz 1.65 m: ayak 1250 → 255 px/m). Seki dudağı y 1264, tepe katı duvar dibi 1150 (1.2 m geride, 195 px/m), çıkıntı x 640–900 (korkuluk YOK), gövde 255 px/m dudaktan 3560'a (×5.5 stilize), dipte sur kolu + taş döşeli avlu (SurAvlu, mekanlar R5 §2.4b; taş y 3580; parametreler.taş_dusus.avlu_koridor_x [x0,x1] taşın düşüş/yuvarlanma koridoru, şablon denetler; eski sokak_bosluk_x hata verir). karakter 'hezarfen' (Kukla, sırtta katlı kanat = kanat prop bagli, acik 0); jestler yuru (x anahtarlı yol; basışlar adim-tas temaslarından, adım uzunluğu ops.adim_m ya da temaslardan çıkarılır), bak, egil, tas-it (ops.temas = ayak taşa değer; taş tas-surtme/tas-kayma/uzak-tik temaslarıyla kayar/devrilir/düşer/çarpar). parametreler.siluet 0–1 (yoksa isik metninde 'siluet' → 0.94, değilse 0.3), toz {bas,bit} E4. kamera.takip {prop, ekran_y, kare}: aralıkta cy prop'u ekranda sabit y'de tutar (vinç)."
+    },
+    "BOGAZ": {
+      "parametreler": {
+        "gorunum": [
+          "panorama"
+        ],
+        "saat": [
+          "gun"
+        ]
+      },
+      "zorunlu": [
+        "gorunum",
+        "saat"
+      ],
+      "kamera": {
+        "cs": [
+          1.0,
+          1.6
+        ],
+        "cx": [
+          -600,
+          600
+        ],
+        "cy": [
+          -300,
+          300
+        ]
+      },
+      "karakterMaks": 1,
+      "konum": "xy",
+      "kurulu": {
+        "panorama": [
+          "gun"
+        ]
+      },
+      "not": "Evliya KE-S3 (K8). Boğaz panoraması, kamera Üsküdar kıyısında ≈3.9 m, kuzeye bakar; sabah ENE güneş (Galata sağ yüzleri ışıklı, Üsküdar kontra). Dekor x −540…1620 (2160 px), ufuk y 860; kamera yatay pan (cx), parallaks yok. Kule x 100 (seki/galeri y = parametreler.kule_sol.tepe_y; figür orada durur), iniş meydanı parametreler.iniş_meydani {x,y}. Karakter 'hezarfen': x/y dekor px (ayak), havada olcek × 226 px/m (0.35 = 79 px/m = iniş derinliği), yerde (y ≥ meydan) ölçek y'den ((y − 860)/3.9). Jestler ucus (bas: kalkış; bit: iniş teması = temas 'inis-toprak'), yuru (iniş sonrası tek adım; ikinci basış teması 'adim-toprak'). Prop kanat (bagli hezarfen, durum.acik anahtarlı), marti (uzay 'ekran': x/y ekran px, kare anahtarlı pchip; bulanik px; durum.kanat cirp|suzul). Rota çizgisi parametreler.rota_cizgi {bas,bit} + rota_noktalari [[x,y],[x,y]] (görüntüde, dil-nötr). harita_etiketleri YAZI KATMANINDA (görüntüye gömülmez)."
+    },
+    "KITAP-INSERT": {
+      "parametreler": {
+        "kitap": [
+          "seyahatname"
+        ],
+        "yuzey": [
+          "rahle"
+        ]
+      },
+      "zorunlu": [
+        "kitap"
+      ],
+      "kamera": {
+        "cs": [
+          1.0,
+          4.8
+        ],
+        "cx": [
+          -1300,
+          600
+        ],
+        "cy": [
+          -600,
+          1000
+        ]
+      },
+      "karakterMaks": 0,
+      "konum": "xy",
+      "not": "Evliya KE-S4 (K8). Rahle tablası tepeden (x 140–940, y 470–1110), açık Seyahatname (x 220–860, y 545–1045; 15 satır/sayfa dil-nötr hat), kalemdan + gömülü hokka (x 330–750, y 482–538), sağ sayfa dış kenarında iki kenar çizimi (fişek+binici = P01 p0 siluetinin mürekkep hâli; kanatlı adam). parametreler.defterler [{id,x,y,kapali_kutu,acik:{bas,bit}}] zeminde (×0.67) — açılma `defter-ac` temasıyla (açılma bas karesi); defterler_acik true → baştan açık. parametreler.kivilcim {bas,bit} + prop kivilcim (durum.fitil anahtarlı 0–1, çizimdeki fitil boyunca). Son kare eşleşmesi: kamera cs 4.6 iken kıvılcım ekran noktası = P01 p0 (277, 1415). Bu şablonda tarama yok; arşiv modu kagit."
     }
   },
   "karakterler": [
@@ -350,7 +416,9 @@
     "dogrul",
     "pencere-kapat",
     "don",
-    "tas-it"
+    "tas-it",
+    "bin",
+    "tutun"
   ],
   "jestTemas": {
     "baston-vur": [
@@ -368,6 +436,13 @@
     ],
     "tas-it": [
       "tas-surtme"
+    ],
+    "bin": [
+      "ayak_temas",
+      "oturma"
+    ],
+    "tutun": [
+      "temas"
     ]
   },
   "props": [
@@ -386,7 +461,10 @@
     "kanat",
     "sikke",
     "pencere-kanat",
-    "tas"
+    "tas",
+    "marti",
+    "defter",
+    "kivilcim"
   ],
   "bantlar": [
     "ust",
@@ -442,7 +520,8 @@
     ],
     "kanat": [
       "SARAYBURNU",
-      "GALATA-TEPE"
+      "GALATA-TEPE",
+      "BOGAZ"
     ],
     "sikke": [
       "SARAYBURNU"
@@ -452,6 +531,15 @@
     ],
     "tas": [
       "GALATA-TEPE"
+    ],
+    "marti": [
+      "BOGAZ"
+    ],
+    "defter": [
+      "KITAP-INSERT"
+    ],
+    "kivilcim": [
+      "KITAP-INSERT"
     ]
   },
   "propKurulumda": {}

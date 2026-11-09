@@ -1133,3 +1133,96 @@
   3. Foley sesleri ElevenLabs çıktısı, kulakla tek tek doğrulanmadı (kenar + tepe ölçümü yapıldı); sikke-donme/su-dump uzun kuyruklu, plan sonuna taşabilir (P11 p208 sikke-tin ile çakışması izlenmeli).
   4. Zamanlama bolum.json'a bağlı: temas karesi kayarsa `python3 -I tools/evliya_miks.py` yeniden çalıştırılır (~45 sn). Premiere için dört stem WAV hazır (anlatım/foley/müzik/ortam).
   5. Doğrulayıcı hâlâ GEÇMEDİ: kit HATA'ları motion'a ait (jest bin/tutun, şablon BOGAZ, KITAP-INSERT), ses tarafı temiz.
+
+## motion · 2026-11-09 · K8 kalan şablonlar (BOGAZ, KITAP-INSERT, bin/tutun) + K7 küçükleri
+- **Ne yaptım:**
+  - `bin` (P03) kuruldu (SARAYBURNU kiyi): ön ayak dayamaya basar (p44), arka ayak kalkar, kalça yay çizerek oturağa iner (p92). Bacaklar analitik IK ile çözülüyor, basılı ayak kaymıyor. Kalça, basılı bacağın erişimini aşamıyor. Eller sicim bağını ve oturak kenarını kavrıyor. Son poz `bagli + oturan` ile birebir aynı.
+  - `tutun` (P04) kuruldu: işaretin ortasından sonra el uyluğa iner; p125–158 arasında sicim bağına gider ve p158'de kavrar (gövde +6° öne). `isaret` artık oturan figürde de oynuyor (önceden kol IK'si onu siliyordu).
+  - Yeni şablon **BOGAZ** (`src/kit/sablonlar/bogaz/Bogaz.tsx`, mekanlar §3). İçeriği:
+    - gök 3 basamak, Boğaz içi, Galata yamacı ve uzak kule silueti
+    - Üsküdar kıyısı 3 hava basamağıyla, Doğancılar meydanı
+    - su, güneş yolu, rota çizgisi (E6)
+    - Hezarfen: kontra siluet, kalkış, süzülme, iniş + bir adım, kanadın kapanması, karaya kırpılmış gölge, E4 toz
+    - martı (ekran uzayında, bulanık, M kanatlı, çırpma vuruşu temas karesine hizalı, çığlıkta gagası açık)
+  - Yeni şablon **KITAP-INSERT** (`src/kit/sablonlar/kitap/KitapInsert.tsx`, mekanlar §4). İçeriği:
+    - rahle, kalemdan + gömülü hokka + kamış kalem
+    - Seyahatname: dil-nötr hat (15 satır/sayfa), çift cetvel, iki tonlu cilt oluğu
+    - iki kenar çizimi; zeminde 3 defter (kapak sırttan döner, iki boş sayfa)
+    - P14 kıvılcımı çizimdeki fitil üzerinde yürür
+  - K3 döngüsü: fişek çizimi, P01 p0 ekran kompozisyonunun 1/4.6 ölçekli mürekkep hâli. P14 son karede kıvılcım ekran noktası P01 p0 ile aynı (277, 1415). Kanıt: `P14son_P01p0_yanyana.png`.
+  - Kayıt işleri: `sinirlar.json` (şablonlar, jestler, prop'lar, `propSablon`), `tipler.ts`, `kayit.ts`, `props/index.tsx`.
+  - Doğrulayıcı kuralları: `bin` için iki temas, `tutun` için kavrama teması, defter açılış teması, BOGAZ için iniş teması ve kamera/dekor_x kontrolü. Ayrıca xy şablonlarında yersiz çıkan "yuru z/u yok" uyarısını kaldırdım.
+  - K7 küçükleri:
+    - Galata pus bandı: 3 kesintisiz, tırtıklı çatı sırası (ΔL* ≈ 4/5/6).
+    - P12 toz zerreleri: yarığın önünde toplanıyor, parıldıyor ve haleli.
+    - P02: Y1 sola alındı, meşale artık yüzü örtmüyor.
+- **Doğrulayıcı:** `node tools/bolum_dogrula.mjs bolumler/evliya-ucuslari/bolum.json` sonucu **GEÇTİ** (0 hata, 12 uyarı; uyarılardan 11'i kullanılmayan ortam foley'i, 1'i önceden var olan P01 fitil-tiss hizası). `tsc` temiz.
+- **json değişikliği (yönetmen onayına):**
+  | Plan | Alan | Eski → yeni | Gerekçe |
+  |---|---|---|---|
+  | P02 | yardimci-1 x · mesale x | 102 → 95 · 110 → 103 | K7: meşale başı Lagâri'nin yüzünü örtüyordu |
+  | P03 | yardimci-1 (x, y) · yardimci-2 (x, y, olcek) | (300, 1330) → (90, 1296) · (240, 1290, 0.92) → (215, 1268, 0.9) | Meşale Lagâri'nin yüzünü/gövdesini kesiyordu, Y1 ile Y2 ikiz okunuyordu. P05 düzeniyle aynı yapıldı (süreklilik) |
+  | P04 | lagari `bagli` | yok → {demet, 0, −350} | Oturan figürün oturağı/dayaması tanımsızdı (uyarı) |
+  | P04 | kamera cs · cy | [2.5, 2.6, 2.7] · 300 → [2.4, 2.45, 2.5] · 600 | Yüz IG üst alanında ve replik bandının altında kalıyordu. Şimdi gözler y≈630'da, sarık tepesi bantta |
+  | P04 | isaret ops.aci | −150 → −115 | Yukarı kalkan kol üst replik bandına giriyordu. Şimdi sağa/köşke seslenme |
+  | P09 | marti x[0] | 1130 → 1300 | Martı ekranın ortasında birden beliriyordu. Şimdi kadraj kenarından giriyor |
+  | P09 | temaslar | + p252 `inis-toprak` −18 dB | İnişten sonraki ikinci basış görünüyor (TEMAS = SES) |
+  | P13 | kamera cy (p0–100) | −120 → +220 | −120'de fişek çizimi üst yazı bandının (y≈400) içine düşüyordu |
+  | P14 | kamera cx/cy (p110, p234) | (−300, 250), (−700, 560) → (−760, 560), (−1175, 807) | P01 p0 eşleşmesi için geriye hesaplandı (eski değerle çizim kadrajın dışındaydı) |
+  | P13/P14 | kenar_cizim fisek yukseklik | 140 → 252 | P01 p0 silueti (1155 px) ÷ 4.6 |
+- **Aldığım kararlar ve gerekçeleri:**
+  - **GL arka ucu (kritik bulgu):** `swangle`, P04'te (cs ≈ 2.45, p150 ve sonrası) gövdeyi ve başı hiç boyamadı, karo artığı bıraktı. P04 p36 ve P01 p0'da da katlı kanadı çizmiyordu. Aynı kareler `angle` ve `swiftshader` ile doğru çıkıyor (kanıt: K8 kareleri `angle` ile alındı).
+    - Bolum WebGL kullanmıyor; WebGL yalnız LookDev'de var.
+    - `remotion.config.ts`'e dokunmadım (CLAUDE.md onu belgeliyor).
+    - Teknisyen Bolum render'larını `--gl=angle` ile almalı. Aksi hâlde P04 bozuk çıkar.
+    - K6/K7'deki "kanat hayaleti" hatalarının kökü büyük ihtimalle bu.
+  - BOGAZ ölçeği: havada px/m = olcek × 226 (0.35 → 79 px/m = mekanlar iniş değeri), yerde ufuk–ölçek kuralı.
+  - BOGAZ kule: seki y 760'ta (Hezarfen orada duruyor), tepe katı ve külah bunun üstünde. Mekanlar §3.3'teki "korniş 790 / tepe 760" figürle birlikte tutmuyordu.
+  - Galata yamacında tarama yok (uzak sınıf, 360 px'te çizgi kayboluyor).
+  - KITAP arşiv modu `kagit` → `gunduzMineral`: `kagit` sayfayı #dccdac'ye ısıtıp imza bandına sokuyordu. Ölçümde sayfa artık #e5dbc5 (ΔE00 0.9).
+  - Kalemdan: tasarımdaki iki seçenekten gömülü hokkalı ahşap kalemdan + kamış kalem seçildi.
+  - Sağ sayfada hat bloğu dar (x 578–688). Dış kenar boşluğu kenar çizimlerine (hâşiye) ayrıldı, çizimler hat bloğunun dışında.
+  - P14'te `defterler` parametresi yok. Şablon mekanlar §4.2 konumlarını varsayılan alıyor (P13 ile aynı), json'a eklemedim.
+  - P08 p110/p125: gök okunmuyor, ama bu geometriden kaynaklanıyor. Kamera kule yüzüne bakıyor, sur kulenin önünde ve harpuştanın üstünde kule gövdesi var. Süreyi uzatmak gök göstermez, bu yüzden **değiştirmedim**. Karar mekân sorumlusunun.
+- **Uyguladığım kurallar / yakaladığım kural ihlalleri:**
+  - Uyguladıklarım:
+    - `bin`'de basılı ayak kaymaz, merdiven kuralı (ayak önce uzanır, gövde öne, baş aşağı).
+    - Her temas bir ses alıyor (p44, p92, p158, p238, p252, defter açılışları).
+    - Martı kadraj kenarından giriyor ve çıkıyor. Gölge karada kırpılıyor (suya taşmıyor).
+    - Kıvılcım sayfadaki tek renk. Etiketler görüntüye gömülmedi (yazı katmanına ait).
+  - Yakaladığım ihlaller (yukarıdaki json tablosunda düzeltildi):
+    - P03'te meşale yüzü kesiyordu.
+    - P04'te yüz üst IG alanındaydı ve replik bandının altındaydı.
+    - P13'te çizim yazı bandındaydı.
+    - P09'da martı ekranın ortasında beliriyordu.
+    - P09'da Üsküdar uzak katmanı suya taşan gri bir kutuydu.
+    - KITAP'ta sayfa tonu imza bandına giriyordu.
+  - Renk ölçümü (`K8/renk-olcum.md`):
+    - Hedefte: gök, Boğaz, ot, rahle, sayfa, rıhtım.
+    - **İmza ihlali (açık):** sayfa kenarı/oluk tonları #d6c7a6 / #c4b594 imzaya ΔE76 < 15. Bu, tasarım paletinin kendi tonu; P14 p245'te sağ kenarda ≈5000 piksel.
+- **Açık sorular / bir sonraki ajana notlar:**
+  1. **Teknisyen:** Bolum render'ı `--gl=angle` ile alınmalı. Değişiklik eleştirmen tarafından bir kez swangle ↔ angle karşılaştırılarak doğrulanmalı.
+  2. **Tasarımcı:** sayfa kenarı/oluk tonları (#d6c7a6, #c4b594) imza tekilliğini bozuyor; daha gri bir ton önerisi gerekiyor.
+  3. **Eleştirmen dikkat:**
+     - P09 p0'da Hezarfen kulede ≈10 px. Spesifikasyon bu, ama telefonda görünmüyor.
+     - P09'un alt yarısı p0–110 arası düz su (ölü alan riski; mekanlarda kayık yok, eklemedim).
+     - Kanatlı adam çiziminin kanat uçları hâlâ hafif "yırtık" görünüyor.
+     - Fişek çizimi telefonda "taburede oturan adam" okunabilir; tüp ağızları ve tek sicim çizgisiyle güçlendirildi.
+  4. **P04 (cs 2.4–2.5):** çizmeler y≈1760'ta IG alt alanında kalıyor (bel planı; temas yok). Kabul ya da cs düşürme kararı yönetmenin.
+  5. **P03:** json'daki `mesale2` (yardimci-2) kitte çizilmiyor (tek ışık kuralı); json'dan çıkarılması önerilir.
+  6. **P13 defter-ac teması:** temas açılış başında (bas). Json metni "kapak yatar" diyor, ama kapak `bit`'te (30 kare sonra) yatıyor. Kurgucu sesin "pıt"ını bit'e koymalı ya da yönetmen temas karesini bit'e almalı.
+  7. **Mekân:** P08 vinçte "dışarısı" okunması için geometri kararı gerekiyor (kule gövdesinin sol kenarı ve arkasında gök şeridi?).
+- **Dokunduğum dosyalar:**
+  - Kod:
+    - `src/kit/sablonlar/bogaz/Bogaz.tsx` (yeni)
+    - `src/kit/sablonlar/kitap/KitapInsert.tsx` (yeni)
+    - `src/kit/sablonlar/sarayburnu/Kiyi.tsx`
+    - `src/kit/sablonlar/sarayburnu/Ic.tsx`
+    - `src/kit/sablonlar/galata/GalataTepe.tsx`
+    - `src/kit/sablonlar/kayit.ts`
+    - `src/kit/tipler.ts`
+    - `src/kit/props/index.tsx`
+    - `src/kit/sinirlar.json`
+    - `tools/bolum_dogrula.mjs`
+  - Json: `bolumler/evliya-ucuslari/bolum.json`
+  - Kareler: `bolumler/evliya-ucuslari/kalibrasyon/K8/*` (18 kare × tam/güvenli/telefon, `telefon-sayfa.png`, `P14son_P01p0_yanyana.png`, `renk-olcum.json/.md`)

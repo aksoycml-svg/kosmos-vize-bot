@@ -101,6 +101,23 @@ for (const plan of B.planlar ?? []) {
     if (!pd) H(Y, "ic: padisah karakteri yok");
     if (prm.padisah && typeof prm.padisah.yuz_on_kontur_x !== "number") U(Y, "ic: padisah.yuz_on_kontur_x yok (varsayılan 457)");
   }
+  // K8 KITAP-INSERT: defter açılışı temas; kıvılcım plan içinde biter. BOGAZ: iniş teması, martı ekran yolu
+  if (plan.sablon === "KITAP-INSERT") {
+    (prm.defterler ?? []).forEach((df, i) => {
+      const yd = `${Y} defter ${df.id ?? i + 1}`;
+      if (df.acik) { if (!(df.acik.bas < df.acik.bit)) H(yd, "acik {bas < bit}"); bitis(yd, "açılma", df.acik.bit); if (!temasVar(plan, df.acik.bas, 2)) H(yd, `açılma p${df.acik.bas}: temas yok (TEMAS = SES)`); }
+      if (Array.isArray(df.kapali_kutu) && (df.kapali_kutu[3] > 1500 || df.kapali_kutu[0] < 80)) H(yd, "kapali_kutu güvenli alan dışında (y ≤ 1500, x ≥ 80)");
+    });
+    if (prm.kivilcim) bitis(Y, "kıvılcım", prm.kivilcim.bit);
+  }
+  if (plan.sablon === "BOGAZ") {
+    const hz = (plan.karakterler ?? []).find((c) => c.kim === "hezarfen");
+    const uc = hz && (hz.jestler ?? []).find((j) => j.ad === "ucus");
+    if (uc && !temasVar(plan, uc.bit, 1)) H(Y, `iniş p${uc.bit} (ucus.bit): temas yok (TEMAS = SES)`);
+    if (prm.rota_cizgi) bitis(Y, "rota çizgisi", prm.rota_cizgi.bit);
+    const im = prm["iniş_meydani"]; if (im && hz && Array.isArray(hz.x) && Math.abs((hz.x[hz.x.length - 2] ?? 0) - im.x) > 120) U(Y, `iniş x ${hz.x[hz.x.length - 2]} meydandan (x ${im.x}) uzak`);
+    const dx = prm.dekor_x; if (Array.isArray(dx) && plan.kamera) for (const c of plan.kamera.cx ?? []) { const sol = 540 - c - 540 / 1, sag = 540 - c + 540; if (sol < dx[0] - 1 || sag > dx[1] + 1) H(Y, `kamera cx ${c}: görünen dekor x ${sol}…${sag} dekor_x ${dx.join("…")} dışında`); }
+  }
   // K5 GALATA-TEPE: taş itme / düşüş temasları, kamera takibi, yürüyüş adımları
   if (plan.sablon === "GALATA-TEPE") galataKurallari(plan, Y, plan.karakterler ?? [], plan.props ?? [], plan.kamera, sure);
   // K5 plan içi kesme (devam_plan): kesme karesi tutarlı, ilk bölümün animasyonları kesmeden önce biter, devam şablonu/karakter/prop/kamera kuralları
@@ -226,11 +243,24 @@ for (const plan of B.planlar ?? []) {
       else if ((SN.jestlerKurulumda ?? []).includes(j.ad)) U(y, `jest ${j.ad} kurulumda: şemada var, henüz ÇİZİLMİYOR (kit_eksik; render'da etkisiz)`);
       if (!(j.bas < j.bit) || j.bas < 0) H(y, `jest ${j.ad} zamanı [${j.bas}, ${j.bit}] geçersiz`);
       else bitis(y, `jest ${j.ad}`, j.bit);
-      if (j.ad === "yuru" && !Array.isArray(c.z) && !Array.isArray(c.u)) U(y, "yuru jesti var ama z/u yolu (dizi) yok — yerinde sayar");
+      if (j.ad === "yuru" && !Array.isArray(c.z) && !Array.isArray(c.u) && !(S.konum === "xy" && Array.isArray(c.x))) U(y, "yuru jesti var ama z/u yolu (dizi) yok — yerinde sayar");
       const o = j.ops ?? {};
       if (j.ad === "baston-vur") { const v = o.vurus ?? Math.round(j.bas + (j.bit - j.bas) * 0.6); if (!temasVar(plan, v, 1)) H(y, `baston-vur vuruşu p${v}: temas yok (TEMAS = SES)`); if (!(c.aksesuar ?? []).includes("baston") && o.el !== "on") U(y, "baston-vur: aksesuar 'baston' yok"); }
       if (j.ad === "it-cek") { const t = o.tekrar ?? 3, L = j.bit - j.bas; for (let q = 0; q < t; q++) { const k = Math.round(j.bas + ((q + 0.25) * L) / t); if (!temasVar(plan, k)) U(y, `it-cek tik p${k}: temas yok`); } }
       if (j.ad === "eldiven-giy") { const g = o.gerilme ?? Math.round((j.bas + j.bit) / 2); if (!temasVar(plan, g)) H(y, `eldiven-giy gerilme p${g}: temas yok`); }
+      // K8 (SARAYBURNU kiyi): bin = ayak dayamaya basar + oturağa oturur (iki temas); tutun = kavrama teması (ops.temas ya da bit−2)
+      if (j.ad === "bin") {
+        if (!(plan.sablon === "SARAYBURNU" && prm.gorunum === "kiyi")) H(y, "bin yalnız SARAYBURNU kiyi");
+        if (c.bagli || c.poz === "oturan") H(y, "bin: karakter ayakta başlar (bagli/poz oturan verilmez; son poz bagli+oturan ile aynı)");
+        if (!(plan.props ?? []).some((q) => q.tur === "fisek-demet")) H(y, "bin: planda fisek-demet yok");
+        const at = o.ayak_temas, ot = o.oturma;
+        if (!(typeof at === "number" && typeof ot === "number" && j.bas < at && at < ot && ot <= j.bit)) H(y, "bin: ops.ayak_temas / ops.oturma (bas < ayak_temas < oturma ≤ bit) zorunlu");
+        else { if (!temasVar(plan, at, 1)) H(y, `bin ayak dayamaya p${at}: temas yok (TEMAS = SES)`); if (!temasVar(plan, ot, 1)) H(y, `bin oturma p${ot}: temas yok (TEMAS = SES)`); }
+      }
+      if (j.ad === "tutun") {
+        if (!(c.poz === "oturan" && c.bagli)) H(y, "tutun: oturan + bagli karakter gerekir (eli demetin sicim bağını kavrar)");
+        const t = o.temas ?? j.bit - 2; if (!temasVar(plan, t, 2)) H(y, `tutun kavrama p${t}: temas yok (TEMAS = SES)`);
+      }
     }
   });
   // props + el

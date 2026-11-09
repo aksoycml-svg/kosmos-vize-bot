@@ -9,6 +9,8 @@ import { KULE_DIS } from "./KuleDis";
 import { HARITA } from "./Harita";
 import { SARAYBURNU } from "./sarayburnu";
 import { GALATA_TEPE } from "./galata/GalataTepe";
+import { BOGAZ } from "./bogaz/Bogaz";
+import { KITAP_INSERT } from "./kitap/KitapInsert";
 
 export const SABLON_KAYIT = {} as Record<SablonAdi, Sablon>;
-Object.assign(SABLON_KAYIT, { SOKAK, "IC-ODA": IC_ODA, "MASA-INSERT": MASA_INSERT, "KULE-DIS": KULE_DIS, HARITA, SARAYBURNU, "GALATA-TEPE": GALATA_TEPE });
+Object.assign(SABLON_KAYIT, { SOKAK, "IC-ODA": IC_ODA, "MASA-INSERT": MASA_INSERT, "KULE-DIS": KULE_DIS, HARITA, SARAYBURNU, "GALATA-TEPE": GALATA_TEPE, BOGAZ, "KITAP-INSERT": KITAP_INSERT });

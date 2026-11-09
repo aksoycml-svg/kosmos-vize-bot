@@ -489,16 +489,20 @@ const Sehir: React.FC = () => {
   const kiyi: P[] = Array.from({ length: 41 }).map((_, i) => [-2000 + i * 125, 870 + (rnd(138, `k${i}`) - 0.5) * 6] as P);
   return <g>
     <polygon points={poly([...kiyi, [3000, 4000], [-2000, 4000]])} fill={R.sehirPus} />
-    {/* K7 (K6 küçük not): boş bej pus "kumsal" okunmasın — iki çok soluk uzak çatı kümesi (hava perspektifi: pusa ΔL* ≈ 4–6, uzak = küçük, kontursuz) */}
-    {[{ x: [705, 880], y: 948, h: 9, w: [22, 34], ton: 0.22 }, { x: [880, 1080], y: 1028, h: 13, w: [30, 48], ton: 0.3 }].map((k, i) => {
-      const out: React.ReactNode[] = []; let x = k.x[0], j = 0;
-      while (x < k.x[1]) {
-        const w = k.w[0] + rnd(139, `cw${i}${j}`) * (k.w[1] - k.w[0]), dy = (rnd(139, `cy${i}${j}`) - 0.5) * k.h * 1.6, y = k.y + dy, hh = k.h * (0.8 + 0.4 * rnd(139, `ch${i}${j}`));
-        out.push(<polygon key={j} points={poly([[x, y + hh], [x + 0.22 * w, y], [x + 0.78 * w, y], [x + w, y + hh]])} fill={karistir(R.sehirPus, R.catiGolge, k.ton)} />);
-        out.push(<rect key={`d${j}`} x={x + 2} y={y + hh} width={w - 4} height={hh * 0.6} fill={karistir(R.sehirPus, R.evGolge, k.ton * 0.8)} />);
-        x += w + 4 + rnd(139, `cg${i}${j}`) * 14; j++;
+    {/* K8 (K7 küçük not): pus bandı "kumsal" okunmasın — 3 KESİNTİSİZ tırtıklı çatı sırası (hava perspektifi: pusa ΔL* ≈ 4 / 5 / 6, aşağı doğru
+        hafif koyulaşır; kontursuz). Her sıra çatı yamukları dizisi (taban → sırt → taban, aralıksız) ve altı bir sonraki sıraya kadar dolu. */}
+    {[{ y: 905, h: 9, w: [24, 38], t: 0.11, k: 7 }, { y: 962, h: 11, w: [30, 46], t: 0.135, k: 9 }, { y: 1028, h: 13, w: [36, 56], t: 0.16, k: 11 }].map((k, i) => {
+      const ust: P[] = []; let x = 680, j = 0;
+      while (x < 1500) {
+        const w = k.w[0] + rnd(141, `pw${i}${j}`) * (k.w[1] - k.w[0]), hh = k.h * (0.7 + 0.6 * rnd(141, `ph${i}${j}`)), y0 = k.y + (rnd(141, `py${i}${j}`) - 0.5) * 6;
+        ust.push([x, y0 + hh], [x + 0.2 * w, y0], [x + 0.8 * w, y0], [x + w, y0 + hh]);
+        x += w; j++;
       }
-      return <g key={i}>{out}</g>;
+      // çatı şeridi (tırtıklı üst kenar, k px kalın) + altında saçak gölgesi çizgisi; aralar pus (sıralar ayrı okunur, ΔL* ≈ 4–6)
+      return <g key={i}>
+        <polygon points={poly([...ust, ...[...ust].reverse().map(([qx, qy]) => [qx, qy + k.k] as P)])} fill={karistir(R.sehirPus, R.catiGolge, k.t)} />
+        <polyline points={poly(ust.map(([qx, qy]) => [qx, qy + k.k + 1.5] as P))} fill="none" stroke={karistir(R.sehirPus, R.evGolge, k.t * 0.8)} strokeWidth={2} />
+      </g>;
     })}
     {/* bölge 2 (y ≥ 1120, x ≥ 690): ev kütlesi — gölgede ev duvarları tek ton; aralar sokak yarığı */}
     <polygon points={poly([[690, 1150], [860, 1128], [930, 1140], [1100, 1126], [3000, 1126], [3000, 4000], [690, 4000]])} fill="#5e5040" />
