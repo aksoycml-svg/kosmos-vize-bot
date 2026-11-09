@@ -7,7 +7,7 @@
   "en"
  ],
  "gorsel_yazisiz": true,
- "_not": "Görüntü yazısız render edilir. ekran_yazisi/replik/harita_etiketleri: 'metin' = TR (şema alanı), 'en'/'vurgu_en' = EN katmanı; replik'te en{metin,bas,bit,kelimeKare} dilin kendi words json'undan. ses = TR, ses_en = EN (ikisi aynı kareden başlar). x/y (karakter/prop) = dekor px (kamera öncesi 1080x1920 taban); el.* ve sahne-plani 'ekran' koordinatı belirtir. kit_eksik kimlikleri sahne-plani.md sonunda.",
+ "_not": "Görüntü yazısız render edilir. ekran_yazisi/replik/harita_etiketleri: 'metin' = TR (şema alanı), 'en'/'vurgu_en' = EN katmanı; replik'te en{metin,bas,bit,kelimeKare} dilin kendi words json'undan. ses = TR (ses-v3), ses_en = EN (ikisi aynı kareden başlar). x/y (karakter/prop) = dekor px (kamera öncesi 1080x1920 taban); el.* ve sahne-plani 'ekran' koordinatı belirtir. kit_eksik kimlikleri sahne-plani.md sonunda.",
  "planlar": [
   {
    "id": "P01",
@@ -18,14 +18,14 @@
     "saat": "gece",
     "fitil": {
      "bas": 0,
-     "bit": 40
+     "bit": 96
     },
     "puskurme": {
-     "bas": 40,
-     "bit": 150
+     "bas": 96,
+     "bit": 206
     },
     "plan_ici_kesme": {
-     "kare": 176,
+     "kare": 242,
      "sonraki_sablon": "GALATA-TEPE"
     },
     "gok": "uzatilmis (negatif y -1300'e kadar), uzakta 1-2 şenlik patlaması",
@@ -40,19 +40,19 @@
      "not": "mekanlar.md §7.1: ufuk 720'ye göre 17 px/m; eski 900/640 ufuk-ölçek kuralına aykırıydı"
     }
    },
-   "sure_kare": 336,
-   "sure_sn": 5.6,
+   "sure_kare": 458,
+   "sure_sn": 7.64,
    "metin": {
     "tr": "İstanbul'da bir adam fişeğe binip göğe çıkmış. Bir başkası da Boğaz'ı uçarak geçmiş.",
     "en": "A man rode a rocket into the sky over Istanbul. Another glided across the Bosphorus."
    },
-   "olcek": "A (p0-176): boy/orta (binici + demet ≈ %36 yükseklik, cs 1.25) -> yükselişi takip eden tilt, cs 1.0. B (p176-336): boy (Hezarfen siluet %22) -> yavaş push-in cs 1.0->1.25 | p0 cs 1.25'te köşk kubbe sırtı ekran y≈427 (üst yazı bandı 240-400'ün altında).",
+   "olcek": "A (p0-242): boy/orta (binici + demet ≈ %36 yükseklik, cs 1.25) -> yükselişi takip eden tilt, cs 1.0. B (p242-458): boy (Hezarfen siluet %22) -> yavaş push-in cs 1.0->1.25 | p0 cs 1.25'te köşk kubbe sırtı ekran y≈427 (üst yazı bandı 240-400'ün altında).",
    "kamera": {
     "kare": [
      0,
-     72,
-     150,
-     176
+     128,
+     206,
+     242
     ],
     "cs": [
      1.25,
@@ -131,10 +131,10 @@
      ],
      "kare": [
       0,
-      72,
-      96,
-      120,
-      150
+      128,
+      152,
+      176,
+      206
      ],
      "olcek": 1.0,
      "durum": {
@@ -159,7 +159,7 @@
      "kit_eksik": [
       "KE-P7"
      ],
-     "not": "[K5-yon B16] fitil işi p40'ta bitti; p60-100'de meşale yerden kalkar (taşıma pozu, baş omuz yanında); p172'de alev ayakkabı dibinde değil | [FINAL2 K1] kaldırışta sopa figürün ARKASINDAN döner (tasi_egim −12, geri), alev Y1'in başı üstünde x≈300-360; demet x aralığına (430-610) girmez",
+     "not": "[K5-yon B16] fitil işi p96'ta bitti; p116-156'de meşale yerden kalkar (taşıma pozu, baş omuz yanında); p228'de alev ayakkabı dibinde değil | [FINAL2 K1] kaldırışta sopa figürün ARKASINDAN döner (tasi_egim −12, geri), alev Y1'in başı üstünde x≈300-360; demet x aralığına (430-610) girmez",
      "tasi_egim": -12,
      "tasi_el": [
       0.08,
@@ -170,13 +170,13 @@
       1.0
      ],
      "tasi_kare": [
-      64,
-      88
+      120,
+      144
      ]
     }
    ],
    "devam_plan": {
-    "kare_bas": 176,
+    "kare_bas": 242,
     "sablon": "GALATA-TEPE",
     "parametreler": {
      "gorunum": "tepe",
@@ -212,9 +212,9 @@
     },
     "kamera": {
      "kare": [
-      176,
-      260,
-      324
+      242,
+      326,
+      446
      ],
      "cs": [
       1.0,
@@ -253,19 +253,19 @@
        1250
       ],
       "kare": [
-       176,
-       196,
-       212,
-       229,
-       246,
-       262
+       242,
+       262,
+       278,
+       295,
+       312,
+       328
       ],
       "yon": 1,
       "jestler": [
        {
         "ad": "yuru",
-        "bas": 196,
-        "bit": 262
+        "bas": 262,
+        "bit": 328
        }
       ],
       "kit_eksik": [
@@ -311,22 +311,22 @@
      "en": "ONE WITNESS: A BOOK",
      "tur": "iddia",
      "bas": 0,
-     "bit": 68,
+     "bit": 124,
      "vurgu": [
       "KİTAP"
      ],
      "vurgu_en": [
       "BOOK"
      ],
-     "not": "[FINAL2 O9] yükselen binici (p72-150) yazının altından geçiyordu: yazı p68'de kalkar, fişek kadrajdan çıkınca (p150) döner"
+     "not": "[FINAL2 O9] yükselen binici (p128-206) yazının altından geçiyordu: yazı p124'de kalkar, fişek kadrajdan çıkınca (p206) döner"
     },
     {
      "bant": "ust",
      "metin": "TEK TANIK: BİR KİTAP",
      "en": "ONE WITNESS: A BOOK",
      "tur": "iddia",
-     "bas": 150,
-     "bit": 324,
+     "bas": 206,
+     "bit": 446,
      "vurgu": [
       "KİTAP"
      ],
@@ -344,58 +344,58 @@
      "db": -8
     },
     {
-     "kare": 40,
+     "kare": 96,
      "olay": "kıvılcım demete ulaşır, fişek ateş alır",
      "ses": "puskurme",
      "db": -14
     },
     {
-     "kare": 72,
+     "kare": 128,
      "olay": "fişek yerden kalkar",
      "ses": "fisek-kalkis",
      "db": -12
     },
     {
-     "kare": 212,
+     "kare": 278,
      "olay": "Hezarfen 1. adım basar (küçük figür, uzak; adım ≈0.42 m)",
      "ses": "adim-tas",
      "db": -21
     },
     {
-     "kare": 229,
+     "kare": 295,
      "olay": "Hezarfen 2. adım basar",
      "ses": "adim-tas",
      "db": -21
     },
     {
-     "kare": 246,
+     "kare": 312,
      "olay": "Hezarfen 3. adım basar",
      "ses": "adim-tas",
      "db": -21
     },
     {
-     "kare": 262,
+     "kare": 328,
      "olay": "Hezarfen 4. adım çıkıntıya basar, ayak yerine oturur",
      "ses": "adim-tas",
      "db": -22
     }
    ],
-   "gecis": "p176 SERT KESME (gece/rıhtım -> gündüz/kule): fişek kadrajdan çıkmış, kıvılcımlar düşüp sönmüş (p150-172 kapanış); kesmeyle rüzgâr/yükseklik sesi girer. Çıkış (P02'ye): sert kesme.",
+   "gecis": "p242 SERT KESME (gece/rıhtım -> gündüz/kule): fişek kadrajdan çıkmış, kıvılcımlar düşüp sönmüş (p206-228 kapanış); kesmeyle rüzgâr/yükseklik sesi girer. Çıkış (P02'ye): sert kesme.",
    "sfx": [
     "fitil-tiss (p0)",
-    "puskurme (p40)",
-    "fisek-kalkis (p72)",
-    "p176 kesme vurgusu: kule rüzgârı"
+    "puskurme (p96)",
+    "fisek-kalkis (p128)",
+    "p242 kesme vurgusu: kule rüzgârı"
    ],
-   "muzik_notu": "Müzik p0'da girer (akar, P02'de kesilmez): alçak davul/ud ostinatosu, p176 kesmede tek vurgu; plan sınırında düşüş yok.",
+   "muzik_notu": "Müzik p0'da girer (akar, P02'de kesilmez): alçak davul/ud ostinatosu, p242 kesmede tek vurgu; plan sınırında düşüş yok.",
    "dokunus": null,
-   "kontrol_kare": 100,
+   "kontrol_kare": 156,
    "kontrol_ek": [
     0,
-    172,
-    176,
-    230,
-    324
+    228,
+    242,
+    296,
+    446
    ],
    "okunurluk": {
     "nesne": "binici+demet",
@@ -403,7 +403,7 @@
     "net_sn": 2.5,
     "not": "ilk kare = kapak: oturan siluet + yanan fitil + yazı şeridi aynı karede"
    },
-   "alt_ucte_bir": "p0: rıhtım taşı y 1330-1500, fitil hattı + kıvılcım parıltısı, yardımcı bacakları, ıslak taşta meşale yansıması. p100+: tilt ile köşk silueti/şenlik ışığı denizde.",
+   "alt_ucte_bir": "p0: rıhtım taşı y 1330-1500, fitil hattı + kıvılcım parıltısı, yardımcı bacakları, ıslak taşta meşale yansıması. p156+: tilt ile köşk silueti/şenlik ışığı denizde.",
    "kit_eksik": [
     "KE-S1",
     "KE-S2",
@@ -420,19 +420,19 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P01.mp3",
+     "dosya": "evliya/ses-v3/tr/P01.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P01.mp3",
+     "dosya": "evliya/ses-v3/en/P01.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Kesme senaryodaki 3.2 sn yerine p176 (2.93 sn): TR 'Bir başkası' 2.62, EN 'Another' 2.96 -> kesme iki dilde ikinci cümleye denk gelir. Fişek p150'de kadrajdan çıkar (kesme hareketin ortasına gelmez). Yazı şeridi rokete p110-125 arası binebilir: kanca kapak yazısı, dokunuş değil. [K5 hazırlık] kontrol: p0 ilk kare (kapak), p100 (kontrol), p172 A son (fişek çıkmış, kıvılcım söndü), p176 B ilk (plan içi sert kesme), p230 (Hezarfen yürüyor), p324 B kapanış (çıkıntıya vardı p262, durdu)."
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 336 -> yeni 458 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Kesme senaryodaki 3.2 sn yerine p242 (2.93 sn): TR 'Bir başkası' 2.62, EN 'Another' 2.96 -> kesme iki dilde ikinci cümleye denk gelir. Fişek p206'de kadrajdan çıkar (kesme hareketin ortasına gelmez). Yazı şeridi rokete p166-181 arası binebilir: kanca kapak yazısı, dokunuş değil. [K5 hazırlık] kontrol: p0 ilk kare (kapak), p156 (kontrol), p228 A son (fişek çıkmış, kıvılcım söndü), p242 B ilk (plan içi sert kesme), p296 (Hezarfen yürüyor), p446 B kapanış (çıkıntıya vardı p328, durdu)."
   },
   {
    "id": "P02",
@@ -452,8 +452,8 @@
      {
       "x": 760,
       "y": 250,
-      "bas": 40,
-      "patlama": 62,
+      "bas": 96,
+      "patlama": 118,
       "yaricap": 240,
       "dusme_kare": 70,
       "katman": "kosk-arkasi"
@@ -461,14 +461,14 @@
      {
       "x": 330,
       "y": 230,
-      "bas": 185,
-      "patlama": 205,
+      "bas": 198,
+      "patlama": 218,
       "yaricap": 240,
       "dusme_kare": 70,
       "katman": "kosk-arkasi"
      }
     ],
-    "senlik_not": "E2 (tasarim): yıldız değil, merkezden düşen 18-24 kavisli çizgi (söğüt); merkez y 150-250, düşen çizgiler köşk örtüsünün arkasında; ikinci patlama p205+70=275 ≤ plan sonu-12",
+    "senlik_not": "E2 (tasarim): yıldız değil, merkezden düşen 18-24 kavisli çizgi (söğüt); merkez y 150-250, düşen çizgiler köşk örtüsünün arkasında; ikinci patlama p218+70=275 ≤ plan sonu-12",
     "kosk_konum": {
      "cephe_px_m": 85,
      "su_cizgisi": 1500,
@@ -500,8 +500,8 @@
      "not": "V4 + mekanlar R2: grubun sağ ucu ≤ x 148 (köşk gövdesiyle ≥12 px), ayak y 1387 < köşk rıhtımı 1415; cs 0.97'de ekran x≥92; P03 p0 sırasıyla aynı | U10: Y2 x 85 (yan güvenli alan ≥80 içinde)"
     }
    },
-   "sure_kare": 324,
-   "sure_sn": 5.4,
+   "sure_kare": 370,
+   "sure_sn": 6.17,
    "metin": {
     "tr": "İlki, padişahın kızının doğum şenliğinde. Padişahı kim şaşırtacak?",
     "en": "The first was at the sultan's party. Who'll amaze him?"
@@ -510,7 +510,7 @@
    "kamera": {
     "kare": [
      0,
-     300
+     358
     ],
     "cs": [
      0.9,
@@ -598,7 +598,7 @@
      "en": "FLIGHT 1 · Shore pavilion, 1630s",
      "tur": "iddia",
      "bas": 20,
-     "bit": 318,
+     "bit": 364,
      "vurgu": [
       "UÇUŞ"
      ],
@@ -620,13 +620,13 @@
    ],
    "temaslar": [
     {
-     "kare": 62,
+     "kare": 118,
      "olay": "şenlik fişeği patlar (uzak, görünür)",
      "ses": "senlik-patlama",
      "db": -12
     },
     {
-     "kare": 205,
+     "kare": 218,
      "olay": "ikinci şenlik fişeği patlar",
      "ses": "senlik-patlama",
      "db": -12
@@ -638,14 +638,14 @@
     "deniz dalgası (ortam)",
     "pencere ışığı: ses yok"
    ],
-   "muzik_notu": "Müzik P01'den akar; tema sakinleşir (mi bemolsüz ud/kanun kamu malı arayışı kurgucuda); EN'de sözün bittiği p170 sonrası müzik boşluğu doldurur.",
+   "muzik_notu": "Müzik P01'den akar; tema sakinleşir (mi bemolsüz ud/kanun kamu malı arayışı kurgucuda); EN'de sözün bittiği p195 sonrası müzik boşluğu doldurur.",
    "dokunus": null,
-   "kontrol_kare": 80,
+   "kontrol_kare": 136,
    "kontrol_ek": [
     0,
-    62,
-    205,
-    310
+    118,
+    218,
+    363
    ],
    "okunurluk": {
     "nesne": "padişah siluet (pencerede)",
@@ -666,19 +666,19 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P02.mp3",
+     "dosya": "evliya/ses-v3/tr/P02.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P02.mp3",
+     "dosya": "evliya/ses-v3/en/P02.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Sol rıhtımda 4-5 px'lik grup P03 için kurulum nesnesidir (25 px telefonda ışık lekesi + demet silueti). [2026-11-08 mekanlar §7] Grup x 40-140, ayak y 1387, figür ≈50 px (olcek 0.075). [K3] cs 0.97 + grup x 90-160: sol grup ekran x≥103, sağ ön baca kadrajda. [K3] şenlik merkezi y 250/230, yarıçap ≈240 (üst yazı bandıyla kısmen örtüşür: arka plan etkisi, dokunuş değil). [K3] V3: ekran yazısı alt banda (kutu x 260-1000, y 1330-1450; sol grup açık). V4: Lagâri ayakta, grup sırası Y2,Y1,Lagâri,demet. [R2] grup x 78-138 (sağ uç ≤148).",
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 324 -> yeni 370 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Sol rıhtımda 4-5 px'lik grup P03 için kurulum nesnesidir (25 px telefonda ışık lekesi + demet silueti). [2026-11-08 mekanlar §7] Grup x 40-140, ayak y 1387, figür ≈50 px (olcek 0.075). [K3] cs 0.97 + grup x 90-160: sol grup ekran x≥103, sağ ön baca kadrajda. [K3] şenlik merkezi y 250/230, yarıçap ≈240 (üst yazı bandıyla kısmen örtüşür: arka plan etkisi, dokunuş değil). [K3] V3: ekran yazısı alt banda (kutu x 260-1000, y 1330-1450; sol grup açık). V4: Lagâri ayakta, grup sırası Y2,Y1,Lagâri,demet. [R2] grup x 78-138 (sağ uç ≤148).",
    "ayna": {
     "es": "P10",
     "kare": 0,
@@ -704,8 +704,8 @@
      "not": "mekanlar.md §7.1: ufuk 720'ye göre 17 px/m; eski 900/640 ufuk-ölçek kuralına aykırıydı"
     }
    },
-   "sure_kare": 252,
-   "sure_sn": 4.2,
+   "sure_kare": 309,
+   "sure_sn": 5.15,
    "metin": {
     "tr": "Lagâri Hasan Çelebi fişeğe biniyor ve padişaha sesleniyor.",
     "en": "Lagâri sits on a rocket and calls to the sultan:"
@@ -714,7 +714,7 @@
    "kamera": {
     "kare": [
      0,
-     240
+     297
     ],
     "cs": [
      1.15,
@@ -745,25 +745,25 @@
      ],
      "kare": [
       0,
-      20,
-      44
+      32,
+      56
      ],
      "yon": 1,
      "jestler": [
       {
        "ad": "bin",
-       "bas": 20,
-       "bit": 100,
+       "bas": 32,
+       "bit": 112,
        "ops": {
         "hedef": "demet",
-        "ayak_temas": 44,
-        "oturma": 92
+        "ayak_temas": 56,
+        "oturma": 104
        }
       },
       {
        "ad": "bak",
-       "bas": 120,
-       "bit": 160,
+       "bas": 140,
+       "bit": 180,
        "ops": {
         "x": 1,
         "y": 0
@@ -833,8 +833,8 @@
      "metin": "İçinde ~64 kilo barut",
      "en": "Inside: ~64 kg (140 lb) of gunpowder",
      "tur": "iddia",
-     "bas": 50,
-     "bit": 240,
+     "bas": 70,
+     "bit": 297,
      "vurgu": [
       "64"
      ],
@@ -845,13 +845,13 @@
    ],
    "temaslar": [
     {
-     "kare": 44,
+     "kare": 56,
      "olay": "Lagâri ayağını demet tabanındaki çıkıntıya basar",
      "ses": "ayak-tahta",
      "db": -10
     },
     {
-     "kare": 92,
+     "kare": 104,
      "olay": "Lagâri demetin tepesindeki oturağa oturur",
      "ses": "oturma-tahta",
      "db": -10
@@ -859,15 +859,15 @@
    ],
    "gecis": "Giriş: P02'den kesme (aynı mekân, gece). Çıkış: P04'e aynı eksende push-in kesmesi (Lagâri aynı poz, köşke bakıyor; hareket tamamlanmış).",
    "sfx": [
-    "ayak-tahta (p44)",
-    "oturma-tahta (p92)",
+    "ayak-tahta (p56)",
+    "oturma-tahta (p104)",
     "meşale çıtırtısı (ortam, kısık)"
    ],
    "muzik_notu": "Akar; gerilim tek tutuşlu pedal; konuşma üstünde -18 dB.",
    "dokunus": null,
-   "kontrol_kare": 100,
+   "kontrol_kare": 112,
    "kontrol_ek": [
-    44
+    56
    ],
    "okunurluk": {
     "nesne": "Lagâri + demet",
@@ -887,19 +887,19 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P03.mp3",
+     "dosya": "evliya/ses-v3/tr/P03.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P03.mp3",
+     "dosya": "evliya/ses-v3/en/P03.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Köşk (x 740-928, üst 534) cs 1.15-1.3'te ekran x≈830-1084 sağ kenarda; kubbe sırtı ekran y≈470."
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 252 -> yeni 309 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Köşk (x 740-928, üst 534) cs 1.15-1.3'te ekran x≈830-1084 sağ kenarda; kubbe sırtı ekran y≈470."
   },
   {
    "id": "P04",
@@ -915,8 +915,8 @@
      "not": "cs 2.5-2.7'de köşk kadraj dışı; Lagâri sağa seslenir"
     }
    },
-   "sure_kare": 294,
-   "sure_sn": 4.9,
+   "sure_kare": 327,
+   "sure_sn": 5.45,
    "metin": {
     "tr": "Padişahım, İsa peygamberle konuşmaya gidiyorum!",
     "en": "Sultan! Off to talk with Jesus!"
@@ -925,8 +925,8 @@
    "kamera": {
     "kare": [
      0,
-     120,
-     282
+     106,
+     315
     ],
     "cs": [
      1.86,
@@ -956,7 +956,7 @@
       {
        "ad": "konus",
        "bas": 7,
-       "bit": 256,
+       "bit": 239,
        "ops": {
         "kaynak": "ses_json"
        }
@@ -971,8 +971,8 @@
       },
       {
        "ad": "tutun",
-       "bas": 125,
-       "bit": 160
+       "bas": 185,
+       "bit": 220
       }
      ],
      "yuz": {
@@ -1014,16 +1014,16 @@
      "bant": "ust",
      "metin": "Padişahım,",
      "bas": 7,
-     "bit": 64,
+     "bit": 82,
      "kelimeKare": [
       7
      ],
      "en": {
       "metin": "Sultan!",
-      "bas": 13,
-      "bit": 88,
+      "bas": 30,
+      "bit": 51,
       "kelimeKare": [
-       13
+       30
       ]
      }
     },
@@ -1032,45 +1032,45 @@
      "kim_en": "LAGARI",
      "bant": "ust",
      "metin": "İsa peygamberle konuşmaya gidiyorum!",
-     "bas": 117,
-     "bit": 264,
+     "bas": 80,
+     "bit": 243,
      "kelimeKare": [
-      117,
-      146,
-      188,
-      223
+      80,
+      103,
+      145,
+      178
      ],
      "en": {
       "metin": "Off to talk with Jesus!",
-      "bas": 152,
-      "bit": 263,
+      "bas": 48,
+      "bit": 152,
       "kelimeKare": [
-       152,
-       170,
-       181,
-       199,
-       212
+       48,
+       73,
+       82,
+       96,
+       110
       ]
      }
     }
    ],
    "temaslar": [
     {
-     "kare": 158,
+     "kare": 218,
      "olay": "Lagâri eliyle oturağı/tüpü sıkıca kavrar",
      "ses": "tutunma-tup",
      "db": -10
     }
    ],
-   "gecis": "Giriş: P03'ten aynı eksen push-in (poz tamam). Çıkış: sert kesme geniş plana (P05): tutunma p160'ta bitmiş, p160-282 sabit bakış.",
+   "gecis": "Giriş: P03'ten aynı eksen push-in (poz tamam). Çıkış: sert kesme geniş plana (P05): tutunma p220'de bitmiş, p220-327 sabit bakış (nefes).",
    "sfx": [
-    "tutunma-tup (p158)"
+    "tutunma-tup (p143)"
    ],
-   "muzik_notu": "Akar; çağrı (p7) ve ikinci yarı (p117) arasındaki sessizlik müzikle taşınır, düşüş yok.",
+   "muzik_notu": "Akar; çağrı (p7) ve ikinci yarı (p104) arasındaki sessizlik müzikle taşınır, düşüş yok.",
    "dokunus": null,
    "kontrol_kare": 36,
    "kontrol_ek": [
-    158
+    218
    ],
    "okunurluk": {
     "nesne": "yüz + kalkık kol",
@@ -1089,19 +1089,19 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P04.mp3",
+     "dosya": "evliya/ses-v3/tr/P04.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P04.mp3",
+     "dosya": "evliya/ses-v3/en/P04.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Replik üst bantta (ad plakasıyla birleşik): eller/oturak y≈1310-1450 alt bandı kaplıyor, altyazı ayak/kurulum nesnesini örterdi. Ekran yazısı yok (üst bant replikte). Yedek EV-Y1 kullanılmadı: 6 ana dokunuş yeterli."
+   "not": "[77sn] TUTUN p185-220 (temas p218) \"gidiyorum\" sırasında; konuşma TR p7-233 (kuyruk p233-327 sessiz bakış/push-in; kurgucu kırpabilir). Gecis/not metnindeki eski tutunma kare numaraları geçersiz. Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 294 -> yeni 327 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Replik üst bantta (ad plakasıyla birleşik): eller/oturak y≈1310-1450 alt bandı kaplıyor, altyazı ayak/kurulum nesnesini örterdi. Ekran yazısı yok (üst bant replikte). Yedek EV-Y1 kullanılmadı: 6 ana dokunuş yeterli."
   },
   {
    "id": "P05",
@@ -1111,18 +1111,18 @@
     "gorunum": "kiyi",
     "saat": "gece",
     "fitil": {
-     "bas": 30,
-     "bit": 56,
-     "tukenir": 56,
+     "bas": 40,
+     "bit": 80,
+     "tukenir": 80,
      "kalan": "kısa kömürleşmiş parça rıhtımda kalır; kalkan demete bağlı kalmaz, gerilmez"
     },
     "puskurme": {
-     "bas": 56,
-     "bit": 210
+     "bas": 80,
+     "bit": 255
     },
     "su": {
      "y": 1200,
-     "isik": "deniz yüzü fişek ışığıyla aydınlanır p112+"
+     "isik": "deniz yüzü fişek ışığıyla aydınlanır p136+"
     },
     "kosk_konum": {
      "su_cizgisi": 762,
@@ -1140,18 +1140,18 @@
      "tilt": "kamera demeti izler (cy 0→220); arka plan aşağı kayar; binici+demet yığını ≈850 px olduğundan ekran kazancı ~110 px, asıl okuma rıhtım/yardımcıların aşağı kayması"
     }
    },
-   "sure_kare": 210,
-   "sure_sn": 3.5,
+   "sure_kare": 255,
+   "sure_sn": 4.25,
    "metin": {
     "tr": "Fitil yanıyor ve fişek onu göğe fırlatıyor!",
     "en": "The fuse burns, and the rocket hurls him skyward!"
    },
-   "olcek": "geniş/boy (cs 0.9: yardımcı boyu ≈%33 ön planda + demet); demet DİK yükselir (olcek ≥0.9, y 1330→960), p112'den tilt cy 0→220 demeti izler; binici başı ekran y≈415 (üst bant 240-400 altı), Y1 ayağı ≤ 1485",
+   "olcek": "geniş/boy (cs 0.9: yardımcı boyu ≈%33 ön planda + demet); demet DİK yükselir (olcek ≥0.9, y 1330→960), p136'den tilt cy 0→220 demeti izler; binici başı ekran y≈415 (üst bant 240-400 altı), Y1 ayağı ≤ 1485",
    "kamera": {
     "kare": [
      0,
-     112,
-     198
+     136,
+     222
     ],
     "cs": [
      0.9,
@@ -1209,19 +1209,19 @@
      "y": 1296,
      "kare": [
       0,
-      58,
-      90
+      82,
+      114
      ],
      "yon": 1,
      "jestler": [
       {
        "ad": "sicra",
-       "bas": 58,
-       "bit": 90,
+       "bas": 82,
+       "bit": 114,
        "ops": {
         "kol_yuze": [
-         66,
-         90
+         90,
+         114
         ],
         "geri_adim": "iki ayakla küçük"
        }
@@ -1264,10 +1264,10 @@
      ],
      "kare": [
       0,
-      112,
-      130,
-      160,
-      198
+      136,
+      154,
+      184,
+      222
      ],
      "durum": {
       "puskurme": [
@@ -1311,14 +1311,14 @@
      ],
      "kare": [
       0,
-      14,
-      30
+      19,
+      40
      ],
      "bagli": "yardimci-1",
      "kit_eksik": [
       "KE-P7"
      ],
-     "kosul": "[FINAL2 K2] geri sıçramada meşale figürün ARKASINDAN (sola) döner; p88'den sonra geri tutuş, alev Y1'in başı üstünde/dış yanında x≈80-150 (dekor), Y2 ve demetten uzak. Alev hep sopanın ucunda (ayrı yer alevi yok).",
+     "kosul": "[FINAL2 K2] geri sıçramada meşale figürün ARKASINDAN (sola) döner; p112'den sonra geri tutuş, alev Y1'in başı üstünde/dış yanında x≈80-150 (dekor), Y2 ve demetten uzak. Alev hep sopanın ucunda (ayrı yer alevi yok).",
      "tasi_egim": -12,
      "tasi_el": [
       0.08,
@@ -1329,8 +1329,8 @@
       1.0
      ],
      "tasi_kare": [
-      60,
-      86
+      84,
+      110
      ]
     },
     {
@@ -1352,10 +1352,10 @@
      ],
      "kare": [
       0,
-      58,
-      80,
-      110,
-      134
+      82,
+      104,
+      134,
+      158
      ],
      "aci": [
       0,
@@ -1380,7 +1380,7 @@
      "kit_eksik": [
       "KE-P2"
      ],
-     "not": "sırtta KATLI (tasarim §3.2); P06'da p40-58 açılır"
+     "not": "sırtta KATLI (tasarim §3.2); P06'da p55-82 açılır"
     }
    ],
    "ekran_yazisi": [
@@ -1389,8 +1389,8 @@
      "metin": "Bugünkü bir hesap: ~250 m",
      "en": "A modern estimate: ~250 m (820 ft) up",
      "tur": "iddia",
-     "bas": 120,
-     "bit": 198,
+     "bas": 144,
+     "bit": 222,
      "vurgu": [
       "250"
      ],
@@ -1401,31 +1401,31 @@
    ],
    "temaslar": [
     {
-     "kare": 30,
+     "kare": 40,
      "olay": "meşale fitile değer",
      "ses": "fitil-tiss",
      "db": -8
     },
     {
-     "kare": 56,
+     "kare": 80,
      "olay": "fitil demete ulaşır, püskürme başlar",
      "ses": "puskurme",
      "db": -14
     },
     {
-     "kare": 60,
+     "kare": 84,
      "olay": "yardımcı geri sıçrar",
      "ses": "kumas-hisirti",
      "db": -10
     },
     {
-     "kare": 110,
+     "kare": 134,
      "olay": "başlık rıhtıma iner (yumuşak)",
      "ses": "baslik-inis",
      "db": -10
     },
     {
-     "kare": 112,
+     "kare": 136,
      "olay": "fişek kalkar",
      "ses": "fisek-kalkis",
      "db": -12
@@ -1433,30 +1433,30 @@
    ],
    "gecis": "Giriş: sert kesme (P04 tutunma tamam). Çıkış: MATCH CUT P06'ya (aynı kadraj; fişek yavaşlamış, itki sönmek üzere; bilinçli, hareket süreklilik).",
    "sfx": [
-    "fitil-tiss (p30)",
-    "puskurme (p56)",
-    "kumas-hisirti (p60)",
-    "baslik-inis (p110)",
-    "fisek-kalkis (p112)"
+    "fitil-tiss (p40)",
+    "puskurme (p80)",
+    "kumas-hisirti (p84)",
+    "baslik-inis (p134)",
+    "fisek-kalkis (p136)"
    ],
-   "muzik_notu": "Akar; p56'dan fişek kalkışına doğru crescendo, p112'de zirve; konuşma 'fırlatıyor' (TR p125, EN p127) üstünde -18 dB.",
+   "muzik_notu": "Akar; p80'dan fişek kalkışına doğru crescendo, p136'de zirve; konuşma 'fırlatıyor' (TR p149, EN p151) üstünde -18 dB.",
    "dokunus": {
     "id": "EV-D1",
     "ad": "Fitil tutuşunca yardımcının başlığı uçar",
-    "bas": 56,
-    "bit": 134
+    "bas": 80,
+    "bit": 158
    },
-   "kontrol_kare": 78,
+   "kontrol_kare": 102,
    "kontrol_ek": [
     0,
-    110,
-    204
+    134,
+    238
    ],
    "okunurluk": {
     "nesne": "yardımcı figürü + başlık yayı",
     "oran_pct": 35,
     "net_sn": 1.3,
-    "not": "başlık olcek 1.6 (≈190 px, %10); yay y 480-1315, x 110-300 (yan marj ≥ 80 ✓). Başlık y≥480 > yazı bandı; yazı p120'de başlık yere inince başlar"
+    "not": "başlık olcek 1.6 (≈190 px, %10); yay y 480-1315, x 110-300 (yan marj ≥ 80 ✓). Başlık y≥480 > yazı bandı; yazı p144'de başlık yere inince başlar"
    },
    "alt_ucte_bir": "Rıhtım taşı + Y1/Y2 bacakları (ayak ekran y ≤ 1496) + yuvarlanan başlık (y 1322) + kömürleşmiş fitil kalıntısı; tilt sonrası demetin altında kıyı/deniz ve fişek ışığı.",
    "kit_eksik": [
@@ -1473,19 +1473,19 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P05.mp3",
+     "dosya": "evliya/ses-v3/tr/P05.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P05.mp3",
+     "dosya": "evliya/ses-v3/en/P05.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Kalkış p112 (başlık p110'da yerde): dokunuş doc'unun açık sorusu 1 -> p112. Yükseliş ekranda yalnız ~120 px; yüksekliğin okunması tilt + yardımcı büyük ön plan + P06 ile verilir (stilize ölçek, fizik notu sahne-plani'nda). [2026-11-08 K1 eleştirisi] Demet dik yükselir (y 1330→790, olcek ≥0.92); fitil p56'da tükenir; puskurme.bit 210 (P06 p0 ile kesintisiz); meşale alevi x ≤ 330 / koridor dışında; Y1 y 1296 (ayak ≤ 1500), Y2 x 95 geride; Y1 sıçrama x 300→270 (Y2 x 95: ≥1 gövde aralık, ikiz okunmasın). Kamera cs 0.9 (P06 p0 ile aynı): cs 1.0'da binici başı y≈140 ile güvenli alan/yazı bandına çıkıyordu. [K1-2] Y1/Y2 yer değişti: Y1 (meşaleci) sola x 90→70, Y2 x 215 (alev ≥60 px uzakta); başlık y 1280."
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 210 -> yeni 255 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Kalkış p136 (başlık p134'da yerde): dokunuş doc'unun açık sorusu 1 -> p136. Yükseliş ekranda yalnız ~120 px; yüksekliğin okunması tilt + yardımcı büyük ön plan + P06 ile verilir (stilize ölçek, fizik notu sahne-plani'nda). [2026-11-08 K1 eleştirisi] Demet dik yükselir (y 1330→790, olcek ≥0.92); fitil p80'da tükenir; puskurme.bit 210 (P06 p0 ile kesintisiz); meşale alevi x ≤ 330 / koridor dışında; Y1 y 1296 (ayak ≤ 1500), Y2 x 95 geride; Y1 sıçrama x 300→270 (Y2 x 95: ≥1 gövde aralık, ikiz okunmasın). Kamera cs 0.9 (P06 p0 ile aynı): cs 1.0'da binici başı y≈140 ile güvenli alan/yazı bandına çıkıyordu. [K1-2] Y1/Y2 yer değişti: Y1 (meşaleci) sola x 90→70, Y2 x 215 (alev ≥60 px uzakta); başlık y 1280."
   },
   {
    "id": "P06",
@@ -1496,16 +1496,16 @@
     "saat": "gece",
     "puskurme": {
      "bas": 0,
-     "bit": 36,
+     "bit": 66,
      "sonuk": true,
-     "not": "P05 p209 ile kesintisiz: püskürme sürerken başlar, p36'da söner"
+     "not": "P05 p252 ile kesintisiz: püskürme sürerken başlar, p66'da söner"
     },
     "su": {
      "y_demet": 1178,
      "y_inis": 775,
      "halka": {
-      "bas": 84,
-      "bit": 114
+      "bas": 114,
+      "bit": 168
      }
     },
     "kosk_konum": {
@@ -1524,7 +1524,7 @@
      "olcek": 0.12,
      "plan_sonuna_kadar": true
     },
-    "inis": "köşkün önünde: iniş (810,775), olcek 0.12 (köşkten ≈2.9x, Y2: ≤3x); kamera p150-230 köşke push-in cs 0.9→2.5, cx -735 (katalog cx sınırı ±750'ye genişletildi, orkestra onayı), cy 600",
+    "inis": "köşkün önünde: iniş (810,775), olcek 0.12 (köşkten ≈2.9x, Y2: ≤3x); kamera p232-330 köşke push-in cs 0.9→2.5, cx -735 (katalog cx sınırı ±750'ye genişletildi, orkestra onayı), cy 600",
     "okutma": {
      "sarik": "karedeki en açık leke",
      "halka": "iniş halkası + yüzerken sabit halka",
@@ -1536,20 +1536,20 @@
      "not": "ölçek küçüldüğü için okunurluk bunlarla (K1-2 Y2); motion çizer"
     }
    },
-   "sure_kare": 300,
-   "sure_sn": 5.0,
+   "sure_kare": 399,
+   "sure_sn": 6.65,
    "metin": {
     "tr": "Barut bitince kanatlarını açıyor. Süzülüp köşkün önünde denize iniyor.",
     "en": "Powder gone, wings open, he glides down in front of the pavilion."
    },
-   "olcek": "geniş (P05 sonuyla AYNI kadraj, p0-150) → p150-230 köşke push-in cs 0.9→2.5 (köşk merkezli cx -735, cy 600; köşk su çizgisi ekran y≈1065, üst 495); iniş köşkün önünde, Lagâri ≤3x köşk",
+   "olcek": "geniş (P05 sonuyla AYNI kadraj, p0-232) → p232-330 köşke push-in cs 0.9→2.5 (köşk merkezli cx -735, cy 600; köşk su çizgisi ekran y≈1065, üst 495); iniş köşkün önünde, Lagâri ≤3x köşk",
    "kamera": {
     "kare": [
      0,
-     150,
-     180,
-     230,
-     288
+     232,
+     272,
+     330,
+     378
     ],
     "cs": [
      0.9,
@@ -1603,14 +1603,14 @@
      ],
      "kare": [
       0,
-      46,
-      70,
-      110,
-      150,
-      215,
+      76,
+      100,
+      160,
       232,
-      260,
-      288
+      318,
+      332,
+      355,
+      378
      ],
      "olcek": [
       0.92,
@@ -1626,23 +1626,23 @@
      "jestler": [
       {
        "ad": "kanat-ac",
-       "bas": 40,
-       "bit": 58
+       "bas": 70,
+       "bit": 88
       },
       {
        "ad": "ucus",
-       "bas": 46,
-       "bit": 215
+       "bas": 76,
+       "bit": 318
       },
       {
        "ad": "yuz",
-       "bas": 222,
-       "bit": 288
+       "bas": 324,
+       "bit": 378
       },
       {
        "ad": "kanat-birak",
-       "bas": 222,
-       "bit": 250
+       "bas": 324,
+       "bit": 347
       }
      ],
      "yuz": {
@@ -1686,7 +1686,7 @@
      ],
      "bagli": {
       "prop": "demet",
-      "bit": 46
+      "bit": 76
      }
     },
     {
@@ -1728,9 +1728,9 @@
      ],
      "kare": [
       0,
-      28,
-      46,
-      84
+      51,
+      76,
+      114
      ],
      "aci": [
       0,
@@ -1761,10 +1761,10 @@
       0.92,
       0.45
      ],
-     "kosul": "[FINAL2 K3] bırakma p46 → serbest düşüş (0.63 sn, g≈9.7 m/s², ileri momentumla derinleşir: olcek 0.92→0.45) → p84 suya değer (su y 1178 = pxmSu ölçeğiyle tutarlı, rıhtım dudağının gerisinde), yatar ve yüzer. Yol yardımcıların sağında ve arkasında (x 548→610), kimsenin önünden geçmez. Push-in (p180-215) sırasında kamera hareketiyle alt kenardan kadraj dışına çıkar.",
+     "kosul": "[FINAL2 K3] bırakma p76 → serbest düşüş (0.63 sn, g≈9.7 m/s², ileri momentumla derinleşir: olcek 0.92→0.45) → p114 suya değer (su y 1178 = pxmSu ölçeğiyle tutarlı, rıhtım dudağının gerisinde), yatar ve yüzer. Yol yardımcıların sağında ve arkasında (x 548→610), kimsenin önünden geçmez. Push-in (p272-318) sırasında kamera hareketiyle alt kenardan kadraj dışına çıkar.",
      "dusus": {
-      "bas": 46,
-      "bit": 84
+      "bas": 76,
+      "bit": 114
      }
     },
     {
@@ -1784,24 +1784,24 @@
      },
      "kare": [
       0,
-      40,
-      58,
-      215,
-      222,
-      236,
-      250
+      70,
+      88,
+      318,
+      324,
+      335,
+      347
      ],
      "kit_eksik": [
       "KE-P2",
       "KE-P2s"
      ],
      "suda": {
-      "bas": 222,
-      "bit": 250,
+      "bas": 324,
+      "bit": 347,
       "kare": [
-       222,
-       236,
-       250
+       324,
+       335,
+       347
       ],
       "x": [
        800,
@@ -1816,7 +1816,7 @@
       "gorunen_oran": 0.4,
       "dalga_px": 4,
       "halka": {
-       "bas": 240,
+       "bas": 339,
        "sonuna_kadar": true,
        "sabit": true
       },
@@ -1833,7 +1833,7 @@
      "kit_eksik": [
       "KE-P7"
      ],
-     "kosul": "[FINAL2 K2] geri sıçramada meşale figürün ARKASINDAN (sola) döner; p88'den sonra geri tutuş, alev Y1'in başı üstünde/dış yanında x≈80-150 (dekor), Y2 ve demetten uzak. Alev hep sopanın ucunda (ayrı yer alevi yok).",
+     "kosul": "[FINAL2 K2] geri sıçramada meşale figürün ARKASINDAN (sola) döner; p121'den sonra geri tutuş, alev Y1'in başı üstünde/dış yanında x≈80-150 (dekor), Y2 ve demetten uzak. Alev hep sopanın ucunda (ayrı yer alevi yok).",
      "tasi_egim": -12,
      "tasi_el": [
       0.08,
@@ -1863,8 +1863,8 @@
      "metin": "Sonra yüzerek padişaha döndü.",
      "en": "Then he swam back to the sultan.",
      "tur": "iddia",
-     "bas": 208,
-     "bit": 282,
+     "bas": 309,
+     "bit": 373,
      "vurgu": [
       "yüzerek"
      ],
@@ -1875,73 +1875,73 @@
    ],
    "temaslar": [
     {
-     "kare": 44,
+     "kare": 74,
      "olay": "kanatlar açılır (kumaş/ahşap)",
      "ses": "kanat-hisirti",
      "db": -12
     },
     {
-     "kare": 46,
+     "kare": 76,
      "olay": "Lagâri demeti bırakır",
      "ses": "birakma-tik",
      "db": -10
     },
     {
-     "kare": 84,
+     "kare": 114,
      "olay": "boş demet suya çarpar (dusus.bit)",
      "ses": "su-dump",
      "db": -8
     },
     {
-     "kare": 86,
+     "kare": 118,
      "olay": "buhar halkası yükselir",
      "ses": "buhar",
      "db": -12
     },
     {
-     "kare": 215,
+     "kare": 318,
      "olay": "Lagâri denize iner (şap)",
      "ses": "su-sap",
      "db": -4
     },
     {
-     "kare": 236,
+     "kare": 335,
      "olay": "çözülen kanat suya yatar, tek sabit halka açılır",
      "ses": "su-yatma",
      "db": -16
     }
    ],
-   "gecis": "Giriş: MATCH CUT P05'ten (kesintisiz püskürme, aynı kadraj). Çıkış: P07'ye eşleşen kesme: P06 p288 Lagâri köşke doğru yüzüş vuruşunu TAMAMLAMIŞ (ıslak, kanatsız; kanat suda arkada), basamak/el bu planda yok; P07 p0'da ıslak el basamağa değer (temas + islak-el foley P07'de).",
+   "gecis": "Giriş: MATCH CUT P05'ten (kesintisiz püskürme, aynı kadraj). Çıkış: P07'ye eşleşen kesme: P06 p378 Lagâri köşke doğru yüzüş vuruşunu TAMAMLAMIŞ (ıslak, kanatsız; kanat suda arkada), basamak/el bu planda yok; P07 p0'da ıslak el basamağa değer (temas + islak-el foley P07'de).",
    "sfx": [
-    "kanat-hisirti (p44)",
-    "birakma-tik (p46)",
-    "dusme-ruzgar (p50-84, -14)",
-    "su-dump (p84)",
-    "buhar (p86)",
-    "su-sap (p215, en yüksek)",
-    "yuzme su sesi (p222-288, -16)",
-    "su-yatma (p236, -16)"
+    "kanat-hisirti (p74)",
+    "birakma-tik (p76)",
+    "dusme-ruzgar (p80-114, -14)",
+    "su-dump (p114)",
+    "buhar (p118)",
+    "su-sap (p318, en yüksek)",
+    "yuzme su sesi (p324-378, -16)",
+    "su-yatma (p335, -16)"
    ],
-   "muzik_notu": "Akar; p0'da itki sönünce müzik alçalır (müzikal cümle sonu), p215 'şap' sonrası bir an hafifler, yüzerken tema sade devam eder.",
+   "muzik_notu": "Akar; p0'da itki sönünce müzik alçalır (müzikal cümle sonu), p318 'şap' sonrası bir an hafifler, yüzerken tema sade devam eder.",
    "dokunus": {
     "id": "EV-D2",
     "ad": "Bırakılan demet düşer, Lagâri süzülür",
-    "bas": 40,
-    "bit": 130
+    "bas": 70,
+    "bit": 196
    },
-   "kontrol_kare": 76,
+   "kontrol_kare": 106,
    "kontrol_ek": [
     0,
-    215,
-    290
+    318,
+    382
    ],
    "okunurluk": {
     "nesne": "düşen demet",
     "oran_pct": 18,
     "net_sn": 1.7,
-    "not": "Lagâri+demet birlikte havada p0-46, bırakma p46 (EV-D2); iniş olcek 0.12 (≤3x köşk): sarık en açık leke + halka + 3 kesik dalga izi; boş demet p180'de kadraj dışı"
+    "not": "Lagâri+demet birlikte havada p0-76, bırakma p76 (EV-D2); iniş olcek 0.12 (≤3x köşk): sarık en açık leke + halka + 3 kesik dalga izi; boş demet p272'de kadraj dışı"
    },
-   "alt_ucte_bir": "p0-150: rıhtım + Y1/Y2 (ayak ≤ 1485), demet su halkası/buharı (ekran y≈1400). p150+: köşk tabanı ve su (ekran y 1000-1500), suda yatan kanat, yüzen Lagâri; yardımcılar kadrajdan çıkar.",
+   "alt_ucte_bir": "p0-232: rıhtım + Y1/Y2 (ayak ≤ 1485), demet su halkası/buharı (ekran y≈1400). p232+: köşk tabanı ve su (ekran y 1000-1500), suda yatan kanat, yüzen Lagâri; yardımcılar kadrajdan çıkar.",
    "kit_eksik": [
     "KE-S1",
     "KE-K1",
@@ -1956,21 +1956,21 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P06.mp3",
+     "dosya": "evliya/ses-v3/tr/P06.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P06.mp3",
+     "dosya": "evliya/ses-v3/en/P06.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Dokunuş zamanı doc'a göre p40-130: 'kanatlarını açıyor' kelimeleri TR p56, EN p50 -> kanat p40-58. İniş p215: TR 'denize' p209-230, EN 'pavilion' p178-222 ile uyumlu. Yüzme+basamak p222-288 (1.1 sn); yazı p208'de başlar, dokunuştan sonra. [2026-11-08 kullanıcı kararı] Kanat Lagâri'den p222-250'de ayrılır, suda iniş noktasının solunda kalır (Lagâri sağa yüzer, kanattan uzaklaşır); P07'de Lagâri kanatsız. [2026-11-08 K1 eleştirisi] P05 son durumu ile kesintisiz: demet (540,960), puskurme yanıyor, Lagâri demette oturuyor (bagli bit 46 → ucus 46). Boş demet yakına (y 1200) düşer; kamera köşke push-in; iniş (810,775). Y1 ayağı y 1296+cy 200 = 1485 ≤ 1500. [K1-2] Y2 iniş ≤3x; Y3 basamak teması/sesi P07'ye taşındı (P06'da basamak ve islak-el yok); Y4 meşale dik; Y9 demet kadraj dışı; Z2 başlık y 1280. Kullanıcı kararı: kalkışta binici başı kadraj dışına ÇIKMAZ (mevcut hâl).",
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 300 -> yeni 399 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Dokunuş zamanı doc'a göre p70-196: 'kanatlarını açıyor' kelimeleri TR p86, EN p80 -> kanat p70-88. İniş p318: TR 'denize' p310-330, EN 'pavilion' p269-324 ile uyumlu. Yüzme+basamak p324-378 (1.1 sn); yazı p309'de başlar, dokunuştan sonra. [2026-11-08 kullanıcı kararı] Kanat Lagâri'den p324-347'de ayrılır, suda iniş noktasının solunda kalır (Lagâri sağa yüzer, kanattan uzaklaşır); P07'de Lagâri kanatsız. [2026-11-08 K1 eleştirisi] P05 son durumu ile kesintisiz: demet (540,960), puskurme yanıyor, Lagâri demette oturuyor (bagli bit 46 → ucus 46). Boş demet yakına (y 1200) düşer; kamera köşke push-in; iniş (810,775). Y1 ayağı y 1296+cy 200 = 1485 ≤ 1500. [K1-2] Y2 iniş ≤3x; Y3 basamak teması/sesi P07'ye taşındı (P06'da basamak ve islak-el yok); Y4 meşale dik; Y9 demet kadraj dışı; Z2 başlık y 1280. Kullanıcı kararı: kalkışta binici başı kadraj dışına ÇIKMAZ (mevcut hâl).",
    "eslesme": {
-    "son_kare": "p288: Lagâri (828,768) olcek 0.12, ıslak, kanatsız, yüzüş vuruşu bitti, yön köşke (sağ); kanat (785,777) suda",
+    "son_kare": "p378: Lagâri (828,768) olcek 0.12, ıslak, kanatsız, yüzüş vuruşu bitti, yön köşke (sağ); kanat (785,777) suda",
     "P07_ilk_kare": "p0: aynı Lagâri (insert ölçeğinde) ıslak çivit yen, kanatsız; ıslak el basamak üst yüzünde (200,1330), alttan/solda girer; islak-el foley p0"
    }
   },
@@ -2012,8 +2012,8 @@
      "not": "basamakta ıslak leke + damlalar (ayak izi yok: gövde basamakta, yürümedi)"
     }
    },
-   "sure_kare": 228,
-   "sure_sn": 3.8,
+   "sure_kare": 265,
+   "sure_sn": 4.41,
    "metin": {
     "tr": "Karşılığında bir kese para ve her gün maaş alıyor.",
     "en": "For it, he gets a purse and a daily salary."
@@ -2022,7 +2022,7 @@
    "kamera": {
     "kare": [
      0,
-     228
+     265
     ],
     "cs": [
      1.0,
@@ -2048,22 +2048,22 @@
       {
        "ad": "egil",
        "bas": 0,
-       "bit": 36,
+       "bit": 44,
        "ops": {
         "aci": 30
        }
       },
       {
        "ad": "dogrul",
-       "bas": 110,
-       "bit": 170
+       "bas": 126,
+       "bit": 186
       }
      ],
      "durum": {
       "islak": true,
       "damla": [
        0,
-       190
+       206
       ]
      },
      "yuz": {
@@ -2107,12 +2107,12 @@
      ],
      "kare": [
       0,
-      24,
-      52,
-      68,
-      100,
-      150,
-      196
+      30,
+      64,
+      84,
+      116,
+      166,
+      212
      ],
      "olcek": 1.4,
      "durum": {
@@ -2134,11 +2134,11 @@
      ],
      "kare": [
       0,
-      24,
-      52,
-      68,
-      96,
-      130
+      30,
+      64,
+      84,
+      112,
+      146
      ],
      "bilek": [
       [
@@ -2203,7 +2203,7 @@
      "olcek": 1.9,
      "tut": {
       "prop": "kese",
-      "bit": 68,
+      "bit": 84,
       "not": "bas yok = kese elde girer (p0; Insert.tsx 'bas 0' aralığı sıfır uzunlukta interpolate hatası verir)"
      },
      "kit_eksik": [
@@ -2219,11 +2219,11 @@
      ],
      "kare": [
       0,
-      34,
-      64,
-      100,
-      150,
-      196
+      42,
+      79,
+      116,
+      166,
+      212
      ],
      "bilek": [
       [
@@ -2288,11 +2288,11 @@
      "olcek": 1.9,
      "poz": [
       {
-       "kare": 64,
+       "kare": 79,
        "poz": "gevsek"
       },
       {
-       "kare": 100,
+       "kare": 116,
        "poz": "kistir"
       }
      ],
@@ -2309,8 +2309,8 @@
      "metin": "1 kese gümüş + günde 70 akçe",
      "en": "1 purse of silver + 70 silver coins a day",
      "tur": "iddia",
-     "bas": 60,
-     "bit": 214,
+     "bas": 74,
+     "bit": 242,
      "vurgu": [
       "70"
      ],
@@ -2327,23 +2327,23 @@
      "db": -12
     },
     {
-     "kare": 68,
+     "kare": 84,
      "olay": "kese Lagâri'nin avucuna düşer",
      "ses": "kese-singir",
      "db": -6
     }
    ],
-   "gecis": "Giriş: P06'dan eşleşen kesme: Lagâri köşke yüzüşünü tamamlamış (P06 p288); P07 p0'da ıslak el basamağa değer, islak-el foley p0. Çıkış: kâğıt kesme (zaman/mekân atlaması: gece köşk önü -> gündüz Galata); el çıkmış, kese Lagâri'nin göğsünde, hareket tamam.",
+   "gecis": "Giriş: P06'dan eşleşen kesme: Lagâri köşke yüzüşünü tamamlamış (P06 p378); P07 p0'da ıslak el basamağa değer, islak-el foley p0. Çıkış: kâğıt kesme (zaman/mekân atlaması: gece köşk önü -> gündüz Galata); el çıkmış, kese Lagâri'nin göğsünde, hareket tamam.",
    "sfx": [
-    "kese-singir (p68)",
-    "su damlaları (ortam, p0-190, -18)"
+    "kese-singir (p84)",
+    "su damlaları (ortam, p0-206, -18)"
    ],
    "muzik_notu": "Akar; ödülde tema açılır (majör çözülme), P08 kâğıt kesmesinde tema aynı kalır, ritim hafifler.",
    "dokunus": null,
-   "kontrol_kare": 72,
+   "kontrol_kare": 88,
    "kontrol_ek": [
     0,
-    130
+    146
    ],
    "okunurluk": {
     "nesne": "kese + avuç",
@@ -2364,23 +2364,23 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P07.mp3",
+     "dosya": "evliya/ses-v3/tr/P07.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P07.mp3",
+     "dosya": "evliya/ses-v3/en/P07.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Eli veren el padişahın mı görevlinin mi: belirsiz bırakıldı (nötr entari yeni, kanıtsız renk/arma yok). Giren el sağ kenardan (köşk sağda) fiziksel girer, p130'da sağdan çıkar; fade yok. Lagâri KANATSIZ (kanat P06'da suda kaldı, kullanıcı kararı). [K1-2] Basamak teması P06'dan P07 p0'a taşındı (el p0'da basamakta). Değerler mekanlar §1.4 hesabı; insert şablonu henüz yok, render yok. [K2] Alıcı gövdesi kadraj dışı (eleştirmen kabul); veren el tut.bas 0 (kese elde girer); ıslak ayak izi yerine basamak lekesi+damla. W1/W3/W4/Z5-Z7 motion/mekân.",
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 228 -> yeni 265 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Eli veren el padişahın mı görevlinin mi: belirsiz bırakıldı (nötr entari yeni, kanıtsız renk/arma yok). Giren el sağ kenardan (köşk sağda) fiziksel girer, p146'da sağdan çıkar; fade yok. Lagâri KANATSIZ (kanat P06'da suda kaldı, kullanıcı kararı). [K1-2] Basamak teması P06'dan P07 p0'a taşındı (el p0'da basamakta). Değerler mekanlar §1.4 hesabı; insert şablonu henüz yok, render yok. [K2] Alıcı gövdesi kadraj dışı (eleştirmen kabul); veren el tut.bas 0 (kese elde girer); ıslak ayak izi yerine basamak lekesi+damla. W1/W3/W4/Z5-Z7 motion/mekân.",
    "ayna": {
     "es": "P11",
-    "kare": 72,
-    "not": "P07 p72 ↔ P11 p72: kese avuçta, ışık ters (gece sağ-üst/gölge sola ↔ gün soldan/gölge sağa); kese ±10 px aynı"
+    "kare": 88,
+    "not": "P07 p88 ↔ P11 p128: kese avuçta, ışık ters (gece sağ-üst/gölge sola ↔ gün soldan/gölge sağa); kese ±10 px aynı"
    }
   },
   {
@@ -2399,8 +2399,8 @@
     },
     "alt_serit": "kule duvarı + aşağıda sur kolu + taş döşeli avlu (gövde tabanı y 3600; taş y 3580'de avlu açıklığına düşer; mekanlar §2.4b R5)",
     "toz": {
-     "bas": 148,
-     "bit": 176
+     "bas": 218,
+     "bit": 246
     },
     "gunes": "sabah-ENE",
     "korkuluk": false,
@@ -2427,25 +2427,25 @@
       845
      ]
     },
-    "kamera_dogrulama": "mekanlar R3: p36-52 cy ≤ -41 (öneri -50): çıkıntı/taş d 1250 → ekran ≈1475 (cs 1.9) ≤ 1490; p40 tas-surtme (cs≈1.93, cy≈-120) taş ≈1398, p44 kayma; p200/p240 de cy -50 (ayak ≤1490, boy plan); taş p36 ekran x≈857 < 920; [K5-yon B4/B7] p36 cx -120→-170 (taş sağ kenarı ≈897 <920); p52-166 cx -140→-260: taş x 785 (düşüş) → ekran merkezi ≈770, sağ kenar ≈865 (+bounce 16 → ≈881) <920; temas p148 x≈770 y 900 (IG sütunu x≥920,y≥900 dışı), toz yarı genişliği ≤130 px olmalı (≤ x 900); avlu_koridor_x (eski sokak_bosluk_x) [560,820]→[560,845]: taş 738-832 (+8 yuvarlanma = 840) avlu koridoruna sığsın; R5: sur kolu sol şeritte (x ≤ 480), taş surun önünden geçmez"
+    "kamera_dogrulama": "mekanlar R3: p106-122 cy ≤ -41 (öneri -50): çıkıntı/taş d 1250 → ekran ≈1475 (cs 1.9) ≤ 1490; p110 tas-surtme (cs≈1.93, cy≈-120) taş ≈1398, p114 kayma; p270/p305 de cy -50 (ayak ≤1490, boy plan); taş p106 ekran x≈857 < 920; [K5-yon B4/B7] p106 cx -120→-170 (taş sağ kenarı ≈897 <920); p122-236 cx -140→-260: taş x 785 (düşüş) → ekran merkezi ≈770, sağ kenar ≈865 (+bounce 16 → ≈881) <920; temas p218 x≈770 y 900 (IG sütunu x≥920,y≥900 dışı), toz yarı genişliği ≤130 px olmalı (≤ x 900); avlu_koridor_x (eski sokak_bosluk_x) [560,820]→[560,845]: taş 738-832 (+8 yuvarlanma = 840) avlu koridoruna sığsın; R5: sur kolu sol şeritte (x ≤ 480), taş surun önünden geçmez"
    },
-   "sure_kare": 252,
-   "sure_sn": 4.2,
+   "sure_kare": 317,
+   "sure_sn": 5.29,
    "metin": {
     "tr": "Peki öteki adam? Hezarfen, Galata Kulesi'nin tepesinde.",
     "en": "And the other man? Hezarfen, atop the Galata Tower."
    },
-   "olcek": "geniş (kule tepesi, Hezarfen boy %22) -> göğüs (p36) -> yakın ayak/taş (p40-52) -> dikey takip insert (taş %10, p52-148) -> kamera yukarı -> göğüs (bak)",
+   "olcek": "geniş (kule tepesi, Hezarfen boy %22) -> göğüs (p106) -> yakın ayak/taş (p110-122) -> dikey takip insert (taş %10, p122-218) -> kamera yukarı -> göğüs (bak)",
    "kamera": {
     "kare": [
      0,
-     36,
-     52,
-     100,
-     148,
-     166,
-     200,
-     240
+     106,
+     122,
+     170,
+     218,
+     236,
+     270,
+     305
     ],
     "cs": [
      1.0,
@@ -2482,8 +2482,8 @@
      "prop": "tas",
      "ekran_y": 900,
      "kare": [
-      52,
-      148
+      122,
+      218
      ]
     }
    },
@@ -2496,17 +2496,17 @@
      "jestler": [
       {
        "ad": "tas-it",
-       "bas": 36,
-       "bit": 60,
+       "bas": 106,
+       "bit": 130,
        "ops": {
         "hedef": "tas",
-        "temas": 40
+        "temas": 110
        }
       },
       {
        "ad": "bak",
-       "bas": 200,
-       "bit": 232,
+       "bas": 270,
+       "bit": 302,
        "ops": {
         "x": 1,
         "y": 0
@@ -2546,10 +2546,10 @@
      ],
      "kare": [
       0,
-      40,
-      46,
-      100,
-      148
+      110,
+      116,
+      170,
+      218
      ],
      "olcek": 1.0,
      "boyut_dekor_px": 95,
@@ -2575,73 +2575,73 @@
      "metin": "2. UÇUŞ · Hezarfen = “bin hünerli”",
      "en": "FLIGHT 2 · Hezarfen = “a thousand skills”",
      "tur": "iddia",
-     "bas": 80,
-     "bit": 244,
+     "bas": 120,
+     "bit": 309,
      "vurgu": [
       "UÇUŞ"
      ],
      "vurgu_en": [
       "FLIGHT"
      ],
-     "not": "[FINAL2 O9] tekmede (p26-60) Hezarfen'in başı/omzu yazının altındaydı: yazı tekme bitip kamera taşı izlemeye başlayınca (p80; p54-70'te kaftan hâlâ yazı altındaydı) girer"
+     "not": "[FINAL2 O9] tekmede (p77-130) Hezarfen'in başı/omzu yazının altındaydı: yazı tekme bitip kamera taşı izlemeye başlayınca (p150; p124-140'te kaftan hâlâ yazı altındaydı) girer"
     }
    ],
    "temaslar": [
     {
-     "kare": 40,
+     "kare": 110,
      "olay": "ayakkabı taşı iter",
      "ses": "tas-surtme",
      "db": -8
     },
     {
-     "kare": 44,
+     "kare": 114,
      "olay": "taş kenardan kayar",
      "ses": "tas-kayma",
      "db": -10
     },
     {
-     "kare": 56,
+     "kare": 126,
      "olay": "tekme ayağı yere döner",
      "ses": "adim-tas",
      "db": -16
     },
     {
-     "kare": 148,
+     "kare": 218,
      "olay": "taş yere çarpar (uzak, toz)",
      "ses": "uzak-tik",
      "db": -18
     },
     {
-     "kare": 158,
-     "olay": "taş sekip ikinci kez yere değer (sekme p148+10)",
+     "kare": 228,
+     "olay": "taş sekip ikinci kez yere değer (sekme p218+10)",
      "ses": "tas-sekme",
      "db": -22
     }
    ],
-   "gecis": "Giriş: kâğıt kesme (P07 -> gündüz Galata). Çıkış: MATCH CUT P09'a: Hezarfen aynı pozda ufka bakıyor (p232), panorama aynı bakış doğrultusunda açılır.",
+   "gecis": "Giriş: kâğıt kesme (P07 -> gündüz Galata). Çıkış: MATCH CUT P09'a: Hezarfen aynı pozda ufka bakıyor (p302), panorama aynı bakış doğrultusunda açılır.",
    "sfx": [
-    "tas-surtme (p40)",
-    "tas-kayma (p44)",
-    "dusme-ruzgar (p52-148, -14)",
-    "uzak-tik (p148, -18)",
+    "tas-surtme (p110)",
+    "tas-kayma (p114)",
+    "dusme-ruzgar (p122-218, -14)",
+    "uzak-tik (p218, -18)",
     "kule rüzgârı (ortam)"
    ],
-   "muzik_notu": "Akar; düşüş boyunca tek sürekli nota, çarpmada alçalır, bakışta (p200) tema yükselir. Konuşma 'tepesinde' p163-220 (TR) kamera yukarı dönerken.",
+   "muzik_notu": "Akar; düşüş boyunca tek sürekli nota, çarpmada alçalır, bakışta (p270) tema yükselir. Konuşma 'tepesinde' p233-290 (TR) kamera yukarı dönerken.",
    "dokunus": {
     "id": "EV-D3",
     "ad": "Düşen taş",
-    "bas": 36,
-    "bit": 232
+    "bas": 106,
+    "bit": 302
    },
-   "kontrol_kare": 100,
+   "kontrol_kare": 170,
    "kontrol_ek": [
     0,
-    36,
-    40,
-    44,
-    148,
-    216,
-    240
+    106,
+    110,
+    114,
+    218,
+    286,
+    305
    ],
    "okunurluk": {
     "nesne": "düşen taş",
@@ -2649,7 +2649,7 @@
     "net_sn": 1.7,
     "not": "taş dekor 95 px, cs 2.0 -> 190 px (%10), takipte ekran y≈900 sabit; okunurluk taşın yolunda ve duvar paralaksında, tozda değil (toz <%5) [K5-yon] takip cx -260: taş sağ kenarı ≤865, IG sütunu dışında"
    },
-   "alt_ucte_bir": "p0: kule duvarı taş sıraları aşağı doğru + uzakta çatılar; p52-148: akan duvar, sur iç yüzü ve avlu; p166+: Hezarfen'in altındaki duvar şeridi + kule gölgesi.",
+   "alt_ucte_bir": "p0: kule duvarı taş sıraları aşağı doğru + uzakta çatılar; p122-218: akan duvar, sur iç yüzü ve avlu; p236+: Hezarfen'in altındaki duvar şeridi + kule gölgesi.",
    "kit_eksik": [
     "KE-S2",
     "KE-K2",
@@ -2662,19 +2662,19 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P08.mp3",
+     "dosya": "evliya/ses-v3/tr/P08.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P08.mp3",
+     "dosya": "evliya/ses-v3/en/P08.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Dikey şerit 2 ekran (dokunuş doc'u 3 demişti; cs 2.0'da 2 ekran yeter, taş hızı ≈ 50 px/kare). Dokunuş 232'de biter (plan 252, payı 20). [R3] p36 cy 120 → -50 (taş/çıkıntı alt bantta idi, temas y 1631); p200/p240 cy 120 → -50 (ayak y 1631 → 1475). [K5-yon 2026-11-08] B7: p36 cx -170; B4: p52-166 cx -260, taş x son 785; B6: temas p56 (tekme dönüşü), p158 (sekme); B5 kamera tarafı: dipte sur kolu + avlu (mekân R5 §2.4b; iki saçak ucu iptal), avlu_koridor_x [560,845]."
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 252 -> yeni 317 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Dikey şerit 2 ekran (dokunuş doc'u 3 demişti; cs 2.0'da 2 ekran yeter, taş hızı ≈ 50 px/kare). Dokunuş 232'de biter (plan 252, payı 20). [R3] p106 cy 120 → -50 (taş/çıkıntı alt bantta idi, temas y 1631); p270/p305 cy 120 → -50 (ayak y 1631 → 1475). [K5-yon 2026-11-08] B7: p106 cx -170; B4: p122-236 cx -260, taş x son 785; B6: temas p126 (tekme dönüşü), p228 (sekme); B5 kamera tarafı: dipte sur kolu + avlu (mekân R5 §2.4b; iki saçak ucu iptal), avlu_koridor_x [560,845]."
   },
   {
    "id": "P09",
@@ -2685,8 +2685,8 @@
     "saat": "gun",
     "rota": "galata-uskudar",
     "rota_cizgi": {
-     "bas": 70,
-     "bit": 130
+     "bas": 110,
+     "bit": 197
     },
     "dekor_genislik": 2160,
     "iniş_meydani": {
@@ -2716,8 +2716,8 @@
      ]
     ]
    },
-   "sure_kare": 282,
-   "sure_sn": 4.7,
+   "sure_kare": 423,
+   "sure_sn": 7.05,
    "metin": {
     "tr": "Lodos esince atlıyor ve Boğaz'ı süzülerek geçip Üsküdar'a iniyor.",
     "en": "With a southwest wind, he jumps and glides across the Bosphorus."
@@ -2726,7 +2726,7 @@
    "kamera": {
     "kare": [
      0,
-     240
+     354
     ],
     "cs": [
      1.0,
@@ -2767,13 +2767,13 @@
      ],
      "kare": [
       0,
-      56,
-      76,
-      100,
-      150,
-      200,
-      238,
-      262
+      90,
+      119,
+      153,
+      225,
+      297,
+      352,
+      376
      ],
      "olcek": [
       0.027,
@@ -2789,13 +2789,13 @@
      "jestler": [
       {
        "ad": "ucus",
-       "bas": 56,
-       "bit": 238
+       "bas": 90,
+       "bit": 352
       },
       {
        "ad": "yuru",
-       "bas": 238,
-       "bit": 262
+       "bas": 352,
+       "bit": 376
       }
      ],
      "kit_eksik": [
@@ -2803,7 +2803,7 @@
       "KE-J4",
       "KE-J9"
      ],
-     "olcek_not": "derinlikle büyür (mekanlar §3.2): kalkışta ≈10 px, p150 ≈70 px, inişte ≈130 px (0.35)"
+     "olcek_not": "derinlikle büyür (mekanlar §3.2): kalkışta ≈10 px, p225 ≈70 px, inişte ≈130 px (0.35)"
     }
    ],
    "props": [
@@ -2813,10 +2813,10 @@
      "bagli": "hezarfen",
      "kare": [
       0,
-      56,
-      76,
-      238,
-      262
+      90,
+      119,
+      352,
+      376
      ],
      "durum": {
       "acik": [
@@ -2850,11 +2850,11 @@
       1320
      ],
      "kare": [
-      112,
-      135,
-      150,
-      170,
-      194
+      171,
+      204,
+      225,
+      254,
+      289
      ],
      "olcek": 1.0,
      "bulanik": 6,
@@ -2878,8 +2878,8 @@
      "metin": "Galata → Üsküdar · ~3 km",
      "en": "EUROPE → ASIA · ~3 km (2 mi)",
      "tur": "iddia",
-     "bas": 60,
-     "bit": 270,
+     "bas": 96,
+     "bit": 384,
      "vurgu": [
       "~3"
      ],
@@ -2896,7 +2896,7 @@
      "x": 130,
      "y": 700,
      "bas": 0,
-     "bit": 100,
+     "bit": 153,
      "kutu": [
       255,
       695
@@ -2908,8 +2908,8 @@
      "en": "Üsküdar",
      "x": 1100,
      "y": 935,
-     "bas": 196,
-     "bit": 270,
+     "bas": 292,
+     "bit": 384,
      "kutu": [
       1100,
       868
@@ -2921,8 +2921,8 @@
      "en": "Bosphorus",
      "x": 760,
      "y": 1060,
-     "bas": 92,
-     "bit": 270,
+     "bas": 142,
+     "bit": 384,
      "kutu": [
       760,
       1060
@@ -2931,54 +2931,54 @@
    ],
    "temaslar": [
     {
-     "kare": 120,
+     "kare": 182,
      "olay": "martı çığlık atar (ön plan, görünür)",
      "ses": "marti-cigligi",
      "db": -10
     },
     {
-     "kare": 125,
-     "olay": "martı kanat çırpar (4-5 vuruş, p112-170)",
+     "kare": 189,
+     "olay": "martı kanat çırpar (4-5 vuruş, p171-254)",
      "ses": "kanat-hisirti",
      "db": -12
     },
     {
-     "kare": 238,
+     "kare": 352,
      "olay": "Hezarfen Üsküdar meydanına ayak basar (toz)",
      "ses": "inis-toprak",
      "db": -10
     },
     {
-     "kare": 252,
+     "kare": 366,
      "olay": "Hezarfen iniş sonrası ikinci adımı basar (arka ayak öne)",
      "ses": "inis-toprak",
      "db": -18
     }
    ],
-   "gecis": "Giriş: MATCH CUT P08'den (aynı poz, aynı bakış). Çıkış: sert kesme P10'a (inişten sonra kapanış: toz oturdu p270, kanat katlı).",
+   "gecis": "Giriş: MATCH CUT P08'den (aynı poz, aynı bakış). Çıkış: sert kesme P10'a (inişten sonra kapanış: toz oturdu p384, kanat katlı).",
    "sfx": [
-    "ruzgar/kumas dalgası (ortam, p0-260, -16)",
-    "marti-cigligi (p120)",
-    "kanat-hisirti (p112-170)",
-    "inis-toprak (p238)"
+    "ruzgar/kumas dalgası (ortam, p0-374, -16)",
+    "marti-cigligi (p182)",
+    "kanat-hisirti (p171-254)",
+    "inis-toprak (p352)"
    ],
-   "muzik_notu": "Akar; süzülüşte açılan geniş tema (uçuş = sürekli uzun nota), iniş p238'de çözülür.",
+   "muzik_notu": "Akar; süzülüşte açılan geniş tema (uçuş = sürekli uzun nota), iniş p352'de çözülür.",
    "dokunus": {
     "id": "EV-D4",
     "ad": "Martı çırpar, Hezarfen çırpmadan geçer",
-    "bas": 112,
-    "bit": 195
+    "bas": 171,
+    "bit": 290
    },
-   "kontrol_kare": 150,
+   "kontrol_kare": 225,
    "kontrol_ek": [
     0,
-    238
+    352
    ],
    "okunurluk": {
     "nesne": "martı (ön plan) + Hezarfen siluet",
     "oran_pct": 11,
     "net_sn": 1.4,
-    "not": "martı kanat açıklığı 420 px, çırpma genliği 220 px (%11); Hezarfen kontra düz siluet derinlikle büyür 10->70->130 px (p112-195'te ≈40-105 px); kamera yatay izler; martı y≥1100. Galata etiketi p100'de biter (pan ile sol marjı geçmesin)"
+    "not": "martı kanat açıklığı 420 px, çırpma genliği 220 px (%11); Hezarfen kontra düz siluet derinlikle büyür 10->70->130 px (p171-290'te ≈40-105 px); kamera yatay izler; martı y≥1100. Galata etiketi p153'de biter (pan ile sol marjı geçmesin)"
    },
    "alt_ucte_bir": "Boğaz suyu (y 1000-1500), ön plandaki martı, kayık siluetleri, sağ altta Üsküdar kıyısı/meydan, sol altta Galata yamacı.",
    "kit_eksik": [
@@ -2994,20 +2994,20 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P09.mp3",
+     "dosya": "evliya/ses-v3/tr/P09.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P09.mp3",
+     "dosya": "evliya/ses-v3/en/P09.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Atlayış p56-76: TR 'atlıyor' p48-81 ile örtüşür; EN 'he jumps' p100: görüntü 0.7 sn önde (iki dil tek görüntü). Rota çizgisi p70-130 çizilir, martı p112'de girer (farklı bölge). İniş p238, kanat katlanması p262, toz oturması p270 (plan sonuna 12 kare var). [2026-11-08] Kule x 100, iniş (1250,1170); pan cx 500->-500 dekor x -500..1580 gösterir, Hezarfen ekran x≈367-850 kalır.",
-   "harita_etiketleri_not": "K9 motion: x,y = işaret noktası (dekor px), kutu = fiş merkezi (dekor px); kamera fonksiyonu görüntüyle ortak (Bolum HaritaEtiketleri, kameraHesapla+ekranNokta). Fiş görünür olduğu sürece ekran x 80–1000 içinde (pan cx 500→−500 ile bas/bit hesaplandı: GALATA p0–100 kule sağında, rota çizgisinin üstünde; BOĞAZ p92–270 su ortası y 1060 — martı bölgesi y≥1100 ve rota çizgisi (y≈995) arasında; ÜSKÜDAR p196–270 (EV-D4 dokunuşu p112–195 bittikten sonra; işaret çizgisi uçan figüre değmez) uzak kıyı x 1100, iniş/meydanı (1250,1170) örtmez)."
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 282 -> yeni 423 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Atlayış p90-119: TR 'atlıyor' p77-126 ile örtüşür; EN 'he jumps' p153: görüntü 0.7 sn önde (iki dil tek görüntü). Rota çizgisi p110-197 çizilir, martı p171'de girer (farklı bölge). İniş p352, kanat katlanması p376, toz oturması p384 (plan sonuna 12 kare var). [2026-11-08] Kule x 100, iniş (1250,1170); pan cx 500->-500 dekor x -500..1580 gösterir, Hezarfen ekran x≈367-850 kalır.",
+   "harita_etiketleri_not": "K9 motion: x,y = işaret noktası (dekor px), kutu = fiş merkezi (dekor px); kamera fonksiyonu görüntüyle ortak (Bolum HaritaEtiketleri, kameraHesapla+ekranNokta). Fiş görünür olduğu sürece ekran x 80–1000 içinde (pan cx 500→−500 ile bas/bit hesaplandı: GALATA p0–100 kule sağında, rota çizgisinin üstünde; BOĞAZ p142–270 su ortası y 1060 — martı bölgesi y≥1100 ve rota çizgisi (y≈995) arasında; ÜSKÜDAR p292–270 (EV-D4 dokunuşu p171–195 bittikten sonra; işaret çizgisi uçan figüre değmez) uzak kıyı x 1100, iniş/meydanı (1250,1170) örtmez)."
   },
   {
    "id": "P10",
@@ -3031,30 +3031,30 @@
      "kenar_isik": "#f0d79a",
      "bas_aci": {
       "kare": [
-       70,
-       116
+       114,
+       160
       ],
       "deger": [
        0,
        1
       ],
-      "not": "önden → sağa profil (Üsküdar); cs 2.4 sabitken (p66+) tamamlanır; profil çıkıntısı ≥%25 baş genişliği, sarık ≥%20 arkaya (V2, motion çizer)"
+      "not": "önden → sağa profil (Üsküdar); cs 2.4 sabitken (p110+) tamamlanır; profil çıkıntısı ≥%25 baş genişliği, sarık ≥%20 arkaya (V2, motion çizer)"
      }
     }
    },
-   "sure_kare": 294,
-   "sure_sn": 4.9,
+   "sure_kare": 333,
+   "sure_sn": 5.55,
    "metin": {
     "tr": "Onu kim izliyor? Yine padişah. Yine aynı köşkten.",
     "en": "Who's watching? The sultan again. From the very same pavilion."
    },
-   "olcek": "geniş (P02 ile AYNI kadraj p0, cs 0.9) 0.4 sn tutulur -> push-in p24-66 cs 0.9->2.4 -> göğüs/büst (padişah ≥ %12) ile baş çevirme p70-112; son kare cx -120, cy 420 (V7: sol üst yarım baca dilimi kadraj dışı; pencere ekran x≈480, sağda Üsküdar yönüne boşluk)",
+   "olcek": "geniş (P02 ile AYNI kadraj p0, cs 0.9) 0.4 sn tutulur -> push-in p50-110 cs 0.9->2.4 -> göğüs/büst (padişah ≥ %12) ile baş çevirme p114-156; son kare cx -120, cy 420 (V7: sol üst yarım baca dilimi kadraj dışı; pencere ekran x≈480, sağda Üsküdar yönüne boşluk)",
    "kamera": {
     "kare": [
      0,
-     24,
-     66,
-     282
+     50,
+     110,
+     321
     ],
     "cs": [
      0.9,
@@ -3088,8 +3088,8 @@
      "jestler": [
       {
        "ad": "bak",
-       "bas": 70,
-       "bit": 116,
+       "bas": 114,
+       "bit": 160,
        "ops": {
         "x": 1,
         "y": 0,
@@ -3109,7 +3109,7 @@
      "en": "The same pavilion · Sultan Murad IV",
      "tur": "iddia",
      "bas": 20,
-     "bit": 288,
+     "bit": 327,
      "vurgu": [
       "Aynı"
      ],
@@ -3126,18 +3126,18 @@
    ],
    "muzik_notu": "Akar; P09'un açık teması sade bir motife iner (köşk teması P02'den geri gelir).",
    "dokunus": null,
-   "kontrol_kare": 120,
+   "kontrol_kare": 164,
    "kontrol_ek": [
     0,
-    66,
-    116,
-    280
+    110,
+    160,
+    319
    ],
    "okunurluk": {
     "nesne": "padişah siluet (baş çevirme)",
     "oran_pct": 12,
     "net_sn": 3.0,
-    "not": "cs 2.4'te büst ≈ 242 px (%12.6), baş çevirme p70-112 cs 2.4'te; kadraj dekor x 315-765, y 385-1185"
+    "not": "cs 2.4'te büst ≈ 242 px (%12.6), baş çevirme p114-156 cs 2.4'te; kadraj dekor x 315-765, y 385-1185"
    },
    "alt_ucte_bir": "Kesme taş çifte kemerli altyapı (kemer tepeleri, dekor y 920-1185), kemer arası; deniz ve rıhtım cs 2.4'te kadraj dışı. Gündüz taşı + kemer içi koyu.",
    "kit_eksik": [
@@ -3147,19 +3147,19 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P10.mp3",
+     "dosya": "evliya/ses-v3/tr/P10.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P10.mp3",
+     "dosya": "evliya/ses-v3/en/P10.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Baş çevirme p70-112: TR 'Yine padişah' p74-144 ile eşzamanlı. Çevirme sağa (Üsküdar yönü); P09'daki uçuş yönüyle aynı. [2026-11-08 mekanlar §7.2] cs 0.9->2.4: p0'da P02 ile aynı kadraj (0.9), 0.4 sn sonra push-in; çevirme tam cs 2.4'te. [K3] tasarim §3.5 'P10 cs 1.6'da ≥240 px' eskimiş: mekanlar hesabı cs 2.4 (büst 1.1 m x 92 px/m x 2.4 = 242 px); tasarımcı güncellesin. [K3] V7: cx -28 → -108 (render: sol üst köşedeki yarım baca ekran x<72 idi). V2 zamanlama: çevirme p70-116, cs 2.4'e p66'da erişildi (cs ≥2.2 tamam). [K4 U8] cx -108 → -120 ve p66'dan itibaren sabit (p66/p112'de sol üst baca dilimi kadraj dışı).",
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 294 -> yeni 333 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Baş çevirme p114-156: TR 'Yine padişah' p118-187 ile eşzamanlı. Çevirme sağa (Üsküdar yönü); P09'daki uçuş yönüyle aynı. [2026-11-08 mekanlar §7.2] cs 0.9->2.4: p0'da P02 ile aynı kadraj (0.9), 0.4 sn sonra push-in; çevirme tam cs 2.4'te. [K3] tasarim §3.5 'P10 cs 1.6'da ≥240 px' eskimiş: mekanlar hesabı cs 2.4 (büst 1.1 m x 92 px/m x 2.4 = 242 px); tasarımcı güncellesin. [K3] V7: cx -28 → -108 (render: sol üst köşedeki yarım baca ekran x<72 idi). V2 zamanlama: çevirme p114-160, cs 2.4'e p110'da erişildi (cs ≥2.2 tamam). [K4 U8] cx -108 → -120 ve p110'dan itibaren sabit (p110/p156'de sol üst baca dilimi kadraj dışı).",
    "ayna": {
     "es": "P02",
     "kare": 0,
@@ -3180,8 +3180,8 @@
     "el_golge": {
      "muhafiz_omza_once": true,
      "kaynak": "Isik.yonlu (güneş), türetilir; elle konmaz",
-     "omuz_golge_bas": 96,
-     "temas": 104
+     "omuz_golge_bas": 160,
+     "temas": 168
     },
     "basamak": {
      "x": [
@@ -3198,8 +3198,8 @@
      "golge": "sağa uzun (3.7x)"
     }
    },
-   "sure_kare": 240,
-   "sure_sn": 4.0,
+   "sure_kare": 341,
+   "sure_sn": 5.69,
    "metin": {
     "tr": "Ona bir kese altın veriyor. Ama sonra sürgüne yolluyor.",
     "en": "He gets a purse of gold. But then he's banished."
@@ -3208,7 +3208,7 @@
    "kamera": {
     "kare": [
      0,
-     240
+     341
     ],
     "cs": [
      1.0,
@@ -3234,7 +3234,7 @@
       {
        "ad": "egil",
        "bas": 0,
-       "bit": 10,
+       "bit": 17,
        "ops": {
         "aci": 30
        }
@@ -3281,13 +3281,13 @@
      ],
      "kare": [
       0,
-      10,
-      42,
-      100,
-      112,
-      126,
-      140,
-      214
+      17,
+      70,
+      164,
+      182,
+      206,
+      220,
+      294
      ],
      "olcek": 1.4,
      "durum": {
@@ -3318,12 +3318,12 @@
       1440
      ],
      "kare": [
-      140,
-      142,
-      170,
-      205,
-      208,
-      214
+      220,
+      222,
+      250,
+      285,
+      288,
+      294
      ],
      "olcek": 1.0,
      "durum": {
@@ -3359,10 +3359,10 @@
      ],
      "kare": [
       0,
-      10,
-      38,
-      50,
-      80
+      17,
+      63,
+      86,
+      144
      ],
      "bilek": [
       [
@@ -3418,7 +3418,7 @@
      "olcek": 1.9,
      "tut": {
       "prop": "kese",
-      "bit": 42,
+      "bit": 70,
       "not": "bas yok = kese elde girer (p0; Insert.tsx 'bas 0' aralığı sıfır uzunlukta interpolate hatası verir)"
      },
      "kit_eksik": [
@@ -3434,14 +3434,14 @@
      ],
      "kare": [
       0,
-      20,
-      42,
+      33,
       70,
-      100,
-      112,
-      126,
-      160,
-      210
+      125,
+      164,
+      182,
+      206,
+      240,
+      290
      ],
      "bilek": [
       [
@@ -3533,11 +3533,11 @@
      "olcek": 1.9,
      "poz": [
       {
-       "kare": 60,
+       "kare": 105,
        "poz": "kistir"
       },
       {
-       "kare": 110,
+       "kare": 178,
        "poz": "gevsek"
       }
      ],
@@ -3556,9 +3556,9 @@
      ],
      "kare": [
       0,
-      80,
-      104,
-      214
+      144,
+      168,
+      294
      ],
      "bilek": [
       [
@@ -3607,7 +3607,7 @@
       "KE-K5"
      ],
      "hedef": "ust-kol",
-     "hedef_not": "W5: el omuz başından çok üst kola iner (≈(120,820), alıcı gövdesine bağlı); anlam 'kolundan tutuldu' kabul; kumaş 4-6 px içeri çöker (temas p104, kontrol p98/p104)",
+     "hedef_not": "W5: el omuz başından çok üst kola iner (≈(120,820), alıcı gövdesine bağlı); anlam 'kolundan tutuldu' kabul; kumaş 4-6 px içeri çöker (temas p168, kontrol p162/p168)",
      "kumas_cokme_px": 6
     }
    ],
@@ -3617,8 +3617,8 @@
      "metin": "Sürgün: Cezayir",
      "en": "Exile: Algiers",
      "tur": "iddia",
-     "bas": 60,
-     "bit": 228,
+     "bas": 215,
+     "bit": 319,
      "vurgu": [
       "Cezayir"
      ],
@@ -3629,64 +3629,64 @@
    ],
    "temaslar": [
     {
-     "kare": 42,
+     "kare": 70,
      "olay": "altın kese avuca düşer",
      "ses": "kese-singir",
      "db": -6
     },
     {
-     "kare": 104,
+     "kare": 168,
      "olay": "muhafız eli üst koluna iner (kumaş içeri çöker)",
      "ses": "omuz-tok",
      "db": -8
     },
     {
-     "kare": 140,
+     "kare": 220,
      "olay": "kese rıhtıma düşer",
      "ses": "kese-yere",
      "db": -6
     },
     {
-     "kare": 144,
-     "olay": "sikke dönerek yuvarlanır (p144-205)",
+     "kare": 224,
+     "olay": "sikke dönerek yuvarlanır (p224-285)",
      "ses": "sikke-donme",
      "db": -12
     },
     {
-     "kare": 208,
+     "kare": 288,
      "olay": "sikke yatar",
      "ses": "sikke-tin",
      "db": -10
     }
    ],
-   "gecis": "Giriş: kâğıt kesme (P10). Çıkış: SERT KESME + ses vurgusu P12'ye (sikke yatmış p208, el omuzda: hareket tamam).",
+   "gecis": "Giriş: kâğıt kesme (P10). Çıkış: SERT KESME + ses vurgusu P12'ye (sikke yatmış p288, el omuzda: hareket tamam).",
    "sfx": [
-    "kese-singir (p42, P07'den parlak altın tınısı)",
-    "omuz-tok (p104)",
-    "kese-yere (p140)",
-    "sikke-donme (p144-205)",
-    "sikke-tin (p208)"
+    "kese-singir (p70, P07'den parlak altın tınısı)",
+    "omuz-tok (p168)",
+    "kese-yere (p220)",
+    "sikke-donme (p224-285)",
+    "sikke-tin (p288)"
    ],
-   "muzik_notu": "Akar; p104 omuz vuruşunda müzikal sert vurgu (akor değişimi/davul); düşüş yok. P12'ye geçişte vurgu 'tok'.",
+   "muzik_notu": "Akar; p168 omuz vuruşunda müzikal sert vurgu (akor değişimi/davul); düşüş yok. P12'ye geçişte vurgu 'tok'.",
    "dokunus": {
     "id": "EV-D5",
     "ad": "Düşen kese ve dönen sikke",
-    "bas": 104,
-    "bit": 214
+    "bas": 168,
+    "bit": 294
    },
-   "kontrol_kare": 128,
+   "kontrol_kare": 208,
    "kontrol_ek": [
-    42,
-    72,
-    98,
-    198,
-    208
+    70,
+    128,
+    162,
+    278,
+    288
    ],
    "okunurluk": {
     "nesne": "kese (avuç/yerde)",
     "oran_pct": 10,
     "net_sn": 3.2,
-    "not": "kese olcek 1.4 (≈190 px, %10) avuçta p42-112, düşüşte p126-140, yerde p140-214; sikke %5 ek ayrıntı. Omuz y≈800 (yazı bandı 240-400 dışı)"
+    "not": "kese olcek 1.4 (≈190 px, %10) avuçta p70-182, düşüşte p206-220, yerde p220-294; sikke %5 ek ayrıntı. Omuz y≈800 (yazı bandı 240-400 dışı)"
    },
    "alt_ucte_bir": "Rıhtım taş zemini y 1350-1500: kese, yuvarlanan sikke, kese/el gölgeleri. Ayak yok: alıcı gövdesi kadraj dışı.",
    "kit_eksik": [
@@ -3699,23 +3699,23 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P11.mp3",
+     "dosya": "evliya/ses-v3/tr/P11.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P11.mp3",
+     "dosya": "evliya/ses-v3/en/P11.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Insert baş kadraj dışı: Hezarfen'in tepkisi yüzle değil omuz/avuç gevşemesiyle verilir (doc: pasif). 'Omza' el: eğik duran omuz y≈800 (kadrajda). Muhafız eli soldan (Hezarfen'in arkası), veren el sağdan. Sikke fiziği: kese yere çarpınca ağzından fırlar, zeminde dönerek yavaşlar, p208'de yatar. [2026-11-08 karar: muhafız eli gölgesi omza temastan 8 kare önce (p96) düşer: tek ışık kaynağından kendiliğinden çıkar, ek ses/kod yok, EV-D5'e 'geliyor' vurgusu verir; sürpriz korunur çünkü el zaten p80'de kadraja girer, gölge yalnız omuz+kese eli üstünde p96-104.) [K1-2] K2 paketi için P07↔P11 ayna çifti p72/p72; EV-D5 karesi p128 ayrı. Gün paleti C* oranı ≥%70 ve el tonu ΔE (#d6a882, #c99872, #b08260) kontrolü eleştirmende. Değerler mekanlar §1.4, render yok. [K2] W2: p112-210 alan el bilek y ≤ 1000 (eski p210 (540,1160) yerdeki keseye uzanır gibiydi). W5 üst kol. Muhafız bilek (120,820). Kese boyu 205 px.",
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 240 -> yeni 341 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Insert baş kadraj dışı: Hezarfen'in tepkisi yüzle değil omuz/avuç gevşemesiyle verilir (doc: pasif). 'Omza' el: eğik duran omuz y≈800 (kadrajda). Muhafız eli soldan (Hezarfen'in arkası), veren el sağdan. Sikke fiziği: kese yere çarpınca ağzından fırlar, zeminde dönerek yavaşlar, p288'de yatar. [2026-11-08 karar: muhafız eli gölgesi omza temastan 8 kare önce (p160) düşer: tek ışık kaynağından kendiliğinden çıkar, ek ses/kod yok, EV-D5'e 'geliyor' vurgusu verir; sürpriz korunur çünkü el zaten p144'de kadraja girer, gölge yalnız omuz+kese eli üstünde p160-168.) [K1-2] K2 paketi için P07↔P11 ayna çifti p128/p128; EV-D5 karesi p208 ayrı. Gün paleti C* oranı ≥%70 ve el tonu ΔE (#d6a882, #c99872, #b08260) kontrolü eleştirmende. Değerler mekanlar §1.4, render yok. [K2] W2: p182-290 alan el bilek y ≤ 1000 (eski p290 (540,1160) yerdeki keseye uzanır gibiydi). W5 üst kol. Muhafız bilek (120,820). Kese boyu 205 px.",
    "ayna": {
     "es": "P07",
-    "kare": 72,
-    "not": "P11 p72 ↔ P07 p72 (kese avuçta; ışık ters)"
+    "kare": 128,
+    "not": "P11 p128 ↔ P07 p88 (kese avuçta; ışık ters)"
    }
   },
   {
@@ -3778,15 +3778,15 @@
      "ayak_y": 1267,
      "not": "profil siluet (göz/kaş/ağız çizilmez); ışık şeridi göz hizasında profil konturunda (şeridin üst ucu x 457'de y 739); gün: kaftan #36302c, çıplak el #b88470; [K5-yon A2] padişah x 430→540 (+110 dekor px = 0.32 m, pencereye yaklaştı; 340 px/m); burun ucu 457→567"
     },
-    "kamera_dogrulama": "K5-yon: p0-36 cs 1.6 cy 30 (ayak ≤1490, sarık ≥420, kanat kenarı ≤880); push-in p36-60 (24 kare) cs 3.0 cx -140 cy 400: SARAYBURNU katalog üst sınırı cs 3.0 (3.2 sınırı aşar); ekran = 540+cx+(x-540)*cs → yarık x 727-738 → ≈965-994 (≤1000), burun ucu 567 → ≈461, sarık sol kenarı ≈80 (render p90: cx -160'ta 60 idi → -140), göz y 740 → 700, sarık tepesi ≈410 (>400: üst yazı bandı 240-400 dışı), yüz ≈180 px (%9.4; K6 ölçümü, A2 gerekçeyle %9.4 kabul — okunurluk notuna bak). p126-150 geri çekilme; p204: cs 1.6 cx 80 cy 30 (A6 +20: işaret eli ekran ≥120; padişah +110 dekor px kaydığı için parmak ucu kapıya yaklaşır, kapı sağ pervazı ≈339, yarık ≈949, ayak 1481)"
+    "kamera_dogrulama": "K5-yon: p0-36 cs 1.6 cy 30 (ayak ≤1490, sarık ≥420, kanat kenarı ≤880); push-in p36-60 (24 kare) cs 3.0 cx -140 cy 400: SARAYBURNU katalog üst sınırı cs 3.0 (3.2 sınırı aşar); ekran = 540+cx+(x-540)*cs → yarık x 727-738 → ≈965-994 (≤1000), burun ucu 567 → ≈461, sarık sol kenarı ≈80 (render p90: cx -160'ta 60 idi → -140), göz y 740 → 700, sarık tepesi ≈410 (>400: üst yazı bandı 240-400 dışı), yüz ≈180 px (%9.4; K6 ölçümü, A2 gerekçeyle %9.4 kabul — okunurluk notuna bak). p126-150 geri çekilme; p199: cs 1.6 cx 80 cy 30 (A6 +20: işaret eli ekran ≥120; padişah +110 dekor px kaydığı için parmak ucu kapıya yaklaşır, kapı sağ pervazı ≈339, yarık ≈949, ayak 1481)"
    },
-   "sure_kare": 216,
-   "sure_sn": 3.6,
+   "sure_kare": 211,
+   "sure_sn": 3.51,
    "metin": {
     "tr": "Çünkü bu adamdan korkulur. Ne isterse yapar.",
     "en": "Because he's too dangerous. He can do anything."
    },
-   "olcek": "boy (p0-36, cs 1.6: padişahın tamamı güvenli alanda, ayak ≈1481, sarık ≈484, kanat kenarı ≈857) → PUSH-IN p36-60 → bel/göğüs p60-126 (cs 3.0, cx -140, cy 400: yüz ≈%12.8, yarık ekran x ≈965-994, sarık ≈410, ayak/zemin dışarıda; ışık çizgisi cs ≥2.2'den p46-108 ≈1.0 sn net) → geri çekilme p126-150 → boy p150-204 (cs 1.6, cx 80: işaret eli + kapı + yarık aynı kadrajda, ayak ≈1481)",
+   "olcek": "boy (p0-36, cs 1.6: padişahın tamamı güvenli alanda, ayak ≈1481, sarık ≈484, kanat kenarı ≈857) → PUSH-IN p36-60 → bel/göğüs p60-126 (cs 3.0, cx -140, cy 400: yüz ≈%12.8, yarık ekran x ≈965-994, sarık ≈410, ayak/zemin dışarıda; ışık çizgisi cs ≥2.2'den p46-108 ≈1.0 sn net) → geri çekilme p126-150 → boy p150-199 (cs 1.6, cx 80: işaret eli + kapı + yarık aynı kadrajda, ayak ≈1481)",
    "kamera": {
     "kare": [
      0,
@@ -3794,7 +3794,7 @@
      60,
      126,
      150,
-     204
+     199
     ],
     "cs": [
      1.6,
@@ -3955,7 +3955,7 @@
      "en": {
       "metin": "He can do anything.",
       "bas": 129,
-      "bit": 198,
+      "bit": 195,
       "kelimeKare": [
        129,
        138,
@@ -3993,7 +3993,7 @@
      "db": -12
     }
    ],
-   "gecis": "Giriş: SERT KESME + ses vurgusu (P11 sikke yatışından; dış gün ışığı -> iç mekân). Çıkış: kâğıt/sayfa geçişi P13'e (anlatıdan kayda); el kapıyı göstermiş p170, kapanış bakışı p170-204.",
+   "gecis": "Giriş: SERT KESME + ses vurgusu (P11 sikke yatışından; dış gün ışığı -> iç mekân). Çıkış: kâğıt/sayfa geçişi P13'e (anlatıdan kayda); el kapıyı göstermiş p170, kapanış bakışı p170-199.",
    "sfx": [
     "pencere-tok (p30)",
     "mandal-tik (p34)",
@@ -4014,7 +4014,7 @@
     60,
     130,
     175,
-    204
+    199
    ],
    "okunurluk": {
     "nesne": "pencere kanadı + ışık çizgisi (yüzde)",
@@ -4034,19 +4034,19 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P12.mp3",
+     "dosya": "evliya/ses-v3/tr/P12.mp3",
      "kare": 24,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P12.mp3",
+     "dosya": "evliya/ses-v3/en/P12.mp3",
      "kare": 24,
      "db": 0
     }
    ],
-   "not": "ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p204 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok). [mekanlar R2] yarık p50'den sonra kadraj dışı, şerit sağdan girer (mekân kabul etti); cx azaltılmadı: azalınca kapı sağ pervazı (ekran x≈267) ve işaret hedefi kadrajdan çıkar. [K4] kamera kare [0,36,70,120,204] (motion önerisi) ama değerler U2/U3/U5/U9'a göre yeniden hesaplandı; kural 7: p30/p34/p80/p150/p204 render edildi. U1: yüz p66-100'de ≥%12 (cs 2.6); göz-şerit çizimi motion/tasarımcı. [tasarim v1.6] kanat son açısı 12° → 4° (yarık 28 px ≤30, mandal p34 tutucu aralık bırakır); mekân sorumlusuna not: yarık x 706-738 → ≈727-738, şerit genişliği buna türer; cy 250 → 285 (render: sarık tepesi 388 → ≥420). [R3] kamera 6 anahtar: [0,36,70,120,150,204]. p0-36 cs 1.6/cy 30 (R3 önerisi), p70-120 cx -55 (R3), p204 R3'ten gerekçeyle ayrıldı (cs 1.6: U5 + yarık + kapı). [K5-yon 2026-11-08] A1: push-in p36-60, don p100-130, isaret p135-175 (plan 216; bit+14 pay ≥12), isik_serit.bit 110, kontrol_kare 90. Yazı–jest uyumu: ekran yazısı bit 120 (don'un ortası; replik 1 bit 115 don başlarken söz biter), replik 2 bas 123 ('Ne' don sürerken, 'isterse' p129 dönüş biter, 'yapar' p157 işaretin ortasında). A2: padişah x 540; cs 3.0 (katalog sınırı; 3.2 değil). A6: p204 cx 80. A3: p30'u yazı katmanıyla render etme yolu yok (görüntü yazısız): karar ağacı 2. dal uygulandı (etiket p0-28, replik 1 üst bant)."
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 216 -> yeni 211 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. ses.kare=24 (0.4 sn): kanat kapanışı sözden önce biter (doc'un 'karar önce görülür' şartı), 'Çünkü' p30'da başlar. Dokunuş doc'unda kanat çekimi p20-48 idi, replik p45'te; sözü TR/EN'in kelime zamanına bağlı olduğu için hepsi ~15 kare öne alındı. Yüz portre yok: profil siluet/gölge. [2026-11-08 mekanlar §7.5] Kapı x 60-352 (cs 2.2 sonunda ekran x≈0-296: sağ pervaz görünür, işaret kapıya düşer); padişah ayak y 1267 kadraj dışı. [K4 hazırlık] mekanlar §1.6 ve tasarim §4.10/§3.5 ile tutarlı (pencere x 560-738 y 560-981, kapı x 60-352, padişah ayak y 1267, yarık 32 dekor px). Kontrol: p0 ilk, p30/p34 kapanış+mandal teması, p66 şerit göz hizasında (dokunuş), p100 dönüş bitti, p150 işaret, p199 kapanış (hareket p170'te tamamlandı). Render yok (ic şablonu yok). [mekanlar R2] yarık p50'den sonra kadraj dışı, şerit sağdan girer (mekân kabul etti); cx azaltılmadı: azalınca kapı sağ pervazı (ekran x≈267) ve işaret hedefi kadrajdan çıkar. [K4] kamera kare [0,36,70,120,204] (motion önerisi) ama değerler U2/U3/U5/U9'a göre yeniden hesaplandı; kural 7: p30/p34/p80/p150/p199 render edildi. U1: yüz p66-100'de ≥%12 (cs 2.6); göz-şerit çizimi motion/tasarımcı. [tasarim v1.6] kanat son açısı 12° → 4° (yarık 28 px ≤30, mandal p34 tutucu aralık bırakır); mekân sorumlusuna not: yarık x 706-738 → ≈727-738, şerit genişliği buna türer; cy 250 → 285 (render: sarık tepesi 388 → ≥420). [R3] kamera 6 anahtar: [0,36,70,120,150,204]. p0-36 cs 1.6/cy 30 (R3 önerisi), p70-120 cx -55 (R3), p199 R3'ten gerekçeyle ayrıldı (cs 1.6: U5 + yarık + kapı). [K5-yon 2026-11-08] A1: push-in p36-60, don p100-130, isaret p135-175 (plan 216; bit+14 pay ≥12), isik_serit.bit 110, kontrol_kare 90. Yazı–jest uyumu: ekran yazısı bit 120 (don'un ortası; replik 1 bit 115 don başlarken söz biter), replik 2 bas 123 ('Ne' don sürerken, 'isterse' p129 dönüş biter, 'yapar' p157 işaretin ortasında). A2: padişah x 540; cs 3.0 (katalog sınırı; 3.2 değil). A6: p199 cx 80. A3: p30'u yazı katmanıyla render etme yolu yok (görüntü yazısız): karar ağacı 2. dal uygulandı (etiket p0-28, replik 1 üst bant)."
   },
   {
    "id": "P13",
@@ -4086,8 +4086,8 @@
       ],
       "ust_sinir_y": 1476,
       "acik": {
-       "bas": 146,
-       "bit": 176
+       "bas": 168,
+       "bit": 198
       }
      },
      {
@@ -4106,8 +4106,8 @@
       ],
       "ust_sinir_y": 1476,
       "acik": {
-       "bas": 164,
-       "bit": 194
+       "bas": 186,
+       "bit": 216
       }
      },
      {
@@ -4126,8 +4126,8 @@
       ],
       "ust_sinir_y": 1476,
       "acik": {
-       "bas": 182,
-       "bit": 212
+       "bas": 204,
+       "bit": 234
       }
      }
     ],
@@ -4167,8 +4167,8 @@
      }
     }
    },
-   "sure_kare": 300,
-   "sure_sn": 5.0,
+   "sure_kare": 327,
+   "sure_sn": 5.45,
    "metin": {
     "tr": "Peki bunları nereden biliyoruz? Yalnızca Evliya Çelebi'nin kitabından.",
     "en": "How do we know? Only from Evliya Çelebi's book."
@@ -4178,8 +4178,8 @@
     "kare": [
      0,
      100,
-     200,
-     280
+     228,
+     308
     ],
     "cs": [
      2.2,
@@ -4222,8 +4222,8 @@
      "y": 1257,
      "kare": [
       0,
-      146,
-      176
+      168,
+      198
      ],
      "durum": {
       "acik": [
@@ -4244,8 +4244,8 @@
      "y": 1277,
      "kare": [
       0,
-      164,
-      194
+      186,
+      216
      ],
      "durum": {
       "acik": [
@@ -4266,8 +4266,8 @@
      "y": 1369,
      "kare": [
       0,
-      182,
-      212
+      204,
+      234
      ],
      "durum": {
       "acik": [
@@ -4305,7 +4305,7 @@
      "en": "“Book of Travels” · no other record found",
      "tur": "iddia",
      "bas": 20,
-     "bit": 292,
+     "bit": 319,
      "vurgu": [
       "başka"
      ],
@@ -4317,32 +4317,32 @@
    ],
    "temaslar": [
     {
-     "kare": 176,
+     "kare": 198,
      "olay": "birinci defter kapağı tablaya yatar",
      "ses": "defter-ac",
      "db": -10
     },
     {
-     "kare": 194,
+     "kare": 216,
      "olay": "ikinci defter kapağı tablaya yatar",
      "ses": "defter-ac",
      "db": -10
     },
     {
-     "kare": 212,
+     "kare": 234,
      "olay": "üçüncü defter kapağı tablaya yatar",
      "ses": "defter-ac",
      "db": -10
     }
    ],
-   "gecis": "Giriş: kâğıt/sayfa geçişi (P12 anlatıdan kayda). Çıkış: aynı mekân, kamera sürekli (P14 geri çekilmiş kadrajdan yaklaşmaya başlar; defterler açık/boş, hareket tamam p212).",
+   "gecis": "Giriş: kâğıt/sayfa geçişi (P12 anlatıdan kayda). Çıkış: aynı mekân, kamera sürekli (P14 geri çekilmiş kadrajdan yaklaşmaya başlar; defterler açık/boş, hareket tamam p240).",
    "sfx": [
-    "defter-ac x3 (p146/164/182)",
+    "defter-ac x3 (p159/164/182)",
     "kâğıt hışırtısı (ortam, kısık)"
    ],
    "muzik_notu": "Akar; geri çekilirken tema boşalır (tek nota/çağrı), boş defterlerde sessizlik hissi müzikle: seyrek tek vuruş.",
    "dokunus": null,
-   "kontrol_kare": 216,
+   "kontrol_kare": 244,
    "kontrol_ek": [
     60
    ],
@@ -4350,9 +4350,9 @@
     "nesne": "kenar fişek çizimi (kurulum) / boş defterler (karşılık)",
     "oran_pct": 16,
     "net_sn": 3.3,
-    "not": "p60: çizim ≈ 308 px (%16) net 1.6 sn; p190: üç defter + kitap geniş masada"
+    "not": "p60: çizim ≈ 308 px (%16) net 1.6 sn; p215: üç defter + kitap geniş masada"
    },
-   "alt_ucte_bir": "p0-100: sayfanın alt yarısı hat satırları; p200+: rahle tablası (koyu zemin), zeminde üç açık defter (y 1150-1476, hepsi ≤ 1476), tablanın zemine gölgesi. Boş değil.",
+   "alt_ucte_bir": "p0-100: sayfanın alt yarısı hat satırları; p228+: rahle tablası (koyu zemin), zeminde üç açık defter (y 1150-1476, hepsi ≤ 1476), tablanın zemine gölgesi. Boş değil.",
    "kit_eksik": [
     "KE-S4",
     "KE-P8",
@@ -4360,19 +4360,19 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P13.mp3",
+     "dosya": "evliya/ses-v3/tr/P13.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P13.mp3",
+     "dosya": "evliya/ses-v3/en/P13.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Hat yazısı dil-nötr dekoratif çizgiler (okunur kelime yok). Boş defter mekanizması (Blanc D8 'boş kitap'): güve yok, dokunuş sayılmadı; istenmezse tek satır mürekkep. Fişek çizimi sağ kenarda kurulur, P14'te yaklaşılır. [2026-11-08] Yüzey = rahle (masa değil, kullanıcı kararı); defterler zeminde (x0.67), y ≤ 1476."
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 300 -> yeni 327 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Hat yazısı dil-nötr dekoratif çizgiler (okunur kelime yok). Boş defter mekanizması (Blanc D8 'boş kitap'): güve yok, dokunuş sayılmadı; istenmezse tek satır mürekkep. Fişek çizimi sağ kenarda kurulur, P14'te yaklaşılır. [2026-11-08] Yüzey = rahle (masa değil, kullanıcı kararı); defterler zeminde (x0.67), y ≤ 1476."
   },
   {
    "id": "P14",
@@ -4397,8 +4397,8 @@
     ],
     "defterler_acik": true,
     "kivilcim": {
-     "bas": 110,
-     "bit": 234,
+     "bas": 125,
+     "bit": 277,
      "fitil": [
       0,
       0.5
@@ -4407,8 +4407,8 @@
     "son_kare": "P01 p0 ile eşleşir: binici+demet silueti ekranda x≈390-640, y≈640-1330; fitil solda, kıvılcım fitilin yarısında",
     "yuzey": "rahle"
    },
-   "sure_kare": 246,
-   "sure_sn": 4.1,
+   "sure_kare": 289,
+   "sure_sn": 4.81,
    "metin": {
     "tr": "Yani kanıt yok. Ama dört yüz yıldır anlatıyoruz.",
     "en": "So, no proof. Yet we've told it for 400 years."
@@ -4417,8 +4417,8 @@
    "kamera": {
     "kare": [
      0,
-     110,
-     234
+     125,
+     277
     ],
     "cs": [
      1.0,
@@ -4456,9 +4456,9 @@
      "id": "kivilcim",
      "ustunde": "fisek-cizim",
      "kare": [
-      110,
-      130,
-      234
+      125,
+      150,
+      277
      ],
      "durum": {
       "fitil": [
@@ -4478,8 +4478,8 @@
      "metin": "Sence uçtular mı?",
      "en": "Did they really fly?",
      "tur": "iddia",
-     "bas": 60,
-     "bit": 238,
+     "bas": 80,
+     "bit": 281,
      "vurgu": [
       "uçtular"
      ],
@@ -4490,7 +4490,7 @@
    ],
    "temaslar": [
     {
-     "kare": 110,
+     "kare": 125,
      "olay": "çizimdeki fitilde kıvılcım tutuşur (P01 p0'a bağlanır)",
      "ses": "fitil-tiss",
      "db": -10
@@ -4498,19 +4498,19 @@
    ],
    "gecis": "MATCH CUT -> P01 p0: kıvılcım fitilin yarısında, siluet konumu aynı; fitil-tiss sesi iki plan boyunca kesintisiz sürer (döngü).",
    "sfx": [
-    "fitil-tiss (p110 -> P01 p0 kesintisiz)"
+    "fitil-tiss (p125 -> P01 p0 kesintisiz)"
    ],
    "muzik_notu": "Akar ve P01'e döner: aynı alçak ostinato sonunda yarım kalır (cümle sonu çözülmez; döngü).",
    "dokunus": null,
-   "kontrol_kare": 170,
+   "kontrol_kare": 199,
    "kontrol_ek": [
-    234
+    277
    ],
    "okunurluk": {
     "nesne": "kenardaki fişek çizimi + kıvılcım",
     "oran_pct": 34,
     "net_sn": 2.0,
-    "not": "çizim cs 4.6'da ≈ 640 px (%33); kıvılcım p110-234 yanıyor (2.1 sn)"
+    "not": "çizim cs 4.6'da ≈ 640 px (%33); kıvılcım p125-277 yanıyor (2.1 sn)"
    },
    "alt_ucte_bir": "Kitap sayfası dokusu/hat satırları ve çizimin fitil çizgisi (y 1200-1500); ölü alan yok.",
    "kit_eksik": [
@@ -4521,19 +4521,19 @@
    ],
    "ses": [
     {
-     "dosya": "evliya/ses/tr/P14.mp3",
+     "dosya": "evliya/ses-v3/tr/P14.mp3",
      "kare": 0,
      "db": 0
     }
    ],
    "ses_en": [
     {
-     "dosya": "evliya/ses/en/P14.mp3",
+     "dosya": "evliya/ses-v3/en/P14.mp3",
      "kare": 0,
      "db": 0
     }
    ],
-   "not": "Kıvılcım anahtarı p234'te biter (plan sonundan 12 kare) ve P01 p0 ile aynı konumda durur: bilinçli match cut, bitmemiş hareketi yeni planın başı devralır. P01'in gece/yer rengi ile çizim rengi farklı; eşleşme şekil+konum+kıvılcımla."
+   "not": "[77sn] Kare numaraları (pNN) ses-v3 zamanlamasına çevrildi (parça parça doğrusal eşleme; eski süre 246 -> yeni 289 kare); metindeki \"N kare\"/\"X sn\" süreleri eski olabilir. Kıvılcım anahtarı p277'te biter (plan sonundan 12 kare) ve P01 p0 ile aynı konumda durur: bilinçli match cut, bitmemiş hareketi yeni planın başı devralır. P01'in gece/yer rengi ile çizim rengi farklı; eşleşme şekil+konum+kıvılcımla."
   }
  ]
 }

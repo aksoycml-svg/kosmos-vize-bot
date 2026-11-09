@@ -302,3 +302,99 @@ Onaylanmayan değişiklik yok. Render sonrası düzeltme turuna notlar (json de�
 3. **P03 kenar kompars:** Y1 p100'de ekran x ≈43; render karesinde yüzü/meşalesi okunuyor mu bakılacak. Okunmuyorsa kamera cx +40 → +100.
 4. **P04 yüz %10:** telefon sayfasında göz/ağız okunmazsa cs 1.92 → 2.1 (çizme y ≈1560 olur, IG alanına girer): tercih sarığın replikle örtüşmesini kabul edip cs'yi artırmamak.
 5. **P09 p0–110 alt yarı düz su (ölü alan riski):** render karesinde bakılacak; çözüm martı/su ışıltısı kontrolü mekân sorumlusunda.
+
+### 5.1x 77 sn yeniden zamanlama (yönetmen, 2026-11-09; kullanıcı kararı: 77 sn ile devam)
+
+Girdi: `public/evliya/ses-v3/{tr,en}/Pxx.mp3/.json` (kelime zamanlı) + `public/evliya/ses-v3/plan-sureleri.json`. Çıktı: `bolum.json` (tek gerçek kaynak). Toplam **3774 -> 4624 kare = 77.07 sn** (fps 60). Yöntem: plan başına parça parça doğrusal zaman eşlemesi (jest/prop animasyonları sözle eşleşen yerde 1:1 hızda kayar, aralarındaki bekleme/kamera uzar), `ses`/`ses_en` yolları `evliya/ses-v3/...` (P12 ses kare 24 aynen), yazı/replik/etiket/temas/kontrol kareleri aynı eşlemeden; replik altyazıları (P04) ve ekran yazıları (P02,P03,P08,P10,P11,P14) kelime zamanına elle bağlandı. Doğrulayıcı: GEÇTİ (0 hata; uyarılar: bölüm 77.1 sn > 65 sn kullanıcı kararı, P01 p0 fitil-tiss başı kırpılır, kullanılmayan foley'ler).
+
+| Plan | Eski kare (sn) | Yeni kare (sn) | Başlangıç (mutlak kare) | Konuşma sonu TR/EN | Sessiz kuyruk |
+|---|---|---|---|---|---|
+| P01 | 336 (5.6) | 458 (7.64) | 0 | 432/386 | 26 |
+| P02 | 324 (5.4) | 370 (6.17) | 458 | 343/238 | 27 |
+| P03 | 252 (4.2) | 309 (5.15) | 828 | 254/166 | 55 |
+| P04 | 294 (4.9) | 327 (5.45) | 1137 | 233/142 | 94 |
+| P05 | 210 (3.5) | 255 (4.25) | 1464 | 228/199 | 27 |
+| P06 | 300 (5.0) | 399 (6.65) | 1719 | 372/339 | 27 |
+| P07 | 228 (3.8) | 265 (4.41) | 2118 | 238/185 | 27 |
+| P08 | 252 (4.2) | 317 (5.29) | 2383 | 291/248 | 26 |
+| P09 | 282 (4.7) | 423 (7.05) | 2700 | 396/283 | 27 |
+| P10 | 294 (4.9) | 333 (5.55) | 3123 | 281/279 | 52 |
+| P11 | 240 (4.0) | 341 (5.69) | 3456 | 315/284 | 26 |
+| P12 | 216 (3.6) | 211 (3.51) | 3797 | 175/190 | 21 |
+| P13 | 300 (5.0) | 327 (5.45) | 4008 | 300/228 | 27 |
+| P14 | 246 (4.1) | 289 (4.81) | 4335 | 262/238 | 27 |
+| **Toplam** | 3774 (62.9) | 4624 (77.07) | | | |
+
+**Kayan önemli kareler (plan içi, eski -> yeni):**
+
+- **P01:** Fitil 0-40 -> 0-96 (yavaş yanan fitil, ilk karede kıvılcım hareketi aynı); püskürme 40 -> 96; kalkış 72 -> 128 (TR 'göğe' 142, EN 'sky' 109); fişek çıkışı 150 -> 206; plan içi kesme 176 -> 242 (TR 'Bir' 244, EN 'Another' 242); Hezarfen yürüyüşü 196-262 -> 262-328 ('uçarak' 328'de çıkıntıda); kamera B 242 -> 446 yayılır; B sonu 328-458 kapanış tutması.
+- **P02:** Şenlik 1: yükseliş 40 -> 96, patlama 62 -> 118 (TR 'şenliğinde' 137, EN 'party' 98); şenlik 2: 185 -> 198, patlama 205 -> 218 (TR 'Padişahı' 218). Yazı bas 20 aynı.
+- **P03:** Bin 20-100 -> 32-112 (ayak temas 44 -> 56, oturma 92 -> 104; TR 'biniyor' 108); bak 120-160 -> 140-180; yazı bas 50 -> 70 ('fişeğe' 75).
+- **P04:** Replik TR 1: 7-82, TR 2: 80-243 (kelimeler 80,103,145,178); EN 1: 30-51, EN 2: 48-152 (48,73,82,96,110). Tutun 125-160 -> 185-220, temas 158 -> 218 ('gidiyorum' 178-233). konus bit 239. Konuşma 233'te biter, 94 kare sessiz bakış/push-in.
+- **P05:** Meşale-fitil 30 -> 40; püskürme 56 -> 80 (EN 'and' 80); sıçrama 58-90 -> 82-114; başlık iner 110 -> 134; kalkış 112 -> 136 (TR 'onu' 130, EN 'hurls' 118); yazı 120 -> 144.
+- **P06:** Püskürme sönüşü 0-36 -> 0-66; kanat açma/bırakma 40-46 -> 70-76 (TR 'kanatlarını' 74); demet suya 84 -> 114; kamera köşke push-in başı 150 -> 232 ('köşkün' 232); iniş 215 -> 318 (TR 'denize' 307); iniş sonrası 73 kare -> 60 kare (hızlandı, plan sonu 12 kare önce); yazı 208 -> 309.
+- **P07:** Kese 68 -> 84 (TR 'para' 79); doğrul 110-170 -> 126-186; el/kese girişi 1.24x yavaş; yazı 60 -> 74.
+- **P08:** Hezarfen taşı itme 36 -> 106 (TR 'Hezarfen' 126, EN 102), taş düşüşü 1:1; çarpma 148 -> 218; bak 200-232 -> 270-302; kamera ilk push-in 0-36 -> 0-106 yayılır; yazı 80 -> 120 ('Hezarfen').
+- **P09:** Atlayış 56 -> 90 (TR 'atlıyor' 82, EN 'jumps' 96); iniş 238 -> 352 (TR 'iniyor' 298+); uçuş 1.44x yavaş (süzülme), pan ve harita etiketleri aynı eşleme (geometri korunur); martı 112-194 -> 171-289.
+- **P10:** Kamera push-in 24-66 -> 50-110; baş çevirme 70-116 -> 114-160 (TR 'padişah' 122, EN 'sultan' 104); yazı bas 20 aynı.
+- **P11:** Kese avuca 42 -> 70 (TR 'altın' 70); muhafız eli 104 -> 168 (TR 'Ama' 173, EN 'But' 141); kese yere 140 -> 220 (TR 'sürgüne' 223, EN 'banished' 215); sikke 144-208 -> 224-288; yazı 60 -> 215.
+- **P12:** Plan 216 -> 211 (3.6 -> 3.51 sn); ses kare 24; replik/kelime zamanları DEĞİŞMEDİ (aynı ses); yalnız kamera son anahtarı 204 -> 199.
+- **P13:** Kamera geri çekilme 100-200 -> 100-228 (yavaşladı); defterler 146/164/182 -> 168/186/204 (açılış 30 kare, 1:1), temas 176/194/212 -> 198/216/234; kontrol_kare 216 -> 244.
+- **P14:** Kamera ve kıvılcım 1.14x yayıldı: kıvılcım 110-234 -> 125-277 (TR 'Ama' 119, EN 'Yet' 114); yazı 60 -> 80 ('yok.' 70).
+
+**Temas / foley kareleri (plan içi; mutlak = plan başı + kare), eski -> yeni:**
+
+| Plan | Ses | Eski | Yeni | Mutlak yeni |
+|---|---|---|---|---|
+| P01 | fitil-tiss | 0 | 0 | 0 (0.00 sn) |
+| P01 | puskurme | 40 | 96 | 96 (1.60 sn) |
+| P01 | fisek-kalkis | 72 | 128 | 128 (2.13 sn) |
+| P01 | adim-tas | 212 | 278 | 278 (4.63 sn) |
+| P01 | adim-tas | 229 | 295 | 295 (4.92 sn) |
+| P01 | adim-tas | 246 | 312 | 312 (5.20 sn) |
+| P01 | adim-tas | 262 | 328 | 328 (5.47 sn) |
+| P02 | senlik-patlama | 62 | 118 | 576 (9.60 sn) |
+| P02 | senlik-patlama | 205 | 218 | 676 (11.27 sn) |
+| P03 | ayak-tahta | 44 | 56 | 884 (14.73 sn) |
+| P03 | oturma-tahta | 92 | 104 | 932 (15.53 sn) |
+| P04 | tutunma-tup | 158 | 218 | 1355 (22.58 sn) |
+| P05 | fitil-tiss | 30 | 40 | 1504 (25.07 sn) |
+| P05 | puskurme | 56 | 80 | 1544 (25.73 sn) |
+| P05 | kumas-hisirti | 60 | 84 | 1548 (25.80 sn) |
+| P05 | baslik-inis | 110 | 134 | 1598 (26.63 sn) |
+| P05 | fisek-kalkis | 112 | 136 | 1600 (26.67 sn) |
+| P06 | kanat-hisirti | 44 | 74 | 1793 (29.88 sn) |
+| P06 | birakma-tik | 46 | 76 | 1795 (29.92 sn) |
+| P06 | su-dump | 84 | 114 | 1833 (30.55 sn) |
+| P06 | buhar | 86 | 118 | 1837 (30.62 sn) |
+| P06 | su-sap | 215 | 318 | 2037 (33.95 sn) |
+| P06 | su-yatma | 236 | 335 | 2054 (34.23 sn) |
+| P07 | islak-el | 0 | 0 | 2118 (35.30 sn) |
+| P07 | kese-singir | 68 | 84 | 2202 (36.70 sn) |
+| P08 | tas-surtme | 40 | 110 | 2493 (41.55 sn) |
+| P08 | tas-kayma | 44 | 114 | 2497 (41.62 sn) |
+| P08 | adim-tas | 56 | 126 | 2509 (41.82 sn) |
+| P08 | uzak-tik | 148 | 218 | 2601 (43.35 sn) |
+| P08 | tas-sekme | 158 | 228 | 2611 (43.52 sn) |
+| P09 | marti-cigligi | 120 | 182 | 2882 (48.03 sn) |
+| P09 | kanat-hisirti | 125 | 189 | 2889 (48.15 sn) |
+| P09 | inis-toprak | 238 | 352 | 3052 (50.87 sn) |
+| P09 | inis-toprak | 252 | 366 | 3066 (51.10 sn) |
+| P11 | kese-singir | 42 | 70 | 3526 (58.77 sn) |
+| P11 | omuz-tok | 104 | 168 | 3624 (60.40 sn) |
+| P11 | kese-yere | 140 | 220 | 3676 (61.27 sn) |
+| P11 | sikke-donme | 144 | 224 | 3680 (61.33 sn) |
+| P11 | sikke-tin | 208 | 288 | 3744 (62.40 sn) |
+| P12 | el-ahsap | 14 | 14 | 3811 (63.52 sn) |
+| P12 | pencere-tok | 30 | 30 | 3827 (63.78 sn) |
+| P12 | mandal-tik | 34 | 34 | 3831 (63.85 sn) |
+| P12 | ortam-kisma | 30 | 30 | 3827 (63.78 sn) |
+| P13 | defter-ac | 176 | 198 | 4206 (70.10 sn) |
+| P13 | defter-ac | 194 | 216 | 4224 (70.40 sn) |
+| P13 | defter-ac | 212 | 234 | 4242 (70.70 sn) |
+| P14 | fitil-tiss | 110 | 125 | 4460 (74.33 sn) |
+
+**Riskli planlar:**
+- P09 (uçuş 1.44x yavaş; martı ve pan aynı eşlemeyle; panorama 7 sn, 5 sn kuralı kamera pan'ı ile sağlanır). P06 (iniş sonrası kısaldı; kanat-bırak ve yüzüş hızlı; P07 eşleşmesi p378'de). P01 (B parçası 216 kare: Hezarfen çıkıntıda 328-458 arası 2.2 sn bekler, yalnız push-in; hareket 'tutma' olarak bırakıldı). P08 (taş 1:1; uzun ilk push-in). P04 (94 kare sessiz kuyruk), P03 (55), P10 (52): ses dosyası sonunda sessizlik var, kurgucu kırpmak isterse plan kısalır (yönetmene bildir). P13 (kamera 128 kare geri çekilme, defter açılışı 168+).
+- Yazı bas/bit sapması: ekran yazıları ilgili kelimeye ±0.13 sn içinde; P01/P13 başlık yazıları anlatımı tamamlayan açılış yazıları, kelimeye bağlı değil.
+- Eski notlardaki `pNN` numaraları aynı eşlemeyle dönüştürüldü; `N kare`/`X sn` süreleri ve §1-§5.0 tabloları (62.9 sn dönemi) tarihîdir, geçerli değerler `bolum.json`dadır.
