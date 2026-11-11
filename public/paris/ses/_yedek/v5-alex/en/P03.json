@@ -1,0 +1,82 @@
+{
+ "id": "P03",
+ "lang": "en",
+ "text": "Balloons took mail out, but COULDN'T return. How would REPLIES come?",
+ "text_etiketli": "[worried] Balloons took mail out, but COULDN'T return. [anxious] How would REPLIES come?",
+ "words": [
+  {
+   "t": "Balloons",
+   "s": 0.11,
+   "e": 0.47
+  },
+  {
+   "t": "took",
+   "s": 0.5,
+   "e": 0.71
+  },
+  {
+   "t": "mail",
+   "s": 0.78,
+   "e": 1.11
+  },
+  {
+   "t": "out,",
+   "s": 1.14,
+   "e": 1.35
+  },
+  {
+   "t": "but",
+   "s": 1.47,
+   "e": 1.67
+  },
+  {
+   "t": "COULDN'T",
+   "s": 1.93,
+   "e": 2.15
+  },
+  {
+   "t": "return.",
+   "s": 2.22,
+   "e": 2.79
+  },
+  {
+   "t": "How",
+   "s": 3.46,
+   "e": 3.51
+  },
+  {
+   "t": "would",
+   "s": 3.54,
+   "e": 3.75
+  },
+  {
+   "t": "REPLIES",
+   "s": 3.81,
+   "e": 4.23
+  },
+  {
+   "t": "come?",
+   "s": 4.3,
+   "e": 4.73
+  }
+ ],
+ "dur": 4.989,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -84.9,
+ "hisirti_6k_dbfs": -90.5,
+ "pad_nf_dbfs": -82.1,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

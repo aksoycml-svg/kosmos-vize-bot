@@ -1,77 +1,77 @@
 {
  "id": "P06",
  "lang": "tr",
- "text": "Bu iş DIŞARIDA, hükümetin olduğu Tours'ta yapılmalıydı. Tek yol… BALONDU.",
- "text_etiketli": "[serious] Bu iş DIŞARIDA, hükümetin olduğu Tours'ta yapılmalıydı. [low] Tek yol… BALONDU.",
+ "text": "Bu iş dışarıda, hükümetin olduğu Tours'ta yapılmalıydı. Tek yol balondu.",
  "words": [
   {
    "t": "Bu",
-   "s": 0.1,
-   "e": 0.12
+   "s": 0.13,
+   "e": 0.24
   },
   {
    "t": "iş",
-   "s": 0.22,
-   "e": 0.44
+   "s": 0.28,
+   "e": 0.37
   },
   {
-   "t": "DIŞARIDA,",
-   "s": 0.82,
-   "e": 1.56
+   "t": "dışarıda,",
+   "s": 0.42,
+   "e": 0.99
   },
   {
    "t": "hükümetin",
-   "s": 1.73,
-   "e": 2.12
+   "s": 1.06,
+   "e": 1.52
   },
   {
    "t": "olduğu",
-   "s": 2.18,
-   "e": 2.61
+   "s": 1.58,
+   "e": 1.85
   },
   {
    "t": "Tours'ta",
-   "s": 2.65,
-   "e": 3.08
+   "s": 1.91,
+   "e": 2.25
   },
   {
    "t": "yapılmalıydı.",
-   "s": 3.13,
-   "e": 3.96
+   "s": 2.28,
+   "e": 2.82
   },
   {
    "t": "Tek",
-   "s": 4.93,
-   "e": 5.01
+   "s": 3.24,
+   "e": 3.42
   },
   {
-   "t": "yol…",
-   "s": 5.1,
-   "e": 5.48
+   "t": "yol",
+   "s": 3.54,
+   "e": 3.72
   },
   {
-   "t": "BALONDU.",
-   "s": 6.09,
-   "e": 6.69
+   "t": "balondu.",
+   "s": 3.77,
+   "e": 4.14
   }
  ],
- "dur": 6.949,
- "voice": "KediIz7pebzt5TaDHiiZ",
- "model": "eleven_v3",
+ "dur": 4.389,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -88.7,
- "hisirti_6k_dbfs": -107.0,
- "pad_nf_dbfs": -90.3,
+ "nf_dbfs": -84.9,
+ "hisirti_6k_dbfs": -96.0,
+ "pad_nf_dbfs": -65.4,
  "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
  "nefes_temizlendi": []
 }

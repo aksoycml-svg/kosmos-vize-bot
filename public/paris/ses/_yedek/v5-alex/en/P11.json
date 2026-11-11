@@ -1,0 +1,82 @@
+{
+ "id": "P11",
+ "lang": "en",
+ "text": "MOST birds never returned. Those that did carried a city's LETTERS.",
+ "text_etiketli": "[sad] MOST birds never returned. [warm] Those that did carried a city's LETTERS.",
+ "words": [
+  {
+   "t": "MOST",
+   "s": 0.29,
+   "e": 0.4
+  },
+  {
+   "t": "birds",
+   "s": 0.51,
+   "e": 0.96
+  },
+  {
+   "t": "never",
+   "s": 1.02,
+   "e": 1.36
+  },
+  {
+   "t": "returned.",
+   "s": 1.41,
+   "e": 2.0
+  },
+  {
+   "t": "Those",
+   "s": 2.88,
+   "e": 2.96
+  },
+  {
+   "t": "that",
+   "s": 3.0,
+   "e": 3.2
+  },
+  {
+   "t": "did",
+   "s": 3.29,
+   "e": 3.6
+  },
+  {
+   "t": "carried",
+   "s": 3.64,
+   "e": 4.0
+  },
+  {
+   "t": "a",
+   "s": 4.03,
+   "e": 4.08
+  },
+  {
+   "t": "city's",
+   "s": 4.13,
+   "e": 4.48
+  },
+  {
+   "t": "LETTERS.",
+   "s": 4.51,
+   "e": 5.05
+  }
+ ],
+ "dur": 5.12,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.0,
+ "hisirti_6k_dbfs": -86.5,
+ "pad_nf_dbfs": -82.1,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

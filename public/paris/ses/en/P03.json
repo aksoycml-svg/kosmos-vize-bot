@@ -1,82 +1,82 @@
 {
  "id": "P03",
  "lang": "en",
- "text": "Balloons took mail out, but COULDN'T return. How would REPLIES come?",
- "text_etiketli": "[worried] Balloons took mail out, but COULDN'T return. [anxious] How would REPLIES come?",
+ "text": "Balloons took mail out but couldn't return. How would replies come?",
  "words": [
   {
    "t": "Balloons",
-   "s": 0.11,
-   "e": 0.47
+   "s": 0.21,
+   "e": 0.58
   },
   {
    "t": "took",
-   "s": 0.5,
-   "e": 0.71
+   "s": 0.62,
+   "e": 0.82
   },
   {
    "t": "mail",
-   "s": 0.78,
-   "e": 1.11
+   "s": 0.87,
+   "e": 1.08
   },
   {
-   "t": "out,",
+   "t": "out",
    "s": 1.14,
-   "e": 1.35
+   "e": 1.33
   },
   {
    "t": "but",
-   "s": 1.47,
-   "e": 1.67
+   "s": 1.36,
+   "e": 1.49
   },
   {
-   "t": "COULDN'T",
-   "s": 1.93,
-   "e": 2.15
+   "t": "couldn't",
+   "s": 1.51,
+   "e": 1.77
   },
   {
    "t": "return.",
-   "s": 2.22,
-   "e": 2.79
+   "s": 1.79,
+   "e": 2.28
   },
   {
    "t": "How",
-   "s": 3.46,
-   "e": 3.51
+   "s": 2.77,
+   "e": 2.94
   },
   {
    "t": "would",
-   "s": 3.54,
-   "e": 3.75
+   "s": 2.96,
+   "e": 3.11
   },
   {
-   "t": "REPLIES",
-   "s": 3.81,
-   "e": 4.23
+   "t": "replies",
+   "s": 3.14,
+   "e": 3.57
   },
   {
    "t": "come?",
-   "s": 4.3,
-   "e": 4.73
+   "s": 3.61,
+   "e": 3.91
   }
  ],
- "dur": 4.989,
+ "dur": 4.153,
  "voice": "nPczCjzI2devNBz1zQrb",
- "model": "eleven_v3",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -84.9,
- "hisirti_6k_dbfs": -90.5,
- "pad_nf_dbfs": -82.1,
+ "nf_dbfs": -83.1,
+ "hisirti_6k_dbfs": -89.5,
+ "pad_nf_dbfs": -71.2,
  "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
  "nefes_temizlendi": []
 }

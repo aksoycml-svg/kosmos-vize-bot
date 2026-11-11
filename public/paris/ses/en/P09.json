@@ -1,72 +1,72 @@
 {
  "id": "P09",
  "lang": "en",
- "text": "He filmed the letters, tied them to pigeons' TAILS.",
- "text_etiketli": "[calm] He filmed the letters, tied them to pigeons' TAILS.",
+ "text": "He filmed the letters, tied them to pigeons' tails.",
  "words": [
   {
    "t": "He",
-   "s": 0.16,
-   "e": 0.2
+   "s": 0.1,
+   "e": 0.21
   },
   {
    "t": "filmed",
-   "s": 0.23,
-   "e": 0.52
+   "s": 0.27,
+   "e": 0.54
   },
   {
    "t": "the",
-   "s": 0.53,
-   "e": 0.6
+   "s": 0.56,
+   "e": 0.64
   },
   {
    "t": "letters,",
-   "s": 0.65,
-   "e": 1.19
+   "s": 0.67,
+   "e": 1.08
   },
   {
    "t": "tied",
-   "s": 1.52,
-   "e": 1.72
+   "s": 1.54,
+   "e": 1.8
   },
   {
    "t": "them",
-   "s": 1.76,
-   "e": 1.96
+   "s": 1.81,
+   "e": 1.94
   },
   {
    "t": "to",
-   "s": 2.03,
-   "e": 2.2
+   "s": 1.98,
+   "e": 2.05
   },
   {
    "t": "pigeons'",
-   "s": 2.25,
-   "e": 2.76
+   "s": 2.11,
+   "e": 2.49
   },
   {
-   "t": "TAILS.",
-   "s": 2.79,
-   "e": 3.33
+   "t": "tails.",
+   "s": 2.52,
+   "e": 2.99
   }
  ],
- "dur": 3.579,
+ "dur": 3.239,
  "voice": "nPczCjzI2devNBz1zQrb",
- "model": "eleven_v3",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -84.0,
- "hisirti_6k_dbfs": -87.9,
- "pad_nf_dbfs": -73.8,
+ "nf_dbfs": -82.7,
+ "hisirti_6k_dbfs": -88.7,
+ "pad_nf_dbfs": -82.0,
  "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
  "nefes_temizlendi": []
 }

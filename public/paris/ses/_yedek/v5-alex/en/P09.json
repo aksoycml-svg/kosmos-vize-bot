@@ -1,0 +1,72 @@
+{
+ "id": "P09",
+ "lang": "en",
+ "text": "He filmed the letters, tied them to pigeons' TAILS.",
+ "text_etiketli": "[calm] He filmed the letters, tied them to pigeons' TAILS.",
+ "words": [
+  {
+   "t": "He",
+   "s": 0.16,
+   "e": 0.2
+  },
+  {
+   "t": "filmed",
+   "s": 0.23,
+   "e": 0.52
+  },
+  {
+   "t": "the",
+   "s": 0.53,
+   "e": 0.6
+  },
+  {
+   "t": "letters,",
+   "s": 0.65,
+   "e": 1.19
+  },
+  {
+   "t": "tied",
+   "s": 1.52,
+   "e": 1.72
+  },
+  {
+   "t": "them",
+   "s": 1.76,
+   "e": 1.96
+  },
+  {
+   "t": "to",
+   "s": 2.03,
+   "e": 2.2
+  },
+  {
+   "t": "pigeons'",
+   "s": 2.25,
+   "e": 2.76
+  },
+  {
+   "t": "TAILS.",
+   "s": 2.79,
+   "e": 3.33
+  }
+ ],
+ "dur": 3.579,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -84.0,
+ "hisirti_6k_dbfs": -87.9,
+ "pad_nf_dbfs": -73.8,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

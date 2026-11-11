@@ -1,0 +1,87 @@
+{
+ "id": "P07",
+ "lang": "en",
+ "text": "That morning another balloon was SHOT down. Dagron's dumped sand and CLIMBED.",
+ "text_etiketli": "[shocked] That morning another balloon was SHOT down. [relieved] Dagron's dumped sand and CLIMBED.",
+ "words": [
+  {
+   "t": "That",
+   "s": 0.21,
+   "e": 0.25
+  },
+  {
+   "t": "morning",
+   "s": 0.28,
+   "e": 0.57
+  },
+  {
+   "t": "another",
+   "s": 0.61,
+   "e": 0.97
+  },
+  {
+   "t": "balloon",
+   "s": 1.01,
+   "e": 1.37
+  },
+  {
+   "t": "was",
+   "s": 1.44,
+   "e": 1.69
+  },
+  {
+   "t": "SHOT",
+   "s": 1.84,
+   "e": 2.17
+  },
+  {
+   "t": "down.",
+   "s": 2.26,
+   "e": 2.72
+  },
+  {
+   "t": "Dagron's",
+   "s": 3.65,
+   "e": 4.1
+  },
+  {
+   "t": "dumped",
+   "s": 4.14,
+   "e": 4.5
+  },
+  {
+   "t": "sand",
+   "s": 4.58,
+   "e": 4.98
+  },
+  {
+   "t": "and",
+   "s": 5.01,
+   "e": 5.14
+  },
+  {
+   "t": "CLIMBED.",
+   "s": 5.26,
+   "e": 5.78
+  }
+ ],
+ "dur": 6.087,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.9,
+ "hisirti_6k_dbfs": -85.4,
+ "pad_nf_dbfs": -83.9,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

@@ -1,89 +1,87 @@
 {
  "id": "P05",
  "lang": "tr",
- "text": "Ama kuş YÜK taşıyamaz. René Dagron'un fikri vardı: sayfayı PARMAK BOYUNA küçültmek.",
- "text_etiketli": "[disappointed] Ama kuş YÜK taşıyamaz. [excited] René Dagron'un fikri vardı: sayfayı PARMAK BOYUNA küçültmek.",
+ "text": "Ama kuş yük taşıyamaz. René Dagron'un fikri vardı: sayfayı parmak boyuna küçültmek.",
  "words": [
   {
    "t": "Ama",
-   "s": 0.17,
-   "e": 0.21
+   "s": 0.205,
+   "e": 0.445
   },
   {
    "t": "kuş",
-   "s": 0.3,
-   "e": 0.61
+   "s": 0.545,
+   "e": 0.795
   },
   {
-   "t": "YÜK",
-   "s": 0.96,
-   "e": 1.09
+   "t": "yük",
+   "s": 0.855,
+   "e": 0.995
   },
   {
    "t": "taşıyamaz.",
-   "s": 1.15,
-   "e": 1.96
+   "s": 1.045,
+   "e": 1.565
   },
   {
    "t": "René",
-   "s": 2.81,
-   "e": 2.93
+   "s": 2.315,
+   "e": 2.535
   },
   {
    "t": "Dagron'un",
-   "s": 3.0,
-   "e": 3.57
+   "s": 2.575,
+   "e": 2.955
   },
   {
    "t": "fikri",
-   "s": 3.62,
-   "e": 3.89
+   "s": 3.005,
+   "e": 3.245
   },
   {
    "t": "vardı:",
-   "s": 3.94,
-   "e": 4.37
+   "s": 3.255,
+   "e": 3.525
   },
   {
    "t": "sayfayı",
-   "s": 4.65,
-   "e": 5.09
+   "s": 3.995,
+   "e": 4.405
   },
   {
-   "t": "PARMAK",
-   "s": 5.15,
-   "e": 5.56
+   "t": "parmak",
+   "s": 4.475,
+   "e": 4.805
   },
   {
-   "t": "BOYUNA",
-   "s": 5.61,
-   "e": 5.88
+   "t": "boyuna",
+   "s": 4.845,
+   "e": 5.065
   },
   {
    "t": "küçültmek.",
-   "s": 5.96,
-   "e": 6.74
+   "s": 5.115,
+   "e": 5.565
   }
  ],
- "dur": 7.001,
- "voice": "KediIz7pebzt5TaDHiiZ",
- "model": "eleven_v3",
+ "dur": 5.825,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -88.6,
- "hisirti_6k_dbfs": -107.9,
- "pad_nf_dbfs": -91.4,
+ "nf_dbfs": -85.8,
+ "hisirti_6k_dbfs": -100.6,
+ "pad_nf_dbfs": -76.4,
  "kelime_zamani": "sinyale yapisik",
- "nefes_temizlendi": [
-  31.34
- ]
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
 }

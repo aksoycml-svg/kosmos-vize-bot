@@ -1,0 +1,92 @@
+{
+ "id": "P10",
+ "lang": "en",
+ "text": "The film was PROJECTED. The tiny page GREW, and Paris READ its mail.",
+ "text_etiketli": "[whispering] The film was PROJECTED. [amazed] The tiny page GREW, [warm] and Paris READ its mail.",
+ "words": [
+  {
+   "t": "The",
+   "s": 0.13,
+   "e": 0.15
+  },
+  {
+   "t": "film",
+   "s": 0.22,
+   "e": 0.55
+  },
+  {
+   "t": "was",
+   "s": 0.66,
+   "e": 1.03
+  },
+  {
+   "t": "PROJECTED.",
+   "s": 1.13,
+   "e": 1.86
+  },
+  {
+   "t": "The",
+   "s": 2.6,
+   "e": 2.63
+  },
+  {
+   "t": "tiny",
+   "s": 2.75,
+   "e": 3.11
+  },
+  {
+   "t": "page",
+   "s": 3.19,
+   "e": 3.59
+  },
+  {
+   "t": "GREW,",
+   "s": 3.66,
+   "e": 3.99
+  },
+  {
+   "t": "and",
+   "s": 4.68,
+   "e": 4.71
+  },
+  {
+   "t": "Paris",
+   "s": 4.79,
+   "e": 5.27
+  },
+  {
+   "t": "READ",
+   "s": 5.45,
+   "e": 5.67
+  },
+  {
+   "t": "its",
+   "s": 5.7,
+   "e": 5.83
+  },
+  {
+   "t": "mail.",
+   "s": 5.9,
+   "e": 6.31
+  }
+ ],
+ "dur": 6.609,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.3,
+ "hisirti_6k_dbfs": -86.5,
+ "pad_nf_dbfs": -83.4,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

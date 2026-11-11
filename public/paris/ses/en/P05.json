@@ -1,94 +1,94 @@
 {
  "id": "P05",
  "lang": "en",
- "text": "Birds can't carry MUCH. Dagron had an idea: shrink pages to FINGER SIZE.",
- "text_etiketli": "[disappointed] Birds can't carry MUCH. [excited] Dagron had an idea: shrink pages to FINGER SIZE.",
+ "text": "Birds can't carry much. Dagron had an idea: shrink pages to finger size.",
  "words": [
   {
    "t": "Birds",
-   "s": 0.25,
-   "e": 0.35
+   "s": 0.11,
+   "e": 0.34
   },
   {
    "t": "can't",
-   "s": 0.4,
-   "e": 0.67
+   "s": 0.39,
+   "e": 0.62
   },
   {
    "t": "carry",
-   "s": 0.72,
-   "e": 1.07
+   "s": 0.66,
+   "e": 0.9
   },
   {
-   "t": "MUCH.",
-   "s": 1.22,
-   "e": 1.93
+   "t": "much.",
+   "s": 0.95,
+   "e": 1.24
   },
   {
    "t": "Dagron",
-   "s": 2.94,
-   "e": 3.23
+   "s": 1.88,
+   "e": 2.33
   },
   {
    "t": "had",
-   "s": 3.28,
-   "e": 3.47
+   "s": 2.37,
+   "e": 2.51
   },
   {
    "t": "an",
-   "s": 3.51,
-   "e": 3.63
+   "s": 2.55,
+   "e": 2.62
   },
   {
    "t": "idea:",
-   "s": 3.72,
-   "e": 4.27
+   "s": 2.66,
+   "e": 3.1
   },
   {
    "t": "shrink",
-   "s": 4.6,
-   "e": 4.99
+   "s": 3.55,
+   "e": 3.89
   },
   {
    "t": "pages",
-   "s": 5.09,
-   "e": 5.55
+   "s": 3.95,
+   "e": 4.31
   },
   {
    "t": "to",
-   "s": 5.62,
-   "e": 5.79
+   "s": 4.34,
+   "e": 4.4
   },
   {
-   "t": "FINGER",
-   "s": 5.9,
-   "e": 6.27
+   "t": "finger",
+   "s": 4.45,
+   "e": 4.71
   },
   {
-   "t": "SIZE.",
-   "s": 6.39,
-   "e": 6.97
+   "t": "size.",
+   "s": 4.73,
+   "e": 5.09
   }
  ],
- "dur": 7.21,
+ "dur": 5.329,
  "voice": "nPczCjzI2devNBz1zQrb",
- "model": "eleven_v3",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -83.5,
- "hisirti_6k_dbfs": -85.8,
- "pad_nf_dbfs": -77.9,
+ "nf_dbfs": -85.6,
+ "hisirti_6k_dbfs": -91.5,
+ "pad_nf_dbfs": -82.2,
  "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
  "nefes_temizlendi": [
-  28.93
+  19.56
  ]
 }

@@ -1,0 +1,87 @@
+{
+ "id": "P06",
+ "lang": "en",
+ "text": "It had to happen in TOURS, with the government. So… a BALLOON.",
+ "text_etiketli": "[serious] It had to happen in TOURS, with the government. [low] So… a BALLOON.",
+ "words": [
+  {
+   "t": "It",
+   "s": 0.11,
+   "e": 0.14
+  },
+  {
+   "t": "had",
+   "s": 0.19,
+   "e": 0.38
+  },
+  {
+   "t": "to",
+   "s": 0.4,
+   "e": 0.46
+  },
+  {
+   "t": "happen",
+   "s": 0.51,
+   "e": 0.86
+  },
+  {
+   "t": "in",
+   "s": 0.9,
+   "e": 1.02
+  },
+  {
+   "t": "TOURS,",
+   "s": 1.11,
+   "e": 1.79
+  },
+  {
+   "t": "with",
+   "s": 1.88,
+   "e": 1.98
+  },
+  {
+   "t": "the",
+   "s": 1.99,
+   "e": 2.06
+  },
+  {
+   "t": "government.",
+   "s": 2.1,
+   "e": 2.66
+  },
+  {
+   "t": "So…",
+   "s": 3.5,
+   "e": 3.69
+  },
+  {
+   "t": "a",
+   "s": 3.99,
+   "e": 4.03
+  },
+  {
+   "t": "BALLOON.",
+   "s": 4.03,
+   "e": 4.68
+  }
+ ],
+ "dur": 4.937,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -84.4,
+ "hisirti_6k_dbfs": -88.7,
+ "pad_nf_dbfs": -70.9,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

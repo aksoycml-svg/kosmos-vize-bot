@@ -1,72 +1,72 @@
 {
  "id": "P04",
  "lang": "tr",
- "text": "Güvercin nerede olsa KÜMESİNE döner. Onu balonla UZAĞA götürdüler.",
- "text_etiketli": "[warm] Güvercin nerede olsa KÜMESİNE döner. [matter-of-fact] Onu balonla UZAĞA götürdüler.",
+ "text": "Güvercin nerede olsa kümesine döner. Onu balonla uzağa götürdüler.",
  "words": [
   {
    "t": "Güvercin",
    "s": 0.1,
-   "e": 0.52
+   "e": 0.53
   },
   {
    "t": "nerede",
-   "s": 0.55,
-   "e": 0.92
+   "s": 0.58,
+   "e": 0.88
   },
   {
    "t": "olsa",
-   "s": 0.99,
-   "e": 1.32
+   "s": 0.94,
+   "e": 1.18
   },
   {
-   "t": "KÜMESİNE",
-   "s": 1.7,
-   "e": 2.12
+   "t": "kümesine",
+   "s": 1.23,
+   "e": 1.63
   },
   {
    "t": "döner.",
-   "s": 2.16,
-   "e": 2.59
+   "s": 1.66,
+   "e": 1.92
   },
   {
    "t": "Onu",
-   "s": 3.37,
-   "e": 3.48
+   "s": 2.29,
+   "e": 2.52
   },
   {
    "t": "balonla",
-   "s": 3.55,
-   "e": 4.12
+   "s": 2.56,
+   "e": 3.0
   },
   {
-   "t": "UZAĞA",
-   "s": 4.4,
-   "e": 4.94
+   "t": "uzağa",
+   "s": 3.07,
+   "e": 3.36
   },
   {
    "t": "götürdüler.",
-   "s": 4.95,
-   "e": 5.48
+   "s": 3.4,
+   "e": 3.9
   }
  ],
- "dur": 5.747,
- "voice": "KediIz7pebzt5TaDHiiZ",
- "model": "eleven_v3",
+ "dur": 4.049,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -89.4,
- "hisirti_6k_dbfs": -107.6,
- "pad_nf_dbfs": -91.2,
+ "nf_dbfs": -74.0,
+ "hisirti_6k_dbfs": -86.7,
+ "pad_nf_dbfs": -87.6,
  "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
  "nefes_temizlendi": []
 }

@@ -1,99 +1,99 @@
 {
  "id": "P02",
  "lang": "en",
- "text": "Prussian armies ringed Paris and CUT the telegraph. TWO MILLION… people were cut off.",
- "text_etiketli": "[cold] Prussian armies ringed Paris and CUT the telegraph. [somber] TWO MILLION… people were cut off.",
+ "text": "Prussian armies ringed Paris and cut the telegraph. Two million people were cut off.",
  "words": [
   {
    "t": "Prussian",
-   "s": 0.13,
-   "e": 0.42
+   "s": 0.11,
+   "e": 0.49
   },
   {
    "t": "armies",
-   "s": 0.5,
-   "e": 1.06
+   "s": 0.55,
+   "e": 0.89
   },
   {
    "t": "ringed",
-   "s": 1.13,
-   "e": 1.54
+   "s": 0.96,
+   "e": 1.18
   },
   {
    "t": "Paris",
-   "s": 1.63,
-   "e": 2.18
+   "s": 1.21,
+   "e": 1.55
   },
   {
    "t": "and",
-   "s": 2.65,
-   "e": 2.73
-  },
-  {
-   "t": "CUT",
-   "s": 2.8,
-   "e": 3.06
-  },
-  {
-   "t": "the",
-   "s": 3.09,
-   "e": 3.22
-  },
-  {
-   "t": "telegraph.",
-   "s": 3.27,
-   "e": 4.02
-  },
-  {
-   "t": "TWO",
-   "s": 4.83,
-   "e": 4.9
-  },
-  {
-   "t": "MILLION…",
-   "s": 5.0,
-   "e": 5.86
-  },
-  {
-   "t": "people",
-   "s": 6.3,
-   "e": 6.5
-  },
-  {
-   "t": "were",
-   "s": 6.52,
-   "e": 6.66
+   "s": 1.58,
+   "e": 1.67
   },
   {
    "t": "cut",
-   "s": 6.71,
-   "e": 6.9
+   "s": 1.71,
+   "e": 1.87
+  },
+  {
+   "t": "the",
+   "s": 1.9,
+   "e": 1.98
+  },
+  {
+   "t": "telegraph.",
+   "s": 2.0,
+   "e": 2.5
+  },
+  {
+   "t": "Two",
+   "s": 3.05,
+   "e": 3.22
+  },
+  {
+   "t": "million",
+   "s": 3.29,
+   "e": 3.58
+  },
+  {
+   "t": "people",
+   "s": 3.63,
+   "e": 3.9
+  },
+  {
+   "t": "were",
+   "s": 3.92,
+   "e": 4.05
+  },
+  {
+   "t": "cut",
+   "s": 4.08,
+   "e": 4.28
   },
   {
    "t": "off.",
-   "s": 6.99,
-   "e": 7.38
+   "s": 4.32,
+   "e": 4.64
   }
  ],
- "dur": 7.654,
+ "dur": 4.859,
  "voice": "nPczCjzI2devNBz1zQrb",
- "model": "eleven_v3",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -86.4,
- "hisirti_6k_dbfs": -92.9,
- "pad_nf_dbfs": -86.9,
+ "nf_dbfs": -87.6,
+ "hisirti_6k_dbfs": -94.0,
+ "pad_nf_dbfs": -62.5,
  "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
  "nefes_temizlendi": [
-  8.98
+  7.67
  ]
 }

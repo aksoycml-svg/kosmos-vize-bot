@@ -1,82 +1,84 @@
 {
  "id": "P01",
  "lang": "tr",
- "text": "Bir fotoğrafçı, Paris'e yazılan mektupları kuşun KUYRUĞUNA sığdırdı. Önce şehirden ÇIKMALIYDI.",
- "text_etiketli": "[curious] Bir fotoğrafçı, Paris'e yazılan mektupları kuşun KUYRUĞUNA sığdırdı. [tense] Önce şehirden ÇIKMALIYDI.",
+ "text": "Bir fotoğrafçı, Paris'e yazılan mektupları kuşun kuyruğuna sığdırdı. Önce şehirden çıkmalıydı.",
  "words": [
   {
    "t": "Bir",
-   "s": 0.07,
-   "e": 0.09
+   "s": 0.126,
+   "e": 0.296
   },
   {
    "t": "fotoğrafçı,",
-   "s": 0.14,
-   "e": 1.03
+   "s": 0.306,
+   "e": 0.886
   },
   {
    "t": "Paris'e",
-   "s": 1.31,
-   "e": 1.69
+   "s": 1.086,
+   "e": 1.536
   },
   {
    "t": "yazılan",
-   "s": 1.72,
-   "e": 2.09
+   "s": 1.576,
+   "e": 1.936
   },
   {
    "t": "mektupları",
-   "s": 2.12,
-   "e": 2.73
+   "s": 1.976,
+   "e": 2.536
   },
   {
    "t": "kuşun",
-   "s": 2.86,
-   "e": 3.53
+   "s": 2.606,
+   "e": 2.906
   },
   {
-   "t": "KUYRUĞUNA",
-   "s": 3.6,
-   "e": 4.09
+   "t": "kuyruğuna",
+   "s": 2.956,
+   "e": 3.356
   },
   {
    "t": "sığdırdı.",
-   "s": 4.12,
-   "e": 4.72
+   "s": 3.406,
+   "e": 3.846
   },
   {
    "t": "Önce",
-   "s": 5.43,
-   "e": 5.61
+   "s": 4.396,
+   "e": 4.706
   },
   {
    "t": "şehirden",
-   "s": 5.66,
-   "e": 6.17
+   "s": 4.756,
+   "e": 5.216
   },
   {
-   "t": "ÇIKMALIYDI.",
-   "s": 6.2,
-   "e": 6.97
+   "t": "çıkmalıydı.",
+   "s": 5.256,
+   "e": 5.746
   }
  ],
- "dur": 7.288,
- "voice": "KediIz7pebzt5TaDHiiZ",
- "model": "eleven_v3",
+ "dur": 5.956,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
- "kenar": "temiz",
- "nf_dbfs": -87.7,
- "hisirti_6k_dbfs": -108.3,
- "pad_nf_dbfs": -38.1,
+ "final": true,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -84.1,
+ "hisirti_6k_dbfs": -94.9,
+ "pad_nf_dbfs": -40.0,
  "kelime_zamani": "sinyale yapisik",
- "nefes_temizlendi": []
+ "cit_kaymasi": 0.126,
+ "nefes_temizlendi": [
+  0.79
+ ]
 }

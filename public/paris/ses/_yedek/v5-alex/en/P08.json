@@ -1,0 +1,72 @@
+{
+ "id": "P08",
+ "lang": "en",
+ "text": "He landed in Prussian territory and escaped to TOURS.",
+ "text_etiketli": "[tired] He landed in Prussian territory and escaped to TOURS.",
+ "words": [
+  {
+   "t": "He",
+   "s": 0.14,
+   "e": 0.17
+  },
+  {
+   "t": "landed",
+   "s": 0.21,
+   "e": 0.57
+  },
+  {
+   "t": "in",
+   "s": 0.61,
+   "e": 0.73
+  },
+  {
+   "t": "Prussian",
+   "s": 0.8,
+   "e": 1.21
+  },
+  {
+   "t": "territory",
+   "s": 1.26,
+   "e": 1.85
+  },
+  {
+   "t": "and",
+   "s": 1.94,
+   "e": 2.25
+  },
+  {
+   "t": "escaped",
+   "s": 2.31,
+   "e": 2.81
+  },
+  {
+   "t": "to",
+   "s": 2.98,
+   "e": 3.05
+  },
+  {
+   "t": "TOURS.",
+   "s": 3.12,
+   "e": 3.69
+  }
+ ],
+ "dur": 3.944,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.0,
+ "hisirti_6k_dbfs": -88.6,
+ "pad_nf_dbfs": -88.2,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

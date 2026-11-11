@@ -1,87 +1,87 @@
 {
  "id": "P06",
  "lang": "en",
- "text": "It had to happen in TOURS, with the government. So… a BALLOON.",
- "text_etiketli": "[serious] It had to happen in TOURS, with the government. [low] So… a BALLOON.",
+ "text": "It had to happen in Tours, with the government. So, a balloon.",
  "words": [
   {
    "t": "It",
-   "s": 0.11,
-   "e": 0.14
+   "s": 0.1,
+   "e": 0.24
   },
   {
    "t": "had",
-   "s": 0.19,
-   "e": 0.38
+   "s": 0.29,
+   "e": 0.45
   },
   {
    "t": "to",
-   "s": 0.4,
-   "e": 0.46
+   "s": 0.47,
+   "e": 0.54
   },
   {
    "t": "happen",
-   "s": 0.51,
-   "e": 0.86
+   "s": 0.6,
+   "e": 0.89
   },
   {
    "t": "in",
-   "s": 0.9,
-   "e": 1.02
+   "s": 0.94,
+   "e": 1.0
   },
   {
-   "t": "TOURS,",
-   "s": 1.11,
-   "e": 1.79
+   "t": "Tours,",
+   "s": 1.05,
+   "e": 1.49
   },
   {
    "t": "with",
-   "s": 1.88,
-   "e": 1.98
+   "s": 1.7,
+   "e": 1.85
   },
   {
    "t": "the",
-   "s": 1.99,
-   "e": 2.06
+   "s": 1.88,
+   "e": 1.96
   },
   {
    "t": "government.",
-   "s": 2.1,
-   "e": 2.66
+   "s": 1.99,
+   "e": 2.38
   },
   {
-   "t": "So…",
-   "s": 3.5,
-   "e": 3.69
+   "t": "So,",
+   "s": 2.65,
+   "e": 3.05
   },
   {
    "t": "a",
-   "s": 3.99,
-   "e": 4.03
+   "s": 3.2,
+   "e": 3.28
   },
   {
-   "t": "BALLOON.",
-   "s": 4.03,
-   "e": 4.68
+   "t": "balloon.",
+   "s": 3.34,
+   "e": 3.72
   }
  ],
- "dur": 4.937,
+ "dur": 3.971,
  "voice": "nPczCjzI2devNBz1zQrb",
- "model": "eleven_v3",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -84.4,
- "hisirti_6k_dbfs": -88.7,
- "pad_nf_dbfs": -70.9,
+ "nf_dbfs": -81.4,
+ "hisirti_6k_dbfs": -87.3,
+ "pad_nf_dbfs": -74.8,
  "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
  "nefes_temizlendi": []
 }

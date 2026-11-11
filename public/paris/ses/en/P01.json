@@ -1,99 +1,97 @@
 {
  "id": "P01",
  "lang": "en",
- "text": "One photographer squeezed Paris's mail onto a pigeon's TAIL. He had to ESCAPE first.",
- "text_etiketli": "[curious] One photographer squeezed Paris's mail onto a pigeon's TAIL. [tense] He had to ESCAPE first.",
+ "text": "One photographer squeezed Paris's mail onto a pigeon's tail. He had to escape first.",
  "words": [
   {
    "t": "One",
-   "s": 0.19,
-   "e": 0.25
+   "s": 0.131,
+   "e": 0.331
   },
   {
    "t": "photographer",
-   "s": 0.3,
-   "e": 1.05
+   "s": 0.361,
+   "e": 0.971
   },
   {
    "t": "squeezed",
-   "s": 1.1,
-   "e": 1.61
+   "s": 1.031,
+   "e": 1.371
   },
   {
    "t": "Paris's",
-   "s": 1.67,
-   "e": 2.09
+   "s": 1.401,
+   "e": 1.801
   },
   {
    "t": "mail",
-   "s": 2.14,
-   "e": 2.41
+   "s": 1.841,
+   "e": 2.031
   },
   {
    "t": "onto",
-   "s": 2.46,
-   "e": 2.73
+   "s": 2.081,
+   "e": 2.251
   },
   {
    "t": "a",
-   "s": 2.76,
-   "e": 2.81
+   "s": 2.281,
+   "e": 2.331
   },
   {
    "t": "pigeon's",
-   "s": 2.85,
-   "e": 3.37
+   "s": 2.351,
+   "e": 2.691
   },
   {
-   "t": "TAIL.",
-   "s": 3.4,
-   "e": 3.89
+   "t": "tail.",
+   "s": 2.711,
+   "e": 3.021
   },
   {
    "t": "He",
-   "s": 4.46,
-   "e": 4.49
+   "s": 3.511,
+   "e": 3.601
   },
   {
    "t": "had",
-   "s": 4.51,
-   "e": 4.64
+   "s": 3.651,
+   "e": 3.801
   },
   {
    "t": "to",
-   "s": 4.69,
-   "e": 4.81
+   "s": 3.831,
+   "e": 3.891
   },
   {
-   "t": "ESCAPE",
-   "s": 4.92,
-   "e": 5.37
+   "t": "escape",
+   "s": 3.961,
+   "e": 4.281
   },
   {
    "t": "first.",
-   "s": 5.45,
-   "e": 5.99
+   "s": 4.301,
+   "e": 4.701
   }
  ],
- "dur": 6.243,
+ "dur": 4.911,
  "voice": "nPczCjzI2devNBz1zQrb",
- "model": "eleven_v3",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
- "kenar": "temiz",
- "nf_dbfs": -85.9,
- "hisirti_6k_dbfs": -100.7,
- "pad_nf_dbfs": -23.3,
+ "final": true,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -83.1,
+ "hisirti_6k_dbfs": -89.9,
+ "pad_nf_dbfs": -16.4,
  "kelime_zamani": "sinyale yapisik",
- "nefes_temizlendi": [
-  4.04
- ]
+ "cit_kaymasi": 0.131,
+ "nefes_temizlendi": []
 }

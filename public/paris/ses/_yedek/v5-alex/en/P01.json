@@ -1,0 +1,99 @@
+{
+ "id": "P01",
+ "lang": "en",
+ "text": "One photographer squeezed Paris's mail onto a pigeon's TAIL. He had to ESCAPE first.",
+ "text_etiketli": "[curious] One photographer squeezed Paris's mail onto a pigeon's TAIL. [tense] He had to ESCAPE first.",
+ "words": [
+  {
+   "t": "One",
+   "s": 0.19,
+   "e": 0.25
+  },
+  {
+   "t": "photographer",
+   "s": 0.3,
+   "e": 1.05
+  },
+  {
+   "t": "squeezed",
+   "s": 1.1,
+   "e": 1.61
+  },
+  {
+   "t": "Paris's",
+   "s": 1.67,
+   "e": 2.09
+  },
+  {
+   "t": "mail",
+   "s": 2.14,
+   "e": 2.41
+  },
+  {
+   "t": "onto",
+   "s": 2.46,
+   "e": 2.73
+  },
+  {
+   "t": "a",
+   "s": 2.76,
+   "e": 2.81
+  },
+  {
+   "t": "pigeon's",
+   "s": 2.85,
+   "e": 3.37
+  },
+  {
+   "t": "TAIL.",
+   "s": 3.4,
+   "e": 3.89
+  },
+  {
+   "t": "He",
+   "s": 4.46,
+   "e": 4.49
+  },
+  {
+   "t": "had",
+   "s": 4.51,
+   "e": 4.64
+  },
+  {
+   "t": "to",
+   "s": 4.69,
+   "e": 4.81
+  },
+  {
+   "t": "ESCAPE",
+   "s": 4.92,
+   "e": 5.37
+  },
+  {
+   "t": "first.",
+   "s": 5.45,
+   "e": 5.99
+  }
+ ],
+ "dur": 6.243,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -85.9,
+ "hisirti_6k_dbfs": -100.7,
+ "pad_nf_dbfs": -23.3,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": [
+  4.04
+ ]
+}

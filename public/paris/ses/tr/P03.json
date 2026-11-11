@@ -1,72 +1,72 @@
 {
  "id": "P03",
  "lang": "tr",
- "text": "Mektuplar balonla çıkıyordu, ama balon DÖNMEZDİ. CEVAP nasıl gelecek?",
- "text_etiketli": "[worried] Mektuplar balonla çıkıyordu, ama balon DÖNMEZDİ. [anxious] CEVAP nasıl gelecek?",
+ "text": "Mektuplar balonla çıkıyordu ama balon dönmezdi. Cevap nasıl gelecek?",
  "words": [
   {
    "t": "Mektuplar",
-   "s": 0.11,
-   "e": 0.57
+   "s": 0.21,
+   "e": 0.73
   },
   {
    "t": "balonla",
-   "s": 0.62,
-   "e": 1.05
+   "s": 0.79,
+   "e": 1.16
   },
   {
-   "t": "çıkıyordu,",
-   "s": 1.1,
-   "e": 1.81
+   "t": "çıkıyordu",
+   "s": 1.2,
+   "e": 1.69
   },
   {
    "t": "ama",
-   "s": 1.96,
-   "e": 2.16
+   "s": 2.01,
+   "e": 2.2
   },
   {
    "t": "balon",
    "s": 2.24,
-   "e": 2.65
+   "e": 2.54
   },
   {
-   "t": "DÖNMEZDİ.",
-   "s": 2.72,
-   "e": 3.45
+   "t": "dönmezdi.",
+   "s": 2.58,
+   "e": 3.09
   },
   {
-   "t": "CEVAP",
-   "s": 4.3,
-   "e": 4.49
+   "t": "Cevap",
+   "s": 3.94,
+   "e": 4.21
   },
   {
    "t": "nasıl",
-   "s": 4.53,
-   "e": 4.81
+   "s": 4.29,
+   "e": 4.48
   },
   {
    "t": "gelecek?",
-   "s": 4.87,
-   "e": 5.37
+   "s": 4.5,
+   "e": 4.9
   }
  ],
- "dur": 5.695,
- "voice": "KediIz7pebzt5TaDHiiZ",
- "model": "eleven_v3",
+ "dur": 5.146,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -89.4,
- "hisirti_6k_dbfs": -106.4,
- "pad_nf_dbfs": -90.7,
+ "nf_dbfs": -85.1,
+ "hisirti_6k_dbfs": -99.8,
+ "pad_nf_dbfs": -85.4,
  "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
  "nefes_temizlendi": []
 }

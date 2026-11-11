@@ -1,57 +1,57 @@
 {
  "id": "P09",
  "lang": "tr",
- "text": "Mektupları filme çekip kuşların KUYRUĞUNA bağladı.",
- "text_etiketli": "[calm] Mektupları filme çekip kuşların KUYRUĞUNA bağladı.",
+ "text": "Mektupları filme çekip kuşların kuyruğuna bağladı.",
  "words": [
   {
    "t": "Mektupları",
-   "s": 0.11,
-   "e": 0.55
+   "s": 0.1,
+   "e": 0.63
   },
   {
    "t": "filme",
-   "s": 0.59,
-   "e": 0.87
+   "s": 0.65,
+   "e": 0.92
   },
   {
    "t": "çekip",
    "s": 0.94,
-   "e": 1.27
+   "e": 1.23
   },
   {
    "t": "kuşların",
-   "s": 1.38,
-   "e": 1.99
+   "s": 1.29,
+   "e": 1.72
   },
   {
-   "t": "KUYRUĞUNA",
-   "s": 2.02,
-   "e": 2.59
+   "t": "kuyruğuna",
+   "s": 1.77,
+   "e": 2.21
   },
   {
    "t": "bağladı.",
-   "s": 2.61,
-   "e": 3.14
+   "s": 2.26,
+   "e": 2.64
   }
  ],
- "dur": 3.37,
- "voice": "KediIz7pebzt5TaDHiiZ",
- "model": "eleven_v3",
+ "dur": 2.9,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -78.9,
- "hisirti_6k_dbfs": -99.0,
- "pad_nf_dbfs": -91.0,
+ "nf_dbfs": -76.0,
+ "hisirti_6k_dbfs": -85.2,
+ "pad_nf_dbfs": -86.3,
  "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
  "nefes_temizlendi": []
 }

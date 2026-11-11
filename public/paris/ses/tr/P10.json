@@ -1,84 +1,82 @@
 {
  "id": "P10",
  "lang": "tr",
- "text": "Film duvara YANSIDI. Parmak boyundaki sayfa yeniden BÜYÜDÜ. Paris mektuplarını… OKUDU.",
- "text_etiketli": "[whispering] Film duvara YANSIDI. [amazed] Parmak boyundaki sayfa yeniden BÜYÜDÜ. [warm] Paris mektuplarını… OKUDU.",
+ "text": "Film duvara yansıdı. Parmak boyundaki sayfa yeniden büyüdü. Paris mektuplarını okudu.",
  "words": [
   {
    "t": "Film",
-   "s": 0.26,
-   "e": 0.39
+   "s": 0.1,
+   "e": 0.41
   },
   {
    "t": "duvara",
-   "s": 0.49,
-   "e": 0.95
+   "s": 0.47,
+   "e": 0.8
   },
   {
-   "t": "YANSIDI.",
-   "s": 0.98,
-   "e": 1.64
+   "t": "yansıdı.",
+   "s": 0.83,
+   "e": 1.29
   },
   {
    "t": "Parmak",
-   "s": 2.5,
-   "e": 2.63
+   "s": 1.91,
+   "e": 2.27
   },
   {
    "t": "boyundaki",
-   "s": 2.68,
-   "e": 3.19
+   "s": 2.32,
+   "e": 2.75
   },
   {
    "t": "sayfa",
-   "s": 3.24,
-   "e": 3.59
+   "s": 2.78,
+   "e": 3.12
   },
   {
    "t": "yeniden",
-   "s": 3.65,
-   "e": 4.15
+   "s": 3.17,
+   "e": 3.58
   },
   {
-   "t": "BÜYÜDÜ.",
-   "s": 4.22,
-   "e": 4.76
+   "t": "büyüdü.",
+   "s": 3.62,
+   "e": 3.92
   },
   {
    "t": "Paris",
-   "s": 5.45,
-   "e": 5.59
+   "s": 4.55,
+   "e": 4.93
   },
   {
-   "t": "mektuplarını…",
-   "s": 5.98,
-   "e": 6.9
+   "t": "mektuplarını",
+   "s": 5.04,
+   "e": 5.66
   },
   {
-   "t": "OKUDU.",
-   "s": 7.3,
-   "e": 7.78
+   "t": "okudu.",
+   "s": 5.69,
+   "e": 6.0
   }
  ],
- "dur": 8.02,
- "voice": "KediIz7pebzt5TaDHiiZ",
- "model": "eleven_v3",
+ "dur": 6.243,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -89.2,
- "hisirti_6k_dbfs": -106.2,
- "pad_nf_dbfs": -89.5,
+ "nf_dbfs": -85.5,
+ "hisirti_6k_dbfs": -99.0,
+ "pad_nf_dbfs": -86.0,
  "kelime_zamani": "sinyale yapisik",
- "nefes_temizlendi": [
-  60.56
- ]
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
 }

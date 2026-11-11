@@ -1,0 +1,72 @@
+{
+ "id": "P03",
+ "lang": "tr",
+ "text": "Mektuplar balonla çıkıyordu, ama balon DÖNMEZDİ. CEVAP nasıl gelecek?",
+ "text_etiketli": "[worried] Mektuplar balonla çıkıyordu, ama balon DÖNMEZDİ. [anxious] CEVAP nasıl gelecek?",
+ "words": [
+  {
+   "t": "Mektuplar",
+   "s": 0.11,
+   "e": 0.57
+  },
+  {
+   "t": "balonla",
+   "s": 0.62,
+   "e": 1.05
+  },
+  {
+   "t": "çıkıyordu,",
+   "s": 1.1,
+   "e": 1.81
+  },
+  {
+   "t": "ama",
+   "s": 1.96,
+   "e": 2.16
+  },
+  {
+   "t": "balon",
+   "s": 2.24,
+   "e": 2.65
+  },
+  {
+   "t": "DÖNMEZDİ.",
+   "s": 2.72,
+   "e": 3.45
+  },
+  {
+   "t": "CEVAP",
+   "s": 4.3,
+   "e": 4.49
+  },
+  {
+   "t": "nasıl",
+   "s": 4.53,
+   "e": 4.81
+  },
+  {
+   "t": "gelecek?",
+   "s": 4.87,
+   "e": 5.37
+  }
+ ],
+ "dur": 5.695,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -89.4,
+ "hisirti_6k_dbfs": -106.4,
+ "pad_nf_dbfs": -90.7,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

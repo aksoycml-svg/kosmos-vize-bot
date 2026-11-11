@@ -1,0 +1,57 @@
+{
+ "id": "P09",
+ "lang": "tr",
+ "text": "Mektupları filme çekip kuşların KUYRUĞUNA bağladı.",
+ "text_etiketli": "[calm] Mektupları filme çekip kuşların KUYRUĞUNA bağladı.",
+ "words": [
+  {
+   "t": "Mektupları",
+   "s": 0.11,
+   "e": 0.55
+  },
+  {
+   "t": "filme",
+   "s": 0.59,
+   "e": 0.87
+  },
+  {
+   "t": "çekip",
+   "s": 0.94,
+   "e": 1.27
+  },
+  {
+   "t": "kuşların",
+   "s": 1.38,
+   "e": 1.99
+  },
+  {
+   "t": "KUYRUĞUNA",
+   "s": 2.02,
+   "e": 2.59
+  },
+  {
+   "t": "bağladı.",
+   "s": 2.61,
+   "e": 3.14
+  }
+ ],
+ "dur": 3.37,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -78.9,
+ "hisirti_6k_dbfs": -99.0,
+ "pad_nf_dbfs": -91.0,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

@@ -1,92 +1,92 @@
 {
  "id": "P10",
  "lang": "en",
- "text": "The film was PROJECTED. The tiny page GREW, and Paris READ its mail.",
- "text_etiketli": "[whispering] The film was PROJECTED. [amazed] The tiny page GREW, [warm] and Paris READ its mail.",
+ "text": "The film was projected. The tiny page grew, and Paris read its mail.",
  "words": [
   {
    "t": "The",
-   "s": 0.13,
-   "e": 0.15
+   "s": 0.1,
+   "e": 0.18
   },
   {
    "t": "film",
-   "s": 0.22,
-   "e": 0.55
+   "s": 0.23,
+   "e": 0.43
   },
   {
    "t": "was",
-   "s": 0.66,
-   "e": 1.03
+   "s": 0.45,
+   "e": 0.56
   },
   {
-   "t": "PROJECTED.",
-   "s": 1.13,
-   "e": 1.86
+   "t": "projected.",
+   "s": 0.62,
+   "e": 1.22
   },
   {
    "t": "The",
-   "s": 2.6,
-   "e": 2.63
+   "s": 1.68,
+   "e": 1.77
   },
   {
    "t": "tiny",
-   "s": 2.75,
-   "e": 3.11
+   "s": 1.81,
+   "e": 2.11
   },
   {
    "t": "page",
-   "s": 3.19,
-   "e": 3.59
+   "s": 2.16,
+   "e": 2.45
   },
   {
-   "t": "GREW,",
-   "s": 3.66,
-   "e": 3.99
+   "t": "grew,",
+   "s": 2.48,
+   "e": 2.91
   },
   {
    "t": "and",
-   "s": 4.68,
-   "e": 4.71
+   "s": 3.06,
+   "e": 3.18
   },
   {
    "t": "Paris",
-   "s": 4.79,
-   "e": 5.27
+   "s": 3.23,
+   "e": 3.53
   },
   {
-   "t": "READ",
-   "s": 5.45,
-   "e": 5.67
+   "t": "read",
+   "s": 3.59,
+   "e": 3.72
   },
   {
    "t": "its",
-   "s": 5.7,
-   "e": 5.83
+   "s": 3.75,
+   "e": 3.84
   },
   {
    "t": "mail.",
-   "s": 5.9,
-   "e": 6.31
+   "s": 3.91,
+   "e": 4.2
   }
  ],
- "dur": 6.609,
+ "dur": 4.441,
  "voice": "nPczCjzI2devNBz1zQrb",
- "model": "eleven_v3",
+ "model": "eleven_multilingual_v2",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.85,
-  "style": 0.5,
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.0
  },
- "aday": "s7",
+ "seed": 7,
  "tek_cekim": true,
- "v5": true,
+ "final": true,
  "kenar": "temiz",
- "nf_dbfs": -83.3,
- "hisirti_6k_dbfs": -86.5,
- "pad_nf_dbfs": -83.4,
+ "nf_dbfs": -81.9,
+ "hisirti_6k_dbfs": -87.7,
+ "pad_nf_dbfs": -81.6,
  "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
  "nefes_temizlendi": []
 }
