@@ -131,7 +131,7 @@ export const KitHaritaEtiketi: React.FC<{ metin: string; kutu: [number, number];
 // Kutu genişliği/punto en uzun hâlden (son sayı ya da dönüş metni) hesaplanır → sayarken boyut değişmez.
 // Teknik fikir: claude-animation-skills graph/template (count-up, toLocaleString) — MIT, © 2026 Artem Novitckii.
 export const KitSayac: React.FC<{ sablon: string; deger: string; enUzun: string; donus?: string; donusT?: number; vurgu?: boolean; bant?: "ust" | "alt"; dil?: string }> = ({ sablon, deger, enUzun, donus, donusT = 0, vurgu, bant = "ust", dil = "tr" }) => {
-  const ic = YAZI.kutuW - 52, en = 0.6;
+  const ic = YAZI.kutuW - 52, en = 0.7; // Playfair 900 BÜYÜK harf ≈ 0.68 em (0.6 EN 'TWO MILLION PEOPLE'yi kesiyordu)
   const px = Math.min(72, ic / Math.max(1, enUzun.length * en));
   const w = Math.min(YAZI.kutuW, enUzun.length * en * px + 52);
   const parca = sablon.split("{n}");

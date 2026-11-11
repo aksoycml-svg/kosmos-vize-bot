@@ -29,6 +29,8 @@ import { cl, ekranNokta, INOUT, kameraHesapla, katDonusum } from "../../zaman";
 import { param, Sablon, SablonProps } from "../../ortak";
 import { RIG_BIRIM_M } from "../sarayburnu/geo";
 import { bacakIK2, pchip } from "../galata/GalataTepe";
+import { bacakIK, kuklaYuru, tabanDunya } from "../../hareket/kuklaYuru";
+import { turAdi, zeminOrnek } from "../../hareket/gait";
 
 const S = DOKU_SEED.bogaz;
 export const BG = { ufuk: 860, goz: 3.9, havaPxm: 226, dekorX: [-540, 1620] as [number, number] };
@@ -274,7 +276,29 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       karis(pz, YAKLAS, interpolate(p, [tL - 24, tL], [0, 1], { ...cl, easing: INOUT }));
     }
     let ayaklar: P[] = [];
-    if (yerde) {
+    if (yerde && yj && yj.ops?.cozucu === "gait") {
+      // kit/hareket gait (bayrak): iniş anında ön ayak meydanda (xL + 0.32 m), arka ayak geride; ardından gait çözücüsü arka ayağı
+      // öne getirir (basış: json "adim-*" teması, yoksa yol kuralı / ops.adim_m). Basan ayak sabit; kalça erişimden + iniş çökmesi.
+      const bitY = yj.bit, pc = Math.min(p, bitY);
+      const xq = (q: number) => pchipAt(hz.x as number[], hz.kare, q, x), yq = (q: number) => pchipAt(hz.y as number[], hz.kare, q, y);
+      const orn: [number, number][] = []; for (let q = tL; q <= bitY; q++) orn.push([xq(q), yq(q)]);
+      const xL = xq(tL);
+      const sQ = (q: number) => (yerPxm(yq(q)) / RIG_BIRIM_M) * 1.04;
+      const tA = (plan.temaslar ?? []).filter((t) => /^adim/.test(t.ses ?? "") && t.kare > tL && t.kare <= bitY + 1).map((t) => t.kare);
+      const r = kuklaYuru({ ...pz, x: xq(pc), y: yq(pc) + AYAK_TABAN * sQ(pc), scale: sQ(pc) }, {
+        p: pc, bas: tL, bit: bitY, x: xq, zemin: zeminOrnek(orn), pxm: (q) => yerPxm(yq(q)), olcek: sQ, ilk: 1,
+        baslangic: [xL + 0.32 * yerPxm(yq(tL)), xL - 0.18 * yerPxm(yq(tL))],
+        tur: turAdi(String(yj.ops?.tur ?? "walk")), adim_m: typeof yj.ops?.adim_m === "number" ? yj.ops.adim_m : undefined,
+        basislar: tA.length ? tA : undefined, kolGenlik: 0,
+        egik: interpolate(p, [tL, tL + 8, bitY], [10, 14, 2], { ...cl, easing: INOUT }),
+      });
+      Object.assign(pz, r.pz);
+      // çarpma: kalça 0.1 m çöker, sonra doğrulur (aşağı = erişim içinde; ayaklar sabit kalır, dizler bükülür)
+      const cok = interpolate(p, [tL, tL + 6, tL + 18], [0, 1, 0], { ...cl, easing: INOUT });
+      if (cok > 0) { pz.y += 0.1 * pxm * cok; const a = bacakIK(pz, 14, r.c.ayak[0].bilek), b = bacakIK(pz, -10, r.c.ayak[1].bilek); pz.thighF = a.th; pz.kneeF = a.kn; pz.thighB = b.th; pz.kneeB = b.kn; }
+      ayaklar = r.c.ayak.map((a) => [a.zemin[0] + 13 * s, a.zemin[1] - a.h] as P);
+      if (process.env.REMOTION_AYAK_OLCUM) console.log("AYAK_OLCUM " + JSON.stringify({ p, gy: r.c.ayak.map((a) => a.zemin[1]), F: [-10, 36].map((lx) => tabanDunya(pz, 14, pz.thighF, pz.kneeF, pz.footF ?? 0, lx)), B: [-10, 36].map((lx) => tabanDunya(pz, -10, pz.thighB, pz.kneeB, pz.footB ?? 0, lx)) }));
+    } else if (yerde) {
       // iniş (tL): ön ayak meydana basar; kalça ileri akar (json x), arka ayak bir adım atıp öne basar (adim-toprak teması), toz oturur.
       const t2 = temas("adim-toprak") ?? Math.round((tL + (yj?.bit ?? tL + 24)) / 2);
       const bitY = yj?.bit ?? tL + 24;
@@ -295,6 +319,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       const a = bacakIK2(pz, 14, fA), b = bacakIK2(pz, -10, bA);
       pz.thighF = a.th; pz.kneeF = a.kn; pz.footF = -(pz.lean ?? 0); pz.thighB = b.th; pz.kneeB = b.kn; pz.footB = -(pz.lean ?? 0) + 18 * Math.sin(Math.PI * u);
       ayaklar = [[fA[0] + 13 * s, fA[1] + ANK], [bA[0] + 13 * s, bA[1] + ANK]];
+      if (process.env.REMOTION_AYAK_OLCUM) { const zq: [number, number][] = []; for (let q = tL; q <= bitY; q++) zq.push([pchipAt(hz.x as number[], hz.kare, q, x), gy(q)]); const zz = zeminOrnek(zq); console.log("AYAK_OLCUM " + JSON.stringify({ p, gy: [zz(fA[0]), zz(bA[0])], F: [-10, 36].map((lx) => tabanDunya(pz, 14, pz.thighF, pz.kneeF, pz.footF ?? 0, lx)), B: [-10, 36].map((lx) => tabanDunya(pz, -10, pz.thighB, pz.kneeB, pz.footB ?? 0, lx)) })); }
     }
     // kollar kanadın altında (açıkken eller ön kenar altında); kapanırken kuşağa döner
     if (acik > 0.05) {
