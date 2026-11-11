@@ -1,82 +1,69 @@
-# Script v1 (awaiting approval, EN): Siege of Paris — "Pigeons brought news to besieged Paris. Balloons had carried them out."
+# Script v2 (awaiting approval, EN): Siege of Paris — "Pigeons brought news to besieged Paris. Balloons had carried them out."
 
-Source: `arastirma.md` only. TR twin: `senaryo.md` (same plans, same timing; visuals are shared, one text-free render, so [VISUAL] notes are referenced, not repeated). Format: 1080x1920 · **61.2 s** (longer of the two languages) · **12 plans** · **136 words** (≈56.7 s at 2.4 w/s). No dialogue; narrator only.
-Spine (user decision A + B): A = "out by balloon, in by pigeon" + Dagron's microfilm; B = closing beat, the Ville d'Orléans: a secret government message lands in a Norwegian snowbank.
+Source: `arastirma.md` only. TR twin: `senaryo.md` v2 (same plans, same timing; visuals shared, one text-free render, so [VISUAL] notes are referenced). Format: 1080x1920 · **59.8 s** (longer of the two languages) · **12 plans** · **134 words** (≈55.8 s at 2.4 w/s). No dialogue; narrator only. No jargon: the word "microfilm" never appears; "photographed down to finger size" is explained on screen.
+Spine (user decision A + B): out by balloon, in by pigeon + Dagron's film; closing beat the Ville d'Orléans (secret government message lands in Norwegian snow); last line sets human-built balloon against the pigeon that knows home.
 
 ## 0. Accuracy notes (EN-specific)
-- Same softening as TR: "around 100,000 messages" + on-screen "sources say 60,000–150,000"; no passenger, pigeon, or return counts; "most birds never came back" only; "≈66 balloons" on screen only.
-- "Tube" never appears (material unclear, Contradiction 12). Narration: "film," "tied to a pigeon's tail." "Finger-sized" = 3–4 cm film.
-- "Photographer Dagron," never "inventor of microfilm."
-- Oslo museum line is on-screen only (medium confidence).
-- "Norway's snow" instead of a village name; no time-of-day, no "15 hours."
-- EN rhythm: shorter clauses than a literal translation; P03, P09, P10 reworded so no plan runs past the TR plan by more than ~0.8 s.
+- Chain: no news (P02) → balloons carry mail out (P03) → balloons can't return, replies can't get in (P04) → pigeons fly home, so carry them out by balloon (P05) → a bird can't carry letters; Dagron shrinks pages onto finger-sized film (P06) → the government is in Tours, so he goes there (P07) → tied to tail (P08) → enlarged on a screen in Paris (P09) → most birds lost, tens of thousands of messages (P10) → balloon blown to Norway (P11) → balloon vs pigeon (P12).
+- Stakes use sourced facts only (telegraph cut, government delegation in Tours, mail). Paris's population is **not** in `arastirma.md`, so it is not stated.
+- "Tens of thousands" covers the 60,000–150,000 source range; the range lives in the caption. No passenger, pigeon, or return counts. "≈66 balloons" on screen only. No "tube". "Photographer," never "inventor."
+- P11 aftermath is soft: "reportedly" (medium-low confidence). Oslo-museum line on screen only (medium).
+- Cut from v1: "After pilots were caught, flights went night-only" (no payoff), the stations line.
 
 ## 1. Hook (three layers)
 | | Line | First frame | On-screen text |
 |---|---|---|---|
-| **H1 ★ (chosen)** | "Pigeons brought news to besieged Paris. Balloons had carried them out." | Twilight sky: a pigeon drops toward Paris rooftops, a bright finger-sized sleeve on its tail. At ≈2.4 s cut to a balloon basket with a small cage of pigeons. | PARIS · 1870 · UNDER SIEGE |
-| H2 | "In 1870, a secret message for the French government landed in a Norwegian snowbank." | Tipped-over basket on a snowy slope, sealed packet on the snow | NORWAY · SNOW · 1870 |
-| H3 | "A whole city's mail flew on one bird's tail." | Pigeon tail sleeve in close-up, besieged city behind | ONE BIRD, ONE CITY |
+| **H1 ★ (chosen)** | "Pigeons brought news to besieged Paris. Balloons had carried them out." | Twilight sky: pigeon drops toward Paris rooftops, bright finger-sized sleeve on its tail. At ≈2.3 s cut to a balloon basket with a cage of pigeons. | PARIS · 1870 · UNDER SIEGE |
+| H2 | "In 1870, a secret message for the French government landed in a Norwegian snowbank." | Tipped basket on a snowy slope, sealed packet | NORWAY · SNOW · 1870 |
+| H3 | "A whole city's mail flew on one bird's tail." | Tail sleeve close-up, besieged city behind | ONE BIRD, ONE CITY |
 
-**Why H1:** a paradox in two beats (pigeons bring the news in; balloons carried the pigeons out). The viewer asks "why would a balloon carry a pigeon?" and P04–P05 answer. The last line, "They brought the news," closes it and P12's final frame matches P01's first frame (loop). H2 is the strongest irony but uses up the ending; H3 overstates (how many letters per film is not settled in sources).
+**Why H1:** a paradox in two beats; viewer asks "why would a balloon carry a pigeon?" and P04–P05 answer. P12's last line closes it; the last frame matches P01's first frame (loop).
 
 ## 2. Plan table
-Same timings as `senaryo.md` §2. Visual notes: see TR file, same plan number and sentence order.
+Same timings as `senaryo.md` §2. Visuals: TR file, same plan and sentence order.
 
-| # | Time (s) | Location | Narration | On-screen text | Touch candidate |
-|---|---|---|---|---|---|
-| P01 | 0.0–4.8 | HARİTA-GÖK | **"Pigeons brought news to besieged Paris."** [VISUAL: TR P01 S1] **"Balloons had carried them out."** [VISUAL: TR P01 S2] | PARIS · 1870 · UNDER SIEGE | Glint on the tail sleeve |
-| P02 | 4.8–9.6 | HARİTA-GÖK | **"Prussian armies surrounded Paris."** [VISUAL: TR P02 S1] **"No telegraph."** [VISUAL: TR P02 S2] **"Only the sky was left."** [VISUAL: TR P02 S3] | SIEGE: ~4.5 MONTHS | Ring closing, telegraph line snapping |
-| P03 | 9.6–14.4 | DAGRON-INSERT → MONTMARTRE night | **"Stations became balloon workshops."** [VISUAL: TR P03 S1] **"After pilots were caught, flights went night-only."** [VISUAL: TR P03 S2] | ≈66 BALLOONS | Fabric swelling from the hose |
-| P04 | 14.4–19.4 | MONTMARTRE night → HARİTA-GÖK | **"But balloons can't turn back."** [VISUAL: TR P04 S1, sandbag drops, wind lines push the balloon one way, return arrow erased] **"How does news get in?"** [VISUAL: TR P04 S2] | ONE WAY ONLY | Ballast bag falls, balloon rises |
-| P05 | 19.4–24.6 | HARİTA-GÖK → MONTMARTRE (basket insert) | **"A pigeon always flies home."** [VISUAL: TR P05 S1] **"So they took pigeons out by balloon."** [VISUAL: TR P05 S2: balloon lands far away, cage door opens, pigeon flies home] | BALLOON GOES · PIGEON COMES | Cage door opens |
-| P06 | 24.6–30.6 | DAGRON-INSERT | **"But a bird can't carry letters."** [VISUAL: TR P06 S1, scale] **"Photographer Dagron shrank pages onto finger-sized film."** [VISUAL: TR P06 S2] | FULL PAGE → FINGER-SIZED | Page shrinks to strip, finger as ruler |
-| P07 | 30.6–36.6 | HARİTA-GÖK → DAGRON-INSERT | **"Dagron flew out by balloon to Tours."** [VISUAL: TR P07 S1] **"There, letters to Paris were photographed."** [VISUAL: TR P07 S2] | TOURS · ~200 km SW of Paris | Balloon rising with equipment crates |
-| P08 | 36.6–40.1 | DAGRON-INSERT, close (≥12% of frame) | **"They tied the film to a pigeon's tail."** [VISUAL: TR P08] | TIED TO THE TAIL FEATHER | Sleeve tied to tail feather |
-| P09 | 40.1–45.7 | DAGRON-INSERT → projection room | **"In Paris, the film was projected on a screen."** [VISUAL: TR P09 S1] **"Clerks copied it out."** [VISUAL: TR P09 S2] | MAGIC LANTERN · 1870 | Film growing on the screen |
-| P10 | 45.7–50.5 | HARİTA-GÖK / counter | **"Most birds never came back."** [VISUAL: TR P10 S1] **"Still, around 100,000 messages arrived."** [VISUAL: TR P10 S2] | ≈100,000 MESSAGES · sources say 60,000–150,000 | Rain of film strips, growing pile |
-| P11 | 50.5–56.0 | MONTMARTRE night → HARİTA-GÖK → NORVEÇ-KAR | **"Balloons obeyed the wind."** [VISUAL: TR P11 S1] **"A secret government message landed in Norway's snow."** [VISUAL: TR P11 S2] | TOURS ~200 KM · NORWAY ~1,200 KM | Line stretching ≈6x |
-| P12 | 56.0–61.2 | NORVEÇ-KAR → HARİTA-GÖK (match cut to P01 first frame) | **"Balloons couldn't steer."** [VISUAL: TR P12 S1] **"Pigeons knew the way home."** [VISUAL: dragging fabric cuts to the pigeon at twilight, same frame as P01] **"They brought the news."** [VISUAL: pigeon settles on the loft, motion completes] | The basket is now in an Oslo museum | Fabric dragging in snow → loop cut |
+| # | Time (s) | Narration | On-screen text | Touch candidate |
+|---|---|---|---|---|
+| P01 | 0.0–4.8 | **"Pigeons brought news to besieged Paris."** [VISUAL: TR P01 S1] **"Balloons had carried them out."** [VISUAL: TR P01 S2] | PARIS · 1870 · UNDER SIEGE | Glint on tail sleeve |
+| P02 | 4.8–9.8 | **"Prussian armies surrounded Paris."** [VISUAL: TR P02 S1] **"The telegraph died."** [VISUAL: TR P02 S2] **"No news got in."** [VISUAL: TR P02 S3, waiting figures, empty mailbag] | SIEGE ~4.5 MONTHS · NO NEWS | Ring closing, line snapping |
+| P03 | 9.8–13.8 | **"Only the sky was left."** [VISUAL: camera rises from the map] **"Balloons carried mail out."** [VISUAL: fabric sewn, swelling from the hose, mail sack in basket, balloon clears the ring] | ≈66 BALLOONS | Fabric swelling |
+| P04 | 13.8–18.3 | **"But balloons can't turn back."** [VISUAL: sandbag drops, wind lines push the balloon one way, return arrow erased] **"How would replies get in?"** [VISUAL: letters from Tours side stop at the ring] | ONE WAY · WIND-DRIVEN | Ballast falls, balloon rises |
+| P05 | 18.3–22.7 | **"Pigeons fly home from anywhere."** [VISUAL: TR P05 S1] **"So balloons carried them out."** [VISUAL: cage door opens far away, pigeon flies home] | BALLOON GOES · PIGEON COMES | Cage door opens |
+| P06 | 22.7–28.3 | **"But a bird can't carry letters."** [VISUAL: scale, bird can't lift off] **"Photographer Dagron shrank pages onto finger-sized film."** [VISUAL: page becomes strip, finger as ruler] | FULL PAGE → FINGER-SIZED | Page shrinks to strip |
+| P07 | 28.3–33.5 | **"The government was in Tours."** [VISUAL: Tours marker ~200 km SW] **"Dagron flew there and filmed the letters."** [VISUAL: balloon with equipment crates lands in Tours; letters to Paris become strips] | TOURS · GOVERNMENT DELEGATION · ~200 km | Balloon with crates |
+| P08 | 33.5–37.0 | **"They tied the film to a pigeon's tail."** [VISUAL: TR P08, close-up] | TIED TO THE TAIL FEATHER | Sleeve tied on |
+| P09 | 37.0–41.8 | **"In Paris, a screen enlarged the film."** [VISUAL: TR P09 S1] **"Clerks copied it out."** [VISUAL: TR P09 S2, someone opens an envelope and reads] | MAGIC LANTERN · 1870 | Film growing on screen |
+| P10 | 41.8–46.6 | **"Most birds never returned."** [VISUAL: TR P10 S1] **"Still, tens of thousands of messages arrived."** [VISUAL: strips rain onto Paris, figures look up] | TENS OF THOUSANDS OF MESSAGES · PARIS TALKS AGAIN | Strip rain |
+| P11 | 46.6–54.4 | **"A secret government message bound for Tours landed in Norwegian snow."** [VISUAL: TR P11 S1, night launch, sealed packet, line stretches ≈6x, snowy slope] **"Its mail reportedly arrived anyway."** [VISUAL: TR P11 S2, two faceless passengers shoulder the sack; mail lands on the Tours desk] | TOURS ~200 KM · NORWAY ~1,200 KM | Line stretching ≈6x |
+| P12 | 54.4–59.8 | **"Man built balloons; wind steered them."** [VISUAL: fabric dragging in snow] **"Pigeons flew home with the news."** [VISUAL: match cut to P01 first frame, pigeon settles on the loft] | The basket is now in an Oslo museum | Dragging fabric → loop cut |
 
 ## 3. Setup → Payoff
-Identical to `senaryo.md` §3. EN-specific hook link: "They brought the news" (P12) answers "Pigeons brought news" (P01); "Balloons couldn't steer" (P12) answers "ONE WAY ONLY" (P04).
+Identical to `senaryo.md` §3. EN loop: "Pigeons flew home with the news" (P12) answers "Pigeons brought news" (P01); "Man built balloons; wind steered them" (P12) answers "ONE WAY · WIND-DRIVEN" (P04).
 
 ## 4. Source mapping
-Same as `senaryo.md` §4. EN extras: "Winter was brutal" was cut (cold is general knowledge / summary only). "Around 100,000" = Contradiction 4; "Norway's snow" = Contradiction 7 ("Norway, in a snowbank").
+Same as `senaryo.md` §4. "Tens of thousands" = Contradiction 4; "reportedly arrived" = §7 Ville d'Orléans item (medium-low).
 
 ## 5. Words and timing
-See `senaryo.md` §5. EN: 11+11+11+10+12+13+13+8+13+10+12+12 = **136** words. P05, P08, P09, P12 are longer than TR and set the plan length. If real EN audio runs slower than 2.4 w/s, shorten in this order: P09 ("out"), P06 ("Photographer"), P12 ("the way").
+See `senaryo.md` §5. EN: 11+11+9+10+10+13+12+8+11+11+16+12 = **134** words. Plans longer in EN than TR: P01, P03, P05, P06, P07, P08, P09, P10. Shorten first if EN audio runs long: P11 "reportedly arrived anyway" → "reportedly arrived," P06 "Photographer", P07 "the letters".
 
 ## 6. First-time viewer test
 
 ### Sound off
-Same as TR (text is the screen text in §2). Sound-off viewer gets: besieged Paris → sky only → balloons at night → one way → pigeon flies home → page shrinks → Tours → tied to tail → lantern → ≈100,000 → distance line → Oslo museum.
+Same as TR: besieged Paris, no news → sky, balloon with mail → one way, replies stop at the ring → pigeon flies home → page shrinks → Tours → tied to tail → screen → tens of thousands → distance line, snow, mail reaches Tours → museum.
 
 ### Sound on
-"Pigeons brought news to besieged Paris. Balloons had carried them out. / Prussian armies surrounded Paris. No telegraph. Only the sky was left. / Stations became balloon workshops. After pilots were caught, flights went night-only. / But balloons can't turn back. How does news get in? / A pigeon always flies home. So they took pigeons out by balloon. / But a bird can't carry letters. Photographer Dagron shrank pages onto finger-sized film. / Dagron flew out by balloon to Tours. There, letters to Paris were photographed. / They tied the film to a pigeon's tail. / In Paris, the film was projected on a screen. Clerks copied it out. / Most birds never came back. Still, around 100,000 messages arrived. / Balloons obeyed the wind. A secret government message landed in Norway's snow. / Balloons couldn't steer. Pigeons knew the way home. They brought the news."
+"Pigeons brought news to besieged Paris. Balloons had carried them out. / Prussian armies surrounded Paris. The telegraph died. No news got in. / Only the sky was left. Balloons carried mail out. / But balloons can't turn back. How would replies get in? / Pigeons fly home from anywhere. So balloons carried them out. / But a bird can't carry letters. Photographer Dagron shrank pages onto finger-sized film. / The government was in Tours. Dagron flew there and filmed the letters. / They tied the film to a pigeon's tail. / In Paris, a screen enlarged the film. Clerks copied it out. / Most birds never returned. Still, tens of thousands of messages arrived. / A secret government message bound for Tours landed in Norwegian snow. Its mail reportedly arrived anyway. / Man built balloons; wind steered them. Pigeons flew home with the news."
 
-### Transition check ("why here?")
-| Transition | Why | Status |
-|---|---|---|
-| P01 → P02 | Why carry pigeons out of Paris? City surrounded. | Chain OK |
-| P02 → P03 | Only the sky left → balloons built. | OK |
-| P03 → P04 | Balloons fly → but can't turn back. | OK |
-| P04 → P05 | Question → answer (pigeons). | OK |
-| P05 → P06 | Pigeon flies home → but can't carry letters. | OK |
-| P06 → P07 | Film exists → where to make it? Outside, where the mail starts: Tours. | Weak: "why Tours?" see TR open question 1 |
-| P07 → P08 | Photographed → tie to bird. | OK |
-| P08 → P09 | Bird released → arrives, film read. | OK |
-| P09 → P10 | System works → how well? | OK |
-| P10 → P11 | Birds home vs "Balloons obeyed the wind": contrast; Ville d'Orléans. | Contrast; TR open question 3 |
-| P11 → P12 | Wind carried it away → couldn't steer → pigeons knew home. | OK, loop |
+### Transition check
+Same chain as TR §6. EN-only risks: "The telegraph died" is colloquial but fine for voice; "Man built balloons" is slightly literary, alternative "We built balloons; wind steered them" (same length).
 
-### "So what?" scan
-Same table as TR §6; no extra gaps in EN. One EN-only risk: "No telegraph" (P02) is terse; if the voice reads it clipped, use "The telegraph was cut" (+0.4 s).
+## 7. "So what?" test
+Identical to `senaryo.md` §7 (same plans answer the same questions). EN-specific: "How would replies get in?" (P04) is answered by P05, "Pigeons fly home from anywhere"; "Its mail" in P11 refers to the balloon's mail, set up in P03 ("Balloons carried mail out").
 
-## 7. Sharing
+## 8. Changes from v1
+Stakes added (P02), balloon mail stated (P03), "replies" instead of "news" in P04, "film" introduced in P06, "The government was in Tours" (P07), "enlarged" (P09), "tens of thousands" + "PARIS TALKS AGAIN" (P10), aftermath "reportedly arrived" (P11), balloon-vs-pigeon last line (P12). 136 → 134 words, 61.2 → 59.8 s.
+
+## 9. Sharing
 - **Cover (max 5 words):** BALLOON OUT, PIGEON IN
-- **Caption:** In September 1870, Prussian armies surrounded Paris and cut the telegraph, leaving only the sky. Balloons carried mail out but drifted with the wind and could not return. News came in by pigeon: pigeons were carried out by balloon and, released far away, flew home to their lofts. Since a bird can barely carry any weight, photographer René Dagron's method shrank pages onto finger-sized film, tied to the tail feather and projected onto a screen in Paris to be copied by hand. Figures vary by source: the number of messages that arrived is given as roughly 60,000 to 150,000; the balloon count is about 66; the Ville d'Orléans distance is approximate. The note that the Ville d'Orléans basket is now in an Oslo museum (Norsk Teknisk Museum) rests on a search summary. Scenes and gestures are dramatized. Narration is AI-generated. Sources: Smithsonian Air & Space, French Ministry of Defence "Chemins de mémoire," Norsk Teknisk Museum, UCLA "Pigeon Post into Paris" exhibit.
+- **Caption:** In September 1870, Prussian armies surrounded Paris and the telegraph went dead. Balloons carried mail out but drifted with the wind and could not return. Replies came in by pigeon: pigeons were carried out by balloon and, released far away, flew home to their lofts. Since a bird can barely carry any weight, photographer René Dagron's method put pages onto finger-sized film, tied to the tail and enlarged on a screen in Paris to be copied by hand. Figures vary by source: messages that arrived are given as roughly 60,000 to 150,000; the balloon count is about 66; the Ville d'Orléans distance is approximate. That the Ville d'Orléans mail eventually arrived, and that its basket is now in an Oslo museum (Norsk Teknisk Museum), rest on search summaries. Scenes and gestures are dramatized. Narration is AI-generated. Sources: Smithsonian Air & Space, French Ministry of Defence "Chemins de mémoire," Norsk Teknisk Museum, UCLA "Pigeon Post into Paris" exhibit.
 - **Hashtags:** #history #paris #siegeofparis #balloon #untoldhistory
-
-## 8. Notes
-EN word count is higher than TR (136 vs 116); at equal duration this is expected. Open questions are shared with `senaryo.md` §8; no EN-only decisions needed beyond the optional "The telegraph was cut" fix.
