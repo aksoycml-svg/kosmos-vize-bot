@@ -12,7 +12,8 @@ import React from "react";
 import { Easing, Img, interpolate, staticFile } from "remotion";
 import geo from "../../bolumler/blanc/fransa.json";
 import { mono, serif } from "../../theme";
-import { cl, kameraHesapla } from "../zaman";
+import { cl, GIRIS, kameraHesapla, KameraDurum } from "../zaman";
+import type { Plan } from "../tipler";
 import { param, Sablon, SablonProps } from "../ortak";
 
 const K = 70, X0 = -5.4, Y0 = 51.3, YS = 1.45, OX = 70, OY = 400;
@@ -34,8 +35,9 @@ export const ROTALAR: Record<string, [string, number, number, boolean][]> = {
     ["Barbezieux", -0.15, 45.47, false], ["BORDEAUX", -0.58, 44.84, true],
   ],
 };
-const rotaYol = (ad: string) => {
-  const R = ROTALAR[ad] ?? ROTALAR["paris-bordeaux"];
+type RotaNokta = [string, number, number, boolean];
+const rotaYol = (ad: string, ozel?: RotaNokta[]) => {
+  const R = ozel?.length ? ozel : ROTALAR[ad] ?? ROTALAR["paris-bordeaux"];
   const PTS = R.map(([, lo, la]) => pj(lo, la));
   const SEG = PTS.slice(1).map((q, i) => Math.hypot(q[0] - PTS[i][0], q[1] - PTS[i][1]));
   const TOT = SEG.reduce((a, b) => a + b, 0);
@@ -44,7 +46,60 @@ const rotaYol = (ad: string) => {
     for (let i = 0; i < SEG.length; i++) { if (d <= SEG[i]) { const t = d / SEG[i]; return [PTS[i][0] + (PTS[i + 1][0] - PTS[i][0]) * t, PTS[i][1] + (PTS[i + 1][1] - PTS[i][1]) * t]; } d -= SEG[i]; }
     return PTS[PTS.length - 1];
   };
-  return { R, at, YOL: "M" + PTS.map((q) => q.join(",")).join(" L") };
+  // KT-3: her noktanın rota üzerindeki oranı (şehir etiketi çizgi oraya varınca belirir)
+  const ORAN = PTS.map((_, i) => SEG.slice(0, i).reduce((a, b) => a + b, 0) / Math.max(1e-6, TOT));
+  return { R, at, ORAN, YOL: "M" + PTS.map((q) => q.join(",")).join(" L") };
+};
+
+// ===== KT-3 rota çizimi + kamera takibi + iğne (teknik fikir: claude-animation-skills map-route, MIT © 2026 Artem Novitckii) =====
+// rota_noktalar: [[ad, lon, lat, buyuk], ...] (ROTALAR yerine) · rota_ciz {bas, bit}: mürekkep çizgi kendini çizer (inout), uçta divit
+// noktası; şehir adı çizgi oraya varınca belirir · kamera_takip {kare:[a,b], cs, ekran:[x,y], gecis 20}: kamera rota ucunu ekranda
+// sabit noktada tutar (plan kamerasından GIRIS ile bağlanır, b'den sonra uç durur, kamera da) · igne {kare, dusme 14}: pirinç başlı
+// harita iğnesi rota sonuna yerçekimiyle düşer, kare = batma TEMASI (temaslar'a "igne-tak"), bir küçük sekme, temas gölgesi.
+type RotaCiz = { bas: number; bit: number };
+type Takip = { kare: [number, number]; cs: number; ekran?: [number, number]; gecis?: number };
+type Igne = { kare: number; dusme?: number };
+const rotaIlerleme = (plan: Plan, p: number) => {
+  const rc = param<RotaCiz | null>(plan, "rota_ciz", null);
+  return rc ? interpolate(p, [rc.bas, rc.bit], [0, 1], { ...cl, easing: Easing.inOut(Easing.cubic) }) : 1;
+};
+const rotaPlan = (plan: Plan) => rotaYol(param<string>(plan, "rota", "paris-bordeaux"), param<RotaNokta[] | undefined>(plan, "rota_noktalar", undefined));
+export const haritaKamera = (plan: Plan, p: number): KameraDurum => {
+  const k0 = kameraHesapla(plan.kamera, p);
+  const tk = param<Takip | null>(plan, "kamera_takip", null);
+  if (!tk) return k0;
+  const { at } = rotaPlan(plan);
+  const uc = at(rotaIlerleme(plan, Math.min(p, tk.kare[1])));
+  const E = tk.ekran ?? [540, 900];
+  const kt = { cs: tk.cs, cx: E[0] - 540 - (uc[0] - 540) * tk.cs, cy: E[1] - 960 - (uc[1] - 960) * tk.cs };
+  const w = GIRIS(interpolate(p, [tk.kare[0], tk.kare[0] + (tk.gecis ?? 20)], [0, 1], cl));
+  return { cs: k0.cs + (kt.cs - k0.cs) * w, cx: k0.cx + (kt.cx - k0.cx) * w, cy: k0.cy + (kt.cy - k0.cy) * w };
+};
+// iğnenin dekor noktası (rota sonu) — kart (yazı katmanı) buna bağlanır
+export const igneNokta = (plan: Plan): [number, number] | null => {
+  if (!param<Igne | null>(plan, "igne", null)) return null;
+  const { R } = rotaPlan(plan);
+  const s = R[R.length - 1];
+  return pj(s[1], s[2]);
+};
+const IgneCiz: React.FC<{ x: number; y: number; ig: Igne; p: number }> = ({ x, y, ig, p }) => {
+  const n = ig.dusme ?? 14, t = p - ig.kare;
+  if (t < -n) return null;
+  // düşüş: yerçekimi (in quad) 140 px yükseklikten; temas sonrası 8 karelik tek sekme (8 px)
+  const h = t < 0 ? 140 * Easing.in(Easing.quad)(-t / n) : t < 8 ? 8 * Math.sin((Math.PI * t) / 8) : 0;
+  const ezil = t >= 0 && t < 4 ? 1 - 0.12 * Math.sin((Math.PI * t) / 4) : 1;
+  const gol = interpolate(h, [0, 140], [1, 0.35], cl);
+  return (
+    <g>
+      {/* temas gölgesi: harita ışığı sol-üstten (parşömen dokusuyla aynı) → gölge sağ-alta */}
+      <ellipse cx={x + 6 + h * 0.25} cy={y + 3 + h * 0.12} rx={14 * gol + 4} ry={5 * gol + 2} fill={INK} opacity={0.35 * gol} />
+      <g transform={`translate(${x},${y - h}) scale(${1 / Math.sqrt(ezil)},${ezil})`}>
+        <line x1={0} y1={0} x2={0} y2={-46} stroke="#3a3128" strokeWidth={4} strokeLinecap="round" />
+        <circle cx={0} cy={-52} r={17} fill="#b8862b" stroke={INK} strokeWidth={4} />
+        <circle cx={-5} cy={-57} r={5} fill="#e7c98a" />
+      </g>
+    </g>
+  );
 };
 
 const INK = "#2b1d10";
@@ -72,7 +127,9 @@ const SayacKutu: React.FC<{ y: number; giris: number; ikon: React.ReactNode; met
   </div>
 );
 const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
-  const { R, at, YOL } = rotaYol(param<string>(plan, "rota", "paris-bordeaux"));
+  const { R, at, ORAN, YOL } = rotaPlan(plan);
+  const rc = param<RotaCiz | null>(plan, "rota_ciz", null), qr = rotaIlerleme(plan, p);
+  const ig = param<Igne | null>(plan, "igne", null), igN = igneNokta(plan);
   const posta = param<Vurus | null>(plan, "posta", null);
   const tel = param<Vurus | null>(plan, "telgraf", null);
   const muhur = param<{ kare: number; metin: string } | null>(plan, "muhur", null);
@@ -81,7 +138,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const sayacSag = param<number>(plan, "sayac_sag", 80); // sayaç kutusu sağ kenar boşluğu (px, varsayılan 80)
   const etSaat = (n: number) => (etiket.saat ?? "{n} SAAT").replace("{n}", String(n));
   const etGun = (n: number) => (etiket.gun ?? "{n}. GÜN").replace("{n}", String(n));
-  const k = kameraHesapla(plan.kamera, p);
+  const k = haritaKamera(plan, p);
   const qp = posta ? interpolate(p, [posta.bas, posta.bit], [0, 1], { ...cl, easing: Easing.inOut(Easing.sin) }) : 0;
   const qt = tel ? interpolate(p, [tel.bas, tel.bit], [0, 1], { ...cl, easing: Easing.in(Easing.quad) }) : 0;
   const [ax, ay] = at(qp);
@@ -95,6 +152,10 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const bob = Math.sin(p * 0.6) * 3;
   if (posta) kilit.push({ ad: "araba", p: [540 + k.cx + (ax - 540) * k.cs, 960 + k.cy + (ay - 960) * k.cs], tur: "dokunus" });
   if (muhur) kilit.push({ ad: "mühür", p: [540, 880], tur: "temas" });
+  if (ig && igN) kilit.push({ ad: "iğne", p: [540 + k.cx + (igN[0] - 540) * k.cs, 960 + k.cy + (igN[1] - 960) * k.cs], tur: "temas" });
+  if (rc) { const u = at(qr); kilit.push({ ad: "rota ucu", p: [540 + k.cx + (u[0] - 540) * k.cs, 960 + k.cy + (u[1] - 960) * k.cs], tur: "dokunus" }); }
+  // sayaç kutuları alt bantta: altyazı (KT-1) bu kilit yüzünden üst banda çıkar
+  if (posta || tel) kilit.push({ ad: "sayaç kutusu", p: [800, posta && tel ? 1400 : 1350], tur: "kurulum" });
   const nKule = tel?.kule ?? 13;
   return (
     <div style={{ position: "absolute", inset: 0, backgroundColor: "#1a120b", overflow: "hidden" }}>
@@ -105,10 +166,20 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           <path d={FR} fill={INK} stroke={INK} strokeWidth={7} strokeLinejoin="round" opacity={0.85} />
           <path d={FR} fill="#d9c49a" />
           <path d={FR} fill="url(#hrTarama)" />
-          <path d={YOL} fill="none" stroke={INK} strokeWidth={4} strokeDasharray="2 10" strokeLinecap="round" opacity={0.7} />
+          {!rc && <path d={YOL} fill="none" stroke={INK} strokeWidth={4} strokeDasharray="2 10" strokeLinecap="round" opacity={0.7} />}
+          {/* KT-3: mürekkep rota kendini çizer (iki geçiş: yumuşak alt iz + net kontur), uçta divit damlası */}
+          {rc && qr > 0 && <>
+            <path d={YOL} fill="none" stroke={INK} strokeWidth={11} pathLength={1} strokeDasharray={`${qr} 2`} strokeLinecap="round" strokeLinejoin="round" opacity={0.18} />
+            <path d={YOL} fill="none" stroke={INK} strokeWidth={5} pathLength={1} strokeDasharray={`${qr} 2`} strokeLinecap="round" strokeLinejoin="round" />
+            {qr < 1 && (() => { const [ux, uy] = at(qr); return <circle cx={ux} cy={uy} r={7} fill={INK} />; })()}
+          </>}
           {posta && <path d={YOL} fill="none" stroke="#7a5a2a" strokeWidth={5} pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - qp} strokeLinecap="round" />}
           {telAktif && <path d={YOL} fill="none" stroke="#c98a2a" strokeWidth={6} pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - qt} strokeLinecap="round" />}
-          {R.map(([n, lo, la, big]) => { const [x, y] = pj(lo, la); return big ? <g key={n}><circle cx={x} cy={y} r={11} fill={INK} stroke={INK} strokeWidth={3} /><text x={x + 20} y={y + 12} fontFamily={serif} fontWeight={900} fontSize={40} fill={INK}>{n}</text></g> : <circle key={n} cx={x} cy={y} r={4} fill={INK} />; })}
+          {R.map(([n, lo, la, big], i) => { const [x, y] = pj(lo, la);
+            // KT-3: rota çizilirken şehir, çizgi varınca mürekkeple belirir (ölçek .6 → 1, GIRIS)
+            if (rc) { const g = i === 0 ? 1 : GIRIS(interpolate(qr, [ORAN[i] - 0.001, ORAN[i] + 0.12], [0, 1], cl)); if (g <= 0) return null;
+              return <g key={n} transform={`translate(${x},${y}) scale(${0.6 + 0.4 * g}) translate(${-x},${-y})`} opacity={g}>{big ? <><circle cx={x} cy={y} r={11} fill={INK} /><text x={x + 20} y={y + 12} fontFamily={serif} fontWeight={900} fontSize={40} fill={INK}>{n}</text></> : <circle cx={x} cy={y} r={5} fill={INK} />}</g>; }
+            return big ? <g key={n}><circle cx={x} cy={y} r={11} fill={INK} stroke={INK} strokeWidth={3} /><text x={x + 20} y={y + 12} fontFamily={serif} fontWeight={900} fontSize={40} fill={INK}>{n}</text></g> : <circle key={n} cx={x} cy={y} r={4} fill={INK} />; })}
           {telAktif && Array.from({ length: nKule }).map((_, i) => { const q = i / (nKule - 1); const [x, y] = at(q); return <KuleIkon key={i} x={x - 28} y={y} on={interpolate(qt, [q - 0.02, q + 0.02], [0, 1], cl)} />; })}
           {posta && qp > 0 && qp < 1 && Array.from({ length: 8 }).map((_, i) => { const [dx, dy] = at(Math.max(0, qp - 0.004 * (i + 1))); return <circle key={i} cx={dx + 40} cy={dy + 10} r={6 + i * 2.4} fill="#c9b48a" opacity={0.4 * (1 - i / 8)} />; })}
           {/* mühür: harita yüzeyine iner (540, 880); temas karesinde ölçek 1 */}
@@ -116,6 +187,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
             <rect x={-300} y={-58} width={600} height={116} fill="rgba(233,223,201,0.55)" stroke="#b3261e" strokeWidth={10} />
             <text x={0} y={24} textAnchor="middle" fontFamily={mono} fontSize={64} letterSpacing={6} fill="#b3261e">{muhur!.metin}</text>
           </g>}
+          {ig && igN && <IgneCiz x={igN[0]} y={igN[1]} ig={ig} p={p} />}
         </svg>
         {posta && <Img src={staticFile("blanc/img/araba.png")} style={{ position: "absolute", left: ax - 100, top: ay - 82 + bob, width: 200 }} />}
       </div>

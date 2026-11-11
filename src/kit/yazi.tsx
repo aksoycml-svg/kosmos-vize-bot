@@ -125,3 +125,56 @@ export const KitHaritaEtiketi: React.FC<{ metin: string; kutu: [number, number];
     </AbsoluteFill>
   );
 };
+
+// KT-4 SAYAÇ (ekran yazısı türü): kâğıt şerit + Playfair 900, rakamlar tabular (kutu titremez); 0 → hedef GIRIS eğrisiyle,
+// binlik ayırıcı dil başına (sayiBicim). donus: sayı kâğıtta yukarı kayıp çıkar, yuvarlak ifade alttan girer ("İKİ MİLYON").
+// Kutu genişliği/punto en uzun hâlden (son sayı ya da dönüş metni) hesaplanır → sayarken boyut değişmez.
+// Teknik fikir: claude-animation-skills graph/template (count-up, toLocaleString) — MIT, © 2026 Artem Novitckii.
+export const KitSayac: React.FC<{ sablon: string; deger: string; enUzun: string; donus?: string; donusT?: number; vurgu?: boolean; bant?: "ust" | "alt"; dil?: string }> = ({ sablon, deger, enUzun, donus, donusT = 0, vurgu, bant = "ust", dil = "tr" }) => {
+  const ic = YAZI.kutuW - 52, en = 0.6;
+  const px = Math.min(72, ic / Math.max(1, enUzun.length * en));
+  const w = Math.min(YAZI.kutuW, enUzun.length * en * px + 52);
+  const parca = sablon.split("{n}");
+  const satir = (icerik: React.ReactNode, y: number, op: number) => (
+    <div style={{ position: "absolute", left: 26, right: 0, top: 6, transform: `translateY(${y}px)`, opacity: op, whiteSpace: "nowrap" }}>{icerik}</div>
+  );
+  const sayi = <>{parca[0]}<span style={{ color: vurgu ? KIRMIZI_KAGIT : undefined }}>{deger}</span>{parca.slice(1).join("{n}")}</>;
+  const t = Math.max(0, Math.min(1, donusT));
+  return (
+    <AbsoluteFill style={{ alignItems: "flex-start", justifyContent: bant === "ust" ? "flex-start" : "flex-end", padding: bant === "ust" ? `${YAZI.ustY + 6}px ${YAZI.yan}px 0` : `0 ${YAZI.yan}px ${1920 - YAZI.altAlt}px` }}>
+      <div style={{ position: "relative", width: w, height: px * 1.04 + 18, overflow: "hidden", background: KAGIT, borderTop: `2px solid ${MUREKKEP}`, borderBottom: `2px solid ${MUREKKEP}`, boxShadow: "0 3px 0 rgba(20,17,13,0.35)" }}>
+        <div lang={dil} style={{ fontFamily: serif, fontWeight: 900, fontSize: px, lineHeight: 1.04, color: MUREKKEP, fontVariantNumeric: "tabular-nums lining-nums" }}>
+          {satir(sayi, -t * px * 1.1, 1 - t)}
+          {donus && t > 0 && satir(<span style={{ color: vurgu ? KIRMIZI_KAGIT : undefined }}>{donus}</span>, (1 - t) * px * 1.1, t)}
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// KT-3 HARİTA BİLGİ KARTI (yazı katmanı): iğne noktasına bağlı kâğıt kart — başlık Playfair 900 44 px, alt satır Plex Mono 28 px.
+// yon: kartın iğneye göre yeri (ust varsayılan). Kart güvenli alanda kalır (x 80–1000, y 240–1490); iğneye ince mürekkep sap.
+// Teknik fikir: claude-animation-skills map-route (iğne düşer, kart iğnenin üstünde belirir, kenarlara kenetlenir) — MIT.
+export const KitHaritaKart: React.FC<{ metin: string; alt?: string; nokta: [number, number]; t: number; yon?: "ust" | "alt" | "sol" | "sag"; dil?: string }> = ({ metin, alt, nokta, t, yon = "ust", dil = "tr" }) => {
+  const bpx = 44, apx = 28;
+  const w = Math.max(metin.length * 0.56 * bpx, (alt?.length ?? 0) * 0.62 * apx) + 2 * 24 + 4;
+  const h = bpx * 1.15 + (alt ? apx * 1.3 + 6 : 0) + 2 * 16 + 4;
+  const ara = 70;
+  let cx = nokta[0], cy = nokta[1];
+  if (yon === "ust") cy -= ara + h / 2; else if (yon === "alt") cy += ara + h / 2; else if (yon === "sol") cx -= ara + w / 2; else cx += ara + w / 2;
+  cx = Math.max(YAZI.yan + w / 2, Math.min(1080 - YAZI.yan - w / 2, cx));
+  cy = Math.max(YAZI.ustY + h / 2, Math.min(YAZI.altAlt - h / 2, cy));
+  const kx = Math.max(cx - w / 2, Math.min(cx + w / 2, nokta[0])), ky = Math.max(cy - h / 2, Math.min(cy + h / 2, nokta[1]));
+  return (
+    <AbsoluteFill style={{ opacity: Math.min(1, t * 1.4) }}>
+      <svg width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0 }}>
+        <line x1={nokta[0]} y1={nokta[1] - 6} x2={kx} y2={ky} stroke={MUREKKEP} strokeWidth={2.5} strokeLinecap="round" strokeDasharray={`${Math.hypot(kx - nokta[0], ky - nokta[1]) * t} 2000`} />
+      </svg>
+      <div lang={dil} style={{ position: "absolute", left: cx - w / 2, top: cy - h / 2 + (1 - t) * 16, width: w, height: h, boxSizing: "border-box", transform: `scale(${0.92 + 0.08 * t})`,
+        background: KAGIT, border: `2px solid ${MUREKKEP}`, boxShadow: "0 4px 0 rgba(20,17,13,0.35)", padding: "16px 24px", textAlign: "center", whiteSpace: "nowrap" }}>
+        <div style={{ fontFamily: serif, fontWeight: 900, fontSize: bpx, lineHeight: 1.15, color: MUREKKEP }}>{metin}</div>
+        {alt && <div style={{ fontFamily: mono, fontWeight: 500, fontSize: apx, lineHeight: 1.3, marginTop: 6, letterSpacing: "0.06em", color: "#4a4237" }}>{alt}</div>}
+      </div>
+    </AbsoluteFill>
+  );
+};

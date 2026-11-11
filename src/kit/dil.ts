@@ -26,7 +26,8 @@ const listeSec = (v: DilListe | undefined, ek: string[] | undefined, dil: Dil, a
 export const buyukHarf = (s: string, dil: Dil) => s.toLocaleUpperCase(dil === "tr" ? "tr" : "en");
 
 type Ham = Record<string, unknown>;
-export type CozEkran = { bant: "ust" | "alt"; metin: string; vurgu?: string[]; tur?: "iddia" | "formul"; bas: number; bit: number; kutu?: { x?: [number, number] } };
+export type CozEkran = { bant: "ust" | "alt"; metin: string; vurgu?: string[]; tur?: "iddia" | "formul" | "sayac"; bas: number; bit: number; kutu?: { x?: [number, number] };
+  sayac?: { hedef: number; baslangic: number; bas: number; sure: number; ondalik: number; vurgu: boolean; donus?: { kare: number; metin: string } } };
 export type CozReplik = { kim?: string; metin: string; bant: "ust" | "alt"; bas: number; bit: number; vurgu?: string[]; kelimeKare?: number[] };
 export type CozHarita = { metin: string; nokta: [number, number]; kutu: [number, number]; bas: number; bit: number };
 
@@ -34,8 +35,13 @@ export const ekranCoz = (plan: Plan, dil: Dil, ana: Dil): CozEkran[] => (plan.ek
   const h = y as unknown as Ham;
   return { bant: y.bant, tur: y.tur, bas: y.bas ?? 0, bit: y.bit ?? plan.sure_kare, kutu: h.kutu as CozEkran["kutu"],
     metin: dilSec(y.metin as DilMetin, h[dil] as string | undefined, dil, ana, `${plan.id} ekran_yazisi[${i}]`),
-    vurgu: listeSec(y.vurgu as DilListe | undefined, h[`vurgu_${dil}`] as string[] | undefined, dil, ana) };
+    vurgu: listeSec(y.vurgu as DilListe | undefined, h[`vurgu_${dil}`] as string[] | undefined, dil, ana),
+    // KT-4 sayaç: dönüş metni de dil başına (metin {tr,en} ya da ana dil + en)
+    sayac: y.tur === "sayac" && y.sayac ? { hedef: y.sayac.hedef, baslangic: y.sayac.baslangic ?? 0, bas: y.sayac.bas ?? 0, sure: y.sayac.sure ?? 60, ondalik: y.sayac.ondalik ?? 0, vurgu: !!y.sayac.vurgu,
+      donus: y.sayac.donus ? { kare: y.sayac.donus.kare, metin: dilSec(y.sayac.donus.metin as DilMetin, y.sayac.donus.en, dil, ana, `${plan.id} ekran_yazisi[${i}].sayac.donus`) } : undefined } : undefined };
 });
+// KT-4 sayı biçimi dil başına: tr 2.000.000 · en 2,000,000
+export const sayiBicim = (n: number, dil: Dil, ondalik = 0) => n.toLocaleString(dil === "tr" ? "tr-TR" : "en-US", { minimumFractionDigits: ondalik, maximumFractionDigits: ondalik });
 
 export const replikCoz = (plan: Plan, dil: Dil, ana: Dil): CozReplik[] => (plan.replik ?? []).map((r: Replik, i) => {
   const h = r as unknown as Ham, yer = `${plan.id} replik[${i}]`;
@@ -61,4 +67,13 @@ export const haritaCoz = (plan: Plan, dil: Dil, ana: Dil): CozHarita[] => (((pla
 export const etiketCoz = (e: { ad: DilMetin; alt?: DilMetin } & Ham, dil: Dil, ana: Dil, yer: string) => ({
   ad: dilSec(e.ad, e[`ad_${dil}`] as string | undefined, dil, ana, `${yer}.ad`),
   alt: e.alt == null ? undefined : dilSec(e.alt, e[`alt_${dil}`] as string | undefined, dil, ana, `${yer}.alt`),
+});
+
+// KT-3 harita bilgi kartı: {metin{tr,en} | tr/en, alt?, bas, bit, yon}
+export type CozKart = { metin: string; alt?: string; bas: number; bit: number; yon: "ust" | "alt" | "sol" | "sag" };
+export const kartCoz = (plan: Plan, dil: Dil, ana: Dil): CozKart[] => (plan.harita_kart ?? []).map((k, i) => {
+  const m = (k.metin as DilMetin | undefined) ?? { tr: k.tr, en: k.en };
+  const yer = `${plan.id} harita_kart[${i}]`;
+  return { metin: dilSec(m, undefined, dil, ana, yer), alt: k.alt == null ? undefined : dilSec(k.alt as DilMetin, k.alt_en, dil, ana, `${yer}.alt`),
+    bas: k.bas ?? 0, bit: k.bit ?? plan.sure_kare, yon: k.yon ?? "ust" };
 });
