@@ -256,3 +256,26 @@ Ekran yazısı önerileri (anlatımı tekrarlamaz): "PARİS · 19 Eylül 1870", 
 10. Rakam: yüz bin mertebesinde mesaj; kuşların çoğu dönmez (yumuşak) [HOI], [MICRO].
 11. Kapanış: ateşkes 28 Ocak; sepet bugün Oslo'da / tüpün torunu (doğrulamaya bağlı).
 **Risk:** 11 plan 8–14 sınırına uyar; en riskli plan 7 (Dagron'un Prusya hattından kaçışı yalnız arama özetinden) ve plan 10 (rakamlar çelişkili).
+
+---
+
+## ek. Senaryo v2 doğrulamaları (2026-11-11)
+
+**Kısıt:** `WebFetch` yine açılmadı (tekniskmuseum.no, sciencenorway.no: `getaddrinfo ENOTFOUND`, ağ izni yok). Aşağıdakilerin hepsi **arama özetine** dayanır; sayfa tam metni okunmadı.
+
+### E1. Kuşatma sırasında Paris nüfusu
+- 30 Aralık 1870 sayımı: **2.005.709 sakin, silahlı kuvvetler hariç** — özet bir eHistory yazısının paylaşım sayfasından geldi, yani ikinci el: [RallyPoint/eHistory](https://www.rallypoint.com/shared-links/the-siege-of-paris-during-the-franco-prussian-war-ehistory). Birincil sayım belgesi görülmedi.
+- Asker: kuşatma başında şehirde ≈200.000 kişi; bunların yalnız 60–70 bini düzenli asker, gerisi mobil/Ulusal Muhafız (eski, OCR'lı bir metnin özeti; sayılar yaklaşık): [Wisc. kütüphanesi taraması](https://search.library.wisc.edu/digital/AMLCNL2EJCEO3S82/text/ARONZAEGYJTDL38I).
+- Akademik: Cogneau & Kesztenbaum, *Population* 2021, kuşatma boyunca ölümlerin her yaşta ikiye katlandığını bulur (nüfus rakamı özette yok): [PSE](https://www.parisschoolofeconomics.eu/en/publications-hal/les-consequences-demographiques-des-sieges-de-paris-1870-1871).
+- **Güven: orta-yüksek** ("iki milyon" mertebesi; tek kesin sayı ikinci el). Asker sayısı: orta-düşük.
+- **Çıkarım:** sivil ≈2 milyon + asker ≈ yüz binler → "iki milyondan fazla" doğru yöndedir ama toplam için kaynaklı tek sayı yok.
+- **Güvenli TR:** "İki milyon kadar insan şehre kapandı." / "İki milyonu aşkın insan." Sivil+asker toplamı için tek rakam verme; "2.005.709" gibi kesin sayı söyleme.
+
+### E2. Ville d'Orléans postası ve mesajı
+- Doğrulanan: kalkış 24 Kasım 1870, pilot Paul Rolier, kurye Léon Bézier; **dört posta çuvalı** + Bézier'in giysisine dikili kodlu mesaj, hedef Gambetta/Tours; Norveç'e iniş (Lifjell/Telemark): [Teknisk Museum](https://www.tekniskmuseum.no/en/news/la-ville-dorleans-airmail), [ScienceNorway](https://www.sciencenorway.no/culture-history-technology/when-a-french-gas-balloon-was-swept-away-by-the-wind-and-ended-up-in-norway/2669162), [Norveç Dışişleri FR](https://www.norway.no/fr/france/norvege-france/actu-event/dimportants-messages-de-guerre-devaient-etre-remis-a-tours--latterrissage-eut-lieu-au-telemark/) (hepsi arama özeti).
+- **Pilotlar hayatta**: Kristiania'da ziyafet; Paris'ten ayrılışlarından ≈14 gün sonra Fransa topraklarına döndüler. Arama özeti, çeşitli kaynaklar. Güven: orta-yüksek.
+- **Postanın akıbeti — doğrulanamadı.** Aramada: bir kaynak "çuvallardan biri yolda Kuzey Denizi'ne atıldı" der; başka bir kaynak "tüm posta yolda kayboldu" der; Teknisk Museum özetlerinden biri "gecikme Fransız taarruzunun ağır kayıpla bitmesine katkıda bulundu" der (müze iddiası, belge değil). Mesajın Tours'a ulaşıp ulaşmadığını, konsolos/Norveçlilerin rolünü, mektupların sonradan iletilip iletilmediğini **hiçbir özet teyit etmedi.** Konsolos rolü: bulunamadı.
+- **ÇELİŞKİ/DÜZELTME:** Bu dosyanın Bölüm 7 (satır "Mektuplar yine de iletilir…") ve Bölüm 1 (çuvalın "Londra yoluyla 2 Aralık'ta iletildi") ifadeleri **tek zayıf kaynağa (açık artırma kataloğu/arama özeti) dayanır; bu ek ile desteklenmedi**. Senaryoda kullanılmamalı. Güven: düşük.
+- **"Mektuplar yine de ulaştı" kesin söylenemez.**
+- **Güvenli TR:** "Gambetta'ya gidecek gizli mesaj Tours yerine Norveç'in karlı dağlarına indi." / "Pilot ve kurye sağ kurtuldu; Norveç'te kahraman gibi karşılandılar." Posta için: "Mesajın akıbeti net değil" ya da hiç söyleme. Kaçınılacak: "ulaştı", "kayboldu", "yüzünden yenildiler".
+- **Öneri:** ironi yeterince güçlüdür (≈6 kat uzak); kapanışta posta akıbetine dayanma. Ağ izni gelirse önce tekniskmuseum.no `airmail` sayfası okunmalı.
