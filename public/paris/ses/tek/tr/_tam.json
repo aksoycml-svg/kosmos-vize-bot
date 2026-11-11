@@ -1,0 +1,593 @@
+{
+ "text": "[curious] Kuşatılmış Paris'e haberi güvercinler getirdi. Onları dışarı balon çıkarmıştı. Prusya orduları Paris'i çevirdi, telgrafı kesti. İki milyon kadar insan şehre kapandı. Çare gökyüzüydü: balonlar mektupları dışarı taşıdı. [tense] Ama balon rüzgârla gider, dönemez. Cevap Paris'e nasıl girecek? Güvercin kümesine döner. Onu balonla çıkarıp uzakta bıraktılar. Ama kuş mektup taşıyamaz. Fotoğrafçı Dagron sayfaları parmak boyunda filme sığdırmayı buldu. Hükümet Tours'taydı. Dagron aletleriyle balonla oraya gitti, mektupları küçülttü. Film, güvercinin kuyruk tüyüne bağlanıp salındı. Kuş kümesine konunca film perdede büyütüldü. Memurlar kopyalayıp dağıttı. [somber] Kuşların çoğu dönemedi. Yine de on binlerce mesaj ulaştı. Tours'a giden gizli mesajlı balon Norveç'in dağlarına indi. Yolcular sağ kurtuldu, ama mesaj Paris'in elinden çıkmıştı. [warm] İnsan balon yaptı, rüzgâr yönetti. Haberi eve dönmeyi bilen güvercin getirdi.",
+ "words": [
+  {
+   "t": "Kuşatılmış",
+   "s": 0.213,
+   "e": 0.56
+  },
+  {
+   "t": "Paris'e",
+   "s": 0.627,
+   "e": 1.12
+  },
+  {
+   "t": "haberi",
+   "s": 1.18,
+   "e": 1.52
+  },
+  {
+   "t": "güvercinler",
+   "s": 1.573,
+   "e": 2.24
+  },
+  {
+   "t": "getirdi.",
+   "s": 2.3,
+   "e": 3.2
+  },
+  {
+   "t": "Onları",
+   "s": 3.333,
+   "e": 3.76
+  },
+  {
+   "t": "dışarı",
+   "s": 3.817,
+   "e": 4.16
+  },
+  {
+   "t": "balon",
+   "s": 4.22,
+   "e": 4.48
+  },
+  {
+   "t": "çıkarmıştı.",
+   "s": 4.54,
+   "e": 5.6
+  },
+  {
+   "t": "Prusya",
+   "s": 5.707,
+   "e": 6.16
+  },
+  {
+   "t": "orduları",
+   "s": 6.2,
+   "e": 6.64
+  },
+  {
+   "t": "Paris'i",
+   "s": 6.707,
+   "e": 7.12
+  },
+  {
+   "t": "çevirdi,",
+   "s": 7.18,
+   "e": 7.84
+  },
+  {
+   "t": "telgrafı",
+   "s": 7.9,
+   "e": 8.4
+  },
+  {
+   "t": "kesti.",
+   "s": 8.48,
+   "e": 9.24
+  },
+  {
+   "t": "İki",
+   "s": 9.31,
+   "e": 9.52
+  },
+  {
+   "t": "milyon",
+   "s": 9.577,
+   "e": 9.92
+  },
+  {
+   "t": "kadar",
+   "s": 9.973,
+   "e": 10.24
+  },
+  {
+   "t": "insan",
+   "s": 10.307,
+   "e": 10.64
+  },
+  {
+   "t": "şehre",
+   "s": 10.7,
+   "e": 11.04
+  },
+  {
+   "t": "kapandı.",
+   "s": 11.08,
+   "e": 11.88
+  },
+  {
+   "t": "Çare",
+   "s": 12.06,
+   "e": 12.48
+  },
+  {
+   "t": "gökyüzüydü:",
+   "s": 12.56,
+   "e": 13.56
+  },
+  {
+   "t": "balonlar",
+   "s": 13.63,
+   "e": 14.16
+  },
+  {
+   "t": "mektupları",
+   "s": 14.224,
+   "e": 14.8
+  },
+  {
+   "t": "dışarı",
+   "s": 14.846,
+   "e": 15.12
+  },
+  {
+   "t": "taşıdı.",
+   "s": 15.173,
+   "e": 15.601
+  },
+  {
+   "t": "Ama",
+   "s": 16.355,
+   "e": 16.4
+  },
+  {
+   "t": "balon",
+   "s": 16.48,
+   "e": 16.88
+  },
+  {
+   "t": "rüzgârla",
+   "s": 16.96,
+   "e": 17.441
+  },
+  {
+   "t": "gider,",
+   "s": 17.507,
+   "e": 18.0
+  },
+  {
+   "t": "dönemez.",
+   "s": 18.04,
+   "e": 18.84
+  },
+  {
+   "t": "Cevap",
+   "s": 18.98,
+   "e": 19.36
+  },
+  {
+   "t": "Paris'e",
+   "s": 19.427,
+   "e": 19.84
+  },
+  {
+   "t": "nasıl",
+   "s": 19.893,
+   "e": 20.16
+  },
+  {
+   "t": "girecek?",
+   "s": 20.2,
+   "e": 21.04
+  },
+  {
+   "t": "Güvercin",
+   "s": 21.147,
+   "e": 21.76
+  },
+  {
+   "t": "kümesine",
+   "s": 21.787,
+   "e": 22.24
+  },
+  {
+   "t": "döner.",
+   "s": 22.267,
+   "e": 22.92
+  },
+  {
+   "t": "Onu",
+   "s": 23.013,
+   "e": 23.28
+  },
+  {
+   "t": "balonla",
+   "s": 23.34,
+   "e": 23.76
+  },
+  {
+   "t": "çıkarıp",
+   "s": 23.813,
+   "e": 24.24
+  },
+  {
+   "t": "uzakta",
+   "s": 24.304,
+   "e": 24.64
+  },
+  {
+   "t": "bıraktılar.",
+   "s": 24.68,
+   "e": 25.64
+  },
+  {
+   "t": "Ama",
+   "s": 25.73,
+   "e": 26.0
+  },
+  {
+   "t": "kuş",
+   "s": 26.08,
+   "e": 26.32
+  },
+  {
+   "t": "mektup",
+   "s": 26.384,
+   "e": 26.72
+  },
+  {
+   "t": "taşıyamaz.",
+   "s": 26.8,
+   "e": 27.88
+  },
+  {
+   "t": "Fotoğrafçı",
+   "s": 27.952,
+   "e": 28.64
+  },
+  {
+   "t": "Dagron",
+   "s": 28.72,
+   "e": 29.28
+  },
+  {
+   "t": "sayfaları",
+   "s": 29.344,
+   "e": 29.92
+  },
+  {
+   "t": "parmak",
+   "s": 29.98,
+   "e": 30.32
+  },
+  {
+   "t": "boyunda",
+   "s": 30.38,
+   "e": 30.8
+  },
+  {
+   "t": "filme",
+   "s": 30.853,
+   "e": 31.12
+  },
+  {
+   "t": "sığdırmayı",
+   "s": 31.16,
+   "e": 31.68
+  },
+  {
+   "t": "buldu.",
+   "s": 31.74,
+   "e": 32.48
+  },
+  {
+   "t": "Hükümet",
+   "s": 32.58,
+   "e": 33.36
+  },
+  {
+   "t": "Tours'taydı.",
+   "s": 33.413,
+   "e": 34.56
+  },
+  {
+   "t": "Dagron",
+   "s": 34.64,
+   "e": 35.04
+  },
+  {
+   "t": "aletleriyle",
+   "s": 35.12,
+   "e": 35.76
+  },
+  {
+   "t": "balonla",
+   "s": 35.82,
+   "e": 36.24
+  },
+  {
+   "t": "oraya",
+   "s": 36.293,
+   "e": 36.56
+  },
+  {
+   "t": "gitti,",
+   "s": 36.627,
+   "e": 37.2
+  },
+  {
+   "t": "mektupları",
+   "s": 37.248,
+   "e": 37.76
+  },
+  {
+   "t": "küçülttü.",
+   "s": 37.813,
+   "e": 38.8
+  },
+  {
+   "t": "Film,",
+   "s": 38.88,
+   "e": 39.32
+  },
+  {
+   "t": "güvercinin",
+   "s": 39.36,
+   "e": 39.92
+  },
+  {
+   "t": "kuyruk",
+   "s": 40.0,
+   "e": 40.24
+  },
+  {
+   "t": "tüyüne",
+   "s": 40.28,
+   "e": 40.56
+  },
+  {
+   "t": "bağlanıp",
+   "s": 40.62,
+   "e": 41.04
+  },
+  {
+   "t": "salındı.",
+   "s": 41.12,
+   "e": 41.88
+  },
+  {
+   "t": "Kuş",
+   "s": 41.973,
+   "e": 42.24
+  },
+  {
+   "t": "kümesine",
+   "s": 42.267,
+   "e": 42.72
+  },
+  {
+   "t": "konunca",
+   "s": 42.76,
+   "e": 43.28
+  },
+  {
+   "t": "film",
+   "s": 43.344,
+   "e": 43.6
+  },
+  {
+   "t": "perdede",
+   "s": 43.66,
+   "e": 44.08
+  },
+  {
+   "t": "büyütüldü.",
+   "s": 44.12,
+   "e": 44.721
+  },
+  {
+   "t": "Memurlar",
+   "s": 44.9,
+   "e": 45.76
+  },
+  {
+   "t": "kopyalayıp",
+   "s": 45.84,
+   "e": 46.4
+  },
+  {
+   "t": "dağıttı.",
+   "s": 46.464,
+   "e": 47.32
+  },
+  {
+   "t": "Kuşların",
+   "s": 47.805,
+   "e": 48.161
+  },
+  {
+   "t": "çoğu",
+   "s": 48.241,
+   "e": 48.561
+  },
+  {
+   "t": "dönemedi.",
+   "s": 48.601,
+   "e": 49.521
+  },
+  {
+   "t": "Yine",
+   "s": 49.585,
+   "e": 49.841
+  },
+  {
+   "t": "de",
+   "s": 49.948,
+   "e": 50.161
+  },
+  {
+   "t": "on",
+   "s": 50.241,
+   "e": 50.401
+  },
+  {
+   "t": "binlerce",
+   "s": 50.461,
+   "e": 50.961
+  },
+  {
+   "t": "mesaj",
+   "s": 51.014,
+   "e": 51.281
+  },
+  {
+   "t": "ulaştı.",
+   "s": 51.361,
+   "e": 52.281
+  },
+  {
+   "t": "Tours'a",
+   "s": 52.354,
+   "e": 52.801
+  },
+  {
+   "t": "giden",
+   "s": 52.868,
+   "e": 53.201
+  },
+  {
+   "t": "gizli",
+   "s": 53.261,
+   "e": 53.521
+  },
+  {
+   "t": "mesajlı",
+   "s": 53.601,
+   "e": 54.081
+  },
+  {
+   "t": "balon",
+   "s": 54.141,
+   "e": 54.641
+  },
+  {
+   "t": "Norveç'in",
+   "s": 54.701,
+   "e": 55.201
+  },
+  {
+   "t": "dağlarına",
+   "s": 55.261,
+   "e": 55.761
+  },
+  {
+   "t": "indi.",
+   "s": 55.821,
+   "e": 56.441
+  },
+  {
+   "t": "Yolcular",
+   "s": 56.531,
+   "e": 57.041
+  },
+  {
+   "t": "sağ",
+   "s": 57.121,
+   "e": 57.361
+  },
+  {
+   "t": "kurtuldu,",
+   "s": 57.401,
+   "e": 58.201
+  },
+  {
+   "t": "ama",
+   "s": 58.231,
+   "e": 58.321
+  },
+  {
+   "t": "mesaj",
+   "s": 58.428,
+   "e": 58.961
+  },
+  {
+   "t": "Paris'in",
+   "s": 59.028,
+   "e": 59.441
+  },
+  {
+   "t": "elinden",
+   "s": 59.494,
+   "e": 59.921
+  },
+  {
+   "t": "çıkmıştı.",
+   "s": 59.974,
+   "e": 60.961
+  },
+  {
+   "t": "İnsan",
+   "s": 61.65,
+   "e": 61.761
+  },
+  {
+   "t": "balon",
+   "s": 61.841,
+   "e": 62.161
+  },
+  {
+   "t": "yaptı,",
+   "s": 62.281,
+   "e": 62.961
+  },
+  {
+   "t": "rüzgâr",
+   "s": 63.001,
+   "e": 63.361
+  },
+  {
+   "t": "yönetti.",
+   "s": 63.428,
+   "e": 64.321
+  },
+  {
+   "t": "Haberi",
+   "s": 64.401,
+   "e": 64.881
+  },
+  {
+   "t": "eve",
+   "s": 64.941,
+   "e": 65.121
+  },
+  {
+   "t": "dönmeyi",
+   "s": 65.174,
+   "e": 65.521
+  },
+  {
+   "t": "bilen",
+   "s": 65.561,
+   "e": 65.841
+  },
+  {
+   "t": "güvercin",
+   "s": 65.894,
+   "e": 66.401
+  },
+  {
+   "t": "getirdi.",
+   "s": 66.461,
+   "e": 67.441
+  }
+ ],
+ "seed": 7,
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ }
+}

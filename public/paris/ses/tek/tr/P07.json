@@ -1,0 +1,64 @@
+{
+ "id": "P07",
+ "lang": "tr",
+ "text": "[curious] Hükümet Tours'taydı. [determined] Dagron aletleriyle balonla oraya gitti, mektupları küçülttü.",
+ "words": [
+  {
+   "t": "Hükümet",
+   "s": 0.05,
+   "e": 0.83
+  },
+  {
+   "t": "Tours'taydı.",
+   "s": 0.883,
+   "e": 2.03
+  },
+  {
+   "t": "Dagron",
+   "s": 2.11,
+   "e": 2.51
+  },
+  {
+   "t": "aletleriyle",
+   "s": 2.59,
+   "e": 3.23
+  },
+  {
+   "t": "balonla",
+   "s": 3.29,
+   "e": 3.71
+  },
+  {
+   "t": "oraya",
+   "s": 3.763,
+   "e": 4.03
+  },
+  {
+   "t": "gitti,",
+   "s": 4.097,
+   "e": 4.67
+  },
+  {
+   "t": "mektupları",
+   "s": 4.718,
+   "e": 5.23
+  },
+  {
+   "t": "küçülttü.",
+   "s": 5.283,
+   "e": 6.27
+  }
+ ],
+ "dur": 6.348,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true
+}

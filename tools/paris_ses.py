@@ -155,6 +155,88 @@ def dinlet(lang):
     subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", out, "-filter_complex", "showwavespic=s=1800x300:colors=#2a7fff", "-frames:v", "1", f"public/paris/dinlet/dalga-{lang}.png"], check=True)
     os.remove(tmp)
 
+# ---- TEK CEKIM DENEMESI (public/paris/ses/tek/) ----
+TEK_AYAR = {"stability": 0.75, "similarity_boost": 0.85, "style": 0.4, "use_speaker_boost": True, "speed": 1.1}
+TEK_ETIKET = {"tr": {"P01": "[curious] ", "P04": "[tense] ", "P10": "[somber] ", "P12": "[warm] "},
+              "en": {"P01": "[curious] ", "P04": "[tense] ", "P10": "[somber] ", "P12": "[warm] "}}
+def duz(t): return re.sub(r"\[[a-z ]+\]\s*", "", t).strip()
+
+def tek(lang, seed=20251101):
+    OUT = f"{ROOT}/tek/{lang}"; os.makedirs(OUT, exist_ok=True); VID, ad = VOICE[lang]
+    metin = " ".join(TEK_ETIKET[lang].get(p, "") + duz(ET[lang][p]) for p in IDS)
+    sayilar = [len(duz(ET[lang][p]).split()) for p in IDS]
+    ayar = dict(TEK_AYAR)
+    body = {"text": metin, "model_id": "eleven_v3", "voice_settings": ayar, "language_code": lang, "seed": seed}
+    try: d = post(f"/text-to-speech/{VID}/with-timestamps?output_format=mp3_44100_128", body)
+    except Exception:
+        print("stability 0.75 reddedildi -> 0.5/1.0 denenecek"); raise
+    full = f"{OUT}/_tam.mp3"; open(full, "wb").write(base64.b64decode(d["audio_base64"])); a = d["alignment"]
+    w = kelimeler(a["characters"], a["character_start_times_seconds"], a["character_end_times_seconds"])
+    assert len(w) == sum(sayilar), (len(w), sum(sayilar))
+    json.dump({"text": metin, "words": w, "seed": seed, "ayar": ayar}, open(f"{OUT}/_tam.json", "w"), ensure_ascii=False, indent=1)
+    x = pcm(full); SR = 44100; i = 0; bounds = []
+    for k, n in enumerate(sayilar):
+        bounds.append((i, i + n - 1)); i += n
+    cuts = [0.0]
+    for k in range(len(IDS) - 1):
+        cuts.append((w[bounds[k][1]]["e"] + w[bounds[k + 1][0]]["s"]) / 2)
+    cuts.append(len(x) / SR)
+    for k, pid in enumerate(IDS):
+        t0, t1 = cuts[k], cuts[k + 1]; seg = x[int(t0 * SR):int(t1 * SR)].copy(); n5 = int(0.005 * SR)
+        seg[:n5] *= np.linspace(0, 1, n5); seg[-n5:] *= np.linspace(1, 0, n5)
+        mp3 = f"{OUT}/{pid}.mp3"
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "1", "-i", "-", "-b:a", "128k", mp3], input=seg.astype(np.float32).tobytes(), check=True)
+        ww = [dict(t=u["t"], s=round(u["s"] - t0, 3), e=round(u["e"] - t0, 3)) for u in w[bounds[k][0]:bounds[k][1] + 1]]
+        json.dump({"id": pid, "lang": lang, "text": ET[lang][pid], "words": ww, "dur": round(sure(mp3), 3), "voice": VID, "model": "eleven_v3", "ayar": ayar, "seed": seed, "tek_cekim": True},
+                  open(f"{OUT}/{pid}.json", "w"), ensure_ascii=False, indent=1)
+        k_ = kenar(mp3); nf, hs = olc(mp3); print(lang, pid, k_, f"{sure(mp3):.2f}s nf {nf:.1f} hisirti {hs:.1f}")
+    print(lang, "tam", f"{sure(full):.2f}s")
+
+def konusma(lang, root):
+    """(toplam konusma sn = kelime ilk bas..son son toplami, plan sure toplami)"""
+    ks = 0; ps = 0
+    for p in IDS:
+        j = json.load(open(f"{root}/{lang}/{p}.json")); ww = j["words"]; ks += ww[-1]["e"] - ww[0]["s"]; ps += sure(f"{root}/{lang}/{p}.mp3")
+    return ks, ps
+
+def tini(f):
+    """(spektral merkez Hz, RMS dBFS) yalniz konusma karelerinde (en yuksek enerjili %60 kare), 25 ms."""
+    x = pcm(f); n = 1102; k = len(x) // n; fr = x[:k * n].reshape(k, n) * np.hanning(n)
+    e = (fr ** 2).mean(1); m = e > np.quantile(e, 0.4)
+    S = np.abs(np.fft.rfft(fr[m], axis=1)); fq = np.fft.rfftfreq(n, 1 / 44100)
+    c = ((S * fq).sum(1) / (S.sum(1) + 1e-9)).mean()
+    return c, 10 * np.log10(e[m].mean() + 1e-12)
+
+def tablo():
+    for lg in ("tr", "en"):
+        print(f"\n## {lg}\n| Plan | eski merkez Hz | tek merkez Hz | eski RMS dB | tek RMS dB |\n|---|---|---|---|---|")
+        E, T = [], []
+        for p in IDS:
+            e = tini(f"{ROOT}/{lg}/{p}.mp3"); t = tini(f"{ROOT}/tek/{lg}/{p}.mp3"); E.append(e); T.append(t)
+            print(f"| {p} | {e[0]:.0f} | {t[0]:.0f} | {e[1]:.1f} | {t[1]:.1f} |")
+        E = np.array(E); T = np.array(T)
+        print(f"| **std** | {E[:,0].std():.0f} | {T[:,0].std():.0f} | {E[:,1].std():.2f} | {T[:,1].std():.2f} |")
+        print(f"| ort | {E[:,0].mean():.0f} | {T[:,0].mean():.0f} | {E[:,1].mean():.1f} | {T[:,1].mean():.1f} |")
+        print("konusma sn (eski, tek):", [round(v, 1) for v in konusma(lg, ROOT)], [round(v, 1) for v in konusma(lg, ROOT + "/tek")])
+
+def tek_dinlet():
+    SR = 44100; os.makedirs("public/paris/dinlet", exist_ok=True)
+    def ld(f):
+        raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", f, "-af", ln(f, -18, -3), "-f", "f32le", "-ac", "2", "-ar", str(SR), "-"], capture_output=True, check=True).stdout
+        return np.frombuffer(raw, np.float32).reshape(-1, 2).astype(float)
+    def yaz(parcalar, out):
+        tmp = out[:-4] + ".wav"
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-", tmp], input=np.concatenate(parcalar).astype(np.float32).tobytes(), check=True)
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", tmp, "-af", ln(tmp, -18, -1.5), "-ar", str(SR), "-b:a", "192k", out], check=True)
+        os.remove(tmp); print(out, f"{sure(out):.1f}s")
+    for lg in ("tr", "en"):
+        yaz([ld(f"{ROOT}/tek/{lg}/{p}.mp3") for p in IDS], f"public/paris/dinlet/tek-cekim-{lg}.mp3")
+    sil = lambda t: np.zeros((int(t * SR), 2)); pr = []
+    for p in ("P02", "P06", "P11"): pr += [ld(f"{ROOT}/tr/{p}.mp3"), sil(0.7)]
+    pr.append(sil(0.8))
+    for p in ("P02", "P06", "P11"): pr += [ld(f"{ROOT}/tek/tr/{p}.mp3"), sil(0.7)]
+    yaz(pr, "public/paris/dinlet/karsilastir-renk-tr.mp3")
+
 if __name__ == "__main__":
     c = sys.argv[1]
     if c == "uret":
@@ -193,6 +275,10 @@ if __name__ == "__main__":
         for lg in ("tr", "en"):
             for pid in IDS:
                 f = f"{ROOT}/{lg}/{pid}.mp3"; nf, hs = olc(f); print(f"{lg} {pid} nf {nf:.1f} dBFS hisirti6k {hs:.1f} dBFS {sure(f):.2f}s")
+    elif c == "tek":
+        for lg in sys.argv[2].split(","): tek(lg, int(sys.argv[3]) if len(sys.argv) > 3 else 20251101)
+    elif c == "tablo": tablo()
+    elif c == "tek_dinlet": tek_dinlet()
     elif c == "plan": plan()
     elif c == "dinlet":
         for lg in ("tr", "en"): dinlet(lg)

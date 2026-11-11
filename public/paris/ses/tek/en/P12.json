@@ -1,0 +1,80 @@
+{
+ "id": "P12",
+ "lang": "en",
+ "text": "[thoughtful] Man built balloons; wind steered them. [warm] Pigeons flew home with the news.",
+ "words": [
+  {
+   "t": "Man",
+   "s": 0.49,
+   "e": 0.55
+  },
+  {
+   "t": "built",
+   "s": 0.603,
+   "e": 0.87
+  },
+  {
+   "t": "balloons;",
+   "s": 0.941,
+   "e": 1.59
+  },
+  {
+   "t": "wind",
+   "s": 1.702,
+   "e": 2.15
+  },
+  {
+   "t": "steered",
+   "s": 2.25,
+   "e": 2.71
+  },
+  {
+   "t": "them.",
+   "s": 2.758,
+   "e": 3.35
+  },
+  {
+   "t": "Pigeons",
+   "s": 3.55,
+   "e": 4.15
+  },
+  {
+   "t": "flew",
+   "s": 4.198,
+   "e": 4.39
+  },
+  {
+   "t": "home",
+   "s": 4.47,
+   "e": 4.79
+  },
+  {
+   "t": "with",
+   "s": 4.838,
+   "e": 5.03
+  },
+  {
+   "t": "the",
+   "s": 5.05,
+   "e": 5.11
+  },
+  {
+   "t": "news.",
+   "s": 5.222,
+   "e": 5.75
+  }
+ ],
+ "dur": 5.796,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true,
+ "on_bosluk_ms": 40
+}

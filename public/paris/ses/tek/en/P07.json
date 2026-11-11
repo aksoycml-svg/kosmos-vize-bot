@@ -1,0 +1,74 @@
+{
+ "id": "P07",
+ "lang": "en",
+ "text": "[curious] The government sat in Tours. [determined] Dagron flew there to shrink letters.",
+ "words": [
+  {
+   "t": "The",
+   "s": 0.07,
+   "e": 0.49
+  },
+  {
+   "t": "government",
+   "s": 0.534,
+   "e": 0.97
+  },
+  {
+   "t": "sat",
+   "s": 1.05,
+   "e": 1.29
+  },
+  {
+   "t": "in",
+   "s": 1.317,
+   "e": 1.37
+  },
+  {
+   "t": "Tours.",
+   "s": 1.45,
+   "e": 1.93
+  },
+  {
+   "t": "Dagron",
+   "s": 2.11,
+   "e": 2.81
+  },
+  {
+   "t": "flew",
+   "s": 2.874,
+   "e": 3.13
+  },
+  {
+   "t": "there",
+   "s": 3.157,
+   "e": 3.29
+  },
+  {
+   "t": "to",
+   "s": 3.317,
+   "e": 3.37
+  },
+  {
+   "t": "shrink",
+   "s": 3.416,
+   "e": 3.69
+  },
+  {
+   "t": "letters.",
+   "s": 3.75,
+   "e": 4.25
+  }
+ ],
+ "dur": 4.362,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true
+}

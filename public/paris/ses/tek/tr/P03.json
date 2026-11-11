@@ -1,0 +1,49 @@
+{
+ "id": "P03",
+ "lang": "tr",
+ "text": "[hopeful] Çare gökyüzüydü: balonlar mektupları dışarı taşıdı.",
+ "words": [
+  {
+   "t": "Çare",
+   "s": 0.09,
+   "e": 0.51
+  },
+  {
+   "t": "gökyüzüydü:",
+   "s": 0.59,
+   "e": 1.59
+  },
+  {
+   "t": "balonlar",
+   "s": 1.66,
+   "e": 2.19
+  },
+  {
+   "t": "mektupları",
+   "s": 2.254,
+   "e": 2.83
+  },
+  {
+   "t": "dışarı",
+   "s": 2.876,
+   "e": 3.15
+  },
+  {
+   "t": "taşıdı.",
+   "s": 3.203,
+   "e": 3.631
+  }
+ ],
+ "dur": 4.049,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true
+}

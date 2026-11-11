@@ -1,0 +1,79 @@
+{
+ "id": "P02",
+ "lang": "en",
+ "text": "[tense] Prussia ringed Paris and cut the telegraph. [somber] Two million people were trapped.",
+ "words": [
+  {
+   "t": "Prussia",
+   "s": 0.06,
+   "e": 0.54
+  },
+  {
+   "t": "ringed",
+   "s": 0.588,
+   "e": 0.86
+  },
+  {
+   "t": "Paris",
+   "s": 0.953,
+   "e": 1.42
+  },
+  {
+   "t": "and",
+   "s": 1.48,
+   "e": 1.66
+  },
+  {
+   "t": "cut",
+   "s": 1.72,
+   "e": 1.9
+  },
+  {
+   "t": "the",
+   "s": 1.92,
+   "e": 1.98
+  },
+  {
+   "t": "telegraph.",
+   "s": 2.06,
+   "e": 2.78
+  },
+  {
+   "t": "Two",
+   "s": 2.94,
+   "e": 3.42
+  },
+  {
+   "t": "million",
+   "s": 3.47,
+   "e": 3.82
+  },
+  {
+   "t": "people",
+   "s": 3.877,
+   "e": 4.22
+  },
+  {
+   "t": "were",
+   "s": 4.252,
+   "e": 4.38
+  },
+  {
+   "t": "trapped.",
+   "s": 4.44,
+   "e": 4.94
+  }
+ ],
+ "dur": 5.068,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true
+}

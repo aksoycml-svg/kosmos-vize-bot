@@ -1,0 +1,69 @@
+{
+ "id": "P09",
+ "lang": "en",
+ "text": "[excited] In Paris, a screen enlarged the film. [determined] Clerks copied it.",
+ "words": [
+  {
+   "t": "In",
+   "s": 0.106,
+   "e": 0.533
+  },
+  {
+   "t": "Paris,",
+   "s": 0.613,
+   "e": 1.093
+  },
+  {
+   "t": "a",
+   "s": 1.133,
+   "e": 1.173
+  },
+  {
+   "t": "screen",
+   "s": 1.253,
+   "e": 1.733
+  },
+  {
+   "t": "enlarged",
+   "s": 1.795,
+   "e": 2.293
+  },
+  {
+   "t": "the",
+   "s": 2.313,
+   "e": 2.373
+  },
+  {
+   "t": "film.",
+   "s": 2.453,
+   "e": 2.853
+  },
+  {
+   "t": "Clerks",
+   "s": 2.981,
+   "e": 3.653
+  },
+  {
+   "t": "copied",
+   "s": 3.71,
+   "e": 4.053
+  },
+  {
+   "t": "it.",
+   "s": 4.106,
+   "e": 4.293
+  }
+ ],
+ "dur": 4.728,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true
+}

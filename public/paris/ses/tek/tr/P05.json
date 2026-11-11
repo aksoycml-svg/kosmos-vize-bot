@@ -1,0 +1,59 @@
+{
+ "id": "P05",
+ "lang": "tr",
+ "text": "[excited] Güvercin kümesine döner. [knowing] Onu balonla çıkarıp uzakta bıraktılar.",
+ "words": [
+  {
+   "t": "Güvercin",
+   "s": 0.053,
+   "e": 0.667
+  },
+  {
+   "t": "kümesine",
+   "s": 0.694,
+   "e": 1.146
+  },
+  {
+   "t": "döner.",
+   "s": 1.174,
+   "e": 1.827
+  },
+  {
+   "t": "Onu",
+   "s": 1.92,
+   "e": 2.187
+  },
+  {
+   "t": "balonla",
+   "s": 2.247,
+   "e": 2.667
+  },
+  {
+   "t": "çıkarıp",
+   "s": 2.72,
+   "e": 3.146
+  },
+  {
+   "t": "uzakta",
+   "s": 3.21,
+   "e": 3.547
+  },
+  {
+   "t": "bıraktılar.",
+   "s": 3.587,
+   "e": 4.547
+  }
+ ],
+ "dur": 4.624,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true
+}

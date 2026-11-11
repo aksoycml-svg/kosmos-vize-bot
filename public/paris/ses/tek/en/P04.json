@@ -1,0 +1,69 @@
+{
+ "id": "P04",
+ "lang": "en",
+ "text": "[tense] But balloons can't turn back. [curious] How would replies get in?",
+ "words": [
+  {
+   "t": "But",
+   "s": 0.152,
+   "e": 0.212
+  },
+  {
+   "t": "balloons",
+   "s": 0.265,
+   "e": 0.692
+  },
+  {
+   "t": "can't",
+   "s": 0.752,
+   "e": 1.092
+  },
+  {
+   "t": "turn",
+   "s": 1.124,
+   "e": 1.252
+  },
+  {
+   "t": "back.",
+   "s": 1.332,
+   "e": 1.732
+  },
+  {
+   "t": "How",
+   "s": 1.832,
+   "e": 2.132
+  },
+  {
+   "t": "would",
+   "s": 2.172,
+   "e": 2.372
+  },
+  {
+   "t": "replies",
+   "s": 2.432,
+   "e": 2.852
+  },
+  {
+   "t": "get",
+   "s": 2.892,
+   "e": 3.012
+  },
+  {
+   "t": "in?",
+   "s": 3.092,
+   "e": 3.332
+  }
+ ],
+ "dur": 3.553,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true
+}

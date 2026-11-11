@@ -1,0 +1,59 @@
+{
+ "id": "P08",
+ "lang": "en",
+ "text": "[knowing] They tied the film to a pigeon's tail.",
+ "words": [
+  {
+   "t": "They",
+   "s": 0.064,
+   "e": 0.576
+  },
+  {
+   "t": "tied",
+   "s": 0.64,
+   "e": 0.896
+  },
+  {
+   "t": "the",
+   "s": 0.916,
+   "e": 0.976
+  },
+  {
+   "t": "film",
+   "s": 1.04,
+   "e": 1.296
+  },
+  {
+   "t": "to",
+   "s": 1.323,
+   "e": 1.376
+  },
+  {
+   "t": "a",
+   "s": 1.456,
+   "e": 1.536
+  },
+  {
+   "t": "pigeon's",
+   "s": 1.582,
+   "e": 1.936
+  },
+  {
+   "t": "tail.",
+   "s": 2.0,
+   "e": 2.336
+  }
+ ],
+ "dur": 2.482,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true
+}

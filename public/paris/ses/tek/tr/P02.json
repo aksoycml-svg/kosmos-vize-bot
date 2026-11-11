@@ -1,0 +1,79 @@
+{
+ "id": "P02",
+ "lang": "tr",
+ "text": "[tense] Prusya orduları Paris'i çevirdi, telgrafı kesti. [somber] İki milyon kadar insan şehre kapandı.",
+ "words": [
+  {
+   "t": "Prusya",
+   "s": 0.054,
+   "e": 0.507
+  },
+  {
+   "t": "orduları",
+   "s": 0.547,
+   "e": 0.987
+  },
+  {
+   "t": "Paris'i",
+   "s": 1.054,
+   "e": 1.467
+  },
+  {
+   "t": "çevirdi,",
+   "s": 1.527,
+   "e": 2.187
+  },
+  {
+   "t": "telgrafı",
+   "s": 2.247,
+   "e": 2.747
+  },
+  {
+   "t": "kesti.",
+   "s": 2.827,
+   "e": 3.587
+  },
+  {
+   "t": "İki",
+   "s": 3.657,
+   "e": 3.867
+  },
+  {
+   "t": "milyon",
+   "s": 3.924,
+   "e": 4.267
+  },
+  {
+   "t": "kadar",
+   "s": 4.32,
+   "e": 4.587
+  },
+  {
+   "t": "insan",
+   "s": 4.654,
+   "e": 4.987
+  },
+  {
+   "t": "şehre",
+   "s": 5.046,
+   "e": 5.386
+  },
+  {
+   "t": "kapandı.",
+   "s": 5.427,
+   "e": 6.227
+  }
+ ],
+ "dur": 6.348,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true
+}

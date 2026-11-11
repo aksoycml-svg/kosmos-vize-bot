@@ -1,0 +1,79 @@
+{
+ "id": "P06",
+ "lang": "en",
+ "text": "[tense] Birds can't carry letters. [excited] Photographer Dagron's trick: pages shrunk onto finger-sized film.",
+ "words": [
+  {
+   "t": "Birds",
+   "s": 0.087,
+   "e": 0.954
+  },
+  {
+   "t": "can't",
+   "s": 0.994,
+   "e": 1.194
+  },
+  {
+   "t": "carry",
+   "s": 1.247,
+   "e": 1.514
+  },
+  {
+   "t": "letters.",
+   "s": 1.564,
+   "e": 1.994
+  },
+  {
+   "t": "Photographer",
+   "s": 2.079,
+   "e": 3.114
+  },
+  {
+   "t": "Dagron's",
+   "s": 3.194,
+   "e": 3.753
+  },
+  {
+   "t": "trick:",
+   "s": 3.82,
+   "e": 4.634
+  },
+  {
+   "t": "pages",
+   "s": 4.713,
+   "e": 5.114
+  },
+  {
+   "t": "shrunk",
+   "s": 5.174,
+   "e": 5.514
+  },
+  {
+   "t": "onto",
+   "s": 5.593,
+   "e": 5.913
+  },
+  {
+   "t": "finger-sized",
+   "s": 5.959,
+   "e": 6.634
+  },
+  {
+   "t": "film.",
+   "s": 6.713,
+   "e": 7.114
+  }
+ ],
+ "dur": 7.21,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true
+}

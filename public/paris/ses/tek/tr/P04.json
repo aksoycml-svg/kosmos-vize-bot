@@ -1,0 +1,64 @@
+{
+ "id": "P04",
+ "lang": "tr",
+ "text": "[tense] Ama balon rüzgârla gider, dönemez. [curious] Cevap Paris'e nasıl girecek?",
+ "words": [
+  {
+   "t": "Ama",
+   "s": 0.377,
+   "e": 0.422
+  },
+  {
+   "t": "balon",
+   "s": 0.502,
+   "e": 0.902
+  },
+  {
+   "t": "rüzgârla",
+   "s": 0.982,
+   "e": 1.463
+  },
+  {
+   "t": "gider,",
+   "s": 1.529,
+   "e": 2.022
+  },
+  {
+   "t": "dönemez.",
+   "s": 2.062,
+   "e": 2.862
+  },
+  {
+   "t": "Cevap",
+   "s": 3.002,
+   "e": 3.382
+  },
+  {
+   "t": "Paris'e",
+   "s": 3.449,
+   "e": 3.862
+  },
+  {
+   "t": "nasıl",
+   "s": 3.915,
+   "e": 4.182
+  },
+  {
+   "t": "girecek?",
+   "s": 4.222,
+   "e": 5.062
+  }
+ ],
+ "dur": 5.146,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true
+}

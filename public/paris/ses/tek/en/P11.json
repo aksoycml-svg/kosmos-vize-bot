@@ -1,0 +1,109 @@
+{
+ "id": "P11",
+ "lang": "en",
+ "text": "[tense] A secret message for Tours landed in Norway. [thoughtful] The men lived, but it was out of Paris's hands.",
+ "words": [
+  {
+   "t": "A",
+   "s": 0.16,
+   "e": 0.48
+  },
+  {
+   "t": "secret",
+   "s": 0.526,
+   "e": 0.8
+  },
+  {
+   "t": "message",
+   "s": 0.85,
+   "e": 1.2
+  },
+  {
+   "t": "for",
+   "s": 1.24,
+   "e": 1.36
+  },
+  {
+   "t": "Tours",
+   "s": 1.453,
+   "e": 1.92
+  },
+  {
+   "t": "landed",
+   "s": 1.989,
+   "e": 2.4
+  },
+  {
+   "t": "in",
+   "s": 2.427,
+   "e": 2.48
+  },
+  {
+   "t": "Norway.",
+   "s": 2.549,
+   "e": 3.12
+  },
+  {
+   "t": "The",
+   "s": 3.24,
+   "e": 3.6
+  },
+  {
+   "t": "men",
+   "s": 3.68,
+   "e": 3.92
+  },
+  {
+   "t": "lived,",
+   "s": 4.0,
+   "e": 4.8
+  },
+  {
+   "t": "but",
+   "s": 4.82,
+   "e": 4.88
+  },
+  {
+   "t": "it",
+   "s": 4.907,
+   "e": 4.96
+  },
+  {
+   "t": "was",
+   "s": 5.02,
+   "e": 5.2
+  },
+  {
+   "t": "out",
+   "s": 5.26,
+   "e": 5.44
+  },
+  {
+   "t": "of",
+   "s": 5.467,
+   "e": 5.52
+  },
+  {
+   "t": "Paris's",
+   "s": 5.587,
+   "e": 6.08
+  },
+  {
+   "t": "hands.",
+   "s": 6.147,
+   "e": 6.64
+  }
+ ],
+ "dur": 7.131,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true
+}

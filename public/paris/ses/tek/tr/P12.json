@@ -1,0 +1,75 @@
+{
+ "id": "P12",
+ "lang": "tr",
+ "text": "[thoughtful] İnsan balon yaptı, rüzgâr yönetti. [warm] Haberi eve dönmeyi bilen güvercin getirdi.",
+ "words": [
+  {
+   "t": "İnsan",
+   "s": 0.385,
+   "e": 0.496
+  },
+  {
+   "t": "balon",
+   "s": 0.576,
+   "e": 0.896
+  },
+  {
+   "t": "yaptı,",
+   "s": 1.016,
+   "e": 1.696
+  },
+  {
+   "t": "rüzgâr",
+   "s": 1.736,
+   "e": 2.096
+  },
+  {
+   "t": "yönetti.",
+   "s": 2.163,
+   "e": 3.056
+  },
+  {
+   "t": "Haberi",
+   "s": 3.136,
+   "e": 3.616
+  },
+  {
+   "t": "eve",
+   "s": 3.676,
+   "e": 3.856
+  },
+  {
+   "t": "dönmeyi",
+   "s": 3.909,
+   "e": 4.256
+  },
+  {
+   "t": "bilen",
+   "s": 4.296,
+   "e": 4.575
+  },
+  {
+   "t": "güvercin",
+   "s": 4.629,
+   "e": 5.136
+  },
+  {
+   "t": "getirdi.",
+   "s": 5.196,
+   "e": 6.176
+  }
+ ],
+ "dur": 6.225,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "on_bosluk_ms": 40
+}

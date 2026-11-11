@@ -1,0 +1,64 @@
+{
+ "id": "P10",
+ "lang": "tr",
+ "text": "[somber] Kuşların çoğu dönemedi. [warm] Yine de on binlerce mesaj ulaştı.",
+ "words": [
+  {
+   "t": "Kuşların",
+   "s": 0.242,
+   "e": 0.599
+  },
+  {
+   "t": "çoğu",
+   "s": 0.678,
+   "e": 0.998
+  },
+  {
+   "t": "dönemedi.",
+   "s": 1.038,
+   "e": 1.959
+  },
+  {
+   "t": "Yine",
+   "s": 2.023,
+   "e": 2.279
+  },
+  {
+   "t": "de",
+   "s": 2.386,
+   "e": 2.599
+  },
+  {
+   "t": "on",
+   "s": 2.678,
+   "e": 2.839
+  },
+  {
+   "t": "binlerce",
+   "s": 2.898,
+   "e": 3.398
+  },
+  {
+   "t": "mesaj",
+   "s": 3.452,
+   "e": 3.718
+  },
+  {
+   "t": "ulaştı.",
+   "s": 3.798,
+   "e": 4.718
+  }
+ ],
+ "dur": 4.807,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true
+}

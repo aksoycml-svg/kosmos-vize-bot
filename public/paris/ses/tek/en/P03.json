@@ -1,0 +1,64 @@
+{
+ "id": "P03",
+ "lang": "en",
+ "text": "[hopeful] Only the sky was left. [excited] Balloons carried mail out.",
+ "words": [
+  {
+   "t": "Only",
+   "s": 0.08,
+   "e": 0.72
+  },
+  {
+   "t": "the",
+   "s": 0.76,
+   "e": 0.88
+  },
+  {
+   "t": "sky",
+   "s": 0.96,
+   "e": 1.2
+  },
+  {
+   "t": "was",
+   "s": 1.24,
+   "e": 1.36
+  },
+  {
+   "t": "left.",
+   "s": 1.44,
+   "e": 1.84
+  },
+  {
+   "t": "Balloons",
+   "s": 2.0,
+   "e": 2.88
+  },
+  {
+   "t": "carried",
+   "s": 2.92,
+   "e": 3.2
+  },
+  {
+   "t": "mail",
+   "s": 3.264,
+   "e": 3.52
+  },
+  {
+   "t": "out.",
+   "s": 3.6,
+   "e": 4.12
+  }
+ ],
+ "dur": 4.31,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true
+}

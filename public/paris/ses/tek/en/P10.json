@@ -1,0 +1,74 @@
+{
+ "id": "P10",
+ "lang": "en",
+ "text": "[somber] Most birds never returned. [warm] Still, tens of thousands of messages arrived.",
+ "words": [
+  {
+   "t": "Most",
+   "s": 0.384,
+   "e": 0.416
+  },
+  {
+   "t": "birds",
+   "s": 0.496,
+   "e": 0.896
+  },
+  {
+   "t": "never",
+   "s": 0.936,
+   "e": 1.136
+  },
+  {
+   "t": "returned.",
+   "s": 1.207,
+   "e": 1.856
+  },
+  {
+   "t": "Still,",
+   "s": 1.989,
+   "e": 2.896
+  },
+  {
+   "t": "tens",
+   "s": 2.976,
+   "e": 3.296
+  },
+  {
+   "t": "of",
+   "s": 3.323,
+   "e": 3.376
+  },
+  {
+   "t": "thousands",
+   "s": 3.432,
+   "e": 3.936
+  },
+  {
+   "t": "of",
+   "s": 3.963,
+   "e": 4.016
+  },
+  {
+   "t": "messages",
+   "s": 4.078,
+   "e": 4.576
+  },
+  {
+   "t": "arrived.",
+   "s": 4.636,
+   "e": 5.216
+  }
+ ],
+ "dur": 5.407,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true
+}
