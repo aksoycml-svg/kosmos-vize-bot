@@ -1,0 +1,105 @@
+{
+ "id": "P11",
+ "lang": "tr",
+ "text": "[tense] Tours'a giden gizli mesajlı balon Norveç'in dağlarına indi. [thoughtful] Yolcular sağ kurtuldu, ama mesaj Paris'in elinden çıkmıştı.",
+ "words": [
+  {
+   "t": "Tours'a",
+   "s": 0.293,
+   "e": 0.44
+  },
+  {
+   "t": "giden",
+   "s": 0.493,
+   "e": 0.76
+  },
+  {
+   "t": "gizli",
+   "s": 0.84,
+   "e": 1.16
+  },
+  {
+   "t": "mesajlı",
+   "s": 1.227,
+   "e": 1.64
+  },
+  {
+   "t": "balon",
+   "s": 1.7,
+   "e": 2.04
+  },
+  {
+   "t": "Norveç'in",
+   "s": 2.16,
+   "e": 2.84
+  },
+  {
+   "t": "dağlarına",
+   "s": 2.9,
+   "e": 3.4
+  },
+  {
+   "t": "indi.",
+   "s": 3.44,
+   "e": 4.04
+  },
+  {
+   "t": "Yolcular",
+   "s": 4.409,
+   "e": 4.769
+  },
+  {
+   "t": "sağ",
+   "s": 4.849,
+   "e": 5.089
+  },
+  {
+   "t": "kurtuldu,",
+   "s": 5.169,
+   "e": 5.889
+  },
+  {
+   "t": "ama",
+   "s": 5.949,
+   "e": 6.129
+  },
+  {
+   "t": "mesaj",
+   "s": 6.222,
+   "e": 6.689
+  },
+  {
+   "t": "Paris'in",
+   "s": 6.809,
+   "e": 7.489
+  },
+  {
+   "t": "elinden",
+   "s": 7.542,
+   "e": 7.969
+  },
+  {
+   "t": "çıkmıştı.",
+   "s": 8.022,
+   "e": 8.609
+  }
+ ],
+ "dur": 8.699,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "ses": "Alex - Deep, Clear and Fluent",
+ "on_bosluk_ms": 40,
+ "cekim": 2,
+ "cekim_sayisi": 2,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -83.4,
+ "hisirti_6k_dbfs": -99.2,
+ "nf_gecti": true
+}

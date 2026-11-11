@@ -1,69 +1,61 @@
 {
  "id": "P04",
  "lang": "tr",
- "text": "[tense] Ama balon rüzgârla gider, dönemez. [curious] Cevap Paris'e nasıl girecek?",
+ "text": "Balon rüzgârla gider, dönemez. Cevap nasıl gelecek?",
  "words": [
   {
-   "t": "Ama",
-   "s": 0.195,
-   "e": 0.24
-  },
-  {
-   "t": "balon",
-   "s": 0.32,
-   "e": 0.72
+   "t": "Balon",
+   "s": 0.26,
+   "e": 0.48
   },
   {
    "t": "rüzgârla",
-   "s": 0.84,
-   "e": 1.44
+   "s": 0.51,
+   "e": 1.24
   },
   {
    "t": "gider,",
-   "s": 1.493,
-   "e": 1.84
+   "s": 1.26,
+   "e": 1.5
   },
   {
    "t": "dönemez.",
-   "s": 1.92,
-   "e": 2.64
+   "s": 1.73,
+   "e": 2.33
   },
   {
    "t": "Cevap",
-   "s": 3.792,
-   "e": 3.92
-  },
-  {
-   "t": "Paris'e",
-   "s": 4.013,
-   "e": 4.56
+   "s": 2.69,
+   "e": 2.96
   },
   {
    "t": "nasıl",
-   "s": 4.613,
-   "e": 4.88
+   "s": 3.06,
+   "e": 3.28
   },
   {
-   "t": "girecek?",
-   "s": 4.96,
-   "e": 5.92
+   "t": "gelecek?",
+   "s": 3.35,
+   "e": 3.88
   }
  ],
- "dur": 5.956,
+ "dur": 4.127,
  "voice": "KediIz7pebzt5TaDHiiZ",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.8,
-  "style": 0.5,
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "ses": "Alex - Deep, Clear and Fluent",
- "cekim": 1,
- "cekim_sayisi": 1,
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
  "kenar": "temiz",
- "nf_dbfs": -88.9,
- "hisirti_6k_dbfs": -102.6,
- "nf_gecti": true
+ "nf_dbfs": -89.5,
+ "hisirti_6k_dbfs": -105.2,
+ "pad_nf_dbfs": -90.6,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
 }

@@ -1,74 +1,66 @@
 {
  "id": "P05",
  "lang": "en",
- "text": "[excited] Pigeons fly home from anywhere. [knowing] So balloons carried them out.",
+ "text": "Pigeons fly home. Balloons carried them far away.",
  "words": [
   {
    "t": "Pigeons",
-   "s": 0.072,
-   "e": 0.48
+   "s": 0.1,
+   "e": 0.4
   },
   {
    "t": "fly",
-   "s": 0.56,
-   "e": 0.8
+   "s": 0.47,
+   "e": 0.71
   },
   {
-   "t": "home",
-   "s": 0.864,
-   "e": 1.12
+   "t": "home.",
+   "s": 0.79,
+   "e": 1.26
   },
   {
-   "t": "from",
-   "s": 1.152,
-   "e": 1.28
-  },
-  {
-   "t": "anywhere.",
-   "s": 1.342,
-   "e": 2.2
-  },
-  {
-   "t": "So",
-   "s": 2.627,
-   "e": 2.64
-  },
-  {
-   "t": "balloons",
-   "s": 2.693,
-   "e": 3.12
+   "t": "Balloons",
+   "s": 1.76,
+   "e": 2.08
   },
   {
    "t": "carried",
-   "s": 3.16,
-   "e": 3.44
+   "s": 2.11,
+   "e": 2.4
   },
   {
    "t": "them",
-   "s": 3.472,
-   "e": 3.6
+   "s": 2.4,
+   "e": 2.48
   },
   {
-   "t": "out.",
-   "s": 3.7,
-   "e": 4.0
+   "t": "far",
+   "s": 2.55,
+   "e": 2.8
+  },
+  {
+   "t": "away.",
+   "s": 2.86,
+   "e": 3.28
   }
  ],
- "dur": 4.833,
+ "dur": 3.553,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.8,
-  "style": 0.5,
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "ses": "Brian",
- "cekim": 1,
- "cekim_sayisi": 1,
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
  "kenar": "temiz",
- "nf_dbfs": -84.1,
- "hisirti_6k_dbfs": -88.6,
- "nf_gecti": true
+ "nf_dbfs": -83.5,
+ "hisirti_6k_dbfs": -85.8,
+ "pad_nf_dbfs": -84.1,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
 }

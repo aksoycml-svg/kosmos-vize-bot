@@ -1,74 +1,68 @@
 {
  "id": "P04",
  "lang": "en",
- "text": "[tense] But balloons can't turn back. [curious] How would replies get in?",
+ "text": "Balloons can't turn back. How would replies arrive?",
  "words": [
   {
-   "t": "But",
-   "s": 0.065,
-   "e": 0.08
-  },
-  {
-   "t": "balloons",
-   "s": 0.133,
-   "e": 0.56
+   "t": "Balloons",
+   "s": 0.13,
+   "e": 0.48
   },
   {
    "t": "can't",
-   "s": 0.62,
-   "e": 0.88
+   "s": 0.53,
+   "e": 0.8
   },
   {
    "t": "turn",
-   "s": 0.928,
+   "s": 0.85,
    "e": 1.12
   },
   {
    "t": "back.",
-   "s": 1.216,
-   "e": 1.68
+   "s": 1.19,
+   "e": 1.54
   },
   {
    "t": "How",
-   "s": 2.305,
-   "e": 2.32
+   "s": 2.13,
+   "e": 2.24
   },
   {
    "t": "would",
-   "s": 2.347,
+   "s": 2.27,
    "e": 2.48
   },
   {
    "t": "replies",
-   "s": 2.55,
+   "s": 2.54,
    "e": 3.04
   },
   {
-   "t": "get",
+   "t": "arrive?",
    "s": 3.1,
-   "e": 3.28
-  },
-  {
-   "t": "in?",
-   "s": 3.36,
-   "e": 4.24
+   "e": 3.68
   }
  ],
- "dur": 4.284,
+ "dur": 3.918,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.8,
-  "style": 0.5,
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "ses": "Brian",
- "cekim": 1,
- "cekim_sayisi": 1,
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
  "kenar": "temiz",
- "nf_dbfs": -86.8,
- "hisirti_6k_dbfs": -94.8,
- "nf_gecti": true
+ "nf_dbfs": -85.0,
+ "hisirti_6k_dbfs": -88.0,
+ "pad_nf_dbfs": -83.2,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": [
+  14.69
+ ]
 }

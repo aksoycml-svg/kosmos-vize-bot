@@ -1,74 +1,91 @@
 {
  "id": "P01",
  "lang": "en",
- "text": "[curious] Pigeons brought news to besieged Paris. [intrigued] Balloons took them out.",
+ "text": "Two million people were cut off. The news… came on a bird's tail.",
  "words": [
   {
-   "t": "Pigeons",
-   "s": 0.07,
-   "e": 0.56
+   "t": "Two",
+   "s": 0.2,
+   "e": 0.25
   },
   {
-   "t": "brought",
-   "s": 0.61,
-   "e": 0.96
+   "t": "million",
+   "s": 0.28,
+   "e": 0.65
   },
   {
-   "t": "news",
-   "s": 1.056,
-   "e": 1.44
+   "t": "people",
+   "s": 0.69,
+   "e": 1.05
   },
   {
-   "t": "to",
-   "s": 1.493,
-   "e": 1.6
+   "t": "were",
+   "s": 1.08,
+   "e": 1.29
   },
   {
-   "t": "besieged",
-   "s": 1.653,
-   "e": 2.08
+   "t": "cut",
+   "s": 1.34,
+   "e": 1.53
   },
   {
-   "t": "Paris.",
-   "s": 2.173,
-   "e": 3.12
+   "t": "off.",
+   "s": 1.6,
+   "e": 1.92
   },
   {
-   "t": "Balloons",
-   "s": 3.736,
-   "e": 4.16
+   "t": "The",
+   "s": 2.41,
+   "e": 2.56
   },
   {
-   "t": "took",
-   "s": 4.24,
-   "e": 4.56
+   "t": "news…",
+   "s": 2.51,
+   "e": 3.05
   },
   {
-   "t": "them",
-   "s": 4.592,
-   "e": 4.72
+   "t": "came",
+   "s": 3.69,
+   "e": 3.93
   },
   {
-   "t": "out.",
-   "s": 4.8,
-   "e": 5.76
+   "t": "on",
+   "s": 3.94,
+   "e": 4.01
+  },
+  {
+   "t": "a",
+   "s": 4.08,
+   "e": 4.17
+  },
+  {
+   "t": "bird's",
+   "s": 4.2,
+   "e": 4.49
+  },
+  {
+   "t": "tail.",
+   "s": 4.54,
+   "e": 4.93
   }
  ],
- "dur": 5.799,
+ "dur": 5.172,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.8,
-  "style": 0.5,
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "ses": "Brian",
- "cekim": 1,
- "cekim_sayisi": 1,
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
  "kenar": "temiz",
- "nf_dbfs": -84.8,
- "hisirti_6k_dbfs": -90.3,
- "nf_gecti": true
+ "nf_dbfs": -83.7,
+ "hisirti_6k_dbfs": -87.7,
+ "pad_nf_dbfs": -70.5,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
 }

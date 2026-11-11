@@ -1,0 +1,74 @@
+{
+ "id": "P01",
+ "lang": "en",
+ "text": "[curious] Pigeons brought news to besieged Paris. [intrigued] Balloons took them out.",
+ "words": [
+  {
+   "t": "Pigeons",
+   "s": 0.07,
+   "e": 0.56
+  },
+  {
+   "t": "brought",
+   "s": 0.61,
+   "e": 0.96
+  },
+  {
+   "t": "news",
+   "s": 1.056,
+   "e": 1.44
+  },
+  {
+   "t": "to",
+   "s": 1.493,
+   "e": 1.6
+  },
+  {
+   "t": "besieged",
+   "s": 1.653,
+   "e": 2.08
+  },
+  {
+   "t": "Paris.",
+   "s": 2.173,
+   "e": 3.12
+  },
+  {
+   "t": "Balloons",
+   "s": 3.736,
+   "e": 4.16
+  },
+  {
+   "t": "took",
+   "s": 4.24,
+   "e": 4.56
+  },
+  {
+   "t": "them",
+   "s": 4.592,
+   "e": 4.72
+  },
+  {
+   "t": "out.",
+   "s": 4.8,
+   "e": 5.76
+  }
+ ],
+ "dur": 5.799,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "ses": "Brian",
+ "cekim": 1,
+ "cekim_sayisi": 1,
+ "kenar": "temiz",
+ "nf_dbfs": -84.8,
+ "hisirti_6k_dbfs": -90.3,
+ "nf_gecti": true
+}

@@ -1,74 +1,76 @@
 {
  "id": "P09",
  "lang": "en",
- "text": "[excited] In Paris, a screen enlarged the film. [determined] Clerks copied it.",
+ "text": "In Paris, a screen enlarged the film. Clerks copied it.",
  "words": [
   {
    "t": "In",
-   "s": 0.139,
+   "s": 0.11,
    "e": 0.16
   },
   {
    "t": "Paris,",
-   "s": 0.253,
-   "e": 0.88
+   "s": 0.24,
+   "e": 0.65
   },
   {
    "t": "a",
-   "s": 0.96,
-   "e": 1.04
+   "s": 0.72,
+   "e": 0.8
   },
   {
    "t": "screen",
-   "s": 1.097,
-   "e": 1.44
+   "s": 0.84,
+   "e": 1.12
   },
   {
    "t": "enlarged",
-   "s": 1.502,
-   "e": 2.0
+   "s": 1.16,
+   "e": 1.53
   },
   {
    "t": "the",
-   "s": 2.02,
-   "e": 2.08
+   "s": 1.54,
+   "e": 1.61
   },
   {
    "t": "film.",
-   "s": 2.16,
-   "e": 2.8
+   "s": 1.68,
+   "e": 2.16
   },
   {
    "t": "Clerks",
-   "s": 3.248,
-   "e": 3.52
+   "s": 2.68,
+   "e": 2.97
   },
   {
    "t": "copied",
-   "s": 3.566,
-   "e": 3.84
+   "s": 3.02,
+   "e": 3.44
   },
   {
    "t": "it.",
-   "s": 3.92,
-   "e": 4.08
+   "s": 3.49,
+   "e": 3.66
   }
  ],
- "dur": 4.676,
+ "dur": 3.892,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.8,
-  "style": 0.5,
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "ses": "Brian",
- "cekim": 1,
- "cekim_sayisi": 1,
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
  "kenar": "temiz",
- "nf_dbfs": -85.4,
- "hisirti_6k_dbfs": -94.2,
- "nf_gecti": true
+ "nf_dbfs": -82.8,
+ "hisirti_6k_dbfs": -85.8,
+ "pad_nf_dbfs": -80.4,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
 }

@@ -1,105 +1,101 @@
 {
  "id": "P11",
  "lang": "tr",
- "text": "[tense] Tours'a giden gizli mesajlı balon Norveç'in dağlarına indi. [thoughtful] Yolcular sağ kurtuldu, ama mesaj Paris'in elinden çıkmıştı.",
+ "text": "Gizli mesajlı balon, Tours yerine Norveç'e indi. Yolcular sağ kurtuldu, ama mesaj Paris'in elinden çıkmıştı.",
  "words": [
   {
-   "t": "Tours'a",
-   "s": 0.293,
-   "e": 0.44
-  },
-  {
-   "t": "giden",
-   "s": 0.493,
-   "e": 0.76
-  },
-  {
-   "t": "gizli",
-   "s": 0.84,
-   "e": 1.16
+   "t": "Gizli",
+   "s": 0.1,
+   "e": 0.32
   },
   {
    "t": "mesajlı",
-   "s": 1.227,
-   "e": 1.64
+   "s": 0.37,
+   "e": 0.8
   },
   {
-   "t": "balon",
-   "s": 1.7,
-   "e": 2.04
+   "t": "balon,",
+   "s": 0.87,
+   "e": 1.37
   },
   {
-   "t": "Norveç'in",
-   "s": 2.16,
-   "e": 2.84
+   "t": "Tours",
+   "s": 1.56,
+   "e": 1.76
   },
   {
-   "t": "dağlarına",
-   "s": 2.9,
-   "e": 3.4
+   "t": "yerine",
+   "s": 1.84,
+   "e": 2.33
+  },
+  {
+   "t": "Norveç'e",
+   "s": 2.52,
+   "e": 2.96
   },
   {
    "t": "indi.",
-   "s": 3.44,
-   "e": 4.04
+   "s": 3.01,
+   "e": 3.37
   },
   {
    "t": "Yolcular",
-   "s": 4.409,
-   "e": 4.769
+   "s": 3.85,
+   "e": 4.32
   },
   {
    "t": "sağ",
-   "s": 4.849,
-   "e": 5.089
+   "s": 4.37,
+   "e": 4.56
   },
   {
    "t": "kurtuldu,",
-   "s": 5.169,
-   "e": 5.889
+   "s": 4.59,
+   "e": 5.21
   },
   {
    "t": "ama",
-   "s": 5.949,
-   "e": 6.129
+   "s": 5.42,
+   "e": 5.52
   },
   {
    "t": "mesaj",
-   "s": 6.222,
-   "e": 6.689
+   "s": 5.63,
+   "e": 6.1
   },
   {
    "t": "Paris'in",
-   "s": 6.809,
-   "e": 7.489
+   "s": 6.33,
+   "e": 6.72
   },
   {
    "t": "elinden",
-   "s": 7.542,
-   "e": 7.969
+   "s": 6.76,
+   "e": 7.2
   },
   {
    "t": "çıkmıştı.",
-   "s": 8.022,
-   "e": 8.609
+   "s": 7.24,
+   "e": 7.87
   }
  ],
- "dur": 8.699,
+ "dur": 8.124,
  "voice": "KediIz7pebzt5TaDHiiZ",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.8,
-  "style": 0.5,
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "ses": "Alex - Deep, Clear and Fluent",
- "on_bosluk_ms": 40,
- "cekim": 2,
- "cekim_sayisi": 2,
- "kenar": "duzeltildi",
- "nf_dbfs": -83.4,
- "hisirti_6k_dbfs": -99.2,
- "nf_gecti": true
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -81.9,
+ "hisirti_6k_dbfs": -95.0,
+ "pad_nf_dbfs": -89.1,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
 }

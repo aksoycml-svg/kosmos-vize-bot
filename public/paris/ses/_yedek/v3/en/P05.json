@@ -1,0 +1,74 @@
+{
+ "id": "P05",
+ "lang": "en",
+ "text": "[excited] Pigeons fly home from anywhere. [knowing] So balloons carried them out.",
+ "words": [
+  {
+   "t": "Pigeons",
+   "s": 0.072,
+   "e": 0.48
+  },
+  {
+   "t": "fly",
+   "s": 0.56,
+   "e": 0.8
+  },
+  {
+   "t": "home",
+   "s": 0.864,
+   "e": 1.12
+  },
+  {
+   "t": "from",
+   "s": 1.152,
+   "e": 1.28
+  },
+  {
+   "t": "anywhere.",
+   "s": 1.342,
+   "e": 2.2
+  },
+  {
+   "t": "So",
+   "s": 2.627,
+   "e": 2.64
+  },
+  {
+   "t": "balloons",
+   "s": 2.693,
+   "e": 3.12
+  },
+  {
+   "t": "carried",
+   "s": 3.16,
+   "e": 3.44
+  },
+  {
+   "t": "them",
+   "s": 3.472,
+   "e": 3.6
+  },
+  {
+   "t": "out.",
+   "s": 3.7,
+   "e": 4.0
+  }
+ ],
+ "dur": 4.833,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "ses": "Brian",
+ "cekim": 1,
+ "cekim_sayisi": 1,
+ "kenar": "temiz",
+ "nf_dbfs": -84.1,
+ "hisirti_6k_dbfs": -88.6,
+ "nf_gecti": true
+}

@@ -1,0 +1,80 @@
+{
+ "id": "P07",
+ "lang": "en",
+ "text": "[curious] The government sat in Tours. [determined] Dagron flew there to shrink letters.",
+ "words": [
+  {
+   "t": "The",
+   "s": 0.22,
+   "e": 0.28
+  },
+  {
+   "t": "government",
+   "s": 0.331,
+   "e": 0.84
+  },
+  {
+   "t": "sat",
+   "s": 0.94,
+   "e": 1.24
+  },
+  {
+   "t": "in",
+   "s": 1.32,
+   "e": 1.48
+  },
+  {
+   "t": "Tours.",
+   "s": 1.573,
+   "e": 2.12
+  },
+  {
+   "t": "Dagron",
+   "s": 3.02,
+   "e": 3.32
+  },
+  {
+   "t": "flew",
+   "s": 3.384,
+   "e": 3.64
+  },
+  {
+   "t": "there",
+   "s": 3.68,
+   "e": 3.88
+  },
+  {
+   "t": "to",
+   "s": 3.907,
+   "e": 3.96
+  },
+  {
+   "t": "shrink",
+   "s": 4.006,
+   "e": 4.28
+  },
+  {
+   "t": "letters.",
+   "s": 4.33,
+   "e": 4.76
+  }
+ ],
+ "dur": 5.407,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "ses": "Brian",
+ "on_bosluk_ms": 40,
+ "cekim": 2,
+ "cekim_sayisi": 2,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -80.2,
+ "hisirti_6k_dbfs": -81.6,
+ "nf_gecti": true
+}

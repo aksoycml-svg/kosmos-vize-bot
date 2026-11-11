@@ -1,84 +1,56 @@
 {
  "id": "P02",
  "lang": "tr",
- "text": "[tense] Prusya orduları Paris'i çevirdi, telgrafı kesti. [somber] İki milyon kadar insan şehre kapandı.",
+ "text": "Prusya orduları Paris'i çevirdi, telgrafı kesti.",
  "words": [
   {
    "t": "Prusya",
-   "s": 0.067,
+   "s": 0.1,
    "e": 0.4
   },
   {
    "t": "orduları",
-   "s": 0.44,
+   "s": 0.43,
    "e": 0.88
   },
   {
    "t": "Paris'i",
-   "s": 0.96,
-   "e": 1.44
+   "s": 0.93,
+   "e": 1.36
   },
   {
    "t": "çevirdi,",
-   "s": 1.5,
-   "e": 2.08
+   "s": 1.41,
+   "e": 1.96
   },
   {
    "t": "telgrafı",
-   "s": 2.22,
-   "e": 3.0
+   "s": 2.21,
+   "e": 2.63
   },
   {
    "t": "kesti.",
-   "s": 3.04,
-   "e": 3.84
-  },
-  {
-   "t": "İki",
-   "s": 4.37,
-   "e": 4.4
-  },
-  {
-   "t": "milyon",
-   "s": 4.457,
-   "e": 4.8
-  },
-  {
-   "t": "kadar",
-   "s": 4.84,
-   "e": 5.04
-  },
-  {
-   "t": "insan",
-   "s": 5.12,
-   "e": 5.52
-  },
-  {
-   "t": "şehre",
-   "s": 5.66,
-   "e": 6.16
-  },
-  {
-   "t": "kapandı.",
-   "s": 6.22,
-   "e": 6.8
+   "s": 2.7,
+   "e": 3.24
   }
  ],
- "dur": 7.471,
+ "dur": 3.5,
  "voice": "KediIz7pebzt5TaDHiiZ",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.8,
-  "style": 0.5,
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "ses": "Alex - Deep, Clear and Fluent",
- "cekim": 1,
- "cekim_sayisi": 1,
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
  "kenar": "temiz",
- "nf_dbfs": -88.7,
- "hisirti_6k_dbfs": -104.1,
- "nf_gecti": true
+ "nf_dbfs": -77.6,
+ "hisirti_6k_dbfs": -101.4,
+ "pad_nf_dbfs": -90.5,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
 }

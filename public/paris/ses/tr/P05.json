@@ -1,65 +1,61 @@
 {
  "id": "P05",
  "lang": "tr",
- "text": "[excited] Güvercin kümesine döner. [knowing] Onu balonla çıkarıp uzakta bıraktılar.",
+ "text": "Güvercin kümesine döner. Onu balonla uzağa götürdüler.",
  "words": [
   {
    "t": "Güvercin",
-   "s": 0.187,
-   "e": 0.6
+   "s": 0.1,
+   "e": 0.54
   },
   {
    "t": "kümesine",
-   "s": 0.653,
-   "e": 1.16
+   "s": 0.56,
+   "e": 1.03
   },
   {
    "t": "döner.",
-   "s": 1.213,
-   "e": 1.92
+   "s": 1.07,
+   "e": 1.44
   },
   {
    "t": "Onu",
-   "s": 2.392,
-   "e": 2.525
+   "s": 1.89,
+   "e": 2.06
   },
   {
    "t": "balonla",
-   "s": 2.605,
-   "e": 3.085
+   "s": 2.12,
+   "e": 2.63
   },
   {
-   "t": "çıkarıp",
-   "s": 3.138,
-   "e": 3.485
+   "t": "uzağa",
+   "s": 2.75,
+   "e": 3.03
   },
   {
-   "t": "uzakta",
-   "s": 3.549,
-   "e": 3.885
-  },
-  {
-   "t": "bıraktılar.",
-   "s": 3.925,
-   "e": 4.765
+   "t": "götürdüler.",
+   "s": 3.07,
+   "e": 3.77
   }
  ],
- "dur": 4.859,
+ "dur": 3.997,
  "voice": "KediIz7pebzt5TaDHiiZ",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.8,
-  "style": 0.5,
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "ses": "Alex - Deep, Clear and Fluent",
- "on_bosluk_ms": 40,
- "cekim": 1,
- "cekim_sayisi": 1,
- "kenar": "duzeltildi",
- "nf_dbfs": -89.9,
- "hisirti_6k_dbfs": -105.1,
- "nf_gecti": true
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -87.5,
+ "hisirti_6k_dbfs": -104.5,
+ "pad_nf_dbfs": -91.6,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
 }

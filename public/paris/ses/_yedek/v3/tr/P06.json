@@ -1,0 +1,85 @@
+{
+ "id": "P06",
+ "lang": "tr",
+ "text": "[tense] Ama kuş mektup taşıyamaz. [excited] Fotoğrafçı Dagron sayfaları parmak boyunda filme sığdırmayı buldu.",
+ "words": [
+  {
+   "t": "Ama",
+   "s": 0.17,
+   "e": 0.2
+  },
+  {
+   "t": "kuş",
+   "s": 0.32,
+   "e": 0.68
+  },
+  {
+   "t": "mektup",
+   "s": 0.792,
+   "e": 1.32
+  },
+  {
+   "t": "taşıyamaz.",
+   "s": 1.4,
+   "e": 2.36
+  },
+  {
+   "t": "Fotoğrafçı",
+   "s": 2.808,
+   "e": 3.16
+  },
+  {
+   "t": "Dagron",
+   "s": 3.22,
+   "e": 3.56
+  },
+  {
+   "t": "sayfaları",
+   "s": 3.624,
+   "e": 4.04
+  },
+  {
+   "t": "parmak",
+   "s": 4.1,
+   "e": 4.44
+  },
+  {
+   "t": "boyunda",
+   "s": 4.5,
+   "e": 4.84
+  },
+  {
+   "t": "filme",
+   "s": 4.893,
+   "e": 5.16
+  },
+  {
+   "t": "sığdırmayı",
+   "s": 5.2,
+   "e": 5.72
+  },
+  {
+   "t": "buldu.",
+   "s": 5.76,
+   "e": 6.36
+  }
+ ],
+ "dur": 6.452,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "ses": "Alex - Deep, Clear and Fluent",
+ "on_bosluk_ms": 40,
+ "cekim": 2,
+ "cekim_sayisi": 4,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -87.8,
+ "hisirti_6k_dbfs": -104.6,
+ "nf_gecti": true
+}

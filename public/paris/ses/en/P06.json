@@ -1,85 +1,78 @@
 {
  "id": "P06",
  "lang": "en",
- "text": "[tense] Birds can't carry letters. [excited] Photographer Dagron's trick: pages shrunk onto finger-sized film.",
+ "text": "Birds can't carry letters. Dagron shrank pages onto tiny film.",
  "words": [
   {
    "t": "Birds",
-   "s": 0.42,
-   "e": 0.52
+   "s": 0.1,
+   "e": 0.28
   },
   {
    "t": "can't",
-   "s": 0.64,
-   "e": 1.08
+   "s": 0.33,
+   "e": 0.72
   },
   {
    "t": "carry",
-   "s": 1.16,
-   "e": 1.56
+   "s": 0.74,
+   "e": 0.92
   },
   {
    "t": "letters.",
-   "s": 1.62,
-   "e": 2.12
+   "s": 0.97,
+   "e": 1.48
   },
   {
-   "t": "Photographer",
-   "s": 3.332,
-   "e": 3.48
+   "t": "Dagron",
+   "s": 2.13,
+   "e": 2.6
   },
   {
-   "t": "Dagron's",
-   "s": 3.58,
-   "e": 4.2
-  },
-  {
-   "t": "trick:",
-   "s": 4.28,
-   "e": 5.16
+   "t": "shrank",
+   "s": 2.64,
+   "e": 3.0
   },
   {
    "t": "pages",
-   "s": 5.24,
-   "e": 5.64
-  },
-  {
-   "t": "shrunk",
-   "s": 5.7,
-   "e": 6.12
+   "s": 3.11,
+   "e": 3.48
   },
   {
    "t": "onto",
-   "s": 6.216,
-   "e": 6.6
+   "s": 3.51,
+   "e": 3.72
   },
   {
-   "t": "finger-sized",
-   "s": 6.646,
-   "e": 7.4
+   "t": "tiny",
+   "s": 3.79,
+   "e": 4.12
   },
   {
    "t": "film.",
-   "s": 7.496,
-   "e": 7.96
+   "s": 4.2,
+   "e": 4.68
   }
  ],
- "dur": 8.046,
+ "dur": 4.937,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.8,
-  "style": 0.5,
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "ses": "Brian",
- "on_bosluk_ms": 40,
- "cekim": 1,
- "cekim_sayisi": 1,
- "kenar": "duzeltildi",
- "nf_dbfs": -84.5,
- "hisirti_6k_dbfs": -94.5,
- "nf_gecti": true
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -80.7,
+ "hisirti_6k_dbfs": -82.1,
+ "pad_nf_dbfs": -80.3,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": [
+  26.2
+ ]
 }

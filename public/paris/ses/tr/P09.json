@@ -1,70 +1,61 @@
 {
  "id": "P09",
  "lang": "tr",
- "text": "[excited] Kuş kümesine konunca film perdede büyütüldü. [determined] Memurlar kopyalayıp dağıttı.",
+ "text": "Kümese konunca film perdede büyütüldü. Memurlar kopyaladı.",
  "words": [
   {
-   "t": "Kuş",
-   "s": 0.179,
-   "e": 0.32
-  },
-  {
-   "t": "kümesine",
-   "s": 0.36,
-   "e": 0.76
+   "t": "Kümese",
+   "s": 0.1,
+   "e": 0.38
   },
   {
    "t": "konunca",
-   "s": 0.84,
-   "e": 1.4
+   "s": 0.43,
+   "e": 0.94
   },
   {
    "t": "film",
-   "s": 1.496,
-   "e": 1.88
+   "s": 0.99,
+   "e": 1.26
   },
   {
    "t": "perdede",
-   "s": 1.94,
-   "e": 2.36
+   "s": 1.3,
+   "e": 1.74
   },
   {
    "t": "büyütüldü.",
-   "s": 2.4,
-   "e": 3.28
+   "s": 1.77,
+   "e": 2.39
   },
   {
    "t": "Memurlar",
-   "s": 3.69,
-   "e": 3.96
+   "s": 2.75,
+   "e": 3.17
   },
   {
-   "t": "kopyalayıp",
-   "s": 4.04,
-   "e": 4.6
-  },
-  {
-   "t": "dağıttı.",
-   "s": 4.648,
-   "e": 5.24
+   "t": "kopyaladı.",
+   "s": 3.25,
+   "e": 3.9
   }
  ],
- "dur": 5.329,
+ "dur": 4.153,
  "voice": "KediIz7pebzt5TaDHiiZ",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.5,
-  "similarity_boost": 0.8,
-  "style": 0.5,
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "ses": "Alex - Deep, Clear and Fluent",
- "on_bosluk_ms": 40,
- "cekim": 1,
- "cekim_sayisi": 1,
- "kenar": "duzeltildi",
- "nf_dbfs": -88.2,
- "hisirti_6k_dbfs": -109.4,
- "nf_gecti": true
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -89.1,
+ "hisirti_6k_dbfs": -109.2,
+ "pad_nf_dbfs": -91.7,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
 }
