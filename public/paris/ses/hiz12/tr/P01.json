@@ -1,0 +1,69 @@
+{
+ "id": "P01",
+ "lang": "tr",
+ "text": "[curious] Kuşatılmış Paris'e haberi güvercinler getirdi. [intrigued] Onları dışarı balon çıkarmıştı.",
+ "words": [
+  {
+   "t": "Kuşatılmış",
+   "s": 0.067,
+   "e": 0.56
+  },
+  {
+   "t": "Paris'e",
+   "s": 0.627,
+   "e": 1.12
+  },
+  {
+   "t": "haberi",
+   "s": 1.22,
+   "e": 1.76
+  },
+  {
+   "t": "güvercinler",
+   "s": 1.813,
+   "e": 2.56
+  },
+  {
+   "t": "getirdi.",
+   "s": 2.62,
+   "e": 3.12
+  },
+  {
+   "t": "Onları",
+   "s": 3.819,
+   "e": 4.0
+  },
+  {
+   "t": "dışarı",
+   "s": 4.057,
+   "e": 4.4
+  },
+  {
+   "t": "balon",
+   "s": 4.46,
+   "e": 4.72
+  },
+  {
+   "t": "çıkarmıştı.",
+   "s": 4.78,
+   "e": 5.92
+  }
+ ],
+ "dur": 5.956,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.2
+ },
+ "ses": "Alex - Deep, Clear and Fluent",
+ "cekim": 1,
+ "cekim_sayisi": 1,
+ "kenar": "temiz",
+ "nf_dbfs": -88.4,
+ "hisirti_6k_dbfs": -105.5,
+ "nf_gecti": true
+}

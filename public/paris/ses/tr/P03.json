@@ -1,40 +1,40 @@
 {
  "id": "P03",
  "lang": "tr",
- "text": "[hopeful] Çare gökyüzüydü: balonlar mektupları dışarı taşıdı.",
+ "text": "[hopeful] Çare gökyüzüydü. Balonlar mektupları dışarı taşıdı.",
  "words": [
   {
    "t": "Çare",
-   "s": 0.15,
-   "e": 0.4
+   "s": 0.112,
+   "e": 0.44
   },
   {
-   "t": "gökyüzüydü:",
-   "s": 0.48,
-   "e": 1.28
+   "t": "gökyüzüydü.",
+   "s": 0.493,
+   "e": 1.56
   },
   {
-   "t": "balonlar",
-   "s": 1.44,
-   "e": 2.32
+   "t": "Balonlar",
+   "s": 1.64,
+   "e": 2.12
   },
   {
    "t": "mektupları",
-   "s": 2.432,
-   "e": 3.2
+   "s": 2.168,
+   "e": 2.68
   },
   {
    "t": "dışarı",
-   "s": 3.257,
-   "e": 3.6
+   "s": 2.737,
+   "e": 3.08
   },
   {
    "t": "taşıdı.",
-   "s": 3.653,
-   "e": 4.16
+   "s": 3.133,
+   "e": 3.88
   }
  ],
- "dur": 4.206,
+ "dur": 3.971,
  "voice": "KediIz7pebzt5TaDHiiZ",
  "model": "eleven_v3",
  "ayar": {
@@ -45,10 +45,11 @@
   "speed": 1.1
  },
  "ses": "Alex - Deep, Clear and Fluent",
- "cekim": 3,
- "cekim_sayisi": 3,
- "kenar": "KESIK",
- "nf_dbfs": -84.8,
- "hisirti_6k_dbfs": -103.3,
- "nf_gecti": false
+ "on_bosluk_ms": 40,
+ "cekim": 2,
+ "cekim_sayisi": 4,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -89.2,
+ "hisirti_6k_dbfs": -110.0,
+ "nf_gecti": true
 }

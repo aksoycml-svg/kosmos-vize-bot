@@ -5,66 +5,66 @@
  "words": [
   {
    "t": "Ama",
-   "s": 0.235,
-   "e": 0.28
+   "s": 0.17,
+   "e": 0.2
   },
   {
    "t": "kuş",
-   "s": 0.36,
-   "e": 0.6
+   "s": 0.32,
+   "e": 0.68
   },
   {
    "t": "mektup",
-   "s": 0.68,
-   "e": 1.08
+   "s": 0.792,
+   "e": 1.32
   },
   {
    "t": "taşıyamaz.",
-   "s": 1.133,
-   "e": 1.96
+   "s": 1.4,
+   "e": 2.36
   },
   {
    "t": "Fotoğrafçı",
-   "s": 2.872,
+   "s": 2.808,
    "e": 3.16
   },
   {
    "t": "Dagron",
-   "s": 3.24,
-   "e": 3.64
+   "s": 3.22,
+   "e": 3.56
   },
   {
    "t": "sayfaları",
-   "s": 3.704,
-   "e": 4.2
+   "s": 3.624,
+   "e": 4.04
   },
   {
    "t": "parmak",
-   "s": 4.26,
-   "e": 4.68
+   "s": 4.1,
+   "e": 4.44
   },
   {
    "t": "boyunda",
-   "s": 4.72,
-   "e": 5.08
+   "s": 4.5,
+   "e": 4.84
   },
   {
    "t": "filme",
-   "s": 5.147,
-   "e": 5.48
+   "s": 4.893,
+   "e": 5.16
   },
   {
    "t": "sığdırmayı",
-   "s": 5.52,
-   "e": 6.04
+   "s": 5.2,
+   "e": 5.72
   },
   {
    "t": "buldu.",
-   "s": 6.08,
-   "e": 6.44
+   "s": 5.76,
+   "e": 6.36
   }
  ],
- "dur": 6.844,
+ "dur": 6.452,
  "voice": "KediIz7pebzt5TaDHiiZ",
  "model": "eleven_v3",
  "ayar": {
@@ -76,10 +76,10 @@
  },
  "ses": "Alex - Deep, Clear and Fluent",
  "on_bosluk_ms": 40,
- "cekim": 3,
- "cekim_sayisi": 3,
+ "cekim": 2,
+ "cekim_sayisi": 4,
  "kenar": "duzeltildi",
- "nf_dbfs": -79.6,
- "hisirti_6k_dbfs": -92.2,
- "nf_gecti": false
+ "nf_dbfs": -87.8,
+ "hisirti_6k_dbfs": -104.6,
+ "nf_gecti": true
 }

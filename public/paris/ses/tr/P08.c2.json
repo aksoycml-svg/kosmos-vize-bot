@@ -1,0 +1,49 @@
+{
+ "id": "P08",
+ "lang": "tr",
+ "text": "[knowing] Film, güvercinin kuyruk tüyüne bağlanıp salındı.",
+ "words": [
+  {
+   "t": "Film,",
+   "s": 0.309,
+   "e": 0.56
+  },
+  {
+   "t": "güvercinin",
+   "s": 0.627,
+   "e": 1.24
+  },
+  {
+   "t": "kuyruk",
+   "s": 1.32,
+   "e": 1.64
+  },
+  {
+   "t": "tüyüne",
+   "s": 1.68,
+   "e": 1.96
+  },
+  {
+   "t": "bağlanıp",
+   "s": 2.02,
+   "e": 2.52
+  },
+  {
+   "t": "salındı.",
+   "s": 2.6,
+   "e": 3.32
+  }
+ ],
+ "dur": 3.371,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "ses": "Alex - Deep, Clear and Fluent",
+ "on_bosluk_ms": 40
+}
