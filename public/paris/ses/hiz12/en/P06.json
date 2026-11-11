@@ -5,66 +5,66 @@
  "words": [
   {
    "t": "Birds",
-   "s": 0.42,
-   "e": 0.52
+   "s": 0.293,
+   "e": 0.36
   },
   {
    "t": "can't",
-   "s": 0.64,
-   "e": 1.08
+   "s": 0.44,
+   "e": 0.76
   },
   {
    "t": "carry",
-   "s": 1.16,
-   "e": 1.56
+   "s": 0.827,
+   "e": 1.16
   },
   {
    "t": "letters.",
-   "s": 1.62,
-   "e": 2.12
+   "s": 1.22,
+   "e": 1.72
   },
   {
    "t": "Photographer",
-   "s": 3.332,
-   "e": 3.48
+   "s": 2.951,
+   "e": 3.08
   },
   {
    "t": "Dagron's",
-   "s": 3.58,
-   "e": 4.2
+   "s": 3.18,
+   "e": 3.8
   },
   {
    "t": "trick:",
-   "s": 4.28,
-   "e": 5.16
+   "s": 3.867,
+   "e": 4.68
   },
   {
    "t": "pages",
-   "s": 5.24,
-   "e": 5.64
+   "s": 4.773,
+   "e": 5.24
   },
   {
    "t": "shrunk",
-   "s": 5.7,
-   "e": 6.12
+   "s": 5.28,
+   "e": 5.64
   },
   {
    "t": "onto",
-   "s": 6.216,
-   "e": 6.6
+   "s": 5.72,
+   "e": 6.04
   },
   {
    "t": "finger-sized",
-   "s": 6.646,
-   "e": 7.4
+   "s": 6.086,
+   "e": 6.76
   },
   {
    "t": "film.",
-   "s": 7.496,
-   "e": 7.96
+   "s": 6.84,
+   "e": 7.8
   }
  ],
- "dur": 8.046,
+ "dur": 7.889,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_v3",
  "ayar": {
@@ -72,14 +72,14 @@
   "similarity_boost": 0.8,
   "style": 0.5,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.2
  },
  "ses": "Brian",
  "on_bosluk_ms": 40,
  "cekim": 1,
  "cekim_sayisi": 1,
  "kenar": "duzeltildi",
- "nf_dbfs": -84.5,
- "hisirti_6k_dbfs": -94.5,
+ "nf_dbfs": -85.4,
+ "hisirti_6k_dbfs": -95.8,
  "nf_gecti": true
 }

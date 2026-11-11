@@ -174,6 +174,21 @@ if __name__ == "__main__":
         a = dict(AYAR, speed=1.2)
         for lg in ("tr", "en"):
             for pid in ("P01", "P06", "P11"): uret(lg, pid, OUT=f"{ROOT}/hiz12/{lg}", ayar=a)
+    elif c == "karsilastir":
+        SR = 44100
+        for lg in ("tr", "en"):
+            parts = []
+            def ld(f):
+                raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", f, "-af", ln(f, -18, -3), "-f", "f32le", "-ac", "2", "-ar", str(SR), "-"], capture_output=True, check=True).stdout
+                return np.frombuffer(raw, np.float32).reshape(-1, 2).astype(float)
+            sil = lambda t: np.zeros((int(t * SR), 2))
+            for pid in ("P01", "P06", "P11"):
+                parts += [ld(f"{ROOT}/{lg}/{pid}.mp3"), sil(0.6), ld(f"{ROOT}/hiz12/{lg}/{pid}.mp3"), sil(1.0)]
+            tmp = f"public/paris/dinlet/_k{lg}.wav"
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-", tmp], input=np.concatenate(parts).astype(np.float32).tobytes(), check=True)
+            out = f"public/paris/dinlet/hiz-karsilastirma-{lg}.mp3"
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", tmp, "-af", ln(tmp, -18, -1.5), "-ar", str(SR), "-b:a", "192k", out], check=True)
+            os.remove(tmp); print(out, f"{sure(out):.1f}s")
     elif c == "olc":
         for lg in ("tr", "en"):
             for pid in IDS:
