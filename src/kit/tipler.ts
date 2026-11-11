@@ -81,7 +81,7 @@ export type EkranYazisi = { bant: Bant; metin: DilMetinT; vurgu?: DilListeT; en?
 export type SayacAyar = { hedef: number; baslangic?: number; bas?: number; sure?: number; ondalik?: number; vurgu?: boolean;
   donus?: { kare: number; metin: DilMetinT; en?: string } };
 // KT-1 kelime kelime altyazı (yazı katmanı, dil başına; ses json kelime zamanlarından). Bölüm düzeyinde açılır, plan düzeyinde ezilir/kapatılır.
-export type AltyaziAyar = { acik?: boolean; kucuk?: boolean; noktalamasiz?: boolean; grup?: 1 | 2 | 3; maks_harf?: number; bant?: "oto" | "alt" | "ust"; boyut?: number; vurgu?: DilListeT };
+export type AltyaziAyar = { acik?: boolean; kucuk?: boolean; noktalamasiz?: boolean; grup?: 1 | 2 | 3; maks_harf?: number; bant?: "oto" | "alt" | "ust"; boyut?: number; vurgu?: DilListeT; vurgu_ses?: boolean };
 // KT-2 kamera dili (Bolum sarmalayıcısı; şablon kamerasının ÜSTÜNE): itme = plan boyunca lineer ölçek artışı (0.04 = %4), titreme px genlik, hiz çarpan, seed
 export type KameraDil = { itme?: number; odak?: P; titreme?: number; hiz?: number; seed?: number; aci?: number };
 // KT-2 plan geçişi (çıkan planda): whip — yon = görüntünün kaydığı yön; kare = her iki yandaki yarı uzunluk (8)

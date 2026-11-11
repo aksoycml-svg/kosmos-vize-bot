@@ -149,7 +149,7 @@ const Altyazi: React.FC<{ ham: Plan; b: BolumJson; p: number; kilit: KilitNokta[
   if (!g) return null;
   const bant = altyaziBant(ham, a, p, kilit.map((k) => ({ ...k, p: donusumNokta(d, k.p) })), dil, ana);
   if (!bant) return null;
-  const v = a.vurgu ? (Array.isArray(a.vurgu) ? a.vurgu : a.vurgu[dil]) : undefined;
+  const v = [...(a.vurgu ? (Array.isArray(a.vurgu) ? a.vurgu : a.vurgu[dil] ?? []) : []), ...(a.vurgu_ses ? g.vurguSes : [])];
   return <KitAltyazi g={g} p={p} bant={bant} a={a} vurgu={v} dil={dil} />;
 };
 

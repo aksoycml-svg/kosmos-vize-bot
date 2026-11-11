@@ -1,0 +1,53 @@
+{
+  "slug": "paris-kusatmasi-kit-test",
+  "baslik": "Kit testi: altyazı / kamera dili / rota / sayaç (KT-1..4)",
+  "fps": 60,
+  "dil": "tr",
+  "gorsel_yazisiz": false,
+  "altyazi": { "acik": true, "grup": 2, "maks_harf": 14, "bant": "oto", "noktalamasiz": true, "vurgu_ses": true },
+  "planlar": [
+    {
+      "id": "T1", "sablon": "HARITA", "sure_kare": 330, "kontrol_kare": 236,
+      "not": "KT-3 rota: Paris → Tours mürekkep çizgi kendini çizer, kamera ucu izler, iğne Tours'a düşer (temas 232), kart.",
+      "parametreler": {
+        "rota_noktalar": [["PARIS", 2.35, 48.86, true], ["", 1.62, 48.3, false], ["TOURS", 0.69, 47.39, true]],
+        "rota_ciz": { "bas": 24, "bit": 200 },
+        "kamera_takip": { "kare": [24, 200], "cs": 2.3, "ekran": [560, 960], "gecis": 30 },
+        "igne": { "kare": 232, "dusme": 14 }
+      },
+      "kamera": { "kare": [0], "cs": [1.6], "cx": [-115], "cy": [439] },
+      "harita_kart": [{ "metin": { "tr": "HÜKÜMET", "en": "GOVERNMENT" }, "alt": { "tr": "TOURS · ~200 KM", "en": "TOURS · ~125 MI" }, "bas": 246, "bit": 316, "yon": "ust" }],
+      "ses": [{ "dosya": "paris/ses/tr/P03.mp3", "kare": 6 }],
+      "ses_en": [{ "dosya": "paris/ses/en/P03.mp3", "kare": 6 }],
+      "temaslar": [{ "kare": 232, "olay": "iğne haritaya batar", "ses": "igne-tak", "db": -8 }]
+    },
+    {
+      "id": "T2", "sablon": "KULE-DIS", "sure_kare": 408, "kontrol_kare": 141,
+      "not": "KT-2 darbe: 'vuruldu' (2.28 sn → 137+6) karesinde gökte patlama + flaş + sarsıntı; kamera dili itme %5 + titreme 3 px.",
+      "parametreler": { "saat": "gun", "kuleler": [{ "x": 300, "taban": 1010, "L": 40, "konum": "BEKLE" }] },
+      "kamera_dil": { "itme": 0.05, "titreme": 3, "seed": 4 },
+      "darbe": [{ "kare": 143, "x": 700, "y": 640, "siddet": 0.85, "yaricap": 150, "seed": 5 }],
+      "ses": [{ "dosya": "paris/ses/tr/P07.mp3", "kare": 6 }],
+      "ses_en": [{ "dosya": "paris/ses/en/P07.mp3", "kare": 6 }],
+      "temaslar": [{ "kare": 143, "olay": "balon vurulur (patlama)", "ses": "patlama", "db": -6 }]
+    },
+    {
+      "id": "T3", "sablon": "HARITA", "sure_kare": 480, "kontrol_kare": 290,
+      "not": "KT-4 sayaç: 0 → 2.000.000 (TR) / 2,000,000 (EN), sonra 'İKİ MİLYON İNSAN'; plan sonunda whip sola (8+8 kare) → T4.",
+      "parametreler": { "rota": "paris-bordeaux" },
+      "kamera": { "kare": [0], "cs": [1.15], "cx": [0], "cy": [80] },
+      "ekran_yazisi": [{ "bant": "ust", "tur": "sayac", "metin": { "tr": "{n} İNSAN", "en": "{n} PEOPLE" }, "bas": 210, "bit": 460,
+        "sayac": { "hedef": 2000000, "bas": 0, "sure": 70, "donus": { "kare": 90, "metin": { "tr": "İKİ MİLYON İNSAN", "en": "TWO MILLION PEOPLE" } } } }],
+      "gecis": { "tur": "whip", "yon": "sol", "kare": 8 },
+      "ses": [{ "dosya": "paris/ses/tr/P02.mp3", "kare": 6 }],
+      "ses_en": [{ "dosya": "paris/ses/en/P02.mp3", "kare": 6 }]
+    },
+    {
+      "id": "T4", "sablon": "SOKAK", "sure_kare": 150, "kontrol_kare": 4,
+      "not": "KT-2 whip girişi (T3'ten, sağdan gelir) + kamera dili.",
+      "parametreler": { "sehir": "paris", "saat": "gece" },
+      "kamera_dil": { "itme": 0.04, "titreme": 2.5 },
+      "altyazi": false
+    }
+  ]
+}

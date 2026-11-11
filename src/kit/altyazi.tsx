@@ -14,7 +14,7 @@ import { GIRIS, cl } from "./zaman";
 
 export type Kelime = { t: string; s: number; e: number };
 export type KelimeHarita = Record<string, Kelime[]>; // ses dosyası (public/'den göreli mp3) → kelimeler
-export type AltyaziGrup = { metin: string; ham: string; bas: number; bit: number };
+export type AltyaziGrup = { metin: string; ham: string; bas: number; bit: number; vurguSes: string[] };
 
 export const altyaziAyar = (plan: Plan, b: BolumJson): AltyaziAyar | null => {
   if (plan.altyazi === false) return null;
@@ -25,6 +25,19 @@ export const altyaziVarMi = (b: BolumJson) => b.planlar.some((p) => altyaziAyar(
 export const sesListesi = (plan: Plan, dil: Dil, ana: Dil): PlanSes[] =>
   (dil === ana ? plan.ses : (plan as unknown as Record<string, PlanSes[] | undefined>)[`ses_${dil}`]) ?? [];
 export const kelimeYolu = (mp3: string) => mp3.replace(/\.[a-z0-9]+$/i, ".json");
+
+// Ses metnindeki BÜYÜK HARF kelimeler (eleven_v3 vurgu işareti: "KESTİ.", "İKİ MİLYON…") ekranda normal yazılır:
+// cümle başıysa ilk harf büyük, değilse küçük. Bu kelimeler `vurgu_ses: true` ile vurgu adayıdır (grupta tek kelime kırmızı).
+const buyukMu = (w: string) => { const h = w.replace(/[^\p{L}]/gu, ""); return h.length >= 2 && h === h.toLocaleUpperCase("tr") && h !== h.toLocaleLowerCase("tr"); };
+const sesDuzelt = (W: Kelime[], dil: Dil) => {
+  const loc = dil === "tr" ? "tr" : "en";
+  return W.map((w, i) => {
+    if (!buyukMu(w.t)) return { ...w, vurgu: false };
+    const bas = i === 0 || /[.?!…]["'\u201d\u2019)]*$/.test(W[i - 1].t);
+    const k = w.t.toLocaleLowerCase(loc);
+    return { ...w, t: bas ? k.replace(/\p{L}/u, (c) => c.toLocaleUpperCase(loc)) : k, vurgu: true };
+  });
+};
 
 // noktalamasız: harf/rakam/%; kelime içi kesme işareti (Tours'taydı) korunur; tire boşluk olur
 const temizle = (s: string, a: AltyaziAyar, dil: Dil) => {
@@ -38,10 +51,11 @@ export const altyaziGruplari = (plan: Plan, a: AltyaziAyar, sesler: PlanSes[], k
   const G: AltyaziGrup[] = [];
   const grup = a.grup ?? 2, maks = a.maks_harf ?? 14;
   for (const s of sesler) {
-    const W = kh[s.dosya];
-    if (!W) continue;
-    let cur: { w: Kelime[]; ham: string } | null = null;
-    const ham: { w: Kelime[]; ham: string }[] = [];
+    if (!kh[s.dosya]) continue;
+    const W = sesDuzelt(kh[s.dosya], dil);
+    type Ks = (typeof W)[number];
+    let cur: { w: Ks[]; ham: string } | null = null;
+    const ham: { w: Ks[]; ham: string }[] = [];
     W.forEach((w, i) => {
       const onceki = W[i - 1];
       const kir = !cur || cur.w.length >= grup || (cur.ham + " " + w.t).length > maks || /[.,;:?!…]["'”’)]*$/.test(onceki?.t ?? "");
@@ -51,7 +65,7 @@ export const altyaziGruplari = (plan: Plan, a: AltyaziAyar, sesler: PlanSes[], k
       const bas = s.kare + Math.round(c.w[0].s * 60);
       const son = c.w[c.w.length - 1].e, n = ham[i + 1];
       const bitS = n && n.w[0].s - son < 0.5 ? n.w[0].s : son + 0.25;
-      G.push({ metin: temizle(c.ham, a, dil), ham: c.ham, bas, bit: Math.min(plan.sure_kare, s.kare + Math.round(bitS * 60)) });
+      G.push({ metin: temizle(c.ham, a, dil), ham: c.ham, vurguSes: c.w.filter((w) => w.vurgu).map((w) => temizle(w.t, { ...a, kucuk: true, noktalamasiz: true }, dil)), bas, bit: Math.min(plan.sure_kare, s.kare + Math.round(bitS * 60)) });
     });
   }
   return G;

@@ -30,6 +30,7 @@ export type Poz = {
   yorganKalinlik?: number; // K4 (v4 P10): yorgan kabartısının yüksekliği (1 = varsayılan; 0.4–1). Yakın planda yorgan alt bandı kaplamasın
   // K3: hasta yüz (0–1: solgun ten, göz altı morluğu, yarı kapalı göz, yanak kızarıklığı yok) + ter damlaları
   hasta?: number; ter?: boolean;
+  etekOto?: boolean; // kit/hareket (gait): uzun etek öndeki bacağa göre açılır-kapanır (bacaklar çaprazlanınca ön kenar öne geçen bacağı izler). Verilmezse eski davranış
   arka?: boolean; // Evliya R14: arka 3/4 görünüm (yüz yüzeyi yok; ense + saç/takke + kulak kenarı; kol/bacak katman sırası ters). Yalnız Osmanlı gövdesi
 };
 
@@ -604,14 +605,21 @@ const bacakFK = (x: number, thigh: number, knee: number) => {
   return { kalca, diz, baldir: dondur(thigh + knee, [0, 1]), nU: dondur(thigh, [1, 0]), nB: dondur(thigh + knee, [1, 0]) };
 };
 export const etekYol = (pz: Poz, kisa: boolean) => {
-  const F = bacakFK(14, pz.thighF, pz.kneeF), B = bacakFK(-10, pz.thighB, pz.kneeB);
+  let tF = pz.thighF, kF = pz.kneeF, tB = pz.thighB, kB = pz.kneeB;
+  if (pz.etekOto) {
+    // gait (kit/hareket): ön kenar ÖNDEKİ bacağı, arka kenar geride kalan bacağı izler — bacaklar çaprazlanınca roller yumuşak geçişle değişir
+    const bx = (x: number, t: number, k: number) => x - 104 * Math.sin(rad(t)) - 99 * Math.sin(rad(t + k));
+    const d = bx(-10, tB, kB) - bx(14, tF, kF), w0 = Math.max(0, Math.min(1, (d + 12) / 24)), w = w0 * w0 * (3 - 2 * w0);
+    [tF, kF, tB, kB] = [tF + (pz.thighB - tF) * w, kF + (pz.kneeB - kF) * w, tB + (pz.thighF - tB) * w, kB + (pz.kneeF - kB) * w];
+  }
+  const F = bacakFK(14, tF, kF), B = bacakFK(-10, tB, kB);
   const otur = Math.min(1, Math.abs(Math.sin(rad((pz.thighF + pz.thighB) / 2)))); // 0 ayakta … 1 uyluk yatay
   const L = kisa ? 152 : 190; // kisa (v1.3 R17): diz kapağının ≈30 birim altı
   const boy = (b: typeof F) => Math.max(kisa ? 4 : 10, L - Math.hypot(b.diz[0] - b.kalca[0], b.diz[1] + 240) - 34 * otur);
   const uF = top(F.diz, F.baldir, Math.min(99, boy(F))), uB = top(B.diz, B.baldir, Math.min(99, boy(B)));
   const genis = kisa ? 16 : 20;
   const bel: V2[] = [[-50, -244], [46, -244]];
-  const onKenar: V2[] = [top(top(F.kalca, F.nU, 24), dondur(pz.thighF, [0, 46])), top(F.diz, F.nU, 22), top(uF, F.nB, genis)];
+  const onKenar: V2[] = [top(top(F.kalca, F.nU, 24), dondur(tF, [0, 46])), top(F.diz, F.nU, 22), top(uF, F.nB, genis)];
   // S4: oturunca etek uyluk altına sıkı oturur (oturak tahtası görünür), arkada kısa yumuşak sarkma
   const arkaKenar: V2[] = [top(uB, B.nB, -genis), top(B.diz, B.nU, -22 + 6 * otur), top(B.kalca, B.nU, -26 + 8 * otur), [-52, -226 + 22 + 12 * otur]];
   return { d: yumusakYol([...bel, ...onKenar, ...arkaKenar]), onKenar, uF, nF: F.nB, nUF: F.nU, otur };
@@ -759,7 +767,11 @@ const KuklaGovde: React.FC<{ pz: Poz; p: Palet; louis?: boolean; golgesiz?: bool
 };
 
 // ---- Akıcı yürüme döngüsü ----
-// faz (radyan); amt 0..1 (kalkış/duruş yumuşatma)
+// ESKİ (sinüs) döngü: faz (radyan); amt 0..1 (kalkış/duruş yumuşatma). Blanc / Proto / bayraksız json'lar bunu kullanır (davranış değişmedi).
+// YENİ: zemine basan çözücü `kuklaYuru` (src/kit/hareket/kuklaYuru.ts; gait.ts = JDhruv14/line-art-animation uyarlaması, MIT):
+// basan ayak dünya koordinatında sabit, zemin y = f(x) (eğim/merdiven), ölçek + yön, kalça bacak erişiminden, uzun etek `etekOto`.
+// json'da `yuru` jestine `ops.cozucu: "gait"` (+ `ops.tur` walk|shuffle|run, `ops.adim_m`) verilince şablonlar yeni çözücüye geçer.
+export { kuklaYuru } from "../kit/hareket/kuklaYuru";
 export const yuru = (phi: number, amt = 1) => {
   const leg = (ph: number) => {
     const thigh = -26 * Math.sin(ph);

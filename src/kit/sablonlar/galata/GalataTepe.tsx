@@ -31,6 +31,8 @@ import { cl, CIKIS, deger, ekranNokta, GIRIS, INOUT, kameraHesapla, katDonusum, 
 import { param, Sablon, SablonProps } from "../../ortak";
 import { RIG_BIRIM_M } from "../sarayburnu/geo";
 import { SurAvlu } from "./SurAvlu";
+import { kuklaYuru } from "../../hareket/kuklaYuru";
+import { turAdi, zeminOrnek } from "../../hareket/gait";
 
 const S = DOKU_SEED.galata;
 export const GT = {
@@ -269,7 +271,23 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     { const a = kolIK(pz, govdeDunya(pz, [50, -256]), true), b = kolIK(pz, govdeDunya(pz, [34, -262]), false); pz.shF = a.sh; pz.elF = a.el; pz.shB = b.sh; pz.elB = b.el; pz.lean = 0; }
     const f = pz.facing ?? 1;
     let ayaklar = [{ x: x + f * s * (LEG.F + 13), gy: y, h: 0 }, { x: x + f * s * (LEG.B + 13), gy: y, h: 0 }];
-    if (yj && p >= yj.bas - 1 && p <= yj.bit + 8) {
+    if (yj && yj.ops?.cozucu === "gait") {
+      // kit/hareket gait çözücüsü (bayrak): basışlar json "adim-tas" temaslarından (yoksa yol kuralı, ops.adim_m), basan ayak dünya
+      // koordinatında sabit, zemin = json (x, y) yolu, kalça bacak erişiminden, kollar kuşaktan hafif açılır, uzun etek öndeki bacağı izler.
+      const xq = (q: number) => pchipJson(hz, q, "x", 700), yq = (q: number) => pchipJson(hz, q, "y", GT.ayakY);
+      const orn: [number, number][] = []; for (let q = yj.bas; q <= yj.bit; q++) orn.push([xq(q), yq(q)]);
+      const pc = Math.max(yj.bas, Math.min(yj.bit, p));
+      const sQ = (q: number) => (pxmY(yq(q)) / RIG_BIRIM_M) * 1.04;
+      const amtE = interpolate(p, [yj.bas, yj.bas + 6, yj.bit - 6, yj.bit], [0, 1, 1, 0], { ...cl, easing: INOUT });
+      const tA = adimTemas.filter((q) => q > yj.bas && q <= yj.bit + 1);
+      const r = kuklaYuru({ ...pz, x: xq(pc), y: yq(pc) + AYAK_TABAN * sQ(pc), scale: sQ(pc) }, {
+        p: pc, bas: yj.bas, bit: yj.bit, x: xq, zemin: zeminOrnek(orn), pxm: (q) => pxmY(yq(q)), olcek: sQ,
+        tur: turAdi(String(yj.ops?.tur ?? "walk")), adim_m: typeof yj.ops?.adim_m === "number" ? yj.ops.adim_m : undefined,
+        basislar: tA.length ? tA : undefined, kolGenlik: 10 * amtE, egik: 3 * amtE,
+      });
+      Object.assign(pz, r.pz); x = pz.x;
+      ayaklar = r.c.ayak.map((a) => ({ x: a.zemin[0] + f * pz.scale! * 13, gy: a.zemin[1], h: a.h }));
+    } else if (yj && p >= yj.bas - 1 && p <= yj.bit + 8) {
       // K6 (B3): düzlemde basan yürüyüş — ayaklar zemine basar (kaymaz), kalça iki bacağın erişimine göre iner, arka ayak parmak ucunda
       const W0 = yuruCoz(hz, adimTemas, yj.bas, yj.bit, p, s);
       const amt = interpolate(p, [yj.bas - 1, yj.bas + 4, yj.bit, yj.bit + 8], [0, 1, 1, 0], cl);
