@@ -187,3 +187,35 @@
 - Aldığım kararlar ve gerekçeleri: (1) **Sarı metal yasağı** (pirinç/altın/bakır: terazi, lantern, mercek, iğne): imza kehribarı tekil kalsın; kanal `gold #b8862b` görüntüde yok (ΔE76 ≈ 22, aynı aile). (2) Kılıf **opak katmanlarla** çizilir, yarı saydamlık iç şerit gölgesi + parlak kenar ile okutulur; gerçek alfa zemine göre rengi kaydırırdı. Spekülar tek hilal (Evliya fitil yıldızıyla karışmasın). (3) Kılıf stilize ×1.6 (geniş planda 360 px okunurluğu için), bölümde sabit. (4) Güvercin gözü/ayağı: turuncu göz ve kırmızı ayak imzayı/kırmızı kuralını bozar; göz tek koyu nokta, ayak koyu mor-gri. (5) Chappe T-kolu hiç çizilmez; P02 telgrafı elektrik teli, direk işaretinde çapraz kol yok. (6) Siluetlerde başlık/kepi/etek yok (kanıtsız); ayrışma boy ve duruşla; Dagron iki tonlu gövde + sepya manşet + sırt. (7) Balon, kafes, kümes, lantern, küçültme kutusu, zarf kaynaksız ⇒ nötr, 19 maddelik tablo. (8) Işık: Niépce "09:00" [A] + 12 Kasım + 49° enlem ⇒ GD, ≈12° (elle hesap). (9) Kayıtlı "kısa alev": dokunuslar.md D3 ile çelişmesin diye kâğıt-krem, mürekkep konturlu, ≤10 kare parlama; turuncu yok.
 - Uyguladığım kurallar / yakaladığım kural ihlalleri: Blanc dersleri: kaynaksız dönem detayları [G] etiketli (8. bölüm), kâğıt para/bayrak/arma/tricolore/Chappe tarandı (yok). Kompars ana kadrodan ayrışır (boy sınıfı, tek ton ↔ iki ton, manşet). Kırmızı yalnız yazı katmanı (zarf mührü, bayrak, tuğla baca, güvercin ayağı dahil çıkarıldı). Hikâye nesnelerinin dönem biçimi net: zarf boş kâğıt, çuval bez, şerit perforasyonsuz. Yakaladığım: (a) sahne planı/kit HARITA varsayılanı **pirinç başlı iğne** ve `telgraf` T-kule ikonu bu bölümde yanlış; override notu §1.6, §0.2. (b) Senaryo "parmak boyu" ↔ arastirma film 3–4 cm tutarsız (açık soru 1). (c) Evliya biçim örneğindeki "minyatür" kuralları (kırmızı yok vb.) Paris'e kopyalanmadı; bu bölümde kanal gravür dili sürdü. Arşiv görseli alınmadı (Wikimedia 429), `varliklar.md` açılmadı.
 - Açık sorular / bir sonraki ajana notlar: Kullanıcıya: §12'deki 8 madde (parmak boyu stilize ×1.6, kılıf ×1.6, nötr balon/kümes/lantern + gravür referansı, P07 kısa parlama, iğne başı mürekkep, "asker" çubuğu, Dagron başlıksız, P05 bal ışığı yok). Mekân sorumlusuna: §9 (PARIS-CATI Haussmann sonrası, kümes yeri, Montmartre kış, LANTERN-ODA nötr oda; sarı metal ve kırmızı yasağı mekân paletine de geçerli). Motion: KE eşlemesi §10; iğne başı ve darbe override'ı kit'te bulunamazsa `kit_eksik`; renk ölçümünü render'dan yapacak `renk_olcum.py`'ye imza bandı (§2.4) ve kılıf-dışı ≤ %25 kuralı eklenmeli. Araştırmacı: G1, G3, G6, G9, G10, G14 için dönem gravürü doğrulaması (ağ erişimi gerekir).
+
+## mekan-sorumlusu · 2026-11-11 · Paris kuşatması mekân şartnamesi (kurulum ekibi adım 2)
+- Ne yaptım: `mekanlar.md` yazdım. İçinde dört şablon ve 9 görünüm var: PARIS-CATI `cati`=`kumes` tek dekor, MONTMARTRE `meydan`/`yukleme`(yeni)/`gok`/`sepet`, DAGRON-INSERT `masa`/`kafes`, LANTERN-ODA `oda`. Her biri için şunları verdim: duygusal amaç ve görsel dil, mimari kart, fiziksel kamera (F, göz yüksekliği, ufuk, px/m), dekor px katman tabloları, palet ve ışık, malzeme–doku–kod tablosu, tarama yerleri ve θ, ölü alan kontrolü, 360 px okunurluk. Ortak sistem (açıklık sözlüğü: kemer yok; ışık sözleşmesi; seed; ArsivKatmani modları), renk ölçüm tablosu (L\*/C\*/h°), yönetmene 10 sayısal öneri, `sinirlar.json` katalog sınırı önerisi, yeni modül listesi ve kalibrasyon sırası da belgede. Yeni hex'lerin hepsini imza bandına karşı ölçtüm (ΔE76 ≥ 53; b\*>26 ve L\*>55 koşulunu taşıyan yok).
+- Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/paris-kusatmasi/mekanlar.md (yeni), /home/user/kosmos-vize-bot/bolumler/paris-kusatmasi/katki-raporu.md (ek). Hesap betiği scratchpad'de, repoda değil.
+- Aldığım kararlar ve gerekçeleri:
+  1. **PARIS-CATI kamerası dolly.** P01 f0'da kılıf 320 px (tasarım) iken cs 1'de kümes "küçük ev" (531 px) okunabilmeli. Saf zoom 3.2× yetmiyor, kümes 10× ölçeklenmeli. Bunun için `s_i = d_i/(d_i − 1.31(1 − 1/cs))` kullandım. Json cs aralığı aynı kalıyor; kılıf dekor (540, 960)'a kilitli, böylece P01 f0 = P11 son kare.
+  2. **Kamera yönleri ışıktan türetildi.** PARIS-CATI 200°: sabah güneşi sol-önde, alacakaranlık parıltısı sağ-önde (kuş ışığa uçar). MONTMARTRE 180°, Paris'e bakar. Böylece tasarımın "soldan-arkadan, gölge sağa-öne" kuralı fiziksel olarak tutuyor.
+  3. **Montmartre tepesi kameranın arkasında.** 1870 görünümü doğrulanamadı; değirmen, kilise ve Sacré-Cœur riski sıfırlandı.
+  4. **Paris imzası yapı tipinden, anıttan değil:** korniş + 5. kat balkonu, mansard + lucarne, çinko teras, baca külahı tarağı. Kemer yok (bütün açıklıklar `duz`).
+  5. **MONTMARTRE'ye `yukleme` görünümü eklendi.** P06'nın %35 sepet boy planı, P03 dekorunun zoom'uyla elde edilemiyor (6× ölçek farkı).
+  6. **DAGRON-INSERT'te tek perspektifli masa düzlemi** `s(y) = 1.966(y − 137)`. Bu ölçekte terazi ve sayfa gerçek ölçüde tasarımın ekran boylarını zaten veriyor; ×1.5 / ×1.4 çarpanlarına gerek yok.
+  7. **LANTERN-ODA teleobjektif tiyatro kadrajı.** Lantern sol-altta arkadan görünüyor. Huzme küçük karede net bir kama, büyüdükçe toz zerrelerine geçiyor. Memurlar huzmenin altında oturuyor, perdeye gölge düşmüyor.
+  8. **Baca külahları gri.** Kırmızı yasağı tarihî renkten önce geliyor; açık soru olarak yazdım.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Ufuk–ölçek: her görünümde figür ve yapı px/m'si ufuktan türetildi.
+  - Kamera yüksekliğine göre görünenler kartlara yazıldı.
+  - Ölü alan: her görünüm için üçte bir kontrolü yapıldı.
+  - Tek ışık kaynağı: gölge vektörü, tarama θ ve kenar ışığı aynı tanımdan geliyor.
+  - İmza tekliği, sarı metal ve kırmızı yasağı korundu; gravür taraması yalnız mimariyi anlatan yerlerde.
+  - Yakaladığım ihlaller:
+    - (a) PARIS-CATI `ufuk_y 1000` dolly ile tutarsız → 739.
+    - (b) P06 ikinci balon "y 700–1150" ufuk–ölçeğe aykırı: 4 m ötede oyuncak olurdu.
+    - (c) P10b pan cx −420/−440 kapıya ulaşmıyor; −1250…−1345 gerekli (sinirlar ±600 yetmez).
+    - (d) P10a cs 1.8 kılıfı 76 px veriyor (çözme anı okunmaz) → cs 2.6–2.75.
+    - (e) P05 şerit 280 px / parmak ≥ 270 hedefi cs 1.6'da tutmuyor → cs 2.0.
+    - (f) Sahne planı P07'deki "sis" tasarımın sis yasağıyla çelişiyor → hava perspektifi.
+- Açık sorular / bir sonraki ajana notlar:
+  - Kullanıcıya (mekanlar.md §10): anıt silueti eklensin mi (varsayılan hayır); baca külahları gri (varsayılan); P07B menzil çizgisi (varsayılan yok); Tours keçe altlığı (varsayılan var).
+  - Yönetmene: §7'deki 10 json önerisi (sahibi yönetmen; ben json'a dokunmadım).
+  - Tasarımcıya: stilize çarpanları ve yeni hex'lerin palete alınması; P03 sepeti 36 px.
+  - Araştırmacıya: Place Saint-Pierre 1870, 1859 yönetmeliği, lucarne tipi, güvercinlik yeri, projeksiyon odası, lantern gövdesi, balon gravürleri.
+  - Motion'a: yeni modüller §9 (`DollyKamera`, `HaussmannCephe`, `BacaKumesi`, `CinkoTeras`, `CatiDenizi`, `Kumes`, `Sepet`, `HavadanSehir`, `MasaPerspektif`, `LanternHuzme` …). Blanc `Sokak`/`Cephe` ve MASA-INSERT `pencere: tours` kullanılmaz. Kalibrasyon sırası: P01 f0/f300 + P11 son → P05 f280 + P10b f238 → P07 f112/f200 + P06 f214.
