@@ -1,4 +1,4 @@
-# Senaryo v3 (onay bekliyor): Paris Kuşatması — "Kuşatılmış Paris'e haberi güvercinler getirdi. Onları dışarı balon çıkarmıştı."
+# Senaryo v3 — KULLANICI ONAYLI (2026-11-11): Paris Kuşatması — "Kuşatılmış Paris'e haberi güvercinler getirdi. Onları dışarı balon çıkarmıştı."
 
 Kaynak: yalnız `arastirma.md` (tamamı arama özetine dayanır) + sondaki "ek. Senaryo v2 doğrulamaları" (E1 nüfus, E2 Ville d'Orléans). Kanal: TR. EN eşi: `senaryo-en.md` (aynı plan, aynı zaman).
 Format: 1080x1920 · **60.0 sn** (iki dilin uzunu; TR konuşma ≈54 sn) · **12 plan** · **116 kelime** · mekân 4: MONTMARTRE (kalkış meydanı) · HARİTA-GÖK (kâğıt harita + gökyüzü) · DAGRON-INSERT (masa, kümes ağzı, perde) · NORVEÇ-KAR.
@@ -6,10 +6,10 @@ Omurga (kullanıcı kararı A + B): A = "balonla dışarı, güvercinle içeri" 
 Replik yok; yalnız anlatıcı. Terim yok: "mikrofilm" geçmiyor.
 
 ## 0. Doğruluk kararları
-- **Zincir (sorun → çözüm → yeni sorun):** haber yok, iki milyon kişi kapalı (P02) → balon, mektuplar dışarı (P03) → balon dönemez, cevap girmez (P04) → güvercin eve döner, balonla dışarı (P05) → kuş yük taşıyamaz; Dagron'un buluşu: sayfa parmak boyunda filme sığar (P06) → bu iş nerede yapılır: hükümet Tours'ta, Dagron oraya gider (P07) → kuyruk tüyüne bağlanır (P08) → Paris'te perdede büyür, okunur (P09) → kayıp ama on binlerce mesaj, Paris yeniden konuşuyor (P10) → balon örneği: gizli mesaj Norveç'e iner, yolcular sağ, mesaj zamanında varamaz (P11) → insan yapımı balon vs eve dönen güvercin (P12).
+- **Zincir (sorun → çözüm → yeni sorun):** haber yok, iki milyon kişi kapalı (P02) → balon, mektuplar dışarı (P03) → balon dönemez, cevap girmez (P04) → güvercin eve döner, balonla dışarı (P05) → kuş yük taşıyamaz; Dagron'un buluşu: sayfa parmak boyunda filme sığar (P06) → bu iş nerede yapılır: hükümet Tours'ta, Dagron oraya gider (P07) → kuyruk tüyüne bağlanır (P08) → Paris'te perdede büyür, okunur (P09) → kayıp ama on binlerce mesaj, Paris yeniden konuşuyor (P10) → balon örneği: gizli mesaj Norveç'e iner, yolcular sağ, mesaj Paris'in elinden çıkmıştı (P11) → insan yapımı balon vs eve dönen güvercin (P12).
 - **P06–P07 tekrarı kaldırıldı:** P06 *buluşu* söyler ("sığdırmayı buldu"), P07 *nerede ve neden* (hükümet Tours'ta; mektupları orada küçülttü). "Filme çekti" iki kez geçmiyor.
 - **Bahis (E1):** "İki milyon kadar insan şehre kapandı." Güven orta-yüksek (iki milyon mertebesi; 2.005.709 sayımı ikinci el, söylenmiyor, asker toplamı verilmiyor).
-- **P11 (E2):** Postanın akıbeti **söylenmiyor** ("mektuplar yine de ulaştı" desteksiz, çıktı). Söylenen: mesaj Tours'a gidiyordu; balon Norveç'in karlı dağlarına indi; yolcular (pilot Rolier + kurye Bézier) sağ kurtuldu (orta-yüksek). "Mesaj zamanında varamadı" = yalnız çıkarım: iniş yeri hedeften ≈6 kat uzak (≈1.200 km vs ≈200 km), yolcular Fransa'ya ≈14 gün sonra döndü (E2). Mesajın sonradan ulaşıp ulaşmadığı iddia edilmiyor. Kaçınılan: "ulaştı", "kayboldu", "yüzünden yenildiler".
+- **P11 (E2):** Postanın akıbeti **söylenmiyor** ("mektuplar yine de ulaştı" desteksiz, çıktı). Söylenen: mesaj Tours'a gidiyordu; balon Norveç'in karlı dağlarına indi; yolcular (pilot Rolier + kurye Bézier) sağ kurtuldu (orta-yüksek). "Mesaj Paris'in elinden çıkmıştı" (kullanıcı kararı, seçenek b) = mesaj Paris'in kontrolünden çıktı; ulaştı/ulaşmadı iddiası yok. Dayanak: iniş yeri hedeften ≈6 kat uzak (≈1.200 km vs ≈200 km), yolcular Fransa'ya ≈14 gün sonra döndü (E2). Mesajın sonradan ulaşıp ulaşmadığı iddia edilmiyor. Kaçınılan: "ulaştı", "kayboldu", "yüzünden yenildiler".
 - **Rakamlar:** "on binlerce mesaj" (aralık 60–150 bin açıklamada). Yolcu, güvercin ve dönen kuş sayısı yok. "≈66 balon" yalnız ekranda.
 - "Tüp" yok (Çelişki 12). "Parmak boyunda" = 3–4 cm. "Mucit" yok; "fotoğrafçı".
 - Atlananlar: Gambetta'nın kaçışı, Daguerre/Prusya topu (tek kaynak), denizciler, Bismarck, V-Mail, çuval sayısı, Kristiania ziyafeti.
@@ -40,7 +40,7 @@ Ekran yazıları üst bantta (y 240–400). Süre = iki dilin uzunu + kuyruk. Do
 | P08 | 34.0–37.5 | DAGRON-INSERT · yakın (küçük jest, ≥%12) | **"Film, güvercinin kuyruk tüyüne bağlanıp salındı."** [GÖRSEL: film ince kılıfa sarılıyor, kılıf kuyruk tüyüne ince iple bağlanıyor (malzeme nötr); el kuşu bırakıyor, kuş kadrajdan çıkıyor] | KUYRUK TÜYÜNE BAĞLI | Kılıfın kuyruk tüyüne bağlanması (P01 karşılığı) |
 | P09 | 37.5–42.0 | DAGRON-INSERT (kümes ağzı) → perde odası | **"Kuş kümesine konunca film perdede büyütüldü."** [GÖRSEL: Paris çatısında kümes ağzı (P01 ilk karesiyle aynı kadraj), güvercin konuyor, el kılıfı çözüyor; kesme: karanlık oda, ışık huzmesi perdede, film büyüyüp okunur satırlara dönüşüyor] **"Memurlar kopyalayıp dağıttı."** [GÖRSEL: perdenin önünde yüzsüz siluet memurlar kâğıda yazıyor; kâğıtlar zarflanıp kapıda bekleyen siluetlere gidiyor, biri zarfı açıp okuyor] | MAGIC LANTERN · 1870 | Filmin perdede büyümesi |
 | P10 | 42.0–46.8 | HARİTA-GÖK / perde sayaç | **"Kuşların çoğu dönemedi."** [GÖRSEL: haritada kümeslere uzanan güvercin çizgilerinin çoğu yolda sönüyor, birkaçı kümeslere varıyor] **"Yine de on binlerce mesaj ulaştı."** [GÖRSEL: Paris'e küçük film şeritleri yağıyor, yığın büyüyor; halkanın içindeki siluetler başını kaldırıyor] | ON BİNLERCE MESAJ · PARİS YENİDEN KONUŞUYOR | Şerit yağmuru, büyüyen yığın |
-| P11 | 46.8–54.7 | MONTMARTRE (gece) → HARİTA-GÖK → NORVEÇ-KAR → Tours | **"Tours'a giden gizli mesajlı balon Norveç'in karlı dağlarına indi."** [GÖRSEL: gece meydandan balon kalkıyor, sepetteki kuryenin ceketinin içine mühürlü zarf dikili (kırmızı mühür yalnız vurgu); haritada Tours'a ~200 km'lik kısa çizgi, rüzgâr çizgileri onu kuzeye büküyor, çizgi ≈6 kat uzayıp Norveç'e varıyor; kesme: karlı dağ yamacı, balon yatık iniyor] **"Yolcular sağ kurtuldu, ama mesaj zamanında varamadı."** [GÖRSEL: karda iki yüzsüz yolcu sepetten kalkıp ayağa kalkıyor, kurye ceketinden zarfı çıkarıyor; kesme: Tours masası, hükümet heyetinin boş bir yeri, pencerede bekleyen siluet; zarf kardan Tours'a ulaşamıyor, çizgi 6 kat uzakta kalıyor] | TOURS ~200 KM · NORVEÇ ~1.200 KM | Çizginin ≈6 kat uzaması |
+| P11 | 46.8–54.7 | MONTMARTRE (gece) → HARİTA-GÖK → NORVEÇ-KAR → Tours | **"Tours'a giden gizli mesajlı balon Norveç'in dağlarına indi."** [GÖRSEL: gece meydandan balon kalkıyor, sepetteki kuryenin ceketinin içine mühürlü zarf dikili (kırmızı mühür yalnız vurgu); haritada Tours'a ~200 km'lik kısa çizgi, rüzgâr çizgileri onu kuzeye büküyor, çizgi ≈6 kat uzayıp Norveç'e varıyor; kesme: karlı dağ yamacı, balon yatık iniyor] **"Yolcular sağ kurtuldu, ama mesaj Paris'in elinden çıkmıştı."** [GÖRSEL: karda iki yüzsüz yolcu sepetten kalkıp ayağa kalkıyor, kurye ceketinden zarfı çıkarıyor; kesme: Tours masası, hükümet heyetinin boş bir yeri, pencerede bekleyen siluet; zarf kardan Tours'a ulaşamıyor, çizgi 6 kat uzakta kalıyor] | TOURS ~200 KM · NORVEÇ ~1.200 KM | Çizginin ≈6 kat uzaması |
 | P12 | 54.7–60.0 | NORVEÇ-KAR → HARİTA-GÖK (P01 ilk karesine eşleşen kesme) | **"İnsan balon yaptı, rüzgâr yönetti."** [GÖRSEL: karda sönen balon bezi rüzgârla sürükleniyor, sepet yamaçta tek başına] **"Haberi eve dönmeyi bilen güvercin getirdi."** [GÖRSEL: kesme: P01 ilk karesi, alacakaranlık gök, güvercin Paris çatılarına alçalıyor, kuyruğunda kılıf, kümese konuyor, hareket tamamlanır] | Sepeti bugün Oslo'daki bir müzede | Sürüklenen bez → döngü kesmesi |
 
 Her planda cümle başına bir görüntü (≤2.5 sn'de ikinci görsel olay). P11 (7.9 sn) üç görsel olay: kalkış + çizgi uzaması, kar, Tours'taki boş yer.
@@ -60,8 +60,8 @@ Her planda cümle başına bir görüntü (≤2.5 sn'de ikinci görsel olay). P1
 | Hükümet Tours'ta | P07 | Gizli mesaj Tours'a gidiyordu (P11), Tours masasında boş yer | P11 |
 | Kılıf kuyruk tüyüne | P08 | Kümeste çözülür, perdede okunur | P09 |
 | "Kuşların çoğu dönemedi" | P10 | "Yine de on binlerce mesaj ulaştı"; son cümlede "eve dönmeyi bilen güvercin" | P10, P12 |
-| Kuryenin ceketine dikili mühürlü zarf | P11 | Zarf Norveç karında; Tours'ta boş yer ("zamanında varamadı") | P11 |
-| "Yolcular sağ kurtuldu, ama mesaj zamanında varamadı" | P11 | İronik karşıtlık: insan yapımı balon, rüzgâr yönetti; güvercin haberi getirdi | P12 |
+| Kuryenin ceketine dikili mühürlü zarf | P11 | Zarf Norveç karında; Tours'ta boş yer ("Paris'in elinden çıkmıştı") | P11 |
+| "Yolcular sağ kurtuldu, ama mesaj Paris'in elinden çıkmıştı" | P11 | İronik karşıtlık: insan yapımı balon, rüzgâr yönetti; güvercin haberi getirdi | P12 |
 | "Haberi güvercinler getirdi" | P01 | "Haberi eve dönmeyi bilen güvercin getirdi" + aynı kare | P12 |
 
 Karşılıksız öğe yok. (v2'den çıkarılan: mektup çuvalı / "mektupların yerine ulaştığı söylenir".)
@@ -89,7 +89,7 @@ Karşılıksız öğe yok. (v2'den çıkarılan: mektup çuvalı / "mektupların
 | Gizli mesajlı balon Tours'a gidiyordu, Norveç'in karlı dağlarına (Lifjell/Telemark) indi; mesaj kuryenin giysisine dikili | **E2**; §1 Ville d'Orléans satırları; Çelişki 7 |
 | ≈1.200 km vs ≈200 km (ekran) | §1 "giden mesafe" (orta) |
 | Yolcular (pilot ve kurye) sağ kurtuldu | **E2** (orta-yüksek) |
-| "Mesaj zamanında varamadı" | **Çıkarım:** 1.200 km uzakta iniş; yolcular ≈14 gün sonra Fransa'ya döndü (E2). Mesajın sonradan ulaşıp ulaşmadığı E2'de doğrulanamadı, iddia edilmiyor |
+| "Mesaj Paris'in elinden çıkmıştı" | **Çıkarım (kullanıcı kararı):** 1.200 km uzakta iniş; yolcular ≈14 gün sonra Fransa'ya döndü (E2). Mesajın sonradan ulaşıp ulaşmadığı E2'de doğrulanamadı, iddia edilmiyor |
 | Sepet bugün Oslo'da (yalnız ekran) | §1 "Ville d'Orléans sonrası" (orta) |
 | Balon vs güvercin karşıtlığı | §7 ilk madde; §5.2 yönlendirilemez |
 | Haussmann sonrası Paris; Sacré-Cœur/Eyfel yok | §5.1 (genel bilgi, doğrulanmalı) |
@@ -135,7 +135,7 @@ P12 Sepeti bugün Oslo'daki bir müzede (karda bez; güvercin kümese konar = P0
 ```
 
 ### Ses açık (yalnız anlatım)
-"Kuşatılmış Paris'e haberi güvercinler getirdi. Onları dışarı balon çıkarmıştı. / Prusya orduları Paris'i çevirdi, telgrafı kesti. İki milyon kadar insan şehre kapandı. / Çare gökyüzüydü: balonlar mektupları dışarı taşıdı. / Ama balon rüzgârla gider, dönemez. Cevap Paris'e nasıl girecek? / Güvercin kümesine döner. Onu balonla çıkarıp uzakta bıraktılar. / Ama kuş mektup taşıyamaz. Fotoğrafçı Dagron sayfaları parmak boyunda filme sığdırmayı buldu. / Hükümet Tours'taydı. Dagron aletleriyle balonla oraya gitti, mektupları küçülttü. / Film, güvercinin kuyruk tüyüne bağlanıp salındı. / Kuş kümesine konunca film perdede büyütüldü. Memurlar kopyalayıp dağıttı. / Kuşların çoğu dönemedi. Yine de on binlerce mesaj ulaştı. / Tours'a giden gizli mesajlı balon Norveç'in karlı dağlarına indi. Yolcular sağ kurtuldu, ama mesaj zamanında varamadı. / İnsan balon yaptı, rüzgâr yönetti. Haberi eve dönmeyi bilen güvercin getirdi."
+"Kuşatılmış Paris'e haberi güvercinler getirdi. Onları dışarı balon çıkarmıştı. / Prusya orduları Paris'i çevirdi, telgrafı kesti. İki milyon kadar insan şehre kapandı. / Çare gökyüzüydü: balonlar mektupları dışarı taşıdı. / Ama balon rüzgârla gider, dönemez. Cevap Paris'e nasıl girecek? / Güvercin kümesine döner. Onu balonla çıkarıp uzakta bıraktılar. / Ama kuş mektup taşıyamaz. Fotoğrafçı Dagron sayfaları parmak boyunda filme sığdırmayı buldu. / Hükümet Tours'taydı. Dagron aletleriyle balonla oraya gitti, mektupları küçülttü. / Film, güvercinin kuyruk tüyüne bağlanıp salındı. / Kuş kümesine konunca film perdede büyütüldü. Memurlar kopyalayıp dağıttı. / Kuşların çoğu dönemedi. Yine de on binlerce mesaj ulaştı. / Tours'a giden gizli mesajlı balon Norveç'in dağlarına indi. Yolcular sağ kurtuldu, ama mesaj Paris'in elinden çıkmıştı. / İnsan balon yaptı, rüzgâr yönetti. Haberi eve dönmeyi bilen güvercin getirdi."
 
 ### Geçiş okuması ("neden buradan buraya?")
 | Geçiş | Neden? |
@@ -150,7 +150,7 @@ P12 Sepeti bugün Oslo'daki bir müzede (karda bez; güvercin kümese konar = P0
 | P08 → P09 | Kuş salındı → Paris'te kümese konar, film okunur. |
 | P09 → P10 | Sistem çalıştı → ne kadar işledi? Kayıp ve sayı; kapalı şehir yeniden konuşuyor. |
 | P10 → P11 | Güvercin sistemi çalıştı → aynı dönemin balonu: Tours'a giden gizli mesaj yanlış yere iner ("Tours" P07'ye bağlı). |
-| P11 → P12 | Yolcular sağ ama mesaj yerine varamadı → "balonu insan yaptı, rüzgâr yönetti"; haberi güvercin getirdi; hook'a döngü. |
+| P11 → P12 | Yolcular sağ ama mesaj Paris'in elinden çıkmıştı → "balonu insan yaptı, rüzgâr yönetti"; haberi güvercin getirdi; hook'a döngü. |
 
 ## 7. "Yani?" testi (izleyicinin aklındaki soru → cevaplayan plan)
 | Plan | İzleyici ne diyebilir? | Cevaplayan |
@@ -169,7 +169,7 @@ P12 Sepeti bugün Oslo'daki bir müzede (karda bez; güvercin kümese konar = P0
 | P09 | "Hepsi ulaştı mı?" | P10 |
 | P10 | "Kuşlar dönmüyorsa neden önemli?" | P10 aynı plan: yine de on binlerce; ekran "Paris yeniden konuşuyor" |
 | P10 | "Balonla hiç sorun olmadı mı?" | P11 |
-| P11 | "Gizli mesaj ne oldu?" | P11 ikinci cümle: yolcular sağ ama mesaj zamanında varamadı (sonradan ulaşıp ulaşmadığı söylenmiyor, bilinmiyor) |
+| P11 | "Gizli mesaj ne oldu?" | P11 ikinci cümle: yolcular sağ ama mesaj Paris'in elinden çıkmıştı (sonradan ulaşıp ulaşmadığı söylenmiyor, bilinmiyor) |
 | P11 | "Neden ironik?" | P12: balonu insan yaptı, rüzgâr yönetti; haberi eve dönen güvercin getirdi |
 | P12 | "Başa döndük mü?" | Evet: P12'nin son karesi P01'in ilk karesi |
 
@@ -179,8 +179,8 @@ P12 Sepeti bugün Oslo'daki bir müzede (karda bez; güvercin kümese konar = P0
 - **Hashtag:** #tarih #paris #kuşatma #balon #bilinmeyentarih
 
 ## 9. Kullanıcıya açık sorular
-1. **"Mesaj zamanında varamadı" (P11):** çıkarım, mesajın sonradan ulaşıp ulaşmadığı bilinmiyor. İzleyiciye "zamanında" dürüst ama "ulaştı mı?" yine merak bırakabilir. Alternatif: "…ama mesaj Tours'a bir gün bile yaklaşamadı" (daha net, aynı güven). Hangisi?
-2. **Sepet Oslo'da (P12 ekran):** orta güven, E2 doğrulamadı. Bırakılsın mı?
+1. ~~P11 son cümle~~ **Karar verildi (2026-11-11):** "Yolcular sağ kurtuldu, ama mesaj Paris'in elinden çıkmıştı."
+2. ~~Sepet Oslo'da~~ **Karar verildi:** P12 ekran yazısı kalıyor (orta güven; açıklamada arama özetine dayandığı belirtiliyor).
 3. **Süre:** 60.0 sn; P11 (7.9 sn) en sıkışık. TR ses yavaşsa ilk "ama" atılır.
 4. **Atlananlar:** Gambetta, Daguerre'in vurulması, denizciler.
 

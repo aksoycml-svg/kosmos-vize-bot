@@ -31,6 +31,10 @@
 - Uyguladığım kurallar / yakaladığım kural ihlalleri: Kendi v2'mde yakalanan: desteksiz iddia (posta ulaştı) ve P06–P07 tekrarı. "Yani?" ve kurulum→karşılık tabloları v3'e güncellendi. Kaçınılacak sözcükler (ulaştı/kayboldu/yüzünden yenildiler) kullanılmadı.
 - Açık sorular / bir sonraki ajana notlar: (a) "zamanında varamadı" çıkarım; alternatif "Tours'a bir gün bile yaklaşamadı" (senaryo.md §9). (b) Oslo müzesi ekranı E2'de doğrulanmadı (orta). (c) P11 7.9 sn, üç görsel olay: yönetmen bölebilir. (d) Yaratıcı yönetmen dokunuslar.md'yi v3 ile hizalamalı: P11'de mühürlü zarf yalnız ceket içinde (çuval yok), Tours'ta "boş yer" görseli yeni. (e) Araştırmacı: arastirma.md §1 ve §7'deki "Mektuplar yine de iletilir / Londra yoluyla 2 Aralık" satırlarını E2 uyarınca "desteksiz" diye işaretlemeli (sahibi o).
 
+## senarist · 2026-11-11 · v3 kullanıcı onayı (P11 son cümle)
+- Ne yaptım: Kullanıcı kararı (b) uygulandı: P11 "Yolcular sağ kurtuldu, ama mesaj Paris'in elinden çıkmıştı." (EN: "The men lived, but it was out of Paris's hands."). Kelime/süre korunsun diye P11 ilk cümlesinden "karlı" (TR) ve "snowy mountains" (EN) çıkarıldı (kar görselde ve ekranda); TR 116, EN 133 kelime, 60.0 sn değişmedi. Başlıklar "KULLANICI ONAYLI", §3/§4/§6/§7/§9 P11 satırları güncellendi. P12 "sepet Oslo'da" ekranı kalıyor.
+- Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/paris-kusatmasi/senaryo.md, /home/user/kosmos-vize-bot/bolumler/paris-kusatmasi/senaryo-en.md, /home/user/kosmos-vize-bot/bolumler/paris-kusatmasi/katki-raporu.md
+
 ## araştırmacı · 2026-11-11 · Senaryo v2 doğrulamaları (nüfus + Ville d'Orléans postası)
 - Ne yaptım: 4 WebSearch; `arastirma.md` sonuna "ek. Senaryo v2 doğrulamaları" (E1, E2) ekledim. WebFetch (tekniskmuseum.no, sciencenorway.no) yine ENOTFOUND; her şey arama özeti.
 - Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/paris-kusatmasi/arastirma.md, /home/user/kosmos-vize-bot/bolumler/paris-kusatmasi/katki-raporu.md

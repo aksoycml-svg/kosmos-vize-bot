@@ -1,13 +1,13 @@
-# Script v3 (awaiting approval, EN): Siege of Paris — "Pigeons brought news to besieged Paris. Balloons took them out."
+# Script v3 — USER APPROVED (2026-11-11) (EN): Siege of Paris — "Pigeons brought news to besieged Paris. Balloons took them out."
 
 Source: `arastirma.md` + its closing addendum (E1 population, E2 Ville d'Orléans). TR twin: `senaryo.md` v3 (same plans, same timing; visuals shared, one text-free render, so [VISUAL] notes are referenced). Format: 1080x1920 · **60.0 s** (longer of the two languages) · **12 plans** · **133 words** (≈55.4 s at 2.4 w/s). No dialogue. No jargon: "microfilm" never appears.
 Spine (A + B): out by balloon, in by pigeon + Dagron's film; closing beat the Ville d'Orléans; last line sets the human-built balloon against the pigeon that knows home.
 
 ## 0. Accuracy notes (EN-specific)
-- Chain: two million trapped, no news (P02) → balloons carry mail out (P03) → balloons can't return, replies can't get in (P04) → pigeons fly home, so balloons carry them out (P05) → birds can't carry letters; Dagron's trick: pages onto finger-sized film (P06) → government is in Tours, so he goes there (P07) → tied to the tail (P08) → enlarged in Paris (P09) → most birds lost, tens of thousands of messages (P10) → balloon lands in Norway, men live, message is late (P11) → balloon vs pigeon (P12).
+- Chain: two million trapped, no news (P02) → balloons carry mail out (P03) → balloons can't return, replies can't get in (P04) → pigeons fly home, so balloons carry them out (P05) → birds can't carry letters; Dagron's trick: pages onto finger-sized film (P06) → government is in Tours, so he goes there (P07) → tied to the tail (P08) → enlarged in Paris (P09) → most birds lost, tens of thousands of messages (P10) → balloon lands in Norway, men live, message out of Paris's hands (P11) → balloon vs pigeon (P12).
 - P06 states the invention ("Dagron's trick"); P07 states where and why ("The government sat in Tours... shrink letters"). No repeated "filmed."
 - "Two million people" = E1 (medium-high; order of magnitude only; no exact census number, no army total).
-- P11 (E2): the mail's fate is **not stated**. Said: the message was bound for Tours, landed in Norway's snowy mountains, the two men survived (medium-high). "The message was late" = inference (landed ≈1,200 km away; men returned to France ≈14 days later). Not said: "arrived," "lost," "caused the defeat."
+- P11 (E2): the mail's fate is **not stated**. Said: the message was bound for Tours, landed in Norway's snowy mountains, the two men survived (medium-high). "it was out of Paris's hands" = user decision (option b); no claim that it arrived or not (landed ≈1,200 km away; men returned to France ≈14 days later). Not said: "arrived," "lost," "caused the defeat."
 - "Tens of thousands" covers the 60,000–150,000 range (caption). No pigeon counts. "≈66 balloons" on screen only. No "tube". Photographer, never "inventor."
 - Oslo-museum line on screen only (medium).
 
@@ -33,14 +33,14 @@ Same timings as `senaryo.md` §2. Visuals: TR file, same plan and sentence order
 | P08 | 34.0–37.5 | **"They tied the film to a pigeon's tail."** [VISUAL: TR P08, close-up] | TIED TO THE TAIL FEATHER | Sleeve tied on |
 | P09 | 37.5–42.0 | **"In Paris, a screen enlarged the film."** [VISUAL: TR P09 S1] **"Clerks copied it."** [VISUAL: TR P09 S2, someone opens an envelope and reads] | MAGIC LANTERN · 1870 | Film growing on screen |
 | P10 | 42.0–46.8 | **"Most birds never returned."** [VISUAL: TR P10 S1] **"Still, tens of thousands of messages arrived."** [VISUAL: strips rain onto Paris, figures look up] | TENS OF THOUSANDS OF MESSAGES · PARIS TALKS AGAIN | Strip rain |
-| P11 | 46.8–54.7 | **"A secret message for Tours landed in Norway's snowy mountains."** [VISUAL: TR P11 S1, night launch, sealed envelope sewn into the courier's coat, line stretches ≈6x, slope] **"The men lived. The message was late."** [VISUAL: TR P11 S2, two faceless men stand up in the snow; cut to the empty place at Tours, a figure waiting at the window] | TOURS ~200 KM · NORWAY ~1,200 KM | Line stretching ≈6x |
+| P11 | 46.8–54.7 | **"A secret message for Tours landed in Norway."** [VISUAL: TR P11 S1, night launch, sealed envelope sewn into the courier's coat, line stretches ≈6x, slope] **"The men lived, but it was out of Paris's hands."** [VISUAL: TR P11 S2, two faceless men stand up in the snow; cut to the empty place at Tours, a figure waiting at the window] | TOURS ~200 KM · NORWAY ~1,200 KM | Line stretching ≈6x |
 | P12 | 54.7–60.0 | **"Man built balloons; wind steered them."** [VISUAL: fabric dragging in snow] **"Pigeons flew home with the news."** [VISUAL: match cut to P01 first frame, pigeon settles on the loft] | The basket is now in an Oslo museum | Dragging fabric → loop cut |
 
 ## 3. Setup → Payoff
-Identical to `senaryo.md` §3. EN loop: "Pigeons flew home with the news" (P12) answers "Pigeons brought news" (P01). Irony link: P11 "The men lived. The message was late." → P12 "Man built balloons; wind steered them."
+Identical to `senaryo.md` §3. EN loop: "Pigeons flew home with the news" (P12) answers "Pigeons brought news" (P01). Irony link: P11 "The men lived, but it was out of Paris's hands." → P12 "Man built balloons; wind steered them."
 
 ## 4. Source mapping
-Same as `senaryo.md` §4. EN: "Two million" = E1; "The men lived" = E2; "The message was late" = inference (see §0).
+Same as `senaryo.md` §4. EN: "Two million" = E1; "The men lived" = E2; "Out of Paris's hands" = user decision (see §0).
 
 ## 5. Words and timing
 See `senaryo.md` §5. EN: 10+12+9+10+10+12+11+8+10+11+18+12 = **133** words. EN-driven plans: P03, P05, P07, P08, P10. If EN audio runs long, shorten: P11 "The men lived." → "Both lived."; P06 "Photographer"; P07 "to shrink letters" → "to shrink mail".
@@ -51,13 +51,13 @@ See `senaryo.md` §5. EN: 10+12+9+10+10+12+11+8+10+11+18+12 = **133** words. EN-
 Same as TR: besieged Paris, two million, no news → sky, balloon with mail → one way, replies stop at the ring → pigeon flies home → page shrinks → Tours → tied to tail → screen → tens of thousands → distance line, snow, empty place at Tours → museum.
 
 ### Sound on
-"Pigeons brought news to besieged Paris. Balloons took them out. / Prussia ringed Paris and cut the telegraph. Two million people were trapped. / Only the sky was left. Balloons carried mail out. / But balloons can't turn back. How would replies get in? / Pigeons fly home from anywhere. So balloons carried them out. / Birds can't carry letters. Photographer Dagron's trick: pages shrunk onto finger-sized film. / The government sat in Tours. Dagron flew there to shrink letters. / They tied the film to a pigeon's tail. / In Paris, a screen enlarged the film. Clerks copied it. / Most birds never returned. Still, tens of thousands of messages arrived. / A secret message for Tours landed in Norway's snowy mountains. The men lived. The message was late. / Man built balloons; wind steered them. Pigeons flew home with the news."
+"Pigeons brought news to besieged Paris. Balloons took them out. / Prussia ringed Paris and cut the telegraph. Two million people were trapped. / Only the sky was left. Balloons carried mail out. / But balloons can't turn back. How would replies get in? / Pigeons fly home from anywhere. So balloons carried them out. / Birds can't carry letters. Photographer Dagron's trick: pages shrunk onto finger-sized film. / The government sat in Tours. Dagron flew there to shrink letters. / They tied the film to a pigeon's tail. / In Paris, a screen enlarged the film. Clerks copied it. / Most birds never returned. Still, tens of thousands of messages arrived. / A secret message for Tours landed in Norway. The men lived, but it was out of Paris's hands. / Man built balloons; wind steered them. Pigeons flew home with the news."
 
 ### Transition check
 Same chain as TR §6. EN-only risk: "Man built balloons" is slightly literary; alternative "We built balloons; wind steered them" (same length).
 
 ## 7. "So what?" test
-Identical to `senaryo.md` §7 (same plans answer the same questions). EN-specific: "The message was late" (P11) leaves no open question about the men; whether the mail ever arrived is deliberately not claimed.
+Identical to `senaryo.md` §7 (same plans answer the same questions). EN-specific: "The men lived, but it was out of Paris's hands" (P11) leaves no open question about the men; whether the mail ever arrived is deliberately not claimed.
 
 ## 8. Changes from v2
 P06/P07 split fixed (invention vs where/why), P02 stakes ("Two million people were trapped"), P11 rewritten per E2 (no mail fate; men survive, message late), P12 unchanged. 134 → 133 words; 59.8 → 60.0 s.
