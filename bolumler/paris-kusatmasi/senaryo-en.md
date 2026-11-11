@@ -1,8 +1,9 @@
-# Script v5 (rewrite, awaiting approval, EN): Siege of Paris — "One photographer squeezed Paris's mail onto a pigeon's tail. He had to escape first."
+# Script v5 — USER APPROVED (2026-11-11) (EN): Siege of Paris — "One photographer squeezed Paris's mail onto a pigeon's tail. He had to escape first."
 
 Source: `arastirma.md` + addendum (E1, E2). TR twin: `senaryo.md` v5 (same plans, same timing; visuals shared, one text-free render, so [VISUAL] notes are referenced).
 Why v5: v4 audio felt like a list of steps ("I remember nothing"). Fix: a hero (René Dagron), a want (his idea), an obstacle (he must leave besieged Paris), a climax (the balloon that took off beside his is shot), a payoff (the film is projected in Paris and the city reads its mail).
-Format: 1080x1920 · **≈64.0 s** (TR 1.8 w/s, EN 2.3 w/s; plan = longer language + 0.4 s) · **11 plans** · **EN 125 words** (TR 105). Norway (Ville d'Orléans) removed (it flew 24 Nov; Dagron left 12 Nov, so it cannot be his danger, and it split the focus).
+User decisions (2026-11-11): hook **H2**; closing: P10 emotional beat kept, P11 returns to the hook ("Most birds never returned. Those that did carried a city's letters."); "tens of thousands of messages" moves to the screen text; no Norway; no "reportedly" in narration (the caption note is enough).
+Format: 1080x1920 · **≈64.6 s** (TR 1.8 w/s, EN 2.3 w/s; plan = longer language + 0.4 s) · **11 plans** · **EN 125 words** (TR 105). Norway (Ville d'Orléans) removed (it flew 24 Nov; Dagron left 12 Nov, so it cannot be his danger, and it split the focus).
 
 ## 0. Notes (EN-specific)
 - One image to remember: a letter page fits onto finger-sized film (P05, sleeve in the first frame) and grows back on a wall (P10).
@@ -14,7 +15,7 @@ Format: 1080x1920 · **≈64.0 s** (TR 1.8 w/s, EN 2.3 w/s; plan = longer langua
 ## 1. Hook (three layers) — two options
 | | Line | First frame | On-screen text |
 |---|---|---|---|
-| **H2 ★ (chosen, hero opening)** | "One photographer squeezed Paris's mail onto a pigeon's tail. He had to escape first." | Close-up: honey-colored sleeve glints on a flying pigeon's tail. Camera pulls back: twilight rooftops, lit windows, silhouettes looking out. On "escape" the bird leaves frame, rooftops empty. | PARIS · 1870 · 4-MONTH SIEGE |
+| **H2 ★ (user approved, hero opening)** | "One photographer squeezed Paris's mail onto a pigeon's tail. He had to escape first." | Close-up: honey-colored sleeve glints on a flying pigeon's tail. Camera pulls back: twilight rooftops, lit windows, silhouettes looking out. On "escape" the bird leaves frame, rooftops empty. | PARIS · 1870 · 4-MONTH SIEGE |
 | H1 (previous A) | "Two million people were cut off. The news came on a bird's tail." | Same first frame | PARIS · 1870 · 4-MONTH SIEGE |
 | H3 | "A whole city's mail flew on one bird's tail." | Tail sleeve close-up | ONE BIRD, ONE CITY |
 
@@ -35,7 +36,7 @@ Same timings and visuals as `senaryo.md` §2 (TR file, same plan and sentence or
 | P08 | 43.5–47.8 | **"He landed in Prussian territory and escaped to Tours."** [VISUAL: TR P08] | 9 DAYS LATER · 21 NOV · TOURS | — |
 | P09 | 47.8–52.1 | **"He filmed the letters, tied them to pigeons' tails."** [VISUAL: TR P09, honey-colored sleeve glint] | LETTERS TO PARIS → FILM → TAIL FEATHER | PK-D6 |
 | P10 | 52.1–58.6 | **"The film was projected."** [VISUAL: TR P10 S1] **"The tiny page grew, and Paris read its mail."** [VISUAL: TR P10 S2–S3] | MAGIC LANTERN · LETTERS FROM OUTSIDE · COPIED AND DELIVERED | PK-D7 |
-| P11 | 58.6–64.0 | **"Most birds never came back."** [VISUAL: TR P11 S1] **"Still, tens of thousands of messages arrived."** [VISUAL: TR P11 S2, match cut to P01 first frame] | 60,000–150,000 MESSAGES, DEPENDING ON THE SOURCE · PARIS TALKS AGAIN | (loop cut) |
+| P11 | 58.6–64.6 | **"Most birds never returned."** [VISUAL: TR P11 S1] **"Those that did carried a city's letters."** [VISUAL: TR P11 S2, returning pigeons land at the lofts, film strips rain on Paris, match cut to P01 first frame: close-up, honey-colored sleeve on the tail] | TENS OF THOUSANDS OF MESSAGES ARRIVED · 60,000–150,000 DEPENDING ON THE SOURCE | (loop cut) |
 
 ## 3. Emotion / emphasis tags (single take, per sentence)
 | Plan | Sentence | Emotion | Stress word |
@@ -58,8 +59,8 @@ Same timings and visuals as `senaryo.md` §2 (TR file, same plan and sentence or
 | P09 | He filmed the letters, tied them to pigeons' tails. | careful, calm | **tails** |
 | P10 | The film was projected. | near-whisper, pause | **projected** |
 | P10 | The tiny page grew, and Paris read its mail. | wonder, then warm, slow (peak) | **grew / read** |
-| P11 | Most birds never came back. | sad, low | **Most** |
-| P11 | Still, tens of thousands of messages arrived. | hopeful, rising | **tens of thousands** |
+| P11 | Most birds never returned. | sad, low | **Most** |
+| P11 | Those that did carried a city's letters. | warm, slowing, closing (back to the hook) | **city's letters** |
 
 ## 4. Setup → Payoff
 Identical to `senaryo.md` §4. EN: "mail onto a pigeon's tail" (P01) → film tied to tails (P09) → page grows (P10) → sleeved pigeon lands (P11, match cut). "He had to escape first" (P01) → Tours (P06) → shot balloon and sand (P07) → arrives (P08). "Two million cut off" (P02) → "Paris read its mail" (P10).
@@ -80,15 +81,15 @@ Same as `senaryo.md` §5, including the tension-beat confidence (medium-high; sh
 | P08 | 9 | 3.9 | 6 | 3.3 | 4.3 |
 | P09 | 9 | 3.9 | 6 | 3.3 | 4.3 |
 | P10 | 13 | 5.7 | 11 | 6.1 | 6.5 |
-| P11 | 11 | 4.8 | 9 | 5.0 | 5.4 |
-| **Total** | **125** | **≈54.4** | **105** | **≈58.4** | **64.0** |
+| P11 | 11 | 4.8 | 10 | 5.6 | 6.0 |
+| **Total** | **125** | **≈54.4** | **106** | **≈59.0** | **64.6** |
 
 EN count: 14+12+11+9+13+12+12+9+9+13+11 = 125. (Check: P03 is "Balloons took mail out but couldn't return. How would replies come?" = 7 + 4 = 11.)
 
 ## 7. First-time viewer test
 
-### Sound on (125 words)
-"One photographer squeezed Paris's mail onto a pigeon's tail. He had to escape first. / Prussian armies ringed Paris and cut the telegraph. Two million people were cut off. / Balloons took mail out but couldn't return. How would replies come? / Pigeons fly home from anywhere. Balloons carried them away. / Birds can't carry much. Dagron had an idea: shrink pages to finger size. / It had to happen in Tours, with the government. So, a balloon. / That morning another balloon was shot down. Dagron's dumped sand and climbed. / He landed in Prussian territory and escaped to Tours. / He filmed the letters, tied them to pigeons' tails. / The film was projected. The tiny page grew, and Paris read its mail. / Most birds never came back. Still, tens of thousands of messages arrived."
+### Sound on (125 words; P11 count: "Most birds never returned." 4 + "Those that did carried a city's letters." 7 = 11)
+"One photographer squeezed Paris's mail onto a pigeon's tail. He had to escape first. / Prussian armies ringed Paris and cut the telegraph. Two million people were cut off. / Balloons took mail out but couldn't return. How would replies come? / Pigeons fly home from anywhere. Balloons carried them away. / Birds can't carry much. Dagron had an idea: shrink pages to finger size. / It had to happen in Tours, with the government. So, a balloon. / That morning another balloon was shot down. Dagron's dumped sand and climbed. / He landed in Prussian territory and escaped to Tours. / He filmed the letters, tied them to pigeons' tails. / The film was projected. The tiny page grew, and Paris read its mail. / Most birds never returned. Those that did carried a city's letters."
 
 ### Sound off
 Same as TR §7 with the EN screen text above.
@@ -106,6 +107,9 @@ Identical to `senaryo.md` §9: 12 → 11 plans; PK-D3 (ballast) moves from P04 t
 - **Cover (max 5 words):** FINGER-SIZED LETTERS
 - **Caption:** In September 1870, Prussian armies surrounded Paris and cut the telegraph; roughly two million people were cut off from the world. Mail went out by balloon, but balloons drifted with the wind and could not return. Replies came in by pigeon: pigeons were carried far away by balloon and, released, flew home to their lofts. Because a bird can carry very little, photographer René Dagron shrank letter pages onto finger-sized film, tied to the tail feather and projected onto a wall in Paris to be copied by hand. To do it, he had to leave Paris by balloon. As the story is told, another balloon launched that morning (12 Nov 1870) was shot down; Dagron's dumped sand and climbed, landed in Prussian territory and escaped to Tours, arriving on 21 Nov. The details of his escape rest largely on Dagron's own account. Figures vary by source: messages that arrived are given as roughly 60,000 to 150,000; the balloon count is about 66; the siege lasted four to four and a half months depending on the source; Paris's population is approximate. Scenes and gestures are dramatized. Narration is AI-generated. Sources: Smithsonian Air & Space, French Ministry of Defence "Chemins de mémoire," UCLA "Pigeon Post into Paris" exhibit, Mike Dash (Smithsonian blog).
 - **Hashtags:** #history #paris #siegeofparis #photography #untoldhistory
+
+## v5 previous (old, short)
+125 EN / 105 TR, ≈64.0 s. P11: "Most birds never came back. Still, tens of thousands of messages arrived." (on-screen: "60,000–150,000 MESSAGES, DEPENDING ON THE SOURCE · PARIS TALKS AGAIN"). Other plans the same.
 
 ## v4 (old, short)
 122 EN / 97 TR, ≈68.3 s, 12 plans. Hook "Two million people were cut off. The news came on a bird's tail." Steps: telegraph cut → balloons carried mail → balloons can't turn back → pigeons fly home → Dagron shrank pages → government in Tours → tied to the tail → screen enlarged film → most birds never returned → secret message landed in Norway → wind steered the balloon, pigeons brought the news. Problem: a list of steps, no hero, Norway as a side fact.

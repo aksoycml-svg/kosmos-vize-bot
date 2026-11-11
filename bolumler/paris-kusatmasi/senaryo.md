@@ -1,8 +1,9 @@
-# Senaryo v5 (yeniden yazım, onay bekliyor): Paris Kuşatması — "Bir fotoğrafçı, Paris'e yazılan mektupları kuşun kuyruğuna sığdırdı. Önce şehirden çıkmalıydı."
+# Senaryo v5 — KULLANICI ONAYLI (2026-11-11): Paris Kuşatması — "Bir fotoğrafçı, Paris'e yazılan mektupları kuşun kuyruğuna sığdırdı. Önce şehirden çıkmalıydı."
 
 Kaynak: yalnız `arastirma.md` + ek (E1, E2). Kanal: TR. EN eşi: `senaryo-en.md` (aynı plan, aynı zaman).
 Neden v5: v4 sesi dinlenince "hiçbir şey hatırlamıyorum, hikâye anlatmıyor". Teşhis: süreç tarifi (adım listesi), kahraman/istek/engel yok, aynı uzunlukta kısa cümleler, doruk yok, Norveç yan bilgi.
-Format: 1080x1920 · **≈64.0 sn** (plan toplamı tahmini; TR 1.8 k/sn, EN 2.3 k/sn, plan = uzun dil + 0.4 sn) · **11 plan** · **TR 105 kelime** · **EN 125 kelime** · mekân 4: MONTMARTRE · HARİTA-GÖK · DAGRON-INSERT · (Tours: HARİTA-GÖK + DAGRON-INSERT içinde). Norveç mekânı çıktı.
+Kullanıcı kararları (2026-11-11): kanca **K2**; kapanış: P10 duygusal vuruş korunur, P11 kancaya döner ("Çoğu kuş dönemedi. Ama dönenlerin kuyruğunda, bir şehrin mektupları vardı."); "on binlerce mesaj" ekran yazısında; Norveç yok; anlatıma "söylenene göre" eklenmez (açıklama notu yeterli).
+Format: 1080x1920 · **≈64.6 sn** (plan toplamı tahmini; TR 1.8 k/sn, EN 2.3 k/sn, plan = uzun dil + 0.4 sn) · **11 plan** (P10/P11 birleştirilmedi) · **TR 106 kelime** · **EN 125 kelime** · mekân 4: MONTMARTRE · HARİTA-GÖK · DAGRON-INSERT · (Tours: HARİTA-GÖK + DAGRON-INSERT içinde). Norveç mekânı çıktı.
 Replik yok; yalnız anlatıcı. Terim yok.
 
 ## 0. Hikâye çatısı ve kararlar
@@ -10,14 +11,14 @@ Replik yok; yalnız anlatıcı. Terim yok.
 - **Mekanizma (balon dönemez → güvercin eve döner → film)** Dagron'un hikâyesinin içinde, ders gibi değil: P03–P04 sorunu kurar, P05 Dagron'un fikri çözümü getirir, P06–P09 yolculuğu ve uygulamayı anlatır.
 - **Tek akılda kalan imge:** bir mektup sayfası parmak boyunda filme sığar (P05, ilk karede kılıf) ve perdede yeniden büyür (P10).
 - **Norveç / Ville d'Orléans çıktı.** Gerekçe: balon 24 Kasım'da kalktı, Dagron 12 Kasım'da; Dagron'un tehlikesine bağlanamaz (anakronizm) ve odak bölünüyordu. Bu yüzden onaylı v3/v4 kararları "P11 (b)" ve "Oslo ekranı" bu sürümde yok; açıklamada da Norveç geçmiyor. Geri istenirse epilog olarak eklenir (+~9 sn).
-- **Korunan onaylı kararlar:** "on binlerce" (P11), "iki milyon" (E1, orta-yüksek, mertebe; kesin sayı yok), postanın sonraki akıbeti söylenmez, kılıf bal rengi imza, "Yani?" testi, kurulum→karşılık.
+- **Korunan onaylı kararlar:** "on binlerce" (P11 ekranına alındı, ifade aynı), "iki milyon" (E1, orta-yüksek, mertebe; kesin sayı yok), postanın sonraki akıbeti söylenmez, kılıf bal rengi imza, "Yani?" testi, kurulum→karşılık.
 - **Çıkarılanlar:** Ville d'Orléans, Gambetta, Daguerre'in neyle vurulduğu (tek kaynak; yalnız "vuruldu"), "ilk film" iddiası (ilk uçuş tarihi doğrulanamadı), 600 kg ve Niépce adı yalnız ekranda.
 - Dönem: 1870 Paris Haussmann sonrası (krem taş cephe, mansard); Sacré-Cœur ve Eyfel **yok**. Balon, sepet, magic lantern, kutu "genel bilgi": tasarımcı doğrular. Kostüm yüzsüz siluet.
 
 ## 1. Kanca (üç katman) — iki seçenek
 | | Söz | İlk kare | Ekran yazısı |
 |---|---|---|---|
-| **K2 ★ (seçilen, Dagron'la açılış)** | "Bir fotoğrafçı, Paris'e yazılan mektupları kuşun kuyruğuna sığdırdı. Önce şehirden çıkmalıydı." | Yakın plan: güvercinin kuyruğunda bal rengi yarı saydam kılıf parlıyor (kuş uçuyor, hareket ortada). Kamera geri çekilir: altında alacakaranlık Paris çatıları, pencerelerde ışık, silüetler dışarı bakıyor. "çıkmalıydı"da kuş kadrajdan çıkar, çatılar boş kalır. | PARİS · 1870 · 4 AY KUŞATMA |
+| **K2 ★ (kullanıcı onaylı, Dagron'la açılış)** | "Bir fotoğrafçı, Paris'e yazılan mektupları kuşun kuyruğuna sığdırdı. Önce şehirden çıkmalıydı." | Yakın plan: güvercinin kuyruğunda bal rengi yarı saydam kılıf parlıyor (kuş uçuyor, hareket ortada). Kamera geri çekilir: altında alacakaranlık Paris çatıları, pencerelerde ışık, silüetler dışarı bakıyor. "çıkmalıydı"da kuş kadrajdan çıkar, çatılar boş kalır. | PARİS · 1870 · 4 AY KUŞATMA |
 | K1 (önceki onaylı A) | "İki milyon insan dünyadan koptu. Onlara haberi… bir kuşun kuyruğu getirdi." | Aynı ilk kare | PARİS · 1870 · 4 AY KUŞATMA |
 | K3 | "Koca bir şehrin mektupları, bir kuşun kuyruğunda uçtu." | Kuyruk kılıfı yakın plan | TEK KUŞ, KOCA ŞEHİR |
 
@@ -38,7 +39,7 @@ Ekran yazıları üst bantta (y 240–400). Süre = iki dilin uzunu + 0.4 sn. Do
 | P08 | 43.5–47.8 | HARİTA-GÖK (kısa) → gök | **"Prusya bölgesine indi, kaçıp Tours'a vardı."** [GÖRSEL: haritada balonun ucu Paris dışında bir noktaya iniyor, bölge Prusya renginde; ince bir çizgi o noktadan gizlice Tours'a uzanıyor; sepet yamaçta yatık] | 9 GÜN SONRA · 21 KASIM · TOURS | — |
 | P09 | 47.8–52.1 | DAGRON-INSERT · yakın (küçük jest) | **"Mektupları filme çekip kuşların kuyruğuna bağladı."** [GÖRSEL: Tours masasında mektup yığını şeritlere dönüşüyor; film ince kılıfa sarılıp kuyruk tüyüne ince iple bağlanıyor (malzeme nötr), kılıf bal rengi pırıltı verir (P01 karşılığı); el kuşu bırakıyor, kuş kadrajdan çıkıyor] | PARİS'E YAZILAN MEKTUPLAR → FİLM → KUYRUK TÜYÜ | PK-D6 kılıf kuyruğa bağlanır |
 | P10 | 52.1–58.6 | DAGRON-INSERT (kümes ağzı) → perde odası | **"Film duvara yansıdı."** [GÖRSEL: Paris çatısında kümes ağzı, güvercin konuyor, el kılıfı çözüyor; kesme: karanlık oda, huzme perdeye düşüyor, bulanık küçük kare] **"Parmak boyundaki sayfa yeniden büyüdü."** [GÖRSEL: mercek halkası çevriliyor, kare perdeye büyüyüp okunur satırlara netleşiyor; odadaki hareket durur] **"Paris mektuplarını okudu."** [GÖRSEL: memurlar kâğıda yazıyor, kâğıtlar zarflanıp kapıda bekleyen siluetlere gidiyor, biri zarfı açıp okuyor; P01'deki bekleyen siluetlerle aynı kadraj] | MAGIC LANTERN · DIŞARIDAN GELEN MEKTUPLAR · KOPYALANIP DAĞITILDI | PK-D7 perdede büyüme ve odak |
-| P11 | 58.6–64.0 | HARİTA-GÖK / perde sayaç → P01 ilk karesine eşleşen kesme | **"Çoğu kuş dönemedi."** [GÖRSEL: haritada kümeslere uzanan güvercin çizgilerinin çoğu yolda sönüyor, birkaçı varıyor] **"Yine de on binlerce mesaj ulaştı."** [GÖRSEL: Paris'e küçük film şeritleri yağıyor, yığın büyüyor; kesme: P01 ilk karesi, yakın plan, kuyruğunda bal rengi kılıflı güvercin kümese konar, hareket tamamlanır] | KAYNAĞA GÖRE 60–150 BİN MESAJ · PARİS YENİDEN KONUŞUYOR | (döngü kesmesi) |
+| P11 | 58.6–64.6 | HARİTA-GÖK / perde sayaç → P01 ilk karesine eşleşen kesme | **"Çoğu kuş dönemedi."** [GÖRSEL: haritada kümeslere uzanan güvercin çizgilerinin çoğu yolda sönüyor, birkaçı varıyor] **"Ama dönenlerin kuyruğunda, bir şehrin mektupları vardı."** [GÖRSEL: dönen birkaç güvercin kümeslere iner, Paris'e küçük film şeritleri yağıyor, yığın büyüyor; kesme: P01 ilk karesi, yakın plan, kuyruğunda bal rengi kılıflı güvercin kümese konar, hareket tamamlanır] | ON BİNLERCE MESAJ ULAŞTI · KAYNAĞA GÖRE 60–150 BİN | (döngü kesmesi) |
 
 ## 3. Duygu / vurgu etiketleri (tek çekim, cümle başına)
 | Plan | Cümle | Duygu (etiket önerisi) | Vurgu kelimesi |
@@ -63,7 +64,7 @@ Ekran yazıları üst bantta (y 240–400). Süre = iki dilin uzunu + 0.4 sn. Do
 | P10 | Parmak boyundaki sayfa yeniden büyüdü. | hayranlık | **büyüdü** |
 | P10 | Paris mektuplarını okudu. | sıcak, duygusal, yavaş (doruk) | **okudu** |
 | P11 | Çoğu kuş dönemedi. | hüzünlü, alçak | **çoğu** |
-| P11 | Yine de on binlerce mesaj ulaştı. | umutlu, yükselen | **on binlerce** |
+| P11 | Ama dönenlerin kuyruğunda, bir şehrin mektupları vardı. | sıcak, yavaşlayan, kapanış (kancaya dönüş) | **kuyruğunda** |
 
 ## 4. Kurulum → Karşılık
 | Kurulum | Plan | Karşılık | Plan |
@@ -80,7 +81,7 @@ Ekran yazıları üst bantta (y 240–400). Süre = iki dilin uzunu + 0.4 sn. Do
 | "Hükümetin olduğu Tours" | P06 | "Tours'a vardı" | P08 |
 | "Tek yol balondu" + alet sandıkları | P06 | Vurulan balon, Dagron'un kum atıp yükselmesi | P07 |
 | "Başka bir balon vuruldu" | P07 | Dagron'unki kurtulur (tehlike→rahatlama) | P07 |
-| "Çoğu kuş dönemedi" | P11 | "Yine de on binlerce mesaj ulaştı" | P11 |
+| "Çoğu kuş dönemedi" | P11 | "Ama dönenlerin kuyruğunda, bir şehrin mektupları vardı" (hook'taki "mektupları kuşun kuyruğuna sığdırdı"nın karşılığı) + ekran "on binlerce mesaj ulaştı" | P11 |
 
 Karşılıksız öğe yok. (Çıkan: Ville d'Orléans, Norveç, Oslo müzesi.)
 
@@ -119,10 +120,10 @@ Karşılıksız öğe yok. (Çıkan: Ville d'Orléans, Norveç, Oslo müzesi.)
 | P08 | 6 | 3.3 | 9 | 3.9 | 4.3 |
 | P09 | 6 | 3.3 | 9 | 3.9 | 4.3 |
 | P10 | 11 | 6.1 | 13 | 5.7 | 6.5 |
-| P11 | 9 | 5.0 | 11 | 4.8 | 5.4 |
-| **Toplam** | **105** | **≈58.4** | **125** | **≈54.4** | **64.0** |
+| P11 | 10 | 5.6 | 11 | 4.8 | 6.0 |
+| **Toplam** | **106** | **≈59.0** | **125** | **≈54.4** | **64.6** |
 
-TR sayımı: 11+10+9+9+12+10+12+6+6+11+9 = 105. EN: 14+12+11+9+13+12+12+9+9+13+11 = 125. v4: 97 / 122 / 68.3 sn (12 plan). Cümle uzunlukları 3–9 kelime arası değişiyor (P07 S1 7, S2 5; P10 üç cümle 3–5; P05 S1 4, S2 8).
+TR sayımı: 11+10+9+9+12+10+12+6+6+11+10 = 106 (önceki v5: 105; P11 +1). EN: 14+12+11+9+13+12+12+9+9+13+11 = 125. v4: 97 / 122 / 68.3 sn (12 plan). Cümle uzunlukları 3–9 kelime arası değişiyor (P07 S1 7, S2 5; P10 üç cümle 3–5; P05 S1 4, S2 8).
 
 ## 7. İlk kez izleyen testi
 
@@ -138,11 +139,11 @@ P07 12 KASIM 1870 · BALON NIÉPCE · ~600 KİLO EKİPMAN (yanındaki balon vuru
 P08 9 GÜN SONRA · 21 KASIM · TOURS         (Prusya bölgesine iner, Tours'a ulaşır)
 P09 PARİS'E YAZILAN MEKTUPLAR → FİLM → KUYRUK TÜYÜ (film kuyruğa bağlanır, kılıf pırıldar)
 P10 MAGIC LANTERN · DIŞARIDAN GELEN MEKTUPLAR · KOPYALANIP DAĞITILDI (film perdede büyür, bekleyen siluet zarfı açar)
-P11 KAYNAĞA GÖRE 60–150 BİN MESAJ · PARİS YENİDEN KONUŞUYOR (çoğu çizgi söner, film yağmuru; kılıflı güvercin kümese konar)
+P11 ON BİNLERCE MESAJ ULAŞTI · KAYNAĞA GÖRE 60–150 BİN (çoğu çizgi söner; dönen güvercinler kümese iner, film yağmuru; kılıflı güvercin = P01'e döngü)
 ```
 
-### Ses açık (yalnız anlatım, 105 kelime)
-"Bir fotoğrafçı, Paris'e yazılan mektupları kuşun kuyruğuna sığdırdı. Önce şehirden çıkmalıydı. / Prusya Paris'i çevirdi, telgrafı kesti. İki milyon insan dünyadan koptu. / Mektuplar balonla çıkıyordu ama balon dönmezdi. Cevap nasıl gelecek? / Güvercin nerede olsa kümesine döner. Onu balonla uzağa götürdüler. / Ama kuş yük taşıyamaz. René Dagron'un fikri vardı: sayfayı parmak boyuna küçültmek. / Bu iş dışarıda, hükümetin olduğu Tours'ta yapılmalıydı. Tek yol balondu. / O sabah kalkan başka bir balon vuruldu. Dagron'unki kum torbalarını atıp yükseldi. / Prusya bölgesine indi, kaçıp Tours'a vardı. / Mektupları filme çekip kuşların kuyruğuna bağladı. / Film duvara yansıdı. Parmak boyundaki sayfa yeniden büyüdü. Paris mektuplarını okudu. / Çoğu kuş dönemedi. Yine de on binlerce mesaj ulaştı."
+### Ses açık (yalnız anlatım, 106 kelime)
+"Bir fotoğrafçı, Paris'e yazılan mektupları kuşun kuyruğuna sığdırdı. Önce şehirden çıkmalıydı. / Prusya Paris'i çevirdi, telgrafı kesti. İki milyon insan dünyadan koptu. / Mektuplar balonla çıkıyordu ama balon dönmezdi. Cevap nasıl gelecek? / Güvercin nerede olsa kümesine döner. Onu balonla uzağa götürdüler. / Ama kuş yük taşıyamaz. René Dagron'un fikri vardı: sayfayı parmak boyuna küçültmek. / Bu iş dışarıda, hükümetin olduğu Tours'ta yapılmalıydı. Tek yol balondu. / O sabah kalkan başka bir balon vuruldu. Dagron'unki kum torbalarını atıp yükseldi. / Prusya bölgesine indi, kaçıp Tours'a vardı. / Mektupları filme çekip kuşların kuyruğuna bağladı. / Film duvara yansıdı. Parmak boyundaki sayfa yeniden büyüdü. Paris mektuplarını okudu. / Çoğu kuş dönemedi. Ama dönenlerin kuyruğunda, bir şehrin mektupları vardı."
 
 ### Geçiş okuması ("neden buradan buraya?")
 | Geçiş | Neden? |
@@ -156,7 +157,7 @@ P11 KAYNAĞA GÖRE 60–150 BİN MESAJ · PARİS YENİDEN KONUŞUYOR (çoğu çi
 | P07 → P08 | Kurtuldu → indi, kaçtı, Tours'a vardı. |
 | P08 → P09 | Tours'ta → fikri uyguladı: film kuşun kuyruğunda. |
 | P09 → P10 | Kuşlar uçtu → film Paris'te perdeye yansır: karşılık. |
-| P10 → P11 | Paris okudu → ne kadar? Çoğu kuş dönmedi, yine de on binlerce mesaj. |
+| P10 → P11 | Paris okudu → bedel ve ölçek: çoğu kuş dönemedi; dönenlerin kuyruğunda bir şehrin mektupları vardı (hook'a döngü; "on binlerce" ekranda). |
 
 ## 8. "Yani?" testi
 | Plan | İzleyici ne diyebilir? | Cevaplayan |
@@ -198,12 +199,16 @@ Yaratıcı yönetmen film saniyelerini §2'ye göre yeniler; imza rengi (bal keh
 - **Açıklama:** Eylül 1870'te Prusya orduları Paris'i kuşattı ve telgrafı kesti; iki milyon kadar insan dünyadan koptu. Mektuplar balonla çıkıyordu ama balonlar rüzgârla gidip geri dönemiyordu. Cevaplar içeri güvercinle girdi: güvercinler balonla uzağa götürülüyor, bırakılınca kümeslerine dönüyordu. Kuş çok az yük taşıyabildiği için fotoğrafçı René Dagron, mektup sayfalarını parmak boyunda filme küçülttü; film kuyruk tüyüne bağlandı, Paris'te perdeye yansıtılıp kopyalandı. Dagron'un yöntemini uygulamak için Paris'ten balonla çıkması gerekti. Anlatılana göre 12 Kasım 1870 sabahı kalkan başka bir balon vuruldu; Dagron'un balonu kum torbalarını atıp yükseldi, Prusya bölgesine inen Dagron kaçarak 21 Kasım'da Tours'a vardı. Bu çıkışın ayrıntıları ağırlıkla Dagron'un kendi anlatımına dayanır. Rakamlar kaynaktan kaynağa değişir: ulaşan mesaj sayısı kaynağa göre yaklaşık 60 binle 150 bin arasındadır; balon sayısı yaklaşık 66'dır; kuşatma süresi kaynağa göre dört ay ile dört buçuk ay arasındadır; Paris nüfusu yaklaşık değerdir. Sahneler ve jestler dramatizasyondur. Seslendirme yapay zekâ ile yapıldı. Kaynaklar: Smithsonian Air & Space, Fransız Savunma Bakanlığı "Chemins de mémoire", UCLA "Pigeon Post into Paris" sergisi, Mike Dash (Smithsonian blog).
 - **Hashtag:** #tarih #paris #kuşatma #fotoğraf #bilinmeyentarih
 
-## 11. Kullanıcıya açık sorular
+## 11. Kararlar ve kalan sorular
+Karar verildi (2026-11-11): K2; kapanış cümlesi; "on binlerce" ekranda; Norveç yok; "söylenene göre" eklenmez. Aşağıdaki eski sorulardan 1, 2 ve 4 kapandı; kalanlar bilgi amaçlı:
 1. **Norveç çıktı** (anakronizm: Ville d'Orléans 24 Kasım, Dagron 12 Kasım; odak). "Oslo müzesi" ekranı ve "P11 (b)" cümlesi de bu yüzden yok. Epilog olarak geri istenir mi?
 2. **Kanca:** K2 (Dagron) seçildi; K1 (A) yedek. Hangisi?
 3. **105 kelime / 64.0 sn:** hedef ≤65 içinde. Tehlike anı (P07) ve doruk (P10) uzun tutuldu, P08 kısa.
 4. **Dagron'un çıkışı** orta-yüksek güven (Dagron'un kitapçığı havuzu). Açıklamada belirtildi; anlatımda "söylenene göre" yok. Uygun mu?
 5. **"Dagron'unki":** Niépce balonu adı yalnız ekranda; Daguerre'in adı hiç geçmiyor.
+
+## v5 önceki (eski, kısa)
+105 TR / 125 EN, ≈64.0 sn. P11: "Çoğu kuş dönemedi. Yine de on binlerce mesaj ulaştı." (ekran: "KAYNAĞA GÖRE 60–150 BİN MESAJ · PARİS YENİDEN KONUŞUYOR"). Diğer planlar aynı.
 
 ## v4 (eski, kısaltılmış)
 97 TR / 122 EN, ≈68.3 sn, 12 plan. Kanca: "İki milyon insan dünyadan koptu. Onlara haberi… bir kuşun kuyruğu getirdi." Plan sırası: kanca → Prusya çevirdi → balon mektup taşıdı → balon dönemez/cevap → güvercin döner → kuş taşıyamaz, Dagron küçücük filme sığdırdı → Hükümet Tours'taydı, Dagron balonla gitti → kuyruk tüyüne bağlandı → perdede büyüdü, memurlar kopyaladı → çoğu kuş dönmedi, on binlerce mesaj → gizli mesajlı balon Tours yerine Norveç'e indi; yolcular sağ, mesaj Paris'in elinden çıkmıştı → balonu rüzgâr yönetti; haberi eve dönmeyi bilen güvercin getirdi. Sorun: adım listesi, kahraman yok, Norveç yan bilgi.
