@@ -15,6 +15,20 @@ Durum: **kitte** = mevcut şablon/jest/prop ile kurulabilir · **kısmi** = yakl
 | D8 | Boş kitap + güve | MASA-INSERT | `kitap` `durum.sayfa`, `bos`, `guve` (anahtarlı 0→1) | sayfa çevirme (güve sessiz/çok kısık) | kitte (K2) |
 | P13 | T kolu → Wi-Fi (döngülü son) | KULE-DIS gün | `kuleler[].wifi {bas, bit}` | 3 × ahşap "tak" (yay varışları) | kitte (K2) |
 
+## Paris Kuşatması (PK) — 2026-11-11
+Hepsi **yok** (şablonlar yeni: HARİTA-GÖK, MONTMARTRE, DAGRON-INSERT). Ayrıntı: `bolumler/paris-kusatmasi/dokunuslar.md`. Bu bölümde eldiven yok (çıplak yüzsüz el).
+
+| id | ad | şablon | kurulum önerisi | temas/ses | durum |
+|---|---|---|---|---|---|
+| PK-D1 | Halka kapanır, telgraf teli kopar | HARİTA-GÖK | `halka {bas, kapanis}` + `tel {kopma, uc-kivrim}` | kâğıt tık, tel pınk | yok |
+| PK-D2 | Hortumdan şişen kumaş | MONTMARTRE / balon | `balon.sisme {bas, bit}` (kırışık→ağ gerilimi) | gaz fışş, kumaş pof | yok |
+| PK-D3 | Balast torbası atılır, balon sıçrar | MONTMARTRE sepet | `sepet {halatCoz, balast, sicrama}` | halat hışırtı, kum şşş, sepet gıcır | yok |
+| PK-D4 | Kafes açılır, güvercin yön arar | DAGRON-INSERT kafes | `kafes {kapak, kus.yonAra}` | menteşe kriik, kanat | yok |
+| PK-D5 | Sayfa kutuda şeride küçülür, parmakla ölçü | DAGRON-INSERT masa | `fotografKutusu {sayfa→serit}` + `parmakOlcu` | kapak tak, kâğıt fişt, çekmece, şerit tık | yok |
+| PK-D6 | Kılıf kuyruk tüyüne bağlanır | DAGRON-INSERT makro | `kus.kuyruk {kilif, ip, dugum, pirilti}` | ip çıt, düğüm, kanat | yok |
+| PK-D7 | Filmin perdede büyümesi + odak | DAGRON-INSERT perde | `perde {film, odak, buyume}` (dil-nötr satırlar) | cam tık, odak dişlisi | yok |
+| PK-D8 | Rüzgâr çizgiyi 6 kat uzatır (6 cetvel tıkı) | HARİTA-GÖK | `rota {planKesik, gercek, tik: 6}` | kalem ssss, 6 × tık | yok |
+
 ## Yeni dokunuş eklerken
 - Satır ekle: id (bölüm-öneki ile, ör. `BL-D1`), şablon, hangi parametre/jest/prop ile kurulur, temas listesi, durum.
 - "yok/kısmi" olanlar için kurulum ekibine tek satır iş: hangi şablona hangi parametre.

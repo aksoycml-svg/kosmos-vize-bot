@@ -1,0 +1,70 @@
+{
+ "id": "P09",
+ "lang": "tr",
+ "text": "[excited] Kuş kümesine konunca film perdede büyütüldü. [determined] Memurlar kopyalayıp dağıttı.",
+ "words": [
+  {
+   "t": "Kuş",
+   "s": 0.179,
+   "e": 0.32
+  },
+  {
+   "t": "kümesine",
+   "s": 0.36,
+   "e": 0.76
+  },
+  {
+   "t": "konunca",
+   "s": 0.84,
+   "e": 1.4
+  },
+  {
+   "t": "film",
+   "s": 1.496,
+   "e": 1.88
+  },
+  {
+   "t": "perdede",
+   "s": 1.94,
+   "e": 2.36
+  },
+  {
+   "t": "büyütüldü.",
+   "s": 2.4,
+   "e": 3.28
+  },
+  {
+   "t": "Memurlar",
+   "s": 3.69,
+   "e": 3.96
+  },
+  {
+   "t": "kopyalayıp",
+   "s": 4.04,
+   "e": 4.6
+  },
+  {
+   "t": "dağıttı.",
+   "s": 4.648,
+   "e": 5.24
+  }
+ ],
+ "dur": 5.329,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "ses": "Alex - Deep, Clear and Fluent",
+ "on_bosluk_ms": 40,
+ "cekim": 1,
+ "cekim_sayisi": 1,
+ "kenar": "duzeltildi",
+ "nf_dbfs": -88.2,
+ "hisirti_6k_dbfs": -109.4,
+ "nf_gecti": true
+}

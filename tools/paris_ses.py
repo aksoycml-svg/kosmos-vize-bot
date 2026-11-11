@@ -89,24 +89,29 @@ def kenar(mp3):
         return "duzeltildi" if "duzeltildi" in r2 else "CIT"
     return "temiz"
 
-def uret(lang, pid):
-    OUT = f"{ROOT}/{lang}"; VID, ad = VOICE[lang]; text = ET[lang][pid]
+def uret(lang, pid, OUT=None, ayar=None, text=None, tum=False, eski=None):
+    """tum=True: 3 cekimin hepsi uretilir, en temizi secilir. eski: mevcut klip adayi (nf, hisirti, kenar_ok) ile yarisir."""
+    OUT = OUT or f"{ROOT}/{lang}"; VID, ad = VOICE[lang]; text = text or ET[lang][pid]; ayar = ayar or AYAR; os.makedirs(OUT, exist_ok=True)
     mp3 = f"{OUT}/{pid}.mp3"; js = mp3[:-4] + ".json"; adaylar = []
     for take in range(1, 4):
         d = post(f"/text-to-speech/{VID}/with-timestamps?output_format=mp3_44100_128",
-                 {"text": text, "model_id": "eleven_v3", "voice_settings": AYAR, "language_code": lang})
+                 {"text": text, "model_id": "eleven_v3", "voice_settings": ayar, "language_code": lang})
         t = f"{OUT}/{pid}.c{take}.mp3"; tj = t[:-4] + ".json"
         open(t, "wb").write(base64.b64decode(d["audio_base64"])); a = d["alignment"]
         w = kelimeler(a["characters"], a["character_start_times_seconds"], a["character_end_times_seconds"])
         json.dump({"id": pid, "lang": lang, "text": text, "words": w, "dur": round(sure(t), 3), "voice": VID, "model": "eleven_v3",
-                   "ayar": AYAR, "ses": ad}, open(tj, "w"), ensure_ascii=False, indent=1)
+                   "ayar": ayar, "ses": ad}, open(tj, "w"), ensure_ascii=False, indent=1)
         k = kenar(t); nf, hs = olc(t); kok = k in ("temiz", "duzeltildi"); ok = kok and nf <= NF_LIMIT
         print(lang, pid, "cekim", take, k, f"{sure(t):.2f}s nf {nf:.1f} hisirti {hs:.1f}", "OK" if ok else "RED", flush=True)
         adaylar.append((ok, kok, nf, take, k, hs))
-        if ok: break
+        if ok and not tum: break
+    if eski:
+        adaylar.append((eski[0] <= NF_LIMIT and eski[2], eski[2], eski[0], 0, "eski", eski[1]))
     ok_l = [a for a in adaylar if a[0]]
     sec = ok_l[0] if ok_l else min([a for a in adaylar if a[1]] or adaylar, key=lambda a: a[2])
     take = sec[3]
+    if take == 0:
+        print(lang, pid, "ESKI klip korundu (yeni cekimler daha kotu)"); [os.remove(f"{OUT}/{pid}.c{t}.{e}") for t in range(1, 4) for e in ("mp3", "json") if os.path.exists(f"{OUT}/{pid}.c{t}.{e}")]; return
     os.replace(f"{OUT}/{pid}.c{take}.mp3", mp3); os.replace(f"{OUT}/{pid}.c{take}.json", js)
     for t in range(1, 4):
         for f in (f"{OUT}/{pid}.c{t}.mp3", f"{OUT}/{pid}.c{t}.json"):
@@ -158,6 +163,17 @@ if __name__ == "__main__":
         for lg in langs:
             os.makedirs(f"{ROOT}/{lg}", exist_ok=True)
             for pid in ids: uret(lg, pid)
+    elif c == "tekrar":
+        TR3 = "[hopeful] Çare gökyüzüydü. Balonlar mektupları dışarı taşıdı."
+        for lg, pid, tx in (("tr", "P03", TR3), ("tr", "P06", None), ("tr", "P08", None), ("en", "P08", None)):
+            j = json.load(open(f"{ROOT}/{lg}/{pid}.json")); ok = j["kenar"] in ("temiz", "duzeltildi")
+            eski = (j["nf_dbfs"], j["hisirti_6k_dbfs"], ok and pid != "P03" or (ok and tx is None))
+            if tx: ET[lg][pid] = tx
+            uret(lg, pid, tum=True, eski=(j["nf_dbfs"], j["hisirti_6k_dbfs"], ok), text=tx)
+    elif c == "hiz12":
+        a = dict(AYAR, speed=1.2)
+        for lg in ("tr", "en"):
+            for pid in ("P01", "P06", "P11"): uret(lg, pid, OUT=f"{ROOT}/hiz12/{lg}", ayar=a)
     elif c == "olc":
         for lg in ("tr", "en"):
             for pid in IDS:
