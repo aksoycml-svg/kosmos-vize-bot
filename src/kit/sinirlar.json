@@ -377,6 +377,38 @@
       "karakterMaks": 0,
       "konum": "xy",
       "not": "Evliya KE-S4 (K8). Rahle tablası tepeden (x 140–940, y 470–1110), açık Seyahatname (x 220–860, y 545–1045; 15 satır/sayfa dil-nötr hat), kalemdan + gömülü hokka (x 330–750, y 482–538), sağ sayfa dış kenarında iki kenar çizimi (fişek+binici = P01 p0 siluetinin mürekkep hâli; kanatlı adam). parametreler.defterler [{id,x,y,kapali_kutu,acik:{bas,bit}}] zeminde (×0.67) — açılma `defter-ac` temasıyla (açılma bas karesi); defterler_acik true → baştan açık. parametreler.kivilcim {bas,bit} + prop kivilcim (durum.fitil anahtarlı 0–1, çizimdeki fitil boyunca). Son kare eşleşmesi: kamera cs 4.6 iken kıvılcım ekran noktası = P01 p0 (277, 1415). Bu şablonda tarama yok; arşiv modu kagit."
+    },
+    "PARIS-CATI": {
+      "kurulmadi": true,
+      "parametreler": { "gorunum": ["cati", "kumes"], "saat": ["alacakaranlik", "gun"] },
+      "zorunlu": ["gorunum", "saat"],
+      "kamera": { "cs": [0.9, 3.6], "cx": [-600, 600], "cy": [-900, 900] },
+      "karakterMaks": 0,
+      "not": "PARIS KUŞATMASI (yönetmen yer tutucu, KURULMADI — render'da açık hata; kurulum ekibi: tasarımcı → mekân sorumlusu → motion). 1870 Paris, Haussmann SONRASI krem taş cephe, mansard, baca kümesi, çatı kümesi (güvercinlik). gorunum cati = geniş alacakaranlık çatılar + pencerelerde siluetler (P01); kumes = çatı kümesi ağzı yakın (P10 gün, P11 alacakaranlık; P01 ilk karesiyle aynı kompozisyon). Güvercin + bal kehribarı kuyruk kılıfı (İMZA, tekil). Sacré-Cœur ve Eyfel YOK."
+    },
+    "MONTMARTRE": {
+      "kurulmadi": true,
+      "parametreler": { "gorunum": ["meydan", "gok", "sepet"], "saat": ["gun"] },
+      "zorunlu": ["gorunum", "saat"],
+      "kamera": { "cs": [0.9, 2.4], "cx": [-500, 500], "cy": [-1200, 1200] },
+      "karakterMaks": 0,
+      "not": "PARIS KUŞATMASI (yönetmen yer tutucu, KURULMADI). Montmartre kalkış meydanı sabah: meydan = balon şişirme + sepet yükleme (P03, P06), gok = yükselen iki balon + yer küçülür (P07), sepet = sepet kenarı bel plan (P07). Balon biçimi/ağ/sepet kaynaksız → nötr (tasarımcı). Yüzsüz siluetler ve Dagron (sırt + sepya manşet) parametreler.figurler'de (kitte karakter kaydı yok)."
+    },
+    "DAGRON-INSERT": {
+      "kurulmadi": true,
+      "parametreler": { "gorunum": ["masa", "kafes"], "saat": ["gun"] },
+      "zorunlu": ["gorunum", "saat"],
+      "kamera": { "cs": [1.0, 2.4], "cx": [-700, 700], "cy": [-1000, 600] },
+      "karakterMaks": 0,
+      "not": "PARIS KUŞATMASI (yönetmen yer tutucu, KURULMADI). masa = tepe-önden masa (P05 Paris atölyesi: terazi, mektup destesi, mercekli ahşap kutu, şerit; P09 Tours masası: şerit yığını, güvercin, kılıf, ip), kafes = uzakta inen sepet + kafes (P04). Eller yüzsüz, sepya manşet (parametreler.eller; `el[]` bu şablonda doğrulayıcıda yok). MASA-INSERT masası/KolEl yeniden kullanılabilir mi: kurulum ekibi karar verir."
+    },
+    "LANTERN-ODA": {
+      "kurulmadi": true,
+      "parametreler": { "gorunum": ["oda"], "saat": ["lamba"] },
+      "zorunlu": ["gorunum", "saat"],
+      "kamera": { "cs": [0.9, 2.2], "cx": [-600, 600], "cy": [-500, 500] },
+      "karakterMaks": 0,
+      "not": "PARIS KUŞATMASI (yönetmen yer tutucu, KURULMADI). Karanlık oda, magic lantern huzmesi (kireç beyaz-yeşilimsi), perde = badanalı duvar (yüksekliğin %55'i), memurlar masalarda (yüzsüz siluet), kapıda bekleyen siluetler. Perdede satırlar dil-nötr çizgi/mikro desen."
     }
   },
   "karakterler": [

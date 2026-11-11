@@ -1,0 +1,397 @@
+{
+  "fps": 60,
+  "temaslar": [
+    {
+      "plan": "P01",
+      "kare": 3,
+      "sn": 0.05,
+      "olay": "kuş tüneği bırakır, kanat çırpışı",
+      "ses": "pk-kanat",
+      "db": -8
+    },
+    {
+      "plan": "P02",
+      "kare": 514,
+      "sn": 8.567,
+      "olay": "son Prusya işareti halkaya oturur",
+      "ses": "pk-halka-tik",
+      "db": -8
+    },
+    {
+      "plan": "P02",
+      "kare": 520,
+      "sn": 8.667,
+      "olay": "telgraf teli kopar",
+      "ses": "pk-tel-kopma",
+      "db": -7
+    },
+    {
+      "plan": "P02",
+      "kare": 596,
+      "sn": 9.933,
+      "olay": "kâğıt siluetler halkaya yerleşir",
+      "ses": "pk-kagit-sil",
+      "db": -11
+    },
+    {
+      "plan": "P03",
+      "kare": 746,
+      "sn": 12.433,
+      "olay": "gaz hortumu şişirmeye başlar",
+      "ses": "pk-gaz-fis",
+      "db": -9
+    },
+    {
+      "plan": "P03",
+      "kare": 778,
+      "sn": 12.967,
+      "olay": "ağ halatı gerilir",
+      "ses": "pk-ag-git",
+      "db": -10
+    },
+    {
+      "plan": "P03",
+      "kare": 804,
+      "sn": 13.4,
+      "olay": "ağ halatı gerilir",
+      "ses": "pk-ag-git",
+      "db": -10
+    },
+    {
+      "plan": "P03",
+      "kare": 826,
+      "sn": 13.767,
+      "olay": "ağ halatı gerilir",
+      "ses": "pk-ag-git",
+      "db": -10
+    },
+    {
+      "plan": "P03",
+      "kare": 842,
+      "sn": 14.033,
+      "olay": "küre oturur, sallanıp durur",
+      "ses": "pk-kumas-pof",
+      "db": -8
+    },
+    {
+      "plan": "P03",
+      "kare": 850,
+      "sn": 14.167,
+      "olay": "halat çözülür",
+      "ses": "pk-halat-coz",
+      "db": -10
+    },
+    {
+      "plan": "P03",
+      "kare": 1028,
+      "sn": 17.133,
+      "olay": "yazı yığını halka çizgisine çarpar",
+      "ses": "pk-kagit-tok",
+      "db": -9
+    },
+    {
+      "plan": "P04",
+      "kare": 1207,
+      "sn": 20.117,
+      "olay": "sepet zemine oturur",
+      "ses": "pk-sepet-konma",
+      "db": -10
+    },
+    {
+      "plan": "P04",
+      "kare": 1221,
+      "sn": 20.35,
+      "olay": "kafes kapağı menteşede açılır",
+      "ses": "pk-kapak-mentese",
+      "db": -9
+    },
+    {
+      "plan": "P04",
+      "kare": 1303,
+      "sn": 21.717,
+      "olay": "kuş kanat çırpıp çıkar",
+      "ses": "pk-kanat",
+      "db": -8
+    },
+    {
+      "plan": "P05",
+      "kare": 1374,
+      "sn": 22.9,
+      "olay": "mektup kefesi aşağı oturur",
+      "ses": "pk-kefe-tok",
+      "db": -9
+    },
+    {
+      "plan": "P05",
+      "kare": 1398,
+      "sn": 23.3,
+      "olay": "kuş kefede kanat çırpar",
+      "ses": "pk-kanat",
+      "db": -9
+    },
+    {
+      "plan": "P05",
+      "kare": 1478,
+      "sn": 24.633,
+      "olay": "el desteden sayfa alır",
+      "ses": "pk-kagit-al",
+      "db": -9
+    },
+    {
+      "plan": "P05",
+      "kare": 1498,
+      "sn": 24.967,
+      "olay": "sayfa kutunun önüne konur",
+      "ses": "pk-kagit-koy",
+      "db": -10
+    },
+    {
+      "plan": "P05",
+      "kare": 1504,
+      "sn": 25.067,
+      "olay": "kutu kapağı dayanağa oturur",
+      "ses": "pk-mercek-tak",
+      "db": -8
+    },
+    {
+      "plan": "P05",
+      "kare": 1520,
+      "sn": 25.333,
+      "olay": "sayfa ışık hattına çekilir",
+      "ses": "pk-kagit-fist",
+      "db": -8
+    },
+    {
+      "plan": "P05",
+      "kare": 1548,
+      "sn": 25.8,
+      "olay": "yan çekmece kayar",
+      "ses": "pk-cekmece",
+      "db": -9
+    },
+    {
+      "plan": "P05",
+      "kare": 1606,
+      "sn": 26.767,
+      "olay": "şerit parmak yanına konur",
+      "ses": "pk-serit-tik",
+      "db": -7
+    },
+    {
+      "plan": "P06",
+      "kare": 1790,
+      "sn": 29.833,
+      "olay": "iğne Tours'a batar",
+      "ses": "igne-tak",
+      "db": -8
+    },
+    {
+      "plan": "P06",
+      "kare": 1902,
+      "sn": 31.7,
+      "olay": "sandık sepete oturur",
+      "ses": "pk-sandik-tok",
+      "db": -7
+    },
+    {
+      "plan": "P06",
+      "kare": 1906,
+      "sn": 31.767,
+      "olay": "sepet hasırı sıkışır",
+      "ses": "pk-hasir-gicir",
+      "db": -9
+    },
+    {
+      "plan": "P06",
+      "kare": 1938,
+      "sn": 32.3,
+      "olay": "Dagron'un ayağı sepet kenarına basar",
+      "ses": "pk-hasir-gicir",
+      "db": -9
+    },
+    {
+      "plan": "P06",
+      "kare": 1974,
+      "sn": 32.9,
+      "olay": "halat gerilir",
+      "ses": "pk-halat-gerilme",
+      "db": -9
+    },
+    {
+      "plan": "P07",
+      "kare": 2107,
+      "sn": 35.117,
+      "olay": "vurulan balona isabet (uzak, kısık)",
+      "ses": "pk-uzak-pat",
+      "db": -14
+    },
+    {
+      "plan": "P07",
+      "kare": 2111,
+      "sn": 35.183,
+      "olay": "küre gaz boşaltır",
+      "ses": "pk-gaz-bosal",
+      "db": -12
+    },
+    {
+      "plan": "P07",
+      "kare": 2195,
+      "sn": 36.583,
+      "olay": "birinci kum torbası bırakılır",
+      "ses": "pk-kum-akis",
+      "db": -9
+    },
+    {
+      "plan": "P07",
+      "kare": 2213,
+      "sn": 36.883,
+      "olay": "ikinci kum torbası bırakılır",
+      "ses": "pk-kum-akis",
+      "db": -9
+    },
+    {
+      "plan": "P07",
+      "kare": 2235,
+      "sn": 37.25,
+      "olay": "sepet hafifleyip sıçrar",
+      "ses": "pk-sepet-gicir",
+      "db": -8
+    },
+    {
+      "plan": "P07",
+      "kare": 2245,
+      "sn": 37.417,
+      "olay": "halat gevşer",
+      "ses": "pk-halat-gevse",
+      "db": -10
+    },
+    {
+      "plan": "P08",
+      "kare": 2411,
+      "sn": 40.183,
+      "olay": "balon yamaca iner (harita ikonu, kısık)",
+      "ses": "pk-sepet-konma",
+      "db": -14
+    },
+    {
+      "plan": "P08",
+      "kare": 2499,
+      "sn": 41.65,
+      "olay": "iğne Tours'a batar",
+      "ses": "igne-tak",
+      "db": -8
+    },
+    {
+      "plan": "P09",
+      "kare": 2578,
+      "sn": 42.967,
+      "olay": "kılıf kuyruk tüyünün altına oturur",
+      "ses": "pk-kilif-otur",
+      "db": -10
+    },
+    {
+      "plan": "P09",
+      "kare": 2640,
+      "sn": 44,
+      "olay": "düğüm çekilir",
+      "ses": "pk-dugum",
+      "db": -9
+    },
+    {
+      "plan": "P09",
+      "kare": 2662,
+      "sn": 44.367,
+      "olay": "deneme çekişinde ip gerilir",
+      "ses": "pk-ip-gerilme",
+      "db": -9
+    },
+    {
+      "plan": "P09",
+      "kare": 2738,
+      "sn": 45.633,
+      "olay": "el kuşu bırakır, kanat salınır",
+      "ses": "pk-kanat-salma",
+      "db": -8
+    },
+    {
+      "plan": "P10",
+      "kare": 2782,
+      "sn": 46.367,
+      "olay": "güvercin kümes tüneğine konar",
+      "ses": "pk-kanat",
+      "db": -8
+    },
+    {
+      "plan": "P10",
+      "kare": 2810,
+      "sn": 46.833,
+      "olay": "kılıf ipi çözülür",
+      "ses": "pk-kilif-coz",
+      "db": -10
+    },
+    {
+      "plan": "P10",
+      "kare": 2830,
+      "sn": 47.167,
+      "olay": "lamba ışığı açılır (ortam)",
+      "ses": "pk-lamba",
+      "db": -12
+    },
+    {
+      "plan": "P10",
+      "kare": 2846,
+      "sn": 47.433,
+      "olay": "cam levha yerleşir",
+      "ses": "pk-cam-levha",
+      "db": -8
+    },
+    {
+      "plan": "P10",
+      "kare": 2882,
+      "sn": 48.033,
+      "olay": "mercek odak dişlisi dönmeye başlar",
+      "ses": "pk-odak-disli",
+      "db": -10
+    },
+    {
+      "plan": "P10",
+      "kare": 2976,
+      "sn": 49.6,
+      "olay": "memurlar yazmaya başlar",
+      "ses": "pk-kalem",
+      "db": -14
+    },
+    {
+      "plan": "P10",
+      "kare": 3034,
+      "sn": 50.567,
+      "olay": "zarf kapıdaki siluete verilir",
+      "ses": "pk-zarf-ver",
+      "db": -11
+    },
+    {
+      "plan": "P10",
+      "kare": 3052,
+      "sn": 50.867,
+      "olay": "zarf açılır",
+      "ses": "pk-zarf-ac",
+      "db": -10
+    },
+    {
+      "plan": "P11",
+      "kare": 3290,
+      "sn": 54.833,
+      "olay": "film şeritleri Paris'e düşer (kısık)",
+      "ses": "pk-kagit-yagmur",
+      "db": -12
+    },
+    {
+      "plan": "P11",
+      "kare": 3382,
+      "sn": 56.367,
+      "olay": "güvercin kümes tüneğine konar",
+      "ses": "pk-kanat",
+      "db": -8
+    }
+  ]
+}
