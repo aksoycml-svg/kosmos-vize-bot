@@ -75,7 +75,21 @@ export type El = {
 // İki dil (K9): metin/vurgu ya ana dilde (bolum.dil ?? "tr") + `en`/`vurgu_en` alanları, ya da {tr,en} (src/kit/dil.ts)
 export type DilMetinT = string | { tr?: string; en?: string };
 export type DilListeT = string[] | { tr?: string[]; en?: string[] };
-export type EkranYazisi = { bant: Bant; metin: DilMetinT; vurgu?: DilListeT; en?: string; vurgu_en?: string[]; tur?: "iddia" | "formul"; kagitSerit?: boolean; bas?: number; bit?: number; boyut?: number };
+export type EkranYazisi = { bant: Bant; metin: DilMetinT; vurgu?: DilListeT; en?: string; vurgu_en?: string[]; tur?: "iddia" | "formul" | "sayac"; kagitSerit?: boolean; bas?: number; bit?: number; boyut?: number;
+  sayac?: SayacAyar }; // KT-4: tur "sayac" → metin içindeki {n} sayılır
+// KT-4 sayaç: 0 (ya da baslangic) → hedef; bas/sure ekran yazısının bas'ından göreli kare; donus: kare (göreli) + metin {tr,en} → sayı yuvarlak ifadeye döner
+export type SayacAyar = { hedef: number; baslangic?: number; bas?: number; sure?: number; ondalik?: number; vurgu?: boolean;
+  donus?: { kare: number; metin: DilMetinT; en?: string } };
+// KT-1 kelime kelime altyazı (yazı katmanı, dil başına; ses json kelime zamanlarından). Bölüm düzeyinde açılır, plan düzeyinde ezilir/kapatılır.
+export type AltyaziAyar = { acik?: boolean; kucuk?: boolean; noktalamasiz?: boolean; grup?: 1 | 2 | 3; maks_harf?: number; bant?: "oto" | "alt" | "ust"; boyut?: number; vurgu?: DilListeT };
+// KT-2 kamera dili (Bolum sarmalayıcısı; şablon kamerasının ÜSTÜNE): itme = plan boyunca lineer ölçek artışı (0.04 = %4), titreme px genlik, hiz çarpan, seed
+export type KameraDil = { itme?: number; odak?: P; titreme?: number; hiz?: number; seed?: number; aci?: number };
+// KT-2 plan geçişi (çıkan planda): whip — yon = görüntünün kaydığı yön; kare = her iki yandaki yarı uzunluk (8)
+export type Gecis = { tur: "whip"; yon?: "sol" | "sag" | "yukari" | "asagi"; kare?: number };
+// KT-2 darbe: kare = patlama/temas; x,y dekor px (plan kamerasıyla eşlenir; ekran: true ise ekran px); siddet 0–1; yaricap px; flas 0–1; sarsinti 0–1
+export type Darbe = { kare: number; x: number; y: number; ekran?: boolean; siddet?: number; yaricap?: number; flas?: number; sarsinti?: number; duman?: boolean; seed?: number };
+// KT-3 harita bilgi kartı (yazı katmanı): iğneye (ya da nokta lon/lat) bağlı kâğıt kart
+export type HaritaKart = { metin?: DilMetinT; tr?: string; en?: string; alt?: DilMetinT; alt_en?: string; bas?: number; bit?: number; yon?: "ust" | "alt" | "sol" | "sag" };
 export type Replik = { kim: DilMetinT; kim_en?: string; metin: DilMetinT; bant: Bant; bas: number; bit: number; vurgu?: DilListeT; vurgu_en?: string[]; kelimeKare?: number[];
   en?: string | { metin: string; bas?: number; bit?: number; kelimeKare?: number[] } }; // en: dilin kendi zamanlaması
 // Harita etiketi (yazı katmanı; dekora bağlı, görüntüyle aynı kamera): x,y = işaret noktası, kutu = fiş merkezi (dekor px)
@@ -100,6 +114,11 @@ export type Plan = {
   ses?: PlanSes[];
   ses_en?: PlanSes[]; // KE-Y2: EN anlatım (aynı karelerden)
   harita_etiketleri?: HaritaEtiketi[];
+  harita_kart?: HaritaKart[];   // KT-3
+  altyazi?: false | AltyaziAyar; // KT-1: false = bu planda kapalı
+  kamera_dil?: false | KameraDil; // KT-2: false = bu planda kapalı (bölüm varsayılanını ezer)
+  gecis?: Gecis;                 // KT-2: bu planın SONUNDAKİ geçiş (sonraki planın girişini de belirler)
+  darbe?: Darbe[];               // KT-2
   dokunus?: Dokunus | null;
   not?: string;
   // Evliya K5: plan içi sert kesme — kare_bas'tan itibaren aynı plan başka şablonla (kendi parametre/kamera/karakter/prop'uyla) devam eder.
@@ -109,6 +128,8 @@ export type Plan = {
 
 export type BolumJson = {
   slug: string; baslik: string; fps: 60; dil?: "tr" | "en";
+  altyazi?: AltyaziAyar;   // KT-1 (varsayılan kapalı)
+  kamera_dil?: KameraDil;  // KT-2 (varsayılan kapalı)
   gorsel_yazisiz?: boolean; // true: görüntü yazısız render edilir (yazı/etiket dil katmanında, KE-Y)
   planlar: Plan[];
 };
