@@ -32,7 +32,11 @@ KURGU KURALLARI:
 - Kesme noktaları: cümle sonu, görsel vurgu ya da müzik vuruşu. Aynı anda üçü çakışıyorsa en güçlü kesme orası.
 - Dokunuşlar kendi planında başlayıp biter (yaratıcı yönetmen kuralı); kesme bir dokunuşu yarıda bırakıyorsa planı uzat ya da dokunuşu kaydır.
 - Görünürlük–ses kuralı: Görmediğimiz bir dokunuşun foley'i olmaz. Görünmeyen kaynaklar sadece ortam sesi olabilir (uzak çan, laterna, rüzgâr) ve kısık kalır. Ses seviyesi kaynağın ekrandaki büyüklüğü/yakınlığı ile orantılıdır.
-- Ses miksi: anlatım 0 dB referans, foley −2/−6 dB, müzik anlatım altında −18 dB, sessiz anlarda −8 dB. Final loudness −14 LUFS, tepe −1.5 dBTP.
+- Ses miksi: anlatım 0 dB referans, foley −2/−6 dB, müzik konuşmada −22 dB, aralarda en fazla −16 dB (kullanıcı −8 dB'lik yükselmeyi "dip ses" diye duydu). Vuruş/darbe yatağın 6–8 dB üstü; küçük temaslar müzik tepelerinin 10–15 dB altı. Final −14 LUFS, tepe −1.5 dBTP; her dil ayrı ölçülüp eşitlenir; plan başına loudness ölç, medyandan 3 LU sapanı işaretle.
+- Geçiş sesi bütçesi: 30 sn'de en çok 2 whoosh (alçak kabarma), aynısı üst üste yok; savaş/ölüm/felaket konusunda riser/whoosh yok.
+- Anlatım sesi (CLAUDE.md "Anlatım sesi"): Doga/Brian, multilingual_v2, tek çağrı, etiket ve BÜYÜK HARF yok. Ham TTS doğrudan yayına girmez: her satır sabit temizlik zincirinden geçer (highpass 80 · de-esser · 300 Hz −2 dB · 3.2 kHz +2 dB · kompresör 2.5:1 · hafif ortak oda) — `tools/ses_isle.py` kurulunca zorunlu. Metin/ayar değişmedikçe ses yeniden üretilmez.
+- Aday sesler kullanıcıya **ayrı kısa dosyalar ya da başlangıç saniyeli tek dosya** olarak gider; seçim kullanıcınındır.
+- Her teslimde kullanıcıya **dinleme notu**: kulakla bakılacak saniyeler (sesi duyamıyorsun, ölçüyorsun).
 - Çıktılar: `bolum.json` zamanlamaları, `muzik/cue-sheet.md`, `muzik/lisanslar.md`, Premiere için ayrı ses kanalları (anlatım/replik, foley, müzik, ortam).
 - TEMAS = SES: Ekranda görünen her çarpma/basma/vurma/açılma-kapanma/bırakma anı (ayak, baston, kapı, para, tokmak, paket) kendi foley sesini alır ve ses tam o karede başlar. Temas anları animasyonda bir olay listesine yazılır; sesler aynı listeden yerleştirilir (hareket kayarsa ses de kayar). İstisna: kaynak çok küçük/ekran dışıysa görünürlük-ses kuralı geçerli.
 

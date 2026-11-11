@@ -73,6 +73,10 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - **Tek sahiplik:** her belgenin tek sahibi vardır; diğerleri doğrudan değiştirmez, notu orkestraya (ana oturum) yazar, orkestra sahibine iletir.
 - **Yukarı akış:** alt adımda bir sorun üst adımın belgesini etkiliyorsa (ör. dönem bulgusu), önce o belgenin sahibi düzeltir, sonra aşağıdakiler sırayla güncellenir — hepsi aynı anda değil.
 - **Açık soru biriktir:** her adımın sonunda kullanıcıya gereken kararlar tek mesajda toplanır; karar gelmeden bağımlı adım başlamaz (varsayılan seçilirse açıkça yazılır).
+- **Övülen kilitlenir:** kullanıcının beğendiği plan/satır `bolum.json`'da `kilit: true` olur; düzeltme turlarında dokunulmaz.
+- **Notlar kelimesi kelimesine:** kullanıcı geri bildirimi `bolumler/<slug>/notlar/tur-N.md`'ye aynen yazılır; düzeltme bu dosyadan yapılır.
+- **Önce teşhis, sonra yeniden yapım:** eleştirmen kusurun nedenini (hangi parametre) yazar; orkestra yalnız o parametreyi değiştirtir, planı baştan kurdurmaz. Bilerek kabul edilen uyarı json'a `lint: {izin: […], not: "…"}` olarak yazılır, her turda yeniden tartışılmaz.
+- **Metin değişmedikçe ses yeniden üretilmez** (kredi ve tur tasarrufu).
 - **Paralel serbest olanlar:** birbirinin girdisi olmayan işler (ör. kurgucu müzik araştırması ↔ motion; kalibrasyondan sonra farklı mekânların kareleri).
 
 ## KURALLAR
@@ -110,13 +114,24 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 ### Ses
 - **Temas = ses:** görünür her çarpma/basma/vurma/açılma-kapanma/bırakma anı kendi foley'ini alır, tam o karede. Temas anları olay listesine yazılır, sesler aynı listeden yerleştirilir.
 - **Görünürlük–ses:** görmediğimiz dokunuşun sesi olmaz. Görünmeyen kaynaklar sadece kısık ortam sesi olabilir (uzak çan, laterna, rüzgâr). Seviye ekrandaki büyüklükle orantılı.
-- Miks: anlatım 0 dB ref, foley −2/−6 dB (kullanıcı foley'i yüksek bulur — temkinli ol), müzik anlatım altında ~−18 dB. Final −14 LUFS, tepe −1.5 dBTP.
+- Miks: anlatım 0 dB ref, foley −2/−6 dB (kullanıcı foley'i yüksek bulur — temkinli ol), müzik aşağıdaki seviye kuralıyla. Final −14 LUFS, tepe −1.5 dBTP.
 - **Müzik akar:** müzik plan sınırında kesilmez, ani düşüşle "gitmez"; vurgu müzikal cümleyle (dinamik, enstrüman, cümle sonu) yapılır. Tam sessizlik yalnız kullanıcı onaylı bir karardır. Ses efekti oyunculuğa uyar (esneme acı gibi, hasta sesi sağlıklı gibi duyulmaz); anlamsız efekt (iç çekiş vb.) konmaz.
+- **Müzik seviyesi (kullanıcı kararı, Evliya):** konuşmada anlatımın −22 dB altı, aralarda en fazla −16 dB (eski −8 dB'lik yükselme kullanıcıya "dip ses" gibi geldi). Vuruş/darbe sesleri yatağın 6–8 dB üstü, küçük temaslar müzik tepelerinin 10–15 dB altı.
+- **Geçiş sesi bütçesi:** 30 sn'de en çok 2 whoosh, alçak bir kabarma; aynı geçiş sesi üst üste yok. Savaş/ölüm/felaket konularında gösteri sesi (riser, whoosh) yok.
+- **Ses işleme:** ham TTS doğrudan yayına girmez; her anlatım satırı kanal boyunca sabit tek bir temizlik zincirinden geçer (highpass 80 Hz · de-esser · 300 Hz −2 dB · 3.2 kHz +2 dB · kompresör 2.5:1 · çok hafif ortak oda) — `tools/ses_isle.py` (kurulacak; sarpstar `voice_treat.py` MIT'ten uyarlanır).
+- **Dil başına loudness eşitleme:** her dilin finali ayrı ölçülüp −14 LUFS'e getirilir; plan başına loudness ölçülür, medyandan 3 LU sapan plan işaretlenir.
+- **Dinleme notu:** ajanlar sesi duyamaz, ölçer. Kullanıcıya her ses teslimiyle birlikte kulakla bakılacak **saniyeler** listesi verilir.
 - Müzik kaynakları: kamu malı klasik (dönem uygunsa öncelik, ör. Chopin Paris 1831+), Incompetech (CC-BY), Pixabay Music. Her parçanın lisansı `muzik/lisanslar.md`.
 
 ### Senaryo ve yazı
 - **Güçlü, meraklı, çok basit anlatım** (kullanıcı kararı): her cümle bir sonrakini merak ettirir (açık soru → cevap → yeni soru). Dil "bebeğe anlatır gibi" sade: kısa cümle, günlük kelime, terim yok ya da hemen açıklanır; izleyici hiçbir an "ne dedi?" demez. Akıllı görünmeye çalışan cümle değil, net cümle.
 - **Kopuk yazım yok** (kullanıcı kararı, Evliya): anlatım bir zincirdir; her plan bir öncekinin sorusuna cevaptır ya da onun sonucudur (çünkü / bu yüzden / ama / o sırada). Art arda dizilmiş bağımsız bilgi cümlesi, nedeni söylenmeyen olay ("ikinci uçuş" — neden?), karakterin neden orada olduğunu söylemeyen bağlam yok. Slogan kalıbı ("O tek kişi: X.", "Tek X: Y.") ve yapay ikili paralellik yok; konuşur gibi yazılır. Senarist teslimden önce planları sırayla okuyup her geçiş için "bu neden buradan buraya geçti?" sorusunu cevaplar.
+- **Hikâye, süreç listesi değil** (kullanıcı kararı, Paris v4 "hiçbir şey hatırlamıyorum"; cinecode/sarpstar `writing.md`, MIT): senarist yazmadan önce senaryonun başına (1) **tek dönüş satırı** `Önce: … / Sonra: …` (tür: tersine dönüş · ifşa · dönüşüm · eşik · ayna · karşıtlık) ve (2) **beş satırlık omurga** yazar: durum · istek · engel · değişim · sonuç. **Kahraman** (izleyicinin takip ettiği kişi) olmadan senaryo yazılmaz. Bu dönüşe hizmet etmeyen plan çıkar.
+- **Önce son:** son cümle/imge ilk yazılır; sonun gerektirdiği her nesne, kural ve sayı ilk üçte birde kurulur.
+- **Merak, retorik soruyla değil saklamayla:** her 15–20 sn bir soru halkası; soru görüntüde yarım bırakılan bir şeyle açılır (kadraj keser, çizim yarıda durur, sayı donar). Yönetmen bunu json'a "saklanan şey" olarak işler.
+- **Göster-anlatma testi:** anlatım ekranda görüleni söylüyorsa satır çıkar ya da tersine çevrilir; anlatım resmin veremediğini verir (neden, geçmiş, sayı, kural).
+- **Anahtar anlar (2–4):** senarist işaretler (`anahtar: true`); ekran süresi = okuma süresi + 1.5 sn, kendi ses anı olur, çevresi geri çekilir (doruk ve karşılık).
+- **Ritim:** cümle uzunlukları değişir (kısa vuruş + nefes alan cümle); hepsi aynı düşüşle biten tek tip kısa cümle dizisi yok (Paris v4 "telgraf" hatası). Vurgu BÜYÜK HARF ya da etiketle değil, cümle yapısı ve noktalamayla verilir.
 - **Hikâyenin mekanizması net:** olayın "nasıl"ı (hile, keşif) tek görsel + tek cümleyle anlatılır; izleyici "bu neden işe yaradı?" sorusunun cevabını görür. (Blanc v3: "hata"nın düzeltildiği söylenmedi → "Tek bir hata" anlamsız kaldı.)
 - **Her kurulum karşılık bulur:** senaryoda "Kurulum → Karşılık" tablosu zorunlu; karşılıksız öğe çıkar ("Eldiven… çorap…" → "eee yani?").
 - **Son tamamlanır:** son cümle askıda kalmaz ("Sadece…" yok); döngü bir vuruşla kapanır.
@@ -147,6 +162,9 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 
 ### Kontrol karesi protokolü (eleştirmen)
 - Her plan için: ilk kare + dokunuş/temas karesi + kapanış karesi; tam boy + 360x640 telefon sayfası + güvenli alan bindirmeli sürüm. Renk ölçüm tablosu (duvar/zemin/gök hedef hex'e karşı).
+- **Hareket şeridi zorunlu:** yürüme, giriş/çıkış, düşen/atılan nesne, kamera hareketi olan planlarda her 4 karede şerit (çok kareli render'dan). Orta kare hareketi gizler (Evliya: meşale yayı ve demet düşüşü kontrol kareleri arasında kaldı).
+- **Tek sayfa genel bakış:** taslak videodan 32 kare (`fps=32/<süre>,scale=320:-1,tile=8x4`) — ışık, yön, renk akışı tek bakışta.
+- **Günlük mod (jüri, tek tur):** 6 soru, her cevap zaman kodu + tek cümle: (1) kanca ilk 2 sn'de hareket edip merak açıyor mu, (2) kahraman an (doruk) okunuyor mu, (3) jenerik/AI gibi duran kare, (4) en zayıf 5 sn, (5) üç büyük kesmenin sesi, (6) AI gibi duran kelime/okuma. Ardından **en çok 3 düzeltme** (sahibi + parametre) ve tek puan (5 öğrenci işi … 9 ödül adayı). Uzun kural taraması yalnız kurulum kalibrasyonunda.
 
 ## Teknik
 - Proje: Remotion 4 (`src/`), fps 60 (animasyon), 1080x1920. `npm install` sonra `npx remotion studio` / `npx remotion render <id>`.
