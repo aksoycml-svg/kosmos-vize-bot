@@ -66,16 +66,26 @@ export function sarkacKare(o: { kuvvet: (q: number) => number; bas: number; p: n
 
 /**
  * Asılı nesne (fiziksel sarkaç): askı noktası aski(q) (dekor px) hareket eder, nesne ip boyu `boy_m` ucunda sallanır.
- * Sertlik = g/L, kuvvet = −(askının yatay ivmesi)/L (+ rüzgâr). Taşıyıcı hızlanınca geri kalır, durunca ileri savrulur ve söner.
+ * Doğrusal olmayan sarkaç: askının ivmesi (yatay + düşey) nesneyi iter, yerçekimi geri getirir (+ rüzgâr). Taşıyıcı hızlanınca geri kalır, durunca ileri savrulur ve söner.
  * Döner: açı (derece, 0 = dik aşağı, + = ucu +x'e) ve uç noktası (px). Kese (kemer), fener (sopa ucu), balon sepeti ipi, kafes.
  */
-export function asiliNesne(o: { aski: (q: number) => P; bas: number; p: number; fps: number; pxm: number; boy_m: number; ruzgar?: (q: number) => number; sonum?: number; a0_derece?: number; tekme?: Tekme[] }): { aci: number; uc: P } {
-  const { aski, bas, p, fps, pxm, boy_m, ruzgar, sonum = 1.1, tekme } = o;
+export function asiliNesne(o: { aski: (q: number) => P; bas: number; p: number; fps: number; pxm: number; boy_m: number; ruzgar?: (q: number) => number; sonum?: number; a0_derece?: number; alt?: number; tekme?: Tekme[] }): { aci: number; uc: P } {
+  const { aski, bas, p, fps, pxm, boy_m, ruzgar, sonum = 1.6, alt = 4, tekme = [] } = o;
   const L = Math.max(0.03, boy_m), g = 9.81;
-  const ivme = (q: number) => { const h = 0.5; const a = aski(q - h)[0], b = aski(q)[0], c = aski(q + h)[0]; return ((c - 2 * b + a) / (h * h)) * fps * fps / pxm; }; // m/s²
-  const a = sarkacKare({ kuvvet: (q) => -ivme(q) / L + (ruzgar ? ruzgar(q) / L : 0), bas, p, fps, sertlik: g / L, sonum, a0: ((o.a0_derece ?? 0) * Math.PI) / 180, tekme });
+  // askının ivmesi (m/s²; x yatay, y aşağı +) — merkezi fark
+  const ivme = (q: number): P => { const h = 0.5, a = aski(q - h), b = aski(q), c = aski(q + h), k = (fps * fps) / (h * h * pxm); return [(c[0] - 2 * b[0] + a[0]) * k, (c[1] - 2 * b[1] + a[1]) * k]; };
+  // doğrusal olmayan sarkaç (büyük açıda da doğru): θ'' = −((g − a_y) sinθ + a_x cosθ)/L + rüzgâr/L − sönüm·θ'   (θ: 0 = dik aşağı, + = uç +x)
+  let th = ((o.a0_derece ?? 0) * Math.PI) / 180, v = 0;
+  const dt = 1 / (fps * alt);
+  for (let q = bas; q < p; q++) {
+    for (const t of tekme) if (t.kare === q) v += t.v;
+    for (let i = 0; i < alt; i++) {
+      const qq = q + i / alt, [ax, ay] = ivme(qq);
+      v += ((-(g + ay) * Math.sin(th) - ax * Math.cos(th) + (ruzgar ? ruzgar(qq) : 0)) / L - sonum * v) * dt; th += v * dt;
+    }
+  }
   const [x, y] = aski(p);
-  return { aci: (a * 180) / Math.PI, uc: [x + Math.sin(a) * L * pxm, y + Math.cos(a) * L * pxm] };
+  return { aci: (th * 180) / Math.PI, uc: [x + Math.sin(th) * L * pxm, y + Math.cos(th) * L * pxm] };
 }
 
 export type DiziAdim = { from: string; to: string; u: number };

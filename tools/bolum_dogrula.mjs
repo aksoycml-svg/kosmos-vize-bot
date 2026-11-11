@@ -43,6 +43,33 @@ const aralik = (yer, ad, v, [a, b]) => dizi(v).forEach((x) => { if (typeof x !==
 const anahtarUzunluk = (yer, ad, v, kare) => { if (Array.isArray(v) && v.length > 1 && (!kare || kare.length !== v.length)) H(yer, `${ad} dizisi (${v.length}) ile kare dizisi (${kare?.length ?? 0}) eşit değil`); };
 const artan = (yer, kare) => { for (let i = 1; i < (kare?.length ?? 0); i++) if (kare[i] <= kare[i - 1]) H(yer, `kare dizisi artan değil (${kare.join(",")})`); };
 const sesSure = (f) => { try { const o = execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f], { encoding: "utf8" }); const d = parseFloat(o); return Number.isFinite(d) ? d : null; } catch { return null; } };
+// kit/hareket gait (ops.cozucu = "gait"): basış kareleri ŞABLONLA AYNI KODDAN (src/kit/hareket/gait.ts; Node tip ayıklama ile içe aktarılır)
+const gaitVar = (B.planlar ?? []).some((pl) => [pl, pl.devam_plan ?? {}].some((b) => (b.karakterler ?? []).some((c) => (c.jestler ?? []).some((j) => j.ad === "yuru" && j.ops?.cozucu === "gait"))));
+const GAIT = gaitVar ? await import(new URL("../src/kit/hareket/gait.ts", import.meta.url).href) : null;
+// xy yolu (GALATA-TEPE, BOGAZ): kalça x / zemin y json anahtarları (pchip, şablonla aynı), pxm(y) = (y − ufuk)/göz
+function gaitDenetle(plan, Y, c, j, ufuk, goz, sure, PAY) {
+  const yer = `${Y} ${c.kim} yuru(gait)`;
+  if (!Array.isArray(c.x) || !Array.isArray(c.kare)) { H(yer, "gait: x yolu (dizi) + kare zorunlu"); return; }
+  const tur = GAIT.turAdi(String(j.ops?.tur ?? "walk")), T = GAIT.ADIM_TUR[tur];
+  const beyan = j.ops?.adim_m ?? c.adim_m ?? plan.parametreler?.adim_m;
+  const A = typeof beyan === "number" ? beyan : T.adim_m;
+  if (A < T.aralik[0] || A > T.aralik[1]) U(yer, `adım ${A} m (${typeof beyan === "number" ? "beyan" : "tür varsayılanı"}) ${tur} aralığı ${T.aralik.join("–")} m dışında`);
+  const x = (q) => GAIT.pchip(c.kare, c.x, q), yy = (q) => (Array.isArray(c.y) ? GAIT.pchip(c.kare, c.y, q) : (c.y ?? 1250));
+  const bas = j.ops?.bas_kare ?? j.bas;
+  const hes = GAIT.basisKareleri({ bas, bit: j.bit, x, yer: yy, pxm: (q) => Math.max(1, (yy(q) - ufuk) / goz), adim_m: A, tur }).map((b) => b.kare);
+  const adimT = (plan.temaslar ?? []).filter((t) => /^adim/.test(t.ses ?? "") && t.kare > bas && t.kare <= j.bit + 1).map((t) => t.kare).sort((a, b) => a - b);
+  if (adimT.length) {
+    // çözücü json temaslarını basış olarak KULLANIR (ses = görüntü); yol kuralından sapma = kalça adımdan önce/sonra gider → bacak açılır/çöker
+    const sap = adimT.length !== hes.length || adimT.some((q, i) => Math.abs(q - hes[i]) > 3);
+    if (sap) U(yer, `"adim" temasları (p${adimT.join(", p")}) yol kuralıyla uyuşmuyor: adım ${A} m → basış p${hes.join(", p")} (±3). Temasları buna çekin ya da adim_m'yi değiştirin`);
+    const ara = adimT.slice(1).map((q, i) => q - adimT[i]); if (ara.some((d) => d < (tur === "run" ? 6 : 9))) U(yer, `basışlar arası < ${tur === "run" ? 6 : 9} kare (p${adimT.join(", p")}) — salınım çizilemez`);
+  } else {
+    const eksik = hes.filter((q) => !temasVar(plan, q, 2));
+    if (eksik.length) U(yer, `adım ${A} m → ${hes.length} basış (p${hes.join(", p")}); temas yok: p${eksik.join(", p")} — "adim-*" foley teması ekle (TEMAS = SES)`);
+  }
+  const son = adimT.length ? adimT[adimT.length - 1] : hes[hes.length - 1];
+  if (typeof son === "number" && son > sure - PAY) H(yer, `son basış p${son} plan sonuna ${sure - son} kare (≥ ${PAY})`);
+}
 const temasVar = (plan, kare, tol = 2) => (plan.temaslar ?? []).some((t) => Math.abs(t.kare - kare) <= tol);
 
 if (B.fps !== SN.fps) H("bölüm", `fps ${B.fps} (beklenen ${SN.fps})`);
@@ -114,6 +141,8 @@ for (const plan of B.planlar ?? []) {
     const hz = (plan.karakterler ?? []).find((c) => c.kim === "hezarfen");
     const uc = hz && (hz.jestler ?? []).find((j) => j.ad === "ucus");
     if (uc && !temasVar(plan, uc.bit, 1)) H(Y, `iniş p${uc.bit} (ucus.bit): temas yok (TEMAS = SES)`);
+    const yjB = hz && (hz.jestler ?? []).find((j) => j.ad === "yuru" && j.ops?.cozucu === "gait");
+    if (yjB) gaitDenetle(plan, Y, hz, { ...yjB, ops: { ...yjB.ops, bas_kare: Math.max(yjB.bas, uc?.bit ?? yjB.bas) } }, 860, 3.9, sure, SN.bitisPayiKare ?? 12);
     if (prm.rota_cizgi) bitis(Y, "rota çizgisi", prm.rota_cizgi.bit);
     const im = prm["iniş_meydani"]; if (im && hz && Array.isArray(hz.x) && Math.abs((hz.x[hz.x.length - 2] ?? 0) - im.x) > 120) U(Y, `iniş x ${hz.x[hz.x.length - 2]} meydandan (x ${im.x}) uzak`);
     const dx = prm.dekor_x; if (Array.isArray(dx) && plan.kamera) for (const c of plan.kamera.cx ?? []) { const sol = 540 - c - 540 / 1, sag = 540 - c + 540; if (sol < dx[0] - 1 || sag > dx[1] + 1) H(Y, `kamera cx ${c}: görünen dekor x ${sol}…${sag} dekor_x ${dx.join("…")} dışında`); }
@@ -362,7 +391,8 @@ function galataKurallari(plan, Y, kar, props, kamera, sure) {
       if (typeof t !== "number" || t <= j.bas || t >= j.bit) H(`${Y} ${c.kim}`, "tas-it ops.temas (ayağın taşa değdiği kare) bas < temas < bit olmalı");
       else if (!temasVar(plan, t, 1)) H(`${Y} ${c.kim}`, `tas-it p${t}: temas yok (TEMAS = SES)`);
     }
-    if (j.ad === "yuru") {
+    if (j.ad === "yuru" && j.ops?.cozucu === "gait") gaitDenetle(plan, Y, c, j, 829, 1.65, sure, PAY);
+    else if (j.ad === "yuru") {
       if (!Array.isArray(c.x)) U(`${Y} ${c.kim}`, "yuru: x yolu (dizi) yok — yerinde sayar");
       else {
         // px/m = (ayak y − 829)/1.65 — her basma görünür temas (TEMAS = SES)

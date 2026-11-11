@@ -10,6 +10,12 @@ import { bastonAcisi, bastonUcu, elYerel, AYAK_TABAN } from "../rig/kinematik";
 import { GLOVE } from "../bolumler/blanc/palet";
 import type { JestCagri, Karakter, P } from "./tipler";
 import { cl, deger, zarf } from "./zaman";
+import { kuklaYuru } from "./hareket/kuklaYuru";
+import { turAdi, zeminOrnek } from "./hareket/gait";
+// Sarkan nesneler (kese, fener, balon sepeti ipi, kafes) ve gövdeye bağlı yaylı ekler: kareye bağlı yay/sarkaç.
+//   asiliNesne({ aski: (q) => elDunya(...), bas, p, fps: 60, pxm, boy_m: 0.25 }) → { aci (°, 0 = dik), uc } — taşıyıcı hızlanınca geri
+//   kalır, durunca ileri savrulur ve söner. yayKare({ hedef, bas, p, fps }) → gecikmeli değer (yen, kol salınımı). Ayrıntı: KATALOG.md "Hareket".
+export { asiliNesne, sarkacKare, yayKare, meltem } from "./hareket/motion";
 import { karakterBul, YUZLER } from "./karakterler";
 
 export type Yerlesim = {
@@ -111,6 +117,17 @@ export const jestTemaslari = (c: JestCagri): { kare: number; olay: string }[] =>
   return [];
 };
 
+// ---- gait yolu (z/u → ekran) ----
+// Kukla birimi / metre (SARAYBURNU geo RIG_BIRIM_M 306 / boy 1.04): pxm = ölçek · 294
+const KUKLA_BIRIM_M = 294;
+const gaitYolu = (k: Karakter, yj: JestCagri, Y: Yerlesim) => {
+  const n = (q: number) => Y.yer(deger(k.z, k.kare, q, 3, YURUYUS), deger(k.u, k.kare, q, 0.5, YURUYUS));
+  const orn: [number, number][] = []; let yanal = 0, top = 0;
+  for (let q = yj.bas; q <= yj.bit; q++) { const a = n(q); orn.push([a.x, a.y]); if (q > yj.bas) { const b = n(q - 1); yanal += Math.abs(a.x - b.x); top += Math.hypot(a.x - b.x, a.y - b.y); } }
+  if (top < 1 || yanal < 0.6 * top) return null; // derinlik ağırlıklı yol: eski döngü
+  return { n, zemin: zeminOrnek(orn) };
+};
+
 // ---- karakter → poz ----
 export type KarakterDurum = { pz: Poz; palet: Palet; louis: boolean; ayak: P; boyPx: number };
 export const karakterPoz = (k: Karakter, p: number, Y: Yerlesim): KarakterDurum => {
@@ -136,7 +153,20 @@ export const karakterPoz = (k: Karakter, p: number, Y: Yerlesim): KarakterDurum 
   const jestler = k.jestler ?? [];
   // yürüyüş: faz = kat edilen yol × şablon fazı (ayak kaymaz); zarf kısa giriş/çıkış
   const yj = jestler.find((j) => j.ad === "yuru" && p >= j.bas - 1 && p <= j.bit + 8);
-  if (yj) {
+  const gaitYol = yj && yj.ops?.cozucu === "gait" ? gaitYolu(k, yj, Y) : null;
+  if (yj && gaitYol) {
+    // kit/hareket gait (bayrak ops.cozucu = "gait"): basan ayak sabit, kalça erişimden, uzun etek öndeki bacağı izler.
+    // Basışlar: ops.basislar (json temas kareleri) ya da yol kuralı (ops.adim_m). Yalnız YANAL yol (ekranda yatay ağırlıklı); derinlik
+    // ağırlıklı yolda (kameraya doğru/uzağa) profil rig ayak basamaz → eski döngü (doğrulayıcı uyarır).
+    const pc = Math.max(yj.bas, Math.min(yj.bit, p)), g0 = gaitYol.n(pc);
+    const bs = Array.isArray(yj.ops?.basislar) ? (yj.ops!.basislar as number[]) : undefined;
+    const r = kuklaYuru({ ...pz, x: g0.x, y: g0.y + AYAK_TABAN * g0.s, scale: g0.s }, {
+      p: pc, bas: yj.bas, bit: yj.bit, x: (q) => gaitYol.n(q).x, zemin: gaitYol.zemin, pxm: (q) => gaitYol.n(q).s * KUKLA_BIRIM_M, olcek: (q) => gaitYol.n(q).s,
+      tur: turAdi(String(yj.ops?.tur ?? "walk")), adim_m: typeof yj.ops?.adim_m === "number" ? yj.ops.adim_m : undefined, basislar: bs,
+      ilk: yj.ops?.ilk === 1 ? 1 : 0, egik: 3 * interpolate(p, [yj.bas, yj.bas + 6, yj.bit - 6, yj.bit], [0, 1, 1, 0], cl) + 1.5,
+    });
+    Object.assign(pz, r.pz);
+  } else if (yj) {
     let yol = 0, z0 = deger(k.z, k.kare, yj.bas, 3, YURUYUS), u0 = deger(k.u, k.kare, yj.bas, 0.5, YURUYUS);
     for (let q = yj.bas + 1; q <= Math.min(p, yj.bit); q++) {
       const z1 = deger(k.z, k.kare, q, 3, YURUYUS), u1 = deger(k.u, k.kare, q, 0.5, YURUYUS);

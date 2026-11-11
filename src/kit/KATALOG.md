@@ -45,7 +45,7 @@ Dosya adı `bolum*.json` olmalı (bundle'a `require.context` ile girer). Kareler
 ### Jest kütüphanesi (`jestler[].ad`, ops)
 | jest | ops | not |
 |---|---|---|
-| `yuru` | `faz` (rad) | z/u **dizi** yolu gerekir; adım fazı kat edilen yoldan (ayak kaymaz) |
+| `yuru` | `faz` (rad) · **gait**: `cozucu: "gait"`, `tur` (`walk`\|`shuffle`\|`run`), `adim_m`, `basislar` (kare[], SOKAK/z-u), `ilk` (0 ön / 1 arka ayak) | z/u **dizi** yolu gerekir; adım fazı kat edilen yoldan. `cozucu: "gait"` → zemine basan çözücü (aşağıda "Hareket") |
 | `konus` | `metin`, `hiz` (kare/harf, 5) | visem dudak |
 | `isaret` | `aci` (−95 ileri, −150 yukarı) | ön kol |
 | `sapka-kaldir` | — | ön el şapkayı kaldırır, bit'te iner |
@@ -198,6 +198,16 @@ Sinan Paşa (İncili) Köşkü kıyısı (mekanlar.md §1). `src/kit/sablonlar/s
 
 ## AVLU-SALON (kayıtlı değil)
 `src/kit/sablonlar/avlu-salon/AvluSalon.tsx` = SB2-BORSA P02 kodu (portikli avlu, kalabalık, tahta). Parametrelenmedi; `SB2-BORSA` kompozisyonu olarak çalışır. Gerektiğinde kurulum ekibi şablonlaştırır.
+
+## Hareket (`src/kit/hareket/`) — yürüyüş çözücüsü + yay/sarkaç
+**Lisans:** `gait.ts` ve `motion.ts`, JDhruv14/line-art-animation (`lib/gait.ts`, `lib/motion.ts`) uyarlamasıdır — **MIT License, Copyright (c) 2026 JDhruv14**. Telif ve izin metni dosya başlıklarında; dosyalar dağıtılırken başlık korunur.
+Kaynaktan fark: kareye bağlı ve deterministik (rAF/zaman durumu yok; değer = `bas` → `p` yeniden benzetim), `Math.random` yok, dünya (dekor px) çözücüsü eklendi.
+- **`gait.ts`** (import'suz; doğrulayıcı da içe aktarır): `gait()` kaynak taşıması (figür birimi) · `adimCoz()` dünya çözücüsü: basan ayak dünya x'inde **sabit**, salınan ayak minimum-jerk + alçak kalkış (koşu: topuk tekmesi), duruş sonu %14 topuk kalkışı (parmak ucu pivotu), konuşta topuk vuruşu, kalça yüksekliği bacak erişiminden (sinüs yok), zemin `y = f(x)` (salınan ayak altındaki zeminin üstünden geçer: basamak kenarına girmez), yokuş: çıkış öne eğilme + adım ≤ %30 kısa, iniş geriye yaslanma + ≤ %15 kısa. `basisKareleri()` = **yol kuralı** (tek kaynak): i. basış etkin yol (i + 1 − duty)·adım'ı geçtiği ilk kare (duruştan ilk adım kısa). `zeminOrnek`, `merdivenZemin` (adım = basamak derinliği), `pchip`. Tür varsayılanları `ADIM_TUR`: walk 0.7 m (0.45–0.9), shuffle 0.45 m (kaftan/dar etek, 0.25–0.6), run 1.1 m (0.7–1.6).
+- **`kuklaYuru.ts`**: çözüm → Kukla pozu (analitik iki kemik IK; `bilekDunya`, `tabanDunya`, `bacakIK`). Duruş pozunun bilek ofsetleri korunur → bas/bit karesinde poz duruşla birebir. Kol bacağa ters (`kolGenlik`; eller kuşakta 10), uzun etek `pz.etekOto` (ön kenar öndeki bacağı izler, çaprazlanınca yumuşak rol değişimi). `Kukla.tsx` bunu `kuklaYuru` olarak dışa verir; eski `yuru(phi)` değişmedi.
+- **Şablonlar**: GALATA-TEPE ve BOGAZ (xy yolu; basışlar `adim-*` temaslarından, yoksa yol kuralı) — **kanıtlı** (Evliya P01 B, P09; `bolumler/evliya-ucuslari/kalibrasyon/GAIT/`). Genel `karakterPoz` (SOKAK, z/u): yalnız ekranda yanal ağırlıklı yolda; derinlik ağırlıklı yolda eski döngüye düşer — **kanıt bekliyor** (ilk kullanan bölüm render'la kabul ettirir). z/u şablonlarında basışlar `ops.basislar` ile json temaslarına bağlanır.
+- **Doğrulayıcı**: `cozucu: "gait"` olan yürüyüşte basış kareleri `gait.ts`'ten hesaplanır; `adim-*` temasları ±3 kare uymazsa öneri verir, temas yoksa ister, adım tür aralığı dışındaysa uyarır, son basış plan sonundan ≥ 12 kare önce.
+- **Ölçüm**: `REMOTION_AYAK_OLCUM=1` (`--env-file`) ile GALATA-TEPE/BOGAZ her karede taban noktalarını yazar → `python3 -I tools/ayak_kayma.py log.txt` (basılı süre boyunca kayma ≤ 1 px, gömülme 0).
+- **`motion.ts`**: `yayKare` (sönümlü yay: yen, kol gecikmesi), `sarkacKare` (sarkaç), **`asiliNesne`** (fiziksel sarkaç: askı noktası hareket eder, nesne `boy_m` ipte sallanır; taşıyıcı hızlanınca geri kalır, durunca ileri savrulur, söner — kese, fener, balon sepeti ipi, kafes), `meltem` (zamana bağlı rüzgâr), `dizi` (adlandırılmış poz zinciri), `tohumlu`, `minJerk`, `wobble`. `jestler.ts` yeniden dışa verir. Sarkan nesnenin askısı eli/kemeri izler (`elDunya`/`govdeDunya`); nesne fade ile kaybolmaz.
 
 ## Bölüm düzeyi kurallar (doğrulayıcı `--tam`)
 30–60 sn · 8–14 plan · plan ≥ 60 kare · 2–4 mekân şablonu (+ HARITA/YAKIN-YUZ/MASA-INSERT) · dokunuş tekrarı yok.
