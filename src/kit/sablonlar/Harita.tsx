@@ -177,7 +177,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           {telAktif && <path d={YOL} fill="none" stroke="#c98a2a" strokeWidth={6} pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - qt} strokeLinecap="round" />}
           {R.map(([n, lo, la, big], i) => { const [x, y] = pj(lo, la);
             // KT-3: rota çizilirken şehir, çizgi varınca mürekkeple belirir (ölçek .6 → 1, GIRIS)
-            if (rc) { const g = i === 0 ? 1 : GIRIS(interpolate(qr, [ORAN[i] - 0.001, ORAN[i] + 0.12], [0, 1], cl)); if (g <= 0) return null;
+            if (rc) { if (!n) return null; const g = i === 0 ? 1 : GIRIS(interpolate(qr, [ORAN[i] - 0.1, ORAN[i]], [0, 1], cl)); if (g <= 0) return null;
               return <g key={n} transform={`translate(${x},${y}) scale(${0.6 + 0.4 * g}) translate(${-x},${-y})`} opacity={g}>{big ? <><circle cx={x} cy={y} r={11} fill={INK} /><text x={x + 20} y={y + 12} fontFamily={serif} fontWeight={900} fontSize={40} fill={INK}>{n}</text></> : <circle cx={x} cy={y} r={5} fill={INK} />}</g>; }
             return big ? <g key={n}><circle cx={x} cy={y} r={11} fill={INK} stroke={INK} strokeWidth={3} /><text x={x + 20} y={y + 12} fontFamily={serif} fontWeight={900} fontSize={40} fill={INK}>{n}</text></g> : <circle key={n} cx={x} cy={y} r={4} fill={INK} />; })}
           {telAktif && Array.from({ length: nKule }).map((_, i) => { const q = i / (nKule - 1); const [x, y] = at(q); return <KuleIkon key={i} x={x - 28} y={y} on={interpolate(qt, [q - 0.02, q + 0.02], [0, 1], cl)} />; })}

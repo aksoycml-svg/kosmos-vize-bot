@@ -110,25 +110,32 @@ const TekDarbe: React.FC<{ d: Darbe; p: number; plan: Plan }> = ({ d, p, plan })
   const r = rnd(sd);
   const buyu = GIRIS(interpolate(t, [0, 6], [0.25, 1], cl));
   const ates = 1 - CIKIS(interpolate(t, [4, 16], [0, 1], cl)); // çekirdek 16 karede söner (ışık), duman kalır
-  const n = 13;
-  const yildiz = Array.from({ length: n * 2 }, (_, i) => { const a = (i / (n * 2)) * Math.PI * 2 + r() * 0.2; const q = (i % 2 ? 0.48 : 0.86 + r() * 0.3) * R * buyu; return `${(x + Math.cos(a) * q).toFixed(1)},${(y + Math.sin(a) * q).toFixed(1)}`; }).join(" ");
-  const isin = Array.from({ length: 16 }, (_, i) => { const a = (i / 16) * Math.PI * 2 + r() * 0.3; const r0 = R * (0.9 + 0.5 * GIRIS(interpolate(t, [0, 10], [0, 1], cl))), r1 = r0 + R * (0.25 + r() * 0.3) * ates; return [x + Math.cos(a) * r0, y + Math.sin(a) * r0, x + Math.cos(a) * r1, y + Math.sin(a) * r1]; });
-  // duman: 6 top yükselir, genişler, rüzgârla sağa kayar, seyrelip dağılır (fiziksel dağılma; 150 karede kadraj dışı/şeffaf)
-  const duman = (d.duman ?? true) ? Array.from({ length: 6 }, (_, i) => {
+  // ateş: düzensiz iki kat kırık kenarlı alev (dış koyu turuncu, iç krem) — simetrik "güneş" okunmasın diye uç boyları ve açıları rastgele
+  const kenar = (n: number, rIc: number, rDis: number, sapma: number) => Array.from({ length: n * 2 }, (_, i) => { const a = (i / (n * 2)) * Math.PI * 2 + (r() - 0.5) * 0.35; const q = (i % 2 ? rIc * (0.8 + 0.4 * r()) : rDis * (0.55 + sapma * r())) * R * buyu; return `${(x + Math.cos(a) * q * 1.12).toFixed(1)},${(y + Math.sin(a) * q * 0.9).toFixed(1)}`; }).join(" ");
+  const dis = kenar(9, 0.42, 0.7, 0.6), ic = kenar(7, 0.22, 0.4, 0.35);
+  const isin = Array.from({ length: 9 }, () => { const a = r() * Math.PI * 2; const r0 = R * (1.0 + 0.4 * GIRIS(interpolate(t, [0, 10], [0, 1], cl))), r1 = r0 + R * (0.12 + r() * 0.35) * ates; return [x + Math.cos(a) * r0, y + Math.sin(a) * r0, x + Math.cos(a) * r1, y + Math.sin(a) * r1]; });
+  // duman: 7 top yükselir, genişler, rüzgârla sağa kayar, seyrelip dağılır (fiziksel dağılma; 150 karede biter). Birleşik siluet:
+  // önce konturlu toplar, üstüne konturSUZ dolgu → tek bulut kenarı (claude-animation-skills puff tekniği)
+  const duman = (d.duman ?? true) ? Array.from({ length: 7 }, () => {
     const a = r() * Math.PI * 2, u = interpolate(t, [3, 150], [0, 1], cl);
-    const rr = R * (0.35 + 0.25 * r()) * (0.6 + 1.6 * Math.sqrt(u));
-    return { cx: x + Math.cos(a) * R * 0.45 * (0.4 + u) + u * R * 0.9, cy: y + Math.sin(a) * R * 0.3 - u * R * 1.6, r: rr, al: interpolate(t, [3, 10, 90, 150], [0, 0.85, 0.5, 0], cl) };
+    const rr = R * (0.28 + 0.2 * r()) * (0.6 + 1.5 * Math.sqrt(u));
+    return { cx: x + Math.cos(a) * R * 0.4 * (0.5 + u) + u * R * 0.9, cy: y + Math.sin(a) * R * 0.3 - u * R * 1.6, r: rr };
   }) : [];
+  const dAl = interpolate(t, [3, 10, 90, 150], [0, 0.9, 0.55, 0], cl);
   // kıymık: balistik (yerçekimi), kadraj dışına düşer
   const kiymik = Array.from({ length: 9 }, () => { const a = -Math.PI * (0.1 + 0.8 * r()), v = R * (0.06 + 0.06 * r()); return { x: x + Math.cos(a) * v * t, y: y + Math.sin(a) * v * t + 0.06 * t * t * (R / 150), w: 6 + 8 * r(), rot: t * (8 + r() * 10) }; });
   const flas = (d.flas ?? S) * 0.5 * (1 - CIKIS(interpolate(t, [0, 9], [0, 1], cl)));
   return (
     <>
       {flas > 0.001 && <rect x={0} y={0} width={1080} height={1920} fill={`rgba(250,236,200,${flas})`} />}
-      {duman.map((q, i) => <circle key={`d${i}`} cx={q.cx} cy={q.cy} r={q.r} fill="#a89c86" stroke={INK} strokeOpacity={0.55} strokeWidth={3} opacity={q.al} />)}
+      {duman.length > 0 && dAl > 0.001 && <g opacity={dAl}>
+        {duman.map((q, i) => <circle key={`dk${i}`} cx={q.cx} cy={q.cy} r={q.r} fill="none" stroke={INK} strokeOpacity={0.6} strokeWidth={6} />)}
+        {duman.map((q, i) => <circle key={`dd${i}`} cx={q.cx} cy={q.cy} r={q.r} fill="#a59a86" />)}
+        {duman.slice(0, 4).map((q, i) => <path key={`dt${i}`} d={`M${q.cx - q.r * 0.5},${q.cy + q.r * 0.35} q${q.r * 0.5},${q.r * 0.3} ${q.r},0`} fill="none" stroke={INK} strokeOpacity={0.35} strokeWidth={3} strokeLinecap="round" />)}
+      </g>}
       {ates > 0.01 && <g opacity={ates}>
-        <polygon points={yildiz} fill="#f2d48f" stroke={INK} strokeWidth={5} strokeLinejoin="round" />
-        <circle cx={x} cy={y} r={R * 0.38 * buyu} fill="#e39a45" />
+        <polygon points={dis} fill="#c8662c" stroke={INK} strokeWidth={5} strokeLinejoin="round" />
+        <polygon points={ic} fill="#f1d9a0" />
         {isin.map((l, i) => <line key={i} x1={l[0]} y1={l[1]} x2={l[2]} y2={l[3]} stroke={INK} strokeWidth={4} strokeLinecap="round" />)}
       </g>}
       {kiymik.map((q, i) => (q.y < 2000 ? <rect key={`k${i}`} x={q.x - q.w / 2} y={q.y - 3} width={q.w} height={6} fill={INK} transform={`rotate(${q.rot},${q.x},${q.y})`} /> : null))}

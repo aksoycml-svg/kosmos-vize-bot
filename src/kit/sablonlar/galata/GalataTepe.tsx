@@ -31,7 +31,7 @@ import { cl, CIKIS, deger, ekranNokta, GIRIS, INOUT, kameraHesapla, katDonusum, 
 import { param, Sablon, SablonProps } from "../../ortak";
 import { RIG_BIRIM_M } from "../sarayburnu/geo";
 import { SurAvlu } from "./SurAvlu";
-import { kuklaYuru } from "../../hareket/kuklaYuru";
+import { kuklaYuru, tabanDunya } from "../../hareket/kuklaYuru";
 import { turAdi, zeminOrnek } from "../../hareket/gait";
 
 const S = DOKU_SEED.galata;
@@ -340,6 +340,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       const tF = ayakUcu(pz, pz.thighF, pz.kneeF, pz.footF ?? 0);
       ayaklar = [{ x: tF[0] - f * 27 * s, gy: y, h: Math.max(0, y - (tF[1] + 5 * s)) }, { x: bDur[0] + f * s * 13, gy: y, h: 0 }];
     }
+    // ölçüm (yalnız REMOTION_AYAK_OLCUM=1 ile): taban topuk/burun dünya noktaları + zemin → tools/ayak_kayma.py
+    if (process.env.REMOTION_AYAK_OLCUM && yj) console.log("AYAK_OLCUM " + JSON.stringify({ p, gy: ayaklar.map((a) => a.gy), F: [-10, 36].map((lx) => tabanDunya(pz, 14, pz.thighF, pz.kneeF, pz.footF ?? 0, lx)), B: [-10, 36].map((lx) => tabanDunya(pz, -10, pz.thighB, pz.kneeB, pz.footB ?? 0, lx)) }));
     return { pz, palet: d.palet, ayak: [x, y], pxm, adimlar: adimTemas.filter((q) => yj && q > yj.bas && q <= yj.bit + 1), ayaklar };
   })() : null;
 
