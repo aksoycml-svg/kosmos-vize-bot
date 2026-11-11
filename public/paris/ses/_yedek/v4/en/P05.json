@@ -1,0 +1,66 @@
+{
+ "id": "P05",
+ "lang": "en",
+ "text": "Pigeons fly home. Balloons carried them far away.",
+ "words": [
+  {
+   "t": "Pigeons",
+   "s": 0.1,
+   "e": 0.4
+  },
+  {
+   "t": "fly",
+   "s": 0.47,
+   "e": 0.71
+  },
+  {
+   "t": "home.",
+   "s": 0.79,
+   "e": 1.26
+  },
+  {
+   "t": "Balloons",
+   "s": 1.76,
+   "e": 2.08
+  },
+  {
+   "t": "carried",
+   "s": 2.11,
+   "e": 2.4
+  },
+  {
+   "t": "them",
+   "s": 2.4,
+   "e": 2.48
+  },
+  {
+   "t": "far",
+   "s": 2.55,
+   "e": 2.8
+  },
+  {
+   "t": "away.",
+   "s": 2.86,
+   "e": 3.28
+  }
+ ],
+ "dur": 3.553,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.5,
+ "hisirti_6k_dbfs": -85.8,
+ "pad_nf_dbfs": -84.1,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

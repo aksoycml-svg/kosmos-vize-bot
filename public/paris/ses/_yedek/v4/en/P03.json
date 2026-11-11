@@ -1,0 +1,66 @@
+{
+ "id": "P03",
+ "lang": "en",
+ "text": "Only the sky was left. Balloons carried mail.",
+ "words": [
+  {
+   "t": "Only",
+   "s": 0.1,
+   "e": 0.33
+  },
+  {
+   "t": "the",
+   "s": 0.34,
+   "e": 0.42
+  },
+  {
+   "t": "sky",
+   "s": 0.5,
+   "e": 0.82
+  },
+  {
+   "t": "was",
+   "s": 0.84,
+   "e": 0.98
+  },
+  {
+   "t": "left.",
+   "s": 1.05,
+   "e": 1.46
+  },
+  {
+   "t": "Balloons",
+   "s": 2.01,
+   "e": 2.42
+  },
+  {
+   "t": "carried",
+   "s": 2.46,
+   "e": 2.82
+  },
+  {
+   "t": "mail.",
+   "s": 2.89,
+   "e": 3.31
+  }
+ ],
+ "dur": 3.553,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -84.1,
+ "hisirti_6k_dbfs": -87.6,
+ "pad_nf_dbfs": -84.8,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

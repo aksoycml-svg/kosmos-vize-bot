@@ -1,0 +1,51 @@
+{
+ "id": "P08",
+ "lang": "tr",
+ "text": "Film, güvercinin kuyruk tüyüne bağlandı.",
+ "words": [
+  {
+   "t": "Film,",
+   "s": 0.11,
+   "e": 0.51
+  },
+  {
+   "t": "güvercinin",
+   "s": 0.52,
+   "e": 1.07
+  },
+  {
+   "t": "kuyruk",
+   "s": 1.1,
+   "e": 1.38
+  },
+  {
+   "t": "tüyüne",
+   "s": 1.42,
+   "e": 1.7
+  },
+  {
+   "t": "bağlandı.",
+   "s": 1.76,
+   "e": 2.35
+  }
+ ],
+ "dur": 2.612,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -85.7,
+ "hisirti_6k_dbfs": -90.0,
+ "pad_nf_dbfs": -89.8,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

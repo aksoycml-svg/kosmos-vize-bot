@@ -1,0 +1,56 @@
+{
+ "id": "P02",
+ "lang": "tr",
+ "text": "Prusya orduları Paris'i çevirdi, telgrafı kesti.",
+ "words": [
+  {
+   "t": "Prusya",
+   "s": 0.1,
+   "e": 0.4
+  },
+  {
+   "t": "orduları",
+   "s": 0.43,
+   "e": 0.88
+  },
+  {
+   "t": "Paris'i",
+   "s": 0.93,
+   "e": 1.36
+  },
+  {
+   "t": "çevirdi,",
+   "s": 1.41,
+   "e": 1.96
+  },
+  {
+   "t": "telgrafı",
+   "s": 2.21,
+   "e": 2.63
+  },
+  {
+   "t": "kesti.",
+   "s": 2.7,
+   "e": 3.24
+  }
+ ],
+ "dur": 3.5,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -77.6,
+ "hisirti_6k_dbfs": -101.4,
+ "pad_nf_dbfs": -90.5,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

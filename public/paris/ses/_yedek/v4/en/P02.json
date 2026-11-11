@@ -1,0 +1,66 @@
+{
+ "id": "P02",
+ "lang": "en",
+ "text": "Prussian armies ringed Paris and cut the telegraph.",
+ "words": [
+  {
+   "t": "Prussian",
+   "s": 0.1,
+   "e": 0.47
+  },
+  {
+   "t": "armies",
+   "s": 0.51,
+   "e": 0.87
+  },
+  {
+   "t": "ringed",
+   "s": 0.92,
+   "e": 1.47
+  },
+  {
+   "t": "Paris",
+   "s": 1.5,
+   "e": 1.75
+  },
+  {
+   "t": "and",
+   "s": 1.8,
+   "e": 1.98
+  },
+  {
+   "t": "cut",
+   "s": 2.04,
+   "e": 2.23
+  },
+  {
+   "t": "the",
+   "s": 2.24,
+   "e": 2.3
+  },
+  {
+   "t": "telegraph.",
+   "s": 2.36,
+   "e": 3.03
+  }
+ ],
+ "dur": 3.291,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -65.4,
+ "hisirti_6k_dbfs": -70.3,
+ "pad_nf_dbfs": -83.9,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

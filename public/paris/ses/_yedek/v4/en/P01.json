@@ -1,0 +1,91 @@
+{
+ "id": "P01",
+ "lang": "en",
+ "text": "Two million people were cut off. The news… came on a bird's tail.",
+ "words": [
+  {
+   "t": "Two",
+   "s": 0.2,
+   "e": 0.25
+  },
+  {
+   "t": "million",
+   "s": 0.28,
+   "e": 0.65
+  },
+  {
+   "t": "people",
+   "s": 0.69,
+   "e": 1.05
+  },
+  {
+   "t": "were",
+   "s": 1.08,
+   "e": 1.29
+  },
+  {
+   "t": "cut",
+   "s": 1.34,
+   "e": 1.53
+  },
+  {
+   "t": "off.",
+   "s": 1.6,
+   "e": 1.92
+  },
+  {
+   "t": "The",
+   "s": 2.41,
+   "e": 2.56
+  },
+  {
+   "t": "news…",
+   "s": 2.51,
+   "e": 3.05
+  },
+  {
+   "t": "came",
+   "s": 3.69,
+   "e": 3.93
+  },
+  {
+   "t": "on",
+   "s": 3.94,
+   "e": 4.01
+  },
+  {
+   "t": "a",
+   "s": 4.08,
+   "e": 4.17
+  },
+  {
+   "t": "bird's",
+   "s": 4.2,
+   "e": 4.49
+  },
+  {
+   "t": "tail.",
+   "s": 4.54,
+   "e": 4.93
+  }
+ ],
+ "dur": 5.172,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.7,
+ "hisirti_6k_dbfs": -87.7,
+ "pad_nf_dbfs": -70.5,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

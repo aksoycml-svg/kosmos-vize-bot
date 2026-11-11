@@ -1,0 +1,71 @@
+{
+ "id": "P12",
+ "lang": "tr",
+ "text": "Balonu rüzgâr yönetti. Haberi, eve dönmeyi bilen güvercin getirdi.",
+ "words": [
+  {
+   "t": "Balonu",
+   "s": 0.19,
+   "e": 0.42
+  },
+  {
+   "t": "rüzgâr",
+   "s": 0.49,
+   "e": 0.9
+  },
+  {
+   "t": "yönetti.",
+   "s": 0.94,
+   "e": 1.5
+  },
+  {
+   "t": "Haberi,",
+   "s": 1.84,
+   "e": 2.31
+  },
+  {
+   "t": "eve",
+   "s": 2.56,
+   "e": 2.66
+  },
+  {
+   "t": "dönmeyi",
+   "s": 2.73,
+   "e": 3.14
+  },
+  {
+   "t": "bilen",
+   "s": 3.17,
+   "e": 3.46
+  },
+  {
+   "t": "güvercin",
+   "s": 3.5,
+   "e": 4.02
+  },
+  {
+   "t": "getirdi.",
+   "s": 4.07,
+   "e": 4.62
+  }
+ ],
+ "dur": 4.702,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -74.7,
+ "hisirti_6k_dbfs": -91.8,
+ "pad_nf_dbfs": -90.8,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

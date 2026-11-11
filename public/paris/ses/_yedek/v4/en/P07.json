@@ -1,0 +1,78 @@
+{
+ "id": "P07",
+ "lang": "en",
+ "text": "The government sat in Tours. Dagron flew there, shrinking letters.",
+ "words": [
+  {
+   "t": "The",
+   "s": 0.1,
+   "e": 0.25
+  },
+  {
+   "t": "government",
+   "s": 0.12,
+   "e": 0.64
+  },
+  {
+   "t": "sat",
+   "s": 0.71,
+   "e": 0.96
+  },
+  {
+   "t": "in",
+   "s": 0.97,
+   "e": 1.04
+  },
+  {
+   "t": "Tours.",
+   "s": 1.11,
+   "e": 1.59
+  },
+  {
+   "t": "Dagron",
+   "s": 2.27,
+   "e": 2.72
+  },
+  {
+   "t": "flew",
+   "s": 2.75,
+   "e": 2.96
+  },
+  {
+   "t": "there,",
+   "s": 2.99,
+   "e": 3.39
+  },
+  {
+   "t": "shrinking",
+   "s": 3.63,
+   "e": 4.0
+  },
+  {
+   "t": "letters.",
+   "s": 4.05,
+   "e": 4.54
+  }
+ ],
+ "dur": 4.754,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.3,
+ "hisirti_6k_dbfs": -83.9,
+ "pad_nf_dbfs": -81.5,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": [
+  31.19
+ ]
+}

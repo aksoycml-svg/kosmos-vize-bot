@@ -1,0 +1,76 @@
+{
+ "id": "P12",
+ "lang": "en",
+ "text": "Wind steered the balloon. Pigeons flew home with the news.",
+ "words": [
+  {
+   "t": "Wind",
+   "s": 0.33,
+   "e": 0.5
+  },
+  {
+   "t": "steered",
+   "s": 0.6,
+   "e": 0.9
+  },
+  {
+   "t": "the",
+   "s": 0.93,
+   "e": 1.06
+  },
+  {
+   "t": "balloon.",
+   "s": 1.12,
+   "e": 1.67
+  },
+  {
+   "t": "Pigeons",
+   "s": 2.28,
+   "e": 2.66
+  },
+  {
+   "t": "flew",
+   "s": 2.7,
+   "e": 2.9
+  },
+  {
+   "t": "home",
+   "s": 2.94,
+   "e": 3.14
+  },
+  {
+   "t": "with",
+   "s": 3.16,
+   "e": 3.3
+  },
+  {
+   "t": "the",
+   "s": 3.31,
+   "e": 3.38
+  },
+  {
+   "t": "news.",
+   "s": 3.46,
+   "e": 3.92
+  }
+ ],
+ "dur": 3.971,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -81.9,
+ "hisirti_6k_dbfs": -83.9,
+ "pad_nf_dbfs": -84.0,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

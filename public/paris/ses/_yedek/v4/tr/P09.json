@@ -1,0 +1,61 @@
+{
+ "id": "P09",
+ "lang": "tr",
+ "text": "Kümese konunca film perdede büyütüldü. Memurlar kopyaladı.",
+ "words": [
+  {
+   "t": "Kümese",
+   "s": 0.1,
+   "e": 0.38
+  },
+  {
+   "t": "konunca",
+   "s": 0.43,
+   "e": 0.94
+  },
+  {
+   "t": "film",
+   "s": 0.99,
+   "e": 1.26
+  },
+  {
+   "t": "perdede",
+   "s": 1.3,
+   "e": 1.74
+  },
+  {
+   "t": "büyütüldü.",
+   "s": 1.77,
+   "e": 2.39
+  },
+  {
+   "t": "Memurlar",
+   "s": 2.75,
+   "e": 3.17
+  },
+  {
+   "t": "kopyaladı.",
+   "s": 3.25,
+   "e": 3.9
+  }
+ ],
+ "dur": 4.153,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -89.1,
+ "hisirti_6k_dbfs": -109.2,
+ "pad_nf_dbfs": -91.7,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

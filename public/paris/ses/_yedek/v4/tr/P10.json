@@ -1,0 +1,71 @@
+{
+ "id": "P10",
+ "lang": "tr",
+ "text": "Çoğu kuş dönmedi. Yine de on binlerce mesaj ulaştı.",
+ "words": [
+  {
+   "t": "Çoğu",
+   "s": 0.14,
+   "e": 0.33
+  },
+  {
+   "t": "kuş",
+   "s": 0.39,
+   "e": 0.58
+  },
+  {
+   "t": "dönmedi.",
+   "s": 0.64,
+   "e": 1.24
+  },
+  {
+   "t": "Yine",
+   "s": 1.61,
+   "e": 1.78
+  },
+  {
+   "t": "de",
+   "s": 1.85,
+   "e": 2.02
+  },
+  {
+   "t": "on",
+   "s": 2.13,
+   "e": 2.18
+  },
+  {
+   "t": "binlerce",
+   "s": 2.23,
+   "e": 2.74
+  },
+  {
+   "t": "mesaj",
+   "s": 2.79,
+   "e": 3.14
+  },
+  {
+   "t": "ulaştı.",
+   "s": 3.25,
+   "e": 3.7
+  }
+ ],
+ "dur": 3.944,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -89.0,
+ "hisirti_6k_dbfs": -108.2,
+ "pad_nf_dbfs": -90.8,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

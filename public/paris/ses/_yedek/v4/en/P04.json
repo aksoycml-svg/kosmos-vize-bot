@@ -1,0 +1,68 @@
+{
+ "id": "P04",
+ "lang": "en",
+ "text": "Balloons can't turn back. How would replies arrive?",
+ "words": [
+  {
+   "t": "Balloons",
+   "s": 0.13,
+   "e": 0.48
+  },
+  {
+   "t": "can't",
+   "s": 0.53,
+   "e": 0.8
+  },
+  {
+   "t": "turn",
+   "s": 0.85,
+   "e": 1.12
+  },
+  {
+   "t": "back.",
+   "s": 1.19,
+   "e": 1.54
+  },
+  {
+   "t": "How",
+   "s": 2.13,
+   "e": 2.24
+  },
+  {
+   "t": "would",
+   "s": 2.27,
+   "e": 2.48
+  },
+  {
+   "t": "replies",
+   "s": 2.54,
+   "e": 3.04
+  },
+  {
+   "t": "arrive?",
+   "s": 3.1,
+   "e": 3.68
+  }
+ ],
+ "dur": 3.918,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -85.0,
+ "hisirti_6k_dbfs": -88.0,
+ "pad_nf_dbfs": -83.2,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": [
+  14.69
+ ]
+}

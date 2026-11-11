@@ -1,0 +1,76 @@
+{
+ "id": "P09",
+ "lang": "en",
+ "text": "In Paris, a screen enlarged the film. Clerks copied it.",
+ "words": [
+  {
+   "t": "In",
+   "s": 0.11,
+   "e": 0.16
+  },
+  {
+   "t": "Paris,",
+   "s": 0.24,
+   "e": 0.65
+  },
+  {
+   "t": "a",
+   "s": 0.72,
+   "e": 0.8
+  },
+  {
+   "t": "screen",
+   "s": 0.84,
+   "e": 1.12
+  },
+  {
+   "t": "enlarged",
+   "s": 1.16,
+   "e": 1.53
+  },
+  {
+   "t": "the",
+   "s": 1.54,
+   "e": 1.61
+  },
+  {
+   "t": "film.",
+   "s": 1.68,
+   "e": 2.16
+  },
+  {
+   "t": "Clerks",
+   "s": 2.68,
+   "e": 2.97
+  },
+  {
+   "t": "copied",
+   "s": 3.02,
+   "e": 3.44
+  },
+  {
+   "t": "it.",
+   "s": 3.49,
+   "e": 3.66
+  }
+ ],
+ "dur": 3.892,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.8,
+ "hisirti_6k_dbfs": -85.8,
+ "pad_nf_dbfs": -80.4,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

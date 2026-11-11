@@ -1,0 +1,61 @@
+{
+ "id": "P07",
+ "lang": "tr",
+ "text": "Hükümet Tours'taydı. Dagron balonla gitti, mektupları küçülttü.",
+ "words": [
+  {
+   "t": "Hükümet",
+   "s": 0.11,
+   "e": 0.6
+  },
+  {
+   "t": "Tours'taydı.",
+   "s": 0.82,
+   "e": 1.55
+  },
+  {
+   "t": "Dagron",
+   "s": 2.17,
+   "e": 2.53
+  },
+  {
+   "t": "balonla",
+   "s": 2.58,
+   "e": 3.01
+  },
+  {
+   "t": "gitti,",
+   "s": 3.1,
+   "e": 3.81
+  },
+  {
+   "t": "mektupları",
+   "s": 3.83,
+   "e": 4.29
+  },
+  {
+   "t": "küçülttü.",
+   "s": 4.33,
+   "e": 4.96
+  }
+ ],
+ "dur": 5.198,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -88.8,
+ "hisirti_6k_dbfs": -104.5,
+ "pad_nf_dbfs": -89.6,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

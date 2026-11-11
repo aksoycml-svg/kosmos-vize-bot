@@ -1,0 +1,81 @@
+{
+ "id": "P01",
+ "lang": "tr",
+ "text": "İki milyon insan dünyadan koptu. Onlara haberi… bir kuşun kuyruğu getirdi.",
+ "words": [
+  {
+   "t": "İki",
+   "s": 0.16,
+   "e": 0.23
+  },
+  {
+   "t": "milyon",
+   "s": 0.27,
+   "e": 0.63
+  },
+  {
+   "t": "insan",
+   "s": 0.68,
+   "e": 1.03
+  },
+  {
+   "t": "dünyadan",
+   "s": 1.08,
+   "e": 1.67
+  },
+  {
+   "t": "koptu.",
+   "s": 1.74,
+   "e": 2.28
+  },
+  {
+   "t": "Onlara",
+   "s": 2.85,
+   "e": 3.11
+  },
+  {
+   "t": "haberi…",
+   "s": 3.16,
+   "e": 3.69
+  },
+  {
+   "t": "bir",
+   "s": 4.21,
+   "e": 4.31
+  },
+  {
+   "t": "kuşun",
+   "s": 4.38,
+   "e": 4.79
+  },
+  {
+   "t": "kuyruğu",
+   "s": 4.82,
+   "e": 5.19
+  },
+  {
+   "t": "getirdi.",
+   "s": 5.24,
+   "e": 5.81
+  }
+ ],
+ "dur": 6.06,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -88.4,
+ "hisirti_6k_dbfs": -104.2,
+ "pad_nf_dbfs": -90.6,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

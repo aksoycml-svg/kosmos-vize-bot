@@ -1,0 +1,78 @@
+{
+ "id": "P06",
+ "lang": "en",
+ "text": "Birds can't carry letters. Dagron shrank pages onto tiny film.",
+ "words": [
+  {
+   "t": "Birds",
+   "s": 0.1,
+   "e": 0.28
+  },
+  {
+   "t": "can't",
+   "s": 0.33,
+   "e": 0.72
+  },
+  {
+   "t": "carry",
+   "s": 0.74,
+   "e": 0.92
+  },
+  {
+   "t": "letters.",
+   "s": 0.97,
+   "e": 1.48
+  },
+  {
+   "t": "Dagron",
+   "s": 2.13,
+   "e": 2.6
+  },
+  {
+   "t": "shrank",
+   "s": 2.64,
+   "e": 3.0
+  },
+  {
+   "t": "pages",
+   "s": 3.11,
+   "e": 3.48
+  },
+  {
+   "t": "onto",
+   "s": 3.51,
+   "e": 3.72
+  },
+  {
+   "t": "tiny",
+   "s": 3.79,
+   "e": 4.12
+  },
+  {
+   "t": "film.",
+   "s": 4.2,
+   "e": 4.68
+  }
+ ],
+ "dur": 4.937,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -80.7,
+ "hisirti_6k_dbfs": -82.1,
+ "pad_nf_dbfs": -80.3,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": [
+  26.2
+ ]
+}

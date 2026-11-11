@@ -1,0 +1,83 @@
+{
+ "id": "P10",
+ "lang": "en",
+ "text": "Most birds never returned. Still, tens of thousands of messages arrived.",
+ "words": [
+  {
+   "t": "Most",
+   "s": 0.25,
+   "e": 0.31
+  },
+  {
+   "t": "birds",
+   "s": 0.38,
+   "e": 0.79
+  },
+  {
+   "t": "never",
+   "s": 0.84,
+   "e": 1.18
+  },
+  {
+   "t": "returned.",
+   "s": 1.25,
+   "e": 1.9
+  },
+  {
+   "t": "Still,",
+   "s": 2.55,
+   "e": 3.07
+  },
+  {
+   "t": "tens",
+   "s": 3.1,
+   "e": 3.27
+  },
+  {
+   "t": "of",
+   "s": 3.31,
+   "e": 3.43
+  },
+  {
+   "t": "thousands",
+   "s": 3.46,
+   "e": 3.91
+  },
+  {
+   "t": "of",
+   "s": 3.92,
+   "e": 3.99
+  },
+  {
+   "t": "messages",
+   "s": 4.04,
+   "e": 4.55
+  },
+  {
+   "t": "arrived.",
+   "s": 4.6,
+   "e": 5.14
+  }
+ ],
+ "dur": 5.381,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 23,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -85.6,
+ "hisirti_6k_dbfs": -88.0,
+ "pad_nf_dbfs": -82.2,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": [
+  40.49
+ ]
+}

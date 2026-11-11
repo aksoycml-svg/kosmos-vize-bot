@@ -1,0 +1,71 @@
+{
+ "id": "P06",
+ "lang": "tr",
+ "text": "Ama kuş mektup taşıyamaz. Dagron sayfaları küçücük filme sığdırdı.",
+ "words": [
+  {
+   "t": "Ama",
+   "s": 0.1,
+   "e": 0.27
+  },
+  {
+   "t": "kuş",
+   "s": 0.34,
+   "e": 0.59
+  },
+  {
+   "t": "mektup",
+   "s": 0.62,
+   "e": 0.91
+  },
+  {
+   "t": "taşıyamaz.",
+   "s": 0.98,
+   "e": 1.7
+  },
+  {
+   "t": "Dagron",
+   "s": 2.32,
+   "e": 2.75
+  },
+  {
+   "t": "sayfaları",
+   "s": 2.8,
+   "e": 3.31
+  },
+  {
+   "t": "küçücük",
+   "s": 3.35,
+   "e": 3.79
+  },
+  {
+   "t": "filme",
+   "s": 3.83,
+   "e": 4.11
+  },
+  {
+   "t": "sığdırdı.",
+   "s": 4.14,
+   "e": 4.75
+  }
+ ],
+ "dur": 4.989,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 20251101,
+ "tek_cekim": true,
+ "v4": true,
+ "kenar": "temiz",
+ "nf_dbfs": -88.9,
+ "hisirti_6k_dbfs": -103.5,
+ "pad_nf_dbfs": -89.6,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}
