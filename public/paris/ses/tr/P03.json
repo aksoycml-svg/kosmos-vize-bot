@@ -1,51 +1,72 @@
 {
  "id": "P03",
  "lang": "tr",
- "text": "Çare gökyüzüydü: balonlar mektup taşıdı.",
+ "text": "Mektuplar balonla çıkıyordu, ama balon DÖNMEZDİ. CEVAP nasıl gelecek?",
+ "text_etiketli": "[worried] Mektuplar balonla çıkıyordu, ama balon DÖNMEZDİ. [anxious] CEVAP nasıl gelecek?",
  "words": [
   {
-   "t": "Çare",
-   "s": 0.1,
-   "e": 0.42
+   "t": "Mektuplar",
+   "s": 0.11,
+   "e": 0.57
   },
   {
-   "t": "gökyüzüydü:",
-   "s": 0.49,
-   "e": 1.27
+   "t": "balonla",
+   "s": 0.62,
+   "e": 1.05
   },
   {
-   "t": "balonlar",
-   "s": 1.63,
-   "e": 2.1
+   "t": "çıkıyordu,",
+   "s": 1.1,
+   "e": 1.81
   },
   {
-   "t": "mektup",
-   "s": 2.13,
-   "e": 2.5
+   "t": "ama",
+   "s": 1.96,
+   "e": 2.16
   },
   {
-   "t": "taşıdı.",
-   "s": 2.59,
-   "e": 3.01
+   "t": "balon",
+   "s": 2.24,
+   "e": 2.65
+  },
+  {
+   "t": "DÖNMEZDİ.",
+   "s": 2.72,
+   "e": 3.45
+  },
+  {
+   "t": "CEVAP",
+   "s": 4.3,
+   "e": 4.49
+  },
+  {
+   "t": "nasıl",
+   "s": 4.53,
+   "e": 4.81
+  },
+  {
+   "t": "gelecek?",
+   "s": 4.87,
+   "e": 5.37
   }
  ],
- "dur": 3.265,
+ "dur": 5.695,
  "voice": "KediIz7pebzt5TaDHiiZ",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.75,
+  "stability": 0.5,
   "similarity_boost": 0.85,
-  "style": 0.4,
+  "style": 0.5,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "seed": 20251101,
+ "aday": "s7",
  "tek_cekim": true,
- "v4": true,
+ "v5": true,
  "kenar": "temiz",
- "nf_dbfs": -89.0,
- "hisirti_6k_dbfs": -105.1,
- "pad_nf_dbfs": -69.4,
+ "nf_dbfs": -89.4,
+ "hisirti_6k_dbfs": -106.4,
+ "pad_nf_dbfs": -90.7,
  "kelime_zamani": "sinyale yapisik",
  "nefes_temizlendi": []
 }

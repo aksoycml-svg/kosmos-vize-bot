@@ -1,0 +1,82 @@
+{
+ "id": "P01",
+ "lang": "tr",
+ "text": "Bir fotoğrafçı, Paris'e yazılan mektupları kuşun KUYRUĞUNA sığdırdı. Önce şehirden ÇIKMALIYDI.",
+ "text_etiketli": "[curious] Bir fotoğrafçı, Paris'e yazılan mektupları kuşun KUYRUĞUNA sığdırdı. [tense] Önce şehirden ÇIKMALIYDI.",
+ "words": [
+  {
+   "t": "Bir",
+   "s": 0.07,
+   "e": 0.09
+  },
+  {
+   "t": "fotoğrafçı,",
+   "s": 0.14,
+   "e": 0.89
+  },
+  {
+   "t": "Paris'e",
+   "s": 0.94,
+   "e": 1.37
+  },
+  {
+   "t": "yazılan",
+   "s": 1.4,
+   "e": 1.77
+  },
+  {
+   "t": "mektupları",
+   "s": 1.8,
+   "e": 2.32
+  },
+  {
+   "t": "kuşun",
+   "s": 2.37,
+   "e": 2.73
+  },
+  {
+   "t": "KUYRUĞUNA",
+   "s": 2.84,
+   "e": 3.37
+  },
+  {
+   "t": "sığdırdı.",
+   "s": 3.44,
+   "e": 4.09
+  },
+  {
+   "t": "Önce",
+   "s": 4.64,
+   "e": 4.81
+  },
+  {
+   "t": "şehirden",
+   "s": 4.86,
+   "e": 5.37
+  },
+  {
+   "t": "ÇIKMALIYDI.",
+   "s": 5.44,
+   "e": 6.23
+  }
+ ],
+ "dur": 6.478,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7_st75",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -87.2,
+ "hisirti_6k_dbfs": -109.9,
+ "pad_nf_dbfs": -44.6,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

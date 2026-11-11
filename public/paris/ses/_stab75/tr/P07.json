@@ -1,0 +1,87 @@
+{
+ "id": "P07",
+ "lang": "tr",
+ "text": "O sabah kalkan başka bir balon VURULDU. Dagron'unki kum torbalarını atıp YÜKSELDİ.",
+ "text_etiketli": "[shocked] O sabah kalkan başka bir balon VURULDU. [relieved] Dagron'unki kum torbalarını atıp YÜKSELDİ.",
+ "words": [
+  {
+   "t": "O",
+   "s": 0.65,
+   "e": 0.73
+  },
+  {
+   "t": "sabah",
+   "s": 0.8,
+   "e": 1.16
+  },
+  {
+   "t": "kalkan",
+   "s": 1.21,
+   "e": 1.51
+  },
+  {
+   "t": "başka",
+   "s": 1.56,
+   "e": 2.04
+  },
+  {
+   "t": "bir",
+   "s": 2.24,
+   "e": 2.41
+  },
+  {
+   "t": "balon",
+   "s": 2.48,
+   "e": 2.75
+  },
+  {
+   "t": "VURULDU.",
+   "s": 3.49,
+   "e": 3.57
+  },
+  {
+   "t": "Dagron'unki",
+   "s": 4.16,
+   "e": 4.82
+  },
+  {
+   "t": "kum",
+   "s": 4.86,
+   "e": 5.0
+  },
+  {
+   "t": "torbalarını",
+   "s": 5.04,
+   "e": 5.77
+  },
+  {
+   "t": "atıp",
+   "s": 5.8,
+   "e": 6.08
+  },
+  {
+   "t": "YÜKSELDİ.",
+   "s": 6.77,
+   "e": 6.81
+  }
+ ],
+ "dur": 6.322,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7_st75",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -88.7,
+ "hisirti_6k_dbfs": -109.8,
+ "pad_nf_dbfs": -91.7,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

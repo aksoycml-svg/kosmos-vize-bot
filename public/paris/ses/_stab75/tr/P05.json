@@ -1,0 +1,89 @@
+{
+ "id": "P05",
+ "lang": "tr",
+ "text": "Ama kuş YÜK taşıyamaz. René Dagron'un fikri vardı: sayfayı PARMAK BOYUNA küçültmek.",
+ "text_etiketli": "[disappointed] Ama kuş YÜK taşıyamaz. [excited] René Dagron'un fikri vardı: sayfayı PARMAK BOYUNA küçültmek.",
+ "words": [
+  {
+   "t": "Ama",
+   "s": 1.0,
+   "e": 1.17
+  },
+  {
+   "t": "kuş",
+   "s": 1.24,
+   "e": 1.49
+  },
+  {
+   "t": "YÜK",
+   "s": 1.56,
+   "e": 1.81
+  },
+  {
+   "t": "taşıyamaz.",
+   "s": 2.44,
+   "e": 2.58
+  },
+  {
+   "t": "René",
+   "s": 3.16,
+   "e": 3.39
+  },
+  {
+   "t": "Dagron'un",
+   "s": 3.44,
+   "e": 3.98
+  },
+  {
+   "t": "fikri",
+   "s": 4.04,
+   "e": 4.55
+  },
+  {
+   "t": "vardı:",
+   "s": 4.6,
+   "e": 5.01
+  },
+  {
+   "t": "sayfayı",
+   "s": 5.08,
+   "e": 5.49
+  },
+  {
+   "t": "PARMAK",
+   "s": 5.52,
+   "e": 5.89
+  },
+  {
+   "t": "BOYUNA",
+   "s": 5.93,
+   "e": 6.33
+  },
+  {
+   "t": "küçültmek.",
+   "s": 6.91,
+   "e": 7.06
+  }
+ ],
+ "dur": 6.583,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7_st75",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -88.4,
+ "hisirti_6k_dbfs": -108.8,
+ "pad_nf_dbfs": -92.2,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": [
+  28.46
+ ]
+}

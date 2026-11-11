@@ -1,0 +1,77 @@
+{
+ "id": "P02",
+ "lang": "tr",
+ "text": "Prusya Paris'i çevirdi, telgrafı KESTİ. İKİ MİLYON… insan dünyadan koptu.",
+ "text_etiketli": "[cold] Prusya Paris'i çevirdi, telgrafı KESTİ. [somber] İKİ MİLYON… insan dünyadan koptu.",
+ "words": [
+  {
+   "t": "Prusya",
+   "s": 0.1,
+   "e": 0.51
+  },
+  {
+   "t": "Paris'i",
+   "s": 0.56,
+   "e": 0.99
+  },
+  {
+   "t": "çevirdi,",
+   "s": 1.04,
+   "e": 1.63
+  },
+  {
+   "t": "telgrafı",
+   "s": 1.99,
+   "e": 2.42
+  },
+  {
+   "t": "KESTİ.",
+   "s": 2.46,
+   "e": 2.99
+  },
+  {
+   "t": "İKİ",
+   "s": 4.05,
+   "e": 4.12
+  },
+  {
+   "t": "MİLYON…",
+   "s": 4.13,
+   "e": 4.59
+  },
+  {
+   "t": "insan",
+   "s": 4.66,
+   "e": 5.07
+  },
+  {
+   "t": "dünyadan",
+   "s": 5.14,
+   "e": 5.51
+  },
+  {
+   "t": "koptu.",
+   "s": 6.48,
+   "e": 6.54
+  }
+ ],
+ "dur": 5.747,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7_st75",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -87.3,
+ "hisirti_6k_dbfs": -106.7,
+ "pad_nf_dbfs": -89.3,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

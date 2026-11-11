@@ -1,56 +1,77 @@
 {
  "id": "P02",
  "lang": "tr",
- "text": "Prusya orduları Paris'i çevirdi, telgrafı kesti.",
+ "text": "Prusya Paris'i çevirdi, telgrafı KESTİ. İKİ MİLYON… insan dünyadan koptu.",
+ "text_etiketli": "[cold] Prusya Paris'i çevirdi, telgrafı KESTİ. [somber] İKİ MİLYON… insan dünyadan koptu.",
  "words": [
   {
    "t": "Prusya",
-   "s": 0.1,
-   "e": 0.4
-  },
-  {
-   "t": "orduları",
-   "s": 0.43,
-   "e": 0.88
+   "s": 0.11,
+   "e": 0.48
   },
   {
    "t": "Paris'i",
-   "s": 0.93,
-   "e": 1.36
+   "s": 0.53,
+   "e": 0.96
   },
   {
    "t": "çevirdi,",
-   "s": 1.41,
-   "e": 1.96
+   "s": 1.01,
+   "e": 1.72
   },
   {
    "t": "telgrafı",
-   "s": 2.21,
-   "e": 2.63
+   "s": 1.97,
+   "e": 2.48
   },
   {
-   "t": "kesti.",
-   "s": 2.7,
-   "e": 3.24
+   "t": "KESTİ.",
+   "s": 2.55,
+   "e": 3.1
+  },
+  {
+   "t": "İKİ",
+   "s": 3.82,
+   "e": 4.0
+  },
+  {
+   "t": "MİLYON…",
+   "s": 4.03,
+   "e": 4.69
+  },
+  {
+   "t": "insan",
+   "s": 5.06,
+   "e": 5.44
+  },
+  {
+   "t": "dünyadan",
+   "s": 5.52,
+   "e": 6.24
+  },
+  {
+   "t": "koptu.",
+   "s": 6.31,
+   "e": 6.8
   }
  ],
- "dur": 3.5,
+ "dur": 7.079,
  "voice": "KediIz7pebzt5TaDHiiZ",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.75,
+  "stability": 0.5,
   "similarity_boost": 0.85,
-  "style": 0.4,
+  "style": 0.5,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "seed": 20251101,
+ "aday": "s7",
  "tek_cekim": true,
- "v4": true,
+ "v5": true,
  "kenar": "temiz",
- "nf_dbfs": -77.6,
- "hisirti_6k_dbfs": -101.4,
- "pad_nf_dbfs": -90.5,
+ "nf_dbfs": -87.7,
+ "hisirti_6k_dbfs": -105.3,
+ "pad_nf_dbfs": -89.5,
  "kelime_zamani": "sinyale yapisik",
  "nefes_temizlendi": []
 }

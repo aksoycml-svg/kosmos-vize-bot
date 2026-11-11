@@ -1,0 +1,57 @@
+{
+ "id": "P08",
+ "lang": "tr",
+ "text": "Prusya bölgesine indi, kaçıp TOURS'A vardı.",
+ "text_etiketli": "[tired] Prusya bölgesine indi, kaçıp TOURS'A vardı.",
+ "words": [
+  {
+   "t": "Prusya",
+   "s": 0.69,
+   "e": 1.08
+  },
+  {
+   "t": "bölgesine",
+   "s": 1.13,
+   "e": 1.98
+  },
+  {
+   "t": "indi,",
+   "s": 2.05,
+   "e": 2.54
+  },
+  {
+   "t": "kaçıp",
+   "s": 2.57,
+   "e": 2.86
+  },
+  {
+   "t": "TOURS'A",
+   "s": 2.93,
+   "e": 3.16
+  },
+  {
+   "t": "vardı.",
+   "s": 3.81,
+   "e": 3.93
+  }
+ ],
+ "dur": 3.396,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7_st75",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.8,
+ "hisirti_6k_dbfs": -98.6,
+ "pad_nf_dbfs": -89.6,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

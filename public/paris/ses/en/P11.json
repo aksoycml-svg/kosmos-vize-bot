@@ -1,123 +1,82 @@
 {
  "id": "P11",
  "lang": "en",
- "text": "A secret message bound for Tours landed in Norway. The men lived, but it was out of Paris's hands.",
+ "text": "MOST birds never returned. Those that did carried a city's LETTERS.",
+ "text_etiketli": "[sad] MOST birds never returned. [warm] Those that did carried a city's LETTERS.",
  "words": [
   {
-   "t": "A",
-   "s": 0.1,
-   "e": 0.19
+   "t": "MOST",
+   "s": 0.29,
+   "e": 0.4
   },
   {
-   "t": "secret",
-   "s": 0.23,
-   "e": 0.59
+   "t": "birds",
+   "s": 0.51,
+   "e": 0.96
   },
   {
-   "t": "message",
-   "s": 0.64,
-   "e": 1.07
+   "t": "never",
+   "s": 1.02,
+   "e": 1.36
   },
   {
-   "t": "bound",
-   "s": 1.11,
-   "e": 1.39
+   "t": "returned.",
+   "s": 1.41,
+   "e": 2.0
   },
   {
-   "t": "for",
-   "s": 1.42,
-   "e": 1.55
+   "t": "Those",
+   "s": 2.88,
+   "e": 2.96
   },
   {
-   "t": "Tours",
-   "s": 1.62,
-   "e": 2.03
+   "t": "that",
+   "s": 3.0,
+   "e": 3.2
   },
   {
-   "t": "landed",
-   "s": 2.08,
-   "e": 2.51
+   "t": "did",
+   "s": 3.29,
+   "e": 3.6
   },
   {
-   "t": "in",
-   "s": 2.55,
-   "e": 2.67
+   "t": "carried",
+   "s": 3.64,
+   "e": 4.0
   },
   {
-   "t": "Norway.",
-   "s": 2.72,
-   "e": 3.23
+   "t": "a",
+   "s": 4.03,
+   "e": 4.08
   },
   {
-   "t": "The",
-   "s": 3.94,
-   "e": 3.95
+   "t": "city's",
+   "s": 4.13,
+   "e": 4.48
   },
   {
-   "t": "men",
-   "s": 4.02,
-   "e": 4.27
-  },
-  {
-   "t": "lived,",
-   "s": 4.32,
-   "e": 4.75
-  },
-  {
-   "t": "but",
-   "s": 4.88,
-   "e": 4.99
-  },
-  {
-   "t": "it",
-   "s": 5.0,
-   "e": 5.07
-  },
-  {
-   "t": "was",
-   "s": 5.1,
-   "e": 5.23
-  },
-  {
-   "t": "out",
-   "s": 5.26,
-   "e": 5.39
-  },
-  {
-   "t": "of",
-   "s": 5.43,
-   "e": 5.55
-  },
-  {
-   "t": "Paris's",
-   "s": 5.59,
-   "e": 6.03
-  },
-  {
-   "t": "hands.",
-   "s": 6.1,
-   "e": 6.57
+   "t": "LETTERS.",
+   "s": 4.51,
+   "e": 5.05
   }
  ],
- "dur": 6.818,
+ "dur": 5.12,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.75,
+  "stability": 0.5,
   "similarity_boost": 0.85,
-  "style": 0.4,
+  "style": 0.5,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "seed": 23,
+ "aday": "s7",
  "tek_cekim": true,
- "v4": true,
+ "v5": true,
  "kenar": "temiz",
- "nf_dbfs": -86.0,
- "hisirti_6k_dbfs": -88.8,
- "pad_nf_dbfs": -64.2,
+ "nf_dbfs": -83.0,
+ "hisirti_6k_dbfs": -86.5,
+ "pad_nf_dbfs": -82.1,
  "kelime_zamani": "sinyale yapisik",
- "nefes_temizlendi": [
-  47.44
- ]
+ "nefes_temizlendi": []
 }

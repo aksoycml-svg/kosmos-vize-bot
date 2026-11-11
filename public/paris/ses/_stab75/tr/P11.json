@@ -1,0 +1,77 @@
+{
+ "id": "P11",
+ "lang": "tr",
+ "text": "ÇOĞU kuş dönemedi. Ama dönenlerin KUYRUĞUNDA, bir şehrin mektupları vardı.",
+ "text_etiketli": "[sad] ÇOĞU kuş dönemedi. [warm] Ama dönenlerin KUYRUĞUNDA, bir şehrin mektupları vardı.",
+ "words": [
+  {
+   "t": "ÇOĞU",
+   "s": 0.8,
+   "e": 1.11
+  },
+  {
+   "t": "kuş",
+   "s": 1.18,
+   "e": 1.33
+  },
+  {
+   "t": "dönemedi.",
+   "s": 1.97,
+   "e": 2.07
+  },
+  {
+   "t": "Ama",
+   "s": 2.63,
+   "e": 2.79
+  },
+  {
+   "t": "dönenlerin",
+   "s": 2.82,
+   "e": 3.51
+  },
+  {
+   "t": "KUYRUĞUNDA,",
+   "s": 3.83,
+   "e": 4.31
+  },
+  {
+   "t": "bir",
+   "s": 4.36,
+   "e": 4.56
+  },
+  {
+   "t": "şehrin",
+   "s": 4.66,
+   "e": 4.95
+  },
+  {
+   "t": "mektupları",
+   "s": 5.02,
+   "e": 5.43
+  },
+  {
+   "t": "vardı.",
+   "s": 5.662,
+   "e": 5.662
+  }
+ ],
+ "dur": 5.669,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7_st75",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -88.2,
+ "hisirti_6k_dbfs": -108.1,
+ "pad_nf_dbfs": -91.3,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

@@ -1,0 +1,82 @@
+{
+ "id": "P10",
+ "lang": "tr",
+ "text": "Film duvara YANSIDI. Parmak boyundaki sayfa yeniden BÜYÜDÜ. Paris mektuplarını… OKUDU.",
+ "text_etiketli": "[whispering] Film duvara YANSIDI. [amazed] Parmak boyundaki sayfa yeniden BÜYÜDÜ. [warm] Paris mektuplarını… OKUDU.",
+ "words": [
+  {
+   "t": "Film",
+   "s": 0.87,
+   "e": 1.2
+  },
+  {
+   "t": "duvara",
+   "s": 1.27,
+   "e": 1.6
+  },
+  {
+   "t": "YANSIDI.",
+   "s": 2.34,
+   "e": 2.45
+  },
+  {
+   "t": "Parmak",
+   "s": 2.84,
+   "e": 3.2
+  },
+  {
+   "t": "boyundaki",
+   "s": 3.27,
+   "e": 3.95
+  },
+  {
+   "t": "sayfa",
+   "s": 4.01,
+   "e": 4.4
+  },
+  {
+   "t": "yeniden",
+   "s": 4.43,
+   "e": 4.77
+  },
+  {
+   "t": "BÜYÜDÜ.",
+   "s": 5.27,
+   "e": 5.62
+  },
+  {
+   "t": "Paris",
+   "s": 6.15,
+   "e": 6.5
+  },
+  {
+   "t": "mektuplarını…",
+   "s": 6.56,
+   "e": 7.55
+  },
+  {
+   "t": "OKUDU.",
+   "s": 8.43,
+   "e": 8.64
+  }
+ ],
+ "dur": 7.811,
+ "voice": "KediIz7pebzt5TaDHiiZ",
+ "model": "eleven_v3",
+ "ayar": {
+  "stability": 0.75,
+  "similarity_boost": 0.85,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "aday": "s7_st75",
+ "tek_cekim": true,
+ "v5": true,
+ "kenar": "temiz",
+ "nf_dbfs": -88.8,
+ "hisirti_6k_dbfs": -103.4,
+ "pad_nf_dbfs": -89.2,
+ "kelime_zamani": "sinyale yapisik",
+ "nefes_temizlendi": []
+}

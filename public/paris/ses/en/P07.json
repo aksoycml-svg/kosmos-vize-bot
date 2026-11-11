@@ -1,78 +1,87 @@
 {
  "id": "P07",
  "lang": "en",
- "text": "The government sat in Tours. Dagron flew there, shrinking letters.",
+ "text": "That morning another balloon was SHOT down. Dagron's dumped sand and CLIMBED.",
+ "text_etiketli": "[shocked] That morning another balloon was SHOT down. [relieved] Dagron's dumped sand and CLIMBED.",
  "words": [
   {
-   "t": "The",
-   "s": 0.1,
+   "t": "That",
+   "s": 0.21,
    "e": 0.25
   },
   {
-   "t": "government",
-   "s": 0.12,
-   "e": 0.64
+   "t": "morning",
+   "s": 0.28,
+   "e": 0.57
   },
   {
-   "t": "sat",
-   "s": 0.71,
-   "e": 0.96
+   "t": "another",
+   "s": 0.61,
+   "e": 0.97
   },
   {
-   "t": "in",
-   "s": 0.97,
-   "e": 1.04
+   "t": "balloon",
+   "s": 1.01,
+   "e": 1.37
   },
   {
-   "t": "Tours.",
-   "s": 1.11,
-   "e": 1.59
+   "t": "was",
+   "s": 1.44,
+   "e": 1.69
   },
   {
-   "t": "Dagron",
-   "s": 2.27,
+   "t": "SHOT",
+   "s": 1.84,
+   "e": 2.17
+  },
+  {
+   "t": "down.",
+   "s": 2.26,
    "e": 2.72
   },
   {
-   "t": "flew",
-   "s": 2.75,
-   "e": 2.96
+   "t": "Dagron's",
+   "s": 3.65,
+   "e": 4.1
   },
   {
-   "t": "there,",
-   "s": 2.99,
-   "e": 3.39
+   "t": "dumped",
+   "s": 4.14,
+   "e": 4.5
   },
   {
-   "t": "shrinking",
-   "s": 3.63,
-   "e": 4.0
+   "t": "sand",
+   "s": 4.58,
+   "e": 4.98
   },
   {
-   "t": "letters.",
-   "s": 4.05,
-   "e": 4.54
+   "t": "and",
+   "s": 5.01,
+   "e": 5.14
+  },
+  {
+   "t": "CLIMBED.",
+   "s": 5.26,
+   "e": 5.78
   }
  ],
- "dur": 4.754,
+ "dur": 6.087,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.75,
+  "stability": 0.5,
   "similarity_boost": 0.85,
-  "style": 0.4,
+  "style": 0.5,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "seed": 23,
+ "aday": "s7",
  "tek_cekim": true,
- "v4": true,
+ "v5": true,
  "kenar": "temiz",
- "nf_dbfs": -82.3,
- "hisirti_6k_dbfs": -83.9,
- "pad_nf_dbfs": -81.5,
+ "nf_dbfs": -82.9,
+ "hisirti_6k_dbfs": -85.4,
+ "pad_nf_dbfs": -83.9,
  "kelime_zamani": "sinyale yapisik",
- "nefes_temizlendi": [
-  31.19
- ]
+ "nefes_temizlendi": []
 }

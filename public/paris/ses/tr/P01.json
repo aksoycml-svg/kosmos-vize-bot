@@ -1,81 +1,82 @@
 {
  "id": "P01",
  "lang": "tr",
- "text": "İki milyon insan dünyadan koptu. Onlara haberi… bir kuşun kuyruğu getirdi.",
+ "text": "Bir fotoğrafçı, Paris'e yazılan mektupları kuşun KUYRUĞUNA sığdırdı. Önce şehirden ÇIKMALIYDI.",
+ "text_etiketli": "[curious] Bir fotoğrafçı, Paris'e yazılan mektupları kuşun KUYRUĞUNA sığdırdı. [tense] Önce şehirden ÇIKMALIYDI.",
  "words": [
   {
-   "t": "İki",
-   "s": 0.16,
-   "e": 0.23
+   "t": "Bir",
+   "s": 0.07,
+   "e": 0.09
   },
   {
-   "t": "milyon",
-   "s": 0.27,
-   "e": 0.63
-  },
-  {
-   "t": "insan",
-   "s": 0.68,
+   "t": "fotoğrafçı,",
+   "s": 0.14,
    "e": 1.03
   },
   {
-   "t": "dünyadan",
-   "s": 1.08,
-   "e": 1.67
+   "t": "Paris'e",
+   "s": 1.31,
+   "e": 1.69
   },
   {
-   "t": "koptu.",
-   "s": 1.74,
-   "e": 2.28
+   "t": "yazılan",
+   "s": 1.72,
+   "e": 2.09
   },
   {
-   "t": "Onlara",
-   "s": 2.85,
-   "e": 3.11
-  },
-  {
-   "t": "haberi…",
-   "s": 3.16,
-   "e": 3.69
-  },
-  {
-   "t": "bir",
-   "s": 4.21,
-   "e": 4.31
+   "t": "mektupları",
+   "s": 2.12,
+   "e": 2.73
   },
   {
    "t": "kuşun",
-   "s": 4.38,
-   "e": 4.79
+   "s": 2.86,
+   "e": 3.53
   },
   {
-   "t": "kuyruğu",
-   "s": 4.82,
-   "e": 5.19
+   "t": "KUYRUĞUNA",
+   "s": 3.6,
+   "e": 4.09
   },
   {
-   "t": "getirdi.",
-   "s": 5.24,
-   "e": 5.81
+   "t": "sığdırdı.",
+   "s": 4.12,
+   "e": 4.72
+  },
+  {
+   "t": "Önce",
+   "s": 5.43,
+   "e": 5.61
+  },
+  {
+   "t": "şehirden",
+   "s": 5.66,
+   "e": 6.17
+  },
+  {
+   "t": "ÇIKMALIYDI.",
+   "s": 6.2,
+   "e": 6.97
   }
  ],
- "dur": 6.06,
+ "dur": 7.288,
  "voice": "KediIz7pebzt5TaDHiiZ",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.75,
+  "stability": 0.5,
   "similarity_boost": 0.85,
-  "style": 0.4,
+  "style": 0.5,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "seed": 20251101,
+ "aday": "s7",
  "tek_cekim": true,
- "v4": true,
+ "v5": true,
  "kenar": "temiz",
- "nf_dbfs": -88.4,
- "hisirti_6k_dbfs": -104.2,
- "pad_nf_dbfs": -90.6,
+ "nf_dbfs": -87.7,
+ "hisirti_6k_dbfs": -108.3,
+ "pad_nf_dbfs": -38.1,
  "kelime_zamani": "sinyale yapisik",
  "nefes_temizlendi": []
 }

@@ -1,83 +1,92 @@
 {
  "id": "P10",
  "lang": "en",
- "text": "Most birds never returned. Still, tens of thousands of messages arrived.",
+ "text": "The film was PROJECTED. The tiny page GREW, and Paris READ its mail.",
+ "text_etiketli": "[whispering] The film was PROJECTED. [amazed] The tiny page GREW, [warm] and Paris READ its mail.",
  "words": [
   {
-   "t": "Most",
-   "s": 0.25,
-   "e": 0.31
+   "t": "The",
+   "s": 0.13,
+   "e": 0.15
   },
   {
-   "t": "birds",
-   "s": 0.38,
-   "e": 0.79
+   "t": "film",
+   "s": 0.22,
+   "e": 0.55
   },
   {
-   "t": "never",
-   "s": 0.84,
-   "e": 1.18
+   "t": "was",
+   "s": 0.66,
+   "e": 1.03
   },
   {
-   "t": "returned.",
-   "s": 1.25,
-   "e": 1.9
+   "t": "PROJECTED.",
+   "s": 1.13,
+   "e": 1.86
   },
   {
-   "t": "Still,",
-   "s": 2.55,
-   "e": 3.07
+   "t": "The",
+   "s": 2.6,
+   "e": 2.63
   },
   {
-   "t": "tens",
-   "s": 3.1,
-   "e": 3.27
+   "t": "tiny",
+   "s": 2.75,
+   "e": 3.11
   },
   {
-   "t": "of",
-   "s": 3.31,
-   "e": 3.43
+   "t": "page",
+   "s": 3.19,
+   "e": 3.59
   },
   {
-   "t": "thousands",
-   "s": 3.46,
-   "e": 3.91
-  },
-  {
-   "t": "of",
-   "s": 3.92,
+   "t": "GREW,",
+   "s": 3.66,
    "e": 3.99
   },
   {
-   "t": "messages",
-   "s": 4.04,
-   "e": 4.55
+   "t": "and",
+   "s": 4.68,
+   "e": 4.71
   },
   {
-   "t": "arrived.",
-   "s": 4.6,
-   "e": 5.14
+   "t": "Paris",
+   "s": 4.79,
+   "e": 5.27
+  },
+  {
+   "t": "READ",
+   "s": 5.45,
+   "e": 5.67
+  },
+  {
+   "t": "its",
+   "s": 5.7,
+   "e": 5.83
+  },
+  {
+   "t": "mail.",
+   "s": 5.9,
+   "e": 6.31
   }
  ],
- "dur": 5.381,
+ "dur": 6.609,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_v3",
  "ayar": {
-  "stability": 0.75,
+  "stability": 0.5,
   "similarity_boost": 0.85,
-  "style": 0.4,
+  "style": 0.5,
   "use_speaker_boost": true,
   "speed": 1.1
  },
- "seed": 23,
+ "aday": "s7",
  "tek_cekim": true,
- "v4": true,
+ "v5": true,
  "kenar": "temiz",
- "nf_dbfs": -85.6,
- "hisirti_6k_dbfs": -88.0,
- "pad_nf_dbfs": -82.2,
+ "nf_dbfs": -83.3,
+ "hisirti_6k_dbfs": -86.5,
+ "pad_nf_dbfs": -83.4,
  "kelime_zamani": "sinyale yapisik",
- "nefes_temizlendi": [
-  40.49
- ]
+ "nefes_temizlendi": []
 }

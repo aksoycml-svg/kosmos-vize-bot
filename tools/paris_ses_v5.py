@@ -97,6 +97,21 @@ def analiz(lang, v4=False):
         print("   ", {a: round(b_, 2) for a, b_ in c_.items()}); res[ad] = (k, c_)
     return res
 
+def sessiz_yakin(r, ac, bc, pen=1.0, min_sil=0.30):
+    """Alignment bazen sinyalden 0.5-0.9 sn kayar (stab .75'te gordum). Plan siniri = alignment bosluk merkezine EN YAKIN uzun sessizlik (r < -55 dB, >= 300 ms, +-pen sn).
+    Donus: (kesim_t, sessiz_sure, kayma). Yoksa eski yontem."""
+    q = r < -55; runs = []; i = 0
+    while i < len(q):
+        if q[i]:
+            j = i
+            while j < len(q) and q[j]: j += 1
+            if (j - i) * 0.01 >= min_sil: runs.append(((i + j) / 2 * 0.01, (j - i) * 0.01))
+            i = j
+        else: i += 1
+    ctr = (ac + bc) / 2; cand = [(abs(c - ctr), c, d) for c, d in runs if abs(c - ctr) <= pen]
+    if not cand: c_, sil = V4.sessiz_kesim(r, ac - 0.25, bc + 0.25); return c_, sil, 0.0
+    dd, c, d = min(cand); return c, d, c - ctr
+
 def kes(lang, ad, kok=None):
     x, w, g = yukle(lang, ad); br = V4.nefes_bul(x); y = V4.temizle(x, br); r, *_ = V4.kare_ozellik(y); sn = sayilar(lang)
     assert len(w) == sum(sn), (len(w), sum(sn))
@@ -106,8 +121,8 @@ def kes(lang, ad, kok=None):
     for n in sn: b.append((i0, i0 + n - 1)); i0 += n
     cuts = [0.0]
     for k in range(10):
-        c_, sil = V4.sessiz_kesim(r, w[b[k][1]]["e"] - 0.25, w[b[k + 1][0]]["s"] + 0.25); cuts.append(c_)
-        print(f"   sinir P{k + 1:02d}|P{k + 2:02d}: kesim {c_:6.2f} sn, sessiz kosu {sil * 1000:.0f} ms, seviye {r[int(c_ / 0.01)]:.0f} dB")
+        c_, sil, ks = sessiz_yakin(r, w[b[k][1]]["e"], w[b[k + 1][0]]["s"]); cuts.append(c_)
+        print(f"   sinir P{k + 1:02d}|P{k + 2:02d}: kesim {c_:6.2f} sn, sessiz kosu {sil * 1000:.0f} ms, seviye {r[int(c_ / 0.01)]:.0f} dB, alignment kaymasi {ks:+.2f}")
     cuts.append(len(y) / SR); out = f"{kok or ROOT}/{lang}"; os.makedirs(out, exist_ok=True); n5 = int(0.005 * SR); rows = []
     stab = json.load(open(f"{ADAY}/{lang}/{ad}/_tam.json"))["ayar"]
     for k, pid in enumerate(IDS):
