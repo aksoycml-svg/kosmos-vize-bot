@@ -142,8 +142,10 @@ const KanatTuy: React.FC<{ q: P[]; kw: number; acik: number; uzak: boolean; nss:
   const R = KUS_RENK, F = kanatF(q), f = (p: P) => `${p[0].toFixed(2)} ${p[1].toFixed(2)}`;
   const n: React.ReactNode[] = [];
   // birincil uçuş tüyleri bölgesi (el; s ≥ 0.6) koyu-orta gri, ucu daha koyu
-  n.push(<path key="bir" d={d(ks(F, 0.58, 1, 0, 1))} fill={uzak ? R.uc : R.birincil} />);
-  n.push(<path key="biru" d={d(ks(F, 0.8, 1, 0, 1, 4))} fill={R.uc} />);
+  // toplu kanatta el kısmı kuyruğun üstüne katlanır: koyu bölge küçülür (aksi hâlde ikinci bir kuyruk gibi okunuyor)
+  const sB = 0.58 + 0.16 * (1 - acik), sU = 0.8 + 0.1 * (1 - acik);
+  n.push(<path key="bir" d={d(ks(F, sB, 1, 0, 1))} fill={uzak ? R.uc : R.birincil} />);
+  n.push(<path key="biru" d={d(ks(F, sU, 1, 0, 1, 4))} fill={acik > 0.3 ? R.uc : R.birincil} />);
   // ikincil uçuş tüyleri şeridi (kol; arka kenar boyunca)
   n.push(<path key="iki" d={d(ks(F, 0.02, 0.6, 0.66, 1))} fill={uzak ? R.golge : R.kanatG} />);
   // iki koyu kanat bandı (güvercinin tür işareti; hedef-kus)
@@ -166,7 +168,7 @@ const KanatTuy: React.FC<{ q: P[]; kw: number; acik: number; uzak: boolean; nss:
   }
   // birincil tüyler: elden uca yelpaze; açıkken uçlar ayrık (parmak) okunur
   for (let i = 0; i < 7; i++) {
-    const sb = 0.58 + i * 0.05, se = Math.min(1, 0.66 + i * 0.055);
+    const sb = sB + i * 0.05 * (1 - sB) / 0.42, se = Math.min(1, sB + 0.08 + i * 0.055 * (1 - sB) / 0.42);
     n.push(<path key={`bp${i}`} d={`M ${f(F(sb, 0.12))} L ${f(F(se, 1))}`} stroke={R.kontur} strokeWidth={Math.max(1, kw * 0.5)} opacity={0.7} fill="none" style={nss} />);
     if (acik > 0.6 && i >= 2) { const a = F(se - 0.03, 1), b = F(Math.min(1, se + 0.03), 1), c = F(se, 1.09); n.push(<path key={`bu${i}`} d={`M ${f(a)} Q ${f(c)} ${f(b)} Z`} fill={R.uc} stroke={R.kontur} strokeWidth={Math.max(1, kw * 0.6)} style={nss} />); }
   }
@@ -237,11 +239,15 @@ export const Guvercin: React.FC<{
         {!tek && <path d={KARIN} fill={R.karin} />}
         {/* göğüs ön yüzü gölgede (kontrajur): gövdenin ön-alt hilali */}
         {!tek && <path d="M 66 -24 C 78 2 66 32 34 44 C 52 26 62 4 58 -20 Z" fill={R.golge} opacity={0.7} />}
+        <g transform={`rotate(${z.bas} 50 -56)`}>
+          <circle cx={66} cy={-70} r={25} fill={f(R.ust)} {...st} />
+          {/* boyun köprüsü: baş ile gövde arasındaki iki kontur çizgisini örter (kesintisiz boyun; hedef-kus) */}
+          {!tek && <ellipse cx={52} cy={-57} rx={13} ry={12} fill={R.ust} />}
+        </g>
         {/* boyun yanardönerliği: iki düz leke (yeşil üstte, mor altta), gradyan yok */}
         {!tek && <path d="M 36 -58 C 48 -54 60 -44 64 -32 C 52 -34 42 -42 34 -50 Z" fill={R.boyunYesil} />}
         {!tek && <path d="M 38 -44 C 50 -40 62 -30 66 -16 C 54 -20 44 -28 36 -36 Z" fill={R.boyunMor} />}
         <g transform={`rotate(${z.bas} 50 -56)`}>
-          <circle cx={66} cy={-70} r={25} fill={f(R.ust)} {...st} />
           {!tek && <path d="M 88 -75 C 96 -74 104 -71 109 -68 C 104 -66 96 -64 88 -63 Z" fill={R.gaga} stroke={R.kontur} strokeWidth={Math.max(1, kw * 0.6)} style={nss} />}
           {!tek && <ellipse cx={90} cy={-74} rx={5.5} ry={3.4} fill={R.cere} />}
           {!tek && <circle cx={76} cy={-75} r={6.6} fill={R.gozHalka} />}
