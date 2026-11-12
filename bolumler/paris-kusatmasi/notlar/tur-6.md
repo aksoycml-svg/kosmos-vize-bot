@@ -7,3 +7,8 @@ Orkestra değerlendirmesi (kullanıcıya gösterildi, V2/karsilastir.png):
 
 Kullanıcı (aynen):
 > evet başlat
+
+Kullanıcı (aynen):
+> tamam, f190 geçişi kalsın
+
+→ P01 f190 dolly geçişinde kümes tabanının geçici olarak IG alt bandına inmesi kullanıcı onaylı (`lint.izin: guvenli_alt_gecici`); tekrar tartışılmaz.
