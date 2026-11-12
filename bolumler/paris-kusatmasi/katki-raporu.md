@@ -413,3 +413,21 @@
   - sinirlar.json PARIS-CATI notu hâlâ `kilif_kilit` yazıyor (yönetmenin dosyası); kod `dolly_foe` okuyor.
   - P10a gün paleti v1 + v2 ahşap (tasarımcıya açık soru 2 sürüyor).
   - Öz puan: 6.5 (kanca hedefe yakın; geniş kare yön doğru ama yoğunluk ve sıcaklık hedefin altında).
+
+## mekân sorumlusu · 2026-11-12 · PARIS-CATI şartnamesi v3 (geniş plan + dolly yolu, tur-6)
+- Ne yaptım: `mekanlar.md`'ye §1v3 ekledim (özet kararlara madde 9). V2 f370 teşhisi; göz 2.8 → 5.0 m, ufuk 635 → 600; kamera yeri (bir kat yüksek bitişik komşu çatı) ve ön-plan çerçeve; K4 · K4b (yeni) · K3 · K3b (yeni) yukarıdan sıra tablosu (ekran y'leri formülden); güneşe dönük yüz listesi + krem cephe yansıma tonları (C\*/L\* ölçüldü); dolly v3 sabitleri ve kamera yolu; motion V2 sapmalarının geçerli değer tablosu; yönetmen kamera tablosu (P01, P11 son, P10a). Kod, görsel, git yok.
+- Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/paris-kusatmasi/mekanlar.md, /home/user/kosmos-vize-bot/bolumler/paris-kusatmasi/katki-raporu.md
+- Aldığım kararlar ve gerekçeleri:
+  - **e 5.0 m, ufuk y 600.** Kümes boyu/m = (1490 − ufuk)/e: yüksek göz + büyük kümes + güvenli taban birlikte imkânsız. 5.0'da kümes ≈ 223 × 305 px (V2 ≈ 270 × 430), çatı denizi yukarıdan okunuyor. Kümes "daha yakın" olamaz (taban IG bandına iner); sola alındı.
+  - **Kamera fiziksel yeri:** bitişik binanın 3.4 m yüksek terrasson'u, ayakta göz [T, doğrulanmalı]. Bu çatının kenarı ön-plan çerçeve (y 1812–1920) olarak alt bandı dolduruyor, teras 686 → 467 px.
+  - **Kümes, kuş, kılıf, kanca kamerası birlikte (ΔX −0.35, ΔZ +2.80) ötelendi:** kanca kümese göre aynı, döngü kilidi korunuyor. Kancada yalnız flu arka plan ±40 px kayıyor.
+  - **Dolly doğrusal kaldı:** eğri yol FOE'yi kare kare kaydırır, `dolly.ts` formülü değişir. Yeni sabitler: F 1326, e 5.0, Zk 7.856, ufuk 600, k 1.4734, FOE (403.4, 1368.7), KILIF_DEKOR (395.0, 1325.8).
+  - **YAKIN 0.05 → 0.032** (0.25 m sabit). 0.05 kalırsa yakın düzlem 0.39 m'ye çıkıyor ve kancada kümes ön yüzü kırpılıyor (yakalanmasa döngü kilidini bozacaktı).
+  - **Sıcak ışık tek vektörle:** terrasson arka sırtı, bourrelet'ler, sağa bakan yüzler (baca, lucarne yanağı, B2 kalkan duvarı) ışıkta. Krem cephe gölgede, Venüs kuşağı yansımasıyla `#9c8a96`/`#a8908f` (C\* ≤ 14).
+  - Arazi yükselişi sıralar arasında hafif abartıldı [T]: korniş −5.6/−3.8/−2.0/−0.6. Gerekçe K3 ışıklı lucarne sırası (hedefteki sıra) ancak böyle görünüyor.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: güvenli alan (kümes L 1484, tekne 1429, baca x ≤ 988 ve taban 1429); döngü kilidi (kanca cs 2.75 / cx 105 / cy 279, kılıf 195 px, ufuk 879); kamera yüksekliği–görünür yüzey; tek ışık; kılıf tekliği (yeni hex'lerin hepsi ölçüldü); kemer yok; ölü alan yok; mesafeye göre ayrıntı. Motion V2 sapmaları (tahta 0.655, eşik 0.67, açıklık payı 0.08, payanda R içi 0.03, gök C\* düzeltmesi, kalkış 26°, sağ baca kilit dışı) şartnameye işlendi.
+- Açık sorular / bir sonraki ajana notlar:
+  - Yönetmen: §1v3.10 tablosu (ufuk_y 600, dolly_foe, kilif, sinirlar cs ≤ 2.80). P01 f190'da kümes tabanı geçici olarak IG bandına iniyor (hareket hâlinde). Kabul edilmezse cy 0.
+  - Motion: §1v3.6 sabitleri, §1v3.2 dünya yerleri, `CatiDenizi` v3 (sıralar dünya modeli, terrasson dörtgeni), `KalkanDuvar`, `BalkonFilant`, `OnCerceve`; YAKIN metre ile tanımlansın.
+  - Tasarımcı: krem cephe/lucarne yeni tonları ve gök tepe/üst değerleri §13.1'e.
+  - Araştırmacı: bir kat yüksek bitişik bina, 5. kat balcon filant, Venüs kuşağı [G].

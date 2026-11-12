@@ -14,6 +14,7 @@ Etiketler: **[A]** arastirma.md'de kaynaklı · **[S]** senaryo/sahne planı · 
 6. **Montmartre tepesi kameranın arkasında:** 1870 görünümü doğrulanamadı [A §5.1]. Kamera Paris'e baktığı için değirmen, kilise ya da Sacré-Cœur çizme zorunluluğu doğmuyor.
 7. **Yönetmene sayısal düzeltme önerileri** §7'de: P05 cs 2.0, P10a cs 2.6–2.75, P10b pan cx ≈ −1250, P06 ikinci balon konumu, ufuk değerleri.
 8. **v2 (2026-11-12):** PARIS-CATI §1v2 ile yeniden kuruldu: kamera yönü 230°, geniş plan göz 2.8 m / ufuk y 635 (%33), dolly genel öteleme (FOE ≠ kılıf), kümes 30° döndürülmüş dünya modeli, çatı denizi K1–K5, ön baca kaldırıldı. Kamera önerisi §1v2.12. PARIS-CATI satırlarında §0.6, §0.7, §7.1–7.2 ve §8 yerine §1v2 geçerli.
+9. **v3 (2026-11-12, tur-6):** PARIS-CATI geniş plan ve dolly yolu §1v3 ile değişti: göz **5.0 m** (kamera bitişik, bir kat yüksek komşu çatıda), ufuk **y 600**, çatı denizi yukarıdan (K4 · K4b · K3 · K3b + K2/K1), kümes dünyada Z 7.5–8.7, sağ baca güvenli alana, ön-plan çerçeve (komşu çatı kenarı). Kanca (P01 f0/f24 = P11 son) ve P10a kompozisyonu **değişmez**; yalnız cs/cx/cy sayıları yeni sabitlerle yeniden hesaplandı (§1v3.6). §1v2.3, §1v2.5, §1v2.12'nin yerine §1v3 geçerli; §1v2'nin geri kalanı geçerli.
 
 ---
 
@@ -430,6 +431,167 @@ Bütün planlarda `ufuk_y: 635`. `kilif_kilit` yerine `dolly_foe: [421.1, 1236.1
 | **P10a** (f0–56, gün) | 0 · 56 | 2.6 · 2.75 | 107 · 144 | 121 · 244 | kılıf her iki anahtarda ekranda **(410, 960)**: itme kılıfı oynatmaz, yalnız büyütür (150 → 195 px). Ufuk 756 → 879 |
 - Kontrol kareleri: P01 `kontrol_kare` 24 (kalkış + kılıf), P01 kapanış 370, P11 son 333, P10a 48 (temas).
 - Ölçekler (P01 f0): kılıf 195 px, kuş ≈ 800 px gaga–kuyruk, baş üstü y 553; (f370): kümes ≈ 270 px, lucarne ≈ 59 × 85 px (360'ta 20 × 28), siluet bel üstü ≈ 52 px.
+
+---
+
+## 1v3. PARIS-CATI v3 — GEÇERLİ geniş plan + dolly yolu (tur-6, kullanıcı onaylı)
+
+Girdi: `notlar/tur-6.md`, `kalibrasyon/V2/karsilastir.png`, `V2/P01-f370.png`, `hedef/hedef-cati.png`, §1v2, katkı raporu motion V2 bölümü. **Kapsam yalnız geniş plan ve dolly yolu.** Kanca kompozisyonu (§1v2.4), P10a (§1v2.9), kümes/kuş/kılıf geometrisi, ışık vektörü (§1v2.8), doku (§1v2.7), dönem kartı (§1v2.2 kümes dışı satırlar) aynen geçerli. Hesap yine pinhole: `y = ufuk + (e − h)·F/Z`, F 1326; her sayı betikle üretildi, motion ilk still'de ±15 px doğrular.
+
+### 1v3.0 Teşhis (V2 f370) ve tek cümlelik karar
+- V2 f370'te göz 2.8 m: karşı sıra (K4) **yandan** görünüyor ⇒ tek düz duvar bandı + tek lucarne sırası; K3 ve ötesi K4'ün arkasında saklı; terasın 686 px'i (y 1234–1920) boş; ışık alan yüz yok (bütün görünen yüzler kameraya, yani güneşe sırt veriyor).
+- **Karar:** göz **5.0 m**, ufuk **y 600 (%31.3)**, kamera **bitişik komşu binanın bir kat yüksek terrasson'unda** (ön-plan çerçeve bu çatının kenarı). Çatılar yukarıdan görünür: her sıranın **terrasson üst yüzü + kırık çizgi + brisis'in üst yarısı + baca kümesi** bir öncekinin üstünden taşar ⇒ 4 sık sıra + 2 siluet. Dolly yolu **tek doğrusal öteleme** kalır (yeni FOE/k/Zk).
+
+### 1v3.1 Göz yüksekliği ile kümes büyüklüğü arasındaki zorunlu ödünleşim (orkestra bilsin)
+- Kümes tabanı güvenli alanda (y ≤ 1490) ve ufuk y U ise kümesin ekranda **metre başına boyu = (1490 − U) / e** px'tir; F'den ve kümesin Z'sinden bağımsızdır. "Daha yüksek göz + daha büyük kümes + taban güvenli alanda" üçü birlikte **mümkün değil**.
+  | e (m) | U | kümes px/m (taban 1490'da) | kümes ön yüz + çatı (≈ 1.3 m) | durum |
+  |---|---|---|---|---|
+  | 2.8 (V2) | 635 | 305 | ≈ 400 px | çatı denizi görünmüyor |
+  | **5.0 (v3)** | **600** | **178** | **≈ 230 px** (360'ta 77 px) | **seçildi** |
+  | 6.0 | 600 | 148 | ≈ 190 px | kümes "kulübe" okunurluğunun sınırı |
+- **5.0 m seçildi:** çatı denizi yukarıdan okunuyor (K4 terrasson'u 92 px, K3 lucarne'ları K4b'nin üstünden tam görünür) ve kümes hâlâ çatısı + iki açıklığı + iniş tahtasıyla "küçük ev" okunuyor. Kümesin küçülmesi §1v2.1 amacıyla uyumlu: "kapanışta aynı kuş, sonsuz bir çatı denizinin içinde küçücük". Kümes "daha yakın" yapılamaz (taban IG bandına düşer); **sola** alındı.
+
+### 1v3.2 Mimari kart farkları (yalnız değişen satırlar; gerisi §1v2.2)
+| Madde | v3 değeri |
+|---|---|
+| Kamera yeri [T] | Bizim bulvar binamızın **bitişiğindeki, terrasson'u bizimkinden 3.4 m (≈ bir kat) yüksek** bina. 1870'te aynı sırada farklı korniş yükseklikleri olağandır (Haussmann öncesi/sonrası binalar yan yana; köşe binaları fazladan kat) [G, doğrulanmalı]. Göz = o çatıda ayakta 1.6 m ⇒ **bizim terasa göre e = 5.0 m**. Komşu çatının kenarı (yuvarlak çinko kenar, bourrelet) kameranın 1.75 m önünde, h 3.4 ⇒ **ön-plan çerçeve** |
+| Bizim terrasson | Kırık çizgi (kenar) **Z 8.9** (V2 6.2). Terrasson görünen bölümü Z 5.47–8.9 (komşu kenarının gizlediği yerden kırık çizgiye) |
+| Arka sokak (bizimle K4 arası) | K4 cephesi Z 24 ⇒ sokak ≈ 13 m. K4 korniş h −5.6 (bizimkinden ≈ 3 m alçak, §1v2.2 1859 kuralı [G, doğrulanmalı]) |
+| K4 cephesi artık görünür | Korniş altında ≈ 2.9 m krem cephe görünür (gizlenme eşiği h −8.48): **5. kat pencere başları + 5. kat sürekli balkon korkuluğu** (balcon filant; Haussmann cephesinde 2. ve 5. katta sürekli balkon [G, doğrulanmalı]). §1v2.2'deki "5. kat ve balkon görünmez" kalktı. Pencere düz lentolu, kemer yok |
+| Sıralar ve arazi | K4 Z 24 · **K4b Z 31 (yeni)** · K3 Z 40 · **K3b Z 52 (yeni)** · K2 90–160 · K1 500–1500. Korniş yükseklikleri her sırada artar (−5.6 · −3.8 · −2.0 · −0.6): Montagne Sainte-Geneviève yükselişi [G] + **hafif abartı [T]** (gerçek eğim bu mesafede ≈ 1 m verir; CLAUDE.md "duygu için hafif abartı serbest", yapı tipi değişmez). Sıra ardına sıra "basamak" bu yüzden fiziksel gerekçeli |
+| Bina farklılığı (K4) | Üç bina: B1 x 0–420 korniş h −5.6, 3 aks; B2 x 420–960 korniş h **−5.2**, 4 aks (aks 2.9 m); B3 x 960–1080 korniş h **−6.0**. Bina sınırı = ortak duvar + üstünde baca kümesi. B2 > B3 basamağında B2'nin **sağa bakan açık kalkan duvarı** görünür ve ışık alır (§1v3.5) |
+| Kümes yeri (yeni) | Bütün kümes/kuş/kılıf geometrisi V2'ye göre **(ΔX −0.35, ΔZ +2.80) ötelendi**, kendi içinde değişmedi: R = (−0.85, Z 8.00), L = (−1.72, Z 7.50), arka köşeler Z 8.20–8.70; kılıf **K = (−0.859, h 0.70, Z 7.856)**; kanca kamerası **C_k = (−0.759, 0.73, 7.366)**. Kümes arka yüzü kırık çizginin 0.2 m içinde |
+| Yem/su teknesi (yeni yer) | X −0.10…0.50, Z 8.00–8.25, h 0.15 (kümesin sağında, bir boy önde değil yanda). Kancada kadraj dışı (sağ-alt, x > 1900) |
+| Sağ baca (yeni yer) | X 2.20–2.70, **Z 8.00–8.45**, gövde 1.40, başlık 0.07, 4 külah ø 0.10 boy 0.28 (V2 ölçüsü). Güvenli alanda: x 885–988, külah ucu y 1126, taban 1429. Kancada ve P10a'da kadraj dışı (x > 3000). Motion V2 kararı korunur: **kilit/temas noktası değildir**, çerçeve öğesidir |
+| Ön-plan çerçeve (yeni) | Komşu çatının bourrelet'i (ø 0.08 m yuvarlak çinko kenar) + çinko yüzeyinin 0.65 m'lik şeridi, **y 1812–1920** (IG alt bandı; önemli bilgi taşımaz, alt bandı "boş görünmez" yapar). Kenet çizgileri aynı VP'ye (540, 600) |
+| Kameradan görünen (geniş, e 5.0) | **Görünür:** bütün sıraların terrasson üst yüzleri (çinko), kırık çizgiler, brisis'ler (arduvaz), lucarne'lar (K4 tam, K4b ve K3 pencere boyunun %90'ı, K3b üst yarısı), baca kümelerinin üst yüzü (başlık plakası ince şerit), K4 korniş üst yüzü (ince şerit), K4 5. kat. Kümesin **çatı üst yüzü belirgin** (göz çatının 3.8 m üstünde), sol yan + ön yüz. Tekne içi (yem + su yüzeyi) görünür. **Görünmez:** sokak, K4'ün 5. kat altı, kümesin sağ yan yüzü, sıraların arka brisis'leri |
+
+### 1v3.3 Geniş kompozisyon (P01 kapanış f370; cs 1, cx 0, cy 0) — §1v2.5'in yerine
+| Öğe | Ekran (1080 × 1920) | Not |
+|---|---|---|
+| Gök basamakları | 0–165 / 165–345 / 345–465 / 465–550 / 550–ufuk | §1v2.7 aynı, sınırlar −35 px (ufuk 635 → 600). Renk: motion V2 düzeltmesi **`#2e3157` / `#504e79`** (tepe/üst) + `#7d6a95` / `#b98a9e` / `#e6b5a0` |
+| Hale | merkez **(846, 605)**, r 130 / 200 | ufkun 5 px altı (V2 ile aynı ilişki); üst kenar y 405, yazı bandının (≤ 400) hemen altında |
+| Panthéon (×1.6 stilize) | x 830, fener ucu y ≈ 435, tambur ≈ 505–575, kaide K1 sırtının arkasında | halenin önünde koyu `#8d7899` |
+| K1 sırt | y 615 (sol) → 562 (Panthéon yanı) | `#a98aa0`, kontursuz |
+| K2 siluet | 585–655 | `#9a80a0`, tarak, kontursuz, 1 duman |
+| **K3b** (Z 52, yeni) | külah 622, baca 629, sırt 658, kırık 674, lucarne üst yarısı 681–715 | `#8d7899`, kontursuz; lucarne'lar ışıksız, yalnız beşik tepeleri ritim verir |
+| **K3** (Z 40) | külah 671, baca 680, sırt 715, kırık 741, **lucarne 752–811** (≈ 30 × 43 px), korniş 832 (gizli) | brisis `#7d6a95`, terrasson `#8a7d99`, 3 px kontur; **ışıklı sıra**: lucarne'ların ≈ %40'ı `#f0d2b8` + havuz α .22 (hedefteki ışıklı sıra), 1 duman |
+| **K4b** (Z 31, yeni) | külah 760, baca 772, sırt 810, kırık 856, lucarne 872–948 (K4 sırtının üstünde ≈ 50 px'i görünür) | brisis `#76698a`, terrasson `#857a98`, 3 px kontur; ışıklı ≈ %25 |
+| **K4** (Z 24) | külah 890, baca 904, **terrasson 943–1023**, kırık 1023, **brisis 1023–1186** (lucarne 1049–1148, ≈ 49 × 71 px), korniş 1186–1201 (üst yüzü ince şerit), **krem cephe 1201–1345** (pencere başları 1235, balkon korkuluğu 1307–1325) | brisis `#6d6384` / `#3e3b5c`, terrasson `#8a7d99`, cephe §1v3.5; 4 px kontur; ışıklı lucarne ≈ %35, 5. kat pencerelerinden 2'si ışıklı; en çok 3 siluet (lucarne'larda) |
+| Bizim kırık çizgi | **y 1345** | 6 px açık + 4 px koyu yuvarlak çinko kenar |
+| Kümes | x 197–420 (saçak ve tahta ucu dahil ≈ 430), arka saçak üstü 1179, ön saçak 1263 (R) / 1307 (L), taban R **1429** / L **1484** | çatı üst yüzü belirgin; açıklıklar + tahta okunur; ≈ 230 × 305 px |
+| İniş tahtası ucu / kılıf | (414, 1316) / (395, 1326) ≈ 12 px | kuş kapanışta yok (f275–330'da çıkmış) |
+| Yem/su teknesi | x 523–623, y 1380–1429 | iki göz görünür, taneler tahtada |
+| Sağ baca | x 885–988, külah ucu 1126, başlık 1185, taban 1429 | güvenli alanda ✓; haleyi ve Panthéon'u örtmez (külah 1126 ≫ hale alt sınırı) |
+| Bizim teras | 1345 → 1812 | kenetler VP (540, 600)'e; kümes gölgesi sol-alta, baca gölgesi alta (§1v2.8 vektörü), aradaki ışık şeridi x ≈ 450–850 |
+| Ön-plan çerçeve (komşu çatı kenarı) | **1812 → 1920** | bourrelet üstü 3 px `#c9a0a6` parlama çizgisi, yüzey `#3e3b5c`, 2–3 kenet `#2f2d46`; kontursuz değil, 6 px kontur (en yakın katman) |
+- **Üçte birler:** üst (0–640) gök + hale + Panthéon + K1/K2/K3b sırtı; orta (640–1280) K3 ışıklı sıra, K4b, K4 çatısı + lucarne'lar (hedefteki yoğunluk); alt (1280–1920) K4 krem cephe şeridi, kümes, tekne, baca, teras gölge/ışık şeritleri, ön-plan kenarı. **Boş karanlık teras kalmadı:** terasın görünen yüksekliği 686 → 467 px.
+- **Güvenli alan:** kümes tabanı L 1484 ≤ 1500 ✓, tekne 1429 ✓, baca x ≤ 988 ≤ 1000 ✓ ve taban 1429 ✓, kümes sol kenarı 197 ≥ 80 ✓.
+- **Kuş çıkışı (f275–330):** tahta ucundan sağ üste; yol x 900'ü y ≈ 580'de geçer ⇒ **halenin önünden** geçer (sağ bacanın 500 px üstünden). Öneri: kuş siluetinin halenin üstünden geçtiği 6–10 kare kapanışın imgesi olur; kanat kenar ışığı halenin önünde koyu siluete döner (ters ışık, tek kaynak).
+- **Ufuk–ölçek doğrulaması:** terasımızda ayakta bir insan (h 1.7, Z 8) başı y 1147 < ufuk değil, ufkun 547 px altında: göz 5 m'de herkes ufkun altında ✓ (yüksek bakış). Bütün sıra satırları formülden.
+
+### 1v3.4 Katmanlar v3 (dekor = geniş ekran; arkadan öne; §1v2.6'nın yerine geçen satırlar)
+| # | Katman | Z (m) | d = Z/7.856 | s @ kanca (cs 2.75) | Hex | Kontur | Tarama | Flu σ @ kanca |
+|---|---|---|---|---|---|---|---|---|
+| 0 / 0b / 1 | Gök / hale / K1 + Panthéon | ∞ / ∞ / 500–1500 | — | 1 / 1 / ≈1.01 | §1v3.3 | yok | yok | 0 / 0 / 5 |
+| 2 | K2 | 90–160 | 11–20 | 1.05–1.09 | `#9a80a0` | yok | yok | 5 |
+| 3a | **K3b** | 52–57 | 6.6–7.3 | 1.16 | `#8d7899` | yok | yok | 6 |
+| 3b | K3 | 40–45 | 5.1–5.7 | 1.22 | brisis `#7d6a95`, terrasson `#8a7d99`, pencere `#f0d2b8` | 3 px | yok | 7 |
+| 4a | **K4b** | 31–37 | 3.9–4.7 | 1.31 | brisis `#76698a`, terrasson `#857a98` | 3 px | yalnız lucarne gölge yanağı | 7 |
+| 4b | K4 | 23.4–30 | 3.0–3.8 | 1.45 | §1v2.6 K4 satırı + cephe §1v3.5 | 4 px | II korniş altı, lucarne gölge yanağı, baca gölge yüzü, balkon altı | 7 |
+| 5a | Bizim teras + kırık çizgi | 5.47–8.9 | 0.70–1.13 | 1.3→∞ (kırpılır) | §1v2.6 | 4→6 px | yok | 5 (yalnız Z > 8.3) |
+| 5b / 5c / 5d / 5e | Sağ baca / tekne / kümes / kuş + kılıf | §1v3.2 | ≈ 1.0–1.1 | kanca dışı / dışı / §1v2 / 16.0 | §1v2.6 | §1v2.6 | §1v2.6 | §1v2.6 |
+| 6 | **Ön-plan çerçeve** (komşu kenarı) | 1.10–1.75 | 0.14–0.22 | kamera geçince kadraj altı | yüzey `#3e3b5c`, kenet `#2f2d46`, parlama `#c9a0a6` | 6 px | yok | 0 |
+| 7 | Kâğıt + gren | ekran | — | — | `ArsivKatmani` litografi | — | — | — |
+- Duman v3: 3 şerit **K2 (x ≈ 150), K3 (x ≈ 330), K4 (x ≈ 700)**; K4b'de yok (3 sınırı). Hepsi sağa eğik, çözülerek biter.
+- Kanca arka planı (flu) yeni sıralar yüzünden biraz yoğunlaşır; kanca tablosundaki flu konumlar küçük kayar: kendi kırık çizgimiz 1470 → **1510**, K4 lucarne 1290 → **1279**, K4 baca kümeleri 1040 → **≈ 1000**, K4 korniş ≈ 1384. Keskin olan her şey (kuş, kılıf, kümes, tahta, payanda, saçak, açıklık) **piksel piksel aynı** kalır.
+
+### 1v3.5 Işık ve sıcaklık (tek vektör §1v2.8 değişmez; yalnız hangi yüzün sıcak olduğu yazıldı)
+Kaynak aynı: güneş 243°, eksenin 13° sağı, yükseklik ≈ 2°, `ISIK_YON.alacakaranlik` (0.225, 0.035, 0.974). Kameraya bakan yüzler gölgede kalır (kural). V2'de bu yüzden "sıcak ışık yok"tu; yukarıdan bakınca güneşe dönük yüzler görünür hâle geliyor:
+| Yüz | Neden sıcak | Hex | Ölçü |
+|---|---|---|---|
+| Terrasson **arka sırtı** (her sıra) | güneşe en yakın kenar, çinkonun geniş parlama lobu (sıyırma ışık) | `#c9a0a6` α .45 bant | K4 10 px, K4b 7, K3 5, K3b 3 |
+| Kırık çizgi bourrelet'i (her sıra) | yuvarlak kenarın güneşe bakan üstü | `#e6b5a0` | 2 px (K4 3 px) |
+| **Sağa bakan** yan yüzler: baca gövdeleri (kadrajın sol yarısındakiler), lucarne sağ yanakları, B2'nin açık kalkan duvarı | normalin X bileşeni güneşe dönük | ışık yüzü `#c4a59a`, kenar `#e6b5a0` 2–3 px | kalkan duvar ≈ 1.2 × 2.5 m |
+| Sola bakan yan yüzler (kadrajın sağ yarısındaki bacalar) | güneşe sırt | `#8a7a8c` + sağ kenar `#e6b5a0` 2 px | — |
+| Baca külahları | §1v2 | `#8a6458` / `#4f4347`, sağ kenar `#e6b5a0` | — |
+| Kümes çatısı (çinko, öne iner) | güneşe sırt ama yukarıdan görünür, sağ kenarı ve sırtı ışıkta | `#5c5a7a`, sırt + sağ kenar `#e6b5a0` 3 px | — |
+| **Krem cephe (K4, 5. kat)** | güneşe sırt (kontrajur) **ama** kameranın arkasındaki doğu göğünden pembe yansıma alır (alacakaranlık karşı-parıltısı, "Venüs kuşağı": batışta doğu göğünün pembe bandı [G]). Gölge vermez, yalnız yüz tonu | taban `#9c8a96`, korniş altı 30 px `#a8908f`, pencere söve/korniş alt yüzü `#7d6f86` | bu tonlar **yeni** (tasarım §13.1'de krem cephe gölge `#6f6684` idi; tasarımcı onayı istenir, gerekçe: hedefteki "krem cephe ters ışıkta sıcak") |
+| Lucarne yanakları / pencere çevresi (krem) | aynı yansıma | `#b89c96`, sağ yanak `#d2b0a4` | — |
+| Pencereler | ikincil, §1v2.8 | `#f0d2b8` + havuz `#e6b5a0` α .22 | K3 %40, K4 %35, K4b %25, K4 5. kat 2 pencere |
+| Teras ışık şeridi + kırık çizgi sıcak bandı | §1v2.8 | aynı | şerit x 450–850, y 1400–1812 |
+- **Kılıf tekliği (§13.3) korunur:** yeni tonların hepsi ölçüldü: `#9c8a96` L\* 59 C\* 10 · `#a8908f` 62 / 10 · `#c4a59a` 70 / 14 · `#d2b0a4` 75 / 15 · `#b89c96` 67 / 12 · `#76698a` 47 / 20 · `#857a98` 53 / 18 · `#8a7d99` 54 / 17 · `#9a80a0` 57 / 21. Hepsi C\* ≤ 28, L\* ≤ 88. **Not (motion V2):** tasarım paletindeki gök tepe/üst (`#2b2f5c` C\* 30, `#4d4a80` C\* 34) "kılıf dışı C\* > 32 yok" kuralını bozuyordu; motion **`#2e3157` / `#504e79`** (C\* 25 / 27, aynı L\* ve ton) kullandı. Bu şartnamede geçerli değer budur; tasarım §13.1'in güncellenmesi tasarımcıya not.
+- Hedefteki sol-alt sıcak leke yine çizilmez (orada kümes gölgesi; §1v2.8).
+
+### 1v3.6 Dolly v3: tek doğrusal yol (yükseliş eğrisi değil)
+- **Karar: doğrusal.** Gerekçe: (1) mevcut `dolly.ts` katman modeli (her d düzlemi FOE'den radyal ölçek) yalnız sabit FOE'li **saf ötelemede** doğrudur; eğri yolda FOE kare kare kayar ⇒ kod değişir (günlük model: şablon sabitleri değişsin, formül değil). (2) Doğrusal yol fiziksel olarak temiz: kamera kuş hizasından **geri ve yukarı** tek çizgide çekilir, komşu çatı kenarının 0.59 m üstünden geçer, hiçbir nesneye girmez. (3) Görsel his: inout eğrisiyle "vinç" gibi okunur; yükseliş ile geri çekilme birlikte olduğu için çatı denizi kademeli açılır (önce K4 lucarne'ları, sonra K3 ışıklı sıra, en son terrasson'lar ve ön-plan kenarı).
+- **Dünya:** geniş kamera C_w = (0, 5.0, 0); kanca C_k = (−0.759, 0.73, 7.366). Öteleme **T = (−0.759, −4.27, +7.366) m**, |T| 8.55 m. Kamera yönü (230°, yatay eksen + lens kaydırma) değişmez.
+- **Yeni sabitler:**
+  ```
+  DOLLY_CATI = { F: 1326, e: 5.0, Zk: 7.856, ufuk: 600, k: 1.4734, foe: [403.4, 1368.7] }
+  KILIF_DEKOR = [395.0, 1325.8]
+  YAKIN = 0.032          // = 0.25 m / Zk. V2'de 0.05 × 5.056 = 0.25 m idi; 0.05 kalırsa yakın düzlem 0.39 m'ye çıkar
+                         // ve kancada kümes ön yüzünün sol kısmı kırpılır (döngü kilidi bozulur). Öneri: YAKIN metre ile (0.25) tanımlansın.
+  ```
+  δ_max = 7.366/7.856 = 0.9376; δ(cs) = 1.4734·(1 − 1/cs); kılıf ölçeği s = 1/(1 − δ); kanca s = 16.03 ⇒ kılıf 12.15 px × 16.03 = **195 px** (V2 ile aynı).
+- **Kılıfı ekranda (X\*, Y\*)'a koymak:** **cx = X\* − 403.4 + 8.4·s**, **cy = Y\* − 1368.7 + 42.9·s**. Kanca (374, 960) ⇒ cx **105**, cy **279** (ufuk 600 + 279 = **879**, V2 ile aynı). Döngü kilidi korunur: kanca kamerası kümese göre aynı yerde, aynı yönde, aynı lens kaydırmasıyla.
+- **Anlamı değişen sayı:** aynı cs değeri artık farklı mesafe demek (k 1.419 → 1.4734, δ_max 0.903 → 0.938). V2 json'daki ara cs değerleri yeni tabloyla değiştirilir.
+- **Sınırlar (`sinirlar.json` PARIS-CATI):** cs 0.95–**2.80** (2.80'de kılıfa 0.42 m; 2.85'te 0.34 m, kümes kırpması kancadan farklılaşır), cx −200…300, cy −100…**300** (kanca 279).
+- **Ön-plan kenarı dolly'de:** cs ≈ 1.04'ten büyükken kadraj altında; f300–370 arasında alttan girer ve 1812'de durur (kamera komşu çatının üstüne geri çekilmiş olur). Kamera kenarın üstünden cs 1.18'de geçer (h 3.99 > 3.4 ✓).
+- **Kamera yolu tablosu:**
+| cs | δ | kamera X / h / Z (m) | kılıf s | kılıf px | not |
+|---|---|---|---|---|---|
+| 1.00 | 0 | 0 / 5.00 / 0 | 1.00 | 12 | geniş |
+| 1.08 | 0.109 | −0.09 / 4.50 / 0.86 | 1.12 | 14 | ön-plan kenarı kadraj altında |
+| 1.18 | 0.225 | −0.18 / 3.98 / 1.77 | 1.29 | 16 | komşu kenarının üstünden geçiş |
+| 1.50 | 0.491 | −0.40 / 2.76 / 3.86 | 1.97 | 24 | |
+| 2.30 | 0.833 | −0.67 / 1.21 / 6.54 | 5.98 | 73 | |
+| 2.52 | 0.889 | −0.72 / 0.95 / 6.99 | 9.05 | 110 | P11 f172 |
+| 2.655 | 0.921 | −0.74 / 0.82 / 7.22 | 12.26 | 149 | P10a f0 |
+| **2.75** | **0.938** | **−0.76 / 0.73 / 7.37** | **16.03** | **195** | kanca |
+
+### 1v3.7 Motion V2 sapmaları şartnameye işlendi (geçerli değerler)
+| Öğe | §1v2 | **Geçerli (v3)** | Gerekçe (motion) |
+|---|---|---|---|
+| İniş tahtası üst yüzü | h 0.60 | **h 0.655** | rig ayak–kılıf aralığı; kılıf K ve kamera kilidi korunarak ayak tahtaya basar |
+| Açıklık eşiği | 0.62 | **0.67** | tahta açıklığın altında kalsın |
+| Açıklık-1 içeri payı | R'den 0.12 m | **0.08 m** | kuyruk yelpazesinin arkası koyu (kılıf kontrastı) |
+| Payanda | taşan ucun altı | **R köşesinin 0.03 m içi** | taşan ucun altında duvar yok; payanda duvara basar (fizik ✓) |
+| Gök tepe / üst | `#2b2f5c` / `#4d4a80` | **`#2e3157` / `#504e79`** | kılıf dışı C\* > 32 yasağı |
+| Kalkış gövde eğimi (PARIS-CATI) | 42° | **26°** | baş üst yazı bandına girmesin |
+| Sağ baca | kilit noktası | **kilit dışı, çerçeve öğesi**; v3'te güvenli alana alındı (§1v3.2) | olay/temas değil |
+| K4 lucarne aksları | — | §1v3.2 B1/B2/B3 aksları geçerli (V2 "bina-3 aks 104, ofset 580" kalkar) | v3'te K4 Z 24, px/m 55 |
+| Siluetler | 4 | **en çok 3**, K4 lucarne'larında | 360'ta ≈ 11 px; daha fazlası kalabalık |
+
+### 1v3.8 Motion için çizim notları
+- **Değişen yalnız sabitler ve dünya yerleri:** `DOLLY_CATI`, `KILIF_DEKOR`, `YAKIN` (§1v3.6); kümes/kuş/kılıf/tekne/baca dünya konumları (§1v3.2). Kümes iç ölçüleri §1v3.7.
+- **`CatiDenizi` v3 satır listesi** `{Z, h_kornis, binalar:[{x0,x1,dh}], aks, lucarne, isikli_oran, brisis, terrasson, kontur, sigma, sirtParlama}`: K4 (24, −5.6, B1/B2/B3), K4b (31, −3.8), K3 (40, −2.0), K3b (52, −0.6). Her sıra kendi derinliğinde **dünya modeli** (`dunyaEkran`) — terrasson üst yüzü artık bir dörtgen (kırık çizgi Z+0.96 → sırt Z+5), yandan şerit değil. Yeni öğe: `KalkanDuvar {x, h0, h1, isik:true}`, `BalkonFilant {y, ritim}` (yalnız K4, tek koyu çizgi + dik çubuk ritmi 12 px, 360'ta tek çizgi okunur).
+- **`OnCerceve`** (komşu çatı kenarı): Z 1.10–1.75, h 3.4, d < 0.25 ⇒ yakın düzlem kırpması zemin gibi (`kirpCiz`). Toptan gizlenmez.
+- **Kontrol karesi:** P01 f370 (geniş), f300 (ön-plan girişi), f0 ve f24 (V2 kanca ile piksel farkı yalnız flu arka planda olmalı), P11 son, P10a f48; şerit P01 f270–370 her 4 kare (ön-plan kenarının alttan girişi, kuşun hale önünden geçişi, maske şeridi yok).
+- **Renk ölçüm noktaları (f370, §1v2.11'in yerine):** gök orta (300, 405) `#7d6a95`; gök ufuk bandı (300, 570) `#e6b5a0`; K3 brisis (200, 780) `#7d6a95`; K4 terrasson (300, 985) `#8a7d99`; K4 krem cephe (700, 1270) `#9c8a96`; teras ışık şeridi (650, 1650) `#6d6384`; kümes ön (300, 1400) `#7e5a48`. Kılıf dışı C\* > 32: 0 px.
+
+### 1v3.9 Açık sorular
+1. *Tasarımcıya:* krem cephe kontrajur tonu `#6f6684` → `#9c8a96` / `#a8908f` (Venüs kuşağı yansıması) ve lucarne kremi `#b89c96`; gök tepe/üst motion değerleri (§13.1 güncellemesi). Varsayılan: bu şartnamedeki değerler.
+2. *Araştırmacıya:* bir sırada bir kat yüksek bitişik bina (kamera yeri) 1870 Bd Saint-Germain doğusunda olağan mı; 5. kat balcon filant; Venüs kuşağı gerekçesi genel optik bilgi [G].
+3. *Yönetmene:* P01 f190 civarında kümes tabanı geçici olarak y ≈ 1666'ya (IG bandı) iner; hareket hâlinde, temas anı yok. Kabul edilmezse f190 cy 60 → 0 (ufuk 600, kılıf y 1284).
+
+### 1v3.10 Yönetmen için kamera tablosu v3 (json sahibi yönetmen)
+Bütün planlarda **`ufuk_y: 600`**, `dolly_foe: [403.4, 1368.7]`, `kilif: [395.0, 1325.8]`.
+| Plan | kare | cs | cx | cy | Ekranda (doğrulama) |
+|---|---|---|---|---|---|
+| **P01** | 0 | 2.75 | 105 | 279 | kılıf (374, 960) 195 px, ufuk 879 — V2 ile aynı kare |
+| | 24 | 2.75 | 105 | 279 | aynı (kalkış okunur) |
+| | 90 | 2.30 | 80 | 215 | kılıf (433, 1327) 73 px, ufuk 815 |
+| | 190 | 1.50 | 40 | 60 | kılıf (427, 1344), ufuk 660; kümes görünür, K4 lucarne'ları açılır |
+| | 300 | 1.08 | 8 | 0 | kılıf (402, 1321), ufuk 600; kümes tabanı 1499; ön-plan kenarı henüz alt dışı |
+| | 370 | 1.00 | 0 | 0 | geniş (§1v3.3); ön-plan kenarı 1812 |
+| **P11 son** (devam f172–333) | 172 | 2.52 | 77 | 153 | kılıf noktası (405, 1134), 110 px (V2 ile aynı ekran yeri/boy) |
+| | 250 | 2.75 | 105 | 279 | kanca |
+| | 290 | 2.75 | 105 | 279 | f290'dan sonra **P01 f0 ile birebir** |
+| **P10a** (f0–56, gün) | 0 | 2.655 | 109 | 117 | kılıf (410, 960) 149 px, ufuk 717 |
+| | 56 | 2.75 | 141 | 279 | kılıf (410, 960) 195 px, ufuk 879 |
+- `egri: inout` P01 f24–370. Kuş f275–330 tahtadan sağ üste çıkar, halenin önünden geçer (x ≥ 1000, y ≤ 300'de kadraj dışı).
+- Kontrol kareleri: P01 24 (kontrol_kare) ve 370, P11 333, P10a 48. Lint notu: "v3 kamera, motion v3 sabitleri sonrası render".
 
 ---
 
