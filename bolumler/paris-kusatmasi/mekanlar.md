@@ -901,6 +901,7 @@ json düzeltme notları (yönetmene): P03 `alt_ucte_bir` "kaldırım taşı" →
 ---
 
 ## 2v2-H. GARE D'ORLÉANS HALESİ — P06b `yukleme` + P07 `gok`/`sepet`, `arka: "hale"` (tur-9, GEÇERLİ)
+> **Tur-11 notu:** P06b hale çizimi (makas, kolon, cam, tarama, Niépce zarfı, Daguerre X) için **§2v2-H2**, P07 A havadan şehir için **§2v2-G2** geçerlidir. Bu bölümle çelişirlerse onlar geçerli. Burada değişmeyen her şey (dünya modeli, ışık `haleSabah`, P07 B) aynen kalır.
 
 Girdi: `notlar/tur-9.md` (karar 1), arastirma Ek E3.1/E3.3, tasarım §14 (palet ve ışık sözleşmesi; hex sahibi tasarım), §2v2 (dünya modeli, balon/sepet ölçüleri, kameralar). **Yeni şablon değil:** MONTMARTRE şablonuna `arka: "hale"` parametresi. P03 `meydan` Montmartre'da kalır (§2v2.5, E3.2). P06b/P07'de §2v2'nin sepet, balon, sandık, torba, figür ve kamera değerleri **aynen geçerli**. Bu bölüm yalnız arka planı, ışık vektörünü ve onların sonuçlarını değiştirir. Hesap §2v2 ile aynı pinhole (F 1500); sayılar betikle üretildi, motion ilk still'de ±15 px doğrular. Kod, görsel ve git yok.
 
@@ -1052,6 +1053,261 @@ Kamera §2v2.6 aynen: (0.1, 1.0, −3.40), F 1500, **ufuk y 900**.
 2. **Tasarımcıya:** yeni ton `#937866` (sepet sol yüzü, sıyırma ışığı, 52/16, h 61°). Hale paletinin geri kalanı §14.2'deki mevcut hex'lerden. Huzme varsayılan kapalı (§14.4 ile uyumlu); açılırsa onay gerekir.
 3. **Yönetmene:** P07 düşüş eğrisi (yukarıdaki doğruluk notu). Ekran yönü: kamera 161°'de doğu solda kalır, oysa sahne-plani'de "balonlar doğuya = sağa". P07 A'da pusulayı okutan öğe yok, bu yüzden varsayılan: değişiklik yok, duman sağdan gelir (yönetmen bilsin).
 4. **Kullanıcıya (orkestra toplar):** yükleme ağızdan ≈ 80 m içeride (makaslar görünsün diye), kalkış ağızdan ekran dışında. Alternatif: ağız yakın olur, demir kafes görünmez. Varsayılan: 80 m.
+
+---
+
+## 2v2-H2. HALE v2 — gravür kalitesinde Polonceau halesi + Niépce zarfı (P06b, tur-11, GEÇERLİ)
+
+Girdi: `kalibrasyon/B/elestiri.md` (KRİTİK #1, #3'ün hale kısmı, #5 makas), `notlar/tur-11.md` (Gemini yok; hedef = dönem gravürü tarifi + onaylı üç hedefin dili), tasarım §0.3/§0.4/§14. Kod, görsel ve git yok. Sayılar §2v2-H ile aynı pinhole hesabından (F 1500, kamera (0.1, 1.0, −3.40)) betikle üretildi. Motion ilk still'de ±15 px doğrular.
+
+### H2.0 Teşhis → karar
+| B turunda görülen | Neden | v2 kararı |
+|---|---|---|
+| Makaslar tel gibi, 360'ta 1 px altı | Kol/dikme/çekme dünya ölçüsüyle ince çizildi, alt sınır uygulanmadı. Opak çatıda çok sayıda ince çapraz çizgi var: tel kafes okunuyor | Her eleman için **px alt sınırı** (H2.3). Kol çift konturlu "demir lama" gibi çizilir. Opak çatıda tarama tek yönlüdür (aşık yönü, VP'ye yakınsar). Çapraz çizgi yalnız makasın kendi elemanlarında |
+| Halka boş, zarf yok (KRİTİK) | `Yukleme` Niépce zarfını çizmiyor. Bu kamerada zarfın yalnız 56 px'lik alt kenarı kadraja girer | Zarf çizilir (H2.5). f168'de kamera **cy +160** ile açılır, zarfın alt kubbesi üst 216 px'i doldurur. Kamera sandığı izleyerek iner (H2.9) |
+| Daguerre zarfı duvara giriyor (yeni bulgu, fizik) | Daguerre X 9.4 + yarıçap 3.3 = 12.7 > duvar 12.2 | **Daguerre X 8.4.** Küre (850, 687), sepet (850, 937), asma halatı (850, 563) → (827, 129). Siluetler −38 px |
+| Hale "çizim programı" gibi, dönem gravürü değil | Düz renk alanları, tarama yok, kolon başlığı yok | Gravür dili: koyu demir siluet + açık cam + tek yönlü ritmik tarama + döküm kolon başlığı + sarkık ikinci zarf (atölye) |
+
+### H2.1 Referans tarifi (gözle kontrol edilmedi; bilinenler + [G])
+- **Charles Fichot, "Atelier de fabrication de ballons-poste à la gare d'Orléans"** (tahta baskı, Claretie 1871) [A: var olduğu E3.3; **içeriği gözle kontrol edilmedi**]. Aşağıdaki kompozisyon tarifi, dönemin istasyon/atölye tahta baskılarının (L'Illustration, Le Monde illustré, Illustrated London News 1870–71 balon atölyesi ve kalkış sayfaları) bilinen genel dilidir. **Fichot'nun kendi karesi için [G]**:
+  - Halenin ekseni boyunca **tek kaçış noktalı derin perspektif**. Makaslar tekrar ederek tünel ritmi kurar, ağza doğru küçülür.
+  - Balonlar çatı makaslarından **asılıdır**: biri dolu (hava ya da gazla), biri yarı sarkık. Farklı derinlikte, farklı boyda dururlar [A E3.3: "çatı altına asılıp şişirildi"].
+  - Yerde küçük, koyu, çapraz taramalı işçi figürleri var: denizciler, dikiş masaları, merdivenler [A orta: denizciler; masa ve merdiven G].
+  - Tonu **tarama** taşır, renk değil. Çatının alt yüzü yoğun paralel çizgiyle koyulaşır. Cam şerit kâğıt beyazı kalır, birkaç kenar çizgisi alır. Demir elemanlar düz siyah lama gibi durur, ışık tarafında ince beyaz bir çizgi taşır. Zemin, kaçış noktasına giden birkaç uzun çizgiyle verilir.
+- **Bizim çevirimiz (onaylı hedeflerin dili, tasarım §13/§14):** renk sınırlı palette kalır (mor-gölge / gül-ışık). Tarama bu paletin içinde, "gölge tonunun koyusu" ile yapılır. Siyah yok. Mürekkep yerine `#2f2d46`–`#4a4560` ailesi kullanılır. Hedef-çatı ve hedef-Montmartre'deki çizgi kalitesi esas alınır: net kontur, eşit aralıklı ince paralel tarama, düz ton alanları.
+
+### H2.2 Mimari kart farkları (yalnız değişen/eklenen satırlar; gerisi §2v2-H.2)
+| Madde | Değer |
+|---|---|
+| Makas | Biçim §2v2-H.2 aynen. **Düz iki eğik kol, kemer/eğri yok, tek dikmeli Polonceau, ters "W".** Çizim kalınlıkları H2.3. Düğüm noktalarında (dikme ayağı, mahya, saçak) **döküm düğüm plakası**: kolun 1.6 katı çapında daire ya da yuvarlatılmış üçgen, düz koyu. Gravürde makası "demir" okutan şey budur |
+| Kolon | **Dökme demir, yuvarlak gövde**, ø 0.6 m. **Başlık:** üstte kare abaküs plakası (0.9 × 0.15 m), altında **basık yastık** (echinus, 0.25 m), altında boyun halkası (0.08 m). Toplam başlık 1.2 m. Başlığın üstünde, makas ayağını taşıyan **tek eğri konsol** (duvara doğru çeyrek daire, yarıçap 1.0 m) var. Kaide: kare plint 0.8 × 0.4 m. Yiv, yaprak, perçin yok. [G, **doğrulanmalı**: dönem demiryolu halelerinde yaygın dor tipi döküm başlık; Renaud halesinin kendi kolonu doğrulanmadı] |
+| Cam şerit | §2v2-H.2 aynen (kolun %30–70'i). Alttan bakıldığı için **açık düz ton**. Yalnız iki kenar çizgisi var (aşık). Çıta ızgarası yok |
+| Opak çatı | Alt yüzde **boyuna aşıklar** (2.5 m aralık [G]). Çizimde bunlar **tarama işlevi görür**: H2.4 |
+| Asılı ikinci zarf (atölye) **[yeni öğe]** | Sol yarıda, makas Z 60–70 arasındaki orta çekmeden tek halatla asılı **sarkık, yarı inik zarf**. X −22, Z 65, h 15–24.4 (8–9 m sarkık kumaş, en 4 m). Verniklenen ya da kuruyan balon [A E3.3 orta: atölye + çatıya asma; tek halat, biçim G]. Sepet, ağ ve halka yok (atölye hâli). Hikâyede işlevi var: "burası balon atölyesi" sorusunu tek imgeyle cevaplar ve Niépce/Daguerre'yi "fabrikadan çıkan iki balon" yapar |
+| Niépce asma halatı | Zarf tepesi (0, 10, 0) → Z 0 makasının orta çekmesi (h 24.4). Kadraj dışında (çizilmez). Zarf tepesi 10.0 m, saçak 23 m, çekme 24.4 m ⇒ **13 m açıklık**. Yan duvara 8.9 m ✓. **Zarf haleye sığar** |
+| Daguerre | **X 9.4 → 8.4** (H2.0). Zarf sağ duvara 0.5 m kalır ✓. Tepe 10.0 m, Z 40 makasına asılı ✓ |
+
+### H2.3 Makas, kolon, cam: çizim ölçüleri (dekor px = cs 1.0; cs 1.45'te ×1.45 büyür)
+| Makas | z (m) | px/m | **Kol (arbalétrier)** 0.6 m [T kalın] | **Dikme** 0.35 m | **Çekme çubuğu** (gerçek ≈ 0.05 → çizim 0.12 m) | Düğüm plakası ø | Kolon gövde / başlık boyu / abaküs eni |
+|---|---|---|---|---|---|---|---|
+| Z 40 | 43.4 | 34.6 | **21** | 12 | **4** | 34 | 21 / 41 / 31 |
+| Z 50 | 53.4 | 28.1 | **17** | 10 | 3 | 27 | 17 / 34 / 25 |
+| Z 60 | 63.4 | 23.7 | **14** | 8 | 3 | 22 | 14 / 28 / 21 |
+| Z 70 | 73.4 | 20.4 | **12** | 7 | 3 | 19 | 12 / 25 / 18 |
+| Z 80 (ağız) | 83.4 | 18.0 | **11** | 6 | 3 | 18 | 11 / 22 / 16 |
+- **Alt sınırlar (her cs'de, ekran px):** kol ≥ 8, dikme ≥ 6, çekme ≥ 3, kolon ≥ 10. 360'ta kol 3.7–7 px, dikme 2–4, çekme ≥ 1 px. Eleştirmenin ölçütü (kol ≥ 6 @1080, çekme 360'ta seçilir) karşılanır.
+- **Kolun çizimi (gravür "demir lama"):** gövde `#4a4560` düz. **Alt kenar** (kameraya bakan, gölgede) 2 px `#2f2d46` kontur. **Üst kenar** 1.5 px `#9a92ae` ışık çizgisi: gökten yansıma, yalnız Z 60–80. Z 70–80 dikmelerinin sol kenarında 2 px `#f0c4a8` kenar ışığı var (§2v2-H.3: ağızdan giren güneş). Çekme çubuğu tek çizgi `#2f2d46`. Kolun %10'undan ince elemana kontur verilmez.
+- **Kolon:** gövde `#4a4560`. Sol kenarda 2 px `#f0c4a8` kenar ışığı var (yalnız ışık sınırının altında). Sağ yarıda 2 düşey tarama çizgisi `#2f2d46` 2 px, aralık 5. Başlık katmanları ayrı tonda: abaküs `#5a5278`, yastık `#4a4560`, alt kenarında 1.5 px `#9a92ae` ışık. Konsol eğrisi 1 dolu şekil, iç kenarı 1.5 px ışık. Kaide düz `#4a4560`, zemine temas gölgesi `#8f8aa8`.
+- **Cam şerit:** `#cdc6d0`, ağza yakın son bölme `#dccfcf`, paneller ±2 L\* (seed 181, §2v2-H.7). Kenar çizgileri 2.5 px `#7a7394`. **Cam üstünde tarama yok**: gravürde kâğıt beyazının karşılığı burası, kontrast buradan doğar.
+
+### H2.4 Tarama haritası (yalnız bu yerlerde; açı ve yön sabit, seed sabit, kaynamaz)
+| Yer | Yön | Çizgi / aralık (dekor px) | Renk (zemin tonu üstünde) | Neden |
+|---|---|---|---|---|
+| **Opak çatı alt yüzü** (iki eğim, cam şeridin dışı) | **Boyuna**: her çizgi VP (540, 900)'e yakınsar (aşık yönü). Çatıdaki aşıkların kendisi | 2.5 px, ekranda **sabit 10 px aralık** (dekor koordinatında; cs ile birlikte büyür) | `#5a5278` / zemin `#6d6384` (ΔL ≈ 7) | Gravürde çatı tonu böyle verilir. Makaslara dik değil, onlarla tek kez kesişir: **kafes oluşmaz**. Düşük kontrast doku verir, tel okutmaz |
+| Sağ saçak dibi şeridi (duvar–çatı köşesi) | aynı boyuna yön | 2.5 px, 6 px aralık, 40 px şerit | `#2f2d46` | en derin gölge (§2v2-H.7 H3) |
+| Sağ duvar, ışık sınırının üstü | 78° | 2 px, 7 px aralık, 30 px şerit | `#5a5278` | net gölge kenarı (§2v2-H.7 H6) |
+| Kolon gölge yarısı | düşey | 2 px, 5 px | `#2f2d46` | yuvarlak gövde |
+| Niépce zarfı terminatör bandı (H2.5) | 78° | 2.5 px, 7 px | `#4d4a6e` | tasarım §14.2 |
+| Sarkık zarf kıvrımları | kıvrım boyunca (düşey) | 2 px, 3–5 çizgi/kıvrım | `#4d4a6e` | kumaşın ağırlığı |
+| Sepet, sandık, torba | §2v2.9 aynen; sepet ön yüzü **yatay hasır sıraları** (eleştiri #5, motion) | — | — | — |
+- **Tarama olmayan yerler:** cam, gök (ağız), döşeme (yalnız stipple), ışıklı duvar bandı, figürler (H2.8 dışında). Toplam taramalı alan kadrajın ≤ %25'i (gravür yoğunluğu, gürültü değil).
+- **Çapraz tarama:** yalnız sağ üst köşedeki duvar–çatı birleşiminde, ≤ 60 × 60 px (§2v2-H.7 aynen).
+
+### H2.5 Niépce zarfı f168: konum ve çizim (KRİTİK #1)
+Zarf ø 6.6 m, merkez (0, 6.7, 0), alt kutup h 3.4, boğaz h 2.9–3.4 (ø 0.5), halka h 2.6 (§2v2.4). Kamera zarfın 2.4 m altında, 3.4 m önünde. Zarf fiziksel olarak **kameranın üstünde bir tavan** gibi durur. Kadraja yalnız **arka-alt kenarı** girer (bakış ufkun 29.4° üstünde, kadraj üst kenarı 31°). Hesap (dekor y, cs 1):
+| Öğe | Dekor | **Ekran (cs 1, cy +160)** | Çizim |
+|---|---|---|---|
+| Zarf alt sınır yayı (siluet) | en alt (510, 56); y 0'da x 184–833; y −100'de x −17–1028; y −160'ta x −109–1117 | en alt **(510, 216)**; üst kenarda kadrajı iki yandan taşar | üstte kadrajı dolduran **ters kubbe** |
+| Işık hilali | yayın alt kenarı boyunca, en 40 px (ortada) → 15 px (yanlarda) | y 176–216 (orta) | `#e6c9b4` + vernik çizgisi `#ecd9c2` 2 px. Gerekçe: yayın arka-alt yüzü ağza dönük, n·L = +0.25, güneş ağızdan girer (giriş h 22.2 ≤ 23 ✓). Fiziksel, abartı değil |
+| Terminatör bandı | hilalin üstünde 24 px | | `#c9b0ac` + 78° tarama `#4d4a6e` 2.5 px / 7 |
+| Gölge gövde | bandın üstü → kadraj üstü | y 0–150 | `#8f8aa8` |
+| Ağ | 10 meridyen, boğazdan dışa ışınsal; 1 paralel (h 4.5) yayın 40 px üstünde, yaya koşut | | gölgede `#4e4560` 2.5 px, hilalde `#a88f86`. Göz ≥ 60 px ✓ |
+| Boğaz (appendix) | x 386–606, y 62 → üst (kumaş tüp, ø 0.5 m ≈ 220 px) | x 386–606, y 222 → 0 | gölge `#8f8aa8`, 3 düşey kıvrım `#4d4a6e` 2 px, ağız kenarı 3 px koyu. Zarfın önünde durur |
+| Halka | (297–694, 86–277) elips | (297–694, **246–437**) | §2v2-H aynen, halatlar halkadan zarf ağına (yukarı-dışa) |
+| Askı halatları (halka → zarf ağı) | halkadan yayın üstüne, ışınsal | | `#b59e84` 2.5 px, sol kenar `#f0c4a8` 1 px. **Artık boşta bitmez:** her biri ağın bir düğümüne bağlanır |
+- **Örtme sırası:** zarf en öndeki büyük katmandır. Makasları (Z ≥ 40) örter. Makaslar yalnız yayın altında ve yanlarında görünür. Bu derinliği kurar (gravürde ön plan koyu kütle).
+- **cy 0'da (f194 sonrası):** yay y 0–56'ya çıkar, hilal kadraj üstünde ince bir şerit olarak kalır (y 16–56). Boğaz, halka ve halatlar görünür. Zarf "üstte" diye okunur, çünkü f168–194 arası kurulmuştur (süreklilik: kurulum → karşılık).
+- **f250 (cs 1.45, cy −210):** zarf kadraj dışında. Yalnız halatlar var. Doğru.
+- **Okunurluk:** ters kubbe 1080 × 216 px (%11 boy). 360'ta 360 × 72 px. Ağ ışınları ve hilal "balonun altı" okutur, çünkü sağda tam küre olarak Daguerre görünür: **aynı nesnenin iki görünüşü yan yana**, izleyici eşleştirir.
+
+### H2.6 Asılı sarkık zarf (atölye) — ekran
+| Öğe | Dekor (cs 1) | Çizim |
+|---|---|---|
+| Asma noktası | (55, 387) Z 60–70 orta çekmesi | tek halat 2 px `#b59e84`, çekmeye düğüm |
+| Kumaş | x 11–99, y 387–593. Sarkık, 4–5 düşey kıvrım. Alt ucu toplanmış, düzensiz (seed 183) | gölge `#8f8aa8`, kıvrım taraması H2.4. **Işık sınırı y 494** (h 19.5: altı ağızdan güneş alır, `#e6c9b4` sol yarıda + `#c9b0ac` sağ yarıda) |
+| Konum kontrolü | Dagron başı (≈ 128, 637) ile 44 px boşluk ✓. Alın camının ve ağzın parlak tonunun önünde: koyu–açık ayrışma ✓. Sol 80 px pay: arka plan öğesi, bilgi taşımaz | |
+
+### H2.7 Katman sırası (arkadan öne; §2v2-H.7'ye eklenen/değişen satırlar)
+| # | Katman | Değişiklik |
+|---|---|---|
+| H3 | Opak çatı altı | + boyuna tarama (H2.4) |
+| H4 | Cam şerit | kenar 2.5 px (1.5 yerine) |
+| H5 | Makaslar Z 80 → 40 | ölçüler H2.3, düğüm plakası, ışık çizgisi |
+| H5b **[yeni]** | Sarkık zarf + asma halatı | H2.6. Z 65: makas Z 60'ın önünde, Z 70'in arkasında |
+| H6 | Sağ duvar + kolonlar | kolon başlığı + konsol + kaide (H2.2/H2.3) |
+| H8 | Daguerre | X 8.4 (H2.0) |
+| H9a **[yeni, H9'un en önü]** | **Niépce zarfı + boğaz + ağ + halka-üstü halatlar** | H2.5. Yükleyicilerin ve sandığın **önünde değil**: zarf h ≥ 2.9'da, figürler ve sandık onun altında kalır. Çizim sırası: makaslar < zarf < halka < sandık (iniş yolu zarfın altından) |
+- **Kod:** `Balon {durum: "dolu", gorunus: "alt"}`: aynı `Balon.tsx`. Yeni bir küre çizimi yok. Siluet tanjant konisinin izdüşümüyle çizilir (sabit elips değil; formül §2v2-H ile aynı pinhole). `PolonceauMakas {minPx: {kol 8, dikme 6, cekme 3}, plaka: true}`, `HaleKolon {baslik: "dor", konsol: true}` [yeni ad, `HaleDuvar` içinde], `HaleCati {tarama: "boyuna", aralik: 10}`, `SarkikZarf {seed 183}` [yeni, `Balon` kumaş paletinden].
+
+### H2.8 Figür dili notu (motion — `SabahFigur.tsx`; tasarımcı onayı gerekir, aşağı bkz.)
+Eleştiri #2: manken/robot. Gravür figürü "düz leke" değil, **kontur + iç çizgi + gölge tarafında kısa tarama** ile kurulur. Öneriler:
+| Konu | Öneri |
+|---|---|
+| Omuz | Kas yumrusu lobları **kaldırılır**. 1870 paltosu **düşük, eğimli omuz**, vatkasız. Omuz hattı boyundan 15–20° aşağı iner |
+| Kol | **İki parça, dirsekli**: üst kol 0.30 m, ön kol 0.27 m. Dirsek açısı 15–110° arası. **Hiçbir zaman ters bükülmez**: dirsek gövdeden dışa ve aşağı bakar. Kol dirsekte 1.1× hafif genişler (kumaş birikir). Ağır yük kaldıran kolda dirsek 70–100°, omuz yükselir, gövde 5–8° geri yaslanır. "Z" düz çizgiler yok, eklem noktası yuvarlatılmış |
+| Başlık (çeşitlilik, aynı kadrajda tekrar yok) | **Silindir** (haut-de-forme: tepe 0.16 m, hafif içbükey gövde, kenar 0.30 m, kenar uçları hafif kalkık): orta sınıf, Daguerre sepetindeki biri, P03'te 1 kişi. **Alçak yuvarlak tepeli fötr / melon** (tepe 0.12 m, kubbe): 1–2 kişi [G: melon Fransa'da 1870'te yaygınlaşıyor, doğrulanmalı. Alternatif: geniş kenarlı yumuşak fötr]. **Kasket** (yumuşak tepe 0.27 m en + kısa siper 0.06 m): işçiler, yükleyiciler. **Denizci beresi** (yassı, siperliksiz): 1 yükleyici, [A: Godard'ın denizcileri]. Ponpon **çizilmez** (kırmızı yasağı, tasarım §14.4). Kepi çizilmez (üniforma okutur). Kadınlarda şal/başörtüsü |
+| Yaka ve giysi | Palto/redingot: diz boyu, belde hafif daralma, **etek yırtmacı** (arkadan bakışta tek düşey çizgi), dik ya da devrik yaka (boyunda 2–3 px açık üçgen boşluk ya da koyu yaka çizgisi). İşçi: **bol "blouse"** (önlük gömlek, kalça boyu, belde toplanmış) ya da kısa ceket (vareuse). Dagron: §3.2 iki ton + sepya manşet, başlığı **silindir** önerisi (tasarımcıya) |
+| Gravür çizimi | Dolgu `#45405a` (kompars). **Kontur** 2.5 px, dolgunun %55 koyusu (`#2a2638`). **İç çizgi** (palto önü, yaka, cep kapağı, kol ağzı, etek yırtmacı) 1.5–2 px `#2a2638`. **Gölge tarafında tarama** (kontrajurda gövdenin sağ üçte biri) 78°, 2 px, 6 px aralık, `#2f2d46`, yalnız ≥ 120 px boylu figürde. Sol/üst kenar ışığı `#f0c4a8` 2 px (§2v2.10). 64 px'lik uzak siluetlerde (Daguerre dibi) yalnız siluet + başlık; iç çizgi ve tarama yok |
+| Yüz | Yine yok (tasarım §3.0). Kulak ve ense çizgisi yok, şapka altında saç kütlesi 1 ton koyu |
+- **Tasarım çelişkisi (gerekçeli):** tasarım §3.0 "şapka/üniforma/aksesuar yok" diyor. Eleştirmen #2 ve benim §2v2.19 açık soru 5 aynı yönde. Gerekçe: 1870 kalabalığında başı açık erkek az görülür [G]. Başlık, yüz olmadan dönemi ve sınıfı okutan **tek** siluet öğesidir. Üniforma okutmayan dört tip seçildi. **Tasarımcı §3.0'ı günceller** (sahibi o). Bu not yalnız öneri ve ölçüdür.
+
+### H2.9 Yönetmen için kamera tablosu (P06b; json sahibi yönetmen) — §2v2-H.10'un P06b satırının yerine
+| Plan | kare | cs | cx | cy | Not |
+|---|---|---|---|---|---|
+| **P06b** | 168 / 172 / 214 / 250 / 287 | 1.0 / 1.0 / 1.2 / 1.45 / 1.45 | 0 / 0 / 0 / 0 / 0 | **+160** / +160 / −100 / −210 / −210 | f168–172 tutuş: zarf, halka, makaslar, ağız. **f172–214 tek ve sürekli iniş (inout).** Kamera sandığın inişini izler (sandık f170–190 dekor 355 → 876, ekranda ≈ 515 → 880). Orta noktada durma yok. Sonrası §2v2-H.10 aynen |
+- Ek parametre: `balon_kuresi: {cizim: "alt", hilal: true}`, `ikinci_balon.X 8.4` → küre (850, 687), sepet (850, 937), asma halatı (850, 563)→(827, 129); `sarkik_zarf: {X −22, Z 65, seed 183}`.
+- **Ekranda doğrulama:** f168: zarf yayı en alt (510, 216), halka y 246–437, Z 40 sağ saçak (958, 300), ağız mahyası (297, 448). **Kontrol karesi f168'e ek olarak f230 (biniş teması) ve şerit f200–260** (eleştiri #2/#5, teknisyen).
+- **Yazı bandı:** f168–200 üst bant (240–400) halka ile çakışır. P06'nın ekran yazısı f160'ta bittiği için çakışma yok. Bu aralığa yazı konmaz (yönetmen bilsin).
+- **Katalog sınırı:** `sinirlar.json` MONTMARTRE `yukleme` cy üst sınırı +50 → **+170** (motion günceller; şablon kamera aralığı `cy [-250, 450]` zaten içerir).
+
+---
+
+## 2v2-G2. HAVADAN PARİS v2 — P07 A `gok` + `arka: "hale"` (tur-11, GEÇERLİ; §2v2.7 ve §2v2-H.6'nın şehir/yön/ışık satırlarının yerine)
+
+### G2.0 Teşhis → karar (tek cümle)
+- **Teşhis:** kamera GGD'ye (161°) bakıyordu. O yönde Paris'in imzası yok: demiryolu sahaları, hastane, sanayi varoşu var. Şehir eş kutulardan ızgara olarak (plan görünüşü) çizildi. Ama kamera 13–15° aşağı bakar ve bu açıda şehir **üst üste binen çatı sıraları** olarak görünür, kutu planı olarak değil. Gölgeler yanal güneşten kameraya doğru düşüyordu ve dev lekeler bıraktı.
+- **Karar:** P07 A'da kamera **geri döner, kuzeybatıya (310°) bakar**: balonlar şehirden çıkarken arkalarında kalan Paris. Kadrajda şunlar var:
+  - Altta istasyon sahasının ray yelpazesi, haleye yakınsar.
+  - Ortada halenin cam çatısı. Mahyası şehre doğru bir ok gibi uzanır.
+  - Sağda Seine geniş, parlak bir şerit olarak girer, merkeze doğru incelir.
+  - Şeridin ucunda Notre-Dame (iki kule + flèche), solda ufukta Panthéon kubbesi.
+  - Hepsinin arasında mansard/baca çatı denizi.
+  - Güneş kameranın arkasında: şehir **önden ışık alır**. Sıcak cepheler var, gölgeler binaların arkasına düşer. Dev gölge lekesi kalmaz.
+- **Hikâye gerekçesi:** "şehir altta kayıp gider" (§2v2-H.1) en güçlü haliyle budur: **geride kalan Paris**, uzaklaşır ve küçülür. Kuşatma, ayrılış, imza. 360'ta "Paris" okumasını üç imza birlikte taşır: Seine şeridi, Notre-Dame silueti ve baca dizili çatı denizi.
+
+### G2.1 Referans tarifi (dönem kuşbakışı dili; gözle kontrol edilmedi, [G])
+- **Alfred Guesdon**, *Voyage aérien en France* / *Paris vu en ballon* türü kuşbakışı litografiler (1840–50'ler) [G: seri adı ve yılları doğrulanmalı]. Bilinen dili:
+  - Eğik kuşbakışı, ufuk kadrajın üstünde.
+  - Çatılar üst üste binen yüzler halinde çizilir. Gölge yüzlerinde ince paralel tarama, ışık yüzleri kâğıt rengi.
+  - Sokaklar, sıralar arasında dar açık yarık olarak görünür.
+  - Nehir parlak bir şerittir: yatay çizgiler, kıyı duvarı, köprü kemerleri.
+  - Anıtlar ölçeğinden biraz büyük ve net çizilir (veduta geleneği).
+  - Uzaklık, çizginin incelmesi ve seyrelmesiyle verilir.
+  - İki tonlu litografi: siyah + tek ten rengi, ışıkta kazınmış beyaz.
+- Charles Fichot'nun 1860–70'ler Paris kuşbakışı panoramaları aynı dili taşır [G].
+- **Bizim çevirimiz:** "iki ton + tarama" mantığı her yüzeye uygulanır: ışık tonu, gölge tonu, gölgede tarama. Palet tasarım §14.2 (havadan satırları) + P10a gök satırları (güneşe sırt). Tarama yalnız yakın ve orta bantta. Uzak bant düz buğu.
+
+### G2.2 Mimari ve coğrafya kartı: 12 Kasım 1870, ≈ 09:05, Gare d'Orléans'ın GD'sunda, 80→160 m irtifa
+| Madde | Değer |
+|---|---|
+| Kamera | Yön **310°** (KB). Yer noktası f0'da hale ağzının ≈ 330 m GD'su, ray sahası üstü [G]. Yükseklik H (çatı düzlemi 20 m'nin üstünde) **60 → 140 m**, §2v2.7 aynen. **Geri sürüklenme** f0 → f158: 0 → 60 m (rüzgâr GD'ya, [A: Niépce Marne yönüne indi; hız T]). Ufuk y 900, F 1500, cs 0.9 → 1.0 (aynen) |
+| Hale (yukarıdan) | Eksen kameraya göre ≈ +6° (KB–GD, Seine'e koşut [G, **doğrulanmalı**]). Ağız (GD ucu) D 330, baş (KB ucu, Place Valhubert) D 635. En 51.2, saçak 23, mahya 35. Görünen: **ağız alnı** (camlı üçgen + 4 kayıt, kameraya bakar, ışıkta) + **iki çatı eğimi** + **cam şeritler** + mahya. Kemer yok, saat yok, yazı yok |
+| Ray sahası | Alt kenardan (D 110 @ H60; D 212 @ H140) ağza yakınsayan demet. Alt kenarda X −70…+90 (≈ 20 hat, 8 m aralık), ağızda X 10…46 (9 hat, 4.5 m). Hatlar birleşerek azalır, makas birleşimleri çizilmez. **Duran 4 vagonluk dizi** (sol ikinci hat, D 150–230): kuşatmada trenler çıkamıyordu [A: Paris kuşatma altında; vagonların varlığı G]. "Her nesnenin yeri anlamlı": duran tren = kapalı şehir |
+| Saha yapıları (sol alt) | 2 uzun beşik çatılı yük hangarı, X −60…−110, D 130–320, saçak 8 / mahya 12 m. Alın kameraya bakar: **düz başlıklı büyük kapı açıklığı** (kemer yok) [G] |
+| Rıhtım (sağ alt) | Quai d'Austerlitz: yol + tek sıra çıplak ağaç (X 60–95) + rıhtım duvarı [G] |
+| **Seine** | Sol kıyı X 95 (D ≤ 684). Pont d'Austerlitz D 684. Ötesinde orta hat X 166 → 265 (D 2000), sonra sola kıvrılır (X 200 @ D 2600). En ≈ 150 m [G]. Su yüzü kıyıdan ≈ 6 m aşağıda (çizimde yok sayılır) |
+| Pont d'Austerlitz | D 684, nehre dik. **Taş, 5 basık (segmental) kemer** [G, **doğrulanmalı**: 1854–55 yeniden yapım]. Kameraya bakan yüzü ışıkta. Kemer gözleri koyu basık yay. **Sivri ya da yarım daire kemer değil** |
+| Île Saint-Louis | D 1650–2050, X 240–260 ekseninde nehri ikiye böler. Koyu, düşük blok kümesi, ışıklı ön cephe çizgisi. Pont de Sully **yok** (1876 [G]). Passerelle de Constantine (1838–72 [G]) çizilmez (çok ince) |
+| **Notre-Dame** | X 172, D 2182 (Cité doğu ucu). **GD'dan, eksene yakın bakış:** önde yarım daire **apsis** + 3–4 kısa uçan payanda tiki, uzun çatı sırtı, ortada **flèche** (96 m; Viollet-le-Duc 1859 ⇒ 1870'te **var**, CLAUDE.md "1786–1860'lar" aralığının dışında), arkada **iki kare kule yan yana, düz tepe** (69 m). Kule tepesinde sivri yok |
+| **Panthéon** | X −572, D 1892 (ufukta sol). Kubbe + sütunlu kasnak + fener + **küçük haç** (1851–71 kilise dönemi, §1v3.11 / E3.4) |
+| Jardin des Plantes | Sol orta, X −420…−20, D 700–1200: çıplak kış ağaçları kütlesi [G] |
+| Bulvar yarığı | Hale başından sola giden ağaçlı yarık (Bd de l'Hôpital yönü [G]): (634, 1088) → sol kenar (0, 1127) @ H60. 40 m [T, kaldırım dahil], iki sıra ağaç noktası. **Adsız** |
+| Çatı denizi | Hale ile Jardin arası, Jardin'in ötesi (Quartier latin), nehrin sağ kıyısı (Marais/Arsenal). Haussmann sonrası + eski karışık. G2.4 |
+| Kadraj dışı (kontrol) | Colonne de Juillet (+45°), Val-de-Grâce (−36°), Salpêtrière kubbesi (−45°), Montmartre (+29°): **çizilmez**. Eyfel, Sacré-Cœur, Viaduc d'Austerlitz (1904), Gare de Lyon saat kulesi (1900): **yok** (dönem) |
+| Konum kaynakları | Anıt ve nehir konumları genel harita bilgisinden, 48.84°K enleminde yerel metreye çevrildi (betik). **Tümü [G, doğrulanmalı]**, ±100 m. Bu hata ekranda ±20–40 px eder. Okumayı değiştirmez |
+- **§0.7'deki "anıt silueti çizilmez" kararı P07 A için kalkar.** O kararın üç gerekçesi vardı: (1) görünürlük doğrulanmamıştı, (2) Notre-Dame flèche'i 1870'te var, (3) kamera yönü hesaplanmamıştı. Bu kartta (2) doğru yazıldı, (3) hesaplandı, (1) [G] olarak işaretli kaldı. Görünürlük geometrik olarak açık: hepsi kamera yükseklik bandının altında, ufkun üstüne taşmaz.
+
+### G2.3 Ekran anahtarları (dekor px = cs 1; ekran = (dekor − (540, 960))·cs + (540, 960))
+| Öğe | H 60 (f0) | H 100 (f79) | H 140 (f158) |
+|---|---|---|---|
+| Ray demeti alt kenar | x −415…1767 (tam en) | −210…1504 | −78…1334 |
+| Hale ağzı: sol saçak / mahya / sağ saçak | (551, 1159) / (667, 1105) / (784, 1159) | (550, 1304) / (657, 1254) / (763, 1304) | (549, 1427) / (648, 1381) / (746, 1427) |
+| Hale ağzı tabanı | y 1264 | 1400 | 1515 |
+| Hale başı mahyası | (686, 1006) | (680, 1092) | (674, 1170) |
+| Seine sol kıyı D 300 / D 500 | (1015, 1300) / (825, 1140) | (972, 1445) / (809, 1240) | (936, 1567) / (794, 1329) |
+| Pont d'Austerlitz (nehir ortası; kıyılar x 740 / 1069 @ H60) | (904, 1075) | (889, 1152) | (875, 1223) |
+| Seine orta D 1000 / 1500 / 2000 / 2600 | (825, 1020) / (767, 980) / (739, 960) / (655, 946) | (816, 1075) / (763, 1018) / (736, 989) / (654, 968) | (809, 1126) / (758, 1054) / (733, 1017) / (653, 990) |
+| Île Saint-Louis doğu / batı ucu | (776, 973) / (716, 959) | (772, 1007) / (713, 987) | (768, 1040) / (711, 1014) |
+| **Notre-Dame** taban / kule tepesi / flèche (×1.8) | x 658: 955 / 870 / 836, en 49 | 981 / 897 / 864 | 1007 / 924 / 891 |
+| **Panthéon** taban / kubbe tepesi (×1.8) | x 87: 963 / 845, kubbe en 46 | x 94: 994 / 877 | x 100: 1023 / 908 |
+| Jardin des Plantes ön kenar / merkez | (283, 1071) / (304, 1022) | (293, 1147) / (311, 1078) | (303, 1216) / (318, 1131) |
+| Bulvar yarığı (hale başı → sol kenar) | (634, 1088) → (0, 1127) | (630, 1169) → (0, 1222) | (626, 1243) → (0, 1310) |
+| Şehrin uzak sonu (D 6000) | y 920 | 930 | 940 |
+- **Anıt büyütmesi ×1.8 [T, veduta geleneği]:** gerçek ölçekte Notre-Dame kuleleri 47 px boy, 8 px en (360'ta 3 px) ve okunmaz. ×1.8 ile kule 85 px, cephe 49 px olur. 360'ta 28 × 16 px: "iki kule + iğne" okunur. Büyütme anıtın **taban noktası** etrafında yapılır. Konumu değişmez, buğu tonu kendi D'sinden gelir. Bu, CLAUDE.md "hafif abartı" sınırını zorlar. **Kullanıcı onayı** (orkestra toplar). Reddedilirse ×1.4: kule 66 px, 360'ta 22 px, sınırda.
+- **Balonlarla çakışma kontrolü (f0, ekran cs 0.9):** Panthéon (132, 856–963), Niépce zarfının (x 121–527, alt ≈ 885) altında ve halatların solunda ✓. Notre-Dame (ekran ≈ 646, 848–957), Daguerre zarfının alt yayının (x 646'da y ≤ 695) altında, sepet halatlarının (x 765–810) solunda ✓. Darbe (712, 687) gökte ✓. Yazı bandı 240–400 boş gök ✓.
+
+### G2.4 Çatı denizi: "satır" dili (maket blok yerine) — `HavadanSehir {mod: "satir"}`
+Kamera 13–15° aşağı baktığı için her **sıra** (bir sokağa bakan bina dizisi) şöyle görünür: ön cephe şeridi, onun üstünde mansard alt eğimi (brisis), en üstte baca dizileri. Arkadaki sıra öndekinin üstünden yalnız çatı ve üst katlarıyla görünür (hedef-çatı'daki çatı denizinin havadan sürümü).
+| Parametre | Değer (seed 173) |
+|---|---|
+| Sıra derinlik aralığı | 50–110 m (lognormal). Aynı aralık art arda en çok 2 kez |
+| Bina | cephe 16–22 m (5–7 kat, komşu farkı ≥ 1 kat). %15 alçak eski bina (2–3 kat, eğik çatı). %5 köşe yükseltisi (+1 kat) |
+| Parsel eni | 8–20 m. Her parsel sınırında **baca kümesi** (souche): 0.8 × 3–5 m, cephe üstünden 2 m yüksek, tepesinde 3–8 **külah** (mitron) tiki |
+| Çatı | %60 mansard: brisis 70° + terrasson. %40 eğik (35°). Mahya hattı düzensiz (parsel başına ±1.5 m) |
+| Sokak yarıkları | Bakış eksenine koşut sokaklar 80–150 m aralıkla, VP (540, 900)'e yakınsar. **Sol duvar gölgede** (sağa bakan yüz, n·L −0.10), **sağ duvar ışıkta**. Dik sokaklar arka sıranın gölgesinde (koyu düz şerit, sokak eni kadar, leke değil) |
+| Yakın bant D 300–700 | Cephe şeridinde pencere tikleri (1.2 × 2 m, 3 m ritim, `#7a7394`, ≥ 3 px). Brisiste lucarne sırası (3 m ritim). Baca kümesinde ışık yüzü + külah tikleri. Kontur 2.5 px (D < 400), 1.5 px (400–700) |
+| Orta bant D 700–1500 | Pencere tiki yok. Sıra = cephe şeridi (ışık) + çatı şeridi (mansard tonu) + baca tikleri (2 px). Kontur yok. Sokak yarıkları yalnız çizgi |
+| Uzak bant D > 1500 | Kesik yatay ton şeritleri (ışık / çatı / gölge, 2–6 px). Buğu α = min(.80, D/1900) → `#dccfcf`. Baca tiki yok. Anıtlar bu bandın önünde, iki ton |
+| Ağaçlar | Bulvar ve rıhtım: 9–12 m aralık, %10 boşluk. **Kış: çıplak.** Nokta değil, **küçük dallı fırça lekesi** (5–9 px, `#6a6280` dal + `#9a92ae` taç sisi). B turundaki "top" okuması olmasın |
+| Gölge boyu | Yalnız binaların **arkasına** düşer (G2.5). Görünen gölge en çok sokak eni kadardır. Uzun lavanta leke yok (eleştiri #3 ✓) |
+
+### G2.5 Işık: tek vektör `ISIK_YON.havaGeri` (P07 A)
+- Güneş 136°/12°, kamera 310° ⇒ güneş **arkada, 6° solda**. Işığa doğru (X sağ, h yukarı, Z ileri) **(−0.102, 0.208, −0.973)**. Zemin gölgesi: h yüksekliğindeki nokta **(X + 0.49·h, D + 4.68·h)**'ye düşer (ileri, hafif sağa). `GolgeSeridi` bu formülü kullanır.
+- **Işıkta:** kameraya bakan her yüz (cepheler, hale alnı, köprü yüzü, Notre-Dame apsisi), yukarı bakanlar, sola bakanlar (sıyırma). **Gölgede:** sağa bakan yan yüzler (ince şerit), kameradan uzağa bakan çatı eğimleri (çoğu görünmez), sıraların arkası.
+- **Balonlar:** önden ışık ⇒ gerçek terminatör sağ-alt kenarda çok ince bir hilaldir. Çizimde **sol-üst %65 ışık yüzü + sağ-alt %35 terminatör ve gölge** [T, tasarım §14.1'deki %35 abartısının ters yönü; amaç kürenin hacmi ve terminatör taraması]. Tarama 78° aynen. Kenar ışığı `#f0c4a8` artık **sol kenar + üst kenar** (ışık arkadan-solda); kontrajur dili P07 B'de kalır.
+- **Gök (güneşe sırt):** tasarım §14.2 P10a satırı: tepe/üst/orta `#6f86ad` / `#8fa3c0` / `#a9b7cc`, alt **`#c9c8d2`**, ufuk **`#dcd0d0`**. **Sol ışıma yok** (güneş arkada). Yeni hex yok.
+- **Sıcaklık:** önden ışık alan krem cepheler alt yarıyı ısıtır. Kabul eşiği sıcak piksel **≥ %22** (gökü soğuk). Tutmazsa ilk ayar: orta bant ışık şeritlerinin oranı %40 → %55.
+
+### G2.6 Katman tablosu (arkadan öne; hex'ler tasarım §14.2 — yeni hex yok)
+| # | Katman | D (m) | Işık / gölge / çizgi hex | Kontur | Tarama | Kod |
+|---|---|---|---|---|---|---|
+| G0 | Gök (5 basamak, ufuk 900 ölçekli, ışıma yok) | ∞ | G2.5 | — | litografi geçişi (§2v2.12) | `GokLitografi {isima: false}` |
+| G1 | Uzak buğu + şehrin uzak bandı | > 1500 | `#dccfcf` / `#b0a6c0` şeritler | yok | yok | `HavadanSehir {mod: satir, bant: uzak}` |
+| G2 | **Panthéon, Notre-Dame** (×1.8) | 1900–2200 | gövde `#b0a6c0`, ışık yüzü (apsis, kubbe sol yarısı) `#d8b8a4`, gölge yanı (sağ) `#9a92ae`; çatı/kule tepesi `#8d85a6` | **1.5 px `#8d85a6`, yalnız anıtlar** [T: okunurluk istisnası] | yok | `Anit {tip: "notreDame1870"\|"pantheon1870", olcek 1.8}` [yeni] |
+| G3 | Seine uzak (D > 1200) + Île Saint-Louis | 1200–2600 | su `#dccfcf` (en parlak, gök yansıması), ada `#9a92ae` + ışık cephe çizgisi `#d8b8a4` 2 px | yok | yok | `Nehir` [yeni] |
+| G4 | Orta bant çatı denizi + Jardin des Plantes | 700–1500 | cephe `#e0c8b2` / mansard `#a89fbe` / gölge `#9a92ae` / baca `#8a6458`–`#4f4347`; Jardin taç sisi `#9a92ae` + dal `#6a6280` | yok | yok | `HavadanSehir {bant: orta}` |
+| G5 | Seine yakın + Pont d'Austerlitz + rıhtım | 300–1200 | su `#cdc6d0` + **yatay su çizgileri** `#9a92ae`. Köprü yüzü `#e0c8b2`, kemer gözü `#7a7394`, korkuluk üstü `#f0c4a8` 1 px. Rıhtım duvarı `#7a7394` 2.5 px, üstü `#e0c8b2` | 2.5 px (köprü, D < 700) | **su çizgileri**: yatay, 2 px (D < 700) → 1.5 px, aralık 7 → 4 px uzağa doğru, her çizgi 30–90 px kesik (sürekli çit değil), kıyıya yakın sık | `Nehir` |
+| G6 | Yakın bant çatı denizi + bulvar yarığı | 300–700 | G4 tonları + pencere/lucarne `#7a7394`, külah `#8a6458` | 2.5 / 1.5 px | **sağ yan yüzler** 78°, 2 px, 6 px aralık, `#5a5278`; sokak yarığının sol duvarı aynı | `HavadanSehir {bant: yakin}` |
+| G7 | **Hale** (çatı + cam + alın) | 330–635 | sol eğim (ışık, sıyırma) `#a89fbe`, sağ eğim `#7a7394`, cam şerit `#cdc6d0` / ağza yakın `#dccfcf`, alın camı `#dccfcf` + 4 kayıt `#4a4560` 2.5 px, alın makası `#4a4560` 4 px | 2.5 px `#4a4560` | sağ eğimde boyuna (mahyaya koşut) 2 px / 6 px `#5a5278` | `HaleUstten` [yeni; `HaleCati` cam oranlarıyla] |
+| G8 | Saha hangarları + duran vagonlar | 130–320 | alın `#e0c8b2`, kapı `#5a5278`, çatı ışık `#a89fbe` / gölge `#7a7394`; vagon gövde `#7a7394`, ön yüz `#e0c8b2`, tavan `#a89fbe` | 3 px | hangarın sağ eğimi + vagonların sağ yanı 78°, 2.5 px / 7 px `#5a5278` | `HavadanSehir {yapi: "hangar"}` |
+| G9 | Ray sahası + ray demeti | 110–330 | zemin `#c8ae98`, balast `#d3bba6`, ray `#6a6280` (D < 250 çift ray, 2.5 px; ötesi tek çizgi 2 px). Rıhtım ağaçları G2.4 | — | yok (rayların kendisi ritmik paralel çizgidir) | `RayDemeti {yon: "agiza", hat: [20, 9], seed 182}` |
+| G10 | Balonlar, sepetler, darbe, duman | 22–34 | §14.2; ışık G2.5 | §2v2.9 | terminatör 78° | `Balon {isik: havaGeri}` |
+| G11 | Kâğıt + gren | ekran | `ArsivKatmani` litografi | | | mevcut |
+- **Tarama sözleşmesi:** tek açı 78° (gölge yüzleri), su için ayrı **yatay** çizgi. Su çizgisi tarama değil, malzeme işaretidir; gravürde suyun standart dili budur. D > 700'de gölge taraması yok. Taramalı alan kadrajın ≤ %20'si. Çapraz tarama yok.
+- **360 px:** Seine yakın şerit 330–375 px en (360'ta 110+) ✓. Su çizgisi 2 → 0.7 px ✓. Köprü 22–34 px boy ✓ (7–11). Hale alnı 233 × 159 px (78 × 53) ✓. Ray çifti 2.5 → 0.8 px ✓. Notre-Dame 49 × 119 (16 × 40) ✓. Panthéon 46 × 118 ✓. Baca tiki 2 px (0.7) sınırda: tek tek değil dizi olarak okunur.
+
+### G2.7 Darbe ve duman (yalnız yön değişiklikleri; çizim motion #4)
+- **Darbe** dekor (720, 675), f108: aynen.
+- **Duman kaynağı:** dekor **(1150, 700)**. Sağ kenarın dışı, **gök yüksekliğinde**, ufkun 200 px üstü. Eski kaynak (1150, 935) bu yönde ufkun üstünde **Paris'in sağ kıyısına** denk gelir ve "şehirden ateş edildi" okutur. Yeni kaynak kadraj dışından, yatay ve hafif yükselen bir iz verir. Sağ = KD, Prusya hatları yönü [G, mantık]. Yerin ve zamanın sıkıştırıldığı açık [T] (§2v2-H.6 aynen).
+- Daguerre düşüşü x ≈ 790'dan aşağı iner. Hale ve nehrin önünden geçer. Notre-Dame'ı örtmez ✓.
+
+### G2.8 Dönem/şehir doğruluğu (P07 A)
+| İddia | Etiket |
+|---|---|
+| Niépce/Daguerre Gare d'Orléans'tan, sabah | [A E3.1] |
+| Hale Seine'e koşut, KB–GD ekseni, baş Place Valhubert'te | [G, **doğrulanmalı**] (aşağı açık soru 1) |
+| Notre-Dame flèche'i 1870'te var (1859) | [G, yüksek güven; araştırmacı teyit etsin] |
+| Panthéon fenerinde haç (1851–71) | [A E3.4, orta] |
+| Pont d'Austerlitz taş, 5 basık kemer (1854–55) | [G, doğrulanmalı] |
+| Pont de Sully yok (1876); Viaduc d'Austerlitz yok (1904) | [G, yüksek güven] |
+| Anıt ve nehir konumları (±100 m) | [G, harita genel bilgisi] |
+| Kuşatmada duran vagonlar | [G, mantık: hatlar kesik] |
+| Çatı denizi karışık (Haussmann mansardı + eski evler) | [G, dönem genel] |
+| Anıtlar ×1.8 | [T, veduta; kullanıcı onayı] |
+
+### G2.9 Yönetmen için kamera tablosu (P07 A; json sahibi yönetmen) — §2v2-H.10'un P07 A satırının yerine
+| Plan | Görünüm | kare | cs | cx | cy | Ek parametre (yeni/değişen **kalın**) | Ekranda doğrulama |
+|---|---|---|---|---|---|---|---|
+| **P07 A** | gok | 0 / 100 / 158 | 0.9 / 0.95 / 1.0 | 0 | 0 | `arka: "hale"`, **`yon: 310`**, **`isik: "havaGeri"`**, `ufuk_y 900`, `gok_kamera_H` [60, 140], **`geri_surukleme_m` [0, 60]**, **`ray_demeti: {yon: "agiza", agiz_D 330}`**, **`nehir: true`**, **`anitlar: {olcek: 1.8}`**, `yatay_bulvar: false`; Niépce (300, 650), Daguerre (790, 620 → 560 f106); darbe dekor (720, 675); **`duman_cizgisi.kaynak` dekor (1150, 700)** | f0: hale ağzı mahyası (667, 1105), Notre-Dame tabanı (658, 955), Seine sol kıyı D300 (1015, 1300); f158: hale mahyası (648, 1381). Kamera değerleri **değişmez**; değişen dünyanın yönü ve ışığı |
+| **P07 B** | sepet | §2v2-H.10 aynen | | | | `isik: "haleSabah"` (kamera GGD'ye bakar, Dagron kontrajur) | A → B kesmesi **ters açı** (≈ 150°). Daguerre A'da sağda, B'de solda. Dagron'un başı **sola** döner (§2v2.8 zaten öyle) ✓ |
+- **Not (yönetmen + senarist):** A'nın yönü değişti, kesme ters açı oldu. 180° kuralı açısından A'da balonların kameraya göre konumu B'nin karşı açısıdır. Bakış yönü (Dagron sola, Daguerre solda) tutarlı. Sahne-plani'deki "balonlar doğuya = sağa": A'da doğu sağ-arka. Pusulayı okutan öğe yok. Eleştirmenin "doğu yönü çelişkisi" A'da artık "sağ = KD, duman sağdan" olarak tutarlı.
+
+### G2.10 Açık sorular (orkestra toplar)
+1. **Araştırmacıya — hale ekseni:** genel bilgime göre Gare d'Austerlitz grande halle'si Quai d'Austerlitz'e (Seine'e) koşut, ekseni ≈ 135–140° (KB–GD) [G]. Bu kart buna dayanıyor. §2v2-H.2 ise P06b için 161° varsayıyor (güneşi kadraj dışına itmek için). Eksen 136° ise P06b'de güneş ağzın tam ortasında olur. Öneri: P06b 161°'de kalır [T, iki plan aynı karede yön ipucu taşımaz, izleyici görmez]. Bilinçli tutarsızlık olarak kayıt. Doğrulanırsa kullanıcıya sorulur.
+2. **Kullanıcıya:** anıt büyütmesi ×1.8 (G2.3). Varsayılan: ×1.8.
+3. **Kullanıcıya:** P07 A'nın yönü ters (Paris'e geri bakış; A→B ters açı kesmesi). Alternatif eski yön (GGD) olur: imza yok, yalnız çatı dili. Varsayılan: yeni yön.
+4. **Tasarımcıya:** figür başlıkları (H2.8) → §3.0 güncellemesi. G2.5'teki balon ışık oranı (%65 önden ışık) ve P07 A gökünün P10a satırını kullanması (yeni hex yok).
+5. **Motion'a:** `Anit` siluetleri için ölçü kartı G2.2'de. Notre-Dame: cephe 40 m, kule 69 m, flèche 96 m, nef sırtı 43 m, apsis yarım daire; Panthéon: kubbe tepesi 83 m, kasnak sütunlu. İkisi de ekranda 2 ton + 1.5 px kontur. Kare kare iç detay yok (pencere, gül pencere çizilmez).
 
 ---
 
