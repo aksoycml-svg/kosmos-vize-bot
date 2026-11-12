@@ -54,7 +54,7 @@ export const CATI_PALET: Record<Saat, CatiPalet> = {
     gok: ["#2e3157", "#504e79", "#7d6a95", "#bd8a8e", "#e6b5a0"], hale: "#f0cdb4",
     k1: "#a98aa0", kubbe: "#8d7899", kubbeG: "#7d6a95", k2: "#8d7899", k3: "#6d6384", k3Kontur: "#4e4a68",
     tas: "#6f6684", tasG: "#4e4a68", tarama: "#2f2d46", brisis: "#6d6384", brisisG: "#3e3b5c", terrasson: "#8a7d99",
-    cinko: "#5b5878", cinkoIsik: "#a37d80", cinkoG: "#3e3b5c", kenet: "#3e3b5c", kenetIsik: "#e6b5a0", golge: "#3e3b5c", golgeA: 0.82, sicakBant: "#edbca3",
+    cinko: "#5b5878", cinkoIsik: "#b99291", cinkoG: "#3e3b5c", kenet: "#3e3b5c", kenetIsik: "#e6b5a0", golge: "#3e3b5c", golgeA: 0.82, sicakBant: "#edbca3",
     baca: "#6f6684", bacaG: "#4e4a68", bacaBaslik: "#3e3b5c", kulah: "#d49f8d", kulahG: "#8a6458",
     pencere: "#f0d2b8", pencereHavuz: "#e6b5a0", pencereKaranlik: "#2f2d46", kasa: "#3a3550",
     ahsapIsik: "#b58a6c", ahsap: "#7e5a48", ahsapG: "#4a3844", damar: "#3a2c36", kumesCati: "#5c5a7a", aciklik: "#221a26", celik: "#3a3d48",
@@ -379,7 +379,7 @@ export const CatiSirasi: React.FC<{ D: Dolly; k: KameraDurum; S: SiraT; C: CatiP
     // TERRASSON üst yüzü (çinko, gök ışığı) + kenetler + arka sırt SICAK bandı (v4: dar parlak bant 0.5 m + geniş yansıma 2 m; L* 80 şeftali)
     pg(`t${bi}`, [[X0, kr, Z + bD], [X1, kr, Z + bD], [X1, sr, Z + SIRT_D], [X0, sr, Z + SIRT_D]], R.terrasson, true, undefined, kw * 0.7);
     if (sicak) {
-      const zg = Z + SIRT_D - 2.6, zs = Z + SIRT_D - 1.1;
+      const zg = Z + SIRT_D - 2.6, zs = Z + SIRT_D - 1.4;
       pg(`tg${bi}`, [[X0, hS(zg), zg], [X1, hS(zg), zg], [X1, sr, Z + SIRT_D], [X0, sr, Z + SIRT_D]], C.sirtParlama!, false, 0.3, 0);
       pg(`ts${bi}`, [[X0, hS(zs), zs], [X1, hS(zs), zs], [X1, sr, Z + SIRT_D], [X0, sr, Z + SIRT_D]], C.sirtParlama!, false, 0.88, 0);
     }
@@ -683,6 +683,13 @@ export const kumesCerceve = (K: KumesDunyaT) => {
   const egim = (K.sacak[1] - K.sacak[0]) / K.derin; // m/m (öne iner)
   const catiH = (bn: number) => K.sacak[0] - egim * bn; // bn < 0 içeri (arka)
   return { u, n, W, catiH, egim };
+};
+/** v4: kümes çatı levhasının (üst + alt düzlem, saçak çıkmalarıyla) ekran köşeleri — kalkışta kanat–saçak payı için */
+export const kumesCatiEkran = (D: Dolly, k: KameraDurum, K: KumesDunyaT): P[] => {
+  const { W, catiH } = kumesCerceve(K);
+  const tO = K.tasma[0], tY = K.tasma[1], dB = -K.derin, u = (b: number) => catiH(b) + 0.012;
+  const ust: V3[] = [W(-tY, tO, u(tO)), W(K.en + tY, tO, u(tO)), W(K.en + tY, dB - tY, u(dB - tY)), W(-tY, dB - tY, u(dB - tY))];
+  return [...ust, ...ust.map((q) => [q[0], q[1] - 0.04, q[2]] as V3)].map((q) => dunyaEkran(D, k, ...q)).filter((q): q is P => !!q);
 };
 export const KumesDunya: React.FC<{ D: Dolly; k: KameraDurum; K: KumesDunyaT; C: CatiPalet; seed: number; saat: Saat; kamera: V3; uid: string }> = ({ D, k, K, C, seed, saat, kamera, uid }) => {
   const { u, n, W, catiH } = kumesCerceve(K);

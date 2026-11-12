@@ -14,7 +14,7 @@ import { RenkKaydi } from "../../../doku/Tarama";
 import { KonturTitreme } from "../../../doku/KonturTitreme";
 import { DOKU_SEED } from "../../../doku/sabitler";
 import { KolEl, KISTIR_YEREL, EL_BOY_YEREL, elMatris } from "../../../rig/KolEl";
-import { cirpis, Guvercin, kusAyakEkran, KusPoz, KUS_POZ, kusYerlesim, pozKaris } from "../../props/paris/Guvercin";
+import { cirpis, Guvercin, kanatEkran, kilifOfset, kusAyakEkran, KusPoz, KUS_POZ, kusYerlesim, pozKaris } from "../../props/paris/Guvercin";
 import { Kilif, KILIF_DUGUM } from "../../props/paris/Kilif";
 import { SiluetFigur, SiluetKod, siluetBoy } from "../../props/paris/SiluetFigur";
 import type { P, Plan } from "../../tipler";
@@ -24,7 +24,7 @@ import { pchip } from "../galata/GalataTepe";
 import { DOLLY_CATI, Dolly, dunyaEkran, dunyaTaban, ekranPxm, katman, kameraDunya } from "./dolly";
 import {
   BacaDunya, BacaKumesiDunya, CATI_PALET, CatiDenizi, CatiSatir, CatiSirasi, CinkoTeras, sirasiBacalar, Duman, Flu, fluSigma, GokLitografi, golgeCokgen, golgeVektor, HaleParilti,
-  K1Sirt, k4Lucarne, k4LucarneBul, kirpCiz, KIRIK_Z, KUMES_V2, KumesDunya, kumesCerceve, kutuKose, OnCerceve, Saat, SIRALAR, tahtaUstEkran, V3, YEM_TEKNESI, YemTeknesi,
+  K1Sirt, k4Lucarne, k4LucarneBul, kirpCiz, KIRIK_Z, KUMES_V2, kumesCatiEkran, KumesDunya, kumesCerceve, kutuKose, OnCerceve, Saat, SIRALAR, tahtaUstEkran, V3, YEM_TEKNESI, YemTeknesi,
 } from "./catiDekor";
 
 const S = DOKU_SEED.parisCati;
@@ -68,8 +68,9 @@ const t01 = (p: number, a: number, b: number, e = INOUT) => interpolate(p, [a, b
 const yol3 = (kare: number[], pts: V3[], q: number): V3 => [0, 1, 2].map((i) => pchip(kare, pts.map((v) => v[i]), q)) as V3;
 // Kalkış kanadı sınırlı (mekanlar §1v2.4: kanca kadrajında kanat ucu y ≥ 230): yukarı vuruş dikey değil, geriye yatık + kısalmış
 // gövde 42° → 26°: kanca kadrajında baş üst yazı bandının (y 240–400) altında kalır (V2 f24 ölçümü: 42°'de baş y ≈ 330)
-const KALK_YUKARI: KusPoz = { ...KUS_POZ["kalkis-a"], govde: 26, kanatYon: -132, kanatBoy: 0.82 };
-const KALK_ASAGI: KusPoz = { ...KUS_POZ["kalkis-b"], govde: 26, kanatYon: 100, kanatBoy: 0.8 };
+// v4 (tur-7): kalkışta kuyruk yarı yelpaze (0.75) ve gövde ekseninde (0°) — tünek (0.12, −35°) → kalkış 24 karede kademeli
+const KALK_YUKARI: KusPoz = { ...KUS_POZ["kalkis-a"], govde: 26, kanatYon: -132, kanatBoy: 0.82, kuyruk: 0.75, kuyrukAci: 0 };
+const KALK_ASAGI: KusPoz = { ...KUS_POZ["kalkis-b"], govde: 26, kanatYon: 100, kanatBoy: 0.8, kuyruk: 0.75, kuyrukAci: 0 };
 const UCUS_YUKARI: KusPoz = { ...KUS_POZ["ucus-yukari"], kanatYon: -118, kanatBoy: 0.9 };
 const kusDurumu = (plan: Plan, p: number): KusDurum | null => {
   const K = kusPlani(plan);
@@ -83,7 +84,8 @@ const kusDurumu = (plan: Plan, p: number): KusDurum | null => {
     const t0 = K.kalkis.bas, t1 = K.kalkis.bit, t5 = K.cikis?.bit ?? t0 + 330, t4 = K.cikis?.bas ?? t5 - 55;
     if (p > t5) return null;
     const o = (t5 - t0) / 330, kare = [0, 24, 40, 60, 90, 140, 190, 240, 275, 330].map((f) => t0 + f * o);
-    const pts: V3[] = [K0, [-0.852, 0.712, 7.84], [-0.863, 0.738, 8.0], [-0.825, 0.995, 8.35], [-0.727, 1.27, 8.9], [-0.402, 1.927, 9.8], [0.335, 2.842, 10.8], [1.348, 3.511, 12.0], [3.183, 4.653, 13.5], [7.067, 8.696, 15.5]];
+    // v4: f24'te kameraya derinlik itmesi YOK (Z sabit 7.856; v3: 7.84) — kuş yerinde yükselir (2.5 cm, bacak itişi), sonra uzaklaşır
+    const pts: V3[] = [K0, [-0.853, 0.725, 7.856], [-0.86, 0.76, 8.0], [-0.825, 0.995, 8.35], [-0.727, 1.27, 8.9], [-0.402, 1.927, 9.8], [0.335, 2.842, 10.8], [1.348, 3.511, 12.0], [3.183, 4.653, 13.5], [7.067, 8.696, 15.5]];
     const q = Math.max(p, t0), t2 = t0 + 70 * o;
     const poz = (r: number): KusPoz => {
       if (r < t0) return T["tunek"];
@@ -93,6 +95,9 @@ const kusDurumu = (plan: Plan, p: number): KusDurum | null => {
       // f0: gövde/kuyruk tünek pozunda (P11 son kare kılıf açısı), kanat açılmaya başlamış (ilk kare hareketli)
       const ilk = { ...T["tunek"], kanat: 0.55, kanatYon: -120, kanatBoy: 0.75 };
       let z = pozKaris(ilk, kalk, t01(r, t0, t0 + 10));
+      // v4: gövde eğimi + kuyruk açılımı/açısı kanattan yavaş (24 kare) — kuyruk "bir anda yelpaze" olmaz, kılıf kademeli döner
+      const g = t01(r, t0, t0 + 24);
+      z = { ...z, govde: ilk.govde + (kalk.govde - ilk.govde) * g, kuyruk: ilk.kuyruk + (kalk.kuyruk - ilk.kuyruk) * g, kuyrukAci: ilk.kuyrukAci + (kalk.kuyrukAci - ilk.kuyrukAci) * g };
       z = pozKaris(z, ucus, t01(r, t1, t2));
       z = pozKaris(z, T["suzulme"], t01(r, t2, t2 + 26));
       if (r > t4 - 12) z = pozKaris(z, cirpis(T["ucus-yukari"], r, t0, T["ucus-yukari"], T["ucus-asagi"], 14), t01(r, t4 - 12, t4));
@@ -169,19 +174,24 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     const c = dunyaEkran(D, k, ...kus.kilif);
     if (!c) return null;
     const pxm = ekranPxm(D, k, dZ(kus.kilif[2])), olcek = pxm / 1000;
-    // kalkışta kanat tavanı (mekanlar §1v2.4: kanat ucu y ≥ 230, kamera değil kanat sınırlanır): yukarı bakan kanat kısalır (kısalma = kameraya dönük)
+    // v4 (tur-7): KALKIŞTA GÖVDE ÇAPALI — kılıf yolu tünek pozundaki gövde orijinini taşır; kuyruk açısı değişince gövde değil kılıf döner
+    // (v3'te kılıf sabit, gövde kılıfın etrafında dönüyordu → f0–f24 kuş ~70 px "zıplıyordu"). f0'da ofset 0 → döngü kilidi aynı.
+    if (kp.kalkis) { const a = kilifOfset(kus.poz), b = kilifOfset(KUS_POZ["tunek"]); c[0] += (a[0] - b[0]) * olcek; c[1] += (a[1] - b[1]) * olcek; }
+    // kalkışta kanat sınırları (kamera değil kanat kısalır = kameraya dönük kısalma): tavan y ≥ 240 (mekanlar §1v2.4), sağ x ≤ 1050,
+    // aşağı vuruş iniş tahtasının üstünde, v4: kümes saçağının alt kenarından ≥ 25 px aşağıda (V3 f24 "kanat çatıya çarptı" okuması)
     if (kp.kalkis && kus.poz.kanat > 0.3) {
-      const omuz = kusYerlesim(kus.poz, c, olcek).ekran([14, -28]), yukari = -Math.sin((kus.poz.kanatYon * Math.PI) / 180);
-      if (yukari > 0.05) kus.poz = { ...kus.poz, kanatBoy: Math.max(0.35, Math.min(kus.poz.kanatBoy, (omuz[1] - 240) / (300 * olcek * yukari))) };
-      // sağ kenar (v3, V2 f24 kusuru): ileri bakan kanat ucu x ≤ 1050 — yine kamera değil kanat kısalır (kameraya dönük kısalma)
-      const ileri = Math.cos((kus.poz.kanatYon * Math.PI) / 180);
-      if (ileri > 0.05) kus.poz = { ...kus.poz, kanatBoy: Math.max(0.35, Math.min(kus.poz.kanatBoy, (1050 - omuz[0]) / (300 * olcek * ileri))) };
-      // aşağı vuruş iniş tahtasının içinden geçmez: kanat ucu tahta üst yüzünün (ekranda) üstünde kalır, kuş tahtanın üstündeyken
-      const tp = tahtaUstEkran(D, k, KUMES_V2), asagi = Math.sin((kus.poz.kanatYon * Math.PI) / 180);
-      if (tp && asagi > 0.05) {
-        const xs = tp.map((q) => q[0]), ust = Math.min(...tp.map((q) => q[1]));
-        if (omuz[0] > Math.min(...xs) - 50 && omuz[0] < Math.max(...xs) + 50) kus.poz = { ...kus.poz, kanatBoy: Math.max(0.3, Math.min(kus.poz.kanatBoy, (ust - 8 - omuz[1]) / (300 * olcek * asagi))) };
-      }
+      const cati = kumesCatiEkran(D, k, KUMES_V2);
+      const catiX = cati.map((q) => q[0]), cx0 = Math.min(...catiX), cx1 = Math.max(...catiX);
+      // çatı levhası dışbükey zarfının x'teki alt sınırı
+      const altY = (x: number) => { let m = -1e9; for (let i = 0; i < cati.length; i++) for (let j = 0; j < cati.length; j++) { const A = cati[i], B = cati[j]; if ((A[0] - x) * (B[0] - x) <= 0 && A[0] !== B[0]) m = Math.max(m, A[1] + ((B[1] - A[1]) * (x - A[0])) / (B[0] - A[0])); } return m; };
+      const omuzY = kusYerlesim(kus.poz, c, olcek).ekran([14, -28])[1];
+      const sacakAltinda = cati.length >= 3 && omuzY > altY(Math.max(cx0, Math.min(cx1, kusYerlesim(kus.poz, c, olcek).ekran([14, -28])[0])));
+      const tp = tahtaUstEkran(D, k, KUMES_V2);
+      const tx0 = tp ? Math.min(...tp.map((q) => q[0])) - 50 : 0, tx1 = tp ? Math.max(...tp.map((q) => q[0])) + 50 : 0, tUst = tp ? Math.min(...tp.map((q) => q[1])) : 1e9;
+      const ihlal = (z: KusPoz) => kanatEkran(z, c, olcek).some(([x, y]) => y < 240 || x > 1050 || (sacakAltinda && x >= cx0 && x <= cx1 && y < altY(x) + 25) || (!!tp && x > tx0 && x < tx1 && y > tUst - 8 && omuzY < tUst));
+      let z = kus.poz;
+      for (let i = 0; i < 40 && z.kanatBoy > 0.3 && ihlal(z); i++) z = { ...z, kanatBoy: z.kanatBoy - 0.02 };
+      kus.poz = z;
     }
     const Y = kusYerlesim(kus.poz, c, olcek);
     const r = (Y.kilifAci * Math.PI) / 180;
@@ -217,7 +227,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const isikSerit = saat === "alacakaranlik" ? (() => {
     const xl = (Z: number) => KM.R[0] + 0.02 + oran * (Z - KM.R[1]), xr = (Z: number) => SAG_BACA.X0 + oran * (Z - SAG_BACA.Z);
     const Zf = KIRIK_Z - 0.5, Zn = 1.75;
-    const Zp = 6.3; // v4: parlak lob (güneşe yakın yarı) — V3 eleştirisi 2: teras ışık şeridi görünür, L* ≥ 75
+    const Zp = 6.0; // v4: parlak lob (güneşe yakın yarı) — V3 eleştirisi 2: teras ışık şeridi görünür, L* ≥ 75
     return { serit: kirpCiz(D, k, [[xl(Zf), 0, Zf], [xr(Zf), 0, Zf], [xr(Zn), 0, Zn], [xl(Zn), 0, Zn]]), parlak: kirpCiz(D, k, [[xl(Zf), 0, Zf], [xr(Zf), 0, Zf], [xr(Zp), 0, Zp], [xl(Zp), 0, Zp]]) };
   })() : null;
 

@@ -108,7 +108,9 @@ export const kusAyakEkran = (z: KusPoz, capa: P, olcek: number): P[] => {
 const GOVDE = "M 54 -48 C 88 -20 80 30 34 44 C 0 52 -44 40 -72 20 L -92 6 L -96 -8 C -70 -28 -30 -46 4 -48 C 24 -52 34 -62 42 -72 Z";
 const KARIN = "M 74 -4 C 68 26 36 44 2 48 C -30 48 -56 36 -72 20 L -62 32 C -30 52 14 54 46 40 C 64 30 76 14 74 -4 Z";
 // toplu kanat (14 nokta, açık kanatla aynı sıra: kök ön → uç → arka kenar → kök)
-const TOPLU: P[] = [[14, -36], [4, -40], [-30, -34], [-64, -22], [-96, -10], [-118, -2], [-112, 6], [-96, 10], [-70, 14], [-44, 16], [-14, 12], [8, 4], [22, -6], [24, -24]];
+// v4 (tur-7 "uçan/uçmayan farkı"): toplu kanat gerçek boyunda — uç kuyruk köküne kadar uzanır (hedef-kus), açık kanatla aynı alan/oran
+// (v3'te toplu kanat açık kanadın ~%45'i kadardı; açılınca kuş "büyüyor" gibi okunuyordu)
+const TOPLU: P[] = [[14, -36], [4, -40], [-30, -34], [-78, -22], [-128, -10], [-164, -2], [-155, 6], [-128, 10], [-88, 14], [-48, 16], [-14, 12], [8, 4], [22, -6], [24, -24]];
 // açık kanat, kanat çerçevesi (u eksen boyunca, v arka kenara)
 const ACIK_UV: P[] = [[0, -12], [40, -22], [110, -22], [190, -14], [262, -4], [300, 4], [292, 16], [268, 28], [236, 40], [196, 52], [144, 60], [90, 62], [40, 54], [6, 34]];
 const OMUZ: P = [14, -28];
@@ -137,6 +139,15 @@ const ks = (F: (s: number, t: number) => P, s0: number, s1: number, t0: number, 
   for (let i = 0; i <= n; i++) { const s = s0 + ((s1 - s0) * i) / n; ust.push(F(s, t0)); alt.push(F(s, t1)); }
   return [...ust, ...alt.reverse()];
 };
+// koyu kanat bandı: ön kenar düz (üstteki tüy sırasının altında kalır), arka kenar tüy uçları gibi yay yay (s adımı ds)
+const bantYol = (F: (s: number, t: number) => P, s0: number, s1: number, t0: number, t1: number, ds: number): string => {
+  const f = (p: P) => `${p[0].toFixed(2)} ${p[1].toFixed(2)}`;
+  let y = `M ${f(F(s0, t0))}`;
+  for (let i = 1; i <= 8; i++) y += ` L ${f(F(s0 + ((s1 - s0) * i) / 8, t0))}`;
+  y += ` L ${f(F(s1, t1))}`;
+  for (let s = s1; s > s0 + 1e-6; s -= ds) { const a = Math.max(s0, s - ds); y += ` Q ${f(F((s + a) / 2, t1 + 0.075))} ${f(F(a, t1))}`; }
+  return y + " Z";
+};
 /** tüy ayrıntısı (kanat dolgusunun üstüne, kanat konturunun altına): örtü pulları, iki koyu bant, ikincil ve birincil uçuş tüyleri */
 const KanatTuy: React.FC<{ q: P[]; kw: number; acik: number; uzak: boolean; nss: object }> = ({ q, kw, acik, uzak, nss }) => {
   const R = KUS_RENK, F = kanatF(q), f = (p: P) => `${p[0].toFixed(2)} ${p[1].toFixed(2)}`;
@@ -150,8 +161,9 @@ const KanatTuy: React.FC<{ q: P[]; kw: number; acik: number; uzak: boolean; nss:
   n.push(<path key="iki" d={d(ks(F, 0.02, 0.6, 0.66, 1))} fill={uzak ? R.golge : R.kanatG} />);
   // iki koyu kanat bandı (güvercinin tür işareti; hedef-kus)
   if (!uzak) {
-    n.push(<path key="b1" d={d(ks(F, 0.16, 0.6, 0.44, 0.54))} fill={R.bant} />);
-    n.push(<path key="b2" d={d(ks(F, 0.12, 0.6, 0.68, 0.78))} fill={R.bant} />);
+    // v4: bantlar tüy uçlarını izler — arka kenar tüy başına bir yay (dikdörtgen "yarık" değil)
+    n.push(<path key="b1" d={bantYol(F, 0.16, 0.6, 0.44, 0.53, 0.06)} fill={R.bant} />);
+    n.push(<path key="b2" d={bantYol(F, 0.12, 0.6, 0.67, 0.76, 0.065)} fill={R.bant} />);
     // örtü tüyü pulları: 3 sıra, uçları arka kenara bakan küçük yaylar
     [0.14, 0.26, 0.37].forEach((t, r) => {
       const ds = 0.07 + r * 0.01;
@@ -177,9 +189,24 @@ const KanatTuy: React.FC<{ q: P[]; kw: number; acik: number; uzak: boolean; nss:
   return <g>{n}</g>;
 };
 
+/** kanat dış konturunun ekran noktaları (yakın + uzak; kalkışta saçak/kenar/tahta sınırı için) */
+export const kanatEkran = (z: KusPoz, capa: P, olcek: number): P[] => {
+  if (z.kanat <= 0.3) return [];
+  const Y = kusYerlesim(z, capa, olcek);
+  return [...kanatNoktalari(z, false), ...kanatNoktalari(z, true)].map(Y.ekran);
+};
+/** kılıfın gövde orijinine göre ekran-mm vektörü (gövde eğimi uygulanmış): gövde çapalı yerleşim için */
+export const kilifOfset = (z: KusPoz): P => rot(kilifYerel(z).p, -z.govde);
+
+// v4 gravür dili (V3 eleştirisi 3): dekorla aynı tek yön tarama (ekran 72°, ~7 px aralık, ~2 px çizgi), gölge bölgelerinde
+const TARAMA_ACI = 72, TARAMA_PX = 7, TARAMA_KALIN = 2;
+// gövde gölge bölgesi (gövde çerçevesi): karın altı + arka-alt; ışık arkadan-üstten (kontrajur) → alt yarı taranır
+const GOVDE_GOLGE = "M 84 -6 C 78 28 44 50 2 54 C -36 54 -70 34 -100 2 L -110 80 L 110 80 Z";
+const BOYUN = "M 35 -60 C 50 -56 63 -43 67 -15 C 55 -18 44 -28 34 -40 Z";
+
 export const Guvercin: React.FC<{
   poz: KusPoz; capa: P; olcek: number;          // olcek = ekran px / mm
-  kenar?: { renk: string; dx: number; dy: number }; // kenar ışığı (alacakaranlık: sağ/üst)
+  kenar?: { renk: string; dx: number; dy: number }; // kenar ışığı (alacakaranlık: sağ/üst) — v4: konturun İÇİNE oturan hilal
   kilif?: { parilti?: number | null; coz?: number; kapak?: number; serit?: number; ipUcEkran?: P } | null;
   kontur?: number;
 }> = ({ poz: z, capa, olcek, kenar, kilif, kontur }) => {
@@ -197,16 +224,13 @@ export const Guvercin: React.FC<{
     const u: P = [Math.cos(rad(a)), Math.sin(rad(a))], n: P = [-u[1], u[0]];
     const k0 = add(KUYRUK_KOK, mul(n, (i - 4) * 1.5));
     const P_ = (a: number, b: number) => add(add(k0, mul(u, a)), mul(n, b));
-    // tüy: kökte dar, uçta yuvarlak (Q eğrisi), köşesiz
     const yol = `M ${P_(0, 7).join(" ")} L ${P_(L - 16, 13).join(" ")} Q ${P_(L + 6, 11).join(" ")} ${P_(L + 2, 0).join(" ")} Q ${P_(L + 6, -11).join(" ")} ${P_(L - 16, -13).join(" ")} L ${P_(0, -7).join(" ")} Z`;
-    // uçta koyu bant (gerçek güvercin kuyruk işareti): L−30 … L−12, tüy genişliğinde, uç gri kalır
     const gen = (a: number) => 7 + (6 * Math.min(a, L - 16)) / (L - 16);
     const bant = [P_(L - 30, gen(L - 30)), P_(L - 12, 12.6), P_(L - 12, -12.6), P_(L - 30, -gen(L - 30))];
     const sap = [P_(6, 0), P_(L - 4, 0)];
     return { i, yol, bant, sap };
   });
   const kanatYol = (q: P[]) => yumusak(q, 0.85);
-  // arka kenarı 10 % dışa taşıyan kopya (kırpma için): tüy uçları kenardan çıkıp görünsün, ön kenar aynı
   const kanatGenis = (q: P[]) => { const F = kanatF(q); return q.map((p, i) => (i >= 6 && i <= 13 ? F((13 - i) / 7, 1.12) : p)); };
   const yakin = kanatNoktalari(z, false), uzak = kanatNoktalari(z, true);
   const acikMi = z.kanat > 0.3;
@@ -218,66 +242,108 @@ export const Guvercin: React.FC<{
       <path d={d([b.ayak, add(b.ayak, [-9, 1])], false)} fill="none" stroke={renk} strokeWidth={Math.max(1.4, 3 * olcek)} style={nss} />
     </g>
   ) : null;
-  const kus = (tek?: string) => {
-    const f = (c: string) => tek ?? c;
-    const st = tek ? { stroke: "none" } : { stroke: R.kontur, strokeWidth: kw, ...nss };
+  // tek yön tarama çizgileri (gövde çerçevesinde; ekranda hep 72° — gövde eğimi geri alınır), yalnız kuş yeterince büyükken (≥ ~250 px)
+  const taramaVar = olcek > 0.75;
+  const tarama = (anahtar: string, alfa: number) => {
+    if (!taramaVar) return null;
+    const a = TARAMA_ACI + z.govde, ar = TARAMA_PX / olcek, u: P = [Math.cos(rad(a)), Math.sin(rad(a))], nn: P = [-u[1], u[0]];
+    const L: React.ReactNode[] = [];
+    for (let i = -Math.ceil(260 / ar); i <= Math.ceil(260 / ar); i++) {
+      const m = mul(nn, i * ar), p0 = add(m, mul(u, -300)), p1 = add(m, mul(u, 300));
+      L.push(<line key={`${anahtar}${i}`} x1={p0[0]} y1={p0[1]} x2={p1[0]} y2={p1[1]} stroke={R.kontur} strokeWidth={TARAMA_KALIN} strokeOpacity={alfa} style={nss} />);
+    }
+    return <g>{L}</g>;
+  };
+  // mod: "normal" | renk (tek renk siluet) | "cizgi" (yalnız kontur — kenar ışığı hilalinin üstünde konturu geri çizer)
+  const kus = (tek?: string, cizgi = false) => {
+    const f = (c: string) => (cizgi ? "none" : tek ?? c);
+    const duz = !!tek || cizgi;
+    const st = cizgi ? { stroke: R.kontur, strokeWidth: kw, ...nss } : tek ? { stroke: "none" } : { stroke: R.kontur, strokeWidth: kw, ...nss };
     return (
       <g>
         {acikMi && <path d={kanatYol(uzak)} fill={f(R.golge)} {...st} />}
-        {acikMi && !tek && <g clipPath={`url(#${uid}ku)`}><KanatTuy q={uzak} kw={kw} acik={z.kanat} uzak nss={nss} /></g>}
-        {acikMi && !tek && <path d={kanatYol(uzak)} fill="none" stroke={R.kontur} strokeWidth={kw} style={nss} />}
-        {!tek && bacak(bacaklar[0], "#4e4247")}
+        {acikMi && !duz && <g clipPath={`url(#${uid}ku)`}><KanatTuy q={uzak} kw={kw} acik={z.kanat} uzak nss={nss} />{tarama("tu", 0.3)}</g>}
+        {acikMi && !duz && <path d={kanatYol(uzak)} fill="none" stroke={R.kontur} strokeWidth={kw} style={nss} />}
+        {!duz && bacak(bacaklar[0], "#4e4247")}
         {tuyler.map((t) => (
           <g key={t.i}>
             <path d={t.yol} fill={f(t.i === 4 ? R.ust : R.kanat)} {...st} />
-            {!tek && <path d={d(t.bant)} fill={R.uc} />}
-            {!tek && <path d={d(t.sap, false)} stroke={R.kontur} strokeWidth={Math.max(1, kw * 0.45)} opacity={0.55} fill="none" style={nss} />}
-            {!tek && <path d={t.yol} fill="none" stroke={R.kontur} strokeWidth={kw} style={nss} />}
+            {!duz && <path d={d(t.bant)} fill={R.uc} />}
+            {!duz && <path d={d(t.sap, false)} stroke={R.kontur} strokeWidth={Math.max(1, kw * 0.45)} opacity={0.55} fill="none" style={nss} />}
+            {!duz && <path d={t.yol} fill="none" stroke={R.kontur} strokeWidth={kw} style={nss} />}
           </g>
         ))}
         <path d={GOVDE} fill={f(R.ust)} {...st} />
-        {!tek && <path d={KARIN} fill={R.karin} />}
-        {/* göğüs ön yüzü gölgede (kontrajur): gövdenin ön-alt hilali */}
-        {!tek && <path d="M 66 -24 C 78 2 66 32 34 44 C 52 26 62 4 58 -20 Z" fill={R.golge} opacity={0.7} />}
+        {!duz && <path d={KARIN} fill={R.karin} />}
+        {!duz && <path d="M 66 -24 C 78 2 66 32 34 44 C 52 26 62 4 58 -20 Z" fill={R.golge} opacity={0.7} />}
+        {/* v4: gövde alt yarısına tek yön tarama (dekorla aynı açı ve kalınlık) */}
+        {!duz && taramaVar && <g clipPath={`url(#${uid}gv)`}><g clipPath={`url(#${uid}gg)`}>{tarama("tg", 0.42)}</g></g>}
         <g transform={`rotate(${z.bas} 50 -56)`}>
           <circle cx={66} cy={-70} r={25} fill={f(R.ust)} {...st} />
-          {/* boyun köprüsü: baş ile gövde arasındaki iki kontur çizgisini örter (kesintisiz boyun; hedef-kus) */}
-          {!tek && <ellipse cx={52} cy={-57} rx={13} ry={12} fill={R.ust} />}
+          {!duz && <ellipse cx={52} cy={-57} rx={13} ry={12} fill={R.ust} />}
         </g>
-        {/* boyun yanardönerliği: iki düz leke (yeşil üstte, mor altta), gradyan yok */}
-        {!tek && <path d="M 36 -58 C 48 -54 60 -44 64 -32 C 52 -34 42 -42 34 -50 Z" fill={R.boyunYesil} />}
-        {!tek && <path d="M 38 -44 C 50 -40 62 -30 66 -16 C 54 -20 44 -28 36 -36 Z" fill={R.boyunMor} />}
+        {/* v4: boyun yanardönerliği tek yama, yeşil → mor yumuşak geçiş, uçları gövde rengine erir (iki düz leke değil) */}
+        {!duz && <path d={BOYUN} fill={`url(#${uid}by)`} />}
         <g transform={`rotate(${z.bas} 50 -56)`}>
-          {!tek && <path d="M 88 -75 C 96 -74 104 -71 109 -68 C 104 -66 96 -64 88 -63 Z" fill={R.gaga} stroke={R.kontur} strokeWidth={Math.max(1, kw * 0.6)} style={nss} />}
-          {!tek && <ellipse cx={90} cy={-74} rx={5.5} ry={3.4} fill={R.cere} />}
-          {!tek && <circle cx={76} cy={-75} r={6.6} fill={R.gozHalka} />}
-          {!tek && <circle cx={76} cy={-75} r={4.1} fill={R.goz} />}
-          {!tek && <circle cx={77.3} cy={-76.4} r={1.2} fill={R.gozIsik} />}
+          {!duz && <path d="M 88 -75 C 96 -74 104 -71 109 -68 C 104 -66 96 -64 88 -63 Z" fill={R.gaga} stroke={R.kontur} strokeWidth={Math.max(1, kw * 0.6)} style={nss} />}
+          {!duz && <ellipse cx={90} cy={-74} rx={5.5} ry={3.4} fill={R.cere} />}
+          {!duz && <circle cx={76} cy={-75} r={6.6} fill={R.gozHalka} />}
+          {!duz && <circle cx={76} cy={-75} r={4.1} fill={R.goz} />}
+          {!duz && <circle cx={77.3} cy={-76.4} r={1.2} fill={R.gozIsik} />}
         </g>
-        {!tek && bacak(bacaklar[1], R.ayak)}
-        <path d={kanatYol(yakin)} fill={f(R.kanat)} {...(tek ? st : { stroke: "none" })} />
-        {!tek && <g clipPath={`url(#${uid}ky)`}><KanatTuy q={yakin} kw={kw} acik={z.kanat} uzak={false} nss={nss} /></g>}
-        {!tek && <path d={kanatYol(yakin)} fill="none" stroke={R.kontur} strokeWidth={kw} style={nss} />}
+        {!duz && bacak(bacaklar[1], R.ayak)}
+        <path d={kanatYol(yakin)} fill={f(R.kanat)} {...(duz ? st : { stroke: "none" })} />
+        {!duz && <g clipPath={`url(#${uid}ky)`}><KanatTuy q={yakin} kw={kw} acik={z.kanat} uzak={false} nss={nss} />{taramaVar && <g clipPath={`url(#${uid}kt)`}>{tarama("tk", 0.34)}</g>}</g>}
+        {!duz && <path d={kanatYol(yakin)} fill="none" stroke={R.kontur} strokeWidth={kw} style={nss} />}
       </g>
     );
   };
-  // kılıf (kuyruk orta tüyünde)
   const kl = kilifYerel(z);
   const kilifTr = `translate(${capa[0]} ${capa[1]}) rotate(${Y.kilifAci}) scale(${olcek})`;
   const ipUc: P | undefined = kilif?.ipUcEkran ? (() => { const dx = kilif.ipUcEkran[0] - capa[0], dy = kilif.ipUcEkran[1] - capa[1]; return mul(rot([dx, dy], -Y.kilifAci), 1 / olcek); })() : undefined;
   void kl;
+  // yakın kanadın gölge yarısı (arka kenar, ikincil tüyler) — tarama bölgesi
+  const FY = kanatF(yakin), kanatGolge = d(ks(FY, 0, 1, 0.5, 1.15, 10));
   return (
     <g>
-      {kenar && <g transform={`translate(${kenar.dx} ${kenar.dy})`}><g transform={tr}>{kus(kenar.renk)}</g></g>}
       <g transform={tr}>
         <defs>
-          {/* tüy ayrıntısı kanat biçiminin içinde kalır; arka kenar tüy uçları için hafif genişletilmiş (1.07–1.09 t) */}
           <clipPath id={`${uid}ky`}><path d={kanatYol(kanatGenis(yakin))} /></clipPath>
           <clipPath id={`${uid}ku`}><path d={kanatYol(kanatGenis(uzak))} /></clipPath>
+          <clipPath id={`${uid}kt`}><path d={kanatGolge} /></clipPath>
+          <clipPath id={`${uid}gv`}><path d={GOVDE} /></clipPath>
+          <clipPath id={`${uid}gg`}><path d={GOVDE_GOLGE} /></clipPath>
+          <linearGradient id={`${uid}by`} gradientUnits="userSpaceOnUse" x1={36} y1={-60} x2={66} y2={-16}>
+            <stop offset={0} stopColor={R.boyunYesil} stopOpacity={0} />
+            <stop offset={0.22} stopColor={R.boyunYesil} stopOpacity={0.95} />
+            <stop offset={0.55} stopColor={karisim(R.boyunYesil, R.boyunMor)} stopOpacity={0.95} />
+            <stop offset={0.82} stopColor={R.boyunMor} stopOpacity={0.9} />
+            <stop offset={1} stopColor={R.boyunMor} stopOpacity={0} />
+          </linearGradient>
         </defs>
         {kus()}
       </g>
+      {/* v4 kenar ışığı: siluetin ışık yanındaki iç hilali (siluet − ışığın tersine kaydırılmış siluet); kontur üstüne geri çizilir → baskı kayması yok */}
+      {kenar && (
+        <g>
+          <defs>
+            <mask id={`${uid}km`} maskUnits="userSpaceOnUse" x={-3000} y={-3000} width={7000} height={8000}>
+              <g transform={tr}>{kus("#ffffff")}</g>
+              <g transform={`translate(${-kenar.dx} ${-kenar.dy})`}><g transform={tr}>{kus("#000000")}</g></g>
+            </mask>
+          </defs>
+          <g mask={`url(#${uid}km)`}>
+            <g transform={tr}>{kus(kenar.renk)}</g>
+            <g transform={tr}>{kus(undefined, true)}</g>
+          </g>
+        </g>
+      )}
       {kilif && <g transform={kilifTr}><Kilif olcek={olcek} parilti={kilif.parilti} coz={kilif.coz} kapak={kilif.kapak} serit={kilif.serit} ipUc={ipUc} /></g>}
     </g>
   );
+};
+// iki hex rengin ortası (boyun geçişi)
+const karisim = (a: string, b: string) => {
+  const h = (c: string, i: number) => parseInt(c.slice(1 + 2 * i, 3 + 2 * i), 16);
+  return "#" + [0, 1, 2].map((i) => Math.round((h(a, i) + h(b, i)) / 2).toString(16).padStart(2, "0")).join("");
 };
