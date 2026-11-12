@@ -297,3 +297,10 @@
   - Render kanıtı yok: `tunek-yon-ara` (P04 ve DAGRON-INSERT kafes için), P11 iniş (f176–262; P11 HARITA paris-cevre/H5 kurulmadığından yalnız devam kısmı render edilebilir).
   - P10 cx önerisi yönetmene. `animasyonlar` alanları kanonik `kus.*` alanlarına taşınabilir (ikisi de çalışıyor).
   - Araştırmacıya: Panthéon görünürlüğü ve kamera yönü; çatı güvercinliği biçimi.
+
+## elestirmen · 2026-11-12 · Kurulum A kalibrasyonu (PARIS-CATI + güvercin + kılıf + kümes + siluet)
+- Ne yaptım: A turu kalibrasyon karelerini (P01 f0/f24/f370 + 360 + güvenli, P01 şerit, P10a cx −380/−100 f48/f56, P11 son) mekanlar §0.7/§1, motion raporu ve tur-1..3 notlarına göre taradım; renkleri Lab'da örnekledim (ton dahil), detay kırpmaları aldım. Karar DÜZELTMEYLE GEÇER, puan 6.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/A/elestiri.md (yeni), bolumler/paris-kusatmasi/katki-raporu.md (ek).
+- Aldığım kararlar ve gerekçeleri: P10a cx için −380 de −100 de reddedildi, **−180** önerildi (−100'de gaga yan marjda, ayaklar IG sütununda). Kümes kapağının ön yüze alınması kabul edildi (geometri doğru, açıklıkları kapatmıyor). Kılıf imza tekliği geçti.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: ölü alan (P01 f370 alt %35), tek ışık (iki baca setinin külahları zıt yönden aydınlık), Haussmann lucarne/korniş şartnameden sapma, Paris eli kıstırma okunmuyor, kanca karesinde kuş okunmuyor, hayalet çırpış poligonu, Z 8 m baca sokağın havasında (model), hareket şeridi 24 karede bir (protokol 4 kare ister).
+- Açık sorular / bir sonraki ajana notlar: Panthéon'un Sağ Yaka'dan GGB yönünde görünürlüğü araştırmacıya. P10 anahtar plan olduğu için el kıstırması B turundan önce düzelmeli. Düzeltme sonrası yalnız 5 kare yeniden render edilsin (P01 f0/f370, P10a f48/f56, P11 son) + f0–96 ve f270–335 için 4 karelik şerit.
