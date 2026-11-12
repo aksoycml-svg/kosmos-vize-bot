@@ -535,3 +535,23 @@
   - Tasarımcı: yeni sıcak hex'ler ve gök 4. basamak §13.1'e; güvercin toplu kanat boyu §4.2'ye.
   - Gün paleti (P10) tarama/hale eklemelerinden etkilenmedi (hale yalnız alacakaranlık).
   - Öz puan: 6.5 (sıcaklık ve kuş tutarlılığı ölçüde hedefte; çatı denizi hâlâ hedeften daha sık ve küçük birimli).
+
+## mekân sorumlusu · 2026-11-12 · MONTMARTRE şartnamesi v2 (§2v2)
+- Ne yaptım: `mekanlar.md`'ye §2v2 yazdım (§2 v1 arşiv olarak işaretlendi, özet karar 10 eklendi). İçinde: hedeften bilinçli farklar tablosu, mimari kart, tek dünya modeli (orijin Niépce sepeti; nesne/kamera dünya konumları), balon/sepet/sandık/torba ölçüleri ve şişme tablosu (s → küre ø, tepe, boğaz, halka ekran y), dört görünümün (meydan, yukleme, gok, sepet) kamera + kompozisyon tabloları, katman tablosu (z, px/m, hex, kontur, tarama, buğu), tek vektör ışık/gölge formülü ve gölge veren nesne listesi, düzensizlik tanımları (kalabalık, ufuk çatı bandı, havadan şehir), doku + ArsivKatmani kararı, ölü alan/güvenli alan tablosu, 360 px okunurluk, hedefin Lab ölçümünden kabul eşikleri ve ölçüm noktaları, doğruluk tablosu, motion notları, yönetmen kamera tablosu + json düzeltme notları. Geometri betikle hesaplandı (scratchpad, depo dışı). Hedef görselin Lab ölçümü: L* ort 66, p95 86, C* ort 17.5, sıcak piksel %33.
+- Dokunduğum dosyalar: `bolumler/paris-kusatmasi/mekanlar.md`, `bolumler/paris-kusatmasi/katki-raporu.md`.
+- Aldığım kararlar ve gerekçeleri:
+  - Küre 6.6 m, sepet:küre 1:5.5: onaylı hedef küreyi insan ölçeğiyle ≈ 6–7 m okutuyor. Hedefteki 1:3.2 sepeti 2 m yapardı, tasarımdaki 1:8 ise sepeti P03'te okunmaz bırakıyordu (tasarımcıya soru).
+  - Dolu küre tepesi y 430: P03 üst yazı bandı (240–400) f12–296 boyunca açık. Yazı şişen kürenin üstüne binmesin diye.
+  - Sepet 25° döndürüldü: sol yüz güneşe ve kameraya döner, iki tonlu hacim oluşur. Dik konumda sepet tek koyu ön yüz olarak kalıyordu.
+  - Meydan kenarında duvar yok, kenar toprak kırığı. Paris bandı 62 px'te tutuldu, uzak buğu katmanı ufkun 22 px üstüne taşıyor (hafif abartı, yapı değil hava katmanı).
+  - `yukleme`'de yükleyiciler sepetin arkasına alındı (v1'deki Z 3.5 sepetin içine düşüyordu). Dagron sol-arkada duruyor, biniş BL köşesinden. "Halat gerilir" = yerdeki bağlama halatı (askı halatları zaten gergin, görünür değişim yok). Kamera cy −210'a kadar iniyor (v1 cy −80 tabanı y 1605'e, IG bandına itiyordu).
+  - `gok` ufku 760 → 900: Daguerre'nin ışık yüzü ufuk basamağıyla kaynaşıyordu (ΔL* 3). Darbe noktası kürenin sol-alt çeyreğinde, ekranda ≈ (712, 687). Balonlar kamerayla birlikte yükseliyor, hareketi şehir veriyor: ekranda aynı y'de duran blok f158'de 2.1× daha uzak.
+  - Duman çizgisi ufuk buğusundan (şehrin dışından) geliyor: Prusya topu Paris içinde değildi. v1'deki "çatıların arasından" anlatımı yanlış yer okutuyordu.
+  - P07 B'de Dagron'u kontrajur siluet yaptım (gövdesi sepette, baş sola dönük). v1'deki "yalnız el" fiziksel değildi. Güneş arkada olduğu için yüz doğal olarak gölgede kalıyor.
+  - ArsivKatmani gündüz için `litografi` modunda (P01 V4 ile aynı aile); `gunduzMineral` grileştirme riski taşıyor.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: ufuk–ölçek (bütün figürler formülden; meydanda başlar ufukta), tek ışık (bütün gölgeler `(X+3.325h, Z−3.325h)` formülünden, nesne listesiyle), kemer yok (§0.4), yazı dokunuşa binmez (küre tepesi), güvenli alan (bütün temaslar ≤ 1500), ölü alan (P03 f0–45 için lint önerisi), V3 ızgara dersi (düzensizlik aralıkları baştan), gravür okunurluğu (≥ 0.5 px @360). Yakalanan v1 hataları: yükleyiciler sepetin içinde; ikinci balonun dünyada meydanın dışında kalması; P06 cs 1.45'te sepet tabanının IG bandına düşmesi; P07 dumanının Paris içinden çıkması; json'daki "kaldırım taşı" (zemin toprak).
+- Açık sorular / bir sonraki ajana notlar:
+  1. Tasarımcı: küre 6.6 m / 1:5.5 onayı; yeni ton `#b39a9e` (evin ışık alan çatı üçgeni); kompars başlığı (varsayılan şapkasız).
+  2. Araştırmacı: Niépce/Daguerre kalkış yeri (arastirma.md'de yok; genel bilgim Gare d'Orléans yönünde, doğrulanmalı) ve Daguerre'nin vurulduğu yer.
+  3. Yönetmen: §2v2.18 kamera tablosu ve json düzeltme listesi (P06 cy −100/−210, P07 darbe ve duman kaynağı, Dagron/yükleyici/ikinci balon konumları, bağlama halatı, kazıkçı); P03 yükseliş hızının zaman sıkıştırması (×5) kabulü.
+  4. Motion: kalibrasyon kareleri P03 f55 (hedefle yan yana) + f80, P06 f206, P07 f112 + f200; şeritler §2v2.17.

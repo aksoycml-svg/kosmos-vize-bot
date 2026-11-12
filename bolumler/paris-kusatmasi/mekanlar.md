@@ -15,6 +15,7 @@ Etiketler: **[A]** arastirma.md'de kaynaklı · **[S]** senaryo/sahne planı · 
 7. **Yönetmene sayısal düzeltme önerileri** §7'de: P05 cs 2.0, P10a cs 2.6–2.75, P10b pan cx ≈ −1250, P06 ikinci balon konumu, ufuk değerleri.
 8. **v2 (2026-11-12):** PARIS-CATI §1v2 ile yeniden kuruldu: kamera yönü 230°, geniş plan göz 2.8 m / ufuk y 635 (%33), dolly genel öteleme (FOE ≠ kılıf), kümes 30° döndürülmüş dünya modeli, çatı denizi K1–K5, ön baca kaldırıldı. Kamera önerisi §1v2.12. PARIS-CATI satırlarında §0.6, §0.7, §7.1–7.2 ve §8 yerine §1v2 geçerli.
 9. **v3 (2026-11-12, tur-6):** PARIS-CATI geniş plan ve dolly yolu §1v3 ile değişti: göz **5.0 m** (kamera bitişik, bir kat yüksek komşu çatıda), ufuk **y 600**, çatı denizi yukarıdan (K4 · K4b · K3 · K3b + K2/K1), kümes dünyada Z 7.5–8.7, sağ baca güvenli alana, ön-plan çerçeve (komşu çatı kenarı). Kanca (P01 f0/f24 = P11 son) ve P10a kompozisyonu **değişmez**; yalnız cs/cx/cy sayıları yeni sabitlerle yeniden hesaplandı (§1v3.6). §1v2.3, §1v2.5, §1v2.12'nin yerine §1v3 geçerli; §1v2'nin geri kalanı geçerli.
+10. **MONTMARTRE v2 (2026-11-12, tur-8):** §2v2 geçerli, §2 arşiv. Tek dünya modeli (orijin Niépce sepeti), dört kamera. Meydan ufku y 1304, küre 6.6 m (sepet:küre 1:5.5, tasarımcıya soru), dolu küre tepesi y 430 (yazı bandı), sepet 25° döndürülmüş. `yukleme` kamerası (0.1, 1.0, −3.40), cy −210'a kadar (taban güvenli alanda). `gok` ufku 760 → **900**, darbe ekranda ≈ (712, 687), duman şehrin dışından. Niépce/Daguerre kalkış yeri araştırmacıya soruldu.
 
 ---
 
@@ -595,7 +596,303 @@ Bütün planlarda **`ufuk_y: 600`**, `dolly_foe: [403.4, 1368.7]`, `kilif: [395.
 
 ---
 
-## 2. KE-PK-S2 MONTMARTRE (P03, P06b, P07)
+## 2v2. KE-PK-S2 MONTMARTRE v2 — GEÇERLİ (tur-8, hedef onaylı; P03 `meydan`, P06b `yukleme`, P07 `gok` + `sepet`)
+
+Girdi: `hedef/hedef-montmartre.png` + `prompt-montmartre.txt`, tasarım §14 (sabah dili, palet, yasaklar; **hex'lerin sahibi tasarım**), `notlar/tur-8.md`, §1v2/§1v3 (yöntem), `kalibrasyon/V3/elestiri.md` + katkı raporu V4 (ızgara, tek ışık, sıcaklık dersleri), `bolum.json` P03/P06/P07, `arastirma.md` §5. Hesap pinhole + lens kaydırma (dikeyler dik): `x = 540 + (X − Xk)·F/z`, `y = U + (e − h)·F/z`, z = kameradan derinlik. Bütün sayılar betikle üretildi; motion ilk still'de ±15 px doğrular. **§2.1–§2.7 (v1) arşivdir**; §5, §6, §7.4–7.7, §8, §9'daki MONTMARTRE satırlarının yerine bu bölüm geçer. Kod/görsel/git yok.
+
+### 2v2.0 Hedeften bilinçli farklar (tek tablo; orkestra ve eleştirmen bunları "hata" saymaz)
+| Hedef | v2 | Neden |
+|---|---|---|
+| Kâğıt çerçeve | yok | tur-8 |
+| Balon görseldeki gibi duruyor | P03'te yığından şişer (§2v2.4), hedef = s 0.5 karesi (f55) | tur-8 |
+| Küre tepesi y 240 | dolu kürede **y 430**; s 0.5'te 623 | üst yazı bandı 240–400 f12–296 açık: yazı dokunuşun (şişen küre) üstüne binmez |
+| Sepet:küre ≈ 1:3.2 (sepet 250 px) | **1:5.5** (küre 6.6 m, sepet 1.2 m) | hedef küreyi insan boyuna göre ≈ 6–7 m çiziyor (kalabalık ölçeğiyle); 1:3.2 sepeti fiziksel olarak 2 m yapar. Tasarım N1 "1:8, küre ≈ 15 m [G]" → **tasarımcıya not** (açık soru 1) |
+| Sepette asılı kum torbaları | P03'te **yok** | json P03: torbalar P06'da kurulur (kurulum → P07 karşılık) |
+| Meydan kenarında alçak duvar | **yok**; kenar = toprak kırığı | duvar Paris bandını 25 px'e indiriyor (§2v2.5) ve kaynaksız yapı |
+| Sepet dümdüz cepheden | sepet **25° döndürülmüş** (sol yüz ışıkta) | hedefteki iki tonlu hacim; dik cephede sol yüz görünmez, sepet tek koyu leke olur |
+| 6 siluet | 6 + **1 kazıkçı** (halatı çözer) | "halat çözülür" f112 temasının görünür bir faili olmalı |
+
+### 2v2.1 Duygusal amaç ve görsel dil
+| Görünüm | Amaç (tek cümle) | Baskın şekil · ritim · sıcaklık · kontrast |
+|---|---|---|
+| `meydan` (P03) | Yerdeki kumaş yığını göğü dolduran bir umuda dönüşür. | Ortada büyüyen tek daire, onu taşıyan halat dikeyleri. Solda organik diyagonal (ağaç), sağda geometrik dikey (ev): asimetrik denge. Gök soğuk, ışık alan her yüz gül-krem. Orta kontrast; en koyu şey kalabalık |
+| `yukleme` (P06b) | Ağırlık: sandık sepeti ezer, adam bilinmeyene biner. | Altta geniş yatay hasır kütlesi, üstte yakınsayan halat yelpazesi. Sıcak sepet yanı, soğuk ön yüz. Alçak kamera kütleyi büyütür |
+| `gok` (P07 A) | Açıkta ve savunmasız: altta şehir kayıp gider, yanındaki balon düşer. | Üst yarıda iki daire (büyük sol / küçük sağ), alt yarıda ufka yakınsayan blok dokusu, bir yatay ve bir diyagonal bulvar. En açık ve en soğuk görünüm |
+| `sepet` (P07 B) | Soğukkanlı hesap: bakmadan bırakılan torba, uzaklaşan yer. | Diyagonal rim çizgisi ekranı böler. Üstte gök + siluet, altta torbaların düzensiz ritmi + şehir. Kontrajur siluet |
+
+### 2v2.2 Mimari kart (Montmartre eteği, Place Saint-Pierre, 12 Kasım 1870 sabahı)
+| Madde | Değer |
+|---|---|
+| Kaynak durumu | Kalkış yeri Place Saint-Pierre, Butte eteği [A: SP-N, IRSEM, RT] (Neptune, Armand-Barbès). **1870 görünümü doğrulanamadı** [A §5.1]. Sacré-Cœur yok (1875 sonrası) [A §5.1]. **Niépce/Daguerre'nin kalkış yeri arastirma.md'de yazılı değil**; genel bilgim bu iki balonun Gare d'Orléans'tan kalktığı yönünde [G, **doğrulanmalı**, açık soru 2]. Bu yüzden P06b/P07'de görünen hiçbir şey Montmartre'a özgü değildir (sepet, gök, adı konmamış şehir dokusu) |
+| Dönem ve üslup | Montmartre 1860'ta Paris'e katıldı [G]. Meydan kenarında Haussmann cephesi **yok**: eski varoş evi, sıvalı, düz lentolu pencere, kırma çatı [G, nötr]. PARIS-CATI'deki krem kesme taş/mansard dili yalnız ufuk bandında ve havadan şehirde |
+| Kamera yönü | Hep **güney (180°), Paris'e**. Tepe kameranın arkasında (doğrulanmamış görünüm çizilmez). Güneş 45° solda-önde, kadraj dışında |
+| Yapı tipi | Açık meydan, sıkıştırılmış toprak, düz kabul (eğim çizilmez). Güney kenarı (meydan kamerasına 60 m) toprak kırığıyla biter, ötesi aşağıda kalan Paris |
+| Yan ev (sağ, tek) | Batı kenarda, **2 kat + kırma çatı**. Ön (kuzey) cephe 11 m, derinlik 8 m. Kat yüksekliği 3.0 m, 0.4 m subasman ⇒ saçak h 6.4; çatı eğimi 35° ⇒ mahya h 9.2. Pencereler `duz` (düz lento) 1.0 × 1.6 m, söve yok, aks 3.0 m; zemin kat denizlik h 1.0, üst kat h 3.9. **Kemer yok** (§0.4). Panjur, balkon, tabela, kapı süsü yok. Doğu kalkanı yerine **kırma (hip) çatının doğu üçgeni**. Tek baca: doğu eğiminde, 0.5 × 0.5 × 1.3 m, 2 külah. Saçak 0.3 m taşar, altı görünür |
+| Ağaç (sol, tek) | Çıplak kış ağacı, 13 m, gövde ø 0.5 m, 3 kademe dal, taç yarıçapı 6 m (sağa daha uzun). Tür iddiası yok [G] |
+| Zemin | Sıkıştırılmış toprak + seyrek çakıl, 3 tekerlek izi [T, kaynaksız; "kaldırım" iddiası yok]. json P03/P06 `alt_ucte_bir` alanındaki "kaldırım taşı" ifadesi **toprak** olarak düzeltilmeli (yönetmene not) |
+| Ufukta Paris | Tepeden görülen çatı bandı: mansard + baca tarağı + iki duman şeridi; **anıt, kubbe, kule, değirmen, kilise yok** (§0.7) |
+| Kameradan görünen | `meydan` (göz 1.6): evin saçak altı, kırma çatının kuzey yüzü ve doğu üçgeni görünür (saçağa bakış açısı 10.5° < 35° eğim), mahya ucu kadraj dışında. Sepet rimi üstü ve içte posta çuvallarının ağızları görünür (göz rimin 0.65 m üstünde). Paris çatıları yalnız siluet (hemen hemen yandan). `yukleme` (göz 1.0): rim üstü yalnız ince şerit; sepet içi görünmez; küre kadraj üstünde, yalnız halka ve halatlar. `gok`/`sepet`: şehir yukarıdan, sokaklar alçak güneş yüzünden gölgede |
+
+### 2v2.3 Tek dünya modeli (dört görünüm aynı dünyadan)
+Dünya ekseni: orijin = **Niépce sepetinin zemin merkezi**. X sağa (batı), h yukarı, Z ileri (güney). Sepet 25° döndürülmüş: köşeler FL (−0.29, −0.80) · FR (0.80, −0.29) · BL (−0.80, 0.29) · BR (0.29, 0.80); sol yüz normali (−0.91, −0.42) kameraya ve güneşe döner.
+| Nesne | Dünya (X, Z) m | Ölçü | Görünümler |
+|---|---|---|---|
+| Sepet | (0, 0), yaw 25° | 1.2 × 1.2 × 0.95 | hepsi |
+| Halka / küre | sepet ekseni | §2v2.4 | hepsi |
+| Kazık (bağlama direği) | (2.9, −1.2) | ø 0.12, h 0.9 | meydan |
+| Kazıkçı (F1) | (3.35, −1.5) | 1.74 m | meydan |
+| Bağlama halatı | FR alt köşe → kazık (meydan) / FR alt köşe → kadraj sağ-altı (yukleme) | ø 0.03 | meydan, yukleme |
+| Gaz hortumu | sol dış (−3.2, −9.0) → kangal (−1.6, −6.4) → sepet sol yanı → boğaz | ø 0.12 | meydan |
+| Yerde 2 posta çuvalı (yüklenecek) | (−1.0, −7.9), (−0.6, −7.6) | 0.4 × 0.6 m | meydan |
+| Kalabalık sol | (−5.1, 5.1) 1.80 · (−4.3, 3.9) 1.60 kadın, şal · (−3.4, 6.2) 1.15 çocuk | | meydan |
+| Kalabalık sağ | (3.2, 3.2) 1.72 · (4.0, 4.4) 1.84 pelerin · (4.8, 2.8) 1.58 kadın | | meydan |
+| Ağaç | gövde (−7.0, 7.6) | 13 m | meydan, yukleme (yalnız taç) |
+| Yan ev | doğu yüzü X 6.0, kuzey cephe Z 7.6, X 6–17, Z 7.6–15.6 | §2v2.2 | meydan |
+| Meydan güney kenarı | Z 45.6 | toprak kırığı | meydan, yukleme |
+| Yükleyiciler (F1) | (−0.45, 1.05), (0.40, 1.10) | 1.75 / 1.68 | yukleme |
+| Dagron (F2) | (−1.0, 0.6) sepetin sol-arkası → biner | 1.70 | yukleme, sepet (siluet) |
+| Daguerre (2. balon) | (9.4, 36.7) | aynı balon modeli | yukleme, gok |
+| Paris | meydan kenarının ötesi, ≈ 40 m aşağıda [G] | §2v2.11 | hepsi |
+Kameralar: `meydan` (0, h 1.6, Z −14.42) · `yukleme` (0.1, h 1.0, Z −3.40) · `sepet` (0.1, rim + 0.30 = h 1.25, Z −3.40; sepetle birlikte havada) · `gok` havada, Niépce'nin 22 m kuzeyinde, yüksekliği H(t) (§2v2.7). Hepsinde F 1500.
+
+### 2v2.4 Balon, sepet, sandık, torba: ölçü ve durumlar
+**Dolu balon (yerde, bağlı):** sepet 0–0.95 · askı halatları rim → halka · **halka h 2.60** (ø 0.9) · boğaz h 2.9–3.4 · **küre ø 6.6 m**, alt kutup h 3.4, merkez 6.7, tepe 10.0. Ağ: 9–11 meridyen + 4 paralel, yalnız üst-yan yüz (tasarım §4.1).
+**Şişme (P03, json f6–104):** gaz hacmi doğrusal ⇒ yarıçap `r = 3.3·s^(1/3)` (başta hızlı büyür, üst üçte biri erken doldurur); tepe `h = 1.0 + 9.0·s^(1/3)`; boğaz `1.2 + 1.7·s`; halka = boğaz − 0.3 (s < 0.85'te askı halatları gevşek kavisli). s = (f − 6)/98, son 10 karede ease-out.
+| f | s | küre ø (px, meydan) | tepe y | merkez y | boğaz y | halka y | Durum |
+|---|---|---|---|---|---|---|---|
+| 0–6 | 0 | yığın 6 × 1.2 m (624 × 125 px), sepetin **arkasında** Z 0.5–3 | 1366 | — | — | rimde | P02 krem kâğıt eşleşmesi |
+| 9 | .03 | 213 | 1076 | 1182 | 1340 | 1372 | kubbe yığından ayrılır |
+| 16 | .10 | 319 | 932 | 1091 | 1328 | 1359 | |
+| 30 | .25 | 432 | 777 | 993 | 1301 | 1333 | |
+| 40 | .35 | 484 | 707 | 949 | 1284 | 1315 | ağ gerilmesi 1 |
+| **55** | **.50** | **545** | **623** | 896 | 1257 | 1288 | **hedef karesi** (alt yarı ağır kıvrımlar) |
+| 66 | .62 | 585 | 568 | 861 | 1236 | 1267 | ağ gerilmesi 2 |
+| 80 | .75 | 624 | 516 | 828 | 1213 | 1244 | `kontrol_kare` |
+| 88 | .85 | 650 | 480 | 805 | 1195 | 1227 | ağ gerilmesi 3, halatlar düzleşir |
+| 104 | 1 | **686** (%36 boy, %64 en) | **430** | 773 | 1169 | 1200 | oturma; balon bütünü 430–1478 = **%55** |
+Kıvrım (etek) kubbe ekvatorundan boğaza iner: s 0.5'te 9 kıvrım, s 1'de 0 (tasarım §4.1). Terminatör bandı s ile aşağı iner.
+**Hortum ayrılır** f98–106: üst ucu boğazdan çıkıp halkanın yanından sepet soluna kayar ve yere iner; yer teması f106 → oturma "pof" f104 ile aynı vuruşta (ayrı foley yönetmen kararı). Hortum bağlıyken balon kalkmaz.
+
+**Ekran boyları özeti:**
+| Nesne | Gerçek | meydan (P03) | yukleme (P06b, cs 1) | gok (P07 A) | sepet (P07 B, cs 1.3) |
+|---|---|---|---|---|---|
+| Küre | ø 6.6 | 686 px (dolu) | kadraj dışı (yalnız halka y 194) | Niépce 450 · Daguerre 291 | kadraj dışı |
+| Sepet | 1.2 × 1.2 × 0.95 | x 459–625, rim 1368–1376, taban 1462–1480 (≈ 166 × 105) | x 175–876, rim 918–929, taban 1257–1476 | 82 × 65 / 53 × 42 | x 66–977, rim 739–805 |
+| Sandık | 0.70 × 0.45 × 0.45 | — | 329 × 211; oturunca ön yüzün üst 53 px'i rim üstünde (y 876–929) | — | kapağı rimin arkasında görünür (y ≈ 762 dekor) |
+| Kum torbası (gövde 0.35 + ağız 0.07, en 0.25) | | yok (P03) | 4 adet, ön yüzde, rimin 0.10 m altındaki halattan; x 425 / 564 / 696 / 813, y 979–1226, 126–143 px en, ≈ 240 px boy (perspektifle soldan sağa küçülür: doğal düzensizlik) | — | 4 adet, ekran x 390 / 571 / 743 / 895, boy 276–312 px (**%14–16** ≥ %12 ✓) |
+| Posta çuvalı | 0.4 × 0.7 | sepette 2 ağız rim üstünde (≈ 20 px); yerde 2 çuval 98 × 138 px | sepette, görünmez | — | — |
+
+### 2v2.5 Görünüm `meydan` (P03 f0–156) — kamera ve kompozisyon
+Kamera: F 1500, göz **e 1.6**, Z −14.42 ⇒ sepet ekseni 104 px/m. **Ufuk y 1304** (%68). Ayakta yetişkinin başı ufukta (S1 1289, R1 1294 ✓ ufuk–ölçek). Ekranın alt kenarı zeminde kameradan 3.9 m.
+| Öğe | Ekran (cs 1, cx 0, cy 0) | Not |
+|---|---|---|
+| Gök basamakları | tepe **−520**–420 · üst 420–760 · orta 760–1000 · alt 1000–1180 · ufuk 1180–1304; sol ışıma x < 486, y 1120–1304 | tasarım §14.2; tilt (cy 420) için tepe −520'ye uzar |
+| Küre (dolu) | merkez (540, 773), y 430–1117 | yazı bandının 30 px altı |
+| Halka / boğaz | y 1200 / 1169 | |
+| Sepet | x 459–625; rim 1368–1376 (FR→FL); zemin teması 1462–1480 | temas güvenli alanda ✓ |
+| Kazık + kazıkçı | kazık (869, 1383–1486); kazıkçı ayak (929, 1490), baş 1288, boy 202 | halat çözülür f108–116: kazıkçı ilmeği kazık başından kaldırır (temas f112, kazık başı y 1383) |
+| Bağlama halatı | FR alt (625, 1474) → kazık başı (869, 1383) | gevşek sarkma; çözülünce sepete doğru kalkar |
+| Kalabalık sol | ayak (148, 1427) · (188, 1435) · (293, 1420); boy 138 · 131 · 83 (çocuk) | baş balonu izler (eğim 0 → 18°, f60–156) |
+| Kalabalık sağ | ayak (812, 1440) · (859, 1432) · (958, 1443); boy 146 · 147 · 137 | evin ışık duvarının önünde: koyu–açık en güçlü ayrışma |
+| Ağaç | gövde x 63 (ø 34 px), taban y 1413, tepe y 527; taç sağa x 438'e kadar, kürenin **arkasında** | |
+| Yan ev | doğu duvarı x 840–949 (ışıkta), saçak 977 (köşe) → 1064; ön cephe x 949 → kadraj dışı, taban 1413; ön pencere sütunu x 996–1064: üst kat 1038–1147, zemin 1236–1345; doğu duvarında 1 dar pencere x 879–893, y 1080–1174; kırma çatı doğu üçgeni + kuzey yüzü 977 → 866; baca x 985–1013, y 856–929 | ev kadrajın sağ kenarında kesilir (hedefteki gibi) |
+| Paris bandı | y 1282–1344 (§2v2.11) | |
+| Meydan güney kenarı | y 1344 (Z 60): 2 px koyu kırık çizgisi `#a8949a` | duvar yok |
+| Gaz hortumu | sol kenar (x −346 → giriş x 0, y ≈ 1700) → kangal (241, 1603) → sepet sol yanı (459, 1460) → halatların arasından boğaza | kalınlık 22 px (kangal) → 13 px (sepette) |
+| Yerde posta çuvalları | (310, 1534–1672) ve (408, 1520–1656) | alt bant (IG): bilgi taşımaz, alt üçte biri doldurur; gölgeleri (870, 1834)'e kadar |
+| Tekerlek izleri | 3 iz, alt kenarda x ≈ 250 / 560 / 830 → ufukta x 470 / 540 / 620 (tek VP'ye değil, ±70 px dağınık) | |
+- **Tilt (yönetmen) f116–156 cy 0 → 420:** sahne aşağı kayar. Balonun f156'da kadraj üstünden çıkması için sepet tabanı dekor y < −420 olmalı ⇒ 40 karede ≈ 18 m yükseliş. Gerçek kalkış hızının ≈ 5 katı: **zaman sıkıştırması** [T], ease-in ile okunur (kabul: P03 "hızlı" tempo). İstenmezse kesme f160 yerine balon küresi çıktığında, sepet üst kenara değerken taşıyıcıya devredilir (yönetmen).
+
+### 2v2.6 Görünüm `yukleme` (P06b f168–287)
+Kamera: F 1500, **göz 1.0** (alçak), (0.1, 1.0, −3.40). Sepet ön köşesi 576 px/m. **Ufuk y 900**; ufuk her ayaktaki figürü kalçada keser (alçak kameranın ufuk–ölçek karşılığı).
+| Öğe | Ekran (cs 1) | Not |
+|---|---|---|
+| Gök | tasarım basamakları ufuk 900'e ölçekli: tepe −100–291 · üst 291–526 · orta 526–692 · alt 692–817 · ufuk 817–900; ışıma x < 486, y 776–900 | |
+| Sepet | silüet x 175–876; sol (ışık) yüzü x 175–315, ön (gölge) yüzü 315–876; rim 918–929; taban FL **1476** · FR 1382 · BL 1306 | taban güvenli alanda ✓ |
+| Halka / halatlar | halka y 194, x 297–694; 5 halat rim köşelerinden halkaya | halka IG üst bandında, çerçeve öğesi |
+| Kum torbaları | x 425 / 564 / 696 / 813; y 979–1226 → 976–1188 | P07 kurulumu |
+| Sandık iniş f170–190 | üst y 355 → oturunca 876; en 329, boy 211 | oturunca ön yüzün 53 px'i + iki kulp rim üstünde; yükleyicilerin elleri kulplarda |
+| Yükleyiciler | sepetin **arkasında**: baş (355, 647), (640, 673); bel altı sepetle örtülü | v1'deki Z 3.5 sepetin içine düşüyordu: düzeltildi |
+| Dagron | sepetin sol-arkasında, sırtı kameraya: ayak (128, 1275), baş 637, en ≈ 188 px | biniş f212–248, ayak teması f226 **BL rim köşesi (175, 920)** ✓ |
+| Daguerre | sepet (888, 937), küre merkezi (888, 687), ø 246 (x 765–1011); dibinde 3 siluet 64 px (ayak 937) | cs 1.0'da kurulur (f168–200) |
+| Ağaç | gövde kadraj dışı solda; taç sol üstten girer, dallar y −200…400, x 0…400 | üst üçte bir |
+| Paris bandı / meydan kenarı | 878–931 / 931 | |
+| Bağlama halatı | FR alt köşe (876, 1382) → yerde gevşek kavis → kadraj sağ-altı (1080, 1700) | **"halat gerilir" f262 = bu halat**: yerden kalkar, düz çizgiye döner (askı halatları zaten gergin). json `sepet.halat` "kürenin ağına" ifadesi bununla değişmeli (yönetmen) |
+| Gölgeler | sepet gölgesi FR'den sağ-alt köşeye (kadrajı aşar), Dagron'un gölgesi (128, 1275)'ten sağ-alta ≈ 420 px, yükleyicilerin gölgesi sepetin üstüne/arkasına | alt üçte biri doldurur |
+
+### 2v2.7 Görünüm `gok` (P07 A f0–158): yükselen kamera, iki balon, darbe
+Kamera: F 1500, havada, yatay eksen + lens kaydırma, **ufuk y 900** (v1'de 760; değişti: Daguerre'nin ışık yüzü ufuk basamağının (L\* 86) değil orta basamağın (L\* 74) önüne düşsün, ΔL\* ≥ 8, tasarım §14.2). Kamera yüksekliği H (Paris çatı düzleminin üstünde) f0 → 158: **60 → 140 m**, inout. Balonlar kamerayla birlikte yükselir ⇒ ekranda neredeyse sabit; hareketi **şehir** verir. Gerçek hızın ≈ 10 katı: zaman sıkıştırması [T] (P07 B ile aynı dil).
+| Öğe | Dekor (cs 1) | Ekran f0 (cs 0.9) | Not |
+|---|---|---|---|
+| Niépce (sol) | Z 22, 68.2 px/m. Küre merkezi (300, 650 → 630 f158), ø 450, tepe 425 → 405 | (324, 681), tepe 478 | yazı bandı (f10–190) kürenin üstünde kalır ✓. Sepet (300, 1042–1107), 82 px |
+| Daguerre (sağ) | Z 34, 44.1 px/m. Küre merkezi (790, 620 → 560 f106), ø 291, tepe 474 → 414 | (765, 654) | sepet (790, 873–915 → 813–855): ufuk buğusunun önünde koyu nokta |
+| **Darbe** f108 | kürenin sol-alt çeyreği: **dekor (720, 675)** | f108 cs ≈ 0.957 ⇒ **ekran ≈ (712, 687)** | json (760, 720) yerine. Parlama ≤ %10 ekran (`lint.izin L_ustu_88_parlama`) |
+| Duman çizgisi f84–108 | kaynak **dekor (1150, 935)**: sağ kenarın dışında, ufuk buğusunun içinden (şehrin dışı) → darbe noktası; 3 px koyu kontur, tırtıklı | sağ kenardan girer | **Paris çatılarının arasından yükselmez** (açık soru 3) |
+| Çöküş f108–150 / sepet düşer f120–152 | küre çöker (tasarım §5), sepet düz düşer, alt kenardan çıkar (dekor y > 2030) | | kamera yükselişi (≈ 16 m) + serbest düşüş birlikte ≈ 1000 px: tutarlı |
+| Dekor sınırı | cs 0.9 için x −60…1140, y −120…2030 | | |
+**Paris aşağı kayar (ekrandaki y = 900 + H·1500/D; D yatay uzaklık):**
+| H (m) | kare ≈ | D 120 | D 170 | D 210 | D 300 | D 500 | D 1000 | D 1500 | alt kenarda D |
+|---|---|---|---|---|---|---|---|---|---|
+| 60 | 0 | 1650 | 1429 | 1329 | 1200 | 1080 | 990 | 960 | 80 m |
+| 80 | 45 | 1900 | 1606 | 1471 | 1300 | 1140 | 1020 | 980 | 118 m |
+| 100 | 79 | — | 1782 | 1614 | 1400 | 1200 | 1050 | 1000 | 147 m |
+| 120 | 113 | — | — | 1757 | 1500 | 1260 | 1080 | 1020 | 176 m |
+| 140 | 158 | — | — | 1900 | 1600 | 1320 | 1110 | 1040 | 206 m |
+- Okuma: ekranın aynı yerinde (ör. y 1200) duran blok f0'da 300 m, f158'de ≈ 640 m uzakta ⇒ **2.1× küçük**. Yatay ağaçlı bulvar (D 170–210, 106 px şerit, iki sıra ağaç noktası) f0'da y 1329–1429'da; f≈95'te alt kenardan çıkar: yükselişin ana ipucu. Diyagonal bulvar D 250'den sol-üste (VP kadraj solunda, x ≈ −590) uzanır.
+- Bulvarlar **adsızdır** (Rochechouart/Magenta denmez): kalkış yeri doğrulanmadı (§2v2.2).
+
+### 2v2.8 Görünüm `sepet` (P07 B f160–336)
+Kamera: F 1500, sepetin önünde havada (0.1, h 1.25 = rim + 0.30, Z −3.40), sepetle birlikte hareket eder. **Ufuk dekor y 668** (ekran cs 1.3: 580, cs 1.4: 551). Gök basamakları ufuk 668'e ölçekli: tepe 0–216 · üst 216–391 · orta 391–514 · alt 514–607 · ufuk 607–668; ışıma x < 486, y 576–668.
+| Öğe | Ekran (cs 1.3) | Not |
+|---|---|---|
+| Rim | BL (66, 739) → FL (248, 805) → FR (977, 769) | **diyagonal** rim: ekranı böler; rim üstü ince parlak şerit (`#c9a98a`) |
+| Sepet sol (ışık) yüzü / ön (gölge) yüzü | x 66–248 / 248–977, alt kenar 1500–1520 | |
+| Torbalar | 1: x 390, y 885–1197 · 2: x 571 · 3: x 743 · 4: x 895, y 842–1118 | bırakılanlar **4 (f196) ve 3 (f214)**; 1 ve 2 kalır (süreklilik) |
+| Dagron | sepetin içinde sağ-önde, **kameraya dönük kontrajur siluet** (güneş arkasında ⇒ yüzü gölgede, yüz çizilmez): baş ≈ (749, 555), gövde 650–950 × 520–780, sağ kol torba 4'ün ağzına (895, 842). Baş **sola döner** (düşen Daguerre'ye): "bakmadan" bu dönüşle okunur | sol kenar ışığı `#f0c4a8` 2–3 px; v1'deki "yalnız el" fiziksel değildi (gövde sepette olmalı) |
+| İkinci mürettebat (isteğe bağlı) | sol arkada baş + omuz siluet, x 260–380, baş y ≈ 560, rimden kesik | [A: Niépce'de 5 kişi]; varsayılan 1 |
+| Sandık kapağı | rimin arkasında, y ≈ 755 | P06 sürekliliği |
+| Şehir | H 150: D 600 → y 1068, D 1000 → 873, D 1500 → 775; alt kenarda D ≈ 218 m. H 300 (f320): D 600 → 1555, D 1000 → 1165 | sepetin iki yanında ve altında |
+| Düşen torba | torba yüzünün önünden düşer, 1 tur döner, f196 → f232 alt kenardan çıkar (≈ 920 px = 1.4 m dekor; 0.6 sn serbest düşüş 1.8 m ✓); kum izi 20 kare | |
+| Sıçrama f232–252 | kamera sepeti 4 kare gecikmeyle izler: sepet ekranda −36 px yukarı, yaylı geri 0; askı halatları f236–256 gevşer-gerilir | |
+
+### 2v2.9 Katman tablosu (arkadan öne; hex'ler tasarım §14.2, yeni olanlar **[yeni]**)
+**`meydan` / `yukleme`** (z = meydan kamerasına derinlik; yukleme'de aynı katman sırası, ölçek kendi kamerasından)
+| # | Katman | z (m) | px/m (meydan) | Hex | Kontur | Tarama | Buğu |
+|---|---|---|---|---|---|---|---|
+| 0 | Gök + sol ışıma | ∞ | — | `#6f86ad` `#8fa3c0` `#a9b7cc` `#cdc6d0` `#f0d0bc` / `#f2c9b2` | yok | yok (sınırlarda 3 litografi çizgisi + stipple) | — |
+| 1 | Paris uzak buğu | > 6 km | — | `#dccfcf` | yok | yok | kendisi buğu |
+| 2 | Paris orta bant | 3–6 km | — | `#b0a6c0` | yok | yok | — |
+| 3 | Paris yakın siluet + baca tarağı + duman | 2–3 km | — | `#8d85a6` / `#7a7394`, ışık çatı `#d8b8a4` 1–2 px, duman `#c3bccd` | yok | yok | — |
+| 4 | Meydan uzak zemin + kenar kırığı | 30–60 | 25–50 | `#c8ae98`, kırık `#a8949a` | yok | yok | α .12 → `#cdc6d0` |
+| 5 | Yan ev | 22–30 | 50–68 | ışık duvar `#e8d0ba`, cephe `#a39cb6`, derin `#7a7394`, cam `#7f90ab` (+1 parıltı `#f0d4bc`), çatı kuzey `#6d6384`, **çatı doğu üçgeni `#b39a9e` [yeni, 66/10]**, mahya/sol kenar `#f0c4a8` | 3 px kendi tonunda | II yalnız saçak altı + pencere söve gölgesi + baca gölge yüzü (78°) | α .08 |
+| 6 | Ağaç | 22 | 68 | `#5f5470`, sol kenar `#f0c4a8` α .8 | yok (tasarım: uzak) | yok | α .08 |
+| 7 | Kalabalık | 17–21 | 71–88 | `#45405a` ±3 L\*, sol kenar `#f0c4a8` 2 px | yok (siluet) | yok | yok |
+| 8 | Balon + sepet + halat + kazık + kazıkçı | 13–15 | 98–115 | balon/hasır/halat/hortum §14.2; kazık = sandık ışık/ön `#b4937a` / `#7a6460`; kazıkçı = kompars | balon 3–4 px, sepet 4 px | balon terminatör (≥ 2 px, aralık 7, 78°); sepet gölge yüzü **düz bant** (tarama değil, kamış dikeyi ile 12° kuralı) | yok |
+| 9 | Yakın zemin + izler + çakıl + bütün gölgeler | 4–13 | 115–375 | `#c8ae98`, gölge `#8f8aa8`, iz içi `#a8949a`, çakıl `#d6c1ae` | — | yalnız gölge kenarı net | yok |
+| 10 | Ön plan: hortum kangalı, 2 posta çuvalı | 6–8 | 187–230 | hortum `#4a4560`, çuval §14.2 torba tonları | **6 px** | çuval gölge yüzü II | yok |
+| 11 | Kâğıt + gren | ekran | — | `ArsivKatmani` **litografi** (gündüz değerleri) | — | — | — |
+`yukleme`'de 5 (ev) ve 7 (kalabalık) kadraj dışıdır; 8 sepet yakın sınıfta (576 px/m): kontur 6 px, hasır kamışı 0.05 m aralık (≈ 29 px), 2 sarma kuşağı; Daguerre katman 4–5 arasında (z 40, kontur 2.5 px, buğu α .12).
+**`gok` / `sepet` (havadan şehir)**
+| # | Katman | D (m) | Hex | Kontur | Not |
+|---|---|---|---|---|---|
+| 0 | Gök | ∞ | basamaklar, kendi ufkuna ölçekli | yok | |
+| 1 | Uzak buğu | > 1500 | `#dccfcf` | yok | ufuk → +60 px |
+| 2 | Orta bant | 600–1500 | `#b0a6c0` + seyrek açık çatı lekeleri `#d8b8a4` | yok | |
+| 3 | Bloklar | 80–600 | çatı ışık (GD'ye bakan) `#e0c8b2` / mansard ışık `#a89fbe` / gölge `#7a7394`; cephe gölgesi `#9a92ae`; **sokaklar ve avlular gölgede** `#9a92ae` | 2.5 px (D < 300), yok (D > 300) | 12°'de bina gölgesi 4.7 × 18 m ≈ 85 m > sokak eni ⇒ sokak tabanı ışık almaz [fizik]; yalnız geniş bulvarın kuzey şeridi ışıkta `#d3bba6` |
+| 4 | Bulvarlar | 170–210 (yatay), 250+ (diyagonal) | zemin `#d3bba6` / gölge `#9a92ae`, ağaç noktası `#6a6280` | yok | ağaç noktaları da sağa-öne kısa gölge |
+| 5 | Duman (2 şerit) | 400–900 | `#c3bccd` | yok | çözülerek biter, bulut okutmaz |
+| 6 | Balonlar / sepet / Dagron | 3–34 | §14.2 | 3–6 px | |
+| 7 | Kâğıt + gren | ekran | litografi | | |
+Buğu karışımı (bloklar): α = min(.80, D/1900) → `#dccfcf`; D > 600'de kontur ve tarama yok.
+
+### 2v2.10 Işık ve gölge (tek vektör)
+- `ISIK_YON.gunMontmartre` (ışığa doğru) = **(−0.692, 0.208, 0.692)** (tasarım §14.1; X sağ, h yukarı, Z ileri). Güneş yüksekliği 12°, kadraj dışında; disk/hale/ışın yok.
+- **Gölge:** yüksekliği h olan nokta zemine **(X + 3.325·h, Z − 3.325·h)**'e düşer (boy 4.70·h; sağa ve kameraya). Motion bütün gölgeleri bu tek formülden üretir (`GolgeSeridi`); elle gölge yok (V3 dersi: kümes gölge veriyor, bacalar vermiyordu).
+- **Gölge veren her şey (meydan):** sepet (uç (1069, 1529)), halatlar (sağ-alta çizgi gölgeleri), kazık (kadraj dışına), kazıkçı, 6 siluet (sol grup uçları (578–658, 1447–1489); sağ grup kadraj dışına), ağaç gövdesi + 3 ana dal (gövde gölgesi (63, 1413)'ten sağa, y ≈ 1430–1460'ta kadrajı geçer; ince dallar gölge vermez), ev (gölgesi kadraj dışında), baca (çatı üstüne kısa), ön çuvallar (→ (870, 1834)), hortum kangalı (ince). **Kürenin gölgesi** (+22, −22 m) kameranın arkasına düşer: kadrajda yok, kamera gölge dışında ✓.
+- **Işık alan yüzler:** sola (doğuya) ve yukarı bakanlar: kürenin sol-üst %35'i (tasarım abartısı), sepetin sol yüzü + rim üstü, evin doğu duvarı + doğu çatı üçgeni, zemin, torbaların sol yanı, mahya ve sol kenarlar. **Gölgede:** kameraya (kuzeye) bakan her yüz: küre gövdesi, sepet ön yüzü, ev cephesi, siluetler, Dagron (P07 B kontrajur).
+- **Kenar ışığı** `#f0c4a8` 2–3 px: siluetlerin, ağacın, halatların (1 px), kürenin sol yayının **sol/üst** kenarında. Konturun içine yapışık (V3: "kayık ikinci çizgi" hatası).
+- **Pencereler:** iç ışık yok; ön pencerelerden yalnız biri `#f0d4bc` parıltı.
+- Tarama açısı 78° (sahne başına tek).
+
+### 2v2.11 Düzensizlik (baştan tanımlı; V3 "ızgara" dersi)
+**Kalabalık (seed 161):** 3 + 3 + kazıkçı. Boylar 1.15–1.84 m (hiçbir ikisi ±3 cm içinde değil), aralıklar 0.6–1.2 m eşit değil, sol grup sıkı (çocuk yetişkine yaslı), sağ grup açık. Altı farklı siluet tipi: uzun palto · omuz şallı kadın · kısa ceketli çocuk · düz palto · pelerin · etekli kadın; kazıkçı öne eğik, kolu kazıkta. Baş eğimi 8–20° farklı. Yüz, şapka, üniforma, aksesuar yok (tasarım §3.0; şapka sorusu açık soru 5). Kompars ana kadronun (Dagron) iki ton gövdesini kullanmaz.
+**Ufuk çatı bandı (meydan, seed 158):** y 1282–1344 (62 px; 360'ta 21 px). Fiziksel olarak Paris çatıları ufkun 15–75 px altında ve meydan kenarı (y 1344) arkasında kalır; bant **en uzak buğu katmanı ufkun 22 px üstüne taşacak kadar** stilize [T, hafif abartı, buğu bir hava katmanıdır, yapı değil].
+| Katman | y | Kurgu |
+|---|---|---|
+| uzak buğu `#dccfcf` | 1282–1316 | kontursuz, üst kenarı 3–5 px dalgalı, ufuk basamağına karışır |
+| orta `#b0a6c0` | 1300–1330 | 9–14 birim, en 30–110 px, yükseklik 6–22 px, %40 mansard eğimi |
+| yakın `#8d85a6` / tarak `#7a7394` | 1310–1344 | 11–16 birim, en **18–90 px** (aynı en en çok 2 kez üst üste), üst kenar 1310–1330 arasında seed'li; birimlerin %55'i mansard (kırık sırt), %30'u eğik çatı, %15'i düz; birim başına 0–3 baca tarağı (≤ 8 px), birimlerin %35'inde baca yok; 1 yüksek blok (+12 px) x ≈ 700'de; ışık alan çatı kenarı `#d8b8a4` yalnız birimlerin %25'inde, 1–2 px |
+| duman | — | 2 şerit: x ≈ 330 ve x ≈ 760 (balonun iki yanı), sağa eğik, 60–90 px boy, çözülür |
+Kubbe, kule, sivri çatı, değirmen yok. Balonun halatları ve kalabalık bandı keser: bandın tamamı hiç görünmez, parçalar görünür (kendiliğinden düzensizlik).
+**Havadan şehir (gok/sepet, seed 173):** ada (îlot) çokgenleri; ada eni 40–140 m (lognormal), sokak eni 3 sınıf (8 · 14 · 30 m), sokak açıları ana eksenden ±12° sapar, adaların %20'si üçgen/yamuk (diyagonal bulvar kesişimi); her adada 3–9 parsel, parsel kat yüksekliği 4–7 kat (komşu farkı ≥ 1 kat), mansard %60 / eğik çatı %40; avlular koyu gölge lekesi; parsel başına 0–4 baca, külah sayısı 1–6. Aynı ada biçimi ekranda 3 adadan önce tekrar etmez. Bulvar ağaçları 9–12 m aralıklı, %10 boşluk.
+
+### 2v2.12 Doku (yüzey başına ≤ 3; seed sabit, kaynamaz) ve `ArsivKatmani`
+| Yüzey | 1 taban | 2 tarama | 3 | Kod | Parametre |
+|---|---|---|---|---|---|
+| Gök | 5 düz basamak | — | litografi geçişi (sınır başına 3 ince çizgi, alt basamağın tonunda, 1.5 px, aralık 4) + stipple | `GokLitografi` (P01'den) | stipple yoğunluğu P01 V4'ün **%60'ı** (V3: "ölü piksel" uyarısı) |
+| Toprak | tek ton + stipple tane (2–3 px, α .25) | gölge kenarı net | kâğıt | `MeydanZemin` [yeni] | seed 157, çakıl 40 (yalnız z < 10) |
+| Sıva (ev) | düz ton + 1 kabarma lekesi α .10 + 2 ince çatlak | II saçak altı / söve | kâğıt | `SivaCephe` [yeni] | seed 162 |
+| Çatı (ev) | düz; kuzey yüzde 4 ince sıra çizgisi (malzeme adı yok) | — | kâğıt | `CatiOrtusu` `detay: orta` | |
+| Hasır | dikey kamış (0.05 m) + 2 sarma kuşağı; kamış kenarı `#c9a98a` ışık yüzünde | gölge yüzü düz bant | kâğıt | `Sepet` [yeni] | `cokme` 0–1, seed 160 |
+| Balon | 3 basamak + vernik hilali | terminatör | kâğıt | `Balon` (N1) | ağ gözü ≥ 60 px |
+| Torba/çuval | keten tonu + ağız ipi | gölge yanı II | kâğıt | `Torba` | |
+| Ağaç | düz siluet, dal ucu ≥ 2 px | — | kâğıt | `CiplakAgac` [yeni] | seed 159, 3 kademe, sağa asimetri .6 |
+| Havadan şehir | ada/parsel düz tonları | yok | kâğıt | `HavadanSehir` [yeni] | seed 173 |
+- **`ArsivKatmani` kararı:** gündüz MONTMARTRE'de **`litografi` modu** (P01 V4 ile aynı katman ailesi, kanal tutarlılığı); `gunduzMineral` kullanılmaz (gök mavisini ve kenar ışığını grileştirme riski, tasarım §14.5). Ölçüt: gök üst/orta C\* ≥ hedefin %85'i (≥ 14.5 / 10), kenar ışığı C\* ≥ 18. Tutmazsa kâğıt multiply α .16 → .12.
+
+### 2v2.13 Ölü alan ve güvenli alan kontrolü
+| Görünüm / kare | Üst üçte bir (0–640) | Orta (640–1280) | Alt (1280–1920) | Güvenli alan |
+|---|---|---|---|---|
+| meydan f0–45 | gök basamakları + ağaç tacı (y ≥ 527, x ≤ 438) | kubbe (f9'dan), ağaç, ev çatısı | Paris bandı, kalabalık, sepet, yığın, izler, çuvallar, gölgeler | **Uyarı:** üst üçte birin sağ yarısı ≈ 0.7 sn yalnız gök ⇒ `lint: {izin: ["olu_alan_ust_f0_45"], not: "şişme s 0.5'te (f55) üst üçte bire girer; json kamera kuralı: şişmede kamera durur"}` |
+| meydan f55–116 | kubbe + ağ + ağaç tacı + gök | etek kıvrımları, halatlar, ev, ağaç | aynı | sepet tabanı 1480, kazıkçı ayağı 1490, kalabalık ayakları 1420–1443 ≤ 1500 ✓; küre tepesi ≥ 430 > 400 ✓; ekran yazısı gökte |
+| yukleme f168 | halka, halatlar, ağaç dalları, sandık (iner), Daguerre tepesi (564) | yükleyiciler, Dagron, rim, torbalar, Daguerre | sepet alt yarısı, gölgeler, bağlama halatı | taban 1476, Dagron ayak 1275, temas (175, 920) ✓ |
+| yukleme f250 (cs 1.45, cy −210) | halatlar, Dagron (sepette), yükleyici kolları | rim 698–750, torbalar | sepet + taban **1498** ✓ | bağlama halatı gerilmesi (f262) x 900–1080, y 1300–1500 ✓ |
+| gok | gök + iki küre tepesi (405–478) | küreler, sepetler, ufuk buğusu, şehir | şehir, bulvarlar | yazı bandı 240–400 boş gök ✓; darbe (712, 687) ✓ |
+| sepet | gök + Dagron başı (555) + duman yok | rim, torbalar, Dagron kolu | sepet alt yarısı + şehir | torba ≥ %12 ✓; sepet alt kenarı 1500–1520 havada (temas değil) |
+
+### 2v2.14 360 px okunurluk
+| Öğe | 1080'de | 360'ta | Okunur mu |
+|---|---|---|---|
+| Küre (P03 dolu / s 0.5) | 686 / 545 | 229 / 182 | evet |
+| Ağ gözü | ≥ 60 | ≥ 20 | evet (tel örgü okunmaz) |
+| Sepet (P03) | 166 × 105 | 55 × 35 | "kutu" okunur (tasarım ≥ 55 en: sınırda ✓) |
+| Kalabalık (en küçük çocuk) | 83 | 28 | ≥ 20 ✓ |
+| Kazıkçı + kazık | 202 / 103 | 67 / 34 | evet |
+| Paris bandı | 62 | 21 | yalnız siluet (bilerek) |
+| Ev penceresi | 68 × 109 | 23 × 36 | evet |
+| Dal ucu / halat | 2 / 3 px | 0.7 / 1 | çizgi görünür (≥ 0.5) |
+| Sepet (P06) / sandık / torba | 701 / 329 × 211 / 143 × 240 | 234 / 110 × 70 / 48 × 80 | evet |
+| Daguerre (P06) + siluetleri | 246 / 64 | 82 / 21 | evet |
+| Niépce / Daguerre küresi (P07 A) | 450 / 291 | 150 / 97 | evet; Daguerre sepeti 53 → 18 px (koyu nokta + halat; düşüşü küre çöküşüyle okunur) |
+| Yatay bulvar (f0) | 106 | 35 | evet |
+| Torba (P07 B) | 276–312 | 92–104 | evet (%14–16) |
+
+### 2v2.15 Renk ve sıcaklık ölçümü (V3 dersi: sıcaklık ışık yüzlerinin azlığından düşer)
+Hedef ölçüldü (270 × 480, çerçeve kırpılmış): **L\* ort 66, p95 86, C\* ort 17.5, sıcak piksel (b\* > 3) %33, alt üçte bir %45.**
+- Kabul (P03 f80): L\* ort 60–70 · **p95 ≥ 82** · C\* ort 15–20 · **sıcak piksel ≥ %25** · alt üçte bir sıcak ≥ %35 · kılıf dışı C\* > 32: 0 px · L\* > 88: 0 px (P07 f108–118 parlama hariç).
+- Ölçüm noktaları (P03 f80, ekran): gök üst (1000, 600) `#8fa3c0` · gök orta (1040, 800) `#a9b7cc` · ufuk (720, 1270) `#f0d0bc` · sol ışıma (380, 1260) `#f2c9b2` · küre ışık (400, 650) `#e6c9b4` · küre gölge (680, 900) `#8f8aa8` · ev ışık duvarı (900, 1250) `#e8d0ba` · ev cephesi (1050, 1190) `#a39cb6` · toprak ışık (760, 1640) `#c8ae98` · hasır ışık (470, 1420) `#b89677`.
+- P06 f206: hasır ışık yüzü (240, 1150) `#b89677`, ön yüz (600, 1300) `#6e5a56`. P07 f112: gök orta (300, 600) `#a9b7cc`, şehir blok ışık (≈ 300, 1250) `#e0c8b2` ±3.
+
+### 2v2.16 Dönem/şehir doğruluğu
+| İddia | Etiket |
+|---|---|
+| Place Saint-Pierre kalkış yeri (P03'teki genel balon) | [A] |
+| Pamuk + vernik, kömür gazı, hortumla şişirme | [A] (hortum biçimi [G]) |
+| Küre + ağ + hasır sepet + halka | [G] doğrulanmalı (tasarım §4.1) |
+| Niépce + Daguerre aynı sabah, Daguerre vuruldu, Niépce balast attı | [A: DASH, GUT] |
+| Niépce/Daguerre kalkış yeri | **arastirma'da yok**; [G] Gare d'Orléans olabilir → açık soru 2 |
+| Daguerre'nin vurulduğu yer | arastirma'da yok; Prusya hatları şehrin dışında ⇒ duman şehrin içinden çıkmaz [G, mantık] |
+| Sabah 09:00, güneş 135°/12° | [A] saat; güneş hesabı [T] |
+| Montmartre varoş evi, sıva, kırma çatı; ağaç; toprak zemin | [G] nötr |
+| Sacré-Cœur, Eyfel, gaz lambası, bayrak, kırmızı tuğla, sarı metal | yok (kesin) |
+
+### 2v2.17 Motion için çizim notları
+- **Şablon iskeleti:** `MONTMARTRE` tek `dunya` nesnesi (§2v2.3) + görünüm başına kamera `{F, e, Xk, Zk, U}` + `kamera_H(t)` (gok/sepet). Bütün nesneler `dunyaEkran()` ile (PARIS-CATI V4'teki fonksiyon); elle ekran koordinatı yok. `sinirlar.json` MONTMARTRE: meydan cs 0.95–1.1, cy −50…450; yukleme cs 1.0–1.6, cx ±80, cy −250…50; gok cs 0.85–1.1; sepet cs 1.2–1.5.
+- **Türetme:** `GokLitografi`, `ArsivKatmani` (litografi), `dolly.ts` değil (bu şablonda dolly yok), `CatiDenizi` uzak modu (ufuk bandı; PARIS-CATI V4 düzensizlik aralıkları), `GolgeSeridi` (gün vektörü), `Kukla`/kompars siluet seti (F1), `KolEl` sepya manşet (F2).
+- **Yeni ortak modüller:** `Balon {s, durum: yigin|sisme|dolu|yukselis|coker, kure_m 6.6, ag}`, `Sepet {yaw, cokme, torbalar[], icerik}`, `Torba {dusme, donus}`, `MeydanZemin`, `CiplakAgac {seed, asimetri}`, `SivaCephe {kat, aks, kirma_cati}`, `HavadanSehir {H, F, U, seed}`, `UfukBandi {seed}` (meydan Paris bandı; `CatiDenizi` uzak modunun alt kümesi olabilir).
+- **Şişme:** küre yarıçapı ve tepe formülü §2v2.4; kubbe yığından **ayrılarak** büyür (yığın kubbeye dönüşür, fade yok); etek kıvrımları 9 → 0, terminatör bandı s ile iner; ağ meridyenleri gevşekken kavisli, f40/66/88'de kademeli düzleşir.
+- **Kontrol kareleri (kalibrasyon):** P03 f55 (hedefle yan yana) ve f80; P06 f206; P07 f112 ve f200. Şerit: P03 f100–156 (hortum ayrılması, halat, yükseliş, tilt), P07 f84–152 (duman, çöküş, düşüş), P07 f186–256 (torbalar, sıçrama).
+
+### 2v2.18 Yönetmen için kamera tablosu (json sahibi yönetmen; MONTMARTRE)
+| Plan | Görünüm | kare | cs | cx | cy | Ek parametre | Ekranda doğrulama |
+|---|---|---|---|---|---|---|---|
+| **P03** | meydan | 0 / 116 / 156 | 1.0 / 1.0 / 1.0 | 0 | 0 / 0 / 420 | `ufuk_y 1304`; `balon.sisme` s(f) §2v2.4; `kazikci` 1 (F1) | f80 küre ø 624, tepe 516; sepet tabanı 1480; f156 sepet kadraj üstünde |
+| **P06b** | yukleme | 168 / 214 / 250 / 287 | 1.0 / 1.2 / 1.45 / 1.45 | 0 / 0 / 0 / 0 | 0 / **−100** / **−210** / −210 | `ufuk_y 900`; Dagron ayak (128, 1275), biniş teması **(175, 920)**; Daguerre (888, 687) ø 246; `halat_gerilir` = bağlama halatı | f214 taban 1479, f250 taban 1498 (v1 cy −80 tabanı 1605'e, IG bandına itiyordu) |
+| **P07 A** | gok | 0 / 100 / 158 | 0.9 / 0.95 / 1.0 | 0 | 0 | `ufuk_y 900`; `gok_kamera_H` [60, 140]; Niépce (300, 650), Daguerre (790, 620 → 560 f106); **darbe dekor (720, 675) ≈ ekran (712, 687)**; `duman_cizgisi.kaynak` dekor (1150, 935) ufuk buğusu | yazı bandı küre tepelerinin üstünde (≥ 405) |
+| **P07 B** | sepet | 160 / 200 / 300 | 1.3 / 1.3 / 1.4 | 0 | 0 | `ufuk_y` dekor 668; `sepet_kamera_H` 150 (f160–250) → 300 (f250–320); torba 4 f196, torba 3 f214; Dagron kontrajur, baş sola | torba %14–16; rim diyagonal (66, 739)–(977, 769) |
+json düzeltme notları (yönetmene): P03 `alt_ucte_bir` "kaldırım taşı" → toprak; P03 `kalabalik` + kazıkçı; P06 Dagron "x 21–279, ayak 1417" → sol-arka (128, 1275), biniş BL köşe; P06 yükleyici "Z 3.5" → sepetin arkası; P06 `sepet.halat` → bağlama halatı; P06 ikinci balon "(931, 688) ø 262" → (888, 687) ø 246; P07 `darbe` (760, 720) → (712, 687) ekran; P07 `duman_cizgisi.kaynak` "yer (kadraj altı)" → ufuk buğusu, sağ (açık soru 3); P07 `hava_perspektifi` hex'leri `#a9adb0…` → §2v2.9 (`#dccfcf/#b0a6c0`); P07 B `el` → Dagron kontrajur siluet + kol.
+
+### 2v2.19 Açık sorular
+1. **Tasarımcıya — küre ölçeği:** hedef (onaylı) küreyi ≈ 6–7 m okutuyor; bu şartname **küre 6.6 m, sepet:küre 1:5.5** kullanıyor (tasarım N1: ≈ 15 m [G], 1:8). Kabul edilmezse P03'te küre ekranda aynı kalır, sepet 166 → 120 px'e küçülür (360'ta 40 px). Ayrıca yeni ton `#b39a9e` (evin ışık alan çatı üçgeni) §14.2'ye.
+2. **Araştırmacıya — Niépce/Daguerre kalkış yeri:** arastirma.md'de yok. Genel bilgim Gare d'Orléans yönünde [G, doğrulanmalı]. Doğrulanırsa P06b/P07'nin "Montmartre meydanı" değil "istasyon avlusu" olması gerekir; bu şartnamede P06b/P07'de Montmartre'a özgü hiçbir şey çizilmedi, şehir adsız. Bu yüzden zarar sınırlı. Yalnız P06b'deki ağaç ve meydan zemini değişir.
+3. **Araştırmacı + yönetmen — Daguerre'nin vurulduğu yer:** Prusya topu şehrin dışındaydı [G]. Varsayılan: duman çizgisi ufuk buğusundan (şehrin dışından) gelir, Paris çatılarının arasından değil. Json `duman_cizgisi.kaynak` buna göre değişir.
+4. **Yönetmene — P03 yükseliş hızı:** 40 karede ≈ 18 m (zaman sıkıştırması ×5). Kabul ya da taşıyıcı devri erken (§2v2.5).
+5. **Tasarımcıya — kompars başlığı:** 1870 kalabalığında başı açık erkek az görülür [G]. Tasarım §3.0 "aksesuar yok" diyor; 2 siluete yumuşak kasket/şal silueti eklenmesi dönem okumasını güçlendirir (yüz yok, üniforma okutmaz). Varsayılan: §3.0'a uyulur (şapkasız), kadınlarda yalnız şal.
+6. **Kullanıcıya (orkestra toplar):** P03 f0–45 üst üçte birin sağ yarısı yalnız gök (0.7 sn). Varsayılan: `lint.izin`.
+
+---
+
+## 2. KE-PK-S2 MONTMARTRE (P03, P06b, P07) — v1, ARŞİV (geçerli olan §2v2)
 
 ### 2.1 Mimari kart: Place Saint-Pierre, Montmartre eteği (1870)
 | Madde | Değer |
