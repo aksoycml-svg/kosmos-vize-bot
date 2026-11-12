@@ -671,3 +671,10 @@
      - Ray demeti 360'ta zor seçiliyor.
   5. **Kurgucu:** P06b ortam sesi hale yankısı. Darbe görsel olarak f108–118; sarsıntı 12 kare.
   6. Render kanıtı olmayan parametreler: `arka: "montmartre"` ile `yukleme`/`gok` (meydan arka planlı yükleme; çizim yolu var, kullanılmadı).
+
+## eleştirmen · 2026-11-12 · B turu kalibrasyonu (MONTMARTRE + hale: P03, P06b, P07)
+- Ne yaptım: 8 kontrol karesini (tam/360/güvenli), P07 iki şeridini, karsilastir.png'yi ve hedef-montmartre'yi taradım. Orkestranın gözlemlerini tek tek doğruladım/çürüttüm. Kusurların nedenini parametre/dosya düzeyinde yazdım. 5 öncelikli düzeltme çıkardım. Karar: P03 GEÇER · P06b GEÇMEZ · P07 A GEÇMEZ · P07 B DÜZELTMEYLE GEÇER. Puan 5.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/B/elestiri.md (yeni), bolumler/paris-kusatmasi/katki-raporu.md.
+- Aldığım kararlar ve gerekçeleri: Önce kritik sürekliliği koydum: P06b f168'de balon zarfı yok. Sonra kahraman eylemin okunurluğunu (figür + biniş), sonra Paris imzasını ve darbeyi. Sepet ölçüsü makul, sorun biçimi (hasır yok). Bu yüzden "dev kutu" gözlemini kısmen çürüttüm. P06b hale ve P07 havadan şehir için hedef görsel istedim; bütçe onayı orkestrada. lint.izin'leri (P07 parlama, P03 gök) yeniden açmadım.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: süreklilik (P06b zarf yok, KRİTİK), hareket şeridi zorunluluğu (P06b şeridi yok), güvenli alan (P07 f200 dokunuş torbası IG sağ sütunda; P06b f206 Dagron gövdesi yan payda), göster-okunurluk (duman çizgisi P03 hortumuyla aynı biçim, yanlış okunuyor), gravür telefonda okunur (makas çubukları 360'ta <1 px), kompars/figür okunurluğu (manken siluet), doruk karşılığı (P07 B yükseliş belirgin değil). Bindirme betiği P06b'de üst plan adını (HARITA) basıyor.
+- Açık sorular / bir sonraki ajana notlar: (1) Orkestra: 2 hedef görselin bütçe onayı. (2) Motion: P07 B f240–300 yükselişi ölçüp yaz. (3) Teknisyen: bir sonraki turda P06b f200–260 şeridi ve biniş karesi (≈f230). (4) Doğu yönü çelişkisi hâlâ açık (yönetmen notu); bu turda değerlendirmedim.
