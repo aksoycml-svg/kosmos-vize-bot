@@ -51,6 +51,7 @@ Tarama yalnız (a) balon küresinin gölge yarısında terminatör bandında, (b
 **Hava durumu iddiası yok:** kar, yağmur, bulut, sis çizilmez (kaynakta yok [A]; kar yalnız Norveç'teydi ve o hikâye çıktı). "Kış" yalnız palet soğukluğuyla anılır. Sokak lambası ve gaz lambası çizilmez [G: 1870 Paris aydınlatması/kuşatma karartması doğrulanamadı, arastirma §5.1].
 
 ### 1.2 ALACAKARANLIK (P01, P11 kümes)
+> **Tur-4 notu (2026-11-12):** bu tablodaki hex'ler ve §0.2 "soğuk, düşük doygunluk" cümlesi **§13 ile değişti**; çelişkide §13 geçerlidir. Aşağıdaki tablo tarihçe olarak kalır.
 | Ad | Hex | Not |
 |---|---|---|
 | gök tepe / orta / ufuk | `#232840` / `#4a4663` / `#a58e98` | 3 düz basamak, gradyan yok; ufuk **soluk gül**, turuncu/şeftali yok |
@@ -448,3 +449,120 @@ Rig ihtiyaçları: **Kukla kullanılmaz.** `iğne başı` ve `darbe` kit varsay�
 8. **P05 film kenarı bal rengi** senaryo notu uygulanmadı (yönetmenle aynı karar): imza yalnız kılıfta.
 
 **Sonraki ajana (mekân sorumlusu):** `mekanlar.md` §9'daki noktalar; sarı metal ve kırmızı yasakları mekân paletine de uygulanır; PARIS-CATI doku/ayrıntı için dönem gravürü referansı gerekli ve Haussmann sonrası kuralları araştırmacı doğrulamasıyla kesinleştirilmeli.
+
+---
+
+## 13. Görsel dil revizyonu (tur-4) — 2026-11-12
+
+Girdi: `notlar/tur-4.md` (kullanıcı: "kuş planı çok soğuk, estetik yok", "çatı kötü gözüküyor" + orkestra teşhisi + A2 zayıf noktaları), A2 kareleri (P01 f000/f024/f370). Spesifikasyondur, kod/görsel değil. Hex'ler elle Lab tahminiyle kontrol edildi (±3); motion `renk_olcum.py` ve eleştirmen render'da doğrular. **§0.2, §1.2, §2.4 (b\* kuralı), §4.2 (renk/tür işareti), §4.4 (kümes rengi) ile çelişen yerlerde §13 geçerlidir.** Kapsam: alacakaranlık (P01, P11 son, P10a kümes) + kümes ahşabı gün saatinde. Kış günü planları (P03, P06, P07) paletine dokunulmadı.
+
+### 13.0 Teşhis → karar
+| Teşhis | Karar |
+|---|---|
+| Tek renk ailesi | Sıcak–soğuk karşıtlık: gölge mavi-mor, ışık gül-altın (§13.1) |
+| Işık yok | Tek kaynak batan güneş, kenar ışığı + uzun gölge + sıcak pencere (§13.4) |
+| Derinlik yok | Kuş planında flu arka çatı denizi; geniş planda 5 katman (§13.6) |
+| Doku yok | Kâğıt + gravür taraması 360 px'te görünür, en fazla 3 katman (§13.5) |
+| Çatı boş zemin + dev baca kutusu | Yüksek bakış, çatı denizi, baca külahı sıraları, lucarne, ışıklı pencere, ince duman, Panthéon (§13.6) |
+
+### 13.1 Alacakaranlık paleti v2 (P01, P11 son, P10a)
+| Ad | Hex | Not |
+|---|---|---|
+| gök: tepe / üst / orta / alt / ufuk | `#2b2f5c` / `#4d4a80` / `#7d6a95` / `#b98a9e` / `#e6b5a0` | 5 düz basamak (§13.5 geçiş); **güneş diski çizilmez**, sağ-arkada ufukta `#f0cdb4` iki eş merkezli düz parıltı halkası (α .55 / .30), turuncu yok |
+| çatı denizi, arkadan öne | `#a98aa0` (uzak) · `#8d7899` · `#6d6384` · `#4e4a68` · `#2f2d46` (en yakın siluet) | atmosfer: uzak açık ve düşük kontrast, yakın koyu ve kontrastlı |
+| mansard arduvaz-çinko ışık / gölge | `#6d6384` / `#3e3b5c` | mavi-mor |
+| krem taş cephe (güneşe sırtı, gölge) / sağ kenar ışığı | `#6f6684` / `#d9a995` | cephe çoğunlukla kontrajur gölgede |
+| baca külahı ışık / gölge | `#8a6458` / `#4f4347` | soluk toprak, C\* ≤ 18, kırmızı değil |
+| pencere ışığı (içten) | `#f0d2b8` | şeftali-krem; çevresine `#e6b5a0` α .22 havuz |
+| pencere kasası / korkuluk | `#3a3550` / `#2f2d46` | |
+| **kenar ışığı** (çatı, kümes, kuş; sağ-üst yüz) | `#e6b5a0` | 2–3 px |
+| **kümes ahşabı** (yıpranmış sıcak kahve) ışık kenar / orta / gölge / damar | `#b58a6c` / `#7e5a48` / `#4a3844` / `#3a2c36` | gün saatinde (P10a): `#a8805f` / `#8c6d56` / `#5a4638` |
+| kümes çatısı (çinko) | `#5c5a7a`, sağ kenar `#e6b5a0` | |
+| teras çinko (kenet çizgileri) | `#5b5878` / çizgi `#3e3b5c` / sağ kenar ışığı `#c9a0a6` | |
+| **güvercin** gövde orta / gölge / karın / kanat ucu | `#8a8796` / `#5b5870` / `#b3aab0` / `#43415a` | güvercin grisi, hafif mor-gri |
+| güvercin kenar ışığı (sırt, kanat üstü, kuyruk uçları; sağ-üst) | `#e6b5a0` | 2–3 px |
+| boyun yanardönerliği | yeşil `#5f7f72` + mor `#8a6c96` | yalnız boyun yan şeridi, iki leke; C\* ≤ 22 |
+| ayak / gaga / göz | `#7a5a66` (mor-gül, kırmızı değil) / `#4f4b4f` / `#14120f` tek nokta | iris ve turuncu halka yok |
+| gölge rengi (genel) | zemin tonunun %65'i, **mavi-mor** kaydırılmış (`#3e3b5c` civarı) | gün batımında gölge soğuk, ışık sıcak |
+Arşiv derecelendirmesi (`geceLapis`) gök gülünü grileştirmeyecek: ölçüm gök alt/ufuk C\* ≥ hedefin %85'i. (Evliya K1 dersi.)
+
+### 13.2 Kuş (P01 kanca)
+- Rim ışığı: batan güneş sağ-arkada, kuş sağa bakıyor ⇒ sırt/kanat üstü/kuyruk uçlarında 2–3 px sıcak kenar çizgisi; gövde ön yüzü mavi-mor gölge tonunda, karın biraz açık (gökten yansıma `#b3aab0`).
+- Boyun: yeşil-mor yanardönerlik, iki leke, düz dolgu (gradyan yok). **Yanardönerlik tür iddiası değil**, hâlâ çizilmez: iki koyu kanat çubuğu, beyaz kuyruk bandı, turuncu göz.
+- **Kompozisyon (kullanıcı notu, A2 zayıf nokta 1):** kuşun başı **tamamen kadrajda ve üst UI bandının (y ≥ 220) altında**, baş üstü ile kadraj üst kenarı arasında ≥ 80 px boşluk; kuş gaga-kuyruk ayağa kadar ekrana sığar. Kılıf ekran köşegeninin ≥ %10'u (≥ 190 px), P01 f0 ↔ P11 son aynı kare.
+- **Arka plan:** kuşun arkası düz kümes duvarı değil. Kuş iniş tahtasının **sağ ucunda**; kümes ön yüzü kadrajın solunda ~%40'ta biter; kuşun sağ-üst arkası açık gök + flu çatı denizi (§13.6). Bu kamera/dekor değişikliğidir (kümes ön yüzü genişliği, kamera cx): hedef görsel onaylanırsa mekân sorumlusu/yönetmen ölçer.
+
+### 13.3 Kılıf tekliği: ton yasağı yerine doygunluk + parlaklık
+Kılıf `#F0B43C` değişmez (L\* 77, C\* ≈ 67, h ≈ 80°). Sahnede artık sıcak tonlar (gül, şeftali, kahve) var; imza bu yüzden **ton yerine nicelikle** ayrılır:
+| Ölçüt | Sahne (kılıf dışı) | Kılıf |
+|---|---|---|
+| Kroma C\* | **≤ 28** (kenar ışığı ≈ 23, pencere ≈ 19, ahşap ışık kenarı ≈ 24) | ≥ 60 (hedef 67) |
+| Parlaklık L\* tavanı | **≤ 88** (ufuk parıltısı, pencere) | spekülar hilal `#FFF3CC` L\* ≈ 96 |
+| Ton (hue) | ışık/pencere/kenar 45–70° (gül-şeftali) | 80° ± 12° |
+- Kural: **kılıf dışında C\* > 32 piksel yok** (anti-alias payı %0.5), imza bandı (hue 68–92°, C\* > 40, L\* 60–90) yalnız kılıf kutusunda. Eski "b\* > 26 ve L\* > 55" kuralı bu kuralla değişir (daha sıkı değil, doygunluğa bağlı).
+- "Kılıf en sıcak piksel" yerine: **kılıf sahnenin en doygun ve en parlak (spekülar) tek noktasıdır.** Eleştirmen betiği: kılıf C\* ≥ 2.3 × sahne maksimumu.
+- Kılıf çevresine hale/ışık havuzu/kıvılcım hâlâ yok (§2.3); kılıf yalnız sağ-üst kenarda `#FBE3A0` kenar ışığı alır.
+
+### 13.4 Eski yasaklardan hangisi gevşer, hangisi kalır
+| Yasak | Karar | Yeni sınır |
+|---|---|---|
+| §0.2 "soğuk, düşük doygunluk" tek aile | **GEVŞER** | sıcak–soğuk karşıtlık; sahne C\* ≤ 28 |
+| §1.2 pencere ışığı "soluk krem, turuncu değil" | **GEVŞER (kısmen)** | şeftali-krem `#f0d2b8`, C\* ≤ 22, hue 45–70°; **turuncu/kehribar hâlâ yok** |
+| ahşap / kenar ışığı b\* ≤ 14–15 | **GEVŞER** | b\* ≤ 24 (C\* ≤ 28) |
+| §4.2 yeşil-mor boyun çizilmez | **GEVŞER (kısmen)** | yalnız boyun yanardönerliği, C\* ≤ 22; kanat çubuğu / beyaz kuyruk bandı / turuncu göz **kalır** |
+| §0.2/mekanlar "gök 3 düz basamak, gradyan yok" | **GEVŞER** | 5 basamak + tarama/tane geçişi (§13.5); CSS yumuşak gradyan **hâlâ yok** |
+| "Kılıf en sıcak piksel" | **DEĞİŞİR** | en doygun + en parlak (§13.3) |
+| Sarı/altın/pirinç/bakır **metal** (terazi, lantern, mercek, iğne, kilit, halka, kandil) | **KALIR** | ışık metale sıcak kenar verebilir (≤ C\* 23), metalin kendi rengi koyu çelik/çinko |
+| Kehribar/bal/altın mühür, balmumu, ip, sepet kenarı | **KALIR** | |
+| Güneş diski, turuncu alev | **KALIR** | disk çizilmez, yalnız parıltı halkası |
+| Görüntüde kırmızı (mühür, bayrak, tuğla, ayak) | **KALIR** | gül/mauve tonlar C\* < 30 ve kırmızı betik bandı (C\* > 30, h 340–40°) 0 |
+| Kanal `gold #b8862b` görüntüde yok | **KALIR** | |
+| Sokak/gaz lambası, kar, sis, bulut | **KALIR** | gök yalnız düz bantlar |
+Net özet: **gevşeyen = renk ailesi, ışık/pencere/ahşap sıcaklığı, gök basamağı, boyun yanardönerliği; kalan = metal, mühür/bayrak/kırmızı, güneş diski, alev, bal/kehribar nesneler, gold.**
+
+### 13.5 Doku (en fazla 3 katman, 360 px'te görünür)
+1. **Taban deseni:** tahta damarı + derz (kümes), çinko kenet çizgisi, arduvaz sırası, taş sırası.
+2. **Gravür taraması:** yalnız ışığın mimariyi anlattığı yerde (korniş altı, lucarne yanağı, baca gölge yüzü, kümes saçak altı, iniş tahtası alt yüzü, kuşun gölge tarafında kısa 3–5 çizgi). Çizgi ≥ 2.5 px (1080 tabanı), aralık 7 px, renk gölge tonunun %60 koyusu **mor tonlu** (`#2f2d46` ailesi), açı tek (72°). Geniş yüzeyde tarama/kafes yok.
+3. **Kâğıt + litografi grenı:** `paper #e9dfc9` multiply α .12–.16, lif uzunluğu ≥ 24 px, 6–10 adet soluk leke (ø 20–60 px, α .06), kenarlarda hafif koyulaşma. Seed sabit.
+- **Gök geçişi (litografi):** basamak sınırlarında 2–3 ince yatay çizgi + tane (stipple) geçişi; yumuşak gradyan değil. Bu, 2. katmandan sayılır.
+- **Renkli kontur:** `ink(dolgu)` = dolgunun %55 koyusu **kendi tonunda** (mor/kahve), siyah kontur değil (§0.3 ile uyumlu).
+- 360 px kontrolü (öneri eşik, eleştirmen/betik): 40×40 px gök örneğinde L\* std ≥ 1.2; tarama çizgisi 360'ta ≥ 0.8 px.
+
+### 13.6 Derinlik ve çatı denizi
+**Kuş planı (P01 f0, cs ≥ 2.4):** kuş ve kümes keskin, kontur tam. Arka plan "odak dışı" (vektörde): konturlar kalkar, kenar yumuşatma σ ≈ 7 px (1080 tabanı), pencere ışıkları 3–4 yumuşak disk (ø 16–28 px, `#f0d2b8`), 1–2 ince duman şeridi, ufukta Panthéon kubbesi çok silik. Atmosfer: arka tonlar açık ve düşük kontrast (`#a98aa0`, `#8d7899`), kuş koyu-sıcak kenarla önde okunur. Kuşun arkası düz yüzey olmaz.
+
+**Geniş plan (P01 kapanış, f370):** kamera **yüksek bakış**: göz teras üstü 1.0 m → **≥ 3.5 m** (kümes ve baca üstü, hafif aşağı eğik), ufuk kadrajın ≈ %33'ünde (y ≈ 630) [T; mekân sorumlusu fiziksel tutarlılığı doğrular]. Çatı denizi 5 katman, arkadan öne:
+| Kat | d (Z/Z_k) | İçerik | Ton / ayrıntı |
+|---|---|---|---|
+| K1 | ≥ 40 | uzak sırt + **Panthéon kubbesi** (haçsız, yaldızsız siluet; güneş parıltısı önünde koyu) | `#a98aa0`, kontursuz |
+| K2 | 25–40 | mansard silueti + baca külahı tarağı | `#8d7899`, kontursuz |
+| K3 | 15–25 | lucarne sırası, 5–6 ışıklı pencere, 2–3 ince duman şeridi | `#6d6384`, 3 px kontur |
+| K4 | 8–12 | karşı bina: korniş, lucarne (beşik çatılı), baca kümesi + külah sırası, sağ kenar ışığı, tarama | `#4e4a68`, 4 px kontur |
+| K5 | 3–5 | kendi terasımız, kenet çizgileri, **yem/su teknesi**, kümes, **sağ baca (Z 4.4)** | `#2f2d46` siluet + kenar ışığı |
+- Duman: ince, seyrek (2–3 baca), gri-mor `#8d7899`, çözülerek biter (fade değil, kümeler küçülür). Kuşatma kışında yakacak kıtlığı olabilir [G, doğrulanmalı] ⇒ pencerelerin hepsi yanmaz (≈ %35).
+- **Dev özelliksiz baca kutusu yok:** ön baca da külah sırası, korniş bandı, tarama ve kenar ışığı taşır ya da kadraj dışında kalır. Yem/su teknesi ve sağ baca (kullanıcı kapsamında) çatı denizinin K5 katmanı olarak kalır; sağ baca K1–K3 üstünü örtmez, Panthéon (x ≈ 820) görünür kalır.
+- Alt üçte bir: kenet çizgileri VP'ye yakınsar, tekne, uzun gölgeler, zemin ışığı (sol-önde gül-altın leke) ⇒ ölü alan yok.
+
+### 13.7 Işık (tek kaynak)
+- **Kaynak:** batan güneş, kadrajda **sağ, derinlikte (ufukta)**: mekanlar §0.6'daki "43° sağda, önde" ile aynı yön; "sağ-arka" = sahnenin derinliği, kontrajur. Yükseklik ≈ 3–5° [T].
+- Kenar ışığı sağ-üst yüzlerde (`#e6b5a0`, 2–3 px); ön yüzler mavi-mor gölgede; gölgeler **sola ve kameraya** uzun düşer (gerçek boy ≈ 11×; kadraja sığması için çizimde ≤ 6× [T, abartı]); kuşun gölgesi iniş tahtasına.
+- Pencere ışıkları ikincil: yalnız kendi çevrelerine α .22 havuz, gölge vermez. Kılıf ışık yaymaz.
+- Gök parıltısı, kenar ışığı yönü, gölge yönü **tek vektörden** (`ISIK_YON` alacakaranlık değerini 243° batış ile hizala).
+
+### 13.8 P10 Paris eli (A2 zayıf nokta 2)
+- **Oran:** el bilekten parmak ucuna **0.18–0.19 m**, kuş gövdesi 0.32 m ⇒ el kuşa göre gerçek oranda (≈ kuş gövdesinin %58'i). A2'de el iri ve başparmak uzundu; kılıf ×1.6 (7.2 cm) elin boyunun ≈ %38'i olur, kıstırma açıklığı buna uyar.
+- **Kıstırma:** başparmak ucu + işaret parmağı ucu kılıfa/ipe **gerçekten değer** (çizimde yüzeyler kesişir, temas gölgesi), diğer parmaklar avuca kıvrık, başparmak işaret parmağının ≈ %80'i kadar (A2'deki uzun başparmak düzelir). Temas karesi `kontrol_kare`.
+- **Renk (yeni palet):** ten ışık `#d6b49c` · gölge `#8f7360` · kenar ışığı `#e6b5a0` 2 px (sağ-üst) · manşet `#5d5f63` (kömür-gri, kalır). Ten C\* ≤ 28; kılıfa ΔE76 ≥ 15 (≈ 45) korunur. Pencere/gün batımı kenar ışığı ele kehribar olarak okunmaz.
+
+### 13.9 [G] / doğrulanmalı (araştırmacıya)
+1. Panthéon kubbesinin bu çatıdan GGB yönünde görünürlüğü ve 1870'te tepesindeki haç durumu (kilise hâli) ⇒ nötr siluet.
+2. Kuşatma kışında baca dumanı/pencere ışığı yoğunluğu (yakacak, aydınlatma kıtlığı).
+3. Boyun yanardönerliği: ev/posta güvercini için genel bilgi [G güvenli]; cins kaynaksız ⇒ tür işareti sayılmaz, hafif tutuldu.
+4. Çatı güvercinliğinin biçimi (zaten [G]).
+
+### 13.10 Devir (tek sahiplik; ben yalnız tasarim.md)
+- **Mekân sorumlusu:** `mekanlar.md` §0.3 (gradyan yasağı istisnası, gök 5 basamak), §1.2 palet hex'leri, §1.4 katman tablosu (K1–K5, göz yüksekliği, kümes ön yüz genişliği), ArsivKatmani modu renk korunumu.
+- **Motion:** `catiDekor.tsx` palet, kenar ışığı, flu arka plan, çatı denizi katmanları; Guvercin boyun/kenar ışığı; KolEl parisGri ton + oran + kıstırma. Önce hedef görsel (Gemini) onayı.
+- **Yönetmen:** P01 f0 kamera (baş kadrajda, kılıf ≥ %10), P01 kapanış yüksek bakış.
+- **Eleştirmen betiği:** §13.3 ölçütleri (C\* > 32 kılıf dışı 0, kılıf C\* ≥ 2.3 × sahne maks., L\* tavanı, kırmızı bandı 0).
+- Hedef görsel promptları: `hedef/prompt-kus.txt`, `hedef/prompt-cati.txt`.
