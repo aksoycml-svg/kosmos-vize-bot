@@ -12,6 +12,7 @@ import { GALATA_TEPE } from "./galata/GalataTepe";
 import { BOGAZ } from "./bogaz/Bogaz";
 import { KITAP_INSERT } from "./kitap/KitapInsert";
 import { PARIS_CATI } from "./paris/ParisCati";
+import { MONTMARTRE } from "./paris/Montmartre";
 
 export const SABLON_KAYIT = {} as Record<SablonAdi, Sablon>;
-Object.assign(SABLON_KAYIT, { SOKAK, "IC-ODA": IC_ODA, "MASA-INSERT": MASA_INSERT, "KULE-DIS": KULE_DIS, HARITA, SARAYBURNU, "GALATA-TEPE": GALATA_TEPE, BOGAZ, "KITAP-INSERT": KITAP_INSERT, "PARIS-CATI": PARIS_CATI });
+Object.assign(SABLON_KAYIT, { SOKAK, "IC-ODA": IC_ODA, "MASA-INSERT": MASA_INSERT, "KULE-DIS": KULE_DIS, HARITA, SARAYBURNU, "GALATA-TEPE": GALATA_TEPE, BOGAZ, "KITAP-INSERT": KITAP_INSERT, "PARIS-CATI": PARIS_CATI, MONTMARTRE });

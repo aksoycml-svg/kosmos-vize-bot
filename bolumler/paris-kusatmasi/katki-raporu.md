@@ -595,3 +595,79 @@
 - Aldığım kararlar ve gerekçeleri: zamanlama, metin ve ses aynı (kareler değişmedi). Düşüş yumuşatması anahtar adlarını (`sepet_duser`) değiştirmedi, yalnız not/eğri yazıldı (motion için kararlı anahtar). Doğu yönü: P07 A'da yön belli eden öğe olmadığı için `tasiyici.cikis` "doğuya (sağa)" değişmedi. Render yok: P03/P06/P07 `lint.not` = "B turu kamera, render motion sonrası" (P03'te gök izniyle birleşik, P07'de parlama izniyle).
 - Uyguladığım kurallar / yakaladığım ihlaller: kural 1 (senaryo→parametre: kazıkçı, bağlama halatı, çuval karşılıklı); kural 2/6 (`bolum_dogrula --tam` GEÇTİ, 0 hata, 1 uyarı foley.json yok); kural 7 yapılamadı (render yok, `lint.not` ile işaretli). Yakaladığım: P06 `sepet.konum` (x 200–872, taban 1460) ve sandık 392×252 §2v2.6 ile uyuşmuyordu (x 175–876, taban 1476, sandık 329×211), düzeltildi; v1 cx 60 kamera kaydırması kaldırıldı.
 - Açık sorular / bir sonraki ajana notlar: (1) Doğu yönü çelişkisi (§2v2-H açık soru 3) kullanıcı/orkestra kararı bekliyor. (2) Senarist: `senaryo.md` P06 `[GÖRSEL]` "meydanda sepet" → "hale altında sepet" (sahibi senarist; metin/ses değişmez). (3) Motion: P03 kazıkçı + MeydanZemin toprak, P06b/P07 `arka: "hale"` şablon kodu; render sonrası kontrol karelerini P03 f80, P06 f206, P07 f112/f200 al ve `lint.not` kayıtlarını kaldır. (4) `lint.izin` adları (`olu_alan_gecici`, `L_ustu_88_parlama`) denetim betiğine tanıtılmalı.
+
+## motion · 2026-11-12 · B turu: MONTMARTRE şablonu + Gare d'Orléans halesi (P03, P06b, P07)
+- Ne yaptım:
+  - MONTMARTRE şablonunu kurdum: tek dünya modeli, dört görünüm (`meydan`, `yukleme`, `gok`, `sepet`) ve `arka: "montmartre" | "hale"`.
+  - Yeni proplar: balon (yığın → şişme → dolu → kısmi sönme; ağ, halka, boğaz, askı halatları), hasır sepet, sandık, kum torbası / posta çuvalı, eklemli siluet figür.
+  - Hale dekoru: Polonceau makası, cam şerit, sağ duvar (ışık sınırı formülle), kolonlar, alın camı.
+  - Havadan şehir + ray demeti, P07 gravür darbesi (KE-PK-E1).
+  - `sinirlar.json` MONTMARTRE yer tutucusunu gerçek kayıtla değiştirdim; KATALOG.md'ye bölüm ekledim.
+  - bolum.json'da P03/P06/P07 "render motion sonrası" lint notlarını kaldırdım (render alındı, bakıldı).
+  - Kalibrasyon: 8 kare × (tam + 360 + güvenli + güvenli-360), 3 hareket şeridi, `karsilastir.png`, Lab ölçümü.
+- Dokunduğum dosyalar:
+  - yeni:
+    - src/kit/sablonlar/paris/{Montmartre.tsx, montmartreDunya.ts, montmartreDekor.tsx}
+    - src/kit/props/paris/{Balon.tsx, SabahFigur.tsx}
+    - bolumler/paris-kusatmasi/kalibrasyon/B/*
+  - değişen:
+    - src/kit/sablonlar/kayit.ts (kayıt)
+    - src/kit/tipler.ts (SablonAdi)
+    - src/kit/ortak.tsx (`Sablon.darbeKendi?`)
+    - src/kit/Bolum.tsx (darbeKendi olan şablonda genel darbe + sarsıntı atlanır)
+    - src/kit/sinirlar.json (yalnız MONTMARTRE bloğu)
+    - src/kit/KATALOG.md
+    - bolumler/paris-kusatmasi/bolum.json (yalnız 3 lint.not)
+- Aldığım kararlar ve gerekçeleri:
+  - **Darbe şablonda:** kit `DarbeKatmani` çizgi roman patlaması (tasarım §5 yasak) ve 18 px sarsıntı veriyordu. Şablona `darbeKendi` bayrağı ekledim. Delik + 6 yırtık, ≤ 46 px krem parlama + kıvrık alev dilleri, tırtıklı gri-kül kümeler, gaz pufu, sarsıntı ≤ 3 px / 12 kare. Duman ve kümeler soluklaşarak değil, parçalanıp küçülerek biter.
+  - **Plan kamerası 2B zoom:** cs/cx/cy dekor = cs 1 ekranı üzerinde çalışır (mekanlar tablolarıyla birebir; f250 taban 1498 doğrulandı).
+  - **Figürler:** eski `SiluetFigur` (etek/kol yok) altı tipi ve biniş/yükleme pozlarını karşılamıyordu. Eklemli `FigurSiluet` yazdım: yuvarlak uçlu uzuvlar, kıyafet silueti (palto, şal, çocuk, düz, pelerin, etek, işçi, Dagron), kenar ışığı kopyası, sepya manşetli el.
+  - Dagron'un iki tonlu "ışık yarısı" kontrajurda başı ortadan bölüyordu; kaldırdım, yalnız sol kenar ışığı kaldı.
+  - P07 A'daki şehir baca dumanları (2 şerit) atış dumanıyla karışıyordu, kaldırdım (tasarım §14.4: P07'de tek bulutlu şey duman).
+  - Daguerre alçalışı hız eğrisiyle yapıldı: 20 karede vmax 38 px/kare'ye çıkıp sabit kalıyor (serbest düşüş değil, E3.1). Sepet f148'de, zarf f156'da alt kenardan çıkıyor.
+- Kareye uyarlarken değiştirdiğim değerler (yönetmen/mekân plana işler):
+  | Öğe | Şartname | Kod | Neden |
+  |---|---|---|---|
+  | Kalabalık R3 (etekli kadın) | X 4.8, boy 1.58 | X 4.3, boy 1.55 | ayak x 958 IG sağ düğme sütunundaydı; 1.58, 1.60 ile ±3 cm kuralını bozuyordu |
+  | Kazıkçı | X 3.35, boy 1.74 | X 3.12, boy 1.77 | ayak x 929 IG sütunundaydı; 1.74, 1.72 ile ±3 cm |
+  | P03 yükseliş | 40 karede ≈ 18 m (×5) | 21.5 m (≈ ×6), ease-in | sarkan bağlama halatının ucu f159'da hâlâ kadrajdaydı |
+  | Dagron P06b duruş | ayak (128, 1275), X −1.0 | X −0.8, ayak dekor ≈ (174, 1275) | f206'da (cs 1.19) ayak ekran x 58 → yan 80 px payı ihlali |
+  | Ön plan posta çuvalı | X −0.65…−0.25, üst 0.6 m | merkez X −0.3, bağ h 0.5 | merkez −0.45'te bağ ve ışık yüzü kadraj dışındaydı (yalnız gölge yayı görünüyordu); Dagron ayağının altında kalır |
+  | Sepet içi posta çuvalı ağzı | ≈ 20 px rim üstü | bağ h 1.14 | 1.07'de görünmüyordu |
+  | Hortum yer teması (f106) | sepet solu | (−1.15, 0.75) dünya | eski uç geri kıvrılıp yerde "Z" çiziyordu |
+  | Paris ufuk bandı yakın birimleri | 11–16 birim | ≈ 17–19 birim (en 18–90 px, aralıklı) | kadraj eni boşluksuz dolsun |
+  | Sandık son yüksekliği | üst y 876 | taban h 0.64 (kargo üstünde) | ön yüzün üstü rim üstünde |
+- Ölçümler (`kalibrasyon/B`, Lab D65):
+  | Kare | L* ort | p95 | C* ort | sıcak % | alt ⅓ sıcak % | C*>32 | L*>88 | kırmızı | h 74–120 & C*>22 |
+  |---|---|---|---|---|---|---|---|---|---|
+  | P03 f80 (kabul: 60–70 / ≥82 / 15–20 / ≥25 / ≥35 / 0 / 0) | 62.0 | 82.4 | 16.1 | 35.8 | 70.9 | 0 | 0 | 0 | 0 |
+  | P03 f159 | 60.3 | 80.3 | 17.6 | 13.0 | 36.7 | 0 | 0 | 0 | 0 |
+  | P06b f168 / f206 / f250 (hale sıcak ≥ 20) | 54.0 / 54.9 / 53.7 | 79.2 / 79.2 / 76.9 | 14.1 / 13.4 / 13.1 | 38.8 / 39.7 / 50.0 | 41 / 35 / 42 | 0 | 0 | 0 | 0 |
+  | P07 f0 / f112 / f200 | 63.1 / 64.5 / 60.9 | 81.5 / 82.7 / 82.2 | 15.5 / 14.4 / 12.3 | 18.3 / 15.6 / 38.4 | 27 / 15 / 32 | 0 | 0 (parlama bölgesinde 3106 px = %0.15, lint izni) | 0 | 0 |
+  - Kılıf tekliği: sahne C* maks 25.1 (≤ 28), C* > 32 piksel 0 → kılıf oranı ≥ 2.3 güvencesi korunuyor (kılıf bu planlarda yok).
+  - Renk noktaları, P03 f80: 10 noktanın hepsinde ΔE ≤ 3.8 (gök üst/orta ve ev cephesi L* −3…−4: litografi katmanı).
+  - Renk noktaları, P06b f206 (ekran karşılıkları): opak çatı (720,60) ΔE 2.3, ağız gök (300,420) 1.5, döşeme (1000,1250) 3.7, gölge (700,1700) 0.9, sepet sol yüz (180,1100) `#937866` → 3.6, cam şerit (520,250) 6.4.
+  - Sapan iki nokta, P06b f206: sağ duvar ışığı (1040,900) ΔL* −8.7, sınırda (tarama/kolon gölgesi örneğe karışıyor); ağız ışıması bu kamerada buğu bandının arkasında, ΔE 11.8.
+  - Renk noktaları, P07 f112: gök orta (1030,600) ΔE 4.4; şehir blok ışığı `#dfc8b3` mevcut (≈ %6 alan).
+  - Güvenli alan: kilit ihlali 0 (P03 f80, f159; P06b f168, f250; P07 f0, f112, f200). P06b f206'daki Dagron ayağı ihlalini düzelttim; düzeltmeden sonra yeniden render alındı ama bindirme başlığı tekrar okunmadı.
+  - PARIS-CATI P01 f24: V4 ile piksel farkı 0. tsc temiz. Doğrulayıcı `--tam`: paris GEÇTİ (0 hata, 1 uyarı: foley.json yok). Blanc GEÇTİ. Evliya'daki 1 hata önceden vardı (süre).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Tek ışık: bütün zemin gölgeleri tek vektörden geliyor; Daguerre küresinin sağ duvardaki gölgesi −L izdüşümüyle, ışık bandına kırpılı. Ufuk–ölçek, dünya izdüşümünden.
+  - Hareket tamamlanır: balon + halat ucu kadraj üstünden, Daguerre alttan, torbalar alttan çıkıyor. Kum izi düşerek gidiyor. Duman parçalanıp küçülüyor. Fade yok.
+  - Temas kareleri json'daki gibi: f106/112, f190/226/262, f108, f196/214/236.
+  - Kemer yok. Kırmızı 0, sarı metal 0. Kafes/ızgara taraması yok (tarama yalnız terminatör, saçak altı, ışık sınırı, köşe).
+  - Düzensizlik seed'li: ufuk bandı 158, toprak 157, ev 162, ağaç 159, şehir 173, cam paneli 181.
+  - Kendi yakaladığım ve düzelttiğim kusurlar: robot gibi bloklu figürler, taç gibi okunan torba büzgüsü ve "gülümseyen" kıvrım çizgisi, düşen torbanın bağ noktası çevresinde dönüp öteki torbaların üstüne savrulması, sıçramada iki kez çizilen torba halatı, yassı ışıma bloğu, kesik çizgi gibi görünen atış dumanı, ufukta boş kalan buğu bandı, top gibi duran bulvar ağaçları.
+- Açık sorular / bir sonraki ajana notlar:
+  1. **Yönetmen (görünürlük–ses):** P06b f262 "halat gerilir". cs 1.45'te bağlama halatının yalnız FR köşesinden çıkan birkaç cm'i kadrajda (köşe ekranda ≈ (1027, 1362), IG sağ sütun bandı). Görünen değişim küçük, foley riskli. Öneri: f250–268 cx +60 ya da halat yönü kameraya doğru/aşağı. Mekân şartnamesindeki yön değiştirilmedi.
+  2. **Yönetmen:** P07 B'de sağ kolun torba 4 ağzına uzandığı nokta x ≈ 895–1000 ve IG sağ sütun sınırına yakın. Bindirmede ihlal yok, pay dar.
+  3. **Yönetmen:** P06b'de biniş (f212–248) cs 1.2 → 1.45 zoom'u sırasında Dagron'un gövdesi sol kenara taşıyor. Biniş teması (175, 920) kadrajda ama tırmanış gövdesi kısmen kesik. İstenirse f214–240 cx +40.
+  4. **Eleştirmen, gördüğüm zayıflıklar (öz puan ≈ 6):**
+     - P07 A havadan şehir hâlâ maket/kutu gibi; yakın blokların uzun gölgeleri alt yarıda iri, düz lavanta lekeler bırakıyor.
+     - Parlama küçük ama kalın konturlu bir "beyaz leke" gibi okunabilir.
+     - Figürler yüzsüz siluet; yükleyicilerin kaldırılmış kolları kukla gibi.
+     - P03 f159 kapanışında üst yarı yalnız gök (balon çıkışı anı).
+     - Ağ ve kıvrım çizgileri 360'ta ince.
+     - Ray demeti 360'ta zor seçiliyor.
+  5. **Kurgucu:** P06b ortam sesi hale yankısı. Darbe görsel olarak f108–118; sarsıntı 12 kare.
+  6. Render kanıtı olmayan parametreler: `arka: "montmartre"` ile `yukleme`/`gok` (meydan arka planlı yükleme; çizim yolu var, kullanılmadı).

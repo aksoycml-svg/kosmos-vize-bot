@@ -162,13 +162,14 @@ const PlanGoster: React.FC<{ plan: Plan; guvenli?: boolean; mod: BolumMod; dil: 
   const sahne = <AbsoluteFill><S.Sahne plan={plan} p={p} kilit={kilit} onceki={plan === ham ? onceki : undefined} /></AbsoluteFill>;
   const gorsel = mod !== "yazi", yazi = mod !== "gorsel";
   // KT-2: kamera dili (itme + titreme) + darbe sarsıntısı + whip — yalnız görüntüye; yazı bantları sabit, dekora bağlı etiket aynı dönüşümle
-  const d = sahneDonusum(ham, p, onceki, b);
+  const darbeKendi = !!SABLONLAR[ham.sablon]?.darbeKendi; // şablon darbeyi kendi çizer → genel darbe + sarsıntı yok
+  const d = sahneDonusum(darbeKendi ? { ...ham, darbe: undefined } : ham, p, onceki, b);
   const alt = yazi && !!altyaziAyar(ham, b);
   // yazı modunda isim etiketi / altyazı bant seçimi kilit noktasına muhtaç: Sahne yalnız kilit için GİZLİ render edilir (boyanmaz)
   const kilitGerek = yazi && !gorsel && ((plan.karakterler ?? []).some((c) => c.etiket) || alt);
   return (
     <AbsoluteFill style={{ backgroundColor: gorsel ? "#14110d" : undefined }}>
-      {gorsel && <SahneSarmal d={d} id={ham.id}>{S.arsivAtla?.(plan, p) ? sahne : <ArsivKatmani mod={S.arsiv(plan)}>{sahne}</ArsivKatmani>}<DarbeKatmani plan={plan} p={p} /></SahneSarmal>}
+      {gorsel && <SahneSarmal d={d} id={ham.id}>{S.arsivAtla?.(plan, p) ? sahne : <ArsivKatmani mod={S.arsiv(plan)}>{sahne}</ArsivKatmani>}{!darbeKendi && <DarbeKatmani plan={plan} p={p} />}</SahneSarmal>}
       {kilitGerek && <div style={{ display: "none" }}>{sahne}</div>}
       {yazi && <HaritaEtiketleri ham={ham} p={p} dil={dil} ana={ana} d={d} />}
       {yazi && <HaritaKartlari ham={ham} p={p} dil={dil} ana={ana} d={d} />}

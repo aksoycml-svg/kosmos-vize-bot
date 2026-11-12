@@ -777,7 +777,7 @@
     "izin": [
      "olu_alan_gecici"
     ],
-    "not": "P03 f0–45 balon şişmeden önce sağ üst gök, kullanıcı varsayılanı tur-9. B turu kamera, render motion sonrası"
+    "not": "P03 f0–45 balon şişmeden önce sağ üst gök, kullanıcı varsayılanı tur-9."
    }
   },
   {
@@ -1703,10 +1703,7 @@
      "dosya": "paris/ses/en/P06.mp3",
      "kare": 0
     }
-   ],
-   "lint": {
-    "not": "B turu kamera, render motion sonrası"
-   }
+   ]
   },
   {
    "id": "P07",
@@ -2070,7 +2067,7 @@
     "izin": [
      "L_ustu_88_parlama"
     ],
-    "not": "P07 darbe parlaması L*91, kullanıcı onaylı tur-8 ('parlama kalsın' tur-9). B turu kamera, render motion sonrası"
+    "not": "P07 darbe parlaması L*91, kullanıcı onaylı tur-8 ('parlama kalsın' tur-9)."
    }
   },
   {

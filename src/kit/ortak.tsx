@@ -15,7 +15,8 @@ import { KameraDurum, ekranNokta } from "./zaman";
 // kilit: güvenli alan denetimi için ekran noktaları (ayak, temas, yüz, kurulum) — Sahne render sırasında doldurur.
 // onceki: bölümde bir önceki plan (eşleşen kesmede efekt durumu devralınır: duman, halka — K1-2 Y1). Yalnız okunur.
 export type SablonProps = { plan: Plan; p: number; kilit: KilitNokta[]; onceki?: Plan };
-export type Sablon = { Sahne: React.FC<SablonProps>; arsiv: (plan: Plan) => ArsivMod; arsivAtla?: (plan: Plan, p: number) => boolean };
+// darbeKendi: şablon plan.darbe'yi kendi çizer (Bolum genel darbe çizimi + sarsıntısı atlanır; ör. MONTMARTRE P07 gravür darbesi)
+export type Sablon = { Sahne: React.FC<SablonProps>; arsiv: (plan: Plan) => ArsivMod; arsivAtla?: (plan: Plan, p: number) => boolean; darbeKendi?: boolean };
 
 export const param = <T,>(plan: Plan, ad: string, v: T): T => (plan.parametreler?.[ad] as T | undefined) ?? v;
 

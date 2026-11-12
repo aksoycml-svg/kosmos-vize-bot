@@ -3,7 +3,7 @@
 // Kare sayıları 60 fps; plan içi kareler 0'dan başlar (plan karesi p).
 import type { Agiz, Palet } from "../rig/Kukla";
 
-export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU" | "GALATA-TEPE" | "BOGAZ" | "KITAP-INSERT" | "PARIS-CATI";
+export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU" | "GALATA-TEPE" | "BOGAZ" | "KITAP-INSERT" | "PARIS-CATI" | "MONTMARTRE";
 export type Bant = "ust" | "alt";
 export type P = [number, number];
 
