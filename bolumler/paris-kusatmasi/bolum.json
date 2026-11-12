@@ -462,7 +462,8 @@
      "hortum": "gaz hortumu soldan girer",
      "sisme": {
       "bas": 6,
-      "bit": 104
+      "bit": 104,
+      "formul": "mekanlar §2v2.4 s(f): f55 ø545 tepe 623; f80 ø624 tepe 516 (kontrol); f104 ø686 tepe 430"
      },
      "oturma": {
       "bas": 104,
@@ -473,15 +474,17 @@
       66,
       88
      ],
-     "sepet": "posta çuvallı hasır sepet (kum torbaları dışında asılı DEĞİL; P06'da kurulur)",
+     "sepet": "posta çuvallı hasır sepet x 459-625, rim 1368-1376, taban 1462-1480; bağlama halatı FR alt (625,1474) → kazık başı (869,1383) (kum torbaları dışında asılı DEĞİL; P06'da kurulur)",
      "halat_cozulur": {
       "bas": 108,
-      "bit": 116
+      "bit": 116,
+      "kazikci": "kazıkçı ilmeği kazık başından kaldırır, temas f112 (kazık (869,1383-1486), kazıkçı ayak (929,1490), baş 1288)"
      },
      "yukselis": {
       "bas": 116,
       "bit": 156,
-      "not": "balon yukarı süzülür, kadraj üstünden çıkar; kamera tilt yukarı"
+      "not": "balon yukarı süzülür, kadraj üstünden çıkar; kamera tilt yukarı",
+      "zaman_sikistirma": "~5x (40 karede ≈ 18 m); kullanıcı varsayılanı tur-9"
      }
     },
     "animasyonlar": [
@@ -508,8 +511,28 @@
     ],
     "kalabalik": {
      "adet": 6,
-     "tur": "kompars siluet (F1), hareketsiz, baş balonu izler; sol grup x 90-330 (3), sağ grup x 760-990 (3), ayak y 1396-1420",
-     "not": "sepet 360 px'te 36 px: bu planda okunurluk şart değil (mekanlar §7.9)"
+     "kazikci_ek": 1,
+     "tur": "kompars siluet (F1), hareketsiz, baş balonu izler (eğim 0→18°, f60-156); 3+3 (+ kazıkçı), 6 farklı siluet tipi",
+     "sol": "ayak (148,1427) (188,1435) (293,1420); boy 138/131/83 (çocuk)",
+     "sag": "ayak (812,1440) (859,1432) (958,1443); boy 146/147/137; evin ışık duvarı önünde",
+     "not": "sepet 360 px'te 36 px: bu planda okunurluk şart değil (mekanlar §7.9); ayaklar ≤ 1500"
+    },
+    "ufuk_y": 1304,
+    "zemin": "toprak (MeydanZemin; kaldırım taşı yok), tek bu planda",
+    "kazikci": {
+     "id": "kazikci",
+     "tur": "kompars siluet (F1), halat çözer",
+     "ayak": [
+      929,
+      1490
+     ],
+     "bas_y": 1288,
+     "kazik": [
+      869,
+      1383,
+      1486
+     ],
+     "temas": 112
     }
    },
    "devam_plan": {
@@ -729,7 +752,7 @@
    "kontrol_kare_ek": [
     290
    ],
-   "alt_ucte_bir": "meydan: kaldırım taşı zemin, çuvallar, kumaş kıvrımları, gaz hortumu (y 1250-1480); harita: Fransa parşömeni, yazı yığını yolu",
+   "alt_ucte_bir": "meydan: toprak zemin (çakıl/iz), çuvallar, kumaş kıvrımları, gaz hortumu, bağlama halatı + kazıkçı (y 1250-1490); harita: Fransa parşömeni, yazı yığını yolu",
    "kit_eksik": [
     "KE-PK-S2",
     "KE-PK-H1",
@@ -737,7 +760,7 @@
     "KE-PK-N1",
     "KE-PK-N6"
    ],
-   "not": "SENARYO→PARAMETRE: 'çuvallı sepet' = balon.sepet; 'gaz hortumundan şişen kumaş küre' = balon.sisme (PK-D2); 'halat çözülür, balon halkanın dışına çıkar' = halat_cozulur + yukselis + balon_izi; 'rüzgâr çizgileri tek yöne iter, iz uçta biter' = ruzgar_cizgileri + balon_izi; 'geri ok çizilir çizilmez silinir' = geri_ok (süpürülür, fade yok); 'yazı yığını kesik çizgiyle halkaya gelir, çarpıp durur' = yazi_yigini. Sepetten kum torbası atma görseli YOK (P07'ye taşındı, dokunuslar.md). EN 'replies' f166-235 yazı yığını gelmeden önce söylenir; EN'de ~1.6 sn sessizlik, resim taşır.",
+   "not": "SENARYO→PARAMETRE: 'çuvallı sepet' = balon.sepet; 'gaz hortumundan şişen kumaş küre' = balon.sisme (PK-D2); 'halat çözülür, balon halkanın dışına çıkar' = halat_cozulur + yukselis + balon_izi; 'rüzgâr çizgileri tek yöne iter, iz uçta biter' = ruzgar_cizgileri + balon_izi; 'geri ok çizilir çizilmez silinir' = geri_ok (süpürülür, fade yok); 'yazı yığını kesik çizgiyle halkaya gelir, çarpıp durur' = yazi_yigini. Sepetten kum torbası atma görseli YOK (P07'ye taşındı, dokunuslar.md). EN 'replies' f166-235 yazı yığını gelmeden önce söylenir; EN'de ~1.6 sn sessizlik, resim taşır. B TURU: toprak zemin yalnız P03; kazıkçı halat çözülürken (f112) görünür fail; yükseliş ~5x zaman sıkıştırması kabul (tur-9).",
    "ses": [
     {
      "dosya": "paris/ses/tr/P03.mp3",
@@ -749,7 +772,13 @@
      "dosya": "paris/ses/en/P03.mp3",
      "kare": 0
     }
-   ]
+   ],
+   "lint": {
+    "izin": [
+     "olu_alan_gecici"
+    ],
+    "not": "P03 f0–45 balon şişmeden önce sağ üst gök, kullanıcı varsayılanı tur-9. B turu kamera, render motion sonrası"
+   }
   },
   {
    "id": "P04",
@@ -1390,27 +1419,27 @@
       "sonraki_sablon": "MONTMARTRE"
      },
      "sepet": {
-      "konum": "dekor x 200-872, rim ön kenarı y 928, taban y 1460 (alçak kamera F 1500, göz 1.0 m, ufuk y 900)",
-      "kum_torbalari": "sepet dış ön yüzünde rimin 0.1 m altındaki halattan asılı 4 tane (x 300, 450, 620, 770; 196x140 px, y 984-1180; P07 kurulumu)",
+      "konum": "dekor x 175-876, rim 918-929, taban FL 1476 (alçak kamera F 1500, göz 1.0 m, ufuk y 900); sol (ışık) yüzü x 175-315",
+      "kum_torbalari": "sepet dış ön yüzünde rimin 0.1 m altındaki halattan asılı 4 tane (x 425, 564, 696, 813; 126-143 px en, y 976-1226; P07 kurulumu)",
       "balon_kuresi": "şişmiş, krem kumaş, ağ",
-      "halat": "sepetten kürenin ağına"
+      "halat": "askı halatları rim köşelerinden halkaya (halka y 194, x 297-694; zaten gergin); BAĞLAMA halatı FR alt (876,1382) → yerde gevşek kavis → kadraj sağ-altı (1080,1700)"
      },
      "ikinci_balon": {
-      "konum": "sağ uzak: sepet zemini y 927, küre merkezi (931,688), ø 262 (x 800-1062, y 557-819); dibinde 3 küçük siluet (46 px); Z 55 m, ufuk-ölçeğe uyar",
-      "not": "P07 vurulan balonun KURULUMU (küçük de olsa görünür); Dagron'unki SOLDA. cs 1.45'te sağ yarısı kesilir; kurulum cs 1.0'da (f168-214) yapılmış olur"
+      "konum": "Daguerre: sepet (888,937), küre (888,687) ø 246 (x 765-1011); dibinde 3 siluet 64 px (farklı boy/eğim); Z 36.7 m, ışıklı sağ duvarın önünde; yanında 2 sandık yığını x 950-985, y 904-939",
+      "not": "P07 vurulan balonun KURULUMU (küçük de olsa görünür); Dagron'unki SOLDA. Kurulum cs 1.0'da (f168-214)"
      },
      "figurler": [
       {
        "id": "yukleyici-1",
-       "tur": "yüzsüz siluet, ayak zeminde; sepetin ARKASINDA x 380/700, bel aşağısı sepetle örtülü, baş y≈600"
+       "tur": "yüzsüz siluet, sepetin ARKASINDA, baş (355,647), bel aşağısı sepetle örtülü; elleri sandık kulplarında"
       },
       {
        "id": "yukleyici-2",
-       "tur": "yüzsüz siluet, ayak zeminde; sepetin ARKASINDA x 380/700, bel aşağısı sepetle örtülü, baş y≈600"
+       "tur": "yüzsüz siluet, sepetin ARKASINDA, baş (640,673), bel aşağısı sepetle örtülü"
       },
       {
        "id": "dagron",
-       "tur": "yüzsüz, SIRTI dönük, koyu sepya manşet, sepetin solunda x 21-279, ayak y 1417, sandığın yanında; biniş ayak temas f226 rim sol köşesi (220,928)"
+       "tur": "yüzsüz, SIRTI dönük, koyu sepya manşet, sepetin SOL-ARKASINDA: ayak (128,1275), baş y 637, en ≈ 188 px; biniş BL rim köşesi (175,920), ayak teması f226"
       }
      ],
      "sandik": {
@@ -1418,7 +1447,7 @@
        "bas": 170,
        "bit": 190,
        "temas": 190,
-       "not": "sandık 392x252 px, y 560 → sepete oturur"
+       "not": "sandık 329x211 px, üst y 355 → oturunca 876 (ön yüzün 53 px'i + iki kulp rim üstünde) → sepete oturur"
       },
       "not": "en ağır alet sandığı havadan iner, zemine değmez, sepete oturur"
      },
@@ -1426,18 +1455,19 @@
       "bas": 190,
       "bit": 210,
       "derinlik": "hasır görünür sıkışır, küre halatta geri eğilip sallanıp durur",
-      "not": "sepet taban y 1460'ta kalır; hasır sıkışır"
+      "not": "sepet taban FL 1476'da kalır; hasır sıkışır"
      },
      "dagron_biner": {
       "bas": 212,
       "bit": 248,
       "ayak_temas": 226,
-      "not": "sepet kenarına tırmanır (ayağı kenara basar), içeri iner"
+      "not": "BL rim köşesine (175,920) tırmanır (ayağı kenara basar), içeri iner"
      },
      "halat_gerilir": {
       "bas": 248,
       "bit": 268,
-      "temas": 262
+      "temas": 262,
+      "not": "bağlama halatı yerden kalkar, düz çizgiye döner (askı halatlarında görünür değişim yok)"
      },
      "animasyonlar": [
       {
@@ -1460,7 +1490,37 @@
        "bas": 248,
        "bit": 268
       }
-     ]
+     ],
+     "arka": "hale",
+     "isik": "haleSabah",
+     "ufuk_y": 900,
+     "hale": {
+      "agiz_Z": 80,
+      "sacak_h": 23,
+      "mahya_h": 35,
+      "makas_aralik": 10,
+      "eksen_X": -13.4,
+      "huzme": 0
+     },
+     "asma_halati": {
+      "kaynak": [
+       888,
+       563
+      ],
+      "hedef": [
+       861,
+       131
+      ],
+      "not": "Daguerre küresi tepesi → Z40 makasının sağ çekmesi; P06b boyunca gergin"
+     },
+     "on_plan_cuval": {
+      "x": [
+       0,
+       165
+      ],
+      "y_alt": 1328,
+      "not": "posta çuvalı, ön plan, sol-alt üçte biri doldurur; Dagron'un ayağı çuvalın üstünde açık"
+     }
     },
     "kamera": {
      "kare": [
@@ -1478,25 +1538,26 @@
      "cx": [
       0,
       0,
-      60,
-      60
+      0,
+      0
      ],
      "cy": [
       0,
-      0,
-      -80,
-      -80
+      -100,
+      -210,
+      -210
      ],
-     "egri": "inout"
+     "egri": "inout",
+     "not": "f214 taban 1479, f250 taban 1498 (IG alt bandı 1500 üstü)"
     },
-    "tasiyici": "ses J-cut: meydan uğultusu f160'ta girer; iğne/Tours (aşağı-sol) → sandığın yukarıdan aşağı inişi"
+    "tasiyici": "ses J-cut: hale yankısı f160'ta girer; iğne/Tours (aşağı-sol) → sandığın yukarıdan aşağı inişi"
    },
    "sure_kare": 287,
    "metin": {
     "tr": "Bu iş dışarıda, hükümetin olduğu Tours'ta yapılmalıydı. Tek yol balondu.",
     "en": "It had to happen in Tours, with the government. So, a balloon."
    },
-   "olcek": "A (f0-166): harita, orta→yakın (kamera_takip cs 2.3, rota ucu); B (f168-287): boy (meydan, sepet+sandık %35, cs 1.0) → bel (sepet, cs 1.45)",
+   "olcek": "A (f0-166): harita, orta→yakın (kamera_takip cs 2.3, rota ucu); B (f168-287): boy (hale altı, sepet+sandık %35, cs 1.0) → bel (sepet, cs 1.45)",
    "tempo": "nefes",
    "kamera": {
     "kare": [
@@ -1606,7 +1667,7 @@
    },
    "tasiyici": {
     "giris": "şerit → rota çizgisi: P05 şeridi (52°, 280 px, ekran merkezi ~(540,930)) = P06 f0'da çizilmeye başlayan rota çizgisinin ilk parçası",
-    "cikis": "halat gerilmesi + sepet → P07 başında iki balon yan yana (Dagron'unki solda): halat bırakılır, balonlar kalkar (aynı meydan, eşleşme)"
+    "cikis": "halat gerilmesi + sepet → P07 başında iki balon yan yana (Dagron'unki solda): halat bırakılır, balonlar kalkar (aynı hale ağzı, eşleşme)"
    },
    "sfx": [
     "igne-tak f78",
@@ -1620,7 +1681,7 @@
    "kontrol_kare_ek": [
     78
    ],
-   "alt_ucte_bir": "harita: Fransa güneybatısı + rota; meydan: kaldırım zemini, sandık gölgesi, siluet ayakları (ayak y ≈1400-1480, alt bant 1500 üstü)",
+   "alt_ucte_bir": "harita: Fransa güneybatısı + rota; hale: ışıklı döşeme, sepet/sandık gölgeleri, ön plan posta çuvalı, bağlama halatı (taban ≤ 1498, alt bant 1500 üstü)",
    "kit_eksik": [
     "KE-PK-S2",
     "KE-PK-H4",
@@ -1630,7 +1691,7 @@
     "KE-PK-J1",
     "KE-PK-E2"
    ],
-   "not": "SENARYO→PARAMETRE: 'haritada Tours işaretinde küçük nötr bina, ~200 km' = rota_ciz + tours_ikon + harita_kart; 'halkanın dışında yazı yığını: mektuplar orada yazılıyor' = tours_ikon.yanında; 'meydanda sepet, alet sandıkları yükleniyor, Dagron sırtı dönük sepete biniyor, halat gerilir' = devam_plan (PK-D8). Ekran yazısındaki 'TOURS ~200 km' harita kartına alındı (aynı bilgi, tekrar yok). Haritadaki iğne rota sonunda (TR 'Tours'ta' f114-135, iğne f78 daha erken: kart f92'de, söz kartı yakalar).",
+   "not": "SENARYO→PARAMETRE: 'haritada Tours işaretinde küçük nötr bina, ~200 km' = rota_ciz + tours_ikon + harita_kart; 'halkanın dışında yazı yığını: mektuplar orada yazılıyor' = tours_ikon.yanında; 'hale altında sepet, alet sandıkları yükleniyor, Dagron sırtı dönük sepete biniyor, halat gerilir' = devam_plan (PK-D8). Ekran yazısındaki 'TOURS ~200 km' harita kartına alındı (aynı bilgi, tekrar yok). Haritadaki iğne rota sonunda (TR 'Tours'ta' f114-135, iğne f78 daha erken: kart f92'de, söz kartı yakalar). B TURU: devam_plan arka 'hale' (Gare d'Orléans, tur-9), kamera cy 0/-100/-210/-210, ikinci balon = Daguerre (888,687) ø246 asma halatlı.",
    "ses": [
     {
      "dosya": "paris/ses/tr/P06.mp3",
@@ -1642,7 +1703,10 @@
      "dosya": "paris/ses/en/P06.mp3",
      "kare": 0
     }
-   ]
+   ],
+   "lint": {
+    "not": "B turu kamera, render motion sonrası"
+   }
   },
   {
    "id": "P07",
@@ -1657,14 +1721,14 @@
     },
     "iki_balon": {
      "dagron": {
-      "konum": "sol (sepet dekor (300,1010))",
+      "konum": "sol, Niépce: küre (300,650→630 f158) ø 450, tepe 425→405; sepet (300,1042-1107)",
       "yukselis": {
        "bas": 0,
        "bit": 158
       }
      },
      "diger": {
-      "konum": "sağ (sepet (760,960))",
+      "konum": "sağ, Daguerre: küre (790,620→560 f106) ø 291; sepet (790,873-915→813-855)",
       "yukselis": {
        "bas": 0,
        "bit": 106
@@ -1674,18 +1738,19 @@
     "duman_cizgisi": {
      "bas": 84,
      "bit": 108,
-     "kaynak": "yer (kadraj altı), ince gri çizgi vurulan küreye",
+     "kaynak": "dekor (1150,935): sağ kenarın dışı, ufuk buğusu (şehrin dışı); ince gri-kül çizgi, 3 px koyu kontur, tırtıklı, darbe noktasına; istasyon/ray demetinden ve çatılardan çıkmaz",
      "not": "neyle vurulduğu gösterilmez"
     },
     "kure_coker": {
      "bas": 108,
      "bit": 150,
-     "not": "gaz boşalır, kumaş sönüp sarkar"
+     "not": "küre KISMEN söner (delik deşik, gaz kaçar, tam çökme yok); kaynak E3.1"
     },
     "sepet_duser": {
      "bas": 120,
      "bit": 152,
-     "not": "kadraj altından çıkar; yere çarpma görünmez, sesi yok"
+     "ad_not": "hızla alçalır",
+     "not": "sepet SERBEST DÜŞMEZ, hızla alçalır (hız eğrisi, ivme değil); alt kenardan f152'de çıkar; yere çarpma görünmez, sesi yok"
     },
     "duman_gri_kul": "turuncu alev yok; gri-kül duman çizgisi, delinen kumaş tarama ile (KE-PK-E1)",
     "animasyonlar": [
@@ -1720,7 +1785,22 @@
       140
      ]
     },
-    "hava_perspektifi": "'sis' çizilmez (tasarım: kar/bulut/sis yok): D>1500 m düz bant, ufka doğru 3 ton #a9adb0 → #c4c6c2 → #d4d2c8 (uzaklıkla açılan ton)"
+    "hava_perspektifi": "'sis' çizilmez: Paris uzak buğu #dccfcf (>1500 m), orta bant #b0a6c0 (600-1500 m); D>600'de kontur/tarama yok (mekanlar §2v2.9)",
+    "arka": "hale",
+    "isik": "haleSabah",
+    "ufuk_y": 900,
+    "ray_demeti": {
+     "eksen": -13.4,
+     "yari": [
+      20,
+      7
+     ],
+     "hat": [
+      9,
+      4
+     ]
+    },
+    "yatay_bulvar": false
    },
    "devam_plan": {
     "kare_bas": 160,
@@ -1732,18 +1812,19 @@
       "kare": 160,
       "sonraki_sablon": "MONTMARTRE"
      },
-     "sepet_kenari": "hasır kenar bel plan; dış kenarda sıralı kum torbaları (P06'da kurulu)",
-     "el": "Dagron'un eli, koyu sepya manşet, bakmadan",
+     "sepet_kenari": "hasır kenar bel plan, diyagonal rim (66,739)-(248,805)-(977,769); dış kenarda sıralı kum torbaları x 390/571/743/895 (P06'da kurulu); sandık kapağı rimin arkasında y ≈ 755",
+     "el": "Dagron: sepetin içinde sağ-önde, KAMERAYA dönük kontrajur siluet (yüz çizilmez), baş ≈ (749,555) SOLA döner (düşen Daguerre'ye), sağ kol torba 4'ün ağzına (895,842); koyu sepya manşet, bakmadan",
      "torba_1": {
       "bas": 186,
       "bit": 232,
       "birakma": 196,
-      "not": "elden çıkar, dönerek düşer, kadrajdan çıkar; ardında ince kum izi"
+      "not": "torba 4 (x 895) elden çıkar, dönerek düşer, alt kenardan çıkar (f196→f232); ardında ince kum izi (20 kare); torba 1-2 kalır"
      },
      "torba_2": {
       "bas": 204,
       "bit": 252,
-      "birakma": 214
+      "birakma": 214,
+      "not": "torba 3 (x 743) bırakılır"
      },
      "sepet_sicrama": {
       "bas": 232,
@@ -1790,7 +1871,9 @@
        300
       ]
      },
-     "menzil_cizgisi": false
+     "menzil_cizgisi": false,
+     "arka": "hale",
+     "isik": "haleSabah"
     },
     "kamera": {
      "kare": [
@@ -1815,7 +1898,7 @@
      ],
      "egri": "inout"
     },
-    "tasiyici": "yükselme hareketi sürer (arka plan aşağı kayar, gök rengi aynı); vurulan balon kadrajdan çıkmıştır, kum izi sepet planına geçer"
+    "tasiyici": "yükselme hareketi sürer (arka plan aşağı kayar, gök rengi aynı); alçalan sepet kadrajdan çıkmıştır, kum izi sepet planına geçer"
    },
    "sure_kare": 336,
    "metin": {
@@ -1878,14 +1961,15 @@
    "darbe": [
     {
      "kare": 108,
-     "x": 760,
-     "y": 720,
+     "x": 712,
+     "y": 687,
      "siddet": 0.7,
      "yaricap": 170,
      "flas": 0.5,
      "sarsinti": 0.6,
      "duman": false,
-     "seed": 5
+     "seed": 5,
+     "not": "küre sol-alt çeyreği; dekor (720,675)"
     }
    ],
    "temaslar": [
@@ -1939,7 +2023,7 @@
     "not": "çöküş anında (f108-150) başka hareket yok; torba düşüşü görünmeyen yerde biter, sesi yok"
    },
    "tasiyici": {
-    "giris": "aynı meydan eşleşmesi: P06 sonu halat gerilmesi → iki balon yan yana kalkar",
+    "giris": "aynı hale ağzı eşleşmesi: P06 sonu halat gerilmesi → iki balon yan yana kalkar (ağız ışığı, hale görünmez, ray demeti kalkış yerini söyler)",
     "cikis": "balonun doğuya (sağa) süzülmesi → whip sol (görüntü sola kayar, P08 haritası sağdan girer): balon yönü = haritadaki iniş yönü (Paris'in doğusu)"
    },
    "gecis": {
@@ -1960,7 +2044,7 @@
    "kontrol_kare_ek": [
     112
    ],
-   "alt_ucte_bir": "A: yer kadrajın altında küçülen Paris çatıları, hava perspektifi (y 1060-1500, kamera_H 60→140 m); B: hasır sepet gövdesi + sıralı torbalar (y 1100-1500)",
+   "alt_ucte_bir": "A: yer kadrajın altında küçülen Paris çatıları + ray demeti yelpazesi (alt yarı), hava perspektifi (y 1060-1500, kamera_H 60→140 m); B: hasır sepet gövdesi + sıralı torbalar (y 1100-1500)",
    "kit_eksik": [
     "KE-PK-S2",
     "KE-PK-E1",
@@ -1969,7 +2053,7 @@
     "KE-PK-N1",
     "KE-PK-F2"
    ],
-   "not": "SENARYO→PARAMETRE: 'iki balon yan yana yükseliyor' = iki_balon; 'yerden duman çizgisi, öteki balonun küresi ani çöküyor, sepet düşüp kadraj dışına çıkıyor' = duman_cizgisi + kure_coker + sepet_duser + darbe; 'eller torbayı bırakıyor, torba dönerek düşüyor, sepet hafifleyip sıçrıyor, balon hızlanıp yükseliyor, yer küçülür (menzil çizgisi çizilmez)' = devam_plan. Darbe `duman:false`: kit duman 150 kare sürer, kesmeyi aşıp sepet planına taşardı; duman şablonda (gri-kül). TR 'vuruldu' f110-130, EN 'shot down' f87-125: darbe f108 ortak. Darbe efekti kitte çizgi roman: KE-PK-E1 çözülmeden render edilmez.",
+   "not": "SENARYO→PARAMETRE: 'iki balon yan yana yükseliyor' = iki_balon; 'yerden duman çizgisi, öteki balonun küresi ani çöküyor, sepet hızla alçalıp kadraj dışına çıkıyor' = duman_cizgisi + kure_coker + sepet_duser + darbe; 'eller torbayı bırakıyor, torba dönerek düşüyor, sepet hafifleyip sıçrıyor, balon hızlanıp yükseliyor, yer küçülür (menzil çizgisi çizilmez)' = devam_plan. Darbe `duman:false`: kit duman 150 kare sürer, kesmeyi aşıp sepet planına taşardı; duman şablonda (gri-kül). TR 'vuruldu' f110-130, EN 'shot down' f87-125: darbe f108 ortak. Darbe efekti kitte çizgi roman: KE-PK-E1 çözülmeden render edilmez. B TURU (E3.1 doğruluk): 'küre çöker, sepet düşer' → küre kısmen söner, sepet hızla alçalır (serbest düşüş değil), kareler aynı. Doğu yönü: P07 A'da yön belli eden öğe yok (ray demeti eksen -13.4 yönsüz), tasiyici.cikis 'doğuya (sağa)' DEĞİŞMEDİ (mekanlar §2v2-H açık soru 3: kamera 161° bakışta doğu solda; orkestra kararı).",
    "ses": [
     {
      "dosya": "paris/ses/tr/P07.mp3",
@@ -1981,7 +2065,13 @@
      "dosya": "paris/ses/en/P07.mp3",
      "kare": 0
     }
-   ]
+   ],
+   "lint": {
+    "izin": [
+     "L_ustu_88_parlama"
+    ],
+    "not": "P07 darbe parlaması L*91, kullanıcı onaylı tur-8 ('parlama kalsın' tur-9). B turu kamera, render motion sonrası"
+   }
   },
   {
    "id": "P08",

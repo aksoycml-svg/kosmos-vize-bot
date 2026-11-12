@@ -15,7 +15,7 @@ Mutlak başlangıç = önceki planların toplamı. Süre = `plan-sureleri.json` 
 | P03 | 738 / 12.3 | 333 / 5.55 | MONTMARTRE meydan → (f160) HARITA | boy (balon %45, kamera sabit) → tilt → geniş harita cs 1.0→1.15 | hizli | PK-D2 hortumdan şişen kumaş (balon %45, net 1.6 sn) | 80 / 818 (+290) |
 | P04 | 1071 / 17.85 | 267 / 4.45 | HARITA → (f122) DAGRON-INSERT kafes | geniş harita cs 1.15→1.3 → kafes insert, kuş %30 (yakın) | nefes | PK-D4 kafes kapağı, kuş yön arar (kuş %30, net 1.0 sn) | 206 / 1277 |
 | P05 | 1338 / 22.3 | 374 / 6.23 | DAGRON-INSERT masa (Paris atölyesi) | orta (terazi cs 1.0) → push-in → yakın (şerit+parmak cs 2.0, cx -40, cy -610; ölçü bölgesi ekran (540,930)) | hizli, **anahtar** | PK-D5 sayfa şeride küçülür (sayfa %22, şerit+parmak %14, net 1.5 sn) | 280 / 1618 (+182) |
-| P06 | 1712 / 28.53 | 287 / 4.78 | HARITA → (f168) MONTMARTRE meydan | orta→yakın harita (takip cs 2.3) → boy meydan (sepet+sandık %35) → bel | nefes | PK-D8 sandık sepete konur, sepet çöker (%35, net 1.3 sn) | 206 / 1918 (+78) |
+| P06 | 1712 / 28.53 | 287 / 4.78 | HARITA → (f168) MONTMARTRE (hale altında, `arka: "hale"`) | orta→yakın harita (takip cs 2.3) → boy hale altı (sepet+sandık %35) → bel | nefes | PK-D8 sandık sepete konur, sepet çöker (%35, net 1.3 sn) | 206 / 1918 (+78) |
 | P07 | 1999 / 33.32 | 336 / 5.6 | MONTMARTRE gök → (f160) sepet | geniş (iki balon %50) → bel (sepet kenarı, torba %12) | hizli (patlama) | PK-D3 balast, kum torbası atılır (torba %12, net 1.8 sn) | 200 / 2199 (+112) |
 | P08 | 2335 / 38.92 | 209 / 3.48 | HARITA (Fransa, rota ucu takibi) | orta (takip cs 1.8) → yakın (iğne) | hizli | yok | 164 / 2499 |
 | P09 | 2544 / 42.4 | 218 / 3.63 | DAGRON-INSERT masa (Tours) | insert makro (kılıf %14, cs 1.6→2.0, cy -120; kılıf 278 px) | nefes | PK-D6 kılıf kuyruk tüyüne bağlanır (kılıf %14, net 1.1 sn) | 150 / 2694 |
@@ -114,7 +114,7 @@ Ayrıntı her planın `not` alanında. Kitte karşılığı **olan** yalnız: HA
 - **Yön:** kuş her zaman soldan sağa/aşağıdan yukarı (Tours güneybatıda, Paris kuzeydoğuda): P04 çıkış sağ-üst, P09 çıkış sağ, P10 giriş sol, P11 iniş soldan. Balonlar doğuya (sağa): P03, P07, P08. Dagron'un balonu P06–P07'de solda, öteki sağda.
 - **Süreklilik:** sağdaki ikinci balon P06'da küçük de olsa görünür (P07 vurulması); kum torbaları P06 sepet kenarında asılı (P07 karşılığı); kuş P04, P05'te kılıfsız, kılıf yalnız P01, P09–P11; Dagron'un eli koyu sepya manşet (P05, P06, P07, P09), Paris'teki memur/el gri (P10); balon küresi krem, kehribar yok.
 - **Giriş/çıkış:** el P05 sağdan, P09 sağdan girer (kuş avucunda, birden belirmez); kuş P10 soldan girer; torbalar kadrajdan çıkar; vurulan balonun sepeti kadraj altından çıkar; fade ile kaybolan nesne yok (geri ok süpürülür, yolda biten çizgi kâğıda emilir ama iz kalır).
-- **Ayak/temas y:** meydan siluet ayakları y ≈ 1400–1480 (P06, ≤ 1500); insert planlarında ölçü/bırakma noktaları ekran y ≈ 930 (alt bant 1290 üstü); P10 perde alt kenarı y ≈ 1468, odak merkezi y 700–1000 (altyazı bandı 1290–1490 yalnız perde alt satırlarını örter, dokunuşu örtmez); P02 kopma noktası (293, 548), halka üstü y 470 (> 400 bant). Ekran yazıları 240–400 bandında, kılıf/dokunuş üstüne binmez.
+- **Ayak/temas y:** P03 meydan siluet ayakları y ≈ 1420–1490, P06b hale altı Dagron ayağı 1275 / sepet tabanı ≤ 1498 (≤ 1500); insert planlarında ölçü/bırakma noktaları ekran y ≈ 930 (alt bant 1290 üstü); P10 perde alt kenarı y ≈ 1468, odak merkezi y 700–1000 (altyazı bandı 1290–1490 yalnız perde alt satırlarını örter, dokunuşu örtmez); P02 kopma noktası (293, 548), halka üstü y 470 (> 400 bant). Ekran yazıları 240–400 bandında, kılıf/dokunuş üstüne binmez.
 - **Ölü alan yok:** her planın alt üçte biri `alt_ucte_bir` alanında.
 - **Gece/telgraf kuralı** (Chappe) bu bölümü ilgilendirmez; 1870 Paris Haussmann SONRASI (krem taş, mansard, baca kümeleri; Sacré-Cœur ve Eyfel yok).
 - **İmza nesnesi tekil:** bal kehribarı yalnız kılıfta. Senaryo P05'teki "film kenarı bal rengi ışık verir" notu **uygulanmadı** (`dokunuslar.md` imza kuralı: kutu/şerit kehribar değil).
@@ -174,8 +174,15 @@ Zamanlama, plan süreleri, temaslar (`temaslar.json`) değişmedi; yalnız kamer
 | P10b | cx −420/−440 | cx **−1250 (f290) → −1345 (f398)**, cs 1.6→1.7 | okuyan dekor x 1390; pan f250–290 |
 | P05 | son cs 1.6, cx −95, cy −420 | f268–374 **cs 2.0, cx −40, cy −610**; terazi (380,1000), deste (330,1400), kutu (720,1080) 519 px, ölçü bölgesi (560,1250); şerit 280 px, parmak 328 px ekranda | ölçü karesi (540,930), P06 rota eşleşmesi |
 | P09 | cs 1.6→2.2, cy −300 | cs **1.6→2.0, cy −120** (kılıf 278 px) | tasarım ≈270 px |
-| P06b | `meydan`, ikinci balon x 900–1050 / y 700–1150 | **`yukleme`** (yeni görünüm); ikinci balon sepet zemini y 927, küre (931,688) ø 262 | ufuk–ölçek (Z 55 m) |
+| P06b | `meydan`, ikinci balon x 900–1050 / y 700–1150 | **`yukleme` + `arka: "hale"`** (Gare d'Orléans halesi, tur-9); ikinci balon (Daguerre) sepet (888,937), küre (888,687) ø 246; cy 0/−100/−210 | ufuk–ölçek (Z 36.7 m); kalkış yeri araştırma Ek E3 |
 | P07 | "sis", menzil çizgisi | hava perspektifi (3 ton), `gok_kamera_H` 60→140 m, `sepet_kamera_H` 150→300 m (f250–320), menzil çizgisi yok | tasarım sis yasağı; açık soru 3 varsayılanı |
 | P03 | — | `kalabalik: 6` | mekanlar §7.9 |
 | P04b | cs 1.3→1.55, cy −40 | değişmedi (zaten uyumlu) | §7.10 |
 
+## B turu düzeltmeleri (yönetmen, 2026-11-12; kamera/parametre, zamanlama aynı)
+- **P03:** toprak zemin (yalnız bu planda), kazıkçı + bağlama halatı (f112 failli), kalabalık 3+3, `ufuk_y 1304`; yükseliş ~5× zaman sıkıştırması **kabul** (tur-9 varsayılanı); f0–45 sağ üst gök → `lint.izin` (balon şişmeden önce, tur-9 varsayılanı).
+- **P06b / P07:** `arka: "hale"`, `isik: "haleSabah"` (§2v2-H). P06b cy 0/−100/−210 (taban ≤ 1498); Dagron sol-arka (128,1275), biniş (175,920); yükleyiciler sepetin arkasında; Daguerre (888,687) ø 246 + asma halatı; ön plan posta çuvalı; "halat gerilir" = bağlama halatı. Taşıyıcılar: "hale yankısı", "aynı hale ağzı".
+- **P07 doğruluk (E3.1, varsayılan uygulandı):** "küre çöker, sepet kadraj altına düşer" → küre **kısmen söner**, sepet **serbest düşmez, hızla alçalır** (hız eğrisi) ve f152'de alt kenardan çıkar; kare ve süre aynı. Darbe (712,687); duman kaynağı ufuk buğusu (dekor (1150,935)); darbe parlaması `lint.izin` (tur-8).
+- **Doğu yönü (açık):** P07 A'da yön belli eden öğe yok; `tasiyici.cikis` "doğuya (sağa)" değişmedi. Kamera 161°'ye bakınca doğu solda kalır; çelişki orkestra/kullanıcı kararı bekliyor.
+- Senaryo `[GÖRSEL]` "meydanda sepet" → "hale altında sepet": **senarist** sahibi, bu turda değiştirilmedi (metin/ses aynı).
+- Render yok (şablon kodu henüz yok): ilgili planlarda `lint.not = "B turu kamera, render motion sonrası"`.
