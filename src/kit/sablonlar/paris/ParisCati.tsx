@@ -217,7 +217,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const isikSerit = saat === "alacakaranlik" ? (() => {
     const xl = (Z: number) => KM.R[0] + 0.02 + oran * (Z - KM.R[1]), xr = (Z: number) => SAG_BACA.X0 + oran * (Z - SAG_BACA.Z);
     const Zf = KIRIK_Z - 0.5, Zn = 1.75;
-    return kirpCiz(D, k, [[xl(Zf), 0, Zf], [xr(Zf), 0, Zf], [xr(Zn), 0, Zn], [xl(Zn), 0, Zn]]);
+    const Zp = 6.3; // v4: parlak lob (güneşe yakın yarı) — V3 eleştirisi 2: teras ışık şeridi görünür, L* ≥ 75
+    return { serit: kirpCiz(D, k, [[xl(Zf), 0, Zf], [xr(Zf), 0, Zf], [xr(Zn), 0, Zn], [xl(Zn), 0, Zn]]), parlak: kirpCiz(D, k, [[xl(Zf), 0, Zf], [xr(Zf), 0, Zf], [xr(Zp), 0, Zp], [xl(Zp), 0, Zp]]) };
   })() : null;
 
   // ---- kuşun temas gölgesi (tahta üstüne kırpılır; yön tek ışıktan) ----
@@ -276,7 +277,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const yem = param(plan, "yem_teknesi", true);
   const yakin = (
     <g>
-      <Flu id={`${uid}ft`} sigma={sTeras}><CinkoTeras D={D} k={k} C={C} isikSerit={isikSerit} golgeler={golgeler} seed={S} /></Flu>
+      <Flu id={`${uid}ft`} sigma={sTeras}><CinkoTeras D={D} k={k} C={C} isikSerit={isikSerit?.serit ?? null} isikParlak={isikSerit?.parlak ?? null} golgeler={golgeler} seed={S} /></Flu>
       <KonturTitreme derinlik="orta" seed={S} olcek={1.6}>
         <KumesDunya D={D} k={k} K={KM} C={C} seed={S + 6} saat={saat} kamera={kamDunya} uid={uid} />
         {yem && <YemTeknesi D={D} k={k} t={YEM_TEKNESI} C={C} seed={S + 8} uid={uid} />}
