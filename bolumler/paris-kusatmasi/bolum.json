@@ -57,8 +57,8 @@
       }
      ]
     },
-    "ufuk_y": 635,
-    "on_plan": "teras çinko kenetleri VP (540,635)'e kenetlenir (y 1234→1920) + kümes (30° döndürülmüş, 3B) dibi; ön baca YOK (v2'de kaldırıldı); çatı denizi K1–K5; f370 kapanış cs 1.0: ufuk y 635",
+    "ufuk_y": 600,
+    "on_plan": "teras çinko kenetleri VP (540,600)'e kenetlenir (y 1234→1920) + kümes (30° döndürülmüş, 3B) dibi; ön baca YOK (v2'de kaldırıldı); v3: ön-plan çerçeve = komşu çatı kenarı (§1v3); çatı denizi K1–K5; f370 kapanış cs 1.0: ufuk y 600",
     "animasyonlar": [
      {
       "ad": "kus kalkis",
@@ -83,15 +83,15 @@
     ],
     "kamera_modu": {
      "tip": "dolly",
-     "not": "mekanlar.md §1v2.3/§1v2.12: cs=kamera mesafesi, dolly genel öteleme (FOE≠kılıf); kılıf ekranı=FOE+(kılıf−FOE)·s+(cx,cy), s=1/(1−1.419(1−1/cs))"
+     "not": "mekanlar.md §1v3.6/§1v3.10: cs=kamera mesafesi, dolly sabitleri v3 (FOE [403.4,1368.7], kılıf [395.0,1325.8]); göz 5.0 m, ufuk 600"
     },
     "dolly_foe": [
-     421.1,
-     1236.1
+     403.4,
+     1368.7
     ],
     "kilif": [
-     406.1,
-     1185.7
+     395.0,
+     1325.8
     ],
     "tekne": "v2 tekne konumu mekanlar.md §1v2.5-6'ya göre (motion); json'da ayrı parametre yok"
    },
@@ -128,11 +128,11 @@
      0
     ],
     "cy": [
-     244,
-     244,
-     190,
-     100,
-     15,
+     279,
+     279,
+     215,
+     60,
+     0,
      0
     ],
     "egri": "inout"
@@ -216,8 +216,10 @@
     }
    ],
    "lint": {
-    "not": "v2 kamera, render motion sonrası",
-    "izin": []
+    "izin": [
+     "guvenli_alt_gecici"
+    ],
+    "not": "P01 f190 dolly geçişi, temas değil"
    }
   },
   {
@@ -2388,7 +2390,7 @@
       "yon": "SOLDAN girer (P09 sağ çıkışının devamı)",
       "temas": 20
      },
-     "olcek_notu": "v2: cs 2.6→2.75, kılıf 150→195 px, itme kılıfı oynatmaz (mekanlar.md §1v2.9/12); kümes 3B, 30° döndürülmüş"
+     "olcek_notu": "v3: cs 2.655→2.75, kılıf (410,960) 149→195 px, ufuk 717→879 (mekanlar.md §1v3.10); kümes 3B, 30° döndürülmüş"
     },
     "kilif_coz": {
      "bas": 26,
@@ -2415,16 +2417,16 @@
     ],
     "kamera_modu": {
      "tip": "dolly",
-     "not": "mekanlar.md §1v2.3/§1v2.12: cs=kamera mesafesi, dolly genel öteleme (FOE≠kılıf); kılıf ekranı=FOE+(kılıf−FOE)·s+(cx,cy), s=1/(1−1.419(1−1/cs)); kılıf iki anahtarda ekranda (410,960), ufuk 756→879"
+     "not": "mekanlar.md §1v3.6/§1v3.10: dolly v3; kılıf iki anahtarda ekranda (410,960)"
     },
-    "ufuk_y": 635,
+    "ufuk_y": 600,
     "dolly_foe": [
-     421.1,
-     1236.1
+     403.4,
+     1368.7
     ],
     "kilif": [
-     406.1,
-     1185.7
+     395.0,
+     1325.8
     ]
    },
    "devam_plan": {
@@ -2596,16 +2598,16 @@
      56
     ],
     "cs": [
-     2.6,
+     2.655,
      2.75
     ],
     "cx": [
-     107,
-     144
+     109,
+     141
     ],
     "cy": [
-     121,
-     244
+     117,
+     279
     ],
     "egri": "inout"
    },
@@ -2848,7 +2850,7 @@
      "final_tutma": {
       "bas": 290,
       "bit": 333,
-      "not": "kuş tünekte, kanatlar toplu, kılıf yumuşak parlıyor; kompozisyon P01 f0 ile birebir (cs 2.75, cx 105, cy 244; kılıf (374,960))"
+      "not": "kuş tünekte, kanatlar toplu, kılıf yumuşak parlıyor; kompozisyon P01 f0 ile birebir (cs 2.75, cx 105, cy 279; kılıf (374,960))"
      },
      "animasyonlar": [
       {
@@ -2869,16 +2871,16 @@
      ],
      "kamera_modu": {
       "tip": "dolly",
-      "not": "mekanlar.md §1v2.3/§1v2.12: cs=kamera mesafesi, dolly genel öteleme (FOE≠kılıf); kılıf ekranı=FOE+(kılıf−FOE)·s+(cx,cy), s=1/(1−1.419(1−1/cs)); f290 sonrası kare P01 f0 ile birebir (cs 2.75/cx 105/cy 244)"
+      "not": "mekanlar.md §1v3.6/§1v3.10; f290 sonrası kare P01 f0 ile birebir (cs 2.75/cx 105/cy 279)"
      },
-     "ufuk_y": 635,
+     "ufuk_y": 600,
      "dolly_foe": [
-      421.1,
-      1236.1
+      403.4,
+      1368.7
      ],
      "kilif": [
-      406.1,
-      1185.7
+      395.0,
+      1325.8
      ]
     },
     "kamera": {
@@ -2888,19 +2890,19 @@
       290
      ],
      "cs": [
-      2.4,
+      2.52,
       2.75,
       2.75
      ],
      "cx": [
-      70,
+      77,
       105,
       105
      ],
      "cy": [
-      190,
-      244,
-      244
+      153,
+      279,
+      279
      ],
      "egri": "inout"
     },

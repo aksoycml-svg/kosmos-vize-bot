@@ -431,3 +431,10 @@
   - Motion: §1v3.6 sabitleri, §1v3.2 dünya yerleri, `CatiDenizi` v3 (sıralar dünya modeli, terrasson dörtgeni), `KalkanDuvar`, `BalkonFilant`, `OnCerceve`; YAKIN metre ile tanımlansın.
   - Tasarımcı: krem cephe/lucarne yeni tonları ve gök tepe/üst değerleri §13.1'e.
   - Araştırmacı: bir kat yüksek bitişik bina, 5. kat balcon filant, Venüs kuşağı [G].
+
+## yönetmen · 2026-11-12 · PARIS-CATI v3 kamera (bolum.json)
+- Ne yaptım: mekanlar.md §1v3.10 tablosunu işledim. P01, P11 devam_plan (f172–290), P10 (P10a, f0–56): `ufuk_y 600`, `dolly_foe [403.4,1368.7]`, `kilif [395.0,1325.8]`, cs/cx/cy tablodan (P01 cy 279/279/215/60/0/0; P11 2.52/77/153, 2.75/105/279; P10 2.655/109/117 → 2.75/141/279), eğri `inout`. V2 ara değerleri ve v2 notları (ufuk 635, cy 244, kamera_modu formülü, P10 ölçek notu) silindi/güncellendi. P01 lint: `izin ["guvenli_alt_gecici"]`, not "P01 f190 dolly geçişi, temas değil" (varsayılan kabul). `src/kit/sinirlar.json` PARIS-CATI cs üst sınırı 2.85 → 2.80 (cy −100…300 zaten öyleydi), notta kilif kilidi `dolly_foe` olarak düzeltildi, ufuk_y 600.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/bolum.json, src/kit/sinirlar.json, bolumler/paris-kusatmasi/katki-raporu.md
+- Kararlar: zamanlamaya dokunulmadı; P10/P11 mevcut lint notu ("v2 kamera, render motion sonrası") kaldı; render yok.
+- Doğrulama: `node tools/bolum_dogrula.mjs --tam` GEÇTİ (0 hata; 1 uyarı: foley.json yok, bu işten bağımsız).
+- Açık: motion v3 kodundan sonra kontrol kareleri P01 f24/f370, P11 f333, P10 f48 render edilip bakılmalı; P01 f190 kümes tabanı geçici IG alt bandında (kabul edildi, kabul edilmezse cy 0).
