@@ -373,3 +373,10 @@
   - Motion: `DOLLY_CATI` sabitleri, `KumesDunya` (yakın düzlem kırpması), `GokLitografi`, `HaleParilti`, `Duman`, `GolgeSeridi`; sinirlar cy ≤ 300, cs ≤ 2.85.
   - Tasarımcı: kümes ölçüsü v2'nin §4.4 yerine geçmesi; P10a gün v2 paleti yok.
   - Araştırmacı: Panthéon görüş hattı (230°, ≈ 0.9 km), 1870 fener haçı, 1859 korniş kuralı, kuşatmada duman/ışık.
+
+## yönetmen · 2026-11-12 · PARIS-CATI v2 kamera değerleri
+- Ne yaptım: P01, P10a, P11 son (devam_plan) kamera anahtarlarını mekanlar.md §1v2.12 tablosuna göre yazdım; ufuk_y 635; `kilif_kilit` → `dolly_foe` [421.1,1236.1] + `kilif` [406.1,1185.7]; P01 f0 = P11 f290 (cs 2.75/cx 105/cy 244); P01 `kontrol_kare` 24; ön baca metni kaldırıldı; kümes 3B/30° notu P10 olcek_notu'na; P11 olcek metni güncellendi. sinirlar.json PARIS-CATI: cs 0.95–2.85, cy −100…300. KATALOG.md'ye v2 notu. Zamanlamaya dokunulmadı.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/bolum.json, src/kit/sinirlar.json, src/kit/KATALOG.md, bu rapor.
+- Kararlar: P11 kamerası gerçekte `devam_plan.kamera`'da idi (parametreler içindeki kopya silindi, tek kaynak). Üç plana `lint: {not: "v2 kamera, render motion sonrası"}`. Tekne için json'da ayrı parametre yok (P01 `tekne` notu eklendi).
+- Kurallar: kural 7 istisnası (render yok, motion v2 sonrası kontrol_kare'leri ben render edeceğim); doğrulayıcı --tam geçti.
+- Açık: motion `dolly_foe`/`kilif` ayrımını okuyunca P01 f24, f370, P10a f48, P11 f333 render edilip bakılacak. P01 f0 kılıf (374,960) ile P10a (410,960) farkı tabloda böyle.
