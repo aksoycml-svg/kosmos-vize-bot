@@ -5,7 +5,7 @@ export type P = [number, number];
 export type Derinlik = "uzak" | "orta" | "yakin" | "insert";
 
 // Her mekânın doku tohumu sabit: doku kaynamaz
-export const DOKU_SEED = { borsa: 101, harita: 7, sokakBdx: 4, tours: 23, kule: 37, paris: 53, catiBdx: 61, catiKati: 67, yatak: 71, mahkeme: 83, kanun: 89, wifi: 97, sarayburnu: 131, sur: 132, cumba: 133, rihtim: 134, galata: 137, bogaz: 139, kitap: 149 } as const;
+export const DOKU_SEED = { borsa: 101, harita: 7, sokakBdx: 4, tours: 23, kule: 37, paris: 53, catiBdx: 61, catiKati: 67, yatak: 71, mahkeme: 83, kanun: 89, wifi: 97, sarayburnu: 131, sur: 132, cumba: 133, rihtim: 134, galata: 137, bogaz: 139, kitap: 149, parisCati: 151, montmartre: 157, dagronMasa: 163, lanternOda: 167, havadanParis: 173 } as const;
 export const KONTUR: Record<Derinlik, number> = { uzak: 3, orta: 4, yakin: 6, insert: 8 };
 export const TITREME: Record<Derinlik, number> = { uzak: 1.2, orta: 2.0, yakin: 2.6, insert: 3.0 };
 // kural 4: doku mesafeyle sadeleşir (opaklık çarpanı)

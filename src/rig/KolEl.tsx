@@ -10,7 +10,7 @@ import type { KolIsik } from "./RigIsik";
 // El: ince, kemikli; metakarp çizgileri, damar, boğumlar, tırnak; parmak araları negatif boşluk ≥ 6 px.
 // Poz "kistir": başparmak ÜSTTE, işaret parmağı ALTTA nesnenin kenarını kıstırır; tutulan nesne ikisinin ARASINDA çizilir.
 
-export type KolTip = "ceket" | "gomlek" | "parisManset" | "gorevli" | "yazici" | "louis";
+export type KolTip = "ceket" | "gomlek" | "parisManset" | "gorevli" | "yazici" | "louis" | "parisGri";
 export type KolPalet = { kol: string; kolIsik: string; kolGolge: string; yama?: string; manset: string; mansetKir: string; ten: string; tenGolge: string; dugme?: string };
 export const KOL_PALET: Record<KolTip, KolPalet> = {
   ceket: { kol: "#6b6a66", kolIsik: "#8a8983", kolGolge: "#46453f", yama: "#5a5953", manset: "#d8d0bb", mansetKir: "#b9b29d", ten: "#d9b190", tenGolge: "#a9806a", dugme: "#1c1915" },
@@ -19,6 +19,8 @@ export const KOL_PALET: Record<KolTip, KolPalet> = {
   gorevli: { kol: "#1c1915", kolIsik: "#3a3630", kolGolge: "#0f0d0c", manset: "#efe9d8", mansetKir: "#cfc6b0", ten: "#d8ae8b", tenGolge: "#a97d62" },
   yazici: { kol: "#1c1915", kolIsik: "#3a3630", kolGolge: "#0f0d0c", manset: "#1c1915", mansetKir: "#1c1915", ten: "#d3a784", tenGolge: "#a77b5f" },
   // Louis (P02 göğüs, yazan el): bordo frak kolu, gömlek manşeti eldiven beyazı bandının ALTINDA (#e0d9c6, L* ≈ 87), çıplak el (rig LOUIS.skin)
+  // Paris kuşatması (tasarim §3.3): memur/okuyan eli — kömür-gri manşet, düğme/metal YOK (sarı metal yasağı), ten Dagron'dan ayrışır
+  parisGri: { kol: "#34363d", kolIsik: "#4b4e57", kolGolge: "#222329", manset: "#5d5f63", mansetKir: "#46484c", ten: "#cdb09a", tenGolge: "#8f7360" },
   louis: { kol: "#74222f", kolIsik: "#9a3646", kolGolge: "#47131c", manset: "#e0d9c6", mansetKir: "#bfb7a2", ten: "#e0ae8a", tenGolge: "#b27b5f", dugme: "#3a1018" },
 };
 // El boyu (bilekten orta parmak ucuna), el yerel biriminde: ekranda = EL_BOY_YEREL × olcek. Eldiven ölçüsü buna bağlanır (Eldiven elBoyu).

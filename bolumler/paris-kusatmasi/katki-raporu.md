@@ -226,3 +226,74 @@
 - Aldığım kararlar ve gerekçeleri: Zamanlama değişmedi (ses onaylı); P05'te f236 anahtarı (cs 1.35) yerinde kaldı, f236→268 itme 32 kare (o aralıkta temas yok, dokunuşlar f140–222 arası eski ölçekte okunur). P09'da cx −40 korundu (kuş sağa çıkar, sağda boşluk). Kutu boyutu 519 px genişlik, oran 1.4 korunarak 519x370. MONTMARTRE sinirlar aralığı görünüm başına ayrılamadığından şablon geneli (cs 0.9–2.4, ±500) bırakıldı; `yukleme` sınırı (cs 1.0–1.6, cx ±150) not olarak yazıldı. Menzil çizgisi ve anıt silueti kullanıcı sorusu olarak açık, varsayılan "yok".
 - Uyguladığım kurallar / yakaladığım kural ihlalleri: Kural 1 (senaryo→parametre; "ateş menzili çizgisi" satırı kaldırıldı çünkü kaynağı/tasarımı yok), kural 2 (animasyon bitişleri değişmedi), kural 4 (okunurluk px değerleri güncellendi: P05 328/280, P09 278, P10 kılıf 164–191), kural 6 (doğrulayıcı geçti). Ekran formülü kontrolü: (560,1250) cs 2.0 cx −40 cy −610 → (540,930) ✓; P01 son kare ufuk 739→579 ✓.
 - Açık sorular / bir sonraki ajana notlar: (1) §7.4'te P09 "cy −120 → kılıf ekran y ≈ 960" yazılı, formül (dekor 1000, cs 2.0) y ≈ 920 veriyor; 40 px fark, motion kalibrasyonda bakar (alt bant dışında, sorun değil). (2) P06 HARITA rota başlangıcının f0'da ekran (540,930)'a oturup oturmadığı (P05→P06 taşıyıcı) render'da doğrulanmadı. (3) P10b pan 40 kare/≈31 px-kare hızlı; okunmazsa f240'tan başlat. (4) Motion: `DollyKamera` formülü §1.3/§9; sinirlar'da PARIS-CATI cs üst sınırı 3.3.
+
+## motion · 2026-11-12 · Kurulum A turu: PARIS-CATI şablonu + güvercin, kılıf, kümes, siluet seti
+- Ne yaptım:
+  - PARIS-CATI şablonunu kurdum. Görünümler: `cati` = `kumes` (tek dekor); saatler: `alacakaranlik`, `gun`.
+  - Dolly kamera modeli: cs = kamera mesafesi, katman ölçeği d/(d−δ), kılıf kilidi (540,960) FOE.
+  - Haussmann sonrası dekor: karşı mansard sırası, lucarne'lar, kesintisiz korniş, baca kümeleri, çatı denizi, uzak sırtlar, çinko teras kenetleri (boyuna + enine), kendi kırık çizgimiz, sağ baca ve ön baca (dünya modelli, yan yüzlü).
+  - Tek ışık: alacakaranlıkta kenar ışığı + pencere havuzları; günde zemin gölgesi tek dünya vektöründen.
+  - Proplar:
+    - güvercin rig'i (9 poz + 4-poz çırpış + kılıf çapasıyla yerleşim + ayak FK)
+    - imza kılıfı (opak katmanlar, tek hilal, çözme/tıkaç/şerit durumları)
+    - kümes
+    - 4 kodlu yüzsüz siluet seti
+    - KolEl'e `parisGri` Paris eli
+  - sinirlar.json yer tutucusunu gerçek kayıtla değiştirdim; KATALOG.md'ye bölüm ekledim.
+  - Kalibrasyon: P01 f0/f24/f370, P11 son, P10a f48/f56; hareket şeridi; 360 ve güvenli alan sürümleri; renk ölçümü.
+- Dokunduğum dosyalar:
+  - yeni:
+    - src/kit/sablonlar/paris/{ParisCati.tsx, catiDekor.tsx, dolly.ts}
+    - src/kit/props/paris/{Guvercin.tsx, Kilif.tsx, SiluetFigur.tsx}
+    - bolumler/paris-kusatmasi/kalibrasyon/A/*
+  - değişen (yalnız ekleme):
+    - src/kit/sablonlar/kayit.ts
+    - src/kit/tipler.ts (SablonAdi)
+    - src/doku/sabitler.ts (DOKU_SEED parisCati…havadanParis)
+    - src/rig/KolEl.tsx (KolTip `parisGri`)
+    - src/kit/sinirlar.json (yalnız PARIS-CATI girdisi)
+    - src/kit/KATALOG.md
+  - bolum.json'a dokunmadım.
+- Aldığım kararlar ve gerekçeleri:
+  - **Panthéon (tur-3):**
+    - Yeri: dekor x 880, uzak katman (d 500), kaide uzak çatıların arkasında. Boyu ≈ 82 px (kubbe ø 34 px). Ton alacakaranlıkta `#7a7088` / gölge `#655d76`, günde `#b4b6b6`. Haç ve yaldız yok.
+    - Gerekçe: kılıfın (540) ve kuşun sağ-üst uçuş yayının dışında kalıyor; kümes, ön baca ve sağ baca onu örtmüyor; P01 geniş kapanışta ekran x ≈ 820'de karşı baca kümesinin solunda duruyor; yakın planlarda kadraj dışında.
+    - Varsayım: çatımız Panthéon'un kuzeyinde (Sağ Yaka). Kamera GGB'ye baktığına göre bu tutarlı, ama araştırmacı doğrulamadı.
+  - **Baca külahları (tur-3):** soluk pişmiş toprak, kahverengiye çekik, düşük doygunluk.
+    | Saat | Işık yüzü | Gölge yüzü |
+    |---|---|---|
+    | Alacakaranlık | `#6b5856` (L\* 39, C\* 8.5, h 29°, ΔE76 imzaya 72.6) | `#4f4347` (ΔE 81.7) |
+    | Gün | `#8e7366` (L\* 51, C\* 14.1, h 53°, ΔE 60.9) | `#6b5751` (ΔE 70.7) |
+    - Kırmızı piksel ölçümü (C\* > 30, ton 340–40°) dört karede de 0.
+  - Kümes ve kuş, mekanlar §1.3'teki gibi d = 1 kartı olarak çizildi; gerçek derinlikle cs 3.2'de kılıf kameranın 0.15 m önüne düşüyordu. Yakın düzlem eşiği 0.1 → 0.05 (cs 3.2'de kart d−δ = 0.099 idi, kümes çizilmiyordu).
+  - Kümes yan yüzü çizilmedi: kamera X = 0 kümesin (−0.9…+0.3 m) içinde, iki yan yüz de geometrik olarak görünmez. Mekanlar'daki "sağ yan el kapağı" bu yüzden ön yüzün sağına alındı (x 590–654) — **onay bekliyor**.
+  - Döngü kilidi: P01 f0 tünek gövde/kuyruk açısıyla başlıyor, kanat yarı açık (hareketli ilk kare); 10 karede kalkışa karışıyor. Ölçüm: kılıf merkezi P01 f0 (555.2, 974.4) ↔ P11 son (555.0, 974.3), fark 0.2 px; boy aynı (287 px).
+  - Gün tarama açısı 72° (mekanlar), ışıktan türeyen 99° değil: 99° dikey tahtalarla 9° fark verir, örgü okunurdu.
+  - 5. kat balkonu çizilmedi: kırık çizgimizin (y 1004) arkasında kalıyor.
+- Kareye uyarlarken değiştirdiğim değerler (yönetmen plana işler):
+  | Öğe | Şartname | Kod | Neden |
+  |---|---|---|---|
+  | Kuş derinliği (P01) | Z 3 → 9 m | Z 3 → 4.5 m (d 1 → 1.5), d çatı hizası aşılana dek 1 | Z 9'da kılıf 11 px kalıyor (tasarım ≥ 24); ölçülen kuş ≈ 115 px, kılıf ≈ 26 px |
+  | İniş tahtası üstü / ön | y 995 / 1017 | y 972 / 992 | Tünek pozunda ayak kılıfın 4.6–5.1 cm altında; ayaklar tahtaya basıyor |
+  | Kümes açıklıkları | y 902–973 | y 896–966 | Tahtanın üstünde kalsın |
+  | Tünek pozu | gövde 35° | gövde 22°, kuyruk gövde ekseninden 35° yukarı | Kılıf (540,960) kilidi + ayak tahtada |
+  | **P10 kamera cx (öneri)** | −380 | **−100** | −380'de kılıf ekran x ≈ 160'ta, sol kenara değiyor ve el örtüyor; −100'de kılıf ≈ 440, kuş ve el kadrajda (`P10a-f048-oneri-*`). Güvenli alan ihlali 0. Ayaklar sağ IG sütununa yakın (x ≈ 1030), ihlal sayılmıyor |
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - İmza tekliği: imza bandı ve "b\* > 26, L\* > 55" pikselleri yalnız kılıf kutusunda (f24, P11 son, P10a: kılıf dışı 0 px). Kılıf en iyi ΔE 0.0–0.5.
+  - Kırmızı 0, sarı metal 0 (KolEl `parisManset`'in sarı düğmesi yüzünden ayrı düğmesiz tip açıldı).
+  - Kitte dil metni yok.
+  - Tarama yalnız açıklık içi, saçak altı, iniş tahtası altı, lucarne yanağı ve korniş altında; geniş yüzeyde yok. Çizgi ≥ 2 px, aralık ≥ 7.5 px.
+  - Hareket tamamlanır: kuş f288–330 arasında sağ-üstten kadraj dışına çıkıyor (çıkış noktası kameradan ters hesaplanıyor); ip fade olmadan sargıdan sarkan ipe dönüşüyor; tıkaç menteşede kalıyor.
+  - Güvenli alan bindirmelerinde ihlal 0.
+  - Doğrulayıcı: paris GEÇTİ (0 hata, 1 uyarı foley). tsc temiz; Blanc bolum/bolum-en GEÇTİ. Evliya'daki tek hata önceden vardı (süre 77 sn > 65), bu turla ilgisi yok.
+  - Hareket şeridinde kesme/maske şeridi yok.
+- Açık sorular / bir sonraki ajana notlar:
+  - **Eleştirmene (benim gördüğüm zayıflıklar, öz puan ≈ 6.5):**
+    1. P01 geniş kapanışta alt %35 yalnız çinko teras; kenet ve enine ek var ama sade. Ölü alan sınırında.
+    2. Paris eli (KolEl `kistir`) parmakları açık duruyor; kıstırma tam okunmuyor.
+    3. Şerit, gri kuyruk tüyü üstünde düşük kontrastlı (f56).
+    4. Güvercin çizimi köşeli ve poligonal; 360 px'te güvercin olarak okunuyor, ama yakın planda (f24, P11) tüy dili kaba.
+    5. f24'te kuşun başı kadraj dışında (kuyruk yakın plan; kılıf ≈ 257 px çapraz, %13).
+  - Render kanıtı yok: `tunek-yon-ara` (P04 ve DAGRON-INSERT kafes için), P11 iniş (f176–262; P11 HARITA paris-cevre/H5 kurulmadığından yalnız devam kısmı render edilebilir).
+  - P10 cx önerisi yönetmene. `animasyonlar` alanları kanonik `kus.*` alanlarına taşınabilir (ikisi de çalışıyor).
+  - Araştırmacıya: Panthéon görünürlüğü ve kamera yönü; çatı güvercinliği biçimi.
