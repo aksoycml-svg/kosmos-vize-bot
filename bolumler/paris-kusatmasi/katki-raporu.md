@@ -766,3 +766,20 @@
      - Hasır 360'ta "yatay şeritli" okunuyor, örgü ayrıntısı tam boyda.
   4. **Tasarımcı:** başlık eşlemesi kodda `BASLIK_VARS`: palto=silindir, düz=melon, işçi/çocuk=kasket, pelerin=fötr, şal/etek=başörtüsü, dagron=silindir. Override: kazıkçı ve yükleyici-2 bere, Daguerre dibinde melon/silindir/kasket. §3.0 güncellemesi bekleniyor.
   5. Mekân: buğu α 0.62 sapmasının onayı.
+
+## elestirmen · 2026-11-12 · MONTMARTRE/hale B2 kalibrasyonu
+- Ne yaptım: B2 karelerini inceledim: P03 f80; P06b f168, f200, f230 ve şerit f200–260; P07 f112, f196 ve şeritler f0–158, f160–300. 360 ve güvenli sürümlere, karsilastir.png'ye ve darbe bölgesinin 2× kırpımına baktım. B'nin 5 düzeltmesini tek tek doğruladım. Karar: P03 GEÇER, P07 DÜZELTMEYLE GEÇER, P06b sahnelemesi GEÇMEZ, şablon DÜZELTMEYLE GEÇER. Puan 6.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/B2/elestiri.md (yeni), bu rapor. Kod ve git yok.
+- Aldığım kararlar ve gerekçeleri:
+  - Siluet dilini kompars için kabul ettim; kontrajur bunu haklı çıkarıyor. Dagron'un ayrışması ise zorunlu.
+  - Sepet ölçüsünü sorun saymadım. Asıl sorun, biniş eyleminin sepetin arkasında saklanması.
+  - Buğu 0.62'yi gözle destekledim.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Fizik: P06b f230'da tutunan el halata değil boşluğa uzanıyor (KRİTİK). P07'de atış izi ufkun üstündeki bir kaynaktan çıkıyor; yerden atış ufuk altından yükselmeli.
+  - Okunurluk: P06b biniş okunmuyor, siluetler birbirine kaynıyor. P07 darbesi 360'ta ≈ 15 px.
+  - Dijital gök basamakları tüm MONTMARTRE planlarında var.
+- Açık sorular / bir sonraki ajana notlar:
+  - motion + yönetmen: biniş ön-sol köşeden olsun, `cx` +80…100. El IK hedefini halata bağla.
+  - motion: duman kaynağı y ≥ 1050; delik ×1.6, aydınlık yüze.
+  - mekân sorumlusu: gök basamaklarını taramalı geçişe çevir.
+  - yönetmen: P06b f168/f200 alt bant için `lint.izin` kararı.
