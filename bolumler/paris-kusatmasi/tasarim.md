@@ -67,6 +67,7 @@ Tarama yalnız (a) balon küresinin gölge yarısında terminatör bandında, (b
 | güvercin (alacakaranlık) | §4.2 + kenar ışığı `#c9b3b8` | |
 
 ### 1.3 KIŞ GÜNÜ (P03, P06b, P07, P10a)
+> **Tur-7 notu (2026-11-12):** bu tablo, §0.2 "soğuk, düşük doygunluk" ve §1.1 "hava durumu iddiası yok" satırı **§14 "Sabah dili" ile değişti**; çelişkide §14 geçerlidir. Aşağıdaki tablo tarihçe olarak kalır.
 | Ad | Hex | Not |
 |---|---|---|
 | gök tepe / orta / ufuk | `#8d9aa6` / `#aab4bc` / `#d4d2c8` | 3 düz basamak. **Balon ayrışması:** balon ışık yüzü L\* ≈ 84, gök orta L\* ≈ 72, tepe ≈ 62 ⇒ kontur + terminatör şart (§4.1) |
@@ -566,3 +567,171 @@ Net özet: **gevşeyen = renk ailesi, ışık/pencere/ahşap sıcaklığı, gök
 - **Yönetmen:** P01 f0 kamera (baş kadrajda, kılıf ≥ %10), P01 kapanış yüksek bakış.
 - **Eleştirmen betiği:** §13.3 ölçütleri (C\* > 32 kılıf dışı 0, kılıf C\* ≥ 2.3 × sahne maks., L\* tavanı, kırmızı bandı 0).
 - Hedef görsel promptları: `hedef/prompt-kus.txt`, `hedef/prompt-cati.txt`.
+
+---
+
+## 14. Sabah dili (kış sabahı, Montmartre) — 2026-11-12 (tur-7)
+
+Girdi: `notlar/tur-4..7.md` (kullanıcı: alacakaranlık yönü beğenildi, A turundaki soğuk/estetiksiz görünüm reddedildi), §13 (ilkeler), mekanlar §0.6 + §2 (MONTMARTRE) + §1v2.8 (P10a ışığı), `hedef/hedef-kus.png`, `hedef/hedef-cati.png`. Spesifikasyondur, kod/görsel değil. Hex'ler elle Lab ile kontrol edildi (±3; L\*/C\* sütunları); motion `renk_olcum.py` ve eleştirmen render'da doğrular. **§0.2, §1.1 (hava satırı), §1.3, §1.7 (kış gökü/krem taş/balon satırları), §4.1 (balon renkleri), §4.8 (sandık rengi), §5 (darbe renkleri), mekanlar §2.7 hex'leri ve mekanlar §1v2.9 "P10a v1 gün paleti" ile çelişen yerlerde §14 geçerlidir.** Kapsam: P03 `meydan`, P06 (meydan sahnesi = `yukleme`; P06a HARİTA ise kâğıt paleti değişmez), P07 `gok` + `sepet`, P10a (PARIS-CATI gün). Alacakaranlık (§13) değişmedi.
+
+### 14.0 Teşhis → karar
+| A turu (§1.3) | Karar |
+|---|---|
+| Gök 3 düz gri basamak (`#8d9aa6/#aab4bc/#d4d2c8`), taş `#d8cdb4` b\* ≤ 14, "sıcak gölge yok": tek renk ailesi, güneş yok sayılmış | Sıcak–soğuk karşıtlık: **ışık alan yüz gül-krem, gölge yüzü mavi-mor, gök temiz kış mavisi, ufuk şeftali-gül** (§13'ün sabah karşılığı) |
+| Balon krem `#d9d0b8` düz gri-sarımsı, gölge `#b3a98f`: gökten ayrışmıyor, "kirli" | Balon üç düz basamak + vernik hilali + mor tonlu terminatör taraması; sıcak ışık yüzü, soğuk gölge |
+| Derinlik yok: Paris `#a9adb0` düz bant | 3 katman hava perspektifi (açık, düşük kontrast, kontursuz) |
+| Doku yok | §13.5 aynen: ≤ 3 katman, mor tonlu tarama, kâğıt + litografi grenı, gök geçiş çizgileri |
+
+### 14.1 Işık (tek kaynak, tek vektör)
+| Öğe | Değer |
+|---|---|
+| Kaynak | Alçak kış güneşi, azimut ≈ 135° (GD), yükseklik ≈ 12° [T, §1.1/G16; 12 Kasım enlem 49° için ikinci elle hesap: azimut 135.9°, yükseklik 12° ⇒ 08:58 güneş saati]. Gölge boyu **gerçek 4.7 × yükseklik**; §13'teki gibi kısaltma/abartı gerekmez |
+| `meydan`, `yukleme`, `gok`, `sepet` (kamera güneye, 180°) | Güneş **45° solda, önde**; F 1500'de yatay görüş ≈ 39.5° ⇒ **güneş kadraj dışında**: disk yok, hale yok, ışın yok. Gök yalnız sol alt ufukta **ışıma** taşır (14.2). `ISIK_YON.gunMontmartre` (ışığa doğru) = **(−0.692, 0.208, 0.692)**; zemin gölge yönü (−1 ile) sağ-kameraya, ekranda (+0.9, +0.25) (mekanlar §2.2) |
+| Işık alan yüzler | **Sola (doğuya) bakan** dikey yüzler ve **yukarı bakan** yüzler (zemin, sepet kenarı üstü, sandık kapağı, çatı sırtı). Sağdaki yan evin meydana bakan sol duvarı ışıkta; solundaki evin iç duvarı (batıya bakar) gölgede |
+| Gölgede kalan | **Kameraya (kuzeye) bakan her yüz**: balonun gövdesi, sepet ön yüzü, ev cepheleri, kalabalık. Bu yüzler çok koyulaşmaz: berrak sabah göğünün mavi dolgu ışığını alır ⇒ açık mavi-mor (14.2 gölge ailesi) |
+| Balon (küre) | Gerçekte güneş kenarda-arkada ⇒ ince hilal (≈ %15). Çizimde **sol-üst ≈ %35 ışık yüzü**, onu terminatör bandı, geri kalanı gölge gövde [T, bilinçli abartı: balonun gül-krem okunması ve gökten ayrışması için; §13.7'deki gölge kısaltmasıyla aynı mantık] |
+| Kenar ışığı | Siluetlerin **sol ve üst** kenarlarında `#f0c4a8` 2–3 px (kalabalık, ağaç, yan ev köşeleri, sepet, halat, balon konturunun sol yayı). Alacakaranlık kenarı `#e6b5a0`'dan bir ton açık (doğrudan güneş) |
+| P10a (PARIS-CATI gün, kamera 230°) | Güneş **95° solda, hafif arkada**: `ISIK_YON.gun` (−0.974, 0.208, −0.085), mekanlar §1v2.8 aynen. Kümes ön yüzü gölgede, **sol yan yüzü ve iniş tahtası üstü ışıkta**; kuş/kılıf/el soldan yan ışık; gölgeler sağa 4.7×. Gök güneşin **tersinde**: sıcak ışıma yok, daha derin ve soğuk (14.2 P10a satırı) |
+| Pencereler | Gündüz **iç ışık yok**: cam gök yansıtır (`#7f90ab`); yalnız güneşe dönük 2–3 pencerede küçük güneş parıltısı `#f0d4bc`. Gerekçe: gündüz iç lamba okunmaz; kuşatma yakacak kıtlığı [G, doğrulanmalı]. Pencere havuzu ve gece-gündüz karışması yok |
+
+### 14.2 Sabah paleti
+Genel: kılıf dışı **C\* ≤ 28** (en yüksek bölge: ahşap/hasır ışık yüzü ≈ 20–25), **L\* ≤ 88**; C\* ≥ 22 olan sıcak yüzeylerde ton (hue) **45–72°** (gül-şeftali), 74°'ten sarıya kayan hiçbir yüzey yok. Kontur = dolgunun %55 koyusu **kendi tonunda** (ışık yüzünde kahve-gül, gölgede mor); saf siyah/beyaz yok.
+
+**Gök (meydan / yukleme / gok / sepet)** — 5 düz basamak, ufuk basamak oranı korunarak kamera ufkuna ölçeklenir (`gok`'ta ufuk y 760, mekanlar §2.5); yumuşak gradyan yok, sınırlarda litografi geçişi (§13.5: 3 ince çizgi + stipple)
+| Basamak | Dekor y (meydan) | Hex | L\* / C\* |
+|---|---|---|---|
+| tepe | 0–420 | `#6f86ad` | 56 / 23 |
+| üst | 420–760 | `#8fa3c0` | 66 / 17 |
+| orta | 760–1000 | `#a9b7cc` | 74 / 12 |
+| alt | 1000–1180 | `#cdc6d0` | 81 / 6 |
+| ufuk | 1180–1300 | `#f0d0bc` | 86 / 16 (h 60°) |
+| **sol ışıma** (yalnız x < %45, ufuk basamağı + üstündeki 60 px, kenarı düz) | — | `#f2c9b2` | 84 / 20 (h 56°) |
+Balon ışık yüzü gök orta ile ΔL ≈ 9, alt ile ≈ 2: **balonun alt %25'i ara ton/yansıma olduğundan** sorun çıkmaz, yine de ölçümde balon konturu ile alt basamak ΔL ≥ 8 şart; yetmezse alt basamak `#c5bfcc`'ye koyulaşır.
+
+**Paris (meydan: ince çatı bandı; `gok`/`sepet`: havadan)** — hava perspektifi buğusu (düz katmanlar, kontursuz uzakta)
+| Ad | Hex | Not |
+|---|---|---|
+| uzak buğu bandı (D > 1500 m / meydanda en uzak) | `#dccfcf` | ufuk basamağına karışır, L\* 84 |
+| orta bant (D 600–1500) | `#b0a6c0` | kontursuz |
+| yakın çatı silueti / baca tarağı | `#8d85a6` / `#7a7394` | meydanda 3 px kontur yok, ≤ 8 px tarak |
+| ışık alan çatı yüzleri (sola bakan) | `#d8b8a4` | 1–2 px ince, kümelenmez (77 / 17) |
+| blok krem ışık yüzü / gölge yüzü (havadan, `gok` `sepet`) | `#e0c8b2` / `#9a92ae` | tek blok başına seed'li ±3 L\* |
+| mansard çatı havadan ışık / gölge | `#a89fbe` / `#7a7394` | |
+| bulvar zemini + ağaç gölgesi | `#d3bba6` / `#9a92ae` | iki sıra çıplak ağaç noktası `#6a6280` |
+| baca dumanı (1–2 ince şerit) | `#c3bccd` | çözülerek biter, bulut okutmaz (14.4) |
+
+**Taş, sıva, çatı, zemin, ağaç (MONTMARTRE)**
+| Ad | Hex | L\* / C\* | Not |
+|---|---|---|---|
+| yan ev sıva, ışık yüzü (sağ evin sol duvarı) | `#e8d0ba` | 85 / 17 | h 65°; [G] sıva rengi kaynaksız, nötr sıcak krem |
+| yan ev sıva, gölge yüzü (cephe) | `#a39cb6` | 66 / 15 | mavi dolgu ışığı |
+| derin gölge (saçak altı, söve, pencere içi) | `#7a7394` | 49 / 17 | II tarama burada |
+| pencere camı / güneş parıltısı | `#7f90ab` / `#f0d4bc` | — | iç ışık yok |
+| kırma çatı: kuzey eğimi (gölge) / mahya sol kenarı | `#6d6384` / `#f0c4a8` | 44 / 20 | malzeme adı yok |
+| meydan toprağı, ışık alan | `#c8ae98` | 73 / 16 (h 67°) | tek ton + stipple tane |
+| gölge yeri (uzun gölgeler, tekerlek izi içi) | `#8f8aa8` / iz içi `#a8949a` | 59 / 17 | gölge kenarı net, gradyan yok; "soğuk toprak" kırağı okutur, kırağı iddiası yok |
+| çakıl | `#d6c1ae` | | 40 nokta (mekanlar §2.7), gölge yarısı `#8f8aa8` |
+| çıplak ağaç (gövde + dallar) / sol kenar ışığı | `#5f5470` / `#f0c4a8` α .8 | | uzak ⇒ kontursuz; ağaç balonun arkasında (Z 28 > 16.7) |
+| kompars siluet (kalabalık, yükleyici, Dagron dışı) | `#45405a` ±3 L\* seed'li, sol kenar ışığı `#f0c4a8` 2 px | 29 / 17 | yüzsüz, aksesuar yok (§3.0); uzun gölge `#8f8aa8` sağ-kameraya 480–600 px |
+Dagron (P06 sırt) gövde iki tonu `#4f4a44/#2e2a26` → `#5a5068` (ışık yanı, sol) / `#3a3550` (gölge); sepya manşet ve ten §3.2 aynen (sepya `#4a3a2c`, ten `#c9a58a` + sol kenar `#f0c4a8`).
+
+**Balon kumaşı (N1)** — kaynaksız biçim/renk nötr (pamuk + vernik [A]; küre, ağ [G]); renk "kirli krem" **değil, sıcak ışıkta gül-krem**; yama, şerit, panel, yazı, bayrak, arma **yok** (Blanc dersi)
+| Yüz | Hex | L\* / C\* | Not |
+|---|---|---|---|
+| ışık yüzü (sol-üst ≈ %35) | `#e6c9b4` | 83 / 16 (h 63°) | |
+| vernik hilali (ışık yüzünde tek ince hilal) | `#ecd9c2` | 88 / 16 | tek sert hilal, yıldız/hale yok |
+| terminatör bandı (tarama) | `#c9b0ac` + tarama `#4d4a6e` | 74 / 10 | **mor tonlu** çizgi ≥ 2 px, aralık 7, açı 78° (mekanlar §0.5), yalnız bu bantta |
+| gölge gövde | `#8f8aa8` | 59 / 17 | açık mavi-mor (gök dolgusu) |
+| yer yansıması (alt 2–3 şerit, balon gökte değilken) | `#b59ea2` | | alt yarıda ince bant; `gok`'ta yok |
+| kontur | ışık yüzünde `#9a7f78` / gölgede `#4d4a6e` | | 3–4 px, kendi tonunda |
+| ağ (9–11 meridyen + 4 paralel, 2.5 px, göz ≥ 60 px) | ışıkta `#a88f86` seyrek / gölgede `#4e4560` belirgin | | geniş kafes/tel örgü okunmaz (§4.1 aynen) |
+| halka (alt) / halat / halat gölgesi | `#5a4e5a` / `#b59e84` / `#6a5a62` | | halat sol kenarı `#f0c4a8` 1 px |
+| gaz hortumu / çıkış puf | `#4a4560` / `#d8d2dc` | | puf soğuk beyaz-lila, alev/kıvılcım yok; sol kenar ışığı |
+Yarı şişmiş durum (P03 f0–104): üst yarı pürüzsüz küre (ışık yüzü + terminatör), alt yarı **gölge ailesinde ağır kıvrımlar** (kıvrım çizgisi `#4d4a6e`, 9 → 0); şişince terminatör bandı aşağı iner. Kumaş çökerken (P07) aynı palet, çökme meridyenleri gölge ailesinde.
+
+**Hasır sepet, sandık, kum torbası, posta çuvalı**
+| Ad | Hex | L\* / C\* | Not |
+|---|---|---|---|
+| hasır ışık yüzü (sol yan + rim üstü) | `#b89677` | 64 / 23 (h 68°) | kamış ışık kenarı `#c9a98a` (71 / 23) |
+| hasır gölge (ön yüz) | `#6e5a56` | 40 / 10 | **düz koyu bant** (tarama yerine, mekanlar §0.5); dikey kamış + 2 sarma kuşağı, çapraz örgü yok |
+| sepet kenar bandı | `#4f3d46` | | |
+| sandık ışık / ön / derin | `#b4937a` / `#7a6460` / `#4a3f46` | 63 / 20 | demir bant `#3a3d42`, kulp `#b59e84`; sol kenar `#f0c4a8` |
+| kum torbası (ham keten) ışık / orta / gölge | `#d0bba6` / `#a8978f` / `#7a6f86` | 77 / 14 | ağız ip bağı `#9a8268`; yazı/damga yok |
+| düşen kum izi | `#d3c1ac` + sağ gölge kenarı `#8f8aa8` 2 px | | mavi gökte açık sıcak iz okunur; 20 kare |
+| posta çuvalı | torba ile aynı | | sepet içinde ağzı rim üstünde |
+
+**P07 darbe (tasarım §5 evre tablosunun renkleri bununla değişir; çizim/süre/yasaklar §5 aynen)**
+| Evre | Hex |
+|---|---|
+| yerden duman sütunu / kâğıt-krem parlama | ışık `#a39ba6` / gölge `#5a556a` (ton: mor-gri kül, **bulut gibi okunmaz**: 3 px koyu kontur, tırtıklı kenar, gökten koyu) / parlama `#f2e6d2` (91 / 11) |
+| delik / yırtık iç yüzü / dış yüzü | `#2f2d46` / `#ecd9c2` / `#8f8aa8` |
+| gri-kül duman kümeleri | ışık `#a39ba6`, gölge `#5a556a`, sol kenar `#f0c4a8` 2 px |
+| gaz boşalma puf | `#d8d2dc` |
+| tarama | `#2f2d46` 2 px, aralık 7 |
+Parlama L\* 91 (>88) tek istisnadır: P07 f108–118, ≤ %10 ekran, C\* 11, kılıf kadrajda yok ⇒ `lint: {izin: ["L_ustu_88_parlama"], not: "P07 darbe parlaması, kılıf kadrajda yok"}`.
+
+**P10a (PARIS-CATI gün, kamera 230°, güneşe sırtı gök; bu satırlar mekanlar §1v2.9 "v1 gün paleti"nin yerine geçer)**
+| Ad | Hex | L\* / C\* |
+|---|---|---|
+| gök tepe / üst / orta | `#6f86ad` / `#8fa3c0` / `#a9b7cc` | meydan ile aynı |
+| gök alt / ufuk (**sıcak ışıma yok**, güneş arkada) | `#c9c8d2` / `#dcd0d0` | 80 / 5 · 84 / 5 |
+| çatı denizi arkadan öne: K1 sırt / Panthéon (haçsız) / K2 / K3 / K4 brisis / K5 siluet | `#c8c0d2` / `#b0a6c0` / `#b3aac6` / `#9a91b3` / `#7d7599` / `#5a5278` | atmosfer: uzak açık-düşük kontrast |
+| ışık alan çatı/baca/lucarne yüzleri (sola bakan) / kenar | `#d8b8a4` / `#f0c4a8` 2–3 px | 77 / 17 |
+| krem cephe K4 (güneşe 85°, gölgeli) / lucarne yanağı ışık | `#b9aab4` / `#e2c6b2` | cephe 71 / 8 |
+| pencere camı / parıltı (2–3 adet) | `#7f90ab` / `#f0d4bc` | iç ışık yok |
+| baca külahı ışık / gölge | `#8a6458` / `#4f4347` | §13.1 aynen (C\* ≤ 18) |
+| **kümes ahşabı** ışık yüzü (sol yan + iniş tahtası üstü) / orta (ön, gölgede) / derin / damar | `#c49a7c` / `#85634f` / `#4a3844` / `#3a2c36` | 67 / 25 (h 63°) · 45 / 20 |
+| kümes çatısı çinko / sırt + sol kenar | `#5c5a7a` / `#f0c4a8` 3 px | |
+| teras çinko ışık / gölge / kenet tepesi | `#7a7498` / `#4e4a6e` / `#d9b8b0` | güneş sıyırır |
+| kuş: §13.1 güvercin satırları, kenar ışığı sol-üst | `#f0c4a8` 2–3 px | |
+| Paris eli: ten ışık / gölge / manşet | `#dcb9a2` / `#8f7360` / `#5d5f63` + sol kenar `#f0c4a8` | ten 77 / 17; kılıfa ΔE76 ≈ 45 |
+| duman (1 şerit, soluk) | `#c8c0d2` | |
+
+### 14.3 Kılıf tekliği (C\*/L\* ayrımı) — kılıf bu sahnelerde görünmese de kural geçerli
+- P03/P06/P07'de kılıf **kadrajda yok**; kural yine betikte çalışır (kılıf dışı C\* > 32 piksel 0; kırmızı bandı C\* > 30 h 340–40° 0). **P10a'da kılıf kadrajda** (el + kuş + kılıf, sabah ışığında): kılıf C\* ≈ 67; sahne tavanı ahşap ışık yüzü C\* 25 ⇒ oran **2.7 (≥ 2.3 ✓)**; sahnede C\* > 28 bölge yok (hesap: en yüksek `#c49a7c` 25, hasır 23, kenar ışığı `#f0c4a8` 23).
+- **Altın saat tuzağı:** düşük güneş sarı-turuncu boyanmaz. Sıcak ışık hue **45–72° gül-şeftali**, kılıf hue 80° ± 12°; ışık/kenar/hasır/ahşap hiçbir yerde 74°'ü geçip C\* > 22 olmaz. Güneş diski, turuncu gök, sarı-altın halo yok.
+- ΔE76 (kılıf `#F0B43C` L 77 a 11 b 66'ya, elle): balon ışık ≈ 47, toprak ışık ≈ 51, hasır ışık ≈ 46, ahşap ışık ≈ 43, kum torbası ≈ 52, sandık ≈ 48, kenar ışığı `#f0c4a8` ≈ 46 (hepsi ≥ 15, çoğu ≥ 40). Eleştirmen render'da ölçer.
+- **P03'te posta çuvalı, hasır, balon, torba** kılıf biçiminde yarı saydam sarı silindir değildir; ip rengi bal tonunda değil (`#b59e84` C\* 17, soğuk-sıcak nötr).
+- Güvenli alt sınır: kılıf dışında L\* > 88 piksel yok (tek istisna P07 parlaması, lint izni yukarıda).
+
+### 14.4 Kar / sis / bulut / diğer yasaklar: gözden geçirme
+| Yasak | Karar | Gerekçe / yeni sınır |
+|---|---|---|
+| **Kar** (yağış, yer örtüsü) | **KALIR** | Kaynakta yok [A]; kar yer örtüsünü L\* 90'a çıkarır ⇒ ışık alan sıcak toprak, uzun mor gölgeler ve gül-krem balon (L\* 83) gözden kaybolur. "Kış" = çıplak ağaç + soğuk berrak gök + gölgede soğuk toprak (kırağı okuması, iddiası yok) |
+| **Sis** (hacimli, perdeleyen) | **KALIR**; yerine **GEVŞEK: hava perspektifi buğusu** | Düz katmanlı, kontursuz uzak bantlar (14.2); hacimli sis, gradyan, balonun önünü örten perde yok. Ekran yazısı/anlatımda "sis" geçmez. Gerekçe: derinlik gereği (§13.6) ve Paris tepenin ≈ 100 m altında; fiziksel olarak da uzak şehir buğulu okunur; hava durumu iddiası değil |
+| **Bulut** | **KALIR** | (1) Kaynaksız hava iddiası. (2) P07'de **tek bulutlu şey duman olmalı**: darbe dumanı bulutla karışırsa "vuruldu" okunmaz. (3) Balon ışık yüzü ile gök ayrışması düz bantla ölçülebilir. Gök berrak: yalnız basamaklar |
+| Güneş diski / hale / ışın | KALIR | Güneş kadraj dışında (14.1) ⇒ doğal olarak çizilmez |
+| Sokak/gaz lambası | KALIR | G13 |
+| Pencerede iç ışık (gün) | YASAK (yeni) | 14.1 |
+| "Sıcak gölge yok" (§1.3) | **GEVŞER → TERSİNE** | Gölge mavi-mor (`#8f8aa8` ailesi); ışık yüzü sıcak. Sıcak gölge hâlâ yok |
+| Sarı metal, kırmızı (mühür/bayrak/tuğla/ayak), gold, bal/kehribar nesne | KALIR | §13.4 |
+| Gök gradyanı | KALIR (CSS yumuşak gradyan yok) | 5 basamak + litografi geçişi |
+Kalan "gevşek" tek şey: sabah gökte ufuk ışıması (sol alt) ve buğu bantları; ikisi de düz şekil.
+
+### 14.5 Derinlik ve doku özeti (§13.5/13.6 ile aynı sözleşme)
+- **Katman sırası (meydan):** ön plan (hortum, yerde 2 çuval, halat, uzun gölgeler; kontur 6 px, keskin) → orta (balon, sepet, kalabalık; keskin, 3–4 px) → uzak (ağaç, yan evler; 3 px / kontursuz) → Paris bandı (3 buğu katmanı, kontursuz) → gök. Ağaç, balonun **arkasında**. Uzak katman açık ve düşük kontrastlı, yakın katman koyu ve kontrastlı.
+- **Doku (en fazla 3):** (1) toprak stipple tanesi / hasır kamışı / sıva lekesi (tek kabarma α .10); (2) mor tonlu tarama, yalnız ışığın mimariyi anlattığı yerde: balon terminatör bandı, saçak altı, söve, sandık/sepet gölge yüzünde dikey bant, gölgenin keskin kenarı; geniş yüzeyde (gök, zemin, cephe) yok; (3) kâğıt `paper #e9dfc9` multiply α .12–.16 + lif + 6–10 soluk leke, seed sabit.
+- **ArsivKatmani:** gündüz sahnelerinde `gunduzMineral` gök mavisini ve kenar ışığını grileştirirse `litografi` modu (§13 gece için yazılan) gündüz değerleriyle denenir; ölçüt: gök üst/orta C\* ≥ hedefin %85'i, kenar ışığı C\* ≥ 18 (Evliya K1 dersi).
+- 360 px eşikleri §13.5 aynen (gök 40×40 L\* std ≥ 1.2; tarama ≥ 0.8 px). Kalabalık siluet 360'ta ≥ 20 px boy.
+
+### 14.6 Devir (tek sahiplik)
+- **Mekân sorumlusu:** mekanlar §2.7 hex tablosu (yan ev `#b8b0a0/#8a8274`, toprak `#8d836f`, Paris bandı `#a9adb0`, ağaç, hasır `#5a4a3a`) §14.2 değerleriyle; §2.2–§2.6 "güneş sol-önde" cümleleri aynı; `gok`/`sepet` ufuk–basamak ölçeği; `HavadanSehir` renkleri; P10a gök/çatı denizi (§1v2.9 v1 gün paleti kalkar); `ISIK_YON.gunMontmartre` eklenir; ArsivKatmani gündüz modu kararı.
+- **Motion (kurulum, onaydan sonra):** `Balon` küre 3 basamak + terminatör taraması + yer yansıması + ağ; `Sepet`, `MeydanZemin` (toprak ışık/gölge), `GolgeSeridi` (gün vektörü, 4.7×), kalabalık kenar ışığı, P07 darbe renkleri (§5), `CATI_PALET.gun` v2, `Guvercin`/`KolEl` sol kenar ışığı.
+- **Eleştirmen betiği:** §13.3 ölçütleri + 14.3 (P10a oran ≥ 2.3; hue 74° üstü C\* > 22 piksel 0) + renk ölçüm noktaları (meydan, dekor y): gök orta (300, 880) `#a9b7cc`; ufuk (300, 1250) `#f0d0bc`; sol ışıma (150, 1250) `#f2c9b2`; balon ışık yüzü (350, 400) `#e6c9b4`; balon gölge gövde (700, 700) `#8f8aa8`; toprak ışık (500, 1650) `#c8ae98`; sağ ev ışık duvarı `#e8d0ba`; hasır ışık `#b89677`. Güncellenen §1.7 satırları: kış gökü orta `#a9b7cc`, krem taş ışık `#e8d0ba`, balon küre ışık yüzü `#e6c9b4`.
+- **Yönetmen:** yalnız P03 f0–40 ağaç dalı ve gölge yönü notu; kamera değişmez.
+
+### 14.7 [G] / doğrulanmalı (araştırmacıya)
+1. Kalkış sabahının havası (açık/berrak gök, güneşin görünürlüğü): kaynaksız; palet "berrak kış sabahı" varsayar. Kaynak "kapalı/sisli" derse §14.4 bulut/sis kararı yeniden açılır.
+2. Montmartre'de çıplak ağaç, yan evlerin sıva rengi ve katı, meydan zemini (toprak): [G] (G14).
+3. Balonun rengi/vernik görünümü: pamuk + vernik [A], renk kaynaksız ⇒ nötr krem; gül-krem tonu ışıktan geliyor, kumaşın boyası iddiası değil.
+4. Kalabalığın varlığı/sayısı (6): kaynaksız, dramatizasyon.
+5. Hasır sepet, 4 görünür kum torbası: [G] (G3/G18).
+
+### 14.8 Kullanıcıya / orkestraya açık sorular (varsayılan seçildi)
+1. **Balon sıcak gül-krem + mor gölge** (kirli krem yerine): kaynaksız renk, estetik tercih. Varsayılan: evet.
+2. **Balonun ışık yüzü gerçekte %15 hilal, çizimde %35** [T abartı]. Varsayılan: evet; istenmezse gerçek hilal (balon çoğunlukla mor siluet olur, gül-krem azalır).
+3. **Bulut yasağı kalıyor, sis yerine buğu bandı gevşedi.** Kullanıcı bulut isterse tek şerit gök bulutu P03/P07'ye eklenebilir; P07 dumanı karışma riski yüzünden bu turda önerilmiyor.
+4. **P06a hangisi?** HARİTA ise bu palet dışı; meydan sahnesi ise `meydan`/`yukleme` ile aynı palet. Varsayılan: P06a HARİTA.
+5. **ArsivKatmani gündüz modu** gök mavisini grileştirirse `litografi` modu gündüz için (motion/mekân sorumlusu kararı).
+6. **P07 parlaması L\* 91 lint izni** (kılıf kadrajda yok). Varsayılan: izin.
+7. Hedef görsel: `hedef/prompt-montmartre.txt` (P03 kalkış meydanı). Onaylanırsa mekân sorumlusu §2'yi buna göre günceller.
