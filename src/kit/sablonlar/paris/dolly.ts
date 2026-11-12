@@ -8,9 +8,18 @@ import type { P } from "../../tipler";
 import type { KameraDurum } from "../../zaman";
 
 export type Dolly = { F: number; e: number; Zk: number; ufuk: number; k: number; foe: P };
-// PARIS-CATI taban kamerası (cs 1): F 1326 px, göz teras üstü 1.0 m, kümes ön yüzü Z 3.0 m (442 px/m), ufuk y 739
-export const DOLLY_CATI: Dolly = { F: 1326, e: 1.0, Zk: 3.0, ufuk: 739, k: 1.31, foe: [540, 960] };
-export const YAKIN = 0.05; // cs 3.3 sınırında kümes kartı (d 1) d − δ = 0.076
+// PARIS-CATI v2 (mekanlar §1v2.3): geniş kamera (cs 1) göz teras üstü 2.8 m, lens kaydırmalı yatay eksen, ufuk dekor y 635.
+// Dolly = C_w → C_k doğrusal öteleme T = (−0.409, −2.07, +4.566) m; FOE (dolly merkezi) = T yönünün izdüşümü ≠ kılıf.
+// Zk 5.056 = kılıf düzlemi (d 1), k 1.419 → cs 2.75'te δ_max 0.9031 (kamera C_k). Ufuk ekranı = 635 + cy (sonsuz s = 1).
+export const DOLLY_CATI: Dolly = { F: 1326, e: 2.8, Zk: 5.056, ufuk: 635, k: 1.419, foe: [421.1, 1236.1] };
+// kılıf dünya noktası (−0.509, h 0.70, Z 5.056) → dekor (cs 1); ölçüm / kilit noktası (FOE değil)
+export const KILIF_DEKOR: P = [406.1, 1185.7];
+export const YAKIN = 0.05;
+/** dolly yolunda kamera dünya konumu (m; X, h, Z) — FOE ötelemesinden: t = T·δ/δ_max, T_z = δ·Zk */
+export const kameraDunya = (D: Dolly, cs: number): [number, number, number] => {
+  const tz = delta(D, cs) * D.Zk;
+  return [((D.foe[0] - 540) / D.F) * tz, D.e - ((D.foe[1] - D.ufuk) / D.F) * tz, tz];
+};
 
 export const delta = (D: Dolly, cs: number) => D.k * (1 - 1 / Math.max(0.5, cs));
 export const olcek = (d: number, dl: number) => d / Math.max(1e-3, d - dl);

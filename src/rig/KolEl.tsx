@@ -22,7 +22,8 @@ export const KOL_PALET: Record<KolTip, KolPalet> = {
   yazici: { kol: "#1c1915", kolIsik: "#3a3630", kolGolge: "#0f0d0c", manset: "#1c1915", mansetKir: "#1c1915", ten: "#d3a784", tenGolge: "#a77b5f" },
   // Louis (P02 göğüs, yazan el): bordo frak kolu, gömlek manşeti eldiven beyazı bandının ALTINDA (#e0d9c6, L* ≈ 87), çıplak el (rig LOUIS.skin)
   // Paris kuşatması (tasarim §3.3): memur/okuyan eli — kömür-gri manşet, düğme/metal YOK (sarı metal yasağı), ten Dagron'dan ayrışır
-  parisGri: { kol: "#34363d", kolIsik: "#4b4e57", kolGolge: "#222329", manset: "#5d5f63", mansetKir: "#46484c", ten: "#cdb09a", tenGolge: "#8f7360" },
+  // v2 (tasarım §13.8): ten ışık #d6b49c / gölge #8f7360 (C* ≤ 28, kılıfa ΔE ≥ 15), manşet kömür-gri
+  parisGri: { kol: "#34363d", kolIsik: "#4b4e57", kolGolge: "#222329", manset: "#5d5f63", mansetKir: "#46484c", ten: "#d6b49c", tenGolge: "#8f7360" },
   louis: { kol: "#74222f", kolIsik: "#9a3646", kolGolge: "#47131c", manset: "#e0d9c6", mansetKir: "#bfb7a2", ten: "#e0ae8a", tenGolge: "#b27b5f", dugme: "#3a1018" },
 };
 // El boyu (bilekten orta parmak ucuna), el yerel biriminde: ekranda = EL_BOY_YEREL × olcek. Eldiven ölçüsü buna bağlanır (Eldiven elBoyu).
@@ -91,8 +92,10 @@ export const KolEl: React.FC<{
   // ---- el parçaları (yerel) ----
   const siki = poz === "kistirSiki";
   const sirt: P[] = [[0, -24], [40, -30], [86, -30], [96, -18], [96, 18], [86, 28], [40, 27], [0, 22]];
-  const isaret: P[] = siki ? [[90, -12], [112, -15], [127, -8], [131, 2]] : [[90, -10], [114, -4], [128, 4]];
-  const basparmak: P[] = siki ? [[30, -24], [72, -38], [108, -26], [126, -12]] : [[30, -24], [76, -36], [116, -22], [128, -12]];
+  const isaret: P[] = siki ? [[88, -10], [110, -16], [127, -12], [133, -2]] : [[90, -10], [114, -4], [128, 4]];
+  // sıkı: başparmak avuç kenarındaki tenar kabarıklığından (x ≈ 96) çıkar; görünen boy ≈ 40 (işaret ≈ 48 → %83)
+  const basparmak: P[] = siki ? [[96, -30], [115, -26], [130, -12]] : [[30, -24], [76, -36], [116, -22], [128, -12]];
+  const tenar: P[] = [[24, -24], [52, -36], [84, -38], [100, -32], [102, -22], [70, -22]];
   const orta: P[] = siki ? [[92, 0], [108, 6], [106, 18], [96, 20]] : [[94, 4], [110, 14], [102, 26]];
   const yuzuk: P[] = siki ? [[90, 12], [104, 18], [100, 28], [91, 29]] : [[92, 16], [106, 26], [98, 36]];
   const serce: P[] = siki ? [[84, 22], [96, 28], [92, 36], [84, 36]] : poz === "kistir" ? [[86, 26], [108, 40], [124, 46]] : [[86, 26], [110, 34], [132, 34]];
@@ -163,6 +166,7 @@ export const KolEl: React.FC<{
         {eldiven && [-10, 0, 10].map((y) => <path key={`es${y}`} d={`M ${E([34, y])[0]} ${E([34, y])[1]} L ${E([78, y * 1.1])[0]} ${E([78, y * 1.1])[1]}`} stroke="#b9ad92" strokeWidth={1.4 * olcek} />)}
       </>}
       {siki && <polygon points={pp(yumruk)} fill={f(tenG)} {...st(ten, 2)} />}
+      {siki && <polygon points={pp(tenar)} fill={f(ten)} {...st(ten, 2)} />}
       {parmak(yuzuk, 13, "yz")}
       {parmak(orta, 14, "or")}
       {parmak(serce, 11, "sr", !siki)}
@@ -170,7 +174,7 @@ export const KolEl: React.FC<{
       {/* tutulan nesne: başparmak (üst) ile işaret parmağı (alt) ARASINDA */}
       {tutulan && <g transform={`translate(${pinch[0]},${pinch[1]})`}>{tutulan}</g>}
       {/* ---- başparmak (ön katman): nesnenin üstünden kıstırır ---- */}
-      {parmak(basparmak, 15, "bp", true)}
+      {parmak(basparmak, siki ? 14 : 15, "bp", true)}
     </g>
   );
 };

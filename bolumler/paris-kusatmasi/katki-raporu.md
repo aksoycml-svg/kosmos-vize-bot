@@ -380,3 +380,36 @@
 - Kararlar: P11 kamerası gerçekte `devam_plan.kamera`'da idi (parametreler içindeki kopya silindi, tek kaynak). Üç plana `lint: {not: "v2 kamera, render motion sonrası"}`. Tekne için json'da ayrı parametre yok (P01 `tekne` notu eklendi).
 - Kurallar: kural 7 istisnası (render yok, motion v2 sonrası kontrol_kare'leri ben render edeceğim); doğrulayıcı --tam geçti.
 - Açık: motion `dolly_foe`/`kilif` ayrımını okuyunca P01 f24, f370, P10a f48, P11 f333 render edilip bakılacak. P01 f0 kılıf (374,960) ile P10a (410,960) farkı tabloda böyle.
+
+## motion · 2026-11-12 · PARIS-CATI v2 (onaylı hedef görsel dili; mekanlar §1v2, tasarım §13)
+- Ne yaptım:
+  - **dolly.ts:** `DOLLY_CATI` v2 (F 1326, e 2.8, Zk 5.056, ufuk 635, k 1.419, FOE [421.1, 1236.1]), `KILIF_DEKOR` [406.1, 1185.7], `kameraDunya()` (dolly yolunda kamera X/h/Z). Formül aynı. Şablon artık `dolly_foe` parametresini okur (`kilif_kilit` yok).
+  - **catiDekor.tsx baştan:** palet v2 (§13.1), `ISIK_YON` v2 (alacakaranlık 0.225/0.035/0.974, gün −0.974/0.208/−0.085), `golgeVektor` (≤ 6h / gün 4.7h), `GokLitografi` (5 basamak + çizgi + tane), `HaleParilti` (disk yok), `K1Sirt` + Panthéon ×1.6 (haçsız), `CatiDenizi` v2 (K2, K3 lucarne), `K4Sira` (terrasson, arduvaz, beşik çatılı lucarne, korniş gölge bandı, baca + külah, siluet), `Duman` (çözülerek biter, fade yok), `Flu` (σ(cs), σ > 3'te kontur kalkar), `kirpCiz` (3B yakın düzlem kırpma), `golgeCokgen`, `CinkoTeras` v2 (ışık şeridi + sıcak bant + gölgeler aynı vektörden), `BacaKumesiDunya` (II tarama, sıva derzleri, is izleri, kabarma lekesi, başlık), **`KumesDunya`** (30° dönük 3B kulübe: görünürlük testi, tahta/derz/damar, 2 dikdörtgen açıklık, iniş tahtası + payanda, çatı üst yüzü ya da saçak altı (göz yüksekliğinden), el kapağı sol yan yüzde), `YemTeknesi` yeni yerde. v1 `Kumes` kartı, `ON_BACA`, `UzakTepe`, 3 basamak gök kaldırıldı.
+  - **ParisCati.tsx baştan:** kuş durumu dünya koordinatında (kılıf noktası X/h/Z + poz); kalkış yolu P01 kamerasından ters izdüşümle (kümesin sağından çıkar, saçağa değmez, sağ bacanın üstünden geçer); iniş (P11 son, P10a) sol üstten saçağın ÜSTÜNDEN, ön yüzün ÖNÜNDEN; kalkışta kanat tavanı (kanat ucu y ≥ ~230, kamera değil kanat); kuş temas gölgesi tahtaya kırpılı, yönü tek ışıktan; P10a eli: el boyu 0.18 m, KolEl'in 12 px `elBilek` kayması geri alındı (kıstırma tam düğümde), kılıf `tutulan` olarak işaret parmağının önünde / başparmağın arkasında yeniden çizilir; arşiv modu `litografi`.
+  - **Guvercin:** palet v2 (mor-gri, karın #b3aab0, göğüs gölge hilali, boyun yeşil/mor iki düz leke, ayak #7a5a66). **KolEl `kistirSiki`:** başparmak tenar kabarıklığından çıkar (görünen boy ≈ işaretin %83'ü), `parisGri` ten #d6b49c. **ArsivKatmani:** yeni `litografi` modu (geceLapis eğrisi + hafif mor kenar α .22; eski modlar değişmedi).
+- Dokunduğum dosyalar: src/kit/sablonlar/paris/dolly.ts, src/kit/sablonlar/paris/catiDekor.tsx, src/kit/sablonlar/paris/ParisCati.tsx, src/kit/props/paris/Guvercin.tsx, src/rig/KolEl.tsx, src/doku/ArsivKatmani.tsx; bolumler/paris-kusatmasi/kalibrasyon/V2/* (yeni). bolum.json'a dokunmadım.
+- Kareye uyarlarken değiştirdiğim değerler (mekân sorumlusu / tasarımcı plana işler):
+  | Öğe | Şartname | V2 kod | Neden |
+  |---|---|---|---|
+  | İniş tahtası üstü | h 0.60 | **h 0.655** | rig'in ayak–kılıf aralığı (0.168 m sağ, 0.046 m aşağı); kılıf K (−0.509, 0.70, 5.056) ve kamera kilidi korunarak ayaklar tahtaya basıyor |
+  | Açıklık eşiği | 0.62 | **0.67** | tahta açıklığın altında kalsın |
+  | Açıklık-1 içeri payı | R'den 0.12 m | **0.08 m** | kuyruk yelpazesinin arkası koyu (hedef-kuş) |
+  | Payanda | tahta ucunun altı | R köşesinin 0.03 m içi | taşan ucun altında duvar yok; payanda duvara basmalı |
+  | Gök tepe / üst | #2b2f5c / #4d4a80 (C* 30 / 34) | **#2e3157 / #504e79** (C* 25 / 27, aynı L*, aynı ton) | §13.3 "kılıf dışı C* > 32 yok" kuralını tasarım paletinin kendisi bozuyordu (ölçüm: P01 f370'te %7.6 piksel) |
+  | Kalkış gövde eğimi | kalkis-a 42° | **26°** (yalnız PARIS-CATI kalkışı) | 42°'de f8–f24 baş y ≈ 330, üst yazı bandında |
+  | K4 lucarne aksları | — | bina-3 aks 104, ofset 580 → x 580/684/788/892 | 4 siluet x 560–900'de |
+  | Sağ baca kilit noktası | — | kilit listesinden çıkarıldı | kadraj kenarı çerçevesi, olay/temas değil; şartname yeri x 932–1082 IG sağ sütununda |
+- Ölçümler (V2 kareleri, kendi Lab betiğim):
+  - Kılıf dışı C* > 32: **0 px** (P01 f0, f24, f370, P11 son, P10a f48). Sahne C* maks 28.7 (alacakaranlık), 27.2 (gün). Kılıf C* 66.4–67.0 → oran **2.31–2.46** (≥ 2.3 ✓). İmza bandı kılıf dışında 0, kırmızı 0. Sahne L* maks 85–87 (≤ 88 ✓).
+  - Döngü kilidi: P01 f0 ↔ P11 son kılıf bölgesinde **0 farklı piksel**; kılıf ekran (≈376, 961), kutu x 270–483 · y 919–1004. Toplam fark %2.9 = f0'da açılmaya başlayan kanat (kasıtlı, A2'deki gibi).
+  - Güvenli alan bindirmeleri: ihlal 0 (5 kare). Kanca f0 baş üstü ≈ y 630; f24 ≈ y 420 (yazı bandı 240–400'ün altında).
+  - Çökme taraması: P01 0–381, P10 0–58, P11 172–332 her 3 karede render: 0 hata (taramada sağ bacanın başlığı yakın düzlemde null veriyordu, düzeltildi).
+  - tsc temiz; `bolum_dogrula --tam` GEÇTİ (0 hata, 1 uyarı: foley.json yok).
+- Uyguladığım kurallar / yakaladığım ihlaller: tek ışık (yüz tonu, kenar ışığı, zemin gölgesi, ışık şeridi, kuş gölgesi aynı vektörden; K4 cephesi kontrajurda gölge); hiçbir şey nesne içinden geçmez (kalkış ve iniş yolları saçak/çatı/duvar ile çakışma kontrolüyle seçildi); fade yok (duman kümelerle çözülür); zemin teması (kümes ayakları + gövde altı gölgesi, tekne, baca temas bandı, kuş ayak gölgesi tahtada); kılıf tekliği; kafes deseni yasak (açıklık içi IV çapraz → III tek yön); döngü kilidi; güvenli alan.
+- Açık sorular / bir sonraki ajana notlar:
+  - **Kalan kusur (eleştirmene):** P01 f40–f50 kuşun gövdesi/başı sağ kenardan birkaç kare taşıyor (kamera henüz yakında, kuş büyük). Kamera değişmeden çözüm: kalkışı daha yukarı yönlendirmek (saçak engeli) ya da yönetmenin f24–90 cx'i azaltması. f24'te sağ kanat ucu kadraj dışında.
+  - Geniş kare hedef-çatıya göre hâlâ daha az yoğun: K3/K4 arası çatı denizi seyrek, ön yarıda teras geniş (göz 2.8 m kararının sonucu). Hedefteki krem taş cephe kontrajur kuralı yüzünden gölge tonunda. Eleştirmen "boş" bulursa öneri: K3 ile K4 arasına ikinci lucarne sırası (Z ≈ 28) — mekân sorumlusunun kararı.
+  - Gök tane şeritleri 1080'de nokta sırası gibi okunabilir; eleştirmen gürültü bulursa yoğunluk parametresi `GokLitografi` içinde.
+  - sinirlar.json PARIS-CATI notu hâlâ `kilif_kilit` yazıyor (yönetmenin dosyası); kod `dolly_foe` okuyor.
+  - P10a gün paleti v1 + v2 ahşap (tasarımcıya açık soru 2 sürüyor).
+  - Öz puan: 6.5 (kanca hedefe yakın; geniş kare yön doğru ama yoğunluk ve sıcaklık hedefin altında).

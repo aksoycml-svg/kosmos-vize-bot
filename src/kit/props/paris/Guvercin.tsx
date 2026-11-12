@@ -43,7 +43,9 @@ export const cirpis = (temel: KusPoz, p: number, p0: number, yukari: KusPoz, asa
   return { ...temel, kanat: 1, kanatYon: yukari.kanatYon + (asagi.kanatYon - yukari.kanatYon) * c, kanatBoy: yukari.kanatBoy + (asagi.kanatBoy - yukari.kanatBoy) * c };
 };
 
-export const KUS_RENK = { ust: "#8f949a", golge: "#6b7076", karin: "#a9acaf", kanat: "#878c92", uc: "#4a4d52", gaga: "#4f4b4f", ayak: "#6a5a60", goz: "#14120f", kontur: "#3c3f45", boyun: "#7f848a" };
+// v2 (tasarım §13.1, tur-4/5): güvercin grisi hafif mor-gri; karın gökten yansıma; boyun yanardönerliği iki düz leke (C* ≤ 22);
+// ayak mor-gül (kırmızı değil); göz tek koyu nokta (iris/turuncu halka yok). Kanat çubuğu / beyaz kuyruk bandı ÇİZİLMEZ (tür işareti).
+export const KUS_RENK = { ust: "#8a8796", golge: "#5b5870", karin: "#b3aab0", kanat: "#7f7c8e", uc: "#43415a", gaga: "#4f4b4f", ayak: "#7a5a66", goz: "#14120f", kontur: "#363349", boyunYesil: "#5f7f72", boyunMor: "#8a6c96" };
 
 const rad = (a: number) => (a * Math.PI) / 180;
 const rot = (q: P, a: number): P => { const c = Math.cos(rad(a)), s = Math.sin(rad(a)); return [q[0] * c - q[1] * s, q[0] * s + q[1] * c]; };
@@ -172,9 +174,12 @@ export const Guvercin: React.FC<{
           </g>
         ))}
         <path d={GOVDE} fill={f(R.ust)} {...st} />
-        {!tek && <path d={KARIN} fill={R.golge} />}
-        {/* boyun gölgesi (parıltı yok) */}
-        {!tek && <path d="M 30 -50 C 44 -40 56 -26 60 -8 C 46 -18 36 -30 22 -40 Z" fill={R.boyun} />}
+        {!tek && <path d={KARIN} fill={R.karin} />}
+        {/* göğüs ön yüzü gölgede (kontrajur): gövdenin ön-alt hilali */}
+        {!tek && <path d="M 58 -20 C 66 4 54 26 30 38 C 44 22 52 4 50 -16 Z" fill={R.golge} opacity={0.75} />}
+        {/* boyun yanardönerliği: iki düz leke (yeşil üstte, mor altta), gradyan yok */}
+        {!tek && <path d="M 32 -50 C 42 -46 52 -38 56 -28 C 46 -30 38 -36 30 -42 Z" fill={R.boyunYesil} />}
+        {!tek && <path d="M 34 -38 C 44 -34 54 -26 58 -14 C 48 -18 40 -24 32 -30 Z" fill={R.boyunMor} />}
         <g transform={`rotate(${z.bas} 48 -50)`}>
           <circle cx={64} cy={-62} r={21} fill={f(R.ust)} {...st} />
           {!tek && <path d="M 82 -67 L 101 -61 L 82 -55 Z" fill={R.gaga} stroke={R.kontur} strokeWidth={Math.max(1, kw * 0.6)} style={nss} />}
