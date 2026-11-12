@@ -193,7 +193,9 @@ const KanatTuy: React.FC<{ q: P[]; kw: number; acik: number; uzak: boolean; nss:
 export const kanatEkran = (z: KusPoz, capa: P, olcek: number): P[] => {
   if (z.kanat <= 0.3) return [];
   const Y = kusYerlesim(z, capa, olcek);
-  return [...kanatNoktalari(z, false), ...kanatNoktalari(z, true)].map(Y.ekran);
+  // kontur noktaları + ara noktalar (kenar boyunca ölçüm; yalnız köşeler saçağın köşesini kaçırabiliyordu)
+  const ara = (q: P[]) => q.flatMap((p, i) => { const n = q[(i + 1) % q.length]; return [p, add(mul(p, 2 / 3), mul(n, 1 / 3)), add(mul(p, 1 / 3), mul(n, 2 / 3))]; });
+  return [...ara(kanatNoktalari(z, false)), ...ara(kanatNoktalari(z, true))].map(Y.ekran);
 };
 /** kılıfın gövde orijinine göre ekran-mm vektörü (gövde eğimi uygulanmış): gövde çapalı yerleşim için */
 export const kilifOfset = (z: KusPoz): P => rot(kilifYerel(z).p, -z.govde);
@@ -201,7 +203,7 @@ export const kilifOfset = (z: KusPoz): P => rot(kilifYerel(z).p, -z.govde);
 // v4 gravür dili (V3 eleştirisi 3): dekorla aynı tek yön tarama (ekran 72°, ~7 px aralık, ~2 px çizgi), gölge bölgelerinde
 const TARAMA_ACI = 72, TARAMA_PX = 7, TARAMA_KALIN = 2;
 // gövde gölge bölgesi (gövde çerçevesi): karın altı + arka-alt; ışık arkadan-üstten (kontrajur) → alt yarı taranır
-const GOVDE_GOLGE = "M 84 -6 C 78 28 44 50 2 54 C -36 54 -70 34 -100 2 L -110 80 L 110 80 Z";
+const GOVDE_GOLGE = "M 86 -12 C 72 10 40 22 0 22 C -40 22 -72 10 -100 -6 L -110 80 L 110 80 Z";
 const BOYUN = "M 35 -60 C 50 -56 63 -43 67 -15 C 55 -18 44 -28 34 -40 Z";
 
 export const Guvercin: React.FC<{
@@ -274,7 +276,7 @@ export const Guvercin: React.FC<{
           </g>
         ))}
         <path d={GOVDE} fill={f(R.ust)} {...st} />
-        {!duz && <path d={KARIN} fill={R.karin} />}
+        {!duz && <path d={KARIN} fill={R.karin} clipPath={`url(#${uid}gv)`} />}
         {!duz && <path d="M 66 -24 C 78 2 66 32 34 44 C 52 26 62 4 58 -20 Z" fill={R.golge} opacity={0.7} />}
         {/* v4: gövde alt yarısına tek yön tarama (dekorla aynı açı ve kalınlık) */}
         {!duz && taramaVar && <g clipPath={`url(#${uid}gv)`}><g clipPath={`url(#${uid}gg)`}>{tarama("tg", 0.42)}</g></g>}
@@ -303,7 +305,7 @@ export const Guvercin: React.FC<{
   const ipUc: P | undefined = kilif?.ipUcEkran ? (() => { const dx = kilif.ipUcEkran[0] - capa[0], dy = kilif.ipUcEkran[1] - capa[1]; return mul(rot([dx, dy], -Y.kilifAci), 1 / olcek); })() : undefined;
   void kl;
   // yakın kanadın gölge yarısı (arka kenar, ikincil tüyler) — tarama bölgesi
-  const FY = kanatF(yakin), kanatGolge = d(ks(FY, 0, 1, 0.5, 1.15, 10));
+  const FY = kanatF(yakin), kanatGolge = d(ks(FY, 0, 1, 0.5, 1.0, 10));
   return (
     <g>
       <g transform={tr}>

@@ -70,7 +70,7 @@ const yol3 = (kare: number[], pts: V3[], q: number): V3 => [0, 1, 2].map((i) => 
 // gövde 42° → 26°: kanca kadrajında baş üst yazı bandının (y 240–400) altında kalır (V2 f24 ölçümü: 42°'de baş y ≈ 330)
 // v4 (tur-7): kalkışta kuyruk yarı yelpaze (0.75) ve gövde ekseninde (0°) — tünek (0.12, −35°) → kalkış 24 karede kademeli
 const KALK_YUKARI: KusPoz = { ...KUS_POZ["kalkis-a"], govde: 26, kanatYon: -132, kanatBoy: 0.82, kuyruk: 0.75, kuyrukAci: 0 };
-const KALK_ASAGI: KusPoz = { ...KUS_POZ["kalkis-b"], govde: 26, kanatYon: 100, kanatBoy: 0.8, kuyruk: 0.75, kuyrukAci: 0 };
+const KALK_ASAGI: KusPoz = { ...KUS_POZ["kalkis-b"], govde: 26, kanatYon: 50, kanatBoy: 0.8, kuyruk: 0.75, kuyrukAci: 0 };
 const UCUS_YUKARI: KusPoz = { ...KUS_POZ["ucus-yukari"], kanatYon: -118, kanatBoy: 0.9 };
 const kusDurumu = (plan: Plan, p: number): KusDurum | null => {
   const K = kusPlani(plan);
@@ -96,8 +96,10 @@ const kusDurumu = (plan: Plan, p: number): KusDurum | null => {
       const ilk = { ...T["tunek"], kanat: 0.55, kanatYon: -120, kanatBoy: 0.75 };
       let z = pozKaris(ilk, kalk, t01(r, t0, t0 + 10));
       // v4: gövde eğimi + kuyruk açılımı/açısı kanattan yavaş (24 kare) — kuyruk "bir anda yelpaze" olmaz, kılıf kademeli döner
-      const g = t01(r, t0, t0 + 24);
-      z = { ...z, govde: ilk.govde + (kalk.govde - ilk.govde) * g, kuyruk: ilk.kuyruk + (kalk.kuyruk - ilk.kuyruk) * g, kuyrukAci: ilk.kuyrukAci + (kalk.kuyrukAci - ilk.kuyrukAci) * g };
+      // tahta üstündeyken (f0–f24) kuyruk yukarıda ve yarı açık kalır (aşağı inerse tahtanın içinden geçer); gövde tahtadan ayrılınca (f24–f50) iner, açılır
+      const g = t01(r, t0, t0 + 24), g2 = t01(r, t0 + 24, t0 + 50);
+      const kuyruk = ilk.kuyruk + (0.45 - ilk.kuyruk) * g + (kalk.kuyruk - 0.45) * g2, kuyrukAci = ilk.kuyrukAci + (-28 - ilk.kuyrukAci) * g + (kalk.kuyrukAci + 28) * g2;
+      z = { ...z, govde: ilk.govde + (kalk.govde - ilk.govde) * g, kuyruk, kuyrukAci };
       z = pozKaris(z, ucus, t01(r, t1, t2));
       z = pozKaris(z, T["suzulme"], t01(r, t2, t2 + 26));
       if (r > t4 - 12) z = pozKaris(z, cirpis(T["ucus-yukari"], r, t0, T["ucus-yukari"], T["ucus-asagi"], 14), t01(r, t4 - 12, t4));
@@ -188,7 +190,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       const sacakAltinda = cati.length >= 3 && omuzY > altY(Math.max(cx0, Math.min(cx1, kusYerlesim(kus.poz, c, olcek).ekran([14, -28])[0])));
       const tp = tahtaUstEkran(D, k, KUMES_V2);
       const tx0 = tp ? Math.min(...tp.map((q) => q[0])) - 50 : 0, tx1 = tp ? Math.max(...tp.map((q) => q[0])) + 50 : 0, tUst = tp ? Math.min(...tp.map((q) => q[1])) : 1e9;
-      const ihlal = (z: KusPoz) => kanatEkran(z, c, olcek).some(([x, y]) => y < 240 || x > 1050 || (sacakAltinda && x >= cx0 && x <= cx1 && y < altY(x) + 25) || (!!tp && x > tx0 && x < tx1 && y > tUst - 8 && omuzY < tUst));
+      const ihlal = (z: KusPoz) => kanatEkran(z, c, olcek).some(([x, y]) => y < 240 || x > 1050 || (sacakAltinda && x >= cx0 - 25 && x <= cx1 + 25 && y < altY(Math.max(cx0, Math.min(cx1, x))) + 25) || (!!tp && x > tx0 && x < tx1 && y > tUst - 8 && omuzY < tUst));
       let z = kus.poz;
       for (let i = 0; i < 40 && z.kanatBoy > 0.3 && ihlal(z); i++) z = { ...z, kanatBoy: z.kanatBoy - 0.02 };
       kus.poz = z;

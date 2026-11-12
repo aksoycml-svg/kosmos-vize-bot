@@ -13,7 +13,8 @@ import type { KolIsik } from "./RigIsik";
 // avuca kıvrık (yumruk kütlesi) — açık el ya da serçe yukarıda "rock" okuması yok (A eleştirisi P10a).
 
 export type KolTip = "ceket" | "gomlek" | "parisManset" | "gorevli" | "yazici" | "louis" | "parisGri";
-export type KolPalet = { kol: string; kolIsik: string; kolGolge: string; yama?: string; manset: string; mansetKir: string; ten: string; tenGolge: string; dugme?: string };
+// elSirt (isteğe bağlı): el sırtı tendon/damar çizgisi ölçeği — yoksa eski değerler (Blanc/Evliya değişmez)
+export type KolPalet = { kol: string; kolIsik: string; kolGolge: string; yama?: string; manset: string; mansetKir: string; ten: string; tenGolge: string; dugme?: string; elSirt?: { tendonAlfa: number; tendonKalin: number; damar: boolean } };
 export const KOL_PALET: Record<KolTip, KolPalet> = {
   ceket: { kol: "#6b6a66", kolIsik: "#8a8983", kolGolge: "#46453f", yama: "#5a5953", manset: "#d8d0bb", mansetKir: "#b9b29d", ten: "#d9b190", tenGolge: "#a9806a", dugme: "#1c1915" },
   gomlek: { kol: "#d8d0bb", kolIsik: "#efe8d6", kolGolge: "#b3ab97", manset: "#d8d0bb", mansetKir: "#b9b29d", ten: "#cdb7a2", tenGolge: "#9a8573" },
@@ -23,7 +24,8 @@ export const KOL_PALET: Record<KolTip, KolPalet> = {
   // Louis (P02 göğüs, yazan el): bordo frak kolu, gömlek manşeti eldiven beyazı bandının ALTINDA (#e0d9c6, L* ≈ 87), çıplak el (rig LOUIS.skin)
   // Paris kuşatması (tasarim §3.3): memur/okuyan eli — kömür-gri manşet, düğme/metal YOK (sarı metal yasağı), ten Dagron'dan ayrışır
   // v2 (tasarım §13.8): ten ışık #d6b49c / gölge #8f7360 (C* ≤ 28, kılıfa ΔE ≥ 15), manşet kömür-gri
-  parisGri: { kol: "#34363d", kolIsik: "#4b4e57", kolGolge: "#222329", manset: "#5d5f63", mansetKir: "#46484c", ten: "#d6b49c", tenGolge: "#8f7360" },
+  // v4 (V3 eleştirisi: el sırtında "yara izi" gibi açık çapraz çizgiler): lavanta damar çizgisi yok, tendonlar ince ve soluk
+  parisGri: { kol: "#34363d", kolIsik: "#4b4e57", kolGolge: "#222329", manset: "#5d5f63", mansetKir: "#46484c", ten: "#d6b49c", tenGolge: "#8f7360", elSirt: { tendonAlfa: 0.28, tendonKalin: 0.9, damar: false } },
   louis: { kol: "#74222f", kolIsik: "#9a3646", kolGolge: "#47131c", manset: "#e0d9c6", mansetKir: "#bfb7a2", ten: "#e0ae8a", tenGolge: "#b27b5f", dugme: "#3a1018" },
 };
 // El boyu (bilekten orta parmak ucuna), el yerel biriminde: ekranda = EL_BOY_YEREL × olcek. Eldiven ölçüsü buna bağlanır (Eldiven elBoyu).
@@ -159,8 +161,8 @@ export const KolEl: React.FC<{
       {/* ---- EL (arka katman): sırt, kıvrık parmaklar, işaret parmağı ---- */}
       <polygon points={pp(sirt)} fill={f(ten)} {...st(ten, 2)} />
       {!golge && <>
-        {[-14, 0, 13].map((y, i) => <path key={i} d={`M ${E([20, y * 0.6])[0]} ${E([20, y * 0.6])[1]} Q ${E([55, y])[0]} ${E([55, y])[1]} ${E([88, y * 1.15])[0]} ${E([88, y * 1.15])[1]}`} stroke={tenG} strokeWidth={1.3 * olcek} fill="none" opacity={0.55} />)}
-        {!eldiven && [[-6, 6], [8, 18]].map(([a, b], i) => <path key={`d${i}`} d={`M ${E([14, a])[0]} ${E([14, a])[1]} Q ${E([40, a + 4])[0]} ${E([40, a + 4])[1]} ${E([66, b])[0]} ${E([66, b])[1]}`} stroke="#8c8a9a" strokeWidth={1.4 * olcek} fill="none" opacity={0.35} />)}
+        {[-14, 0, 13].map((y, i) => <path key={i} d={`M ${E([20, y * 0.6])[0]} ${E([20, y * 0.6])[1]} Q ${E([55, y])[0]} ${E([55, y])[1]} ${E([88, y * 1.15])[0]} ${E([88, y * 1.15])[1]}`} stroke={tenG} strokeWidth={(K0.elSirt?.tendonKalin ?? 1.3) * olcek} fill="none" opacity={K0.elSirt?.tendonAlfa ?? 0.55} />)}
+        {!eldiven && (K0.elSirt?.damar ?? true) && [[-6, 6], [8, 18]].map(([a, b], i) => <path key={`d${i}`} d={`M ${E([14, a])[0]} ${E([14, a])[1]} Q ${E([40, a + 4])[0]} ${E([40, a + 4])[1]} ${E([66, b])[0]} ${E([66, b])[1]}`} stroke="#8c8a9a" strokeWidth={1.4 * olcek} fill="none" opacity={0.35} />)}
         {/* bilek kemik çıkıntısı */}
         {(() => { const c = E([6, -20]); return <circle cx={c[0]} cy={c[1]} r={3 * olcek} fill="#f0d2b0" opacity={0.6} />; })()}
         {eldiven && [-10, 0, 10].map((y) => <path key={`es${y}`} d={`M ${E([34, y])[0]} ${E([34, y])[1]} L ${E([78, y * 1.1])[0]} ${E([78, y * 1.1])[1]}`} stroke="#b9ad92" strokeWidth={1.4 * olcek} />)}

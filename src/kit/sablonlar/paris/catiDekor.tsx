@@ -219,7 +219,7 @@ const Kulah: React.FC<{ x: number; y: number; w: number; h: number; C: CatiPalet
       <rect x={x} y={y} width={w} height={h} fill={C.kulah} />
       <rect x={sag ? x : x + w * 0.55} y={y} width={w * 0.45} height={h} fill={C.kulahG} />
       <ellipse cx={x + w / 2} cy={y} rx={w / 2} ry={Math.max(1, w * 0.18)} fill={karistir(C.kulahG, "#1d1b26", 0.4)} />
-      <path d={`M ${x} ${y} L ${x} ${y + h} L ${x + w} ${y + h} L ${x + w} ${y}`} fill="none" stroke={ink(C.kulah)} strokeWidth={kw} />
+      <path d={`M ${x} ${y} L ${x} ${y + h} L ${x + w} ${y + h} L ${x + w} ${y}`} fill="none" stroke={ink(C.kulahG)} strokeWidth={kw} />
       {w > 4 && <line x1={sag ? x + w - kw : x + kw} y1={y + Math.max(1, w * 0.12)} x2={sag ? x + w - kw : x + kw} y2={y + h} stroke={C.kenar} strokeWidth={Math.max(1.5, Math.min(3, w * 0.08))} opacity={0.85} />}
     </g>
   );
@@ -327,7 +327,7 @@ export const CatiSirasi: React.FC<{ D: Dolly; k: KameraDurum; S: SiraT; C: CatiP
   const R = S.renk, Z = S.Z, nodes: React.ReactNode[] = [], ust: React.ReactNode[] = [];
   const sicak = C.sirtParlama !== null;
   const isikli = (n: V3) => isikliYuz(C, n);
-  const poly = (key: string, pts: V3[], fill: string, stroke = false, op?: number, sw = kw, hedef = nodes) => { const e = Q(pts); if (e) hedef.push(<polygon key={key} points={pl(e)} fill={fill} stroke={stroke && sw ? ink(fill) : "none"} strokeWidth={sw} strokeLinejoin="round" opacity={op} />); return e; };
+  const poly = (key: string, pts: V3[], fill: string, stroke: boolean | string = false, op?: number, sw = kw, hedef = nodes) => { const e = Q(pts); if (e) hedef.push(<polygon key={key} points={pl(e)} fill={fill} stroke={stroke && sw ? (typeof stroke === "string" ? stroke : ink(fill)) : "none"} strokeWidth={sw} strokeLinejoin="round" opacity={op} />); return e; };
   const cizgi = (key: string, a: V3, b: V3, renk: string, w: number, op = 1, hedef = nodes) => { const p = E(...a), q = E(...b); if (p && q) hedef.push(<line key={key} x1={p[0]} y1={p[1]} x2={q[0]} y2={q[1]} stroke={renk} strokeWidth={w} opacity={op} strokeLinecap="round" />); };
   const ta = { aci: TARAMA.aci, kalinlik: TARAMA.kalin, aralik: TARAMA.aralik, renk: C.tarama };
   const lw = 1.5 * Math.max(1, pxm / 40);
@@ -339,7 +339,7 @@ export const CatiSirasi: React.FC<{ D: Dolly; k: KameraDurum; S: SiraT; C: CatiP
   S.binalar.forEach((b, bi) => {
     const grup: React.ReactNode[] = [], u: React.ReactNode[] = [];
     gruplar.push({ sira: -Math.abs((b.X0 + b.X1) / 2 - kamX), n: grup });
-    const pg = (key: string, pts: V3[], fill: string, stroke = false, op?: number, sw = kw) => poly(key, pts, fill, stroke, op, sw, grup);
+    const pg = (key: string, pts: V3[], fill: string, stroke: boolean | string = false, op?: number, sw = kw) => poly(key, pts, fill, stroke, op, sw, grup);
     const cz = (key: string, a: V3, c: V3, renk: string, w: number, op = 1) => cizgi(key, a, c, renk, w, op, grup);
     const bh = bhOf(b), bD = bh * BRISIS_TAN, ls = b.luc ?? 1;
     const hk = S.hK + b.dh, X0 = b.X0, X1 = b.X1, kr = hk + bh, sr = kr + SIRT_H;
@@ -398,7 +398,7 @@ export const CatiSirasi: React.FC<{ D: Dolly; k: KameraDurum; S: SiraT; C: CatiP
         const sg = C.isik[0] > 0 ? -1 : 1, r = Math.min(3, Math.abs(C.isik[0]) / Math.max(0.05, Math.abs(C.isik[2]))), Xc = X + sg * lucW;
         pg(`lg${bi}-${li}`, [[Xc, h0, zB(h0)], [Xc, h1, zB(h1)], [Xc + sg * r * (zB(h1) - zf), h1, zB(h1)], [Xc + sg * r * (zB(h0) - zf), h0, zB(h0)]], golgeR, false, 0.6, 0);
       }
-      const yan = pg(`ly${bi}-${li}`, [[yanX, h0, zf], [yanX, h1, zf], [yanX, h1, zB(h1)], [yanX, h0, zB(h0)]], yanIsik ? C.lucKremIsik : C.lucKremG, true, undefined, kw * 0.7);
+      const yan = pg(`ly${bi}-${li}`, [[yanX, h0, zf], [yanX, h1, zf], [yanX, h1, zB(h1)], [yanX, h0, zB(h0)]], yanIsik ? C.lucKremIsik : C.lucKremG, ink(C.lucKremG), undefined, kw * 0.7);
       if (yan && yanIsik && sicak) cz(`lyk${bi}-${li}`, [yanX, h1, zf], [yanX, h0, zf], C.kenar, 2);
       if (yan && !yanIsik && kontur && S.kontur >= 4) grup.push(<Tarama key={`lyt${bi}-${li}`} sekil={yan} basamak="II" aci={ta.aci} renk={ta.renk} kalinlik={ta.kalinlik} aralik={ta.aralik} seed={S.seed + li} alfaCarpan={0.6} />);
       pg(`lo${bi}-${li}`, [[X - lucW, h0, zf], [X + lucW, h0, zf], [X + lucW, h1, zf], [X, ha, zf], [X - lucW, h1, zf]], C.lucKrem, true, undefined, kw * 0.8);
