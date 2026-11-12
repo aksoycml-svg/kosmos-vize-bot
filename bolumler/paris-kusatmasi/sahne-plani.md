@@ -14,12 +14,12 @@ Mutlak başlangıç = önceki planların toplamı. Süre = `plan-sureleri.json` 
 | P02 | 382 / 6.37 | 356 / 5.93 | HARITA paris-çevre | geniş (halka %45) → push-in cs 1.15 (orta) → geri çekilme geniş | bekle | PK-D1 halka kapanır, tel kopar (halka %45, tel ≥10 px, net 1.5 sn) | 140 / 522 (+250) |
 | P03 | 738 / 12.3 | 333 / 5.55 | MONTMARTRE meydan → (f160) HARITA | boy (balon %45, kamera sabit) → tilt → geniş harita cs 1.0→1.15 | hizli | PK-D2 hortumdan şişen kumaş (balon %45, net 1.6 sn) | 80 / 818 (+290) |
 | P04 | 1071 / 17.85 | 267 / 4.45 | HARITA → (f122) DAGRON-INSERT kafes | geniş harita cs 1.15→1.3 → kafes insert, kuş %30 (yakın) | nefes | PK-D4 kafes kapağı, kuş yön arar (kuş %30, net 1.0 sn) | 206 / 1277 |
-| P05 | 1338 / 22.3 | 374 / 6.23 | DAGRON-INSERT masa (Paris atölyesi) | orta (terazi cs 1.0) → push-in → yakın (şerit+parmak cs 1.6) | hizli, **anahtar** | PK-D5 sayfa şeride küçülür (sayfa %22, şerit+parmak %14, net 1.5 sn) | 280 / 1618 (+182) |
+| P05 | 1338 / 22.3 | 374 / 6.23 | DAGRON-INSERT masa (Paris atölyesi) | orta (terazi cs 1.0) → push-in → yakın (şerit+parmak cs 2.0, cx -40, cy -610; ölçü bölgesi ekran (540,930)) | hizli, **anahtar** | PK-D5 sayfa şeride küçülür (sayfa %22, şerit+parmak %14, net 1.5 sn) | 280 / 1618 (+182) |
 | P06 | 1712 / 28.53 | 287 / 4.78 | HARITA → (f168) MONTMARTRE meydan | orta→yakın harita (takip cs 2.3) → boy meydan (sepet+sandık %35) → bel | nefes | PK-D8 sandık sepete konur, sepet çöker (%35, net 1.3 sn) | 206 / 1918 (+78) |
 | P07 | 1999 / 33.32 | 336 / 5.6 | MONTMARTRE gök → (f160) sepet | geniş (iki balon %50) → bel (sepet kenarı, torba %12) | hizli (patlama) | PK-D3 balast, kum torbası atılır (torba %12, net 1.8 sn) | 200 / 2199 (+112) |
 | P08 | 2335 / 38.92 | 209 / 3.48 | HARITA (Fransa, rota ucu takibi) | orta (takip cs 1.8) → yakın (iğne) | hizli | yok | 164 / 2499 |
-| P09 | 2544 / 42.4 | 218 / 3.63 | DAGRON-INSERT masa (Tours) | insert makro (kılıf %14, cs 1.6→2.2) | nefes | PK-D6 kılıf kuyruk tüyüne bağlanır (kılıf %14, net 1.1 sn) | 150 / 2694 |
-| P10 | 2762 / 46.03 | 398 / 6.63 | PARIS-CATI kümes (gün) → (f60) LANTERN-ODA | yakın (kuş+el+kılıf) → orta-geniş (perde %55) → pan + göğüs/yakın (okuyan siluet) | bekle, **anahtar** | PK-D7 perdede büyüme ve odak (perde %55, net 1.1 sn) | 238 / 3000 (+48, 330) |
+| P09 | 2544 / 42.4 | 218 / 3.63 | DAGRON-INSERT masa (Tours) | insert makro (kılıf %14, cs 1.6→2.0, cy -120; kılıf 278 px) | nefes | PK-D6 kılıf kuyruk tüyüne bağlanır (kılıf %14, net 1.1 sn) | 150 / 2694 |
+| P10 | 2762 / 46.03 | 398 / 6.63 | PARIS-CATI kümes (gün) → (f60) LANTERN-ODA | yakın (kuş+el+kılıf, dolly cs 2.6→2.75, cx -380; kılıf 164–191 px) → orta-geniş (perde %55) → pan + göğüs/yakın (okuyan siluet) | bekle, **anahtar** | PK-D7 perdede büyüme ve odak (perde %55, net 1.1 sn) | 238 / 3000 (+48, 330) |
 | P11 | 3160 / 52.67 | 333 / 5.55 | HARITA paris-çevre → (f172) PARIS-CATI kümes (alacakaranlık) | geniş harita → geniş→yakın (kuyruk+kılıf cs 3.2 = P01 f0) | nefes | yok (kapanış, döngü) | 270 / 3430 (+190) |
 
 Dokunuş sayısı **8** (PK-D1…D8; kanca/kapanış hariç). Çıkarma sırası bütçe dar kalırsa: **D2 → D8 → D4**. Hiçbiri tekrar etmez; her biri kendi planında başlar ve plan sonundan ≥12 kare önce biter.
@@ -147,7 +147,7 @@ Ayrıntı her planın `not` alanında. Kitte karşılığı **olan** yalnız: HA
 | KE-PK-E1 | Darbe dönem diline: delinen kumaş, kısa alev + gri-kül duman, gravür taraması (turuncu yok); kit `darbe` yalnız yer tutucu. JSON'da `duman: false` (kit duman 150 kare, kesmeyi aşar) | P07 |
 | KE-PK-E2 | `asiliNesne` render kanıtı yok (kural 5): sepet halatı, kafes tüneği, balon ipi | P04, P06, P07, P09 |
 | KE-PK-E3 | `sayac.donus` çok parçalı satır (" · " kırılımı), `harita_kart` yön "sag" ve HARITA yazı katmanının görünüm içi yerleşimi render'da doğrulanmadı | P06, P11 |
-| KE-PK-E4 | Balon yükseliş parallax (arka plan küçülür, ateş menzili çizgisi) + sepet planında `kamera_dil` ile çakışmama | P07 |
+| KE-PK-E4 | Balon yükseliş parallax (arka plan küçülür, `kamera_H`; menzil çizgisi YOK, açık soru) + sepet planında `kamera_dil` ile çakışmama | P07 |
 
 Doğrulayıcı notu (araç sahibi): `KATALOG.md` "KT ekleri" kontrolleri (sayaç, darbe/iğne teması, whip, kart, altyazı json) `bolum_dogrula.mjs`'de henüz yok. Eksik olanları ben yazmadım; bunun yerine `animasyonlar` listelerindeki her bitişin plan sonundan ≥12 kare önce olduğunu, devam_plan kesmesinden önce bittiğini, kontrol karelerinin plan içinde olduğunu ve toplam sürenin `plan-sureleri.json` ile birebir aynı olduğunu kendi betiğimle denetledim (geçti).
 Sayaç ekran yazısı `metin` TR dizgesi + `en` biçiminde yazıldı (`{tr,en}` nesne biçimi doğrulayıcıyı çökertiyor: `[...yz.metin]` nesnede iterable değil; araç sahibine not).
@@ -162,3 +162,20 @@ Sayaç ekran yazısı `metin` TR dizgesi + `en` biçiminde yazıldı (`{tr,en}` 
 6. **P08:** ayrı gök planı kesildi (3.48 sn, tek harita planı); "sepet yamaçta yatık" harita ikonu olarak. Yeterli mi?
 7. **Ekran yazısı:** "≈66 BALON" → "~66 BALON" ("≈" font dışı glif uyarısı veriyordu).
 8. **Mekân sayısı:** 4 mekân + HARITA. LANTERN-ODA yalnız P10'da (tek plan); kurulum kotası dar kalırsa P10 perdesi DAGRON-INSERT içine alınabilir (tasarımcıya not).
+
+## 9. Yukarı akış düzeltmesi (mekanlar.md §7 uygulaması, 2026-11-12)
+
+Zamanlama, plan süreleri, temaslar (`temaslar.json`) değişmedi; yalnız kamera/konum/ölçek. Doğrulayıcı: GEÇTİ (0 hata, 1 uyarı foley).
+
+| Plan | Eski | Yeni | Gerekçe |
+|---|---|---|---|
+| P01 | `ufuk_y` 1000, saf zoom | `ufuk_y` **739**, `kamera_modu: dolly`, `kilif_kilit [540,960]` | dekor ufku; cs = kamera mesafesi; P01 f0 = P11 son kare ±0 px |
+| P10a | cs 1.8→1.9 (kılıf 76 px) | cs **2.6→2.75, cx −380, cy 0** (kılıf 164–191, el 433–505 px) | çözme anı okunsun |
+| P10b | cx −420/−440 | cx **−1250 (f290) → −1345 (f398)**, cs 1.6→1.7 | okuyan dekor x 1390; pan f250–290 |
+| P05 | son cs 1.6, cx −95, cy −420 | f268–374 **cs 2.0, cx −40, cy −610**; terazi (380,1000), deste (330,1400), kutu (720,1080) 519 px, ölçü bölgesi (560,1250); şerit 280 px, parmak 328 px ekranda | ölçü karesi (540,930), P06 rota eşleşmesi |
+| P09 | cs 1.6→2.2, cy −300 | cs **1.6→2.0, cy −120** (kılıf 278 px) | tasarım ≈270 px |
+| P06b | `meydan`, ikinci balon x 900–1050 / y 700–1150 | **`yukleme`** (yeni görünüm); ikinci balon sepet zemini y 927, küre (931,688) ø 262 | ufuk–ölçek (Z 55 m) |
+| P07 | "sis", menzil çizgisi | hava perspektifi (3 ton), `gok_kamera_H` 60→140 m, `sepet_kamera_H` 150→300 m (f250–320), menzil çizgisi yok | tasarım sis yasağı; açık soru 3 varsayılanı |
+| P03 | — | `kalabalik: 6` | mekanlar §7.9 |
+| P04b | cs 1.3→1.55, cy −40 | değişmedi (zaten uyumlu) | §7.10 |
+

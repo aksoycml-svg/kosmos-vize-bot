@@ -57,8 +57,8 @@
       }
      ]
     },
-    "ufuk_y": 1000,
-    "on_plan": "baca kümeleri ve çatı eğimleri y 1250-1500 (kamera geri çekilince alt üçte bir dolar)",
+    "ufuk_y": 739,
+    "on_plan": "teras çinko kenetleri VP (540,739)'a yakınsar (y 1181→1920) + kümes dibi; ön baca kümesi cs<1.6'da sol kenarı çerçeveler (cs≥1.6 dolly ile kadraj dışı); son kare (cs 1.0, cx -60, cy -160) ufuk ekran y 579, alt üçte bir y 1280-1920 kenetler + baca dibi + kümes dibi",
     "animasyonlar": [
      {
       "ad": "kus kalkis",
@@ -80,6 +80,14 @@
       "bas": 0,
       "bit": 300
      }
+    ],
+    "kamera_modu": {
+     "tip": "dolly",
+     "not": "cs = kamera mesafesi (mekanlar.md §1.3), δ=1.31(1-1/cs); ölçek merkezi (540,960); cx/cy sonra eklenir"
+    },
+    "kilif_kilit": [
+     540,
+     960
     ]
    },
    "sure_kare": 382,
@@ -175,9 +183,9 @@
     "nesne": "kuyruk kılıfı",
     "nesne_pct": 17,
     "net_sn": 2.5,
-    "not": "kanca: ilk kare kapak olarak çalışır (kılıf + hareket bulanığı)"
+    "not": "kanca: ilk kare kapak olarak çalışır (kılıf + hareket bulanığı); ufuk dekor y 739 (cs 1, cy -160'ta ekran y 579); kılıf merkezi dekor (540,960) = P11 son kare (±0 px)"
    },
-   "alt_ucte_bir": "yakın: kuş gövdesi/kuyruk tüyleri + kümes tünek tahtası; geniş: baca kümeleri, çatı eğimleri, ışıklı pencereli cephe üstleri (y 1250-1500)",
+   "alt_ucte_bir": "yakın: kuş gövdesi/kuyruk tüyleri + kümes tünek tahtası; geniş: teras çinko kenetleri, ön baca dibi, kümes dibi ve temas koyuluğu (y 1280-1920); karşı cephe lucarne/pencere bandı y 518-844",
    "dokunus": null,
    "kit_eksik": [
     "KE-PK-S1",
@@ -482,7 +490,12 @@
       "bas": 116,
       "bit": 156
      }
-    ]
+    ],
+    "kalabalik": {
+     "adet": 6,
+     "tur": "kompars siluet (F1), hareketsiz, baş balonu izler; sol grup x 90-330 (3), sağ grup x 760-990 (3), ayak y 1396-1420",
+     "not": "sepet 360 px'te 36 px: bu planda okunurluk şart değil (mekanlar §7.9)"
+    }
    },
    "devam_plan": {
     "kare_bas": 160,
@@ -985,7 +998,7 @@
     "nesneler": {
      "terazi": {
       "konum": [
-       300,
+       380,
        1000
       ],
       "deste_kefe": "mektup destesi (soğuk krem)",
@@ -993,30 +1006,39 @@
      },
      "mektup_destesi": {
       "konum": [
-       230,
-       1360
+       330,
+       1400
       ]
      },
      "mercekli_kutu": {
       "konum": [
-       640,
-       1180
+       720,
+       1080
       ],
       "boyut": [
-       420,
-       300
+       519,
+       370
       ],
       "tur": "ahşap, mercekli, kapaklı, yan çekmeceli (kimyasal adım gösterilmez)"
      },
      "serit": {
-      "boy_dekor_px": 280,
+      "boy_dekor_px": 140,
       "aci_derece": 52,
       "yon": "üst-sağ uç = Paris ucu, alt-sol uç = Tours ucu (P06 rota çizgisiyle eşleşir)",
-      "renk": "koyu sepya-gri; kenarda bal ışığı ipucu YOK (kehribar yalnız kılıfta)"
+      "renk": "koyu sepya-gri; kenarda bal ışığı ipucu YOK (kehribar yalnız kılıfta)",
+      "boy_ekran_px": 280
      },
      "parmak": {
-      "boy_dekor_px": 280,
-      "not": "Dagron'un işaret parmağı masada yatar; şerit yanına konur"
+      "boy_dekor_px": 164,
+      "not": "Dagron'un işaret parmağı (7.5 cm) masada yatar; şerit yanına konur; cs 2.0'da 328 px",
+      "boy_ekran_px": 328
+     },
+     "olcu_bolgesi": {
+      "konum": [
+       560,
+       1250
+      ],
+      "not": "cs 2.0, cx -40, cy -610'da ekran (540,930); P06 rota eşleşmesiyle aynı nokta"
      }
     },
     "eller": {
@@ -1084,7 +1106,8 @@
       "bas": 340,
       "bit": 358
      }
-    ]
+    ],
+    "masa_olcek": "s(y)=1.966(y-137) px/m, mekanlar.md §3.2; terazi gerçek ölçü, kutu 0.28 m"
    },
    "sure_kare": 374,
    "metin": {
@@ -1114,22 +1137,22 @@
      1.0,
      1.0,
      1.35,
-     1.55,
-     1.6
+     2.0,
+     2.0
     ],
     "cx": [
      0,
      0,
      -60,
-     -95,
-     -95
+     -40,
+     -40
     ],
     "cy": [
      0,
      0,
      -250,
-     -400,
-     -420
+     -610,
+     -610
     ],
     "egri": "inout"
    },
@@ -1221,7 +1244,7 @@
     "nesne": "sayfa → şerit+parmak",
     "nesne_pct": 22,
     "net_sn": 1.5,
-    "not": "şerit+parmak %14 yükseklik, parmak ≥430 px (cs 1.6); ölçü karesinde ekran y ≈ 930 (alt bant 1290 üstü)"
+    "not": "ölçü karesinde cs 2.0: parmak 328 px (%17), şerit 280 px (%14.6), ekran (540,930) (alt bant 1290 üstü); ölçü bölgesi dekor (560,1250)"
    },
    "tasiyici": {
     "giris": "ses J-cut: P04 kanat çırpışı P05'e taşar → kefe gıcırtısı",
@@ -1345,48 +1368,50 @@
     "kare_bas": 168,
     "sablon": "MONTMARTRE",
     "parametreler": {
-     "gorunum": "meydan",
+     "gorunum": "yukleme",
      "saat": "gun",
      "plan_ici_kesme": {
       "kare": 168,
       "sonraki_sablon": "MONTMARTRE"
      },
      "sepet": {
-      "konum": "sol-orta",
-      "kum_torbalari": "sepet dış kenarında sıralı asılı küçük torbalar (balast; P07 kurulumu)",
+      "konum": "dekor x 200-872, rim ön kenarı y 928, taban y 1460 (alçak kamera F 1500, göz 1.0 m, ufuk y 900)",
+      "kum_torbalari": "sepet dış ön yüzünde rimin 0.1 m altındaki halattan asılı 4 tane (x 300, 450, 620, 770; 196x140 px, y 984-1180; P07 kurulumu)",
       "balon_kuresi": "şişmiş, krem kumaş, ağ",
       "halat": "sepetten kürenin ağına"
      },
      "ikinci_balon": {
-      "konum": "sağ uzak (x 900-1050, y 700-1150), küçük, ağlı, yanında küçük grup",
-      "not": "P07 vurulan balonun KURULUMU (küçük de olsa görünür); Dagron'unki SOLDA"
+      "konum": "sağ uzak: sepet zemini y 927, küre merkezi (931,688), ø 262 (x 800-1062, y 557-819); dibinde 3 küçük siluet (46 px); Z 55 m, ufuk-ölçeğe uyar",
+      "not": "P07 vurulan balonun KURULUMU (küçük de olsa görünür); Dagron'unki SOLDA. cs 1.45'te sağ yarısı kesilir; kurulum cs 1.0'da (f168-214) yapılmış olur"
      },
      "figurler": [
       {
        "id": "yukleyici-1",
-       "tur": "yüzsüz siluet, ayak zeminde"
+       "tur": "yüzsüz siluet, ayak zeminde; sepetin ARKASINDA x 380/700, bel aşağısı sepetle örtülü, baş y≈600"
       },
       {
        "id": "yukleyici-2",
-       "tur": "yüzsüz siluet, ayak zeminde"
+       "tur": "yüzsüz siluet, ayak zeminde; sepetin ARKASINDA x 380/700, bel aşağısı sepetle örtülü, baş y≈600"
       },
       {
        "id": "dagron",
-       "tur": "yüzsüz, SIRTI dönük, koyu sepya manşet, sandığın yanında"
+       "tur": "yüzsüz, SIRTI dönük, koyu sepya manşet, sepetin solunda x 21-279, ayak y 1417, sandığın yanında; biniş ayak temas f226 rim sol köşesi (220,928)"
       }
      ],
      "sandik": {
       "inis": {
        "bas": 170,
        "bit": 190,
-       "temas": 190
+       "temas": 190,
+       "not": "sandık 392x252 px, y 560 → sepete oturur"
       },
       "not": "en ağır alet sandığı havadan iner, zemine değmez, sepete oturur"
      },
      "sepet_coker": {
       "bas": 190,
       "bit": 210,
-      "derinlik": "hasır görünür sıkışır, küre halatta geri eğilip sallanıp durur"
+      "derinlik": "hasır görünür sıkışır, küre halatta geri eğilip sallanıp durur",
+      "not": "sepet taban y 1460'ta kalır; hasır sıkışır"
      },
      "dagron_biner": {
       "bas": 212,
@@ -1669,7 +1694,18 @@
       "bas": 120,
       "bit": 152
      }
-    ]
+    ],
+    "gok_kamera_H": {
+     "kare": [
+      0,
+      158
+     ],
+     "m": [
+      60,
+      140
+     ]
+    },
+    "hava_perspektifi": "'sis' çizilmez (tasarım: kar/bulut/sis yok): D>1500 m düz bant, ufka doğru 3 ton #a9adb0 → #c4c6c2 → #d4d2c8 (uzaklıkla açılan ton)"
    },
    "devam_plan": {
     "kare_bas": 160,
@@ -1705,7 +1741,7 @@
      "yukselis": {
       "bas": 250,
       "bit": 320,
-      "arka_plan": "çatılar alta kayar ve küçülür; ateş menzili çizgisi (ince noktalı bulut çizgisi) geçilir"
+      "arka_plan": "çatılar alta kayar ve küçülür (kamera_H 150→300 m), uzaklıkla açılan hava perspektifi; menzil çizgisi YOK (mekanlar.md açık soru 3 varsayılanı; kullanıcı kararına bağlı)"
      },
      "animasyonlar": [
       {
@@ -1728,7 +1764,18 @@
        "bas": 250,
        "bit": 320
       }
-     ]
+     ],
+     "sepet_kamera_H": {
+      "kare": [
+       250,
+       320
+      ],
+      "m": [
+       150,
+       300
+      ]
+     },
+     "menzil_cizgisi": false
     },
     "kamera": {
      "kare": [
@@ -1898,7 +1945,7 @@
    "kontrol_kare_ek": [
     112
    ],
-   "alt_ucte_bir": "A: yer kadrajın altında küçülen Paris çatıları ve sis (y 1300-1500); B: hasır sepet gövdesi + sıralı torbalar (y 1100-1500)",
+   "alt_ucte_bir": "A: yer kadrajın altında küçülen Paris çatıları, hava perspektifi (y 1060-1500, kamera_H 60→140 m); B: hasır sepet gövdesi + sıralı torbalar (y 1100-1500)",
    "kit_eksik": [
     "KE-PK-S2",
     "KE-PK-E1",
@@ -1907,7 +1954,7 @@
     "KE-PK-N1",
     "KE-PK-F2"
    ],
-   "not": "SENARYO→PARAMETRE: 'iki balon yan yana yükseliyor' = iki_balon; 'yerden duman çizgisi, öteki balonun küresi ani çöküyor, sepet düşüp kadraj dışına çıkıyor' = duman_cizgisi + kure_coker + sepet_duser + darbe; 'eller torbayı bırakıyor, torba dönerek düşüyor, sepet hafifleyip sıçrıyor, balon hızlanıp menzilin üstüne çıkıyor, yer küçülür' = devam_plan. Darbe `duman:false`: kit duman 150 kare sürer, kesmeyi aşıp sepet planına taşardı; duman şablonda (gri-kül). TR 'vuruldu' f110-130, EN 'shot down' f87-125: darbe f108 ortak. Darbe efekti kitte çizgi roman: KE-PK-E1 çözülmeden render edilmez.",
+   "not": "SENARYO→PARAMETRE: 'iki balon yan yana yükseliyor' = iki_balon; 'yerden duman çizgisi, öteki balonun küresi ani çöküyor, sepet düşüp kadraj dışına çıkıyor' = duman_cizgisi + kure_coker + sepet_duser + darbe; 'eller torbayı bırakıyor, torba dönerek düşüyor, sepet hafifleyip sıçrıyor, balon hızlanıp yükseliyor, yer küçülür (menzil çizgisi çizilmez)' = devam_plan. Darbe `duman:false`: kit duman 150 kare sürer, kesmeyi aşıp sepet planına taşardı; duman şablonda (gri-kül). TR 'vuruldu' f110-130, EN 'shot down' f87-125: darbe f108 ortak. Darbe efekti kitte çizgi roman: KE-PK-E1 çözülmeden render edilmez.",
    "ses": [
     {
      "dosya": "paris/ses/tr/P07.mp3",
@@ -2196,17 +2243,17 @@
     "cs": [
      1.6,
      2.0,
-     2.2
+     2.0
     ],
     "cx": [
      0,
      -40,
-     -60
+     -40
     ],
     "cy": [
      0,
-     -260,
-     -300
+     -120,
+     -120
     ],
     "egri": "inout"
    },
@@ -2272,7 +2319,7 @@
     "nesne": "kuyruk kılıfı",
     "nesne_pct": 14,
     "net_sn": 1.1,
-    "not": "pırıltı + bağlı net f122-190; kılıf ≥230 px (270)"
+    "not": "pırıltı + bağlı net f122-190; cs 2.0'da kılıf 278 px (tasarım ≈270); kılıf merkezi dekor (540,1000)"
    },
    "tasiyici": {
     "giris": "ÇIPLAK KESME #1 (zaman atlaması, P08 Tours)",
@@ -2327,7 +2374,8 @@
       "bit": 22,
       "yon": "SOLDAN girer (P09 sağ çıkışının devamı)",
       "temas": 20
-     }
+     },
+     "olcek_notu": "cs 2.75: kılıf 164-191 px, kuş 730-850 px, el 433-505 px (çözme anı okunur; cs 1.8'de kılıf 76 px idi). Daha büyük kılıf için cs 3.0 (251 px) ama kuşun yalnız arka yarısı kadrajda"
     },
     "kilif_coz": {
      "bas": 26,
@@ -2351,7 +2399,11 @@
       "bas": 26,
       "bit": 54
      }
-    ]
+    ],
+    "kamera_modu": {
+     "tip": "dolly",
+     "not": "cs 2.6-2.75 kamera-kümes ≈0.5-0.6 m; mekanlar.md §7.2"
+    }
    },
    "devam_plan": {
     "kare_bas": 60,
@@ -2415,7 +2467,13 @@
        "bas": 256,
        "bit": 276,
        "temas": 272
-      }
+      },
+      "konum_dekor_x": [
+       422,
+       753,
+       1084,
+       1415
+      ]
      },
      "kapi": {
       "konum": "sağ kenar",
@@ -2429,7 +2487,8 @@
        "bas": 296,
        "bit": 386,
        "not": "biri zarfı açıp okur: bel/göğüs, elde kâğıt; ANAHTAR tutma 1.5 sn"
-      }
+      },
+      "okuyan_dekor_x": 1390
      },
      "animasyonlar": [
       {
@@ -2457,7 +2516,8 @@
        "bas": 296,
        "bit": 386
       }
-     ]
+     ],
+     "pan_notu": "cx -1250 (cs 1.6, f290) → -1345 (cs 1.7, f398): okuyan dekor x 1390 ekran x≈640'a gelir; pan f250-290 (40 kare, ≈31 px/kare: hızlı ama okunur; yavaş istenirse f240'tan). Arka duvar düzleminde kadraj 1.23 m: kapı bu yüzden pan olmadan dışarıda. Okuyanın eli cs 1.7'de 323 px"
     },
     "kamera": {
      "kare": [
@@ -2478,8 +2538,8 @@
       0,
       0,
       0,
-      -420,
-      -440
+      -1250,
+      -1345
      ],
      "cy": [
       0,
@@ -2514,12 +2574,12 @@
      56
     ],
     "cs": [
-     1.8,
-     1.9
+     2.6,
+     2.75
     ],
     "cx": [
-     0,
-     0
+     -380,
+     -380
     ],
     "cy": [
      0,
@@ -2631,7 +2691,7 @@
     "nesne": "perde",
     "nesne_pct": 55,
     "net_sn": 1.1,
-    "not": "net f204-270; odada diğer hareket durur; perde alt kenarı y≈1468"
+    "not": "net f204-270; odada diğer hareket durur; perde alt kenarı y≈1468; pan cx -1250→-1345 (sinirlar LANTERN-ODA cx -1400…200); kapı sövesi dekor x 1157-1950"
    },
    "tasiyici": {
     "giris": "kuş hareket yönü: P09'da sağa çıkar, P10'da soldan girer; ses: kanat çırpışı P09'dan taşar",
@@ -2780,7 +2840,11 @@
        "bas": 250,
        "bit": 290
       }
-     ]
+     ],
+     "kamera_modu": {
+      "tip": "dolly",
+      "not": "cs 3.2 f290 = P01 f0, kılıf kilidi (540,960)"
+     }
     },
     "kamera": {
      "kare": [
