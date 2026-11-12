@@ -10,9 +10,10 @@ import { RenkKaydi } from "../../../doku/Tarama";
 import type { P, Plan } from "../../tipler";
 import { cl, ekranNokta, GIRIS, INOUT, kameraHesapla, katDonusum } from "../../zaman";
 import { param, Sablon, SablonProps } from "../../ortak";
-import { Balon, BalonDurum, BogazHalka, onYuzNokta, Sandik, sandikKulp, SepetArka, sepetKose, SepetOn, SepetPoz, Torba } from "../../props/paris/Balon";
+import { Balon, BalonAltan, balonAltDugum, BalonDurum, BogazHalka, onYuzNokta, Sandik, sandikKulp, SepetArka, sepetKose, SepetOn, SepetPoz, Torba } from "../../props/paris/Balon";
 import { ayaktaEklem, Eklem, EklemDunya, eklemIzdus, FigurSiluet, Kiyafet } from "../../props/paris/SabahFigur";
-import { agacGolge, CiplakAgac, GokBasamak, HaleArka, HavadanSehir, MeydanZemin, UfukBandi, YanEv, YAN_EV } from "./montmartreDekor";
+import { HavadanParis } from "./havadanParis";
+import { agacGolge, CiplakAgac, GokBasamak, HaleArka, HavadanSehir, MeydanZemin, SarkikZarf, UfukBandi, YanEv, YAN_EV } from "./montmartreDekor";
 import { golgeCokgen, golgeNokta, IsikAd, Kam, KAMERA, kutu, lerp, lp2, PAL, pr, pts, pxm, rng, sat, V3, yolAcik, yumusak, zeminCokgen } from "./montmartreDunya";
 
 type Ar = { bas: number; bit: number; temas?: number; birakma?: number; ayak_temas?: number };
@@ -188,7 +189,7 @@ const Meydan: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2:
       {(() => { const a = pr(k, KAZIK[0] - 0.06, 0, KAZIK[2]), b = pr(k, KAZIK[0] + 0.06, 0.9, KAZIK[2]); const w = b[0] - a[0]; return <g><rect x={a[0]} y={b[1]} width={w} height={a[1] - b[1]} fill={PAL.sandikOn} stroke={PAL.sandikDerin} strokeWidth={2.5} /><rect x={a[0] + 1.5} y={b[1]} width={w * 0.4} height={a[1] - b[1]} fill={PAL.sandikIsik} /><ellipse cx={(a[0] + b[0]) / 2} cy={b[1]} rx={w / 2} ry={w * 0.18} fill={PAL.sandikIsik} stroke={PAL.sandikDerin} strokeWidth={2} /></g>; })()}
       <HalatCiz k={k} n={ipNok} />
       {p < coz.bas && (() => { const c = pr(k, ...kazikBas), w = 0.09 * pxm(k, KAZIK[2]); return <ellipse cx={c[0]} cy={c[1] + 4} rx={w} ry={w * 0.35} fill="none" stroke={PAL.halat} strokeWidth={3} />; })()}
-      <FigurSiluet e={kz} pxm={kzM * (KAZIKCI.H / 1.74)} kiyafet="isci" renk="#423d57" kenar={SIL.kenar} basEgim={-8 * t01(p, coz.bit, 150)} temas={[true, true]} />
+      <FigurSiluet e={kz} pxm={kzM * (KAZIKCI.H / 1.74)} kiyafet="isci" baslik="bere" renk="#423d57" kenar={SIL.kenar} basEgim={-8 * t01(p, coz.bit, 150)} temas={[true, true]} />
       {/* ön plan: yerde iki posta çuvalı (kontur 6 px) */}
       {[[-1.0, -7.9], [-0.6, -7.6]].map(([X, Z], i) => <Torba key={`oc${i}`} p={pr(k, X, 0.66, Z)} pxm={pxm(k, Z)} tip="cuval" ip={false} kontur={6} aci={i ? 4 : -3} />)}
     </g>
@@ -197,7 +198,9 @@ const Meydan: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2:
 const lerp3 = (a: V3, b: V3, t: number): V3 => [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];
 
 // =============================================================== YÜKLEME (P06b) — hale ===============================================================
-const TORBA_X = [425, 564, 696, 813]; // mekanlar §2v2.6 (yukleme ekranı) → ön yüz u'su (bisection, bir kez)
+const TORBA_X = [425, 564, 696, 813];
+// B2 (eleştiri #5): torbalar kopya değil — boy ±12 %, açı ±8°, varyant (gövde/büzgü/bağ) torba başına sabit
+const TORBA_OLCEK = [1.0, 0.9, 1.1, 0.94], TORBA_ACI = [-5, 3, -2, 7]; // mekanlar §2v2.6 (yukleme ekranı) → ön yüz u'su (bisection, bir kez)
 const torbaU = (() => { const k = KAMERA.yukleme, s: SepetPoz = { X: 0, h: 0, Z: 0 }; return TORBA_X.map((x) => { let lo = 0, hi = 1; for (let i = 0; i < 30; i++) { const m = (lo + hi) / 2; if (pr(k, ...onYuzNokta(s, m))[0] < x) lo = m; else hi = m; } return (lo + hi) / 2; }); })();
 const TorbaSirasi: React.FC<{ k: Kam; s: SepetPoz; gizli?: boolean[]; ozel?: Record<number, { dX: number; dh: number; dZ: number; aci: number; acik?: number }>; ipYok?: boolean }> = ({ k, s, gizli = [], ozel = {}, ipYok }) => {
   const n = torbaU.map((u) => onYuzNokta(s, u));
@@ -209,20 +212,24 @@ const TorbaSirasi: React.FC<{ k: Kam; s: SepetPoz; gizli?: boolean[]; ozel?: Rec
         if (gizli[i]) return null;
         const o = ozel[i];
         const v: V3 = o ? [q[0] + o.dX, q[1] + o.dh, q[2] + o.dZ] : q;
-        return <Torba key={i} p={pr(k, ...v)} pxm={pxm(k, v[2])} tip="kum" aci={o?.aci ?? 0} acik={o?.acik ?? 0} />;
+        return <Torba key={i} p={pr(k, ...v)} pxm={pxm(k, v[2])} tip="kum" aci={TORBA_ACI[i] + (o?.aci ?? 0)} acik={o?.acik ?? 0} varyant={i} olcek={TORBA_OLCEK[i]} />;
       })}
     </g>
   );
 };
 // Dagron (F2) biniş anahtarları (dünya; sırtı kameraya). f226 sağ ayak BL rim köşesinde (temas).
-const BL_RIM: V3 = [-0.8, 0.95, 0.29];
+// B2: biniş noktası arka rimde, BL köşesinden %25 içeride (Dagron sepetin ARKASINDAN biner → gövdesi kadraj içinde; eski: BL köşe, gövde sol 80 px payında kesikti)
+const BL_RIM: V3 = [-0.53, 0.95, 0.42];
+const DG_KAY: V3 = [0.27, 0, 0.13];
+const kay = (q: Poz): Poz => { const f = (v: V3): V3 => [v[0] + DG_KAY[0], v[1], v[2] + DG_KAY[2]]; const f2 = (a: [V3, V3]): [V3, V3] => [f(a[0]), f(a[1])]; return { bas: f(q.bas), boyun: f(q.boyun), omuz: f2(q.omuz), kalca: f2(q.kalca), dirsek: f2(q.dirsek), el: f2(q.el), diz: f2(q.diz), ayak: f2(q.ayak) }; };
 type Poz = EklemDunya;
 const dagronPoz = (f: number, A: Ar): Poz => {
   const k0: Poz = { bas: [-0.80, 1.6, 0.62], boyun: [-0.80, 1.47, 0.62], omuz: [[-1.00, 1.4, 0.64], [-0.60, 1.4, 0.6]], kalca: [[-0.88, 0.88, 0.62], [-0.72, 0.88, 0.6]], dirsek: [[-1.05, 1.12, 0.6], [-0.58, 1.15, 0.5]], el: [[-1.02, 0.88, 0.58], [-0.60, 0.99, 0.32]], diz: [[-0.88, 0.46, 0.6], [-0.72, 0.46, 0.58]], ayak: [[-0.88, 0, 0.62], [-0.72, 0, 0.6]] };
   const k1: Poz = { bas: [-0.88, 1.88, 0.55], boyun: [-0.87, 1.75, 0.55], omuz: [[-1.05, 1.67, 0.56], [-0.67, 1.69, 0.5]], kalca: [[-0.92, 1.14, 0.52], [-0.76, 1.16, 0.48]], dirsek: [[-0.95, 1.95, 0.45], [-0.60, 1.4, 0.4]], el: [[-0.72, 2.3, 0.32], [-0.64, 1.05, 0.25]], diz: [[-0.96, 0.55, 0.58], [-0.78, 1.32, 0.38]], ayak: [[-0.88, 0, 0.62], [BL_RIM[0] + 0.02, BL_RIM[1] + 0.02, BL_RIM[2]]] }; // k0 X +0.2 (Dagron ayağı yan 80 px payına giriyordu)
   const k2: Poz = { bas: [-0.72, 2.12, 0.4], boyun: [-0.72, 1.99, 0.4], omuz: [[-0.9, 1.92, 0.42], [-0.52, 1.93, 0.36]], kalca: [[-0.8, 1.42, 0.38], [-0.64, 1.42, 0.34]], dirsek: [[-0.78, 2.15, 0.3], [-0.45, 1.6, 0.25]], el: [[-0.6, 2.45, 0.2], [-0.5, 1.05, 0.1]], diz: [[-0.95, 1.2, 0.45], [-0.7, 1.12, 0.3]], ayak: [[-0.98, 0.98, 0.32], [-0.62, 0.72, 0.3]] };
   const k3: Poz = { bas: [-0.38, 1.85, 0.42], boyun: [-0.38, 1.72, 0.42], omuz: [[-0.58, 1.65, 0.44], [-0.18, 1.65, 0.4]], kalca: [[-0.46, 1.12, 0.42], [-0.3, 1.12, 0.4]], dirsek: [[-0.66, 1.4, 0.3], [-0.1, 1.38, 0.3]], el: [[-0.62, 1.05, 0.12], [0.02, 1.08, 0.12]], diz: [[-0.46, 0.66, 0.4], [-0.3, 0.66, 0.38]], ayak: [[-0.46, 0.25, 0.44], [-0.3, 0.25, 0.4]] };
-  const keys = [A.bas, A.ayak_temas ?? 226, Math.round(((A.ayak_temas ?? 226) + A.bit) / 2), A.bit], P = [k0, k1, k2, k3];
+  const k1r = kay(k1); k1r.ayak[1] = [BL_RIM[0] + 0.02, BL_RIM[1] + 0.02, BL_RIM[2]];
+  const keys = [A.bas, A.ayak_temas ?? 226, Math.round(((A.ayak_temas ?? 226) + A.bit) / 2), A.bit], P = [kay(k0), k1r, kay(k2), k3];
   let i = 0; while (i < 2 && f > keys[i + 1]) i++;
   const t = t01(f, keys[i], keys[i + 1], INOUT);
   const L = (a: V3, b: V3): V3 => lerp3(a, b, t);
@@ -256,8 +263,10 @@ const Yukleme: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2
   // yükleyiciler: kollar kulplarda (f ≤ temas + 6), sonra bırakır
   const [kulpL, kulpR] = sandikKulp(SY.X, sh, SY.Z, SY.yaw);
   const birak = t01(p, si.bit + 2, si.bit + 12);
-  const y1 = yukleyiciPoz(-0.45, 1.05, 1.75, birak < 1 ? [lerp3([kulpL[0] - 0.03, kulpL[1], kulpL[2]], [-0.7, 0.86, 1.05], birak), lerp3([-0.25, kulpL[1] + 0.05, 0.6], [-0.2, 0.86, 1.05], birak)] : null);
-  const y2 = yukleyiciPoz(0.4, 1.1, 1.68, birak < 1 ? [lerp3([0.2, kulpR[1] + 0.05, 0.55], [0.18, 0.84, 1.1], birak), lerp3([kulpR[0] + 0.03, kulpR[1], kulpR[2]], [0.62, 0.84, 1.1], birak)] : null);
+  // B2: eller sandığın ALT kenarında (başüstü taşıma, dirsek 70–100° dışa-aşağı; eski kulp tutuşu kol boyunu aşıyordu → "Z" kollar)
+  const altK = (q: V3, dX: number): V3 => [q[0] + dX, sh + 0.03, q[2]];
+  const y1 = yukleyiciPoz(-0.45, 1.05, 1.75, birak < 1 ? [lerp3(altK(kulpL, 0.04), [-0.7, 0.86, 1.05], birak), lerp3([-0.12, sh + 0.02, SY.Z + 0.12], [-0.2, 0.86, 1.05], birak)] : null);
+  const y2 = yukleyiciPoz(0.4, 1.1, 1.68, birak < 1 ? [lerp3([0.24, sh + 0.02, SY.Z + 0.1], [0.18, 0.84, 1.1], birak), lerp3(altK(kulpR, -0.04), [0.62, 0.84, 1.1], birak)] : null);
   const dg = dagronPoz(p, db);
   const dIc = p > (db.ayak_temas ?? 226) + 6;
   // bağlama halatı: FR alt köşe → kadraj sağ-altı; gevşek (yerde kıvrık) → gergin (yerden kalkar, f262)
@@ -272,9 +281,9 @@ const Yukleme: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2
     golgeCokgen(k, isik, [...dg.ayak, ...dg.kalca, ...dg.omuz, dg.bas]),
     golgeCokgen(k, isik, kutu(-0.3, -2.0, 0.42, 0.3, 0, 0.5)),
     // Daguerre: sepet + 3 siluet + sandık yığını (Z ≈ 36)
-    golgeCokgen(k, isik, kutu(9.4, 36.7, 1.2, 1.2, 0, 0.95, 20)),
-    ...[[8.6, 37.6, 1.7], [10.25, 37.3, 1.58], [9.9, 38.2, 1.12]].map(([X, Z, H]) => golgeCokgen(k, isik, golgeFig(k, isik, X, Z, H))),
-    golgeCokgen(k, isik, kutu(11.3, 35, 0.7, 0.5, 0, 0.9, 6)),
+    golgeCokgen(k, isik, kutu(8.4, 36.7, 1.2, 1.2, 0, 0.95, 20)),
+    ...[[7.6, 37.6, 1.7], [9.25, 37.3, 1.58], [8.9, 38.2, 1.12]].map(([X, Z, H]) => golgeCokgen(k, isik, golgeFig(k, isik, X, Z, H))),
+    golgeCokgen(k, isik, kutu(10.3, 35, 0.7, 0.5, 0, 0.9, 6)),
   ];
   const bagGolge = bagNok.map((q) => golgeNokta(isik, q));
   // Daguerre balonunun sağ duvardaki gölgesi (küre silueti −L boyunca X = 12.2 düzlemine) — ışık bandının içinde
@@ -285,7 +294,7 @@ const Yukleme: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2
     const nm = (a: V3): V3 => { const l = Math.hypot(...a); return [a[0] / l, a[1] / l, a[2] / l]; };
     const u = nm(cr(L, up)), v = nm(cr(u, L));
     return Array.from({ length: 28 }, (_, i) => {
-      const a = (i / 28) * Math.PI * 2, c: V3 = [0, 1, 2].map((j) => [9.4, 6.7, 36.7][j] + 3.3 * (u[j] * Math.cos(a) + v[j] * Math.sin(a))) as V3;
+      const a = (i / 28) * Math.PI * 2, c: V3 = [0, 1, 2].map((j) => [8.4, 6.7, 36.7][j] + 3.3 * (u[j] * Math.cos(a) + v[j] * Math.sin(a))) as V3;
       const s = (12.2 - c[0]) / -L[0];
       return pr(k, 12.2, c[1] - L[1] * s, c[2] - L[2] * s);
     });
@@ -299,18 +308,18 @@ const Yukleme: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2
   );
   const duvarGolge = <polygon points={pts(dgKure)} fill={PAL.kolonGolge} />;
   // ---- Daguerre (Z 36.7): balon + asma halatı + sepet + 3 siluet + sandık yığını ----
-  const dk = KAMERA.yukleme, dgS: SepetPoz = { X: 9.4, h: 0, Z: 36.7, yaw: 20 };
-  const dgG = balonGeo(dk, { s: 1, dh: 0, X: 9.4, Z: 36.7 });
+  const dk = KAMERA.yukleme, dgS: SepetPoz = { X: 8.4, h: 0, Z: 36.7, yaw: 20 }; // H2.0: X 9.4 → 8.4 (zarf sağ duvara giriyordu)
+  const dgG = balonGeo(dk, { s: 1, dh: 0, X: 8.4, Z: 36.7 });
   const daguerre = (
     <g>
-      <HalatCiz k={dk} n={[[9.4, 10, 36.7], [9.4, 23.3, 40]]} w={2} />
-      <BalonDunyaCiz k={dk} b={{ s: 1, dh: 0, X: 9.4, Z: 36.7 }} gevsek={0} yansima={false} kontur={2.5} />
-      <AskiHalatlari k={dk} s={dgS} halkaH={dgG.halka} X={9.4} Z={36.7} gevsek={0} />
-      {[[10.25, 37.3, 1.58, "duz"], [9.9, 38.2, 1.12, "cocuk"]].map(([X, Z, H, ky], i) => { const ppm = pxm(dk, Z as number); return <FigurSiluet key={`dg${i}`} e={ayaktaEklem(pr(dk, X as number, 0, Z as number), ppm, H as number, { egim: i ? -6 : 3 })} pxm={ppm * ((H as number) / 1.74)} kiyafet={ky as Kiyafet} renk={PAL.siluet} kenar={{ renk: PAL.kenar, dx: -1.5, dy: -1 }} />; })}
+      <HalatCiz k={dk} n={[[8.4, 10, 36.7], [8.4, 23.3, 40]]} w={2} />
+      <BalonDunyaCiz k={dk} b={{ s: 1, dh: 0, X: 8.4, Z: 36.7 }} gevsek={0} yansima={false} kontur={2.5} />
+      <AskiHalatlari k={dk} s={dgS} halkaH={dgG.halka} X={8.4} Z={36.7} gevsek={0} />
+      {[[9.25, 37.3, 1.58, "duz"], [8.9, 38.2, 1.12, "cocuk"]].map(([X, Z, H, ky], i) => { const ppm = pxm(dk, Z as number); return <FigurSiluet key={`dg${i}`} baslik={i ? "kasket" : "silindir"} e={ayaktaEklem(pr(dk, X as number, 0, Z as number), ppm, H as number, { egim: i ? -6 : 3 })} pxm={ppm * ((H as number) / 1.74)} kiyafet={ky as Kiyafet} renk={PAL.siluet} kenar={{ renk: PAL.kenar, dx: -1.5, dy: -1 }} />; })}
       <SepetArka k={dk} s={dgS} isikYuz={PAL.hasirIsikHale} />
       <SepetOn k={dk} s={dgS} isikYuz={PAL.hasirIsikHale} kamis={0.2} kontur={2.5} />
-      {(() => { const ppm = pxm(dk, 37.6); return <FigurSiluet e={ayaktaEklem(pr(dk, 8.6, 0, 37.6), ppm, 1.7, { egim: 2 })} pxm={ppm * (1.7 / 1.74)} kiyafet="palto" renk="#433e58" kenar={{ renk: PAL.kenar, dx: -1.5, dy: -1 }} />; })()}
-      <Sandik k={dk} X={11.3} h={0} Z={35} yaw={6} kontur={2} /><Sandik k={dk} X={11.4} h={0.45} Z={35.1} yaw={-4} kontur={2} />
+      {(() => { const ppm = pxm(dk, 37.6); return <FigurSiluet baslik="melon" e={ayaktaEklem(pr(dk, 7.6, 0, 37.6), ppm, 1.7, { egim: 2 })} pxm={ppm * (1.7 / 1.74)} kiyafet="palto" renk="#433e58" kenar={{ renk: PAL.kenar, dx: -1.5, dy: -1 }} />; })()}
+      <Sandik k={dk} X={10.3} h={0} Z={35} yaw={6} kontur={2} /><Sandik k={dk} X={10.4} h={0.45} Z={35.1} yaw={-4} kontur={2} />
     </g>
   );
   const halkaY = pr(k, 0, 2.6, 0)[1];
@@ -322,21 +331,44 @@ const Yukleme: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2
   if (!dIc) kilit.push({ ad: "Dagron ayak", p: E(pr(k, ...dg.ayak[0])), tur: "ayak" });
   if (p >= hg.bas) kilit.push({ ad: "halat gerilme (f262)", p: E(pr(k, ...bagNok[0])), tur: "temas" });
   const gok = <GokBasamak ufuk={k.U} seed={158} />;
-  const dagronCiz = <FigurSiluet e={eklemIzdus(k, dg)} pxm={pxm(k, dg.kalca[0][2])} kiyafet="dagron" renk={PAL.dagronGolge} kenar={{ renk: PAL.kenar, dx: -3, dy: -2 }} eller manset={PAL.sepya} ten="#a8846e" temas={[dg.ayak[0][1] < 0.03, dg.ayak[1][1] < 0.03]} />;
+  // Niépce zarfı (H2.5): halka (h 2.6) → ağın h 4.5 paralel düğümlerine askı halatları; boğaz (h 2.9–3.4) kumaş tüpü zarfın önünde
+  const szp = (plan.parametreler?.ikinci_balon as Record<string, unknown> | undefined)?.sarkik_zarf as { X?: number; Z?: number; seed?: number } | undefined;
+  const sz = { X: szp?.X ?? -22, Z: szp?.Z ?? 65, seed: szp?.seed ?? 183 };
+  const halkaGrup = (() => {
+    const w = 0.45 * pxm(k, 0), c = pr(k, 0, 2.9, 0), bu = pr(k, 0, 3.4, 0);
+    const dug = balonAltDugum(k, [0, 6.7, 0], 3.3, 4.5);
+    return <g>
+      {dug.map((q, i) => { const a = Math.atan2(q[2], q[0]), h = pr(k, Math.cos(a) * 0.45, 2.6, Math.sin(a) * 0.45), b = pr(k, ...q); return <g key={i}><line x1={h[0]} y1={h[1]} x2={b[0]} y2={b[1]} stroke={PAL.halatGolge} strokeWidth={4} /><line x1={h[0]} y1={h[1]} x2={b[0]} y2={b[1]} stroke={PAL.halat} strokeWidth={2.5} /><line x1={h[0] - 1} y1={h[1]} x2={b[0] - 1} y2={b[1]} stroke={PAL.kenar} strokeWidth={1} /></g>; })}
+      {(() => { // boğaz (appendix): kumaş tüp, aşağı hafif daralır, ağzı toplanmış (düz kesik kutu değil); sol kenar ışık, 3 kıvrım
+        const W = 0.25 * pxm(k, 0), y0 = bu[1], y1 = c[1], x = c[0];
+        const d = `M${x - W} ${y0}C${x - W * 0.98} ${y0 + (y1 - y0) * 0.5} ${x - W * 0.8} ${y1 - 30} ${x - W * 0.74} ${y1 - 6}Q${x - W * 0.4} ${y1 + 10} ${x - W * 0.05} ${y1 + 2}Q${x + W * 0.35} ${y1 + 12} ${x + W * 0.76} ${y1 - 8}C${x + W * 0.8} ${y1 - 30} ${x + W} ${y0 + (y1 - y0) * 0.5} ${x + W} ${y0}Z`;
+        return <g>
+          <path d={d} fill={PAL.balonGolge} stroke={PAL.konturGolge} strokeWidth={3.5} strokeLinejoin="round" />
+          <path d={`M${x - W * 0.93} ${y0}C${x - W * 0.9} ${y0 + (y1 - y0) * 0.5} ${x - W * 0.75} ${y1 - 30} ${x - W * 0.68} ${y1 - 6}`} fill="none" stroke={PAL.terminator} strokeWidth={8} />
+          {[-0.45, 0.05, 0.5].map((u, i) => <path key={i} d={`M${x + u * W * 1.1} ${y0}Q${x + u * W * 0.95 + (i - 1) * 6} ${(y0 + y1) / 2} ${x + u * W * 0.75} ${y1 - 4}`} fill="none" stroke={PAL.balonTarama} strokeWidth={2.5} strokeLinecap="round" />)}
+          <path d={`M${x - W * 0.74} ${y1 - 6}Q${x - W * 0.4} ${y1 + 10} ${x - W * 0.05} ${y1 + 2}Q${x + W * 0.35} ${y1 + 12} ${x + W * 0.76} ${y1 - 8}`} fill="none" stroke={PAL.konturGolge} strokeWidth={5} strokeLinecap="round" />
+          <ellipse cx={x} cy={halkaY} rx={w} ry={Math.max(2, w * Math.sin((28 * Math.PI) / 180))} fill="none" stroke={PAL.halka} strokeWidth={7.5} />
+          <path d={`M${x - w} ${halkaY}A${w} ${w * Math.sin((28 * Math.PI) / 180)} 0 0 0 ${x - w * 0.2} ${halkaY + w * Math.sin((28 * Math.PI) / 180) * 0.98}`} fill="none" stroke={PAL.kenar} strokeWidth={1.5} />
+        </g>;
+      })()}
+    </g>;
+  })();
+  const dagronCiz = <FigurSiluet e={eklemIzdus(k, dg)} pxm={pxm(k, dg.kalca[0][2])} kiyafet="dagron" renk={PAL.dagronGolge} kenar={{ renk: PAL.kenar, dx: -3, dy: -2 }} eller manset={PAL.sepya} ten="#a8846e" temas={[dg.ayak[0][1] < 0.03, dg.ayak[1][1] < 0.03]} onBacak={dg.ayak[1][1] > 0.25 && !dIc ? 1 : undefined} />;
   return (
     <g>
       {arka === "hale" ? <HaleArka k={k} seed={181} t={p} gok={gok} uid={uid} zemin={zemin} duvarGolge={duvarGolge} /> : <g>{gok}{zemin}</g>}
       {daguerre}
+      <SarkikZarf k={k} X={sz.X} Z={sz.Z} seed={sz.seed} />
+      <BalonAltan k={k} c={[0, 6.7, 0]} r={3.3} />
+      {halkaGrup}
       <FigurSiluet e={eklemIzdus(k, y1)} pxm={pxm(k, 1.05)} kiyafet="isci" renk="#433e58" kenar={SIL.kenar} />
-      <FigurSiluet e={eklemIzdus(k, y2)} pxm={pxm(k, 1.1) * (1.68 / 1.74)} kiyafet="duz" renk="#47425c" kenar={SIL.kenar} />
+      <FigurSiluet e={eklemIzdus(k, y2)} pxm={pxm(k, 1.1) * (1.68 / 1.74)} kiyafet="duz" baslik="bere" renk="#47425c" kenar={SIL.kenar} />
       <SepetArka k={k} s={sp} isikYuz={PAL.hasirIsikHale} dx={sallan} />
       {!dIc && dagronCiz}
       <g transform={`translate(${sallan} 0)`}><Sandik k={k} X={SY.X} h={sh} Z={SY.Z} yaw={SY.yaw} kontur={5} /></g>
       {dIc && dagronCiz}
       <SepetOn k={k} s={sp} isikYuz={PAL.hasirIsikHale} cokme={cokme} kamis={0.05} kontur={6} dx={sallan} torbalar={<TorbaSirasi k={k} s={sp} />} />
       <g transform={`translate(${sallan * 0.6} 0)`}><AskiHalatlari k={k} s={sp} halkaH={2.6} X={0} Z={0} gevsek={0} /></g>
-      {/* halka (y 194) + boğaz + ağ halatları yukarı (küre kadraj üstünde) */}
-      {(() => { const w = 0.45 * pxm(k, 0), c = pr(k, 0, 2.9, 0); return <g>{[-0.8, -0.4, 0, 0.4, 0.8].map((u, i) => <line key={i} x1={540 - 0.1 * pxm(k, 0) + u * w} y1={halkaY} x2={540 - 0.1 * pxm(k, 0) + u * w * 2.6} y2={-400} stroke={PAL.agGolge} strokeWidth={3} />)}<BogazHalka x={c[0]} boyunUst={-300} boyunAlt={c[1]} boyunW={0.2 * pxm(k, 0)} halkaY={halkaY} halkaW={w} egim={28} kontur={5} /></g>; })()}
       <HalatCiz k={k} n={bagNok} />
       {/* ön plan posta çuvalı (Z −2.0, sol kenarda kesik) */}
       <Torba p={pr(k, -0.3, 0.5, -2.0)} pxm={pxm(k, -2.0)} tip="cuval" ip={false} kontur={6} aci={-4} />
@@ -350,6 +382,12 @@ const Gok: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: { 
   const arka = param<string>(plan, "arka", "hale");
   const kh = obj(plan, "gok_kamera_H"), Hk = (kh.kare as number[]) ?? [0, 158], Hm = (kh.m as number[]) ?? [60, 140];
   const H = interpolate(p, Hk, Hm, { ...cl, easing: INOUT });
+  // G2 (B2): yön 310° (KB, geride kalan Paris), ışık havaGeri; geri sürüklenme (rüzgâr GD) [0, 60] m
+  const geri = param<string>(plan, "isik", "haleSabah") === "havaGeri" || Number(plan.parametreler?.yon) === 310;
+  const gs = (plan.parametreler?.geri_surukleme_m as number[] | undefined) ?? [0, 60];
+  const drift = geri ? interpolate(p, Hk, gs, { ...cl, easing: INOUT }) : 0;
+  const anitO = Number((obj(plan, "anitlar").olcek as number | undefined) ?? 1.8);
+  const balonIsik = geri ? { isik: [-0.55, -0.83] as P, isikOfs: 0.55 } : {};
   const dc = ar(plan.parametreler?.duman_cizgisi, { bas: 84, bit: 108 }), kc = ar(plan.parametreler?.kure_coker, { bas: 108, bit: 150 }), sd = ar(plan.parametreler?.sepet_duser, { bas: 120, bit: 152 });
   const ib = obj(plan, "iki_balon"), dy = ar((ib.diger as Record<string, unknown> | undefined)?.yukselis, { bas: 0, bit: 106 });
   const darbe = plan.darbe?.[0];
@@ -366,25 +404,49 @@ const Gok: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: { 
   const dR = 1 - 0.18 * cokT;
   const dgG = balonGeo(dK, { s: 1, dh: 0, X: 0, Z: 0 });
   // duman çizgisi (f84–108): şehrin dışı (sağ ufuk buğusu) → isabet; sonra uçtan başlayarak parçalanır, kısalır (fade yok)
-  const kaynak: P = [1150, 935], hedef: P = [dgG.c[0] + delik[0], dgG.c[1] + delik[1]];
+  const kaynak: P = geri ? [1150, 700] : [1150, 935], hedef: P = [dgG.c[0] + delik[0], dgG.c[1] + delik[1]];
   const ilerle = t01(p, dc.bas, dc.bit, (x) => x);
-  const dumanCiz = p >= dc.bas && p < fD + 46 ? (() => {
-    const r = rng(5), n = 26, bas = p < fD ? 0 : t01(p, fD, fD + 44, Easing.in(Easing.quad));
-    const nok: P[] = Array.from({ length: n + 1 }, (_, i) => { const t = (i / n) * Math.min(1, ilerle); const q = lp2(kaynak, p < fD ? [hedef[0], hedef[1]] : [dgG.c[0] + delik[0], dgG.c[1] + delik[1] - dus], t); const sap = 40 * Math.sin(Math.PI * t); return [q[0] + sap * 0.3 + (r() - 0.5) * 5 + (p - dc.bas) * 0.25 * t, q[1] - sap + (r() - 0.5) * 5 - (p - dc.bas) * 0.15 * (1 - t)] as P; });
-    const parcalar: P[][] = []; if (bas <= 0) parcalar.push(nok); else for (let i = 0; i < n; i += 3) { const kes = i / n; if (kes < bas) continue; const kisa = Math.max(2, Math.round(4 - 3 * bas)); parcalar.push(nok.slice(i, Math.min(n + 1, i + kisa))); }
-    return <g strokeLinecap="round" strokeLinejoin="round">{parcalar.map((s, i) => <polyline key={`dk${i}`} points={pts(s)} fill="none" stroke={PAL.kulGolge} strokeWidth={9} />)}{parcalar.map((s, i) => <polyline key={`dd${i}`} points={pts(s)} fill="none" stroke={PAL.kulIsik} strokeWidth={4} />)}</g>;
+  // atış izi (B2, eleştiri #4): KOPUK pufçuk dizisi, kaynakta kalın → uca doğru incelir; balona DEĞMEDEN biter (t ≤ 0.84, ≈ 60 px önce).
+  // Hortum/halat okuması olmasın: sabit kalınlıkta sürekli çizgi YOK. f84–108 uç ilerler; isabetten sonra kaynak ucundan başlayarak
+  // pufçuklar yükselir, küçülür ve dağılır (fade yok, f108–150).
+  const dumanCiz = p >= dc.bas && p < fD + 42 ? (() => {
+    const r = rng(5), TMAX = 0.84, hd: P = [hedef[0], hedef[1]];
+    const yolN = (t: number): P => { const q = lp2(kaynak, hd, t); return [q[0], q[1] - 30 * Math.sin(Math.PI * t) + 4 * Math.sin(t * 23)]; };
+    const uc = TMAX * ilerle, dag = p < fD ? 0 : (p - fD) / 42;
+    // 6 kopuk parça: her biri düzensiz kenarlı, uca doğru incelen şerit; aralarda boşluk; dağılırken kaynaktan başlayıp yükselir/kısalır
+    const kesim = [0, 0.15, 0.31, 0.45, 0.58, 0.7, 0.8].map((v, i) => (i ? v + (r() - 0.5) * 0.03 : v));
+    const parca: React.ReactNode[] = [];
+    for (let i = 0; i < kesim.length - 1; i++) {
+      const t0 = kesim[i] * (TMAX / 0.8), t1 = Math.min(kesim[i + 1] * (TMAX / 0.8) - 0.025, uc); if (t1 <= t0 + 0.01) continue;
+      const kay = dag > 0 ? dag * 1.3 - (1 - t0 / TMAX) * 0.5 : -1; if (kay > 0.9) continue; // kaynak ucu önce dağılır
+      const kis = Math.max(0, kay) * (t1 - t0) * 0.8, a0 = t0 + kis / 2, a1 = t1 - kis / 2; if (a1 <= a0 + 0.008) continue;
+      const n = 8, ust: P[] = [], alt: P[] = [];
+      for (let k = 0; k <= n; k++) {
+        const t = lerp(a0, a1, k / n), q = yolN(t), q2 = yolN(Math.min(1, t + 0.01)), dx = q2[0] - q[0], dy = q2[1] - q[1], L = Math.hypot(dx, dy) || 1;
+        const w = lerp(13, 3, t / TMAX) * (0.75 + 0.5 * r()) * Math.sin(Math.PI * (0.15 + 0.85 * (k / n))) * (1 - 0.5 * Math.max(0, dag));
+        const yuk = dag * (14 + 24 * (1 - t / TMAX));
+        ust.push([q[0] - (dy / L) * w, q[1] + (dx / L) * w - yuk]); alt.push([q[0] + (dy / L) * w * 0.8, q[1] - (dx / L) * w * 0.8 - yuk]);
+      }
+      parca.push(<polygon key={i} points={pts([...ust, ...alt.reverse()])} fill={PAL.kulIsik} stroke={PAL.kulGolge} strokeWidth={1.5} strokeLinejoin="round" />);
+      if (t1 - t0 > 0.05) { const m = yolN((a0 + a1) / 2); parca.push(<path key={`g${i}`} d={`M${(m[0] + 10).toFixed(1)} ${(m[1] + 3 - dag * 20).toFixed(1)}Q${m[0].toFixed(1)} ${(m[1] + 5 - dag * 20).toFixed(1)} ${(m[0] - 12).toFixed(1)} ${(m[1] + 2 - dag * 20).toFixed(1)}`} fill="none" stroke={PAL.kulGolge} strokeWidth={1.5} />); }
+    }
+    return <g>{parca}</g>;
   })() : null;
-  // parlama (f108–118): düzensiz yaprak + 2–3 alev dili, krem; küçülür + kontur koyulaşır (fade yok). ≤ %10 ekran
+  // parlama (B2): kısa kâğıt-krem yırtık diller (2–3), konturlu disk YOK; f108–114 delikten çıkar, küçülüp deliğe çekilir
   const pT = p - fD;
-  const parlama = pT >= 0 && pT <= 10 ? (() => {
-    const r = rng(darbe?.seed ?? 5), buyu = pT <= 3 ? GIRIS(pT / 3) : 1 - Easing.in(Easing.quad)((pT - 3) / 7);
-    const R0 = 46 * buyu; if (R0 < 2) return null;
-    const c: P = [hedef[0] - 6, hedef[1] - dus - 4];
-    const yp: P[] = Array.from({ length: 9 }, (_, i) => { const a = (i / 9) * Math.PI * 2 + 0.3, q = R0 * (0.62 + 0.38 * r()); return [c[0] + Math.cos(a) * q * 1.05, c[1] + Math.sin(a) * q * 0.8]; });
-    const yaprakD = yp.map((q, i) => { const b = yp[(i + 1) % yp.length], m: P = [(q[0] + b[0]) / 2, (q[1] + b[1]) / 2]; return `${i ? "" : `M${((yp[yp.length - 1][0] + q[0]) / 2).toFixed(1)} ${((yp[yp.length - 1][1] + q[1]) / 2).toFixed(1)}`}Q${q[0].toFixed(1)} ${q[1].toFixed(1)} ${m[0].toFixed(1)} ${m[1].toFixed(1)}`; }).join("") + "Z";
-    const diller = [0, 1, 2].map((i) => { const a = -Math.PI / 2 + (i - 1) * 0.5 + (r() - 0.5) * 0.3, L0 = (52 + r() * 28) * buyu, w = 15 * buyu; const b: P = [c[0] + Math.cos(a) * R0 * 0.55, c[1] + Math.sin(a) * R0 * 0.5], u: P = [b[0] + Math.cos(a) * L0 + 10 * buyu, b[1] + Math.sin(a) * L0], kv: P = [u[0] - 9 * buyu, u[1] + 7 * buyu]; return `M${b[0] - w} ${b[1]}Q${b[0] - w * 0.6} ${(b[1] + u[1]) / 2} ${u[0]} ${u[1]}Q${kv[0]} ${kv[1]} ${kv[0] + 2} ${kv[1] + 6}Q${b[0] + w * 0.7} ${(b[1] + u[1]) / 2 + 8} ${b[0] + w} ${b[1]}Z`; });
-    const kont = 1.8 + 1.4 * sat(pT / 10);
-    return <g stroke={PAL.delik} strokeWidth={kont} strokeLinejoin="round" fill={PAL.parlama}>{diller.map((d, i) => <path key={i} d={d} />)}<path d={yaprakD} /></g>;
+  const parlama = pT >= 0 && pT <= 6 ? (() => {
+    const r = rng(darbe?.seed ?? 5), buyu = pT <= 2 ? GIRIS(pT / 2) : 1 - Easing.in(Easing.quad)((pT - 2) / 4);
+    if (buyu < 0.05) return null;
+    const c: P = [hedef[0], hedef[1] - dus];
+    const diller = [-2.3, -1.2, 0.2].map((a0, i) => {
+      const a = a0 + (r() - 0.5) * 0.3, L0 = (34 + r() * 22) * buyu, w = (9 + r() * 4) * buyu;
+      const b: P = [c[0] + Math.cos(a) * 8, c[1] + Math.sin(a) * 8], nx = -Math.sin(a), ny = Math.cos(a);
+      const u: P = [b[0] + Math.cos(a) * L0, b[1] + Math.sin(a) * L0];
+      const dis = Array.from({ length: 5 }, (_, k) => { const t = (k + 1) / 6, ww = w * (1 - t) * (k % 2 ? 0.55 : 1); return [b[0] + (u[0] - b[0]) * t + nx * ww, b[1] + (u[1] - b[1]) * t + ny * ww] as P; });
+      const ic = Array.from({ length: 5 }, (_, k) => { const t = (5 - k) / 6, ww = w * (1 - t) * (k % 2 ? 1 : 0.6); return [b[0] + (u[0] - b[0]) * t - nx * ww, b[1] + (u[1] - b[1]) * t - ny * ww] as P; });
+      return <polygon key={i} points={pts([[b[0] + nx * w, b[1] + ny * w], ...dis, u, ...ic, [b[0] - nx * w, b[1] - ny * w]])} fill={i === 1 ? PAL.parlama : PAL.vernik} />;
+    });
+    return <g>{diller}</g>;
   })() : null;
   // gri-kül duman kümeleri (f112–158): tırtıklı, rüzgârla sağa, büyür, sonra ayrılıp küçülür (fade yok)
   const kul = pT >= 4 && pT < 50 ? (() => {
@@ -395,7 +457,7 @@ const Gok: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: { 
       if (rr < 1.5) return null;
       const c: P = [hedef[0] + 30 * i - 10 + 140 * t, hedef[1] - 30 - 18 * i - 160 * t - dus * 0.0 + 60 * t * t];
       const kenar: P[] = Array.from({ length: 14 }, (_, j) => { const a = (j / 14) * Math.PI * 2, q = rr * (j % 2 ? 0.86 : 1.06 + 0.08 * r()); return [c[0] + Math.cos(a) * q * 1.2, c[1] + Math.sin(a) * q]; });
-      return <g key={i}><polygon points={pts(kenar)} fill={PAL.kulIsik} stroke={PAL.kulGolge} strokeWidth={3} strokeLinejoin="round" /><path d={`M${c[0] - rr * 0.6} ${c[1] + rr * 0.3}Q${c[0]} ${c[1] + rr * 0.7} ${c[0] + rr * 0.7} ${c[1] + rr * 0.25}`} fill="none" stroke={PAL.kulGolge} strokeWidth={3} /><path d={`M${c[0] - rr * 1.1} ${c[1]}A${rr} ${rr} 0 0 1 ${c[0] - rr * 0.2} ${c[1] - rr * 0.95}`} fill="none" stroke={PAL.kenar} strokeWidth={2} /></g>;
+      return <g key={i}><polygon points={pts(kenar)} fill={PAL.kulIsik} stroke={PAL.kulGolge} strokeWidth={2} strokeLinejoin="round" /><path d={`M${c[0] - rr * 0.6} ${c[1] + rr * 0.3}Q${c[0]} ${c[1] + rr * 0.7} ${c[0] + rr * 0.7} ${c[1] + rr * 0.25}`} fill="none" stroke={PAL.kulGolge} strokeWidth={3} /><path d={`M${c[0] - rr * 1.1} ${c[1]}A${rr} ${rr} 0 0 1 ${c[0] - rr * 0.2} ${c[1] - rr * 0.95}`} fill="none" stroke={PAL.kenar} strokeWidth={2} /></g>;
     })}</g>;
   })() : null;
   const puf = pT >= 2 && pT < 26 ? (() => { const t = (pT - 2) / 24, c: P = [hedef[0] - 20, hedef[1] - dus + 10]; return <g fill={PAL.puf}>{[0, 1].map((i) => { const rr = (10 + i * 6) * Math.sin(Math.PI * t); return rr > 1 ? <circle key={i} cx={c[0] - 20 * t - i * 12} cy={c[1] - 26 * t - i * 8} r={rr} /> : null; })}</g>; })() : null;
@@ -408,22 +470,21 @@ const Gok: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: { 
   const nG = balonGeo(nK, { s: 1, dh: 0, X: 0, Z: 0 });
   return (
     <g>
-      <GokBasamak ufuk={900} seed={158} />
-      <HavadanSehir H={H} U={900} seed={173} isik="haleSabah" raylar={arka === "hale"} uid={uid} />
+      {geri ? <HavadanParis H={H} drift={drift} U={900} seed={173} isik="havaGeri" anitOlcek={anitO} uid={uid} /> : <><GokBasamak ufuk={900} seed={158} /><HavadanSehir H={H} U={900} seed={173} isik="haleSabah" raylar={arka === "hale"} uid={uid} /></>}
       {dumanCiz}
       {dgGor && (
         <g>
           <AskiHalatlari k={dK} s={dS} halkaH={dgG.halka} X={0} Z={0} gevsek={cokT * 0.6} />
           <SepetArka k={dK} s={dS} isikYuz={PAL.hasirIsikHale} />
           <SepetOn k={dK} s={dS} isikYuz={PAL.hasirIsikHale} kamis={0.2} kontur={2.5} />
-          <BalonDunyaCiz k={dK} b={{ s: 1, dh: 0, X: 0, Z: 0, coker: p >= fD ? { t: cokT, delik: [delik[0] * dR, delik[1] * dR], seed: 41 } : undefined }} gevsek={cokT} yansima={false} kontur={3} ek={p >= fD ? { R: dgG.R * dR, dolu: 1 - 0.65 * cokT, kivrim: 7 * cokT } : {}} />
+          <BalonDunyaCiz k={dK} b={{ s: 1, dh: 0, X: 0, Z: 0, coker: p >= fD ? { t: cokT, delik: [delik[0] * dR, delik[1] * dR], seed: 41 } : undefined }} gevsek={cokT} yansima={false} kontur={3} ek={p >= fD ? { R: dgG.R * dR, dolu: 1 - 0.65 * cokT, kivrim: 7 * cokT, ...balonIsik } : balonIsik} />
         </g>
       )}
       {puf}{parlama}{kul}
       <AskiHalatlari k={nK} s={nS} halkaH={nG.halka} X={0} Z={0} gevsek={0} />
       <SepetArka k={nK} s={nS} isikYuz={PAL.hasirIsikHale} />
       <SepetOn k={nK} s={nS} isikYuz={PAL.hasirIsikHale} kamis={0.15} kontur={3} torbalar={<TorbaSirasi k={nK} s={nS} />} />
-      <BalonDunyaCiz k={nK} b={{ s: 1, dh: 0, X: 0, Z: 0 }} gevsek={0} yansima={false} kontur={3.5} />
+      <BalonDunyaCiz k={nK} b={{ s: 1, dh: 0, X: 0, Z: 0 }} gevsek={0} yansima={false} kontur={3.5} ek={balonIsik} />
     </g>
   );
 };
@@ -439,6 +500,12 @@ const Sepet: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: 
   // sıçrama: kamera sepeti 4 kare gecikmeyle izler → sepet ekranda −36 px, yaylı geri (dekor = ekran / cs)
   const sicra = p < ss.bas ? 0 : p < ss.bas + 4 ? -36 * GIRIS((p - ss.bas) / 4) : -36 * Math.cos(((p - ss.bas - 4) / 16) * Math.PI * 1.5) * Math.exp(-(p - ss.bas - 4) / 6);
   const sy = sicra / k2.cs;
+  // sepet_x (B2 netleştirme): sepet + Dagron + torbalar + halatların DEKOR px yatay kayması (cs 1 ekranı; dünyada ≈ yanal kayma, arka plan kaymaz)
+  const sx = Number(plan.parametreler?.sepet_x ?? 0);
+  // yükseliş (B2, eleştiri bulgu 4): balast atıldıktan sonra sepet kadrajda yukarı kayar (kamera geride kalır) + şehir alçalır (H 150→300).
+  // yukselis.bas–bit içinde inout; kayma dekor px (≥ 80 ekran px ölçütü)
+  const yu = ar(plan.parametreler?.yukselis, { bas: 250, bit: 320 }), yukPx = Number((obj(plan, "yukselis").kadraj_px as number | undefined) ?? -90);
+  const yk = yukPx * t01(p, yu.bas, yu.bit, INOUT) / k2.cs;
   const gevsek = p < hgv.bas ? 0 : Math.sin(Math.PI * t01(p, hgv.bas, hgv.bit, (x) => x)) * 1;
   const sp: SepetPoz = { X: 0, h: 0, Z: 0 };
   // torba düşüşü (dünya, yerçekimi; v0 0.5 m/s aşağı), 1 tur döner; kum izi 20 kare
@@ -469,32 +536,34 @@ const Sepet: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: 
   const dE = eklemIzdus(k, D);
   dE.dirsek[1] = ik2(dE.omuz[1], dE.el[1], 0.3 * pxm(k, -0.2), 0.3 * pxm(k, -0.3), 1);
   const E = (q: P) => ekranNokta(k2, q);
-  if (p < (t2.birakma ?? 214) + 4) kilit.push({ ad: "torba ağzı (el)", p: E([dE.el[1][0], dE.el[1][1] + sy]), tur: "dokunus" });
+  if (p < (t2.birakma ?? 214) + 4) kilit.push({ ad: "torba ağzı (el)", p: E([dE.el[1][0] + sx, dE.el[1][1] + sy]), tur: "dokunus" });
+  // 4. torbanın sağ kenarı (dokunuş nesnesi; IG sağ sütun dışında kalmalı)
+  if (p <= (t1.birakma ?? 196) + 6) { const q = onYuzNokta(sp, torbaU[3]); const c0 = pr(k, ...q); kilit.push({ ad: "torba 4 sağ kenar", p: E([c0[0] + 0.15 * pxm(k, q[2]) * TORBA_OLCEK[3] + sx, c0[1] + 0.3 * pxm(k, q[2]) + sy]), tur: "dokunus" }); }
   const ust = sepetKose(sp).ust;
   const halatlar = <g>{ust.map((q, i) => { const a = pr(k, ...q), b = pr(k, q[0] * 0.3, 2.7, q[2] * 0.3); const m: P = [(a[0] + b[0]) / 2 + gevsek * 30 * (i % 2 ? 1 : -1), (a[1] + b[1]) / 2]; return <path key={i} d={`M${a[0]} ${a[1] + sy}Q${m[0]} ${m[1] + sy} ${b[0]} ${b[1] + sy}`} fill="none" stroke={PAL.halat} strokeWidth={5} />; })}</g>;
   return (
     <g>
-      <GokBasamak ufuk={k.U} seed={158} />
-      <HavadanSehir H={H} U={k.U} seed={173} isik="haleSabah" raylar={arka === "hale"} uid={uid} />
+      {arka === "hale" ? <HavadanParis H={H} zeminUstu={0} U={k.U} seed={177} isik="haleSabah" imza={false} gokIsima uid={uid} /> : <><GokBasamak ufuk={k.U} seed={158} /><HavadanSehir H={H} U={k.U} seed={173} isik="haleSabah" raylar={false} uid={uid} /></>}
+      <g transform={`translate(${sx} ${yk})`}>
       <g transform={`translate(0 ${sy})`}>
         <SepetArka k={k} s={sp} isikYuz={PAL.hasirIsikHale} />
         <Sandik k={k} X={0.05} h={0.6} Z={0.02} yaw={25} kontur={5} />
         <FigurSiluet e={dE} pxm={pxm(k, 0.1)} kiyafet="dagron" renk={PAL.dagronGolge} kenar={{ renk: PAL.kenar, dx: -3, dy: -2 }} eller manset={PAL.sepya} ten="#8f7064" basEgim={-12 * basDon} kolGizle={[false, true]} />
         <SepetOn k={k} s={sp} isikYuz={PAL.hasirIsikHale} kamis={0.05} kontur={6} torbalar={<TorbaSirasi k={k} s={sp} gizli={[false, false, true, true]} />} />
       </g>
-      {/* düşen torbalar sepetle birlikte sıçramaz (bırakıldı) */}
-      <TorbaSirasi k={k} s={sp} gizli={[true, true, !o2 || gizli[2], !o3 || gizli[3]]} ozel={ozel} ipYok />
+      {/* düşen torbalar sepetle birlikte sıçramaz / yükselmez (bırakıldı): yükseliş kaymasını geri al */}
+      <g transform={`translate(0 ${-yk})`}><TorbaSirasi k={k} s={sp} gizli={[true, true, !o2 || gizli[2], !o3 || gizli[3]]} ozel={ozel} ipYok />{kumIz}</g>
       {[2, 3].map((i) => (i === 2 ? !o2 : !o3) && <g key={`as${i}`} transform={`translate(0 ${sy})`}><TorbaSirasiTek k={k} s={sp} i={i} /></g>)}
-      {kumIz}
       <g transform={`translate(0 ${sy})`}>
         {/* uzanan kol sepet duvarının ÖNÜNDE (dışarıda) */}
         <FigurKol e={dE} pxm={pxm(k, -0.3)} />
         {halatlar}
       </g>
+      </g>
     </g>
   );
 };
-const TorbaSirasiTek: React.FC<{ k: Kam; s: SepetPoz; i: number }> = ({ k, s, i }) => { const q = onYuzNokta(s, torbaU[i]); return <Torba p={pr(k, ...q)} pxm={pxm(k, q[2])} tip="kum" />; };
+const TorbaSirasiTek: React.FC<{ k: Kam; s: SepetPoz; i: number }> = ({ k, s, i }) => { const q = onYuzNokta(s, torbaU[i]); return <Torba p={pr(k, ...q)} pxm={pxm(k, q[2])} tip="kum" aci={TORBA_ACI[i]} varyant={i} olcek={TORBA_OLCEK[i]} />; };
 /** yalnız sağ kol (omuz → dirsek → el + manşet + el): kontrajur, rim ön kenarının önünde */
 const FigurKol: React.FC<{ e: Eklem; pxm: number }> = ({ e, pxm: m }) => {
   const o = e.omuz[1], d = e.dirsek[1], h = e.el[1];
@@ -503,6 +572,7 @@ const FigurKol: React.FC<{ e: Eklem; pxm: number }> = ({ e, pxm: m }) => {
   const sekil = <><polygon points={kol(lp2(o, d, 0.55), d, 0.1 * m, 0.095 * m)} /><circle cx={d[0]} cy={d[1]} r={0.048 * m} /><polygon points={kol(d, h, 0.095 * m, 0.08 * m)} /></>;
   return (
     <g>
+      <g fill="#2a2638" stroke="#2a2638" strokeWidth={5} strokeLinejoin="round">{sekil}</g>
       <g fill={PAL.kenar} transform="translate(-3 -2)">{sekil}</g>
       <g fill={PAL.dagronGolge}>{sekil}</g>
       <g transform={`translate(${h[0]} ${h[1]}) rotate(${a - 90}) scale(${m * 0.8})`}>

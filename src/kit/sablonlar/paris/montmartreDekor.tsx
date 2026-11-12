@@ -10,13 +10,14 @@ import { golgeVek, IsikAd, Kam, kirp, lerp, PAL, pr, pts, pxm, rng, V3, yolKapal
 // ---------------------------------------------------------------- GÖK ----------------------------------------------------------------
 export const GOK_ORAN = [0.322, 0.583, 0.767, 0.905];
 export const gokSinir = (ufuk: number) => GOK_ORAN.map((r) => Math.round(ufuk * r));
-export const GokBasamak: React.FC<{ ufuk: number; seed: number; isima?: boolean }> = ({ ufuk, seed, isima = true }) => {
+export const GokBasamak: React.FC<{ ufuk: number; seed: number; isima?: boolean; renkler?: string[] }> = ({ ufuk, seed, isima = true, renkler }) => {
+  const GR = renkler ?? PAL.gok;
   const s = gokSinir(ufuk), sinir = [-2400, ...s, ufuk + 900];
   const X0 = -300, X1 = 1380;
   const r = rng(seed);
-  const parca: React.ReactNode[] = PAL.gok.map((c, i) => <rect key={`b${i}`} x={X0} y={sinir[i]} width={X1 - X0} height={sinir[i + 1] - sinir[i]} fill={c} />);
+  const parca: React.ReactNode[] = GR.map((c, i) => <rect key={`b${i}`} x={X0} y={sinir[i]} width={X1 - X0} height={sinir[i + 1] - sinir[i]} fill={c} />);
   s.forEach((y, i) => {
-    const ust = PAL.gok[i];
+    const ust = GR[i];
     for (let j = 0; j < 3; j++) parca.push(<rect key={`c${i}-${j}`} x={X0} y={y + 4 + j * 7} width={X1 - X0} height={2.5} fill={ust} opacity={0.4} />);
     const n = Math.round((((X1 - X0) * 24 * 0.08) / 14) * 0.6);
     for (let j = 0; j < n; j++) parca.push(<circle key={`t${i}-${j}`} cx={X0 + r() * (X1 - X0)} cy={y + 24 + r() ** 1.6 * 24} r={1.25} fill={ust} opacity={0.35} />);
@@ -220,33 +221,58 @@ export const HaleArka: React.FC<{ k: Kam; seed: number; t: number; gok: React.Re
   for (const s of [D.sagS, D.solS]) for (let Z = Z0; Z < Zm; Z += 10) {
     const Za = Math.max(Z0, Z), Zb = Math.min(Zm, Z + 10), ton = (r() - 0.5) * 0.06;
     const renk = Zb >= Zm - 0.1 ? PAL.buguUzak : ton > 0.01 ? "#d3ccd6" : ton < -0.01 ? "#c6bfca" : PAL.camSerit;
-    camPanel.push(<polygon key={`c${s[0]}-${Z}`} points={pts(yuz(s, 0.3, 0.7, Za, Zb))} fill={renk} stroke="#7a7394" strokeWidth={1.5} />);
+    camPanel.push(<polygon key={`c${s[0]}-${Z}`} points={pts(yuz(s, 0.3, 0.7, Za, Zb))} fill={renk} stroke="#7a7394" strokeWidth={2.5} />);
   }
-  const opak = [D.sagS, D.solS].map((s, i) => <g key={`o${i}`}><polygon points={pts(yuz(s, 0, 0.3, Z0 - 40, Zm))} fill={PAL.catiAlt} /><polygon points={pts(yuz(s, 0.7, 1.0, Z0 - 40, Zm))} fill={PAL.catiAlt} /></g>);
+  // opak çatı alt yüzü + BOYUNA tarama (H2.4): aşıklar = VP'ye yakınsayan tek yönlü çizgiler (makaslara dik değil → kafes oluşmaz)
+  const asik = (s0: [number, number], u0: number, u1: number) => { const L = Math.hypot(D.mahya[0] - s0[0], D.mahya[1] - s0[1]), n = Math.round(((u1 - u0) * L) / 0.3); return Array.from({ length: n }, (_, j) => { const u = u0 + ((j + 0.5) / n) * (u1 - u0), a = egim(s0, D.mahya, u), A = p(a[0], a[1], 0.2), B = p(a[0], a[1], Zm); return `M${A[0].toFixed(1)} ${A[1].toFixed(1)}L${B[0].toFixed(1)} ${B[1].toFixed(1)}`; }).join(""); };
+  const opak = [D.sagS, D.solS].map((s, i) => <g key={`o${i}`}><polygon points={pts(yuz(s, 0, 0.3, Z0 - 40, Zm))} fill={PAL.catiAlt} /><polygon points={pts(yuz(s, 0.7, 1.0, Z0 - 40, Zm))} fill={PAL.catiAlt} /><path d={asik(s, 0, 0.3) + asik(s, 0.7, 1.0)} fill="none" stroke="#5a5278" strokeWidth={2.5} /></g>);
   // sağ duvar: ışık sınırı h = 23 − 0.2346·(80 − Z) (altı ışık, üstü gölge)
   const Zd0 = Z0 - 6;
   const duvar = [p(H.duvarSag, 0, Zd0), p(H.duvarSag, 0, Zm), p(H.duvarSag, H.sacak, Zm), p(H.duvarSag, H.sacak, Zd0)];
   const sinirH = (Z: number) => Math.max(0, H.sacak - 0.2346 * (Zm - Z));
   const isikBant = [p(H.duvarSag, 0, Zd0), p(H.duvarSag, 0, Zm), p(H.duvarSag, sinirH(Zm), Zm), p(H.duvarSag, sinirH(Zd0), Zd0)];
   const sinirUst = [p(H.duvarSag, sinirH(Zm), Zm), p(H.duvarSag, sinirH(Zd0), Zd0), p(H.duvarSag, sinirH(Zd0) + 1.6, Zd0), p(H.duvarSag, sinirH(Zm) + 1.6, Zm)];
+  // dökme demir kolon (H2.2/H2.3): yuvarlak gövde ø 0.6 + dor tipi başlık (boyun halkası · basık yastık · kare abaküs) + eğri konsol + kare plint
   const kolonlar = H.makasZ.map((Z) => {
-    const w = 0.6, X0 = H.duvarSag - w, a = p(X0, 0, Z), b = p(H.duvarSag, H.sacak, Z), ppm = pxm(k, Z);
-    // kolonun duvardaki gölgesi: kameraya doğru 1.07 m şerit (ışık sınırının altında)
+    const w = 0.6, X0 = H.duvarSag - w, ppm = pxm(k, Z), Xm = H.duvarSag - w / 2;
     const g = [p(H.duvarSag, 0, Z), p(H.duvarSag, 0, Z - 1.07), p(H.duvarSag, sinirH(Z - 1.07), Z - 1.07), p(H.duvarSag, sinirH(Z), Z)];
-    const baslik = p(X0 - 0.15, H.sacak - 0.6, Z), baslikB = p(H.duvarSag, H.sacak - 0.35, Z);
-    return <g key={`k${Z}`}><polygon points={pts(g)} fill={PAL.kolonGolge} /><rect x={a[0]} y={b[1]} width={b[0] - a[0]} height={a[1] - b[1]} fill={PAL.demirMakas} /><rect x={a[0]} y={b[1]} width={Math.max(1.5, ppm * 0.07)} height={a[1] - b[1]} fill={PAL.kenar} /><rect x={baslik[0]} y={baslikB[1]} width={baslikB[0] - baslik[0]} height={baslik[1] - baslikB[1]} fill={PAL.demirMakas} /></g>;
+    const kut = (x0: number, x1: number, h0: number, h1: number) => { const a = p(x0, h0, Z), b = p(x1, h1, Z); return { x: a[0], y: b[1], w: b[0] - a[0], h: a[1] - b[1] }; };
+    const gov = kut(X0, H.duvarSag, 0.4, H.sacak - 1.2), gw = Math.max(10, gov.w), gx = gov.x + gov.w / 2 - gw / 2;
+    const ab = kut(Xm - 0.45, Xm + 0.45, H.sacak - 0.15, H.sacak), yas = p(Xm, H.sacak - 0.15, Z), yasA = p(Xm, H.sacak - 0.42, Z), boy = kut(Xm - 0.34, Xm + 0.34, H.sacak - 1.2, H.sacak - 1.1);
+    const yw = Math.max(gw * 1.15, 0.75 * ppm) / 2, abw = Math.max(gw * 1.5, ab.w);
+    const pl = kut(Xm - 0.4, Xm + 0.4, 0, 0.4), plw = Math.max(gw * 1.35, pl.w);
+    const ks = p(X0, H.sacak - 1.15, Z), ke = p(X0 - 1.0, H.sacak - 0.15, Z), kc = p(X0, H.sacak - 0.15, Z);
+    const tarN = Math.max(2, Math.floor((gw / 2 - 2) / 5));
+    return <g key={`k${Z}`}>
+      <polygon points={pts(g)} fill={PAL.kolonGolge} />
+      <rect x={gx} y={gov.y} width={gw} height={gov.h} fill={PAL.demirMakas} />
+      {Array.from({ length: tarN }, (_, j) => <line key={j} x1={gx + gw - 3 - j * 5} y1={gov.y} x2={gx + gw - 3 - j * 5} y2={gov.y + gov.h} stroke="#2f2d46" strokeWidth={2} />)}
+      <rect x={gx} y={Math.max(gov.y, p(0, sinirH(Z), Z)[1])} width={2} height={Math.max(0, gov.y + gov.h - Math.max(gov.y, p(0, sinirH(Z), Z)[1]))} fill={PAL.kenar} />
+      <path d={`M${ks[0].toFixed(1)} ${ks[1].toFixed(1)}Q${ks[0].toFixed(1)} ${ke[1].toFixed(1)} ${ke[0].toFixed(1)} ${ke[1].toFixed(1)}L${kc[0].toFixed(1)} ${kc[1].toFixed(1)}Z`} fill={PAL.demirMakas} stroke="#2f2d46" strokeWidth={2} />
+      <path d={`M${(ks[0] - 1).toFixed(1)} ${(ks[1] + 4).toFixed(1)}Q${(ks[0] - 1).toFixed(1)} ${(ke[1] + 3).toFixed(1)} ${(ke[0] + 4).toFixed(1)} ${(ke[1] + 3).toFixed(1)}`} fill="none" stroke="#9a92ae" strokeWidth={1.5} />
+      <rect x={gx + gw / 2 - (gw * 1.1) / 2} y={boy.y} width={gw * 1.1} height={Math.max(3, boy.h)} fill="#2f2d46" />
+      <path d={`M${(yas[0] - yw).toFixed(1)} ${yas[1].toFixed(1)}Q${(yas[0] - yw * 0.95).toFixed(1)} ${yasA[1].toFixed(1)} ${(yas[0] - gw / 2).toFixed(1)} ${yasA[1].toFixed(1)}L${(yas[0] + gw / 2).toFixed(1)} ${yasA[1].toFixed(1)}Q${(yas[0] + yw * 0.95).toFixed(1)} ${yasA[1].toFixed(1)} ${(yas[0] + yw).toFixed(1)} ${yas[1].toFixed(1)}Z`} fill={PAL.demirMakas} />
+      <line x1={yas[0] - yw * 0.9} y1={yas[1] - 1} x2={yas[0] + yw * 0.9} y2={yas[1] - 1} stroke="#9a92ae" strokeWidth={1.5} />
+      <rect x={ab.x + ab.w / 2 - abw / 2} y={ab.y} width={abw} height={Math.max(4, ab.h)} fill="#5a5278" stroke="#2f2d46" strokeWidth={1.5} />
+      <rect x={pl.x + pl.w / 2 - plw / 2} y={pl.y} width={plw} height={Math.max(4, pl.h)} fill={PAL.demirMakas} stroke="#2f2d46" strokeWidth={1.5} />
+    </g>;
   });
   // Polonceau makası (tek dikmeli sade biçim): iki kol, kola dik dikme, dikme ayağından saçağa + mahyaya çekme, yatay orta çekme
+  // Polonceau makası (H2.3): kol 0.6 m "demir lama" (alt kenar koyu kontur, üst kenar ışık çizgisi Z ≥ 60), dikme 0.35, çekme 0.12 m;
+  // ekran alt sınırları kol ≥ 8, dikme ≥ 6, çekme ≥ 3 px (dekor = cs 1; P06b cs ≥ 1); düğüm noktalarında döküm plaka (ø 1.6 × kol)
   const makaslar = [...H.makasZ].reverse().map((Z) => {
     const ppm = pxm(k, Z), q = (n: [number, number]) => p(n[0], n[1], Z);
-    const kol = Math.max(3, 0.5 * ppm), dik = Math.max(2.5, 0.25 * ppm), cek = Math.max(2, 0.05 * ppm);
-    const ln = (a: [number, number], b: [number, number], w: number, key: string) => { const A = q(a), B = q(b); return <line key={key} x1={A[0]} y1={A[1]} x2={B[0]} y2={B[1]} stroke={PAL.demirMakas} strokeWidth={w} strokeLinecap="round" />; };
-    const isikKenar = Z >= 70 ? [D.sagK, D.solK].map((n, i) => { const A = q(n), B = q(i ? D.solD : D.sagD); return <line key={`kk${i}`} x1={A[0] - dik / 2} y1={A[1]} x2={B[0] - dik / 2} y2={B[1]} stroke={PAL.kenar} strokeWidth={1} />; }) : null;
+    const kol = Math.max(8, 0.6 * ppm), dik = Math.max(6, 0.35 * ppm), cek = Math.max(3, 0.12 * ppm);
+    const ln = (a: [number, number], b: [number, number], w: number, key: string, dis = true) => { const A = q(a), B = q(b); return <g key={key}>{dis && <line x1={A[0]} y1={A[1] + 1.5} x2={B[0]} y2={B[1] + 1.5} stroke="#2f2d46" strokeWidth={w + 2} strokeLinecap="round" />}<line x1={A[0]} y1={A[1]} x2={B[0]} y2={B[1]} stroke={dis ? PAL.demirMakas : "#2f2d46"} strokeWidth={w} strokeLinecap="round" /></g>; };
+    const isik = (a: [number, number], b: [number, number], key: string) => { const A = q(a), B = q(b), L = Math.hypot(B[0] - A[0], B[1] - A[1]) || 1, nx = (B[1] - A[1]) / L, ny = -(B[0] - A[0]) / L, s0 = ny < 0 ? 1 : -1; return <line key={key} x1={A[0] + nx * s0 * (kol / 2 - 1)} y1={A[1] + ny * s0 * (kol / 2 - 1)} x2={B[0] + nx * s0 * (kol / 2 - 1)} y2={B[1] + ny * s0 * (kol / 2 - 1)} stroke="#9a92ae" strokeWidth={1.5} />; };
+    const isikKenar = Z >= 70 ? [D.sagK, D.solK].map((n, i) => { const A = q(n), B = q(i ? D.solD : D.sagD); return <line key={`kk${i}`} x1={A[0] - dik / 2} y1={A[1]} x2={B[0] - dik / 2} y2={B[1]} stroke={PAL.kenar} strokeWidth={2} />; }) : null;
+    const plaka = [D.solD, D.sagD, D.mahya, D.solS, D.sagS].map((n, i) => { const c = q(n); return <circle key={`pl${i}`} cx={c[0]} cy={c[1]} r={kol * 0.8} fill={PAL.demirMakas} stroke="#2f2d46" strokeWidth={2} />; });
     return <g key={`m${Z}`}>
-      {ln(D.solS, D.mahya, kol, "k1")}{ln(D.sagS, D.mahya, kol, "k2")}
+      {ln(D.sagD, D.sagS, cek, "c1", false)}{ln(D.sagD, D.mahya, cek, "c2", false)}{ln(D.solD, D.solS, cek, "c3", false)}{ln(D.solD, D.mahya, cek, "c4", false)}{ln(D.solD, D.sagD, cek, "c5", false)}
       {ln(D.sagK, D.sagD, dik, "d1")}{ln(D.solK, D.solD, dik, "d2")}
-      {ln(D.sagD, D.sagS, cek, "c1")}{ln(D.sagD, D.mahya, cek, "c2")}{ln(D.solD, D.solS, cek, "c3")}{ln(D.solD, D.mahya, cek, "c4")}{ln(D.solD, D.sagD, cek, "c5")}
-      {isikKenar}
+      {ln(D.solS, D.mahya, kol, "k1")}{ln(D.sagS, D.mahya, kol, "k2")}
+      {Z >= 60 && <>{isik(D.solS, D.mahya, "i1")}{isik(D.sagS, D.mahya, "i2")}</>}
+      {isikKenar}{plaka}
     </g>;
   });
   // alın camı (üçgen) + 4 düşey kayıt (aralıklar eşit değil)
@@ -414,3 +440,34 @@ const h2 = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
 const karis = (a: string, b: string, t: number) => { const A = h2(a), B = h2(b); return `#${A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, "0")).join("")}`; };
 export { karis, yolKapali };
 export type { V3 };
+
+// ---------------------------------------------------------------- SARKIK ZARF (atölye; mekanlar H2.6) ----------------------------------------------------------------
+/** Makas orta çekmesinden tek halatla asılı, yarı inik kumaş (ağ/halka/sepet yok). Z düzleminde; ışık sınırı h 19.5 (altı ağız güneşi). */
+export const SarkikZarf: React.FC<{ k: Kam; X: number; Z: number; seed: number; ust?: number; alt?: number; asma?: number }> = ({ k, X, Z, seed, ust = 23.4, alt = 15, asma = 24.4 }) => {
+  const r = rng(seed), p = (x: number, h: number) => pr(k, X + x, h, Z);
+  // profil: üstte 0.5 m toplanmış boğum → h 19.5–20.5'te 4 m en → alta toplanmış, düzensiz etek
+  const prof: [number, number][] = [[ust, 0.28], [ust - 0.8, 0.9], [ust - 2.2, 1.7], [20.2, 2.0], [19, 1.95], [17.6, 1.6], [16.4, 1.05]];
+  const sag = prof.map(([h, w]) => p(w * (1 + (r() - 0.5) * 0.08), h)), sol = prof.map(([h, w]) => p(-w * (1 + (r() - 0.5) * 0.08), h)).reverse();
+  const etek: P[] = Array.from({ length: 7 }, (_, i) => { const t = i / 6, x = 1.05 - 2.1 * t; return p(x, alt + 0.6 * Math.abs(Math.sin(t * 9 + r())) + (i % 2 ? 0.5 : 0)); });
+  const govde: P[] = [...sag, ...etek, ...sol];
+  const sinir = pr(k, 0, 19.5, Z)[1];
+  const id = `sz${seed}`;
+  const kivrim = [-1.3, -0.6, 0.1, 0.75, 1.35].map((x, i) => { const a = p(x * 0.25, ust - 0.6), m = p(x * 1.05 + (r() - 0.5) * 0.3, 19.2), b = p(x * 0.7 + (r() - 0.5) * 0.2, alt + 0.7); return <path key={i} d={`M${a[0].toFixed(1)} ${a[1].toFixed(1)}Q${m[0].toFixed(1)} ${m[1].toFixed(1)} ${b[0].toFixed(1)} ${b[1].toFixed(1)}`} fill="none" stroke={PAL.balonTarama} strokeWidth={2} strokeLinecap="round" />; });
+  const cx = pr(k, X, 0, Z)[0];
+  const asmaA = pr(k, X, asma, Z), asmaB = p(0, ust);
+  return (
+    <g>
+      <line x1={asmaA[0]} y1={asmaA[1]} x2={asmaB[0]} y2={asmaB[1]} stroke={PAL.halat} strokeWidth={2} />
+      <circle cx={asmaA[0]} cy={asmaA[1]} r={3} fill={PAL.halatGolge} />
+      <defs><clipPath id={id}><polygon points={pts(govde)} /></clipPath></defs>
+      <polygon points={pts(govde)} fill={PAL.balonGolge} />
+      <g clipPath={`url(#${id})`}>
+        <rect x={cx - 200} y={sinir} width={200} height={400} fill={PAL.balonIsik} />
+        <rect x={cx} y={sinir} width={200} height={400} fill={PAL.terminator} />
+        {kivrim}
+      </g>
+      <polygon points={pts(govde)} fill="none" stroke={PAL.konturGolge} strokeWidth={2.5} strokeLinejoin="round" />
+      {(() => { const a = p(-0.3, ust), b = p(0.3, ust); return <rect x={a[0]} y={a[1] - 3} width={b[0] - a[0]} height={6} fill={PAL.halka} />; })()}
+    </g>
+  );
+};

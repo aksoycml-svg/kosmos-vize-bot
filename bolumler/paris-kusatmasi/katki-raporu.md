@@ -703,3 +703,66 @@
 - Kararlar: P06b üst bant yazısı: P06 yazısı f160'ta bitiyor, f168–200 boş, zaman kaydırma gerekmedi. `isik: "havaGeri"` doğrulayıcıda geçersiz (yalnız gun|haleSabah; sinirlar'a yalnız cy dokunma talimatı) → `isik` haleSabah kaldı, istenen değer `isik_B2: "havaGeri"` anahtarında; motion şablonu ekleyince `isik`e taşınmalı. sinirlar.json'da yukleme cy sınırı yalnız `not` metninde yazılı (kamera cy [−250,450] zaten kapsıyor).
 - Uygulanan kurallar: zamanlama/metin/ses değişmedi; render yok (şablon kodu henüz değişmedi): P06 ve P07 `lint.not` "B2, render motion sonrası". Doğrulayıcı --tam GEÇTİ (0 hata, 1 uyarı: foley.json yok).
 - Açık/not: motion `isik: havaGeri`, `yon`, `isik_B2`, `sepet_x`, `geri_surukleme_m`, `isik_B2` anahtarlarını şablona eklemeli; sepet_x'in cx mi dekor kayması mı olduğu şablonda netleşmeli. Şablon sonrası P06b f168/230 + şerit f200–260 ve P07 f196 kontrol karesi render edilip bakılmalı (cx 40–50 doğrulanmadı).
+
+## motion · 2026-11-12 · B2 turu: MONTMARTRE/hale düzeltmeleri (eleştiri B #1–5, H2, G2)
+- Ne yaptım:
+  - **KRİTİK #1:** P06b f168'de Niépce zarfı var. Yeni `BalonAltan` (Balon.tsx) zarfı alttan çiziyor. Siluet tanjant konisinin izdüşümü; alt yay ekranda (510, 216), H2.5 ile ±1 px. Işık hilali, vernik çizgisi, 78° taramalı terminatör ve gölge gövde var. 16 meridyen ve h 4.5 paraleli çizili. Askı halatları halkadan ağ düğümlerine gidiyor (`balonAltDugum`). Boğaz artık kutu değil: aşağı daralan kumaş tüp, 3 kıvrımı ve toplanmış ağzı var. Çizim sırası: makas < zarf < halka < sandık.
+  - **Hale H2:** makas alt sınırları uygulandı (kol ≥ 8, dikme ≥ 6, çekme ≥ 3 px). Düğüm plakaları, alt kenar koyu konturu ve Z ≥ 60'ta üst ışık çizgisi var. Opak çatıda VP'ye yakınsayan boyuna aşık taraması var (kafes oluşmuyor). Dor tipi kolon başlığı, eğri konsol, plint ve gövde taraması eklendi. Cam kenarı 2.5 px. Atölye için `SarkikZarf` (X −22, Z 65, seed 183) eklendi. Daguerre X 8.4 oldu: balon, sepet, siluetler, sandıklar, asma halatı (827, 129) ve duvar gölgesi buna göre kaydı.
+  - **#2 Figür (SabahFigur yeniden):** dönem başlıkları eklendi (silindir, melon, kasket, denizci beresi, fötr, başörtüsü). Kepi ve ponpon yok. Omuz düşük eğimli; üst kol gövde içinden başladığı için yumru kalmadı. Kollar konik, iki parçalı ve dirsekli. Dirsek IK ile her zaman dışa-aşağı bükülüyor. Dış kontur `#2a2638`, iç kenar ışığı maske ile. İç çizgiler: yaka, palto önü, cep, bluz kuşağı ve kırmaları. ≥ 120 px figürlerde sağ yanda 78° tarama var. Uzuv uç yaylarının yönü düzeltildi (dizde "delik" hatası). Biniş adımında öne kalkan bacak gövdenin önünde, kendi konturuyla çiziliyor (`onBacak`). Yükleyicilerin elleri sandığın alt kenarında: başüstü taşıma, dirsek bükük. Eski kulp tutuşu kol boyunu aşıyordu ve "Z" kollar bundan çıkıyordu.
+  - **#3 Havadan Paris (G2):** yeni `havadanParis.tsx` yazıldı. Kamera yüksekliği H + 20 (çatı düzlemi). G2.3 anahtarları bu varsayımla tutuyor: hale ağzı mahyası f0 (667, 1104), f158 (648, 1381); Notre-Dame tabanı y 955; Panthéon x 87. Sahnede ray yelpazesi (20 → 9 hat, D < 250 çift ray), 2 hangar, duran 4 vagon, rıhtım ve ağaçlar var. Seine yatay kesik su çizgileriyle çizildi. Pont d'Austerlitz 5 basık kemerli. Île Saint-Louis, Notre-Dame (iki kule + flèche + apsis) ve Panthéon (sütunlu kasnak + fener + küçük haç) ×1.8. Jardin des Plantes kış ağaçlarıyla, bulvar yarığı çift ağaç sırasıyla var. Çatı denizi "satır" dilinde: cephe, Haussmann balkon çizgileri, saçak silmesi, pencere tikleri, mansard brisis + lucarne + terrasson ya da eğik çatı. Parsel sınırında baca + külah var. Sokaklar VP'ye yakınsıyor; sağ yan yüzlerde tarama, uzak bantta buğu. Işık `ISIK_YON.havaGeri`. Gök güneşe sırt (P10a satırı, ışıma yok). Balonlarda ışık yüzü ≈ %65 (`isikOfs 0.55`). Duman kaynağı (1150, 700).
+  - **#4 Darbe:** örümcek çizgileri kaldırıldı. Yerine düzensiz yırtık delik geldi: 17 köşeli koyu iç, terminatör halkası, 4 kısa kıvrık kumaş dili. Parlama 2–3 krem yırtık dil (f108–114); konturlu disk yok. Kül kümelerinin konturu 2 px. Atış izi 6 kopuk parçadan oluşuyor ve düzensiz kenarlı. Kalınlık kaynakta 13 px, uca doğru 3 px'e iniyor. Parçalar t ≤ 0.84'te, yani balona ≈ 60 px kala bitiyor. Dağılma kaynaktan başlıyor: parçalar yükseliyor, kısalıyor; fade yok.
+  - **#5 Sepet/torba:** sepet hasır örgü oldu: 0.05 m sıralar, kabarık hücreler, yarım kaydırma. Rim'e çentikli halat kenar eklendi (ön kenar SepetOn'da, arka kenar SepetArka'da). Torbaların her birinin kendi varyantı var (gövde, büzgü, bağ, ip boyu); boy [1, .9, 1.1, .94], açı [−5, 3, −2, 7]°.
+  - P07 B: `sepet_x` ve yükseliş kayması uygulandı. B'nin şehri de satır diliyle çiziliyor (seed 177, kontrajur, imza yok).
+  - `isik_B2` → `isik: "havaGeri"` (bolum.json P07 A). `sinirlar.json` MONTMARTRE isik listesine `havaGeri` eklendi.
+  - Render (`kalibrasyon/B2/`): P03 f80; P06b f168, f200, f230; P07 f0, f112, f196. Her biri tam + 360 + güvenli + güvenli-360. Şeritler: P06b f200–260, P07 f0–158, P07 f160–300 (4 kare). Ayrıca `karsilastir.png`.
+- Dokunduğum dosyalar: src/kit/props/paris/Balon.tsx, src/kit/props/paris/SabahFigur.tsx, src/kit/sablonlar/paris/Montmartre.tsx, src/kit/sablonlar/paris/montmartreDekor.tsx, src/kit/sablonlar/paris/montmartreDunya.ts, src/kit/sablonlar/paris/havadanParis.tsx (yeni), src/kit/sinirlar.json (yalnız isik listesi), bolumler/paris-kusatmasi/bolum.json (yalnız P07 `isik_B2` → `isik`), bolumler/paris-kusatmasi/kalibrasyon/B2/* (yeni), bu rapor.
+- Aldığım kararlar ve gerekçeleri:
+  - **`sepet_x` anlamı:** sepet, Dagron, torbalar, halatlar ve kol birlikte **dekor px** (cs 1 ekranı) ile yatay kayar. Arka plan kaymaz; dünyada yanal kaymaya denk gelir. −60 yeterli çıktı: f196'da 4. torbanın sağ kenarı x ≈ 905 < 920 (kilit noktası eklendi, ihlal 0).
+  - **P07 B yükselişi (ölçüm):** sepet `yukselis` (f250–320) boyunca kadrajda yukarı kayıyor. Kayma inout; dekor −90 / cs, yani ekranda −90 px. Ölçülen: f300 ≈ −72 px, f310'da 80 px eşiği geçiliyor, f320'de −90 px. Aynı aralıkta şehir H 150 → 300 m alçalıyor: zemin öğeleri ufka göre iki kat uzaklaşıyor, bina boyları şeritte gözle küçülüyor. Hareket plan sonundan 16 kare önce bitiyor. Düşen torbalar ve kum izi bu kaymaya girmiyor (bırakılmış nesneler). `yukselis.kadraj_px` parametresiyle ayarlanabilir; varsayılan −90.
+  - **G2 kamera yüksekliği:** G2.3 tablosu yalnız "kamera = H + 20 m" varsayımıyla tutuyor (H, çatı düzleminin üstündeki yükseklik). Kodda `zeminUstu 20` olarak uygulandı.
+  - Uzak bantta buğu tavanı 0.62'de tuttum (şartnamede 0.80). 0.80'de uzak şeritler ufuk tonunda kayboluyordu. **Onay bekliyor** (mekân sorumlusu).
+  - P07 B'de gölgedeki cephelerde tarama yok. Tüm cepheyi taramak kadrajın > %20'sini kaplıyordu; tarama yalnız yan yüzlerde.
+- Kareye uyarlarken değiştirdiğim değerler (yönetmen/mekân plana işler):
+  | Öğe | Şartname/json | Kod | Neden |
+  |---|---|---|---|
+  | Dagron P06b biniş noktası | BL rim köşesi (175, 920), ayak (128, 1275) | arka rim, BL'den %25 içeride (−0.53, 0.95, 0.42); duruş/tırmanış pozları dünya X +0.27, Z +0.13 | cx 40–50 ile bile gövde sol 80 px payında kesikti. Şimdi sepetin arkasından biniyor, gövde kadrajda, kalkan bacak rim üstünde görünüyor. Ayakları f168–212'de sepetin arkasında kalıyor |
+  | Yükleyici elleri | kulplarda | sandığın alt kenarında | kol boyu (0.57 m) kulba yetmiyordu |
+  | Torba boyu/açısı | eş | boy ±10 %, açı −5…7° | eleştiri #5 |
+  | Uzak buğu α | ≤ 0.80 | ≤ 0.62 | uzak şerit okunsun |
+  | Meridyen sayısı (alttan zarf) | 10 | 16 | 10'la kadrajda yalnız 3–4 tanesi görünüyordu |
+- Ölçümler (Lab D65, B2 kareleri):
+  | Kare | L* ort | p95 | C* ort | C* p99.9 | C*>32 | sıcak % | kırmızı px |
+  |---|---|---|---|---|---|---|---|
+  | P03 f80 | 61.8 | 82.4 | 16.1 | 24.0 | 0 | 37.9 | 0 |
+  | P06b f168 / f200 / f230 | 54.2 / 55.5 / 54.9 | 79.6 / 79.6 / 78.4 | 14.0 / 13.2 / 12.9 | ≤ 23.8 | 0 | 45.0 / 47.9 / 51.8 | 0 |
+  | P07 f0 / f112 / f196 | 64.3 / 64.5 / 57.5 | 81.8 / 82.4 / 80.1 | 14.7 / 14.0 / 13.4 | ≤ 24.2 | 0 | 42.8 / 33.4 / 37.2 (A eşiği ≥ 22 ✓) | 0 |
+  - Güvenli alan: P03 f80 0 ihlal; P06b f230 0; P07 f0 / f112 / f196 0. **P06b f168 ve f200'de 1'er ihlal var:** "sepet tabanı FL alt 420 içinde" (y 1636 ve 1503). Neden H2.9 kamerası: f168'de cy +160, f200'de iniş sürüyor. Kamera json'ı yönetmenin; değiştirmedim.
+  - PARIS-CATI P01 f24: V4 ile piksel farkı 0 ✓. tsc temiz. Doğrulayıcı `--tam` GEÇTİ (0 hata, 1 uyarı: foley.json yok).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Süreklilik: zarf P03 → P06b → P07 aynı.
+  - Fizik:
+    - Kol boyu aşımı düzeldi.
+    - Zarf haleye sığıyor; Daguerre duvardan çıktı.
+    - Darbe izi balona değmiyor.
+    - Bırakılan torbalar sepetle yükselmiyor.
+  - Tek ışık: havaGeri ve haleSabah tek vektörden; balonların ışık oranı da aynı yönden.
+  - Kemer yok. Köprü kemeri basık. Kepi ve ponpon yok. Kırmızı 0. Yeni hex yok.
+  - Fade yok: duman parçalanarak, parlama deliğe çekilerek bitiyor.
+  - Kendi yakaladığım kusurlar:
+    - Uzuv uç yayları ters yöndeydi (dizde delik).
+    - Omuz yumrusu üst kolun yuvarlak ucundan geliyordu.
+    - Su çizgisi döngüsü sonsuzdu.
+    - Hasır ilk denemede tuğla duvar gibi okunuyordu (dikey ayraçlar kaldırıldı).
+    - Duman ilk denemede boncuk zinciri gibiydi.
+- Açık sorular / bir sonraki ajana notlar:
+  1. **Yönetmen:** P06b f168–200'de sepet tabanı alt 420 bandında. Ya `lint.izin` (açılış, temas yok; sandık oturması f190'da taban 1503 ≈ sınır) ya da f190–200 cy'yi ≈ −10 çekmek.
+  2. **Yönetmen:** P06b f232–244'te Dagron'un başı/şapkası kadraj üstünden kısa süre taşıyor (k2 pozu h 2.12, cs 1.4). İstenirse f236–244 cy +30.
+  3. **Eleştirmen, öz bakış (puan ≈ 6.5):**
+     - P07 B'de Dagron'un rime yaslanan pozu hâlâ "uzanmış" okunuyor (kol rim boyunca yatay).
+     - P06b'de yükleyici kolları başüstü "U" biçiminde; dirsekli ama sert.
+     - P07 A'da ufuk üstündeki soluk gök bandı geniş (G2.5 gök basamakları).
+     - Alttan zarfın ağı yalnız yayın yakınında okunuyor.
+     - Biniş anı orta düzeyde okunuyor (f224–232, kalkan bacak + ipe uzanan kol).
+     - Hasır 360'ta "yatay şeritli" okunuyor, örgü ayrıntısı tam boyda.
+  4. **Tasarımcı:** başlık eşlemesi kodda `BASLIK_VARS`: palto=silindir, düz=melon, işçi/çocuk=kasket, pelerin=fötr, şal/etek=başörtüsü, dagron=silindir. Override: kazıkçı ve yükleyici-2 bere, Daguerre dibinde melon/silindir/kasket. §3.0 güncellemesi bekleniyor.
+  5. Mekân: buğu α 0.62 sapmasının onayı.

@@ -21,10 +21,11 @@ export const prV = (k: Kam, v: V3) => pr(k, v[0], v[1], v[2]);
 export const pxm = (k: Kam, Z: number) => k.F / Math.max(1e-3, Z - k.Z);
 
 // ---- ışık (ışığa doğru birim vektör; X sağ, h yukarı, Z ileri) ----
-export type IsikAd = "gunMontmartre" | "haleSabah";
+export type IsikAd = "gunMontmartre" | "haleSabah" | "havaGeri";
 export const ISIK_YON: Record<IsikAd, V3> = {
   gunMontmartre: [-0.692, 0.208, 0.692], // tasarım §14.1: güneş 45° solda-önde, 12°
   haleSabah: [-0.413, 0.208, 0.887], // mekanlar §2v2-H.3: aynı güneş, kamera 161° → 25° solda
+  havaGeri: [-0.102, 0.208, -0.973], // mekanlar §2v2-G2.5: P07 A kamera 310° → güneş arkada, 6° solda (önden ışık)
 };
 /** h yüksekliğindeki noktanın zemindeki (h0) gölgesi: (X + gx·Δh, Z + gz·Δh) — meydan (3.325, −3.325), hale (1.988, −4.264) */
 export const golgeVek = (isik: IsikAd): [number, number] => { const [x, y, z] = ISIK_YON[isik]; return [-x / y, -z / y]; };

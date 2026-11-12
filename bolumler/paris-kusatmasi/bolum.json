@@ -1804,8 +1804,7 @@
     },
     "hava_perspektifi": "'sis' çizilmez: Paris uzak buğu #dccfcf (>1500 m), orta bant #b0a6c0 (600-1500 m); D>600'de kontur/tarama yok (mekanlar §2v2.9)",
     "arka": "hale",
-    "isik": "haleSabah",
-    "isik_B2": "havaGeri",
+    "isik": "havaGeri",
     "ufuk_y": 900,
     "ray_demeti": {
      "yon": "agiza",

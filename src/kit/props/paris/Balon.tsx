@@ -22,6 +22,7 @@ export type BalonDurum = {
   isik?: P; // ışığa doğru ekran yönü (birim)
   coker?: { t: number; delik: P; seed: number }; // kısmi sönme (P07): delik = merkeze göre ofset (px)
   ag?: boolean;
+  isikOfs?: number; // ışık diskinin kayması (R oranı): 1.08 → ışık yüzü ≈ %35 (kontrajur, §14.1); 0.55 → ≈ %65 (önden ışık, havaGeri G2.5)
 };
 const N_UST = 48, N_ALT = 28;
 type Profil = { w: (y: number) => number; yQ: number };
@@ -85,7 +86,8 @@ export const Balon: React.FC<{ b: BalonDurum }> = ({ b }) => {
   const zarfD = yolKapali(zarf);
   const L = b.isik ?? ([-0.62, -0.78] as P);
   const ck = b.coker ? 1 - 0.3 * b.coker.t : 1; // çökmede ışık diski küçülür
-  const lit: P = [c[0] + L[0] * R * 1.08, c[1] + L[1] * R * 1.08], band: P = [c[0] + L[0] * R * 0.88, c[1] + L[1] * R * 0.88];
+  const lo = b.isikOfs ?? 1.08, bo = lo - 0.2;
+  const lit: P = [c[0] + L[0] * R * lo, c[1] + L[1] * R * lo], band: P = [c[0] + L[0] * R * bo, c[1] + L[1] * R * bo];
   // ağ
   const ag: { d: string; isik: boolean }[] = [];
   const dugum: P[] = [];
@@ -190,22 +192,25 @@ export const Balon: React.FC<{ b: BalonDurum }> = ({ b }) => {
     </g>
   );
 };
-/** isabet deliği: koyu delik + 6 radyal yırtık (kenar iç yüzü açık, dış yüzü gölge), mürekkep 3 px (tasarım §5) */
+/** isabet deliği (KE-PK-E1 v2): düzensiz yırtık delik — koyu iç + kenarda kısa kıvrık kumaş dilleri (iç yüz açık, dış yüz gölge).
+ *  Işınsal çizgi YOK (B turu "örümcek" okuması). Dil boyu ≤ 0.45 r; kontur ince (1.5 px), gravür kenarı. */
 const Delik: React.FC<{ c: P; r: number; seed: number }> = ({ c, r, seed }) => {
   if (r < 0.5) return null;
   const g = rng(seed);
-  const kenar: P[] = Array.from({ length: 12 }, (_, i) => { const a = (i / 12) * Math.PI * 2, q = r * (i % 2 ? 0.75 + 0.2 * g() : 1 + 0.25 * g()); return [c[0] + q * Math.cos(a), c[1] + q * Math.sin(a)]; });
-  const yirtik = Array.from({ length: 6 }, (_, i) => {
-    const a = (i / 6) * Math.PI * 2 + g() * 0.5, L = r * (1.5 + g() * 0.9), b0: P = [c[0] + r * Math.cos(a), c[1] + r * Math.sin(a)];
-    const u: P = [c[0] + (r + L) * Math.cos(a + 0.12), c[1] + (r + L) * Math.sin(a + 0.12)], m: P = [c[0] + (r + L * 0.5) * Math.cos(a - 0.1), c[1] + (r + L * 0.5) * Math.sin(a - 0.1)];
-    const flap: P = [c[0] + (r + L * 0.45) * Math.cos(a + 0.35), c[1] + (r + L * 0.45) * Math.sin(a + 0.35)];
-    return { cizgi: `M${b0[0].toFixed(1)} ${b0[1].toFixed(1)}Q${m[0].toFixed(1)} ${m[1].toFixed(1)} ${u[0].toFixed(1)} ${u[1].toFixed(1)}`, flap: [b0, flap, m] as P[] };
+  const n = 17;
+  const kenar: P[] = Array.from({ length: n }, (_, i) => { const a = (i / n) * Math.PI * 2 + (g() - 0.5) * 0.25, q = r * (0.62 + 0.5 * g()) * (i % 3 === 0 ? 1.18 : 1); return [c[0] + q * Math.cos(a) * 1.15, c[1] + q * Math.sin(a) * 0.85]; });
+  // 4 yırtık dil: delik kenarından dışa kıvrılan kısa üçgen (kumaşın açılmış kenarı)
+  const diller = [0.3, 1.9, 3.3, 4.8].map((a0) => {
+    const a = a0 + (g() - 0.5) * 0.4, w = 0.32 + 0.15 * g(), L = r * (0.28 + 0.17 * g());
+    const k0: P = [c[0] + r * 0.8 * Math.cos(a - w) * 1.15, c[1] + r * 0.8 * Math.sin(a - w) * 0.85], k1: P = [c[0] + r * 0.8 * Math.cos(a + w) * 1.15, c[1] + r * 0.8 * Math.sin(a + w) * 0.85];
+    const uc: P = [c[0] + (r * 0.95 + L) * Math.cos(a + 0.2) * 1.15, c[1] + (r * 0.95 + L) * Math.sin(a + 0.2) * 0.85];
+    return { d: `M${k0[0].toFixed(1)} ${k0[1].toFixed(1)}Q${((k0[0] + uc[0]) / 2).toFixed(1)} ${((k0[1] + uc[1]) / 2 - 2).toFixed(1)} ${uc[0].toFixed(1)} ${uc[1].toFixed(1)}Q${((k1[0] + uc[0]) / 2 + 2).toFixed(1)} ${((k1[1] + uc[1]) / 2).toFixed(1)} ${k1[0].toFixed(1)} ${k1[1].toFixed(1)}Z`, ic: a0 < 3 };
   });
   return (
-    <g>
-      {yirtik.map((y, i) => <polygon key={`f${i}`} points={pts(y.flap)} fill={i % 2 ? PAL.yirtikIc : PAL.balonGolge} stroke={PAL.delik} strokeWidth={2} strokeLinejoin="round" />)}
-      <polygon points={pts(kenar)} fill={PAL.delik} stroke={PAL.delik} strokeWidth={3} strokeLinejoin="round" />
-      {yirtik.map((y, i) => <path key={`y${i}`} d={y.cizgi} fill="none" stroke={PAL.delik} strokeWidth={3} strokeLinecap="round" />)}
+    <g strokeLinejoin="round">
+      <polygon points={pts(kenar.map((q) => [c[0] + (q[0] - c[0]) * 1.12, c[1] + (q[1] - c[1]) * 1.12] as P))} fill={PAL.terminator} />
+      <polygon points={pts(kenar)} fill={PAL.delik} stroke={PAL.konturGolge} strokeWidth={1.5} />
+      {diller.map((d, i) => <path key={i} d={d.d} fill={d.ic ? PAL.yirtikIc : PAL.balonGolge} stroke={PAL.konturGolge} strokeWidth={1.5} />)}
     </g>
   );
 };
@@ -234,6 +239,15 @@ const yuzGorunur = (k: Kam, a: V3, b: V3, merkez: V3) => {
   const m: V3 = [(a[0] + b[0]) / 2, 0, (a[2] + b[2]) / 2], n: [number, number] = [m[0] - merkez[0], m[2] - merkez[2]], c = kamPos(k);
   return (c[0] - m[0]) * n[0] + (c[2] - m[2]) * n[1] > 0;
 };
+/** rim halatı (B2): sarılı halat, açık ton + çapraz büküm çentikleri (≈ 5 cm), alt kenarda koyu gölge. idx: üst köşe sırası (ön: [3,0,1], arka: [1,2,3]) */
+const RimHalat: React.FC<{ k: Kam; s: SepetPoz; idx: number[] }> = ({ k, s, idx }) => {
+  const { ust } = sepetKose(s), p = (v: V3) => pr(k, ...v), U = ust.map(p);
+  const rw = Math.max(3, 0.055 * pxmK(k, s.Z - 0.4));
+  const cent: string[] = [];
+  for (let n = 1; n < idx.length; n++) { const a = ust[idx[n - 1]], b = ust[idx[n]], L = Math.hypot(b[0] - a[0], b[2] - a[2]), nn = Math.max(4, Math.round(L / 0.05)); for (let q = 0; q < nn; q++) { const t = (q + 0.5) / nn, c0 = p([lerp(a[0], b[0], t), a[1], lerp(a[2], b[2], t)]); cent.push(`M${(c0[0] - rw * 0.32).toFixed(1)} ${(c0[1] + rw * 0.42).toFixed(1)}L${(c0[0] + rw * 0.32).toFixed(1)} ${(c0[1] - rw * 0.42).toFixed(1)}`); } }
+  const d = yolAcik(idx.map((n) => U[n]));
+  return <g strokeLinejoin="round" strokeLinecap="round"><path d={d} fill="none" stroke={PAL.sepetKenar} strokeWidth={rw + 3} transform={`translate(0 ${rw * 0.25})`} /><path d={d} fill="none" stroke={PAL.halat} strokeWidth={rw} />{rw >= 4 && <path d={cent.join("")} fill="none" stroke={PAL.halatGolge} strokeWidth={Math.max(1, rw * 0.16)} />}<path d={d} fill="none" stroke={PAL.kamisIsik} strokeWidth={Math.max(1, rw * 0.18)} transform={`translate(${-rw * 0.15} ${-rw * 0.28})`} /></g>;
+};
 export type SepetCiz = { k: Kam; s: SepetPoz; isikYuz: string; cokme?: number; kamis?: number; kontur?: number; dx?: number; dy?: number; ic?: React.ReactNode; isikSol?: boolean };
 /** arka: ağız içi (iç duvarlar) — içerik (çuval, sandık, figür) bundan SONRA, SepetOn'dan ÖNCE çizilir */
 export const SepetArka: React.FC<SepetCiz> = ({ k, s, dx = 0, dy = 0 }) => {
@@ -247,14 +261,13 @@ export const SepetArka: React.FC<SepetCiz> = ({ k, s, dx = 0, dy = 0 }) => {
     const j = (i + 1) % 4;
     if (!yuzGorunur(k, ust[i], ust[j], m)) ic.push(<polygon key={i} points={pts([U[i], U[j], derin[j], derin[i]])} fill={PAL.hasirGolge} stroke={PAL.sepetIc} strokeWidth={1.5} />);
   }
-  return <g transform={`translate(${dx} ${dy})`}><polygon points={pts(U)} fill={PAL.sepetIc} />{ic}</g>;
+  return <g transform={`translate(${dx} ${dy})`}><polygon points={pts(U)} fill={PAL.sepetIc} />{ic}<RimHalat k={k} s={s} idx={[1, 2, 3]} /></g>;
 };
 export const SepetOn: React.FC<SepetCiz & { torbalar?: React.ReactNode }> = ({ k, s, isikYuz, cokme = 0, kamis = 0.05, kontur = 4, dx = 0, dy = 0, torbalar }) => {
   const { alt, ust } = sepetKose(s);
   const m: V3 = [s.X, 0, s.Z];
   const yuzler: React.ReactNode[] = [];
   const p = (v: V3) => pr(k, ...v);
-  const kenar = (c: string) => c === isikYuz ? PAL.kamisIsik : "#5d4a4c";
   for (let i = 0; i < 4; i++) {
     const j = (i + 1) % 4;
     if (!yuzGorunur(k, alt[i], alt[j], m)) continue;
@@ -267,36 +280,44 @@ export const SepetOn: React.FC<SepetCiz & { torbalar?: React.ReactNode }> = ({ k
     const Ac = p([alt[i][0], alt[i][1] + c, alt[i][2]]), Bc = p([alt[j][0], alt[j][1] + c, alt[j][2]]);
     const ppm = pxmK(k, (alt[i][2] + alt[j][2]) / 2);
     const genis = Math.hypot(alt[j][0] - alt[i][0], alt[j][2] - alt[i][2]);
-    const n = Math.max(4, Math.round(genis / kamis));
-    const kamisCiz: string[] = [];
-    for (let q = 1; q < n; q++) {
-      const t = q / n, a = [lerp(Ac[0], Bc[0], t), lerp(Ac[1], Bc[1], t)], b = [lerp(D[0], C[0], t), lerp(D[1], C[1], t)];
-      const bow = cokme * ppm * 0.012 * Math.sin(Math.PI * t);
-      kamisCiz.push(`M${a[0].toFixed(1)} ${a[1].toFixed(1)}Q${((a[0] + b[0]) / 2 + bow).toFixed(1)} ${((a[1] + b[1]) / 2).toFixed(1)} ${b[0].toFixed(1)} ${b[1].toFixed(1)}`);
+    // HASIR ÖRGÜ (B2, eleştiri #5): yatay sıralar (≈ 0.07 m), her sırada kabarık örgü hücreleri (≈ 0.1 m), sıra başına yarım hücre kaydırma.
+    // Hücrenin üst kenarı ışık çizgisi, alt kenarı + hücre arası koyu çizgi. Düz dikey çıta / kuşak YOK (sandık okuması kalkar).
+    const nS = Math.max(6, Math.round(SEPET.boy / 0.05)), nH = Math.max(5, Math.round(genis / 0.075)), rowPx = (SEPET.boy / nS) * ppm;
+    const Pt = (t: number, h: number): P => { const tt = Math.max(0, Math.min(1, t)), cc = c * (1 - (h - s.h) / SEPET.boy); const q = p([lerp(alt[i][0], alt[j][0], tt), h + cc, lerp(alt[i][2], alt[j][2], tt)]); const bow = cokme * ppm * 0.012 * Math.sin(Math.PI * tt) * (1 - (h - s.h) / SEPET.boy); return [q[0] + bow, q[1]]; };
+    const isikC: string[] = [], koyuC: string[] = [], sirC: string[] = [];
+    const f = (q: P) => `${q[0].toFixed(1)} ${q[1].toFixed(1)}`;
+    if (rowPx >= 2.5) for (let r = 0; r < nS; r++) {
+      const h0 = s.h + (r * SEPET.boy) / nS, h1 = s.h + ((r + 1) * SEPET.boy) / nS, hm = (h0 + h1) / 2;
+      sirC.push(`M${f(Pt(0, h0))}L${f(Pt(0.5, h0))}L${f(Pt(1, h0))}`);
+      for (let q = -1; q < nH; q++) {
+        const t0 = (q + (r % 2 ? 0.5 : 0)) / nH, t1 = t0 + 1 / nH; if (t1 <= 0 || t0 >= 1) continue;
+        const a0 = Pt(t0 + 0.08 / nH, h1 - (h1 - h0) * 0.18), a1 = Pt(t1 - 0.08 / nH, h1 - (h1 - h0) * 0.18), am = Pt((t0 + t1) / 2, h1 - (h1 - h0) * 0.02);
+        isikC.push(`M${f(a0)}Q${f(am)} ${f(a1)}`);
+        const b0 = Pt(t0 + 0.06 / nH, h0 + (h1 - h0) * 0.12), b1 = Pt(t1 - 0.06 / nH, h0 + (h1 - h0) * 0.12), bm = Pt((t0 + t1) / 2, h0 - (h1 - h0) * 0.05);
+        koyuC.push(`M${f(b0)}Q${f(bm)} ${f(b1)}`);
+        void hm;
+      }
     }
-    const kusak = [[0.28, 0.36], [0.62, 0.7]].map(([h0, h1], q) => {
-      const a0 = p([alt[i][0], s.h + h0, alt[i][2]]), b0 = p([alt[j][0], s.h + h0, alt[j][2]]), b1 = p([alt[j][0], s.h + h1, alt[j][2]]), a1 = p([alt[i][0], s.h + h1, alt[i][2]]);
-      return <g key={`ks${q}`}><polygon points={pts([a0, b0, b1, a1])} fill={sol ? "#a5856a" : "#5f4d4c"} /><path d={`M${a1[0]} ${a1[1]}L${b1[0]} ${b1[1]}`} stroke={sol ? PAL.kamisIsik : "#7a6460"} strokeWidth={Math.max(1, ppm * 0.006)} /></g>;
-    });
+    const wI = Math.max(1, Math.min(3.2, rowPx * 0.09)), wK = Math.max(1, Math.min(3.6, rowPx * 0.11));
     yuzler.push(
       <g key={i}>
         <polygon points={pts([Ac, Bc, C, D])} fill={renk} />
-        <path d={kamisCiz.join("")} fill="none" stroke={kenar(renk)} strokeWidth={Math.max(1, Math.min(3, ppm * 0.006))} opacity={sol ? 0.9 : 0.55} />
-        {kusak}
+        {rowPx >= 2.5 && <path d={sirC.join("")} fill="none" stroke={sol ? "#6e5650" : "#3f3036"} strokeWidth={wK * 1.3} />}
+        {rowPx >= 2.5 && <path d={koyuC.join("")} fill="none" stroke={sol ? "#6e5650" : "#3f3036"} strokeWidth={wK} strokeLinecap="round" />}
+        {rowPx >= 2.5 && <path d={isikC.join("")} fill="none" stroke={sol ? PAL.kamisIsik : "#8a7266"} strokeWidth={wI} strokeLinecap="round" />}
         <polygon points={pts([Ac, Bc, C, D])} fill="none" stroke={PAL.sepetKenar} strokeWidth={kontur} strokeLinejoin="round" />
       </g>,
     );
     void A; void B;
   }
-  // rim bandı (üst çerçeve) + ışık yüzünde üst parlak şerit
+  // rim: HALAT KENAR (B2): sarılı halat — açık halat tonu + çapraz büküm çentikleri (her ≈ 5 cm), alt kenarında koyu gölge
   const U = ust.map(p), Ui = ust.map((q) => p([m[0] + (q[0] - m[0]) * 0.93, q[1] + 0.02, m[2] + (q[2] - m[2]) * 0.93]));
   const ustGorunur = k.e > s.h + SEPET.boy;
   return (
     <g transform={`translate(${dx} ${dy})`}>
       {yuzler}
       {ustGorunur && <path d={`${yolKapali(U)}${yolKapali([...Ui].reverse())}`} fill={PAL.sepetKenar} fillRule="evenodd" />}
-      {ustGorunur && <path d={`M${U[3][0]} ${U[3][1]}L${U[0][0]} ${U[0][1]}L${U[1][0]} ${U[1][1]}`} fill="none" stroke={PAL.kamisIsik} strokeWidth={Math.max(1.5, kontur * 0.5)} strokeLinejoin="round" />}
-      {!ustGorunur && <path d={yolAcik([U[3], U[0], U[1]])} fill="none" stroke={PAL.sepetKenar} strokeWidth={kontur * 1.6} strokeLinejoin="round" />}
+      <RimHalat k={k} s={s} idx={[3, 0, 1]} />
       {torbalar}
     </g>
   );
@@ -310,14 +331,23 @@ export const onYuzNokta = (s: SepetPoz, u: number, altRim = 0.1, disari = 0.1): 
 
 // ---------------------------------------------------------------- TORBA (kum / posta çuvalı) ----------------------------------------------------------------
 /** ekranda: bağ noktası `p` (ip düğümü), ölçek pxm; yerel metre (y aşağı). tip kum: 0.42 m; cuval: 0.6 m (ayakta, ağız yukarı) */
-export const Torba: React.FC<{ p: P; pxm: number; tip?: "kum" | "cuval"; aci?: number; kontur?: number; isikSol?: boolean; ip?: boolean; acik?: number }> = ({ p, pxm, tip = "kum", aci = 0, kontur, isikSol = true, ip = true, acik = 0 }) => {
+/** B2 (eleştiri #5): torba çeşitliliği — varyant 0–3 gövde dolgunluğu / büzgü / bağ farkı; olcek boy (±12 %); askı ipi boyu (bagBoy m) */
+const TORBA_V = [
+  { kL: 1.0, kR: 1.0, kB: 1.0, bz: 1.0, bzE: 0, bag: 0.0, ipB: 0.05 },
+  { kL: 0.92, kR: 1.08, kB: 0.94, bz: 0.75, bzE: 0.012, bag: -0.006, ipB: 0.08 },
+  { kL: 1.08, kR: 0.95, kB: 1.06, bz: 1.25, bzE: -0.01, bag: 0.008, ipB: 0.035 },
+  { kL: 1.02, kR: 1.04, kB: 0.9, bz: 0.9, bzE: 0.006, bag: 0.004, ipB: 0.065 },
+];
+export const Torba: React.FC<{ p: P; pxm: number; tip?: "kum" | "cuval"; aci?: number; kontur?: number; isikSol?: boolean; ip?: boolean; acik?: number; varyant?: number; olcek?: number }> = ({ p, pxm, tip = "kum", aci = 0, kontur, isikSol = true, ip = true, acik = 0, varyant = 0, olcek = 1 }) => {
   const uid = "tb" + useId().replace(/:/g, "");
-  const s = tip === "cuval" ? 1.45 : 1;
+  const s = (tip === "cuval" ? 1.45 : 1) * olcek;
+  const V = TORBA_V[((varyant % 4) + 4) % 4];
   const K = kontur ?? Math.max(1.5, Math.min(6, pxm * 0.011));
-  const y0 = 0.05; // bağ: halat noktasının 5 cm altında
-  const govde = "M-0.03 0 C-0.075 0.04 -0.142 0.12 -0.136 0.25 C-0.13 0.35 -0.072 0.405 0 0.405 C0.072 0.405 0.13 0.35 0.136 0.25 C0.142 0.12 0.075 0.04 0.03 0 Z";
-  const ak = acik * 0.02;
-  const buzgu = `M-0.027 0.006 C-0.05 -0.01 -0.062 ${-0.04 - ak} -0.045 ${-0.052 - ak} C-0.03 -0.04 -0.02 -0.05 -0.008 ${-0.058 - ak} C0.004 -0.046 0.016 -0.05 0.028 ${-0.056 - ak} C0.04 -0.04 0.06 ${-0.044 - ak} 0.05 -0.03 C0.044 -0.012 0.034 -0.004 0.027 0.006 Z`;
+  const y0 = V.ipB; // bağ: halat noktasının altında (varyanta göre 3.5–8 cm)
+  const n3 = (v: number) => v.toFixed(3);
+  const govde = `M-0.03 0 C${n3(-0.075 * V.kL)} 0.04 ${n3(-0.142 * V.kL)} 0.12 ${n3(-0.136 * V.kL)} 0.25 C${n3(-0.13 * V.kL)} ${n3(0.35 * V.kB)} -0.072 ${n3(0.405 * V.kB)} ${n3(0.01 * (V.kR - V.kL))} ${n3(0.405 * V.kB)} C0.072 ${n3(0.405 * V.kB)} ${n3(0.13 * V.kR)} ${n3(0.35 * V.kB)} ${n3(0.136 * V.kR)} 0.25 C${n3(0.142 * V.kR)} 0.12 ${n3(0.075 * V.kR)} 0.04 0.03 0 Z`;
+  const ak = acik * 0.02, b = V.bz, e = V.bzE;
+  const buzgu = `M-0.027 0.006 C-0.05 -0.01 ${n3(-0.062 * b + e)} ${n3((-0.04 - ak) * b)} ${n3(-0.045 * b + e)} ${n3((-0.052 - ak) * b)} C-0.03 ${n3(-0.04 * b)} -0.02 ${n3(-0.05 * b)} ${n3(-0.008 + e)} ${n3((-0.058 - ak) * b)} C0.004 ${n3(-0.046 * b)} 0.016 ${n3(-0.05 * b)} ${n3(0.028 * b + e)} ${n3((-0.056 - ak) * b)} C0.04 ${n3(-0.04 * b)} ${n3(0.06 * b + e)} ${n3((-0.044 - ak) * b)} 0.05 -0.03 C0.044 -0.012 0.034 -0.004 0.027 0.006 Z`;
   const yon = isikSol ? -1 : 1, sw = K / (pxm * s);
   return (
     <g transform={`translate(${p[0]} ${p[1]}) scale(${pxm * s}) rotate(${aci} 0 ${0.25}) translate(0 ${y0 / s})`}>
@@ -332,7 +362,7 @@ export const Torba: React.FC<{ p: P; pxm: number; tip?: "kum" | "cuval"; aci?: n
       </g>
       <path d={govde} fill="none" stroke="#5a4e5a" strokeWidth={sw} strokeLinejoin="round" />
       <path d={buzgu} fill={PAL.torbaIsik} stroke="#5a4e5a" strokeWidth={sw * 0.8} strokeLinejoin="round" /><path d="M-0.012 -0.004 L-0.02 -0.04 M0.012 -0.004 L0.016 -0.042" stroke="#8a7f88" strokeWidth={sw * 0.5} />
-      <rect x={-0.034} y={-0.008} width={0.068} height={0.02} rx={0.008} fill={PAL.torbaIp} stroke="#5a4e5a" strokeWidth={sw * 0.5} />
+      <rect x={-0.034 + V.bag} y={-0.008 + V.bag} width={0.068 - V.bag} height={0.02} rx={0.008} fill={PAL.torbaIp} stroke="#5a4e5a" strokeWidth={sw * 0.5} />
     </g>
   );
 };
@@ -367,3 +397,60 @@ export const sandikKulp = (X: number, h: number, Z: number, yaw: number): [V3, V
   return [L(-SANDIK.en / 2 - 0.02, 0), L(SANDIK.en / 2 + 0.02, 0)];
 };
 export { sat };
+
+// ---------------------------------------------------------------- ZARF, ALTTAN GÖRÜNÜŞ (P06b f168; mekanlar H2.5) ----------------------------------------------------------------
+type V3b = [number, number, number];
+const v3 = { s: (a: V3b, b: V3b): V3b => [a[0] - b[0], a[1] - b[1], a[2] - b[2]], d: (a: V3b, b: V3b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2], k: (a: V3b, b: V3b): V3b => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]], n: (a: V3b): V3b => { const l = Math.hypot(...a) || 1; return [a[0] / l, a[1] / l, a[2] / l]; } };
+/** Kameranın hemen üstündeki dolu zarf (aynı Balon dili): siluet = tanjant konisinin izdüşümü (sabit elips değil).
+ *  Ağzın güneşi alt-arka yayı aydınlatır → ışık hilali (+ vernik çizgisi) · terminatör bandı (78° tarama) · gölge gövde.
+ *  Ağ: meridyenler alt kutuptan dışa (ışınsal) + h 4.5 paraleli; görünür (kameraya dönük) kısımlar. Boğaz kumaş tüpü zarfın önünde. */
+export const BalonAltan: React.FC<{ k: Kam; c: V3b; r: number; hilal?: number; paralelH?: number }> = ({ k, c, r, hilal = 40, paralelH = 4.5 }) => {
+  const uid = "ba" + useId().replace(/:/g, "");
+  const C: V3b = [k.X, k.e, k.Z], v = v3.s(c, C), d = Math.hypot(...v), u = v3.n(v);
+  const e1 = v3.n(v3.k(u, [0, 1, 0])), e2 = v3.n(v3.k(e1, u));
+  const tc: V3b = [c[0] - u[0] * (r * r) / d, c[1] - u[1] * (r * r) / d, c[2] - u[2] * (r * r) / d], rho = r * Math.sqrt(Math.max(0, 1 - (r * r) / (d * d)));
+  const ham: V3b[] = Array.from({ length: 220 }, (_, i) => { const a = (i / 220) * Math.PI * 2; return [0, 1, 2].map((j) => tc[j] + rho * (e1[j] * Math.cos(a) + e2[j] * Math.sin(a))) as V3b; });
+  const kirpZ = k.Z + 0.35;
+  const kirpik: V3b[] = [];
+  for (let i = 0; i < ham.length; i++) { const A = ham[i], B = ham[(i + 1) % ham.length], fa = A[2] - kirpZ, fb = B[2] - kirpZ; if (fa >= 0) kirpik.push(A); if ((fa >= 0) !== (fb >= 0)) { const t = fa / (fa - fb); kirpik.push([A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t, kirpZ]); } }
+  const sil = kirpik.map((q) => { const p = pr(k, ...q); return [Math.max(-3000, Math.min(4000, p[0])), Math.max(-6000, p[1])] as P; });
+  const silD = yolKapali(sil);
+  const kayik = (dy: number) => `translate(0 ${-dy})`;
+  // küre noktası (alt kutuptan θ, boylam φ) ve görünürlük (kameraya dönük yüz)
+  const nokta = (th: number, ph: number): { p: P; v: boolean } => { const q: V3b = [c[0] + r * Math.sin(th) * Math.cos(ph), c[1] - r * Math.cos(th), c[2] + r * Math.sin(th) * Math.sin(ph)]; const nrm = v3.s(q, c); return { p: pr(k, ...q), v: q[2] > kirpZ && v3.d(v3.s(q, C), nrm) < 0 }; };
+  const ag: string[] = [];
+  const thP = Math.acos(Math.max(-1, Math.min(1, (c[1] - paralelH) / r)));
+  for (let i = 0; i < 16; i++) {
+    const ph = (i / 16) * Math.PI * 2 + 0.16, seg: P[] = [];
+    for (let j = 0; j <= 40; j++) { const q = nokta(0.16 + (j / 40) * (Math.PI * 0.62), ph); if (q.v) seg.push(q.p); else if (seg.length) break; }
+    if (seg.length > 1) ag.push(yolAcik(seg));
+  }
+  { const seg: P[] = []; for (let j = 0; j <= 120; j++) { const q = nokta(thP, (j / 120) * Math.PI * 2); if (q.v) seg.push(q.p); else if (seg.length > 1) { ag.push(yolAcik(seg)); seg.length = 0; } else seg.length = 0; } if (seg.length > 1) ag.push(yolAcik(seg)); }
+  const yay = sil.filter((q) => q[1] > -200).sort((a, b) => a[0] - b[0]);
+  const tarama = <pattern id={`${uid}t`} patternUnits="userSpaceOnUse" width={7} height={7} patternTransform="rotate(-12)"><rect x={0} y={0} width={2.5} height={7} fill={PAL.balonTarama} /></pattern>;
+  return (
+    <g>
+      <defs>
+        <clipPath id={`${uid}c`}><path d={silD} /></clipPath>
+        {tarama}
+        <mask id={`${uid}h`} maskUnits="userSpaceOnUse" x={-3000} y={-6000} width={8000} height={9000}><path d={silD} fill="#fff" /><path d={silD} fill="#000" transform={kayik(hilal)} /></mask>
+      </defs>
+      <g clipPath={`url(#${uid}c)`}>
+        <path d={silD} fill={PAL.balonIsik} />
+        <path d={silD} fill={PAL.terminator} transform={kayik(hilal)} />
+        <path d={silD} fill={`url(#${uid}t)`} transform={kayik(hilal)} opacity={0.8} />
+        <path d={silD} fill={PAL.balonGolge} transform={kayik(hilal + 24)} />
+        {/* vernik çizgisi: hilalin içinde, yaya koşut */}
+        <path d={yolAcik(yay)} fill="none" stroke={PAL.vernik} strokeWidth={2} transform={`translate(0 ${-hilal * 0.45})`} />
+        <path d={ag.join("")} fill="none" stroke={PAL.agGolge} strokeWidth={2.5} strokeLinecap="round" />
+        <path d={ag.join("")} fill="none" stroke={PAL.agIsik} strokeWidth={2.5} strokeLinecap="round" mask={`url(#${uid}h)`} />
+      </g>
+      <path d={silD} fill="none" stroke={PAL.konturGolge} strokeWidth={3.5} strokeLinejoin="round" />
+    </g>
+  );
+};
+/** ağın alt paralel düğümleri (görünür) — halka askı halatları bunlara bağlanır */
+export const balonAltDugum = (k: Kam, c: V3b, r: number, h: number, n = 10): V3b[] => {
+  const C: V3b = [k.X, k.e, k.Z], th = Math.acos(Math.max(-1, Math.min(1, (c[1] - h) / r)));
+  return Array.from({ length: n }, (_, i) => { const ph = (i / n) * Math.PI * 2 + 0.16; return [c[0] + r * Math.sin(th) * Math.cos(ph), h, c[2] + r * Math.sin(th) * Math.sin(ph)] as V3b; }).filter((q) => q[2] > k.Z + 0.35 && v3.d(v3.s(q, C), v3.s(q, c)) < 0);
+};
