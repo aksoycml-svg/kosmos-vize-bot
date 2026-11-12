@@ -1,8 +1,9 @@
 // ===== KE-PK-S1 PARIS-CATI (Paris kuşatması 1870; mekanlar.md §1, §9 · tasarim.md §1.2/§1.3, §2, §3.1, §4.2, §4.4) =====
 // Haussmann SONRASI Paris çatı kotu: kendi terasımızda çömelmiş kümesçi gözü (teras üstü 1.0 m), kamera GGB'ye bakar.
 // gorunum "cati" ve "kumes" AYNI dekordur (kümes yakın = dolly ile yaklaşılmış hâli); saat "alacakaranlik" | "gun".
-// KAMERA DOLLY (dolly.ts): cs = kamera mesafesi, katman ölçeği d/(d − δ); kılıf kilidi (FOE) dekor (540,960) → cs 3.2/cx 0/cy 0'da
-// kılıf ekranda tam (540,960) (P01 f0 = P11 son kare ±0 px). cx/cy pan/tilt (bütün katmanlara aynı).
+// KAMERA DOLLY (dolly.ts): cs = kamera mesafesi, katman ölçeği d/(d − δ); ölçek merkezi = kılıf kilidi (FOE) dekor (540,960).
+// Tünekteki kılıf her cs'de ekranda (540 + cx, 960 + cy)'de durur. Döngü kilidi: P01 f0 ve P11 son kare AYNI cs/cx/cy
+// (bolum.json A2: 2.75 / −120 / −170 → kılıf ≈ (420,790), kuşun başı sağ üstte kadrajda). cx/cy pan/tilt (bütün katmanlara aynı).
 // TEK IŞIK: alacakaranlık = batı ufuk parıltısı sağ-önde (gölge yok; 2 px kenar ışığı sağ/üst; pencereler ikincil krem havuz) ·
 // gün = GD güneşi sol-önde, 12° (gölge sağa ve kameraya: dünya vektörü GUNES_GOLGE m/m yükseklik; tarama θ parametre, vars. 72°).
 // Görüntüde DİL METNİ YOK. Kırmızı yok (külahlar soluk pişmiş toprak, kahverengiye çekik — tur-3). Sarı metal yok; imza kehribarı yalnız kılıfta.
@@ -23,12 +24,13 @@ import { cl, GIRIS, INOUT, kameraHesapla, KameraDurum } from "../../zaman";
 import { param, Sablon, SablonProps } from "../../ortak";
 import { pchip } from "../galata/GalataTepe";
 import { DOLLY_CATI, Dolly, dunyaEkran, ekranPxm, ekranTaban, katman, enYakinZ } from "./dolly";
-import { BacaKumesiDunya, BacaDunya, CATI_PALET, CatiDenizi, CinkoTeras, Gok, KARSI_SATIR, KarsiSira, Kumes, KUMES, Pantheon, Saat, UzakTepe } from "./catiDekor";
+import { BacaKumesiDunya, BacaDunya, CATI_PALET, CatiDenizi, CinkoTeras, Gok, isikSagMi, KARSI_SATIR, KarsiSira, Kumes, KUMES, Pantheon, Saat, UzakTepe, YEM_TEKNESI, YemTeknesi } from "./catiDekor";
 
 const S = DOKU_SEED.parisCati;
 const GUNES_GOLGE: [number, number] = [4.6, -0.9]; // gün: 1 m yüksekliğin zemindeki gölge kayması (X sağa, Z kameraya)
 const ON_BACA: BacaDunya = { X0: -0.893, X1: -0.293, Z: 1.6, derin: 0.5, hAlt: 0, hGovde: 1.2, baslik: 0.1, kulahSayi: 2, kulahCap: 0.25, kulahBoy: 0.3 };
-const SAG_BACA: BacaDunya = { X0: 2.53, X1: 3.34, Z: 8, derin: 0.6, hAlt: -1.2, hGovde: 1.6, baslik: 0.08, kulahSayi: 4, kulahCap: 0.17, kulahBoy: 0.32 };
+// Sağ baca kümesi KENDİ terasımızda (Z 4.4 < kırık çizgi Z 5; A'da Z 8 = sokağın havasındaydı). Ekran yeri korunarak X ölçeklendi.
+const SAG_BACA: BacaDunya = { X0: 1.3, X1: 1.8, Z: 4.4, derin: 0.45, hAlt: 0, hGovde: 1.4, baslik: 0.07, kulahSayi: 4, kulahCap: 0.1, kulahBoy: 0.28 };
 type Siluet = { x: number; kod: SiluetKod; dx?: number };
 const SILUET_VARS: Siluet[] = [{ x: 220, kod: "yetiskin-b" }, { x: 760, kod: "yetiskin-a" }, { x: 923, kod: "yetiskin-b" }, { x: 1124, kod: "yetiskin-a", dx: -9 }, { x: 1124, kod: "cocuk", dx: 11 }];
 
@@ -58,7 +60,7 @@ const cozPlani = (plan: Plan): CozPlan => {
   return { bas: c.bas, bit: c.bit, temas, serit: aralikMi(c.serit_cikar) ? c.serit_cikar : { bas: temas, bit: c.bit } };
 };
 
-type KusDurum = { capa: P; d: number; poz: KusPoz; hayalet: KusPoz | null; konmus: boolean };
+type KusDurum = { capa: P; d: number; poz: KusPoz; konmus: boolean };
 const t01 = (p: number, a: number, b: number, e = INOUT) => interpolate(p, [a, b], [0, 1], { ...cl, easing: e });
 const kusDurumu = (plan: Plan, p: number, D: Dolly, kam: (q: number) => KameraDurum): KusDurum | null => {
   const K = kusPlani(plan), A0 = D.foe;
@@ -72,7 +74,9 @@ const kusDurumu = (plan: Plan, p: number, D: Dolly, kam: (q: number) => KameraDu
     const kare = [t0, t1, t2, tm, t4, t5];
     const xs = [A0[0], A0[0] + 4, A0[0] + 20, A0[0] + 100, A0[0] + 280, cik[0]];
     const ys = [A0[1], A0[1] - 22, A0[1] - 62, A0[1] - 200, A0[1] - 400, cik[1]];
-    const ds = [1, 1, 1, 1.12, 1.35, 1.5];
+    // derinlik: iniş tahtasından öne-yukarı itilir (tahta ön kenarı Z 2.75 = d 0.917; t1–t2 d 0.965–0.96 → kanca f24'te kılıf ≥ %10
+    // ekran boyu), cephe saçağını geçince (tm) derinleşir. f0 d 1 (P11 son kare kilidi).
+    const ds = [1, 0.965, 0.96, 1.12, 1.35, 1.5];
     const q = Math.max(p, t0);
     const capa: P = [pchip(kare, xs, q), pchip(kare, ys, q)];
     const d = pchip(kare, ds, q);
@@ -88,7 +92,7 @@ const kusDurumu = (plan: Plan, p: number, D: Dolly, kam: (q: number) => KameraDu
       if (r > t4 - 12) z = pozKaris(z, cirpis(T["ucus-yukari"], r, t0, T["ucus-yukari"], T["ucus-asagi"], 14), t01(r, t4 - 12, t4));
       return z;
     };
-    return { capa, d, poz: poz(p), hayalet: p <= t1 + 6 ? poz(p - 3) : null, konmus: p < t0 + 3 };
+    return { capa, d, poz: poz(p), konmus: p < t0 + 3 };
   }
   if (K.iner) {
     const tb = K.iner.bas, tL = K.iner.temas ?? K.iner.bit;
@@ -103,9 +107,9 @@ const kusDurumu = (plan: Plan, p: number, D: Dolly, kam: (q: number) => KameraDu
     let z: KusPoz = cirpis(T["ucus-yukari"], p, tb, T["ucus-yukari"], T["ucus-asagi"], 16);
     z = pozKaris(z, T["konma"], t01(p, tL - 16, tL - 3));
     if (p >= tL) z = pozKaris(pozKaris(T["konma"], T["kanat-topla"], t01(p, tL, (kt.bas + kt.bit) / 2)), T["tunek"], t01(p, (kt.bas + kt.bit) / 2, kt.bit));
-    return { capa, d: 1, poz: z, hayalet: null, konmus: p >= tL };
+    return { capa, d: 1, poz: z, konmus: p >= tL };
   }
-  return { capa: A0, d: 1, poz: T["tunek"], hayalet: null, konmus: true };
+  return { capa: A0, d: 1, poz: T["tunek"], konmus: true };
 };
 
 // el (Paris eli, kömür-gri manşet): kıstırma noktası düğümde; sol-alttan girer, düğümü çeker (temas), ip ucuyla geri çekilir
@@ -126,7 +130,7 @@ const ElKatmani: React.FC<{ coz: NonNullable<CozPlan>; p: number; dugum: P; pxm:
   const bilek: P = [kistir[0] - (kx * Math.cos(r) - ky * Math.sin(r)), kistir[1] - (kx * Math.sin(r) + ky * Math.cos(r))];
   const omuz: P = [bilek[0] - 0.25 * pxm, bilek[1] + 0.9 * pxm];
   const dirsek: P = [(omuz[0] + bilek[0]) / 2 - 0.06 * pxm, (omuz[1] + bilek[1]) / 2 + 0.05 * pxm];
-  return <KolEl giris={omuz} dirsek={dirsek} bilek={bilek} gen={[0.17 * pxm, 0.12 * pxm, 0.075 * pxm]} tip="parisGri" elAci={elAci} olcek={olcek} poz="kistir" />;
+  return <KolEl giris={omuz} dirsek={dirsek} bilek={bilek} gen={[0.17 * pxm, 0.12 * pxm, 0.075 * pxm]} tip="parisGri" elAci={elAci} olcek={olcek} poz="kistirSiki" />;
 };
 
 // gün: dünya XZ'de gölge çokgeni (taban + gölgelenen tepe köşeleri, dışbükey zarf) → zemine izdüşüm
@@ -191,7 +195,9 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   // ---- gün gölgeleri (tek kaynak: GUNES_GOLGE) ----
   const golgeler = saat === "gun" ? (
     <g fill="#14120f" opacity={0.32}>
-      {[golgeCokgen(D, k, kutuKose(-0.9, 0.3, 3.0, 3.8, 0.9, 1.05)), golgeCokgen(D, k, kutuKose(ON_BACA.X0, ON_BACA.X1, ON_BACA.Z, ON_BACA.Z + ON_BACA.derin, ON_BACA.hGovde + 0.4, ON_BACA.hGovde + 0.4))].map((g, i) => g && <polygon key={i} points={g.map((q) => q.join(",")).join(" ")} />)}
+      {[golgeCokgen(D, k, kutuKose(-0.9, 0.3, 3.0, 3.8, 0.9, 1.05)), golgeCokgen(D, k, kutuKose(ON_BACA.X0, ON_BACA.X1, ON_BACA.Z, ON_BACA.Z + ON_BACA.derin, ON_BACA.hGovde + 0.4, ON_BACA.hGovde + 0.4)),
+        golgeCokgen(D, k, kutuKose(SAG_BACA.X0, SAG_BACA.X1, SAG_BACA.Z, SAG_BACA.Z + SAG_BACA.derin, SAG_BACA.hGovde + 0.35, SAG_BACA.hGovde + 0.35)),
+        golgeCokgen(D, k, kutuKose(YEM_TEKNESI.X0, YEM_TEKNESI.X1, YEM_TEKNESI.Z0, YEM_TEKNESI.Z0 + YEM_TEKNESI.derin, YEM_TEKNESI.h, YEM_TEKNESI.h))].map((g, i) => g && <polygon key={i} points={g.map((q) => q.join(",")).join(" ")} />)}
     </g>
   ) : null;
 
@@ -229,9 +235,11 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
             return <SiluetFigur key={i} kod={q.kod} ayak={ayak} pxm={pxm} renk={C.siluet} kenar={C.kenar ? { renk: C.siluetKenar, dx: 2, dy: -1 } : undefined} klip={[a[0], a[1], b[0] - a[0], b[1] - a[1]]} />;
           });
         })()} />
+      <CinkoTeras D={D} k={k} C={C} Zuzak={5} isikSag={isikSagMi(C)} golgeler={golgeler} />
+      {/* sağ baca terasımızda (Z 4.4): teras zemininden SONRA çizilir, tabanı çinkoya basar */}
       <BacaKumesiDunya D={D} k={k} b={SAG_BACA} C={C} seed={S + 5} />
-      <CinkoTeras D={D} k={k} C={C} Zuzak={5} isikSag={!!C.kenar} golgeler={golgeler} />
       {Lk1.gorunur && <Kumes C={C} L={Lk1} seed={S + 6} taramaAci={taramaAci} saat={saat} damar={Lk1.s >= 4.2} />}
+      {param(plan, "yem_teknesi", true) && <YemTeknesi D={D} k={k} t={YEM_TEKNESI} C={C} seed={S + 8} uid={uid} />}
     </g>
   );
   return (
@@ -241,7 +249,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
         <KonturTitreme derinlik="orta" seed={S}>{dekor}</KonturTitreme>
         {kusGolge}
         {kus && kusEkran && (
-          <Guvercin poz={kus.poz} capa={kusEkran.capa} olcek={kusEkran.olcek} hayalet={kus.hayalet}
+          <Guvercin poz={kus.poz} capa={kusEkran.capa} olcek={kusEkran.olcek}
             kenar={C.kenar ? { renk: C.kenar, dx: 2.5, dy: -2.5 } : undefined}
             kilif={{ parilti, coz: cozT, kapak, serit, ipUcEkran: ipUc }} />
         )}

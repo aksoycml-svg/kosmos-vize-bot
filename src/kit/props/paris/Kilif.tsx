@@ -8,7 +8,7 @@
 import React, { useId } from "react";
 import type { P } from "../../tipler";
 
-export const KILIF = { L: 72, R: 4.8, govde: "#F0B43C", golge: "#C98F26", kenar: "#FBE3A0", hilal: "#FFF3CC", film: "#4a3e34", tikac: "#B9801F", ip: "#c9c3b2", ipGolge: "#8d8878", serit: "#5a5048", seritKenar: "#6b645a", kontur: "#7a5414" };
+export const KILIF = { L: 72, R: 4.8, govde: "#F0B43C", golge: "#C98F26", kenar: "#FBE3A0", hilal: "#FFF3CC", film: "#4a3e34", tikac: "#B9801F", ip: "#c9c3b2", ipGolge: "#8d8878", serit: "#2e2621", seritKenar: "#8a8072", seritHale: "#d8cfbe", kontur: "#7a5414" };
 // ip düğümü (yerel): sargılar x −20 ve +20; düğüm +20'nin üstünde
 export const KILIF_DUGUM: P = [-20, 6]; // gövde tarafındaki sargının altında (el aşağıdan kavrar; tıkaç ucu açık kalır)
 
@@ -45,9 +45,11 @@ export const Kilif: React.FC<{ olcek: number; parilti?: number | null; coz?: num
       {/* film şeridi (kılıfın dışına çıkan kısım; kapak açıkken) */}
       {serit > 0 && (
         <g>
-          <rect x={sx - 20} y={-3} width={20 + sL} height={6} fill={KILIF.serit} stroke="#2f2924" strokeWidth={sw(2)} style={nss} />
+          {/* gri tüy üstünde seçilsin (A: #5a5048 tüy griyle aynı parlaklıktaydı): açık krem hale + koyu gövde + açık kenar */}
+          <rect x={sx - 20} y={-3} width={20 + sL} height={6} fill="none" stroke={KILIF.seritHale} strokeWidth={sw(5)} style={nss} />
+          <rect x={sx - 20} y={-3} width={20 + sL} height={6} fill={KILIF.serit} stroke="#1f1a16" strokeWidth={sw(2)} style={nss} />
           <line x1={sx - 20} y1={-1.8} x2={sx + sL} y2={-1.8} stroke={KILIF.seritKenar} strokeWidth={sw(2)} style={nss} />
-          {[6, 14, 22].filter((x) => x < sL).map((x) => <line key={x} x1={sx + x} y1={-2.6} x2={sx + x} y2={2.6} stroke="#3a332d" strokeWidth={sw(1.5)} style={nss} />)}
+          {[6, 14, 22].filter((x) => x < sL).map((x) => <line key={x} x1={sx + x} y1={-2.6} x2={sx + x} y2={2.6} stroke={KILIF.seritKenar} strokeWidth={sw(1.5)} style={nss} />)}
         </g>
       )}
       {/* gövde: ışık yarısı + gölge yarısı (tek net sınır) */}

@@ -311,3 +311,33 @@
 - Kararlar: cy −170 seçildi (−120'de kılıf y≈840 ve baş üst banda yakındı; −170 baş/kılıf kompozisyonunu aşağı taşıdı). Kılıf (540,960) kilidinden kayıp ekranda ≈(400,840): kilit "kılıf (540,960) civarı" hedefi, kuş başının kadraja girmesi için bilinçli ödün; ParisCati.tsx başlık yorumundaki "cs 3.2/cx 0/cy 0'da (540,960)" artık geçerli değil (motion notu).
 - Kurallar: 7 (her planın kontrol karesi render edilip bakıldı), 2/3 etkilenmedi, doğrulayıcı `--tam` GEÇTİ (0 hata, 1 uyarı: foley.json). Not: P01 f24'te kılıf çırpış açısıyla kısalıyor, köşegen ≈%9 (f0'da ≈%15); %10 sınırının hafif altı. Düzeltmek için cs/cx dışı param yok; eleştirmen kabul etmezse f24 kontrol karesi yerine f12'ye çekilebilir ya da P01 ilk anahtar f70→f90 uzatılır (kuş bir süre daha yakın kalır).
 - Açık: Guvercin.tsx kuyruk bandı, çırpış bulanığı, baca ışık/lucarne işleri motion'da; bu tur kapsamı dışı. Render komutu: `npx remotion still Bolum <out> --frame=<global> --scale=0.25 --gl=angle --browser-executable=/usr/bin/google-chrome --props='{"yol":"paris-kusatmasi/bolum.json","guvenli":true}'` (global kare = plan başı + yerel; P10 başı 2762, P11 başı 3160).
+
+## motion · 2026-11-12 · A2 düzeltme turu (elestiri.md + yönetmen kamera düzeltmeleri sonrası)
+- Ne yaptım:
+  - **Tek ışık (catiDekor):** palete dünya ışık vektörü `isik` eklendi (`ISIK_YON`, mekanlar §0.6: alacakaranlık 43° sağ-önde, gün 65° sol-önde). Külah ışık/gölge yarısı, külah kenar ışığı, baca gövdesi ön/yan yüz tonu, karşı sıra baca yan şeridi, lucarne yanakları ve çatı yarıları, Panthéon kubbe gölgesi, teras kenet ışık kenarı artık bu vektörden (`isikliYuz`, `isikSagMi`). A'daki çelişki: karşı sıra baca gövdelerinin gölge şeridi sağdaydı (soldan ışık), külahlar sağdan ışıklıydı.
+  - Baca gövdelerindeki daire "kabarma lekesi" kaldırıldı.
+  - **Sağ baca kümesi** Z 8 → **Z 4.4** (kendi terasımızda, kırık çizgi Z 5'in önünde), taban h 0, zemin temas bandı, gün gölgesi listesine eklendi; çizim sırası teras zemininden sonraya alındı.
+  - **Haussmann (katman 5):** lucarne = taş çerçeve + eşik + iki yanak (üstte geniş, ışık/gölge) + kendi beşik çatısı (iki ton yarı, mahya 20 px, ışık yanında kenar ışığı, saçak altı gölgesi). Brisis: arduvaz sırası 26 → 13 px, ince (≥1 px, α .8); kırık çizgisinde çinko yuvarlak kenar, brisis dibinde dere şeridi. Korniş: 10 px ışık alan profil + koyu profil çizgisi + 26 px gölge bandı (alacakaranlıkta tasG'den %35 koyu; brisisten ayrışıyor).
+  - **Yem/su teknesi** (yeni `YemTeknesi`, `YEM_TEKNESI`): ahşap, ortadan bölmeli (sol yem taneleri, sağ su + gök yansıması), dünya modelli, temas bandı, gün gölgesi; `yem_teknesi: false` ile kapatılabilir. P01 kapanışta ekran ≈ x 400–860, y 1265–1460 (alt üçte biri dolduruyor, alt güvenli bandın üstünde).
+  - **KolEl:** yeni poz `kistirSiki` (başparmak ucu + işaret ucu KISTIR_YEREL'de buluşur, orta/yüzük/serçe avuca kıvrık + yumruk kütlesi). ParisCati bu pozu kullanıyor; `kistir` (Blanc) değişmedi.
+  - **Kılıf şeridi:** gövde #5a5048 → #2e2621, açık krem hale (#d8cfbe) + açık kenar/delikler; gri tüy üstünde seçiliyor (P10a f56).
+  - **Guvercin:** kuyruk tüylerine uçta koyu bant + tüy sapı, tüy uçları yuvarlak (Q eğrisi), kanat konturu Catmull-Rom ile yumuşak; yarı saydam hayalet kanat (`hayalet`) tamamen kaldırıldı.
+  - **Kanca kılıf boyu:** kuş kalkışta iniş tahtasından öne itilir: derinlik `ds` [1, 1, 1, …] → [1, 0.965, 0.96, …] (f0 d 1, döngü kilidi korunur).
+  - Gök ufuk basamağı eğimi 60 → 14 (toplam yükselme 90 → 21 px). ParisCati başlık yorumu yeni kilit tanımına güncellendi.
+- Dokunduğum dosyalar: src/kit/sablonlar/paris/catiDekor.tsx, src/kit/sablonlar/paris/ParisCati.tsx, src/kit/props/paris/Guvercin.tsx, src/kit/props/paris/Kilif.tsx, src/rig/KolEl.tsx; bolumler/paris-kusatmasi/kalibrasyon/A2/* (yeni). bolum.json'a dokunmadım.
+- Kareye uyarlarken değiştirdiğim değerler (yönetmen / mekân sorumlusu plana işler):
+  | Öğe | Şartname / A | A2 kod | Neden |
+  |---|---|---|---|
+  | Sağ baca kümesi (§1.4 #7) | Z 8, X 2.53–3.34, h −1.2…1.6, 4 külah ø 0.17 | **Z 4.4**, X 1.30–1.80 (0.5 m), h 0…1.4, külah 4 × ø 0.10, boy 0.28 | sokak havasında duruyordu; ekran yeri korundu (cs 1 ≈ x 840–1025) |
+  | Kuş derinliği kalkışta (P01) | d 1 (t0–t2) | d 1 → 0.965 (f24) → 0.96 (f70) → 1.12… | f24 kılıf köşegeni %8–9 → **%11.4** (218 px) |
+  | Yem/su teknesi (§1.4 yeni #9b) | yok | X −0.10…0.50, Z 1.75–1.99, h 0.15 m | ölü alan; **onay bekliyor** (mekân sorumlusu §1.4'e işler) |
+  | Gök ufuk eğimi (§1.4 #0) | 60 (90 px) | 14 (21 px) | "saçak" okuması |
+  | Arduvaz sırası (§1.7) | 26 px, 1.5 px | 13 px, ≥1 px, α .8 | tahta kaplama okuması |
+- Ölçüm: P01 f0 ve P11 son kılıf kutusu birebir aynı (x 329–513, y 761–820, köşegen 193 px = %10.1). P10a f48 kılıf %11.1. İmza rengi P01 f370'te 0 px (tekne taneleri imza dışı). Güvenli alan bindirmelerinde ihlal 0. tsc temiz; doğrulayıcı `--tam` GEÇTİ (0 hata, 1 uyarı: foley.json).
+- Uyguladığım kurallar / yakaladığım ihlaller: tek ışık (karşı sıra baca gövdeleri ve lucarne gölge yanağı ters yöndeydi, düzeltildi); ölü alan; nesne yeri anlamlı (tekne kümesin önünde, yem+su işlevli); zemin teması (sağ baca ve tekne temas bandı); hareket tamamlanır (şerit f270–335: kuş f306–310'da sağ üstten çıkıyor, sağ bacanın üstünden geçiyor, örtüşme yok); fade yok (hayalet kaldırıldı).
+- Açık sorular / bir sonraki ajana notlar:
+  - **Yeni kural etkisi (gün):** ışık vektörüyle baca ön yüzleri gün saatinde de gölge tonunda (güneş sol-önde, ön yüz arkadan aydınlanıyor). PARIS-CATI gün (P10a) ve başka gün planlarında bacalar bir ton koyu görünecek; fiziksel olarak doğru ama gün karesi bu turda yalnız P10a yakın planında görüldü (baca kadraj dışında).
+  - Kalkış şeridinde f8–f20 kuş büyük, başı ≈10 kare üst kenara değip geri giriyor (A'da da vardı, d 0.965 ile biraz büyüdü). f24'te baş tam kadrajda ama üst 220 px UI bandında. Eleştirmen kabul etmezse yönetmen P01 ilk anahtarında cy'yi biraz aşağı alabilir (kamera parametresi, yönetmenin).
+  - Paris elinde başparmak uzun (yerel KISTIR noktası sabit kaldığı için); kıstırma okunuyor, anatomik ince ayar istenirse KISTIR_YEREL'e dokunmadan başparmak kökü öne alınabilir.
+  - Mekân sorumlusuna: §1.4'e #9b yem/su teknesi, #7 sağ baca Z 4.4, §1.2 lucarne beşik çatısı + yanak (alınlık değil, arduvaz çatı), §1.4 #0 eğim 21 px notları.
+  - Öz puan: 6.5–7 (Haussmann okuması kümes ve sağ baca arasında kalan iki lucarne ile sınırlı; P01 kapanışta karşı sıranın çoğu örtülü).

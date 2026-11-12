@@ -1,5 +1,6 @@
 // ===== KE-PK-N2 GÜVERCİN — poz seti + kılıf taşıyıcı (tasarim.md §4.2) =====
-// Nötr gri tek kuş: tür işareti yok (boyun parıltısı, kanat çubuğu, kuyruk bandı yok), göz tek koyu nokta, ayak koyu mor-gri (kırmızı yok).
+// Nötr gri tek kuş: boyun parıltısı ve kanat çubuğu yok; kuyruk tüylerinde uçta KOYU BANT + tüy sapı (güvercin kuyruğu okusun —
+// A eleştirisi: "üst üste tahta"). Göz tek koyu nokta, ayak koyu mor-gri (kırmızı yok). Kontur yumuşak: kanat ve tüy uçları eğri (köşesiz).
 // Güvercin okuması: kısa kalın boyun, yuvarlak göğüs, küçük yuvarlak baş, kısa gaga, geniş yelpaze kuyruk (9 tüy; ortadaki 1 tüy uzun = kılıf yeri).
 // Yerel birim mm (gövde gaga–kuyruk ucu ≈ 320 mm), +x baş yönü (sağa bakar), y aşağı, orijin gövde merkezi.
 // Pozlar (tasarim §4.2): tunek · tunek-yon-ara · kalkis-a · kalkis-b · ucus-yukari · ucus-asagi · suzulme · konma · kanat-topla.
@@ -49,6 +50,16 @@ const rot = (q: P, a: number): P => { const c = Math.cos(rad(a)), s = Math.sin(r
 const add = (a: P, b: P): P => [a[0] + b[0], a[1] + b[1]];
 const mul = (a: P, k: number): P => [a[0] * k, a[1] * k];
 const d = (pts: P[], kapali = true) => "M " + pts.map((q) => `${q[0].toFixed(2)} ${q[1].toFixed(2)}`).join(" L ") + (kapali ? " Z" : "");
+// kapalı Catmull-Rom → kübik Bézier (organik kontur; köşe yok). gerg 0…1 (1 = en yumuşak)
+const yumusak = (q: P[], gerg = 1): string => {
+  const n = q.length, f = (v: number) => v.toFixed(2), k = gerg / 6;
+  let s = `M ${f(q[0][0])} ${f(q[0][1])}`;
+  for (let i = 0; i < n; i++) {
+    const p0 = q[(i - 1 + n) % n], p1 = q[i], p2 = q[(i + 1) % n], p3 = q[(i + 2) % n];
+    s += ` C ${f(p1[0] + (p2[0] - p0[0]) * k)} ${f(p1[1] + (p2[1] - p0[1]) * k)} ${f(p2[0] - (p3[0] - p1[0]) * k)} ${f(p2[1] - (p3[1] - p1[1]) * k)} ${f(p2[0])} ${f(p2[1])}`;
+  }
+  return s + " Z";
+};
 
 const KUYRUK_KOK: P = [-92, -2];
 const KILIF_TUY = 64; // kılıf merkezi, orta tüy boyunca kökten mm
@@ -110,9 +121,8 @@ export const Guvercin: React.FC<{
   poz: KusPoz; capa: P; olcek: number;          // olcek = ekran px / mm
   kenar?: { renk: string; dx: number; dy: number }; // kenar ışığı (alacakaranlık: sağ/üst)
   kilif?: { parilti?: number | null; coz?: number; kapak?: number; serit?: number; ipUcEkran?: P } | null;
-  hayalet?: KusPoz | null;                       // hareket bulanığı: önceki kanat konumu (α .3)
   kontur?: number;
-}> = ({ poz: z, capa, olcek, kenar, kilif, hayalet, kontur }) => {
+}> = ({ poz: z, capa, olcek, kenar, kilif, kontur }) => {
   const Y = kusYerlesim(z, capa, olcek);
   const kw = kontur ?? Math.max(1.6, Math.min(4, 1.4 + olcek * 0.6));
   const nss = { vectorEffect: "non-scaling-stroke" as const, strokeLinejoin: "round" as const, strokeLinecap: "round" as const };
@@ -125,10 +135,16 @@ export const Guvercin: React.FC<{
     const L = i === 4 ? 122 : 108 - Math.abs(i - 4) * 2;
     const u: P = [Math.cos(rad(a)), Math.sin(rad(a))], n: P = [-u[1], u[0]];
     const k0 = add(KUYRUK_KOK, mul(n, (i - 4) * 1.5));
-    const pts: P[] = [add(k0, mul(n, 7)), add(add(k0, mul(u, L - 14)), mul(n, 13)), add(add(k0, mul(u, L)), mul(n, 5)), add(add(k0, mul(u, L)), mul(n, -5)), add(add(k0, mul(u, L - 14)), mul(n, -13)), add(k0, mul(n, -7))];
-    return { i, pts };
+    const P_ = (a: number, b: number) => add(add(k0, mul(u, a)), mul(n, b));
+    // tüy: kökte dar, uçta yuvarlak (Q eğrisi), köşesiz
+    const yol = `M ${P_(0, 7).join(" ")} L ${P_(L - 16, 13).join(" ")} Q ${P_(L + 6, 11).join(" ")} ${P_(L + 2, 0).join(" ")} Q ${P_(L + 6, -11).join(" ")} ${P_(L - 16, -13).join(" ")} L ${P_(0, -7).join(" ")} Z`;
+    // uçta koyu bant (gerçek güvercin kuyruk işareti): L−30 … L−12, tüy genişliğinde, uç gri kalır
+    const gen = (a: number) => 7 + (6 * Math.min(a, L - 16)) / (L - 16);
+    const bant = [P_(L - 30, gen(L - 30)), P_(L - 12, 12.6), P_(L - 12, -12.6), P_(L - 30, -gen(L - 30))];
+    const sap = [P_(6, 0), P_(L - 4, 0)];
+    return { i, yol, bant, sap };
   });
-  const kanatYol = (q: P[]) => `M ${q[0][0]} ${q[0][1]} ` + q.slice(1).map((r) => `L ${r[0].toFixed(2)} ${r[1].toFixed(2)}`).join(" ") + " Z";
+  const kanatYol = (q: P[]) => yumusak(q, 0.85);
   const yakin = kanatNoktalari(z, false), uzak = kanatNoktalari(z, true);
   const ucPoly = (q: P[]) => [q[3], q[4], q[5], q[6], q[7], q[8], add(mul(q[3], 0.5), mul(q[8], 0.5))];
   const acikMi = z.kanat > 0.3;
@@ -147,7 +163,14 @@ export const Guvercin: React.FC<{
       <g>
         {acikMi && <path d={kanatYol(uzak)} fill={f(R.golge)} {...st} />}
         {!tek && bacak(bacaklar[0], "#4e4247")}
-        {tuyler.map((t) => <path key={t.i} d={d(t.pts)} fill={f(t.i === 4 ? R.ust : R.kanat)} {...st} />)}
+        {tuyler.map((t) => (
+          <g key={t.i}>
+            <path d={t.yol} fill={f(t.i === 4 ? R.ust : R.kanat)} {...st} />
+            {!tek && <path d={d(t.bant)} fill={R.uc} />}
+            {!tek && <path d={d(t.sap, false)} stroke={R.kontur} strokeWidth={Math.max(1, kw * 0.45)} opacity={0.55} fill="none" style={nss} />}
+            {!tek && <path d={t.yol} fill="none" stroke={R.kontur} strokeWidth={kw} style={nss} />}
+          </g>
+        ))}
         <path d={GOVDE} fill={f(R.ust)} {...st} />
         {!tek && <path d={KARIN} fill={R.golge} />}
         {/* boyun gölgesi (parıltı yok) */}
@@ -172,7 +195,6 @@ export const Guvercin: React.FC<{
   return (
     <g>
       {kenar && <g transform={`translate(${kenar.dx} ${kenar.dy})`}><g transform={tr}>{kus(kenar.renk)}</g></g>}
-      {hayalet && <g opacity={0.3} transform={tr}><path d={kanatYol(kanatNoktalari(hayalet, false))} fill={R.kanat} /></g>}
       <g transform={tr}>{kus()}</g>
       {kilif && <g transform={kilifTr}><Kilif olcek={olcek} parilti={kilif.parilti} coz={kilif.coz} kapak={kilif.kapak} serit={kilif.serit} ipUc={ipUc} /></g>}
     </g>

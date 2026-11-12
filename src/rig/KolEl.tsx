@@ -9,6 +9,8 @@ import type { KolIsik } from "./RigIsik";
 // dış noktada yama, ceket manşeti (2 dikiş, iki düğme izi: biri düşmüş), 14–18 px taşan gömlek manşeti.
 // El: ince, kemikli; metakarp çizgileri, damar, boğumlar, tırnak; parmak araları negatif boşluk ≥ 6 px.
 // Poz "kistir": başparmak ÜSTTE, işaret parmağı ALTTA nesnenin kenarını kıstırır; tutulan nesne ikisinin ARASINDA çizilir.
+// Poz "kistirSiki" (Paris eli, ince ip/kılıf): başparmak ucu + işaret parmağı ucu KISTIR_YEREL'de buluşur, orta/yüzük/serçe
+// avuca kıvrık (yumruk kütlesi) — açık el ya da serçe yukarıda "rock" okuması yok (A eleştirisi P10a).
 
 export type KolTip = "ceket" | "gomlek" | "parisManset" | "gorevli" | "yazici" | "louis" | "parisGri";
 export type KolPalet = { kol: string; kolIsik: string; kolGolge: string; yama?: string; manset: string; mansetKir: string; ten: string; tenGolge: string; dugme?: string };
@@ -39,7 +41,7 @@ export const elMatris = (bilek: P, aci: number, olcek: number) => (p: P): P => {
 
 export const KolEl: React.FC<{
   giris: P; dirsek: P; bilek: P; gen: [number, number, number]; // kenar / dirsek / bilek yarı-genişlik değil TAM genişlik (px)
-  tip?: KolTip; elAci: number; olcek: number; poz?: "kistir" | "gevsek";
+  tip?: KolTip; elAci: number; olcek: number; poz?: "kistir" | "kistirSiki" | "gevsek";
   tutulan?: React.ReactNode; eldiven?: string; golge?: boolean; golgeRenk?: string; isikUst?: boolean;
   // A5r rig ışığı: sahnenin Isik'ından (RigIsik.kolIsigi). Işık yanı geometriden (isikUst yerine), gölge yanında net kenarlı
   // ton + tek yön tarama (sahne θ), ışık yanında sıcak kenar. El taranmaz. Verilmezse eski davranış.
@@ -87,12 +89,15 @@ export const KolEl: React.FC<{
     );
   };
   // ---- el parçaları (yerel) ----
+  const siki = poz === "kistirSiki";
   const sirt: P[] = [[0, -24], [40, -30], [86, -30], [96, -18], [96, 18], [86, 28], [40, 27], [0, 22]];
-  const isaret: P[] = [[90, -10], [114, -4], [128, 4]];
-  const basparmak: P[] = [[30, -24], [76, -36], [116, -22], [128, -12]];
-  const orta: P[] = [[94, 4], [110, 14], [102, 26]];
-  const yuzuk: P[] = [[92, 16], [106, 26], [98, 36]];
-  const serce: P[] = poz === "kistir" ? [[86, 26], [108, 40], [124, 46]] : [[86, 26], [110, 34], [132, 34]];
+  const isaret: P[] = siki ? [[90, -12], [112, -15], [127, -8], [131, 2]] : [[90, -10], [114, -4], [128, 4]];
+  const basparmak: P[] = siki ? [[30, -24], [72, -38], [108, -26], [126, -12]] : [[30, -24], [76, -36], [116, -22], [128, -12]];
+  const orta: P[] = siki ? [[92, 0], [108, 6], [106, 18], [96, 20]] : [[94, 4], [110, 14], [102, 26]];
+  const yuzuk: P[] = siki ? [[90, 12], [104, 18], [100, 28], [91, 29]] : [[92, 16], [106, 26], [98, 36]];
+  const serce: P[] = siki ? [[84, 22], [96, 28], [92, 36], [84, 36]] : poz === "kistir" ? [[86, 26], [108, 40], [124, 46]] : [[86, 26], [110, 34], [132, 34]];
+  // sıkı kıstırmada kıvrık parmakların altında yumruk kütlesi (boğum sırası arası boşluk kalmaz)
+  const yumruk: P[] = [[84, -6], [104, -2], [112, 10], [106, 26], [94, 38], [80, 34]];
   const pinch = E(KISTIR_YEREL);
   return (
     <g>
@@ -157,9 +162,10 @@ export const KolEl: React.FC<{
         {(() => { const c = E([6, -20]); return <circle cx={c[0]} cy={c[1]} r={3 * olcek} fill="#f0d2b0" opacity={0.6} />; })()}
         {eldiven && [-10, 0, 10].map((y) => <path key={`es${y}`} d={`M ${E([34, y])[0]} ${E([34, y])[1]} L ${E([78, y * 1.1])[0]} ${E([78, y * 1.1])[1]}`} stroke="#b9ad92" strokeWidth={1.4 * olcek} />)}
       </>}
+      {siki && <polygon points={pp(yumruk)} fill={f(tenG)} {...st(ten, 2)} />}
       {parmak(yuzuk, 13, "yz")}
       {parmak(orta, 14, "or")}
-      {parmak(serce, 11, "sr", true)}
+      {parmak(serce, 11, "sr", !siki)}
       {parmak(isaret, 15, "is", true)}
       {/* tutulan nesne: başparmak (üst) ile işaret parmağı (alt) ARASINDA */}
       {tutulan && <g transform={`translate(${pinch[0]},${pinch[1]})`}>{tutulan}</g>}
