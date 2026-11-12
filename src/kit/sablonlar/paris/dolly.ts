@@ -8,13 +8,15 @@ import type { P } from "../../tipler";
 import type { KameraDurum } from "../../zaman";
 
 export type Dolly = { F: number; e: number; Zk: number; ufuk: number; k: number; foe: P };
-// PARIS-CATI v2 (mekanlar §1v2.3): geniş kamera (cs 1) göz teras üstü 2.8 m, lens kaydırmalı yatay eksen, ufuk dekor y 635.
-// Dolly = C_w → C_k doğrusal öteleme T = (−0.409, −2.07, +4.566) m; FOE (dolly merkezi) = T yönünün izdüşümü ≠ kılıf.
-// Zk 5.056 = kılıf düzlemi (d 1), k 1.419 → cs 2.75'te δ_max 0.9031 (kamera C_k). Ufuk ekranı = 635 + cy (sonsuz s = 1).
-export const DOLLY_CATI: Dolly = { F: 1326, e: 2.8, Zk: 5.056, ufuk: 635, k: 1.419, foe: [421.1, 1236.1] };
-// kılıf dünya noktası (−0.509, h 0.70, Z 5.056) → dekor (cs 1); ölçüm / kilit noktası (FOE değil)
-export const KILIF_DEKOR: P = [406.1, 1185.7];
-export const YAKIN = 0.05;
+// PARIS-CATI v3 (mekanlar §1v3.6): geniş kamera (cs 1) göz teras üstü 5.0 m (bir kat yüksek komşu çatıda ayakta), ufuk dekor y 600.
+// Dolly = C_w (0, 5.0, 0) → C_k (−0.759, 0.73, 7.366) doğrusal öteleme T = (−0.759, −4.27, +7.366) m; FOE (403.4, 1368.7) ≠ kılıf.
+// Zk 7.856 = kılıf düzlemi (d 1), k 1.4734 → cs 2.75'te δ_max 0.9376 (kamera C_k, kılıfa 0.49 m). Ufuk ekranı = 600 + cy.
+export const DOLLY_CATI: Dolly = { F: 1326, e: 5.0, Zk: 7.856, ufuk: 600, k: 1.4734, foe: [403.4, 1368.7] };
+// kılıf dünya noktası (−0.859, h 0.70, Z 7.856) → dekor (cs 1); ölçüm / kilit noktası (FOE değil)
+export const KILIF_DEKOR: P = [395.0, 1325.8];
+// Yakın düzlem METRE ile (mekanlar §1v3.6): kameradan 0.25 m. d birimine çevrimi Zk'ye bağlı (v3: 0.032).
+export const YAKIN_M = 0.25;
+export const yakinD = (D: Dolly) => YAKIN_M / D.Zk;
 /** dolly yolunda kamera dünya konumu (m; X, h, Z) — FOE ötelemesinden: t = T·δ/δ_max, T_z = δ·Zk */
 export const kameraDunya = (D: Dolly, cs: number): [number, number, number] => {
   const tz = delta(D, cs) * D.Zk;
@@ -40,14 +42,14 @@ export type Katman = { d: number; s: number; T: (q: P) => P; gorunur: boolean; s
 export const katman = (D: Dolly, k: KameraDurum, d: number): Katman => {
   const dl = delta(D, k.cs), s = olcek(d, dl);
   const T = (q: P): P => [D.foe[0] + k.cx + (q[0] - D.foe[0]) * s, D.foe[1] + k.cy + (q[1] - D.foe[1]) * s];
-  return { d, s, T, gorunur: d - dl >= YAKIN, svg: `translate(${D.foe[0] + k.cx},${D.foe[1] + k.cy}) scale(${s}) translate(${-D.foe[0]},${-D.foe[1]})` };
+  return { d, s, T, gorunur: d - dl >= yakinD(D), svg: `translate(${D.foe[0] + k.cx},${D.foe[1] + k.cy}) scale(${s}) translate(${-D.foe[0]},${-D.foe[1]})` };
 };
 // Dünya noktası → ekran (kendi d'siyle). Yakın düzlemin önündeyse null.
 export const dunyaEkran = (D: Dolly, k: KameraDurum, X: number, h: number, Z: number): P | null => {
   const { p, d } = dunyaTaban(D, X, h, Z);
-  return d - delta(D, k.cs) < YAKIN ? null : dollyEkran(D, k, p, d);
+  return d - delta(D, k.cs) < yakinD(D) ? null : dollyEkran(D, k, p, d);
 };
 // Bu noktadaki ekran px/m (dünya ölçüsü → ekran)
 export const ekranPxm = (D: Dolly, k: KameraDurum, d: number) => (D.F / (d * D.Zk)) * olcek(d, delta(D, k.cs));
 // Görünür en yakın derinlik (m): zemin çokgenleri bu Z'de kırpılır
-export const enYakinZ = (D: Dolly, k: KameraDurum) => (delta(D, k.cs) + YAKIN + 0.02) * D.Zk;
+export const enYakinZ = (D: Dolly, k: KameraDurum) => (delta(D, k.cs) + yakinD(D) + 0.02) * D.Zk;

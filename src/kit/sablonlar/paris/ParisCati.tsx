@@ -1,8 +1,8 @@
-// ===== KE-PK-S1 PARIS-CATI v2 (Paris kuşatması 1870; mekanlar.md §1v2 · tasarim.md §13) =====
-// Tek dekor + tek doğrusal dolly (dolly.ts DOLLY_CATI v2): geniş kamera (cs 1) göz teras üstü 2.8 m, ufuk 635 → kanca kamerası (cs 2.75)
-// kılıfın 0.49 m önünde, göz 0.73 m (ufuk kuşun göğsünde). gorunum "cati" = "kumes" (aynı dekor). saat "alacakaranlik" | "gun".
+// ===== KE-PK-S1 PARIS-CATI v3 (Paris kuşatması 1870; mekanlar.md §1v3 (+ §1v2) · tasarim.md §13) =====
+// Tek dekor + tek doğrusal dolly (dolly.ts DOLLY_CATI v3): geniş kamera (cs 1) göz teras üstü 5.0 m (komşu çatıda), ufuk 600 → kanca kamerası (cs 2.75)
+// kılıfın 0.49 m önünde, göz 0.73 m (ufuk kuşun göğsünde). Çatı denizi K4 · K4b · K3 · K3b dünya modelinde (CatiSirasi), ön-plan çerçeve (OnCerceve). gorunum "cati" = "kumes" (aynı dekor). saat "alacakaranlik" | "gun".
 // Uzak katmanlar dekor px + L(d) (flu kanca tarafında), yakın katmanlar (teras, kümes, sağ baca, tekne, kuş) DÜNYA modeli → dunyaEkran.
-// Döngü kilidi: P01 f0 ve P11 son kare AYNI cs/cx/cy (2.75/105/244) + kuş tünekte aynı kılıf noktası → kılıf ekran (≈374, 960).
+// Döngü kilidi: P01 f0 ve P11 son kare AYNI cs/cx/cy (2.75/105/279) + kuş tünekte aynı kılıf noktası → kılıf ekran (≈374, 960).
 // TEK IŞIK: catiDekor ISIK_YON[saat] → yüz tonu, kenar ışığı, zemin gölgesi (golgeVektor), terastaki ışık şeridi aynı vektörden.
 // Görüntüde DİL METNİ YOK. Kırmızı yok, sarı metal yok; imza kehribarı yalnız kılıfta (sahne C* ≤ 28).
 // Parametreler (KATALOG.md "PARIS-CATI"): kus {kalkis, cikis, iner, kanat_topla, parilti} | false, kilif_coz {bas, bit, temas, serit_cikar},
@@ -21,23 +21,22 @@ import type { P, Plan } from "../../tipler";
 import { cl, GIRIS, INOUT, kameraHesapla } from "../../zaman";
 import { param, Sablon, SablonProps } from "../../ortak";
 import { pchip } from "../galata/GalataTepe";
-import { DOLLY_CATI, Dolly, dunyaEkran, ekranPxm, katman, kameraDunya } from "./dolly";
+import { DOLLY_CATI, Dolly, dunyaEkran, dunyaTaban, ekranPxm, katman, kameraDunya } from "./dolly";
 import {
-  BacaDunya, BacaKumesiDunya, CATI_PALET, CatiDenizi, CatiSatir, CinkoTeras, Duman, Flu, fluSigma, GokLitografi, golgeCokgen, golgeVektor, HaleParilti,
-  K1Sirt, K4, K4Sira, kirpCiz, KIRIK_Z, KUMES_V2, KumesDunya, kumesCerceve, kutuKose, Saat, tahtaUstEkran, V3, YEM_TEKNESI, YemTeknesi,
+  BacaDunya, BacaKumesiDunya, CATI_PALET, CatiDenizi, CatiSatir, CatiSirasi, CinkoTeras, sirasiBacalar, Duman, Flu, fluSigma, GokLitografi, golgeCokgen, golgeVektor, HaleParilti,
+  K1Sirt, k4Lucarne, k4LucarneBul, kirpCiz, KIRIK_Z, KUMES_V2, KumesDunya, kumesCerceve, kutuKose, OnCerceve, Saat, SIRALAR, tahtaUstEkran, V3, YEM_TEKNESI, YemTeknesi,
 } from "./catiDekor";
 
 const S = DOKU_SEED.parisCati;
-// Sağ baca kümesi kendi terasımızda (mekanlar §1v2.2; A2 değeri korunur)
-const SAG_BACA: BacaDunya = { X0: 1.3, X1: 1.8, Z: 4.4, derin: 0.45, hGovde: 1.4, baslik: 0.07, kulahSayi: 4, kulahCap: 0.1, kulahBoy: 0.28 };
+// Sağ baca kümesi kendi terasımızda (mekanlar §1v3.2: güvenli alanda, kilit/temas noktası değil, çerçeve öğesi)
+const SAG_BACA: BacaDunya = { X0: 2.2, X1: 2.7, Z: 8.0, derin: 0.45, hGovde: 1.4, baslik: 0.07, kulahSayi: 4, kulahCap: 0.1, kulahBoy: 0.28 };
 type Siluet = { x: number; kod: SiluetKod; dx?: number };
-// K4 ışıklı lucarne'larda 4 yüzsüz siluet (x 560–900; K4_BINALAR[2] aksları), kuşun gittiği yöne (sağ) bakar
-const SILUET_VARS: Siluet[] = [{ x: 580, kod: "yetiskin-b" }, { x: 684, kod: "yetiskin-a" }, { x: 788, kod: "cocuk" }, { x: 892, kod: "yetiskin-a" }];
-// Çatı denizi satırları (dekor px, cs 1; mekanlar §1v2.5)
-const K2_SATIR: CatiSatir = { kornis: 690, kirik: 662, teras: 652, tarak: [6, 12], bina: [70, 150], renk: "#8d7899", seed: S + 2 };
-const K3_SATIR: CatiSatir = { kornis: 872, kirik: 773, teras: 742, tarak: [26, 40], bina: [150, 260], renk: "#6d6384", kontur: "#4e4a68", lucarne: { ust: 805, alt: 850, w: 30, aks: 62 }, seed: S + 3 };
-// Kuş tünek kılıfı (dünya): mekanlar §1v2.2 K; ayaklar rig'den tahta üstüne (h 0.655) düşer
-const K0: V3 = [-0.509, 0.7, 5.056];
+// K4 ışıklı lucarne'larda en çok 3 yüzsüz siluet (mekanlar §1v3.7); x = cs 1 ekran x → en yakın K4 lucarne. Kuşun gittiği yöne (sağ) bakar
+const SILUET_VARS: Siluet[] = [{ x: 610, kod: "yetiskin-b" }, { x: 760, kod: "cocuk" }, { x: 905, kod: "yetiskin-a" }];
+// K2 siluet (dekor px, cs 1; §1v3.3: 585–655, kontursuz, tarak)
+const K2_SATIR: CatiSatir = { kornis: 655, kirik: 627, teras: 617, tarak: [18, 32], bina: [70, 150], renk: "#9a80a0", seed: S + 2 };
+// Kuş tünek kılıfı (dünya): mekanlar §1v3.2 K (V2'ye göre ΔX −0.35, ΔZ +2.80); ayaklar rig'den tahta üstüne (h 0.655) düşer
+const K0: V3 = [-0.859, 0.7, 7.856];
 
 type Aralik = { bas: number; bit: number; temas?: number };
 type KusPlan = { kalkis?: Aralik; cikis?: Aralik; iner?: Aralik; kanatTopla?: Aralik; parilti?: Aralik; yok: boolean };
@@ -77,16 +76,19 @@ const kusDurumu = (plan: Plan, p: number): KusDurum | null => {
   if (K.yok) return null;
   const T = KUS_POZ;
   if (K.kalkis) {
-    // P01: kılıf dünya yolu (motion v2; P01 kamerasıyla ters izdüşümden: f24 kanca, f90 (620,650), f190 (760,470), f275 (1000,290), f330 kadraj dışı sağ-üst).
-    // Kümesin sağından çıkar (çatı ve saçağa değmez), sağ bacanın arkasından ve üstünden geçer (Z ≥ 5, ekranda örtüşme yok).
+    // P01: kılıf dünya yolu (motion v3; P01 v3 kamerasıyla ters izdüşümden — kılıf ekranı: f40 (430,905), f60 (525,850), f90 (590,780),
+    // f140 (650,705), f190 (720,645), f240 (810,605), f275 (900,575) halenin önü, f330 (1180,240) sağ-üstten kadraj dışı).
+    // Kalkışta önce kameradan UZAKLAŞIR (Z 7.86 → 8.9 f90'da): kanca yakınlığında kuş küçülür, sağ kenardan taşmaz (V2 f40–50 kusuru).
+    // Kümesin sağ duvarının (X ≤ −1.0) sağından çıkar, saçağa değmez; sağ bacanın (Z 8.0–8.45) arkasından ve çok üstünden geçer.
     const t0 = K.kalkis.bas, t1 = K.kalkis.bit, t5 = K.cikis?.bit ?? t0 + 330, t4 = K.cikis?.bas ?? t5 - 55;
     if (p > t5) return null;
-    const o = (t5 - t0) / 330, kare = [0, 24, 60, 90, 140, 190, 240, 275, 330].map((f) => t0 + f * o);
-    const pts: V3[] = [K0, [-0.502, 0.712, 5.04], [-0.404, 0.898, 5.08], [-0.295, 1.142, 5.35], [0.033, 1.788, 6.2], [0.411, 2.637, 7.0], [1.328, 3.518, 8.0], [2.674, 4.693, 9.0], [4.966, 6.908, 10.0]];
+    const o = (t5 - t0) / 330, kare = [0, 24, 40, 60, 90, 140, 190, 240, 275, 330].map((f) => t0 + f * o);
+    const pts: V3[] = [K0, [-0.852, 0.712, 7.84], [-0.863, 0.738, 8.0], [-0.825, 0.995, 8.35], [-0.727, 1.27, 8.9], [-0.402, 1.927, 9.8], [0.335, 2.842, 10.8], [1.348, 3.511, 12.0], [3.183, 4.653, 13.5], [7.067, 8.696, 15.5]];
     const q = Math.max(p, t0), t2 = t0 + 70 * o;
     const poz = (r: number): KusPoz => {
       if (r < t0) return T["tunek"];
-      const kalk = cirpis({ ...KALK_YUKARI, bacak: interpolate(r, [t0 + 3, t1], [1, 0.3], cl) }, r, t0, KALK_YUKARI, KALK_ASAGI, 14);
+      // faz: f24 (kontrol_kare) kanat YUKARIDA (vuruş tepesi) — ileri bakan ara faz kısalıp blok gibi okunuyordu (V2/v3 ilk deneme)
+      const kalk = cirpis({ ...KALK_YUKARI, bacak: interpolate(r, [t0 + 3, t1], [1, 0.3], cl) }, r, t0 - 4, KALK_YUKARI, KALK_ASAGI, 14);
       const ucus = cirpis(UCUS_YUKARI, r, t0, UCUS_YUKARI, T["ucus-asagi"], 16);
       // f0: gövde/kuyruk tünek pozunda (P11 son kare kılıf açısı), kanat açılmaya başlamış (ilk kare hareketli)
       const ilk = { ...T["tunek"], kanat: 0.55, kanatYon: -120, kanatBoy: 0.75 };
@@ -99,10 +101,10 @@ const kusDurumu = (plan: Plan, p: number): KusDurum | null => {
     return { kilif: yol3(kare, pts, q), poz: poz(p), konmus: p < t0 + 3 };
   }
   if (K.iner) {
-    // P11 son / P10a: sol üstten, kümes saçağının ÜSTÜNDEN ve ön yüzün ÖNÜNDEN (Z 4.98–5.0) iner; duvar/saçak içinden geçmez
+    // P11 son / P10a: sol üstten, kümes saçağının ÜSTÜNDEN ve ön yüzün ÖNÜNDEN (Z 7.78–7.80; v2 + ΔX −0.35, ΔZ +2.80) iner; duvar/saçak içinden geçmez
     const tb = K.iner.bas, tL = K.iner.temas ?? K.iner.bit;
     const kare = [tb, tL - 14, tL];
-    const pts: V3[] = [[-0.95, 1.75, 4.98], [-0.52, 1.05, 5.0], K0];
+    const pts: V3[] = [[-1.3, 1.75, 7.78], [-0.87, 1.05, 7.8], K0];
     const q = Math.min(Math.max(p, tb), tL);
     let kilif = yol3(kare, pts, q);
     // oturma: konunca gövde 6 mm çöker, sönerek döner — kapanış anı
@@ -171,6 +173,15 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     if (kp.kalkis && kus.poz.kanat > 0.3) {
       const omuz = kusYerlesim(kus.poz, c, olcek).ekran([14, -28]), yukari = -Math.sin((kus.poz.kanatYon * Math.PI) / 180);
       if (yukari > 0.05) kus.poz = { ...kus.poz, kanatBoy: Math.max(0.35, Math.min(kus.poz.kanatBoy, (omuz[1] - 240) / (300 * olcek * yukari))) };
+      // sağ kenar (v3, V2 f24 kusuru): ileri bakan kanat ucu x ≤ 1050 — yine kamera değil kanat kısalır (kameraya dönük kısalma)
+      const ileri = Math.cos((kus.poz.kanatYon * Math.PI) / 180);
+      if (ileri > 0.05) kus.poz = { ...kus.poz, kanatBoy: Math.max(0.35, Math.min(kus.poz.kanatBoy, (1050 - omuz[0]) / (300 * olcek * ileri))) };
+      // aşağı vuruş iniş tahtasının içinden geçmez: kanat ucu tahta üst yüzünün (ekranda) üstünde kalır, kuş tahtanın üstündeyken
+      const tp = tahtaUstEkran(D, k, KUMES_V2), asagi = Math.sin((kus.poz.kanatYon * Math.PI) / 180);
+      if (tp && asagi > 0.05) {
+        const xs = tp.map((q) => q[0]), ust = Math.min(...tp.map((q) => q[1]));
+        if (omuz[0] > Math.min(...xs) - 50 && omuz[0] < Math.max(...xs) + 50) kus.poz = { ...kus.poz, kanatBoy: Math.max(0.3, Math.min(kus.poz.kanatBoy, (ust - 8 - omuz[1]) / (300 * olcek * asagi))) };
+      }
     }
     const Y = kusYerlesim(kus.poz, c, olcek);
     const r = (Y.kilifAci * Math.PI) / 180;
@@ -204,9 +215,9 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   // ışık şeridi: kümes gölgesinin sağ kenarı ile sağ baca gölgesinin sol kenarı arası (aynı vektör doğrultusunda), Z ≤ 5.9
   const gv = golgeVektor(saat), oran = gv[0] / gv[1];
   const isikSerit = saat === "alacakaranlik" ? (() => {
-    const xl = (Z: number) => -0.48 + oran * (Z - 5.2), xr = (Z: number) => SAG_BACA.X0 + oran * (Z - SAG_BACA.Z);
-    const Zn = 0.3;
-    return kirpCiz(D, k, [[xl(5.9), 0, 5.9], [xr(5.9), 0, 5.9], [xr(Zn), 0, Zn], [xl(Zn), 0, Zn]]);
+    const xl = (Z: number) => KM.R[0] + 0.02 + oran * (Z - KM.R[1]), xr = (Z: number) => SAG_BACA.X0 + oran * (Z - SAG_BACA.Z);
+    const Zf = KIRIK_Z - 0.5, Zn = 1.75;
+    return kirpCiz(D, k, [[xl(Zf), 0, Zf], [xr(Zf), 0, Zf], [xr(Zn), 0, Zn], [xl(Zn), 0, Zn]]);
   })() : null;
 
   // ---- kuşun temas gölgesi (tahta üstüne kırpılır; yön tek ışıktan) ----
@@ -227,30 +238,39 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   })() : null;
 
   const kontur3 = sK3 <= 3, kontur4 = sK4 <= 3;
-  const L4 = L(dZ(20));
-  const siluetCiz = siluetler.map((q, i) => {
-    const H = siluetBoy(q.kod), gorunen = q.kod === "cocuk" ? 0.55 : 0.8, pxm = K4.pxm * L4.s, w = 0.9 * K4.pxm;
-    const ayak = L4.T([q.x + (q.dx ?? 0), K4.lucEsik - 2 + (H - gorunen) * K4.pxm]);
-    const a = L4.T([q.x - w / 2, K4.lucUst + 6]), b = L4.T([q.x + w / 2, K4.lucEsik - 2]);
-    return <SiluetFigur key={i} kod={q.kod} ayak={ayak} pxm={pxm} renk={C.siluet} kenar={{ renk: C.siluetKenar, dx: saat === "gun" ? -2 : 2, dy: -1 }} klip={[a[0], a[1], b[0] - a[0], b[1] - a[1]]} />;
+  // siluetler: K4 lucarne penceresinin içinde, pencereye 0.3 m geride, belden yukarısı (klip = pencere)
+  const siluetYer = siluetler.slice(0, 3).map((q) => ({ q, bl: k4LucarneBul(D, q.x + (q.dx ?? 0)) }));
+  const siluetCiz = siluetYer.map(({ q, bl }, i) => {
+    const Lc = k4Lucarne(bl[0], bl[1]), H = siluetBoy(q.kod), gorunen = q.kod === "cocuk" ? 0.55 : 0.8;
+    const ayak = dunyaEkran(D, k, Lc.X, Lc.esik - (H - gorunen), Lc.Z + 0.3), a = dunyaEkran(D, k, Lc.X - Lc.w / 2, Lc.ust, Lc.Z), b = dunyaEkran(D, k, Lc.X + Lc.w / 2, Lc.esik, Lc.Z);
+    if (!ayak || !a || !b) return null;
+    return <SiluetFigur key={i} kod={q.kod} ayak={ayak} pxm={ekranPxm(D, k, (Lc.Z + 0.3) / D.Zk)} renk={C.siluet} kenar={{ renk: C.siluetKenar, dx: saat === "gun" ? -2 : 2, dy: -1 }} klip={[a[0], a[1], b[0] - a[0], b[1] - a[1]]} golge={false} />;
   });
-  const L2 = L(dZ(120)), L3 = L(dZ(38));
+  const L2 = L(dZ(120));
+  const siralar = SIRALAR(C);
+  const sigmaSira: Record<string, number> = { K3b: fluSigma(6, k.cs), K3: sK3, K4b: fluSigma(7, k.cs), K4: sK4 };
+  // duman kaynakları (dünya: baca tepesi yaklaşık) → katman eşleyicisi (Duman dekor px + L(d) kullanır)
+  // §1v3.4: 3 şerit K2 (x ≈ 150), K3 (x ≈ 330), K4 (x ≈ 700) — sıranın cs 1 ekran x'ine en yakın bacanın başından
+  const dumanYer = (ad: string, x: number) => {
+    const R_ = siralar.find((r) => r.ad === ad)!, b = sirasiBacalar(R_).reduce((a, c) => Math.abs(540 + (D.F * c.X) / R_.Z - x) < Math.abs(540 + (D.F * a.X) / R_.Z - x) ? c : a);
+    const t = dunyaTaban(D, b.X, b.tepe + 0.35, (b.z0 + b.z1) / 2); return { L: L(t.d), q: t.p };
+  };
 
   const uzak = (
     <g>
       <Flu id={`${uid}f1`} sigma={sK1}><K1Sirt C={C} L={L(dZ(900))} seed={S + 1} pantheon={pantheonX} /></Flu>
       <Flu id={`${uid}f2`} sigma={sK2}>
         <CatiDenizi L={L2} S={{ ...K2_SATIR, renk: C.k2 }} C={C} />
-        {C.duman && C.dumanSayi >= 3 && <Duman L={L2} kaynak={[150, 636]} boy={80} kalin={4} renk={C.duman} seed={S + 11} t={p} />}
+        {C.duman && C.dumanSayi >= 3 && <Duman L={L2} kaynak={[150, 598]} boy={80} kalin={4} renk={C.duman} seed={S + 11} t={p} />}
       </Flu>
-      <Flu id={`${uid}f3`} sigma={sK3}>
-        <CatiDenizi L={L3} S={{ ...K3_SATIR, renk: C.k3, kontur: kontur3 ? C.k3Kontur : undefined }} C={C} />
-        {C.duman && C.dumanSayi >= 2 && <Duman L={L3} kaynak={[300, 700]} boy={120} kalin={6} renk={C.duman} seed={S + 12} t={p} />}
-      </Flu>
-      <Flu id={`${uid}f4`} sigma={sK4}>
-        <K4Sira C={C} L={L4} seed={S + 4} saat={saat} isikliZorunlu={siluetler.map((q) => q.x)} kontur={kontur4} cocuk={siluetCiz} />
-        {C.duman && <Duman L={L4} kaynak={[700, 838]} boy={170} kalin={9} renk={C.duman} seed={S + 13} t={p} />}
-      </Flu>
+      {siralar.map((R_) => (
+        <Flu key={R_.ad} id={`${uid}s${R_.ad}`} sigma={sigmaSira[R_.ad]}>
+          <CatiSirasi D={D} k={k} S={R_} C={C} kamX={kamDunya[0]} saat={saat} kontur={R_.ad === "K4" ? kontur4 : kontur3}
+            isikliZorunlu={R_.ad === "K4" ? siluetYer.map((q) => q.bl) : []} cocuk={R_.ad === "K4" ? siluetCiz : undefined} />
+          {C.duman && R_.ad === "K3" && C.dumanSayi >= 2 && (() => { const d = dumanYer("K3", 330); return <Duman L={d.L} kaynak={d.q} boy={120} kalin={6} renk={C.duman} seed={S + 12} t={p} />; })()}
+          {C.duman && R_.ad === "K4" && (() => { const d = dumanYer("K4", 700); return <Duman L={d.L} kaynak={d.q} boy={170} kalin={9} renk={C.duman} seed={S + 13} t={p} />; })()}
+        </Flu>
+      ))}
     </g>
   );
   const yem = param(plan, "yem_teknesi", true);
@@ -280,9 +300,10 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
         {kusGolge}
         {kus && kusEkran && (
           <Guvercin poz={kus.poz} capa={kusEkran.capa} olcek={kusEkran.olcek}
-            kenar={{ renk: C.kenar, dx: saat === "gun" ? -2.5 : 2.5, dy: -2.5 }}
+            kenar={(() => { const r = Math.max(2.5, Math.min(7, 2.2 * kusEkran.olcek)); return { renk: C.kenar, dx: saat === "gun" ? -r : r, dy: -r }; })()}
             kilif={{ parilti, coz: cozT, kapak, serit, ipUcEkran: ipUc }} />
         )}
+        <OnCerceve D={D} k={k} C={C} />
         {elVar && kusEkran && coz && <ElKatmani coz={coz} p={p} dugum={kusEkran.dugum} pxm={kusEkran.pxm} kilif={kilifCiz} gun={saat === "gun"} />}
       </RenkKaydi>
     </svg>

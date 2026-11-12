@@ -10,7 +10,7 @@ import { Tarama } from "../../../doku/Tarama";
 import { ink, karistir, rnd } from "../../../doku/sabitler";
 import type { P } from "../../tipler";
 import type { KameraDurum } from "../../zaman";
-import { Dolly, dunyaEkran, enYakinZ, Katman } from "./dolly";
+import { Dolly, dunyaEkran, ekranPxm, enYakinZ, Katman, kameraDunya } from "./dolly";
 
 export type Saat = "alacakaranlik" | "gun";
 export type V3 = [number, number, number];
@@ -25,6 +25,11 @@ export type CatiPalet = {
   ahsapIsik: string; ahsap: string; ahsapG: string; damar: string; kumesCati: string; aciklik: string; celik: string;
   siluet: string; siluetKenar: string; kenar: string; duman: string | null; dumanSayi: number; isikliOran: number;
   isik: V3;
+  // v3 (mekanlar §1v3.3/§1v3.5): sıra renkleri, sırt sıcak bandı, K4 krem cephe (Venüs kuşağı yansıması), lucarne kremi, ışık yüzü, ön-plan çerçeve
+  sira: Record<"K4" | "K4b" | "K3" | "K3b", { brisis: string; brisisG: string; terrasson: string }>;
+  sirtParlama: string | null; cephe: string; cepheUst: string; cepheSove: string; balkon: string;
+  lucKrem: string; lucKremIsik: string; lucKremG: string; isikYuz: string; bacaYanG: string;
+  onYuz: string; onKenet: string; onParlama: string;
 };
 // mekanlar §1v2.8: kamera 230°; alacakaranlık güneşi 243°, 2° → 13° sağ, önde (kontrajur). Gün 09:00, 135°, 12° → 95° sol, hafif arkada.
 export const ISIK_YON: Record<Saat, V3> = {
@@ -47,13 +52,22 @@ export const CATI_PALET: Record<Saat, CatiPalet> = {
     // tepe/üst: tasarım #2b2f5c/#4d4a80 (C* 30/34) kılıf tekliği C* ≤ 28 için aynı L*, aynı ton, C* 25/27 (motion v2 ölçümü)
     gok: ["#2e3157", "#504e79", "#7d6a95", "#b98a9e", "#e6b5a0"], hale: "#f0cdb4",
     k1: "#a98aa0", kubbe: "#8d7899", kubbeG: "#7d6a95", k2: "#8d7899", k3: "#6d6384", k3Kontur: "#4e4a68",
-    tas: "#6f6684", tasG: "#4e4a68", tarama: "#2f2d46", brisis: "#6d6384", brisisG: "#3e3b5c", terrasson: "#7a6f92",
+    tas: "#6f6684", tasG: "#4e4a68", tarama: "#2f2d46", brisis: "#6d6384", brisisG: "#3e3b5c", terrasson: "#8a7d99",
     cinko: "#5b5878", cinkoIsik: "#6d6384", cinkoG: "#3e3b5c", kenet: "#3e3b5c", kenetIsik: "#c9a0a6", golge: "#3e3b5c", golgeA: 0.82, sicakBant: "#b98a9e",
     baca: "#6f6684", bacaG: "#4e4a68", bacaBaslik: "#3e3b5c", kulah: "#8a6458", kulahG: "#4f4347",
     pencere: "#f0d2b8", pencereHavuz: "#e6b5a0", pencereKaranlik: "#2f2d46", kasa: "#3a3550",
     ahsapIsik: "#b58a6c", ahsap: "#7e5a48", ahsapG: "#4a3844", damar: "#3a2c36", kumesCati: "#5c5a7a", aciklik: "#221a26", celik: "#3a3d48",
     siluet: "#2f2d46", siluetKenar: "#d9a995", kenar: "#e6b5a0", duman: "#8d7899", dumanSayi: 3, isikliOran: 0.35,
     isik: ISIK_YON.alacakaranlik,
+    sira: {
+      K4: { brisis: "#6d6384", brisisG: "#3e3b5c", terrasson: "#8a7d99" },
+      K4b: { brisis: "#76698a", brisisG: "#4e4a68", terrasson: "#857a98" },
+      K3: { brisis: "#7d6a95", brisisG: "#5e5478", terrasson: "#8a7d99" },
+      K3b: { brisis: "#8d7899", brisisG: "#7d6a95", terrasson: "#8d7899" },
+    },
+    sirtParlama: "#c9a0a6", cephe: "#9c8a96", cepheUst: "#a8908f", cepheSove: "#7d6f86", balkon: "#3e3b5c",
+    lucKrem: "#b89c96", lucKremIsik: "#d2b0a4", lucKremG: "#8a7a8c", isikYuz: "#c4a59a", bacaYanG: "#8a7a8c",
+    onYuz: "#3e3b5c", onKenet: "#2f2d46", onParlama: "#c9a0a6",
   },
   // gün (P10a): v1 gün gök/çatı + v2 kümes ahşabı (tasarım §13.1; mekanlar §1v2.9 — v2 gün paleti tanımlanmadı, varsayılan)
   gun: {
@@ -66,6 +80,15 @@ export const CATI_PALET: Record<Saat, CatiPalet> = {
     ahsapIsik: "#a8805f", ahsap: "#8c6d56", ahsapG: "#5a4638", damar: "#45362c", kumesCati: "#6a707a", aciklik: "#2a2422", celik: "#3a3d42",
     siluet: "#3a3632", siluetKenar: "#efe6cc", kenar: "#efe6cc", duman: "#9ea4ac", dumanSayi: 1, isikliOran: 0,
     isik: ISIK_YON.gun,
+    sira: {
+      K4: { brisis: "#737b8a", brisisG: "#59606e", terrasson: "#8e949c" },
+      K4b: { brisis: "#7b8391", brisisG: "#646b78", terrasson: "#969ba2" },
+      K3: { brisis: "#848b97", brisisG: "#6f7682", terrasson: "#9ea4ac" },
+      K3b: { brisis: "#9ea4ac", brisisG: "#8a919b", terrasson: "#9ea4ac" },
+    },
+    sirtParlama: null, cephe: "#d8cdb4", cepheUst: "#cfc3a9", cepheSove: "#a89d86", balkon: "#3a3a4c",
+    lucKrem: "#cfc3a9", lucKremIsik: "#e2d8c0", lucKremG: "#a89d86", isikYuz: "#d8cdb4", bacaYanG: "#968c78",
+    onYuz: "#6a707a", onKenet: "#565c66", onParlama: "#c8ccd0",
   },
 };
 const pl = (pts: P[]) => pts.map((q) => `${q[0].toFixed(1)},${q[1].toFixed(1)}`).join(" ");
@@ -82,7 +105,7 @@ export const Flu: React.FC<{ id: string; sigma: number; children: React.ReactNod
 );
 
 // ---- 0 Gök: 5 düz basamak + litografi geçişi (sınır altında 3 ince çizgi üst bandın tonunda + tane şeridi) ----
-const GOK_SINIR = [200, 380, 500, 585]; // dekor y (cs 1); son basamak ufka kadar (altı çatı denizi)
+const GOK_SINIR = [165, 345, 465, 550]; // v3 (§1v3.3): ufuk 635 → 600, sınırlar −35 // dekor y (cs 1); son basamak ufka kadar (altı çatı denizi)
 export const GokLitografi: React.FC<{ C: CatiPalet; k: KameraDurum; seed: number }> = ({ C, k, seed }) => {
   const X0 = -400, X1 = 1500, sinir = [-3000, ...GOK_SINIR, 4000];
   const parca: React.ReactNode[] = [];
@@ -101,7 +124,7 @@ export const GokLitografi: React.FC<{ C: CatiPalet; k: KameraDurum; seed: number
 };
 
 // ---- 0b Hale: iki eş merkezli düz disk, kenar net; disk/güneş YOK. Sonsuzda (yalnız cx/cy) ----
-export const HALE = { merkez: [846, 640] as P, r: [130, 200], alfa: [0.55, 0.3] };
+export const HALE = { merkez: [846, 605] as P, r: [130, 200], alfa: [0.55, 0.3] };
 export const HaleParilti: React.FC<{ C: CatiPalet; k: KameraDurum }> = ({ C, k }) => !C.hale ? null : (
   <g transform={`translate(${k.cx} ${k.cy})`}>
     <circle cx={HALE.merkez[0]} cy={HALE.merkez[1]} r={HALE.r[1]} fill={C.hale} opacity={HALE.alfa[1]} />
@@ -111,36 +134,36 @@ export const HaleParilti: React.FC<{ C: CatiPalet; k: KameraDurum }> = ({ C, k }
 
 // ---- 1 K1 sırt (Montagne Sainte-Geneviève yükselişi) + Panthéon (×1.6 stilize; fener ucu nötr, haç yok) ----
 export const K1Sirt: React.FC<{ C: CatiPalet; L: Katman; seed: number; pantheon: number | false }> = ({ C, L, seed, pantheon }) => {
-  const T = L.T, pts: P[] = [[-500, 1000], [-500, 652]];
+  const T = L.T, pts: P[] = [[-500, 1000], [-500, 617]], DY = -35; // v3: K1 sırt 615 → 562 (Panthéon yanı)
   for (let x = -500; x <= 1600; x += 22) {
-    const yuk = pantheon === false ? 0 : 50 * Math.exp(-(((x - pantheon) / 260) ** 2)); // Panthéon'a doğru yükselir
+    const yuk = pantheon === false ? 0 : 53 * Math.exp(-(((x - pantheon) / 260) ** 2)); // Panthéon'a doğru yükselir
     const tarak = rnd(seed, `s${x}`) < 0.45 ? 4 + rnd(seed, `h${x}`) * 6 : 0;
-    const y = 650 - yuk - tarak;
+    const y = 615 - yuk - tarak;
     pts.push([x, y], [x + 22, y]);
   }
   pts.push([1600, 1000]);
   const P_ = pantheon === false ? null : (() => {
-    const x = pantheon, s = (v: number) => x + v;
+    const x = pantheon, s = (v: number) => x + v, y_ = (v: number) => v + DY;
     // gövde K1 sırtının arkasından çıkar; tambur 600–540, kubbe 540–490, fener 490–470
-    const govde = R4(T, s(-70), 578, 140, 60);
-    const tambur = R4(T, s(-36), 540, 72, 46);
-    const attik = R4(T, s(-31), 532, 62, 9);
-    const kubbe = `M ${T([s(-30), 532]).join(" ")} C ${T([s(-29), 500]).join(" ")} ${T([s(-14), 488]).join(" ")} ${T([s(0), 488]).join(" ")} C ${T([s(14), 488]).join(" ")} ${T([s(29), 500]).join(" ")} ${T([s(30), 532]).join(" ")} Z`;
-    const fener = R4(T, s(-4.5), 472, 9, 17);
-    const kol = [-28, -18, -8, 2, 12, 22].map((v) => R4(T, s(v), 548, 4, 34));
+    const govde = R4(T, s(-70), y_(578), 140, 60);
+    const tambur = R4(T, s(-36), y_(540), 72, 46);
+    const attik = R4(T, s(-31), y_(532), 62, 9);
+    const kubbe = `M ${T([s(-30), y_(532)]).join(" ")} C ${T([s(-29), y_(500)]).join(" ")} ${T([s(-14), y_(488)]).join(" ")} ${T([s(0), y_(488)]).join(" ")} C ${T([s(14), y_(488)]).join(" ")} ${T([s(29), y_(500)]).join(" ")} ${T([s(30), y_(532)]).join(" ")} Z`;
+    const fener = R4(T, s(-4.5), y_(472), 9, 17);
+    const kol = [-28, -18, -8, 2, 12, 22].map((v) => R4(T, s(v), y_(548), 4, 34));
     const g = isikSagMi(C) ? -1 : 1; // gölge yanı ışığın tersi
-    const kubbeG = `M ${T([s(30 * g), 532]).join(" ")} C ${T([s(29 * g), 500]).join(" ")} ${T([s(14 * g), 488]).join(" ")} ${T([s(0), 488]).join(" ")} L ${T([s(6 * g), 532]).join(" ")} Z`;
+    const kubbeG = `M ${T([s(30 * g), y_(532)]).join(" ")} C ${T([s(29 * g), y_(500)]).join(" ")} ${T([s(14 * g), y_(488)]).join(" ")} ${T([s(0), y_(488)]).join(" ")} L ${T([s(6 * g), y_(532)]).join(" ")} Z`;
     return (
       <g>
         <polygon points={pl(govde)} fill={C.kubbe} />
         <polygon points={pl(tambur)} fill={C.kubbe} />
         {kol.map((q, i) => <polygon key={i} points={pl(q)} fill={C.kubbeG} />)}
-        <polygon points={pl(R4(T, s(g > 0 ? 18 : -36), 540, 18, 46))} fill={C.kubbeG} />
+        <polygon points={pl(R4(T, s(g > 0 ? 18 : -36), y_(540), 18, 46))} fill={C.kubbeG} />
         <polygon points={pl(attik)} fill={C.kubbeG} />
         <path d={kubbe} fill={C.kubbe} />
         <path d={kubbeG} fill={C.kubbeG} />
         <polygon points={pl(fener)} fill={C.kubbe} />
-        <polygon points={pl(R4(T, s(-1.5), 462, 3, 10))} fill={C.kubbe} />
+        <polygon points={pl(R4(T, s(-1.5), y_(462), 3, 10))} fill={C.kubbe} />
       </g>
     );
   })();
@@ -201,80 +224,210 @@ const Kulah: React.FC<{ x: number; y: number; w: number; h: number; C: CatiPalet
   );
 };
 
-// ---- 4 K4 karşı sıra (Z 20, dekor px/m 66.3): terrasson şeridi, brisis (arduvaz sırası 16 px), beşik çatılı lucarne, korniş + gölge bandı,
-//      baca kümeleri + külah, ışıklı lucarne'larda yüzsüz siluetler. Satır değerleri mekanlar §1v2.5 ----
-export const K4 = { pxm: 66.3, kulah: 843, baca: 866, terrasUst: 900, kirik: 996, lucUst: 1060, lucEsik: 1144, kornis: 1192, alt: 1260 };
-export type Bina = { x0: number; x1: number; aks: number; ofset: number; dy: number };
-export const K4_BINALAR: Bina[] = [
-  { x0: -420, x1: 160, aks: 118, ofset: 60, dy: 6 },
-  { x0: 160, x1: 520, aks: 112, ofset: 236, dy: -4 },
-  { x0: 520, x1: 960, aks: 114, ofset: 600, dy: 0 },
-  { x0: 960, x1: 1500, aks: 120, ofset: 1040, dy: 8 },
+// ---- 3–4 ÇATI DENİZİ v3 (mekanlar §1v3.2–1v3.5): dört sık sıra DÜNYA modelinde, yukarıdan (göz 5.0 m) ----
+// Sıra = bitişik Haussmann binaları; her bina: cephe (Z) → korniş (çıkma 0.35) → brisis (70°, 2.64 m, kırık Z+0.96) →
+// terrasson üst yüzü (kırık → sırt Z+5, +0.46 m) + arka sırt sıcak bandı. Ortak duvarda baca kümesi (başlık + külahlar),
+// brisiste beşik çatılı lucarne (ön yüz + görünen yanak + iki çatı yüzü). Her nokta kendi derinliğiyle dunyaEkran → dolly'de doğru.
+// Işık TEK vektörden: isikliYuz(normal) → yüz tonu; kenar ışığı yalnız ışıklı yüzün kenarında.
+export type SiraBina = { X0: number; X1: number; dh: number; aks: number[] };
+export type SiraRenk = { brisis: string; brisisG: string; terrasson: string };
+export type SiraT = {
+  ad: string; Z: number; hK: number; binalar: SiraBina[]; renk: SiraRenk; kontur: number; isikliOran: number;
+  cephe: boolean; lucarne: "tam" | "yarim" | "yok"; kulah: boolean; bacaH: [number, number]; seed: number;
+};
+const BRISIS_H = 2.64, BRISIS_D = 0.96, SIRT_D = 5, SIRT_H = 0.46;
+/** v3 satırları: K4 Z 24 · K4b 31 · K3 40 · K3b 52 (korniş −5.6 · −3.8 · −2.0 · −0.6; arazi yükselişi + hafif abartı [T]) */
+const sira = (ad: string, Z: number, hK: number, seed: number, sabit: SiraBina[] | null, gen: [number, number], X: [number, number], aksM: number): SiraBina[] => {
+  if (sabit) return sabit;
+  const out: SiraBina[] = [];
+  let x = X[0], i = 0;
+  while (x < X[1] && i < 60) {
+    const w = gen[0] + rnd(seed, `${ad}w${i}`) * (gen[1] - gen[0]);
+    const n = Math.max(1, Math.round(w / aksM));
+    out.push({ X0: x, X1: x + w, dh: Math.round((rnd(seed, `${ad}h${i}`) - 0.5) * 8) / 10, aks: Array.from({ length: n }, (_, j) => x + ((j + 0.5) * w) / n) });
+    x += w; i++;
+  }
+  return out;
+};
+const aksDiz = (X0: number, X1: number, n: number) => Array.from({ length: n }, (_, j) => X0 + ((j + 0.5) * (X1 - X0)) / n);
+// K4 üç bina (§1v3.2) + iki yanda devam. Sapma (motion v3): B1 korniş −4.6 (şartname −5.6) — kameradan (X 0) görünen ve ışık alan
+// kalkan duvar yalnız SOLDAKİ yüksek binanın +X yüzü olabilir (şartnamedeki B2 > B3 basamağının +X yüzü kameraya sırt verir).
+export const K4_BINALAR: SiraBina[] = [
+  ...sira("k4s", 24, -5.6, 41, null, [7, 11], [-26, -9.8], 2.6).map((b) => ({ ...b, dh: b.dh - 0.2 })),
+  { X0: -9.8, X1: -2.17, dh: 1.0, aks: aksDiz(-9.8, -2.17, 3) },
+  { X0: -2.17, X1: 7.6, dh: 0.4, aks: aksDiz(-2.17, 7.6, 4) },
+  { X0: 7.6, X1: 13.2, dh: -0.4, aks: aksDiz(7.6, 13.2, 2) },
+  ...sira("k4r", 24, -5.6, 43, null, [7, 11], [13.2, 30], 2.6),
 ];
-export const lucarneAkslari = (b: Bina) => { const a: number[] = []; let x = b.ofset; while (x - b.aks > b.x0 + 40) x -= b.aks; for (; x < b.x1 - 40; x += b.aks) a.push(x); return a; };
-export const K4Sira: React.FC<{ C: CatiPalet; L: Katman; seed: number; saat: Saat; isikliZorunlu: number[]; kontur: boolean; cocuk?: React.ReactNode }> = ({ C, L, seed, saat, isikliZorunlu, kontur, cocuk }) => {
-  const T = L.T, s = L.s, S = K4, pxm = S.pxm;
-  const lw = 0.9 * pxm, kw = kontur ? Math.max(2, Math.min(5, 4 * s)) : 0;
-  const ta = { aci: TARAMA.aci, kalinlik: TARAMA.kalin, aralik: TARAMA.aralik, renk: C.tarama };
-  const govde: React.ReactNode[] = [], on: React.ReactNode[] = [];
-  const sag = isikSagMi(C);
-  K4_BINALAR.forEach((b, bi) => {
-    const d = b.dy, w = b.x1 - b.x0;
-    // terrasson (üstten görünür, gök ışığı alır) + kırık çizgi (yuvarlak çinko kenar, ışık) + brisis + cephe dibi (korniş altı)
-    govde.push(<polygon key={`t${bi}`} points={pl(R4(T, b.x0, S.terrasUst + d, w, S.kirik - S.terrasUst))} fill={C.terrasson} />);
-    for (let y = S.terrasUst + d + 18; y < S.kirik + d - 6; y += 22) govde.push(<line key={`tk${bi}-${y}`} x1={T([b.x0, y])[0]} y1={T([0, y])[1]} x2={T([b.x1, y])[0]} y2={T([0, y])[1]} stroke={C.brisisG} strokeWidth={Math.max(1, 1.2 * s)} opacity={0.35} />);
-    govde.push(<polygon key={`b${bi}`} points={pl(R4(T, b.x0, S.kirik + d, w, S.kornis - S.kirik))} fill={karistir(C.brisis, C.brisisG, 0.55)} stroke={kontur ? ink(C.brisisG) : "none"} strokeWidth={kw * 0.6} />);
-    for (let y = S.kirik + d + 16; y < S.kornis + d - 10; y += 16) govde.push(<line key={`a${bi}-${y}`} x1={T([b.x0, y])[0]} y1={T([0, y])[1]} x2={T([b.x1, y])[0]} y2={T([0, y])[1]} stroke={karistir(C.brisisG, C.brisis, 0.45)} strokeWidth={Math.max(1, 1.4 * s)} opacity={0.8} />);
-    govde.push(<polygon key={`kr${bi}`} points={pl(R4(T, b.x0, S.kirik + d - 3, w, 5))} fill={karistir(C.terrasson, C.kenar, 0.45)} />);
-    govde.push(<polygon key={`cd${bi}`} points={pl(R4(T, b.x0, S.kornis + d + 6, w, S.alt - S.kornis))} fill={karistir(C.tasG, "#1d1b26", 0.15)} />);
-    lucarneAkslari(b).forEach((ax, li) => {
-      const isikli = saat === "alacakaranlik" && (isikliZorunlu.some((q) => Math.abs(q - ax) < 2) || rnd(seed, `l${bi}-${li}`) < C.isikliOran);
-      const x = ax - lw / 2, ust = S.lucUst + d, esik = S.lucEsik + d, cer = 5;
-      // yanaklar (jouée): ışık yanı açık, gölge yanı koyu + II tarama
-      const yanakSol: P[] = [T([x - cer - 9, ust]), T([x - cer, ust]), T([x - cer, esik]), T([x - cer - 2, esik])];
-      const yanakSag: P[] = [T([x + lw + cer, ust]), T([x + lw + cer + 9, ust]), T([x + lw + cer + 2, esik]), T([x + lw + cer, esik])];
-      const [yI, yG] = sag ? [yanakSag, yanakSol] : [yanakSol, yanakSag];
-      govde.push(<polygon key={`yi${bi}-${li}`} points={pl(yI)} fill={karistir(C.brisis, C.kenar, 0.3)} stroke={kontur ? ink(C.brisis) : "none"} strokeWidth={kw * 0.6} />);
-      govde.push(<polygon key={`yg${bi}-${li}`} points={pl(yG)} fill={C.brisisG} stroke={kontur ? ink(C.brisis) : "none"} strokeWidth={kw * 0.6} />);
-      if (kontur) govde.push(<Tarama key={`ygt${bi}-${li}`} sekil={yG} basamak="II" aci={ta.aci} renk={ta.renk} kalinlik={ta.kalinlik} aralik={ta.aralik} seed={seed + li} />);
-      govde.push(<polygon key={`ly${bi}-${li}`} points={pl(R4(T, x - cer, ust, lw + 2 * cer, esik - ust))} fill={C.tasG} stroke={kontur ? ink(C.tas) : "none"} strokeWidth={kw} />);
-      // beşik çatı (arduvaz): iki yarı, mahya 20 px; ışık yarısında kenar ışığı
-      const sacL: P = T([x - cer - 12, ust + 1]), sacR: P = T([x + lw + cer + 12, ust + 1]), mahya: P = T([ax, ust - 20]), orta: P = T([ax, ust + 1]);
-      govde.push(<polygon key={`rc${bi}-${li}`} points={pl(sag ? [orta, mahya, sacR] : [sacL, mahya, orta])} fill={karistir(C.brisis, C.kenar, 0.18)} />);
-      govde.push(<polygon key={`rg${bi}-${li}`} points={pl(sag ? [sacL, mahya, orta] : [orta, mahya, sacR])} fill={C.brisisG} />);
-      if (kontur) govde.push(<polygon key={`ro${bi}-${li}`} points={pl([sacL, mahya, sacR])} fill="none" stroke={ink(C.brisis)} strokeWidth={kw} strokeLinejoin="round" />);
-      govde.push(<line key={`rk${bi}-${li}`} x1={mahya[0]} y1={mahya[1]} x2={(sag ? sacR : sacL)[0]} y2={(sag ? sacR : sacL)[1]} stroke={C.kenar} strokeWidth={2} />);
-      govde.push(<polygon key={`rs${bi}-${li}`} points={pl(R4(T, x - cer, ust + 1, lw + 2 * cer, 5))} fill={C.tasG} />);
-      govde.push(<polygon key={`lp${bi}-${li}`} points={pl(R4(T, x, ust + 6, lw, esik - ust - 8))} fill={isikli ? C.pencere : C.pencereKaranlik} />);
-      govde.push(<polygon key={`le${bi}-${li}`} points={pl(R4(T, x - cer - 3, esik - 1, lw + 2 * cer + 6, 5))} fill={C.tasG} stroke={kontur ? ink(C.tas) : "none"} strokeWidth={kw * 0.6} />);
-      govde.push(<line key={`lek${bi}-${li}`} x1={T([x - cer - 3, 0])[0]} y1={T([0, esik - 1])[1]} x2={T([x + lw + cer + 3, 0])[0]} y2={T([0, esik - 1])[1]} stroke={C.kenar} strokeWidth={1.8} opacity={0.7} />);
-      if (isikli) on.push(<ellipse key={`h${bi}-${li}`} cx={T([ax, 0])[0]} cy={T([0, esik + 6])[1]} rx={0.75 * lw * s} ry={7 * s} fill={C.pencereHavuz} opacity={0.22} />);
-      on.push(<g key={`lk${bi}-${li}`}><line x1={T([ax, 0])[0]} y1={T([0, ust + 6])[1]} x2={T([ax, 0])[0]} y2={T([0, esik - 2])[1]} stroke={C.kasa} strokeWidth={Math.max(1.6, 1.8 * s)} /><line x1={T([x, 0])[0]} y1={T([0, ust + 34])[1]} x2={T([x + lw, 0])[0]} y2={T([0, ust + 34])[1]} stroke={C.kasa} strokeWidth={Math.max(1.6, 1.8 * s)} /></g>);
+export const SIRALAR = (C: CatiPalet): SiraT[] => [
+  { ad: "K3b", Z: 52, hK: -0.6, binalar: sira("K3b", 52, -0.6, 52, null, [9, 16], [-50, 50], 3), renk: C.sira.K3b, kontur: 0, isikliOran: 0, cephe: false, lucarne: "yarim", kulah: true, bacaH: [0.8, 1.2], seed: 52 },
+  { ad: "K3", Z: 40, hK: -2.0, binalar: sira("K3", 40, -2.0, 40, null, [8, 15], [-40, 40], 2.8), renk: C.sira.K3, kontur: 3, isikliOran: C.isikliOran > 0 ? 0.4 : 0, cephe: false, lucarne: "tam", kulah: true, bacaH: [0.8, 1.2], seed: 40 },
+  { ad: "K4b", Z: 31, hK: -3.8, binalar: sira("K4b", 31, -3.8, 31, null, [8, 14], [-32, 32], 2.7), renk: C.sira.K4b, kontur: 3, isikliOran: C.isikliOran > 0 ? 0.25 : 0, cephe: false, lucarne: "tam", kulah: true, bacaH: [0.85, 1.25], seed: 31 },
+  { ad: "K4", Z: 24, hK: -5.6, binalar: K4_BINALAR, renk: C.sira.K4, kontur: 4, isikliOran: C.isikliOran, cephe: true, lucarne: "tam", kulah: true, bacaH: [0.9, 1.3], seed: 24 },
+];
+/** K4 lucarne penceresinin dünya kutusu (siluet yerleşimi): X merkez, eşik h, üst h, ön Z */
+export const k4Lucarne = (bi: number, li: number) => {
+  const b = K4_BINALAR[bi], hk = -5.6 + b.dh;
+  return { X: b.aks[li], esik: hk + 0.6, ust: hk + 1.8, Z: 24 + 0.05, w: 0.72 };
+};
+/** ekran x (cs 1) → en yakın K4 lucarne (bina, aks) — bolum.json `siluetler[].x` dekor px olarak kalır */
+export const k4LucarneBul = (D: Dolly, x: number): [number, number] => {
+  let en: [number, number] = [0, 0], d = 1e9;
+  K4_BINALAR.forEach((b, bi) => b.aks.forEach((X, li) => { const q = 540 + (D.F * X) / 24; if (Math.abs(q - x) < d) { d = Math.abs(q - x); en = [bi, li]; } }));
+  return en;
+};
+/** sıranın baca kümeleri: her ortak duvarda + 8 m'den geniş binanın ortasında (aks arası). Duman kaynağı da buradan seçilir */
+export const sirasiBacalar = (S: SiraT) => {
+  const out: { X: number; w: number; z0: number; z1: number; hk: number; taban: number; tepe: number }[] = [];
+  const hS = (hk: number, z: number) => z <= S.Z + BRISIS_D ? hk + (BRISIS_H * (z - S.Z)) / BRISIS_D : hk + BRISIS_H + (SIRT_H * (z - S.Z - BRISIS_D)) / (SIRT_D - BRISIS_D);
+  S.binalar.forEach((b, i) => {
+    const adaylar: [number, number][] = [];
+    if (i > 0) adaylar.push([b.X0, S.hK + Math.max(b.dh, S.binalar[i - 1].dh)]);
+    if (b.X1 - b.X0 >= 8) adaylar.push([(b.X0 + b.X1) / 2, S.hK + b.dh]);
+    adaylar.forEach(([X, hk], j) => {
+      const w = 1.1 + rnd(S.seed, `bw${i}-${j}`) * 0.8, z0 = S.Z + 1.5, z1 = z0 + 0.6;
+      out.push({ X, w, z0, z1, hk, taban: hS(hk, z0) - 0.1, tepe: hS(hk, z1) + S.bacaH[0] + rnd(S.seed, `bh${i}-${j}`) * (S.bacaH[1] - S.bacaH[0]) });
     });
-    // korniş: ışık alan üst profil + profil çizgisi + altında 28 px gölge bandı (II tarama)
-    const band = R4(T, b.x0, S.kornis + d + 6, w, 28);
-    govde.push(<polygon key={`kb${bi}`} points={pl(band)} fill={karistir(C.tasG, "#1d1b26", 0.3)} />);
-    if (kontur) govde.push(<Tarama key={`kt${bi}`} sekil={band} basamak="II" aci={ta.aci} renk={ta.renk} kalinlik={ta.kalinlik} aralik={ta.aralik} seed={seed + 50 + bi} />);
-    govde.push(<polygon key={`kl${bi}`} points={pl(R4(T, b.x0, S.kornis + d - 6, w, 12))} fill={C.tas} stroke={kontur ? ink(C.tas) : "none"} strokeWidth={kw * 0.8} />);
-    govde.push(<line key={`kk${bi}`} x1={T([b.x0, 0])[0]} y1={T([0, S.kornis + d - 5])[1]} x2={T([b.x1, 0])[0]} y2={T([0, S.kornis + d - 5])[1]} stroke={C.kenar} strokeWidth={2} opacity={0.8} />);
   });
-  // baca kümeleri (ortak duvarlarda + bina ortasında bir tane): gövde 866–terrasson, külah 843–866
-  const bacalar = [...K4_BINALAR.map((b) => b.x0 + 8), K4_BINALAR[K4_BINALAR.length - 1].x1, 700, 1260];
-  bacalar.forEach((bx, i) => {
-    const w = 46 + rnd(seed, `bw${i}`) * 16, x = bx - w / 2, ust = S.baca + Math.round((rnd(seed, `by${i}`) - 0.5) * 8), alt = S.terrasUst + 30;
-    const yanW = w * 0.22;
-    govde.push(<polygon key={`bg${i}`} points={pl(R4(T, x, ust, w, alt - ust))} fill={isikliYuz(C, [0, 0, -1]) ? C.baca : C.bacaG} stroke={kontur ? ink(C.baca) : "none"} strokeWidth={kw} />);
-    govde.push(<polygon key={`bs${i}`} points={pl(R4(T, sag ? x + w - yanW : x, ust, yanW, alt - ust))} fill={isikliYuz(C, [sag ? 1 : -1, 0, 0]) ? C.baca : karistir(C.bacaG, "#1d1b26", 0.2)} />);
-    if (kontur && !isikliYuz(C, [0, 0, -1])) govde.push(<Tarama key={`bt${i}`} sekil={R4(T, sag ? x : x + yanW, ust + 6, w - yanW, alt - ust - 6)} basamak="II" aci={ta.aci} renk={ta.renk} kalinlik={ta.kalinlik} aralik={ta.aralik} seed={seed + 80 + i} alfaCarpan={0.6} />);
-    govde.push(<line key={`bk${i}`} x1={T([sag ? x + w : x, 0])[0]} y1={T([0, ust])[1]} x2={T([sag ? x + w : x, 0])[0]} y2={T([0, alt])[1]} stroke={C.kenar} strokeWidth={2.2} />);
-    govde.push(<polygon key={`bb${i}`} points={pl(R4(T, x - 2, ust - 4, w + 4, 6))} fill={C.bacaBaslik} />);
-    const n = 5 + Math.floor(rnd(seed, `bn${i}`) * 4), kw2 = (w - 4) / n;
-    for (let j = 0; j < n; j++) {
-      const kh = 18 + rnd(seed, `kh${i}-${j}`) * 7, kx = x + 2 + j * kw2;
-      govde.push(<Kulah key={`ku${i}-${j}`} x={T([kx, 0])[0]} y={T([0, ust - 4 - kh])[1]} w={kw2 * 0.8 * s} h={kh * s} C={C} />);
+  return out;
+};
+export const CatiSirasi: React.FC<{ D: Dolly; k: KameraDurum; S: SiraT; C: CatiPalet; kamX: number; saat: Saat; isikliZorunlu?: [number, number][]; kontur: boolean; cocuk?: React.ReactNode; kenarCizgi?: boolean }> = ({ D, k, S, C, kamX, saat, isikliZorunlu = [], kontur, cocuk }) => {
+  const E = (X: number, h: number, Z: number) => dunyaEkran(D, k, X, h, Z);
+  const Q = (pts: V3[]): P[] | null => { const e = pts.map((q) => E(...q)); return e.some((q) => !q) ? null : (e as P[]); };
+  const pxm = ekranPxm(D, k, (S.Z + 1) / D.Zk);
+  const kw = kontur && S.kontur ? Math.max(1.5, Math.min(6, S.kontur * (pxm / ((D.F / (S.Z + 1)) || 1)))) : 0;
+  const R = S.renk, Z = S.Z, nodes: React.ReactNode[] = [], ust: React.ReactNode[] = [];
+  const sicak = C.sirtParlama !== null;
+  const isikli = (n: V3) => isikliYuz(C, n);
+  const poly = (key: string, pts: V3[], fill: string, stroke = false, op?: number, sw = kw, hedef = nodes) => { const e = Q(pts); if (e) hedef.push(<polygon key={key} points={pl(e)} fill={fill} stroke={stroke && sw ? ink(fill) : "none"} strokeWidth={sw} strokeLinejoin="round" opacity={op} />); return e; };
+  const cizgi = (key: string, a: V3, b: V3, renk: string, w: number, op = 1, hedef = nodes) => { const p = E(...a), q = E(...b); if (p && q) hedef.push(<line key={key} x1={p[0]} y1={p[1]} x2={q[0]} y2={q[1]} stroke={renk} strokeWidth={w} opacity={op} strokeLinecap="round" />); };
+  const ta = { aci: TARAMA.aci, kalinlik: TARAMA.kalin, aralik: TARAMA.aralik, renk: C.tarama };
+  const hS = (hk: number, z: number) => z <= Z + BRISIS_D ? hk + (BRISIS_H * (z - Z)) / BRISIS_D : hk + BRISIS_H + (SIRT_H * (z - Z - BRISIS_D)) / (SIRT_D - BRISIS_D);
+  const zB = (hk: number, h: number) => Z + (BRISIS_D * (h - hk)) / BRISIS_H; // brisis düzleminde h yüksekliğinin Z'si
+  const lucW = 0.5, lw = 1.5 * Math.max(1, pxm / 40);
+  S.binalar.forEach((b, bi) => {
+    const hk = S.hK + b.dh, X0 = b.X0, X1 = b.X1, kr = hk + BRISIS_H, sr = kr + SIRT_H;
+    // CEPHE (yalnız K4): krem taş, kontrajur + Venüs kuşağı yansıması (§1v3.5). Pencereler lucarne akslarında, düz lento; 5. kat balcon filant.
+    if (S.cephe) {
+      poly(`c${bi}`, [[X0, hk, Z], [X1, hk, Z], [X1, hk - 4, Z], [X0, hk - 4, Z]], C.cephe);
+      poly(`ca${bi}`, [[X0, hk, Z], [X1, hk, Z], [X1, hk - 0.55, Z], [X0, hk - 0.55, Z]], C.cepheUst);
+      b.aks.forEach((X, j) => {
+        const isk = saat === "alacakaranlik" && rnd(S.seed, `cp${bi}-${j}`) < 0.22;
+        poly(`cs${bi}-${j}`, [[X - 0.62, hk - 0.78, Z], [X + 0.62, hk - 0.78, Z], [X + 0.62, hk - 4, Z], [X - 0.62, hk - 4, Z]], C.cepheSove, true, undefined, kw * 0.6);
+        poly(`cw${bi}-${j}`, [[X - 0.5, hk - 0.9, Z], [X + 0.5, hk - 0.9, Z], [X + 0.5, hk - 4, Z], [X - 0.5, hk - 4, Z]], isk ? C.pencere : C.pencereKaranlik);
+        cizgi(`cm${bi}-${j}`, [X, hk - 0.9, Z], [X, hk - 4, Z], C.kasa, Math.max(1.5, lw));
+        if (isk) { const h0 = E(X, hk - 3.2, Z - 0.2); if (h0) nodes.push(<ellipse key={`cph${bi}-${j}`} cx={h0[0]} cy={h0[1]} rx={1.0 * pxm} ry={0.25 * pxm} fill={C.pencereHavuz} opacity={0.22} />); }
+      });
+      // balcon filant (5. kat sürekli balkon): tek koyu korkuluk + dik çubuk ritmi (0.22 m ≈ 12 px), cephenin 0.5 m önünde
+      const rz = Z - 0.5, rt = hk - 2.2;
+      for (let X = X0 + 0.11; X < X1; X += 0.22) cizgi(`bk${bi}-${X.toFixed(2)}`, [X, rt, rz], [X, rt - 1.0, rz], C.balkon, Math.max(1.2, 0.035 * pxm));
+      poly(`br${bi}`, [[X0, rt + 0.05, rz], [X1, rt + 0.05, rz], [X1, rt - 0.07, rz], [X0, rt - 0.07, rz]], C.balkon);
+      cizgi(`brk${bi}`, [X0, rt + 0.05, rz], [X1, rt + 0.05, rz], C.kenar, 1.5, 0.5);
+      // korniş: çıkma 0.35 m; ön yüz gölgede (kameraya bakar), üst yüz ince ışıklı şerit
+      poly(`ko${bi}`, [[X0, hk, Z - 0.35], [X1, hk, Z - 0.35], [X1, hk - 0.28, Z - 0.35], [X0, hk - 0.28, Z - 0.35]], C.cepheSove, true, undefined, kw * 0.7);
+      poly(`ku${bi}`, [[X0, hk, Z - 0.35], [X1, hk, Z - 0.35], [X1, hk, Z], [X0, hk, Z]], C.cepheUst);
+      const kb = Q([[X0, hk - 0.28, Z - 0.35], [X1, hk - 0.28, Z - 0.35], [X1, hk - 0.55, Z], [X0, hk - 0.55, Z]]);
+      if (kb && kontur) nodes.push(<Tarama key={`kt${bi}`} sekil={kb} basamak="II" aci={ta.aci} renk={ta.renk} kalinlik={ta.kalinlik} aralik={ta.aralik} seed={S.seed + bi} alfaCarpan={0.5} />);
+      cizgi(`kk${bi}`, [X0, hk, Z - 0.35], [X1, hk, Z - 0.35], C.kenar, 2, 0.75);
+    }
+    // BRISIS (arduvaz, kameraya bakar → gölge tonu) + arduvaz sıraları
+    poly(`b${bi}`, [[X0, hk, Z], [X1, hk, Z], [X1, kr, Z + BRISIS_D], [X0, kr, Z + BRISIS_D]], R.brisis, true);
+    for (let h = 0.3; h < BRISIS_H - 0.1; h += 0.3) cizgi(`a${bi}-${h.toFixed(1)}`, [X0, hk + h, zB(hk, hk + h)], [X1, hk + h, zB(hk, hk + h)], R.brisisG, Math.max(1, 0.03 * pxm), 0.55);
+    // TERRASSON üst yüzü (çinko, gök ışığı) + kenetler (Z yönünde) + arka sırt sıcak bandı
+    poly(`t${bi}`, [[X0, kr, Z + BRISIS_D], [X1, kr, Z + BRISIS_D], [X1, sr, Z + SIRT_D], [X0, sr, Z + SIRT_D]], R.terrasson, true, undefined, kw * 0.7, ust);
+    for (let X = X0 + 0.6; X < X1 - 0.2; X += 0.6) cizgi(`tk${bi}-${X.toFixed(1)}`, [X, kr, Z + BRISIS_D], [X, sr, Z + SIRT_D], R.brisisG, Math.max(1, 0.025 * pxm), 0.35, ust);
+    if (sicak) poly(`ts${bi}`, [[X0, sr - 0.02, Z + SIRT_D - 0.22], [X1, sr - 0.02, Z + SIRT_D - 0.22], [X1, sr, Z + SIRT_D], [X0, sr, Z + SIRT_D]], C.sirtParlama!, false, 0.45, 0, ust);
+    // kırık çizgi bourrelet'i: yuvarlak çinko kenarın güneşe bakan üstü
+    cizgi(`kr${bi}`, [X0, kr, Z + BRISIS_D], [X1, kr, Z + BRISIS_D], sicak ? C.kenar : karistir(R.terrasson, C.kenar, 0.5), S.kontur >= 4 ? 3 : 2, 0.95, ust);
+    // LUCARNE'lar
+    if (S.lucarne !== "yok") b.aks.forEach((X, li) => {
+      const zor = isikliZorunlu.some(([a, c]) => S.ad === "K4" && a === bi && c === li);
+      const isk = saat === "alacakaranlik" && (zor || rnd(S.seed, `l${bi}-${li}`) < S.isikliOran);
+      const zf = Z + 0.05, h0 = hk + 0.45, h1 = hk + 1.95, ha = hk + 2.45, sagGor = X < kamX;
+      const yanX = sagGor ? X + lucW : X - lucW, yanN: V3 = [sagGor ? 1 : -1, 0, 0];
+      const yanIsik = isikli(yanN);
+      const yan = poly(`ly${bi}-${li}`, [[yanX, h0, zf], [yanX, h1, zf], [yanX, h1, zB(hk, h1)], [yanX, h0, zB(hk, h0)]], yanIsik ? C.lucKremIsik : C.lucKremG, true, undefined, kw * 0.7);
+      if (yan && yanIsik && sicak) cizgi(`lyk${bi}-${li}`, [yanX, h1, zf], [yanX, h0, zf], C.kenar, 2);
+      if (yan && !yanIsik && kontur && S.kontur >= 4) nodes.push(<Tarama key={`lyt${bi}-${li}`} sekil={yan} basamak="II" aci={ta.aci} renk={ta.renk} kalinlik={ta.kalinlik} aralik={ta.aralik} seed={S.seed + li} alfaCarpan={0.6} />);
+      const on = poly(`lo${bi}-${li}`, [[X - lucW, h0, zf], [X + lucW, h0, zf], [X + lucW, h1, zf], [X, ha, zf], [X - lucW, h1, zf]], C.lucKrem, true, undefined, kw * 0.8);
+      void on;
+      // beşik çatı (arduvaz): iki yüz ön alından brisise; yukarıdan ikisi de görünür, ışık yanı (normal X ışığa) açık
+      const zr = zB(hk, ha), ze = zB(hk, h1);
+      [-1, 1].forEach((sg) => {
+        const nX = sg * 0.7, isk2 = isikli([nX, 0.7, 0]);
+        poly(`lr${bi}-${li}-${sg}`, [[X, ha + 0.06, zf - 0.06], [X + sg * (lucW + 0.1), h1 - 0.05, zf - 0.06], [X + sg * (lucW + 0.1), h1 - 0.05, ze], [X, ha + 0.06, zr]], isk2 ? karistir(R.brisis, C.kenar, 0.3) : R.brisisG, true, undefined, kw * 0.7);
+        if (isk2 && sicak) cizgi(`lrk${bi}-${li}`, [X, ha + 0.06, zf - 0.06], [X + sg * (lucW + 0.1), h1 - 0.05, zf - 0.06], C.kenar, 2);
+      });
+      if (S.lucarne === "tam") {
+        poly(`lp${bi}-${li}`, [[X - 0.36, hk + 0.6, zf], [X + 0.36, hk + 0.6, zf], [X + 0.36, hk + 1.8, zf], [X - 0.36, hk + 1.8, zf]], isk ? C.pencere : C.pencereKaranlik);
+        if (pxm > 30) { cizgi(`lm${bi}-${li}`, [X, hk + 0.6, zf], [X, hk + 1.8, zf], C.kasa, Math.max(1.5, lw)); cizgi(`lt${bi}-${li}`, [X - 0.36, hk + 1.3, zf], [X + 0.36, hk + 1.3, zf], C.kasa, Math.max(1.5, lw)); }
+        if (isk) { const hp = E(X, hk + 0.3, Z + 0.12); if (hp) nodes.push(<ellipse key={`lh${bi}-${li}`} cx={hp[0]} cy={hp[1]} rx={0.75 * pxm} ry={0.14 * pxm} fill={C.pencereHavuz} opacity={0.22} />); }
+        cizgi(`le${bi}-${li}`, [X - lucW - 0.05, h0, zf - 0.02], [X + lucW + 0.05, h0, zf - 0.02], C.kenar, 1.8, 0.6);
+      } else poly(`lp${bi}-${li}`, [[X - 0.36, hk + 1.1, zf], [X + 0.36, hk + 1.1, zf], [X + 0.36, hk + 1.8, zf], [X - 0.36, hk + 1.8, zf]], C.pencereKaranlik, false, 0.8);
+    });
+  });
+  // KALKAN DUVAR: komşudan yüksek binanın açık yan duvarı, yalnız kameraya bakan yüz (sol yüksek ⇒ +X yüz, X < kamX)
+  const kalkan: React.ReactNode[] = [];
+  for (let i = 0; i + 1 < S.binalar.length; i++) {
+    const A = S.binalar[i], B = S.binalar[i + 1], X = A.X1, dh = A.dh - B.dh;
+    const aSol = dh > 0.25 && X < kamX, bSag = dh < -0.25 && X > kamX;
+    if (!aSol && !bSag) continue;
+    const yuk = aSol ? S.hK + A.dh : S.hK + B.dh, alc = aSol ? S.hK + B.dh : S.hK + A.dh, n: V3 = [aSol ? 1 : -1, 0, 0];
+    const pts: V3[] = [[X, alc, Z], [X, yuk, Z], [X, hS(yuk, Z + BRISIS_D), Z + BRISIS_D], [X, hS(yuk, Z + SIRT_D), Z + SIRT_D], [X, hS(alc, Z + SIRT_D), Z + SIRT_D], [X, hS(alc, Z + BRISIS_D), Z + BRISIS_D]];
+    const e = Q(pts);
+    if (!e) continue;
+    const isk = isikli(n);
+    kalkan.push(<polygon key={`kd${i}`} points={pl(e)} fill={isk ? C.lucKremIsik : C.lucKremG} stroke={kw ? ink(C.lucKremG) : "none"} strokeWidth={kw * 0.8} strokeLinejoin="round" />);
+    if (isk && sicak) { const a = E(X, yuk, Z), c = E(X, hS(yuk, Z + BRISIS_D), Z + BRISIS_D), d = E(X, hS(yuk, Z + SIRT_D), Z + SIRT_D); if (a && c && d) kalkan.push(<polyline key={`kdk${i}`} points={pl([a, c, d])} fill="none" stroke={C.kenar} strokeWidth={2.5} />); }
+  }
+  // BACA KÜMELERİ: ortak duvarlarda (her sınırda) — terrasson'a oturur; ön yüz gölgede, görünen yan yüz (kameraya bakan) ışığa göre
+  const baca: React.ReactNode[] = [];
+  sirasiBacalar(S).forEach(({ X, w, z0, z1, hk, taban, tepe }, i) => {
+    const x0 = X - w / 2, x1 = X + w / 2, yanX = X < kamX ? x1 : x0, yanN: V3 = [X < kamX ? 1 : -1, 0, 0];
+    const on = Q([[x0, taban, z0], [x1, taban, z0], [x1, tepe, z0], [x0, tepe, z0]]);
+    const yan = Q([[yanX, taban, z0], [yanX, tepe, z0], [yanX, tepe, z1], [yanX, hS(hk, z1) - 0.1, z1]]);
+    const ustY = Q([[x0, tepe, z0], [x1, tepe, z0], [x1, tepe, z1], [x0, tepe, z1]]);
+    if (!on) return;
+    const onIsik = isikli([0, 0, -1]), yanIsik = isikli(yanN), sw = kw * 0.8;
+    baca.push(<g key={`bc${i}`}>
+      {yan && <polygon points={pl(yan)} fill={yanIsik ? C.isikYuz : C.bacaYanG} stroke={sw ? ink(C.bacaG) : "none"} strokeWidth={sw} strokeLinejoin="round" />}
+      <polygon points={pl(on)} fill={onIsik ? C.baca : karistir(C.bacaG, C.baca, 0.55)} stroke={sw ? ink(C.baca) : "none"} strokeWidth={sw} strokeLinejoin="round" />
+      {kontur && S.kontur >= 4 && !onIsik && <Tarama sekil={on} basamak="II" aci={ta.aci} renk={ta.renk} kalinlik={ta.kalinlik} aralik={ta.aralik} seed={S.seed + 80 + i} alfaCarpan={0.5} />}
+      {ustY && <polygon points={pl(ustY)} fill={C.bacaBaslik} />}
+      {(() => { const a = E(yanIsik ? yanX : x1, tepe, z0), c = E(yanIsik ? yanX : x1, taban, z0); return a && c ? <line x1={a[0]} y1={a[1]} x2={c[0]} y2={c[1]} stroke={C.kenar} strokeWidth={yanIsik ? 2.5 : 2} opacity={yanIsik ? 1 : 0.8} /> : null; })()}
+    </g>);
+    if (S.kulah) {
+      const n = 3 + Math.floor(rnd(S.seed, `bn${i}`) * 4), kc = (w - 0.1) / n;
+      for (let j = 0; j < n; j++) {
+        const kx = x0 + 0.05 + j * kc + kc * 0.12, kh = 0.34 + rnd(S.seed, `kh${i}-${j}`) * 0.14;
+        const a = E(kx, tepe + kh, z0 + 0.3), c = E(kx, tepe, z0 + 0.3), c2 = E(kx + kc * 0.76, tepe, z0 + 0.3);
+        if (a && c && c2) baca.push(<Kulah key={`k${i}-${j}`} x={a[0]} y={a[1]} w={Math.max(1.5, c2[0] - c[0])} h={c[1] - a[1]} C={C} />);
+      }
     }
   });
-  return <g>{govde}{on}{cocuk}</g>;
+  return <g>{nodes}{cocuk}{ust}{kalkan}{baca}</g>;
+};
+
+// ---- 6 ÖN-PLAN ÇERÇEVE (mekanlar §1v3.2): kamera komşu çatıda; bu çatının bourrelet'i + çinko şeridi (Z 1.10–1.75, h 3.4). Yakın düzlemde kırpılır ----
+export const ON_CERCEVE = { Z0: 1.1, Z1: 1.75, h: 3.4 };
+export const OnCerceve: React.FC<{ D: Dolly; k: KameraDurum; C: CatiPalet }> = ({ D, k, C }) => {
+  const { Z0, Z1, h } = ON_CERCEVE;
+  const kam = kameraDunya(D, k.cs);
+  if (kam[2] > Z1 - 0.05 || kam[1] < h + 0.05) return null; // kamera kenarı geçti (cs > 1.18): arkasında kaldı
+  const yuz = kirpCiz(D, k, [[-30, h, Z1], [30, h, Z1], [30, h, Z0], [-30, h, Z0]]);
+  if (!yuz) return null;
+  const ken: React.ReactNode[] = [];
+  for (let X = -6.12; X <= 6.3; X += 0.48) { const e = kirpCiz(D, k, [[X - 0.02, h + 0.002, Z1], [X + 0.02, h + 0.002, Z1], [X + 0.02, h + 0.002, Z0], [X - 0.02, h + 0.002, Z0]]); if (e) ken.push(<polygon key={X.toFixed(1)} points={pl(e)} fill={C.onKenet} />); }
+  const bo = kirpCiz(D, k, [[-30, h + 0.08, Z1 - 0.04], [30, h + 0.08, Z1 - 0.04], [30, h, Z1], [-30, h, Z1]]);
+  const ky = dunyaEkran(D, k, 0, h + 0.08, Z1 - 0.04);
+  return (
+    <g>
+      <polygon points={pl(yuz)} fill={C.onYuz} stroke={ink(C.onYuz)} strokeWidth={6} strokeLinejoin="round" />
+      {ken}
+      {bo && <polygon points={pl(bo)} fill={karistir(C.onYuz, C.kenar, 0.25)} stroke={ink(C.onYuz)} strokeWidth={6} strokeLinejoin="round" />}
+      {ky && <rect x={-200} y={ky[1] - 1} width={1480} height={3} fill={C.onParlama} />}
+    </g>
+  );
 };
 
 // ---- Duman: kontursuz şerit, yukarı incelir, kümeler hâlinde ÇÖZÜLEREK biter (fade yok); rüzgâr hafif sağa, faz 0.15 Hz ----
@@ -329,9 +482,10 @@ export const kutuKose = (X0: number, X1: number, Z0: number, Z1: number, h: numb
 ];
 
 // ---- 5a Çinko teras (dünya): kenetler VP'ye yakınsar (gölge + ışık tepe çifti), ışık şeridi + gölgeler (GolgeSeridi), kırık çizgi Z 6.2 ----
-export const KIRIK_Z = 6.2;
+export const KIRIK_Z = 8.9; // v3 (§1v3.2)
+export const TERAS_Z0 = 1.75; // komşu (kamera) binasının duvarı: terasımız buradan başlar
 export const CinkoTeras: React.FC<{ D: Dolly; k: KameraDurum; C: CatiPalet; isikSerit: P[] | null; golgeler: React.ReactNode; seed: number }> = ({ D, k, C, isikSerit, golgeler, seed }) => {
-  const Zn = enYakinZ(D, k) + 0.01;
+  const Zn = Math.max(TERAS_Z0, enYakinZ(D, k) + 0.01);
   if (Zn >= KIRIK_Z) return null;
   const Q = (pts: V3[]) => kirpCiz(D, k, pts, Zn);
   const zemin = Q([[-30, 0, KIRIK_Z], [30, 0, KIRIK_Z], [30, 0, Zn], [-30, 0, Zn]]);
@@ -423,7 +577,7 @@ export type KumesDunyaT = { R: [number, number]; yaw: number; en: number; derin:
   aciklik: { ic: number; w: number; h: number; esik: number }[]; tahta: { h: number; derin: number; sagTasma: number; solBit: number; kalin: number }; payanda: number; kapak: [number, number, number, number] };
 // tahta üstü 0.655 / eşik 0.67: kuş rig'inin ayak–kılıf aralığı (motion v2 raporu, tablo); açıklık-1 iç 0.08 (kılıf arkası koyu)
 export const KUMES_V2: KumesDunyaT = {
-  R: [-0.5, 5.2], yaw: 30, en: 1.0, derin: 0.8, ayak: 0.15, sacak: [1.0, 1.2], tasma: [0.1, 0.05],
+  R: [-0.85, 8.0], yaw: 30, en: 1.0, derin: 0.8, ayak: 0.15, sacak: [1.0, 1.2], tasma: [0.1, 0.05],
   aciklik: [{ ic: 0.08, w: 0.2, h: 0.28, esik: 0.67 }, { ic: 0.55, w: 0.2, h: 0.28, esik: 0.67 }],
   tahta: { h: 0.655, derin: 0.25, sagTasma: 0.1, solBit: 0.92, kalin: 0.028 }, payanda: 0.03, kapak: [0.18, 0.62, 0.3, 0.42],
 };
@@ -578,7 +732,7 @@ export const tahtaUstEkran = (D: Dolly, k: KameraDurum, K: KumesDunyaT): P[] | n
 
 // ---- 5c YEM/SU TEKNESİ (mekanlar §1v2.2): kümesin sağ-önünde, iki göz (yem + su), tahtadan dökülen birkaç tane ----
 export type TekneDunya = { X0: number; X1: number; Z0: number; derin: number; h: number; kalin: number };
-export const YEM_TEKNESI: TekneDunya = { X0: -0.25, X1: 0.35, Z0: 4.65, derin: 0.25, h: 0.15, kalin: 0.025 };
+export const YEM_TEKNESI: TekneDunya = { X0: -0.1, X1: 0.5, Z0: 8.0, derin: 0.25, h: 0.15, kalin: 0.025 };
 export const YemTeknesi: React.FC<{ D: Dolly; k: KameraDurum; t: TekneDunya; C: CatiPalet; seed: number; uid: string }> = ({ D, k, t, C, seed, uid }) => {
   const E = (X: number, h: number, Z: number) => dunyaEkran(D, k, X, h, Z);
   const Z1 = t.Z0 + t.derin, c = t.kalin;
