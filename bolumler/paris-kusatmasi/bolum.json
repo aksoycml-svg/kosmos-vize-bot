@@ -1425,8 +1425,18 @@
       "halat": "askı halatları rim köşelerinden halkaya (halka y 194, x 297-694; zaten gergin); BAĞLAMA halatı FR alt (876,1382) → yerde gevşek kavis → kadraj sağ-altı (1080,1700)"
      },
      "ikinci_balon": {
-      "konum": "Daguerre: sepet (888,937), küre (888,687) ø 246 (x 765-1011); dibinde 3 siluet 64 px (farklı boy/eğim); Z 36.7 m, ışıklı sağ duvarın önünde; yanında 2 sandık yığını x 950-985, y 904-939",
-      "not": "P07 vurulan balonun KURULUMU (küçük de olsa görünür); Dagron'unki SOLDA. Kurulum cs 1.0'da (f168-214)"
+      "konum": "Daguerre: sepet (850,937), küre (850,687) ø 246 (x 765-1011); dibinde 3 siluet 64 px (farklı boy/eğim); Z 36.7 m, ışıklı sağ duvarın önünde; yanında 2 sandık yığını x 950-985, y 904-939",
+      "X": 8.4,
+     "balon_kuresi": {
+      "cizim": "alt",
+      "hilal": true
+     },
+     "sarkik_zarf": {
+      "X": -22,
+      "Z": 65,
+      "seed": 183
+     },
+     "not": "P07 vurulan balonun KURULUMU (küçük de olsa görünür); Dagron'unki SOLDA. Kurulum cs 1.0'da (f168-214). H2.9: Daguerre X 8.4 → küre (850,687), sepet (850,937), asma halatı (850,563)→(827,129)"
      },
      "figurler": [
       {
@@ -1504,12 +1514,12 @@
      },
      "asma_halati": {
       "kaynak": [
-       888,
+       850,
        563
       ],
       "hedef": [
-       861,
-       131
+       827,
+       129
       ],
       "not": "Daguerre küresi tepesi → Z40 makasının sağ çekmesi; P06b boyunca gergin"
      },
@@ -1525,11 +1535,13 @@
     "kamera": {
      "kare": [
       168,
+      172,
       214,
       250,
       287
      ],
      "cs": [
+      1.0,
       1.0,
       1.2,
       1.45,
@@ -1538,11 +1550,13 @@
      "cx": [
       0,
       0,
-      0,
-      0
+      40,
+      50,
+      50
      ],
      "cy": [
-      0,
+      160,
+      160,
       -100,
       -210,
       -210
@@ -1677,9 +1691,11 @@
     "ortam: meydan uğultusu (kısık)"
    ],
    "muzik_notu": "Kararlı, alçak tema; 'Tek yol balondu'da kesin, sandık tokuyla ritim vuruşu; halat gerilirken gerilim yükselir ve P07'ye taşar.",
-   "kontrol_kare": 206,
+   "kontrol_kare": 230,
    "kontrol_kare_ek": [
-    78
+    78,
+    168,
+    200
    ],
    "alt_ucte_bir": "harita: Fransa güneybatısı + rota; hale: ışıklı döşeme, sepet/sandık gölgeleri, ön plan posta çuvalı, bağlama halatı (taban ≤ 1498, alt bant 1500 üstü)",
    "kit_eksik": [
@@ -1703,7 +1719,11 @@
      "dosya": "paris/ses/en/P06.mp3",
      "kare": 0
     }
-   ]
+   ],
+   "lint": {
+    "izin": [],
+    "not": "B2, render motion sonrası: P06b H2.9 kamera (cy +160 açılış, cx 40-50 biniş) ve Daguerre X 8.4 şablon koduna işlenmeden render edilmedi."
+   }
   },
   {
    "id": "P07",
@@ -1735,7 +1755,7 @@
     "duman_cizgisi": {
      "bas": 84,
      "bit": 108,
-     "kaynak": "dekor (1150,935): sağ kenarın dışı, ufuk buğusu (şehrin dışı); ince gri-kül çizgi, 3 px koyu kontur, tırtıklı, darbe noktasına; istasyon/ray demetinden ve çatılardan çıkmaz",
+     "kaynak": "dekor (1150,700): sağ kenarın dışı, ufuk buğusu (şehrin dışı); ince gri-kül çizgi, 3 px koyu kontur, tırtıklı, darbe noktasına; istasyon/ray demetinden ve çatılardan çıkmaz",
      "not": "neyle vurulduğu gösterilmez"
     },
     "kure_coker": {
@@ -1785,9 +1805,11 @@
     "hava_perspektifi": "'sis' çizilmez: Paris uzak buğu #dccfcf (>1500 m), orta bant #b0a6c0 (600-1500 m); D>600'de kontur/tarama yok (mekanlar §2v2.9)",
     "arka": "hale",
     "isik": "haleSabah",
+    "isik_B2": "havaGeri",
     "ufuk_y": 900,
     "ray_demeti": {
-     "eksen": -13.4,
+     "yon": "agiza",
+     "agiz_D": 330,
      "yari": [
       20,
       7
@@ -1797,7 +1819,17 @@
       4
      ]
     },
-    "yatay_bulvar": false
+    "yatay_bulvar": false,
+    "yon": 310,
+    "anitlar": {
+     "olcek": 1.8
+    },
+    "nehir": true,
+    "geri_surukleme_m": [
+     0,
+     60
+    ],
+    "not_B2": "G2.9: kamera 310° (KB), arkada kalan Paris; ray/nehir yönü G2.9 ray_demeti.yon agiza + agiz_D 330; Seine sol kıyı D300. A→B ters açı kesmesi kullanıcı kabulü (tur-12)."
    },
    "devam_plan": {
     "kare_bas": 160,
@@ -1811,6 +1843,7 @@
      },
      "sepet_kenari": "hasır kenar bel plan, diyagonal rim (66,739)-(248,805)-(977,769); dış kenarda sıralı kum torbaları x 390/571/743/895 (P06'da kurulu); sandık kapağı rimin arkasında y ≈ 755",
      "el": "Dagron: sepetin içinde sağ-önde, KAMERAYA dönük kontrajur siluet (yüz çizilmez), baş ≈ (749,555) SOLA döner (düşen Daguerre'ye), sağ kol torba 4'ün ağzına (895,842); koyu sepya manşet, bakmadan",
+     "sepet_x": -60,
      "torba_1": {
       "bas": 186,
       "bit": 232,
@@ -2037,7 +2070,7 @@
     "sepetin düşüşünün sesi YOK"
    ],
    "muzik_notu": "PATLAMA: 'vuruldu'da müzik tek vuruşla susup boşluk açar (ani düşüş değil, müzikal cümle sonu); 'yükseldi'de gerilim → rahatlama, dinamik yükselir ve P08'e taşar.",
-   "kontrol_kare": 200,
+   "kontrol_kare": 196,
    "kontrol_kare_ek": [
     112
    ],
@@ -2067,7 +2100,7 @@
     "izin": [
      "L_ustu_88_parlama"
     ],
-    "not": "P07 darbe parlaması L*91, kullanıcı onaylı tur-8 ('parlama kalsın' tur-9)."
+    "not": "P07 darbe parlaması L*91, kullanıcı onaylı tur-8 ('parlama kalsın' tur-9). B2, render motion sonrası: P07 A/B parametreleri şablon koduna işlenmeden render edilmedi."
    }
   },
   {
