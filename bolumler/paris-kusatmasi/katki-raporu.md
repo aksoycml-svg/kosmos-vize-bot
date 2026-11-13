@@ -1165,3 +1165,20 @@
 - Kararlar ve gerekçeleri: DÜZELTMEYLE GEÇER, puan 6.5. C2'nin 4 kritiği tuttu. P10 baş gölgesi KRİTİK. Neden: mercek baş tepelerinin altında, ışık aşağıdan yukarı çıkıyor; gölgenin nedeni bu, opaklık değil. Memuru yana almak ya da oturtmak geometri olarak yetmiyor. Çözüm lantern/mercek yüksekliği.
 - Uyguladığım kurallar / yakaladığım ihlaller: tek ışık (gölge doğru ama anahtar anı kapatıyor); okunurluk (anahtar an); fizik (ışınlar omuzdan geçiyor); hayalet kama.
 - Açık sorular / sonraki ajana: motion mercek y ≤ ~1180 yapınca P10 f150–200 şeridini ve f200-360'ı yeniden render etsin. Yazı satırlarına gölge düşmemeli. "Salondaki baş" imgesi istenip istenmediği orkestranın kararı (varsayılan: gölge yok ya da yalnız alt kenarda ince yay).
+
+## motion · 2026-11-13 · P10 baş gölgesi kritiği (C3 → C4)
+- Ne yaptım: Lantern'i izleyicilerin arkasına, yüksek ahşap sehpaya çıkardım. Dönemde de baş üstünden yansıtılırdı. Mercek artık ekranda (954,1120); önceden (892,1605) idi. En alçak ışın x 860'ta y ≈ 1106'dan geçiyor, baş tepeleri ise y ≥ 1204'te. Bu yüzden huzme hiçbir başı ya da omzu kesmiyor. Orkestra kararı gereği perdedeki baş gölgesini kaldırdım; buna gölge boynuzu, huzme maskesi ve duvardaki gölge kaması da dahil. Satırların (y ≤ 945) üstüne hiçbir gölge düşmüyor. Lantern'i baştan çizdim: arka yüz, sol derinlik yüzü (kenarları kaçış noktası 540,960'a gidiyor), ince üst yüz, baca, havalandırma yarıkları (lamba yanınca ışık sızdırıyor), sehpa tablası, ön ve arka bacak ile kayıt çıtası. Bacaklar kadrajın altında zemine iniyor. Levha yuvasını üst yüze, (1018,998) noktasına taşıdım; levhayı getiren el sağ kenarda görünüyor.
+- Dokunduğum dosyalar: src/kit/sablonlar/paris/LanternOda.tsx; bolumler/paris-kusatmasi/kalibrasyon/C4/ (P10-f48, P10-f200, P10-f200-guvenli, ve her birinin -360 sürümü; P10-serit-f150-200 = f150/166/183/200); bu rapor.
+- Aldığım kararlar ve gerekçeleri:
+  | Öğe | Eski | Yeni | Neden |
+  |---|---|---|---|
+  | mercek (huzme kaynağı) | json `huzme.isin.kaynak` (892,1605) | şablon sabiti `LN.mercek` (954,1120), json değeri yok sayılıyor | ışın baş üstünden geçsin; json'a dokunmadım |
+  | lantern kutusu | x 722–1113, üst y 1385, kadraj altına iniyor | arka yüz x 915–1200, y 1000–1290, Z ≈ 2.0 m, mercek ≈ 1.5 m | yüksek sehpa |
+  | sehpa | yoktu | koyu ahşap `#4a3f33`, metal yok | dönem nötr |
+  | levha yuvası | (858,1470) | (1018,998), el E 160 → 150 | kutunun üst yüzü |
+  | perde baş gölgesi + huzme maskesi | vardı | yok | orkestra kararı |
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: Tek ışık var: yarıklardaki parıltı ve kenar ışığı lamba yanınca açılıyor. Derinlik sırası doğru: lantern memur-3'ün önünde. Memur-3 f250–266 arasında kalkıyor; başı kutunun arkasında kaldığı için huzmeye girmiyor, gölge sorunu çıkmıyor. Sarı metal ve kırmızı kullanmadım. f48'de (PARIS-CATI) değişiklik yok. tsc temiz, `bolum_dogrula --tam` GEÇTİ (tek uyarı foley.json yok; bu uyarı önceden de vardı).
+- Açık sorular / bir sonraki ajana notlar:
+  - **Yönetmene not:** bolum.json P10 `devam_plan.parametreler.huzme.isin.kaynak` [892,1605] artık kullanılmıyor, (954,1120) yazılmalı ya da alan silinmeli. `memur3_kalkis.kim` notunda geçen "lantern bacası x 930–1000" ifadesi de güncellenmeli: baca şimdi x 922–974, lantern kutusu ise x ≥ 915.
+  - Seyirci memur-3'ün (x 860) başını oturur hâldeyken kısmen sehpanın önünden görüyor. Ayağa kalktığında başı lantern kutusunun arkasına giriyor; kalkış hareketi, kutunun solunda kalan gövdesinden okunuyor. Eleştirmen bunun yeterli olup olmadığına baksın.
+  - Levhayı tutan el sağ kenarda yalnız parmak uçlarıyla görünüyor (f80). Temas karesi f84 değişmedi.

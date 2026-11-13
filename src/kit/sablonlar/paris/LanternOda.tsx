@@ -53,7 +53,7 @@ const LN = (() => {
   const mercek: P = [VP[0] + (merk[0] - VP[0]) * 0.8, VP[1] + (merk[1] - VP[1]) * 0.8]; // mercek borusu ucu (kutunun arkasında gizli)
   return {
     bx0, bx1, by0, by1, mercek, onSolUst: on([bx0, by0]), onSolAlt: on([bx0, by1]), onSagUstX: on([bx1, by0])[0],
-    bacaX: 952, bacaY: 790, yuva: [1050, 998] as P, sehpaOnBacak: [on([bx0 + 10, by1 + 20]), on([bx0 + 10, 1990])] as [P, P],
+    bacaX: 922, bacaY: 790, yuva: [1018, 998] as P, sehpaOnBacak: [on([bx0 + 10, by1 + 20]), on([bx0 + 10, 1990])] as [P, P],
   };
 })();
 
