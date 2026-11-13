@@ -790,3 +790,62 @@
 - Kararlar: cx kataloğun ±80 sınırında; kontrol_kare zaten 230 (biniş), değişmedi.
 - Kurallar: kural 6 (doğrulayıcı), 7 (render). Render'da ön-sol rim köşesi ve baş kadraj içinde (baş üstten taşmıyor); bacak/biniş eski poz yüzünden okunmuyor, motion yeni pozla teyit edecek.
 - Açık: cx tam +100 isteniyorsa katalog sınırı ±80 → ±100 genişletmeli (motion/kit). P07 duman_cizgisi şablon kodunda y okunuyorsa motion 1060'a bağlamalı ("iz sağ alttan yükselsin").
+
+## motion · 2026-11-13 · B3 düzeltme turu (tur-13; eleştiri B2 #1–#3 + iki küçük not)
+- Ne yaptım:
+  - **#1 P06b biniş (f212–248).** Dagron sepetin sol-arka yüzünün dışında duruyor, yüzü duvara dönük. f212–218'de sol eli en yakın askı halatına (sol köşe halatı) uzanıyor. IK hedefi halatın h 1.80 noktası; el f218'de kavrıyor ve plan sonuna kadar o noktada kalıyor. Kol dirsekli, dirsek dışa-aşağı. f218–226'da sol bacak yukarı-dışa kavisle kalkıyor ve ekranın en solundaki rim köşesinden geçiyor; diz köşenin solunda, hale fonunda görünüyor. Ayak f226'da köşe rimine basıyor. f226–237'de ağırlık rimdeki ayağa geçiyor, gövde sepete eğiliyor, sağ bacak arka rimin üstünden içeri giriyor. f248'de Dagron içeride; eli halatta (kapanış).
+    - Katman düzeni: dışarıdayken figür sepetin arkasında. Rim çizgisinin üstünde kalan kısım (kalkan bacak, rimdeki ayak, kol) maskeyle SepetOn'dan sonra çiziliyor; sandık bu maskenin dışında, yani önde kalıyor.
+    - Ayrışma: palto `dagronIsik` (#5a5068), yani komparsın (#433e58 / #47425c) bir ton açığı. haleSabah kenar ışığı kalınlaştırıldı (dx −4, dy −2.5).
+    - Yükleyiciler sandığı bıraktıktan sonra (f196–222) iki adımda sağa-geri çekiliyor. Bacakları sepetin arkasında kaldığı için görünmüyor; foley gerekmiyor. Dagron ile aralarında yaklaşık bir omuz genişliği boşluk var.
+  - **#2 P07 darbe.**
+    - Delik ×1.6 büyüdü ve zarfın aydınlık krem yüzüne taşındı. Şablon json'daki darbe noktasını ışık diskinin güvenli iç dairesine (merkez = ışık yönü × 0.55 R, yarıçap 0.4 R) en yakın noktaya oturtuyor.
+    - Yırtık diller koyu ve uzundu, kulak/kanat gibi okunuyordu. Şimdi 6 kısa, açık renkli dil var. Parlama dilleri kısaltıldı.
+    - Atış izinin kaynağı json'dan okunuyor (`duman_cizgisi.kaynak` metninden (1150,1060)), yani iz ufkun altından yükseliyor. Ucu inceliyor ve iz, zarf siluetine 40 px kala bitiyor (TMAX her karede yoldan hesaplanıyor).
+    - Küçük not: ağdaki çift dikey çizginin nedeni çökme meridyenleriydi; kapatıldı (`COKME_MERIDYEN`). Çökme ezik siluet ve kıvrımla okunmaya devam ediyor.
+  - **#3 MONTMARTRE gök (GokBasamak; P03, P06b, P07 A/B hepsi).**
+    - Basamak sınırları artık taramalı geçiş: sınırın altında üst tonun yatay kesik çizgileri var; aşağı indikçe çizgi 3.4 → 1.6 px inceliyor, aralık 4.5 → 13 px açılıyor. Sınırın üstünde alt tonun ince çizgileri var. Düz gradyan yok, düz kenar yok.
+    - Soldaki basamaklı ışıma dikdörtgenleri ve x 486'daki dikey kenar kalktı. Yerine uçları incelen, uzunlukları düzensiz yatay çizgiler geldi.
+  - P07 B: süreklilik için Dagron paltosu P06b ile aynı tona (`dagronIsik`) alındı. Ön kol / dirsek notu yapılmadı (aşağıda).
+  - Render (`kalibrasyon/B3/`): P06b f230, P07 f112, P03 f80, P07 f196 için tam + -360 + -guvenli + -guvenli-360. Ayrıca `P07-f112-darbe-2x.png`, `P06b-serit-f200-260.png` (4 kare) ve `P07-serit-f080-160.png` (4 kare).
+- Dokunduğum dosyalar: src/kit/sablonlar/paris/Montmartre.tsx, src/kit/sablonlar/paris/montmartreDekor.tsx, src/kit/props/paris/Balon.tsx, bolumler/paris-kusatmasi/kalibrasyon/B3/* (yeni), bu rapor. bolum.json'a dokunmadım. P03'ün kodu da değişmedi; yalnız ortak gök değişikliği ona da yansıyor.
+- Kareye uyarlarken değiştirdiğim değerler (yönetmen plana işler):
+  | Öğe | json / önceki | Kod (B3) | Neden |
+  |---|---|---|---|
+  | Dagron duruşu | "sepetin SOL-ARKASINDA ayak (128,1275)"; B2'de arka rim BL+%25 | dünya (−0.631, 0, 0.644): sol-arka yüzün dışı, sol köşeden 0.25 yüz boyu, duvardan 0.25 m | cx 80 ve cs ≈1.3 iken köşenin solunda ya da sol yüzün önünde duran gövde ekranın sol kenarından taşıyordu (hesap: gövde merkezi x ≈ 0–80). "Biraz içeri" alındı; kamera değişmedi |
+  | Biniş teması | BL rim (175,920) | köşe rimi (−0.749, 0.97, 0.273) — köşeden %6 içeri; f230 ekranı ≈ (179, …) | rim kenarına basar, köşenin içinden geçmez |
+  | Tutunma | — | sol köşe askı halatı, h 1.80 (IK hedefi), f218 kavrar | en yakın halat; 1.55 ve 1.72 denemelerinde el başa yapışıyor, "selam" gibi okunuyordu |
+  | Dagron içeride (f248) | — | (−0.451, 0.1 taban, 0.209) | sandığın arkasına girmez (çakışma payı 0.02 m) |
+  | Yükleyici-1 | X −0.45, Z 1.05 | −0.3/1.05 → 0.15/1.35 (f196–222) | Dagron ile ≥ 1 omuz genişliği; sandık tutuşu yakınlaştı |
+  | Yükleyici-2 | X 0.4, Z 1.1 | → 0.58/1.15 (f196–222) | yükleyici-1'e yer; Daguerre zarfını örtmez |
+  | P07 delik | darbe (712,687), gölge kenarı | şablon ışık yüzüne oturtur (≈ merkezin sol-üstü) | eleştiri #2; json x/y "isabet bölgesi" olarak kalır |
+- Aldığım kararlar ve gerekçeleri:
+  - Darbe x/y json'da kaldı (yönetmen belgesi); konum kuralı şablona gömüldü. Yönetmen isterse json notunu "delik ışık yüzüne oturur" diye günceller.
+  - Ön-sol köşeden dışarıdan biniş, kamera ±80 içinde fiziksel olarak kadraja sığmıyor. Çözüm: Dagron köşenin arkasında duruyor, ama kalkan bacak ve rimdeki ayak köşenin üstünde, fona karşı görünüyor.
+  - Biniş kolu için FigurSiluet'in kendi IK'sı (dışa-aşağı) korundu. "Dirsek aşağı" zorlaması kolu gövdenin içine katlıyor, el alında gibi okunuyordu.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Tutulan nesne: el halattaki sabit noktada; halat elin önünden geçiyor (kavrama okunuyor).
+  - Hiçbir uzuv duvarın içinden geçmiyor: sol ayak yukarı-dışa kavisle, sağ ayak önce yükselip sonra duvarı aşarak hareket ediyor.
+  - Hareket f248'de bitiyor; plan sonuna 39 kare kalıyor.
+  - Fade yok. Kırmızı 0.
+  - Ölçüm (Lab D65):
+
+    | Kare | L* | p95 | C* | p99.9 | C* > 32 | kırmızı |
+    |---|---|---|---|---|---|---|
+    | P03 f80 | 61.7 | 82.2 | 16.0 | 24.0 | 0 | 0 |
+    | P06b f230 | 54.5 | 77.8 | 12.7 | 23.0 | 0 | 0 |
+    | P07 f112 | 64.3 | 82.2 | 14.1 | 24.2 | 0 | 0 |
+    | P07 f196 | 57.3 | 79.6 | 13.3 | 23.4 | 0 | 0 |
+
+    P07 f196, palto tonu değişmeden önce ölçüldü.
+  - Güvenli alan: P03 f80, P07 f112 ve P07 f196'da 0 ihlal. P06b f230'da 1 ihlal: "sepet tabanı FL alt 420 içinde (y 1507)". Neden yönetmenin B3 kamerası (cy/cs); temas yok ve `lint.izin guvenli_alt_gecici` kapsıyor.
+  - tsc temiz. Doğrulayıcı `--tam` GEÇTİ (0 hata, 1 uyarı: foley.json yok). PARIS-CATI P01 f24 V4 ile piksel farkı 0.
+- Öz puan ≈ 6.5 (eleştirmenden yüksek çıkma eğilimimi hesaba kattım). Kendi gördüğüm zayıflıklar:
+  - P06b f230'da el halatta, ama halat başın hemen solundan geçtiği için el şapka hizasında. Kol yukarı-sola uzanıyor; 360'ta "şapkasını tutuyor" diye de okunabilir.
+  - f236–240'ta açık tonlu kalkan bacak iri bir kütle gibi duruyor.
+  - Delik ×1.6 ile okunuyor, ama sol yumru hâlâ hafif "canlı" siluet veriyor.
+  - Atış izi ince; 4 kare şeritte zor seçiliyor.
+- Açık sorular / bir sonraki ajana notlar:
+  1. Eleştirmen: P06b şerit f216–232 (tutunma + köşe adımı) ve 360'ta el-şapka okumasına bakılsın. Yetmezse seçenek: grip h 1.65 + gövde sağa eğimi 0.2, ya da yönetmen katalog cx sınırını ±120'ye açar ve Dagron köşenin dışına alınır.
+  2. Kurgucu: yeni temas f218 "el halatı kavrar" (yumuşak halat/ip gerilmesi, −6 dB'den kısık). f226 ayak-rim hasır gıcırtısı (mevcut).
+  3. Yapılmadı (fırsat): P07 B ön kol rime dayalı / dirsek aşağı. Omuz–rim mesafesi ≈ 0.54 m; dürüst çözüm gövdenin ön rime ≈ 0.3 m kaydırılması, bu da torba 4 kilidini ve sepet_x kalibrasyonunu etkiler. Ayrı küçük tur önerilir.
+  4. Mekân sorumlusu: gök geçişi kodda gravür taraması olarak tanımlı (çizgi kalınlığı/aralığı yukarıda); mekanlar §2v2.9 satırı buna göre güncellenebilir.

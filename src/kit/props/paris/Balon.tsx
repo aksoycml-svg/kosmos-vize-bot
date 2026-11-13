@@ -139,7 +139,8 @@ export const Balon: React.FC<{ b: BalonDurum }> = ({ b }) => {
   }
   // çökme meridyenleri (P07: gölge ailesinde, üstten aşağı)
   const cokCiz: string[] = [];
-  if (b.coker && b.coker.t > 0.02) {
+  const COKME_MERIDYEN = false as boolean; // B3: ağ meridyenleriyle çift dikey çizgi okunuyordu (eleştiri B2 küçük) → kapalı; çökme ezik siluet + kıvrımla okunur
+  if (COKME_MERIDYEN && b.coker && b.coker.t > 0.02) {
     const r = rng(b.coker.seed + 3);
     for (let i = 0; i < 5; i++) {
       const u = -0.7 + i * 0.32 + (r() - 0.5) * 0.1, y0 = c[1] - R * (0.85 - 0.25 * Math.abs(u)) * ck, y1 = c[1] + R * 0.7;
@@ -188,7 +189,7 @@ export const Balon: React.FC<{ b: BalonDurum }> = ({ b }) => {
       <g>{ag.filter((a) => a.d.includes("Q")).map((a, i) => <path key={`h${i}`} d={a.d} fill="none" stroke={PAL.agGolge} strokeWidth={2.2} />)}</g>
       <path d={zarfD} fill="none" stroke={PAL.konturGolge} strokeWidth={K} strokeLinejoin="round" />
       <g clipPath={`url(#${uid}l)`}><path d={zarfD} fill="none" stroke={PAL.konturIsik} strokeWidth={K} strokeLinejoin="round" /></g>
-      {b.coker && b.coker.t > 0 && <Delik c={[c[0] + b.coker.delik[0], c[1] + b.coker.delik[1]]} r={26 * Math.min(1, b.coker.t * 6) * (R / 145)} seed={b.coker.seed} />}
+      {b.coker && b.coker.t > 0 && <Delik c={[c[0] + b.coker.delik[0], c[1] + b.coker.delik[1]]} r={26 * 1.6 * Math.min(1, b.coker.t * 6) * (R / 145)} seed={b.coker.seed} />}
     </g>
   );
 };
@@ -199,12 +200,12 @@ const Delik: React.FC<{ c: P; r: number; seed: number }> = ({ c, r, seed }) => {
   const g = rng(seed);
   const n = 17;
   const kenar: P[] = Array.from({ length: n }, (_, i) => { const a = (i / n) * Math.PI * 2 + (g() - 0.5) * 0.25, q = r * (0.62 + 0.5 * g()) * (i % 3 === 0 ? 1.18 : 1); return [c[0] + q * Math.cos(a) * 1.15, c[1] + q * Math.sin(a) * 0.85]; });
-  // 4 yırtık dil: delik kenarından dışa kıvrılan kısa üçgen (kumaşın açılmış kenarı)
-  const diller = [0.3, 1.9, 3.3, 4.8].map((a0) => {
-    const a = a0 + (g() - 0.5) * 0.4, w = 0.32 + 0.15 * g(), L = r * (0.28 + 0.17 * g());
-    const k0: P = [c[0] + r * 0.8 * Math.cos(a - w) * 1.15, c[1] + r * 0.8 * Math.sin(a - w) * 0.85], k1: P = [c[0] + r * 0.8 * Math.cos(a + w) * 1.15, c[1] + r * 0.8 * Math.sin(a + w) * 0.85];
-    const uc: P = [c[0] + (r * 0.95 + L) * Math.cos(a + 0.2) * 1.15, c[1] + (r * 0.95 + L) * Math.sin(a + 0.2) * 0.85];
-    return { d: `M${k0[0].toFixed(1)} ${k0[1].toFixed(1)}Q${((k0[0] + uc[0]) / 2).toFixed(1)} ${((k0[1] + uc[1]) / 2 - 2).toFixed(1)} ${uc[0].toFixed(1)} ${uc[1].toFixed(1)}Q${((k1[0] + uc[0]) / 2 + 2).toFixed(1)} ${((k1[1] + uc[1]) / 2).toFixed(1)} ${k1[0].toFixed(1)} ${k1[1].toFixed(1)}Z`, ic: a0 < 3 };
+  // B3: yırtık diller 6 kısa, AÇIK (kumaşın iç yüzü), kenara yapışık (≤ 0.22 r) — B2'de uzun koyu diller "kulak/kanat" (kuş/yarasa) okutuyordu
+  const diller = [0.2, 1.25, 2.3, 3.3, 4.3, 5.4].map((a0) => {
+    const a = a0 + (g() - 0.5) * 0.35, w = 0.2 + 0.1 * g(), L = r * (0.12 + 0.1 * g());
+    const k0: P = [c[0] + r * 0.82 * Math.cos(a - w) * 1.15, c[1] + r * 0.82 * Math.sin(a - w) * 0.85], k1: P = [c[0] + r * 0.82 * Math.cos(a + w) * 1.15, c[1] + r * 0.82 * Math.sin(a + w) * 0.85];
+    const uc: P = [c[0] + (r * 0.9 + L) * Math.cos(a + 0.15) * 1.15, c[1] + (r * 0.9 + L) * Math.sin(a + 0.15) * 0.85];
+    return { d: `M${k0[0].toFixed(1)} ${k0[1].toFixed(1)}Q${((k0[0] + uc[0]) / 2).toFixed(1)} ${((k0[1] + uc[1]) / 2 - 1).toFixed(1)} ${uc[0].toFixed(1)} ${uc[1].toFixed(1)}Q${((k1[0] + uc[0]) / 2 + 1).toFixed(1)} ${((k1[1] + uc[1]) / 2).toFixed(1)} ${k1[0].toFixed(1)} ${k1[1].toFixed(1)}Z`, ic: true };
   });
   return (
     <g strokeLinejoin="round">

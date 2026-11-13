@@ -14,7 +14,7 @@ import { Balon, BalonAltan, balonAltDugum, BalonDurum, BogazHalka, onYuzNokta, S
 import { ayaktaEklem, Eklem, EklemDunya, eklemIzdus, FigurSiluet, Kiyafet } from "../../props/paris/SabahFigur";
 import { HavadanParis } from "./havadanParis";
 import { agacGolge, CiplakAgac, GokBasamak, HaleArka, HavadanSehir, MeydanZemin, SarkikZarf, UfukBandi, YanEv, YAN_EV } from "./montmartreDekor";
-import { golgeCokgen, golgeNokta, IsikAd, Kam, KAMERA, kutu, lerp, lp2, PAL, pr, pts, pxm, rng, sat, V3, yolAcik, yumusak, zeminCokgen } from "./montmartreDunya";
+import { golgeCokgen, golgeNokta, IsikAd, Kam, KAMERA, kutu, lerp, lp2, PAL, pr, pts, pxm, rng, sat, V3, yolAcik, yumusak, zarf as zarf2, zeminCokgen } from "./montmartreDunya";
 
 type Ar = { bas: number; bit: number; temas?: number; birakma?: number; ayak_temas?: number };
 const ar = (v: unknown, d: Ar): Ar => (v && typeof v === "object" && typeof (v as Ar).bas === "number" ? (v as Ar) : d);
@@ -217,29 +217,56 @@ const TorbaSirasi: React.FC<{ k: Kam; s: SepetPoz; gizli?: boolean[]; ozel?: Rec
     </g>
   );
 };
-// Dagron (F2) biniş anahtarları (dünya; sırtı kameraya). f226 sağ ayak BL rim köşesinde (temas).
-// B2: biniş noktası arka rimde, BL köşesinden %25 içeride (Dagron sepetin ARKASINDAN biner → gövdesi kadraj içinde; eski: BL köşe, gövde sol 80 px payında kesikti)
-const BL_RIM: V3 = [-0.53, 0.95, 0.42];
-const DG_KAY: V3 = [0.27, 0, 0.13];
-const kay = (q: Poz): Poz => { const f = (v: V3): V3 => [v[0] + DG_KAY[0], v[1], v[2] + DG_KAY[2]]; const f2 = (a: [V3, V3]): [V3, V3] => [f(a[0]), f(a[1])]; return { bas: f(q.bas), boyun: f(q.boyun), omuz: f2(q.omuz), kalca: f2(q.kalca), dirsek: f2(q.dirsek), el: f2(q.el), diz: f2(q.diz), ayak: f2(q.ayak) }; };
+// Dagron (F2) biniş — B3 (eleştiri B2 #1): sepetin SOL-ARKA yüzünün dışında durur (sol köşeye 0.25 yüz boyu, duvara 0.25 m), yüzü duvara.
+// Sol bacak SOL KÖŞENİN (ekranda en soldaki rim köşesi, json "BL (175,920)") üstünden geçer: diz köşenin solunda, hale fonunda görünür; ayak f226 köşe rimine basar.
+// Sol el en yakın askı halatını (sol köşe halatı) tutar: IK hedefi = halat üstünde h 1.85 noktası (f218 kavrar, biniş boyunca bırakmaz); dirsek dışa-aşağı.
+// Kadraj: cx 80 sınırında köşenin dışında durmak gövdeyi sol kenardan taşırıyordu → dünya konumu içeri (arka yüz, u 0.25) alındı (rapor tablosu).
+const DG_S: [number, number] = [-0.631, 0.644]; // duruş merkezi (X, Z)
+const DG_A: [number, number] = [0.906, 0.423], DG_F: [number, number] = [0.423, -0.906]; // yan (ekran sol→sağ) ve yüz (duvara) birim
+const DG_IC: [number, number] = [-0.451, 0.209]; // sepet içi duruş (sandığın arkasında değil, sol-arkada)
+const W = (o: [number, number], a: number, h: number, f: number): V3 => [o[0] + DG_A[0] * a + DG_F[0] * f, h, o[1] + DG_A[1] * a + DG_F[1] * f];
+const dgHalat = (h: number): V3 => { const q = sepetKose({ X: 0, h: 0, Z: 0 }).ust[3], an = Math.atan2(q[2], q[0]), u: V3 = [Math.cos(an) * 0.45, 2.6, Math.sin(an) * 0.45]; return lerp3(q, u, (h - q[1]) / (2.6 - q[1])); };
+const DG_EL = dgHalat(1.8); // B3: el halatta baş hizasının üstünde-solunda; gövde biniş boyunca sepete (sağa) eğilir → halat başın solunda kalır, kol yukarı-sola uzanır, dirsek dışa-aşağı (1.55/1.72 denemelerinde el başa yapışık "selam" okunuyordu)
+const DG_RIM: V3 = (() => { const q = sepetKose({ X: 0, h: 0, Z: 0 }).ust[3]; return [q[0] * 0.94, q[1] + 0.02, q[2] * 0.94]; })(); // köşe rimi (içe 6 %)
 type Poz = EklemDunya;
-const dagronPoz = (f: number, A: Ar): Poz => {
-  const k0: Poz = { bas: [-0.80, 1.6, 0.62], boyun: [-0.80, 1.47, 0.62], omuz: [[-1.00, 1.4, 0.64], [-0.60, 1.4, 0.6]], kalca: [[-0.88, 0.88, 0.62], [-0.72, 0.88, 0.6]], dirsek: [[-1.05, 1.12, 0.6], [-0.58, 1.15, 0.5]], el: [[-1.02, 0.88, 0.58], [-0.60, 0.99, 0.32]], diz: [[-0.88, 0.46, 0.6], [-0.72, 0.46, 0.58]], ayak: [[-0.88, 0, 0.62], [-0.72, 0, 0.6]] };
-  const k1: Poz = { bas: [-0.88, 1.88, 0.55], boyun: [-0.87, 1.75, 0.55], omuz: [[-1.05, 1.67, 0.56], [-0.67, 1.69, 0.5]], kalca: [[-0.92, 1.14, 0.52], [-0.76, 1.16, 0.48]], dirsek: [[-0.95, 1.95, 0.45], [-0.60, 1.4, 0.4]], el: [[-0.72, 2.3, 0.32], [-0.64, 1.05, 0.25]], diz: [[-0.96, 0.55, 0.58], [-0.78, 1.32, 0.38]], ayak: [[-0.88, 0, 0.62], [BL_RIM[0] + 0.02, BL_RIM[1] + 0.02, BL_RIM[2]]] }; // k0 X +0.2 (Dagron ayağı yan 80 px payına giriyordu)
-  const k2: Poz = { bas: [-0.72, 2.12, 0.4], boyun: [-0.72, 1.99, 0.4], omuz: [[-0.9, 1.92, 0.42], [-0.52, 1.93, 0.36]], kalca: [[-0.8, 1.42, 0.38], [-0.64, 1.42, 0.34]], dirsek: [[-0.78, 2.15, 0.3], [-0.45, 1.6, 0.25]], el: [[-0.6, 2.45, 0.2], [-0.5, 1.05, 0.1]], diz: [[-0.95, 1.2, 0.45], [-0.7, 1.12, 0.3]], ayak: [[-0.98, 0.98, 0.32], [-0.62, 0.72, 0.3]] };
-  const k3: Poz = { bas: [-0.38, 1.85, 0.42], boyun: [-0.38, 1.72, 0.42], omuz: [[-0.58, 1.65, 0.44], [-0.18, 1.65, 0.4]], kalca: [[-0.46, 1.12, 0.42], [-0.3, 1.12, 0.4]], dirsek: [[-0.66, 1.4, 0.3], [-0.1, 1.38, 0.3]], el: [[-0.62, 1.05, 0.12], [0.02, 1.08, 0.12]], diz: [[-0.46, 0.66, 0.4], [-0.3, 0.66, 0.38]], ayak: [[-0.46, 0.25, 0.44], [-0.3, 0.25, 0.4]] };
-  const k1r = kay(k1); k1r.ayak[1] = [BL_RIM[0] + 0.02, BL_RIM[1] + 0.02, BL_RIM[2]];
-  const keys = [A.bas, A.ayak_temas ?? 226, Math.round(((A.ayak_temas ?? 226) + A.bit) / 2), A.bit], P = [kay(k0), k1r, kay(k2), k3];
+const dagronPoz = (f: number, A: Ar): Poz & { yerde: [boolean, boolean]; keys: number[] } => {
+  const S = DG_S, B = DG_IC;
+  const ayakta = (o: [number, number], h0: number, ef: number): Poz => ({
+    ayak: [W(o, -0.11, h0, 0.02), W(o, 0.11, h0, 0)], diz: [W(o, -0.1, h0 + 0.47, 0.04 + ef * 0.3), W(o, 0.1, h0 + 0.47, 0.03 + ef * 0.3)],
+    kalca: [W(o, -0.09, h0 + 0.9, ef * 0.4), W(o, 0.09, h0 + 0.9, ef * 0.4)], omuz: [W(o, -0.2, h0 + 1.42, ef), W(o, 0.2, h0 + 1.42, ef)],
+    dirsek: [W(o, -0.24, h0 + 1.15, ef), W(o, 0.24, h0 + 1.15, ef)], el: [W(o, -0.24, h0 + 0.9, ef + 0.02), W(o, 0.25, h0 + 0.9, ef + 0.02)],
+    boyun: W(o, 0, h0 + 1.5, ef), bas: W(o, 0, h0 + 1.63, ef + 0.02),
+  });
+  const k0 = ayakta(S, 0, 0.04);
+  // k1 (f226): sol ayak köşe rimine basar, diz yukarı-dışa (köşenin solunda); gövde duvara eğik, sağ bacak yerde
+  const k1 = ayakta(S, 0, 0.1);
+  const sagaEg = (q: Poz, d: number) => { const m = (v: V3): V3 => [v[0] + DG_A[0] * d, v[1], v[2] + DG_A[1] * d]; q.bas = m(q.bas); q.boyun = m(q.boyun); q.omuz = [m(q.omuz[0]), m(q.omuz[1])]; q.dirsek = [m(q.dirsek[0]), m(q.dirsek[1])]; q.el[1] = m(q.el[1]); };
+  sagaEg(k1, 0.13);
+  k1.ayak[0] = DG_RIM; k1.kalca = [W(S, -0.1, 0.93, 0.03), W(S, 0.09, 0.93, 0.03)]; k1.diz[0] = (() => { const h = k1.kalca[0], m: V3 = [(h[0] + DG_RIM[0]) / 2, (h[1] + DG_RIM[1]) / 2, (h[2] + DG_RIM[2]) / 2], d: V3 = [-0.42 * DG_A[0] - 0.05 * DG_F[0], 0.88, -0.42 * DG_A[1] - 0.05 * DG_F[1]], L = Math.hypot(...d), b = 0.41; return [m[0] + d[0] / L * b, m[1] + d[1] / L * b, m[2] + d[2] / L * b] as V3; })();
+  // k2 (≈f237): ağırlık rimdeki ayakta, kalça rimin üstünde, gövde sepete eğik; sağ bacak arka rimin ÜSTÜNDEN içeri geçer
+  const k2: Poz = {
+    ayak: [DG_RIM, W(S, 0.12, 1.08, 0.62)], diz: [W(S, -0.3, 1.42, 0.12), W(S, 0.12, 1.5, 0.5)], kalca: [W(S, -0.08, 1.25, 0.22), W(S, 0.08, 1.25, 0.2)],
+    omuz: [W(S, -0.2, 1.68, 0.32), W(S, 0.2, 1.68, 0.3)], dirsek: [W(S, -0.3, 1.6, 0.3), W(S, 0.3, 1.5, 0.3)], el: [DG_EL, W(S, 0.3, 1.25, 0.36)],
+    boyun: W(S, 0, 1.76, 0.34), bas: W(S, 0, 1.88, 0.38),
+  };
+  sagaEg(k2, 0.1);
+  // k3 (f248): sepetin içinde ayakta (taban h 0.1), el halatta kalır (kapanış)
+  const k3 = ayakta(B, 0.1, 0.03);
+  sagaEg(k3, 0.12); // kapanış: gövde sepetin içine dönük, halat başın solunda kalır
+  const t1 = A.ayak_temas ?? 226, keys = [A.bas, t1, Math.round((t1 + A.bit) / 2), A.bit], P = [k0, k1, k2, k3];
   let i = 0; while (i < 2 && f > keys[i + 1]) i++;
   const t = t01(f, keys[i], keys[i + 1], INOUT);
   const L = (a: V3, b: V3): V3 => lerp3(a, b, t);
   const L2 = (a: [V3, V3], b: [V3, V3]): [V3, V3] => [L(a[0], b[0]), L(a[1], b[1])];
   const a = P[i], b = P[i + 1];
   const o: Poz = { bas: L(a.bas, b.bas), boyun: L(a.boyun, b.boyun), omuz: L2(a.omuz, b.omuz), kalca: L2(a.kalca, b.kalca), dirsek: L2(a.dirsek, b.dirsek), el: L2(a.el, b.el), diz: L2(a.diz, b.diz), ayak: L2(a.ayak, b.ayak) };
-  // adım yayı: sağ ayak yerden rime giderken yukarı kavis (rim içinden geçmez)
-  if (i === 0) o.ayak[1][1] += 0.25 * Math.sin(Math.PI * t);
-  if (i === 1) o.ayak[0][1] += 0.35 * Math.sin(Math.PI * t);
-  return o;
+  // adım yayları (hiçbir uzuv duvarın içinden geçmez): sol ayak yerden köşe rimine yukarı-dışa kavis; sağ ayak önce yükselir, sonra duvarı aşar
+  if (i === 0) { const tt = t01(f, keys[0] + 6, keys[1], INOUT); o.ayak[0] = lerp3(k0.ayak[0], DG_RIM, tt); o.ayak[0][1] += 0.3 * Math.sin(Math.PI * tt); o.ayak[0][0] -= 0.12 * Math.sin(Math.PI * tt); o.diz[0] = lerp3(k0.diz[0], k1.diz[0], Math.sqrt(tt)); }
+  if (i === 1) { const g0 = k1.ayak[1], g1 = k2.ayak[1], ff = t * t, hh = 1 - (1 - t) * (1 - t); o.ayak[1] = [lerp(g0[0], g1[0], ff), lerp(g0[1], g1[1], hh) + 0.15 * Math.sin(Math.PI * t), lerp(g0[2], g1[2], ff)]; o.diz[1] = [lerp(k1.diz[1][0], k2.diz[1][0], Math.sqrt(t)), lerp(k1.diz[1][1], k2.diz[1][1], Math.sqrt(t)), lerp(k1.diz[1][2], k2.diz[1][2], Math.sqrt(t))]; }
+  // tutunan el: f bas → bas+6 halata uzanır, sonra halattaki noktada sabit (el halatı izlemez, halat eli değil: tutuş)
+  const kav = A.bas + 6;
+  o.el[0] = f < kav ? lerp3(k0.el[0], DG_EL, t01(f, A.bas, kav, GIRIS)) : DG_EL;
+  return { ...o, yerde: [o.ayak[0][1] < 0.03, o.ayak[1][1] < 0.03], keys };
 };
 const yukleyiciPoz = (X: number, Z: number, H: number, el: [V3, V3] | null): Poz => {
   const s = H / 1.74, y = (h: number) => h * s;
@@ -265,10 +292,14 @@ const Yukleme: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2
   const birak = t01(p, si.bit + 2, si.bit + 12);
   // B2: eller sandığın ALT kenarında (başüstü taşıma, dirsek 70–100° dışa-aşağı; eski kulp tutuşu kol boyunu aşıyordu → "Z" kollar)
   const altK = (q: V3, dX: number): V3 => [q[0] + dX, sh + 0.03, q[2]];
-  const y1 = yukleyiciPoz(-0.45, 1.05, 1.75, birak < 1 ? [lerp3(altK(kulpL, 0.04), [-0.7, 0.86, 1.05], birak), lerp3([-0.12, sh + 0.02, SY.Z + 0.12], [-0.2, 0.86, 1.05], birak)] : null);
-  const y2 = yukleyiciPoz(0.4, 1.1, 1.68, birak < 1 ? [lerp3([0.24, sh + 0.02, SY.Z + 0.1], [0.18, 0.84, 1.1], birak), lerp3(altK(kulpR, -0.04), [0.62, 0.84, 1.1], birak)] : null);
+  // B3 (eleştiri B2 #1): sandığı bıraktıktan sonra yükleyiciler biniş için yer açar — iki adım sağa-geri (bacaklar sepetin arkasında, görünmez;
+  // gövde adım ritmiyle hafif iner-kalkar). Dagron ile aralarında ≥ 1 omuz genişliği kalır.
+  const yan = t01(p, si.bit + 6, si.bit + 32, INOUT), bob = -0.025 * Math.abs(Math.sin(Math.PI * 2 * yan));
+  const y1X = lerp(-0.3, 0.15, yan), y1Z = lerp(1.05, 1.35, yan), y2X = lerp(0.4, 0.58, yan), y2Z = lerp(1.1, 1.15, yan);
+  const y1 = yukleyiciPoz(y1X, y1Z, 1.75 + bob, birak < 1 ? [lerp3(altK(kulpL, 0.04), [y1X - 0.25, 0.86, y1Z], birak), lerp3([-0.12, sh + 0.02, SY.Z + 0.12], [y1X + 0.25, 0.86, y1Z], birak)] : null);
+  const y2 = yukleyiciPoz(y2X, y2Z, 1.68 + bob, birak < 1 ? [lerp3([0.24, sh + 0.02, SY.Z + 0.1], [y2X - 0.22, 0.84, y2Z], birak), lerp3(altK(kulpR, -0.04), [y2X + 0.22, 0.84, y2Z], birak)] : null);
   const dg = dagronPoz(p, db);
-  const dIc = p > (db.ayak_temas ?? 226) + 6;
+  const dIc = p > dg.keys[2];
   // bağlama halatı: FR alt köşe → kadraj sağ-altı; gevşek (yerde kıvrık) → gergin (yerden kalkar, f262)
   const ger = t01(p, hg.bas, hg.temas ?? 262, Easing.in(Easing.quad));
   const FRa: V3 = sepetKose(sp).alt[1], cap: V3 = [1.75, 0.02, -3.15];
@@ -277,7 +308,7 @@ const Yukleme: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2
   const golgeler: (P[] | null)[] = [
     golgeCokgen(k, isik, kutu(0, 0, 1.2, 1.2, 0, 0.95, 25)),
     golgeCokgen(k, isik, kutu(SY.X, SY.Z, 0.7, 0.45, Math.max(0.95, sh), sh + 0.45, SY.yaw)),
-    golgeCokgen(k, isik, golgeFig(k, isik, -0.45, 1.05, 1.75, 0.5)), golgeCokgen(k, isik, golgeFig(k, isik, 0.4, 1.1, 1.68, 0.5)),
+    golgeCokgen(k, isik, golgeFig(k, isik, y1X, y1Z, 1.75, 0.5)), golgeCokgen(k, isik, golgeFig(k, isik, y2X, y2Z, 1.68, 0.5)),
     golgeCokgen(k, isik, [...dg.ayak, ...dg.kalca, ...dg.omuz, dg.bas]),
     golgeCokgen(k, isik, kutu(-0.3, -2.0, 0.42, 0.3, 0, 0.5)),
     // Daguerre: sepet + 3 siluet + sandık yığını (Z ≈ 36)
@@ -327,8 +358,9 @@ const Yukleme: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2
   const E = (q: P) => ekranNokta(k2, q);
   kilit.push({ ad: "sepet tabanı FL", p: E(pr(k, ...sepetKose(sp).alt[0])), tur: "temas" });
   kilit.push({ ad: "sandık oturma (f190)", p: E(pr(k, SY.X, hSon + 0.45, SY.Z - 0.2)), tur: "dokunus" });
-  if (p >= db.bas && p <= (db.ayak_temas ?? 226) + 8) kilit.push({ ad: "biniş teması BL rim (f226)", p: E(pr(k, ...BL_RIM)), tur: "temas" });
-  if (!dIc) kilit.push({ ad: "Dagron ayak", p: E(pr(k, ...dg.ayak[0])), tur: "ayak" });
+  if (p >= db.bas && p <= (db.ayak_temas ?? 226) + 8) kilit.push({ ad: "biniş teması sol köşe rimi (f226)", p: E(pr(k, ...DG_RIM)), tur: "temas" });
+  if (p >= db.bas + 6 && p <= db.bit) kilit.push({ ad: "el halatta (IK, f218)", p: E(pr(k, ...DG_EL)), tur: "dokunus" });
+  [0, 1].forEach((i) => { if (dg.yerde[i]) kilit.push({ ad: `Dagron ayak ${i}`, p: E(pr(k, ...dg.ayak[i])), tur: "ayak" }); });
   if (p >= hg.bas) kilit.push({ ad: "halat gerilme (f262)", p: E(pr(k, ...bagNok[0])), tur: "temas" });
   const gok = <GokBasamak ufuk={k.U} seed={158} />;
   // Niépce zarfı (H2.5): halka (h 2.6) → ağın h 4.5 paralel düğümlerine askı halatları; boğaz (h 2.9–3.4) kumaş tüpü zarfın önünde
@@ -353,7 +385,19 @@ const Yukleme: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2
       })()}
     </g>;
   })();
-  const dagronCiz = <FigurSiluet e={eklemIzdus(k, dg)} pxm={pxm(k, dg.kalca[0][2])} kiyafet="dagron" renk={PAL.dagronGolge} kenar={{ renk: PAL.kenar, dx: -3, dy: -2 }} eller manset={PAL.sepya} ten="#a8846e" temas={[dg.ayak[0][1] < 0.03, dg.ayak[1][1] < 0.03]} onBacak={dg.ayak[1][1] > 0.25 && !dIc ? 1 : undefined} />;
+  // Dagron: palto bir ton açık (dagronIsik; kompars #433e58/#47425c) + haleSabah kenar ışığı (ışık sol-arkadan → sol-üst kenar), kalın
+  // Katman: dışarıdayken tüm figür sepetin ARKASINDA (SepetArka'dan önce); rim çizgisinin üstündeki kısmı (kalkan bacak, ayak rimde, gövde, kol)
+  // ayrıca SepetOn'dan sonra (maske: arka rim çizgisinin üstü, sandık hariç) → ayak rimin ÜSTÜNDE okunur, sandık önde kalır.
+  const dgE = eklemIzdus(k, dg), dgM = pxm(k, dg.kalca[0][2]);
+  const dgProps = { e: dgE, pxm: dgM, kiyafet: "dagron" as const, renk: PAL.dagronIsik, kenar: { renk: PAL.kenar, dx: -4, dy: -2.5 }, eller: true, manset: PAL.sepya, ten: "#a8846e", onBacak: (p >= db.bas + 6 && p < dg.keys[2] + 6 ? 0 : undefined) as 0 | undefined };
+  const rimMaske = (() => {
+    const u = sepetKose(sp).ust, a = pr(k, ...u[3]), b = pr(k, ...u[2]), c = pr(k, ...u[1]);
+    const ust: P[] = [[-3000, a[1] + 3], [a[0], a[1] + 3], [b[0], b[1] + 3], [c[0], c[1] + 3], [4000, c[1] + 3], [4000, -3000], [-3000, -3000]];
+    const sd = zarf2(kutu(SY.X, SY.Z, 0.7, 0.45, sh, sh + 0.45, SY.yaw).map((q) => { const e = pr(k, ...q); return [e[0] + sallan, e[1]] as [number, number]; }));
+    return <mask id={`${uid}dgm`} maskUnits="userSpaceOnUse" x={-3000} y={-3000} width={8000} height={8000}><polygon points={pts(ust)} fill="#fff" /><polygon points={pts(sd)} fill="#000" /></mask>;
+  })();
+  const dagronTam = <FigurSiluet {...dgProps} temas={dg.yerde} />;
+  const dagronUst = <g mask={`url(#${uid}dgm)`}><FigurSiluet {...dgProps} /></g>;
   return (
     <g>
       {arka === "hale" ? <HaleArka k={k} seed={181} t={p} gok={gok} uid={uid} zemin={zemin} duvarGolge={duvarGolge} /> : <g>{gok}{zemin}</g>}
@@ -361,13 +405,15 @@ const Yukleme: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2
       <SarkikZarf k={k} X={sz.X} Z={sz.Z} seed={sz.seed} />
       <BalonAltan k={k} c={[0, 6.7, 0]} r={3.3} />
       {halkaGrup}
-      <FigurSiluet e={eklemIzdus(k, y1)} pxm={pxm(k, 1.05)} kiyafet="isci" renk="#433e58" kenar={SIL.kenar} />
-      <FigurSiluet e={eklemIzdus(k, y2)} pxm={pxm(k, 1.1) * (1.68 / 1.74)} kiyafet="duz" baslik="bere" renk="#47425c" kenar={SIL.kenar} />
+      <FigurSiluet e={eklemIzdus(k, y1)} pxm={pxm(k, y1Z)} kiyafet="isci" renk="#433e58" kenar={SIL.kenar} />
+      <FigurSiluet e={eklemIzdus(k, y2)} pxm={pxm(k, y2Z) * (1.68 / 1.74)} kiyafet="duz" baslik="bere" renk="#47425c" kenar={SIL.kenar} />
+      <defs>{rimMaske}</defs>
+      {!dIc && dagronTam}
       <SepetArka k={k} s={sp} isikYuz={PAL.hasirIsikHale} dx={sallan} />
-      {!dIc && dagronCiz}
+      {dIc && dagronTam}
       <g transform={`translate(${sallan} 0)`}><Sandik k={k} X={SY.X} h={sh} Z={SY.Z} yaw={SY.yaw} kontur={5} /></g>
-      {dIc && dagronCiz}
       <SepetOn k={k} s={sp} isikYuz={PAL.hasirIsikHale} cokme={cokme} kamis={0.05} kontur={6} dx={sallan} torbalar={<TorbaSirasi k={k} s={sp} />} />
+      {dagronUst}
       <g transform={`translate(${sallan * 0.6} 0)`}><AskiHalatlari k={k} s={sp} halkaH={2.6} X={0} Z={0} gevsek={0} /></g>
       <HalatCiz k={k} n={bagNok} />
       {/* ön plan posta çuvalı (Z −2.0, sol kenarda kesik) */}
@@ -400,18 +446,29 @@ const Gok: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: { 
   const dus = p <= fD ? 0 : p <= fD + 20 ? (vmax * (p - fD) ** 2) / 40 : vmax * (10 + (p - fD - 20));
   const dK = SerbestKam(-5.67, lerp(dE0, dE1, t01(p, dy.bas, dy.bit)) + dus / 44.1, 34);
   const cokT = t01(p, kc.bas, kc.bit, Easing.out(Easing.quad));
-  const delik: P = darbe ? [(darbe.x ?? 712) - 790, (darbe.y ?? 687) - 560] : [-70, 115];
-  const dR = 1 - 0.18 * cokT;
   const dgG = balonGeo(dK, { s: 1, dh: 0, X: 0, Z: 0 });
+  // B3 (eleştiri B2 #2): delik zarfın AYDINLIK krem yüzünde. json darbe noktası isabet bölgesidir; şablon onu ışık diskinin güvenli iç
+  // dairesine (merkez = ışık yönü × 0.55 R, yarıçap 0.40 R; çökmede ışık diski 0.7 R'ye küçülse de delik krem üstünde kalır) en yakın noktaya oturtur.
+  const delik: P = (() => {
+    const ham: P = darbe ? [(darbe.x ?? 712) - 790, (darbe.y ?? 687) - 560] : [-70, 115];
+    const L: P = (balonIsik as { isik?: P }).isik ?? [-0.62, -0.78], lo = (balonIsik as { isikOfs?: number }).isikOfs ?? 1.08, R = dgG.R;
+    const m: P = [L[0] * R * Math.min(lo, 0.55), L[1] * R * Math.min(lo, 0.55)], d: P = [ham[0] - m[0], ham[1] - m[1]], n = Math.hypot(d[0], d[1]), rr = 0.4 * R;
+    return n <= rr ? ham : [m[0] + (d[0] / n) * rr, m[1] + (d[1] / n) * rr];
+  })();
+  const dR = 1 - 0.18 * cokT;
   // duman çizgisi (f84–108): şehrin dışı (sağ ufuk buğusu) → isabet; sonra uçtan başlayarak parçalanır, kısalır (fade yok)
-  const kaynak: P = geri ? [1150, 700] : [1150, 935], hedef: P = [dgG.c[0] + delik[0], dgG.c[1] + delik[1]];
+  // atış izi kaynağı: json duman_cizgisi.kaynak ([x, y] ya da "dekor (x,y) …" metni) — B3: (1150, 1060), ufuk (900) ALTI
+  const kaynak: P = (() => { const v = obj(plan, "duman_cizgisi").kaynak; if (Array.isArray(v) && v.length >= 2) return [Number(v[0]), Number(v[1])]; const m = typeof v === "string" ? v.match(/\((-?[\d.]+)\s*,\s*(-?[\d.]+)\)/) : null; return m ? [Number(m[1]), Number(m[2])] : geri ? [1150, 1060] : [1150, 935]; })();
+  const hedef: P = [dgG.c[0] + delik[0], dgG.c[1] + delik[1]];
   const ilerle = t01(p, dc.bas, dc.bit, (x) => x);
   // atış izi (B2, eleştiri #4): KOPUK pufçuk dizisi, kaynakta kalın → uca doğru incelir; balona DEĞMEDEN biter (t ≤ 0.84, ≈ 60 px önce).
   // Hortum/halat okuması olmasın: sabit kalınlıkta sürekli çizgi YOK. f84–108 uç ilerler; isabetten sonra kaynak ucundan başlayarak
   // pufçuklar yükselir, küçülür ve dağılır (fade yok, f108–150).
   const dumanCiz = p >= dc.bas && p < fD + 42 ? (() => {
-    const r = rng(5), TMAX = 0.84, hd: P = [hedef[0], hedef[1]];
+    const r = rng(5), hd: P = [hedef[0], hedef[1]];
     const yolN = (t: number): P => { const q = lp2(kaynak, hd, t); return [q[0], q[1] - 30 * Math.sin(Math.PI * t) + 4 * Math.sin(t * 23)]; };
+    // B3: delik zarfın içinde → iz, zarf siluetine (≈ R) 40 px kala biter (balona değmez); TMAX her karede yoldan bulunur
+    let TMAX = 0.84; for (let j = 0; j <= 200; j++) { const t = j / 200, q = yolN(t); if (Math.hypot(q[0] - dgG.c[0], q[1] - dgG.c[1]) < dgG.R * 1.12 + 40) { TMAX = Math.max(0.3, t - 0.005); break; } }
     const uc = TMAX * ilerle, dag = p < fD ? 0 : (p - fD) / 42;
     // 6 kopuk parça: her biri düzensiz kenarlı, uca doğru incelen şerit; aralarda boşluk; dağılırken kaynaktan başlayıp yükselir/kısalır
     const kesim = [0, 0.15, 0.31, 0.45, 0.58, 0.7, 0.8].map((v, i) => (i ? v + (r() - 0.5) * 0.03 : v));
@@ -439,7 +496,7 @@ const Gok: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: { 
     if (buyu < 0.05) return null;
     const c: P = [hedef[0], hedef[1] - dus];
     const diller = [-2.3, -1.2, 0.2].map((a0, i) => {
-      const a = a0 + (r() - 0.5) * 0.3, L0 = (34 + r() * 22) * buyu, w = (9 + r() * 4) * buyu;
+      const a = a0 + (r() - 0.5) * 0.3, L0 = (24 + r() * 14) * buyu, w = (8 + r() * 3) * buyu; // B3: kısaltıldı (delik ×1.6 ile "kulak" okunmasın)
       const b: P = [c[0] + Math.cos(a) * 8, c[1] + Math.sin(a) * 8], nx = -Math.sin(a), ny = Math.cos(a);
       const u: P = [b[0] + Math.cos(a) * L0, b[1] + Math.sin(a) * L0];
       const dis = Array.from({ length: 5 }, (_, k) => { const t = (k + 1) / 6, ww = w * (1 - t) * (k % 2 ? 0.55 : 1); return [b[0] + (u[0] - b[0]) * t + nx * ww, b[1] + (u[1] - b[1]) * t + ny * ww] as P; });
@@ -548,7 +605,7 @@ const Sepet: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: 
       <g transform={`translate(0 ${sy})`}>
         <SepetArka k={k} s={sp} isikYuz={PAL.hasirIsikHale} />
         <Sandik k={k} X={0.05} h={0.6} Z={0.02} yaw={25} kontur={5} />
-        <FigurSiluet e={dE} pxm={pxm(k, 0.1)} kiyafet="dagron" renk={PAL.dagronGolge} kenar={{ renk: PAL.kenar, dx: -3, dy: -2 }} eller manset={PAL.sepya} ten="#8f7064" basEgim={-12 * basDon} kolGizle={[false, true]} />
+        <FigurSiluet e={dE} pxm={pxm(k, 0.1)} kiyafet="dagron" renk={PAL.dagronIsik} kenar={{ renk: PAL.kenar, dx: -3, dy: -2 }} eller manset={PAL.sepya} ten="#8f7064" basEgim={-12 * basDon} kolGizle={[false, true]} />
         <SepetOn k={k} s={sp} isikYuz={PAL.hasirIsikHale} kamis={0.05} kontur={6} torbalar={<TorbaSirasi k={k} s={sp} gizli={[false, false, true, true]} />} />
       </g>
       {/* düşen torbalar sepetle birlikte sıçramaz / yükselmez (bırakıldı): yükseliş kaymasını geri al */}
@@ -574,7 +631,7 @@ const FigurKol: React.FC<{ e: Eklem; pxm: number }> = ({ e, pxm: m }) => {
     <g>
       <g fill="#2a2638" stroke="#2a2638" strokeWidth={5} strokeLinejoin="round">{sekil}</g>
       <g fill={PAL.kenar} transform="translate(-3 -2)">{sekil}</g>
-      <g fill={PAL.dagronGolge}>{sekil}</g>
+      <g fill={PAL.dagronIsik}>{sekil}</g> {/* B3: palto P06b ile aynı ton (süreklilik) */}
       <g transform={`translate(${h[0]} ${h[1]}) rotate(${a - 90}) scale(${m * 0.8})`}>
         <rect x={-0.05} y={-0.06} width={0.1} height={0.05} rx={0.01} fill={PAL.sepya} />
         <path d="M-0.042 -0.012 C-0.05 0.05 -0.035 0.1 0 0.105 C0.035 0.1 0.05 0.05 0.042 -0.012 Z M0.04 0.0 C0.07 0.02 0.075 0.045 0.06 0.06 L0.035 0.04 Z" fill="#8f7064" stroke="#4a3a40" strokeWidth={0.006} />

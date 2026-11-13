@@ -1,5 +1,5 @@
 // ===== KE-PK-S2 MONTMARTRE dekor modülleri (mekanlar §2v2.9–2v2.12, §2v2-H.2–H.7; tasarım §14.2) =====
-// Gök: 5 düz basamak (ufka ölçekli) + litografi geçişi (3 ince çizgi + tane) — gradyan yok, güneş/disk/ışın yok.
+// Gök: 5 ton basamağı (ufka ölçekli); sınırlar taramalı geçiş (B3: yatay kesik çizgi sıraları, düz kenar yok) — gradyan yok, güneş/disk/ışın yok; sol ışıma uçları incelen düzensiz çizgiler.
 // Paris ufuk bandı (UfukBandi, seed 158), toprak/döşeme (MeydanZemin, seed 157), yan ev (SivaCephe, seed 162), çıplak ağaç (seed 159),
 // Gare d'Orléans halesi (Polonceau makası, cam şerit, sağ duvar + kolon, alın camı; kemer yok), havadan şehir (seed 173) + ray demeti (seed 182).
 // Hepsi dünya → pr(); düzensizlik seed'li ve baştan tanımlı (V3 ızgara dersi). Doku yüzey başına ≤ 3; seed sabit, kaynamaz.
@@ -16,17 +16,34 @@ export const GokBasamak: React.FC<{ ufuk: number; seed: number; isima?: boolean;
   const X0 = -300, X1 = 1380;
   const r = rng(seed);
   const parca: React.ReactNode[] = GR.map((c, i) => <rect key={`b${i}`} x={X0} y={sinir[i]} width={X1 - X0} height={sinir[i + 1] - sinir[i]} fill={c} />);
+  // B3 (eleştiri B2 #3): basamak sınırı TARAMALI GEÇİŞ (gravür gök tonu; düz gradyan değil). Sınırın iki yanında yatay kesik çizgi sıraları:
+  // altta üst tonun çizgileri (sınırdan uzaklaştıkça incelir, seyrekleşir, kesikler uzar), üstte alt tonun ince çizgileri. Düz kenar kalmaz.
+  // Çizgi ≥ 1.6 px (360'ta ≥ 0.5 px), aralık 4.5 → 13 px; segment uçları yuvarlak, seed sabit (kaynamaz).
+  const satir = (y: number, w: number, kapsa: number, renk: string, key: string) => {
+    let x = X0 + r() * 40, d = "";
+    while (x < X1) { const L = 40 + r() * 220 * kapsa, g = 4 + r() * 70 * (1 - kapsa); if (r() < 0.25 + 0.75 * kapsa) d += `M${x.toFixed(1)} ${(y + (r() - 0.5) * 0.8).toFixed(1)}h${L.toFixed(1)}`; x += L + g; }
+    return <path key={key} d={d} fill="none" stroke={renk} strokeWidth={w} strokeLinecap="round" />;
+  };
   s.forEach((y, i) => {
-    const ust = GR[i];
-    for (let j = 0; j < 3; j++) parca.push(<rect key={`c${i}-${j}`} x={X0} y={y + 4 + j * 7} width={X1 - X0} height={2.5} fill={ust} opacity={0.4} />);
-    const n = Math.round((((X1 - X0) * 24 * 0.08) / 14) * 0.6);
-    for (let j = 0; j < n; j++) parca.push(<circle key={`t${i}-${j}`} cx={X0 + r() * (X1 - X0)} cy={y + 24 + r() ** 1.6 * 24} r={1.25} fill={ust} opacity={0.35} />);
+    const ust = GR[i], alt = GR[i + 1];
+    const Ha = Math.min(64, (sinir[i + 2] - y) * 0.42), Hu = Math.min(30, (y - sinir[i]) * 0.2);
+    let d = 1.2, j = 0;
+    while (d < Ha) { const u = d / Ha; parca.push(satir(y + d, lerp(3.4, 1.6, u), 1 - u * 0.85, ust, `ga${i}-${j}`)); d += lerp(4.5, 13, u); j++; }
+    d = 3.2; j = 0;
+    while (d < Hu) { const u = d / Hu; parca.push(satir(y - d, lerp(2.2, 1.6, u), 0.75 - u * 0.6, alt, `gu${i}-${j}`)); d += lerp(6, 12, u); j++; }
   });
-  // sol ışıma: ufuk basamağı + üstündeki 60 px, x < %45 — düz kenarlı basamaklar (litografi şeritleri), güneş kadraj dışında solda
+  // sol ışıma (B3): basamaklı dikdörtgenler yerine uçları incelen düzensiz yatay çizgiler (gravür). Ufka yakın sık-kalın-uzun, yukarı
+  // seyrek-ince-kısa; uç x'leri düzensiz → sağ kenar dişli, düz kenar yok. Güneş kadraj dışında solda (ışık yönüyle aynı).
   if (isima) {
-    const yI = s[3] - 60;
-    parca.push(<rect key="is0" x={X0} y={s[3] + 6} width={486 - X0} height={ufuk + 900 - s[3]} fill={PAL.isima} />);
-    [[0, 470], [1, 410], [2, 330], [3, 230]].forEach(([j, xr]) => { const y = s[3] + 6 - (j + 1) * 18; parca.push(<rect key={`is${j + 1}`} x={X0} y={Math.max(yI, y)} width={xr - X0} height={14 - j * 2} fill={PAL.isima} opacity={0.85 - j * 0.12} />); });
+    const y0 = s[3] - 62, y1 = ufuk + 40;
+    let y = y1, j = 0;
+    while (y > y0) {
+      const u = (y - y0) / (y1 - y0); // 0 üst … 1 ufuk
+      const w = lerp(1.8, 6, u), xe = lerp(150, 520, Math.pow(u, 0.8)) * (0.72 + 0.56 * r()), tp = Math.min(160, xe * 0.45);
+      const dl = (r() - 0.5) * 2;
+      parca.push(<polygon key={`is${j}`} points={pts([[X0, y - w / 2], [xe - tp, y - w / 2 + dl * 0.3], [xe, y + dl * 0.6], [xe - tp, y + w / 2 + dl * 0.3], [X0, y + w / 2]])} fill={PAL.isima} />);
+      y -= lerp(10, 4.6, u); j++;
+    }
   }
   return <g>{parca}</g>;
 };
