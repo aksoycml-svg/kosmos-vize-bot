@@ -783,3 +783,10 @@
   - motion: duman kaynağı y ≥ 1050; delik ×1.6, aydınlık yüze.
   - mekân sorumlusu: gök basamaklarını taramalı geçişe çevir.
   - yönetmen: P06b f168/f200 alt bant için `lint.izin` kararı.
+
+## yönetmen · 2026-11-13 · B3 küçük kamera düzeltmesi (bolum.json)
+- Ne yaptım: P06 devam (P06b) kamera anahtarları f200/236/244 eklendi: cx f200–287 = 80 (katalog sınırı ±80; istenen +80…100 → 80'e kırpıldı, doğrulayıcı 90/100'ü reddetti), cy f236 −137, f244 −162 (+30), cs ara değerler. P06 lint.izin = guvenli_alt_gecici (not: tur-13). P07 duman kaynağı (1150,700) → (1150,1060), ufuk altı, x aynı. Doğrulayıcı --tam GEÇTİ (0 hata, foley uyarısı eski). Kural 7: P06b f230 (global 1712+230=1942) mevcut kodla render edildi, kadraj kontrol edildi.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/bolum.json, katki-raporu.md, kalibrasyon/B3/yonetmen/P06b_f230.png
+- Kararlar: cx kataloğun ±80 sınırında; kontrol_kare zaten 230 (biniş), değişmedi.
+- Kurallar: kural 6 (doğrulayıcı), 7 (render). Render'da ön-sol rim köşesi ve baş kadraj içinde (baş üstten taşmıyor); bacak/biniş eski poz yüzünden okunmuyor, motion yeni pozla teyit edecek.
+- Açık: cx tam +100 isteniyorsa katalog sınırı ±80 → ±100 genişletmeli (motion/kit). P07 duman_cizgisi şablon kodunda y okunuyorsa motion 1060'a bağlamalı ("iz sağ alttan yükselsin").

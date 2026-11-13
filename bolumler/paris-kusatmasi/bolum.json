@@ -1536,33 +1536,45 @@
      "kare": [
       168,
       172,
+      200,
       214,
+      236,
+      244,
       250,
       287
      ],
      "cs": [
       1.0,
       1.0,
+      1.1,
       1.2,
+      1.33,
+      1.4,
       1.45,
       1.45
      ],
      "cx": [
       0,
       0,
-      40,
-      50,
-      50
+      80,
+      80,
+      80,
+      80,
+      80,
+      80
      ],
      "cy": [
       160,
       160,
+      -20,
       -100,
+      -137,
+      -162,
       -210,
       -210
      ],
      "egri": "inout",
-     "not": "f214 taban 1479, f250 taban 1498 (IG alt bandı 1500 üstü)"
+     "not": "f214 taban 1479, f250 taban 1498 (IG alt bandı 1500 üstü). B3: biniş ön-sol köşe kadrajda: f200-250 cx 80 (katalog sınırı ±80; istenen +80..100), f236-244 cy +30 (baş taşması) — elestiri B2 #1"
     },
     "tasiyici": "ses J-cut: hale yankısı f160'ta girer; iğne/Tours (aşağı-sol) → sandığın yukarıdan aşağı inişi"
    },
@@ -1721,8 +1733,10 @@
     }
    ],
    "lint": {
-    "izin": [],
-    "not": "B2, render motion sonrası: P06b H2.9 kamera (cy +160 açılış, cx 40-50 biniş) ve Daguerre X 8.4 şablon koduna işlenmeden render edilmedi."
+    "izin": [
+     "guvenli_alt_gecici"
+    ],
+    "not": "P06b açılış, sepet tabanı alt bant, temas yok — tur-13. B2, render motion sonrası: P06b H2.9 kamera (cy +160 açılış, cx 40-50 biniş) ve Daguerre X 8.4 şablon koduna işlenmeden render edilmedi."
    }
   },
   {
@@ -1755,7 +1769,7 @@
     "duman_cizgisi": {
      "bas": 84,
      "bit": 108,
-     "kaynak": "dekor (1150,700): sağ kenarın dışı, ufuk buğusu (şehrin dışı); ince gri-kül çizgi, 3 px koyu kontur, tırtıklı, darbe noktasına; istasyon/ray demetinden ve çatılardan çıkmaz",
+     "kaynak": "dekor (1150,1060): sağ kenarın dışı, ufuk altı (ufuk y 900), iz sağ alttan balona yükselir, ufuk buğusu (şehrin dışı); ince gri-kül çizgi, 3 px koyu kontur, tırtıklı, darbe noktasına; istasyon/ray demetinden ve çatılardan çıkmaz",
      "not": "neyle vurulduğu gösterilmez"
     },
     "kure_coker": {
