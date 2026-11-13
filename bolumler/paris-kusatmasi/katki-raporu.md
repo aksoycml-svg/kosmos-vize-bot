@@ -1075,3 +1075,22 @@
   3. Memur-3 (x 945) lantern bacasının arkasında kalıyor, kalkışı kısmen örtülü (json x'i yönetmenin).
   4. Odak dişlisi temas sesi (f120) görünmeyen bir kaynağa ait. Görünürlük–ses kuralına göre ortam sesi düzeyine inmeli (kurgucu).
   5. Eleştirmen: kontrol için önce f330, P05 şeridi ve P10 f266–330 şeridi.
+
+## elestirmen · 2026-11-13 · C2 kısa kontrol (DAGRON-INSERT + LANTERN-ODA)
+- Ne yaptım:
+  - C2 karelerini tam boy ve 360 ölçeğinde inceledim, ayrıntı için kırpma yaptım.
+  - Üç şeridi taradım (P05 f268–358, P10 f150–270, P10 f266–330).
+  - C'nin 5 düzeltmesini tek tek doğruladım ve 3 anahtar anın 360 okunurluğuna baktım.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/C2/elestiri.md (yeni), bu rapor. Kod ve git yok.
+- Aldığım kararlar ve gerekçeleri:
+  - Karar DÜZELTMEYLE GEÇER, puan 6.
+  - C düzeltmeleri tuttu ve anahtar anlar okunuyor. Kalan hatalar parametre düzeyinde, yeniden kurulum gerekmiyor.
+  - Eldiven okuması kabul edilmedi: P05'te el mekanizma anının öznesi ve karenin yaklaşık %40'ı.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Hareket şeridi kuralı: üç ihlal yalnız şeritte göründü.
+    - P10'da perde bezinin büyümesi (süreklilik).
+    - P05'te elden kopuk gölge: girişte yön dönüyor, çıkışta gölge kalıyor (tek ışık).
+  - P10 f200'de memur-3'ün başı saydam (nesne içinden görünme). Yalnız kırpmada fark edildi.
+- Açık sorular / bir sonraki ajana notlar:
+  - P05 f0 terazi dengesi kasıtlı mı (aynı ağırlık)? Senarist/araştırmacıya sorulmalı.
+  - Memur-3 için iki yol var: opak baş + perde gölgesi ya da x'in huzme dışına alınması. Bunu orkestra seçer.
