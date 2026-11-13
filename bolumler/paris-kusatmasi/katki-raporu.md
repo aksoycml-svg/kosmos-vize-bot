@@ -1189,3 +1189,25 @@
 - Aldığım kararlar ve gerekçeleri: şablon okumadığı için alan silindi (ölü değer yanıltır); görsel değişmez, render yok.
 - Uyguladığım kurallar / yakaladığım kural ihlalleri: yalnız istenen iki düzenleme.
 - Açık sorular / bir sonraki ajana notlar: yok.
+
+## elestirmen · 2026-11-13 · C4 kısa kontrol (P10)
+- **Ne yaptım:**
+  - C4 karelerine baktım: f48, f200 tam/360/güvenli, şerit f150–200.
+  - Motion'ın notu üzerine memur-3 kalkışını ayrıca render ettim (kod değişikliği yok): f84, f250, f258, f266, f290.
+  - Rapor: kalibrasyon/C4/elestiri.md.
+- **Dokunduğum dosyalar:** bolumler/paris-kusatmasi/kalibrasyon/C4/elestiri.md, bolumler/paris-kusatmasi/katki-raporu.md (render çıktıları yalnız scratchpad'de).
+- **Aldığım kararlar ve gerekçeleri:**
+  - Baş gölgesi kritiği kapandı: satırlara gölge yok, huzme başları kesmiyor.
+  - DAGRON-INSERT ve LANTERN-ODA şablonları GEÇER.
+  - Yeni KRİTİK memur-3 kalkışı: başsız levha gibi okunuyor, kalkış + çıkış 16 karede (0.27 sn), zarf görünmüyor. Neden json `memur3_kalkis` (bas/bit, baş y 1086 lantern kutusunun içinde), sahibi yönetmen.
+  - Önerim: huzmenin altından eğilerek ≥ 45 karelik çıkış. Kitte poz yoksa `kit_eksik`.
+- **Uyguladığım kurallar / yakaladığım ihlaller:**
+  - Hareket şeridi: orta kare kalkışı gizliyordu.
+  - Fizik: imkânsız hız.
+  - Süreklilik: zarf.
+  - Güvenli alan: levha yuvası ve temas eli sağ IG sütununda (orta).
+  - Tek ışık/okunurluk: mercek tüpü yok, huzme yarıktan çıkıyor (orta).
+- **Açık sorular / bir sonraki ajana notlar:**
+  - Lantern sola kaydırılırsa huzmenin baş açıklığı yeniden ölçülmeli.
+  - f48'deki gök şeritleri `lint.izin`'de yoksa motion baksın.
+  - Yeniden kontrol için: P10 şeridi f250–300, her 4 karede bir.
