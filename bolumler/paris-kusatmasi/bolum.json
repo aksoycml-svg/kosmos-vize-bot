@@ -1159,7 +1159,9 @@
       "boy_ekran_px": 246,
       "poz": "yatik",
       "el": "sol el, avuç aşağı, dört parmak düz yan yana masada, şeride paralel (±5°), başparmak anatomik tarafta; parmak havaya kalkmaz (tur-15 kararı 2, tasarım §15.1)",
-      "el_bbox_en_cok_pct": 35
+      "el_bbox_en_cok_pct": 35,
+    "yan_ofset_m": 0.055,
+    "yan_ofset_not": "C3 eleştiri: şerit kenarı serçe parmağa değiyor, alt ucu elin altına giriyor. Çözüm = elin şeride yanal uzaklığı 0.034 → 0.055 m (şerit konumu/ölçü bölgesi kilitli: P06 rota eşleşmesi). DagronInsert.tsx satır ~442 `n * 0.034` sabit kodlu; motion `parmak.yan_ofset_m` okusun (KE-PK-O3). Kabul: f280'de şerit ile en yakın parmak arasında ≥ 14 ekran px açık boşluk, şerit elin altına girmez"
      },
      "olcu_bolgesi": {
       "konum": [
@@ -1432,7 +1434,8 @@
     "KE-PK-N2",
     "KE-PK-N4",
     "KE-PK-F2",
-    "KE-PK-J1"
+    "KE-PK-J1",
+    "KE-PK-O3"
    ],
    "not": "SENARYO→PARAMETRE: 'terazi: bir kefede mektup deste, öbüründe güvercin; kuş havalanamıyor' = nesneler.terazi (deste ağır basar, kuş hafif kefede kanat çırpar, kefe kıpırdamaz); 'yüzsüz fotoğrafçı eli' = eller.dagron; 'mercekli ahşap kutunun önünde tam sayfa tek hamlede küçük film şeridine dönüşüyor' = sayfa çekilir + çekmece + serit; 'şerit parmağın yanına konup ölçü oluyor' = serit parmak yanina. 'film kenarı bal rengi kılıfa sarılacak ışığı verir' senaryo notu UYGULANMADI: dokunuslar.md imza kehribarı yalnız kılıfta tutar (kutu/şerit kehribar değil). EN 'Dagron' f113 ile TR 'Dagron'un' f139 arası 26 kare fark: el girişi f118 ortak.",
    "ses": [
@@ -1975,6 +1978,13 @@
      "sepet_kenari": "hasır kenar bel plan, diyagonal rim (66,739)-(248,805)-(977,769); dış kenarda sıralı kum torbaları x 390/571/743/895 (P06'da kurulu); sandık kapağı rimin arkasında y ≈ 755",
      "el": "Dagron: sepetin içinde sağ-önde, KAMERAYA dönük kontrajur siluet (yüz çizilmez), baş ≈ (749,555) SOLA döner (düşen Daguerre'ye), sağ kol torba 4'ün ağzına (895,842); koyu sepya manşet, bakmadan",
      "sepet_x": -60,
+     "on_kol_onay": {
+      "karar": "ONAY (yönetmen, toplu tur 2026-11-13): gövde ön rime +0.3 m kayar (omuz–rim ≈ 0.54 → ≈ 0.24 m), ön kol rimin ÜSTÜNDEN uzanır, dirsek rim hizasına çıkar (rime dayalı/aşağı sarkık değil)",
+      "torba_4_kilit": "kilit gevşer: kol ağzı (895,842) ±60 px kayabilir; kural = elin bileği torba 4 ağzını tutar (el–torba temas aralığı korunur), torba 4 x 895 sepet dış kenarında (P06 kurulumu) sabit kalır; torba 3 (743) ve sepet_x -60 kalibrasyonu DEĞİŞMEZ",
+      "guvenli_alan": "kol/el sağ sınırı x ≤ 1000 (IG sağ sütun payı dar: P06 eleştiri notu)",
+      "sahibi": "motion (gövde ön rime +0.3 m kodda); yönetmen onayı bu alan",
+      "kit_eksik": "KE-PK-O2: MONTMARTRE `sepet` görünümü Dagron gövde z ofseti parametresi (govde_on_m) kodda yok"
+     },
      "torba_1": {
       "bas": 186,
       "bit": 232,
@@ -2130,7 +2140,8 @@
      "sarsinti": 0.6,
      "duman": false,
      "seed": 5,
-     "not": "küre sol-alt çeyreği; dekor (720,675)"
+     "not": "küre sol-alt çeyreği; dekor (720,675)",
+     "delik_kurali": "B3 eleştiri: delik balonun IŞIK ALAN (krem) yüzünde olur, güneşe dönük sol-alt çeyrekte (gölge yüzünde koyu delik koyu zeminde okunmaz); atış izi ufkun ALTINDAN, sağ-alttan yükselir (fizik); delik konturu düzensiz/yırtık, iç kenarda ince krem kumaş kenarı, içinde beyaz nokta YOK; iz tek duman şeridi, uca doğru incelir"
     }
    ],
    "temaslar": [
@@ -2212,7 +2223,8 @@
     "KE-PK-E2",
     "KE-PK-E4",
     "KE-PK-N1",
-    "KE-PK-F2"
+    "KE-PK-F2",
+    "KE-PK-O2"
    ],
    "not": "SENARYO→PARAMETRE: 'iki balon yan yana yükseliyor' = iki_balon; 'yerden duman çizgisi, öteki balonun küresi ani çöküyor, sepet hızla alçalıp kadraj dışına çıkıyor' = duman_cizgisi + kure_coker + sepet_duser + darbe; 'eller torbayı bırakıyor, torba dönerek düşüyor, sepet hafifleyip sıçrıyor, balon hızlanıp yükseliyor, yer küçülür (menzil çizgisi çizilmez)' = devam_plan. Darbe `duman:false`: kit duman 150 kare sürer, kesmeyi aşıp sepet planına taşardı; duman şablonda (gri-kül). TR 'vuruldu' f110-130, EN 'shot down' f87-125: darbe f108 ortak. Darbe efekti kitte çizgi roman: KE-PK-E1 çözülmeden render edilmez. B TURU (E3.1 doğruluk): 'küre çöker, sepet düşer' → küre kısmen söner, sepet hızla alçalır (serbest düşüş değil), kareler aynı. Doğu yönü: P07 A'da yön belli eden öğe yok (ray demeti eksen -13.4 yönsüz), tasiyici.cikis 'doğuya (sağa)' DEĞİŞMEDİ (mekanlar §2v2-H açık soru 3: kamera 161° bakışta doğu solda; orkestra kararı).",
    "ses": [
@@ -2785,11 +2797,18 @@
        860
       ],
       "memur3_kalkis": {
-       "bas": 250,
-       "bit": 266,
+       "bas": 212,
+       "bit": 262,
        "kim": "memur-3 (x 860: huzme sağ kenarının ve lantern bacasının (x 922–974; kutu x 915'ten) dışında), zarf elinde",
-       "yon": "ayağa kalkar (baş y 1618→1086), sağa yürür, f266'da sağ kenardan çıkar (duvarsız kadraj kenarı)",
-       "cikis_kare": 266
+       "yon": "C5 (eleştiri C4 kritik): huzmeyi kesmemek için ÇÖMELEREK/eğilerek kalkar: sandalyeden kayıp öne eğik yarı-çömelik yürüyüşe geçer (oturuş baş tepesi y ~1222 → eğik yürüyüş y ≥ 1300, huzmenin ve lantern kutusunun (y 995–1290) ALTINDA), sağa yürür, f262 sağ kenardan çıkar (duvarsız kadraj kenarı); baş + omuz + zarflı el her karede görünür",
+       "tepe_y_hedef": 1310,
+       "egim_derece": 38,
+       "sure_kare": 50,
+       "cikis_kare": 262,
+       "kapanis_kare": 4,
+       "zarf_gorunur": { "bas": 200, "bit": 262, "kare": 62, "not": "memur-3 ilk kopyanın zarfını f200'de masadan alır (önceden hazır), elde taşır; ≥1 sn (60 kare) görünür; f266 kapı kesmesinde aynı zarf memur elinde (f272 zarf_verilir) — süreklilik" },
+       "yazar_haric": [3],
+       "kit_eksik": "KE-PK-O1: LanternOda memur-3 kalkışı kodda sabit baş tepesi y 973 (ayakta dik) ve zarf çizilmiyor; json yalnız süreyi/hedefi taşır. Motion: tepe_y_hedef + egim_derece okunsun, omuz/kol ve zarf çizilsin"
       },
       "yazar_not": "eller kadrajda değil; baş eğimi + omuz ritmi, her memur farklı faz (3–4 omuz vuruşu)"
      },
@@ -2811,8 +2830,8 @@
       },
       {
        "ad": "memur-3 kalkar ve cikar",
-       "bas": 250,
-       "bit": 266
+       "bas": 212,
+       "bit": 262
       },
       {
        "ad": "okuma (tutma)",
@@ -2825,7 +2844,7 @@
      "plan_ici_kesme_2": {
       "kare": 266,
       "sonraki_gorunum": "kapi",
-      "not": "pan YOK; kesme memur-3 çıkışı bitince (f266, sağ kenar)"
+      "not": "pan YOK; kesme memur-3 çıkışı bitince (f262 çıkış biter, f266 kesme; sağ kenar)"
      },
      "perde_bez": {
       "genislik_pct": 61,
@@ -3187,7 +3206,8 @@
     "KE-PK-N5",
     "KE-PK-N6",
     "KE-PK-S1",
-    "KE-PK-S4"
+    "KE-PK-S4",
+    "KE-PK-O1"
    ],
    "not": "SENARYO→PARAMETRE: 'Paris çatısında kümes ağzı, güvercin konuyor, el kılıfı çözüyor' = kumes + kilif_coz; 'karanlık oda, huzme perdeye düşüyor, bulanık küçük kare' = huzme + kare_bulanik; 'mercek halkası çevriliyor, kare perdeye büyüyüp okunur satırlara netleşiyor; odadaki hareket durur' = buyume_odak + memurlar.durur; 'memurlar yazıyor, zarflanıp kapıda bekleyen siluetlere gidiyor, biri zarfı açıp okuyor' = memurlar + kapi. 'P01'deki bekleyen siluetlerle aynı kadraj' birebir uygulanamaz (P01 pencerede, burada kapıda): AYNI siluet tasarımı kullanılır (kullanıcıya açık soru). TR/EN farkı: EN anlatımı f266'da biter; görüntü f386'ya kadar akar. 'Film duvara yansıdı' f6-77 sözünde kümes planı f0-58; huzme f68'de.",
    "ses": [

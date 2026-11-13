@@ -1211,3 +1211,10 @@
   - Lantern sola kaydırılırsa huzmenin baş açıklığı yeniden ölçülmeli.
   - f48'deki gök şeritleri `lint.izin`'de yoksa motion baksın.
   - Yeniden kontrol için: P10 şeridi f250–300, her 4 karede bir.
+
+## yonetmen · 2026-11-13 · Toplu düzeltme turu hazırlığı (C4 kritik + liste)
+- Ne yaptım: P10 `memur3_kalkis` 250/266 (16 kare) → 212/262 (50 kare, çıkış f262, kesmeden 4 kare önce); `tepe_y_hedef` 1310 (çömelik/eğik yürüyüş, huzme ve kutunun altı), `egim_derece`, `zarf_gorunur` f200–262 (62 kare ≥1 sn), `yazar_haric [3]`; animasyon girdisi güncellendi. P07 B `on_kol_onay` (gövde +0.3 m, torba 4 kilidi ±60 px gevşer, x ≤ 1000) ve `darbe.delik_kurali`; P05 `parmak.yan_ofset_m` 0.055. Kit_eksik: KE-PK-O1 (P10), O2 (P07), O3 (P05). `TOPLU-DUZELTME.md` (28 satır). Doğrulayıcı --tam: GEÇTİ (0 hata, 1 uyarı: foley.json yok). Kural 7: P10 f238, P05 f280, P10 şerit f240–300 (her 4 kare) `kalibrasyon/T/yonetmen/`.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/bolum.json, TOPLU-DUZELTME.md, katki-raporu.md, kalibrasyon/T/yonetmen/{P10-f238,P05-f280,P10-serit-f240-300}.png
+- Kararlar: kalkış erken başlatıldı (oda f60–266 içinde); zarf memur-3'ün önceden hazır ilk kopyası olarak f200'de alınır (yazma f206'da başlıyor, çelişmesin diye `yazar_haric`). Eğik poz kitte yok ve baş tepesi 973 kodda sabit → json süreyi/hedefi taşır, görüntü kod gelene kadar DEĞİŞMEZ.
+- Kural ihlali/uyarı: render şeridinde f240–264 hâlâ eski kod davranışı (memur-3 görünmüyor); bu beklenen, KE-PK-O1 çözülünce şerit yeniden alınmalı. P05 f280'de şerit–parmak teması hâlâ var (kodda sabit 0.034 m). Kural 2 (≥12 kare erken bitiş) plan sonuna göre sağlanıyor (262 << 398).
+- Notlar: motion'a kalan 24 satır (kritik 1: O1). Koyu kılıf ipi (P01/P10/P11) motion; P01 f24 kılıf okunurluğu korunmalı. Kurgucu: P06b f218 foley.
