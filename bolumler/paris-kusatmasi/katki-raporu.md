@@ -1158,3 +1158,10 @@
   3. P05 şeridi üst kenara dokunmuyor ama şerit, ağ köşesine değiyor (konum json'da, bu turda değiştirilmedi).
   4. Eleştirmen önce ozet.png, P05 şeridi ve P10 f200'e baksın.
   5. Öz puan 7 (eleştirmenden muhtemelen 6–6.5).
+
+## elestirmen · 2026-11-13 · C3 kısa kontrol
+- Ne yaptım: C3 karelerine baktım: ozet, P05 f280 + şerit f264–358 (f268–276 ve f344–356 büyütülmüş), P09 f150-360, P10 f200 tam/360 + şerit f150–200, P10 f330. C2'nin 4 kritiğini doğruladım, P10 baş gölgesini teşhis ettim. Rapor: kalibrasyon/C3/elestiri.md.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/C3/elestiri.md, bolumler/paris-kusatmasi/katki-raporu.md
+- Kararlar ve gerekçeleri: DÜZELTMEYLE GEÇER, puan 6.5. C2'nin 4 kritiği tuttu. P10 baş gölgesi KRİTİK. Neden: mercek baş tepelerinin altında, ışık aşağıdan yukarı çıkıyor; gölgenin nedeni bu, opaklık değil. Memuru yana almak ya da oturtmak geometri olarak yetmiyor. Çözüm lantern/mercek yüksekliği.
+- Uyguladığım kurallar / yakaladığım ihlaller: tek ışık (gölge doğru ama anahtar anı kapatıyor); okunurluk (anahtar an); fizik (ışınlar omuzdan geçiyor); hayalet kama.
+- Açık sorular / sonraki ajana: motion mercek y ≤ ~1180 yapınca P10 f150–200 şeridini ve f200-360'ı yeniden render etsin. Yazı satırlarına gölge düşmemeli. "Salondaki baş" imgesi istenip istenmediği orkestranın kararı (varsayılan: gölge yok ya da yalnız alt kenarda ince yay).
