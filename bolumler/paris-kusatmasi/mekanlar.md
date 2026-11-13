@@ -1705,7 +1705,7 @@ Girdi: §3 v1 (arşiv), tasarım §1.4 / §4.3–4.7 / §13 / §14 / §2.4 / §3
 
 ---
 
-## 4v2. KE-PK-S4 LANTERN-ODA v2 — GEÇERLİ (C turu, tur-14; P10b f60–398, görünümler `oda` + **`kapi` [yeni]**)
+## 4v2. KE-PK-S4 LANTERN-ODA v2 — ARŞİV (geçerli olan **§4v3**, tur-15; aşağıdaki geometri, kapı ve kamera satırları §4v3 ile değişti)
 
 Girdi: §4 v1 (arşiv), tasarım §1.5 / §3.1 / §3.3 / §4.9–4.10 / §13, `bolum.json` P10 `devam_plan`, `arastirma.md` §3 ("film cam levhaya yerleştirilir, magic lantern ile duvara yansıtılır, memurlar kopyalar" [CDM]), §5.4 (cihaz ve oda kaynaksız, oda yeri belirsiz). v1 geometrisi (F 2600, göz 1.6 m, arka duvar Z 2.95 m, 881 px/m, ufuk y 1204, perde x 12–1068 / y 412–1468, mercek (150, 1529), memurlar Z 2.2) **aynen geçerli**. Değişen satırlar aşağıda.
 
@@ -1833,6 +1833,179 @@ Girdi: §4 v1 (arşiv), tasarım §1.5 / §3.1 / §3.3 / §4.9–4.10 / §13, `b
 - Figür: `SabahFigur` gravür dili (H2.8), iç mekân, başlıksız. Memur oturur (baş-omuz) ve kalkar. Okuyan: `yetiskin-b` + `KolEl` ×2.
 - Kontrol kareleri: **f238** (`oda`, net), **f330** (`kapi`, okuma), f48 (P10a), f272 (zarf teması). Hareket şeridi: f86–204 (büyüme, demet geometrisi) ve f250–296 (kalkış → kesme → zarf).
 - `sinirlar.json` LANTERN-ODA: `gorunum: ["oda", "kapi"]`. `kapi` için cs 0.95–1.15, cx ±80, cy −60…60.
+
+---
+
+## 4v3. KE-PK-S4 LANTERN-ODA v3 — GEÇERLİ (tur-15, kullanıcı onaylı brif; P10b f60–398, `oda` + `kapi`)
+
+Girdi: `notlar/tur-15.md` ("P10 f330 görseli çok kötü": en öncelikli), `kalibrasyon/C/elestiri.md` (P10 bulguları, düzeltme 2–4), C kareleri P10 f200 / f330 (bakıldı), §4v2 (arşiv), **tasarım §15** (okuyan figür, memur başları, el dili), hedef dili (`hedef/hedef-ozet.jpg`: değişken kontur, saçak altı tarama, sınırlı palet). Gemini yok. Sayılar pinhole betiğiyle hesaplandı (±10 px). Motion ilk still'de doğrular. Figür çizimi tasarımcının (§15), mekân benim. Çelişki çıktığında §15'in piksel tablosu esas alındı, mekân ona göre kuruldu (4v3.6).
+
+### 4v3.0 Teşhis → karar
+| v2 / C karesi | Sorun | v3 kararı |
+|---|---|---|
+| F 2600 tele, arka duvar 881 px/m; perde 1.2 m = **%98 genişlik** | Oda kayboluyor, "sayfa ekranı doldurdu" okunuyor | **F 1700, göz 1.70 m, arka duvar Z 3.6 → 472 px/m.** Perde bezi 1.40 m = **661 px = %61** (≤ %70 ✓). Odanın tavanı, kornişi, penceresi ve lantern'i kadrajda |
+| Lantern sol-alt, mercek (150,1529) perdenin köşesine yakın | Huzme ince kama | **Lantern sağ-alt ön planda**, mercek dünya (0.30, h 1.15, Z 1.45) → ekran **(892, 1605)** (gövdenin arkasında gizli). Huzme sağ-alttan sol-üste çapraz geçer |
+| Sınır ışınları hale dikdörtgenine | Işın perdeyi aşıyor (sol üst) | Işınlar **o anki görüntü dikdörtgeninin 4 köşesinde biter**. Görüntü dikdörtgeni her karede bezin içindedir (en büyük hâli bez kenarından 0.10 m içeride) |
+| Perde = duvardaki düz dikdörtgen, dikişli iki üçgen | Ne asılı ne kumaş; maske izi | **Çıtaya iple asılı bez**, alt kenarı serbest sarkar, 3 düşey kıvrım. Tek kapalı yol (dikiş yok) |
+| Duvar düz iki ton, mimari yok, tarama yasak | Ölü alan | **Korniş + tavan şeridi, kapalı iç kepenkli pencere, lambri, perde ipi.** Geniş karanlıkta seyrek tek yönlü tarama (4v3.4) |
+| `kapi`: kamera koridorda değil, odada ve kapıya bakıyor ama kapı = düz bej dikdörtgen | Işık nereden geliyor belli değil; kâğıt açık kapının önünde; mimari yok | **Kamera odanın içinde, kapı duvarına bakar.** Kapı sağda, açıklığın içinde **güneş alan koridor duvarı + pencere kayıt gölgeleri** (kaynak görünür). Okuyan açıklığın önünde, sırtı ışığa dönük, kâğıt sol tarafta karanlık duvarın önünde (tasarım §15.2) |
+
+### 4v3.1 Mimari kart (iki görünüm ortak)
+| Madde | Değer |
+|---|---|
+| Kaynak durumu | Yansıtma ve kopyalama [A: CDM, MICRO]. Oda yeri belirsiz (merkez postane / Hôtel de Ville) [A §5.4]. Cihaz ve perde biçimi kaynaksız (tasarım G9) |
+| Dönem/üslup | Paris resmî büro iç mekânı, 1870. Nötr, süssüz. Pilastr, kartonpiyer, avize, tabela, arma yok. Bina okunmaz, işlev okunur. Kemer **yok** (§0.4): bütün açıklıklar **düz lentolu** |
+| Oda | 6 × 5 m, tavan 3.6 m [T]. Badana duvar. Alt 0.95 m'de **ahşap lambri** (çerçeveli tablalar). Tavanla duvar arasında **basit profilli korniş** (h 3.30–3.60, 3 yatay basamak, çıkıntı 0.08 m). Döşeme: düz tahta, derinliğe doğru uzanır (yalnız `kapi`'da görünür) [G: dönem Paris resmî iç mekânı] |
+| Perde | **Projeksiyon bezi** 1.40 × 1.10 m (X −0.95…0.45, h 1.52–2.62), üst kenarı ahşap çıtaya (h 2.66–2.69, X −1.00…0.50) sarılı. Çıta iki iple kornişin altındaki kancalara asılı (h 3.25). Sol ip kancadan duvara iner, sol duvardaki **ip mandalına** (taquet, h 1.45) bağlanır (perde bu iple indirilip kaldırılır: işlev). Alt kenar **serbest**, ortası 0.07 m aşağı sarkık, köşeler 2–3 cm kıvrık [G: 19. yy projeksiyon bezi (ıslatılmış patiska/çarşaf) yaygın uygulama; **bu oda için doğrulanmalı**: kaynak "duvara yansıtıldı" diyor; orkestra kararıyla (tur-15 brif) bez seçildi] |
+| Pencere (arka duvar, perdenin sağı) | X 0.62–1.62 (kadrajda yalnız sol kanadı), denizlik h 0.95, lento h 2.95, **düz lento**. **İç kepenkler kapalı** (volets intérieurs, katlanır, kanat başına 3 tabla: uzun-kısa-uzun) [G: Paris 18–19. yy yaygın; doğrulanmalı]. Oda gündüz karartılmış: neden = yansıtma (v2 kararı, artık görünür). Kepenk aralığından ışık sızmaz (tek kaynak) |
+| Kapı (sağ yan duvar) | `oda`'da kadraj dışında, sağda (memur-3 sağa çıkar). Çift kanatlı, **açıklık 1.30 × 2.40 m, düz lento**, duvar kalınlığı 0.40 m, oda tarafında 0.12 m profilli **pervaz** (chambranle: 3 düşey fitil) ve üstünde 0.18 m **basit pervaz başlığı** (düz korniş kapağı). Kanatlar içe açık: sol kanat 90° açık (yalnız kenarı görünür), sağ kanat kadraj dışında [G] |
+| Koridor | Kapının ardında 2.0 m genişlik, karşı duvar düz sıva, tavan 3.2 m. **Koridorun sağ ucunda pencere** (kadraj dışı): kış güneşi koridor boyunca soldan sağa değil, **sağdan sola yatay vurur**; karşı duvarda pencere biçimli güneş lekesi + kayıt (pencere kası) gölgeleri. Güneş yüksekliği ≤ 21° (Paris 48.85° K, Kasım sonu öğle: 90 − 48.85 − 19.6 ≈ 21.5°, hesap) |
+| Mobilya | Uzun kopya masası (memurlar yüzleri perdeye dönük oturur, Z 2.6). Lantern yüksek sehpada (sağ ön). Sandalyeler: yalnız memur sırtının altında koyu kütle |
+| Kameradan görünen | `oda`: göz 1.70 (ayakta, memurların arkasında): tavan alt yüzü (y 0–63) ve korniş görünür (tavan göz hizasının üstündedir, alt yüzü görünür: fizik ✓). Zemin görünmez. `kapi`: göz 1.25 (hafif alçak): kapı lentosunun alt yüzü (soffit) görünür, oda tavanı görünmez, oda döşemesi alt sol köşede görünür |
+
+### 4v3.2 `oda` (f60–266) — kamera ve katmanlar
+**Kamera:** pinhole F 1700, göz h 1.70, X 0, Z ekseni arka duvara dik. Arka duvar Z 3.6 (472 px/m). **Ufuk y 960. Kaçış noktası (540, 960).** cs 1.0, cx 0, cy 0 (pan yok).
+
+**Görsel dil:** baskın şekil = sağ-alttan sol-üste **çapraz ışık kaması** + parlak yatay dikdörtgen (perde). Ritim = memur başlarının alçak dizisi + kepenk tablaları (düşey) + korniş basamakları (yatay). Renk sıcaklığı soğuk (kireç yeşilimsi ışık, mor-lacivert oda). Kontrast en yüksek. Duygu: karanlıkta beliren ses, kalabalık ama sessiz iş.
+
+| Katman (arkadan öne) | Dünya | Ekran (cs 1) | Not |
+|---|---|---|---|
+| Tavan alt yüzü | h 3.6, Z < 3.6 | y 0–63 | en koyu `#1e1d2c`, düz |
+| Korniş | h 3.30–3.60 | y 63–204 | 3 basamak çizgisi y **63 / 120 / 170 / 204** (kontur 3 px `#4a4762` üst kenar, perde yansıması). Basamak altlarında yatay tarama (4v3.4) |
+| Arka duvar | Z 3.6 | y 204–1314 (lambri üstü) | `#2e2c40`. Perde çevresinde 120 px'lik ikinci ton halkası `#4a4762`, net kenar (v2) |
+| Asma ipleri | X −0.98 / 0.48, h 3.25 → 2.69 | x **80** ve **764**, y 214 → 505 | 4 px `#4a4762`, ışık tarafı 1 px `#c4ccbc` α .5. Sol ip kancadan duvara iner → mandal **(40, 1078)**: 10 × 26 px ahşap `#4a3f33` |
+| Çıta | h 2.66–2.69 | x 68–776, y 505–518 | `#4a3f33`, alt kenar 1 px açık |
+| **Perde bezi** | X −0.95…0.45, h 1.52–2.62 | **x 92–752, y 526–1045**, alt kenar ortası **y 1078** | **%61 genişlik, %29 yükseklik.** Tek kapalı yol: üst düz, yanlar 1–2 px dalgalı, alt kenar sarkma eğrisi + 2 köşe kıvrımı. Bez dolgusu (ışıksız) `#3a3a4a`; ışıklı görüntü bölgesi `#d9d9cf`. 3 düşey kıvrım çizgisi x ≈ 250, 470, 640 (2 px, α .10, görüntü üstünde de devam eder, satırlar kıvrımda 2 px kırılır) |
+| Perde görüntüsü (ışık dikdörtgeni) | en büyük: X −0.85…0.35, h 1.62–2.55 | **x 139–705, y 559–998** (566 × 439 px) | P05 sayfası (dil-nötr, tasarım §4.7/§4.9). Büyüme merkezi **(422, 779)**. f86–112 küçük bulanık kare 80 px; f112–204 büyür ve netleşir. Dikdörtgen hiçbir karede bezin dışına taşmaz |
+| Pencere + kapalı kepenk | X 0.62–1.62, h 0.95–2.95 | **x 833–1080, y 370–1314** | Söve 0.10 m (47 px) `#2a2838`. Kepenk kanadı: 3 tabla (y 400–760 / 780–930 / 950–1290), tabla çerçevesi 18 px. **Perdeye bakan (sol) çerçeve kenarları** 2 px `#4a4762` (yansıyan ışık), tabla içleri düz, alt kenarlarda kısa yatay tarama |
+| Lambri | h 0–0.95 | y 1314 → (memurların arkasında, çoğu görünmez) | üst çıta 2 çizgi, tablalar memur aralarında görünür |
+| Memurlar (tasarım §15.3, 4 kişi) | Z 2.6 (654 px/m), X −0.70 / −0.30 / 0.20 / **0.62 (memur-3)** | x **82 / 344 / 671 / 945**; baş tepesi dik y 1222, yazarken y 1320; omuz y ≈ 1385; sandalye arkalığı y 1660–1920 | B_m 150–160 px (§15.3 ✓: 0.23 m × 654 = 150). Memur-3 kalkınca baş tepesi y ≈ 973 (ayakta yetişkin başı ufka yakın ✓) |
+| Huzme | mercek → görüntü dikdörtgeni | kama: (892,1605) → (139,998) alt sınır, (892,1605) → (705,559) sağ sınır | 4v3.3 |
+| **Lantern (ön plan çerçeve)** | gövde X 0.15–0.45, h 0.95–1.35, Z 1.05–1.40; baca X 0.30, Z 1.20, h 1.35–1.65 | gövde sol ön kenarı **x 722, y 1385–1871**; sol arka kenar x 783, y 1527→; üst yüz y 1385–1527; arka yüz x 783–1080 (kadrajla kesik); **baca x 930–1000, y 1031–1456**, baca başlığı 90 × 18 px | Arkadan-soldan görülen kutu. Arka yüzde lamba kapağı (dikdörtgen çerçeve 120 × 150 px) + **2 yatay havalandırma yarığı** (huzme tonunda ince ışık çizgisi, 3 px). Mercek gizli |
+
+**Perdenin ölçü değişimi (yönetmene):** v2 json `perde.yukseklik_pct 55` → **perde bezi %29 yükseklik / %61 genişlik; ışıklı görüntü 566 × 439 px (%12 alan).** PK-D7 okunurluğu: görüntü 360 px'te 189 × 146 px, satırlar 13 dalga çizgisi olarak okunur. "Büyüdü" artık **oda içinde** büyür (80 px kare → 566 px), istenen okuma budur.
+
+### 4v3.3 Işık (`oda`): tek kaynak lantern
+| | Tanım | Etki |
+|---|---|---|
+| Kaynak | mercek dünya (0.30, 1.15, 1.45) → ekran (892, 1605), gövdenin arkasında | Koni = mercek ile o anki görüntü dikdörtgeninin dışbükey zarfı. Kamera görüşünde ışık **gövdenin üst-sol kenarından çıkar** (huzme katmanı lantern gövdesinin altında) |
+| Sınır ışınları | 4 ışın, mercekten görüntü köşelerine | 3 px `#e4ecd8` α .55; **köşede biter** (perdenin üstüne geçmez). Gizli kalan (zarfın içindeki) ışınlar çizilmez |
+| İç ışınlar | açısal aralık 2.5°, 2 px α .20 | mercek yakınında birleşir (gövde zaten örter) |
+| Dolgu + toz | α .10; toz 8 nokta 3–5 px, seed 167, yalnız kama içinde, yavaş kayar (kare-deterministik) | |
+| Kafa payı | Memur başları (Z 2.6, h ≤ 1.30) huzmenin alt kenarının (Z 2.6'da h **1.40**) **10 cm altında** → perdeye gölge düşmez ✓. Ayaktaki memur-3 (X 0.62) huzmenin sağ kenarının (Z 2.6'da X 0.33) dışında → kalkarken perdeye gölge düşmez ✓ | |
+| Ekranda kama | alt sınır x 344'te y 1163 (memur-2 tepesinin 59 px üstü); x 671'de y 1427: kama bu memurun başının **önünden** geçer (3B'de başın üstünde, kameraya yakın): başın tepesi kama ışığıyla kenar alır (tasarım §15.3 "huzme başın üstünden geçtiği yerde üst kenar çizgisi") | Kama alanı (perde dışı) **%10.3**; ışık alanı toplamı (kama + görüntü) **%22**. Eleştirmenin "huzme ≥ %15" ölçütü yalnız kama için okunursa geçmez; geçirmek için mercek alçalmalı, o zaman memur başları ışığa girer ve perdeye gölge düşer. **Öneri: ölçüt "kama + görüntü ≥ %15" olarak `lint.izin`** (yönetmen/eleştirmen kararı) |
+| Perde (ikincil, yansıyan) | gölgesiz | duvar halkası `#4a4762` (120 px), korniş basamak üst kenarları, ip ışık kenarı, kepenk sol kenarları, memurların **perdeye bakan** kenar ışığı (§15.3: `#c4ccbc` 2 px, kenarın %25–40'ı) |
+| Gölge yönü | Lantern sağ-önde, alçakta → memur gölgeleri sol-yukarı, perde altındaki duvara düşer (ekranda görünmez: masa ve sırtlar örter). Lantern gövdesinin kendi gölgesi yok (kaynak gövdenin içinde) | |
+
+### 4v3.4 Doku ve tarama (`oda`, seed `lanternOda: 167`, ≤ 3 katman, `ArsivKatmani geceLapis`)
+| Yüzey | Malzeme | Doku tarifi | Kod yöntemi | Parametre |
+|---|---|---|---|---|
+| Korniş basamak altları | sıvalı alçı profil | gölge bandı | yatay tarama 0° | 3 px / aralık 8 px, `#1e1d2c` α .8, bant boyu 20–30 px |
+| Arka duvar, halka dışı | badana | yön veren seyrek gölge | **tek yönlü** 60° tarama, köşelere doğru sıklaşır | 3 px, aralık 16 px (orta) → 10 px (sol üst köşe, pencere üstü), `#1e1d2c` α .55. Halka içinde (perdeye 120 px) **tarama yok**. Kafes/çapraz yok |
+| Perde bezi | patiska | 3 kıvrım çizgisi + alt kenar sarkması; ışıkta 2 badana lekesi yerine **kumaş lifi** (yatay 1 px α .05, 6 çizgi) | düz + çizgi | — |
+| Kepenk tablaları | boyalı ahşap | tabla çerçevesi gölge kenarı | kısa yatay tarama tabla alt kenarında | 2 px / 6 px, 18 px boy |
+| Lantern gövdesi | sac (boyalı demir) | arka yüz koyu, sol yüz gölge | 100° tarama sol yüzde | 2 px / 6 px, ≤ 120 px; perçin 4 nokta (3 px `#4a4d52`) |
+| Çıta, mandal | ahşap | damar 1 çizgi | düz | — |
+| Gren | — | `geceLapis` | `ArsivKatmani` | lif .13 / gren .12 |
+- Ölü alan kontrolü: üst üçte bir (y 0–640) = tavan şeridi + korniş + ipler + çıta + perde üstü + pencere üstü ✓. Orta = perde, kepenk ✓. Alt (1280–1920) = memur sırtları + sandalye arkalıkları + lantern + baca ✓.
+- Yazı bantları: üst bant (240–400) korniş altı karanlık duvar + iki ip üstüne düşer: **açık mürekkep** okunur. Alt bant (1290–1490) memur başları/omuzları + lantern üstüne düşer; dokunuş (perdede büyüme) y ≤ 1078'de kalır ✓.
+
+### 4v3.5 `kapi` (f266–398, EN ÖNCELİKLİ): mimari kart ve kompozisyon
+**Duygusal amaç:** filmin en sıcak karesi. Karanlık odanın içinde, sıcak gün ışığının önünde bir insan mektubunu okuyor. Soğuk makine ışığından (lantern) insan sıcaklığına geçiş.
+**Görsel dil:** baskın şekil = kapı açıklığının **parlak düşey paneli** (sağ yarı) ↔ sol yarının karanlık duvarı. Figür bu iki alanın sınırında durur: baş parlak panele karşı koyu siluet, kâğıt karanlık duvara karşı açık leke (tasarım §15.2). Ritim = pervaz fitilleri ve kapı kanadı (düşey), lambri (yatay). Sıcaklık: sol soğuk-mor, sağ sıcak bal-krem. Kontrast yüksek ama yumuşak (gece değil, gündüz içeriden).
+
+**Kamera:** pinhole **F 1180, göz h 1.25**, kamera odanın içinde, kapı duvarına dik bakar. Kapı duvarı (oda yüzü) Z 2.6 (454 px/m). **Ufuk y 960, kaçış noktası (540, 960).** cs 1.0 → 1.06 (yavaş itme f296–386, merkez (420, 900)). Okuyan Z ≈ 1.13 (1044 px/m: baş 0.23 m = **240 px = tasarım B** ✓).
+
+**Neden kamera odada, ışık okuyanın arkasında (tasarım §15 ile uzlaşma):** tasarımcı okuyanı sola bakan 70° profil, kâğıdı ekranın solunda koyu fon önünde ve ışığı **figürün arkasında-sağında** kurdu. İnsan ışığı omzunun arkasına alarak okur, bu doğal. Bu yüzden kapı **sağda** kalır, **figür aynalanmaz** (§15.2.7 gerekmez). Kamera odanın içinde olduğundan kapı açıklığı ışık kaynağının kendisi olur. Sıcaklık oradan gelir, nereden geldiği de açıklığın içinde görünür.
+
+| Öğe | Dünya (kamera çerçevesi, m) | Ekran (cs 1) | Ton / not |
+|---|---|---|---|
+| Oda duvarı (kapının solu) | Z 2.6, X < −0.23 | x 0–436, y 0–1527 | `#2e2c40`. **Sol kenarda** perde yönünden soğuk yansıma basamağı: x 0–110 `#3a3850`, net kenar (ikincil, aynı oda: perde kameranın solunda-arkasında) |
+| Lambri (oda) | h 0–0.95 | üst çıta **y 1096**, x 0–436 | 2 tabla görünür (x 30–200, 230–410; y 1130–1490), `#3e3446`, çıta `#4a4762`, tabla alt kenarında kısa tarama |
+| Pervaz başlığı | h 2.40–2.58 | x 400–1080, **y 356–438** | düz korniş kapağı, alt kenarda 3 px gölge çizgisi; koyu `#2a2838` (oda tarafı, ışıksız) |
+| **Sol pervaz (chambranle)** | X −0.23…−0.11, Z 2.6 | **x 436–490**, y 438–1527 | `#2a2838`, 3 düşey fitil (2 px `#1e1d2c` + 1 px `#4a4762`). Kâğıdın sağ kenarı (x 470) bunun önüne düşer: koyu fon ✓ |
+| Sol kanat (90° açık, oda içine) | X −0.11, Z 2.6 → 1.95 | x 473–490 (kenarı) | ince koyu şerit, **ışığa bakan kenarı 2 px `#c9a998`** |
+| Sol söve iç yüzü (ébrasement) | X −0.11, Z 2.6–3.0 | x 490–497 | 7 px sıcak `#c9a998` çizgi: açıklığın kenar ışığı |
+| Lento alt yüzü (soffit) | h 2.40, Z 2.6–3.0 | x 490–1080, **y 438–508** | `#4a3c4c`, yatay tarama 3 px / 7 px (kapı derinliği). Altında koridor görünür |
+| **Kapı açıklığı (koridor)** | Z 3.0–5.0 | **x 497 → 1080, y 508–1452** | parlak sıcak panel, aşağıdaki iki satır |
+| Koridor karşı duvarı | Z 5.0 (236 px/m) | y 508–1255 | gölgede sıcak gri `#c9a998`; **güneş lekesi** `#e8cdb6`: x 560–1080, y 560–1180. Lekenin içinde **pencere kası gölgeleri**: 1 düşey (x 838–856, `#c9a998`), 1 yatay kayıt (sağdan sola hafif düşen: (1080, 560) → (560, 600), 14 px), lekenin sol kenarı düşey ve net. Kayıt gölgeleri baş/burun bölgesinden (x 500–620, y 640–790) geçmez |
+| Koridor zemini | h 0, Z 3.0–5.0 | y 1255–1452 | taş döşeme `#b89a8a`, 3 derz çizgisi kaçış noktasına; güneş şeridi `#d9bfa8` sağda |
+| Koridor tavanı | h 3.2 | (soffit arkasında kalır) | görünmez |
+| Bekleyen-1 (P01 pencere silueti, başlıksız §15.2.6) | X 1.45, Z 4.2 (281 px/m) | **baş merkezi (947, 875)**, gövde x 884–1010, ayak y 1311 | `#45405a`, güneş lekesine karşı koyu; sağ kenar ışığı 2 px `#f0c4a8` |
+| Bekleyen-2 | X 1.80, Z 4.6 | x 1000–1080 (kadrajla kesik) | aynı, daha küçük; derinlik |
+| Eşik | h 0, Z 2.6–3.0 | y 1452–1527 | taş eşik `#8a7480`, üst kenarı ışıklı 2 px |
+| **Oda döşemesi + ışık havuzu** | h 0, Z 1.6–2.6 | y 1527–1920, x 0–545 görünür | tahta `#2e2c40`, 4 derz çizgisi kaçış noktasına. **Kapıdan giren ışık havuzu**: eşikten sol-aşağı açılan yamuk, iki ton basamak: iç `#6e5862`, dış `#4a3c4c`, net kenar; sol sınırı (497, 1527) → (180, 1920). İçinde okuyanın gölgesi: gövdeden sol-aşağı inen koyu kama `#2a2838` (ayaklar kadraj altında; gölge alt kenardan girer) |
+| **Okuyan + kâğıt + eller** | tasarım §15.2 | **§15.2.2 tablosu esas** (baş bbox x 520–735, y 520–770; kâğıt (270,800)–(470,1170); omuz/dirsek/bilek) | Mekân ayarı: baş bbox **+16 px sağa** (x 536–751) önerilir → burun ucu x 541, açıklığın sol kenarından (497) 44 px içeride, parlak fona karşı. (±24 px toleransı içinde.) Kâğıt yerinde kalır: sağ kenar 470 < pervaz 436–490 → arkası koyu ✓ |
+| Memur-3 kolu + zarf (f266–284) | soldan, Z 1.6 → 1.1 | x −160 → (272, 990), sonra geri sola çıkar | gri manşet `#5d5f63`, kol karanlıkta; el kapı ışığına girerken sağ kenarında `#f0c4a8` 2 px. Ekran yönü: `oda`'da sağa çıkan memur burada soldan gelir (oda içinden kapıya) ✓ |
+
+**Işık (`kapi`): tek vektör.**
+- **Kaynak zinciri:** koridorun sağ ucundaki pencereden kış güneşi (kadraj dışı, yükseklik ≤ 21°) → karşı duvarda leke → **kapı açıklığı geniş, sıcak bir alan ışığı** olur. Odaya yön: **sağ-arka → sol-ön** (ekranda sağ-üstten sol-alta, ≈ 235°).
+- Bundan türeyenler: okuyanın kulak/ense/saç ucu/omuz/sırt kenar ışığı (`#f0c4a8` 3 px, §15.2.3–4); kâğıdın sağ yarısı ve sağ kenarı; söve iç yüzü ve kanat kenarı (`#c9a998`); döşemedeki ışık havuzu ve okuyanın sol-aşağı düşen gölgesi; bekleyenlerin sağ kenarı.
+- **Kâğıda ışık nasıl ulaşır:** açıklık geniştir (1.30 × 2.40 m). Okuyanın gövdesi açıklığın ancak bir kısmını örter. Kâğıt, göğüs ile sol söve arasından gelen ışığı alır: sağ yarı açık, sol yarı loş (§15.2.5 ile aynı). Yanak/çene altı sıcaklığı **kâğıttan yansıyan** ışıktır (§15.2.3).
+- İkincil soğuk: yalnız sol duvar kenarındaki perde yansıması basamağı. Figüre soğuk ışık yok (karıştırmamak için).
+- Gölge kenarı net (gravür). Gradyan yok, iki ton basamak.
+
+**Doku ve tarama (`kapi`, "kapı derinliği" haritası).**
+| Yer | Açı / çizgi / aralık | Renk |
+|---|---|---|
+| Lento alt yüzü (soffit) | 0°, 3 px / 7 px, tam bant | `#2a2838` α .8 |
+| Pervaz fitilleri arası | 90°, 2 px / 5 px, fitil gölge tarafında | `#1e1d2c` |
+| Oda duvarı (kapının solu) | 60°, 3 px / 16 px, **kâğıdın çevresinde 40 px boşluk** (kâğıt kenarı temiz okunsun), sol üst köşede 11 px'e sıklaşır | `#1e1d2c` α .55 |
+| Koridor karşı duvarı, lekenin dışı | 75°, 2 px / 9 px, seyrek | `#a88c80` α .6 |
+| Lambri tablaları | alt kenarda kısa 0° | `#2a2838` |
+| Okuyan paltosu | **tasarım §15.2.4** (78°, gölge tarafı = sol/ön) | — |
+| Taranmaz | kâğıt, güneş lekesi, ışık havuzu, eşik ışık kenarı | — |
+- 360 px kontrolü: 3 px çizgi = 1 px ✓. 2 px çizgiler yalnız küçük alanda (kaba doku olarak okunur, §15.2.8 kabulü).
+- Gren `geceLapis` + `koridor C* ≥ hedefin %85'i` (sıcaklık grileşmesin).
+
+**Ölçütler.** Kâğıt 200 × 370 px (yükseklik %19 ✓), el E 200 px (tasarım: yakın el ≈ %13 bbox ✓ ≥ %12 ✓), baş 240 px (%12.5 ✓ küçük jest kuralı). Net okuma f296–386 (1.5 sn ✓).
+**Yazı bantları:** üst bant (240–400) oda duvarı + pervaz başlığı üstüne düşer (y 356'dan aşağısı başlık): **koyu zemin, açık mürekkep** (v2'deki "koyu mürekkep" notu kalkar). Alt bant (1290–1490) palto gövdesi + lambri + koridor zemini: eller ve kâğıt (≤ 1170) bantın üstünde ✓.
+**Ölü alan:** üst üçte bir = koyu duvar + pervaz başlığı + soffit + güneşli koridor üstü + baş ✓. Orta = kâğıt, eller, baş, bekleyenler ✓. Alt = palto (taramalı), lambri, eşik, ışık havuzu + gölge ✓. Sol kenar şeridi (x 0–110) soğuk yansıma basamağı ✓.
+**Süreklilik:** memur-3 `oda`'da sağdan çıkar → `kapi`'da kolu soldan girer ✓; kapı `oda`'nın sağındaki yan duvarda ✓; pencere kepenkleri kapalı oda ↔ güneşli koridor karşıtlığı (kurulum: odanın neden karanlık olduğu `oda`'da görülen kepenkte, karşılık: kapıdaki ışık); bekleyenler = P01 pencere siluetleri ✓.
+
+### 4v3.6 Tasarım §15 ile uzlaşma (tek tablo)
+| Konu | §15 | §4v3 | Sonuç |
+|---|---|---|---|
+| Işık yönü | kapı figürün arkasında-sağında | aynı (kamera odada, kapı sağda) | **Ayna gerekmez** |
+| Baş bbox | x 520–735 | açıklık sol kenarı x 497 | +16 px sağa kaydırma önerisi (tolerans içinde); kaydırılmazsa burun ucu 525 → kenardan 28 px: yine geçer, sınırda |
+| Kâğıt | (270–470, 800–1170), arkası koyu | pervaz x 436–490 + koyu duvar | ✓ ΔL\* (`#e4dfd0` 89 ↔ `#2a2838` 17) ≥ 30 ✓ |
+| Yanak sıcaklığı | kâğıt yansıması | aynı | ✓ (brifteki "yanağa düşen ışık" bu yolla verilir) |
+| Bekleyenler | 2 siluet, başlıksız | koridorda X 1.45 / 1.80 | ✓ |
+| Memur B_m | 150–160 px | Z 2.6'da 150 px | ✓ (memur Z 3.0 → 2.6 değişti) |
+
+### 4v3.7 Palet (§4v2.7 aynen; değişen/eklenen)
+| Yüzey | Hex | Not |
+|---|---|---|
+| Bez (ışıksız) | `#3a3a4a` | yeni, L\* 25 |
+| Korniş/ip/kepenk yansıma kenarı | `#4a4762` | v2 halka tonu |
+| Lantern gövde / kenar / sehpa | `#2f3238` / `#4a4d52` / `#4a3f33` | aynen |
+| Koridor güneş lekesi / gölgede koridor | `#e8cdb6` / `#c9a998` | v2 tonları, rol değişti |
+| Koridor taş zemin / güneş şeridi | `#b89a8a` / `#d9bfa8` | yeni, L\* 66 / 79, C\* ≤ 16 |
+| Eşik / soffit | `#8a7480` / `#4a3c4c` | yeni, L\* 51 / 27 |
+| Döşeme ışık havuzu iç / dış | `#6e5862` / `#4a3c4c` | yeni, L\* 40 / 27 |
+| Koridor seyrek tarama | `#a88c80` | yeni |
+| Okuyan, eller, kâğıt, memur başları | tasarım §15 | — |
+- Kılıf bu planda yok. Kırmızı 0, sarı metal 0, C\* ≤ 23 (en yüksek `#f0c4a8`).
+
+### 4v3.8 Motion için çizim notları
+- `LanternOda.tsx` + `lanternDunya.ts`: iki kamera sabitleri değişir (`oda`: F 1700, göz 1.70, duvar Z 3.6; `kapi`: F 1180, göz 1.25, kapı duvarı Z 2.6). Kapı artık **sağ yan duvarda**: `kapi` kamerası dünyada `oda` kamerasına göre +90° döner (yalnız tutarlılık için; çizim yukarıdaki ekran tablosundan yapılabilir).
+- Yeni/ortak modüller: `ProjeksiyonBezi {cita, ipler, sarkma, kivrimlar, goruntuRect(t)}` (tek kapalı yol, dikişsiz), `IcKepenk {tabla:[...], yansimaKenari}`, `Kornis {basamak:[63,120,170,204]}`, `KapiAcikligi v3 {pervaz, fitil:3, baslik, soffit, ebrasman, kanatKenari, koridor:{leke, kasGolgesi, zemin}}`, `IsikHavuzu {kaynakPoligon, yon, ikiTon}`. `LanternHuzme`: sınır ışınları `goruntuRect` köşelerine (hale değil). **Huzme katmanı lantern gövdesinin altında.**
+- `Tarama` ortak bileşeni: `{aci, kalinlik, aralik, maske, bosluk:{rect, pad}}`. Kâğıt çevresinde 40 px boşluk maskesi gerekir.
+- Kontrol kareleri: **f330** (önce, kalibrasyon), f272 (zarf teması), f200 (oda, büyüme bitti), f120 (küçük bulanık kare + kama). Hareket şeridi f250–296 (kalkış → kesme → zarf).
+- Ölçüm: perde bezi genişliği ≤ 756 px; ışın uçları görüntü dikdörtgeni köşelerinde ±3 px; memur başı ile kama alt sınırı arası ≥ 40 px (x 344); `kapi`'da kâğıdın arkasındaki 10 px'lik halkanın ortalama L\* ≤ 30.
+
+### 4v3.9 Yönetmen için kamera tablosu (P10b; json sahibi yönetmen)
+| Plan | Görünüm | kare | cs | cx | cy | Değişen | Ekranda doğrulama |
+|---|---|---|---|---|---|---|---|
+| P10b-A | `oda` | 60 / 266 | 1.0 / 1.0 | 0 | 0 | kamera F 1700 / göz 1.70 / duvar Z 3.6 (şablon sabiti); `perde.yukseklik_pct 55` → **`perde_bez {genislik_pct 61, yukseklik_pct 29}`**, büyüme merkezi (422, 779); `huzme.kaynak [150,1529]` → **[892,1605]** (gizli); memur `konum_dekor_x [82,344,671,945]`, memur-3 = x 945; kalkış f250, sağdan çıkış f266 | f200: bez 661 px, görüntü 566 × 439 @ (422, 779); ışın uçları köşelerde |
+| P10b-B | `kapi` | 266 / 296 / 386 / 398 | 1.0 / 1.0 / 1.06 / 1.06 | 0 / 0 / −10 / −10 | 0 / 0 / −6 / −6 | kamera F 1180 / göz 1.25 (şablon sabiti); itme merkezi (420, 900); zarf f272, açılma f290, okuma f296–386 | **f330**: kâğıt (270–470, 800–1170) ±24, baş bbox x 536–751, kâğıt arkası koyu |
+- json: `okunurluk` P10 perde → ekran oranı %29 yükseklik (görüntü %23); net süre değişmez (f204–266, 1.03 sn).
+- `sinirlar.json` LANTERN-ODA `kapi`: cs 1.0–1.10, cx ±40, cy ±30 (açıklık kenarı x 497 ile kâğıt arasındaki boşluk korunmalı).
+
+### 4v3.10 Açık sorular
+1. **Eleştirmen/yönetmen:** huzme ölçütü: kama %10.3 (fiziksel sınır), kama + görüntü %22. `lint.izin` önerisi (4v3.3).
+2. **Araştırmacı (ağ izni gelince):** projeksiyon yüzeyi bez mi duvar mı (dönem gravürü "Projection and expansion of microscopic records…"); Paris resmî büro iç kepengi ve çift kanatlı kapı [G].
+3. **Tasarımcı:** baş bbox +16 px sağa (4v3.6). Kabul edilmezse burun ucu ile açıklık kenarı arası 28 px kalır.
 
 ---
 
