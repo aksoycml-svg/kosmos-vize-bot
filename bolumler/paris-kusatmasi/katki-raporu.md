@@ -849,3 +849,10 @@
   2. Kurgucu: yeni temas f218 "el halatı kavrar" (yumuşak halat/ip gerilmesi, −6 dB'den kısık). f226 ayak-rim hasır gıcırtısı (mevcut).
   3. Yapılmadı (fırsat): P07 B ön kol rime dayalı / dirsek aşağı. Omuz–rim mesafesi ≈ 0.54 m; dürüst çözüm gövdenin ön rime ≈ 0.3 m kaydırılması, bu da torba 4 kilidini ve sepet_x kalibrasyonunu etkiler. Ayrı küçük tur önerilir.
   4. Mekân sorumlusu: gök geçişi kodda gravür taraması olarak tanımlı (çizgi kalınlığı/aralığı yukarıda); mekanlar §2v2.9 satırı buna göre güncellenebilir.
+
+## eleştirmen · 2026-11-13 · B3 kısa kontrol (MONTMARTRE şablon kabulü)
+- Ne yaptım: B2'nin 3 düzeltmesini B3 karelerinde (P06b f230 + şerit f200–260, P07 f112 + 2× + şerit f80–160, P07 f196, P03 f80, 360/güvenli) kontrol ettim. Karar DÜZELTMEYLE GEÇER, puan 6.5.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/B3/elestiri.md (yeni), bu rapor.
+- Aldığım kararlar ve gerekçeleri: Biniş şeritte okunuyor ve kritik fizik (boşluğu tutan el) giderildi. 360'ta el-şapka okuması ve kütük bacak kalıyor; bunlar orta öncelikli, şablon kabulünü engellemiyor. Darbe deliği okunuyor ama beyaz nokta + loblu kontur onu "canlı" gibi gösteriyor. Gök taraması tuttu.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: Yeni kritik hata yok. Okunurluk: tek karede jest okunmuyor (P06b f230). Hareket şeridi her iki şeritte de tarandı. lint.izin yeniden açılmadı.
+- Açık sorular / bir sonraki ajana notlar: Düzeltmeler 1–3 motion'da (tutunma h + halat seçimi, bacak tonu/diz/ayak, delik beyaz noktası/kontur). Küçük işler listesi elestiri.md'de. Kurgucu: f218 halat kavrama foley'i.
