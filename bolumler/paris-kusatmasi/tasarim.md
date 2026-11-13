@@ -795,6 +795,42 @@ Kol hangi kenardan girerse o el: sol-alttan giren kol = sol el. Doğrulayıcı k
 - Bilek ekranda yaklaşık **(300, 1560)**, orta parmak ucu ≈ (694, 1056) (E 640, 52°). bbox ≤ %35. El sayfanın üstünde: şerit koyu `#5a5048`, el ten ışık, sayfa `#e4dfd0` ⇒ ayrışma ✓.
 - Parmak kalınlığı 0.115 E = 74 px, uç 51 px: 360'ta 17 px, 4 parmak ayrı okunur.
 
+### 15.1b El dili düzeltmesi (C2) — 2026-11-13
+Girdi: `kalibrasyon/C2/elestiri.md` (kritik 4 + orta 5), kareler P05 f280, P09 f150, P10 f330, `src/kit/props/paris/GravurEl.tsx`. Spesifikasyondur; kod/görsel yok. Teşhisi kareden doğruladım: P05'te her parçanın kendi konturu avuç üstünde başparmak yaması + bilek hizası çizgisi bırakıyor, kontura paralel sabit bant, avuçta uzun tendon çizgisi "dikiş" okunuyor; P10'da başparmak dik, ~115 px ve kâğıttan ayrı duruyor. Çözüm tarif düzeyinde "az çizgi": **dönem gravürü el çizimi** (kurşun/çelik kalem: siluet tek kontur, ince-kalın değişimi, gölge yalnız birkaç kısa çizgi, gerisini kâğıt/ten düz bırakır). E = el boyu; 1080 px, P05 E = 640, P10 E = 200.
+
+**b.1 Tek parça siluet.**
+- El = avuç + 4 parmak + başparmak **tek kapalı dış kontur**. İç kontur, iç dikiş, bilek yayı, avuç sırtı çizgisi, tendon çizgisi, tırnak yayı **yok** (tendon ve tırnak kalktı).
+- Uygulama: tüm parçaların konturları (yük kopyası + ince stroke) **önce** çizilir, sonra tüm dolgular **kontursuz** üstüne; böylece parçaların kesiştiği yerde iç kontur kalmaz. Gölge/tarama birleşik siluete clip'lenir. `katman: "on"` (P10 başparmak kâğıt önünde) tek istisna: başparmak kendi tam konturunu taşır, kökü avuçla örtüşmez (avuç kâğıdın arkasında).
+- Bilek: el, manşetin altına **0.04 E** girer; bilekte kontur çizgisi/yay yok, manşet kenarı keser. (P05: 26 px, P10: 8 px.)
+- Boğum: **yalnız silüet kıvrımı**; PIP ve DIP'te ışık kenarında 2 px içe çentik, iç çizgi yok.
+
+**b.2 Başparmak: avuçtan doğar.** Yerel çerçeve (bilek (0,0), +x parmaklar, başparmak −y):
+- Dış kenar tenar kabarıklığından kesintisiz yükselir: bilek kenarı (0, −0.155) → kabarıklık tepesi (0.20, −0.235) → başparmak dış kenarı doğrudan devam (kesik yok, alt kenarda düz uç yok).
+- İç kenar: işaret kökündeki ağ noktasından (0.47, −0.19) başlar, **tek konkav yay** (yarıçap 0.07 E) başparmak iç kenarına biner. Ağ yayı tek eğri, çift çizgi değil.
+- Eni 0.135 E (kök) → 0.095 E (uç), uç yarım yuvarlak. **Görünen boy** (avuç kenarından uca) **0.38 E = 0.90 × işaret parmağı (0.42 E)**; P05'te 243 px, P10'da 76 px (eski ≈115 px → ×0.66). Tek yumuşak bükülme: uç parçası gövdeye göre **6°** işaret parmağına doğru (düz çubuk değil, dik de değil).
+
+| | P05 ölçü (E 640, `olcu`) | P10 okuyan tutuş (E 200, `tutus`) |
+|---|---|---|
+| Çıkış noktası (yerel) | (0.20 E, −0.235 E) = (128, −150) px | aynı (40, −47) px |
+| Eksen (işaret ekseninden) | **−50°** (masaya yatık, dışa açık) | ekranda **dikeyden 30° yatık, kâğıt kenarına doğru** (rig `bas.a` bu ekran açısını verecek şekilde el açısına göre hesaplanır; eski −34° değeri bırakılır ama sonuç dik kalıyorsa ekran açısı esas) |
+| Görünen boy / en | 243 px · 86 → 61 px | 76 px · 27 → 19 px |
+| Uç konumu | şerit hizasını ≥ 0.05 E (32 px) geçer, şeride değmez | kâğıt yüzüne yatar; uç kâğıdın alt kenarından ≤ 0.20 E (40 px) yukarıda biter, "mandal" gibi kalkmaz |
+| Yüzük/serçe vb. | parmaklar düz (`olcu`) | parmaklar kâğıdın arkasında (`tutus`); başparmak tek görünen parmak |
+| Temas | gölgesi masada 18–24 px, kaynak tersine | kâğıda 12 px kısa temas gölgesi (sol-alt) |
+
+**b.3 Kontur (tek yol, ince-kalın).** §15.1.2 değerleri aynen (yük = clamp(0.010 E, 3.5, 6): P05 6 px, P10 3.5 px · ışık 0.36× = 2.2 / 1.5 px · uçlar 0.25×, ≥ 1.0 px), ama **tek dış yol**; gölge tarafında kalın, ışık tarafında ince, geçiş 24 px yumuşak. Parmak ucu ve kıvrım uçlarında çizgi inceler, kapalı bir halka gibi sabit kalınlıkta dönmez.
+
+**b.4 Ten ve tarama.**
+- Ten **2 ton**: ışık / gölge (palet §15.1.3 aynı). Aralarında sert tek kenar, ara ton, gradyan, ikinci gölge katmanı yok. Gölge tonu yalnız gölge tarafındaki kenar şeridi (genişlik 0.045 E: 29 px / 9 px) ve parmakların alt yüzünde.
+- **Tarama bant değil, kısa çizgi:** yalnız gölge tarafında, kontura bitişik başlar, **içe doğru incelir** (kontura bağlı uçta 2.5 px → serbest uçta 0.8 px; P10'da 2 → 0.8 px), uzunluk 0.06–0.10 E (P05 38–64 px; P10 12–20 px), **konturu izlemez, kontura paralel sürekli şerit yok**. Yön = sahne θ (P05 143°, P10 78°), aralık 7 px (P10 6 px), çizgi başına rasgele uzunluk ±25 % (seed sabit 2305).
+- **Çizgi bütçesi (kontur hariç):** P05 toplam ≤ 16 (avuç 6, başparmak 3, her parmakta 1–2); P10 toplam ≤ 6 (başparmak 3, gösterilen parmak ucu 3). Bütçeyi aşan sadeleşir. Tarama yalnız ışığın biçimi anlattığı yerde: tenar altı, parmak alt kenarı, ağ yayı çevresi.
+- **Kenar ışığı şeridi kalktı** (kontura yapışık 2.5 px band "dikiş" okudu). Sıcak vurgu: ışık kenarında yalnız konturun kendisi (`#a8836c`/`#a07f66`) + tek kırık parça en çok 0.25 E (P05 160 px), başparmak/işaret sırtında; sürekli şerit yok.
+- **Parmak arası:** bitişik parmaklar silüet çentiğiyle ayrılır; çentik uçlardan kökün yarısına kadar (0.2 E). Çentik içinde **tek 1.2 px ince çizgi** (kontur renginde, ışık tarafı) en fazla; çift çizgi, iki taraflı kontur yok. Kökün yarısından avuca kadar iç çizgi yok.
+
+**b.5 Kabul ölçütleri (eleştirmen).** (1) 360 px'te el "çıplak el" okunur; eldiven/dikiş/yama sorusu doğmaz. (2) P05 f280 avuç içinde sürekli çizgi yok; başparmak avuçtan ayrı şekil olarak seçilemez. (3) Bileğe paralel yay yok. (4) Tarama çizgisi sayısı bütçede, hiçbiri konturu boydan boya izlemez. (5) P10 f330 başparmak "mandal" değil: görünen boy ≤ 80 px, dikeyden ≥ 30° yatık. (6) Ten ΔE ışık–gölge ≥ 15, ara ton yok. P09 `gevsek` pozu (eski 22° başparmak) aynı kuralla: görünen boy 0.38 E, ekran eksenine yakın açı, avuçtan doğan tek silüet.
+
+**b.6 Devir.** Motion: `GravurEl.tsx` kontur/dolgu geçişleri ayrılır (yukarıda b.1), `GRAVUR_POZ.bas` ve başparmak parça tanımı yeniden yazılır (şimdiki `t0 (0.2, −0.13)` avuç **içinde** başlıyor; çıkış noktası palm kenarına, 0.20/−0.235'e çekilir ve avuç yoluna birleşir), tendon çizgisi ve parça başına mask'li kenar ışığı şeridi çıkar, tarama pattern'i yerine kontura bitişik kısa konik çizgi üretimi. Yeniden render: P05 f280, P09 f150, P10 f330 (360 px).
+
 ### 15.2 Okuyan figür (P10 `kapi`, f330 doruk)
 **Ölçü birimi B = baş yüksekliği (tepe → çene) = 240 px.** Gerçek yetişkin 0.23 m ⇒ el E = 0.83 B = 200 px, üst kol 1.30 B (0.30 m), ön kol 1.17 B (0.27 m), omuz genişliği 2.2 B.
 
