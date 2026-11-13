@@ -753,6 +753,7 @@ Girdi: `notlar/tur-15.md` (kullanıcı: "P10 f330 görseli çok kötü"), `kalib
 | P09: baş kadraj dışı, ip 360'ta yok | Açık ince ip | Baş+göz kadrajda, koyu kalın 2 sarım (§15.4) |
 
 ### 15.1 Paris eli / Dagron eli (tek gravür dili)
+> **C2 NOTU (2026-11-13): aşağıdaki şu satırlar GEÇERSİZ, yerine §15.1b geçerli:** 1.1 "Başparmak", "Tırnak", "Boğum", "Avuç sırtı" satırları · 1.2 "iki çokgenli dolu kontur" uygulaması (parça başına kontur) · 1.3 "Gölge tarafı paralel tarama" ve "Kenar ışığı" maddeleri · P05 başparmak/ölçü ayrıntıları (1.5 "Başparmak" maddesi). Parmak boyları, parmak eni, avuç ölçüsü, renkler, manşet, sol/sağ anatomi (1.4) ve P05 yerleşimi (1.5) geçerli kalır. Eski metin kayıt için bırakıldı.
 Tek el modeli iki ten/manşet paletiyle (aynı çizim, aynı oranlar). **E = el boyu** (bilek çizgisi → orta parmak ucu), gerçek 0.19 m. P05'te **E = 640 px** (bbox yüksekliği ≤ 670 px = ekranın %35'i; manşet hariç el bbox'ı ekranın ≤ %35'i), P10 okuyan elinde **E ≈ 200 px** (= 0.83 B, §15.2).
 
 **1.1 Oranlar (E cinsinden).**

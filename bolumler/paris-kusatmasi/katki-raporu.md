@@ -1094,3 +1094,10 @@
 - Açık sorular / bir sonraki ajana notlar:
   - P05 f0 terazi dengesi kasıtlı mı (aynı ağırlık)? Senarist/araştırmacıya sorulmalı.
   - Memur-3 için iki yol var: opak baş + perde gölgesi ya da x'in huzme dışına alınması. Bunu orkestra seçer.
+
+## yonetmen · 2026-11-13 · C3 küçük düzeltme (P10 memur-3 x, P06 rota ilk parça)
+- Ne yaptım: P10 `memurlar.konum_dekor_x` son değer 945 → 860 (kalkış/çıkış memuru: lantern bacasının x 930–1000 dışında, huzme sağ kenarına yakın); `memur3_kalkis.kim` metni güncellendi. P05 taşıyıcı metni 280 → 210 px; P06 rota ilk parçası 210 px beyanı eklendi (json'da sayısal rota parçası parametresi yok, yalnız taşıyıcı metni). Zamanlama değişmedi. Kural 7: P10 f200 ve f250 render edildi (`kalibrasyon/C3/yonetmen/`): memur-3 başı baca solunda görünür, f250 ayakta. Doğrulayıcı --tam GEÇTİ (0 hata).
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/bolum.json, kalibrasyon/C3/yonetmen/P10-f200.png, P10-f250.png, bu rapor.
+- Kararlar: x 860, çünkü baca (930–1000) ile huzme sağ kenarı (~x 825–845, baş yüksekliğinde) arasında tam boşluk yok; 860'ta baş sağı 935'te bacayla çok az örtüşür, solu huzmeye ~10–30 px girer (ayakta başta). Tam çözüm kod/baca konumudur.
+- Kural ihlali/not: elestiri.md kritik #2'deki saydam baş x 610–720 = dizideki 3. memur (x 671, huzme içinde); kodda "memur-3" ise i=3 (x 945/860). Bu düzeltme kalkan memuru ele aldı; x 671 başının opaklığı/perde gölgesi hâlâ motion işi (LanternOda.tsx).
+- Açık: sağa çıkışta memur-3 bacanın arkasından geçer (Z 2.6 vs 1.2, kaçınılmaz); eleştirmen f250–266 şeridine baksın.

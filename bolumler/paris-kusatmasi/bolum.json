@@ -1810,7 +1810,7 @@
     "not": "hasır sıkışması yakın bel planda; süre dar (meydanda 2.0 sn): sığmazsa D8 çıkar (7 dokunuş)"
    },
    "tasiyici": {
-    "giris": "şerit → rota çizgisi: P05 şeridi (52°, 280 px, ekran merkezi ~(540,930)) = P06 f0'da çizilmeye başlayan rota çizgisinin ilk parçası",
+    "giris": "şerit → rota çizgisi: P05 şeridi (52°, 210 px, ekran merkezi ~(540,930)); P06 rota ilk parçası 210 px (C3: 280→210 eşitlendi) = P06 f0'da çizilmeye başlayan rota çizgisinin ilk parçası",
     "cikis": "halat gerilmesi + sepet → P07 başında iki balon yan yana (Dagron'unki solda): halat bırakılır, balonlar kalkar (aynı hale ağzı, eşleşme)"
    },
    "sfx": [
@@ -2786,12 +2786,12 @@
        82,
        344,
        671,
-       945
+       860
       ],
       "memur3_kalkis": {
        "bas": 250,
        "bit": 266,
-       "kim": "memur-3 (x 945), zarf elinde",
+       "kim": "memur-3 (x 860: huzme sağ kenarının ve lantern bacasının (x 930–1000) dışında), zarf elinde",
        "yon": "ayağa kalkar (baş y 1618→1086), sağa yürür, f266'da sağ kenardan çıkar (duvarsız kadraj kenarı)",
        "cikis_kare": 266
       },
