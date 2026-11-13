@@ -1108,3 +1108,53 @@
 - Kararlar ve gerekçeleri: (1) Dönem gravürü el çizimi dili = az çizgi, tek kontur; eldiven okuması parça başına kontur + paralel bant + avuç içi çizgisinden geldi, hepsi kalktı. (2) Tendon ve tırnak yayı da kaldırıldı: karede avuç içi boyu uzun çizgi dikiş gibi okunuyor. (3) Kenar ışığı şeridi de bant sayıldı, kaldırıldı (kırık parça ≤ 0.25 E). (4) Başparmak P10'da 76 px (eleştirmen ×0.7 ≈ 80 hedefi), dikeyden 30° yatık. (5) Koddaki başparmak `t0 (0.2, −0.13)` avuç içinde başlıyor; tarif çıkışı palm kenarına (0.20, −0.235) çekiyor.
 - Uyguladığım kurallar / ihlaller: tek sahiplik (yalnız tasarim.md); yeni renk yok, palet §15.1.3 aynen; kod/görsel/git yok. Kare PNG'leri incelendi. Tahmin: P10'da kâğıt ve elin tam geometrisi karedeki piksel okumasından, kesin ölçüm değil; motion render sonrası ±10 px sapma beklenir.
 - Açık sorular / sonraki ajana: motion b.1 sırasını (tüm konturlar → tüm dolgular) `katman:"on"` ayrımıyla uyumlu kurmalı; P10 `bas.a` ekran açısı (dikeyden 30°) el açısına göre hesaplanmalı. Eleştirmen yeniden bakışta b.5 listesini kullansın. P09 `gevsek` başparmağı aynı kuralla ama sayısı kısa; render sonrası gerekirse ben ince ayar yaparım.
+
+## motion · 2026-11-13 · C3 kritik düzeltmeler (GravurEl §15.1b, LanternOda, DagronInsert)
+- Ne yaptım:
+  - **GravurEl.tsx (§15.1b):**
+    - El artık tek siluet. Önce tüm parçaların ince ışık konturu, sonra gölgeye kaydırılmış koyu (yük) kopya, en son tüm dolgular kontursuz çiziliyor. Böylece iç kontur kalmıyor.
+    - Bilek, yerel `bilekX` (−0.02 E) yarı düzleminde düz kesiliyor; bilekte yay yok.
+    - Tendon, tırnak yayı ve kenar ışığı şeridi kaldırıldı.
+    - Başparmak avuçtan doğuyor: dış kenar tenar tepesinden (0.20, −0.235) çıkıyor, en 0.135 → 0.095 E, boy 0.40·k E, uçta işarete doğru 6° bükülme. İşaret köküne ağ, tek konkav yayla bağlanıyor.
+    - Ten 2 ton: gölge şeridi = siluet − ışığa kaydırılmış siluet (0.045 E).
+    - Tarama: gölge tarafında kontura bitişik, içe incelen kısa çizgiler (2.5/2 → 0.8 px, 0.06–0.10 E, seed 2305). Bütçe büyük elde ≤14, küçük elde ≤6. Kontura paralel giden aday elenir.
+    - Ekran px ölçüleri için `olcek` (kamera cs) eklendi.
+    - `katman:"on"` korundu. Yeni `onMaske`: başparmak konturu yalnız avuç/ağ üstünde gizlenir.
+  - **LanternOda.tsx:**
+    - Yansıma halkası sabit ölçüde; bez de zaten sabit. f150–178'de yalnız görüntü büyüyor.
+    - Memur gövdeleri huzmenin altında, başlar huzmeden sonra çiziliyor (opak).
+    - Her başın perde gölgesi tek ışıktan (lantern merceği) üretiliyor: baş silüeti merceğe göre t kat ölçekleniyor. t, sabit tam görüntü düzleminden hesaplanıyor; gölgeyi yalnız ışıklı görüntü açığa çıkarıyor.
+    - Baş ile perde arasındaki gölge kaması huzmeden maskelendi. Baş geometrisi tek fonksiyonda (`memurKafa`).
+    - Sol duvardaki dikdörtgen kaldırıldı; yerine ahşap ip kazığı ve sarılı ip var.
+    - P10 yakın elin başparmağı ekran açısından hesaplanıyor (`BAS_EKRAN −128`, kökten uca dikeyden yaklaşık 32–38°).
+  - **DagronInsert.tsx:**
+    - P05 sol elin gölgesi sabit ofsetli: f280 dinlenme pozunun ofseti, elin yoluna ekleniyor.
+    - Diğer ellerde gölge yüksekliği 0.024 m ile sınırlı.
+    - El gölgeleri, kamera kutusu ve çekmece zarfında maskeleniyor; dik yüze taşmıyor.
+    - P05/P09 ellerine `olcek={k.cs}` verildi.
+- Dokunduğum dosyalar: src/kit/props/paris/GravurEl.tsx, src/kit/sablonlar/paris/LanternOda.tsx, src/kit/sablonlar/paris/DagronInsert.tsx, bolumler/paris-kusatmasi/kalibrasyon/C3/ (P05 f280, P09 f150, P10 f200/f330 → tam, -360, -guvenli, -guvenli-360; P05-serit-f264-358, P10-serit-f150-200, ozet.png), bu rapor.
+- Kararlar ve gerekçeleri:
+  1. Memur-3 başının "saydam" görünmesinin nedeni dolgu değildi: başın üstünden geçen huzme ışınlarıydı. Kırpmada baş dolgusu opak çıktı. Bu yüzden düzeltme katman sırası ve gölge kamasıyla yapıldı.
+  2. Baş gölgesi tam görüntünün alt kenarına düşüyor ("salondaki baş" imgesi). f200'de sayfanın alt-orta satırlarının bir kısmını örtüyor; üst ve orta satırlar okunuyor.
+  3. P05 gölge ofseti ekranda sabit tutuldu (eleştirmen tarifi). Fiziksel olarak kalkan elin gölgesi uzar; okunurluk için bilinçli sapma.
+  4. P10 başparmak ucu kâğıt alt kenarından yaklaşık 60 px yukarıda. §15.1b "≤ 40 px" ile "76 px boy + dikeyden 30°" birlikte sağlanamıyor (dikey bileşen yaklaşık 64 px). Boy ve açı öncelikli tutuldu.
+  5. kistir/cimdik başparmak `k` değerleri 1.15/1.10 yapıldı; yeni, daha kısa başparmakla kıstırma buluşması korunuyor.
+- Kurallar / ihlaller:
+  - Tek ışık: kurallı (lantern gölgesi, masa ISIK_ATOLYE yönü).
+  - Hareket tamamlanır: el çıkınca gölgesi de çıkıyor (şerit f344–352).
+  - Fade yok: halka yalnız parlaklık değiştiriyor, ölçüsü sabit.
+  - P01 f24 ve P03 f80: piksel farkı 0.
+  - tsc temiz. Doğrulayıcı `--tam` GEÇTİ (0 hata; foley.json uyarısı önceden vardı).
+- Ölçüm (yaklaşık, kare üzerinden):
+
+  | Kare | Ölçü |
+  |---|---|
+  | P05 f280 | E ekranda yaklaşık 620 px; başparmak görünen boyu yaklaşık 230 px; işaret–başparmak açısı yaklaşık 50° |
+  | P10 f330 | Başparmak yaklaşık 80 px, dikeyden yaklaşık 35° |
+
+- Açık / sonraki ajana:
+  1. P05 f280'de ağ çevresindeki 5–6 kısa tarama 360'ta küçük bir "tarak" gibi görünebilir. Gerekirse `butce.avuc` 6 → 3 yapılır.
+  2. Gölge kaması perde altında, duvarda hafif koyu bir iz bırakıyor (fiziksel olarak doğru). Eleştirmen "hayalet" okursa kama yalnız bez içinde kesilebilir.
+  3. P05 şeridi üst kenara dokunmuyor ama şerit, ağ köşesine değiyor (konum json'da, bu turda değiştirilmedi).
+  4. Eleştirmen önce ozet.png, P05 şeridi ve P10 f200'e baksın.
+  5. Öz puan 7 (eleştirmenden muhtemelen 6–6.5).

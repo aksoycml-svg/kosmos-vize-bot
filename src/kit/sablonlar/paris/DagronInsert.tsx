@@ -329,17 +329,20 @@ const golgeKatmani = (uid: string, polys: P[][], ekGolge: React.ReactNode, duvar
 };
 
 /** el durumu: masa noktası (uç) → dekor ekran + yerel px/m; gölge kayması aynı ışık vektöründen */
+// C3 (eleştiri kritik 3): gölge = el yolu + SABİT ışık ofseti. Gölge yüksekliği EL_GOLGE_H ile sınırlanır: el kalkıp kadrajdan
+// çıkarken gölgesi ondan kopup sayfada kalmaz, girişte yön dönmez (golgeMasa tek ışık ISIK_ATOLYE; yalnız boy sınırlı).
+const EL_GOLGE_H = 0.024;
 const elMasa = (uc: V3, aci: number, kolAci: number, poz: ElDurum["poz"], hEl = 0.03): { d: ElDurum; golgeD: P } => {
-  const e = mp(...uc), g = golgeMasa(uc[0], uc[1], uc[2] + hEl), ge = mp(...g), e2 = mp(uc[0], uc[1], uc[2] + hEl);
+  const h = Math.min(uc[2] + hEl, EL_GOLGE_H), e = mp(...uc), g = golgeMasa(uc[0], uc[1], h), ge = mp(...g), e2 = mp(uc[0], uc[1], h);
   return { d: { uc: e, aci, kolAci, pxm: mpx(uc[1], uc[2]), poz }, golgeD: [ge[0] - e2[0], ge[1] - e2[1]] };
 };
-const ElGolgeli: React.FC<{ e: { d: ElDurum; golgeD: P }; uid: string; tutulan?: React.ReactNode }> = ({ e, uid, tutulan }) => {
+const ElGolgeli: React.FC<{ e: { d: ElDurum; golgeD: P }; uid: string; tutulan?: React.ReactNode; olcek?: number; golgeMaske?: string }> = ({ e, uid, tutulan, olcek, golgeMaske }) => {
   const ust = mp(0, MASA.arkaY)[1];
   return (
     <g>
       <defs><clipPath id={`${uid}eg`}><rect x={-600} y={ust} width={2400} height={3000} /></clipPath></defs>
-      <g clipPath={`url(#${uid}eg)`} transform={`translate(${e.golgeD[0]} ${e.golgeD[1]})`} opacity={0.6}><GravurElDurum d={e.d} tur="dagron" isik={EL_ISIGA} taramaAci={143} golge={DP.masaGolge} /></g>
-      <GravurElDurum d={e.d} tur="dagron" isik={EL_ISIGA} taramaAci={143} tutulan={tutulan} />
+      <g mask={golgeMaske}><g clipPath={`url(#${uid}eg)`} transform={`translate(${e.golgeD[0]} ${e.golgeD[1]})`} opacity={0.6}><GravurElDurum d={e.d} tur="dagron" isik={EL_ISIGA} taramaAci={143} golge={DP.masaGolge} /></g></g>
+      <GravurElDurum d={e.d} tur="dagron" isik={EL_ISIGA} taramaAci={143} tutulan={tutulan} olcek={olcek} />
     </g>
   );
 };
@@ -441,7 +444,9 @@ const MasaParis: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
       const u = yol([gel, otur, elCek.bas, elCek.bit], [[-0.3, 0.02, 0.06], tip, [tip[0], tip[1] + nefes, tip[2]], [-0.36, 0.05, 0.08]], p) as V3;
       const tipE = mp(...tip), arkaE = mp(tip[0] - d[0] * 0.07, tip[1] - d[1] * 0.07, tip[2]);
       const aci = (Math.atan2(tipE[1] - arkaE[1], tipE[0] - arkaE[0]) * 180) / Math.PI;
-      return { ...elMasa(u, aci, aci - 8, "isaret", 0.008), gravur: true };
+      // C3 (eleştiri kritik 3): gölge ofseti SABİT = f280 dinlenme pozundaki ofset (ekran vektörü); el girip çıkarken gölge
+      // elin dönüşümüyle birlikte taşınır, yön dönmez, el kadrajdan çıkınca gölge de çıkar
+      return { ...elMasa(u, aci, aci - 8, "isaret", 0.008), golgeD: elMasa(tip, aci, aci - 8, "isaret", 0.008).golgeD, gravur: true };
     }
     return null;
   })();
@@ -460,8 +465,16 @@ const MasaParis: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
   const seritCiz = <SeritCiz c={seritDurum.c} phi={seritDurum.phi} L={seritL} />;
   // şerit gölgesi (elde iken masada)
   const seritGolge = seritDurum.elde ? (() => { const q = masaDik([seritDurum.c[0], seritDurum.c[1], 0], seritDurum.phi, seritL, SERIT.W).map((e) => { const m = masaTers(...e); const g = golgeMasa(m[0], m[1], seritDurum.c[2]); return mp(...g); }); return <polygon points={pt(q)} fill={DP.masaGolge} opacity={0.75} />; })() : null;
+  // C3 (eleştiri küçük): el gölgesi kamera kutusunun dik yüzlerine / çekmeceye taşmaz (kutu + çekmece zarfı maskede siyah)
+  const kutuZarf = zarf(kutuKose(KUTU.X0, KUTU.X1, KUTU.Y0, KUTU.Y1, 0, KUTU.h).map((v) => mp(...v)) as [number, number][]) as P[];
+  const cekZarf = zarf(kutuKose(KUTU.cek.X0, KUTU.cek.X1, KUTU.Y0 - 0.08 * cekT, KUTU.Y0, KUTU.cek.h0, KUTU.cek.h1).map((v) => mp(...v)) as [number, number][]) as P[];
+  const golgeMaske = `url(#${uid}km)`;
   return (
     <g transform={katDonusum(k)}>
+      <defs><mask id={`${uid}km`} maskUnits="userSpaceOnUse" x={-2000} y={-2000} width={5000} height={6000}>
+        <rect x={-2000} y={-2000} width={5000} height={6000} fill="#fff" />
+        <polygon points={pt(kutuZarf)} fill="#000" /><polygon points={pt(cekZarf)} fill="#000" />
+      </mask></defs>
       <MasaYuzey seed={S} />
       <DuvarParis uid={uid} />
       {golgeKatmani(uid, golgeler, seritGolge, DP.badanaGolge)}
@@ -471,7 +484,7 @@ const MasaParis: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
       {p >= fAl && <Sayfa kose={masaDik(sayfaC, sayfaPhi, 0.21, 0.27)} renk={SAYFA_RENK} seed={S + 40} />}
       <KutuCiz uid={uid} kapak={kapakT} cek={cekT} hat={hatT} seritIc={p < sTut ? seritIc : null} />
       {p >= sTut && !seritDurum.elde && seritCiz}
-      {solEl && !("gravur" in solEl) && <ElGolgeli e={solEl} uid={`${uid}l`} />}
+      {solEl && !("gravur" in solEl) && <ElGolgeli e={solEl} uid={`${uid}l`} olcek={k.cs} golgeMaske={golgeMaske} />}
       {solEl && "gravur" in solEl && (() => {
         // gravür eli (§15.1): işaret ucu = solEl.d.uc; E = 0.19 m × yerel px/m; sol el avuç aşağı → başparmak sağda (ayna)
         const E = 0.19 * solEl.d.pxm, g0 = gravurElGeo([0, 0], solEl.d.aci, E, GRAVUR_POZ.olcu, true);
@@ -484,14 +497,14 @@ const MasaParis: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
         const q = (o: P, k2: number): P => [o[0] + nn[0] * k2, o[1] + nn[1] * k2];
         const ISK: P = EL_ISIGA;
         return <g>
-          <g transform={`translate(${solEl.golgeD[0]} ${solEl.golgeD[1]})`} opacity={0.55}><path d={kol.d} fill={DP.masaGolge} /><GravurEl bilek={bilek} aci={solEl.d.aci} E={E} poz={GRAVUR_POZ.olcu} ayna isik={ISK} taramaAci={143} golge={DP.masaGolge} golgeKay={[0, 0]} /></g>
+          <g mask={golgeMaske}><g transform={`translate(${solEl.golgeD[0]} ${solEl.golgeD[1]})`} opacity={0.55}><path d={kol.d} fill={DP.masaGolge} /><GravurEl bilek={bilek} aci={solEl.d.aci} E={E} poz={GRAVUR_POZ.olcu} ayna isik={ISK} taramaAci={143} golge={DP.masaGolge} golgeKay={[0, 0]} /></g></g>
           <path d={kol.d} fill="#5a5068" stroke="#2e2318" strokeWidth={3} strokeLinejoin="round" />
           <polygon points={pt([q(mA, w * 1.05), q(mB, w), q(mB, -w), q(mA, -w * 1.05)])} fill={GRAVUR_PALET.dagron.manset} stroke={GRAVUR_PALET.dagron.mansetGolge} strokeWidth={3} />
           {[0.35, 0.7].map((t) => { const c: P = [mA[0] + (mB[0] - mA[0]) * t, mA[1] + (mB[1] - mA[1]) * t]; const a1 = q(c, w * 0.95), b1 = q(c, -w * 0.95); return <line key={t} x1={a1[0]} y1={a1[1]} x2={b1[0]} y2={b1[1]} stroke={GRAVUR_PALET.dagron.mansetGolge} strokeWidth={1.5} />; })}
-          <GravurEl bilek={bilek} aci={solEl.d.aci} E={E} poz={GRAVUR_POZ.olcu} ayna palet={GRAVUR_PALET.dagron} isik={ISK} taramaAci={143} />
+          <GravurEl bilek={bilek} aci={solEl.d.aci} E={E} poz={GRAVUR_POZ.olcu} ayna palet={GRAVUR_PALET.dagron} isik={ISK} taramaAci={143} olcek={k.cs} />
         </g>;
       })()}
-      {sagEl && <ElGolgeli e={sagEl} uid={`${uid}r`} tutulan={seritDurum.elde ? seritCiz : undefined} />}
+      {sagEl && <ElGolgeli e={sagEl} uid={`${uid}r`} tutulan={seritDurum.elde ? seritCiz : undefined} olcek={k.cs} golgeMaske={golgeMaske} />}
     </g>
   );
 };
@@ -586,10 +599,10 @@ const MasaTours: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
         return <g>
           <path d={kol.d} fill="#5a5068" stroke="#2e2318" strokeWidth={3} strokeLinejoin="round" />
           <polygon points={pt([q(mA, w * 1.05), q(mB, w), q(mB, -w), q(mA, -w * 1.05)])} fill={GRAVUR_PALET.dagron.manset} stroke={GRAVUR_PALET.dagron.mansetGolge} strokeWidth={3} />
-          <GravurEl bilek={bilek} aci={aci} E={E} poz={GRAVUR_POZ.gevsek} palet={GRAVUR_PALET.dagron} isik={ISK} taramaAci={143} />
+          <GravurEl bilek={bilek} aci={aci} E={E} poz={GRAVUR_POZ.gevsek} palet={GRAVUR_PALET.dagron} isik={ISK} taramaAci={143} olcek={k.cs} />
         </g>;
       })()}
-      {solEl && <GravurElDurum d={solEl} tur="dagron" isik={EL_ISIGA} taramaAci={143} tutulan={!takili ? kilifCiz : undefined} />}
+      {solEl && <GravurElDurum d={solEl} tur="dagron" isik={EL_ISIGA} taramaAci={143} tutulan={!takili ? kilifCiz : undefined} olcek={k.cs} />}
     </g>
   );
 };
