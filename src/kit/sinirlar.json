@@ -383,6 +383,7 @@
     "DAGRON-INSERT": {
       "kurulmadi": true,
       "parametreler": { "gorunum": ["masa", "kafes"], "saat": ["gun"] },
+      "gorunum_sinirlari": { "masa": { "cs": [1.0, 2.4], "cx": [-400, 400], "cy": [-800, 200] }, "kafes": { "cs": [1.2, 1.8], "cx": [-200, 200], "cy": [-200, 200] } },
       "zorunlu": ["gorunum", "saat"],
       "kamera": { "cs": [1.0, 2.4], "cx": [-700, 700], "cy": [-1000, 600] },
       "karakterMaks": 0,
@@ -390,7 +391,8 @@
     },
     "LANTERN-ODA": {
       "kurulmadi": true,
-      "parametreler": { "gorunum": ["oda"], "saat": ["lamba"] },
+      "parametreler": { "gorunum": ["oda", "kapi"], "saat": ["lamba"] },
+      "gorunum_sinirlari": { "oda": { "cs": [0.95, 1.8], "cx": [-1400, 200], "cy": [-300, 300], "not": "C turu: pan kaldırıldı, oda cs 1.0 cx 0; geniş aralık yedek (v1 pan)" }, "kapi": { "cs": [0.95, 1.15], "cx": [-80, 80], "cy": [-60, 60], "not": "kamera dünya (1.00, 1.25, 1.15), F 2000, ufuk y 960; P10 devam_plan.kesme_2" } },
       "zorunlu": ["gorunum", "saat"],
       "kamera": { "cs": [0.95, 1.8], "cx": [-1400, 200], "cy": [-300, 300] },
       "karakterMaks": 0,

@@ -880,7 +880,43 @@
        "bas": 226,
        "bit": 244
       }
-     ]
+     ],
+     "ufuk_y": 1000,
+     "isik": "gunMontmartre",
+     "kafes": {
+      "x": [
+       300,
+       780
+      ],
+      "y": [
+       820,
+       1180
+      ],
+      "rim_y": 1180,
+      "kus": "tünekte, kılıfsız",
+      "not": "cs 1.5'te kuş 576 px (%30), kapak ≈240 px; sepet = Montmartre Sepet modülü (hasır yatay sıralar), rim y 1180, hasır alt üçte biri doldurur"
+     },
+     "gok": {
+      "tip": "GokBasamak",
+      "not": "§14.2 5 basamak, taramalı geçiş (B3 kabul); sol alt ufukta ışıma, düzensiz kenar"
+     },
+     "arka": {
+      "tarla_serit": "#c8ae98",
+      "uzun_golge": "#8f8aa8",
+      "cit_agac_bandi": {
+       "y": [
+        865,
+        1115
+       ],
+       "renk": "#5f5470",
+       "agac": 3,
+       "not": "CiplakAgac, farklı boy, eşit aralık yok"
+      }
+     },
+     "balon_kuresi": {
+      "durum": "coker",
+      "not": "Balon durum coker, §14.2 kumaş paleti, kıvrım taraması §2v2-H2.4"
+     }
     },
     "kamera": {
      "kare": [
@@ -991,7 +1027,7 @@
     "nesne": "güvercin (insert)",
     "nesne_pct": 30,
     "net_sn": 1.0,
-    "not": "yön arama f166-226; harita uçuş yönü ile aynı (güneybatı → kuzeydoğu = sağ-üst)"
+    "not": "yön arama f166-226; harita uçuş yönü ile aynı (güneybatı → kuzeydoğu = sağ-üst) · C turu: f206 kuş 576 px (%30), kapak açık, çit bandı kuşun arkasında"
    },
    "tasiyici": {
     "giris": "aynı mekân: P03 HARITA kamerası devam (cs 1.15); kesik çizgi → güvercin çizgisi",
@@ -1025,7 +1061,11 @@
      "dosya": "paris/ses/en/P04.mp3",
      "kare": 0
     }
-   ]
+   ],
+   "lint": {
+    "izin": [],
+    "not": "C turu, render motion sonrası"
+   }
   },
   {
    "id": "P05",
@@ -1042,11 +1082,21 @@
     "nesneler": {
      "terazi": {
       "konum": [
-       380,
-       1000
+       330,
+       780
       ],
       "deste_kefe": "mektup destesi (soğuk krem)",
-      "kus_kefe": "güvercin (kılıfsız, nötr gri)"
+      "kus_kefe": "güvercin (kılıfsız, nötr gri)",
+      "kol_x": [
+       105,
+       555
+      ],
+      "kefe_y": 665,
+      "direk_tepe_y": 345,
+      "kefe_sol_x_min": 90,
+      "kus_tepe_y": 370,
+      "kutu_ile_min_bosluk_px": 20,
+      "not": "v1 (380,1000) → geri-sol; gerçek ölçü (kol 0.35 m, direk 0.30 m, kefe ø 0.18 m); kefe indiğinde (f36) gölge de iner"
      },
      "mektup_destesi": {
       "konum": [
@@ -1056,14 +1106,24 @@
      },
      "mercekli_kutu": {
       "konum": [
-       720,
-       1080
+       795,
+       1009
       ],
-      "boyut": [
-       519,
-       370
+      "tur": "ahşap, mercekli, kapaklı, yan çekmeceli (kimyasal adım gösterilmez)",
+      "boyut_m": [
+       0.24,
+       0.2,
+       0.18
       ],
-      "tur": "ahşap, mercekli, kapaklı, yan çekmeceli (kimyasal adım gösterilmez)"
+      "kapsayan_x": [
+       586,
+       1167
+      ],
+      "mercek_tup": [
+       856,
+       986
+      ],
+      "not": "sağ ucu kadraj kenarında kesilir (derinlik); boyut ekran px DEĞİL, şablon 3B izdüşümle hesaplar"
      },
      "serit": {
       "boy_dekor_px": 140,
@@ -1083,6 +1143,34 @@
        1250
       ],
       "not": "cs 2.0, cx -40, cy -610'da ekran (540,930); P06 rota eşleşmesiyle aynı nokta"
+     },
+     "cekmece": {
+      "yuz": [
+       600,
+       1060,
+       760,
+       1110
+      ],
+      "yer": "kutu ön yüzü, sol alt",
+      "kayma_m": 0.08,
+      "bas": 198,
+      "bit": 222,
+      "el": "sağdan, ön yüzden çeker; şerit çekmeceden ölçü bölgesine 0.15 m yol alır"
+     },
+     "isik_hatti": {
+      "y": 1100,
+      "kalinlik": 4,
+      "renk": "#e4dccb",
+      "bas": 176,
+      "bit": 190,
+      "not": "küçültme anı (temas f182); L* ≤ 88, lint izni yok"
+     },
+     "sayfa": {
+      "merkez": [
+       580,
+       1190
+      ],
+      "not": "kutunun önü, tam ışıkta; ışık hattına çekilir f172–196"
      }
     },
     "eller": {
@@ -1151,7 +1239,9 @@
       "bit": 358
      }
     ],
-    "masa_olcek": "s(y)=1.966(y-137) px/m, mekanlar.md §3.2; terazi gerçek ölçü, kutu 0.28 m"
+    "masa_olcek": "MasaPerspektif F 1176, H 0.42 m, eğim 35°; nesneler 3B izdüşüm (mekanlar.md 3v2.3); ölçü bölgesi (560,1250) kilitli",
+    "isik": "atolye",
+    "isik_yukseklik_derece": 18
    },
    "sure_kare": 374,
    "metin": {
@@ -1212,7 +1302,7 @@
      "vurgu_en": [
       "FINGER"
      ],
-     "bas": 112,
+     "bas": 150,
      "bit": 360
     }
    ],
@@ -1288,7 +1378,7 @@
     "nesne": "sayfa → şerit+parmak",
     "nesne_pct": 22,
     "net_sn": 1.5,
-    "not": "ölçü karesinde cs 2.0: parmak 328 px (%17), şerit 280 px (%14.6), ekran (540,930) (alt bant 1290 üstü); ölçü bölgesi dekor (560,1250)"
+    "not": "ölçü karesinde cs 2.0: parmak 328 px (%17), şerit 280 px (%14.6), ekran (540,930) (alt bant 1290 üstü); ölçü bölgesi dekor (560,1250) · C turu: f36 kuş ≈410 px (%21), f160–182 sayfa %17, f280 parmak 328 / şerit 280 px @ (540,930)"
    },
    "tasiyici": {
     "giris": "ses J-cut: P04 kanat çırpışı P05'e taşar → kefe gıcırtısı",
@@ -1307,6 +1397,7 @@
    "muzik_notu": "Terazide düşük, hayal kırıklığı; el girerken ışık gibi ilk tema; 'parmak boyuna'da küçük şiirsel yükseliş, ölçü anında nefes.",
    "kontrol_kare": 280,
    "kontrol_kare_ek": [
+    36,
     182
    ],
    "alt_ucte_bir": "masa yüzeyi (ahşap damar), mektup destesi, el gölgesi (masa tam kadraj, push-in sonrası y 1250-1500 masa + parmak gölgesi)",
@@ -1329,7 +1420,12 @@
      "dosya": "paris/ses/en/P05.mp3",
      "kare": 0
     }
-   ]
+   ],
+   "ekran_yazisi_not": "f112–150'de terazi direk tepesi (y≈345) üst banda girer; yazı f150'de başlar (dokunuşun üstüne binmez), lint izni yok",
+   "lint": {
+    "izin": [],
+    "not": "C turu, render motion sonrası"
+   }
   },
   {
    "id": "P06",
@@ -1427,16 +1523,16 @@
      "ikinci_balon": {
       "konum": "Daguerre: sepet (850,937), küre (850,687) ø 246 (x 765-1011); dibinde 3 siluet 64 px (farklı boy/eğim); Z 36.7 m, ışıklı sağ duvarın önünde; yanında 2 sandık yığını x 950-985, y 904-939",
       "X": 8.4,
-     "balon_kuresi": {
-      "cizim": "alt",
-      "hilal": true
-     },
-     "sarkik_zarf": {
-      "X": -22,
-      "Z": 65,
-      "seed": 183
-     },
-     "not": "P07 vurulan balonun KURULUMU (küçük de olsa görünür); Dagron'unki SOLDA. Kurulum cs 1.0'da (f168-214). H2.9: Daguerre X 8.4 → küre (850,687), sepet (850,937), asma halatı (850,563)→(827,129)"
+      "balon_kuresi": {
+       "cizim": "alt",
+       "hilal": true
+      },
+      "sarkik_zarf": {
+       "X": -22,
+       "Z": 65,
+       "seed": 183
+      },
+      "not": "P07 vurulan balonun KURULUMU (küçük de olsa görünür); Dagron'unki SOLDA. Kurulum cs 1.0'da (f168-214). H2.9: Daguerre X 8.4 → küre (850,687), sepet (850,937), asma halatı (850,563)→(827,129)"
      },
      "figurler": [
       {
@@ -2325,7 +2421,15 @@
      "parilti": {
       "bas": 122,
       "bit": 190
-     }
+     },
+     "merkez_dekor": [
+      540,
+      1000
+     ],
+     "ekran_f24": [
+      500,
+      920
+     ]
     },
     "ip": "ince ip, iki tur sarım, malzeme nötr",
     "eller": {
@@ -2373,7 +2477,29 @@
       "bas": 196,
       "bit": 206
      }
-    ]
+    ],
+    "isik": "atolye",
+    "duvar": "tuffeau",
+    "mektup_yigini_konum": [
+     290,
+     1180
+    ],
+    "serit_yigini_konum": [
+     820,
+     1200
+    ],
+    "kece_altlik": {
+     "x": [
+      330,
+      750
+     ],
+     "y": [
+      900,
+      1250
+     ],
+     "renk": "#4a4a5c",
+     "not": "kılıfın arkası koyu zemin; Tours lucarne/pencere:tours yok"
+    }
    },
    "sure_kare": 218,
    "metin": {
@@ -2467,7 +2593,7 @@
     "nesne": "kuyruk kılıfı",
     "nesne_pct": 14,
     "net_sn": 1.1,
-    "not": "pırıltı + bağlı net f122-190; cs 2.0'da kılıf 278 px (tasarım ≈270); kılıf merkezi dekor (540,1000)"
+    "not": "pırıltı + bağlı net f122-190; cs 2.0'da kılıf 278 px (tasarım ≈270); kılıf merkezi dekor (540,1000) · C turu: f150 kılıf 278 px (%14) @ (500,920), keçe arkada"
    },
    "tasiyici": {
     "giris": "ÇIPLAK KESME #1 (zaman atlaması, P08 Tours)",
@@ -2502,7 +2628,11 @@
      "dosya": "paris/ses/en/P09.mp3",
      "kare": 0
     }
-   ]
+   ],
+   "lint": {
+    "izin": [],
+    "not": "C turu, render motion sonrası"
+   }
   },
   {
    "id": "P10",
@@ -2560,7 +2690,11 @@
     "kilif": [
      395.0,
      1325.8
-    ]
+    ],
+    "plan_ici_kesme_2": {
+     "kare": 266,
+     "gorunum": "kapi"
+    }
    },
    "devam_plan": {
     "kare_bas": 60,
@@ -2583,6 +2717,19 @@
        "bas": 62,
        "bit": 80,
        "temas": 68
+      },
+      "isin": {
+       "sinir_isin": 4,
+       "kenar_px": 3,
+       "cizgi_aralik_derece": 2.5,
+       "toz": [
+        6,
+        8
+       ],
+       "kaynak": [
+        150,
+        1529
+       ]
       }
      },
      "cam_levha": {
@@ -2620,32 +2767,20 @@
        "bas": 236,
        "bit": 262
       },
-      "kapiya_gider": {
-       "bas": 256,
-       "bit": 276,
-       "temas": 272
-      },
       "konum_dekor_x": [
        422,
        753,
        1084,
        1415
-      ]
-     },
-     "kapi": {
-      "konum": "sağ kenar",
-      "bekleyenler": "3 yüzsüz siluet (P01 pencere siluetleriyle aynı tasarım)",
-      "zarf_acilir": {
-       "bas": 276,
-       "bit": 296,
-       "temas": 290
+      ],
+      "memur3_kalkis": {
+       "bas": 250,
+       "bit": 266,
+       "kim": "memur-3 (x 1084), zarf elinde",
+       "yon": "ayağa kalkar (baş y 1618→1086), sağa yürür, f266'da sağ kenardan çıkar (duvarsız kadraj kenarı)",
+       "cikis_kare": 266
       },
-      "okuma": {
-       "bas": 296,
-       "bit": 386,
-       "not": "biri zarfı açıp okur: bel/göğüs, elde kâğıt; ANAHTAR tutma 1.5 sn"
-      },
-      "okuyan_dekor_x": 1390
+      "yazar_not": "eller kadrajda değil; baş eğimi + omuz ritmi, her memur farklı faz (3–4 omuz vuruşu)"
      },
      "animasyonlar": [
       {
@@ -2664,9 +2799,9 @@
        "bit": 248
       },
       {
-       "ad": "kapiya",
-       "bas": 256,
-       "bit": 276
+       "ad": "memur-3 kalkar ve cikar",
+       "bas": 250,
+       "bit": 266
       },
       {
        "ad": "okuma (tutma)",
@@ -2674,47 +2809,181 @@
        "bit": 386
       }
      ],
-     "pan_notu": "cx -1250 (cs 1.6, f290) → -1345 (cs 1.7, f398): okuyan dekor x 1390 ekran x≈640'a gelir; pan f250-290 (40 kare, ≈31 px/kare: hızlı ama okunur; yavaş istenirse f240'tan). Arka duvar düzleminde kadraj 1.23 m: kapı bu yüzden pan olmadan dışarıda. Okuyanın eli cs 1.7'de 323 px"
+     "pan_notu": "cx -1250 (cs 1.6, f290) → -1345 (cs 1.7, f398): okuyan dekor x 1390 ekran x≈640'a gelir; pan f250-290 (40 kare, ≈31 px/kare: hızlı ama okunur; yavaş istenirse f240'tan). Arka duvar düzleminde kadraj 1.23 m: kapı bu yüzden pan olmadan dışarıda. Okuyanın eli cs 1.7'de 323 px",
+     "perde_icerik": "P05 sayfası (dil-nötr), bulanık→net 3 kopya ±14 px",
+     "plan_ici_kesme_2": {
+      "kare": 266,
+      "sonraki_gorunum": "kapi",
+      "not": "pan YOK (orkestra varsayılanı); kesme memur-3 çıkışı bitince"
+     }
     },
     "kamera": {
      "kare": [
       60,
-      110,
-      250,
-      290,
-      398
+      266
      ],
      "cs": [
       1.0,
-      1.0,
-      1.0,
-      1.6,
-      1.7
+      1.0
      ],
      "cx": [
       0,
-      0,
-      0,
-      -1250,
-      -1345
+      0
      ],
      "cy": [
-      0,
-      0,
-      0,
       0,
       0
      ],
      "egri": "inout"
     },
-    "tasiyici": "kılıftan çıkan koyu şerit (renk/boy) → huzmedeki küçük bulanık kare; ses: ip çıt → lamba fışş"
+    "tasiyici": "kılıftan çıkan koyu şerit (renk/boy) → huzmedeki küçük bulanık kare; ses: ip çıt → lamba fışş",
+    "kesme_2": {
+     "kare_bas": 266,
+     "sablon": "LANTERN-ODA",
+     "parametreler": {
+      "gorunum": "kapi",
+      "saat": "lamba",
+      "kamera_dunya": {
+       "x": 1.0,
+       "h": 1.25,
+       "z": 1.15,
+       "F": 2000,
+       "ufuk_y": 960
+      },
+      "perde_seridi": {
+       "x": [
+        0,
+        96
+       ],
+       "not": "soldaki parlak dikey şerit: aynı odada olduğumuzu söyler"
+      },
+      "kapi": {
+       "sove_x": [
+        318,
+        429
+       ],
+       "aciklik_x_basi": 429,
+       "koridor_ton": "#e8cdb6",
+       "isik": "sıcak gün (orkestra varsayılanı)",
+       "sove_ic_yuz": "#c9a998"
+      },
+      "memur_eli": {
+       "giris": {
+        "bas": 266,
+        "bit": 272
+       },
+       "cikis": {
+        "bas": 272,
+        "bit": 284
+       },
+       "yon": "soldan girer/çıkar (memur-3 sağ çıkışının devamı)",
+       "poz": "kistir"
+      },
+      "zarf_verilir": {
+       "kare": 272,
+       "temas": 272,
+       "not": "okuyanın sol eli zarfı alır"
+      },
+      "zarf_acilir": {
+       "bas": 276,
+       "bit": 296,
+       "temas": 290,
+       "el": "sağ el kistirSiki, kapak yukarı döner"
+      },
+      "okuyan": {
+       "kim": "yetiskin-b",
+       "yon": "sola (perdeye), yaw 30°",
+       "bas_tepe": [
+        727,
+        585
+       ],
+       "kagit_merkez": [
+        298,
+        933
+       ],
+       "kagit_boyut": [
+        275,
+        363
+       ],
+       "kagit_pct": 19,
+       "el_px": 255,
+       "el_pct": 13,
+       "not": "kâğıt perdeye doğru kalkık; harf yok, satırlar dil-nötr"
+      },
+      "bekleyenler": {
+       "sayi": 2,
+       "tur": "P01 pencere siluetleriyle aynı tasarım (yetiskin-a)",
+       "baslar": [
+        [
+         1018,
+         570
+        ],
+        [
+         1090,
+         570
+        ]
+       ]
+      },
+      "okuma": {
+       "bas": 296,
+       "bit": 386,
+       "not": "baş eğik, 2 küçük satır-takip; ANAHTAR tutma 1.5 sn"
+      },
+      "kapanis": {
+       "bas": 386,
+       "bit": 398,
+       "not": "kâğıt hafif iner; hareket tamamlanır"
+      },
+      "animasyonlar": [
+       {
+        "ad": "memur eli zarf",
+        "bas": 266,
+        "bit": 284
+       },
+       {
+        "ad": "zarf acilir",
+        "bas": 276,
+        "bit": 296
+       },
+       {
+        "ad": "okuma (tutma)",
+        "bas": 296,
+        "bit": 386
+       }
+      ]
+     },
+     "kamera": {
+      "kare": [
+       266,
+       296,
+       398
+      ],
+      "cs": [
+       1.0,
+       1.0,
+       1.08
+      ],
+      "cx": [
+       0,
+       0,
+       0
+      ],
+      "cy": [
+       0,
+       0,
+       -20
+      ],
+      "egri": "inout",
+      "not": "yavaş itme yalnız tutmada; cs 1.08'de kâğıt ≈ (275,931)"
+     }
+    }
    },
    "sure_kare": 398,
    "metin": {
     "tr": "Film duvara yansıdı. Parmak boyundaki sayfa yeniden büyüdü. Paris mektuplarını okudu.",
     "en": "The film was projected. The tiny page grew, and Paris read its mail."
    },
-   "olcek": "A (f0-58): yakın (kuş + el + kılıf, cs 1.8→1.9); B (f60-398): orta-geniş (perde %55, cs 1.0) → pan + yakın (kapı, okuyan siluet göğüs, cs 1.6→1.7)",
+   "olcek": "A (f0-58): yakın (kuş + el + kılıf, cs 2.655→2.75); B-oda (f60-266): orta-geniş (perde %55, cs 1.0, pan yok) → plan içi kesme f266 → B-kapi (f266-398): bel/göğüs (okuyan, kâğıt %19, eller %13, cs 1.0→1.08)",
    "tempo": "bekle",
    "anahtar": true,
    "tutma": {
@@ -2723,7 +2992,7 @@
      386
     ],
     "sn": 1.5,
-    "not": "okuma 90 kare; çevre geri çekilir (kamera yavaş itme, memur masaları kadraj dışı); EN'de f266'dan sonra ~2.2 sn sessizlik resimle dolar"
+    "not": "okuma 90 kare (kapi görünümü); çevre geri çekilir (yavaş itme cs 1.0→1.08); EN'de f266'dan sonra ~2.2 sn sessizlik resimle dolar"
    },
    "kamera": {
     "kare": [
@@ -2842,17 +3111,24 @@
     "id": "PK-D7",
     "ad": "Perdede büyüme ve odak",
     "bas": 84,
-    "bit": 270
+    "bit": 266
    },
    "okunurluk": {
     "nesne": "perde",
     "nesne_pct": 55,
-    "net_sn": 1.1,
-    "not": "net f204-270; odada diğer hareket durur; perde alt kenarı y≈1468; pan cx -1250→-1345 (sinirlar LANTERN-ODA cx -1400…200); kapı sövesi dekor x 1157-1950"
+    "net_sn": 1.03,
+    "not": "PK-D7 net f204-266 = 62 kare (1.03 sn); perde %55 (y 412–1468, 3 px demet kenarı); kapi f330 kâğıt ≈275×363 @ (298,933), el ≈255–275 px; pan yok",
+    "okuma": {
+     "nesne": "kâğıt",
+     "nesne_pct": 19,
+     "el_pct": 13,
+     "net_sn": 1.5
+    }
    },
    "tasiyici": {
     "giris": "kuş hareket yönü: P09'da sağa çıkar, P10'da soldan girer; ses: kanat çırpışı P09'dan taşar",
-    "cikis": "ÇIPLAK KESME #2 (duygusal doruk → bedel/ölçek); zarf/kâğıt → harita kâğıdı, müzik cümlesi sürer"
+    "cikis": "ÇIPLAK KESME #2 (duygusal doruk → bedel/ölçek); zarf/kâğıt → harita kâğıdı, müzik cümlesi sürer",
+    "cikis_kesme_2": "oda→kapi: perde şeridi (soldaki parlak şerit) + memur-3 sağ çıkışı → eli soldan girer; ses: kalem ortamı kesilir, zarf sesi"
    },
    "sfx": [
     "pk-kanat f20",
@@ -2868,9 +3144,10 @@
    "kontrol_kare": 238,
    "kontrol_kare_ek": [
     330,
-    48
+    48,
+    272
    ],
-   "alt_ucte_bir": "A: kümes tahtası + çatı kiremit/arduvaz (y 1250-1500); B: perde alt satırları (altyazı bandında; odak merkez y 700-1000'de), memur masaları ve kağıtlar; okuma: göğüs/gövde + kağıt (y 1100-1500)",
+   "alt_ucte_bir": "A: kümes tahtası + çatı kiremit/arduvaz (y 1250-1500); B-oda: perde alt satırları, memur başları, lantern; B-kapi: palto gövdesi (kontrajur koyu kütle, iç çizgi, 78° tarama)",
    "kit_eksik": [
     "KE-PK-S1",
     "KE-PK-S4",
@@ -2894,9 +3171,10 @@
     }
    ],
    "lint": {
-    "not": "v2 kamera, render motion sonrası",
-    "izin": []
-   }
+    "izin": [],
+    "not": "C turu, render motion sonrası"
+   },
+   "ekran_yazisi_not": "f232–386 'KOPYALANIP DAĞITILDI' kapi'da koridor ışığı/koyu duvar üstünde: K2 kâğıt şerit + mürekkep yazı her zeminde okunur, yeni parametre gerekmedi (kit_eksik yok); okuyanın başı y 585 > band 400"
   },
   {
    "id": "P11",
