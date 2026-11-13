@@ -856,3 +856,29 @@
 - Aldığım kararlar ve gerekçeleri: Biniş şeritte okunuyor ve kritik fizik (boşluğu tutan el) giderildi. 360'ta el-şapka okuması ve kütük bacak kalıyor; bunlar orta öncelikli, şablon kabulünü engellemiyor. Darbe deliği okunuyor ama beyaz nokta + loblu kontur onu "canlı" gibi gösteriyor. Gök taraması tuttu.
 - Uyguladığım kurallar / yakaladığım kural ihlalleri: Yeni kritik hata yok. Okunurluk: tek karede jest okunmuyor (P06b f230). Hareket şeridi her iki şeritte de tarandı. lint.izin yeniden açılmadı.
 - Açık sorular / bir sonraki ajana notlar: Düzeltmeler 1–3 motion'da (tutunma h + halat seçimi, bacak tonu/diz/ayak, delik beyaz noktası/kontur). Küçük işler listesi elestiri.md'de. Kurgucu: f218 halat kavrama foley'i.
+
+## mekan-sorumlusu · 2026-11-13 · C turu: DAGRON-INSERT v2 + LANTERN-ODA v2 şartnamesi (tur-14)
+- Ne yaptım: `mekanlar.md`'ye §3v2 (DAGRON-INSERT: P04b kafes, P05 Paris atölyesi, P09 Tours bürosu) ve §4v2 (LANTERN-ODA: `oda` + yeni `kapi` görünümü) yazıldı. §3 ve §4 arşive alındı. Özet kararlara madde 12 eklendi. İçerik: mimari/iç mekân kartları ([G] işaretli, dönem fotoğraf atölyesi ve projeksiyon gravürü tarifi), tek ışık vektörü, masa koordinatlı yerleşim, hex/L\*/C\* tabloları (elle Lab hesabı, kılıfa ΔE ≥ 46), tarama haritası, P05/P10b anahtar an ekran ölçüleri, KolEl parisGri ölçek/poz tablosu ve yönetmen kamera tablosu. Masa ve kapı izdüşümleri betikle hesaplandı (scratchpad, depoya girmedi).
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/mekanlar.md, bolumler/paris-kusatmasi/katki-raporu.md.
+- Aldığım kararlar ve gerekçeleri:
+  - **Masa ışığı 35° → 18°.** 12 Kasım Paris'te güneş en çok ≈ 23.5°'ye çıkar; v1 fiziksel olarak yanlıştı. Işık önden-soldan geliyor. Böylece gölgeler sağ-yukarı, eylemden uzağa düşüyor ve kameraya bakan yüzler aydınlanıyor (sıcaklık dersi).
+  - **Terazi geri-sola (330, 780), kutu 0.24 × 0.20 × 0.18 m (795, 1009), çekmece ön-sol altta.** Kutu kadraja sığmıyordu ve çekmece kadraj dışında kalıyordu. Terazinin gölgesi kutunun üstüne düşüyordu. Ölçü bölgesi (560, 1250) kilidi değişmedi.
+  - **Palet §13/§14 diline taşındı** (ışık gül-krem, gölge mavi-mor). Sahibi tasarımcı; öneri olarak yazıldı.
+  - **Tours duvarı tuffeau [G]:** P09 f0'da duvar görünüyor; şehir imzası ilk karede okunuyor.
+  - **LANTERN-ODA: pan yerine plan içi kesme f266 → `kapi`.** v1'deki 1345 px'lik pan whip gibi okunurdu ve PK-D7 net anını 1 sn'nin altına düşürürdü. Okuyan kâğıdı perdenin ışığına doğru kaldırıyor: kâğıt koyu duvar önünde (%19), eller ≈ 255 px (%13).
+  - **Huzme ışınsal çizgilerle** (dönem gravürü dili, dijital çıkartma riskine karşı). Kenar 3 px (360'ta 1 px).
+  - **Kapı ışığı sıcak** (tasarımda soğuktu): doruk anı en sıcak kare olsun diye. Kapı 0.10 m sağa alındı.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - **Fizik:** v1 güneş açısı imkânsızdı.
+  - **Sarı metal:** KolEl `parisManset` tipinde altın düğme var (`#d4ad52`); Dagron eli için kullanılamaz, `dagronSepya` tipi önerildi.
+  - **L\* tavanı:** tasarımdaki ışık hattı ve mercek hilali `#f6f2e2` L\* 95 ile §13.3 tavanını aşıyor; `#e4dccb` ya da lint izni önerildi.
+  - **Okunurluk:** ≥ %10 ve ≥ 1 sn, el ≥ %12 her anahtar anda hesaplandı.
+  - **Görünürlük–ses:** memurların kalemi görünmüyor, bu yüzden `pk-kalem` yalnız kısık ortam sesi.
+  - **Giriş/çıkış:** memur-3 duvarsız sağ kenardan çıkıyor, `kapi`'da eli soldan giriyor.
+  - Kemer yok. Kırmızı yok.
+- Açık sorular / bir sonraki ajana notlar:
+  1. Kullanıcı: kesme (`kapi`) mi, pan mı (varsayılan kesme). Sıcak kapı ışığı (varsayılan evet).
+  2. Tasarımcı: §3v2.10 / §4v2.9 listeleri (palet, kutu ölçüsü, L\* 88, `dagronSepya`, okuyanın kol tonu).
+  3. Yönetmen: kamera tablosu (§3v2/4v2 sonu). P05 terazi/kutu konumları ve P09 mektup yığını değişti. P10 kesme f266. `net_sn` 1.03. P05 f112–150 yazı bandı–terazi tepesi çakışması.
+  4. Motion: `DagronInsert.tsx` / `LanternOda.tsx`. Masa kamerası çok yakın, nesneler 3B izdüşümle çizilmeli. İlk still'de 3v2.5 köşeleri ±15 px. `sinirlar.json` LANTERN-ODA'ya `kapi`.
+  5. Araştırmacı: projeksiyon gravürünün içeriği, Dagron atölyeleri, pellicule düzeni.
