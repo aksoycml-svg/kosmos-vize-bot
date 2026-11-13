@@ -44,6 +44,19 @@ const LP = {
   koridorTarama: "#a88c80", sogukBasamak: "#3a3850", gomlek: "#5d5f63",
 };
 
+// ---- lantern geometrisi (C4, oda görünümü ekran koordinatı; kaçış noktası (540,960), Z ≈ 2.0 m, mercek ≈ 1.5 m) ----
+const LN = (() => {
+  const VP: P = [540, 960], s = 0.85; // ön yüz: kutu derinliği ≈ 0.35 m
+  const bx0 = 915, bx1 = 1200, by0 = 1000, by1 = 1290;
+  const on = (q: P): P => [VP[0] + (q[0] - VP[0]) * s, VP[1] + (q[1] - VP[1]) * s];
+  const merk: P = [(bx0 + bx1) / 2, by0 + (by1 - by0) * 0.55];
+  const mercek: P = [VP[0] + (merk[0] - VP[0]) * 0.8, VP[1] + (merk[1] - VP[1]) * 0.8]; // mercek borusu ucu (kutunun arkasında gizli)
+  return {
+    bx0, bx1, by0, by1, mercek, onSolUst: on([bx0, by0]), onSolAlt: on([bx0, by1]), onSagUstX: on([bx1, by0])[0],
+    bacaX: 952, bacaY: 790, yuva: [1050, 998] as P, sehpaOnBacak: [on([bx0 + 10, by1 + 20]), on([bx0 + 10, 1990])] as [P, P],
+  };
+})();
+
 // ---- değişken aralıklı tek yön tarama (çizgiler tek tek; aralık konuma göre sıklaşır) ----
 const TaramaCizgi: React.FC<{ aci: number; kutu: [number, number, number, number]; aralik: (u: number) => number; renk: string; kalin: number; alfa: number; seed: number }> = ({ aci, kutu, aralik, renk, kalin, alfa, seed }) => {
   const r = (aci * Math.PI) / 180, d: P = [Math.cos(r), -Math.sin(r)], n: P = [-d[1], d[0]];
@@ -154,7 +167,10 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
   const yan = la.temas ?? 68;
   const lamba = p >= yan ? 1 : 0; // ışık olayı (lamba yanar)
   const uzan = t01(p, yan, la.bit, GIRIS); // huzme mercekten perdeye uzar
-  const kaynak: P = hz.isin?.kaynak ?? [892, 1605];
+  // C4 (eleştiri C3 kritik): lantern izleyicilerin arkasında YÜKSEK SEHPADA (dönem: baş üstünden yansıtma). Mercek şablon sabiti
+  // (lantern çiziminden türetilir); json `huzme.isin.kaynak` artık kullanılmaz — tüm ışınlar baş tepelerinin (y ≥ 1205) üstünden geçer.
+  void hz.isin;
+  const kaynak: P = LN.mercek;
   // görüntü dikdörtgeni: küçük bulanık kare (80 px) → 566 × 439 (merkez (422,779)); her karede bezin içinde
   const C: P = pb.buyume_merkezi ?? [422, 779];
   const g = t01(p, bo.bas, bo.bit, INOUT);
@@ -191,25 +207,13 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
     return { x, tepe, omuzY, B: BM[i], tip: TIP[i], egim };
   });
   const memurIsik = lamba && uzan >= 1 ? Math.min(1, 0.45 + (yw - 40) / 200) : 0;
-  // C3 (eleştiri kritik 2): başlar opak ve huzmenin ÖNÜNDE; tek ışık (lantern mercek K) → her başın gölgesi mercekten başa giden
-  // ışın boyunca görüntünün yakın kenarına (alt/sağ) düşer: baş silüeti K etrafında t kat ölçeklenir (t = ışının görüntüye giriş
-  // parametresi). Baş ile perde arasındaki gölge kaması huzmeden maskelenir. Görüntü dışına düşen gölge R ile kırpılır.
-  const basGolge = memur.map((m) => {
-    const kf = memurKafa(m.x, m.tepe, m.B, m.tip, m.egim), d: P = [kf.merkez[0] - kaynak[0], kf.merkez[1] - kaynak[1]];
-    // perde düzlemi sabit: t tam görüntü dikdörtgeninden (RT) hesaplanır → gölgenin yeri/ölçüsü görüntü büyürken değişmez,
-    // yalnız ışıklı alan (R) onu açığa çıkarır (küçük görüntüde baş ışık konisinin dışında → gölge yok)
-    const RT = [C[0] - 283, C[1] - 219.5, C[0] + 283, C[1] + 219.5];
-    const tB = d[1] < -1e-6 ? (RT[3] - kaynak[1]) / d[1] : 0, tR = d[0] < -1e-6 ? (RT[2] - kaynak[0]) / d[0] : 0;
-    return { kf, t: Math.max(1, tB, tR) };
-  });
-  const olc = (t: number) => `translate(${kaynak[0]} ${kaynak[1]}) scale(${t}) translate(${-kaynak[0]} ${-kaynak[1]})`;
-  const basSil = (kf: ReturnType<typeof memurKafa>, fill: string) => <g transform={kf.tf} fill={fill}><path d={kf.kafa} />{kf.sac.map((d, j) => <path key={j} d={d} />)}</g>;
+  // C4 (orkestra kararı): perdede baş gölgesi YOK — mercek tüm başların üstünde, huzme hiçbir başı kesmez (maske/gölge kaldırıldı).
   const toz = Array.from({ length: 8 }, (_, i) => {
     const t = 0.35 + rnd(S + 9, `t${i}`) * 0.5, hedef = lp(BL, TR, rnd(S + 9, `x${i}`)), q = lp(kaynak, hedef, t);
     return [q[0] + 10 * Math.sin(p / 40 + i), q[1] - ((p * 0.3 + i * 37) % 40)] as P;
   });
   // cam levha: sağ kenardan gelen el (gri manşet) levhayı lantern üst yüzündeki yuvaya indirir (temas f84) ve çekilir
-  const yuva: P = [858, 1470];
+  const yuva: P = LN.yuva;
   const cT = cam.temas ?? 84;
   const elIn = t01(p, cam.bas - 14, cam.bas - 2, GIRIS), elOut = t01(p, cT + 2, cam.bit + 14, CIKIS);
   const levhaAlt = p < cT ? yuva[1] - 70 * (1 - t01(p, cam.bas - 2, cT, INOUT)) : yuva[1];
@@ -224,11 +228,6 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
         <clipPath id={`${uid}bz`}><path d={bezYol} /></clipPath>
         <clipPath id={`${uid}dv`}><rect x={-200} y={204} width={1033} height={1110} /></clipPath>
         <clipPath id={`${uid}ly`}><rect x={-400} y={-400} width={1900} height={yuva[1] + 400} /></clipPath>
-        <clipPath id={`${uid}rg`}><rect x={R[0]} y={R[1]} width={R[2] - R[0]} height={R[3] - R[1]} rx={6} /></clipPath>
-        <mask id={`${uid}hm`} maskUnits="userSpaceOnUse" x={-400} y={-400} width={1900} height={2800}>
-          <rect x={-400} y={-400} width={1900} height={2800} fill="#fff" />
-          {basGolge.map((b, i) => <g key={i}>{Array.from({ length: 13 }, (_, j) => <g key={j} transform={olc(1 + ((b.t - 1) * j) / 12)}>{basSil(b.kf, "#000")}</g>)}</g>)}
-        </mask>
       </defs>
       {/* tavan + korniş */}
       <rect x={-400} y={-400} width={1900} height={2800} fill={LP.duvar} />
@@ -284,8 +283,6 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
       <g clipPath={`url(#${uid}bz)`}>
         {lamba > 0 && uzan >= 1 && <rect x={R[0]} y={R[1]} width={R[2] - R[0]} height={R[3] - R[1]} rx={6} fill={LP.perde} />}
         {lamba > 0 && uzan >= 1 && icerik && <PerdeSayfa r={R} bulanik={bulanik} cizgi={Math.max(2, 4.5 * (yw / 283))} />}
-        {/* başların perdedeki gölgesi (net kenar, ışıksız bez tonu), yalnız ışıklı görüntü içinde */}
-        {lamba > 0 && uzan >= 1 && <g clipPath={`url(#${uid}rg)`}>{basGolge.map((b, i) => <g key={i} transform={olc(b.t)}>{basSil(b.kf, LP.bez)}</g>)}</g>}
         {[250, 470, 640].map((x, i) => <path key={i} d={`M${x} 528 Q${x + (i - 1) * 4} 800 ${x + 2} 1080`} stroke="#14141c" strokeWidth={2} strokeOpacity={0.1} fill="none" />)}
         {lamba > 0 && uzan >= 1 && [0, 1, 2, 3, 4, 5].map((i) => <line key={`l${i}`} x1={R[0]} x2={R[2]} y1={R[1] + (i + 1) * (R[3] - R[1]) / 7} y2={R[1] + (i + 1) * (R[3] - R[1]) / 7} stroke="#8a8a80" strokeWidth={1} strokeOpacity={0.05} />)}
         <path d="M92 1045 Q98 1030 108 1040" stroke="#24232f" strokeWidth={2} fill="none" /><path d="M752 1045 Q746 1030 736 1040" stroke="#24232f" strokeWidth={2} fill="none" />
@@ -297,7 +294,7 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
       {p < mk.bas + 6 && <rect x={xs[3] - 0.95 * 160} y={1660} width={1.9 * 160} height={300} rx={8} fill="#1f1e2a" stroke={LP.memurKontur} strokeWidth={2.5} />}
       {p >= mk.bas + 6 && <rect x={xs[3] - 0.95 * 160 + 30} y={1690} width={1.9 * 160} height={300} rx={8} fill="#1f1e2a" stroke={LP.memurKontur} strokeWidth={2.5} />}
       {/* huzme: zarf dolgusu α .10 + iç ışınlar 2 px α .20 + 2 sınır ışını 3 px α .55 + toz (lantern gövdesinin altında) */}
-      {lamba > 0 && <g mask={uzan >= 1 ? `url(#${uid}hm)` : undefined}>
+      {lamba > 0 && <g>
         <polygon points={pt(zarfPts)} fill={LP.huzme} fillOpacity={0.1} />
         <g stroke={LP.huzme} strokeWidth={2} strokeOpacity={0.2} strokeLinecap="round">{icIsin.map((q, i) => { const e = uc(q); return <line key={i} x1={kaynak[0]} y1={kaynak[1]} x2={e[0]} y2={e[1]} />; })}</g>
         <g stroke={LP.huzme} strokeWidth={3} strokeOpacity={0.55} strokeLinecap="round">{[TR, BL].map((q, i) => { const e = uc(q); return <line key={i} x1={kaynak[0]} y1={kaynak[1]} x2={e[0]} y2={e[1]} />; })}</g>
@@ -309,29 +306,43 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
         <rect x={yuva[0] - 36} y={levhaAlt - 84} width={72} height={84} fill="#8a8494" stroke={LP.sehpa} strokeWidth={7} />
         <line x1={yuva[0] - 28} y1={levhaAlt - 76} x2={yuva[0] + 28} y2={levhaAlt - 76} stroke={LP.huzme} strokeWidth={2} opacity={0.5} />
       </g>}
-      {/* lantern: arkadan-soldan görülen kutu (§4v3.2): sol yüz, üst yüz, arka yüz; baca; sehpa */}
+      {/* lantern (C4): yüksek ahşap sehpa üstünde, arkadan-soldan görülen kutu; derinlik kenarları kaçış noktasına (540,960) gider.
+          Arka yüz kameraya bakar; mercek borusu ön yüzde (gizli). Ön bacak + sehpa tablası + arka bacak; ayaklar kadraj altında zemine iner. */}
       <g strokeLinejoin="round">
-        <rect x={930} y={1031} width={70} height={430} fill={LP.lantern} stroke={LP.lanternKenar} strokeWidth={3} />
-        <line x1={930} y1={1031} x2={930} y2={1456} stroke={LP.kenarSoguk} strokeWidth={2} opacity={0.35 * lamba} />
-        <rect x={920} y={1013} width={90} height={18} fill={LP.lanternKenar} stroke="#1a1a24" strokeWidth={3} />
-        <polygon points={pt([[722, 1385], [1100, 1385], [1100, 1527], [783, 1527]])} fill="#3a3d44" stroke={LP.lanternKenar} strokeWidth={4} />
-        <rect x={930} y={1440} width={70} height={30} fill={LP.lantern} stroke={LP.lanternKenar} strokeWidth={3} />
-        <rect x={yuva[0] - 42} y={yuva[1] - 6} width={84} height={12} fill="#1a1a24" />
-        <polygon points={pt([[722, 1385], [783, 1527], [783, 1960], [722, 1960]])} fill="#272a30" stroke={LP.lanternKenar} strokeWidth={4} />
-        <defs><clipPath id={`${uid}ly2`}><polygon points={pt([[722, 1385], [783, 1527], [783, 1960], [722, 1960]])} /></clipPath></defs>
-        <g clipPath={`url(#${uid}ly2)`}><TaramaCizgi aci={100} kutu={[724, 1400, 781, 1940]} aralik={() => 6} renk="#1a1a24" kalin={2} alfa={0.85} seed={S + 5} /></g>
-        <rect x={783} y={1527} width={330} height={440} fill={LP.lantern} stroke={LP.lanternKenar} strokeWidth={4} />
-        <rect x={870} y={1600} width={120} height={150} fill="none" stroke={LP.lanternKenar} strokeWidth={4} />
-        {[1560, 1580].map((y, i) => <line key={i} x1={820} y1={y} x2={1060} y2={y} stroke={lamba ? LP.huzme : "#1a1a24"} strokeWidth={3} opacity={lamba ? 0.6 : 1} />)}
-        {[[800, 1545], [1060, 1545], [800, 1900], [1060, 1900]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r={3} fill={LP.lanternKenar} />)}
-        <line x1={722} y1={1385} x2={1100} y2={1385} stroke={LP.kenarSoguk} strokeWidth={2} opacity={0.35 * lamba} />
+        {/* ön (uzak) sehpa bacağı + kayıt çıtası */}
+        <polygon points={pt([LN.sehpaOnBacak[0], [LN.sehpaOnBacak[0][0] + 20, LN.sehpaOnBacak[0][1]], [LN.sehpaOnBacak[1][0] + 20, 1990], [LN.sehpaOnBacak[1][0], 1990]])} fill="#2c251f" stroke={LP.memurKontur} strokeWidth={2.5} />
+        <polygon points={pt([[LN.sehpaOnBacak[0][0] + 20, 1640], [LN.bx0 + 4, 1660], [LN.bx0 + 4, 1684], [LN.sehpaOnBacak[0][0] + 20, 1662]])} fill="#2c251f" stroke={LP.memurKontur} strokeWidth={2} />
+        {/* sol yüz (derinlik), üst yüz (ince: göz hizasına yakın), arka yüz */}
+        <polygon points={pt([[LN.bx0, LN.by0], LN.onSolUst, LN.onSolAlt, [LN.bx0, LN.by1]])} fill="#272a30" stroke={LP.lanternKenar} strokeWidth={3} />
+        <polygon points={pt([[LN.bx0, LN.by0], LN.onSolUst, [LN.onSagUstX, LN.onSolUst[1]], [LN.bx1, LN.by0]])} fill="#3a3d44" stroke={LP.lanternKenar} strokeWidth={3} />
+        {/* baca (havalandırma şapkalı), sol-arka köşede */}
+        <rect x={LN.bacaX} y={LN.bacaY} width={52} height={LN.by0 - LN.bacaY} fill={LP.lantern} stroke={LP.lanternKenar} strokeWidth={3} />
+        <rect x={LN.bacaX - 9} y={LN.bacaY - 14} width={70} height={14} fill={LP.lanternKenar} stroke="#1a1a24" strokeWidth={3} />
+        <line x1={LN.bacaX} y1={LN.bacaY} x2={LN.bacaX} y2={LN.by0} stroke={LP.kenarSoguk} strokeWidth={2} opacity={0.35 * lamba} />
+        {/* yuva (levha ağzı) üst yüzde */}
+        <rect x={yuva[0] - 36} y={yuva[1] - 4} width={72} height={8} fill="#1a1a24" />
+        <rect x={LN.bx0} y={LN.by0} width={LN.bx1 - LN.bx0} height={LN.by1 - LN.by0} fill={LP.lantern} stroke={LP.lanternKenar} strokeWidth={4} />
+        <defs><clipPath id={`${uid}ly2`}><polygon points={pt([[LN.bx0, LN.by0], LN.onSolUst, LN.onSolAlt, [LN.bx0, LN.by1]])} /></clipPath></defs>
+        <g clipPath={`url(#${uid}ly2)`}><TaramaCizgi aci={100} kutu={[LN.onSolUst[0], LN.by0, LN.bx0, LN.by1]} aralik={() => 6} renk="#1a1a24" kalin={2} alfa={0.85} seed={S + 5} /></g>
+        <rect x={LN.bx0 + 50} y={LN.by0 + 110} width={110} height={130} fill="none" stroke={LP.lanternKenar} strokeWidth={4} />
+        {/* havalandırma yarıkları: lamba yanınca içeriden ışık sızar (tek kaynak: lamba) */}
+        {[LN.by0 + 34, LN.by0 + 54].map((y, i) => <line key={i} x1={LN.bx0 + 30} y1={y} x2={LN.bx1 - 40} y2={y} stroke={lamba ? LP.huzme : "#1a1a24"} strokeWidth={3} opacity={lamba ? 0.6 : 1} />)}
+        {[[LN.bx0 + 16, LN.by0 + 16], [LN.bx0 + 16, LN.by1 - 16]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r={3} fill={LP.lanternKenar} />)}
+        <line x1={LN.bx0} y1={LN.by0} x2={LN.bx1} y2={LN.by0} stroke={LP.kenarSoguk} strokeWidth={2} opacity={0.35 * lamba} />
+        <line x1={LN.bx0} y1={LN.by0} x2={LN.bx0} y2={LN.by1} stroke={LP.kenarSoguk} strokeWidth={2} opacity={0.3 * lamba} />
+        {/* sehpa tablası (sol yüz + ön kenar) ve arka (yakın) bacak; ayak kadraj altında */}
+        <polygon points={pt([[LN.bx0 - 16, LN.by1], [LN.onSolAlt[0] - 14, LN.onSolAlt[1]], [LN.onSolAlt[0] - 14, LN.onSolAlt[1] + 16], [LN.bx0 - 16, LN.by1 + 22]])} fill="#3a3129" stroke={LP.memurKontur} strokeWidth={2} />
+        <rect x={LN.bx0 - 16} y={LN.by1} width={1200 - LN.bx0} height={22} fill={LP.sehpa} stroke={LP.memurKontur} strokeWidth={2.5} />
+        <rect x={LN.bx0 + 6} y={LN.by1 + 22} width={30} height={1990 - LN.by1} fill={LP.sehpa} stroke={LP.memurKontur} strokeWidth={2.5} />
+        <line x1={LN.bx0 + 6} y1={LN.by1 + 24} x2={LN.bx0 + 6} y2={1960} stroke={LP.kenarSoguk} strokeWidth={1.5} opacity={0.25 * lamba} />
+        <rect x={LN.bx0 + 36} y={1700} width={1200 - LN.bx0} height={22} fill="#3a3129" stroke={LP.memurKontur} strokeWidth={2} />
       </g>
       {elGor && (() => {
         const bilek: P = [elUc[0] + 150, elUc[1] - 10];
         const kol = konikKol([bilek[0] + 330, bilek[1] + 60], [bilek[0] + 190, bilek[1] + 40], bilek, [110, 92, 62]);
         return <g>
           <path d={kol.d} fill="#34363d" stroke={LP.memurKontur} strokeWidth={3} />
-          <GravurEl bilek={bilek} aci={172} E={160} poz={GRAVUR_POZ.kistir} isik={[-0.6, -0.8]} taramaAci={78} palet={{ ...ODA_EL }} />
+          <GravurEl bilek={bilek} aci={172} E={150} poz={GRAVUR_POZ.kistir} isik={[-0.6, -0.8]} taramaAci={78} palet={{ ...ODA_EL }} />
         </g>;
       })()}
     </g>
