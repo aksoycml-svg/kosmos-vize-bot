@@ -1182,3 +1182,10 @@
   - **Yönetmene not:** bolum.json P10 `devam_plan.parametreler.huzme.isin.kaynak` [892,1605] artık kullanılmıyor, (954,1120) yazılmalı ya da alan silinmeli. `memur3_kalkis.kim` notunda geçen "lantern bacası x 930–1000" ifadesi de güncellenmeli: baca şimdi x 922–974, lantern kutusu ise x ≥ 915.
   - Seyirci memur-3'ün (x 860) başını oturur hâldeyken kısmen sehpanın önünden görüyor. Ayağa kalktığında başı lantern kutusunun arkasına giriyor; kalkış hareketi, kutunun solunda kalan gövdesinden okunuyor. Eleştirmen bunun yeterli olup olmadığına baksın.
   - Levhayı tutan el sağ kenarda yalnız parmak uçlarıyla görünüyor (f80). Temas karesi f84 değişmedi.
+
+## yonetmen · 2026-11-13 · P10 mercek notu temizliği (C4 notu)
+- Ne yaptım: P10 `huzme.isin.kaynak` [892,1605] silindi (şablon yalnız `LN.mercek` (954,1120) kullanıyor; `kaynak_not` buna göre güncellendi). `memur3_kalkis.kim` notunda baca x 922–974, kutu x 915'ten yazıldı.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/bolum.json, bolumler/paris-kusatmasi/katki-raporu.md
+- Aldığım kararlar ve gerekçeleri: şablon okumadığı için alan silindi (ölü değer yanıltır); görsel değişmez, render yok.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: yalnız istenen iki düzenleme.
+- Açık sorular / bir sonraki ajana notlar: yok.

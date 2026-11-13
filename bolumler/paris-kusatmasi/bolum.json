@@ -2740,11 +2740,7 @@
         6,
         8
        ],
-       "kaynak": [
-        892,
-        1605
-       ],
-       "kaynak_not": "gizli kaynak; ışın uçları görüntü köşelerinde ±3 px"
+       "kaynak_not": "kaynak json'da yok: şablon sabiti LanternOda LN.mercek (954,1120) kullanılır; ışın uçları görüntü köşelerinde ±3 px"
       }
      },
      "cam_levha": {
@@ -2791,7 +2787,7 @@
       "memur3_kalkis": {
        "bas": 250,
        "bit": 266,
-       "kim": "memur-3 (x 860: huzme sağ kenarının ve lantern bacasının (x 930–1000) dışında), zarf elinde",
+       "kim": "memur-3 (x 860: huzme sağ kenarının ve lantern bacasının (x 922–974; kutu x 915'ten) dışında), zarf elinde",
        "yon": "ayağa kalkar (baş y 1618→1086), sağa yürür, f266'da sağ kenardan çıkar (duvarsız kadraj kenarı)",
        "cikis_kare": 266
       },
