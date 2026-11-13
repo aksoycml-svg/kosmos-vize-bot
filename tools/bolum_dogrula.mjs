@@ -105,6 +105,7 @@ for (const plan of B.planlar ?? []) {
   (prm.kuleler ?? []).forEach((k, i) => { if (typeof k.konum === "object") bitis(Y, `kule ${i + 1} konum`, son(k.konum.kare)); if (k.wifi) bitis(Y, `kule ${i + 1} wifi`, k.wifi.bit); if (Array.isArray(k.halo)) bitis(Y, `kule ${i + 1} halo`, k.halo[1]); });
   if (plan.dokunus) bitis(Y, `dokunuş ${plan.dokunus.id}`, plan.dokunus.bit);
   for (const z of S.zorunlu) if (prm[z] === undefined) H(Y, `zorunlu parametre yok: ${z}`);
+  { const GS = S.gorunum_sinirlari?.[prm.gorunum]; if (GS && plan.kamera) for (const ad of ["cs", "cx", "cy"]) if (plan.kamera[ad] && GS[ad]) aralik(`${Y} kamera (${prm.gorunum})`, ad, plan.kamera[ad], GS[ad]); }
   for (const [ad, izin] of Object.entries(S.parametreler)) if (prm[ad] !== undefined && !izin.includes(prm[ad])) H(Y, `${ad}="${prm[ad]}" geçersiz (${izin.join(" | ")})`);
   // şablona özel kurallar
   if (plan.sablon === "SOKAK" && prm.saat === "gun" && prm.sehir !== "bordeaux") H(Y, "SOKAK gün yalnız bordeaux (paris yalnız gece)");
@@ -183,6 +184,29 @@ for (const plan of B.planlar ?? []) {
         if (DS.kurulu && dp.gorunum !== undefined && !(DS.kurulu[dp.gorunum] ?? []).includes(dp.saat)) H(yk, `${d.sablon} gorunum "${dp.gorunum}" / saat "${dp.saat}" kurulmadı`);
         const K2 = d.kamera;
         if (K2) { artan(`${yk} kamera`, K2.kare); for (const ad of ["cs", "cx", "cy"]) if (K2[ad]) { anahtarUzunluk(`${yk} kamera`, ad, K2[ad], K2.kare); aralik(`${yk} kamera`, ad, K2[ad], DS.kamera[ad]); } if ((K2.kare ?? []).some((q) => q < kb || q > sure)) H(yk, `kamera kareleri [${kb}, ${sure}] dışında`); }
+        // Paris C: görünüm başına kamera sınırı (sinirlar.json gorunum_sinirlari)
+        const GS = DS.gorunum_sinirlari?.[dp.gorunum];
+        if (GS && K2) for (const ad of ["cs", "cx", "cy"]) if (K2[ad] && GS[ad]) aralik(`${yk} kamera (${dp.gorunum})`, ad, K2[ad], GS[ad]);
+        // Paris C: ikinci plan içi kesme (devam_plan.kesme_2 — aynı şablonda başka görünüm)
+        const k2 = d.kesme_2;
+        if (k2) {
+          const y2 = `${Y} kesme_2`, kb2 = k2.kare_bas, S2n = k2.sablon ?? d.sablon, S2 = SN.sablonlar[S2n], p2 = k2.parametreler ?? {};
+          if (!Number.isInteger(kb2) || kb2 <= kb || kb2 >= sure - PAY) H(y2, `kare_bas ${kb2} (${kb}, ${sure - PAY}) içinde olmalı`);
+          const bildir = prm.plan_ici_kesme_2 ?? dp.plan_ici_kesme_2;
+          if (bildir && bildir.kare !== kb2) H(y2, `plan_ici_kesme_2.kare ${bildir.kare} ↔ kesme_2.kare_bas ${kb2} uyuşmuyor`);
+          if (!S2) H(y2, `bilinmeyen şablon ${S2n}`);
+          else {
+            for (const z of S2.zorunlu) if (p2[z] === undefined) H(y2, `zorunlu parametre yok: ${z}`);
+            for (const [ad, izin] of Object.entries(S2.parametreler)) if (p2[ad] !== undefined && !izin.includes(p2[ad])) H(y2, `${ad}="${p2[ad]}" geçersiz (${izin.join(" | ")})`);
+            if (S2.kurulu && p2.gorunum !== undefined && !(S2.kurulu[p2.gorunum] ?? []).includes(p2.saat)) H(y2, `${S2n} gorunum "${p2.gorunum}" / saat "${p2.saat}" kurulmadı`);
+            const K3 = k2.kamera;
+            if (K3) { artan(`${y2} kamera`, K3.kare); for (const ad of ["cs", "cx", "cy"]) if (K3[ad]) { anahtarUzunluk(`${y2} kamera`, ad, K3[ad], K3.kare); aralik(`${y2} kamera`, ad, K3[ad], (S2.gorunum_sinirlari?.[p2.gorunum] ?? S2.kamera)[ad]); } if ((K3.kare ?? []).some((q) => q < kb2 || q > sure)) H(y2, `kamera kareleri [${kb2}, ${sure}] dışında`); }
+            for (const a of p2.animasyonlar ?? []) { if (a.bas < kb2) H(y2, `animasyon "${a.ad}" p${a.bas} kesmeden önce başlıyor`); bitis(y2, `animasyon ${a.ad}`, a.bit); }
+          }
+          // ilk görünümün hareketi kesmede yarım kalmaz
+          for (const a of dp.animasyonlar ?? []) if (a.bas < kb2 && a.bit > kb2) H(yk, `animasyon "${a.ad}" p${a.bit} ikinci kesmeden (p${kb2}) sonra bitiyor`);
+          if (son(K2?.kare) > kb2) H(yk, `kamera p${son(K2.kare)} ikinci kesmeden (p${kb2}) sonra bitiyor`);
+        }
         if ((d.karakterler ?? []).length > DS.karakterMaks) H(yk, `karakter sayısı > ${DS.karakterMaks}`);
         for (const c of d.karakterler ?? []) {
           const yc = `${yk} ${c.kim}`;

@@ -12,7 +12,7 @@ import type { KolIsik } from "./RigIsik";
 // Poz "kistirSiki" (Paris eli, ince ip/kılıf): başparmak ucu + işaret parmağı ucu KISTIR_YEREL'de buluşur, orta/yüzük/serçe
 // avuca kıvrık (yumruk kütlesi) — açık el ya da serçe yukarıda "rock" okuması yok (A eleştirisi P10a).
 
-export type KolTip = "ceket" | "gomlek" | "parisManset" | "gorevli" | "yazici" | "louis" | "parisGri";
+export type KolTip = "ceket" | "gomlek" | "parisManset" | "gorevli" | "yazici" | "louis" | "parisGri" | "dagronSepya";
 // elSirt (isteğe bağlı): el sırtı tendon/damar çizgisi ölçeği — yoksa eski değerler (Blanc/Evliya değişmez)
 export type KolPalet = { kol: string; kolIsik: string; kolGolge: string; yama?: string; manset: string; mansetKir: string; ten: string; tenGolge: string; dugme?: string; elSirt?: { tendonAlfa: number; tendonKalin: number; damar: boolean } };
 export const KOL_PALET: Record<KolTip, KolPalet> = {
@@ -26,6 +26,9 @@ export const KOL_PALET: Record<KolTip, KolPalet> = {
   // v2 (tasarım §13.8): ten ışık #d6b49c / gölge #8f7360 (C* ≤ 28, kılıfa ΔE ≥ 15), manşet kömür-gri
   // v4 (V3 eleştirisi: el sırtında "yara izi" gibi açık çapraz çizgiler): lavanta damar çizgisi yok, tendonlar ince ve soluk
   parisGri: { kol: "#34363d", kolIsik: "#4b4e57", kolGolge: "#222329", manset: "#5d5f63", mansetKir: "#46484c", ten: "#d6b49c", tenGolge: "#8f7360", elSirt: { tendonAlfa: 0.28, tendonKalin: 0.9, damar: false } },
+  // Paris kuşatması C turu (mekanlar §3v2.9, tasarım §3.2): Dagron eli — koyu sepya manşet, DÜĞME/METAL YOK (parisManset'teki altın düğme
+  // sarı metal yasağına aykırı), palto kolu §14.2 dagronIsik. Ten #c9a58a / gölge #8e6a52. Damar yok, tendon soluk (V4 dersi).
+  dagronSepya: { kol: "#5a5068", kolIsik: "#7a6f86", kolGolge: "#3a3550", manset: "#4a3a2c", mansetKir: "#2e2318", ten: "#c9a58a", tenGolge: "#8e6a52", elSirt: { tendonAlfa: 0.26, tendonKalin: 0.9, damar: false } },
   louis: { kol: "#74222f", kolIsik: "#9a3646", kolGolge: "#47131c", manset: "#e0d9c6", mansetKir: "#bfb7a2", ten: "#e0ae8a", tenGolge: "#b27b5f", dugme: "#3a1018" },
 };
 // El boyu (bilekten orta parmak ucuna), el yerel biriminde: ekranda = EL_BOY_YEREL × olcek. Eldiven ölçüsü buna bağlanır (Eldiven elBoyu).
@@ -37,6 +40,8 @@ const aciDer = (a: P, b: P) => (Math.atan2(b[1] - a[1], b[0] - a[0]) * 180) / Ma
 
 // El yerel çerçevesi: bilek (0,0), el +x yönüne; ölçek 1 ≈ 130 birim boy. Kıstırma noktası:
 export const KISTIR_YEREL: P = [132, -4];
+// Poz "isaret" (Paris C turu, P05 ölçü): işaret parmağı DÜZ uzanır (boğumdan uca 57 birim ≈ 7.5 cm @ el 0.19 m), diğerleri avuca kıvrık.
+export const ISARET_UC_YEREL: P = [150, -10];
 export const elMatris = (bilek: P, aci: number, olcek: number) => (p: P): P => {
   const r = (aci * Math.PI) / 180, c = Math.cos(r), s = Math.sin(r);
   return [bilek[0] + (p[0] * c - p[1] * s) * olcek, bilek[1] + (p[0] * s + p[1] * c) * olcek];
@@ -44,7 +49,7 @@ export const elMatris = (bilek: P, aci: number, olcek: number) => (p: P): P => {
 
 export const KolEl: React.FC<{
   giris: P; dirsek: P; bilek: P; gen: [number, number, number]; // kenar / dirsek / bilek yarı-genişlik değil TAM genişlik (px)
-  tip?: KolTip; elAci: number; olcek: number; poz?: "kistir" | "kistirSiki" | "gevsek";
+  tip?: KolTip; elAci: number; olcek: number; poz?: "kistir" | "kistirSiki" | "gevsek" | "isaret";
   tutulan?: React.ReactNode; eldiven?: string; golge?: boolean; golgeRenk?: string; isikUst?: boolean;
   // A5r rig ışığı: sahnenin Isik'ından (RigIsik.kolIsigi). Işık yanı geometriden (isikUst yerine), gölge yanında net kenarlı
   // ton + tek yön tarama (sahne θ), ışık yanında sıcak kenar. El taranmaz. Verilmezse eski davranış.
@@ -92,11 +97,12 @@ export const KolEl: React.FC<{
     );
   };
   // ---- el parçaları (yerel) ----
-  const siki = poz === "kistirSiki";
+  const isr = poz === "isaret";
+  const siki = poz === "kistirSiki" || isr; // işaret pozunda orta/yüzük/serçe sıkı pozdaki gibi avuca kıvrık
   const sirt: P[] = [[0, -24], [40, -30], [86, -30], [96, -18], [96, 18], [86, 28], [40, 27], [0, 22]];
-  const isaret: P[] = siki ? [[88, -10], [110, -16], [127, -12], [133, -2]] : [[90, -10], [114, -4], [128, 4]];
+  const isaret: P[] = isr ? [[88, -11], [112, -12], [132, -11], [150, -10]] : siki ? [[88, -10], [110, -16], [127, -12], [133, -2]] : [[90, -10], [114, -4], [128, 4]];
   // sıkı: başparmak avuç kenarındaki tenar kabarıklığından (x ≈ 96) çıkar; görünen boy ≈ 40 (işaret ≈ 48 → %83)
-  const basparmak: P[] = siki ? [[96, -30], [115, -26], [130, -12]] : [[30, -24], [76, -36], [116, -22], [128, -12]];
+  const basparmak: P[] = isr ? [[70, -30], [92, -34], [106, -26]] : siki ? [[96, -30], [115, -26], [130, -12]] : [[30, -24], [76, -36], [116, -22], [128, -12]];
   const tenar: P[] = [[24, -24], [52, -36], [84, -38], [100, -32], [102, -22], [70, -22]];
   const orta: P[] = siki ? [[92, 0], [108, 6], [106, 18], [96, 20]] : [[94, 4], [110, 14], [102, 26]];
   const yuzuk: P[] = siki ? [[90, 12], [104, 18], [100, 28], [91, 29]] : [[92, 16], [106, 26], [98, 36]];

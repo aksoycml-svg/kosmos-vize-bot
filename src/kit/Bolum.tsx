@@ -133,10 +133,12 @@ const KilitBindirme: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[]; dil:
   return <GuvenliAlan noktalar={kilit} aktifBant={alt ? "alt" : ust ? "ust" : null} baslik={`${plan.id} ${plan.sablon} p${p} ${dil}`} />;
 };
 
-// K5 plan içi kesme: devam_plan.kare_bas'tan itibaren görüntü devam şablonundan (aynı plan karesi p; ses/yazı/temas planın kendisinde)
+// K5 plan içi kesme (+ Paris C: devam_plan.kesme_2 ikinci kesme): devam_plan.kare_bas'tan itibaren görüntü devam şablonundan (aynı plan karesi p; ses/yazı/temas planın kendisinde)
 export const etkinPlan = (plan: Plan, p: number): Plan => {
   const d = plan.devam_plan;
   if (!d || p < d.kare_bas) return plan;
+  const k2 = d.kesme_2;
+  if (k2 && p >= k2.kare_bas) return { ...plan, sablon: k2.sablon ?? d.sablon, parametreler: k2.parametreler, kamera: k2.kamera ?? d.kamera, karakterler: [], props: [], el: [] };
   return { ...plan, sablon: d.sablon, parametreler: d.parametreler, kamera: d.kamera, karakterler: d.karakterler ?? [], props: d.props ?? [], el: [] };
 };
 

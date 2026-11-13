@@ -889,3 +889,50 @@
 - Aldığım kararlar ve gerekçeleri: ikinci plan içi kesme için doğrulayıcı tek `devam_plan` bildiği için `devam_plan.kesme_2` bloğu açıldı (sablon LANTERN-ODA, kendi kamerası); doğrulayıcı bu bloğu henüz denetlemiyor, motion/doğrulayıcı sahibi genişletmeli. `kapi` üst bant yazısı için yeni parametre gerekmedi: K2 yazı standardı kâğıt şerit + mürekkep, açık/koyu zeminde okunur (kit_eksik yok). Kapı ışığı sıcak gün, mercek hilali/ışık hattı `#e4dccb` (L* 88), lint izni yok. Tüm C planlarında `lint.not: "C turu, render motion sonrası"`. Zamanlama/metin/ses değişmedi.
 - Uyguladığım kurallar / yakaladığım kural ihlalleri: hareket tamamlanır (okuma 386, kapanış 386–398 ≥12 kare; memur-3 duvarsız kenardan çıkar, eli soldan girer); ekran yazısı dokunuşun üstüne binmez (P05 f150); kurulum→karşılık (perde şeridi, memur-3 çıkışı → eli). Doğrulayıcı `--tam`: GEÇTİ, 0 hata (1 uyarı: foley.json yok, eski). Render yok (şablon kodu yok), kontrol karesi bakılmadı.
 - Açık sorular / bir sonraki ajana notlar: motion `kesme_2` ve `gorunum_sinirlari` okumalı; ilk still'de P05 köşe noktaları ±15 px (3v2.5), P10 f330 kâğıt (298,933). Memur-4 (x 1415) cs 1'de kadraj dışı. Dosya biçimi: json yeniden yazıldı, birkaç satırda girinti normalleşti.
+
+## motion · 2026-11-13 · C turu: DAGRON-INSERT + LANTERN-ODA şablonları (P04b, P05, P09, P10b)
+- Ne yaptım:
+  - **DAGRON-INSERT** (`masa` paris-atolye / tours-buro, `kafes`). MasaPerspektif `dagronDunya.ts`: kamera masanın 0.42 m üstünde, 35°, F 1176. Kutu, terazi, kefe, çekmece, sayfa ve şerit 3B izdüşümle çiziliyor. Kutu taban merkezi (795,1009) ✓. Tek ışık 18°: gölgeler masaya düşüyor, arka kenarı aşan gölge duvara tırmanıyor (kuş gölgesi duvarda oval). Tarama 143°, yalnız cisim gölgesinde. Tours: tuffeau, söve yanağı, keçe, soluk yığın, şerit yığını, kılıf bağlama zinciri. Kafes: gök, ağaç, çit, inen ve sönen küre, sepet, 7 çubuk, menteşeli kapak, yön arama, çıkış.
+  - **LANTERN-ODA** (`oda` + `kapi`, tek dünya, iki pinhole kamera).
+    - Huzme gravür dilinde çiziliyor: 4 sınır ışını + 2.5° iç ışınlar, lamba yanınca uzuyor, fade yok. Dikdörtgen 154 px'ten perdeye büyüyor; 3 kopya birleşerek netleşiyor. Perde çevresinde halka var.
+    - Memurlar sırttan çiziliyor, durma/yazma ritmi var; memur-3 sağ kenardan çıkıyor. Cam levhayı el yuvaya indiriyor.
+    - Kapı: perde şeridi, lambri, söve + yanak, sıcak koridor, 2 bekleyen (P01 silueti), okuyan. Zarf soldan geliyor, kapak açılıyor, sayfa çekiliyor, okuma ve kapanış.
+  - Bolum `etkinPlan` artık `devam_plan.kesme_2`'yi biliyor (tipler.ts). Doğrulayıcıya `kesme_2` ve `gorunum_sinirlari` denetimleri eklendi.
+  - KolEl'e eklenenler: tip `dagronSepya` (düğmesiz sepya manşet) ve poz `isaret`. Eski tipler değişmedi.
+  - sinirlar.json'daki yer tutucular gerçek kayda çevrildi (`kurulu`). KATALOG.md'ye iki şablon ve ikinci kesme eklendi. bolum.json'daki 4 adet "C turu, render motion sonrası" lint notu kaldırıldı; başka alana dokunulmadı.
+  - Render `kalibrasyon/C/`:
+    - P04b f206, P05 f0/f236/f280, P09 f150, P10 f48/f200/f330. Her biri tam + -360 + -guvenli + -guvenli-360.
+    - Şeritler: P05 f236–300, P10 f150–270 (4 karede bir).
+    - `ozet.png`.
+- Dokunduğum dosyalar: src/kit/sablonlar/paris/{DagronInsert.tsx, dagronDunya.ts, LanternOda.tsx} (yeni), src/kit/props/paris/{Sayfa.tsx, ParisEl.tsx} (yeni), src/rig/KolEl.tsx, src/kit/Bolum.tsx, src/kit/tipler.ts, src/kit/sablonlar/kayit.ts, src/kit/sinirlar.json, src/kit/KATALOG.md, tools/bolum_dogrula.mjs, bolumler/paris-kusatmasi/bolum.json (yalnız lint), bolumler/paris-kusatmasi/kalibrasyon/C/*, bu rapor.
+- Kareye uyarlarken değiştirdiğim değerler (yönetmen plana işler):
+  | Öğe | json / şartname | Kod | Neden |
+  |---|---|---|---|
+  | P05 terazi | taban dekor (330,780) → masa (−0.167, 0.85) | masa (−0.137, 0.95) | Sol kefe (ø 0.18) x 90'ın solundan kadraj dışına taşıyordu. Kol x 105–555 değeri kefe yarıçapını saymıyor |
+  | P05 deste (masa) | (330,1400) = masa (−0.085, 0.289) | masa (−0.04, 0.30) ≈ dekor (443,1375) | Şerit ve parmak kâğıt üstünde dursun (koyu şerit / açık kâğıt kontrastı; P06 "masa kâğıdı → harita kâğıdı") |
+  | P05 sayfa yolu | konduğu yer (580,1190) | masa (0.15, 0.315) → f172–196 kutu tabanındaki yarıktan içeri | Sayfa fade olmadan fiziksel olarak kutuya giriyor; ışık hattı yarıkta |
+  | P05 kapak | "el" belirsiz | sol el kaldırıyor (f146–166) | Sağ el f160'ta sayfadaydı; 6 karede kapağa ulaşamaz |
+  | P05 ölçü sırası | "şerit parmak yanına f268" | şerit f268'de konuyor, sol işaret parmağı f262–278'de yanına uzanıyor, f280'de oturuyor | Önce gelen parmak, şeridi taşıyan sağ elle çaprazlanıp okunmuyordu |
+  | P05 şerit boyu | 6.4 cm | ekranda 52° / dekor 140 px veren masa boyu (≈ 9 cm) | 6.4 cm masada 52°'de kısalıyor, ekranda ≈ 180 px kalıyordu; json ekran boyu esas alındı |
+  | P05 mikro çizgi | `#3e3446` | `#8a7466` | Koyu yüzde 360'ta görünmüyordu (şeridin içinde küçük sayfa okunmalı) |
+  | P10 memurlar | X −0.10/0.18/0.46, Z 2.2 | (−0.33, 2.15), (0.07, 2.30), (0.45, 2.15) | Omuz 0.42 m > X aralığı 0.28 m: aynı derinlikte iç içe geçiyorlardı. Memur-3 x 1084 korundu |
+  | P04b kapak | kapak kendiliğinden | sağdan `parisGri` el açıyor (f136–172) — **onay bekliyor** | Kapak fiziksel bir etkenle açılmalı |
+  | P04b sepet rim | y 1180 / h 0.95 | rim h 1.0 (y 1180) | Şartnamenin iki değeri çelişiyordu; ekran değeri esas alındı |
+- Aldığım kararlar ve gerekçeleri:
+  - Ölçüyü sol el yapıyor. Sağ el şeride paralel yatamıyor: bilek kutunun içinden geçer ya da 90° bükülür.
+  - Kapı görünümünde kollar KolEl ile omuzdan IK'yla çiziliyor. FigurSiluet kolları gizli.
+  - `coker` (P07 kurşun deliği) P04b küresinde kullanılmadı.
+- Uyguladığım kurallar / yakaladığım ihlaller:
+  - Hareket tamamlanıyor: sayfa yarığa giriyor; sağ el f282'de kadrajdan çıkıyor; kuş kafes kapısından sağ-üste çıkıyor; memur-3 duvarsız kenardan çıkıyor; P09'da kuş sağ-üste çıkıyor.
+  - Tutulan nesne eli takip ediyor: şerit, kılıf, levha, zarf. P09'da f20'de kılıf kuyruğa erken çiziliyordu, düzeltildi.
+  - Ölçüm (tam boy, Lab):
+    - Kılıf dışı C* p99.9 ≤ 22.6; kırmızı 0; L* > 88 en çok %0.06 (P10 f200).
+    - İmza bandı yalnız P09'da (3052 px, kılıf kutusu içinde); kılıf/sahne ≈ 2.9.
+  - P01 f24 ve P03 f80 baseline ile piksel farkı 0. tsc temiz. Doğrulayıcı `--tam` GEÇTİ (foley.json uyarısı önceden vardı).
+- Açık sorular / bir sonraki ajana notlar (öz puan **6**, eleştirmen muhtemelen 5–5.5):
+  1. Eller (cs 2'de ~800 px) gerçek ölçüde ama çizgi film eli gibi; f236'da işaret parmağı merceğe değiyormuş gibi okunuyor.
+  2. Okuyan hâlâ düz koyu siluet, kollar köşeli "tahta" gibi (kukla riski, B2 #2).
+  3. Perde dolunca huzme yalnız sol-altta ince bir kama olarak kalıyor; 360'ta zayıf.
+  4. P04b küresi "sönen" değil "duran balon" gibi okunuyor.
+  5. P10 memur başları 360'ta "kulaklıklı kask" gibi.
+  6. Yönetmen: yukarıdaki tablo json'a işlenmeli. P10 `kontrol_kare 238` için kesme f266 var; P04b el onayı gerekiyor.

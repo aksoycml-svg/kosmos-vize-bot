@@ -3,7 +3,7 @@
 // Kare sayıları 60 fps; plan içi kareler 0'dan başlar (plan karesi p).
 import type { Agiz, Palet } from "../rig/Kukla";
 
-export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU" | "GALATA-TEPE" | "BOGAZ" | "KITAP-INSERT" | "PARIS-CATI" | "MONTMARTRE";
+export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU" | "GALATA-TEPE" | "BOGAZ" | "KITAP-INSERT" | "PARIS-CATI" | "MONTMARTRE" | "DAGRON-INSERT" | "LANTERN-ODA";
 export type Bant = "ust" | "alt";
 export type P = [number, number];
 
@@ -123,7 +123,9 @@ export type Plan = {
   not?: string;
   // Evliya K5: plan içi sert kesme — kare_bas'tan itibaren aynı plan başka şablonla (kendi parametre/kamera/karakter/prop'uyla) devam eder.
   // Kareler plan karesidir (0 = plan başı). Ses/yazı/temaslar planın kendisinde kalır.
-  devam_plan?: { kare_bas: number; sablon: SablonAdi; parametreler: Record<string, unknown>; kamera?: Kamera; karakterler?: Karakter[]; props?: Prop[] };
+  devam_plan?: { kare_bas: number; sablon: SablonAdi; parametreler: Record<string, unknown>; kamera?: Kamera; karakterler?: Karakter[]; props?: Prop[];
+    // Paris C turu: ikinci plan içi kesme (aynı devam şablonunda başka görünüm; ör. LANTERN-ODA oda → kapi). sablon verilmezse devam şablonu.
+    kesme_2?: { kare_bas: number; sablon?: SablonAdi; parametreler: Record<string, unknown>; kamera?: Kamera } };
 };
 
 export type BolumJson = {

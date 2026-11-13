@@ -1061,11 +1061,7 @@
      "dosya": "paris/ses/en/P04.mp3",
      "kare": 0
     }
-   ],
-   "lint": {
-    "izin": [],
-    "not": "C turu, render motion sonrası"
-   }
+   ]
   },
   {
    "id": "P05",
@@ -1421,11 +1417,7 @@
      "kare": 0
     }
    ],
-   "ekran_yazisi_not": "f112–150'de terazi direk tepesi (y≈345) üst banda girer; yazı f150'de başlar (dokunuşun üstüne binmez), lint izni yok",
-   "lint": {
-    "izin": [],
-    "not": "C turu, render motion sonrası"
-   }
+   "ekran_yazisi_not": "f112–150'de terazi direk tepesi (y≈345) üst banda girer; yazı f150'de başlar (dokunuşun üstüne binmez), lint izni yok"
   },
   {
    "id": "P06",
@@ -2628,11 +2620,7 @@
      "dosya": "paris/ses/en/P09.mp3",
      "kare": 0
     }
-   ],
-   "lint": {
-    "izin": [],
-    "not": "C turu, render motion sonrası"
-   }
+   ]
   },
   {
    "id": "P10",
@@ -3170,10 +3158,6 @@
      "kare": 0
     }
    ],
-   "lint": {
-    "izin": [],
-    "not": "C turu, render motion sonrası"
-   },
    "ekran_yazisi_not": "f232–386 'KOPYALANIP DAĞITILDI' kapi'da koridor ışığı/koyu duvar üstünde: K2 kâğıt şerit + mürekkep yazı her zeminde okunur, yeni parametre gerekmedi (kit_eksik yok); okuyanın başı y 585 > band 400"
   },
   {

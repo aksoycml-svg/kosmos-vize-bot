@@ -13,6 +13,8 @@ import { BOGAZ } from "./bogaz/Bogaz";
 import { KITAP_INSERT } from "./kitap/KitapInsert";
 import { PARIS_CATI } from "./paris/ParisCati";
 import { MONTMARTRE } from "./paris/Montmartre";
+import { DAGRON_INSERT } from "./paris/DagronInsert";
+import { LANTERN_ODA } from "./paris/LanternOda";
 
 export const SABLON_KAYIT = {} as Record<SablonAdi, Sablon>;
-Object.assign(SABLON_KAYIT, { SOKAK, "IC-ODA": IC_ODA, "MASA-INSERT": MASA_INSERT, "KULE-DIS": KULE_DIS, HARITA, SARAYBURNU, "GALATA-TEPE": GALATA_TEPE, BOGAZ, "KITAP-INSERT": KITAP_INSERT, "PARIS-CATI": PARIS_CATI, MONTMARTRE });
+Object.assign(SABLON_KAYIT, { SOKAK, "IC-ODA": IC_ODA, "MASA-INSERT": MASA_INSERT, "KULE-DIS": KULE_DIS, HARITA, SARAYBURNU, "GALATA-TEPE": GALATA_TEPE, BOGAZ, "KITAP-INSERT": KITAP_INSERT, "PARIS-CATI": PARIS_CATI, MONTMARTRE, "DAGRON-INSERT": DAGRON_INSERT, "LANTERN-ODA": LANTERN_ODA });
