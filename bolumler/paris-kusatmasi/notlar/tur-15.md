@@ -5,3 +5,8 @@ Kullanıcı (aynen):
 
 Kararlar: (1) P04b kafes kapağını sağdan bir el açar — kabul; (2) P05 ölçü anında parmak masaya yatık, şeride paralel — kabul; (3) plan başlar: tasarımcı (Paris eli + okuyan figür, gravür dili) ‖ mekân sorumlusu (LANTERN-ODA geometri v3) → yönetmen → motion → eleştirmen (P05, P10).
 Kullanıcı vurgusu: **P10 f330 (kapıda okuma) "çok kötü"** — en öncelikli kare; okuyan figür, kapı mekânı ve ışık baştan doğru kurulmalı.
+
+Kullanıcı (aynen, tasarım §15 özetinden sonra):
+> tamam, devam et
+
+→ §15 (okuyan sola bakar, başlıksız, kapı ışığı arkada-sağda; P05 sol el yatık; üç memur başı; koyu kılıf ipi) onaylı sayılır.
