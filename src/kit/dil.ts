@@ -26,14 +26,14 @@ const listeSec = (v: DilListe | undefined, ek: string[] | undefined, dil: Dil, a
 export const buyukHarf = (s: string, dil: Dil) => s.toLocaleUpperCase(dil === "tr" ? "tr" : "en");
 
 type Ham = Record<string, unknown>;
-export type CozEkran = { bant: "ust" | "alt"; metin: string; vurgu?: string[]; tur?: "iddia" | "formul" | "sayac"; bas: number; bit: number; kutu?: { x?: [number, number] };
+export type CozEkran = { bant: "ust" | "alt"; metin: string; vurgu?: string[]; tur?: "iddia" | "formul" | "sayac"; bas: number; bit: number; kutu?: { x?: [number, number] }; zemin?: "koyu";
   sayac?: { hedef: number; baslangic: number; bas: number; sure: number; ondalik: number; vurgu: boolean; donus?: { kare: number; metin: string } } };
 export type CozReplik = { kim?: string; metin: string; bant: "ust" | "alt"; bas: number; bit: number; vurgu?: string[]; kelimeKare?: number[] };
 export type CozHarita = { metin: string; nokta: [number, number]; kutu: [number, number]; bas: number; bit: number };
 
 export const ekranCoz = (plan: Plan, dil: Dil, ana: Dil): CozEkran[] => (plan.ekran_yazisi ?? []).map((y: EkranYazisi, i) => {
   const h = y as unknown as Ham;
-  return { bant: y.bant, tur: y.tur, bas: y.bas ?? 0, bit: y.bit ?? plan.sure_kare, kutu: h.kutu as CozEkran["kutu"],
+  return { bant: y.bant, tur: y.tur, bas: y.bas ?? 0, bit: y.bit ?? plan.sure_kare, kutu: h.kutu as CozEkran["kutu"], zemin: h.zemin === "koyu" ? "koyu" : undefined,
     metin: dilSec(y.metin as DilMetin, h[dil] as string | undefined, dil, ana, `${plan.id} ekran_yazisi[${i}]`),
     vurgu: listeSec(y.vurgu as DilListe | undefined, h[`vurgu_${dil}`] as string[] | undefined, dil, ana),
     // KT-4 sayaç: dönüş metni de dil başına (metin {tr,en} ya da ana dil + en)

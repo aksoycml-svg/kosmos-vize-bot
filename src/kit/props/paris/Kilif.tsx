@@ -15,7 +15,9 @@ export const KILIF_DUGUM: P = [-20, 6]; // gövde tarafındaki sargının altın
 const nss = { vectorEffect: "non-scaling-stroke" as const, strokeLinejoin: "round" as const, strokeLinecap: "round" as const };
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
-export const Kilif: React.FC<{ olcek: number; parilti?: number | null; coz?: number; kapak?: number; serit?: number; ipUc?: P; acik?: boolean; kontur?: number }> = ({ olcek, parilti = null, coz = 0, kapak = 0, serit = 0, ipUc, kontur = 2.5 }) => {
+export const Kilif: React.FC<{ olcek: number; parilti?: number | null; coz?: number; kapak?: number; serit?: number; ipUc?: P; acik?: boolean; kontur?: number; ipStil?: "koyu" }> = ({ olcek, parilti = null, coz = 0, kapak = 0, serit = 0, ipUc, kontur = 2.5, ipStil }) => {
+  // ipStil "koyu" (tasarım §15.4, C2 — P09'dan başlayarak): koyu #4a4237, 5 px (ekran), 2 bitişik sarım kılıfın gövde tarafında; varsayılan eski ip (P01/P10/P11 karşılaştırma kareleri değişmesin)
+  const koyu = ipStil === "koyu";
   const id = "kf" + useId().replace(/:/g, "");
   const { L, R } = KILIF, h = L / 2;
   const kaps = `M ${-h + R} ${-R} L ${h - R} ${-R} A ${R} ${R} 0 0 1 ${h - R} ${R} L ${-h + R} ${R} A ${R} ${R} 0 0 1 ${-h + R} ${-R} Z`;
@@ -24,7 +26,8 @@ export const Kilif: React.FC<{ olcek: number; parilti?: number | null; coz?: num
   const sw = (w: number) => w; // ekran px
   // ip: iki sargı (x −20, +20) + düğüm ucu. Çözülürken her nokta gevşek ip yoluna (düğümden ipUc'a sarkan eğri) kayar — fade yok.
   const sargi = (x: number): P[] => [[x - 2, -R - 1.2], [x + 2, R + 1.2], [x + 4, R + 1.2], [x, -R - 1.2]];
-  const sarili: P[] = [...sargi(20), [0, -R - 1.5], ...sargi(-20), [KILIF_DUGUM[0] - 2, KILIF_DUGUM[1] + 3], [KILIF_DUGUM[0] - 4, KILIF_DUGUM[1] + 8]];
+  const sarili: P[] = koyu ? [...sargi(-16), [-18, -R - 1.4], ...sargi(-20),
+    [KILIF_DUGUM[0] - 2, KILIF_DUGUM[1] + 3], [KILIF_DUGUM[0] - 4, KILIF_DUGUM[1] + 8]] : [...sargi(20), [0, -R - 1.5], ...sargi(-20), [KILIF_DUGUM[0] - 2, KILIF_DUGUM[1] + 3], [KILIF_DUGUM[0] - 4, KILIF_DUGUM[1] + 8]];
   const uc: P = ipUc ?? [KILIF_DUGUM[0] + 30, KILIF_DUGUM[1] + 40];
   const gevsek: P[] = sarili.map((_, i) => {
     const t = i / (sarili.length - 1); // ip boyunca: 0 serbest uç (sarkar) … 1 tutulan uç (ipUc)
@@ -69,8 +72,8 @@ export const Kilif: React.FC<{ olcek: number; parilti?: number | null; coz?: num
         <path d={`M ${h - 6} ${-R} L ${h - R + 0.5} ${-R} A ${R} ${R} 0 0 1 ${h - R + 0.5} ${R} L ${h - 6} ${R} Z`} fill={KILIF.tikac} stroke={KILIF.kontur} strokeWidth={sw(kontur)} style={nss} />
       </g>
       {/* ip: sargılar → gevşek (gölge + ip) */}
-      <path d={d(ipYol)} transform="translate(0.5 0.6)" fill="none" stroke={KILIF.ipGolge} strokeWidth={sw(Math.max(2, 1.1 * olcek))} style={nss} />
-      <path d={d(ipYol)} fill="none" stroke={KILIF.ip} strokeWidth={sw(Math.max(1.6, 0.8 * olcek))} style={nss} />
+      <path d={d(ipYol)} transform="translate(0.5 0.6)" fill="none" stroke={koyu ? KILIF.tikac : KILIF.ipGolge} strokeWidth={sw(koyu ? 7 : Math.max(2, 1.1 * olcek))} strokeOpacity={koyu ? 0.8 : 1} style={nss} />
+      <path d={d(ipYol)} fill="none" stroke={koyu ? "#4a4237" : KILIF.ip} strokeWidth={sw(koyu ? 5 : Math.max(1.6, 0.8 * olcek))} style={nss} />
     </g>
   );
 };

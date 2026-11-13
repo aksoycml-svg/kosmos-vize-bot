@@ -14,14 +14,14 @@ import { cl, CIKIS, ekranNokta, GIRIS, INOUT, kameraHesapla, katDonusum } from "
 import { param, Sablon, SablonProps } from "../../ortak";
 import { cirpis, Guvercin, KusPoz, KUS_POZ, kusAyakEkran, kusYerlesim, pozKaris } from "../../props/paris/Guvercin";
 import { Kilif, KILIF } from "../../props/paris/Kilif";
-import { Sayfa } from "../../props/paris/Sayfa";
-import { ElDurum, elGeometri, ParisEl } from "../../props/paris/ParisEl";
+import { Sayfa, satirYollari } from "../../props/paris/Sayfa";
+import { GravurEl, GravurElDurum, GRAVUR_PALET, GRAVUR_POZ, gravurElGeo, konikKol } from "../../props/paris/GravurEl";
+import { ElDurum, elGeometri } from "../../props/paris/ParisEl";
 import { Balon, SepetArka, SepetOn, SepetPoz } from "../../props/paris/Balon";
 import { pchip } from "../galata/GalataTepe";
 import { DP, golgeMasa, MASA, masaTers, mp, mpx, mz, V3 } from "./dagronDunya";
 import { agacGolge, CiplakAgac, GokBasamak } from "./montmartreDekor";
 import { golgeCokgen, Kam, PAL, pr, pxm as pxmK, rng, zarf } from "./montmartreDunya";
-import type { KolIsik } from "../../../rig/RigIsik";
 
 type Ar = { bas: number; bit: number; temas?: number };
 const ar = (v: unknown, d: Ar): Ar => (v && typeof v === "object" && typeof (v as Ar).bas === "number" ? (v as Ar) : d);
@@ -32,7 +32,7 @@ const pt = (a: P[]) => a.map((q) => `${q[0].toFixed(1)},${q[1].toFixed(1)}`).joi
 const dYol = (a: P[], kapali = true) => (a.length ? `M${a.map((q) => `${q[0].toFixed(1)} ${q[1].toFixed(1)}`).join("L")}${kapali ? "Z" : ""}` : "");
 const S = 163; // DOKU_SEED.dagronMasa
 // KolEl ışığı (ekranda ışığa doğru yön = gölge yönünün tersi), sıcak kenar, 143° tarama
-const EL_ISIK: KolIsik = { yon: [-0.84, 0.55], renk: DP.kenar, aci: 143, sertlik: 0.75, murekkep: DP.murekkep };
+const EL_ISIGA: P = [-0.84, 0.55]; // gravür eli (C2): ekranda ışığa doğru (gölge yönünün tersi; masa gölgeleri sağ-yukarı düşer)
 
 // ------------------------------------------------------------------ masa yardımcıları ------------------------------------------------------------------
 const kutuKose = (X0: number, X1: number, Y0: number, Y1: number, h0: number, h1: number): V3[] => [[X0, Y0, h0], [X1, Y0, h0], [X1, Y1, h0], [X0, Y1, h0], [X0, Y0, h1], [X1, Y0, h1], [X1, Y1, h1], [X0, Y1, h1]];
@@ -273,13 +273,18 @@ const SERIT = { L: 0.064, W: 0.032 };
 const SeritCiz: React.FC<{ c: V3; phi: number; L?: number }> = ({ c, phi, L = SERIT.L }) => {
   const k = masaDik(c, phi, L, SERIT.W);
   const m = (u: number, v: number): P => { const a: P = [k[0][0] + (k[1][0] - k[0][0]) * u, k[0][1] + (k[1][1] - k[0][1]) * u], b: P = [k[3][0] + (k[2][0] - k[3][0]) * u, k[3][1] + (k[2][1] - k[3][1]) * u]; return [a[0] + (b[0] - a[0]) * v, a[1] + (b[1] - a[1]) * v]; };
-  // mikro sayfa: şeridin iç %70'i, 8 satır (P05 sayfasının küçüğü)
-  const satir = Array.from({ length: 8 }, (_, i) => { const v = 0.22 + (i * 0.56) / 7, u1 = 0.18 + (i === 7 ? 0.35 : 0.6 - rnd(S, `m${i}`) * 0.08); return [m(0.16, v), m(u1, v)] as [P, P]; });
+  // mikro sayfa (C2, eleştiri düz.1): sayfanın birebir minyatürü — açık kare çerçeve (kenar boşluğu) + içinde aynı satır düzeni
+  // (12 satır, son satır kısa, P05 Sayfa ile aynı seed), koyu film üstünde açık mürekkep
+  const fr = { u0: 0.26, u1: 0.74, v0: 0.1, v1: 0.9 };
+  const sayfaM = (u: number, v: number) => m(fr.u0 + (fr.u1 - fr.u0) * u, fr.v0 + (fr.v1 - fr.v0) * v);
+  const satirlar = satirYollari(sayfaM, S + 40, 9, 0.12);
+  const ekranBoy = Math.hypot(k[1][0] - k[0][0], k[1][1] - k[0][1]);
   return (
     <g>
       <polygon points={pt(k)} fill={DP.serit} stroke="#2a2430" strokeWidth={3} strokeLinejoin="round" />
       <polyline points={pt([k[3], k[0], k[1]])} stroke={DP.seritKenar} strokeWidth={2.5} fill="none" />
-      {satir.map(([a, b], i) => <line key={i} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={DP.seritKenar} strokeWidth={1.8} strokeLinecap="round" />)}
+      <polygon points={pt([sayfaM(0, 0), sayfaM(1, 0), sayfaM(1, 1), sayfaM(0, 1)])} fill="#6e6458" stroke={DP.seritKenar} strokeWidth={Math.max(1.5, ekranBoy / 90)} strokeLinejoin="round" />
+      <g stroke="#d9d2c0" strokeWidth={Math.max(1.2, ekranBoy / 110)} strokeLinecap="round" fill="none">{satirlar.map((d, i) => <path key={i} d={d} />)}</g>
     </g>
   );
 };
@@ -333,8 +338,8 @@ const ElGolgeli: React.FC<{ e: { d: ElDurum; golgeD: P }; uid: string; tutulan?:
   return (
     <g>
       <defs><clipPath id={`${uid}eg`}><rect x={-600} y={ust} width={2400} height={3000} /></clipPath></defs>
-      <g clipPath={`url(#${uid}eg)`} transform={`translate(${e.golgeD[0]} ${e.golgeD[1]})`} opacity={0.6}><ParisEl d={e.d} tip="dagronSepya" golge={DP.masaGolge} /></g>
-      <ParisEl d={e.d} tip="dagronSepya" isik={EL_ISIK} tutulan={tutulan} />
+      <g clipPath={`url(#${uid}eg)`} transform={`translate(${e.golgeD[0]} ${e.golgeD[1]})`} opacity={0.6}><GravurElDurum d={e.d} tur="dagron" isik={EL_ISIGA} taramaAci={143} golge={DP.masaGolge} /></g>
+      <GravurElDurum d={e.d} tur="dagron" isik={EL_ISIGA} taramaAci={143} tutulan={tutulan} />
     </g>
   );
 };
@@ -357,10 +362,11 @@ const MasaParis: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
   const cirpT = p >= cirp.bas && p < cirp.bit;
   let kp: KusPoz = KUS_POZ["tunek"];
   if (cirpT) kp = pozKaris(KUS_POZ["tunek"], cirpis({ ...KUS_POZ["kalkis-a"], bacak: 1, govde: 30 }, p, cirp.bas, { ...KUS_POZ["kalkis-a"], kanatBoy: 0.8 }, { ...KUS_POZ["kalkis-b"], kanatBoy: 0.75 }, 14), Math.min(t01(p, cirp.bas, cirp.bas + 6), 1 - t01(p, cirp.bit - 8, cirp.bit)));
-  const ayakHedef = mp(kc[0] + 0.01, kc[1], kc[2] + 0.004);
+  const ayakHedef = mp(kc[0] + 0.05, kc[1], kc[2] + 0.004);
   const ay0 = kusAyakEkran(kp, [0, 0], kusPx), ayOrt: P = [(ay0[0][0] + ay0[1][0]) / 2, Math.max(ay0[0][1], ay0[1][1])];
   const kusCapa: P = [ayakHedef[0] - ayOrt[0], ayakHedef[1] - ayOrt[1]];
-  const kus = <Guvercin poz={kp} capa={kusCapa} olcek={kusPx} kenar={{ renk: DP.kenar, dx: -3, dy: -3 }} kilif={null} />;
+  // C2 (eleştiri düz.5): kuş kefede SOLA bakar → kuyruk direkten uzağa (sağa) uzanır, direğin içinden geçmez
+  const kus = <g transform={`translate(${ayakHedef[0]} 0) scale(-1 1) translate(${-ayakHedef[0]} 0)`}><Guvercin poz={kp} capa={kusCapa} olcek={kusPx} kenar={{ renk: DP.kenar, dx: 3, dy: -3 }} kilif={null} /></g>;
   const kd = kefeMerkez(T, -1);
   const kefeDeste = <Deste c={[kd[0], kd[1], kd[2] + 0.002]} phi={0.12} kalin={0.014} seed={S + 21} />;
 
@@ -429,18 +435,19 @@ const MasaParis: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
     const gel = sKoy.bit - 6, otur = sKoy.bit + 10; // şerit konduktan sonra (sağ el çıkarken) parmak yanına uzanır
     if (p >= gel && p <= elCek.bit) {
       const d: [number, number] = [Math.cos(sm.phi), Math.sin(sm.phi)], n: [number, number] = [-d[1], d[0]];
-      const tip: V3 = [sm.C[0] + d[0] * (seritL / 2 + 0.002) - n[0] * 0.062, sm.C[1] + d[1] * (seritL / 2 + 0.002) - n[1] * 0.062, 0.026];
+      // C2 (§15.1.5): sol el masaya yatık, işaret parmağı şeridin SOL yanında ona paralel (başparmak şerit tarafında, V'de şerit); uç Paris ucuna 0.04 E yakın
+      const tip: V3 = [sm.C[0] + d[0] * (seritL / 2 - 0.006) + n[0] * 0.034, sm.C[1] + d[1] * (seritL / 2 - 0.006) + n[1] * 0.034, 0.008];
       const nefes = 0.0008 * Math.sin((p - otur) / 9);
-      const u = yol([gel, otur, elCek.bas, elCek.bit], [[-0.3, 0.02, 0.1], tip, [tip[0], tip[1] + nefes, tip[2]], [-0.36, 0.05, 0.12]], p) as V3;
+      const u = yol([gel, otur, elCek.bas, elCek.bit], [[-0.3, 0.02, 0.06], tip, [tip[0], tip[1] + nefes, tip[2]], [-0.36, 0.05, 0.08]], p) as V3;
       const tipE = mp(...tip), arkaE = mp(tip[0] - d[0] * 0.07, tip[1] - d[1] * 0.07, tip[2]);
       const aci = (Math.atan2(tipE[1] - arkaE[1], tipE[0] - arkaE[0]) * 180) / Math.PI;
-      return elMasa(u, aci, aci - 12, "isaret", 0.015);
+      return { ...elMasa(u, aci, aci - 8, "isaret", 0.008), gravur: true };
     }
     return null;
   })();
 
   // ---- gölgeler (tek ışık) ----
-  const kusGolge = (() => { const c = kefeMerkez(T, 1); const v: V3[] = Array.from({ length: 18 }, (_, i) => { const a = (i / 18) * Math.PI * 2; return [c[0] - 0.02 + 0.13 * Math.cos(a), c[1], c[2] + 0.11 + 0.075 * Math.sin(a)]; }); return golgePoly(v); })();
+  const kusGolge = (() => { const c = kefeMerkez(T, 1); const v: V3[] = Array.from({ length: 18 }, (_, i) => { const a = (i / 18) * Math.PI * 2; return [c[0] + 0.05 + 0.13 * Math.cos(a), c[1], c[2] + 0.11 + 0.075 * Math.sin(a)]; }); return golgePoly(v); })();
   const golgeler: P[][] = [kutuGolge(), ...teraziGolge(T), kusGolge];
 
   // ---- kilit noktaları (güvenli alan) ----
@@ -464,7 +471,26 @@ const MasaParis: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
       {p >= fAl && <Sayfa kose={masaDik(sayfaC, sayfaPhi, 0.21, 0.27)} renk={SAYFA_RENK} seed={S + 40} />}
       <KutuCiz uid={uid} kapak={kapakT} cek={cekT} hat={hatT} seritIc={p < sTut ? seritIc : null} />
       {p >= sTut && !seritDurum.elde && seritCiz}
-      {solEl && <ElGolgeli e={solEl} uid={`${uid}l`} />}
+      {solEl && !("gravur" in solEl) && <ElGolgeli e={solEl} uid={`${uid}l`} />}
+      {solEl && "gravur" in solEl && (() => {
+        // gravür eli (§15.1): işaret ucu = solEl.d.uc; E = 0.19 m × yerel px/m; sol el avuç aşağı → başparmak sağda (ayna)
+        const E = 0.19 * solEl.d.pxm, g0 = gravurElGeo([0, 0], solEl.d.aci, E, GRAVUR_POZ.olcu, true);
+        const bilek: P = [solEl.d.uc[0] - g0.uc[0][0], solEl.d.uc[1] - g0.uc[0][1]];
+        const r = (solEl.d.aci * Math.PI) / 180, dir: P = [Math.cos(r), Math.sin(r)];
+        const dirsek: P = [bilek[0] - dir[0] * 0.27 * solEl.d.pxm * 1.05 - dir[1] * 30, bilek[1] - dir[1] * 0.27 * solEl.d.pxm * 1.05 + dir[0] * 30];
+        const omuz: P = [dirsek[0] - dir[0] * 400, dirsek[1] - dir[1] * 400 + 120];
+        const kol = konikKol(omuz, dirsek, [bilek[0] - dir[0] * 0.02 * E, bilek[1] - dir[1] * 0.02 * E], [0.62 * E, 0.52 * E, 0.36 * E]);
+        const mA = kol.ileri(-0.22 * E), mB = kol.ileri(0), nn = kol.n2, w = 0.2 * E;
+        const q = (o: P, k2: number): P => [o[0] + nn[0] * k2, o[1] + nn[1] * k2];
+        const ISK: P = EL_ISIGA;
+        return <g>
+          <g transform={`translate(${solEl.golgeD[0]} ${solEl.golgeD[1]})`} opacity={0.55}><path d={kol.d} fill={DP.masaGolge} /><GravurEl bilek={bilek} aci={solEl.d.aci} E={E} poz={GRAVUR_POZ.olcu} ayna isik={ISK} taramaAci={143} golge={DP.masaGolge} golgeKay={[0, 0]} /></g>
+          <path d={kol.d} fill="#5a5068" stroke="#2e2318" strokeWidth={3} strokeLinejoin="round" />
+          <polygon points={pt([q(mA, w * 1.05), q(mB, w), q(mB, -w), q(mA, -w * 1.05)])} fill={GRAVUR_PALET.dagron.manset} stroke={GRAVUR_PALET.dagron.mansetGolge} strokeWidth={3} />
+          {[0.35, 0.7].map((t) => { const c: P = [mA[0] + (mB[0] - mA[0]) * t, mA[1] + (mB[1] - mA[1]) * t]; const a1 = q(c, w * 0.95), b1 = q(c, -w * 0.95); return <line key={t} x1={a1[0]} y1={a1[1]} x2={b1[0]} y2={b1[1]} stroke={GRAVUR_PALET.dagron.mansetGolge} strokeWidth={1.5} />; })}
+          <GravurEl bilek={bilek} aci={solEl.d.aci} E={E} poz={GRAVUR_POZ.olcu} ayna palet={GRAVUR_PALET.dagron} isik={ISK} taramaAci={143} />
+        </g>;
+      })()}
       {sagEl && <ElGolgeli e={sagEl} uid={`${uid}r`} tutulan={seritDurum.elde ? seritCiz : undefined} />}
     </g>
   );
@@ -528,7 +554,6 @@ const MasaTours: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
   // sağ el: kuşun gövdesini alttan kavrar (avuç), salmada açılır ve aşağı çekilir
   const karin = Y.ekran([-46, 40]);
   const sagUc: P = p < sal.bas ? karin : (() => { const t = t01(p, sal.bas, sal.bit + 10, CIKIS), k0 = kusYerlesim(tutus, [K0[0], K0[1]], olc).ekran([-46, 40]); return [k0[0] + 120 * t, k0[1] + 260 * t]; })();
-  const sagEl: ElDurum = { uc: sagUc, aci: 202, kolAci: 160, pxm: pxmEl, poz: "gevsek", bukum: -14 };
   const solEl: ElDurum | null = solPinch ? { uc: solPinch, aci: -38, kolAci: -52, pxm: pxmEl, poz: p < tOtur ? "kistir" : "kistirSiki" } : null;
   const golgeD: P = [46, -30]; // el/kuş yüksekliği ≈ 5 cm → gölge sağ-yukarı (ekranda (+0.84, −0.55))
   // gölgeler: kuş (gövde lekesi) + eller
@@ -546,12 +571,25 @@ const MasaTours: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
       <defs><clipPath id={`${uid}tm`}><rect x={-600} y={ust} width={2400} height={3000} /></clipPath></defs>
       <g clipPath={`url(#${uid}tm)`} opacity={0.75}>
         {kusVar && <ellipse cx={capa[0] + 300 + golgeD[0]} cy={capa[1] + 30 + golgeD[1]} rx={330} ry={95} transform={`rotate(-8 ${capa[0] + 300} ${capa[1]})`} fill={DP.keceKenar} />}
-        {p < sal.bit + 12 && <g transform={`translate(${golgeD[0]} ${golgeD[1]})`}><ParisEl d={sagEl} tip="dagronSepya" golge="#2e2a40" /></g>}
-        {solEl && <g transform={`translate(${golgeD[0] * 0.7} ${golgeD[1] * 0.7})`}><ParisEl d={solEl} tip="dagronSepya" golge="#2e2a40" /></g>}
+        {p < sal.bit + 12 && <g transform={`translate(${golgeD[0]} ${golgeD[1]})`}><GravurEl bilek={[sagUc[0] + 0.62 * 0.171 * pxmEl * 0.96, sagUc[1] + 0.62 * 0.171 * pxmEl * 0.28 + 30]} aci={196} E={0.171 * pxmEl} poz={GRAVUR_POZ.gevsek} isik={[1, 0]} taramaAci={143} golge="#2e2a40" golgeKay={[0, 0]} /></g>}
+        {solEl && <g transform={`translate(${golgeD[0] * 0.7} ${golgeD[1] * 0.7})`}><GravurElDurum d={solEl} tur="dagron" isik={EL_ISIGA} taramaAci={143} golge="#2e2a40" /></g>}
       </g>
-      {kusVar && <Guvercin poz={poz} capa={capa} olcek={olc} kenar={{ renk: DP.kenar, dx: -5, dy: -4 }} kilif={takili ? { parilti, coz, ipUcEkran } : null} />}
-      {p < sal.bit + 12 && <ParisEl d={sagEl} tip="dagronSepya" isik={EL_ISIK} />}
-      {solEl && <ParisEl d={solEl} tip="dagronSepya" isik={EL_ISIK} tutulan={!takili ? kilifCiz : undefined} />}
+      {kusVar && <Guvercin poz={poz} capa={capa} olcek={olc} kenar={{ renk: DP.kenar, dx: -5, dy: -4 }} kilif={takili ? { parilti, coz, ipUcEkran, ipStil: "koyu" } : null} />}
+      {p < sal.bit + 12 && (() => {
+        // C2 (§15.1/§15.4): Dagron eli gravür dilinde; kuşun gövdesini alttan gevşek taşır (sıkmaz), kol sağ-alttan
+        const E = 0.19 * pxmEl * 0.9, aci = 196, r = (aci * Math.PI) / 180, dir: P = [Math.cos(r), Math.sin(r)];
+        const bilek: P = [sagUc[0] - dir[0] * 0.62 * E, sagUc[1] - dir[1] * 0.62 * E + 30];
+        const kol = konikKol([bilek[0] + 700, bilek[1] + 420], [bilek[0] + 380, bilek[1] + 160], [bilek[0] + 0.03 * E, bilek[1] + 4], [0.62 * E, 0.52 * E, 0.36 * E]);
+        const mA = kol.ileri(-0.22 * E), mB = kol.ileri(0), nn = kol.n2, w = 0.2 * E;
+        const q = (o: P, k2: number): P => [o[0] + nn[0] * k2, o[1] + nn[1] * k2];
+        const ISK: P = EL_ISIGA;
+        return <g>
+          <path d={kol.d} fill="#5a5068" stroke="#2e2318" strokeWidth={3} strokeLinejoin="round" />
+          <polygon points={pt([q(mA, w * 1.05), q(mB, w), q(mB, -w), q(mA, -w * 1.05)])} fill={GRAVUR_PALET.dagron.manset} stroke={GRAVUR_PALET.dagron.mansetGolge} strokeWidth={3} />
+          <GravurEl bilek={bilek} aci={aci} E={E} poz={GRAVUR_POZ.gevsek} palet={GRAVUR_PALET.dagron} isik={ISK} taramaAci={143} />
+        </g>;
+      })()}
+      {solEl && <GravurElDurum d={solEl} tur="dagron" isik={EL_ISIGA} taramaAci={143} tutulan={!takili ? kilifCiz : undefined} />}
     </g>
   );
 };
@@ -583,7 +621,9 @@ const KafesSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPr
   const kapA = (() => { const a = t01(p, kk.bas, tK + 6, INOUT) * 0.7 + t01(p, tK + 6, kk.bit, GIRIS) * 0.3; let v = a; if (p > kk.bit) v = 1 - 0.04 * Math.sin(((p - kk.bit) / 8) * Math.PI) * Math.exp(-(p - kk.bit) / 6); return (100 * v * Math.PI) / 180; })();
   const kapiUc = (h: number): P => W(KF.kapi[0] + 0.12 * Math.cos(kapA), h, KF.Z0 - 0.12 * Math.sin(kapA));
   // kuş: tünekte; yön arama (gövde sola/sağa döner + baş), çıkış kapıdan → sağ-üst
-  const ppKus = pxmK(KAM_KAFES, 1.4) / 1000;
+  // C2 (eleştiri düz.5): json kafes.kus_olcek (0.85) → kuyruk kafes çerçevesinin içinde
+  const kusOlcek = ((plan.parametreler?.kafes as { kus_olcek?: number } | undefined)?.kus_olcek) ?? 1;
+  const ppKus = (pxmK(KAM_KAFES, 1.4) / 1000) * kusOlcek;
   const don = (() => {
     const a = ya.bas, b = ya.bit, L = b - a;
     const x1 = t01(p, a + L * 0.12, a + L * 0.25, INOUT), x2 = t01(p, a + L * 0.5, a + L * 0.63, INOUT);
@@ -591,12 +631,12 @@ const KafesSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPr
   })();
   const basAci = p > ya.bas + (ya.bit - ya.bas) * 0.7 ? -14 * t01(p, ya.bas + (ya.bit - ya.bas) * 0.7, ya.bit) : 6 * Math.sin((p - ya.bas) / 7) * (p > ya.bas && p < ya.bit ? 1 : 0);
   let kp: KusPoz = { ...KUS_POZ["tunek"], bas: basAci };
-  let ayak: V3 = [-0.03, KF.tunek, 1.42];
+  let ayak: V3 = [-0.01, KF.tunek, 1.42];
   let olc = ppKus, yon = don;
   if (p >= kc.bas) {
     const q = Math.min(p, kc.bit + 20);
-    ayak = yol([kc.bas, kc.bas + 7, kc.bit, kc.bit + 20], [[-0.03, KF.tunek, 1.42], [0.11, KF.h0 + 0.02, 1.22], [0.6, 1.6, 1.0], [1.4, 2.4, 0.9]], q) as V3;
-    olc = pxmK(KAM_KAFES, ayak[2]) / 1000; yon = 1;
+    ayak = yol([kc.bas, kc.bas + 7, kc.bit, kc.bit + 20], [[-0.01, KF.tunek, 1.42], [0.11, KF.h0 + 0.02, 1.22], [0.6, 1.6, 1.0], [1.4, 2.4, 0.9]], q) as V3;
+    olc = (pxmK(KAM_KAFES, ayak[2]) / 1000) * kusOlcek; yon = 1;
     kp = p < kc.bas + 6 ? pozKaris(kp, KUS_POZ["kanat-topla"], t01(p, kc.bas, kc.bas + 6)) : cirpis(KUS_POZ["ucus-yukari"], p, kc.bas + 6, KUS_POZ["ucus-yukari"], KUS_POZ["ucus-asagi"], 12);
   }
   const ay0 = kusAyakEkran(kp, [0, 0], olc), ayO: P = [(ay0[0][0] + ay0[1][0]) / 2, Math.max(ay0[0][1], ay0[1][1])];
@@ -655,7 +695,7 @@ const KafesSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPr
       {/* kafesi rime bağlayan kısa halat */}
       {(() => { const a = W(KF.X0, KF.h0 + 0.05, KF.Z0), b = pr(KAM_KAFES, KF.X0 - 0.06, 1.0 + H, KF.Z0 + 0.02); return <path d={`M${a[0]} ${a[1]} Q${a[0] - 30} ${(a[1] + b[1]) / 2 + 14} ${b[0]} ${b[1]}`} stroke={PAL.halat} strokeWidth={6} fill="none" />; })()}
       {p >= kc.bas + 4 && kusCiz}
-      {elE && <ParisEl d={elE} tip="parisGri" isik={{ yon: [-0.7, -0.5], renk: PAL.kenar, aci: 72, sertlik: 0.7, murekkep: "#2f2d46" }} />}
+      {elE && <GravurElDurum d={elE} tur="paris" isik={[-0.7, -0.5]} taramaAci={72} />}
     </g>
   );
 };

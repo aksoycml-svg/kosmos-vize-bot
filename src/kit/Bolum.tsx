@@ -71,7 +71,7 @@ const YaziKatmani: React.FC<{ plan: Plan; p: number; dil: Dil; ana: Dil }> = ({ 
         return <Giris key={`y${i}`} p={p} bas={y.bas}><KitSayac sablon={y.metin} deger={fmt(n)} enUzun={enUzun} donus={S.donus?.metin} donusT={dt} vurgu={S.vurgu} bant={y.bant} dil={dil} /></Giris>;
       }
       // K2 yazı standardı: kâğıt şerit + Playfair, tek vurgu kelimesi (kagitSerit/boyut alanları yok sayılır — geri uyum için şemada)
-      return <Giris key={`y${i}`} p={p} bas={y.bas}><KitEkranYazisi metin={y.metin} vurgu={y.vurgu} tur={y.tur === "sayac" ? "iddia" : y.tur} bant={y.bant} dil={dil} kutuX={y.kutu?.x} /></Giris>;
+      return <Giris key={`y${i}`} p={p} bas={y.bas}><KitEkranYazisi metin={y.metin} vurgu={y.vurgu} tur={y.tur === "sayac" ? "iddia" : y.tur} bant={y.bant} dil={dil} kutuX={y.kutu?.x} zemin={y.zemin} /></Giris>;
     })}
     {replikCoz(plan, dil, ana).map((r, i) => {
       if (p < r.bas || p >= r.bit) return null;

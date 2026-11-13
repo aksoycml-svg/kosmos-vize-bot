@@ -209,7 +209,7 @@ const BOYUN = "M 35 -60 C 50 -56 63 -43 67 -15 C 55 -18 44 -28 34 -40 Z";
 export const Guvercin: React.FC<{
   poz: KusPoz; capa: P; olcek: number;          // olcek = ekran px / mm
   kenar?: { renk: string; dx: number; dy: number }; // kenar ışığı (alacakaranlık: sağ/üst) — v4: konturun İÇİNE oturan hilal
-  kilif?: { parilti?: number | null; coz?: number; kapak?: number; serit?: number; ipUcEkran?: P } | null;
+  kilif?: { parilti?: number | null; coz?: number; kapak?: number; serit?: number; ipUcEkran?: P; ipStil?: "koyu" } | null;
   kontur?: number;
 }> = ({ poz: z, capa, olcek, kenar, kilif, kontur }) => {
   const uid = "gv" + useId().replace(/:/g, "");
@@ -340,7 +340,7 @@ export const Guvercin: React.FC<{
           </g>
         </g>
       )}
-      {kilif && <g transform={kilifTr}><Kilif olcek={olcek} parilti={kilif.parilti} coz={kilif.coz} kapak={kilif.kapak} serit={kilif.serit} ipUc={ipUc} /></g>}
+      {kilif && <g transform={kilifTr}><Kilif olcek={olcek} parilti={kilif.parilti} coz={kilif.coz} kapak={kilif.kapak} serit={kilif.serit} ipUc={ipUc} ipStil={kilif.ipStil} /></g>}
     </g>
   );
 };

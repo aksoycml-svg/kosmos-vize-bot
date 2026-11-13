@@ -991,3 +991,87 @@
 - Kararlar: P05 cs 1.5 (eleştirmen ~1.5): ölçü noktası (540,930) korunur ki P06 eşleşmesi bozulmasın. P09'da tasarım baş aralığı + kılıf aynı karede ancak cs ~1.4'te sığdı (cs 2.0'da baş kadraj dışıydı); kılıf %10 sınırda.
 - Kurallar / ihlaller: P05 f280 render'ı hâlâ ESKİ el pozu (kalkık tek parmak, el ≈%53) gösteriyor — kadraj doğru (sayfa+şerit+el aynı karede), poz motion'ın `olcu` pozuna bağlı. P10 kodu değişmediği için oda/kapi render edilmedi (lint notu bu yüzden). Yazı stili: `yazi.tsx` yalnız kâğıt şerit; kapı karesinde açık-mürekkep/koyu zemin parametresi yok → `KE-PK-Y1` kit_eksik (mevcut kâğıt şerit her zeminde okunur).
 - Açık sorular: (1) P06 rota ilk parça uzunluğu 280→210 px olmalı (P05 taşıyıcı çıkışı) — P06 sahibi/orkestra. (2) P09 kılıf %10 sınırda; ip ≥4 px koyu 2 sarım motion'da. (3) P04b el: kuş ×0.85 `kafes.kus_olcek` motion'ın okuyacağı yeni anahtar; el f136–172 sınırı kapak anim (f146–162) içinde. (4) P10 oda/kapi f200/f330 motion sonrası yönetmen tarafından render edilip bakılmalı.
+
+## motion · 2026-11-13 · C2 düzeltme turu (tur-15: P10 kapı/oda, P05, P09, P04b, KE-PK-Y1)
+- Ne yaptım:
+  - **P10 `kapi` f330, baştan kuruldu (§4v3.5 + §15.2):**
+    - Kamera odada, kapı sağda. Pervaz (3 fitil), başlık, taramalı soffit, sıcak söve iç yüzü, kanat kenarı ve eşik var.
+    - Koridor duvarında güneş lekesi var, pencere kası ve kayıt gölgeleriyle. Lekenin dışında 75° seyrek tarama, taş zemin ve güneş şeridi. P01 siluetinden iki bekleyen.
+    - Döşemede iki tonlu ışık havuzu ve okuyanın sol-aşağı düşen gölgesi. Duvarda 60° tarama; kâğıt çevresinde 40 px boşluk bırakıp köşeye doğru sıklaşıyor. Lambri ve soğuk yansıma basamağı.
+    - Okuyan sola bakıyor (profil). Burun 24 px çıkıyor. Baş öne eğik, kulaksız-disksiz. C-yayı kulak, düzensiz ense tutamları. Kulak, ense ve omuzda kırık sıcak kenar ışığı; çene altında ince kâğıt yansıması.
+    - Palto tek giysi, kollar konik ve palto renginde, dirsek yuvarlak. Gölge tarafında 78° tarama.
+    - Kâğıt 45° ışığa dönük (sağ yarı açık, sol yarı loş), alt kenarı sarkık, üst kenarı dalgalı.
+    - Tutuş: yakın sol el kâğıdın sağ-alt köşesinin altında, başparmak ön yüzde. Uzak el arkadan sol kenarı sarıyor; ön yüzde 3 parmak ucu görünüyor.
+    - Sekans: f266'da el sarkık ve gevşek. Memur eli zarfı soldan getiriyor; f272'de yakın el zarfı alıyor. Uzak el kapağı kıstırıp açıyor (temas f290). Sayfa çekiliyor, f294–300 arası açılıyor. Zarf fade olmuyor, açılan sayfanın arkasında kalıyor. Okuma f296–386, kapanışta kâğıt 20 px iniyor ve baş kalkıyor.
+  - **P10 `oda` (§4v3.2–3.4):**
+    - Kamera: F 1700, göz 1.70, ufuk 960.
+    - Tavan, 3 basamaklı korniş (alt bantlarında tarama), 60° seyrek duvar taraması, perde çevresinde halka.
+    - Çıtaya iki iple asılı bez: tek kapalı yol, dikişsiz, sarkık alt kenar, 3 kıvrım. İp mandalı var; kepenkli pencerede 3 tabla, sol kenarları yansıma alıyor.
+    - Lantern sağ-altta. Mercek (892,1605) gövdenin arkasında. Huzme gövdenin altından çıkıyor; sınır ışınları TR/BL köşelerinde, iç ışınlar alt ve sağ kenarda bitiyor, perdeyi aşmıyor.
+    - Görüntü 80 px'ten 566×439'a (422,779) büyüyor; sayfa çerçeveli.
+    - Dört memur başı: dağınık / kel / ayrık / dağınık-2. Kulak ve parlama yayı yok; kenar ışığı parça parça.
+    - Cam levhayı sağdan gelen el lantern üst yuvasına indiriyor (f84).
+  - **El dili:**
+    - Yeni `GravurEl` (§15.1): değişken kontur (yük/ışık), iki düz ton, gölge bandında sahne açısında tarama, iç kenar ışığı, uca doğru incelen parmak. Tırnak lekesi ve boğum tiresi yok.
+    - Pozlar: `olcu`, `tutus`, `gevsek`, `kistir`, `cimdik`. Yardımcılar: `konikKol` ve `GravurElDurum` (eski ElDurum sözleşmesi).
+    - DAGRON-INSERT'te bütün eller (P05 iki el, P09 iki el, P04b kapak eli) gravür eline geçti. Eski `isaret` pozu artık gevsek çiziliyor: havada tek parmak hiçbir karede yok.
+  - **P05:**
+    - f280: sol el masaya yatık, dört parmak yan yana, başparmak sağda (ayna). Şerit işaret ile başparmak arasındaki V'de, paralel duruyor.
+    - Şerit deseni sayfa minyatürüne çevrildi: açık çerçeve ve 9 satır.
+    - f0: kuş kefede sola bakıyor, kuyruk direkten uzakta.
+  - **P09:** kılıf ipi `ipStil: "koyu"` (#4a4237, 5 px, iki bitişik sarım, #B9801F ip gölgesi). Baş ve göz kadrajda.
+  - **P04b:** `kafes.kus_olcek` okunuyor (0.85), kuş 0.02 m sağa alındı. Kuyruk çerçevenin içinde.
+  - **KE-PK-Y1:** `KitEkranYazisi zemin:"koyu"`; varsayılan değişmedi (açık mürekkep `#e4dccb`, üst çizgi, vurgu kırmızısı). dil.ts ve Bolum.tsx bu alanı geçiriyor. P10 `ekran_yazisi[1].zemin "koyu"` (oda + kapı, ikisi de koyu zemin).
+  - **Render (`kalibrasyon/C2/`):**
+    - P10 f330, P10 f200, P05 f0/f280, P09 f150, P04b f206. Her biri tam + -360 + -guvenli + -guvenli-360.
+    - Şeritler: P05 f268–358, P10 f150–270, P10 f266–330 (4 karede bir).
+    - `ozet.png`.
+- Dokunduğum dosyalar: src/kit/props/paris/GravurEl.tsx (yeni), src/kit/sablonlar/paris/LanternOda.tsx (v3, baştan), src/kit/sablonlar/paris/DagronInsert.tsx, src/kit/props/paris/Kilif.tsx, src/kit/props/paris/Guvercin.tsx, src/kit/yazi.tsx, src/kit/dil.ts, src/kit/Bolum.tsx, bolumler/paris-kusatmasi/bolum.json (yalnız P10: ekran_yazisi[1].zemin, kit_eksik −KE-PK-Y1, ekran_yazisi_not, lint.not), bolumler/paris-kusatmasi/kalibrasyon/C2/*, bu rapor.
+- Kareye uyarlarken değiştirdiğim değerler (yönetmen ve tasarımcı plana işler):
+  | Öğe | Şartname | Kod | Neden |
+  |---|---|---|---|
+  | Okuyan baş eğimi | 28° | baş −24° + boyun/sırt öne eğimi | 28°'de alın burnun önüne geçiyor, profil "alın" okunuyordu; −24°'te burun öncü (18 px). Baş bbox x 541–742 / y 521–772 (§4v3 +16 px uygulandı) |
+  | Yakın el bilek | (455,1130) | (446,1206), el açısı −124°, başparmak ön yüzde yukarı | Ön kol yatay kalsın, dirsek açısı ≈76° (§15.2.4: 75°) |
+  | Uzak el | sağ kenarda, başparmak ön yüzde | sol kenarı arkadan saran el: kenar dışında parmak sırtı + ön yüzde 3 parmak ucu | İki el aynı kenarda doğal durmuyordu. Uzak kol, kâğıt ile gövde arasındaki boşlukta görünüyor |
+  | Kâğıt ışık tonu | #e4dfd0 (L* 89.6) | #dad5c6 (L* ≤ 86.4) | §15.5 L* ≤ 88 |
+  | Sayfa çıkışı/açılma | zarf_acilir 276–296 | kapak 278–290, sayfa çıkar 288–294, açılır 294–300 | Katlı sayfa zarftan çıkmadan açılamaz. Açılma okuma başlangıcına 4 kare taşar, plan içinde bitiyor |
+  | P05 parmak–şerit | — | işaret ucu şeridin solunda 3.4 cm, şerit ucundan 0.6 cm geride | V'de 0.06 E boşluk |
+  | P05 kuş | sağ kefe | sola bakıyor, ayak +0.05 m | Kuyruk direğe değmesin |
+  | P04b kuş | ×0.85 | ×0.85 + X −0.03 → −0.01 | Kuyruk çerçevenin içinde |
+- Aldığım kararlar ve gerekçeleri:
+  - Ayna gerekmedi: kapı sağda, ışık figürün sağ arkasında.
+  - Kılıf ipi yalnız P09'da `koyu`. P01/P10/P11 için ip kodu değişmedi, çünkü brif "P01 f24 değişmedi" kontrolü istiyor. §15.4 "tüm planlarda aynı" kararını uygulamak için orkestra onayı gerekiyor; uygulaması tek parametre (`ipStil`).
+  - KE-PK-Y1'i json'a ben işledim, çünkü kit kanıtı (kural 5) gerekiyordu. **Yönetmen onayı bekliyor.**
+- Uyguladığım kurallar / yakaladığım ihlaller:
+  - Ölçüm (tam boy, Lab, arşiv sonrası):
+
+    | Kare | C\* p99.9 | Kırmızı | Sarı metal | L\* > 88 |
+    |---|---|---|---|---|
+    | P04b f206 | 22.6 | 0 | 0 | 0 |
+    | P05 f0 | 21.5 | 0 | 0 | 0 |
+    | P05 f280 | 21.8 | 0 | 0 | 0 |
+    | P09 f150 | 49.2 | 0 | 4566 px | 0 |
+    | P10 f200 | 17.8 | 0 | 0 | 0 |
+    | P10 f330 | 21.1 | 0 | 0 | 0 (L\* en çok 86.4) |
+
+    P09'daki sarı yalnız kılıf (imza).
+  - §4v3.8 listesi:
+    - Bez 660 px, ≤ 756 ✓.
+    - Işın uçları görüntü köşesinde ya da yakın kenarda (yapı gereği, 0 px) ✓.
+    - x 344'te kama ile memur başı arası ≥ 59 px ✓.
+    - `kapi`'da kâğıt arkasındaki 10 px'lik halkanın ortalama L\*'i 28.5 (sol+üst kenar 27.4), ≤ 30 ✓.
+  - Güvenli alan: 6 karede ihlal 0.
+  - 360'ta yön testi: f330'da burun ve baş eğimi kâğıda gidiyor, kâğıt koyu fonda, baş parlak açıklıkta. P05 sol el, başparmak sağda, kalkık parmak yok.
+  - Diğer kurallar:
+    - Hareket tamamlanıyor: memur eli sol kenardan çıkıyor; zarf sayfanın arkasında kalıyor, fade yok.
+    - Tek ışık: kapı ve lantern.
+    - Kemer yok.
+  - P01 f24 ve P03 f80'in V4/B3 baseline'larıyla piksel farkı 0.
+  - tsc temiz. Doğrulayıcı `--tam` GEÇTİ (0 hata; foley.json uyarısı önceden vardı).
+  - P10'daki "render motion sonrası" lint notu kaldırıldı. P06/P07/P11 notları bu turun kapsamında değil.
+- Açık sorular / bir sonraki ajana notlar (öz puan **6.5**, eleştirmen muhtemelen 5.5–6):
+  1. Gravür eli büyük ölçekte (P05, P09) gölge bandı ve kalın yük konturu yüzünden biraz "dikişli eldiven" gibi okunabilir; bant 12 px ile sınırlı. P09'da avuç kuşun altında, kuyruk yelpazesi hâlâ yukarıdan görünüyor ("balık" okuması tamamen gitmedi).
+  2. Kapı f294'te katlı sayfa ile zarf 4 kare boyunca iki ayrı dikdörtgen olarak görünüyor. f296'da sayfa zarfın önüne geçerken açık kapağın 25 px'lik ucu bir karede kayboluyor.
+  3. Memur-3 (x 945) lantern bacasının arkasında kalıyor, kalkışı kısmen örtülü (json x'i yönetmenin).
+  4. Odak dişlisi temas sesi (f120) görünmeyen bir kaynağa ait. Görünürlük–ses kuralına göre ortam sesi düzeyine inmeli (kurgucu).
+  5. Eleştirmen: kontrol için önce f330, P05 şeridi ve P10 f266–330 şeridi.

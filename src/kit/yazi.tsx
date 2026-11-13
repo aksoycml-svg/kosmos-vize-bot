@@ -33,13 +33,19 @@ const yerlesim = (metin: string, maks: number, enOran: number, ikiliMaks: number
   return { satirlar, px: Math.min(ikiliMaks, ic / (uzun * enOran)) };
 };
 
-const Serit: React.FC<{ children: React.ReactNode; padY?: number; maxW?: number }> = ({ children, padY = 8, maxW = YAZI.kutuW }) => (
+// KE-PK-Y1 (Paris C2): zemin "koyu" → kâğıt şerit yerine koyu zemine AÇIK MÜREKKEP (krem #e4dccb, L* ≈ 88; ince koyu alt gölge,
+// çerçeve yok). Varsayılan (zemin yok) eski kâğıt şerit — mevcut bölümler değişmez.
+const ACIK_MUREKKEP = "#e4dccb";
+const Serit: React.FC<{ children: React.ReactNode; padY?: number; maxW?: number; koyu?: boolean }> = ({ children, padY = 8, maxW = YAZI.kutuW, koyu }) => koyu ? (
+  <div style={{ padding: `${padY}px 26px ${padY + 4}px`, maxWidth: maxW, borderTop: `2px solid ${ACIK_MUREKKEP}`, textShadow: "0 2px 0 rgba(20,17,13,0.55)" }}>{children}</div>
+) : (
   <div style={{ background: KAGIT, borderTop: `2px solid ${MUREKKEP}`, borderBottom: `2px solid ${MUREKKEP}`, padding: `${padY}px 26px ${padY + 4}px`, boxShadow: "0 3px 0 rgba(20,17,13,0.35)", maxWidth: maxW }}>{children}</div>
 );
 
 // EKRAN YAZISI (iddia / formül). bant "alt" yalnız istisna (alt bant replik içindir): kutu alt kenarı y 1490.
 // K9: dil (lang + vurgu küçük harf yerel ayarı); kutuX: [x0, x1] yatay sınır (örtme istisnası, ör. Evliya P02 x ≥ 260)
-export const KitEkranYazisi: React.FC<{ metin: string; vurgu?: string[]; tur?: "iddia" | "formul"; bant?: "ust" | "alt"; dil?: string; kutuX?: [number, number] }> = ({ metin, vurgu, tur = "iddia", bant = "ust", dil = "tr", kutuX }) => {
+export const KitEkranYazisi: React.FC<{ metin: string; vurgu?: string[]; tur?: "iddia" | "formul"; bant?: "ust" | "alt"; dil?: string; kutuX?: [number, number]; zemin?: "koyu" }> = ({ metin, vurgu, tur = "iddia", bant = "ust", dil = "tr", kutuX, zemin }) => {
+  const koyu = zemin === "koyu";
   const formul = tur === "formul";
   const sol = kutuX ? Math.max(YAZI.yan, kutuX[0]) : YAZI.yan, kutuW = kutuX ? Math.min(1080 - YAZI.yan, kutuX[1]) - sol : YAZI.kutuW;
   // en/oran: Playfair 900 ≈ 0.52 em/harf (ölçüldü), Plex Mono = 0.6. İki satırda boyut ≤ 64 → kutu ≈ 152 px (bant 160)
@@ -72,10 +78,10 @@ export const KitEkranYazisi: React.FC<{ metin: string; vurgu?: string[]; tur?: "
   let j = 0;
   return (
     <AbsoluteFill style={{ alignItems: "flex-start", justifyContent: bant === "ust" ? "flex-start" : "flex-end", padding: bant === "ust" ? `${YAZI.ustY + 6}px ${YAZI.yan}px 0 ${sol}px` : `0 ${YAZI.yan}px ${1920 - YAZI.altAlt}px ${sol}px` }}>
-      <Serit padY={satirlar.length > 1 ? 6 : 8} maxW={kutuW}>
-        <div lang={dil} style={{ fontFamily: formul ? mono : serif, fontWeight: formul ? 500 : 900, fontSize: px, lineHeight: 1.04, letterSpacing: formul ? "0.04em" : undefined, color: MUREKKEP, whiteSpace: "nowrap" }}>
+      <Serit padY={satirlar.length > 1 ? 6 : 8} maxW={kutuW} koyu={koyu}>
+        <div lang={dil} style={{ fontFamily: formul ? mono : serif, fontWeight: formul ? 500 : 900, fontSize: px, lineHeight: 1.04, letterSpacing: formul ? "0.04em" : undefined, color: koyu ? ACIK_MUREKKEP : MUREKKEP, whiteSpace: "nowrap" }}>
           {satirlar.map((s, si) => (
-            <div key={si}>{s.map((w, wi) => { const i = j++; return <span key={wi} style={{ color: i === vi ? KIRMIZI_KAGIT : undefined }}>{w}{wi < s.length - 1 ? " " : ""}</span>; })}</div>
+            <div key={si}>{s.map((w, wi) => { const i = j++; return <span key={wi} style={{ color: i === vi ? (koyu ? KIRMIZI : KIRMIZI_KAGIT) : undefined }}>{w}{wi < s.length - 1 ? " " : ""}</span>; })}</div>
           ))}
         </div>
       </Serit>

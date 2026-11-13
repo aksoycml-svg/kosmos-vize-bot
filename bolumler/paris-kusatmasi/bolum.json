@@ -3074,7 +3074,8 @@
       "DELIVERED"
      ],
      "bas": 232,
-     "bit": 386
+     "bit": 386,
+     "zemin": "koyu"
     }
    ],
    "altyazi": {
@@ -3190,8 +3191,7 @@
     "KE-PK-N5",
     "KE-PK-N6",
     "KE-PK-S1",
-    "KE-PK-S4",
-    "KE-PK-Y1"
+    "KE-PK-S4"
    ],
    "not": "SENARYO→PARAMETRE: 'Paris çatısında kümes ağzı, güvercin konuyor, el kılıfı çözüyor' = kumes + kilif_coz; 'karanlık oda, huzme perdeye düşüyor, bulanık küçük kare' = huzme + kare_bulanik; 'mercek halkası çevriliyor, kare perdeye büyüyüp okunur satırlara netleşiyor; odadaki hareket durur' = buyume_odak + memurlar.durur; 'memurlar yazıyor, zarflanıp kapıda bekleyen siluetlere gidiyor, biri zarfı açıp okuyor' = memurlar + kapi. 'P01'deki bekleyen siluetlerle aynı kadraj' birebir uygulanamaz (P01 pencerede, burada kapıda): AYNI siluet tasarımı kullanılır (kullanıcıya açık soru). TR/EN farkı: EN anlatımı f266'da biter; görüntü f386'ya kadar akar. 'Film duvara yansıdı' f6-77 sözünde kümes planı f0-58; huzme f68'de.",
    "ses": [
@@ -3206,12 +3206,12 @@
      "kare": 0
     }
    ],
-   "ekran_yazisi_not": "f232–386 'KOPYALANIP DAĞITILDI' kapi'da koyu duvar/pervaz üstünde: mekanlar §4v3.5 açık mürekkep ister; yazı.tsx'te stil parametresi yok (hep kâğıt şerit, her zeminde okunur) → kit_eksik KE-PK-Y1 (orkestra karar). okuyanın başı y 585 > band 400",
+   "ekran_yazisi_not": "f232–386 'KOPYALANIP DAĞITILDI' kapi'da koyu duvar/pervaz üstünde: mekanlar §4v3.5 açık mürekkep ister; KE-PK-Y1 C2'de kuruldu: ekran_yazisi[1].zemin \"koyu\" (açık mürekkep, motion; yönetmen onayı bekliyor). okuyanın başı y 585 > band 400",
    "lint": {
     "izin": [
      "huzme_alan_perde_dahil"
     ],
-    "not": "§4v3.3, tur-15; C2, render motion sonrası"
+    "not": "§4v3.3, tur-15; C2 motion render edildi (kalibrasyon/C2)"
    }
   },
   {
