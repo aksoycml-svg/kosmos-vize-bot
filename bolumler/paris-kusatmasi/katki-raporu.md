@@ -936,3 +936,22 @@
   4. P04b küresi "sönen" değil "duran balon" gibi okunuyor.
   5. P10 memur başları 360'ta "kulaklıklı kask" gibi.
   6. Yönetmen: yukarıdaki tablo json'a işlenmeli. P10 `kontrol_kare 238` için kesme f266 var; P04b el onayı gerekiyor.
+
+## eleştirmen · 2026-11-13 · C turu kalibrasyonu (DAGRON-INSERT + LANTERN-ODA)
+- Ne yaptım: Şu kareler incelendi: ozet, P04b f206, P05 f0/f236/f280 (güvenli alan dahil), P09 f150, P10 f48/f200/f330, P05 f236–300 ve P10 f150–270 şeritleri, hedef-ozet. Kusurlar teşhis edildi ve en çok 5 düzeltme yazıldı. Karar **GEÇMEZ, puan 5**; P04b ve P09 düzeltmeyle geçer.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/C/elestiri.md (yeni), bolumler/paris-kusatmasi/katki-raporu.md
+- Aldığım kararlar ve gerekçeleri:
+  - Orkestranın gözlemi doğrulandı. P05 f280 el pozunda başparmak tarafı anatomik olarak ters; orta parmak gibi okunma riski var. Şerit sayfanın minyatürü değil (dikey çizgi deseni).
+  - P10 perdesi kadrajın %98'ini dolduruyor ve huzme çöküyor. Bu, şartnamedeki geometriden (§4v2.4) kaynaklanıyor; bu yüzden mekân yeniden tarif etmeli, motion tek başına çözemez.
+  - Okuyan ve el çizgi dili tasarımdan yeniden tarif edilmeli.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Fizik: P04b kuyruk kafes çerçevesinden taşıyor; P05 f0 kuyruk terazi direğinin içinden geçiyor; P10 ışınlar perdeyi aşıyor.
+  - Maske kenarı: P10 perdede çapraz dikiş.
+  - Okunurluk: P09 kuş başı kadraj dışında, kılıf ipi 360 px'te görünmüyor; P10 okuyanın yüz yönü yok.
+  - Gravür dili: iç mekânlarda tarama yok denecek kadar az.
+  - Ölü alan: P10 duvarları düz.
+- Açık sorular / bir sonraki ajana notlar:
+  - Kullanıcı: P04b kapağı açan el (önerim evet), P05 ölçü anında yatay parmak.
+  - Mekân sorumlusu: §4v2.4/4v2.8 yeniden tarif edilmeli (perde ≤ %70, lantern ön planda, duvar mimarisi).
+  - Tasarımcı: Paris eli ve okuyan (§3.3/§13.8) yeniden tarif edilmeli.
+  - Motion bu tariflerden sonra yeniden render alır. P05 f268–358 ve P10 f200/f330 yeniden kontrol edilecek.
