@@ -735,3 +735,141 @@ Kalan "gevşek" tek şey: sabah gökte ufuk ışıması (sol alt) ve buğu bantl
 5. **ArsivKatmani gündüz modu** gök mavisini grileştirirse `litografi` modu gündüz için (motion/mekân sorumlusu kararı).
 6. **P07 parlaması L\* 91 lint izni** (kılıf kadrajda yok). Varsayılan: izin.
 7. Hedef görsel: `hedef/prompt-montmartre.txt` (P03 kalkış meydanı). Onaylanırsa mekân sorumlusu §2'yi buna göre günceller.
+
+---
+
+## 15. İç mekân figür ve el dili (tur-15) — 2026-11-13
+
+Girdi: `notlar/tur-15.md` (kullanıcı: "P10 f330 görseli çok kötü"), `kalibrasyon/C/elestiri.md` (düzeltme 1, 3, 4, 5-P09), C kareleri (P05 f280, P10 f330, ozet), onaylı hedef dili (`hedef/*.png`, V4 `karsilastir.png`, B3 özeti), §3.3, §13.8, mekanlar §2v2-H2 H2.8. Spesifikasyondur; kod, görsel, git yok. **§3.1 "okuyan siluet" (düz oval baş), §3.2 el satırı ("2 boğum çizgisi, tırnak yay"), §3.3, §13.8 oran dışındaki satırları, §2.2 ip satırı ve mekanlar H2.8 "yüz yok / kulak yok" satırı ile çelişen yerlerde §15 geçerlidir.** Hex'ler mevcut palete aittir (yeni renk yok, §15.8). Tüm px 1080×1920 tabanı, kamera cs 1.0'da; kamera yakınlaşırsa ölçek B/E'den türer, kontur kalınlığı §15.1 formülüyle yeniden hesaplanır.
+
+### 15.0 Teşhis → karar
+| C karesinde görülen | Neden | Karar |
+|---|---|---|
+| P10 f330: baş düz daire + kulak diski, yön yok; "bize kâğıt gösteriyor" | Baş cepheden, kâğıt kameraya dönük, baş eğik değil | **3/4 profil**, baş 28° kâğıda eğik, kâğıt kameraya 45° (§15.2); burun-çene silueti serbest (iç yüz detayı yok) |
+| Kollar eşit genişlikte yeşil-gri bloklar, palto mor | Kol ayrı renk, konik değil | Kol = palto dolgusu, konik, dirsek yuvarlak (§15.2.4) |
+| Çizgi film eli: kalın sabit kontur, tırnak lekesi, boğum tireleri, eşit parmak | KolEl/ParisEl dili | Gravür eli: ince-kalın kontur, tarama, taper (§15.1) |
+| P05: havada tek parmak, başparmak ters taraf, el ekranın %55'i | `isaret` pozu, ayna anatomi | Yatık el, dört parmak yan yana düz, doğru el (§15.1.4) |
+| Memur başı = disk + 2 kulak elipsi + parlama yayı = "kulaklıklı kask" | LanternOda başı | Üç farklı arka-baş, kulak yok (§15.3) |
+| P09: baş kadraj dışı, ip 360'ta yok | Açık ince ip | Baş+göz kadrajda, koyu kalın 2 sarım (§15.4) |
+
+### 15.1 Paris eli / Dagron eli (tek gravür dili)
+Tek el modeli iki ten/manşet paletiyle (aynı çizim, aynı oranlar). **E = el boyu** (bilek çizgisi → orta parmak ucu), gerçek 0.19 m. P05'te **E = 640 px** (bbox yüksekliği ≤ 670 px = ekranın %35'i; manşet hariç el bbox'ı ekranın ≤ %35'i), P10 okuyan elinde **E ≈ 200 px** (= 0.83 B, §15.2).
+
+**1.1 Oranlar (E cinsinden).**
+| Parça | Değer |
+|---|---|
+| Avuç (bilek → parmak kökü çizgisi) | uzunluk 0.54 E · parmak kökü eni 0.42 E · bilek eni 0.30 E |
+| Parmak boyları (kökten uca) | orta 0.46 · yüzük 0.43 · işaret 0.42 · serçe 0.33 (orta en uzun, işaret yüzükten kısa: anatomi) |
+| Parmak eni | kökte 0.115 E → uçta 0.080 E (uca doğru incelir, eşit genişlik yok); uç yarım yuvarlak, kapsül değil |
+| Başparmak | bilekten 0.30 E ilerde çıkar (tenar kabarık), serbest kısım 0.30 E, en 0.135 → 0.095 E; işaret ekseninden 38–50° açık |
+| Tırnak | parmak ucunun son 0.13 E'si; ayrı yuvarlak leke **yok**; yalnız kök kenarında 1.5 px yay + uç kenarda 1.2 px çizgi. Boğum tiresi **yok** |
+| Boğum | parmağın ışık kenarında silüet kırılması 2 px (PIP ve DIP'te) + gölge kenarında kontur 1 kademe kalınlaşır. İç çizgi yok |
+| Avuç sırtı | tek 1.2 px tendon çizgisi (işaret ve yüzük kemiği arası), uzunluk 0.35 E, α .6; "3 uzun kemik çizgisi" kalktı. Bilekte tek küçük ulna kabarması (silüette 3 px) |
+
+**1.2 Kontur (değişken, tek kapalı yol).** Yük tarafı = gölge/aşağı/masaya basan kenar. Kalınlık **yük = clamp(0.010 × E, 3.5, 6) px** (E 640 → 6 px; E 200 → 3.5 px); **ışık kenarı = 0.36 × yük** (2.2 / 1.5 px); parmak ucu ve kıvrım uçları **0.25 × yük, ≥ 1.0 px**. Geçiş 24 px uzunlukta yumuşak (iki ayrı çizgi değil, tek dolu ana hat; motion: iki çokgenli "dolu kontur" ya da konik stroke). Renk **kendi tonunda**: gölge yüzü kontur ten gölgesinin %55 koyusu, ışık yüzü kontur dolgunun %78'i. Siyah yok. `strokeLinejoin="round"`.
+
+**1.3 Renk, tarama, ışık.**
+| | Paris eli (P10) | Dagron eli (P05, P09) |
+|---|---|---|
+| Ten ışık / gölge | `#d6b49c` / `#8f7360` | `#c9a58a` / `#8e6a52` |
+| Kontur yük / ışık | `#5a4438` / `#a8836c` | `#5a4132` / `#a07f66` |
+| Sıcak kenar ışığı | `#f0c4a8` (kapı ışığı, sabah güneşi) | `#e6c9b4` (pencere, 18° sabah güneşi) |
+| Manşet | `#5d5f63` düğmesiz, kol ağzından 0.08 B dar gömlek şeridi; **kol palto rengi** | **dagronSepya `#4a3a2c`**, gölge `#2e2318`, düğmesiz, 2 dikiş çizgisi 1.5 px `#2e2318` aralık 8 px; yüksek 0.22 E |
+- **Gölge tarafı paralel tarama:** parmak/avuç gölge yüzünde, bölgeyi aşmaz (kontura 3 px kala biter), tek açı = sahne θ (P05 **143°**, P10 **78°**), **çizgi 2 px (E 640'ta 2.5), aralık 6 px (E 640'ta 7)**, renk gölge tonunun %60 koyusu (`#6a4f40`). Parmak başına 3–4 çizgi; avuç sırtı gölge yarısında 6–8. Ten dolgusu iki düz ton (ışık/gölge), gradyan yok.
+- **Kenar ışığı:** ışık yüzü konturunun **içine yapışık** 2.5 px (E 200'de 2 px) şerit, parmak sırtı + bilek + başparmak üst kenarında, uçları incelir; ikinci kayık çizgi olmaz. C\* ≤ 24 ✓.
+- Temas gölgesi (masa/kâğıt): kaynak tersine **kısa** 18–24 px, `#3e342a` α .35, kenarı net.
+- **Katman sırası (arkadan öne):** temas gölgesi → kol/manşet → el dolgusu (ışık) → gölge alanları (düz) → tarama → kenar ışığı → değişken kontur → tendon çizgisi → tırnak yayları.
+
+**1.4 Sol/sağ anatomi (kamera görüş açısına göre).** Başparmak tarafı kuralı (üstten bakış, parmaklar kameradan uzağa):
+| Poz | Sağ el | Sol el |
+|---|---|---|
+| Avuç aşağı (sırt görünür) | başparmak **solda** | başparmak **sağda** |
+| Avuç yukarı (iç yüz görünür) | başparmak **sağda** | başparmak **solda** |
+Kol hangi kenardan girerse o el: sol-alttan giren kol = sol el. Doğrulayıcı kontrol: ayna görüntü (başparmak yanlış tarafta) = ret; ayrıca "sol" etiketli rig'in sırtı görünüyorsa başparmak sağda olmalı.
+
+**1.5 P05 ölçü pozu (kullanıcı kararı: yatık el, işaret şeride paralel, hiçbir parmak havada değil).**
+- **Sol el**, kol sol-alttan girer, **avuç aşağı, masaya tam yatık**; başparmak sağda (çekmece ve şerit tarafı). El ekseni **52°** (yukarı-sağ), forearm ekseni ±8° aynı.
+- **Dört parmak da düz, yan yana, masada** (PIP bükülmesi ≤ 12°, parmak aralığı işaret–orta 6°, orta–yüzük–serçe 0–3°). Orta parmak ucu işaret ucundan 0.04 E ileride (anatomik); **tek parmak ayrışmaz, hiçbir parmak havaya kalkmaz, yumruk/kıvrık parmak yok** (orta parmak jesti okuması: ret).
+- **Başparmak** işaretten 50° açık, **yatık**, ucu şerit hizasının ötesinde. **Şerit (216 × 108 px = 0.34 E × 0.17 E)**, işaret parmağı ile başparmak arasındaki V'de, işaret eksenine **±5° paralel**, işaretin yan kenarından 0.06 E boşlukla yatar; boyu işaret parmağının %80'i ("parmak boyu"). Şeridin ucu işaret ucuna 0.04 E yakın, parmak şeride değmez, merceğe ≥ 120 px.
+- Bilek ekranda yaklaşık **(300, 1560)**, orta parmak ucu ≈ (694, 1056) (E 640, 52°). bbox ≤ %35. El sayfanın üstünde: şerit koyu `#5a5048`, el ten ışık, sayfa `#e4dfd0` ⇒ ayrışma ✓.
+- Parmak kalınlığı 0.115 E = 74 px, uç 51 px: 360'ta 17 px, 4 parmak ayrı okunur.
+
+### 15.2 Okuyan figür (P10 `kapi`, f330 doruk)
+**Ölçü birimi B = baş yüksekliği (tepe → çene) = 240 px.** Gerçek yetişkin 0.23 m ⇒ el E = 0.83 B = 200 px, üst kol 1.30 B (0.30 m), ön kol 1.17 B (0.27 m), omuz genişliği 2.2 B.
+
+**2.1 Duruş ve "okuduğu okunur" gerekçesi.** Yüzün yönü ve eğimi okumayı verir, kâğıdı bize tutan figür değil, kâğıda gömülen figür:
+- **Kâğıt koyu tarafta (ekranda sol), kapı ışık paneli figürün arkasında-sağında.** Figür **sola bakar** (yüz yönü ekran solu), baş ekseni kameraya göre **70° (3/4 profil)**, gövde 55° dönük.
+- **Baş 28° öne-aşağı eğik** (SVG `rotate(−28°)`, pivot atlas ≈ kulak noktasının 0.25 B altı-arkası). Burun ucu çene hizasının solunda, **burun ucundan kâğıt üst-ortasına çizgi ≤ 65° aşağı** (göz çizgisi 59°: baş 28° + göz 31°).
+- **Kâğıt göz hizasının ≥ 1.0 B altında**, çene altında 24–40 px boşluk, çene kâğıda binmez.
+- Kafa-omuz: boyun öne eğik, omuz yuvarlak; sırt hafif kambur (5°).
+
+**2.2 Yerleşim (cs 1.0; mekân v3 geometrisi farklıysa orantılar kalır, nokta ±24 px).**
+| Öğe | Ekran |
+|---|---|
+| Baş bbox | x 520–735, y 520–770 (vertex (640, 522), burun ucu (525, 715), çene ucu (570, 768), ense (730, 690)) |
+| Kâğıt köşeleri | sol-üst (270, 800) · sağ-üst (470, 812) · sağ-alt (470, 1155) · sol-alt (270, 1170) |
+| Yakın omuz / dirsek / bilek | (610, 850) / (665, 1160) / (455, 1130) |
+| Torso silüeti | ön (sol) kenar x 545 @ y 900 → 535 @ 1920; arka (sağ) kenar x 885 @ 860 → 975 @ 1920 (palto A-kesim, diz boyu) |
+| Omuz hattı | tepe (700, 805), boyundan **18° aşağı** iner (vatkasız, düşük omuz) |
+
+**2.3 Baş: yüzsüz ama yön belli (profil silüeti).** Yerel profil noktaları (yüz solda; tepe-çene = 1.0 B; x yüz önünden geriye): alın saç çizgisi (0.10, 0.18) · kaş çıkıntısı (0.02, 0.44) · nasion (0.05, 0.50) · **burun ucu (−0.10, 0.64)** · burun altı (0.01, 0.68) · dudak dalgası (−0.01, 0.77) · çene ucu (0.03, 0.93) · çene altı (0.12, 1.00) · çene köşesi (0.58, 0.80) · ense (0.70, 0.90) · kafa arkası (0.84, 0.45) · tepe (0.45, 0.0). Burun çıkıntısı 0.10 B = **24 px** (360'ta 8 px: okunur). **Göz, ağız, kaş, iç yüz çizgisi yok.**
+- **Kulak elipsi yok.** Kulak, kafa silüetinin arka kenarında **tek C-yayı çıkıntı** (0.14 × 0.26 B) ve iç yarım çizgi (1.5 px `#2a2638`); parlak disk yok.
+- **Saç:** ten üstünde ayrı şekil, `#2a2638`; saç çizgisi alından şakağa (0.30, 0.35) → kulak önü (0.40, 0.42) → kulak arkası → ense (0.62, 0.80). **Kafa arkası ve ense kenarı düzensiz:** 5 küçük tutam (boy 0.05–0.08 B, aralıklar 0.07/0.11/0.06/0.10/0.08 B, seed 191); alın tarafı düz kalır.
+- Baş ten rengi (kontrajur, arkası açık): `#6e5a62` (gölge ten); **çene altı, burun altı, yanak alt kenarı kâğıt yansımasıyla** `#8f7360` + 2 px kenar `#d8b8a4`. Boyun ense çizgisi yakaya iner; devrik yaka tabanı ense çizgisinde 2 px `#2a2638`, yaka dışa 0.20 B devrik, üst kenarı saçın 0.15 B altında.
+- **Işık (tek kaynak = kapı ışığı, sağ-arka):** kulak arka kenarı, ense ve saç tutam uçlarında kırık parçalar halinde sıcak kenar ışığı **3 px `#f0c4a8`** (kulağın ışığı geçirmesi fiziksel; yanakta değil). Yanak/çene/burun altı sıcaklığı **kâğıdın yansıması** (ikincil, kaynak tanımından türer, şiddet %35). *Sapma notu:* "kapı ışığından sıcak yanak kenar ışığı" brifi yüz sola bakarken kapı arkada olduğundan kulak/ense olarak uygulandı; yanak sıcaklığı kâğıttan. Kapı panelinin başka yere (sola) alınması hâlinde figür aynalanır (§15.2.7).
+- Baş silüeti açık kapı paneline karşı koyu: yön en güçlü okumayı buradan verir (burun + çene + saç kenarı).
+
+**2.4 Gövde ve konik kollar: tek giysi.**
+- **Palto** diz boyu, dolgu `#45405a` (kompars), kol dahil **aynı dolgu**. Kontur 3.5 px `#2a2638` (kendi tonunda, siyah değil), iç çizgiler (palto önü, yaka, kol ağzı, dirsek kıvrımı) 2 px `#2a2638`. Düğme yok (metal yok). Arkadan görünmeyen yırtmaç çizilmez.
+- **Kol:** üst kol omuzda **0.60 B (144 px) → dirsekte 0.50 B (120 px)**, dirsek dışı yuvarlak (r 0.30 B, kumaş birikimi 1.1×), ön kol dirsekte 0.50 B → bilekte **0.30 B (72 px)**; kol ağzı bandı 0.12 B, hemen altında dar gömlek manşeti (`#5d5f63`, 0.08 B = 19 px). Dirsek açısı 75° (yakın kol), **hiç ters bükülmez**, dirsek gövdeden aşağı-geriye bakar, "Z" düz çizgi yok. **Ön kol ekranda 0.74× kısalır** (kameraya 42° döner).
+- **Tarama (gölge tarafı = kapı ışığının tersi = sol/ön):** 78°, 2 px, aralık 6 px, `#2f2d46`; yakın kolun alt-ön yüzü, ön göğüs (sol üçte bir), yaka altı, kol altı kıvrımı. Sağ-arka (ışıklı) üçte iki düz. Taramalı alan figürün ≤ %30'u.
+- **Işık yüzü:** omuz hattı üstü ve sırt kenarı 3 px `#f0c4a8` kırık parçalar (omuzdan 0.9 B aşağı), palto ışık tonu `#524a6e` yalnız bu 14 px şeritte.
+
+**2.5 Kâğıt ve eller (kâğıdı iki elle tutar).**
+- **Kâğıt:** gerçek sayfa 280 × 360 px (1.17 B × 1.5 B; 21 × 27 cm × stilize 1.1). **Normali kamera ile kapı ışığı arasında (45°)**: ekranda genişlik 200 px (×0.71), sol kenar sağ kenardan **%8** uzun (sol kenar kameraya yakın). Üst kenar 12° geriye eğik. Kâğıt "ışığa dönük": sağ yarı `#e4dfd0` + sağ kenar 2 px `#f0c4a8`, sol yarı `#c9c3b2`. Yatay katlama çizgisi %50'de 1.5 px `#bdb7a6`; 11–13 dalgalı satır `#6d675a` (dil-nötr, harf yok); **alt kenar 6 px yumuşak sarkar**, üst kenar 4 px dalgalı: katı levha değil. Arkası **koyu** (ΔL\* ≥ 30): açık kapı paneli kâğıdın arkasına girmez (mekân v3 notu).
+- **Yakın el (okuyanın sol eli, E 200):** bilekten parmaklar kâğıdın **sağ-alt köşesine** uzanır; **başparmak kâğıdın ön yüzünde** (ucu kenardan 0.28 E içeride), diğer dört parmak kâğıdın arkasında, yalnız işaret ve orta parmak uçları alt kenardan 0.08 E taşar. Başparmak kâğıda **gerçekten basar** (temas gölgesi 10 px). Kâğıdın tutulan kenarı eli takip ederek hafif kıvrılır.
+- **Uzak el (sağ el):** gövde arkasında; yalnız **başparmak ucu** (kâğıdın sağ kenarına 0.25 E içeride, ön yüzde) + işaret/orta parmak uçları kenardan 0.12 E taşar. Avuç ve bilek görünmez.
+- **Boş/sarkan el yok.** f266–296 aralığında (zarf alınırken) boştaki el gevşek yarı açık: parmak bükülmesi serçeye doğru 15 → 25°, başparmak işaret yanında; **yumruk ve "boşluğu kavrayan" biçim yok**.
+- Katman sırası (arkadan öne): kapı paneli → arkadaki figür → yer gölgesi → torso + uzak kol → torso taraması → **ense + yaka → baş + saç** → kâğıt → yakın kol + el → kapı kenar ışıkları → kâğıt yansıması → konturlar.
+
+**2.6 Dönem başlığı: YOK (karar ve gerekçe).** (1) İç mekân/eşik: 1870'te içeri giren erkek başlığını çıkarır; H2.8'in silindir/melon/kasket önerisi sokak ve sepet figürleri içindir [G]. (2) İki el kâğıtta; başlık eldeyse üçüncü nesne ve hacim ister. (3) Başlık kenarı yüzü ve kâğıdı gölgeler, burun-çene siluetini ve "okuma" okumasını bozar. (4) Saç kenarı, yön ve dönemi başlıktan daha az iddiayla (kaynaksız kıyafet [G]) söyler. Kapıdaki bekleyen iki siluet (P01 tasarımı, §3.1) başlık taşımaz.
+
+**2.7 Ayna kuralı.** Kapı ışığı ekranın solundaysa tüm figür (baş, kâğıt, kollar) `scaleX(−1)`; bu durumda **el anatomisi de değişir** (yakın el = okuyanın sağ eli; §15.1.4 tablosu yeniden uygulanır), manuel ayna kopyası kabul edilmez.
+
+**2.8 Okunurluk (360 px).** Baş 80 px, burun çıkıntısı 8 px (≥ 6 ✓), kâğıt 67 × 120 px, kol 40 px / 24 px, el 67 px, tarama aralığı 2 px (kaba doku olarak okunur, çizgi sayılmaz: kabul). Kâğıt tek başına "mektup", baş eğimi "okuyor" okutur; göz-kâğıt hizası çizgisi çıkarıldığında kâğıt görünmeden de duruş anlam taşır.
+
+### 15.3 Memur başları (P10 `oda`, arkadan siluet)
+Perdeye bakan üç memur, **kamera arkalarında**: yalnız kafa arkası + ense + omuz. **Kulak elipsi ve üst parlama yayı yok.** Baş yüksekliği (B_m): **A 150 · B 160 · C 148 px**; hiçbiri aynı y'de değil (±40 px), aynı eğimde değil (öne eğik 12–25°: yazarlar). Omuz genişliği 1.9–2.2 B_m, düşük omuz 18°, yakalı palto `#2c2f36` (oda gölge tonu; ışık yüzü yalnız kenar), kontur 2.5 px `#1b1d24`.
+| Baş | Biçim | Saç/ten | Ense/yaka |
+|---|---|---|---|
+| **A kel** | geniş yuvarlak: eni 0.80 B_m | tepe çıplak ten `#5a4c52`; kulak hizasında ve ensede ince saç şeridi 0.12 B_m `#2a2638` (kulak çizilmez, şerit yan kenarda süreklidir) | kalın ense, **2 yatay kıvrım** (2 px `#1b1d24`); düşük yaka |
+| **B dağınık** | dar uzun: eni 0.64 B_m, boy ×1.06 | saç kütlesi 7–9 tutam, boy 0.06–0.18 B_m, asimetrik (sağ üstte 1 kalkık tutam), tutam uçları kenarı kırar `#2a2638` | saç yakaya taşar; devrik yaka dışa 0.15 B_m |
+| **C ayrık** | kare arka: eni 0.72 B_m, baş 8° sola eğik | **düşey ayrım çizgisi** (2 px, taçta soldan 0.18 B_m), sol saç kütlesi büyük, sağ yassı `#2a2638` | ensede **düz berber kesimi** (yatay 2 px), dik yaka |
+- **Işık (tek kaynak = lantern huzmesi, sağ-ön):** kenar ışığı yalnız **huzme tarafı kenarda**, kenarın %25–40'ında, kontura yapışık **2 px `#c4ccbc`** (L\* ≈ 81; `#e4ecd8` L\* 93 tavanı geçer), uçları incelir, saç tutam uçlarında ayrı kırık parçalar. Başın tam yayı kaplayan parlak çizgi **yok**; huzme başın üstünden geçtiği yerde üst kenar çizgisi aynı kuralla.
+- Omuz/sırt: kenar ışığı yalnız huzmeye bakan omuz çizgisinde (0.8 B_m uzunluk). Gölge tarafı tarama yok (≥ 120 px boyda değil).
+- 360'ta baş 50–53 px, "kel / dağınık / ayrık" siluet farkı okunur; "kask/kulaklık" okuması kalkar.
+
+### 15.4 Kuş elde (P09, Dagron eli)
+- **Kuş yüzü kadrajda:** baş merkezi ekran **x 650–820, y 560–760** (üst bant 300'ün altında, yan güvenli ≤ 1000); baş kameraya 3/4 (profile 60°), **tek göz** (yakın taraf), göz ø **28 px** `#14120f` (iris yok), üst-solda 4 px ışık hilali `#f0c4a8`, çevresinde 3 px koyu tüy halkası `#43415a`. Gaga `#4f4b4f`, boyun yanardönerliği §13.1 (iki leke). Kuş **yandan 3/4**, yukarıdan kuyruk yelpazesi kapsülleri ("balık" okuması) yok.
+- **Tutuş (el sıkmaz):** sol el, avuç yukarı-hafif içe (başparmak solda); kuş sırtı üstte, gövdesi avuçta; başparmak ve dört parmak kanat kapaklarının üstünde **gevşek**, parmak–gövde arası 0.03 E hava, **baş elin ön kenarından ≥ 1.4 baş boyu dışarıda**, kuyruk elin arkasında serbest, tüyler yumuşak sarkar. Sağ el kuyruğu tutar/ipi bağlar. Dagron paleti §15.1.3.
+- **Kılıf ipi (kuyruğa bağ):** **koyu `#4a4237`, kalınlık 5 px (1080), 2 tam sarım**, sarım aralığı 9 px, kılıf boyunun kuyruk tarafındaki %20–%34'ünde, kılıf eksenine ≈ 12° eğik; kılıf gövdesine 3 px ip gölgesi `#B9801F`; düğüm 10 × 8 px, iki kısa kuyruk 22 px. **Ekran alt sınırı 4 px (360'ta ≥ 1.3 px)**; kuş küçükse ip kalınlığı kılıf boyunun %2.6'sı. Bu ip **tüm planlarda aynı** (P01 kanca, P09, P10, P11; **§2.2 ip satırı "soğuk kırık beyaz" kalktı**, gerekçe: 360'ta açık ince ip kayboluyordu, eleştiri C P09). Kılıf tekliği etkilenmez (ip C\* < 10).
+- Tüy dili (hedef-kuş): kanat örtüsü 3 sıra yay (scallop), kontur 2 px kendi tonunda, gölge tarafında 3–5 kısa tarama (72°, 2 px, 7 px aralık).
+
+### 15.5 Eleştirmen kontrol listesi (§15 kabul ölçütleri)
+1. P05 f280: başparmak doğru tarafta (sol el, sağda); dört parmak masada, hiçbiri kalkık değil; şerit işarete ±5°; el bbox ≤ %35; boğum tireleri/tırnak lekesi yok; ışık yüzü ince, gölge yüzü kalın kontur görünür.
+2. P10 f330: baş sola eğik 28°, burun ucu çıkıntısı ≥ 20 px, kâğıt göz hizasının ≥ 1.0 B altında, kâğıt arkası koyu, kollar palto dolgusuyla aynı hex, konik, dirsek yuvarlak, tarama gölge tarafında, tek ışık (kapı) yönü tutarlı, boş/kavrayan el yok.
+3. P10 oda: üç baş siluetinde kulak elipsi yok, 360'ta üçü ayrışır, kenar ışığı parça parça.
+4. P09: baş + göz kadrajda, ip 360'ta iki sarım olarak seçilir.
+5. Renk: kılıf dışı C\* ≤ 28 (en yüksek `#f0c4a8` ≈ 23), L\* ≤ 88, imza bandı dışarıda 0, kırmızı 0.
+
+### 15.6 Devir (tek sahiplik)
+- **Motion:** `ParisEl.tsx` / `KolEl.tsx` (el modeli §15.1, `dagronSepya` manşeti, sol/sağ anatomi, P05 pozu `olcu` = isaret yerine), `FigurSiluet` okuyan varyantı (§15.2, baş eğimi, profil, konik kol, tarama), `LanternOda.tsx` memur başları (§15.3), P09 kuş kadrajı + ip (§15.4). Önce P10 f330 kalibrasyon karesi, sonra P05 f280, P09 f150, P10 f200.
+- **Mekân sorumlusu (v3 paralel):** kapı paneli figürün arkası-sağında, kâğıt arkası koyu eşik/duvar, kapı ışığı sıcak `#f0c4a8` kenar yönü; lantern huzmesi memur başlarının sağ-ön yönünden. Çelişki olursa figür aynalanır (§15.2.7).
+- **Yönetmen:** P10 f330 `kontrol_kare` aynı, P05 el ölçeği E 640 / cs; P09 kamera cx kuş başı x 650–820'yi kadrajda tutacak şekilde.
+- **Eleştirmen:** §15.5.
+
+### 15.7 [G] / doğrulanmalı
+1. 1870'te iç mekânda erkeğin başı açık olması [G, genel görgü]. 2. Palto kesimi (düşük omuz, devrik yaka) [G]. 3. Kılıf ipinin rengi: kaynak "mumlu ip", renk kesin değil [A]; koyu seçim okunurluk kararı [T].
+
+### 15.8 Yeni renk / font: yok
+Kullanılan tüm hex'ler mevcut paletten (§1.5, §3.2, §3.3, §13.1, §14.2) ya da bu bölümdeki gerekçeli türevlerdir: `#6e5a62` (baş ten gölgesi, `#8f7360` ile `#45405a` arası tek ara ton), `#524a6e` (palto ışık şeridi), `#a8836c`/`#5a4438`/`#a07f66`/`#5a4132` (ten kontur türevleri, %55/%78 kuralı), `#c4ccbc` (oda kenar ışığı, `#e4ecd8`'in L\* tavanına uyan türevi), `#5a4c52` (kel ten). Hepsi C\* ≤ 28, L\* ≤ 88; sarı metal ve kırmızı yok.

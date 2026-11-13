@@ -955,3 +955,22 @@
   - Mekân sorumlusu: §4v2.4/4v2.8 yeniden tarif edilmeli (perde ≤ %70, lantern ön planda, duvar mimarisi).
   - Tasarımcı: Paris eli ve okuyan (§3.3/§13.8) yeniden tarif edilmeli.
   - Motion bu tariflerden sonra yeniden render alır. P05 f268–358 ve P10 f200/f330 yeniden kontrol edilecek.
+
+## tasarımcı · 2026-11-13 · İç mekân figür ve el dili (tur-15, §15)
+- Ne yaptım: `tasarim.md`'ye §15 yazdım. (1) Paris/Dagron eli tek gravür dili: oranlar E cinsinden, değişken kontur formülü, tarama, hex, katman sırası, sol/sağ başparmak tablosu, P05 ölçü pozu (sol el, avuç aşağı, dört parmak düz yan yana, şerit işarete paralel). (2) P10 okuyan: 3/4 profil, baş 28° eğik, burun-çene siluetli yüzsüz baş, kapı ışığından kulak/ense kenar ışığı, kâğıt yansımasıyla çene/yanak, tek giysi konik kollar, 78° palto taraması, kâğıt 45° ışığa dönük ve göz hizasının altında, iki el tutuşu, piksel yerleşim tablosu. (3) Üç farklı memur başı (kel, dağınık, ayrık), kulaksız, parça parça kenar ışığı. (4) P09 kuş: baş/göz kadrajda, koyu kalın iki sarım ip. Eleştirmen kabul ölçütleri ve devir listesi eklendi.
+- Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/paris-kusatmasi/tasarim.md (§15), /home/user/kosmos-vize-bot/bolumler/paris-kusatmasi/katki-raporu.md
+- Aldığım kararlar ve gerekçeleri:
+  - **Figür sola bakar, kâğıt koyu tarafta, kapı ışığı arkada-sağda.** Yüz kameraya dönükken kâğıdın okunan yüzü kameradan uzak kalır ("bize gösteriyor" ya da kâğıt görünmez). Çözüm: baş 70° profil, kâğıt normali kamera ile kapı ışığı arasında 45° (genişlik ×0.71), böylece okuyan ve izleyici aynı yüzü görür. Kâğıdın arkası koyu kalır (açık kapı paneline karşı kâğıt erirdi). Baş ise açık panele karşı koyu siluet: yön en güçlü buradan okunur.
+  - **Yanak kenar ışığı kâğıttan, kulak/ense kapıdan.** Brif "kapıdan sıcak yanak/kulak" diyordu; kapı arkada olduğundan yanağa doğrudan ışık düşmez. Kulağın ışığı geçirmesi fiziksel, yanak kâğıdın yansımasıyla (ikincil, aynı kaynaktan). Sapma §15.2.3'te yazılı.
+  - **Dönem başlığı yok:** iç mekân, iki el kâğıtta, başlık siluet ve gölgeyi bozar, kaynaksız. H2.8'deki başlık önerisi sokak/sepet figürleri için kalır.
+  - **Yüz iç detayı yok ama burun-çene siluetine izin:** §3.1/§3.0 "düz oval baş" okuyan için gevşedi; göz/ağız/kaş yine yok.
+  - **P05 sol el:** kol sol-alttan girdiği, çekmece ve şerit sağda olduğu için. Dört parmak da yatık ve yan yana: tek parmak ayrışınca orta parmak jesti riski doğuyordu.
+  - **Kılıf ipi koyu `#4a4237`, 5 px, 2 sarım, tüm planlarda aynı** (eski kırık beyaz ip 360'ta kayboluyordu, eleştiri C). Hedef-kuş'taki açık ince ip okunurluk için bırakıldı; kılıf tekliği etkilenmez.
+  - **Memur kenar ışığı `#c4ccbc`:** huzme `#e4ecd8` L\* 93 tavanı aşıyordu.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: yeni renk yok (türevler §15.8'de gerekçeli, C\* ≤ 28, L\* ≤ 88); sarı metal, kırmızı yok; kılıf tekliği; kontur ekranda ≤ 6 px; tarama yalnız gölge tarafında, taramalı alan ≤ %30; tek ışık (kapı, lantern); sol/sağ anatomi tablosu (C turu ters başparmak hatası); dönem kıyafeti [G] etiketli. Yakaladığım: §2.2 ip rengi ile eleştirmenin "koyu ip" isteği çelişiyordu (§15 geçerli); §3.1 "düz oval baş" ve mekanlar H2.8 "kulak/ense çizgisi yok" satırları okuyan için §15'le değişti.
+- Açık sorular / bir sonraki ajana notlar:
+  1. Mekân sorumlusu: kapı panelinin figürün arkasında-sağında kalması ve kâğıt arkasının koyu olması gerek; kapı ışığı sola alınırsa figür aynalanır ve el anatomisi yeniden uygulanır (§15.2.7).
+  2. Motion: P10 f330 önce, ardından P05 f280, P09 f150, P10 f200. P10'da kâğıt iki yönlü görünür olacağından 3B-benzeri 45° yaw'u 2B parallelogram olarak çiz (sol kenar %8 uzun). `KISTIR_YEREL`'e dokunmayan yeni `olcu` ve `okuyanTutus` pozları gerekir.
+  3. Yönetmen: P09 kamera cx'i kuş başını x 650–820 arasında tutmalı; P05 el E 640 px.
+  4. Piksel yerleşimleri (§15.2.2) mekân v3 geometrisinden önce yazıldı; ilk still'de ±24 px düzeltilir, orantılar (B, E) esastır.
+  5. Eleştirmen: "yön" testini 360 px'te yapın: burun ucu + eğim kâğıda gidiyor mu, el sayısı/tarafı doğru mu.
