@@ -72,6 +72,7 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 
 - **Tek sahiplik:** her belgenin tek sahibi vardır; diğerleri doğrudan değiştirmez, notu orkestraya (ana oturum) yazar, orkestra sahibine iletir.
 - **Yukarı akış:** alt adımda bir sorun üst adımın belgesini etkiliyorsa (ör. dönem bulgusu), önce o belgenin sahibi düzeltir, sonra aşağıdakiler sırayla güncellenir — hepsi aynı anda değil.
+- **Küçük kararı sorma** (kullanıcı kararı, Paris: "sorma neden soruyorsun"): teknik/estetik ayrıntı, ajan önerisi ve varsayılanlar orkestra tarafından karara bağlanır, kullanıcıya yalnız bildirilir. Kullanıcıya yalnız gerçekten onun kararı olanlar gider: senaryo/metin onayı, yön değişikliği (yeni görsel dil, mekân değişikliği), dış maliyet, kapsam/kota.
 - **Açık soru biriktir:** her adımın sonunda kullanıcıya gereken kararlar tek mesajda toplanır; karar gelmeden bağımlı adım başlamaz (varsayılan seçilirse açıkça yazılır).
 - **Övülen kilitlenir:** kullanıcının beğendiği plan/satır `bolum.json`'da `kilit: true` olur; düzeltme turlarında dokunulmaz.
 - **Notlar kelimesi kelimesine:** kullanıcı geri bildirimi `bolumler/<slug>/notlar/tur-N.md`'ye aynen yazılır; düzeltme bu dosyadan yapılır.
