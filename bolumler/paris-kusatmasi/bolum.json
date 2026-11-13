@@ -2528,7 +2528,7 @@
     "tr": "Mektupları filme çekip kuşların kuyruğuna bağladı.",
     "en": "He filmed the letters, tied them to pigeons' tails."
    },
-   "olcek": "insert (makro): kılıf %14 (270 px), cs 1.6→2.2; kuyruk/el tam kadraj",
+   "olcek": "insert (makro): kılıf %10 (≈195 px), baş + göz + kanat kadrajda, cs 1.3→1.4; kuyruk/el tam kadraj",
    "tempo": "nefes",
    "kamera": {
     "kare": [
@@ -2537,21 +2537,22 @@
      206
     ],
     "cs": [
-     1.6,
-     2.0,
-     2.0
+     1.3,
+     1.4,
+     1.4
     ],
     "cx": [
-     0,
-     -40,
-     -40
+     -250,
+     -290,
+     -290
     ],
     "cy": [
-     0,
-     -120,
-     -120
+     -40,
+     -60,
+     -60
     ],
-    "egri": "inout"
+    "egri": "inout",
+    "not": "C2 (tasarım §15.4, elestiri düz.5): kuş başı ekran x 650–820, y 560–760 kadrajda; cs 2.0→1.4 çünkü kılıf (sol) + baş (sağ) aynı karede; kılıf ≈195 px (%10)"
    },
    "ekran_yazisi": [
     {
@@ -2613,9 +2614,9 @@
    },
    "okunurluk": {
     "nesne": "kuyruk kılıfı",
-    "nesne_pct": 14,
+    "nesne_pct": 10,
     "net_sn": 1.1,
-    "not": "pırıltı + bağlı net f122-190; cs 2.0'da kılıf 278 px (tasarım ≈270); kılıf merkezi dekor (540,1000) · C turu: f150 kılıf 278 px (%14) @ (500,920), keçe arkada"
+    "not": "C2: cs 1.4: kılıf ≈195 px (%10), baş merkezi ekran x≈820 (hedef 650–820), ip 2 sarım koyu (motion); pırıltı + bağlı net f122-190 · kılıf merkezi ekranda ≈(260,~960)"
    },
    "tasiyici": {
     "giris": "ÇIPLAK KESME #1 (zaman atlaması, P08 Tours)",
