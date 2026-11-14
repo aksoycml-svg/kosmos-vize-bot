@@ -68,3 +68,8 @@ Ticari hak teyidi hâlâ açık; kullanılmadı.
 - 14 foley ses mevcut proje arşivinden yeniden kullanıldı (Blanc/Evliya ElevenLabs SFX, Creator plan; ticari uygun, atıf gerekmez): kus-kanat, kagit-hisirti, kagit-yatis, sayfa-yatis, dosya-tok, dugum-tok, ip-zit, kalem-cizirti, teleskop-tik, sayac-tik, ahsap-tik, kagit-katlama, kagit-acilis, baslik-inis.
 - 4 ortam yatağı mevcut dosyalardan (yeni kayıt yok): gece-ruzgar, sehir-ortam, ruzgar-bogaz, kagit-ortam (`bolumler/paris-kusatmasi/ortam.json`).
 - 26 yeni foley ElevenLabs Sound Generation ile üretildi (`public/paris/sfx/`, `tools/paris_sfx.py`, 2026-11-14, tek çekim): Creator plan, ticari uygun, atıf gerekmez.
+
+## Çiçero (bolumler/cicero) — 2026-11-14
+Müzik: Incompetech "Measured Paces" (Kevin MacLeod, CC BY 4.0, **atıf zorunlu**). Tam kayıt, atıf metni, kesim ve elenen adaylar: `bolumler/cicero/muzik/lisanslar.md`.
+Atıf (açıklamaya): `Measured Paces Kevin MacLeod (incompetech.com)` · `Licensed under Creative Commons: By Attribution 4.0 License` · `http://creativecommons.org/licenses/by/4.0/`
+Foley: 45 ElevenLabs SFX (Creator plan, atıf gerekmez; 4'ü proje arşivinden yeniden kullanıldı).
