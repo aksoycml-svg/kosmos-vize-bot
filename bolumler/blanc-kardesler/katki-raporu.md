@@ -1326,3 +1326,33 @@ Her ajan görev sonunda buraya ekler (bkz. CLAUDE.md).
   - Render komutunu yanlış ortamda bir kez iki kez çalıştırdım (aynı çıktı dosyalarına iki kez yazıldı); son çalıştırma ALLDONE, üç katman da exit 0. Script'in log yolu hatası nedeniyle loglar `/render-*.log` kök dizinine düştü; scratchpad'e taşındı.
   - Remotion WAV çıktısı 16 bit geldi; 24 bit'e çevrildi (seviye/zamanlama değişmedi).
 - Açık: `ses/*.wav` ve Premiere XML'i Premiere'de denenmedi; kulakla ses kontrolü yapılmadı. Commit trailer'ı kullanıcı talebine uygun olarak Opus 5.5 yazıldı (sistem talimatındaki Haiku satırı kullanılmadı).
+
+## teknisyen · 2026-11-14 · Blanc TR/EN yayın render (FINAL)
+- Ne yaptım / çalıştırdığım komutlar:
+  - Onaylı kaynak: TR `bolum.json` (v4.1, 3730 kare, 62.17 sn) + `miks.json`; EN `bolum-en.json` (v4.1, 3369 kare, 56.15 sn) + `miks-en.json`. Doğrulayıcı (`node tools/bolum_dogrula.mjs … --tam`): TR GEÇTİ (0 hata, 13 uyarı), EN GEÇTİ (0 hata, 13 uyarı).
+  - Blanc'ta render betiği yoktu; `tools/evliya_render.sh`'den yollar ve GL ayarı alınarak `tools/blanc_render.sh` yazıldı. Blanc yazısı görüntüye gömülü (mod=tam), bu yüzden yazı katmanı/ProRes yok: dil başına tek sessiz H.264 render (`Bolum`, `--gl=angle`, `--crf=16`) + ses ayrı WAV (`Bolum --codec=wav`, miks json'dan).
+  - Birleştirme için `tools/blanc_mux.sh` yazıldı: görüntü libx264 crf16 ile yuv420p tv aralığına yeniden kodlandı (Remotion çıktısı yuvj420p idi), ses loudnorm iki geçiş lineer, AAC 320k 48 kHz.
+  - Render ve birleştirme komutları: `tools/blanc_render.sh tr en` (arka plan), `TPV=-2.0 tools/blanc_mux.sh tr`, `TPV=-1.7 tools/blanc_mux.sh en`.
+  - Evliya: bu görev kapsamında render başlatılmadı (orkestra talimatı: Evliya kullanıcıda, yalnız Blanc). Süreç yoktu, `out/evliya/` oluşmadı. Yalnız Evliya doğrulayıcısı (`--tam`) okundu: 77.07 sn, 1 hata (bilinen süre hatası), render için durum değişmedi.
+- Üretilen dosyalar:
+  - `out/blanc/blanc-tr.mp4`: 92.2 MB, 1080x1920, 3730 kare, 60 fps, H.264 High, yuv420p tv, bt709; AAC LC 48 kHz stereo; süre 62.20 sn.
+  - `out/blanc/blanc-en.mp4`: 83.3 MB, 1080x1920, 3369 kare, 60 fps, H.264 High, yuv420p tv, bt709; AAC LC 48 kHz stereo; süre 56.20 sn.
+  - Günlük: `out/blanc/render.log`, `out/blanc/run.out`, `out/blanc/mux*.log`. Ara dosyalar (`out/blanc/_is/`) silindi.
+- Ölçümler (ebur128, AAC sonrası, hedef −14 ±0.3 / TP ≤ −1.5):
+  - TR: I **−14.6** LUFS, TP **−1.6** dBTP. Hedef dışı (−0.3 LU fazla).
+  - EN: I **−14.4** LUFS, TP **−1.6** dBTP. Hedef dışı (−0.1 LU fazla; tolerans dışı).
+  - Miks ham seviyesi: TR I −24.18 LUFS (TP −1.64, LRA 7.5); EN I −20.99 LUFS (TP −1.76, LRA 5.4).
+- Dalga formu (`ffmpeg … showwavespic=s=1600x300`, görüntü: `scratchpad/dalga-blanc-tr.png`, `scratchpad/dalga-blanc-en.png`): sürekli, ani kesik ya da sıçrama yok; anlatım blokları ve müzik arası geçişler düzgün, sonda müzik yumuşak bitiyor. Tepe noktaları 45.5 sn civarında (TR ve EN) −1.8 dBFS'e çıkıyor (foley/darbe anı).
+- Hatalar ve çözümler:
+  1. İlk arka plan çalıştırması, görev zaman sınırında (30 dk) öldürüldü; video (`video-tr.mp4`) tamamlanmıştı. Betiğe devam mantığı eklendi (kare sayısı ve WAV süresi doğrulanıp tam olan adım atlanıyor).
+  2. Aynı çıktı dosyalarına iki kez yazan mükerrer render/mux süreçleri oluştu (eski oturumdan kalan süreç). Hepsi PID ile öldürüldü, çıktılar silinip temiz yeniden üretildi. Süreçler artık tek.
+  3. Remotion çıktısı `yuvj420p` (tam aralık) idi; `-c:v copy` ile düzeltilemedi, görüntü yeniden kodlandı (CRF 16, kare sayısı değişmedi).
+  4. Ses seviyesi: miks −24 LUFS (TR) ve −21 LUFS (EN) seviyesinde; −14'e çıkarmak için TP sınırı (−1.5) lineer kazancı −14.5 altında tutuyor. Sabit kazanç + alimiter denemesi I −16 verdi (limiter yükü düşürüyor), dinamik loudnorm TP −1.0 verdi (kabul edilmedi). En iyi uyumlu sonuç: lineer iki geçiş. Miks değerleri değiştirilmedi (kullanıcı/kurgucu kararı gerekir: miks seviyesi ya da foley tepe değerleri).
+- Ses klibi kenar kontrolü (`python3 -I tools/ses_kenar.py kontrol`), miksteki mevcut klipler (ölçüldü, yeniden üretilmedi):
+  - TR `public/blanc/ses-v4/`: **P10-memur.mp3 KESIK** (son −8.6 dB, kelime yarıda), **P14.mp3 CIT** (baş −38 dB). Diğerleri temiz.
+  - EN `public/blanc/ses-en/`: **P10-memur.mp3 CIT** (baş −41.6 dB, eşik −40 dB'e çok yakın), **P13.mp3 CIT** (baş −31.7 dB). Diğerleri temiz.
+  - Kurala göre bu klipler teslim öncesi düzeltilmeli (CIT → `duzelt`; KESIK → yeniden üretim). Bu bir içerik/ses üretimi kararı; yapılmadı. Karar: orkestra/kurgucu.
+- Açık sorular (orkestraya):
+  1. Ses hedefi: iki dil de −14 ±0.3 LUFS'e getirilemiyor (TR −14.6, EN −14.4) çünkü miks düşük ve tepe noktaları yüksek. Kabul mi, yoksa miks seviyesi (anlatım/foley/müzik) mi değiştirilsin? Hangisi karar verilmeli.
+  2. P10-memur (TR KESIK, EN CIT) ve P14 (TR CIT), P13 (EN CIT) klipleri: düzelt mi, yeniden üretim mi? Bu düzeltilmeden iki dosya "yayına hazır" sayılmaz.
+  3. Kulakla dinleme yapılmadı (ajanlar sesi duyamaz). Dinletme önerisi: TR 25–30 sn ve 45–46 sn (ölçülen tepe kümeleri; P10-memur ve P14 klip yerleri ayrıca doğrulanmalı); EN 45 sn çevresi ve P10-memur/P13 klip yerleri (EN tepe konumu ölçülmedi).
