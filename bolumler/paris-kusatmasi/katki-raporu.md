@@ -1297,3 +1297,35 @@
 - Aldığım kararlar ve gerekçeleri: (1) Yavaşlatma %6.4: kaynaktaki melodi yükselişi (35.5) tam "yükseldi" 37.77'ye otursun, ilk cümlenin Do-minör dönüşü (8.15) tel kopması 8.67'ye denk gelsin; tek kesimsiz. (2) Bookend: ilk cümle 41.72'de yeniden başlar (Bb→Bb bağı), kaynak tepesi 10.0 "okudu" 51.72'ye; ayrı B teması gerekmedi (LH arpejî zaten ostinato). (3) Koda Bb→Eb çözülür, sonu F/Bb dominant → döngüde P01'in açılışına akar; −3.5 dB sakin. (4) `mom98` %99.5'e alındı: Chopin dinamik aralığı geniş, %98 referansıyla tepeler −22/−16'yı aşıyordu (EN P10 boşluğunda −14.5).
 - Uyguladığım kurallar / yakaladığım ihlaller: bölümde 2 tema sınırı (tek tema + dönüş); P07'de tam susma yok; 0.4–0.5 sn eşit güç çapraz; müzik −22/−16; kaynak lisansı CC0 metadata'dan doğrulandı; Satie "kullanılmıyor" işaretli, atıf eklenmez. Yakaladığım: (a) olc ölçüm betiğimin ilk hâli anlatım/müzik M dizilerini indeksle hizalıyordu (anlatım stem'inin satır sayısı farklı) → zaman anahtarlı yeniden ölçüldü; (b) EN P10 boşluğu tavanı aşıyordu → düzeltildi. Kalan: TR/EN anlık konuşma tepeleri −19…−20 (20.5, 39.1 sn) — kulakla bak.
 - Açık sorular / bir sonraki ajana notlar: P07 darbe 35.12'de müzik kaynakta dominant ölçüde; "tek alçak nota" tam o şekilde değil (ölçülemeyen kulak kararı). Ayrıca kaynak 33.0'dan sonra 35.5'te Eb'ye çözülüp yükselir — 36.2–37.7 sakin, 37.77 açılış. EN −14.3: hedef −14.0'a TP sınırı izin vermiyor (tepeler foley'den); kullanıcı isterse foley tepe limiti ayrı iş.
+
+## mekan-sorumlusu · 2026-11-14 · HARITA ekleri şartnamesi (KE-PK-H1…H5, tur-17)
+- Ne yaptım: `mekanlar.md` sonuna **§5H** ekledim. Orkestranın "§5" dediği bölüm bu; eski §5 (360 özeti) adını korur. İçerik:
+  - Teşhis ve iki görünüm, tek kâğıt kararı (`fransa` = kit, `paris-cevre` = 1870 kuşatma planı gravürü).
+  - Coğrafya kartı. Projeksiyon S 33 px/km, merkez (540,900). Seine/Marne kıvrım noktaları, Thiers suru, 16 fort, tepeler, ormanlar, Versailles, Tours yönü (53.6°). Hepsi [G], ±33 px.
+  - Kâğıt/tarama/kontur dili: px, hex, L\*/C\*.
+  - Tek ışık: masa, KB.
+  - 14 ekin çizim + animasyon tarifi, kare kare: halka kıskacı, tel kopması (sönüm formülü), kâğıt siluet menteşesi, balon izi, rüzgâr, geri okun süpürülmesi, yazı yığını çarpması, güvercin çizgisi + kümes ikonu, Tours ikonu, Prusya bölgesi, yatık sepet, gizli segment, kuş çizgilerinin emilmesi, şerit yağmuru.
+  - Fiziksel giriş/çıkış listesi, etiket yerleşim kuralı, 360 tablosu, kamera/güvenli alan kontrolü, harita ↔ mekân eşleşmeleri.
+  - Yönetmene 17 maddelik parametre/kamera tablosu, motion modül listesi.
+- Dokunduğum dosyalar: `bolumler/paris-kusatmasi/mekanlar.md` (§5H eki), bu rapor.
+- Aldığım kararlar ve gerekçeleri:
+  - Halka merkezi (540,960) → **(540,900)**. Json'daki kopma noktası (293,548) yalnız bu merkezle halka üstünde (uzaklık 430.0); sahne planındaki "halka üstü y 470" de bunu gösteriyor.
+  - Halka işaretleri teğet çubuk 32 × 16, iki kollu kıskaçla kapanır. Son işaret teli bastırır, sonra tel kopar: sebep-sonuç.
+  - Siluetler halka bandında, dışa dönük. Merkez P04 kümesi ve P11 yığını için boş kalır.
+  - P11 çıplak kesme sonrası harita durumu yeniden kurulur; iz, ok ve yığın taşınmaz, kalabalıklık önlenir.
+  - Prusya bölgesi düz `#8a93a0`. α .55 karışımı mavi-gri kimliğini kaybediyor.
+  - Kuş ikonu 44 px, şerit 30 × 15: 360 eşiği.
+  - P06 şerit eşleşmesi için ara nokta lat 48.25, takip ekranı (480,1000), `rota_ciz.q0`.
+  - Versailles çizilmez: görevi yok, etiket de yazılamaz.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - **Kit iğnesi pirinç** (`#b8862b` C\* 54.6): sarı metal ve kılıf tekliği ihlali → `igne.renk: "murekkep"`.
+  - **Kit şehir adları SVG metni:** dil-nötr ihlali → yazı katmanına.
+  - **Kit kara taraması 0.8 px:** 360'ta kayboluyor.
+  - **P04 güvercin başlangıcı (90,1480):** cs 1.15'te ekran y 1627, Instagram arayüzü altı.
+  - Fade yok, ızgara yok, gradyan yok, kırmızı ve sarı yok, tarama ≥ 2.5 px, seed sabit.
+- Açık sorular / bir sonraki ajana notlar:
+  - Tasarımcıya 5 madde (§5H.12): çubuk işaret, bölge rengi, ikon ölçüleri, nokta rengi, yeni hex'ler.
+  - Araştırmacıya fort/sur/hat birleşmesi/işgal sınırı/telgraf merkezi (hepsi [G]).
+  - Yönetmen §5H.10'u json'a işler ve P04A kuş girişi f30 kararını verir.
+  - Motion önce P02 f140/f250 + şerit f120–190 kalibrasyonu.
+  - Eleştirmen `parsomen.jpg` lekelerinde C\* > 32 ölçmeli.

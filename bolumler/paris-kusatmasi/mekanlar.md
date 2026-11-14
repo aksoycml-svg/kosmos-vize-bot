@@ -2135,3 +2135,326 @@ Parametrik genişleme (sonraki bölümler için): PARIS-CATI `saat: gece` (pence
   - (b) P03'te sepet 360 px'te 36 px (tasarımın ≥ 55 px hedefinin altında). Bu planda kabul mü?
   - (c) Bu belgedeki yeni hex'ler (§1.6, §2.7, §3.5, §4.4) palete eklenmeli mi? Hepsi ölçüldü.
 - **Motion'a:** dolly modelinde katman sayısı 11. Kalibrasyonda P01 f0–300 şeridi (her 4 kare) ön bacanın soldan girişini ve karşı cephenin ölçek değişimini göstermeli. Kesme ya da maske şeridi olmamalı.
+
+---
+
+## 5H. HARITA ekleri (paris-çevre + Fransa) — KE-PK-H1…H5 (tur-17, GEÇERLİ)
+
+> Orkestranın "§5" dediği bölüm budur. Eski "§5 360x640 özeti" adını korur; bu bölüm **§5H** diye anılır.
+> Girdi: `notlar/tur-17.md`, sahne-plani §2/§3/§7, `bolum.json` P02, P03B, P04A, P06A, P08, P11A, tasarim §0.3/§6/§7/§13.3–13.5, `src/kit/sablonlar/Harita.tsx`, `kalibrasyon/KIT/KIT-1`, `kalibrasyon/T/ozet.png`, arastirma §1/§5/E3. Spesifikasyondur; kod, görsel, git yok. Gemini yok.
+> Etiketler: **[A]** arastirma.md kaynaklı · **[G]** genel bilgi, doğrulanmalı · **[T]** tasarım kararı. Koordinatlar **dekor px** (cs 1.0'da ekran = dekor; ekran = 540 + cx + (dekor − 540)·cs, y için 960 + cy + (dekor − 960)·cs).
+
+### 5H.0 Teşhis → karar (tek cümle)
+Kit haritası (KIT-1) sıcak parşömen + tek mürekkep rota olarak geçti, ama bu bölümün ekleri onun ölçeğine sığmıyor (Paris 35 px). Karar: **iki görünüm, tek kâğıt.** `fransa` = kit haritası aynen (ekler + düzeltmeler). `paris-cevre` = aynı parşömen üstünde 1870 kuşatma planı gravürü dili: çift kıyılı Seine, bastiyonlu sur, 16 fort, tepe taraması. Halka, tel ve figürler bu planın üstüne **kukla tiyatrosu parçası** gibi konur: kâğıt kesik, gölgeli, fiziksel giriş-çıkışlı.
+
+**Kitte düzeltilmesi gereken üç şey var (yoksa betik reddeder):**
+(1) İğne başı pirinç: `#b8862b` (C\* 54.6) ve `#e7c98a` (C\* 35.4). Bunlar kılıf tekliğini (C\* > 32 yalnız kılıfta) ve "sarı metal yok" kuralını bozar. Yeni değer: baş `#1c1915`, hilal `#6d6a63`.
+(2) Şehir adları SVG `<text>` olarak dekora gömülü. Dil-nötr kurala aykırı; etiketler yazı katmanına taşınır (§5H.7).
+(3) Kara taraması 0.8 px, α .2. 360'ta 0.27 px kalır, görünmez (eski 360 dersi). `fransa`'da 2.5 px, α .22, aralık 9 px; `paris-cevre`'de kara taraması yok (§5H.3).
+
+### 5H.1 Duygusal amaç ve görsel dil
+- **Amaç:** Haritayı bir masada açık duran bir kuşatma planı gibi göstermek. Halka kapanınca izleyici şehrin **kapandığını** görür. Sonraki her çizgi bu duvarı ya aşar (balon, kuş) ya da ona çarpar (yazı yığını).
+- **Şekil:** Daire (halka) ile kırık kıvrım (Seine) karşıtlığı. Dış dünyadan gelen her şey diyagonal: güneybatıdan (Tours yönü) ya da doğuya (rüzgâr).
+- **Ritim:** Sur dişleri ve fortlar düzensiz, gerçek yerlerinde. Halka işaretlerinde aralık ±%12, açı ±6° titrer. **Izgara yok, eşit aralık yok** (V3 dersi).
+- **Sıcaklık:** Kâğıt sıcak (h 85–92°, C\* ≤ 26). "Prusya" soğuk mavi-gri (h 266–273°). Mürekkep kahve-siyah. Kırmızı ve sarı metal yok.
+- **Kontrast:** En koyu iki öğe halka ile teldir (L\* 9–32). Arazi gravürü orta tonda kalır (L\* 50–60), halkayla yarışmaz.
+
+### 5H.2 Mimari/coğrafya kartı: `paris-cevre` (Eylül 1870 – Ocak 1871)
+Projeksiyon [T]: **S = 33 px/km**. Origin sur içinin merkezi ≈ (2.335°D, 48.857°K) → **(540, 900)**. Formül: x = 540 + (lon − 2.335)·73.25·S, y = 900 − (lat − 48.857)·111.2·S. Halka r 430 ≈ 13 km. Konumlar genel harita bilgisi **[G, ±1 km ⇒ ±33 px]**; okumayı değiştirmez.
+
+| Öğe | Durum 1870 | Dekor px (S 33) | Çizim |
+|---|---|---|---|
+| **Seine** | Akış GD → KB. Paris'ten sonra batıda iki büyük kıvrım [G] | Villeneuve-St-Georges (816,1359) → Marne kavşağı (729,1054) → Bercy (656,977) → Cité (569,911) → Concorde (504,874) → Point-du-Jour (388,962) → Sèvres (272,1017) → St-Cloud (257,944) → Suresnes (279,845) → Neuilly (347,794) → Asnières (424,698) → St-Ouen (530,687) → Île St-Denis (559,606) → Épinay (477,540) → Argenteuil (335,588) → Bezons (252,632) → Chatou (117,761) → sol kenardan çıkar | Çift kıyı çizgisi 3 px `#4a4237`, nehir genişliği **20 px** [T: gerçekte ~6 px, 360'ta okunsun diye] |
+| Île de la Cité | Paris'in tek imzası (anıt yok) | (569,911), 30 × 9 px | Kıyı çizgisiyle kapalı ada |
+| **Marne** | Doğudan gelir, Charenton'da Seine'e katılır [G] | (1011,889) → (1011,1109) → Joinville (861,1036) → kavşak (729,1054) | Genişlik 12 px, iki kıyı |
+| **Sur (Thiers, 1841–44)** | Bastiyonlu çevre surları, ~33 km [G] | Oval: B 339 (Auteuil) / 354 (Maillot) · D 729 (Vincennes kapısı) · K 750 (La Chapelle) · G 1039–1054 (İtalie/Vanves). NW (487,764), NE (678,786), SW (424,992) | **Zigzag diş izi:** 40 diş [T; gerçekte 94 bastiyon], diş derinliği 14 px, aralık 30–42 px (seed). Dış çizgi 5 px, iç rampart 2.5 px, 8 px içeride |
+| **Fortlar** (16) [G] | Hepsi halkanın içinde | Mont-Valérien (245,849) · Issy (364,1043) · Vanves (434,1054) · Montrouge (509,1080) · Bicêtre (593,1087) · Ivry (683,1080) · Charenton (726,1061) · Vincennes (782,951) · Nogent (878,951) · Rosny (910,849) · Noisy (849,812) · Romainville (787,786) · Aubervilliers (685,702) · Est (610,628) · Double-Couronne (590,590) · La Briche (571,551) | Bastiyonlu beşgen 26 px (Mont-Valérien 34), kontur 3.5 px, içte gölge yüzünde 3 kısa tarama |
+| Tepeler [G] | Montmartre, Belleville–Romainville sırtı, Mont-Valérien, Meudon–Châtillon sırtları, Villejuif | Montmartre (559,797) r 26 · sırt (640,820)→(810,786) · M-V (245,849) r 44 · Meudon–Châtillon bandı x 290–470, y 1060–1135 · Villejuif (590,1125) | Gravür tepe taraması (§5H.3) |
+| Ormanlar | Bois de Boulogne, Bois de Vincennes [G] | (335,882) 70×90 · (806,999) 90×60 | 18–26 ağaç işareti |
+| **Prusya hattı** | Şehri tamamen çevirdi, 19 Eylül [A: HERO/HGW]. Gerçek hat düzensizdi; güneyde Châtillon sırtı fortlara 2–3 km yakın [G] | Daire, merkez (540,900), r 430 | **Stilize daire** [T]: okunurluk için gerçek hat çizilmez (json notu "ölçeksiz") |
+| Versailles | Prusya karargâhı [G], halkanın dışında | (45,1091): kenar güvenli alanın dışında | **Çizilmez.** Görevi yok, etiket yazılamaz ("her nesnenin yeri anlamlı") |
+| Montmartre | Balon kalkışları [A] | (559,797) | P03B balon ikonunun çıkış noktası |
+| Gare d'Orléans | Niépce kalkışı [A E3] | (615,955) | Çizilmez (P03B genel balon; ikon Montmartre'dan çıkar) |
+| **Tours yönü** | Paris'in ≈200 km GB'sı [A] | Kadraj dışında, sol-aşağı, yatayın **53.6°** altında | Yazı yığını ve güvercin bu çeyrekten gelir (§5H.5) |
+| Telgraf | Kesildi [A]. Hattın güzergâhı kaynaksız [G] | Cité (569,911) → KB → kopma (293,548) → kadrajın sol-üst köşesi | Stilize tek hat. Seine yatağındaki gizli kablo hikâyesi [G] **kullanılmaz** |
+
+**Kameradan görünen:** Harita tepeden ve düz bakılır. Eğik perspektif yok, ufuk yok. Kâğıt kenarı görünmez (cs ≥ 1.0'da jpg taşar). Halka, siluetler ve ikonlar düz kâğıda konmuş kesik parçalardır; gölgeleri ortak "masa ışığından" düşer (§5H.4).
+
+### 5H.3 Gravür harita dili: kâğıt, tarama, kontur (1080 tabanında px, cs 1.0)
+**Doku katmanları (en çok 3, seed sabit, kaynamaz):** (1) Kâğıt: kit `parsomen.jpg` aynen; `paris-cevre` arazi tonu `#d9c49a` multiply α .45 tüm yüzeye. (2) Gravür: tepe taraması, su çizgileri, sur dişi, orman işareti. (3) Kit `arsiv: kagit` + litografi grenı α .06. Gren vinyet geçişinin üstüne biner; dijital gradyan basamağı oluşmasın (B/C dersi).
+
+**El yapımı his (soğuk düz vektör dersi):**
+- Tüm kontur yolları önceden hesaplanmış deterministik titreme alır: genlik 1.2 px, dalga 40 px, seed `parisHarita: 171`. Filtre değildir, kaynamaz.
+- Her mürekkep çizgisi kit rotası gibi **iki geçiştir**: altta +6 px genişlik α .15 (mürekkep yayılması), üstte net çizgi.
+- Çizgi uçları yuvarlak; tel, iz ve kuş çizgisinin ucunda 1.4× kalınlaşma olur (divit).
+
+| Yüzey | Malzeme / anlam | Tarif | Kod yöntemi | Parametre |
+|---|---|---|---|---|
+| Kâğıt | parşömen | kit jpg + arazi tonu | `Img` + `rect` multiply | `#d9c49a` α .45 |
+| Sur içi (şehir) | yoğun yerleşim | 1 kademe koyu düz ton; tarama **yok** (büyük yüzey) | `path` dolgu | `#cbb487` α .40 |
+| Seine/Marne | su | Kıyı çizgisi + içte **su çizgileri**: kıyıya paralel 2–3 kesikli çizgi, segment 30–70 px, kıyıdan uzaklaştıkça aralık 6 → 9 px. Dönem planlarında suyun tarama tarifi budur [G] | `path` offset + dasharray (seed) | kıyı 3 px `#4a4237` · dolgu `#e3d6b6` · su çizgisi **2.5 px** `#6f7f78` |
+| Tepe | rölyef | **Tepe taraması** (hachure): sırt çizgisinden aşağı dik kısa çizgiler, 10–18 px, aralık 7–9 px. KB ışığı: GD yamaçta çizgiler sık ve 3 px, KB yamaçta seyrek ve 2.5 px | radyal kısa `line` (seed) | `#8a7a5c` |
+| Sur | bastiyon izi | zigzag dış + iç rampart | `path` | 5 px / 2.5 px `#4a4237` |
+| Fort | bastiyonlu beşgen | beşgen + içte 3 tarama, açı 135° | `path` | 3.5 px `#4a4237`, tarama 2.5 px |
+| Orman | ağaç işareti | ø 7 px halka + GD'da 5 px gölge çentiği, düzensiz küme | `circle` + `line` | 2.5 px `#8a7a5c` |
+| Halka | Prusya hattı | §5H.5-A | | 12 px `#3e4c63` |
+| Prusya bölgesi (`fransa`) | işgal | Düz dolgu. İç kenarda 14 px'lik tik bandı (dönem planlarında sınır şeridi gibi) | `path` + iç offset tik | dolgu `#8a93a0` · tik 3 px `#3e4c63`, aralık 9 px |
+
+**Geniş alanda kafes/çapraz tarama yok.** Çapraz tarama yalnız fort içinde (≤ 26 px).
+
+**Palet (yeni hex'ler [T]; hepsi C\* ≤ 26, L\* ≤ 89; kılıf imza bandı dışında):**
+
+| Hex | L\* / C\* / h° | Kullanım |
+|---|---|---|
+| `#d9c49a` | 79.9 / 23.8 / 87 | arazi (kit) |
+| `#cbb487` | 74.2 / 26.1 / 86 | sur içi ton |
+| `#e3d6b6` | 85.9 / 17.4 / 92 | nehir dolgusu |
+| `#6f7f78` | 51.7 / 7.6 / 166 | su çizgisi |
+| `#8a7a5c` | 51.9 / 18.8 / 86 | tepe/orman taraması |
+| `#4a4237` | 28.5 / 8.1 / 80 | kontur, siluet, kuş çizgisi |
+| `#1c1915` | 9.0 / 3.3 / 80 | tel, iz, iğne başı |
+| `#3e4c63` / `#52627a` | 32.0 / 15.2 / 273 · 41.1 / 15.4 / 270 | halka / işaret |
+| `#8a93a0` | 60.6 / 8.0 / 266 | Prusya bölgesi [yeni] |
+| `#e9dfc9` | 89.1 / 12.0 / 91 | ikon dolgusu (balon, yığın, bina) |
+| `#5a5048` | 34.8 / 6.8 / 67 | film şeridi |
+| `#6d6a63` | 44.9 / 4.3 / 93 | iğne hilali [yeni, kit pirincinin yerine] |
+
+> Prusya bölgesi için tasarımın önerdiği `#52627a` α .55 kâğıtla karışınca `#8f8e88` çıkıyor (h 103°, C\* 3.4): yeşilimsi gri okunuyor, mavi-gri kimliği kayboluyor. Bu yüzden düz `#8a93a0` öneriyorum. **Tasarımcı onayı gerekir** (tek sahiplik: tasarim §6).
+> `parsomen.jpg` lekelerinin C\*'ı ölçülmedi. Eleştirmen betiği P02 f140'ta "C\* > 32 piksel = 0" kuralını haritada da ölçmeli; aşan leke varsa jpg'ye `saturate(.8)` uygulanır.
+
+### 5H.4 Işık (tek kaynak): masa ışığı, kuzeybatı
+Harita masada açık duruyor kabul edilir. Işık **sol-üstten** gelir, gölge **sağ-alta** düşer; kit iğne gölgesiyle aynı yön. Dekor ışık yönü 315°.
+- Tepe taraması da bu ışığa göre kurulur: KB ışık, GD yamaç koyu (dönem planlarında eğik aydınlatma alışkanlığı [G]).
+- Kâğıttan kalkan her parçanın temas gölgesi: halka işareti, siluet, ikon, yığın, iğne. Ofset (+5, +6) px, `#4a4237` α .22, kenar net. Havadaki balon ikonunda ofset (+14, +18): yükseklik ipucu.
+- Halka ve mürekkep çizgileri kâğıda basılıdır, gölge vermez.
+
+### 5H.5 Ekler: çizim + animasyon (plan içi kare; hepsi plan sonundan ≥ 12 kare önce biter)
+
+**A. Prusya halkası (P02 f8–132; H1/H2, D1).** Halka merkezi **(540, 900)**, r 430. Böylece üst kenar y 470 (> 400 bant), alt kenar 1330 olur. Json'daki kopma noktası (293,548) bu dairenin tam üstündedir (uzaklık 430.0). Json'daki merkez (540,960) bir yazım hatası: o merkezle tel halkanın 50 px dışında kopardı. Yönetmen düzeltir (§5H.10).
+- **İşaret:** 22 adet [tasarım §6]. Biçim halkaya teğet çubuk, **32 × 16 px** [T]: tasarımdaki 24 px kareyle aynı alan, ama dönem planlarındaki birlik çubuğu gibi okunur ve kapanınca sürekli bir duvara dönüşür. Dolgu `#52627a`, kontur 3 px `#3e4c63`, açı ±6°, aralık ±%12 (seed). **Tasarımcı onayı gerekir.**
+- **Giriş (fiziksel, fade yok):** İşaretler r 1150'den (kadraj dışı) radyal doğrultuda kayarak gelir. Tek işaretin yolculuğu 26 kare, `Easing.out(cubic)`. Oturunca 3 karelik ezilme olur (1.12 → 1).
+- **Kıskaç:** İki kol gelir. Biri güneyden saat yönünde, öteki güneyden ters yönde (başlangıç f8, f12, … her 4 karede bir). Kollar KB'deki son boşlukta buluşur. Bu, iki Prusya ordusunun Paris'in batısında birleşmesine gönderme yapar [G, doğrulanmalı; görsel iddia değil, yalnız ritim].
+- **Halka çizgisi:** Komşu iki işaret oturunca aralarındaki yay 6 karede mürekkeple çizilir (çift geçiş, 12 px `#3e4c63`).
+- **Son işaret (#22):** Kadrajın sol-üstünden **telin üstünde kayarak** gelir (f112–132). f132'de (293,548)'e oturur ve teli bastırır: **tık** (temas f132). İki yandaki yaylar f126–136 arasında kapanır.
+
+**B. Telgraf teli ve kopma (P02 f0–188; H2).**
+- **Yol:** Cité (569,911) → (430,730) → kopma (293,548) → kadrajın sol-üst köşesinden çıkar (y ≈ 163'te x 0). Direkler arasında hafif sarkma, 6 px.
+- **Direk:** Dikey **24 px** çizgi, 4 px. Çapraz kol yok (T okutmasın).
+- **Direk aralığı:** 120 px. Kopma noktasına en yakın direkler en az 235 px uzakta olmalı; uçların 220 px serbest boyu buna bağlı.
+- **Kalınlık:** 10 px `#1c1915` + 16 px α .15 alt iz.
+- **Kopma f138:** Tel noktada ikiye ayrılır. Her uç yay gibi geri tepip kıvrılır: iç uç Paris'e doğru, dış uç boşluğa. Serbest boy 220 px.
+  - Uç açısı: θ(t) = θ0·e^(−t/14)·cos(2πt/20), θ0 = 70°. Kıvrım yarıçapı uçta 28 px'e iner.
+  - Kopma anında 3 küçük mürekkep sıçrantısı (ø 4–7 px `#1c1915`). Kâğıtta kalırlar.
+  - f188'de dururlar. Uçlar kıvrık kalır; **tel silinmez**.
+
+**C. Kalabalık dolumu (P02 f192–300; F1).**
+- **Adet ve boy:** 40 kâğıt siluet [json 40; tasarımın 14–18'i 360'ta "kalabalık" okutmuyor]. Boy **60–90 px**: 360'ta ≥ 20 px (tasarım §14.5).
+- **Tipler:** aile (yetişkin + çocuk), Gardiyan/asker kasketli [G, nötr kasket silueti], uzun etekli kadın, bastonlu yaşlı. 6 tip, ayna ve ölçek varyasyonu var. Kaynak: `SiluetFigur.tsx`. Yüz yok, `#4a4237` düz. Üst-sol kenarda 2 px kesik kâğıt kenarı `#e9dfc9` α .5.
+- **Yer:** Halkanın **içinde**, r 200–395 halka bandı. Fort işaretlerinden ≥ 30 px uzak, 3 düzensiz sıra halinde. Hepsi **dışarıya, halkaya dönük** (sırtları merkeze). Merkez (sur içi, Seine, Cité) açık kalır; P04'teki kümes ve P11'deki yığın buraya gelir.
+- **Halkanın dışı boş.**
+- **Giriş:** Kâğıttan kalkış. Siluet yatık hâlde 3 px'lik bir çizgidir. Tabanındaki menteşe üstünde 9 karede dikilir (scaleY 0.08 → 1.06 → 1, ease-out-back), gölgesi büyür. Sıra güneyden saat yönünde gider, her 6 karede 2–3 siluet. İlk küme **f214** (temas), son siluet f290 kalkar, f300'de oturur.
+- **Kalıcılık:** Siluetler P03B ve P04A'da aynen durur (aynı harita durumu).
+
+**D. Balon izi + rüzgâr (P03B f160–216; H3).**
+- **Balon ikonu, 56 px:** küre ø 40 `#e9dfc9`, kontur 3 px `#1c1915`, 3 meridyen 2.5 px. Sepet 12 × 9 px, 2 halat. Havada olduğu için gölgesi (+14, +18) ofsetli.
+- **Hareket:** f164'te Montmartre'dan (559,797) kalkar. Kâğıttan yükselir: gölge ofseti 5 → 18 px, boy 0.85 → 1. Sağ-üste sürüklenir, halkanın üstünden geçer ve f214'te **(930, 560)**'da durur (merkezden 517 px, halkanın dışında).
+- **İz:** Kit rota dili, 6 px `#1c1915`, ikonun arkasında çizilir. Uçta biter. Divit damlası ikonun altında kalır.
+- **Rüzgâr:** 3 uzun kavisli çizgi, 4 px `#4a4237`, boy 260–420 px, uçta küçük kıvrık. Y değerleri 600 / 720 / 840.
+  - **Kayan çizgi:** Baş soldan sağa ilerler, kuyruk 22 kare geriden izler. Çizgi kâğıtta hiç durmaz; f216'da kadrajın sağ kenarından çıkar.
+  - Rüzgâr kafası (yüzlü bulut) yok.
+
+**E. Geri ok ve süpürülmesi (P03B f214–246).**
+- **Çizim f214–228:** Balon ikonundan Paris'e dönen kavisli ok. 4 px `#4a4237`, açık uç (chevron) 28 px, gövde yayı ≈ 300 px.
+- **Süpürülme f228–246:** Yeni bir rüzgâr darbesi (D'deki çizgilerle aynı dil) okun üstünden geçer. Ok noktaları rüzgâr yönünde kayar; kuyruk önce, uç son, her noktanın ötelenmesi zamanla artar ve büzülür. Ok **sağ kenardan kadraj dışına** taşınır.
+- Okun eski yerinde kuru fırça izi kalır (aynı yol, `#8a7a5c`, kesik doku). Bu bir silinme izidir, fade değildir. Plan sonuna kadar durur.
+
+**F. Yazı yığını + kesik çizgi + çarpma (P03B f244–310; H3, N6).**
+- **İkon, 80 px:** 5 sayfa, sayfa başına 4 px kayma, sağ-üst köşesi kıvrık. `#e9dfc9`, 3 px `#4a4237`, sayfa kenarında 2 kısa satır çizgisi (yazı değil).
+- **Yol:** Kadrajın sol-alt dışından girer: dekor (−60, 1560) → **çarpma noktası (236, 1204)**. Bu, halka üstünde merkezden 45° sol-aşağıdır [T: Tours yönü 53.6°, ±8° stilize]. Çarpma noktası alt bant 1290'ın üstünde kalsın diye seçildi.
+- **Kesik çizgi:** 4 px, dash 18/12, `#4a4237`. Yığının arkasında çizilir.
+- **Hareket:** Hız sabittir, çarpmaya kadar yavaşlamaz. **f290 çarpma:** yığın halkanın dış kenarına değer (halka kalınlığının yarısına kadar). Hareket ekseninde 4 karelik ezilme (0.88), 6 px geri sekme, f300'de oturma. En üst sayfa 8 px öne kayar ve f306'da durur.
+- **Halka kıpırdamaz** (duvar). Temasta 2 küçük mürekkep zerresi düşer.
+- Ses: temas f290.
+
+**G. Güvercin çizgisi + kümes ikonu (P04A f0–108; H3).**
+- **Kümes ikonu (560,930):** **Dar ve uzun**, 28 × 40 px. Beşik çatı, ön yüzde 3 yuvarlak delik (ø 5), altında iniş tahtası çizgisi. Bu biçimiyle Tours binasından (geniş, alçak alınlıklı) ayrışır.
+  - f0–10 arasında mürekkeple kendini çizer (stroke draw). Bir anda belirmez.
+- **Çizgi:** 4 px `#4a4237`. Kadraj dışından girer: dekor (36, 1238), cs 1.15'te ekran (−40, 1280). Hafif yay çizerek (şişkinlik %8) kümese varır, f108.
+  - Güney-batı → kuzey-doğu yönündedir; halkayı f70 civarında geçer, halka etkilenmez.
+- **Kuş ikonu:** 44 px [T; tasarımda 36. 360'ta cs 1.15 → 17 px: okunur sınır], silüet `#4a4237`. Çizginin ucundadır; kanatlar 6 karede bir iki poz arasında çırpar, kuş gidiş yönüne bakar.
+  - Varınca 28 px'e küçülüp kümes ikonunun üstüne konar (f108). Ses: kurgucu için öneri, kâğıt tık −18 dB.
+
+**H. Tours ikonu + kâğıt yığını (P06A, P08; H4).**
+- **Bina:** Geniş ve alçak, ekranda **56 × 40 px**. Dikdörtgen gövde, alçak üçgen alınlık, gövdede 3 pencere çizgisi. Kule, çan, bayrak ya da Chappe yok. `#e9dfc9`, 3 px `#1c1915`.
+  - Konum: Tours noktasının **solunda**, merkez Tours − 70 px (ekran). İğne noktanın kendisine batar.
+- **Yanında:** Ekranda 36 px'lik küçük kâğıt yığını (F ikonunun küçüğü). Mektuplar orada yazılıyor.
+- **Dekor ölçüsü = ekran ÷ cs:** P06'da cs 2.3 → bina 24 px dekor. P08'de cs 1.8 → 31 px.
+- **Giriş:** Rota ucu Tours'a 0.1 kala (kit şehir girişiyle aynı zaman) mürekkeple kendini çizer, 8 kare. Ölçek pop'u yok.
+- **Fransa görünümünde Paris'in küçük halkası:** r 40 dekor, 5 px `#3e4c63`, 10 küçük çubuk (12 × 6). P06/P08'in ilk karesinden itibaren oturmuş hâlde (kalıcı durum).
+
+**I. Prusya bölgesi (P08; H4).**
+- **Biçim:** Düz `#8a93a0` dolgu + iç kenarda tik bandı. Düzensiz çokgen; lon/lat [G, stilize, sınır kaynaksız]:
+  (2.55, 49.15) (3.6, 49.35) (5.2, 49.25) (6.4, 48.9) (6.3, 48.2) (5.0, 48.05) (3.9, 48.25) (2.95, 48.45) (2.55, 48.6).
+  Vitry (4.58, 48.73) içeride kalır. Batı kenarı Paris'in küçük halkasına değer. Tours dışarıdadır.
+  Gerçek işgal bölgesi Kasım 1870'te Paris'in batısını ve güneyini de kapsıyordu [G]. Çizim yalnız "indiği yer düşman toprağı" der; sınır iddiası taşımaz.
+- **Giriş:** P08 f0'da zaten basılı. P07'den whip ile gelindiği için harita sağdan hazır girer; ayrı bir giriş animasyonu yok, fade yok.
+
+**J. Balon inişi + yatık sepet (P08 f52–90; H4).**
+- **İniş f52–76:** Balon ikonu (56 px ekran) rota ucunda ilerler. f52'den sonra gölge ofseti 18 → 4 px'e iner, ikon 6 px alçalır. **f76 temas:** sepet kâğıda değer, 3 karede ezilir.
+- **Yatık sepet f70–90:** Sepet alt köşesi üstünde **60°** devrilir (pivot o köşe, 1 overshoot, f84'te durur). Küre aynı anda söner: scaleY 1 → 0.3, eni 1.3×. Meridyenler 4 kıvrım çizgisine döner ve sepetin yanına katlanmış yığın olarak yatar (64 px ekran).
+  - Kumaş katı kalıp gibi değil, yumuşak sarkar.
+- **Kalıcılık:** Plan boyunca orada kalır.
+
+**K. Gizli segment (P08 f76–150; H4).**
+- **Stil:** Vitry'den Tours'a, kit rotasıyla aynı yol üstünde ama noktalı. Nokta ø 4 px, aralık 12 px, `#1c1915` (tasarımdaki `#4a4237`'den bir kademe koyu: rota mürekkebiyle aynı aile, 360'ta kaybolmaz).
+  - Kitte bu yok: segment başına stil parametresi gerekir (`rota_segment_stil: ["dolu","noktali"]`, kit eksiği).
+- **Çizim:** Uç ilerler ve noktalar ucun arkasından basılır. Bölge sınırındaki tik bandını f100 civarında keser: kaçış anı.
+- **Etiket:** Rota etiketleri çizgiyle kesişmez (§5H.7).
+
+**L. İğne (P06 f78, P08 f164; kit).** Kit düşme, sekme ve gölgesi aynen. Renk: baş `#1c1915` r 17, hilal `#6d6a63`, şiş `#3a3128`. Kit parametresi gerekir: `igne.renk: "murekkep"`.
+
+**M. Kuş çizgileri (P11A f0–110; H5).**
+- **Bağlam:** P10 → P11 çıplak kesme, zaman atlıyor. Bu yüzden harita durumu yeniden kurulur: halka + 40 siluet + kümes ikonu (560,930) f0'da hazır. P03/P04'ün iz, ok ve yığını **yok**.
+- **12 çizgi:** 4 px `#4a4237`. Hepsi kadraj dışından girer, kümese yönelir.
+  - Başlangıçlar (dekor): (−20, 420) (−20, 520) (−20, 640) (−20, 760) (−20, 880) (−20, 1000) (−20, 1120) (−20, 1240) (−20, 1360) (160, 1600) (330, 1600) (520, 1600). Çoğu batı ve güneybatıdan gelir; tek tek yön iddiası yok [G].
+  - Hafif yay (şişkinlik %6–10, seed). Uçta 44 px kuş ikonu, çırpan.
+- **Varan 3 çizgi:** #4, #7, #11. Varışlar f62 / f84 / f108; kuş kümes ikonunun üstüne konar (G'deki gibi).
+- **Yolda biten 9 çizgi:** Çizgi boyunun t_dur oranında durur. Sırayla:
+  - t_dur: 0.18, 0.32, 0.25, —, 0.41, 0.22, —, 0.36, 0.28, —, 0.47, 0.30.
+  - Duruş kareleri f30–96 arasına yayılır.
+  - Durma: uç ease-out ile yavaşlar. Kuş ikonu 8 karede **30° aşağı döner ve küçülerek** uçtaki damlaya gömülür. Damla r 5 → 8 px'e yayılır ve 12 karede `#1c1915` → `#8a7a5c` renk değiştirir (mürekkep kâğıda emilir; opaklık düşmez). 2 küçük sıçranti olur.
+  - **Çizgi silinmez.**
+  - Duruş noktalarının çoğu halkanın dışında, 2'si halka bandında. Hepsi yan ≥ 80 px ve y ≤ 1440 güvenli alanında.
+
+**N. Şerit yağmuru + büyüyen yığın (P11A f112–168; H5).**
+- **Şerit:** **30 × 15 px** [T; tasarımda 24 × 12. 360'ta tek şerit 10 px, yığın okunur]. `#5a5048`, içte 2 açık çizgi `#8a7a5c` (film satırı, yazı değil). Delik/perforasyon yok [G].
+- **Uçuş:** 38 şerit kümes ikonunun çatısından fırlar. Her 1.0–1.4 karede bir şerit; kemer yüksekliği 60–140 px, uçuş 14–18 kare. Uçuşta ±200° döner, iniş öncesi hafif salınır (kâğıt düşüşü).
+- **Yığın:** Kümesin sağ-altında, merkez (600, 985). Her iniş yığını bir kademe büyütür: 0 → 110 × 56 px. İlk iniş **f130** (temas), son fırlatma f150, son iniş f166, yığın f168'de durur.
+- **Siluetler** halka bandında yığına dönük değil, dışarı bakar (P02 ile süreklilik). Bu yüzden yığın "içeri ulaşan" şey olarak okunur.
+
+### 5H.6 Fiziksel giriş/çıkış listesi (fade yok)
+| Öğe | Giriş | Çıkış / son durum |
+|---|---|---|
+| halka işaretleri | kadraj dışından radyal kayma | oturur, kalıcı |
+| halka çizgisi, rota, iz, kesik/noktalı çizgi, ikon konturu | mürekkep kendini çizer | kalıcı |
+| tel uçları | kopma | kıvrık kalır |
+| siluetler | kâğıttan menteşeyle kalkar | kalıcı |
+| balon ikonu | Montmartre'dan kalkar (gölge ofseti büyür) | (930,560)'da durur |
+| rüzgâr çizgileri | soldan kayarak | sağ kenardan çıkar |
+| geri ok | mürekkeple çizilir | rüzgârla sağ kenardan çıkar, kuru iz kalır |
+| yazı yığını | sol-alt kenardan | halkada oturur |
+| kuş ikonları | kadraj kenarından çizgi ucunda | kümese konar ya da damlaya gömülür |
+| şeritler | kümesten fırlar | yığına iner |
+| Prusya bölgesi | whip ile hazır | kalıcı |
+
+### 5H.7 Etiketler (yazı katmanı, dil başına) ve rota ile çakışmama
+- Görüntüde hiç yazı yok. PARIS / TOURS etiketi kit fontuyla (Playfair 900, 40 px × cs) **yazı katmanında** durur, dekora yapışık (kamera dönüşümünü izler; `kameraDili` gibi).
+- **Yerleşim kuralı:** Etiket, şehre bağlanan çizgilerin ortalama yönünün **tersine**, noktadan 20 px uzağa konur. Hiçbir rota ya da halka çizgisinin üstüne binmez; sığmazsa noktanın üstüne gider. Güvenli alan kenarına kenetlenir.
+  - P06: Paris'e bağlı rota GB'ya iner → PARIS etiketi küçük halkanın üstünde, ekran (747, 535). TOURS etiketi bina ikonunun altında.
+  - P08: rota Paris'ten doğuya çıkar, dönüş segmenti Paris'in 91 px altından geçer → PARIS etiketi halkanın **sol-üstünde**, sağ kenarı halkanın 10 px solunda. TOURS altta.
+  - Bu, sahne planındaki "çizgi PARIS'i ortadan geçiyor" hatasını çözer.
+- **`paris-cevre`'de etiket yok.** Paris Seine, Cité ve sur ile okunur; ekran yazısı bağlamı verir.
+
+### 5H.8 360 okunurluğu (ekran px ÷ 3)
+| Öğe | 1080 (cs) | 360 | Sonuç |
+|---|---|---|---|
+| halka | 12 px (1.0–1.15) | 4–4.6 | evet |
+| işaret | 32 × 16 | 10.7 × 5.3 | evet |
+| tel / uç boyu | 10 / 220 | 3.3 / 73 | evet (D1 eşiği) |
+| siluet | 60–90 | 20–30 | evet (§14.5 sınırı) |
+| balon ikonu | 56 × 1.03 | 19 | sınırda; ofsetli gölge ayrıştırır |
+| geri ok | 4 px, ok ucu 28 | 1.3 / 9 | evet |
+| yazı yığını | 80 × 1.13 | 30 | evet |
+| kuş ikonu | 44 × 1.15–1.3 | 17–19 | evet (36 px'te 14: sınır altı) |
+| kümes ikonu | 40 × 1.3 | 17 | evet |
+| Tours binası / yatık sepet | 56 / 64–115 ekran | 19 / 21–38 | evet |
+| tek şerit / yığın | 30 / 110 × 56 | 10 / 37 × 19 | yığın okunur |
+| su çizgisi, tarama | 2.5 px | 0.83 | eşik (≥ 0.8) |
+| sur dişi | 14 px derinlik | 4.7 | evet |
+
+### 5H.8b Kamera ve güvenli alan kontrolü (cs dahil, ekran)
+| Plan / an | Kritik nokta | Kontrol |
+|---|---|---|
+| P02 f140 (cs 1.15, cx 60, cy 70) | kopma (316, 556) | Yazı bandının altında, kenar ≥ 80 px. Halka üstü 466 > 400 |
+| P02 f250 (cs 1.0) | halka 470–1330, siluetler r 200–395 | Alt üçte bir: halkanın alt yayı + siluetler |
+| P03B f290 (cs ≈ 1.13) | çarpma (196, 1236) | Alt bant 1290'ın üstünde |
+| P03B f214 | balon (942, 548) | x ≤ 1000 |
+| P04A f8–40 (cs 1.15) | kuş girişi (−40 → 120, 1280 → 1180) | Kısa süre alt bant sınırında; ekran yazısı üst bantta tüm plan, altyazı alt bantta: **çakışma** f8–30 (§5H.10 madde 6) |
+| P06 f62 (cs 2.3) | Tours (480, 1000), Paris (747, 657) | evet |
+| P08 f76 (cs 1.8) | iniş ≈ (460, 900), Vitry'nin doğusundaki bölge kadraj dışına taşar | evet |
+| P11A f130 (cs ≈ 1.06) | yığın (603, 986), duruş noktaları y ≤ 1440 | evet |
+
+### 5H.9 Harita ↔ mekân geçişleri (eşleşme kesmeleri)
+| Sınır | Eşleşme | Harita tarafı şartı |
+|---|---|---|
+| P01 → P02 (whip yukarı) | ufuk yukarı gider → harita aşağıdan gelir | P02 f0'da halka işaretleri **kadraj dışında** (r 1150): whip bulanıklığında yalnız kâğıt + Seine + sur görünür. İlk dolu iş f8'de gelir |
+| P02 → P03A (doku) | krem kâğıt → krem kumaş yığını | P02 f344–356 kamera durgun, cs 1.0. Kâğıt hışırtısı → gaz fışşı. Ton eşleşmesi zayıf (P03 sabah paleti): yük ses ve ten taşır, ek çizim gerekmez |
+| P03A → P03B (yön) | balon kadrajdan yukarı-sağa çıkar (f156) → ikon Montmartre'dan sağ-üste kalkar (f164) | İkon ekran (562, 797). Balon kadrajdan x ≈ 540'tan çıkar: yatay sapma 22 px |
+| P03B → P04A (aynı harita) | kesik çizgi → güvercin çizgisi | Durum aynen; kamera cs 1.15 kesintisiz devam eder |
+| P04A → P04B (yön) | kuş ikonu kümese sağ-üst yönde varır (f108) → kafesteki kuş sağ-üste kilitlenir | Çizgi f108'de biter. f108–122 arası 14 kare kapanış anı (ikon konmuş, durgun) |
+| P05 → P06A (şekil) | şerit 52°, merkezi (540, 930) → rotanın ilk parçası | İlk segment açısı, ara noktası (1.62, **48.25**) ile **50.5°** olur (json'daki 48.30 ile 48°). f0'da ilk segment **tam çizili** gelir: `rota_ciz.q0 = ORAN[1]` (kit eksiği). `kamera_takip.ekran` **(480, 1000)** → segment ortası (540, 928) |
+| P06A → P06B (J-cut) | iğne tak → hale | f78 iğne, f92–160 kart, f168'de kesme. Harita durgun |
+| P07 → P08 (whip sol) | balon doğuya → harita sağdan | f0'da rota ucu Paris'te; Prusya bölgesi sağda hazır |
+| P08 → P09 (çıplak) | iğne → masa | f164 iğne, f178 sekme biter |
+| P10 → P11A (çıplak) | zarf kâğıdı → harita kâğıdı | Kâğıt tonu eşleşir: `#e9dfc9` zarf ↔ `#d9c49a` arazi |
+| P11A → P11B (yön) | son varan çizgi (#11, güneyden) ve kuş ikonu f108'de kümese konar → P11B'de kuş soldan iner | Daha güçlü eşleşme için varış sırası değiştirilebilir: **son varan #4 (batıdan, soldan sağa)** olsun, f108. Kesme f172'den önce 64 kare durgun kalır; şerit yağmuru ve yığın arayı doldurur |
+
+### 5H.10 Yönetmen için parametre ve kamera tablosu (json sahibi yönetmen)
+| # | Plan | Alan | Şimdi | Öneri | Gerekçe |
+|---|---|---|---|---|---|
+| 1 | P02, P03B, P04A, P11A | `halka.merkez` | [540, 960] | **[540, 900]** | Kopma noktası (293,548) bu daire üstünde; halka üstü 470 (sahne planı §6 ile aynı) |
+| 2 | P02 | `halka.isaret_sayisi` | 14 | **22** | tasarım §6; 360'ta 32 × 16 çubuk |
+| 3 | P02 | `kamera` f140–196 | cs 1.15, cx 0, cy 0 | **cs 1.15, cx 60, cy 70** | Kopmaya yaklaşır; halka üstü yazı bandından çıkar |
+| 4 | P02 | `kalabalik` | 40 | 40, boy 60–90, bant r 200–395, dışa dönük | 360 ≥ 20 px; merkez P04/P11 için boş kalır |
+| 5 | P03B | `yazi_yigini.baslangic` / `carpma_nokta` | "sol-alt köşe" | (−60, 1560) → **(236, 1204)** | Alt bandın üstü; Tours çeyreği |
+| 6 | P04A | `guvercin_cizgisi.baslangic` | [90, 1480] | **[36, 1238]** | Eski nokta cs 1.15'te ekran (23, 1627): Instagram arayüzünün altı. Yeni nokta kadraj kenarından girer. f8–30 arası altyazı bandına ~10 px değer: altyazı `bant: ust` olamaz (üstte ekran yazısı var). Kuş girişi f8 → **f30**'a kayarsa çakışma kalkar (bitiş f108 aynı) |
+| 7 | P04A | `kumes_ikon` | (560, 930) | aynı + `ciz: {bas 0, bit 10}` | Fiziksel giriş |
+| 8 | P06 | `rota_noktalar[1]` | (1.62, 48.30) | **(1.62, 48.25)** | Şerit 52° eşleşmesi |
+| 9 | P06 | `kamera_takip.ekran` | (400, 1000) | **(480, 1000)** | Segment ortası (540, 928). PARIS etiketi artık yazı katmanında kuralla yerleştiği için sağ kenar sorunu yok |
+| 10 | P06 | `rota_ciz.q0` | — | **ORAN[1]** (kit eksiği) | f0'da ilk segment tam çizili |
+| 11 | P06, P08 | `igne.renk` | (kit pirinç) | **"murekkep"** | Sarı metal ve kılıf C\* kuralı |
+| 12 | P08 | `prusya_bolgesi.poligon` | metin | §5H.5-I lon/lat listesi | Çizilebilir tanım |
+| 13 | P08 | `rota_segment_stil` | — | **["dolu", "noktali"]** | Gizli segment |
+| 14 | P11A | `kus_cizgileri` | 12 / 9 / 3 | 12 başlangıç + t_dur listesi (§5H.5-M); varan #4/#7/#11, **son varan #4** f108 | P11B girişiyle yön eşleşmesi |
+| 15 | P11A | `serit_yagmuru` | — | 38 şerit, 30 × 15, yığın (600, 985) | 360 |
+| 16 | tümü | `kontrol_kare` | aynı | P02 f140 + f250 · P03B f290 · P04A f60 · P06 f78 · P08 f84 + f164 · P11A f100 + f150 | f84: yatık sepet okunur; P04A f60: kuş halka üstünde |
+| 17 | P02, P03B, P08, P11A | hareket şeridi (eleştirmen) | — | her 4 kare: P02 f120–190 (kapanış + kopma) · P03B f210–250 (ok süpürme) · f280–306 (çarpma) · P08 f50–92 · P11A f20–110 | Orta kare hareketi gizler (Evliya dersi) |
+
+Kamera sınırı önerisi (`sinirlar.json`, HARITA): `paris-cevre` cs 1.0–1.35, cx/cy ±120. `fransa` kit sınırları aynen; takip cs ≤ 2.3.
+
+### 5H.11 Motion için çizim notları
+- **Mevcut koddan türetilecek:** `src/kit/sablonlar/Harita.tsx` (parşömen, `rotaYol`, `IgneCiz`, `haritaKamera`, `kilit`). `harita_gorunum: "paris-cevre"` için ayrı projeksiyon (§5H.2). `src/kit/props/paris/SiluetFigur.tsx` (kâğıt kesik varyantı), `Balon.tsx` (ikon için değil; ikon ayrı ve basit).
+- **Yeni ortak modüller** (`src/kit/sablonlar/harita/`):
+  - `ProjeksiyonKm {merkez, S}`
+  - `GravurArazi {nehirler, sur, fortlar, tepeler, ormanlar, seed}`: su çizgisi, tepe taraması, bastiyon dişi
+  - `KusatmaHalkasi {merkez, r, isaretler, kiskac, son_isaret, kare}`
+  - `TelgrafTeli {yol, direk_aralik, kopma, sonum}`
+  - `KagitSiluet {tip, boy, menteşe_kare}`
+  - `MurekkepCizgi {yol, q, stil: dolu|kesik|noktali, uc: divit|kus|emilme, alt_iz}`: rota, iz, kuş çizgisi, kesik çizgi hepsi buradan
+  - `KayanCizgi` (rüzgâr, süpürme)
+  - `HaritaIkon {tip: balon|yatikSepet|kumes|tours|yigin|kus|serit, durum}`
+  - Etiketleri yazı katmanına taşıyan `harita_etiket` (`yazi.tsx`, yerleşim kuralı §5H.7)
+- **Kilit noktaları (`kilit.push`):**
+  - P02 kopma (293,548) `dokunus`
+  - P03B çarpma (236,1204) `temas`
+  - P04A/P11A kümes (560,930) `kurulum`
+  - P08 iniş (Vitry) `temas`
+  - P11A yığın (600,985) `kurulum`
+  - Altyazı `oto` bunlara göre bant seçer.
+- **Kalibrasyon sırası:** (1) P02 f140 + f250 + şerit f120–190; (2) P08 f84 + f164 (kit düzeltmeleri: iğne rengi, etiket katmanı); (3) P11A f100. Geri kalanı paralel.
+
+### 5H.12 Açık sorular (orkestra toplar)
+- **Tasarımcıya:**
+  - (a) Halka işareti 32 × 16 teğet çubuk (kare 24 yerine)?
+  - (b) Prusya bölgesi düz `#8a93a0` (α .55 karışımı yeşilimsi griye kayıyor)?
+  - (c) Kuş ikonu 44 px ve şerit 30 × 15 (360)?
+  - (d) Gizli segment noktası `#1c1915`?
+  - (e) Yeni hex'ler `#8a93a0`, `#6d6a63`, `#6f7f78`, `#8a7a5c`, `#cbb487`, `#e3d6b6` palete eklensin mi?
+- **Araştırmacıya (ağ izni gelince):**
+  - Fort listesi ve konumları
+  - Thiers surunun bastiyon sayısı
+  - Prusya hattının iki kolunun batıda (Saint-Germain/Versailles) birleşmesi
+  - Kasım 1870 işgal sınırı
+  - 1870 telgraf merkezinin yeri
+  - Hepsi şimdilik [G] ve görsel olarak nötr.
+- **Kullanıcıya:** yok. Hepsi teknik/estetik karar; varsayılanlar yukarıda.
