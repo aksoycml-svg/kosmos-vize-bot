@@ -45,18 +45,25 @@ Ağ notu: archive.org / incompetech / pixabay / musopen bu sunucudan erişilemed
 
 ## Paris kuşatması (bolumler/paris-kusatmasi) — 2026-11-14
 
-Ağ notu: bu oturumda archive.org / incompetech.com / pixabay.com / musopen.org DNS çözülmedi (oturum ağ izin listesinde yok; WebFetch ENOTFOUND). **Hiçbir parça indirilemedi, lisans kaynak sayfasından doğrulanamadı → aşağıdakilerin HİÇBİRİ henüz kullanılamaz.** Web aramasında yalnız koleksiyon düzeyinde bilgi görüldü.
+Ağ notu (güncel): incompetech.com ve archive.org (metadata API) erişilebilir; archive.org dosya CDN düğümleri 403.
 
-### Müzik adayları (DOĞRULANMADI)
-| # | Eser | Besteci / kayıt | Kaynak | Lisans durumu | Atıf |
-|---|---|---|---|---|---|
-| 1 | Nocturne Op.9 No.2 (Es majör) | Chopin (kamu malı, Paris'te yaşadı) / Musopen Chopin koleksiyonu piyano kaydı | https://archive.org/details/musopen-chopin | Koleksiyon sayfası arama özetinde "CC0 1.0 Universal" görünüyor; **parça dosya adı ve öğe metadata'sı açılıp doğrulanmalı** (Blanc'ta aynı serinin lisansı öğe `licenseurl` ile doğrulanmıştı) | Gerekmez (isteğe bağlı: "Chopin, Nocturne Op.9 No.2 — Musopen/Internet Archive, CC0") |
-| 2 | Prelude Op.28 No.4 (mi minör) | Chopin / aynı koleksiyon | aynı | aynı; doğrulanmadı | aynı |
-| 3 | Gymnopédie No.1 (Satie, 1888 — 1870'e göre sonra) | Kevin MacLeod, Incompetech | https://incompetech.com (parça sayfası bulunup URL'si yazılmalı) | Beklenen: CC BY 4.0, **atıf zorunlu**; sayfadan doğrulanmadı | "Gymnopedie No 1 by Kevin MacLeod (incompetech.com), CC BY 4.0" — parça sayfası açılıp birebir metin alınmalı |
-- Not: Blanc'ta Chopin B.108 kullanıldı; aynı besteci kanal tekrarı sayılabilir (kullanıcı kararı). Fransız alternatif (Fauré Op.17/3 "Romance sans paroles", 1863): arama kamu malı **kayıt** bulamadı; bir kaydın ("non-commercial" şartlı kopya göründü) lisansı ticari kullanıma uygun değil → kullanılmaz.
-- ElevenLabs Music: ticari hak teyidi hâlâ açık (DEVAM.md, Evliya notu). Abonelik sorgusu plan `creator`, durum `active` gösterdi; Music için ticari kullanım plan sayfasından kullanıcı tarafından teyit edilmeli. Son çare.
+### Müzik — KULLANILAN (yedek): Incompetech "Gymnopedie No. 1"
+| Alan | Değer |
+|---|---|
+| Eser | Gymnopédie No. 1 (Erik Satie, 1888; besteci kamu malı) |
+| İcracı / kayıt | Kevin MacLeod (Incompetech), piyano |
+| Kaynak URL | https://incompetech.com/music/royalty-free/mp3-royaltyfree/Gymnopedie%20No%201.mp3 (parça kaydı: pieces.json, isrc USUAN1100787, yüklenme 2011-01-10, 3:07, 77 bpm; filmmusic.io: https://incompetech.filmmusic.io/song/3837-gymnopedie-no-1/) |
+| Lisans | Creative Commons Attribution 4.0 (CC BY 4.0) — Incompetech SSS sayfası (faq.html, 2026-11-14 okundu): kullanım için kredi zorunlu; kredi biçimi aşağıda. Ticari kullanım uygun. |
+| **Atıf (açıklamaya ZORUNLU, TR ve EN)** | `Gymnopedie No. 1 Kevin MacLeod (incompetech.com)` `Licensed under Creative Commons: By Attribution 4.0 License` `http://creativecommons.org/licenses/by/4.0/` |
+| Dosya | ham: `muzik/kaynak/gymnopedie-no1-kevin-macleod.mp3` (320 kbps, sha256 8cba6bb3da51066ad39520ec218a327bb6222d8fb32bc52f28a1e90b67756f70); kesim: `public/paris/muzik/paris-gymnopedie-58.mp3` (58.22 sn, `tools/paris_muzik.py`; ölçü ızgarası ve çapraz sönümlerle düzenlendi, "değiştirildi" notu atıfa eklenebilir) |
+| Not | Eser dönem (1888) 1870'ten sonradır; ses olarak sorun görülmedi, kullanıcı karar versin. |
+
+### Chopin (istenen birinci tercih) — indirilemedi
+- Musopen "The Complete Chopin Collection" (https://archive.org/details/musopen-chopin, yükleyen aaron@musopen.org): öğe metadata `licenseurl` = http://creativecommons.org/publicdomain/zero/1.0/ (CC0) **doğrulandı** (2026-11-14, archive.org/metadata API).
+- Hedef parça: "Nocturne Op. 9 no. 2 in E flat major.mp3" (4:36; md5 0cff0b549e8d7e2944bbfbf91b8a9a57). Dosya indirmesi archive.org'un CDN düğümlerine yönleniyor (ia800404.us.archive.org, dn710801.ca.archive.org); proxy politika denetimi 403 verdi, **yeniden denenmedi**. Düğümler izinlenirse bu parça ve CC0 lisansı hazır; Blanc'ta kullanılan B.108'den farklı parça.
+- ElevenLabs Music: ticari hak teyidi hâlâ açık; kullanılmadı.
 
 ### Foley / ortam
 - 14 foley ses mevcut proje arşivinden yeniden kullanıldı (Blanc/Evliya ElevenLabs SFX, Creator plan; ticari uygun, atıf gerekmez): kus-kanat, kagit-hisirti, kagit-yatis, sayfa-yatis, dosya-tok, dugum-tok, ip-zit, kalem-cizirti, teleskop-tik, sayac-tik, ahsap-tik, kagit-katlama, kagit-acilis, baslik-inis.
 - 4 ortam yatağı mevcut dosyalardan (yeni kayıt yok): gece-ruzgar, sehir-ortam, ruzgar-bogaz, kagit-ortam (`bolumler/paris-kusatmasi/ortam.json`).
-- 25–26 yeni foley ElevenLabs Sound Generation ile üretilecek (**henüz üretilmedi**, onay bekliyor): Creator plan, ticari uygun, atıf gerekmez.
+- 26 yeni foley ElevenLabs Sound Generation ile üretildi (`public/paris/sfx/`, `tools/paris_sfx.py`, 2026-11-14, tek çekim): Creator plan, ticari uygun, atıf gerekmez.

@@ -3,3 +3,5 @@ out/
 public/evliya/miks/**/*.wav
 public/evliya/miks/*.wav
 __pycache__/
+public/paris/miks/**/*.wav
+public/paris/miks/*.wav
