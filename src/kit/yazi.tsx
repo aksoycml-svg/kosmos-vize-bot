@@ -6,6 +6,7 @@
 import React from "react";
 import { AbsoluteFill } from "remotion";
 import { mono, sans, serif } from "../theme";
+import { ekranYerlesim, emPlayfair, olcIddia, PAY, yerlesim, type Olc } from "./yerlesim";
 
 export const YAZI = { ustY: 240, ustAlt: 400, altY: 1290, altAlt: 1490, yan: 80, kutuW: 920 } as const;
 const KAGIT = "rgba(233,223,201,0.94)", MUREKKEP = "#1c1915", KIRMIZI_KAGIT = "#b3261e", KIRMIZI = "#e5483c";
@@ -13,25 +14,6 @@ const KAGIT = "rgba(233,223,201,0.94)", MUREKKEP = "#1c1915", KIRMIZI_KAGIT = "#
 const kucuk = (s: string, dil = "tr") => s.toLocaleLowerCase(dil);
 // tek vurgu: metindeki ilk kelime ki vurgu listesindeki bir öğeyle başlar (tırnak/işaret baştan atlanır)
 export const vurguIndeks = (kelimeler: string[], vurgu: string[] = [], dil = "tr") => kelimeler.findIndex((w) => vurgu.some((v) => v && kucuk(w, dil).replace(/^[^\p{L}\p{N}~]+/u, "").startsWith(kucuk(v, dil))));
-
-// iki satıra dengeli bölme (karakter sayısına göre en dengeli kesme noktası)
-const bol = (k: string[]): string[][] => {
-  const top = k.join(" ").length;
-  let en = 1, fark = Infinity, say = 0;
-  for (let i = 1; i < k.length; i++) { say += k[i - 1].length + 1; const f = Math.abs(top - 2 * say); if (f < fark) { fark = f; en = i; } }
-  return [k.slice(0, en), k.slice(en)];
-};
-
-// Satır yerleşimi: tek satır sığarsa büyük, sığmazsa iki satır (kutu bant içinde) ve boyut satır uzunluğundan
-const yerlesim = (metin: string, maks: number, enOran: number, ikiliMaks: number, kutuW: number = YAZI.kutuW) => {
-  const k = metin.split(" ").filter(Boolean);
-  const ic = kutuW - 52;
-  const gen = (s: string, px: number) => s.length * enOran * px;
-  if (gen(k.join(" "), maks) <= ic || k.length < 2) return { satirlar: [k], px: Math.min(maks, ic / Math.max(1, k.join(" ").length * enOran)) };
-  const satirlar = bol(k);
-  const uzun = Math.max(...satirlar.map((s) => s.join(" ").length));
-  return { satirlar, px: Math.min(ikiliMaks, ic / (uzun * enOran)) };
-};
 
 // KE-PK-Y1 (Paris C2): zemin "koyu" → kâğıt şerit yerine koyu zemine AÇIK MÜREKKEP (krem #e4dccb, L* ≈ 88; ince koyu alt gölge,
 // çerçeve yok). Varsayılan (zemin yok) eski kâğıt şerit — mevcut bölümler değişmez.
@@ -48,31 +30,7 @@ export const KitEkranYazisi: React.FC<{ metin: string; vurgu?: string[]; tur?: "
   const koyu = zemin === "koyu";
   const formul = tur === "formul";
   const sol = kutuX ? Math.max(YAZI.yan, kutuX[0]) : YAZI.yan, kutuW = kutuX ? Math.min(1080 - YAZI.yan, kutuX[1]) - sol : YAZI.kutuW;
-  // en/oran: Playfair 900 ≈ 0.52 em/harf (ölçüldü), Plex Mono = 0.6. İki satırda boyut ≤ 64 → kutu ≈ 152 px (bant 160)
-  // K4 (v4 P06/P07): formül telefonda küçük kalıyordu (44 px mono). Artık iddia boyutuna yakın: tek satır ≤ 64, iki satır ≤ 60;
-  // " · " ayırıcısı varsa satır oradan kırılır (ayırıcı düşer) — "ELDİVEN = ↑" / "ÇORAP = ↓"; yoksa "=" öncesinden kırılır.
-  const formulYer = () => {
-    const ic = kutuW - 52, en = 0.6;
-    const tek = metin.length * en * 64 <= ic;
-    if (tek) return { satirlar: [metin.split(" ").filter(Boolean)], px: 64 };
-    const parca = metin.includes(" · ") ? metin.split(" · ") : (() => { const i = metin.lastIndexOf(" = "); return i > 0 ? [metin.slice(0, i), metin.slice(i + 1)] : [metin]; })();
-    if (parca.length !== 2) return yerlesim(metin, 64, en, 60, kutuW);
-    const satirlar = parca.map((q) => q.split(" ").filter(Boolean));
-    const uzun = Math.max(...parca.map((q) => q.length));
-    return { satirlar, px: Math.min(60, ic / (uzun * en)) };
-  };
-  // opsiyonel elle satır sonu ("\n"): verilirse satırlar aynen alınır (EN yetim kırılımı için); yoksa eski otomatik akış
-  const elle = metin.includes("\n") ? metin.split("\n").map((q) => q.split(" ").filter(Boolean)) : null;
-  const elleEn = elle ? Math.max(...metin.split("\n").map((q) => q.length)) : 0;
-  // K9 (iki dil): iddia da iki satıra düşerse " · " ayırıcısından kırılır (ayırıcı düşer) — EN "EUROPE → ASIA / ~3 km (2 mi)" satır başı "·" kalmaz
-  const iddiaYer = () => {
-    const ic = kutuW - 52, en = 0.52;
-    const parca = metin.split(" · ");
-    if (parca.length !== 2 || metin.length * en * 72 <= ic) return yerlesim(metin, 72, en, 64, kutuW);
-    const uzun = Math.max(...parca.map((q) => q.length));
-    return { satirlar: parca.map((q) => q.split(" ").filter(Boolean)), px: Math.min(64, ic / (uzun * en)) };
-  };
-  const { satirlar, px } = elle ? { satirlar: elle, px: Math.min(formul ? 60 : 64, (kutuW - 52) / (elleEn * (formul ? 0.6 : 0.52))) } : formul ? formulYer() : iddiaYer();
+  const { satirlar, px } = ekranYerlesim(metin, formul, kutuW);
   const tum = satirlar.flat();
   const vi = formul ? -1 : vurguIndeks(tum, vurgu, dil);
   let j = 0;
@@ -139,25 +97,31 @@ export const KitHaritaEtiketi: React.FC<{ metin: string; kutu: [number, number];
 
 // KT-4 SAYAÇ (ekran yazısı türü): kâğıt şerit + Playfair 900, rakamlar tabular (kutu titremez); 0 → hedef GIRIS eğrisiyle,
 // binlik ayırıcı dil başına (sayiBicim). donus: sayı kâğıtta yukarı kayıp çıkar, yuvarlak ifade alttan girer ("İKİ MİLYON").
-// Kutu genişliği/punto en uzun hâlden (son sayı ya da dönüş metni) hesaplanır → sayarken boyut değişmez.
+// Paris jüri düzeltme 2: sayı ve dönüş metni AYRI boyutlanır (font metriği). Sayının punto/kutu genişliği hedef değerden (tüm rakamlar
+// tabular → en geniş rakam '0' ile ölçülür) → sayarken boyut değişmez. Dönüş metni " · " ayırıcısından iki satıra kırılır (gerekirse 3),
+// kutu yüksekliği dönüşle birlikte sayının satırından dönüşün satırlarına geçer (bant y 240–400 içinde).
 // Teknik fikir: claude-animation-skills graph/template (count-up, toLocaleString) — MIT, © 2026 Artem Novitckii.
-export const KitSayac: React.FC<{ sablon: string; deger: string; enUzun: string; donus?: string; donusT?: number; vurgu?: boolean; bant?: "ust" | "alt"; dil?: string }> = ({ sablon, deger, enUzun, donus, donusT = 0, vurgu, bant = "ust", dil = "tr" }) => {
-  const ic = YAZI.kutuW - 52, en = 0.7; // Playfair 900 BÜYÜK harf ≈ 0.68 em (0.6 EN 'TWO MILLION PEOPLE'yi kesiyordu)
-  const px = Math.min(72, ic / Math.max(1, enUzun.length * en));
-  const w = Math.min(YAZI.kutuW, enUzun.length * en * px + 52);
+const olcSayi: Olc = (s) => emPlayfair(s.replace(/[0-9]/g, "0"));
+export const KitSayac: React.FC<{ sablon: string; deger: string; hedefMetin: string; donus?: string; donusT?: number; vurgu?: boolean; bant?: "ust" | "alt"; dil?: string }> = ({ sablon, deger, hedefMetin, donus, donusT = 0, vurgu, bant = "ust", dil = "tr" }) => {
+  const ic = YAZI.kutuW - 52;
+  const px1 = Math.min(72, (ic * PAY) / Math.max(0.5, olcSayi(hedefMetin)));
+  const w1 = olcSayi(hedefMetin) * px1 / PAY + 52, h1 = px1 * 1.04 + 18;
+  const d = donus ? yerlesim(donus, olcIddia, YAZI.kutuW, [72, 64, 44], { maksSatir: 3 }) : null;
+  const w2 = d ? Math.max(...d.satirlar.map((q) => olcIddia(q.join(" ")))) * d.px / PAY + 52 : 0;
+  const h2 = d ? d.satirlar.length * d.px * 1.04 + (d.satirlar.length > 1 ? 16 : 18) : 0;
+  const t = d ? Math.max(0, Math.min(1, donusT)) : 0;
+  const w = Math.min(YAZI.kutuW, Math.max(w1, w2)), h = h1 + (h2 - h1) * t;
   const parca = sablon.split("{n}");
-  const satir = (icerik: React.ReactNode, y: number, op: number) => (
-    <div style={{ position: "absolute", left: 26, right: 0, top: 6, transform: `translateY(${y}px)`, opacity: op, whiteSpace: "nowrap" }}>{icerik}</div>
-  );
   const sayi = <>{parca[0]}<span style={{ color: vurgu ? KIRMIZI_KAGIT : undefined }}>{deger}</span>{parca.slice(1).join("{n}")}</>;
-  const t = Math.max(0, Math.min(1, donusT));
+  const katman = (px: number, y: number, op: number, icerik: React.ReactNode) => (
+    <div lang={dil} style={{ position: "absolute", left: 26, right: 0, top: 6, transform: `translateY(${y}px)`, opacity: op, whiteSpace: "nowrap",
+      fontFamily: serif, fontWeight: 900, fontSize: px, lineHeight: 1.04, color: MUREKKEP, fontVariantNumeric: "tabular-nums lining-nums" }}>{icerik}</div>
+  );
   return (
     <AbsoluteFill style={{ alignItems: "flex-start", justifyContent: bant === "ust" ? "flex-start" : "flex-end", padding: bant === "ust" ? `${YAZI.ustY + 6}px ${YAZI.yan}px 0` : `0 ${YAZI.yan}px ${1920 - YAZI.altAlt}px` }}>
-      <div style={{ position: "relative", width: w, height: px * 1.04 + 18, overflow: "hidden", background: KAGIT, borderTop: `2px solid ${MUREKKEP}`, borderBottom: `2px solid ${MUREKKEP}`, boxShadow: "0 3px 0 rgba(20,17,13,0.35)" }}>
-        <div lang={dil} style={{ fontFamily: serif, fontWeight: 900, fontSize: px, lineHeight: 1.04, color: MUREKKEP, fontVariantNumeric: "tabular-nums lining-nums" }}>
-          {satir(sayi, -t * px * 1.1, 1 - t)}
-          {donus && t > 0 && satir(<span style={{ color: vurgu ? KIRMIZI_KAGIT : undefined }}>{donus}</span>, (1 - t) * px * 1.1, t)}
-        </div>
+      <div style={{ position: "relative", width: w, height: h, overflow: "hidden", background: KAGIT, borderTop: `2px solid ${MUREKKEP}`, borderBottom: `2px solid ${MUREKKEP}`, boxShadow: "0 3px 0 rgba(20,17,13,0.35)" }}>
+        {t < 1 && katman(px1, -t * h1, 1 - t, sayi)}
+        {d && t > 0 && katman(d.px, (1 - t) * h2, t, d.satirlar.map((q, i) => <div key={i} style={{ color: vurgu ? KIRMIZI_KAGIT : undefined }}>{q.join(" ")}</div>))}
       </div>
     </AbsoluteFill>
   );

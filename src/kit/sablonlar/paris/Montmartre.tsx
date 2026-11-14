@@ -471,7 +471,13 @@ const Gok: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: { 
   const dE0 = 0.35, dE1 = 6.7 - 340 / 44.1;
   const vmax = 38; // px/kare (hız eğrisi: 20 karede vmax'a çıkar, sonra sabit)
   const dus = p <= fD ? 0 : p <= fD + 20 ? (vmax * (p - fD) ** 2) / 40 : vmax * (10 + (p - fD - 20));
-  const dK = SerbestKam(-5.67, lerp(dE0, dE1, t01(p, dy.bas, dy.bit)) + dus / 44.1, 34);
+  // Paris jüri (tam render) ORTA FİZİK: düşen balon (Z 34 m, gardan ~300 m YAKIN) iniş yolunda gar çatısının (ekran x ≤ 744, y 1155–1485)
+  // önünden geçiyordu → "uzak balon yakın yapının önünde" okunuyordu. Balon çatıyla hiç örtüşmez: isabetten sonra rüzgârla (GD, kül dumanı ve
+  // geri sürüklenme ile aynı yön) sağa kayar, ivmeli (rüzgâr hızına yetişir: t^1.7), çatının sağındaki açık zeminin (ray/rıhtım/nehir) üstünden
+  // alt-sağ kenardan çıkar. Gar katmanının üstüne çizim (z sırası) seçilmedi: balon fiziksel olarak gardan yakın; arkaya alınırsa ø 291 px
+  // bir balon gardan (51 m) büyük → dev ölçek okunurdu.
+  const yan = p <= fD ? 0 : 270 * Math.min(1, (p - fD) / 40) ** 1.7;
+  const dK = SerbestKam(-5.67 - yan / 44.1, lerp(dE0, dE1, t01(p, dy.bas, dy.bit)) + dus / 44.1, 34);
   const cokT = t01(p, kc.bas, kc.bit, Easing.out(Easing.quad));
   const dgG = balonGeo(dK, { s: 1, dh: 0, X: 0, Z: 0 });
   // B3 (eleştiri B2 #2): delik zarfın AYDINLIK krem yüzünde. json darbe noktası isabet bölgesidir; şablon onu ışık diskinin güvenli iç

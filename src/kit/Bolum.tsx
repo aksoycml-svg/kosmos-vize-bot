@@ -66,9 +66,8 @@ const YaziKatmani: React.FC<{ plan: Plan; p: number; dil: Dil; ana: Dil }> = ({ 
         const S = y.sayac, q = p - y.bas;
         const n = S.baslangic + (S.hedef - S.baslangic) * GIRIS(interpolate(q, [S.bas, S.bas + S.sure], [0, 1], cl));
         const fmt = (v: number) => sayiBicim(S.ondalik ? v : Math.round(v), dil, S.ondalik);
-        const enUzun = [y.metin.replace("{n}", fmt(S.hedef)), S.donus?.metin ?? ""].reduce((a, b) => (b.length > a.length ? b : a));
         const dt = S.donus ? GIRIS(interpolate(q, [S.donus.kare, S.donus.kare + 14], [0, 1], cl)) : 0;
-        return <Giris key={`y${i}`} p={p} bas={y.bas}><KitSayac sablon={y.metin} deger={fmt(n)} enUzun={enUzun} donus={S.donus?.metin} donusT={dt} vurgu={S.vurgu} bant={y.bant} dil={dil} /></Giris>;
+        return <Giris key={`y${i}`} p={p} bas={y.bas}><KitSayac sablon={y.metin} deger={fmt(n)} hedefMetin={y.metin.replace("{n}", fmt(S.hedef))} donus={S.donus?.metin} donusT={dt} vurgu={S.vurgu} bant={y.bant} dil={dil} /></Giris>;
       }
       // K2 yazı standardı: kâğıt şerit + Playfair, tek vurgu kelimesi (kagitSerit/boyut alanları yok sayılır — geri uyum için şemada)
       return <Giris key={`y${i}`} p={p} bas={y.bas}><KitEkranYazisi metin={y.metin} vurgu={y.vurgu} tur={y.tur === "sayac" ? "iddia" : y.tur} bant={y.bant} dil={dil} kutuX={y.kutu?.x} zemin={y.zemin} /></Giris>;

@@ -1569,3 +1569,19 @@
 - Kararlar: kitte elle grup kırılımı alanı yok; kod değişmeden tek yol plan düzeyi grup/maks_harf. Aynı ayar TR gruplamasını da etkiler (kelime sınırları yaklaşık aynı, küçük fark olabilir).
 - Kurallar: doğrulayıcı --tam çalıştırıldı. "~" glifi motion yazi.tsx düzeltmesine bağlı.
 - Açık: render yok; yazi.tsx düzeltmesi sonrası P02 sayaç "~" ve P11 grupları kontrol karesiyle bakılmalı.
+
+## motion · 2026-11-14 · tam render jüri düzeltmeleri (yazı genişliği, P11 sayaç, P07 düşen balon)
+- Ne yaptım:
+  1. Ekran yazısı genişliği artık font metriğinden: `src/kit/fontMetrik.ts` (Playfair 900 hmtx ilerleme genişlikleri, public/fonts woff2'den fontTools ile üretildi; BÜYÜK HARF ort. 0.71 em) + `src/kit/yerlesim.ts` (saf yerleşim: 1/2/3 satır kırılımlarını dener, boyut = min(tavan, genişlik, bant yüksekliği)). Yazı her durumda x ≤ 974 (şerit ≤ 1000). " · " ayırıcısı satır başına/sonuna düşerse atılır; kırılım ayırıcıya denk geliyorsa öncelikli. Formül (Plex Mono) 0.04em harf aralığı da ölçüme girdi.
+  2. `KitSayac`: sayı ve dönüş metni ayrı boyutlanır (sayı tabular → en geniş rakamla ölçülür); dönüş metni " · " ayırıcısından kırılır, gerekirse 3 satır; kutu yüksekliği dönüşle birlikte değişir. Prop `enUzun` → `hedefMetin` (Bolum.tsx güncellendi).
+  3. P07 düşen balon gar çatısıyla artık örtüşmüyor: isabetten sonra rüzgârla sağa kayıyor (`yan = 270·((p−fD)/40)^1.7` px), çatının sağındaki açık zeminin üstünden alt-sağ kenardan çıkıyor (≈ f154; plan içi kesme f160).
+- Dokunduğum dosyalar: src/kit/fontMetrik.ts (yeni), src/kit/yerlesim.ts (yeni), src/kit/yazi.tsx, src/kit/Bolum.tsx (yalnız KitSayac çağrısı), src/kit/sablonlar/paris/Montmartre.tsx (Gok: `yan`), bolumler/paris-kusatmasi/kalibrasyon/tam-render/duzeltme/ (kanıt kareleri).
+- Aldığım kararlar ve gerekçeleri:
+  - Font tablosu derleme anında sabit (çalışma anında canvas measureText yok): font yüklenmeden ölçüm yedek fonta düşer, kare kare sonuç değişebilirdi.
+  - Regresyon koruması: Playfair ölçümü eski 0.52 em/harf tahmininin altına inmez; ikiye bölmede eşitlik kırıcı eski karakter dengesi. Sonuç: Blanc (TR/EN) ve Evliya'da yerleşimi değişen tek metin Blanc EN P12 "ACQUITTED · 14 Mar 1837". Eskiden metin şeridin sağ iç boşluğuna taşıyordu (26 px yerine ≈14 px); şimdi tek satır 72 yerine 70.7 px, düzen aynı (`duzeltme/blanc-en-P12-once-sonra.png`).
+  - P07'de z sırası (gar balonun üstüne) SEÇİLMEDİ: Daguerre balonu Z 34 m'de, gar ≈330 m'de. Balon fiziksel olarak gardan yakın. Arkaya alınırsa ø 291 px'lik balon 51 m'lik gardan büyük göründüğü için dev ölçek okunurdu, alt kenardan çıkış da imkânsız olurdu. Eleştirinin ikinci seçeneğini (düşüş yolu garla kesişmesin) rüzgâr yönüyle (kül dumanı ve geri sürüklenmeyle aynı yön) uyguladım. Örtüşme yok: şerit f132–144'te çatı ile balon arasında ≈30–40 px açıklık var.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: yan güvenli alan (80 px) tüm Paris üst bant yazılarında sağlanıyor (TR/EN özet: `duzeltme/ust-bant-ozet-{tr,en}.png`). Taşma düzelen planlar: TR P05/P07/P09/P10 (+P10 "KOPYALANIP DAĞITILDI"), EN P03/P04/P05/P07/P10. P01/P08'de satır başı ayırıcı kalktı. Hareket tamamlanır: balon fade olmadan kadrajdan çıkıyor.
+- Açık sorular / bir sonraki ajana notlar:
+  - **Yönetmen:** P11 EN dönüş metni ("TENS OF THOUSANDS OF MESSAGES ARRIVED · 60,000–150,000 DEPENDING ON THE SOURCE") bant yüksekliği yüzünden 3 satır × 42.7 px'te kalıyor (≥40 sınırında, telefonda zayıf). Parça başına ≤ ~30 karakter olursa 2 satır × ~55 px olur. TR 2 satır × 60 px, sorun yok.
+  - json notu `sepet_duser`: "alt kenardan f152'de çıkar" → artık alt-sağ köşeden ≈ f154'te çıkıyor (kesmeden 6 kare önce; eskiden 8). Yönetmen nota işleyebilir.
+  - Yazı katmanı (TR+EN) ve P07 görüntüsü yeniden render edilmeli (`YALNIZ_YAZI` yetmez; P07 f108–160 görüntüsü değişti).
