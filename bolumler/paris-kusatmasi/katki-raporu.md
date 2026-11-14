@@ -1592,3 +1592,10 @@
 - Kararlar: kadrajdan fiziksel çıkış hareketi tamamlar; 6 kare pay bilerek kabul (≥12 kuralından).
 - Kurallar: doğrulayıcı --tam geçti (0 hata, 0 uyarı).
 - Açık: izin adı `hareket_bitis_payi` doğrulayıcıda tanımlı bir anahtar değil (şu an kontrol tetiklenmiyor); P07 görüntüsü tam render'da yeniden alınmalı.
+
+## eleştirmen · 2026-11-14 · ikinci tam render kısa kontrol
+- Ne yaptım: İki dilde 14 üst bant anını, P11'i 360x640'ta, P11 alt bant altyazı gruplarını (4 fps), P07 düşen balonu (4 karelik şerit, 35.2–36.2) ve genel-tr.jpg'yi taradım. Kulak listesini miks.md §7 ve önceki döngü ölçümünden tek satırda topladım.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/tam-render-2/elestiri.md (yeni), bolumler/paris-kusatmasi/katki-raporu.md (ek). Kod/git yok.
+- Aldığım kararlar ve gerekçeleri: Kullanıcıya gösterilebilir, puan 7. Üç kritik (taşma, P11 sayaç, P02 "~") ve iki orta (P07 gar, EN "did carried") kapandı. Yeni kritik gerileme yok.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: yan güvenli alan temiz. Okunurluk: EN P11 dönüş yazısı 3×43 px, telefonda zayıf (orta). Ok işareti satır kenarında kalıyor, TR/EN P09 (küçük). TR katmanında İngilizce "MAGIC LANTERN" var, ama senaryoda onaylı (küçük). Hareket tamamlanır: P07 balonu fade olmadan çıkıyor, ama yolu sağdaki IG buton sütunundan geçiyor (kabul).
+- Açık sorular / bir sonraki ajana notlar: Yönetmen: EN P11 dönüş metni kısaltılsın (yalnız yazı katmanı). Motion (isteğe bağlı): `yerlesim.ts`'te "→" ayırıcı kuralı. Kurgucu/kullanıcı: döngü 58.22→0.00 kulakla dinlenmeli.
