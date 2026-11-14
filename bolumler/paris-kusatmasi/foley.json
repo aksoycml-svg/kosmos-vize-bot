@@ -348,7 +348,11 @@
  },
  "pk-kagit-tik": {
   "dosya": "paris/sfx/pk-kagit-tik.mp3",
-  "kaynak": "kurgucu üretecek (kısa kâğıda damla/tık); tepe_ms ve sure_ms ölçülüp doldurulacak",
-  "onerilen_db": -20
+  "kaynak": "elevenlabs-sfx (paris_sfx.py, tek çekim, ses_kenar duzelt; tepe_ms = ilk net başlangıç, -20 dB eşiği)",
+  "onerilen_db": -20,
+  "tepe_ms": 44,
+  "sure_ms": 570,
+  "tepe_dbfs": -17.6,
+  "en_yuksek_ms": 128
  }
 }

@@ -8,7 +8,7 @@ SR, FPS = 44100, 60
 B = "bolumler/paris-kusatmasi"; PUB = "public/"; OUT = PUB + "paris/miks/"
 MUZIK = PUB + "paris/muzik/paris-chopin-op9no2-58.mp3"
 # bolum.json'da olmayan temaslar (yönetmen ekleyene dek): (plan, kare, ad, dosya, tepe_ms, db)   TOPLU-DUZELTME #21
-EK_TEMAS = [("P06", 218, "pk-halat-kavra", "paris/sfx/pk-halat-kavra.mp3", 37, -16)]
+EK_TEMAS = []
 DB_ON = {"pk-odak-disli": -18}   # görünmeyen kaynak -> ortam seviyesi (bolum.json -10 yazıyor)
 def oku(f):
     b = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", f, "-f", "f32le", "-ac", "2", "-ar", str(SR), "-"], capture_output=True, check=True).stdout

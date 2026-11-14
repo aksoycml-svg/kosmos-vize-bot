@@ -31,6 +31,7 @@ L = {
  "pk-cam-levha": ("a small glass plate slotted into a wooden holder, clean glassy click, single", 0.6),
  "pk-odak-disli": ("a small brass focusing gear turning slowly, soft ratchet ticking, mechanical, quiet, steady", 2.0),
  "pk-kagit-yagmur": ("many thin film strips and paper slips fluttering down onto rooftops, soft light patter, distant, gentle", 3.0),
+ "pk-kagit-tik": ("a tiny light object dropping onto a sheet of paper, one very small soft dry tick, quiet, close, single", 0.5),
  "pk-halat-kavra": ("a hand gripping a thick hemp rope, quick fibre squeak and glove-free palm rub, single, dry, soft", 0.6),
 }
 def olc(f):
