@@ -1,0 +1,44 @@
+{
+ "_not": "Ortam yatakları (foley.json'da DEĞİL: temasla çalmaz, doğrulayıcı 'kullanılmıyor' uyarısı vermesin). Hepsi mevcut proje dosyası, yeni kredi yok. Seviyeler anlatıma göre dB (miks.md).",
+ "ruzgar-cati": {
+  "dosya": "blanc/sfx/gece-ruzgar.mp3",
+  "sure_ms": 8000,
+  "planlar": [
+   "P01",
+   "P11"
+  ],
+  "db": -26,
+  "not": "P01/P11 çatı (ParisCati); görünmeyen kaynak, kısık; lowpass 1500 Hz"
+ },
+ "sehir-uzak": {
+  "dosya": "evliya/sfx/sehir-ortam.mp3",
+  "planlar": [
+   "P01",
+   "P02",
+   "P06",
+   "P11"
+  ],
+  "db": -28,
+  "lp_hz": 1200,
+  "not": "uzak şehir uğultusu; P02 harita/P06 meydan; köpek sesi duyulursa lowpass yeter, değilse P01'den çıkar"
+ },
+ "ruzgar-yuksek": {
+  "dosya": "evliya/sfx/ruzgar-bogaz.mp3",
+  "planlar": [
+   "P07",
+   "P08"
+  ],
+  "db": -26,
+  "not": "balon yükseklikte rüzgâr; whoosh DEĞİL, düz yatak; P07 f108 darbede düşmez"
+ },
+ "oda-ortam": {
+  "dosya": "evliya/sfx/kagit-ortam.mp3",
+  "planlar": [
+   "P05",
+   "P10"
+  ],
+  "db": -28,
+  "not": "Dagron masası / lantern odası oda tonu"
+ },
+ "mesale-yok": "P03/P04/P09: ortam yok (kısa planlar; foley öne çıksın)"
+}

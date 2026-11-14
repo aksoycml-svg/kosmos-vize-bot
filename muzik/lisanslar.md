@@ -42,3 +42,21 @@ Ağ notu: archive.org / incompetech / pixabay / musopen bu sunucudan erişilemed
 
 ### Foley / ambiyans
 - 43 klip `public/evliya/sfx/` (`tools/evliya_sfx.py`): ElevenLabs Sound Generation (aynı abonelik, ticari uygun, atıf gerekmez). Promptlar betikte.
+
+## Paris kuşatması (bolumler/paris-kusatmasi) — 2026-11-14
+
+Ağ notu: bu oturumda archive.org / incompetech.com / pixabay.com / musopen.org DNS çözülmedi (oturum ağ izin listesinde yok; WebFetch ENOTFOUND). **Hiçbir parça indirilemedi, lisans kaynak sayfasından doğrulanamadı → aşağıdakilerin HİÇBİRİ henüz kullanılamaz.** Web aramasında yalnız koleksiyon düzeyinde bilgi görüldü.
+
+### Müzik adayları (DOĞRULANMADI)
+| # | Eser | Besteci / kayıt | Kaynak | Lisans durumu | Atıf |
+|---|---|---|---|---|---|
+| 1 | Nocturne Op.9 No.2 (Es majör) | Chopin (kamu malı, Paris'te yaşadı) / Musopen Chopin koleksiyonu piyano kaydı | https://archive.org/details/musopen-chopin | Koleksiyon sayfası arama özetinde "CC0 1.0 Universal" görünüyor; **parça dosya adı ve öğe metadata'sı açılıp doğrulanmalı** (Blanc'ta aynı serinin lisansı öğe `licenseurl` ile doğrulanmıştı) | Gerekmez (isteğe bağlı: "Chopin, Nocturne Op.9 No.2 — Musopen/Internet Archive, CC0") |
+| 2 | Prelude Op.28 No.4 (mi minör) | Chopin / aynı koleksiyon | aynı | aynı; doğrulanmadı | aynı |
+| 3 | Gymnopédie No.1 (Satie, 1888 — 1870'e göre sonra) | Kevin MacLeod, Incompetech | https://incompetech.com (parça sayfası bulunup URL'si yazılmalı) | Beklenen: CC BY 4.0, **atıf zorunlu**; sayfadan doğrulanmadı | "Gymnopedie No 1 by Kevin MacLeod (incompetech.com), CC BY 4.0" — parça sayfası açılıp birebir metin alınmalı |
+- Not: Blanc'ta Chopin B.108 kullanıldı; aynı besteci kanal tekrarı sayılabilir (kullanıcı kararı). Fransız alternatif (Fauré Op.17/3 "Romance sans paroles", 1863): arama kamu malı **kayıt** bulamadı; bir kaydın ("non-commercial" şartlı kopya göründü) lisansı ticari kullanıma uygun değil → kullanılmaz.
+- ElevenLabs Music: ticari hak teyidi hâlâ açık (DEVAM.md, Evliya notu). Abonelik sorgusu plan `creator`, durum `active` gösterdi; Music için ticari kullanım plan sayfasından kullanıcı tarafından teyit edilmeli. Son çare.
+
+### Foley / ortam
+- 14 foley ses mevcut proje arşivinden yeniden kullanıldı (Blanc/Evliya ElevenLabs SFX, Creator plan; ticari uygun, atıf gerekmez): kus-kanat, kagit-hisirti, kagit-yatis, sayfa-yatis, dosya-tok, dugum-tok, ip-zit, kalem-cizirti, teleskop-tik, sayac-tik, ahsap-tik, kagit-katlama, kagit-acilis, baslik-inis.
+- 4 ortam yatağı mevcut dosyalardan (yeni kayıt yok): gece-ruzgar, sehir-ortam, ruzgar-bogaz, kagit-ortam (`bolumler/paris-kusatmasi/ortam.json`).
+- 25–26 yeni foley ElevenLabs Sound Generation ile üretilecek (**henüz üretilmedi**, onay bekliyor): Creator plan, ticari uygun, atıf gerekmez.

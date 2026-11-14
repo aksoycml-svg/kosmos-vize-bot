@@ -1,0 +1,367 @@
+{
+ "igne-tak": {
+  "dosya": "paris/sfx/igne-tak.mp3",
+  "tepe_ms": 15,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 0.5,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a single sharp push-pin pressed into a cork map board, small crisp tack, dry, close",
+  "onerilen_db": -8
+ },
+ "pk-ag-git": {
+  "dosya": "paris/sfx/pk-ag-git.mp3",
+  "tepe_ms": 120,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 0.8,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a rope net tightening over a balloon, one short creak of hemp rope, single",
+  "onerilen_db": -10
+ },
+ "pk-cam-levha": {
+  "dosya": "paris/sfx/pk-cam-levha.mp3",
+  "tepe_ms": 30,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 0.6,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a small glass plate slotted into a wooden holder, clean glassy click, single",
+  "onerilen_db": -8
+ },
+ "pk-cekmece": {
+  "dosya": "paris/sfx/pk-cekmece.mp3",
+  "tepe_ms": 150,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 0.8,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a small wooden drawer sliding open smoothly, soft wood scrape, single",
+  "onerilen_db": -9
+ },
+ "pk-dugum": {
+  "dosya": "blanc/sfx-v3/dugum-tok.mp3",
+  "tepe_ms": 35,
+  "sure_ms": 480,
+  "tepe_dbfs": -4.099999904632568,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -9
+ },
+ "pk-gaz-bosal": {
+  "dosya": "paris/sfx/pk-gaz-bosal.mp3",
+  "tepe_ms": 100,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 2.0,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a large cloth balloon deflating, soft sighing air leak and fabric collapse, no whoosh, short",
+  "onerilen_db": -12
+ },
+ "pk-gaz-fis": {
+  "dosya": "paris/sfx/pk-gaz-fis.mp3",
+  "tepe_ms": 120,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 2.5,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "soft gas hose hiss filling a large silk balloon, gentle steady airy hiss with fabric stretching, no whoosh, no riser",
+  "onerilen_db": -9
+ },
+ "pk-halat-coz": {
+  "dosya": "paris/sfx/pk-halat-coz.mp3",
+  "tepe_ms": 150,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 1.0,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a thick hemp rope being untied and slipping loose, short rasp, single",
+  "onerilen_db": -10
+ },
+ "pk-halat-gerilme": {
+  "dosya": "paris/sfx/pk-halat-gerilme.mp3",
+  "tepe_ms": 400,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 1.5,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a thick rope pulled taut, fibres creaking and groaning, slow rise, single",
+  "onerilen_db": -9
+ },
+ "pk-halat-gevse": {
+  "dosya": "paris/sfx/pk-halat-gevse.mp3",
+  "tepe_ms": 100,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 1.0,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a rope going slack, soft fibre rustle and tiny sag, single",
+  "onerilen_db": -10
+ },
+ "pk-halka-tik": {
+  "dosya": "blanc/sfx-v3/sayac-tik.mp3",
+  "tepe_ms": 11,
+  "sure_ms": 448,
+  "tepe_dbfs": -3.9000000953674316,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -8
+ },
+ "pk-hasir-gicir": {
+  "dosya": "paris/sfx/pk-hasir-gicir.mp3",
+  "tepe_ms": 150,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 1.0,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "wicker basket creaking under weight, short woven squeak, single, dry",
+  "onerilen_db": -9
+ },
+ "pk-ip-gerilme": {
+  "dosya": "blanc/sfx-v3/ip-zit.mp3",
+  "tepe_ms": 7,
+  "sure_ms": 600,
+  "tepe_dbfs": -11.300000190734863,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -9
+ },
+ "pk-kagit-al": {
+  "dosya": "blanc/sfx-v3/kagit-hisirti.mp3",
+  "tepe_ms": 75,
+  "sure_ms": 961,
+  "tepe_dbfs": -11.5,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -9
+ },
+ "pk-kagit-fist": {
+  "dosya": "paris/sfx/pk-kagit-fist.mp3",
+  "tepe_ms": 120,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 0.6,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a sheet of paper sliding quickly into a narrow slot, short dry swish, single",
+  "onerilen_db": -8
+ },
+ "pk-kagit-koy": {
+  "dosya": "blanc/sfx-v3/kagit-yatis.mp3",
+  "tepe_ms": 131,
+  "sure_ms": 505,
+  "tepe_dbfs": -6.800000190734863,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -10
+ },
+ "pk-kagit-sil": {
+  "dosya": "blanc/sfx-v3/sayfa-yatis.mp3",
+  "tepe_ms": 124,
+  "sure_ms": 480,
+  "tepe_dbfs": -6.199999809265137,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -11
+ },
+ "pk-kagit-tok": {
+  "dosya": "blanc/sfx-v3/dosya-tok.mp3",
+  "tepe_ms": 29,
+  "sure_ms": 413,
+  "tepe_dbfs": -2.4000000953674316,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -9
+ },
+ "pk-kagit-yagmur": {
+  "dosya": "paris/sfx/pk-kagit-yagmur.mp3",
+  "tepe_ms": 300,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 3.0,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "many thin film strips and paper slips fluttering down onto rooftops, soft light patter, distant, gentle",
+  "onerilen_db": -12
+ },
+ "pk-kalem": {
+  "dosya": "blanc/sfx-v3/kalem-cizirti.mp3",
+  "tepe_ms": 126,
+  "sure_ms": 974,
+  "tepe_dbfs": -6.699999809265137,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -14
+ },
+ "pk-kanat": {
+  "dosya": "blanc/sfx/kus-kanat.mp3",
+  "tepe_ms": 120,
+  "sure_ms": 2000,
+  "tepe_dbfs": 0.8999999761581421,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -8,
+  "not": "tepe_ms = ilk net çırpış (en yüksek çırpış 714 ms'de); P01 f3'te baş ~70 ms kırpılır (yönetmen temasını f9'a alırsa uyarı kapanır). 5 kullanım aynı dosya: P01, P04, P05, P10, P11."
+ },
+ "pk-kanat-salma": {
+  "dosya": "paris/sfx/pk-kanat-salma.mp3",
+  "tepe_ms": 120,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 0.8,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a pigeon opening its wings and releasing from a hand, one quick feather flap, single",
+  "onerilen_db": -8
+ },
+ "pk-kapak-mentese": {
+  "dosya": "paris/sfx/pk-kapak-mentese.mp3",
+  "tepe_ms": 300,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 1.0,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a small wooden cage lid opening on a dry hinge, quiet creak, single",
+  "onerilen_db": -9
+ },
+ "pk-kefe-tok": {
+  "dosya": "evliya/sfx/baslik-inis.mp3",
+  "tepe_ms": 253,
+  "sure_ms": 800,
+  "tepe_dbfs": -2.9000000953674316,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -9,
+  "not": "baslik-inis (Evliya) kısık sürüm; dinleyip teyit"
+ },
+ "pk-kilif-coz": {
+  "dosya": "paris/sfx/pk-kilif-coz.mp3",
+  "tepe_ms": 80,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 0.6,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a thin thread being untied from a small tube, tiny fibre tick, very quiet, single",
+  "onerilen_db": -10
+ },
+ "pk-kilif-otur": {
+  "dosya": "paris/sfx/pk-kilif-otur.mp3",
+  "tepe_ms": 50,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 0.5,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a tiny amber glass tube sliding onto a bird feather quill, faint glassy click, very small, single",
+  "onerilen_db": -10
+ },
+ "pk-kum-akis": {
+  "dosya": "paris/sfx/pk-kum-akis.mp3",
+  "tepe_ms": 100,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 1.5,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a small canvas sandbag emptying, pouring sand hiss, short, dry",
+  "onerilen_db": -9
+ },
+ "pk-kumas-pof": {
+  "dosya": "paris/sfx/pk-kumas-pof.mp3",
+  "tepe_ms": 80,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 1.2,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a big cloth balloon settling with a soft muffled puff of air and fabric flutter, single",
+  "onerilen_db": -8
+ },
+ "pk-lamba": {
+  "dosya": "paris/sfx/pk-lamba.mp3",
+  "tepe_ms": 100,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 1.5,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "an old limelight lamp igniting, soft gas catch and low steady burn, quiet room, no whoosh",
+  "onerilen_db": -12
+ },
+ "pk-mercek-tak": {
+  "dosya": "blanc/sfx-v3/teleskop-tik.mp3",
+  "tepe_ms": 11,
+  "sure_ms": 415,
+  "tepe_dbfs": -0.30000001192092896,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -8
+ },
+ "pk-odak-disli": {
+  "dosya": "paris/sfx/pk-odak-disli.mp3",
+  "tepe_ms": 200,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 2.0,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a small brass focusing gear turning slowly, soft ratchet ticking, mechanical, quiet, steady",
+  "onerilen_db": -18,
+  "not": "P10 f120 odak dişlisi ekranda görünmüyor (motion notu) -> görünürlük-ses: yalnız ortam seviyesi, -18 dB. bolum.json temas db'si -10: yönetmen -18 yapmalı (miks bu dosyadaki değeri öncelikli alır)."
+ },
+ "pk-sandik-tok": {
+  "dosya": "paris/sfx/pk-sandik-tok.mp3",
+  "tepe_ms": 50,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 0.7,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a small wooden crate set down into a wicker basket, dull knock and woven creak, single",
+  "onerilen_db": -7
+ },
+ "pk-sepet-gicir": {
+  "dosya": "paris/sfx/pk-sepet-gicir.mp3",
+  "tepe_ms": 150,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 1.0,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a wicker basket lurching up lighter, quick woven creak and small rope slap, single",
+  "onerilen_db": -8
+ },
+ "pk-sepet-konma": {
+  "dosya": "paris/sfx/pk-sepet-konma.mp3",
+  "tepe_ms": 60,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 0.8,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a wicker basket set down on dirt ground, soft woven creak and light thud, single",
+  "onerilen_db": -12
+ },
+ "pk-serit-tik": {
+  "dosya": "blanc/sfx-v3/ahsap-tik.mp3",
+  "tepe_ms": 11,
+  "sure_ms": 480,
+  "tepe_dbfs": -0.5,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -7
+ },
+ "pk-tel-kopma": {
+  "dosya": "paris/sfx/pk-tel-kopma.mp3",
+  "tepe_ms": 30,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 1.2,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "a taut thin telegraph wire snapping with a short metallic ping, then faint vibrating decay, dry",
+  "onerilen_db": -7
+ },
+ "pk-uzak-pat": {
+  "dosya": "paris/sfx/pk-uzak-pat.mp3",
+  "tepe_ms": 40,
+  "tepe_ms_tahmin": true,
+  "durum": "uretilecek (kredi onayı bekliyor)",
+  "sure_s": 0.8,
+  "kaynak": "elevenlabs-sfx (planlı)",
+  "prompt": "one very distant muffled dull thud far away outdoors, single, no echo, faint",
+  "onerilen_db": -14
+ },
+ "pk-zarf-ac": {
+  "dosya": "blanc/sfx-v3/kagit-acilis.mp3",
+  "tepe_ms": 58,
+  "sure_ms": 1000,
+  "tepe_dbfs": -5.800000190734863,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -10
+ },
+ "pk-zarf-ver": {
+  "dosya": "blanc/sfx-v3/kagit-katlama.mp3",
+  "tepe_ms": 198,
+  "sure_ms": 1000,
+  "tepe_dbfs": -18.600000381469727,
+  "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
+  "onerilen_db": -11
+ }
+}
