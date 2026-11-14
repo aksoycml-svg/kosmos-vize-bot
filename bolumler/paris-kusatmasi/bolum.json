@@ -2030,7 +2030,7 @@
      "bas": 120,
      "bit": 152,
      "ad_not": "hızla alçalır",
-     "not": "sepet SERBEST DÜŞMEZ, hızla alçalır (hız eğrisi, ivme değil); alt kenardan f152'de çıkar; yere çarpma görünmez, sesi yok"
+     "not": "sepet SERBEST DÜŞMEZ, hızla alçalır (hız eğrisi, ivme değil); alt-sağ kenardan ≈f154'te çıkar (rüzgârla sağa kayar); yere çarpma görünmez, sesi yok"
     },
     "duman_gri_kul": "turuncu alev yok; gri-kül duman çizgisi, delinen kumaş tarama ile (KE-PK-E1)",
     "animasyonlar": [
@@ -2369,9 +2369,10 @@
    ],
    "lint": {
     "izin": [
-     "L_ustu_88_parlama"
+     "L_ustu_88_parlama",
+     "hareket_bitis_payi"
     ],
-    "not": "P07 darbe parlaması L*91, kullanıcı onaylı tur-8 ('parlama kalsın' tur-9). B2, render motion sonrası: P07 A/B parametreleri şablon koduna işlenmeden render edilmedi."
+    "not": "P07 düşen balon f154'te kadrajdan çıkar, kesme f160; çıkış tamamlanmış — tam render jüri sonrası. P07 darbe parlaması L*91, kullanıcı onaylı tur-8 ('parlama kalsın' tur-9). B2, render motion sonrası: P07 A/B parametreleri şablon koduna işlenmeden render edilmedi."
    }
   },
   {

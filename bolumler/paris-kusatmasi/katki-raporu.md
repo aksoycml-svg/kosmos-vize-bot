@@ -1585,3 +1585,10 @@
   - **Yönetmen:** P11 EN dönüş metni ("TENS OF THOUSANDS OF MESSAGES ARRIVED · 60,000–150,000 DEPENDING ON THE SOURCE") bant yüksekliği yüzünden 3 satır × 42.7 px'te kalıyor (≥40 sınırında, telefonda zayıf). Parça başına ≤ ~30 karakter olursa 2 satır × ~55 px olur. TR 2 satır × 60 px, sorun yok.
   - json notu `sepet_duser`: "alt kenardan f152'de çıkar" → artık alt-sağ köşeden ≈ f154'te çıkıyor (kesmeden 6 kare önce; eskiden 8). Yönetmen nota işleyebilir.
   - Yazı katmanı (TR+EN) ve P07 görüntüsü yeniden render edilmeli (`YALNIZ_YAZI` yetmez; P07 f108–160 görüntüsü değişti).
+
+## yönetmen · 2026-11-14 · P07 sepet_duser notu ve lint
+- Ne yaptım: P07 `sepet_duser.not` "f152 alt kenar" → "alt-sağ ≈f154 (rüzgârla sağa kayar)"; P07 `lint.izin`'e `hareket_bitis_payi` eklendi, not: "P07 düşen balon f154'te kadrajdan çıkar, kesme f160; çıkış tamamlanmış — tam render jüri sonrası". `bit` (152) değişmedi.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/bolum.json, katki-raporu.md
+- Kararlar: kadrajdan fiziksel çıkış hareketi tamamlar; 6 kare pay bilerek kabul (≥12 kuralından).
+- Kurallar: doğrulayıcı --tam geçti (0 hata, 0 uyarı).
+- Açık: izin adı `hareket_bitis_payi` doğrulayıcıda tanımlı bir anahtar değil (şu an kontrol tetiklenmiyor); P07 görüntüsü tam render'da yeniden alınmalı.
