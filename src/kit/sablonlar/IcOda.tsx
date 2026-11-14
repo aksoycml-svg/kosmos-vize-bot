@@ -27,6 +27,7 @@ import { GolgeT, GolgeTParam } from "../props/GolgeT";
 import { Manipulator, manipAci, manipUygula } from "../props/Manipulator";
 import { interpolate, Easing } from "remotion";
 import { cl, GIRIS, CIKIS } from "../zaman";
+import { ELCI_ODA } from "./cicero/ElciOda";
 
 const F = 1150, UFUK = 760, GOZ = 1.6, TAVAN = 2.5, YARI = 2.6;
 const X = (u: number, z: number) => 540 + (u * F) / z;
@@ -311,4 +312,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   );
 };
 
-export const IC_ODA: Sablon = { Sahne, arsiv: (plan) => (param<string>(plan, "isik", "mum") === "mum" && param<string>(plan, "oda", "") === "yatak" ? "gece" : "gunduz") };
+// Çiçero (1940'lar kiti): oda "elci-yatak" ayrı dosyada (cicero/ElciOda.tsx; kendi oda ölçüsü/ışığı). Diğer odalar değişmedi.
+const elci = (plan: SablonProps["plan"]) => param<string>(plan, "oda", "") === "elci-yatak";
+const SahneSec: React.FC<SablonProps> = (pr) => (elci(pr.plan) ? <ELCI_ODA.Sahne {...pr} /> : <Sahne {...pr} />);
+export const IC_ODA: Sablon = { Sahne: SahneSec, arsiv: (plan) => (elci(plan) ? ELCI_ODA.arsiv(plan) : param<string>(plan, "isik", "mum") === "mum" && param<string>(plan, "oda", "") === "yatak" ? "gece" : "gunduz") };

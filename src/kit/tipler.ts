@@ -3,7 +3,8 @@
 // Kare sayıları 60 fps; plan içi kareler 0'dan başlar (plan karesi p).
 import type { Agiz, Palet } from "../rig/Kukla";
 
-export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU" | "GALATA-TEPE" | "BOGAZ" | "KITAP-INSERT" | "PARIS-CATI" | "MONTMARTRE" | "DAGRON-INSERT" | "LANTERN-ODA";
+export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU" | "GALATA-TEPE" | "BOGAZ" | "KITAP-INSERT" | "PARIS-CATI" | "MONTMARTRE" | "DAGRON-INSERT" | "LANTERN-ODA"
+  | "ARABA"; // Çiçero (1940'lar kiti): sedan kesiti (ic) / sokak (dis)
 export type Bant = "ust" | "alt";
 export type P = [number, number];
 
@@ -47,7 +48,8 @@ export type PropTur = "paket" | "eldiven" | "corap" | "dosya" | "kitap" | "kese"
   | "pencere-kanat" // Evliya (SARAYBURNU ic, K4: KE-P9)
   | "tas" // Evliya (GALATA-TEPE, K5: KE-P5)
   | "marti" // Evliya (BOGAZ, K8: KE-P6; uzay ekran)
-  | "defter" | "kivilcim"; // Evliya (KITAP-INSERT, K8: KE-P8 defter; kıvılcım = çizimdeki fitilde KE-E1)
+  | "defter" | "kivilcim" // Evliya (KITAP-INSERT, K8: KE-P8 defter; kıvılcım = çizimdeki fitilde KE-E1)
+  | "banknot" | "carpi" | "zarf" | "belge" | "makine" | "anahtar"; // Çiçero (MASA-INSERT masa: komodin|berlin|bazna; ARABA): props/cicero/Esyalar40
 export type Prop = {
   tur: PropTur; id?: string;
   x?: Sayi; y?: Sayi; kare?: number[];         // MASA-INSERT: ekran px (masa düzlemi). IC-ODA: x = u (m), y = z (m). SARAYBURNU: dekor px (zemin teması)

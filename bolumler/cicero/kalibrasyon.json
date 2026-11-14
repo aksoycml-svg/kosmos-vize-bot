@@ -1,0 +1,978 @@
+{
+ "slug": "cicero",
+ "baslik": "Çiçero — kalibrasyon (P01, P04, P07)",
+ "fps": 60,
+ "dil": "tr",
+ "gorsel_yazisiz": true,
+ "_not": "Kalibrasyon json'u (motion, 2026-11-14): yalnız P01/P04/P07, gerçek plan süreleri. Mutlak kareler bu dosyada: P01 0–438 · P04 438–820 · P07 820–1172. K-C = 24, K-A = 708 (+ 608), K-B = 1120. bolum.json'un sahibi yönetmen; değerler sahne-plani.md + mekanlar.md'den, ayar tablosu katki-raporu.md'de.",
+ "planlar": [
+  {
+   "id": "P01",
+   "sablon": "ARABA",
+   "sure_kare": 438,
+   "kontrol_kare": 24,
+   "parametreler": {
+    "gorunum": "ic",
+    "saat": "gun",
+    "motor": false,
+    "daktilo": {
+     "yaziyor": true
+    },
+    "moyzisch": {
+     "x": -0.24
+    },
+    "bazna": {
+     "x": [
+      0.5,
+      0.5,
+      0.52
+     ],
+     "lean": [
+      14,
+      10,
+      6
+     ],
+     "kare": [
+      0,
+      60,
+      150
+     ]
+    },
+    "banknot": {
+     "kare": [
+      0,
+      24,
+      42,
+      70,
+      100,
+      124,
+      150
+     ],
+     "x": [
+      500,
+      590,
+      660,
+      700,
+      880,
+      985,
+      1030
+     ],
+     "y": [
+      880,
+      872,
+      866,
+      850,
+      940,
+      1000,
+      1060
+     ],
+     "aci": [
+      -8,
+      -12,
+      -14,
+      -10,
+      60,
+      80,
+      82
+     ],
+     "yuz": "arka",
+     "arkada": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+     ]
+    },
+    "el": {
+     "moyzisch": {
+      "kare": [
+       0,
+       24,
+       42,
+       70,
+       100
+      ],
+      "bilek": [
+       [
+        300,
+        915
+       ],
+       [
+        370,
+        905
+       ],
+       [
+        420,
+        900
+       ],
+       [
+        380,
+        960
+       ],
+       [
+        360,
+        990
+       ]
+      ],
+      "aci": [
+       -6,
+       -10,
+       -12,
+       30,
+       60
+      ],
+      "poz": "kistir",
+      "bukum": 1
+     },
+     "bazna": {
+      "kare": [
+       0,
+       24,
+       42,
+       70,
+       100,
+       124,
+       150,
+       200
+      ],
+      "bilek": [
+       [
+        920,
+        930
+       ],
+       [
+        880,
+        905
+       ],
+       [
+        790,
+        880
+       ],
+       [
+        820,
+        880
+       ],
+       [
+        790,
+        960
+       ],
+       [
+        880,
+        1030
+       ],
+       [
+        900,
+        1080
+       ],
+       [
+        900,
+        1090
+       ]
+      ],
+      "aci": [
+       195,
+       192,
+       190,
+       186,
+       200,
+       205,
+       240,
+       250
+      ],
+      "poz": "gevsek",
+      "bukum": -1
+     }
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     150,
+     438
+    ],
+    "cs": [
+     1.0,
+     1.0,
+     1.2
+    ],
+    "cx": [
+     0,
+     0,
+     20
+    ],
+    "cy": [
+     0,
+     0,
+     30
+    ],
+    "egri": "lineer"
+   },
+   "karakterler": [
+    {
+     "kim": "moyzisch",
+     "yon": 1
+    },
+    {
+     "kim": "bazna",
+     "yon": -1,
+     "yuz": {
+      "bakis": [
+       -0.6,
+       0.2
+      ]
+     }
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 42,
+     "olay": "Bazna banknotu kavrar",
+     "ses": "cic_banknot_kavra"
+    },
+    {
+     "kare": 138,
+     "olay": "banknot iç ceket cebine girer",
+     "ses": "cic_kagit_cep"
+    }
+   ],
+   "not": "KALİBRASYON K-C (p24). Kanca: banknot p0'da yolun ortasında, p42 Bazna kavrar, p118'den ceket arkasına (iç cep) girer, p150 tamam. Kamera p150–438 yavaş push 1.0→1.2 (lineer).",
+   "dokunus": null
+  },
+  {
+   "id": "P04",
+   "sablon": "MASA-INSERT",
+   "sure_kare": 382,
+   "kontrol_kare": 270,
+   "not": "KALİBRASYON K-A (p270) + belgeli ek kare p170. a) p0–58 komodin insert: kopya anahtar p10 kilide, p30 çevrilir, kapak p36–46 açılır. b) p58–382 ELÇİ-ODASI gece: lamba boynu p100–108 yatağa bükülür; Bazna p140–196 belgeleri çeker (yatağa eğik), p196–226 iki adımda pencere önüne, p228–328 kapı altı ayak gölgeleri (dokunuş), donar. kit_eksik: belge yayma/toplama animasyonu, kutu kapatma eli, film kutusu cebe (P04 p332–370).",
+   "parametreler": {
+    "aci": "tepe-onden",
+    "isik": "lamba",
+    "masa": "komodin",
+    "kutu": {
+     "kapak": [
+      0,
+      0,
+      1
+     ],
+     "kare": [
+      0,
+      36,
+      46
+     ]
+    },
+    "el40": [
+     {
+      "tip": "bazna",
+      "kare": [
+       0,
+       10,
+       22,
+       30,
+       36,
+       46,
+       58
+      ],
+      "omuz": [
+       [
+        1350,
+        1500
+       ],
+       [
+        1150,
+        1420
+       ],
+       [
+        1150,
+        1420
+       ],
+       [
+        1150,
+        1420
+       ],
+       [
+        1150,
+        1300
+       ],
+       [
+        1150,
+        1150
+       ],
+       [
+        1150,
+        1150
+       ]
+      ],
+      "bilek": [
+       [
+        1050,
+        1320
+       ],
+       [
+        731,
+        1190
+       ],
+       [
+        731,
+        1190
+       ],
+       [
+        731,
+        1186
+       ],
+       [
+        730,
+        1250
+       ],
+       [
+        730,
+        900
+       ],
+       [
+        730,
+        900
+       ]
+      ],
+      "aci": [
+       185,
+       180,
+       180,
+       165,
+       180,
+       180,
+       180
+      ],
+      "poz": "kistir",
+      "E": 230,
+      "bukum": 1,
+      "tut": {
+       "prop": "kopya",
+       "bas": 0,
+       "bit": 10,
+       "dx": -6,
+       "dy": 0
+      }
+     }
+    ]
+   },
+   "props": [
+    {
+     "tur": "anahtar",
+     "id": "kopya",
+     "x": 605,
+     "y": 1210,
+     "aci": 90,
+     "olcek": 0.8,
+     "kare": [
+      22,
+      30
+     ],
+     "durum": {
+      "cevir": [
+       0,
+       1
+      ]
+     }
+    }
+   ],
+   "kamera": {
+    "kare": [
+     0
+    ],
+    "cs": [
+     1.3
+    ],
+    "cx": [
+     0
+    ],
+    "cy": [
+     -160
+    ]
+   },
+   "devam_plan": {
+    "kare_bas": 58,
+    "sablon": "IC-ODA",
+    "parametreler": {
+     "oda": "elci-yatak",
+     "isik": "lamba",
+     "lamba": {
+      "boyun": [
+       0,
+       1
+      ],
+      "kare": [
+       100,
+       108
+      ]
+     },
+     "kutu": {
+      "kapak": 1
+     },
+     "kapi": {
+      "ayak": {
+       "gel": 228,
+       "dur": 248,
+       "git": 312,
+       "don": 328
+      }
+     },
+     "belgeler": {
+      "u0": -1.42,
+      "u1": -1.1,
+      "z0": 3.75,
+      "z1": 4.4,
+      "n": 5
+     },
+     "makine": {
+      "kim": "bazna",
+      "bas": 140,
+      "bit": 382
+     },
+     "poz": [
+      {
+       "kim": "bazna",
+       "kare": [
+        140,
+        160,
+        196,
+        230,
+        240
+       ],
+       "lean": [
+        0,
+        20,
+        20,
+        0,
+        0
+       ],
+       "shF": [
+        -20,
+        -60,
+        -60,
+        -12,
+        -12
+       ],
+       "elF": [
+        -30,
+        -14,
+        -14,
+        -112,
+        -112
+       ],
+       "headTilt": [
+        0,
+        12,
+        12,
+        0,
+        0
+       ],
+       "yon": [
+        -1,
+        -1,
+        -1,
+        1,
+        1
+       ]
+      }
+     ]
+    },
+    "kamera": {
+     "kare": [
+      58,
+      200,
+      240,
+      382
+     ],
+     "cs": [
+      1.4,
+      1.4,
+      1.4,
+      1.4
+     ],
+     "cx": [
+      200,
+      200,
+      -140,
+      -140
+     ],
+     "cy": [
+      -90,
+      -90,
+      -90,
+      -90
+     ],
+     "egri": "inout"
+    },
+    "karakterler": [
+     {
+      "kim": "bazna",
+      "kare": [
+       196,
+       226
+      ],
+      "z": [
+       3.7,
+       3.8
+      ],
+      "u": [
+       -0.45,
+       0.15
+      ],
+      "yon": -1,
+      "jestler": [
+       {
+        "ad": "yuru",
+        "bas": 196,
+        "bit": 226
+       }
+      ]
+     }
+    ]
+   },
+   "temaslar": [
+    {
+     "kare": 10,
+     "olay": "kopya anahtar kilide girer",
+     "ses": "cic_anahtar_kilit_giris"
+    },
+    {
+     "kare": 30,
+     "olay": "anahtar çevrilir, kilit tık",
+     "ses": "cic_kutu_kilit_tik"
+    },
+    {
+     "kare": 40,
+     "olay": "kapak açılır",
+     "ses": "cic_kutu_kapak_ac"
+    },
+    {
+     "kare": 104,
+     "olay": "lamba boynu yatağa çevrilir (gıcırtı, kısık)",
+     "ses": "cic_lamba_boyun_gicir"
+    },
+    {
+     "kare": 150,
+     "olay": "deklanşör",
+     "ses": "cic_deklansor_tik"
+    },
+    {
+     "kare": 172,
+     "olay": "deklanşör",
+     "ses": "cic_deklansor_tik"
+    },
+    {
+     "kare": 194,
+     "olay": "deklanşör",
+     "ses": "cic_deklansor_tik"
+    },
+    {
+     "kare": 206,
+     "olay": "Bazna adım",
+     "ses": "cic_adim_hafif"
+    },
+    {
+     "kare": 220,
+     "olay": "Bazna adım",
+     "ses": "cic_adim_hafif"
+    },
+    {
+     "kare": 215,
+     "olay": "su kesilir (kapı ardı, kısık ortam)",
+     "ses": "cic_su_kesilir"
+    },
+    {
+     "kare": 228,
+     "olay": "terlik adımı (gölge şeridi böler)",
+     "ses": "cic_terlik_adim"
+    },
+    {
+     "kare": 238,
+     "olay": "terlik adımı",
+     "ses": "cic_terlik_adim"
+    },
+    {
+     "kare": 248,
+     "olay": "terlik adımı (gölgeler durur)",
+     "ses": "cic_terlik_adim"
+    },
+    {
+     "kare": 330,
+     "olay": "su yeniden (kapı ardı, kısık)",
+     "ses": "cic_su_tekrar"
+    }
+   ],
+   "dokunus": {
+    "id": "D-P04",
+    "ad": "kapı altı ayak gölgesi",
+    "bas": 215,
+    "bit": 330
+   }
+  },
+  {
+   "id": "P07",
+   "sablon": "MASA-INSERT",
+   "sure_kare": 352,
+   "kontrol_kare": 300,
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "masa": "bazna",
+    "el40": [
+     {
+      "tip": "bazna",
+      "kare": [
+       0,
+       12,
+       30,
+       42,
+       60,
+       74,
+       92,
+       110,
+       128,
+       146,
+       168
+      ],
+      "omuz": [
+       [
+        1250,
+        1700
+       ],
+       [
+        1180,
+        1500
+       ],
+       [
+        1180,
+        1500
+       ],
+       [
+        1180,
+        1500
+       ],
+       [
+        1250,
+        1750
+       ],
+       [
+        1200,
+        1800
+       ],
+       [
+        1180,
+        1800
+       ],
+       [
+        1200,
+        1800
+       ],
+       [
+        1180,
+        1800
+       ],
+       [
+        1220,
+        1820
+       ],
+       [
+        1400,
+        2200
+       ]
+      ],
+      "bilek": [
+       [
+        1100,
+        1300
+       ],
+       [
+        700,
+        760
+       ],
+       [
+        690,
+        740
+       ],
+       [
+        760,
+        820
+       ],
+       [
+        1150,
+        1500
+       ],
+       [
+        760,
+        1440
+       ],
+       [
+        700,
+        1460
+       ],
+       [
+        760,
+        1440
+       ],
+       [
+        700,
+        1460
+       ],
+       [
+        800,
+        1500
+       ],
+       [
+        1250,
+        2000
+       ]
+      ],
+      "aci": [
+       -150,
+       -140,
+       -145,
+       -140,
+       -140,
+       -160,
+       -165,
+       -160,
+       -165,
+       -150,
+       -140
+      ],
+      "poz": "kistir",
+      "E": 250,
+      "bukum": 1
+     }
+    ]
+   },
+   "kamera": {
+    "kare": [
+     0,
+     150,
+     170,
+     195,
+     215
+    ],
+    "cs": [
+     1.0,
+     1.0,
+     1.45,
+     1.45,
+     1.45
+    ],
+    "cx": [
+     0,
+     0,
+     120,
+     -120,
+     0
+    ],
+    "cy": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "egri": "inout"
+   },
+   "props": [
+    {
+     "tur": "zarf",
+     "id": "zarf",
+     "x": 640,
+     "y": 470,
+     "aci": 168,
+     "olcek": 1.1,
+     "kare": [
+      10,
+      30
+     ],
+     "durum": {
+      "acik": [
+       0,
+       1
+      ]
+     }
+    },
+    {
+     "tur": "banknot",
+     "x": [
+      520,
+      400,
+      380
+     ],
+     "y": [
+      1180,
+      1240,
+      1290
+     ],
+     "aci": [
+      20,
+      8,
+      6
+     ],
+     "kare": [
+      40,
+      56,
+      64
+     ],
+     "durum": {
+      "yuz": "on"
+     }
+    },
+    {
+     "tur": "banknot",
+     "x": [
+      520,
+      670,
+      650
+     ],
+     "y": [
+      1180,
+      1260,
+      1310
+     ],
+     "aci": [
+      20,
+      -12,
+      -12
+     ],
+     "kare": [
+      42,
+      58,
+      66
+     ],
+     "durum": {
+      "yuz": "on"
+     }
+    },
+    {
+     "tur": "banknot",
+     "x": [
+      520,
+      290,
+      270
+     ],
+     "y": [
+      1180,
+      1250,
+      1300
+     ],
+     "aci": [
+      20,
+      22,
+      22
+     ],
+     "kare": [
+      44,
+      60,
+      68
+     ],
+     "durum": {
+      "yuz": "on"
+     }
+    },
+    {
+     "tur": "banknot",
+     "x": [
+      480,
+      395
+     ],
+     "y": [
+      700,
+      790
+     ],
+     "aci": [
+      20,
+      -4
+     ],
+     "kare": [
+      40,
+      56
+     ],
+     "durum": {
+      "yuz": "on"
+     }
+    },
+    {
+     "tur": "banknot",
+     "x": [
+      520,
+      690
+     ],
+     "y": [
+      760,
+      1060
+     ],
+     "aci": [
+      20,
+      3
+     ],
+     "kare": [
+      44,
+      60
+     ],
+     "durum": {
+      "yuz": "on"
+     }
+    },
+    {
+     "tur": "carpi",
+     "x": 715,
+     "y": 1000,
+     "olcek": 1.0,
+     "kare": [
+      238,
+      246,
+      250,
+      256
+     ],
+     "durum": {
+      "ilerleme": [
+       0,
+       1,
+       1,
+       2
+      ]
+     }
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 30,
+     "olay": "zarf açılır",
+     "ses": "cic_zarf_ac"
+    },
+    {
+     "kare": 56,
+     "olay": "banknotlar masaya dökülür",
+     "ses": "cic_banknot_dokul"
+    },
+    {
+     "kare": 78,
+     "olay": "bakmadan sayma (hışırtı)",
+     "ses": "cic_banknot_say"
+    },
+    {
+     "kare": 238,
+     "olay": "çarpı 1. fırça",
+     "ses": "cic_carpi_firca"
+    },
+    {
+     "kare": 250,
+     "olay": "çarpı 2. fırça",
+     "ses": "cic_carpi_firca"
+    }
+   ],
+   "dokunus": {
+    "id": "D-P07",
+    "ad": "bakmadan sayılan para + iki aynı banknot + çarpı",
+    "bas": 30,
+    "bit": 256
+   },
+   "not": "KALİBRASYON K-B (p300). Zarf p10–30 açılır, banknotlar p40–68 dökülür, el p70–150 bakmadan sayar ve p168'de sağ-alttan çıkar, kamera p150–215 iki banknot arasında, çarpı p238/p250 iki fırça (kendini çizer), p256–352 kamera durur."
+  }
+ ]
+}

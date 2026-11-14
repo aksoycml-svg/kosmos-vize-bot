@@ -5,6 +5,7 @@ import type { Palet } from "../rig/Kukla";
 import SN from "./sinirlar.json";
 import { FRANCOIS_TABA, LOUIS_ELSIZ, LOUIS_ELDIVENLI, MEMUR, TELGRAFCI, KATIP, TUCCAR, KATIP_ACIK } from "../bolumler/blanc/palet";
 import { HEZARFEN, LAGARI, YARDIMCI_1, YARDIMCI_2 } from "./paletler/evliya";
+import { BAZNA, BAZNA_YUZ } from "./paletler/cicero";
 
 export type KarakterKayit = { palet: Palet; louis?: boolean; ad: string; yuzVaryant: string };
 
@@ -25,6 +26,8 @@ export const YUZLER: Record<string, Partial<Palet>> = {
   // Evliya (KE-K1): yüz paletin içinde (LAGARI.yuz); varyant boş = kayıttaki yüz
   lagari: {},
   hezarfen: {},
+  // Çiçero (1943): Bazna — kısa koyu saç, bıyıksız, sakin kaş (yüz kimlik iddiası değil)
+  bazna: BAZNA_YUZ,
 };
 const VARYANT = (SN as { yuzVaryant: Record<string, string> }).yuzVaryant;
 const yuzlu = (kim: string, p: Palet): Palet => ({ ...p, ...(YUZLER[VARYANT[kim]] ?? {}) });
@@ -47,6 +50,8 @@ const HAM: Record<string, Omit<KarakterKayit, "yuzVaryant">> = {
   hezarfen: { palet: HEZARFEN, ad: "hezarfen" },
   "yardimci-1": { palet: YARDIMCI_1, ad: "yardimci-1" },
   "yardimci-2": { palet: YARDIMCI_2, ad: "yardimci-2" },
+  // Çiçero (Ankara 1943–44): kostum takim40. Elçi/Moyzisch/yetkili/sekreter yüzsüz siluet (props/cicero/SiluetFigur40, Kukla değil)
+  bazna: { palet: BAZNA, ad: "bazna" },
 };
 export const KARAKTERLER: Record<string, KarakterKayit> = Object.fromEntries(
   Object.entries(HAM).map(([kim, k]) => [kim, { ...k, palet: yuzlu(kim, k.palet), yuzVaryant: VARYANT[kim] ?? kim }]),

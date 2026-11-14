@@ -74,3 +74,54 @@
   - (4) Eleştirmen: P09b p292–370 için p95 L\* lint izni önerildi (§1.7).
   - (5) Gemini kullanılmadı.
 - (orkestra, mekân sonrası) Mekân sorumlusunun düzeltmeleri kabul: K-A cs 1.4/cx −170/cy −90 (+ P04 p170 ek kontrol karesi), güneş yönü tasarım.md'ye göre (sol-ön), daktilo penceresi zemin katta, tepsi yatak ayak ucunda, adım sayısı 2–3, P09b p95 L* lint izni. Sahne planı yönetmen tarafından bolum.json'a bu değerlerle işlenecek (mekanlar.md §1.8–1.9 üstün).
+
+## motion · 2026-11-14 · kalibrasyon (aşama 1: K-A, K-B, K-C + 1940'lar kit kurulumu)
+- Ne yaptım:
+  - 1940'lar kitini parametrik, yeni dosyalarda kurdum: IC-ODA `oda: "elci-yatak"` (oda başına arka/yari/tavan; lamba V + tavan yayı + aşağı koni havuzu, eklemli boyun 0→1, `yanik` radyal uzama; banyo kapısı altı şerit + havuz + iki ayak kaması; deri kutu kapaklı; yatak + belgeler; şerit parke, halı, ay yaması, perdeler, kartonpiyer), yeni ARABA şablonu (`ic` sedan kesiti: tavan dikişleri, güneşlik, ön cam gök/ufuk/ağaç, arka camda zemin kat cephe + daktilo penceresinde sekreter, kapı paneli krom kol/krank, kanepe oturakları), MASA-INSERT `masa: komodin | berlin | bazna` (+ `el40` GravurEl kolları, props banknot/çarpı/zarf/belge/makine/anahtar).
+  - Rig: Kukla `kostum: "takim40"` (kalça boyu ceket, oturunca kucağa yatan etek, ecru gömlek, dar kravat) + isteğe bağlı `gozAk`; karakter kaydı `bazna`; `SiluetFigur40` (sapkali/yasli/uzun-ince/topuzlu; profil, oturan, ayrı baş yönü, fötr).
+  - `bolumler/cicero/kalibrasyon.json` (P01 438 · P04 382 · P07 352 kare; doğrulayıcı: 0 hata). `tools/cicero_kalibrasyon.sh` (kareler + 360 + güvenli alan + şeritler + ölçüm), `tools/kalibrasyon_olcum.py` (sıcak %, p95 L*, imza dışı L*/C*, izinsiz kırmızı).
+  - Gerileme testi: Blanc (MASA-INSERT, IC-ODA tours/bordeaux, frak Kukla), Evliya (Osmanlı Kukla), Paris kareleri HEAD ile piksel piksel aynı (fark 0).
+- Dokunduğum dosyalar: yeni → `src/kit/sablonlar/cicero/{ElciOda,Araba,MasaCicero}.tsx`, `src/kit/props/cicero/{Esyalar40,SiluetFigur40}.tsx`, `src/kit/paletler/cicero.ts`, `tools/cicero_kalibrasyon.sh`, `tools/kalibrasyon_olcum.py`, `bolumler/cicero/kalibrasyon.json`, `bolumler/cicero/kalibrasyon/*`. Yalnız ekleme/koşullu dal → `src/rig/Kukla.tsx` (takim40, gozAk), `src/kit/sablonlar/{IcOda,MasaInsert}.tsx` (yönlendirme), `src/kit/sablonlar/kayit.ts` (ARABA), `src/kit/{tipler.ts,karakterler.ts,props/index.tsx,sinirlar.json,KATALOG.md}`.
+- Aldığım kararlar ve gerekçeleri (yönetmen plana işler):
+
+  | Ne | Şartname | Kalibrasyonda | Gerekçe |
+  |---|---|---|---|
+  | K-A kamera cx (P04 p240–382) | −170 | **−140** (cs 1.4, cy −90) | V'nin daha çoğu kadrajda: p95 L* 74.7 → 75.1, sıcak %17.8 → 18.3; kapı sağda hâlâ tam |
+  | P04b p58–200 Bazna | (3.80, 0.15) pencere önü | p58–196 (z 3.7, u −0.45) yatağa eğik, yon −1; p196–226 iki adım → (3.8, 0.15), p198'de yon +1 | Belgeler yatakta; pencere önünden 1.1 m uzanamaz. p170'te lamba Bazna'nın arkasında kalıyor (ışığı görünür) |
+  | P04a komodin kamera | cs 1.5 | cs 1.3, cy −160 | cs 1.5'te kilit ağzı alt banda (y ≈ 1447) düşüyordu; MASA cy sınırı ±160 |
+  | Gece arşiv modu | geceLapis | **litografi** (ELÇİ gece + 1940'lar masaları) | geceLapis vinyeti köşedeki lamba V'sini karartıyordu (p95 68 → 74.5) |
+  | Lamba V bantları | ofsetli 50 px dış şerit | açıyla iç içe: yayılma +9°/30 px, dış +3°, gövde, alt %58 çekirdek | Tepeye yakın çekirdek kayboluyor, "şerit" okunuyordu |
+  | Bükük boyunda zemin havuzu | yatak sağ köşe + zemin | yalnız yatak (zemin havuzu b ≥ .99'da kapalı) | Zemin elipsi yatağın altından taşıp Bazna'nın ayağını kesiyordu; koniyi yatak keser |
+  | ARABA kabin iç yüksekliği | 1.30 m | **1.40 m** | 1.80 m kenarlı şapkalı oturan figür 1.30'da tavana giriyor |
+  | ARABA Bazna Kukla ölçeği | — | 0.85× (`kuklaOlcek`), kalça oturak + 0.10 m | Rig başı karikatür büyük (≈ 0.37 m); siluet Moyzisch (gerçek oran) yanında. Göz ≈ ufuk (oturan kamera) |
+  | ARABA banknot / eller (P01 p24) | (560, 820) | banknot (590, 872) −12°, eller y ≈ 905 | Yüz ufukta (y ≈ 680); eller yüze binmesin diye banknot koltuk sırtının hemen üstünde |
+  | Cephe sıvası / daktilo içi | #c4ae96 / #e8c9a4 | **#d0baa2 / #eed2ac**, pus α .12 | K-C p95 L* 71.6 → 75.1; pencerede ΔL* için koyu söve + kayıt eklendi |
+  | Bazna göz akı | rig #f6efe3 (L* > 88) | `gozAk #d6cdc0` | "Banknot dışında L* ≤ 88": göz akı 491 px ihlaldi → 0 |
+  | K-B tepeden lamba | kaide (60,260), iç hilal | aynı kaide; koni gövde + boyun + kaide birlikte çizildi | Yeşil disk + hilal "ay" okunuyordu |
+  | K-B çarpı / zarf / yığın | sağ banknot sağ-üst köşe | çarpı (715,1000) dekor, zarf (640,470) ×1.1, yığın y ≤ 1310 | Çarpı IG düğme bölgesine taşıyordu; yığın alt 420 px'te kilit ihlali |
+  | Komodin duvar ışığı | V tabanı y 760 | Λ: abajur ağzından komodin üstüne (aşağı koni duvarı yalar) | Üst V kadraj dışında kalıyordu; üst üçte bir ölüydü |
+
+- Ölçüm (son render, `bolumler/cicero/kalibrasyon/olcum_*.json`):
+
+  | Kare | sıcak % | p95 L* | imza dışı max L* | imza dışı max C* | izinsiz kırmızı | imza (banknot) L* medyan |
+  |---|---|---|---|---|---|---|
+  | K-A P04 p270 (mutlak 708) | 18.3 (≥ 18 ✓) | 75.1 ✓ | 86.3 ✓ | 30.6 (9 px > 28; p99.9 26.0) | 0 | — |
+  | K-A ek P04 p170 (608) | 18.4 | 76.9 ✓ | 86.3 | 29.0 (6 px) | 0 | — |
+  | K-B P07 p300 (1120) | 55.7 | 93.9 ✓ | 82.1 ✓ (ΔL* ≥ 10) | 23.8 ✓ | 0 (çarpı 8273 px, banknot yüzünün %6.3'ü ≤ 8 ✓; bbox 201×197 ≥ 192 ✓) | 93.2 |
+  | K-C P01 p24 (24) | 21.6 | 75.1 ✓ | 87.0 ✓ | 32.4 (80 px; p99.9 22.6) | 0 | 93.5 (uzun kenar ≈ 270 px ✓) |
+
+  Güvenli alan: K-A p270 0 ihlal (Bazna ayak y ≈ 1268, şerit y ≈ 1105, kamalar 360'ta ≈ 10 px), K-C 0, K-B 1 (yığın banknotu sol kenar x 47 — dolgu, hikâye nesnesi değil). Şeritler: `serit/P04_ayak_golgesi_p224-252.png` (kamalar kademeli gelir), `serit/P07_carpi_p236-264.png` (iki vuruş p240/p252, p256'da tam).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: tek ışık (her mekânda tek `Isik`; kenar ışığı + zemin gölgesi aynı ampulden; kapı altı ayrı kaynak kendi havuzuyla) · imza tekilliği (banknot tek nötr beyaz; göz akı ihlali yakalandı ve düzeltildi) · tek kırmızı (çarpı; dudak HSV-kırmızı sayılıyordu → ölçüt C* > 40) · hareket tamamlanır (çarpı p256, ayak gölgesi p328, P04a kapak p46 < 58 kesme; P01 banknot p150'de ceket arkasında) · temas = ses (21 temas; görünmeyen eylemlere ses konmadı) · seed sabit (parke, perde, dikiş, pli dünyaya bağlı; motor titremesi kapalı) · kemer yok, bayrak/arma/yazı yok · eski şablon davranışı korundu (piksel testi).
+- Bilinen kusurlar (eleştirmene, öz puan ≈ 6 — kritik maddeler aşağıda; eleştirmen muhtemelen 5–5.5 verir):
+  1. Bazna Kukla yüzü yakın planda karikatür (kalın kaş + yarım gülüş, "sinsi" okunabilir); başı siluet Moyzisch'ten orantısız büyük (rig sınırı; `kuklaOlcek` 0.85 ile azaltıldı). Kukla 3/4 çizildiği için P01'de tam profil yok.
+  2. Moyzisch silueti sütun gibi (profil gövde düz); kolu kısa ve kalın okunuyor; yön şapka kenarından okunuyor ama "kontra adam" zayıf.
+  3. K-A: Bazna'nın gölgesi lamba alçak olduğu için kadraj sonuna uzanıyor (fiziksel doğru, görsel olarak baskın). V ışığı büyük ve "spot" gibi; tavandaki yay elips.
+  4. P04 kit_eksik: belge yayma (p104–130) / toplama + kutu kapama (p332–358) / film kutusu cebe (p362–370) çizilmiyor; kalibrasyon json'unda bu temaslar yok. Yürüyüş p196–226 eski döngü (gait değil), yön dönüşü p198'de basamak.
+  5. P04a komodin insert p95 L* 71.7 (kontrol karesi değil). P01 p100–150 cebe koyuş: el pozu (gevşek, avuç açık) kaba.
+  6. `berlin` masası yalnız taslak (render oluyor, ölçüt geçiyor ama kalibre edilmedi; dış havuz yarı saydam elips, harita kıyısı kaba). ARABA `dis` (P09a) yok.
+- Açık sorular / bir sonraki ajana notlar:
+  - (1) Orkestra/yönetmen: yukarıdaki ayar tablosu `sahne-plani.md`'ye işlenmeli (K-A cx −140, P04b Bazna yolu ve yön dönüşü, P04a cs 1.3/cy −160, kabin 1.40 m, P01 banknot y 872). Belge yayma/toplama için ya kit kalemi ya da P04'ün sadeleştirilmesi (sahne planı zaten "sıkışırsa serme kısalır" diyor).
+  - (2) Tasarımcı/mekân: cephe sıvası #d0baa2 (p95 için) ve göz akı tonu palet tablosuna eklenmeli. Gece arşiv modu `litografi` kararı mekanlar §0.3'e.
+  - (3) Aşama 2 için kalan kit (öncelik sırası): komodin `anahtar` bırakma eli + `mum.iz` + yarım çizim (P02a/P03b) · `zarf` ARABA el devri + `filmKutusu` (P05) · Berlin `cekmece {yigin, kose.sikisma}` + `dosya` itme + kalibrasyon (P06) · ELÇİ `gun` (P08: yetkili siluet + `fincan/tepsi` + Bazna kontra geçiş) · ELÇİ `sonuk` + filaman + lamba düğmesi + komodin çekmecesi (P09b) · ARABA `dis` alacakaranlık (cephe tam boy, kapı + saçak, park araba, sekreter gait yolu, araba gider) (P09a) · MASA bazna `lamba.yanik` p24 açılışı + banknot ışığa kaldırma (P10) · belge yayma/toplama + film kutusu cebe (P04) · kompars `elci` Kukla dışı yürüyüş (SiluetFigur40'ta yürüme yok) · baş-sallama (P2).
+  - (4) Render: bu makinede `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/...` gerekiyor (remotion.media indirilemiyor); `tools/cicero_kalibrasyon.sh` bunu kendisi bulur. `kalibrasyon.json` `bolum*.json` adında olmadığı için satır içi `bolum` prop'uyla render edilir.
+  - (5) Gemini kullanılmadı. Git commit yapılmadı (teknisyen/orkestra).

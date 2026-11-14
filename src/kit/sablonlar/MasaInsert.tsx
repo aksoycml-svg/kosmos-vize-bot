@@ -24,6 +24,7 @@ import { param, Sablon, SablonProps } from "../ortak";
 import { PROPLAR, propDurum, FENER_ALEV_Y } from "../props";
 import { DisManzara, DisTur, PEN0 } from "./disManzara";
 import { EldivenGiyme, EldivenGiyParam, eldivenGerilme } from "../props/EldivenGiyme";
+import { MASA40, MasaCiceroSahne, masaCiceroArsiv } from "./cicero/MasaCicero";
 
 const S = DOKU_SEED.tours;
 const PEN = PEN0;
@@ -216,4 +217,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   );
 };
 
-export const MASA_INSERT: Sablon = { Sahne, arsiv: () => "gunduz" };
+// Çiçero (1940'lar kiti): masa "komodin" | "berlin" | "bazna" ayrı dosyada (cicero/MasaCicero.tsx). masa verilmezse eski davranış.
+const masa40 = (plan: SablonProps["plan"]) => (MASA40 as string[]).includes(param<string>(plan, "masa", ""));
+const SahneSec: React.FC<SablonProps> = (pr) => (masa40(pr.plan) ? <MasaCiceroSahne {...pr} /> : <Sahne {...pr} />);
+export const MASA_INSERT: Sablon = { Sahne: SahneSec, arsiv: (plan) => (masa40(plan) ? masaCiceroArsiv() : "gunduz") };

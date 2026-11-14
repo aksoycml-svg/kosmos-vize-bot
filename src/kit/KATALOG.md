@@ -282,3 +282,49 @@ Teknik fikirler `claude-animation-skills` (MIT, © 2026 Artem Novitckii; github.
 | fransa ekleri | `rota_ciz.q0` (sayı ya da `"ORAN[i]"`) · `rota_segment_stil ["dolu","noktali"]` + `gizli_segment {bas, bit}` (noktalı segmentin kendi zaman aralığı) · `svg_etiket: false` → şehir adları yazı katmanında (`haritaAdlari`, §5H.7 yerleşim) · `igne.renk "murekkep"` (vars. pirinç) · `paris_halka_kucuk`, `tours_ikon {ciz}` (false ile kapanır) · `prusya_bolgesi {renk, poligon [[lon,lat]]}` · `balon_ikon_inis {bas, bit, ikon_px}` + `sepet_yatik_ikon {bas, bit, devrilme_derece}` (devrilme inişten sonra başlar) |
 | `ekran_yazisi[].tur: "sayac"` | `metin` içinde `{n}` (dil başına), `sayac {hedef, baslangic (0), bas (0), sure (60) — ekran yazısının bas'ından göreli, ondalik, vurgu (sayı kırmızı), donus {kare (göreli), metin {tr,en}}}` — GIRIS eğrisiyle sayar, binlik ayırıcı tr `2.000.000` / en `2,000,000`; `donus`ta sayı kâğıtta yukarı çıkar, yuvarlak ifade ("İKİ MİLYON İNSAN") alttan girer. Kutu en uzun hâle göre sabit (titremez) |
 - **Doğrulayıcıya eklenecek (not, `tools/bolum_dogrula.mjs` sahibi):** `tur: sayac` geçerli tür; `sayac.bas+sure` ve `donus.kare+14` ekran yazısı `bit`inden önce; `darbe[].kare` için `temaslar` girdisi zorunlu (temas = ses) ve plan sonundan ≥ 12 kare önce; `igne.kare` temas zorunlu; `rota_ciz.bit`/`kamera_takip.kare[1]` plan sonundan ≥ 12 kare önce; `gecis.kare` ≤ 12 ve son `kare` karede temas/jest bitişi olmasın; `harita_kart` için `igne` şart + iki dil metni; `altyazi.acik` iken her planın ses .json'u var mı (`words`); altyazı açıkken alt bant replikleriyle çakışma bilgisi (UYARI).
+
+## Çiçero ekleri — ilk 1940'lar kiti (motion kalibrasyon, 2026-11-14; Ankara 1943–44)
+Kod: `src/kit/sablonlar/cicero/{ElciOda,Araba,MasaCicero}.tsx`, `src/kit/props/cicero/{Esyalar40,SiluetFigur40}.tsx`, `src/kit/paletler/cicero.ts`. Eski odalar/masalar değişmedi (Blanc/Evliya/Paris kareleri piksel farkı 0). Kalibrasyon: `bolumler/cicero/kalibrasyon.json` + `tools/cicero_kalibrasyon.sh` + `tools/kalibrasyon_olcum.py`.
+
+### IC-ODA `oda: "elci-yatak"` (1930'lar sonu konut yatak odası; kemer yok, düz lento)
+| Parametre | Değer |
+|---|---|
+| `isik` | `"lamba"` (gece, tek kaynak ampul u −0.83 h 1.0 z 4.85: duvarda net kenarlı V + tavanda yay + aşağı koni havuzu; arşiv `litografi`) · `"gun"` (pencere güneş yaması, lamba sönük; `gunduzMineral`) · `"sonuk"` (ay yaması α .45 tek kaynak) |
+| `arka`, `yari`, `tavan` | oda başına ölçü (varsayılan 5.0 / 2.1 / 3.2 m). Kamera F 1150, ufuk 760, göz 1.6 (eski IC-ODA ile aynı; z/u → ekran aynı formül) |
+| `lamba` | `{u (−0.83), z (4.85), boyun: Sayi (0 dik → 1 yatağa bükük; V sağa yatar −24/24° → −8/34°, havuz yatağa kayar), yanik: Sayi (0..1 huzme/havuz kaynaktan radyal uzar/çekilir; fade yok), kare}` |
+| `kapi` | `{ayak: {gel, dur, git, don}}` — banyo kapısı altı şerit (ikincil kaynak, kendi zemin havuzu) + iki ayak kaması: `gel`'de şeridi böler, `dur`'da havuz boyunca uzamış, `git`→`don` çekilir. Terlik adımları temas listesinde |
+| `kutu` | `{kapak: Sayi (0 kapalı → 1 açık, arka kenardan 100°), kare}` — komodinde deri despatch kutusu, kilit plakası |
+| `belgeler` | `{u0, u1, z0, z1, n}` — yatakta serili A4 belgeler (sarımsı-gri; havuz içindekiler ışıkta). Yayma/toplama animasyonu YOK (kit_eksik) |
+| `makine` | `{kim, bas, bit}` — 35 mm fotoğraf makinesi o karakterin ön elinde (ölçek gerçek ×1.4) |
+| `poz` | `[{kim, kare, shF?, elF?, shB?, elB?, lean?, headTilt?, lookX?, lookY?, thighF?…, yon?: (1\|−1)[]}]` — Kukla poz anahtarları jestlerin üstüne; `yon` basamaklı dönüş |
+| karakterler | `bazna` (Kukla takim40) + yüzsüz siluetler `elci` (yasli), `moyzisch` (sapkali), `yetkili` (uzun-ince), `sekreter` (topuzlu) → SiluetFigur40 (aynı z/u) |
+| kamera önerisi | P04b K-A: cs 1.4, cx −140, cy −90 (lamba sol kenar · komodin+kutu · pencere önünde Bazna · kapı+şerit). cs 1.0'da tüm oda |
+
+### ARABA (yeni şablon; `gorunum: "ic"`, `saat: "gun"` — `dis` henüz KURULMADI → hata)
+Sedan yan kesiti, kukla tiyatrosu (yakın kapı yok), araba sola bakar. F 1265, kabin göz 1.05, ufuk 670, figür düzlemi Z 1.10 (1150 px/m), uzak cam Z 1.62, cephe Z 7.6 (zemin kat bandı: andezit subasman + düz lento pencereler; daktilo penceresinde sekreter silueti). Kabin iç yüksekliği 1.40 m. Işık: alçak güneş sol-ön (yon [0.85, 0.15]); arşiv `gunduzMineral`.
+| Parametre | Değer |
+|---|---|
+| karakterler | `bazna` (Kukla oturan, yüz sola, ön kolu ayrı: konik kol + GravurEl) · `moyzisch` (SiluetFigur40 sapkali profil, gövde sola baş sağa = geri dönük) |
+| `bazna` | `{x: Sayi (kalça, m; 0.5), lean: Sayi (12), bas: Sayi (baş eğimi), kare}` · `kuklaOlcek` (0.85; rig başı karikatür büyük) |
+| `moyzisch` | `{x (−0.24)}` |
+| `el` | `{moyzisch\|bazna: {kare, bilek [[x,y]], aci [], poz "kistir"\|"gevsek"\|"tutus"\|"cimdik", bukum ±1}}` — omuz figürden; kol derinlikte kısalır (dirsek sapması 0.16·L) |
+| `banknot` | `{kare, x[], y[], aci[], yuz "arka"\|"on", arkada [0/1] (basamaklı: 1 → ceket arkasında = iç cebe girer)}` — gerçek ölçü 211 mm (Z 1.0 → 267 px) |
+| `daktilo` | `{yaziyor}` (sekreter ±1 px tık; kaynak sayılmaz) · `motor` (true: ≤ 1.2 px dikey titreme, zamana sabit sinüs) |
+
+### MASA-INSERT `masa: "komodin" | "berlin" | "bazna"` (+ `isik: "lamba" | "lamba-kubbe"`)
+| Masa | Kurulum |
+|---|---|
+| `komodin` (`aci: tepe-onden`, 1600 px/m) | gece duvar + abajurun aşağı konisinin duvarı yaladığı Λ (ağızda en parlak) + komodin üstü dairesel havuz (kaide merkez); ceviz yatay damar; ön yüz çekmece + düğme. `kutu {x0,y0,x1,y1,on,kapak,kare}` (kapak arka kenardan açılır, iç astar + belge destesi, kilit plakası + anahtar deliği) |
+| `bazna` (`aci: tepe`, 1500 px/m) | dikey tahta masa (0.17/0.22/0.19/0.24 m, derz), tepeden eğik koni abajur (kaide `lamba.x/y` 60,260 → boyun → koni → sıcak iç ağız), elips havuz (540,980) 560×650 −45°; gölgeler sağ-aşağı. `lamba.yanik` 0 → masa #2f3450 + banknot sönük ton |
+| `berlin` (`aci: tepe-egik`) | lambri + maun + zeytin sümen + harita (Normandiya halkası, etiketsiz) + orta çekmece + diz boşluğu; kubbe lamba sağ-üst, sert tek basamak havuz. **Taslak, kalibre edilmedi** |
+| `el40` | `[{tip "bazna"\|"berlin"\|"elci", kare, omuz[], bilek[], aci[], poz, E (el boyu px, 230), bukum, tut {prop, bas, bit, dx, dy}}]` — tek parça GravurEl + konik ceket kolu + ecru manşet; tutulan prop el ucunu izler |
+| props (`tur`) | `banknot {durum: yuz on\|arka, golge, kivrik}` (İMZA: ışıkta #f6f1e4 tek ton, portre/rakam/yazı yok; çift çerçeve, 4 rozet, boş oval, 3 dalgalı satır, imza eğrisi) · `carpi {durum: ilerleme 0..2}` (tek kırmızı, iki fırça vuruşu kendini çizer; `olcek` 1 → kol 135 px dekor) · `zarf {acik}` · `belge` · `makine` · `anahtar {cevir 0..1}`. x/y dekor px, `olcek` gerçek ölçü çarpanı |
+
+### Karakter / rig ekleri
+- `Palet.kostum: "takim40"` — kalça boyu tek sıra ceket (oturunca etek kucağa yatar), devrik yaka ecru gömlek, dar kravat, çentikli klapa; frak eteği/yelek/altın düğme yok. `Palet.gozAk` (göz akı tonu; imza beyazı olan bölümde L* ≤ 88).
+- Kayıt: `bazna` (karakterler.ts, yuzVaryant `bazna`: kısa koyu saç, bıyıksız). Sınırlar: `sinirlar.json` karakterler + props + propSablon + ARABA.
+- `SiluetFigur40 {kod, ayak, pxm, renk, kenar, yon, basYon, oturan (oturak m), profil, kirp}` — yüzsüz, burun–çene profili, fötr (önde uzun kenar).
+
+### Ölçüm / kontrol
+- `python3 -I tools/kalibrasyon_olcum.py kare.png [--imza kutu…] [--kirmizi kutu…] [--bolge ad=kutu]` → sıcak %, p95 L*, imza dışı max L*/C*, izinsiz kırmızı (HSV + C* > 40).
+- `bash tools/cicero_kalibrasyon.sh` → K-A/K-B/K-C tam + 360 + güvenli alan + 2 şerit + ölçüm json (`bolumler/cicero/kalibrasyon/`).
