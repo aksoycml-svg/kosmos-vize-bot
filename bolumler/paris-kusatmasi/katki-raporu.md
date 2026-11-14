@@ -1491,3 +1491,10 @@
   - Orkestra: P11 düşme temasları için foley mi, `lint.izin` mi?
   - Motion: P11 yığın konumu ya da z sırası; P08 sönme 10–12 kare; tel kalabalığın altına alınsın.
   - Yönetmen: P08 push-in hedefi x≈540 ya da cs 2.2; P04 kontrol_kare; P11 t_dur.
+
+## yönetmen · 2026-11-14 · H2 son ince ayar (P04/P08/P11)
+- Ne yaptım: P08 tepe kamerası cs 2.4→2.2 (cx −628→−330, cy 658→598; ara anahtarlar orantılı kaydırıldı), Paris halkası + iniş ikonu birlikte kadrajda, ikon 110 px. P04 kontrol_kare 60→70 (kuş tam görünür). P11 kontrol_kare 100→170 (en okunur kare; yığın aşağı alımı motion'da). Zamanlama/metin değişmedi. Render: kalibrasyon/S/yonetmen/ (P04 f70/84/96, P08 f60/84/100, P11 f150/170, 0.25). Doğrulayıcı --tam: geçti.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/bolum.json, kalibrasyon/S/yonetmen/*.png
+- Kararlar: P08'de tepe değerleri iniş ikonu ekran merkezine (x≈540) alınarak seçildi; Paris halkası sol bantta ama kesilmiyor.
+- Kurallar: 7 (render edip baktım), 2 (animasyonlar sürede), temaslar/foley'e dokunulmadı.
+- Açık: P11 f170'te de yığın kümes çatısına yakın; motion yığını aşağı alınca kontrol_kare yeniden bakılmalı. P08 f100'de Paris halkası sol kenara yakın (kesilmiyor). bolum.json diff'inde önceki turların değişiklikleri de var (yalnız bu turun satırları: P08 kamera, P04/P11 kontrol_kare).

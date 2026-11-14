@@ -236,7 +236,15 @@
      ],
      "yaricap": 430,
      "isaret_sayisi": 22,
-     "isaret": {"tur": "teget_cubuk", "boyut_px": [32, 16], "aci_sapma_derece": 6, "kiskac": "iki kol güneyden, f8'den her 4 karede; son işaret f112-132 telin üstünde kayar"},
+     "isaret": {
+      "tur": "teget_cubuk",
+      "boyut_px": [
+       32,
+       16
+      ],
+      "aci_sapma_derece": 6,
+      "kiskac": "iki kol güneyden, f8'den her 4 karede; son işaret f112-132 telin üstünde kayar"
+     },
      "bas": 8,
      "son_isaret_oturur": 132,
      "kalici": true,
@@ -262,8 +270,14 @@
      "bit": 270,
      "tur": "kâğıt kesme siluetler: aile, asker, çocuk (yüzsüz)",
      "sayi": 40,
-     "boy_px": [60, 90],
-     "bant_r": [45, 150],
+     "boy_px": [
+      60,
+      90
+     ],
+     "bant_r": [
+      45,
+      150
+     ],
      "yon": "dışa dönük (sırt merkeze); merkez P04/P11 için boş",
      "ic": "sur içi dolar (Parisliler; kuşatan asker okunmaz). Dolum f205-260 (bas+13 .. bit-10); sur oval B339-D729 / K750-G1054, bant sur içinde, r<45 kümes/yığın boşluğu",
      "dis": "halkanın dışı boş kalır"
@@ -430,9 +444,19 @@
    "kontrol_kare_ek": [
     290
    ],
-   "lint": {"izin": [], "not": "harita turu render edildi (kalibrasyon/H, motion 2026-11-14)"},
+   "lint": {
+    "izin": [],
+    "not": "harita turu render edildi (kalibrasyon/H, motion 2026-11-14)"
+   },
    "harita_etiket": "yok (paris-cevre: etiket yok, §5H.7)",
-   "hareket_seridi": [{"bas": 120, "bit": 200, "adim": 4, "not": "halka kapanış + kopma"}],
+   "hareket_seridi": [
+    {
+     "bas": 120,
+     "bit": 200,
+     "adim": 4,
+     "not": "halka kapanış + kopma"
+    }
+   ],
    "alt_ucte_bir": "halkanın alt yayı (y ≈1330) + Fransa parşömeni; kalabalık dolumunda halka içi siluetler",
    "kit_eksik": [
     "KE-PK-H1",
@@ -560,7 +584,19 @@
       "yaricap": 430,
       "kalici": true
      },
-     "tel_kopuk": true, "kalabalik_hazir": {"sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu düzeni f0'da ayakta (sur içi, merkezde kümes/yığın boşluğu); motion H2: negatif kare hilesi kaldırıldı"},
+     "tel_kopuk": true,
+     "kalabalik_hazir": {
+      "sayi": 40,
+      "boy_px": [
+       60,
+       90
+      ],
+      "bant_r": [
+       45,
+       150
+      ],
+      "not": "P02 sonu düzeni f0'da ayakta (sur içi, merkezde kümes/yığın boşluğu); motion H2: negatif kare hilesi kaldırıldı"
+     },
      "balon_izi": {
       "bas": 164,
       "bit": 214,
@@ -586,8 +622,14 @@
      "yazi_yigini": {
       "bas": 244,
       "bit": 310,
-      "baslangic": [-60, 1560],
-      "carpma_nokta": [236, 1204],
+      "baslangic": [
+       -60,
+       1560
+      ],
+      "carpma_nokta": [
+       236,
+       1204
+      ],
       "ikon_px": 80,
       "yol": "kesik çizgi halkaya",
       "carpma": 290,
@@ -762,7 +804,20 @@
    "kontrol_kare_ek": [
     290
    ],
-   "hareket_seridi": [{"bas": 210, "bit": 250, "adim": 4, "not": "geri ok süpürme"}, {"bas": 280, "bit": 306, "adim": 4, "not": "yazı yığını çarpma"}],
+   "hareket_seridi": [
+    {
+     "bas": 210,
+     "bit": 250,
+     "adim": 4,
+     "not": "geri ok süpürme"
+    },
+    {
+     "bas": 280,
+     "bit": 306,
+     "adim": 4,
+     "not": "yazı yığını çarpma"
+    }
+   ],
    "alt_ucte_bir": "meydan: toprak zemin (çakıl/iz), çuvallar, kumaş kıvrımları, gaz hortumu, bağlama halatı + kazıkçı (y 1250-1490); harita: Fransa parşömeni, yazı yığını yolu",
    "kit_eksik": [
     "KE-PK-S2",
@@ -810,7 +865,19 @@
      "yaricap": 430,
      "kalici": true
     },
-    "tel_kopuk": true, "kalabalik_hazir": {"sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu düzeni f0'da ayakta (sur içi, merkezde kümes/yığın boşluğu); motion H2: negatif kare hilesi kaldırıldı"},
+    "tel_kopuk": true,
+    "kalabalik_hazir": {
+     "sayi": 40,
+     "boy_px": [
+      60,
+      90
+     ],
+     "bant_r": [
+      45,
+      150
+     ],
+     "not": "P02 sonu düzeni f0'da ayakta (sur içi, merkezde kümes/yığın boşluğu); motion H2: negatif kare hilesi kaldırıldı"
+    },
     "guvercin_cizgisi": {
      "bas": 30,
      "bit": 108,
@@ -827,8 +894,14 @@
       560,
       930
      ],
-     "ciz": {"bas": 0, "bit": 10},
-     "boyut_px": [56, 80]
+     "ciz": {
+      "bas": 0,
+      "bit": 10
+     },
+     "boyut_px": [
+      56,
+      80
+     ]
     },
     "animasyonlar": [
      {
@@ -1077,11 +1150,14 @@
     "pk-kanat f232"
    ],
    "muzik_notu": "'kümesine döner'de sıcak, içgörülü yükseliş; 'uzağa götürdüler'de hafif, kıvrak; kuş çıkışında nota açılır.",
-   "kontrol_kare": 60,
+   "kontrol_kare": 70,
    "kontrol_kare_ek": [
     206
    ],
-   "lint": {"izin": [], "not": "harita turu render edildi (kalibrasyon/H, motion 2026-11-14)"},
+   "lint": {
+    "izin": [],
+    "not": "harita turu render edildi (kalibrasyon/H, motion 2026-11-14)"
+   },
    "harita_etiket": "yok (paris-cevre)",
    "alt_ucte_bir": "kafes: sepet hasırı ve uzak tarla zemini (y 1250-1500); harita: Fransa güneyi",
    "kit_eksik": [
@@ -1179,8 +1255,8 @@
       "poz": "yatik",
       "el": "sol el, avuç aşağı, dört parmak düz yan yana masada, şeride paralel (±5°), başparmak anatomik tarafta; parmak havaya kalkmaz (tur-15 kararı 2, tasarım §15.1)",
       "el_bbox_en_cok_pct": 35,
-    "yan_ofset_m": 0.055,
-    "yan_ofset_not": "C3 eleştiri: şerit kenarı serçe parmağa değiyor, alt ucu elin altına giriyor. Çözüm = elin şeride yanal uzaklığı 0.034 → 0.055 m (şerit konumu/ölçü bölgesi kilitli: P06 rota eşleşmesi). DagronInsert.tsx satır ~442 `n * 0.034` sabit kodlu; motion `parmak.yan_ofset_m` okusun (KE-PK-O3). Kabul: f280'de şerit ile en yakın parmak arasında ≥ 14 ekran px açık boşluk, şerit elin altına girmez"
+      "yan_ofset_m": 0.055,
+      "yan_ofset_not": "C3 eleştiri: şerit kenarı serçe parmağa değiyor, alt ucu elin altına giriyor. Çözüm = elin şeride yanal uzaklığı 0.034 → 0.055 m (şerit konumu/ölçü bölgesi kilitli: P06 rota eşleşmesi). DagronInsert.tsx satır ~442 `n * 0.034` sabit kodlu; motion `parmak.yan_ofset_m` okusun (KE-PK-O3). Kabul: f280'de şerit ile en yakın parmak arasında ≥ 14 ekran px açık boşluk, şerit elin altına girmez"
      },
      "olcu_bolgesi": {
       "konum": [
@@ -1530,16 +1606,29 @@
     "paris_halka_kucuk": {
      "yaricap_px": 40,
      "cizgi_px": 5,
-     "cubuk": {"adet": 10, "boyut_px": [12, 6]},
+     "cubuk": {
+      "adet": 10,
+      "boyut_px": [
+       12,
+       6
+      ]
+     },
      "kalici": true,
      "not": "f0'dan oturmuş"
     },
     "tours_ikon": {
      "tur": "küçük nötr bina",
-     "bina_ekran_px": [56, 40],
+     "bina_ekran_px": [
+      56,
+      40
+     ],
      "konum": "Tours noktası − 70 px (ekran), iğne noktanın kendisine batar",
      "yigin_ekran_px": 36,
-     "ciz": {"bas": 54, "bit": 62, "not": "rota ucu Tours'a 0.1 kala, mürekkeple kendini çizer; pop yok"},
+     "ciz": {
+      "bas": 54,
+      "bit": 62,
+      "not": "rota ucu Tours'a 0.1 kala, mürekkeple kendini çizer; pop yok"
+     },
      "yanında": "kâğıt yığını + kalem (mektuplar dışarıda yazılıyor), halkanın dışında"
     },
     "animasyonlar": [
@@ -2316,7 +2405,10 @@
      "bas": 0,
      "bit": 150
     },
-    "rota_segment_stil": ["dolu", "noktali"],
+    "rota_segment_stil": [
+     "dolu",
+     "noktali"
+    ],
     "svg_etiket": false,
     "etiket_katmani": "yazı katmanı: PARIS halkanın sol-üstü, sağ kenarı halkanın 10 px solunda; TOURS altta (§5H.7)",
     "igne": {
@@ -2327,17 +2419,72 @@
     "prusya_bolgesi": {
      "renk": "#8a93a0",
      "dolgu": "düz (α yok) + iç kenarda tik bandı",
-     "poligon": [[2.55, 49.15], [3.6, 49.35], [5.2, 49.25], [6.4, 48.9], [6.3, 48.2], [5.0, 48.05], [3.9, 48.25], [2.95, 48.45], [2.55, 48.6]],
+     "poligon": [
+      [
+       2.55,
+       49.15
+      ],
+      [
+       3.6,
+       49.35
+      ],
+      [
+       5.2,
+       49.25
+      ],
+      [
+       6.4,
+       48.9
+      ],
+      [
+       6.3,
+       48.2
+      ],
+      [
+       5.0,
+       48.05
+      ],
+      [
+       3.9,
+       48.25
+      ],
+      [
+       2.95,
+       48.45
+      ],
+      [
+       2.55,
+       48.6
+      ]
+     ],
      "poligon_not": "lon/lat, stilize, sınır kaynaksız (§5H.5-I); Vitry (4.58,48.73) içeride, batı kenarı Paris küçük halkasına değer, Tours dışarıda",
      "not": "iniş noktası bu bölgenin içinde; yer adı söylenmez/yazılmaz"
     },
-    "paris_halka_kucuk": {"yaricap_px": 40, "cizgi_px": 5, "cubuk": {"adet": 10, "boyut_px": [12, 6]}, "not": "H2 açık: kalıcı oturmuş küçük Paris halkası (kit varsayılanıyla aynı; ekran px ÷ cs 1.8)"},
-    "tours_ikon": {"bina_ekran_px": [84, 84], "yigin_ekran_px": 36, "not": "H2 açık: Tours binası + yığın hazır çizili (ciz yok = kalıcı); ekran px ÷ cs 1.8"},
+    "paris_halka_kucuk": {
+     "yaricap_px": 40,
+     "cizgi_px": 5,
+     "cubuk": {
+      "adet": 10,
+      "boyut_px": [
+       12,
+       6
+      ]
+     },
+     "not": "H2 açık: kalıcı oturmuş küçük Paris halkası (kit varsayılanıyla aynı; ekran px ÷ cs 1.8)"
+    },
+    "tours_ikon": {
+     "bina_ekran_px": [
+      84,
+      84
+     ],
+     "yigin_ekran_px": 36,
+     "not": "H2 açık: Tours binası + yığın hazır çizili (ciz yok = kalıcı); ekran px ÷ cs 1.8"
+    },
     "balon_ikon_inis": {
      "bas": 52,
      "bit": 76,
      "ikon_px": 90,
-     "not": "f52'den gölge ofseti 18→4, ikon 6 px alçalır; f76 sepet kâğıda değer (3 karede ezilir)"
+     "not": "f52'den gölge ofseti 18→4, ikon 6 px alçalır; f76 sepet kâğıda değer (3 karede ezilir) · tepe cs 2.2'de ikon 110 px"
     },
     "sepet_yatik_ikon": {
      "bas": 70,
@@ -2379,9 +2526,128 @@
     "tr": "Prusya bölgesine indi, kaçıp Tours'a vardı.",
     "en": "He landed in Prussian territory and escaped to Tours."
    },
-   "olcek": "orta harita, kamera rota ucunu izler (cs 1.8) → f52-100 iniş noktasına push-in cs 2.4 (ikon ≈120 px) → geri 1.8 → son: yakın (iğne Tours'a batar)",
+   "olcek": "orta harita, kamera rota ucunu izler (cs 1.8) → f52-100 iniş noktasına push-in cs 2.2 (ikon ≈110 px) → geri 1.8 → son: yakın (iğne Tours'a batar)",
    "tempo": "hizli",
-   "kamera": {"kare": [0,6,12,18,24,30,36,42,48,54,60,66,72,78,84,90,96,102,108,114,120,126,132,138,144,150,209], "cs": [1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.867,2.067,2.267,2.4,2.4,2.4,2.4,2.4,2.35,2.2,2.05,1.9,1.8,1.8,1.8,1.8,1.8,1.8], "cx": [-210,-211,-215,-225,-246,-280,-330,-391,-435,-478,-540,-595,-628,-629,-625,-611,-577,-506,-389,-247,-135,-68,-30,-10,-2,-1,-1], "cy": [502,502,502,501,499,496,492,487,483,501,559,618,658,658,656,649,632,588,501,403,319,267,248,238,234,234,234], "egri": "lineer", "not": "H2: kamera_takip yerine elle rota ucu takibi (ekran 460,900); f52-70 push-in 1.8→2.4 iniş noktasına, f70-100 tut, f100-124 geri 1.8; iniş ikonu 90×2.4/1.8=120 px ekranda"},
+   "kamera": {
+    "kare": [
+     0,
+     6,
+     12,
+     18,
+     24,
+     30,
+     36,
+     42,
+     48,
+     54,
+     60,
+     66,
+     72,
+     78,
+     84,
+     90,
+     96,
+     102,
+     108,
+     114,
+     120,
+     126,
+     132,
+     138,
+     144,
+     150,
+     209
+    ],
+    "cs": [
+     1.8,
+     1.8,
+     1.8,
+     1.8,
+     1.8,
+     1.8,
+     1.8,
+     1.8,
+     1.8,
+     1.845,
+     1.978,
+     2.111,
+     2.2,
+     2.2,
+     2.2,
+     2.2,
+     2.2,
+     2.167,
+     2.067,
+     1.967,
+     1.867,
+     1.8,
+     1.8,
+     1.8,
+     1.8,
+     1.8,
+     1.8
+    ],
+    "cx": [
+     -210,
+     -211,
+     -215,
+     -225,
+     -246,
+     -280,
+     -330,
+     -391,
+     -435,
+     -445,
+     -407,
+     -363,
+     -330,
+     -331,
+     -327,
+     -313,
+     -279,
+     -233,
+     -190,
+     -123,
+     -85,
+     -68,
+     -30,
+     -10,
+     -2,
+     -1,
+     -1
+    ],
+    "cy": [
+     502,
+     502,
+     502,
+     501,
+     499,
+     496,
+     492,
+     487,
+     483,
+     494,
+     532,
+     571,
+     598,
+     598,
+     596,
+     589,
+     572,
+     533,
+     461,
+     378,
+     309,
+     267,
+     248,
+     238,
+     234,
+     234,
+     234
+    ],
+    "egri": "lineer",
+    "not": "H2: kamera_takip yerine elle rota ucu takibi (ekran 460,900); f52-70 push-in 1.8→2.4 iniş noktasına, f70-100 tut, f100-124 geri 1.8; iniş ikonu 90×2.4/1.8=120 px ekranda · son ayar: tepe cs 2.4→2.2, tepe cx -330/cy 598 (Paris halkası + iniş ikonu birlikte kadrajda; iniş ikonu 90×2.2/1.8=110 px)"
+   },
    "ekran_yazisi": [
     {
      "bant": "ust",
@@ -2442,8 +2708,18 @@
    "kontrol_kare_ek": [
     164
    ],
-   "hareket_seridi": [{"bas": 50, "bit": 92, "adim": 4, "not": "iniş + yatık sepet"}],
-   "lint": {"izin": [], "not": "harita turu render edildi (kalibrasyon/H, motion 2026-11-14)"},
+   "hareket_seridi": [
+    {
+     "bas": 50,
+     "bit": 92,
+     "adim": 4,
+     "not": "iniş + yatık sepet"
+    }
+   ],
+   "lint": {
+    "izin": [],
+    "not": "harita turu render edildi (kalibrasyon/H, motion 2026-11-14)"
+   },
    "alt_ucte_bir": "harita: Fransa merkezi/güneybatı, kesikli kaçış çizgisi ve Tours işareti (y 1250-1500)",
    "kit_eksik": [
     "KE-PK-H4",
@@ -2838,8 +3114,15 @@
        "sure_kare": 50,
        "cikis_kare": 262,
        "kapanis_kare": 4,
-       "zarf_gorunur": { "bas": 200, "bit": 262, "kare": 62, "not": "memur-3 ilk kopyanın zarfını f200'de masadan alır (önceden hazır), elde taşır; ≥1 sn (60 kare) görünür; f266 kapı kesmesinde aynı zarf memur elinde (f272 zarf_verilir) — süreklilik" },
-       "yazar_haric": [3],
+       "zarf_gorunur": {
+        "bas": 200,
+        "bit": 262,
+        "kare": 62,
+        "not": "memur-3 ilk kopyanın zarfını f200'de masadan alır (önceden hazır), elde taşır; ≥1 sn (60 kare) görünür; f266 kapı kesmesinde aynı zarf memur elinde (f272 zarf_verilir) — süreklilik"
+       },
+       "yazar_haric": [
+        3
+       ],
        "kit_eksik": "KE-PK-O1: LanternOda memur-3 kalkışı kodda sabit baş tepesi y 973 (ayakta dik) ve zarf çizilmiyor; json yalnız süreyi/hedefi taşır. Motion: tepe_y_hedef + egim_derece okunsun, omuz/kol ve zarf çizilsin"
       },
       "yazar_not": "eller kadrajda değil; baş eğimi + omuz ritmi, her memur farklı faz (3–4 omuz vuruşu)"
@@ -3285,16 +3568,107 @@
      "yaricap": 430,
      "kalici": true
     },
-    "tel_kopuk": true, "kalabalik_hazir": {"sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu düzeni f0'da ayakta (sur içi, merkezde kümes/yığın boşluğu); motion H2: negatif kare hilesi kaldırıldı"},
-    "kumes_ikon": {"konum": [560, 930], "not": "f0'da hazır (P10→P11 çıplak kesme: halka + 40 siluet + kümes; P03/P04 iz, ok, yığın taşınmaz)"},
+    "tel_kopuk": true,
+    "kalabalik_hazir": {
+     "sayi": 40,
+     "boy_px": [
+      60,
+      90
+     ],
+     "bant_r": [
+      45,
+      150
+     ],
+     "not": "P02 sonu düzeni f0'da ayakta (sur içi, merkezde kümes/yığın boşluğu); motion H2: negatif kare hilesi kaldırıldı"
+    },
+    "kumes_ikon": {
+     "konum": [
+      560,
+      930
+     ],
+     "not": "f0'da hazır (P10→P11 çıplak kesme: halka + 40 siluet + kümes; P03/P04 iz, ok, yığın taşınmaz)"
+    },
     "kus_cizgileri": {
      "sayi": 12,
-     "baslangic_dekor": [[-20, 420], [-20, 520], [-20, 640], [-20, 760], [-20, 880], [-20, 1000], [-20, 1120], [-20, 1240], [-20, 1360], [160, 1600], [330, 1600], [520, 1600]],
-     "t_dur": [0.34, 0.32, 0.38, null, 0.41, 0.29, null, 0.36, 0.28, 0.47, null, 0.30],
-     "dur_kare": [30, 96],
+     "baslangic_dekor": [
+      [
+       -20,
+       420
+      ],
+      [
+       -20,
+       520
+      ],
+      [
+       -20,
+       640
+      ],
+      [
+       -20,
+       760
+      ],
+      [
+       -20,
+       880
+      ],
+      [
+       -20,
+       1000
+      ],
+      [
+       -20,
+       1120
+      ],
+      [
+       -20,
+       1240
+      ],
+      [
+       -20,
+       1360
+      ],
+      [
+       160,
+       1600
+      ],
+      [
+       330,
+       1600
+      ],
+      [
+       520,
+       1600
+      ]
+     ],
+     "t_dur": [
+      0.34,
+      0.32,
+      0.38,
+      null,
+      0.41,
+      0.29,
+      null,
+      0.36,
+      0.28,
+      0.47,
+      null,
+      0.3
+     ],
+     "dur_kare": [
+      30,
+      96
+     ],
      "ikon_px": 90,
-     "varan_no": [4, 7, 11],
-     "varis_kare": {"7": 62, "11": 84, "4": 108},
+     "varan_no": [
+      4,
+      7,
+      11
+     ],
+     "varis_kare": {
+      "7": 62,
+      "11": 84,
+      "4": 108
+     },
      "son_varan": 4,
      "son_varan_not": "#4 batıdan soldan sağa, f108 → P11B kuşu soldan iner (yön eşleşmesi)",
      "bas": 0,
@@ -3311,9 +3685,18 @@
      "bas": 112,
      "bit": 166,
      "adet": 38,
-     "serit_px": [30, 15],
-     "yigin_merkez": [600, 985],
-     "yigin_px": [110, 56],
+     "serit_px": [
+      30,
+      15
+     ],
+     "yigin_merkez": [
+      600,
+      985
+     ],
+     "yigin_px": [
+      110,
+      56
+     ],
      "ilk_inis": 130,
      "son_firlatma": 150,
      "son_inis": 166,
@@ -3493,15 +3876,60 @@
     }
    },
    "temaslar": [
-    {"kare": 60, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
-    {"kare": 62, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
-    {"kare": 64, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
-    {"kare": 69, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
-    {"kare": 73, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
-    {"kare": 78, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
-    {"kare": 82, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
-    {"kare": 89, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
-    {"kare": 103, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
+    {
+     "kare": 60,
+     "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer",
+     "ses": "pk-kagit-tik",
+     "db": -20
+    },
+    {
+     "kare": 62,
+     "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer",
+     "ses": "pk-kagit-tik",
+     "db": -20
+    },
+    {
+     "kare": 64,
+     "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer",
+     "ses": "pk-kagit-tik",
+     "db": -20
+    },
+    {
+     "kare": 69,
+     "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer",
+     "ses": "pk-kagit-tik",
+     "db": -20
+    },
+    {
+     "kare": 73,
+     "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer",
+     "ses": "pk-kagit-tik",
+     "db": -20
+    },
+    {
+     "kare": 78,
+     "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer",
+     "ses": "pk-kagit-tik",
+     "db": -20
+    },
+    {
+     "kare": 82,
+     "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer",
+     "ses": "pk-kagit-tik",
+     "db": -20
+    },
+    {
+     "kare": 89,
+     "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer",
+     "ses": "pk-kagit-tik",
+     "db": -20
+    },
+    {
+     "kare": 103,
+     "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer",
+     "ses": "pk-kagit-tik",
+     "db": -20
+    },
     {
      "kare": 130,
      "olay": "film şeritleri Paris'e düşer (kısık)",
@@ -3532,13 +3960,20 @@
     "kapanışta kısık ortam"
    ],
    "muzik_notu": "Hüzünlü alçak 'Çoğu kuş dönemedi'; 'Ama'da sıcak çözülme, kuyruk yakınında P01 teması döner; son nota P01'in girişine akar (döngüde kesilmez).",
-   "kontrol_kare": 100,
+   "kontrol_kare": 170,
    "kontrol_kare_ek": [
     150,
     190,
     270
    ],
-   "hareket_seridi": [{"bas": 20, "bit": 110, "adim": 4, "not": "kuş çizgileri, duruş/emilme, varış"}],
+   "hareket_seridi": [
+    {
+     "bas": 20,
+     "bit": 110,
+     "adim": 4,
+     "not": "kuş çizgileri, duruş/emilme, varış"
+    }
+   ],
    "alt_ucte_bir": "A: halka alt yayı + Fransa parşömeni, düşen şeritler/yığın; B: kümes tünek tahtası + kuş gövdesi ve kuyruk (y 1250-1500)",
    "kit_eksik": [
     "KE-PK-S1",
