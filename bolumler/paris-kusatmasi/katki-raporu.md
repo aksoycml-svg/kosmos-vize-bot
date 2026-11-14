@@ -1647,3 +1647,42 @@
   - Küçük not: ilk render'ın log yönlendirmesini `/tmp/claude-0/...` altına yaptım; oturum scratchpad'ini kullanmalıydım. Log içeriği `out/paris/render.log`da zaten var.
   - P07 şeridi: "her 4 karede bir 12 kare" talimatı, 12 kare × 4 kare aralıkla yalnız 33.40–34.13 sn'yi kapsıyor (talimatta 33.4–35.6 sn aralığı yazıyordu). Literal uygulandı; 35.6 sn'ye kadar tam kapsam için 33 kare (3 sayfa veya 6x6 şerit) gerekir. Açık soru: kapsam istenirse hangisi?
 - Açık: Mixte EN −14.3 LUFS (sınırda) — kullanıcı dinlemesi için not. P07'nin titreme düzeltmesinin doğruluğu bu teknisyen turunda görsel olarak değerlendirilmedi; eleştirmen kontrolüne bırakıldı.
+
+## teknisyen · 2026-11-14 · Paris kuşatması Premiere paketi (tur-19, kullanıcı onaylı)
+- Ne yaptım / çalıştırdığım komutlar:
+  - Girdi kontrolü: gorsel.mov (ProRes 422, 3493 kare, 60 fps), yazi_{tr,en}.mov (ProRes 4444 alfa, 3493 kare), paris-{tr,en}.mp4 (3493 kare, 58,217 sn), miks/tr.wav, en.wav ve stem'ler (4 kanal) mevcut; miks yeniden üretilmedi (değerler değişmedi).
+  - Klipler: `ffmpeg -ss <b/60> -i gorsel.mov -frames:v <n> -c:v copy -an` ile 11 plan, yeniden kodlama yok (ProRes her kare anahtar kare, kesim kare-kesin).
+  - Doğrulama: kaynağın framemd5 listesi ile her klibin kare karmaları sıra sıra karşılaştırıldı: 11/11 plan eşleşti, toplam 3493 kare.
+  - Yazı katmanları: yazi_{tr,en}.mov, -c copy ile yazi/ altına (3493 kare, alfa korunur). Final mp4'ler final/ altına kopyalandı.
+  - Ses: 4 stem + final miks, 44,1 kHz'den 48 kHz / 24 bit stereo'ya `ffmpeg -ar 48000 -c:a pcm_s24le` ile çevrildi (ses/tr, ses/en).
+  - `tools/premiere_paket.py`: Blanc davranışını bozmayan üç isteğe bağlı bayrak eklendi: `--klip-uzanti` (varsayılan mp4), `--srt-ad` (verilirse tek anlatım SRT; 42 karakter/satır, en çok 2 satır, cümle sonunda bölünür). Regresyon: Blanc bolum.json ile orijinal ve yamalı betik çıktıları birebir aynı (diff boş).
+  - Paris paketleri: `python3 -I tools/premiere_paket.py bolumler/paris-kusatmasi/bolum.json public out/paris/premiere paris-{tr,en}.xml "Paris Kusatmasi {TR,EN}" --dil {tr,en} --ses-anahtar {ses,ses_en} --katmanlar anlatim,foley,muzik,ortam --yazi-katmani yazi/yazi-{tr,en}.mov --ses-klasor ses/{tr,en} --klip-klasor klipler --klip-uzanti mov --srt-ad paris-{tr,en}.srt`
+  - XML kontrolü: python xml.etree ile parse edildi (geçerli); sekans 3493 kare, 60 fps, 1080x1920; V1 11 klip, start/end değerleri bolum.json plan sınırlarıyla birebir; V2 yazı klibi 0–3493; 8 ses kanalı (A1–A4, stereo).
+  - SRT: TR 21, EN 20 cue; en uzun satır 42 karakter, hiçbir cue 3 satır değil.
+  - BENIOKU.txt: içerik, klasör yapısı, Premiere açılışı, ses notu, Chopin Op. 9 No. 2 (Musopen, CC0) atfı, ElevenLabs ses/foley notu, açıklama metni senaryo.md'den birebir (tarih aralığı eklenmedi; "Ocak 1871" gibi kaynaksız ifade çıkarıldı).
+  - Zip: `out/paris/paris-premiere.zip` (3,0 GB, 37 girdi, zip testi temiz).
+  - Git'e giren kopyalar: `bolumler/paris-kusatmasi/premiere/` (paris-tr.xml, paris-en.xml, paris-tr.srt, paris-en.srt, BENIOKU.txt). Git komutu çalıştırılmadı.
+- Üretilen dosyalar:
+  - out/paris/premiere/klipler/P01.mov … P11.mov (11 dosya, ProRes 422, toplam ~1,7 GB)
+  - out/paris/premiere/yazi/yazi-tr.mov, yazi-en.mov (ProRes 4444 alfa, ~0,7 GB her biri)
+  - out/paris/premiere/ses/tr/{anlatim,foley,muzik,ortam,final-miks}.wav ve ses/en/ aynısı (48 kHz, 24 bit stereo, her biri ~16,7 MB)
+  - out/paris/premiere/final/paris-tr.mp4, paris-en.mp4 (onaylı finaller, 58,217 sn)
+  - out/paris/premiere/paris-tr.xml, paris-en.xml, paris-tr.srt, paris-en.srt, BENIOKU.txt
+  - out/paris/paris-premiere.zip (3,0 GB)
+  - Dalga formu görüntüleri: out/paris/_kontrol/dalga-final-tr.png, dalga-final-en.png, dalga-anlatim-tr.png
+  - Repoya kopyalar: bolumler/paris-kusatmasi/premiere/ (XML, SRT, BENIOKU)
+- Hatalar ve çözümler:
+  - Kontrol 1 (kanal toplamı ≈ final, fark < 0,5 LU) GEÇMEDİ. Ölçüm: TR toplam −18,0 LUFS, final −14,0 LUFS (fark 4,0 LU); EN toplam −18,2, final −14,3 (3,9 LU). Neden (ölçüldü, miks değiştirilmedi): final, stem toplamının sabit kazançlı ve sınırlanmış hali. Çapraz korelasyon 0,997 (TR) ve 0,981 (EN); kazanç +4,04 dB (TR) ve +3,86 dB (EN); final 5 ms (240 örnek) geç. EN'de toplam ham haliyle 0 dBFS üstüne 578 örnek çıkıyor, final ise −1,95 dBTP'de sınırlanmış. Yani Premiere'de stem'leri ana kanalda +4 dB ile toplamak final ile aynı sonucu vermez (sınırlayıcı yok, EN'de kırpma riski). Karar gerekli (aşağıda).
+  - Kendi kontrol betiklerimde üç hata yaptım (sekans/track yolu ve değişken adı); düzeltilip yeniden çalıştırıldı, pakete etkisi yok.
+  - premiere_paket.py Blanc'a özgü yollar taşıyor (public/blanc/…, bolum.json'daki replik alanları); Paris için bayrakla çağrıldı, Blanc kodu değiştirilmedi.
+  - SRT satır sınırı: orijinal gruplama 42 karakteri koruyamıyordu (grup üst sınırı ~58 karakter); --srt-ad yolunda satırlara bölme ve cümle sonu kırılımı eklendi.
+  - Premiere bağıl pathurl (klipler/…, ses/…) kullanıyor; Blanc'ta da aynı yöntem kullanıldı. Premiere'de linkler kopuk görünürse File > Import sonrası Link Media ile paketin klasörü gösterilmeli. Premiere ile açıp test edilmedi (bu ortamda yok).
+
+## Ses kenarı ve dalga formu kontrolü
+- ses_kenar kontrol (`python3 -I tools/ses_kenar.py kontrol public/paris/ses/{tr,en}/P*.mp3`): 22/22 klip TEMİZ (CIT yok, KESIK yok). Yeniden üretim gerekmedi.
+- Dalga formu (`ffmpeg -lavfi showwavespic`): final TR ve EN sürekli, ani kesik ya da sıçrama yok; anlatım stem'i net konuşma parçaları ve boşluklar gösteriyor. Görüntüler: out/paris/_kontrol/dalga-final-tr.png, dalga-final-en.png, dalga-anlatim-tr.png.
+- Loudnorm eşitlemesi (anlatım −18 / replik −19) uygulanmadı: miks değerleri değiştirilmedi (kullanıcı onaylı final −14 LUFS). Karar sahibi için not yazıldı.
+- Kulakla bakılacak saniyeler: 6,4 · 12,3 · 17,9 · 22,3 · 28,5 · 33,3 · 38,9 · 46,0 · 52,7 sn (plan geçişleri; müzik/foley'in kesilmeden geçtiğine bak). EN finalde ~17 sn civarında tek ayrı tepe var (dalga formunda görünüyor): tık mı, foley mi, bak.
+- Açık kararlar (kullanıcı/orkestra):
+  1. Premiere ana kanal kazancı: final ile aynı seviye için +4 dB ve sınırlayıcı (−2 dBTP) mi, yoksa referans olarak final-miks.wav mı? Miks değiştirilmedi.
+  2. EN finalin −14,3 LUFS olması (sınırda, log'da belirtilmişti) kabul mü?

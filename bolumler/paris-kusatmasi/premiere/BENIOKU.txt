@@ -1,0 +1,48 @@
+PARİS KUŞATMASI — PREMIERE PAKETİ (TR ve EN)
+==============================================
+
+İÇERİK
+- Konu: Eylül 1870'te Prusya kuşatmasında Paris'in mektupları balonla çıktı, güvercinle girdi. Fotoğrafçı René Dagron'un mektup sayfalarını filme küçültme yöntemi.
+- Süre: 58,2 sn (3493 kare, 60 fps). Biçim: 1080 x 1920 (9:16). 11 plan.
+- Diller: TR (paris-tr.*) ve EN (paris-en.*). Görüntü iki dil için ortaktır; yalnız yazı katmanı, ses ve altyazı dile göre değişir.
+
+KLASÖR YAPISI (hepsi birlikte kalmalı; XML bağıl yol kullanır)
+  paris-tr.xml / paris-en.xml   Premiere sekans dosyaları (FCP7 XML)
+  paris-tr.srt / paris-en.srt   Anlatım altyazısı (42 karakter/satır, en çok 2 satır)
+  klipler/P01.mov … P11.mov     Yazısız görüntü sahne klipleri (ProRes 422, kare-kesin)
+  yazi/yazi-tr.mov, yazi-en.mov Ekran yazıları, harita etiketleri (ProRes 4444, şeffaf)
+  ses/tr/ ve ses/en/            anlatim.wav, foley.wav, muzik.wav, ortam.wav (48 kHz, 24 bit, stereo)
+                                final-miks.wav (onaylı final ses, referans)
+  final/paris-tr.mp4, paris-en.mp4   Onaylı final (karşılaştırma ve teslim için)
+
+NASIL AÇILIR (Premiere Pro)
+1. File > Import, paris-tr.xml (ya da paris-en.xml) dosyasını seçin. Sekans otomatik oluşur (60 fps, 1080x1920).
+2. Zaman çizelgesi: V1 = sahne klipleri, V2 = yazı katmanı (şeffaf, görüntünün üstünde), A1 Anlatım, A2 Foley, A3 Müzik, A4 Ortam (her biri stereo).
+3. Altyazı: File > Import ile paris-tr.srt'yi ekleyin (Captions olarak).
+4. Dil değiştirmek için: aynı sekansta V2 yazı klibini ve A1 anlatım kanalını ilgili dilin dosyasıyla değiştirin; görüntü aynı kalır.
+5. Ses seviyesi: Premiere'de kanalları tek tek toplamak final miksle birebir aynı loudness'ı vermez (aşağıdaki Ses notu). Teslim ve karşılaştırma için final/ klasöründeki mp4 ya da ses/ klasöründeki final-miks.wav referanstır.
+
+SES NOTU
+- Dört kanalın (anlatım, foley, müzik, ortam) ham toplamı final miksten yaklaşık 4 dB düşük ölçülür (final: −14 LUFS). Final miks, toplamın üstüne ana kazanç ve sınırlayıcı uygulanarak çıkarıldı; Premiere'de bu ana kanal işlemi birebir yapılmaz.
+- Ses kaynağı ses dosyaları 44,1 kHz'den 48 kHz'e çevrildi; miks değerleri değiştirilmedi.
+
+MÜZİK VE ATIF
+- Müzik: Frédéric Chopin, Nocturne in E-flat major, Op. 9 No. 2 (1830–32). Eser kamu malıdır.
+- Kayıt: Musopen "The Complete Chopin Collection" (piyano), Internet Archive.
+- Lisans: CC0 1.0 / Public Domain Dedication. Atıf zorunlu değildir.
+- Kaynak: https://archive.org/details/musopen-chopin
+- Kullanım: 58 sn'ye kesilip düzenlendi (ses/muzik.wav içinde).
+- Atıf (isteğe bağlı): "Müzik: Chopin, Nocturne Op. 9 no. 2 (kamu malı, CC0 kayıt, Musopen/Internet Archive)"
+
+SES VE FOLEY
+- Anlatım seslendirmesi yapay zekâ ile üretildi (ElevenLabs, TR ve EN).
+- Foley ve ortam sesleri ElevenLabs Sound Generation ile üretildi veya proje arşivinden yeniden kullanıldı; ticari kullanıma uygundur, atıf gerekmez.
+
+AÇIKLAMA METNİ (paylaşım için)
+Eylül 1870'te Prusya orduları Paris'i kuşattı ve telgrafı kesti; iki milyon kadar insan dünyadan koptu. Mektuplar balonla çıkıyordu ama balonlar rüzgârla gidip geri dönemiyordu. Cevaplar içeri güvercinle girdi: güvercinler balonla uzağa götürülüyor, bırakılınca kümeslerine dönüyordu. Kuş çok az yük taşıyabildiği için fotoğrafçı René Dagron, mektup sayfalarını parmak boyunda filme küçülttü; film kuyruk tüyüne bağlandı, Paris'te perdeye yansıtılıp kopyalandı. Dagron'un yöntemini uygulamak için Paris'ten balonla çıkması gerekti. Anlatılana göre 12 Kasım 1870 sabahı kalkan başka bir balon vuruldu; Dagron'un balonu kum torbalarını atıp yükseldi, Prusya bölgesine inen Dagron kaçarak 21 Kasım'da Tours'a vardı. Bu çıkışın ayrıntıları ağırlıkla Dagron'un kendi anlatımına dayanır. Rakamlar kaynaktan kaynağa değişir: ulaşan mesaj sayısı kaynağa göre yaklaşık 60 binle 150 bin arasındadır; balon sayısı yaklaşık 66'dır; kuşatma süresi kaynağa göre dört ay ile dört buçuk ay arasındadır; Paris nüfusu yaklaşık değerdir. Sahneler ve jestler dramatizasyondur. Seslendirme yapay zekâ ile yapıldı. Kaynaklar: Smithsonian Air & Space, Fransız Savunma Bakanlığı "Chemins de mémoire", UCLA "Pigeon Post into Paris" sergisi, Mike Dash (Smithsonian blog).
+
+SES KANALLARI VE FİNAL SEVİYE (orkestra notu)
+- ses/<dil>/ içindeki anlatım, foley, müzik ve ortam kanalları master öncesi seviyededir; toplamları finalden ~4 LU kısıktır.
+- Premiere'de finalle aynı sesi almak için: master (Mix) kanalına +4 dB kazanç ve tepe sınırlayıcı (Hard Limiter, tavan −1.5 dBTP) koyun. Hedef: −14 LUFS.
+- Ya da referans/teslim için doğrudan final-miks.wav kullanın (onaylı miks; EN −14.3 LUFS, hedef aralıkta).
+- Final, kanal toplamından ~5 ms geç; yalnız kanallarla çalışırken önemsizdir, final-miks.wav ile kanalları üst üste koymayın.

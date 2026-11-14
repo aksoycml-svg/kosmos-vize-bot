@@ -23,6 +23,8 @@ SES_ANAHTAR = OPT.get("ses-anahtar", "ses_en" if DIL == "en" else "ses")
 SES_KLASOR = OPT.get("ses-klasor", "ses")
 KLIP_KLASOR = OPT.get("klip-klasor", "klipler")
 YAZI_KATMANI = OPT.get("yazi-katmani")
+KLIP_UZANTI = OPT.get("klip-uzanti", "mp4")  # Paris: mov (ProRes)
+SRT_AD = OPT.get("srt-ad")  # verilirse: tek anlatım SRT (42 karakter/satır, 2 satır, cümle başına)
 bolum_yol, public, cikti = sys.argv[1], sys.argv[2], sys.argv[3]
 xml_ad = sys.argv[4] if len(sys.argv) > 4 else "blanc-v41.xml"
 seq_ad = sys.argv[5] if len(sys.argv) > 5 else "Blanc Kardesler v4.1"
@@ -34,6 +36,43 @@ TOPLAM = sum(p["sure_kare"] for p in planlar)
 def tc(frame):
     ms = round(frame * 1000 / FPS)
     return "%02d:%02d:%02d,%03d" % (ms // 3600000, ms // 60000 % 60, ms // 1000 % 60, ms % 1000)
+
+
+def satirlara(metin, satir=42):
+    """Metni en fazla `satir` karakterlik satırlara böl (kelime sınırında)."""
+    satirlar, cur = [], ""
+    for w in metin.split(" "):
+        dene = (cur + " " + w).strip()
+        if len(dene) <= satir or not cur:
+            cur = dene
+        else:
+            satirlar.append(cur); cur = w
+    if cur:
+        satirlar.append(cur)
+    return satirlar
+
+
+def kumeler_paris(kelimeler, satir=42):
+    """Paris SRT: cümle sonunda böl; grup 2 satırı (2x42 karakter) aşarsa virgülde ya da ortadan böl."""
+    gruplar, cur = [], []
+    for w in kelimeler:
+        cur.append(w)
+        if re.search(r"[.?!…]$", w["t"]) and w is not kelimeler[-1]:
+            gruplar.append(cur); cur = []
+    if cur:
+        gruplar.append(cur)
+    def parcala(g):
+        metin = " ".join(x["t"] for x in g)
+        if len(g) <= 1 or len(satirlara(metin, satir)) <= 2:
+            return [g]
+        n = len(g)
+        adaylar = [i for i in range(1, n) if re.search(r"[,;:]$", g[i - 1]["t"])]
+        i = min(adaylar, key=lambda k: abs(k - n // 2)) if adaylar else n // 2
+        return parcala(g[:i]) + parcala(g[i:])
+    out = []
+    for g in gruplar:
+        out += parcala(g)
+    return out
 
 
 def srt_yaz(yol, kayitlar):
@@ -82,10 +121,12 @@ for p in planlar:
             # dosya adı konuşmacı adıyla eşleşmiyorsa (EN: P10-memur ↔ OPERATOR) ve planda tek replik varsa o
             if kim is None and len(replikler) == 1:
                 kim = next(iter(replikler))
-        for g in kumeler(j["words"]):
+        for g in (kumeler_paris(j["words"]) if SRT_AD else kumeler(j["words"])):
             b = bas + s["kare"] + round(g[0]["s"] * FPS)
             e = min(son, bas + s["kare"] + round(g[-1]["e"] * FPS) + 6)  # 0.1 sn tutuş, plan sonunda kesilir
             t = " ".join(x["t"] for x in g)
+            if SRT_AD:
+                t = "\n".join(satirlara(t))
             ses_kayit.append((b, e, ("%s: %s" % (kim, t)) if kim else t))
     for y in p.get("ekran_yazisi") or []:
         yazi_kayit.append((bas + y["bas"], bas + y["bit"], (y.get("en") or y["metin"]) if DIL == "en" else y["metin"]))
@@ -101,10 +142,15 @@ def temizle(k):
             k[i] = (k[i][0], k[i + 1][0], k[i][2])
     return k
 
-os.makedirs(os.path.join(cikti, "altyazi"), exist_ok=True)
-n1 = srt_yaz(os.path.join(cikti, "altyazi", "anlatim-replik.srt"), temizle(ses_kayit))
-n2 = srt_yaz(os.path.join(cikti, "altyazi", "ekran-yazilari.srt"), temizle(yazi_kayit))
-print("SRT:", n1, "anlatim/replik,", n2, "ekran yazisi")
+if SRT_AD:
+    os.makedirs(cikti, exist_ok=True)
+    n1 = srt_yaz(os.path.join(cikti, SRT_AD), temizle(ses_kayit))
+    print("SRT:", n1, "anlatim ->", SRT_AD)
+else:
+    os.makedirs(os.path.join(cikti, "altyazi"), exist_ok=True)
+    n1 = srt_yaz(os.path.join(cikti, "altyazi", "anlatim-replik.srt"), temizle(ses_kayit))
+    n2 = srt_yaz(os.path.join(cikti, "altyazi", "ekran-yazilari.srt"), temizle(yazi_kayit))
+    print("SRT:", n1, "anlatim/replik,", n2, "ekran yazisi")
 
 # ---- FCP7 xmeml ----
 W, H = 1080, 1920
@@ -125,7 +171,7 @@ for p in planlar:
     x.append(
         "<clipitem id=\"clipitem-v-%s\"><masterclipid>masterclip-v-%s</masterclipid><name>%s</name><enabled>TRUE</enabled><duration>%d</duration>%s<start>%d</start><end>%d</end><in>0</in><out>%d</out>%s"
         "<compositemode>normal</compositemode></clipitem>" % (pid, pid, pid, n, rate, b, b + n, n,
-            vfile_sablon.format(id="file-v-" + pid, ad=pid + ".mp4", yol="%s/%s.mp4" % (KLIP_KLASOR, pid), n=n))
+            vfile_sablon.format(id="file-v-" + pid, ad=pid + "." + KLIP_UZANTI, yol="%s/%s.%s" % (KLIP_KLASOR, pid, KLIP_UZANTI), n=n))
     )
 x.append("<enabled>TRUE</enabled><locked>FALSE</locked></track>")
 if YAZI_KATMANI:
