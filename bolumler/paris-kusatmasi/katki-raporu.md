@@ -1464,3 +1464,10 @@
      - P06b f232–240'ta diz göğüs/omuz hizasında. Baş hizasından indi ama bacak hâlâ koyu kütleye yakın, açık kontur eklenmedi.
      - P02'deki bastırma (10 px V) telefonda ince kalabilir.
   4. Öz puan 7. En zayıf yerler P11 sol kenar kalabalığı ve P06b bacak kütlesi.
+
+## yönetmen · 2026-11-14 · P11 kuş çizgisi güvenli alan + kâğıt-tik teması (motion H2 notu)
+- Ne yaptım: P11 `kus_cizgileri.t_dur` düzeltildi: [0.18,0.32,0.25,null,0.41,0.22,null,0.36,0.28,0.47,null,0.30] → [0.34,0.32,0.38,null,0.41,0.29,null,0.36,0.28,0.47,null,0.30]. Hepsi ≥0.28 (x ≥ ~142, ikon yarısı dahil sol bant 80 px içinde). Düşme kareleri (f≈227t−4, orkestra aralığı f37–103 ile uyumlu) benzersiz: P11 f60,62,64,69,73,78,82,89,103. 9 temas hem plan içi `temaslar`a hem `temaslar.json`a (mutlak = 3160+f) `pk-kagit-tik`, db −20 olarak eklendi. `foley.json`: `pk-kagit-tik` (public/paris/sfx/pk-kagit-tik.mp3, tepe/süre yok, onerilen_db −20).
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/bolum.json, temaslar.json, foley.json, kalibrasyon/H2/yonetmen/P11-f150.png, katki-raporu.md
+- Kararlar: dar kümelenen kareler (iki kuş aynı kare) ayrışsın diye 0.18→0.34, 0.25→0.38 (yalnız ≥0.28 koşulunu sağlamak yetmiyordu, 3 çift kare çakışıyordu).
+- Kurallar: kural 7 (P11 f150 render edildi, kuş çizgileri güvenli alanda okunuyor), kural 6 (doğrulayıcı --tam: 0 hata, 2 uyarı = ses dosyası ve tepe_ms eksik, beklenen). Temas = ses.
+- Açık: kurgucu `pk-kagit-tik.mp3` üretip tepe_ms/sure_ms'i foley.json'a ölçüp yazacak. Kareler f≈227t−4 formülüne dayanır; Guvercin çizim koduyla birebir f ölçülmedi, kontrol: P11 f60–103 şeridi.

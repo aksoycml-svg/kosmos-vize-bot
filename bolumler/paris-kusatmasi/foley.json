@@ -345,5 +345,10 @@
   "tepe_dbfs": -18.600000381469727,
   "kaynak": "yeniden-kullanim (proje arşivi, ElevenLabs SFX Creator plan)",
   "onerilen_db": -11
+ },
+ "pk-kagit-tik": {
+  "dosya": "paris/sfx/pk-kagit-tik.mp3",
+  "kaynak": "kurgucu üretecek (kısa kâğıda damla/tık); tepe_ms ve sure_ms ölçülüp doldurulacak",
+  "onerilen_db": -20
  }
 }

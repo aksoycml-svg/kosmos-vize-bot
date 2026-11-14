@@ -387,6 +387,78 @@
     },
     {
       "plan": "P11",
+      "kare": 3220,
+      "sn": 53.667,
+      "olay": "güvercin çizgisi #9 yolda biter, divit damlası kâğıda düşer (P11 f60)",
+      "ses": "pk-kagit-tik",
+      "db": -20
+    },
+    {
+      "plan": "P11",
+      "kare": 3222,
+      "sn": 53.7,
+      "olay": "güvercin çizgisi #6 yolda biter, divit damlası kâğıda düşer (P11 f62)",
+      "ses": "pk-kagit-tik",
+      "db": -20
+    },
+    {
+      "plan": "P11",
+      "kare": 3224,
+      "sn": 53.733,
+      "olay": "güvercin çizgisi #12 yolda biter, divit damlası kâğıda düşer (P11 f64)",
+      "ses": "pk-kagit-tik",
+      "db": -20
+    },
+    {
+      "plan": "P11",
+      "kare": 3229,
+      "sn": 53.817,
+      "olay": "güvercin çizgisi #2 yolda biter, divit damlası kâğıda düşer (P11 f69)",
+      "ses": "pk-kagit-tik",
+      "db": -20
+    },
+    {
+      "plan": "P11",
+      "kare": 3233,
+      "sn": 53.883,
+      "olay": "güvercin çizgisi #1 yolda biter, divit damlası kâğıda düşer (P11 f73)",
+      "ses": "pk-kagit-tik",
+      "db": -20
+    },
+    {
+      "plan": "P11",
+      "kare": 3238,
+      "sn": 53.967,
+      "olay": "güvercin çizgisi #8 yolda biter, divit damlası kâğıda düşer (P11 f78)",
+      "ses": "pk-kagit-tik",
+      "db": -20
+    },
+    {
+      "plan": "P11",
+      "kare": 3242,
+      "sn": 54.033,
+      "olay": "güvercin çizgisi #3 yolda biter, divit damlası kâğıda düşer (P11 f82)",
+      "ses": "pk-kagit-tik",
+      "db": -20
+    },
+    {
+      "plan": "P11",
+      "kare": 3249,
+      "sn": 54.15,
+      "olay": "güvercin çizgisi #5 yolda biter, divit damlası kâğıda düşer (P11 f89)",
+      "ses": "pk-kagit-tik",
+      "db": -20
+    },
+    {
+      "plan": "P11",
+      "kare": 3263,
+      "sn": 54.383,
+      "olay": "güvercin çizgisi #10 yolda biter, divit damlası kâğıda düşer (P11 f103)",
+      "ses": "pk-kagit-tik",
+      "db": -20
+    },
+    {
+      "plan": "P11",
       "kare": 3290,
       "sn": 54.833,
       "olay": "film şeritleri Paris'e düşer (kısık)",

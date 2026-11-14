@@ -3290,7 +3290,7 @@
     "kus_cizgileri": {
      "sayi": 12,
      "baslangic_dekor": [[-20, 420], [-20, 520], [-20, 640], [-20, 760], [-20, 880], [-20, 1000], [-20, 1120], [-20, 1240], [-20, 1360], [160, 1600], [330, 1600], [520, 1600]],
-     "t_dur": [0.18, 0.32, 0.25, null, 0.41, 0.22, null, 0.36, 0.28, 0.47, null, 0.30],
+     "t_dur": [0.34, 0.32, 0.38, null, 0.41, 0.29, null, 0.36, 0.28, 0.47, null, 0.30],
      "dur_kare": [30, 96],
      "ikon_px": 90,
      "varan_no": [4, 7, 11],
@@ -3493,6 +3493,15 @@
     }
    },
    "temaslar": [
+    {"kare": 60, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
+    {"kare": 62, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
+    {"kare": 64, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
+    {"kare": 69, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
+    {"kare": 73, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
+    {"kare": 78, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
+    {"kare": 82, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
+    {"kare": 89, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
+    {"kare": 103, "olay": "güvercin çizgisi yolda biter, damla kâğıda düşer", "ses": "pk-kagit-tik", "db": -20},
     {
      "kare": 130,
      "olay": "film şeritleri Paris'e düşer (kısık)",
