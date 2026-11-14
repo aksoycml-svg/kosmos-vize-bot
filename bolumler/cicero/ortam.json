@@ -1,0 +1,143 @@
+{
+ "_not": "Ortam yatakları (foley.json'da DEĞİL: temasla çalmaz). Görünmeyen/uzak kaynak: kısık, lowpass; kısa klipler (3–4 sn) çapraz sönümle döngülenir; plan sınırında sert kesilmez (giriş/çıkış 0.4 sn). db = anlatıma göre.",
+ "yataklar": {
+  "cic_ortam_daktilo": {
+   "dosya": "cicero/foley/cic_ortam_daktilo.mp3",
+   "sure_ms": 4090,
+   "tepe_dbfs": -1.8,
+   "kullanim": [
+    {
+     "plan": "P01",
+     "p_bas": 0,
+     "p_bit": 438,
+     "kare_bas": 0,
+     "kare_bit": 438,
+     "db": -28,
+     "lp_hz": 1500,
+     "not": "2. kat penceresinde yazan daktilo silueti (görünür ama uzak/küçük); P02 başına 0.4 sn taşar (L-cut), anahtar tıkına dönüşür"
+    },
+    {
+     "plan": "P02",
+     "p_bas": 0,
+     "p_bit": 24,
+     "kare_bas": 438,
+     "kare_bit": 462,
+     "db": -30,
+     "lp_hz": 1500,
+     "not": "P01→P02 köprü kuyruğu, 0.4 sn sönümle biter"
+    },
+    {
+     "plan": "P05",
+     "p_bas": 0,
+     "p_bit": 247,
+     "kare_bas": 1603,
+     "kare_bit": 1850,
+     "db": -28,
+     "lp_hz": 1500,
+     "not": "P05'te pencere/cephe ve daktilo; p140–247 görünür yazıyor"
+    },
+    {
+     "plan": "P09",
+     "p_bas": 0,
+     "p_bit": 30,
+     "kare_bas": 3130,
+     "kare_bit": 3160,
+     "db": -26,
+     "lp_hz": 1500,
+     "not": "P09a p0–30 yazar; p30 sandalye itilince KESİLİR (pencere boş kalır)"
+    }
+   ]
+  },
+  "cic_ortam_su": {
+   "dosya": "cicero/foley/cic_ortam_su.mp3",
+   "sure_ms": 3090,
+   "tepe_dbfs": -1.9,
+   "kullanim": [
+    {
+     "plan": "P02",
+     "p_bas": 248,
+     "p_bit": 349,
+     "kare_bas": 686,
+     "kare_bit": 787,
+     "db": -27,
+     "lp_hz": 1400,
+     "not": "banyo kapısı p246 kapandıktan sonra; görünmeyen kaynak, kapı arkası"
+    },
+    {
+     "plan": "P03",
+     "p_bas": 0,
+     "p_bit": 434,
+     "kare_bas": 787,
+     "kare_bit": 1221,
+     "db": -28,
+     "lp_hz": 1400,
+     "not": "dinleme/iz planı boyunca çok kısık"
+    },
+    {
+     "plan": "P04",
+     "p_bas": 58,
+     "p_bit": 215,
+     "kare_bas": 1279,
+     "kare_bit": 1436,
+     "db": -27,
+     "lp_hz": 1400,
+     "not": "p215 su_kesilir klibiyle KESİLİR (klibin 600 ms'lik su kısmı ortamla örtüşür); p228–312 sessizlik (terlik adımları ayrı)"
+    },
+    {
+     "plan": "P04",
+     "p_bas": 330,
+     "p_bit": 382,
+     "kare_bas": 1551,
+     "kare_bit": 1603,
+     "db": -27,
+     "lp_hz": 1400,
+     "not": "cic_su_tekrar ile girer"
+    }
+   ]
+  },
+  "cic_ortam_araba_uzak": {
+   "dosya": "cicero/foley/cic_ortam_araba_uzak.mp3",
+   "sure_ms": 3090,
+   "tepe_dbfs": -1.9,
+   "kullanim": [
+    {
+     "plan": "P08",
+     "p_bas": 340,
+     "p_bit": 378,
+     "kare_bas": 3092,
+     "kare_bit": 3130,
+     "db": -30,
+     "lp_hz": 1200,
+     "not": "P08→P09 köprü: Bazna adım kuyruğu → uzak motor"
+    },
+    {
+     "plan": "P09",
+     "p_bas": 0,
+     "p_bit": 124,
+     "kare_bas": 3130,
+     "kare_bit": 3254,
+     "db": -30,
+     "lp_hz": 1200,
+     "not": "park arabası rölanti; p124'te cic_araba_gider devralır (kesilir)"
+    }
+   ]
+  },
+  "cic_ortam_berlin": {
+   "dosya": "cicero/foley/cic_ortam_berlin.mp3",
+   "sure_ms": 3090,
+   "tepe_dbfs": -1.9,
+   "kullanim": [
+    {
+     "plan": "P06",
+     "p_bas": 0,
+     "p_bit": 550,
+     "kare_bas": 1850,
+     "kare_bit": 2400,
+     "db": -30,
+     "lp_hz": 2500,
+     "not": "P05→P06 çıplak kesme: ortam değişir (daktilo/araba biter, soğuk masa lambası vızıltısı); bölümün tek tam ortam sıçraması"
+    }
+   ]
+  }
+ }
+}

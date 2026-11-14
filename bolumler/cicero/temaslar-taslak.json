@@ -1,0 +1,572 @@
+{
+ "fps": 60,
+ "_not": "TASLAK (kurgucu, bolum.json yok): sahne-plani.md §3 temas listesinden. kare = plan başı + p (plan başları: P01 0 · P02 438 · P03 787 · P04 1221 · P05 1603 · P06 1850 · P07 2400 · P08 2752 · P09 3130 · P10 3500). Yönetmen bolum.json temaslar[]'ını yazınca bu liste ona göre güncellenir (kare orada tek gerçek). db yoksa foley.json onerilen_db. Elçi yürüyüşü (P02 p158–222, kapıya) ve Bazna P08 adım kareleri gait basışlarından gelecek; burada yaklaşık.",
+ "temaslar": [
+  {
+   "plan": "P01",
+   "p": 42,
+   "kare": 42,
+   "sn": 0.7,
+   "olay": "Bazna banknotu kavrar",
+   "ses": "cic_banknot_kavra"
+  },
+  {
+   "plan": "P01",
+   "p": 138,
+   "kare": 138,
+   "sn": 2.3,
+   "olay": "banknot iç ceket cebine girer",
+   "ses": "cic_kagit_cep"
+  },
+  {
+   "plan": "P02",
+   "p": 14,
+   "kare": 452,
+   "sn": 7.533,
+   "olay": "elçi kutu kapağını indirir",
+   "ses": "cic_kutu_kapak"
+  },
+  {
+   "plan": "P02",
+   "p": 28,
+   "kare": 466,
+   "sn": 7.767,
+   "olay": "anahtar kilide girer",
+   "ses": "cic_anahtar_kilit_giris"
+  },
+  {
+   "plan": "P02",
+   "p": 46,
+   "kare": 484,
+   "sn": 8.067,
+   "olay": "anahtar çevrilir, kilit tık",
+   "ses": "cic_kutu_kilit_tik"
+  },
+  {
+   "plan": "P02",
+   "p": 74,
+   "kare": 512,
+   "sn": 8.533,
+   "olay": "anahtar komodine bırakılır (insert, kısık)",
+   "ses": "cic_anahtar_komodin_cin"
+  },
+  {
+   "plan": "P02",
+   "p": 210,
+   "kare": 648,
+   "sn": 10.8,
+   "olay": "elçi banyo kapısını açar",
+   "ses": "cic_banyo_kapi_ac"
+  },
+  {
+   "plan": "P02",
+   "p": 246,
+   "kare": 684,
+   "sn": 11.4,
+   "olay": "banyo kapısı kapanır",
+   "ses": "cic_banyo_kapi_kapanis"
+  },
+  {
+   "plan": "P02",
+   "p": 268,
+   "kare": 706,
+   "sn": 11.767,
+   "olay": "Bazna adım 1",
+   "ses": "cic_adim_hafif",
+   "db": -13
+  },
+  {
+   "plan": "P02",
+   "p": 284,
+   "kare": 722,
+   "sn": 12.033,
+   "olay": "Bazna adım 2",
+   "ses": "cic_adim_hafif",
+   "db": -13
+  },
+  {
+   "plan": "P02",
+   "p": 300,
+   "kare": 738,
+   "sn": 12.3,
+   "olay": "Bazna adım 3",
+   "ses": "cic_adim_hafif",
+   "db": -13
+  },
+  {
+   "plan": "P02",
+   "p": 316,
+   "kare": 754,
+   "sn": 12.567,
+   "olay": "Bazna adım 4",
+   "ses": "cic_adim_hafif",
+   "db": -13
+  },
+  {
+   "plan": "P03",
+   "p": 14,
+   "kare": 801,
+   "sn": 13.35,
+   "olay": "Bazna yelek cebinden mum parçasını alır (p8–34 aralığının ortası; yönetmen kareyi doğrular)",
+   "ses": "cic_cep_kumas"
+  },
+  {
+   "plan": "P03",
+   "p": 84,
+   "kare": 871,
+   "sn": 14.517,
+   "olay": "Bazna anahtarı komodinden alır",
+   "ses": "cic_anahtar_al"
+  },
+  {
+   "plan": "P03",
+   "p": 150,
+   "kare": 937,
+   "sn": 15.617,
+   "olay": "anahtar muma bastırılır",
+   "ses": "cic_mum_bas_yumusak"
+  },
+  {
+   "plan": "P03",
+   "p": 270,
+   "kare": 1057,
+   "sn": 17.617,
+   "olay": "izde anahtar çizimi kendini çizmeye başlar (klip 1.06 sn; çizim p270–358 sürer, yönetmen uzun çizimde klibi yineler ya da p328 civarı bitirir; kısık)",
+   "ses": "cic_cizgi_kalem_hafif"
+  },
+  {
+   "plan": "P04",
+   "p": 10,
+   "kare": 1231,
+   "sn": 20.517,
+   "olay": "kopya anahtar kilide girer",
+   "ses": "cic_anahtar_kilit_giris"
+  },
+  {
+   "plan": "P04",
+   "p": 30,
+   "kare": 1251,
+   "sn": 20.85,
+   "olay": "kopya anahtar çevrilir",
+   "ses": "cic_kutu_kilit_tik"
+  },
+  {
+   "plan": "P04",
+   "p": 40,
+   "kare": 1261,
+   "sn": 21.017,
+   "olay": "kutu kapağı açılır",
+   "ses": "cic_kutu_kapak_ac"
+  },
+  {
+   "plan": "P04",
+   "p": 70,
+   "kare": 1291,
+   "sn": 21.517,
+   "olay": "Bazna belge destesini kutudan alır",
+   "ses": "cic_belge_karistir",
+   "db": -13
+  },
+  {
+   "plan": "P04",
+   "p": 104,
+   "kare": 1325,
+   "sn": 22.083,
+   "olay": "başucu lambasının boynu çevrilir",
+   "ses": "cic_lamba_boyun_gicir"
+  },
+  {
+   "plan": "P04",
+   "p": 112,
+   "kare": 1333,
+   "sn": 22.217,
+   "olay": "belgeler yatağa yayılır (1)",
+   "ses": "cic_belge_yay_hisirti"
+  },
+  {
+   "plan": "P04",
+   "p": 124,
+   "kare": 1345,
+   "sn": 22.417,
+   "olay": "belgeler yatağa yayılır (2)",
+   "ses": "cic_belge_yay_hisirti",
+   "db": -12
+  },
+  {
+   "plan": "P04",
+   "p": 136,
+   "kare": 1357,
+   "sn": 22.617,
+   "olay": "yelek cebinden fotoğraf makinesi çıkar",
+   "ses": "cic_cep_kumas"
+  },
+  {
+   "plan": "P04",
+   "p": 150,
+   "kare": 1371,
+   "sn": 22.85,
+   "olay": "deklanşör 1",
+   "ses": "cic_deklansor_tik"
+  },
+  {
+   "plan": "P04",
+   "p": 172,
+   "kare": 1393,
+   "sn": 23.217,
+   "olay": "deklanşör 2",
+   "ses": "cic_deklansor_tik"
+  },
+  {
+   "plan": "P04",
+   "p": 194,
+   "kare": 1415,
+   "sn": 23.583,
+   "olay": "deklanşör 3",
+   "ses": "cic_deklansor_tik"
+  },
+  {
+   "plan": "P04",
+   "p": 215,
+   "kare": 1436,
+   "sn": 23.933,
+   "olay": "banyoda su kesilir (görünmeyen kaynak: kapı altı şeridi görünür, sesi kısık)",
+   "ses": "cic_su_kesilir"
+  },
+  {
+   "plan": "P04",
+   "p": 228,
+   "kare": 1449,
+   "sn": 24.15,
+   "olay": "terlik adımı 1 (kapı arkası, kapı altı gölgesi görünür)",
+   "ses": "cic_terlik_adim"
+  },
+  {
+   "plan": "P04",
+   "p": 238,
+   "kare": 1459,
+   "sn": 24.317,
+   "olay": "terlik adımı 2",
+   "ses": "cic_terlik_adim"
+  },
+  {
+   "plan": "P04",
+   "p": 248,
+   "kare": 1469,
+   "sn": 24.483,
+   "olay": "terlik adımı 3",
+   "ses": "cic_terlik_adim"
+  },
+  {
+   "plan": "P04",
+   "p": 330,
+   "kare": 1551,
+   "sn": 25.85,
+   "olay": "su yeniden akar",
+   "ses": "cic_su_tekrar"
+  },
+  {
+   "plan": "P04",
+   "p": 348,
+   "kare": 1569,
+   "sn": 26.15,
+   "olay": "belgeler kutuya konur",
+   "ses": "cic_belge_kutu_hisirti"
+  },
+  {
+   "plan": "P04",
+   "p": 358,
+   "kare": 1579,
+   "sn": 26.317,
+   "olay": "kutu kapağı kapanır",
+   "ses": "cic_kutu_kapak_tok"
+  },
+  {
+   "plan": "P04",
+   "p": 366,
+   "kare": 1587,
+   "sn": 26.45,
+   "olay": "film kutusu cebe girer (p362–370)",
+   "ses": "cic_cep_kumas"
+  },
+  {
+   "plan": "P05",
+   "p": 2,
+   "kare": 1605,
+   "sn": 26.75,
+   "olay": "el cepten film kutusunu çıkarır (P04 p370 eşleşen kesme)",
+   "ses": "cic_cep_kumas"
+  },
+  {
+   "plan": "P05",
+   "p": 44,
+   "kare": 1647,
+   "sn": 27.45,
+   "olay": "kompars film kutusunu kavrar",
+   "ses": "cic_kutu_tutus"
+  },
+  {
+   "plan": "P05",
+   "p": 84,
+   "kare": 1687,
+   "sn": 28.117,
+   "olay": "Bazna zarfı kavrar",
+   "ses": "cic_zarf_tutus"
+  },
+  {
+   "plan": "P05",
+   "p": 118,
+   "kare": 1721,
+   "sn": 28.683,
+   "olay": "zarf kucağa konur",
+   "ses": "cic_zarf_kucak"
+  },
+  {
+   "plan": "P06",
+   "p": 56,
+   "kare": 1906,
+   "sn": 31.767,
+   "olay": "dosya masaya/haritaya konur",
+   "ses": "cic_dosya_masa_tok"
+  },
+  {
+   "plan": "P06",
+   "p": 165,
+   "kare": 2015,
+   "sn": 33.583,
+   "olay": "el dosyayı ileri iter",
+   "ses": "cic_dosya_kayma"
+  },
+  {
+   "plan": "P06",
+   "p": 215,
+   "kare": 2065,
+   "sn": 34.417,
+   "olay": "çekmece açılır",
+   "ses": "cic_cekmece_kayma"
+  },
+  {
+   "plan": "P06",
+   "p": 312,
+   "kare": 2162,
+   "sn": 36.033,
+   "olay": "ikinci dosya çekmeceye atılır",
+   "ses": "cic_dosya_at_hisirti"
+  },
+  {
+   "plan": "P06",
+   "p": 440,
+   "kare": 2290,
+   "sn": 38.167,
+   "olay": "çekmece kapanır, köşe sıkışır (TR 'kullanmadı' ile aynı an)",
+   "ses": "cic_cekmece_tok"
+  },
+  {
+   "plan": "P07",
+   "p": 30,
+   "kare": 2430,
+   "sn": 40.5,
+   "olay": "zarf açılır",
+   "ses": "cic_zarf_ac"
+  },
+  {
+   "plan": "P07",
+   "p": 56,
+   "kare": 2456,
+   "sn": 40.933,
+   "olay": "banknotlar masaya dökülür",
+   "ses": "cic_banknot_dokul"
+  },
+  {
+   "plan": "P07",
+   "p": 78,
+   "kare": 2478,
+   "sn": 41.3,
+   "olay": "el bakmadan sayar (p78–150, tek klip 1.48 sn)",
+   "ses": "cic_banknot_say"
+  },
+  {
+   "plan": "P07",
+   "p": 238,
+   "kare": 2638,
+   "sn": 43.967,
+   "olay": "çarpı fırça vuruşu 1 (bölümün tek patlaması: görsel vuruş + müzik vuruşu 43.97 sn; foley çok kısık, tek kullanım)",
+   "ses": "cic_carpi_firca",
+   "db": -12
+  },
+  {
+   "plan": "P07",
+   "p": 250,
+   "kare": 2650,
+   "sn": 44.167,
+   "olay": "çarpı fırça vuruşu 2",
+   "ses": "cic_carpi_firca",
+   "db": -13
+  },
+  {
+   "plan": "P08",
+   "p": 0,
+   "kare": 2752,
+   "sn": 45.867,
+   "olay": "P07→P08 ses köprüsü: yetkili kutudaki belgeleri karıştırır (görünür, yetkili ekranda)",
+   "ses": "cic_belge_karistir",
+   "db": -14
+  },
+  {
+   "plan": "P08",
+   "p": 40,
+   "kare": 2792,
+   "sn": 46.533,
+   "olay": "Bazna adım (giriş p30)",
+   "ses": "cic_adim_hafif",
+   "db": -14
+  },
+  {
+   "plan": "P08",
+   "p": 60,
+   "kare": 2812,
+   "sn": 46.867,
+   "olay": "Bazna adım",
+   "ses": "cic_adim_hafif",
+   "db": -14
+  },
+  {
+   "plan": "P08",
+   "p": 80,
+   "kare": 2832,
+   "sn": 47.2,
+   "olay": "Bazna adım",
+   "ses": "cic_adim_hafif",
+   "db": -14
+  },
+  {
+   "plan": "P08",
+   "p": 142,
+   "kare": 2894,
+   "sn": 48.233,
+   "olay": "yetkili bakmadan fincanı kavrar",
+   "ses": "cic_fincan_tin"
+  },
+  {
+   "plan": "P08",
+   "p": 190,
+   "kare": 2942,
+   "sn": 49.033,
+   "olay": "Bazna adım (çıkışa; p230'da kadraj dışı) — adım kareleri yönetmen gait basışlarından güncellenir",
+   "ses": "cic_adim_hafif",
+   "db": -14
+  },
+  {
+   "plan": "P08",
+   "p": 210,
+   "kare": 2962,
+   "sn": 49.367,
+   "olay": "Bazna adım (çıkış; kuyruk P09 başına taşar)",
+   "ses": "cic_adim_hafif",
+   "db": -15
+  },
+  {
+   "plan": "P09",
+   "p": 30,
+   "kare": 3160,
+   "sn": 52.667,
+   "olay": "sekreter sandalyeyi iter (2. kat penceresi, uzak)",
+   "ses": "cic_sandalye_it"
+  },
+  {
+   "plan": "P09",
+   "p": 62,
+   "kare": 3192,
+   "sn": 53.2,
+   "olay": "sekreter bina kapısından çıkar",
+   "ses": "cic_bina_kapi"
+  },
+  {
+   "plan": "P09",
+   "p": 84,
+   "kare": 3214,
+   "sn": 53.567,
+   "olay": "sekreter adım 1",
+   "ses": "cic_adim_kaldirim"
+  },
+  {
+   "plan": "P09",
+   "p": 92,
+   "kare": 3222,
+   "sn": 53.7,
+   "olay": "adım 2",
+   "ses": "cic_adim_kaldirim"
+  },
+  {
+   "plan": "P09",
+   "p": 100,
+   "kare": 3230,
+   "sn": 53.833,
+   "olay": "adım 3",
+   "ses": "cic_adim_kaldirim"
+  },
+  {
+   "plan": "P09",
+   "p": 108,
+   "kare": 3238,
+   "sn": 53.967,
+   "olay": "adım 4 (plan içi kesmeden ≥12 kare önce)",
+   "ses": "cic_adim_kaldirim"
+  },
+  {
+   "plan": "P09",
+   "p": 120,
+   "kare": 3250,
+   "sn": 54.167,
+   "olay": "sekreter araba kapısını kapatır",
+   "ses": "cic_araba_kapi_tok"
+  },
+  {
+   "plan": "P09",
+   "p": 124,
+   "kare": 3254,
+   "sn": 54.233,
+   "olay": "araba hızlanıp sağ kadraj dışına çıkar",
+   "ses": "cic_araba_gider"
+  },
+  {
+   "plan": "P09",
+   "p": 215,
+   "kare": 3345,
+   "sn": 55.75,
+   "olay": "Bazna komodin çekmecesini kapatır (plan içi p215)",
+   "ses": "cic_cekmece_kucuk"
+  },
+  {
+   "plan": "P09",
+   "p": 262,
+   "kare": 3392,
+   "sn": 56.533,
+   "olay": "lamba düğmesi; sonra p290–370 SESSİZ (foley yok)",
+   "ses": "cic_lamba_dugme_tik"
+  },
+  {
+   "plan": "P10",
+   "p": 24,
+   "kare": 3524,
+   "sn": 58.733,
+   "olay": "lamba yanar (P09 son karesi soluk mavi → tık)",
+   "ses": "cic_lamba_dugme_tik"
+  },
+  {
+   "plan": "P10",
+   "p": 62,
+   "kare": 3562,
+   "sn": 59.367,
+   "olay": "el masadan tek banknotu alır",
+   "ses": "cic_banknot_al"
+  },
+  {
+   "plan": "P10",
+   "p": 356,
+   "kare": 3856,
+   "sn": 64.267,
+   "olay": "banknot elden kayar; kuyruk P01 p0–20'ye L-cut (döngü); render sonunda plan sonunda kesilir",
+   "ses": "cic_banknot_kayma"
+  }
+ ]
+}

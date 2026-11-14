@@ -18,12 +18,13 @@ F = {
  "cic_anahtar_komodin_cin": ("a small brass key set down on a felt-covered wooden surface, tiny soft metal clink, very quiet, " + S, 0.5, -12, "ilk"),
  "cic_anahtar_al": ("a small brass key picked up from a wooden table, tiny light metal scrape, quiet, " + S, 0.5, -11, "ilk"),
  "cic_banyo_kapi_kapanis": ("a wooden interior door closing gently and latching with a soft click, old house, " + S, 0.9, -8, "max"),
+ "cic_banyo_kapi_ac": ("a wooden interior door opening with a soft latch click and a faint hinge creak, old house, " + S, 0.9, -9, "ilk"),
  "cic_adim_hafif": ("one soft footstep of a man in leather shoes on a carpeted wooden floor, light, " + S, 0.5, -12, "ilk"),
  "cic_mum_bas_yumusak": ("a metal key pressed softly into a soft block of beeswax, dull soft press, quiet, " + S, 0.7, -9, "ilk"),
  "cic_belge_yay_hisirti": ("a stack of papers being spread out on a bedspread, soft paper shuffle and rustle, " + S, 1.0, -10, "ilk"),
  "cic_lamba_boyun_gicir": ("a bedside lamp bendable metal neck being turned, short faint metal creak, quiet, " + S, 0.6, -12, "ilk"),
  "cic_deklansor_tik": ("an old compact film camera mechanical shutter click, small crisp mechanical snap, quiet, " + S, 0.5, -9, "ilk"),
- "cic_su_kesilir": ("a bathroom tap turned off, running water stops with a last few drips, muffled behind a closed door, " + S, 1.0, -12, "ilk"),
+ "cic_su_kesilir": ("a bathroom tap turned off, running water stops with a last few drips, muffled behind a closed door, " + S, 1.0, -12, 600),
  "cic_terlik_adim": ("one soft slipper footstep on a tiled floor, muffled behind a closed door, quiet, " + S, 0.5, -12, "ilk"),
  "cic_su_tekrar": ("a bathroom tap turned on, water starts running into a sink, muffled behind a closed door, " + S, 1.2, -13, "ilk"),
  "cic_belge_kutu_hisirti": ("papers being gathered and slid into a small leather box, soft paper rustle, " + S, 0.9, -10, "ilk"),
@@ -70,13 +71,27 @@ def olc(f, mod):
     x = np.abs(pcm(f)); w = 88; n = len(x) // w
     e = x[:n * w].reshape(n, w).max(1); pk = e.max()
     ilk = int(np.argmax(e > pk * 10 ** (-20 / 20))); mx = int(e.argmax())
-    return (mx if mod == "max" else ilk) * 2, mx * 2, int(round(len(x) / 44.1)), round(float(20 * np.log10(pk + 1e-9)), 1)
+    t = mod if isinstance(mod, int) else (mx * 2 if mod == "max" else ilk * 2)
+    return t, mx * 2, int(round(len(x) / 44.1)), round(float(20 * np.log10(pk + 1e-9)), 1)
 def uret(ad, t, d, key):
     f = f"{OUT}/{ad}.mp3"
     if os.path.exists(f): return
     r = urllib.request.Request("https://api.elevenlabs.io/v1/sound-generation?output_format=mp3_44100_128",
         json.dumps({"text": t, "duration_seconds": d, "prompt_influence": 0.5}).encode(), {"xi-api-key": key, "Content-Type": "application/json"})
     open(f, "wb").write(urllib.request.urlopen(r, timeout=90).read())
+def esitle(f, ortam):
+    """Seviye eslitme (onerilen_db anlamli olsun): foley tepe -3 dBFS; ortam -18 LUFS (tepe <= -1.5). Zaten esitse dokunmaz."""
+    x = pcm(f); pk = float(np.abs(x).max())
+    if ortam:
+        r = subprocess.run(["ffmpeg", "-nostats", "-i", f, "-af", "ebur128=peak=true", "-f", "null", "-"], capture_output=True, text=True).stderr
+        i = float(r.split("Integrated loudness:")[1].split("I:")[1].split("LUFS")[0]); g = -18 - i
+        g = min(g, -1.5 - 20 * np.log10(pk + 1e-9)); hedef_ok = abs(g) < 0.5
+    else:
+        g = -3 - 20 * np.log10(pk + 1e-9); hedef_ok = abs(g) < 0.5
+    if hedef_ok: return round(g, 1)
+    tmp = f + ".tmp.mp3"
+    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", f, "-af", f"volume={g:.2f}dB,alimiter=limit=0.89:level=disabled", "-b:a", "128k", tmp], check=True)
+    os.replace(tmp, f); return round(g, 1)
 if __name__ == "__main__":
     key = os.environ["elevenlabs_api_key"]; os.makedirs(OUT, exist_ok=True)
     sec = sys.argv[1:]; kredi_sn = 0.0
@@ -88,14 +103,19 @@ if __name__ == "__main__":
         if not os.path.exists(f"{OUT}/{ad}.mp3"): shutil.copy(k, f"{OUT}/{ad}.mp3")
     print("uretilen sure sn (~20 kredi/sn):", kredi_sn)
     subprocess.run(["python3", "-I", "tools/ses_kenar.py", "duzelt"] + [f"{OUT}/{a}.mp3" for a in list(F) + list(R) + list(O)])
+    kazanc = {a: esitle(f"{OUT}/{a}.mp3", a in O) for a in list(F) + list(R) + list(O)}
+    print("esitleme kazanci dB (min/maks):", min(kazanc.values()), max(kazanc.values()))
+    subprocess.run(["python3", "-I", "tools/ses_kenar.py", "duzelt"] + [f"{OUT}/{a}.mp3" for a in list(F) + list(R) + list(O)], stdout=subprocess.DEVNULL)  # kazanc sonrasi kenar
     fj = {}
     for ad, v in list(F.items()) + [(a, (None, None, v[1], v[2])) for a, v in R.items()]:
         f = f"{OUT}/{ad}.mp3"; t, en, sure, pk = olc(f, v[3])
-        kay = f"{'yeniden-kullanim ' + R[ad][0] if ad in R else 'elevenlabs-sfx (cicero_sfx.py, tek cekim, ses_kenar duzelt)'}; tepe_ms = {'en yuksek' if v[3] == 'max' else 'ilk net baslangic (-20 dB esigi)'}"
+        kay = f"{'yeniden-kullanim ' + R[ad][0] if ad in R else 'elevenlabs-sfx (cicero_sfx.py, tek cekim, ses_kenar duzelt)'}; tepe_ms = {'en yuksek' if v[3] == 'max' else (f'elle {v[3]} ms (su durma ani, olcumle)' if isinstance(v[3], int) else 'ilk net baslangic (-20 dB esigi)')}"
         fj[ad] = {"dosya": f"cicero/foley/{ad}.mp3", "tepe_ms": t, "sure_ms": sure, "tepe_dbfs": pk, "en_yuksek_ms": en, "kaynak": kay, "onerilen_db": v[2]}
     json.dump(fj, open(FJ, "w"), ensure_ascii=False, indent=1)
-    oj = {"_not": "Ortam yatakları (foley.json'da DEĞİL: temasla çalmaz). Görünmeyen/uzak kaynak: kısık, lowpass; plan başlangıcına çapraz sönümle girer.", "yataklar": {}}
+    eski = json.load(open(OJ)) if os.path.exists(OJ) else {}   # elle yazilan "kullanim" ve _not korunur
+    oj = {"_not": eski.get("_not", "Ortam yatakları (foley.json'da DEĞİL: temasla çalmaz)."), "yataklar": {}}
     for ad, (t, d) in O.items():
         f = f"{OUT}/{ad}.mp3"; _, _, sure, pk = olc(f, "ilk"); oj["yataklar"][ad] = {"dosya": f"cicero/foley/{ad}.mp3", "sure_ms": sure, "tepe_dbfs": pk}
+        if "kullanim" in eski.get("yataklar", {}).get(ad, {}): oj["yataklar"][ad]["kullanim"] = eski["yataklar"][ad]["kullanim"]
     json.dump(oj, open(OJ, "w"), ensure_ascii=False, indent=1)
     print(len(fj), "foley,", len(oj["yataklar"]), "ortam yazildi")

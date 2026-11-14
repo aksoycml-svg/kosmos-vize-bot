@@ -1,0 +1,25 @@
+{
+  "fps": 60,
+  "toplam_kare": 3890,
+  "referans": "Anlatım 0 dB (klip −18 LUFS). Müzik dosyası ölçümü: bölüm ortalaması −28.4 LUFS, en dolgun yer (P06–P08, 36–52 sn) ≈ −26.8 LUFS, sessiz yarı (0–32 sn) ≈ −30 LUFS. db −8 → dolgun yerde ≈ −34.8 LUFS = anlatımın 16.8 dB altı (aralık tavanı ≤ −16 ✓); duck −14 → dolgun yerde ≈ −40.8 LUFS = −22.8 dB (konuşma ≤ −22 ✓), sessiz yarıda −24…−26. Foley dosyaları tepe −3 dBFS'e eşitli (tools/cicero_sfx.py) → onerilen_db anlamlı; temas.db > istisnalar > onerilen_db > foley_varsayilan_db. Ortam yatakları (ortam.json) −18 LUFS'e eşitli, 'db' anlatıma göre, render ortam katmanı ayrı kanal.",
+  "muzik": {
+    "dosya": "cicero/muzik/cicero-measured-paces-65.mp3",
+    "bas_kare": 0,
+    "db": -8,
+    "fade_in_kare": 1,
+    "fade_out_kare": 1,
+    "duck": { "anlatim_db": -14, "atak_kare": 9, "birakma_kare": 24 },
+    "not": "Dosya 64.83 sn = 3890 kare (bölümle birebir), kendi giriş (0.3 sn) ve çıkış (63.6–64.83 sn) sönümü içinde; kit fade'i 1 kare (ek sönüm yok). Tek parça, tek tema: ~70 bpm piyano nabzı. Plan sınırında kesme/susma yok; nabız 4 vuruşluk ölçülerle (3.42 sn) akar. Final notası 63.54 sn (P10 p313: anlatım biter, banknot kayması p356 = 64.27 sn yankıda); dosya sonu P01'in 0.89 sn'deki ilk notasına döngü olur."
+  },
+  "foley_varsayilan_db": -7,
+  "istisnalar": {},
+  "muzik_istisnalari": [],
+  "ortam": "ortam.json (temasla çalmaz; kullanim[] kare aralıkları)",
+  "kurgucu_notlari": [
+    "Müzik–görüntü eşleşmeleri (ölçülü): mum bastırma 15.62 sn ≈ nabız 15.63; çekmece kapanışı 38.17 sn ≈ nabız 38.19; P04 gölge tutması 24.48–25.55 sn = müzikte atlanan nabız (24.32 → 26.09, 1.8 sn seyrek); P06 sıkışan köşe tutması ≈ 39.46 sn en dolgun vurgu; çarpı 43.97 sn nabız hizasında (tempo 0.9916 ile oturtuldu).",
+    "P10 tutması (60.3–63.5 sn): müzik yalnız yankı (3.4 sn); anlatım 63.3'te biter, final notası 63.54'te gelir (aralık: ≤ −16). Savaş/ölüm konusu: riser/whoosh yok, geçiş sesi bütçesi 0.",
+    "EN: anlatım plan sonundan önce biter (ses dosyası süresine göre kalan boşluk: P06 4.1, P10 2.9, P08 2.5, P01 2.2 sn; TR'de 0.4–1.3); bu boşluklarda müzik tavanı −16 dB'de kalır (db −8 buna göre); TR/EN ayrı ölçülüp −14 LUFS'e eşitlenir.",
+    "P05→P06 çıplak kesme: ortam değişir (daktilo/araba biter, Berlin vızıltısı girer), müzik DEVAM eder (kesilmez).",
+    "P09 p290–370 (57.0–58.33 sn): foley yok; müzik akar (sessizlik = foley yokluğu, müzik değil)."
+  ]
+}
