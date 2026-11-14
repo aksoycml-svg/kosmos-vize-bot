@@ -37,3 +37,10 @@
 
 ## orkestra · 2026-11-14 · yazım düzeltmesi
 - senaryo.md/dokunuslar.md: "tüneceğine/tünecekti" → "tüneyeceğine/tüneyecekti" (yazım hatası; anlam değişmedi). Kullanıcı yetkisi: notlar/tur-2.md.
+
+## yaratici-yonetmen · 2026-11-14 · dokunuslar.md v1.1 hizası
+- Ne yaptım: `dokunuslar.md`'yi senaryo v1.1 ve `plan-sureleri.json`'a hizaladım (P09, P12 +1.5 sn eklendi; toplam ≈62.7 sn). D3: kadran yok, kanat titrer + baş karanlığa döner. D4: defter spiralinin gerçek üsteki aynası. D5: amber nabız kesinleşti. D2 yapıştırma, D7 mühür başlığı açar. Tüm zamanlar plan-içi + mutlak sn, her biri plan sonundan ≥0.2 sn önce biter.
+- Dokunduğum dosyalar: `/home/user/kosmos-vize-bot/bolumler/yarasa-bombasi/dokunuslar.md` (baştan yazıldı, yalnız bana ait), `/home/user/kosmos-vize-bot/bolumler/yarasa-bombasi/katki-raporu.md` (sona eklendi).
+- Aldığım kararlar ve gerekçeleri: (1) D7 eski sürümde 4.2–6.6'da plan dışına taşıyordu (P11 = 6.36 sn); 3.6–5.6'ya çekildi. "Etkili" v1.1'de çıktığından ironi kalktı, mühür belge başlığını açan vuruş oldu (senaryo "saklanan şey"). (2) D2'de mandal çıtı kaynaksız/v1.1 ile uyumsuz; yapıştırıcı damlası + kap oturması. (3) D3 tek bölmede, komşu göz fikri çıktı (senaryo "diğerleri kımıltısız"). (4) P09 tutması 4.3–5.8 plan-içi (anahtar, 1.5 sn).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: Dokunuş plan içinde biter (≥12 kare); mekanizma tekrarı yok; ton/foley kuralları korundu. Yakalanan: D7 plan sınırını aşıyordu; D3 kadran kaynaksızdı; D5 LED dönem dışıydı.
+- Açık sorular / bir sonraki ajana notlar: Yönetmen kontrol_kare önerisi: D1 4.4, D2 3.6, D3 2.0, D4 3.5, D5 5.0, D6 1.8, D7 4.8. Kit_eksik listesi dosyada (ÇÖL-ÜS, defter/kapsül/tepsi/belge propları; MAĞARA şablonu artık yok). Foley'e `damla-yapistir`, `kap-oturma` eklendi, `mandal-cit` çıktı. Varsayım: P12'ye dokunuş yok.
