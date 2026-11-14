@@ -3,8 +3,8 @@
   "temaslar": [
     {
       "plan": "P01",
-      "kare": 3,
-      "sn": 0.05,
+      "kare": 9,
+      "sn": 0.15,
       "olay": "kuş tüneği bırakır, kanat çırpışı",
       "ses": "pk-kanat",
       "db": -8
@@ -203,6 +203,14 @@
     },
     {
       "plan": "P06",
+      "kare": 1930,
+      "sn": 32.167,
+      "olay": "el halatı kavrar",
+      "ses": "pk-halat-kavra",
+      "db": -16
+    },
+    {
+      "plan": "P06",
       "kare": 1938,
       "sn": 32.3,
       "olay": "Dagron'un ayağı sepet kenarına basar",
@@ -351,7 +359,7 @@
       "sn": 48.033,
       "olay": "mercek odak dişlisi dönmeye başlar",
       "ses": "pk-odak-disli",
-      "db": -10
+      "db": -18
     },
     {
       "plan": "P10",

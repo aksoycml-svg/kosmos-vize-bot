@@ -70,6 +70,13 @@
   "kaynak": "elevenlabs-sfx (paris_sfx.py, tek çekim, ses_kenar duzelt; tepe_ms = ilk net başlangıç, -20 dB eşiği)",
   "onerilen_db": -10
  },
+ "pk-halat-kavra": {
+  "dosya": "paris/sfx/pk-halat-kavra.mp3",
+  "tepe_ms": 37,
+  "sure_ms": 600,
+  "kaynak": "elevenlabs-sfx (paris_sfx.py, tek çekim)",
+  "onerilen_db": -16
+ },
  "pk-halat-gerilme": {
   "dosya": "paris/sfx/pk-halat-gerilme.mp3",
   "tepe_ms": 55,
