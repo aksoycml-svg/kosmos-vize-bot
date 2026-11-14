@@ -1,0 +1,87 @@
+{
+ "id": "P11",
+ "lang": "en",
+ "text": "Still, it went on, until Admiral King cancelled it as too slow.",
+ "words": [
+  {
+   "t": "Still,",
+   "s": 0.13,
+   "e": 0.45
+  },
+  {
+   "t": "it",
+   "s": 0.47,
+   "e": 0.53
+  },
+  {
+   "t": "went",
+   "s": 0.57,
+   "e": 0.72
+  },
+  {
+   "t": "on,",
+   "s": 0.76,
+   "e": 0.96
+  },
+  {
+   "t": "until",
+   "s": 0.99,
+   "e": 1.27
+  },
+  {
+   "t": "Admiral",
+   "s": 1.34,
+   "e": 1.62
+  },
+  {
+   "t": "King",
+   "s": 1.66,
+   "e": 1.86
+  },
+  {
+   "t": "cancelled",
+   "s": 1.92,
+   "e": 2.33
+  },
+  {
+   "t": "it",
+   "s": 2.36,
+   "e": 2.44
+  },
+  {
+   "t": "as",
+   "s": 2.53,
+   "e": 2.68
+  },
+  {
+   "t": "too",
+   "s": 2.73,
+   "e": 2.89
+  },
+  {
+   "t": "slow.",
+   "s": 2.92,
+   "e": 3.29
+  }
+ ],
+ "dur": 3.527,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -74.2,
+ "hisirti_6k_dbfs": -85.5,
+ "pad_nf_dbfs": -81.4,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

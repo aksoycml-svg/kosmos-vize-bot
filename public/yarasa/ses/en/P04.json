@@ -1,0 +1,92 @@
+{
+ "id": "P04",
+ "lang": "en",
+ "text": "After Pearl Harbor, Adams wrote the White House. The president had it studied.",
+ "words": [
+  {
+   "t": "After",
+   "s": 0.1,
+   "e": 0.42
+  },
+  {
+   "t": "Pearl",
+   "s": 0.51,
+   "e": 0.77
+  },
+  {
+   "t": "Harbor,",
+   "s": 0.83,
+   "e": 1.22
+  },
+  {
+   "t": "Adams",
+   "s": 1.25,
+   "e": 1.58
+  },
+  {
+   "t": "wrote",
+   "s": 1.61,
+   "e": 1.83
+  },
+  {
+   "t": "the",
+   "s": 1.84,
+   "e": 1.92
+  },
+  {
+   "t": "White",
+   "s": 1.97,
+   "e": 2.18
+  },
+  {
+   "t": "House.",
+   "s": 2.19,
+   "e": 2.5
+  },
+  {
+   "t": "The",
+   "s": 3.02,
+   "e": 3.09
+  },
+  {
+   "t": "president",
+   "s": 3.14,
+   "e": 3.58
+  },
+  {
+   "t": "had",
+   "s": 3.63,
+   "e": 3.78
+  },
+  {
+   "t": "it",
+   "s": 3.81,
+   "e": 3.88
+  },
+  {
+   "t": "studied.",
+   "s": 3.93,
+   "e": 4.38
+  }
+ ],
+ "dur": 4.624,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.4,
+ "hisirti_6k_dbfs": -88.3,
+ "pad_nf_dbfs": -81.9,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

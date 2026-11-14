@@ -1,0 +1,82 @@
+{
+ "id": "P12",
+ "lang": "en",
+ "text": "Never used in war. Its best-known fire burned its own base.",
+ "words": [
+  {
+   "t": "Never",
+   "s": 0.16,
+   "e": 0.44
+  },
+  {
+   "t": "used",
+   "s": 0.5,
+   "e": 0.7
+  },
+  {
+   "t": "in",
+   "s": 0.73,
+   "e": 0.81
+  },
+  {
+   "t": "war.",
+   "s": 0.87,
+   "e": 1.2
+  },
+  {
+   "t": "Its",
+   "s": 1.65,
+   "e": 1.85
+  },
+  {
+   "t": "best-known",
+   "s": 1.91,
+   "e": 2.49
+  },
+  {
+   "t": "fire",
+   "s": 2.57,
+   "e": 2.97
+  },
+  {
+   "t": "burned",
+   "s": 3.03,
+   "e": 3.35
+  },
+  {
+   "t": "its",
+   "s": 3.38,
+   "e": 3.5
+  },
+  {
+   "t": "own",
+   "s": 3.54,
+   "e": 3.7
+  },
+  {
+   "t": "base.",
+   "s": 3.75,
+   "e": 4.12
+  }
+ ],
+ "dur": 4.362,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.4,
+ "hisirti_6k_dbfs": -88.3,
+ "pad_nf_dbfs": -82.3,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

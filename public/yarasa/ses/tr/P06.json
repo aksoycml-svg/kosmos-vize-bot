@@ -1,0 +1,79 @@
+{
+ "id": "P06",
+ "lang": "tr",
+ "text": "Kapsüllü yarasalar uyutulup kovana dizildi; havada açılınca uyanıp çatılara tüneyecekti.",
+ "words": [
+  {
+   "t": "Kapsüllü",
+   "s": 0.1,
+   "e": 0.58
+  },
+  {
+   "t": "yarasalar",
+   "s": 0.63,
+   "e": 1.11
+  },
+  {
+   "t": "uyutulup",
+   "s": 1.15,
+   "e": 1.57
+  },
+  {
+   "t": "kovana",
+   "s": 1.63,
+   "e": 1.96
+  },
+  {
+   "t": "dizildi;",
+   "s": 2.0,
+   "e": 2.38
+  },
+  {
+   "t": "havada",
+   "s": 2.74,
+   "e": 3.09
+  },
+  {
+   "t": "açılınca",
+   "s": 3.12,
+   "e": 3.54
+  },
+  {
+   "t": "uyanıp",
+   "s": 3.57,
+   "e": 3.89
+  },
+  {
+   "t": "çatılara",
+   "s": 3.95,
+   "e": 4.33
+  },
+  {
+   "t": "tüneyecekti.",
+   "s": 4.36,
+   "e": 4.99
+  }
+ ],
+ "dur": 5.251,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -75.1,
+ "hisirti_6k_dbfs": -86.4,
+ "pad_nf_dbfs": -85.4,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  25.92
+ ]
+}

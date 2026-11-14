@@ -1,0 +1,79 @@
+{
+ "id": "P01",
+ "lang": "tr",
+ "text": "Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı.",
+ "words": [
+  {
+   "t": "Yarasalar",
+   "s": 0.07,
+   "e": 0.63
+  },
+  {
+   "t": "tam",
+   "s": 0.78,
+   "e": 0.96
+  },
+  {
+   "t": "istenen",
+   "s": 1.01,
+   "e": 1.38
+  },
+  {
+   "t": "şeyi",
+   "s": 1.44,
+   "e": 1.67
+  },
+  {
+   "t": "yaptı.",
+   "s": 1.69,
+   "e": 2.04
+  },
+  {
+   "t": "Ve",
+   "s": 2.49,
+   "e": 2.67
+  },
+  {
+   "t": "Amerika",
+   "s": 2.76,
+   "e": 3.22
+  },
+  {
+   "t": "kendi",
+   "s": 3.29,
+   "e": 3.62
+  },
+  {
+   "t": "üssünü",
+   "s": 3.66,
+   "e": 4.06
+  },
+  {
+   "t": "yaktı.",
+   "s": 4.08,
+   "e": 4.42
+  }
+ ],
+ "dur": 4.624,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -88.0,
+ "hisirti_6k_dbfs": -101.9,
+ "pad_nf_dbfs": -50.6,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  4.48
+ ]
+}

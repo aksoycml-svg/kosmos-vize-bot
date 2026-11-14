@@ -1,0 +1,87 @@
+{
+ "id": "P04",
+ "lang": "tr",
+ "text": "Pearl Harbor'dan bir ay sonra Adams Beyaz Saray'a yazdı. Başkan işe baktırdı.",
+ "words": [
+  {
+   "t": "Pearl",
+   "s": 0.18,
+   "e": 0.43
+  },
+  {
+   "t": "Harbor'dan",
+   "s": 0.48,
+   "e": 1.08
+  },
+  {
+   "t": "bir",
+   "s": 1.15,
+   "e": 1.36
+  },
+  {
+   "t": "ay",
+   "s": 1.39,
+   "e": 1.49
+  },
+  {
+   "t": "sonra",
+   "s": 1.56,
+   "e": 1.91
+  },
+  {
+   "t": "Adams",
+   "s": 2.18,
+   "e": 2.57
+  },
+  {
+   "t": "Beyaz",
+   "s": 2.64,
+   "e": 2.94
+  },
+  {
+   "t": "Saray'a",
+   "s": 2.95,
+   "e": 3.33
+  },
+  {
+   "t": "yazdı.",
+   "s": 3.37,
+   "e": 3.75
+  },
+  {
+   "t": "Başkan",
+   "s": 4.28,
+   "e": 4.64
+  },
+  {
+   "t": "işe",
+   "s": 4.69,
+   "e": 4.87
+  },
+  {
+   "t": "baktırdı.",
+   "s": 4.9,
+   "e": 5.38
+  }
+ ],
+ "dur": 5.616,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -85.7,
+ "hisirti_6k_dbfs": -99.0,
+ "pad_nf_dbfs": -76.8,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

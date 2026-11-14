@@ -1,0 +1,64 @@
+{
+ "id": "P07",
+ "lang": "en",
+ "text": "But a bat picks its own roost.",
+ "words": [
+  {
+   "t": "But",
+   "s": 0.1,
+   "e": 0.21
+  },
+  {
+   "t": "a",
+   "s": 0.23,
+   "e": 0.27
+  },
+  {
+   "t": "bat",
+   "s": 0.31,
+   "e": 0.49
+  },
+  {
+   "t": "picks",
+   "s": 0.52,
+   "e": 0.73
+  },
+  {
+   "t": "its",
+   "s": 0.75,
+   "e": 0.87
+  },
+  {
+   "t": "own",
+   "s": 0.89,
+   "e": 1.02
+  },
+  {
+   "t": "roost.",
+   "s": 1.06,
+   "e": 1.36
+  }
+ ],
+ "dur": 1.593,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.0,
+ "hisirti_6k_dbfs": -88.9,
+ "pad_nf_dbfs": -80.0,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  24.12
+ ]
+}

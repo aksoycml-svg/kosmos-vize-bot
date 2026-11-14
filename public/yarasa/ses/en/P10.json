@@ -1,0 +1,62 @@
+{
+ "id": "P10",
+ "lang": "en",
+ "text": "Then the capsules lit. The base burned.",
+ "words": [
+  {
+   "t": "Then",
+   "s": 0.1,
+   "e": 0.21
+  },
+  {
+   "t": "the",
+   "s": 0.23,
+   "e": 0.31
+  },
+  {
+   "t": "capsules",
+   "s": 0.35,
+   "e": 0.81
+  },
+  {
+   "t": "lit.",
+   "s": 0.87,
+   "e": 1.12
+  },
+  {
+   "t": "The",
+   "s": 1.64,
+   "e": 1.73
+  },
+  {
+   "t": "base",
+   "s": 1.76,
+   "e": 1.97
+  },
+  {
+   "t": "burned.",
+   "s": 2.01,
+   "e": 2.35
+  }
+ ],
+ "dur": 2.612,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.6,
+ "hisirti_6k_dbfs": -89.1,
+ "pad_nf_dbfs": -82.3,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

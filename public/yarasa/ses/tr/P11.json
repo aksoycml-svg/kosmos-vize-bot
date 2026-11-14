@@ -1,0 +1,97 @@
+{
+ "id": "P11",
+ "lang": "tr",
+ "text": "Yine de proje sürdü. Sonunda Amiral King, silah geç hazır olacağı için iptal etti.",
+ "words": [
+  {
+   "t": "Yine",
+   "s": 0.1,
+   "e": 0.39
+  },
+  {
+   "t": "de",
+   "s": 0.43,
+   "e": 0.54
+  },
+  {
+   "t": "proje",
+   "s": 0.62,
+   "e": 0.99
+  },
+  {
+   "t": "sürdü.",
+   "s": 1.03,
+   "e": 1.4
+  },
+  {
+   "t": "Sonunda",
+   "s": 1.92,
+   "e": 2.37
+  },
+  {
+   "t": "Amiral",
+   "s": 2.41,
+   "e": 2.83
+  },
+  {
+   "t": "King,",
+   "s": 2.89,
+   "e": 3.16
+  },
+  {
+   "t": "silah",
+   "s": 3.41,
+   "e": 3.79
+  },
+  {
+   "t": "geç",
+   "s": 3.9,
+   "e": 4.15
+  },
+  {
+   "t": "hazır",
+   "s": 4.2,
+   "e": 4.42
+  },
+  {
+   "t": "olacağı",
+   "s": 4.46,
+   "e": 4.8
+  },
+  {
+   "t": "için",
+   "s": 4.83,
+   "e": 5.04
+  },
+  {
+   "t": "iptal",
+   "s": 5.07,
+   "e": 5.41
+  },
+  {
+   "t": "etti.",
+   "s": 5.46,
+   "e": 5.72
+  }
+ ],
+ "dur": 5.956,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -85.5,
+ "hisirti_6k_dbfs": -96.9,
+ "pad_nf_dbfs": -86.9,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

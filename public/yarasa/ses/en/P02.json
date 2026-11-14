@@ -1,0 +1,57 @@
+{
+ "id": "P02",
+ "lang": "en",
+ "text": "It began with a dentist's idea.",
+ "words": [
+  {
+   "t": "It",
+   "s": 0.065,
+   "e": 0.145
+  },
+  {
+   "t": "began",
+   "s": 0.185,
+   "e": 0.445
+  },
+  {
+   "t": "with",
+   "s": 0.485,
+   "e": 0.595
+  },
+  {
+   "t": "a",
+   "s": 0.635,
+   "e": 0.665
+  },
+  {
+   "t": "dentist's",
+   "s": 0.725,
+   "e": 1.165
+  },
+  {
+   "t": "idea.",
+   "s": 1.215,
+   "e": 1.675
+  }
+ ],
+ "dur": 1.907,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.7,
+ "hisirti_6k_dbfs": -88.8,
+ "pad_nf_dbfs": -48.5,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

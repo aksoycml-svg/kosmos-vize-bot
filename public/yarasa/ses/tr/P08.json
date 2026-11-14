@@ -1,0 +1,82 @@
+{
+ "id": "P08",
+ "lang": "tr",
+ "text": "15 Mayıs 1943'te bir yardımcı hava üssünde silahlı yarasalar kazayla salındı.",
+ "words": [
+  {
+   "t": "15",
+   "s": 0.19,
+   "e": 0.46
+  },
+  {
+   "t": "Mayıs",
+   "s": 0.58,
+   "e": 0.83
+  },
+  {
+   "t": "1943'te",
+   "s": 0.94,
+   "e": 2.17
+  },
+  {
+   "t": "bir",
+   "s": 2.42,
+   "e": 2.55
+  },
+  {
+   "t": "yardımcı",
+   "s": 2.56,
+   "e": 3.0
+  },
+  {
+   "t": "hava",
+   "s": 3.03,
+   "e": 3.23
+  },
+  {
+   "t": "üssünde",
+   "s": 3.27,
+   "e": 3.74
+  },
+  {
+   "t": "silahlı",
+   "s": 3.93,
+   "e": 4.4
+  },
+  {
+   "t": "yarasalar",
+   "s": 4.44,
+   "e": 4.91
+  },
+  {
+   "t": "kazayla",
+   "s": 5.0,
+   "e": 5.46
+  },
+  {
+   "t": "salındı.",
+   "s": 5.52,
+   "e": 5.91
+  }
+ ],
+ "dur": 6.139,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -68.4,
+ "hisirti_6k_dbfs": -83.8,
+ "pad_nf_dbfs": -86.8,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

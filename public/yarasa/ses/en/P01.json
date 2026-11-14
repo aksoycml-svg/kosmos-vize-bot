@@ -1,0 +1,84 @@
+{
+ "id": "P01",
+ "lang": "en",
+ "text": "The bats did exactly what was asked. America's own base burned.",
+ "words": [
+  {
+   "t": "The",
+   "s": 0.08,
+   "e": 0.17
+  },
+  {
+   "t": "bats",
+   "s": 0.22,
+   "e": 0.44
+  },
+  {
+   "t": "did",
+   "s": 0.46,
+   "e": 0.58
+  },
+  {
+   "t": "exactly",
+   "s": 0.62,
+   "e": 1.07
+  },
+  {
+   "t": "what",
+   "s": 1.11,
+   "e": 1.24
+  },
+  {
+   "t": "was",
+   "s": 1.26,
+   "e": 1.38
+  },
+  {
+   "t": "asked.",
+   "s": 1.42,
+   "e": 1.78
+  },
+  {
+   "t": "America's",
+   "s": 2.33,
+   "e": 2.79
+  },
+  {
+   "t": "own",
+   "s": 2.82,
+   "e": 2.95
+  },
+  {
+   "t": "base",
+   "s": 2.99,
+   "e": 3.23
+  },
+  {
+   "t": "burned.",
+   "s": 3.29,
+   "e": 3.72
+  }
+ ],
+ "dur": 3.84,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -90.1,
+ "hisirti_6k_dbfs": -96.4,
+ "pad_nf_dbfs": -73.9,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  2.02
+ ]
+}

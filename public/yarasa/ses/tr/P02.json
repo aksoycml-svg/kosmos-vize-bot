@@ -1,0 +1,57 @@
+{
+ "id": "P02",
+ "lang": "tr",
+ "text": "Her şey bir diş hekiminin fikriydi.",
+ "words": [
+  {
+   "t": "Her",
+   "s": 0.1,
+   "e": 0.3
+  },
+  {
+   "t": "şey",
+   "s": 0.38,
+   "e": 0.56
+  },
+  {
+   "t": "bir",
+   "s": 0.62,
+   "e": 0.75
+  },
+  {
+   "t": "diş",
+   "s": 0.8,
+   "e": 1.02
+  },
+  {
+   "t": "hekiminin",
+   "s": 1.05,
+   "e": 1.54
+  },
+  {
+   "t": "fikriydi.",
+   "s": 1.59,
+   "e": 2.08
+  }
+ ],
+ "dur": 2.325,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -75.4,
+ "hisirti_6k_dbfs": -87.4,
+ "pad_nf_dbfs": -78.8,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

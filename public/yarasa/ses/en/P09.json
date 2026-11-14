@@ -1,0 +1,77 @@
+{
+ "id": "P09",
+ "lang": "en",
+ "text": "Seeking dark corners, bats roosted even under a fuel tank.",
+ "words": [
+  {
+   "t": "Seeking",
+   "s": 0.13,
+   "e": 0.54
+  },
+  {
+   "t": "dark",
+   "s": 0.6,
+   "e": 0.8
+  },
+  {
+   "t": "corners,",
+   "s": 0.91,
+   "e": 1.46
+  },
+  {
+   "t": "bats",
+   "s": 1.67,
+   "e": 1.94
+  },
+  {
+   "t": "roosted",
+   "s": 2.02,
+   "e": 2.4
+  },
+  {
+   "t": "even",
+   "s": 2.43,
+   "e": 2.61
+  },
+  {
+   "t": "under",
+   "s": 2.64,
+   "e": 2.83
+  },
+  {
+   "t": "a",
+   "s": 2.86,
+   "e": 2.9
+  },
+  {
+   "t": "fuel",
+   "s": 2.96,
+   "e": 3.18
+  },
+  {
+   "t": "tank.",
+   "s": 3.21,
+   "e": 3.46
+  }
+ ],
+ "dur": 3.709,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -81.8,
+ "hisirti_6k_dbfs": -88.1,
+ "pad_nf_dbfs": -75.3,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

@@ -1,0 +1,77 @@
+{
+ "id": "P05",
+ "lang": "en",
+ "text": "Fieser, the napalm chemist, built a tiny capsule for bats.",
+ "words": [
+  {
+   "t": "Fieser,",
+   "s": 0.13,
+   "e": 0.7
+  },
+  {
+   "t": "the",
+   "s": 0.72,
+   "e": 0.84
+  },
+  {
+   "t": "napalm",
+   "s": 0.88,
+   "e": 1.31
+  },
+  {
+   "t": "chemist,",
+   "s": 1.36,
+   "e": 1.88
+  },
+  {
+   "t": "built",
+   "s": 2.26,
+   "e": 2.43
+  },
+  {
+   "t": "a",
+   "s": 2.45,
+   "e": 2.48
+  },
+  {
+   "t": "tiny",
+   "s": 2.53,
+   "e": 2.81
+  },
+  {
+   "t": "capsule",
+   "s": 2.86,
+   "e": 3.26
+  },
+  {
+   "t": "for",
+   "s": 3.28,
+   "e": 3.39
+  },
+  {
+   "t": "bats.",
+   "s": 3.44,
+   "e": 3.86
+  }
+ ],
+ "dur": 4.101,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -81.3,
+ "hisirti_6k_dbfs": -87.4,
+ "pad_nf_dbfs": -81.6,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

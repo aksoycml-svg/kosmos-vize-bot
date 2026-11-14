@@ -1,0 +1,82 @@
+{
+ "id": "P06",
+ "lang": "en",
+ "text": "Asleep in a canister, they'd wake when it opened and roost.",
+ "words": [
+  {
+   "t": "Asleep",
+   "s": 0.15,
+   "e": 0.47
+  },
+  {
+   "t": "in",
+   "s": 0.51,
+   "e": 0.56
+  },
+  {
+   "t": "a",
+   "s": 0.59,
+   "e": 0.62
+  },
+  {
+   "t": "canister,",
+   "s": 0.66,
+   "e": 1.13
+  },
+  {
+   "t": "they'd",
+   "s": 1.15,
+   "e": 1.32
+  },
+  {
+   "t": "wake",
+   "s": 1.34,
+   "e": 1.54
+  },
+  {
+   "t": "when",
+   "s": 1.55,
+   "e": 1.67
+  },
+  {
+   "t": "it",
+   "s": 1.69,
+   "e": 1.75
+  },
+  {
+   "t": "opened",
+   "s": 1.78,
+   "e": 2.06
+  },
+  {
+   "t": "and",
+   "s": 2.09,
+   "e": 2.17
+  },
+  {
+   "t": "roost.",
+   "s": 2.21,
+   "e": 2.54
+  }
+ ],
+ "dur": 2.795,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -80.7,
+ "hisirti_6k_dbfs": -87.0,
+ "pad_nf_dbfs": -81.5,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

@@ -1,0 +1,62 @@
+{
+ "id": "P07",
+ "lang": "tr",
+ "text": "Ama nereye tüneyeceğine yarasa kendi karar verir.",
+ "words": [
+  {
+   "t": "Ama",
+   "s": 0.1,
+   "e": 0.27
+  },
+  {
+   "t": "nereye",
+   "s": 0.32,
+   "e": 0.63
+  },
+  {
+   "t": "tüneyeceğine",
+   "s": 0.67,
+   "e": 1.26
+  },
+  {
+   "t": "yarasa",
+   "s": 1.31,
+   "e": 1.7
+  },
+  {
+   "t": "kendi",
+   "s": 1.84,
+   "e": 2.18
+  },
+  {
+   "t": "karar",
+   "s": 2.21,
+   "e": 2.52
+  },
+  {
+   "t": "verir.",
+   "s": 2.56,
+   "e": 2.84
+  }
+ ],
+ "dur": 3.082,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -74.0,
+ "hisirti_6k_dbfs": -84.1,
+ "pad_nf_dbfs": -84.9,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}
