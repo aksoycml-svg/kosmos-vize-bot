@@ -1,0 +1,93 @@
+{{Short description|American organic chemist (1899–1977)}}
+{{Infobox scientist
+| name              = Louis Frederick Fieser
+| image             = Louis Fieser.jpg
+| image_size        = 
+| caption           = 
+| birth_date        = {{birth date|1899|04|07|mf=y}}
+| birth_place       = [[Columbus, Ohio]]
+| death_date        = {{death date and age|mf=yes|1977|07|25|1899|04|07}}
+| death_place       = [[Belmont, Massachusetts]]
+| residence         = 
+| nationality       = 
+| field             = [[Chemistry]]
+| workplaces        = [[University of Oxford]]<br>[[Harvard University]]
+| education         = [[Williams College]]<br>[[University of Frankfurt/Main|Frankfurt University]]<br>[[Harvard University]]
+| doctoral_advisor  = [[James Bryant Conant]]
+| thesis_title      = Reduction potentials of quinones. / A new absorbent for oxygen in gas analysis
+| thesis_url        = http://www.worldcat.org/oclc/76986350
+| thesis_year       = 1924
+| doctoral_students = [[Donald J. Cram]]<br>[[William Summer Johnson]]<BR>[[Alfred Bader]]
+| notable_students  = [[Donald J. Cram]]
+| known_for         = Synthesis of [[vitamin K]]<br>[[Quinone]]<br>[[Cortisone]]<br>[[Woodward–Fieser rules]]<br>Inventor of [[Napalm]]
+| spouse            = [[Mary Peters Fieser]]
+| awards            = [[George C. Pimentel Award in Chemical Education|George C. Pimentel]] {{small|(1967)}}<br>[[William H. Nichols Medal]] {{small|(1963)}}
+| religion          = <!--Please insert-->
+| module            = {{Infobox military person
+| branch   = {{ubl
+|[[Office of Strategic Services]]
+|[[National Defense Research Committee]]
+}}
+| units    = {{ubl
+|[[Research and Development Branch]]
+|[[Office of Scientific Research and Development]]
+}}
+| commands = Chief of the Incendiary Devices Section
+| battles  = [[World War II]]
+| embed    = yes
+}}
+}}
+
+'''Louis Frederick Fieser''' (April 7, 1899 &ndash; July 25, 1977) was an American [[organic chemist]], professor, and in 1968, professor emeritus at [[Harvard University]]. His award-winning research included work on blood-clotting agents including the first synthesis of [[vitamin K]], synthesis and screening of [[quinone]]s as [[malaria|antimalarial]] drugs, work with [[steroid]]s leading to the synthesis of [[cortisone]], and study of the nature of [[polycyclic aromatic hydrocarbons]]. He also invented militarily effective [[napalm]] while at Harvard in 1942.<ref>
+[https://www.nature.com/articles/496029a Nature volume 496, page 29 (04 April 2013)] - "In 1942, in a secret lab at Harvard University in Massachusetts, chemist Louis Fieser and his team created napalm — an incendiary gel that sticks to skin and can burn down to the bone."
+</ref>
+
+==Overview==
+Fieser was born in [[Columbus, Ohio]], obtained his BA in chemistry in 1920 from [[Williams College]], and his PhD under [[James Bryant Conant]] at Harvard in 1924. His graduate research concerned the measurement of [[oxidation potential]]s in [[quinone]] oxidation.<ref name=Lenoir>{{cite journal|title = Louis Fieser: An Organic Chemist in Peace and War|first1 = D.|last1 = Lenoir|first2 = T. T.|last2 = Tidwell|journal = [[Eur. J. Org. Chem.]]|year = 2009|doi = 10.1002/ejoc.200800969|volume = 2009|pages = 481–491|issue = 4}}  Note: nice anecdote in supplementary info</ref> in 1924-1925 Fieser worked at the [[University of Oxford]] with [[William Henry Perkin, Jr.|W.H. Perkin Jr.]] and with [[Julius von Braun]] at the [[University of Frankfurt/Main|Frankfurt University]] as a postdoc. Between 1925 and 1930 he worked at [[Bryn Mawr College]] where he met his future wife. He then moved to [[Harvard University]].
+
+With his research assistant and wife [[Mary Peters Fieser]] (MA, 1936, Radcliffe) he coauthored eight books and the first seven volumes of the classic series ''Reagents for Organic Synthesis'' known popularly among chemists as "Fieser and Fieser". He was also an editor and contributor for ''[[Organic Syntheses]]''.
+
+At Harvard University, Fieser was a well-loved faculty member widely known for using inventive methods to educate his students, such as demonstrating "How NOT to Perform a Recrystallization" (in which he allowed a flask of charcoal to overflow and create a mess of his desk and himself). Fieser even produced a $28,000 educational film to supplement his organic chemistry lecture. As part of a scene in which Fieser demonstrated how cholesterol could be experimentally isolated from gall stones, the film featured a shot of a collection of oversized and rare gall stones from Boston-area hospitals.<ref>{{Cite book|last=Fieser|first=Louis F.|title=The Scientific Method: A Personal Account of Unusual Projects in War and in Peace|publisher=Reinhold Publishing Corporation|year=1964|location=New York|pages=223–227}}</ref> Notably, Fieser's students appreciated his efforts so much that they sold orange "Louie" sweatshirts branded with Fieser's face in Harvard Square, one of which was worn by Fieser himself to lecture one day.<ref>{{Cite book|url=https://www.nap.edu/read/4548/chapter/8|title=Read "Biographical Memoirs: Volume 65" at NAP.edu|year=1994 |doi=10.17226/4548 |isbn=978-0-309-05037-1 |language=en}}</ref>
+
+Fieser had two chemical reagents named for him.  ''Fieser's reagent'' is a mixture of [[chromium trioxide]] in [[acetic acid]].  ''Fieser's solution'' is an aqueous solution of [[potassium hydroxide]], [[sodium hydrosulfite]], and sodium anthraquinone β-sulfonate used for the removal of [[oxygen]] from a gas stream.<ref>{{cite journal | author = Fieser, L. F. | journal = [[J. Am. Chem. Soc.]] | year = 1924 | volume = 46 | pages = 2639–2647 | doi = 10.1021/ja01677a005 | issue = 12 | title = A new absorbent for oxygen in gas analysis}}</ref>  [[Woodward's rules]] for calculating UV absorption maxima are also known as the Woodward-Fieser rules.  He was the first to propose the existence of [[iceane]].<ref>{{cite journal|journal = [[J. Chem. Educ.]]|last = Fieser|first = L. F.|author-link = Louis Fieser|title = Extensions in the use of plastic tetrahedral models|year = 1965|volume = 42|issue = 8|pages = 408–412|doi = 10.1021/ed042p408| bibcode=1965JChEd..42..408F }}</ref><ref>{{cite book|chapter = Polyhedral Molecular Geometries|author1-last = Hargittai|author1-first = M.|author2-last = Hargittai|author2-first = I.|pages = 153–170, 299|chapter-url = https://books.google.com/books?id=kZtCAAAAQBAJ&q=Louis+Fieser+iceane&pg=PA299|title = Shaping Space: Exploring Polyhedra in Nature, Art, and the Geometrical Imagination|editor-last = Senechal|editor-first = M.|year = 2013|publisher = [[Springer Science & Business Media]]|isbn = 9780387927145}}</ref>
+
+In 1939 Fieser was involved in a competitive race for the structure elucidation of [[Vitamin K]] and he was able to report its synthesis in the end of that year.<ref>{{cite journal|title = Synthesis of Vitamin K1|first = L. F.|last = Fieser|journal = [[J. Am. Chem. Soc.]]|year = 1939|volume = 61| issue = 12|pages = 3467–3475|doi = 10.1021/ja01267a072|pmid = 17776660}}</ref> According to a recent ''in memoriam'' <ref name=Lenoir /> Fieser was a contender for the [[Nobel Prize in Physiology or Medicine]] in 1941 and 1942 (when no prizes were actually awarded). However the 1943 award was shared between [[Henrik Dam]] for the discovery of vitamin K and [[Edward A. Doisy]] for the discovery of its chemical nature.<ref name="nobel-1943">{{cite web| url = http://nobelprize.org/nobel_prizes/medicine/laureates/1943/index.html| title = The Nobel Prize in Physiology or Medicine 1943 | access-date = 2018-01-15 | publisher = Nobel Foundation}}</ref>
+
+Fieser was elected to the [[American Academy of Arts and Sciences]] in 1933,<ref>{{Cite web |title=Louis Frederick Fieser |url=https://www.amacad.org/person/louis-frederick-fieser |access-date=2023-04-27 |website=American Academy of Arts & Sciences |date=9 February 2023 |language=en}}</ref> the United States [[National Academy of Sciences]] in 1940,<ref>{{Cite web |title=Louis Fieser |url=https://www.nasonline.org/directory-entry/louis-fieser-lm3mfv/ |access-date=2023-04-27 |website=www.nasonline.org}}</ref> and the [[American Philosophical Society]] in 1941.<ref>{{Cite web |title=APS Member History |url=https://search.amphilsoc.org/memhist/search?creator=Louis+F.+Fieser&title=&subject=&subdiv=&mem=&year=&year-max=&dead=&keyword=&smode=advanced |access-date=2023-04-27 |website=search.amphilsoc.org}}</ref>
+
+During World War II Fieser was partly responsible for a military experiment that went disastrously awry. [[Bat bomb|''Project X-ray'']] was a scheme to drop a great number of bats with small incendiary charges with a timed fuse attached over Japan to start widespread fires. After the bats nested in housing and factories, the timed fuses would ignite the incendiary charges (napalm) and start the fires. During a test run, a number of the bats escaped and ignited [[Carlsbad AAF|Carlsbad Airfield]]'s hangars, barracks, and a general's car. "The accidental incineration of Carlsbad Auxiliary Army Airfield by incendiary bats was both a high and a low for Project X-Ray."<ref>{{cite book|title = Bat Bomb: World War II's Other Secret Weapon|first = J.|last = Couffer|publisher = [[University of Texas Press]]|year = 1992|isbn = 9780292707900|page = 233|url = https://books.google.com/books?id=1pLfAAAAMAAJ&q=editions:1fgqiyuFmfcC}}</ref> Fieser omitted the account of the fires from his own account of the bat tests.<ref>{{cite book|last = Fieser|first = L. F.|year = 1964|title = The Scientific Method: A Personal Account of Unusual Projects in War and in Peace|publisher = [[Reinhold Publishing Corporation]]|isbn = 9784420001168|url = https://books.google.com/books?id=cixPAQAAIAAJ&q=fieser+scientific+method}}</ref>
+
+[[Dow Chemical]] began producing his formula for napalm during [[World War II]].  The use of napalm during the [[Vietnam War]] stirred controversy. Fieser, however, was unapologetic for its creation. He stated, "I have no right to judge the morality of napalm just because I invented it."<ref>''Time'' magazine, January 5, 1968</ref>
+
+In 1962 he served on the ''U.S. Surgeon General's Advisory Committee'' that in 1964 issued a report on the relationship between [[Smoking and Health|smoking and health]]. Fieser was a [[Chain smoking|chain smoker]], and only after he was diagnosed with lung cancer in 1965 and recovered did he quit the habit and start to actively promote the committee's conclusions.
+
+Fieser was the graduate advisor of 1987 [[Nobel Prize|Nobel]] laureate [[Donald J. Cram]].
+
+== Notes ==
+<references/>
+
+==References==
+*Gates, M., ''Biographical Memoirs of the National Academy of Science'' 1994, vol. 65, p.&nbsp;161-175
+*"Steroids", ''Scientific American'', January 1955, Vol.192, No.1, pp.&nbsp;52–60
+*{{cite book|last = Fieser|first = L. F.|year = 1964|title = The Scientific Method: A Personal Account of Unusual Projects in War and in Peace|publisher = [[Reinhold Publishing Corporation]]|isbn = 9784420001168|url = https://books.google.com/books?id=cixPAQAAIAAJ&q=fieser+scientific+method}}
+*{{cite book|title = Bat Bomb: World War II's Other Secret Weapon|first = J.|last = Couffer|publisher = [[University of Texas Press]]|year = 1992|isbn = 9780292707900|url = https://archive.org/details/batbombworldwari00couf|url-access = registration|quote = editions:1fgqiyuFmfcC.}}
+
+==External links==
+*{{webarchive |url=https://web.archive.org/web/20050312093403/http://moderntimes.vcdh.virginia.edu/PVCC/mbase/docs/napalm.html |date=March 12, 2005 |title=The Man Who Invented Napalm }} ''Time'' magazine January 5, 1968 ([[Internet Archive|Internet archive]])
+*[https://web.archive.org/web/20050925003601/http://www.chemistry.msu.edu/Portraits/PortraitsHH_Detail.asp?HH_Lname=Fieser Brief bio] and photo at [[Michigan State University]], accessed February 9, 2006
+*[http://www.jbc.org/cgi/content/full/278/52/e4 Contributions of Organic Chemists to Biochemistry] ''Journal of Biological Chemistry'' online, accessed February 9, 2006
+*{{Deprecated archive|url=https://archive.today/20121129235749/http://50.56.66.97/content/ii-bats-away|sec=el}}, accessed May 6, 2011.
+
+{{Authority control}}
+
+{{DEFAULTSORT:Fieser, Louis}}
+[[Category:20th-century American chemists]]
+[[Category:Williams College alumni]]
+[[Category:Harvard Graduate School of Arts and Sciences alumni]]
+[[Category:Scientists from Columbus, Ohio]]
+[[Category:1899 births]]
+[[Category:1977 deaths]]
+[[Category:Harvard University faculty]]
+[[Category:Members of the American Philosophical Society]]
+[[Category:Fellows of the American Academy of Arts and Sciences]]
+[[Category:Members of the United States National Academy of Sciences]]

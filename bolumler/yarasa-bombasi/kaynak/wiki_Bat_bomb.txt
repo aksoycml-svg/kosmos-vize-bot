@@ -1,0 +1,98 @@
+{{Short description|Experimental WWII U.S. incendiary weapon}}
+{{For|the U.S. Navy guided bomb|ASM-N-2 Bat}}
+{{Use American English|date=October 2020}}
+{{Use dmy dates|date=November 2024}}
+{{Infobox weapon
+| name               = Bat bomb
+| image              = Bat Bomb Canister.jpg
+| image_size         = 300
+| alt                = 
+| caption            = Bat bomb canister later used to hold the [[hibernating]] [[Mexican free-tailed bats|bats]].
+| origin             = US
+| type               = Bomb
+<!-- Type selection -->| is_explosive       = Yes
+<!-- Service history -->| service            = Never used
+| used_by            = United States of America
+| wars               = World War II
+<!-- Production history -->| designer           = [[Lytle Adams]]
+| design_date        = January 1942
+| manufacturer       = 
+| unit_cost          = 
+| production_date    = 
+| number             = 
+| variants           = <!-- General specifications -->
+| spec_label         = 
+| weight             = {{convert|123|kg|lb|abbr=on}}
+| length             = {{convert|123|cm|in|abbr=on}}
+| part_length        = 
+| width              = 
+| height             = 
+| diameter           = <!-- Explosive specifications -->
+| filling            = 
+| filling_weight     = 
+| detonation         = 
+| yield              = 
+}}
+
+'''Bat bombs''' were an experimental [[World War II]] weapon developed by the United States. The bomb consisted of a bomb-shaped casing with over a thousand compartments, each containing a [[hibernating]] [[Mexican free-tailed bat]] with a small, timed [[incendiary bomb]] attached. Dropped from a [[bomber]] at [[dawn]], the casings would deploy a [[parachute]] in mid-flight and open to release the bats, which would then disperse and roost in [[eaves]] and [[Attic|attics]] in a {{convert|20-40|mi|km|adj=mid|radius}}. The incendiaries, which were set on [[Timer|timers]], would then [[Ignition system|ignite]] and start [[Fire|fires]] in inaccessible places in the largely [[Machiya|wood and paper constructions]] of the Japanese cities that were the weapon's intended target. The [[United States Navy]] took control in August 1943, using the code name '''Project'''{{Nbsp}}'''X-Ray'''.
+
+==Conception==
+The bat bomb was conceived by Lytle S. Adams (1881–1970<ref>{{cite journal | pmid=16396208 | year=2005 | last1=Christen | first1=A. G. | last2=Christen | first2=J. A. | title=Lytle S. Adams, DDS (1883-1970): Nonstop Airmail Pick-up inventor | journal=Journal of the History of Dentistry | volume=53 | issue=3 | pages=89–93 }}</ref>), a dental surgeon from [[Irwin, Pennsylvania]],<ref name="Duffin">{{cite journal| url=https://warfarehistorynetwork.com/daily/wwii/bat-bombs-wwiis-project-x-ray/| title='Bat Bombs': WWII's Project X-Ray| website=Warfare History Network| date=24 October 2018| access-date=14 June 2019| first=Allan T.| last=Duffin| archive-date=17 June 2019| archive-url=https://web.archive.org/web/20190617212525/http://warfarehistorynetwork.com/daily/wwii/bat-bombs-wwiis-project-x-ray/| url-status=dead}}</ref> who was an acquaintance of First Lady [[Eleanor Roosevelt]].<ref name="theatlantic.com">{{cite news | url=https://www.theatlantic.com/technology/archive/2011/04/old-weird-tech-the-bat-bombs-of-world-war-ii/237267/ | title=Old, Weird Tech: The Bat Bombs of World War II | work=The Atlantic | date=14 April 2011 | access-date=31 January 2014 | author=Madrigal, Alexis C.}}</ref> The inspiration for Adams' suggestion was a trip he took to [[Carlsbad Caverns National Park]], which is home to many bats. Adams wrote about his idea of incendiary bats in a [[Letter (message)|letter]] to the [[White House]] in January 1942 – little more than a month after the [[attack on Pearl Harbor]].<ref name="Couffer"/>{{rp|6}} Adams was intrigued by the strength of bats and knew that they roosted before dawn. He also knew that most of the buildings in Tokyo were constructed of wood instead of concrete. He believed that if time-release incendiaries could be attached to bats, some kind of container holding them could be dropped over the city after dark and the bats would simply roost and burn Tokyo to the ground.<ref>Bills, E. R. ''Texas Obscurities: Stories of the Peculiar, Exceptional and Nefarious'', Charleston, SC: The History Press, 2013. </ref>
+
+In his letter, Adams stated that the bat was the "lowest form of animal life", and that, until now, "reasons for its creation have remained unexplained".<ref name="Couffer" />{{rp|6}} He went on to espouse that bats were created "by God to await this hour to play their part in the scheme of free human existence, and to frustrate any attempt of those who dare desecrate our way of life."<ref name="Couffer">{{cite book| title=Bat Bomb: World War II's Other Secret Weapon| first=Jack| last=Couffer| publisher=University of Texas Press| year=1992| isbn=0292707908| url-access=registration| url=https://archive.org/details/batbombworldwari00couf}}</ref>{{rp|6}}
+
+[[Franklin D. Roosevelt|President Roosevelt]] passed the letter to [[William J. Donovan]], the director of the [[Office of Strategic Services]] (OSS), in which he attached a [[cover letter]], which read: "This man is not a nut. It sounds like a perfectly wild idea but is worth your time looking into."<ref name="Duffin" /><ref name="theatlantic.com" /> Donovan was enthused by the idea, and instructed [[Stanley Platt Lovell]] to use the [[Research and Development Branch]] (R&D) to pursue the initial designs and development. Lovell, a close aide of [[Vannevar Bush]], assigned the project to Division 19 of the [[National Defense Research Committee]] (NDRC), also known as the "Sandeman Club," of which OSS R&D had command authority. Harris Chadwell, Lovell's subordinate and the chief of Division 19, recruited the Harvard zoology professor [[Donald Griffin]] onto the project (Chadwell and Lovell were both affiliated with Harvard).<ref name=":4">{{Cite book |last=Lisle |first=John |url=https://www.google.com/books/edition/The_Dirty_Tricks_Department/GldrEAAAQBAJ?hl=en&gbpv=1&dq=dirty+tricks+department&printsec=frontcover |title=The Dirty Tricks Department: Stanley Lovell, the OSS, and the Masterminds of World War II Secret Warfare |date=2023-03-07 |publisher=St. Martin's Publishing Group |isbn=978-1-250-28025-1 |language=en}}</ref>
+
+The plan was subsequently approved by President Roosevelt on Griffin's advice.<ref name="AFA">{{cite magazine|url=https://www.airandspaceforces.com/article/1090bats/|title=The Bat Bombers|last=Glines|first=Carroll V.|date=October 1990|magazine=[[Air & Space Forces Magazine]]|volume=73|issue=10|access-date=1 October 2006|archive-url=https://web.archive.org/web/20260124082035/https://www.airandspaceforces.com/article/1090bats/|archive-date=24 January 2026|url-status=live}}</ref><ref>{{cite journal |last=Drumm |first=Patrick |author2=Christopher Ovre |date=April 2011 |title=A batman to the rescue |url=http://www.apa.org/monitor/2011/04/batman.aspx |journal=Monitor on Psychology |volume=42 |issue=4 |page=24 |access-date=31 October 2013}}</ref>
+
+==After government approval==
+[[File:Tadarida brasiliensis.jpg|thumb|''Tadarida brasiliensis'', Mexican free-tailed bat]]
+After Roosevelt gave the project his approval, it was relegated to the authority of the [[United States Army Air Force]]. Adams assembled the workers for the project, including the mammalogist Jack von Bloeker, actor [[Tim Holt]], a former gangster, and a former hotel manager, among others. Von Bloeker, his assistant, [[Jack Couffer]], and Ozro Wiswell, a scientist, self-described "bat lovers",<ref name="Couffer"/>{{rp|8}} noted that it did not occur to them to question the "morality or the ecological consequences of sacrificing a few million bats".<ref name="Couffer"/>{{rp|9}} For the duration of the project, many members enlisted in the Air Force, where Adams quickly promoted them to "acting" [[non-commissioned officer]]s.<ref name="Duffin"/>
+
+The team had to determine several variables to make the project feasible, including what kind of incendiaries could be attached to the bats, as well as the temperatures at which to store and transport them. The bats had to be kept in hibernation while they were shipped. To accomplish this, they were stuck in ice cube trays and cooled.<ref>{{Cite web |last=Madrigal |first=Alexis C. |date=2011-04-14 |title=Old, Weird Tech: The Bat Bombs of World War II |url=https://www.theatlantic.com/technology/archive/2011/04/old-weird-tech-the-bat-bombs-of-world-war-ii/237267/ |access-date=2023-10-17 |website=The Atlantic |language=en}}</ref> They also had to decide what species of bat to use for the bombs. After testing several species, the [[Mexican free-tailed bat]] was selected. Adams had to ask for permission from the [[National Park Service]] for Griffin to harvest large numbers of Mexican free-tailed bats from caves on government property. While the original plan was to arm the bats with [[White phosphorus munitions|white phosphorus]], American chemist [[Louis Fieser]], Griffin's former roommate at Harvard, joined the team and white phosphorus was replaced with his invention, [[napalm]].<ref name="Duffin"/><ref name=":4" />
+
+Tests were used to determine how much napalm an individual bat could carry, determining that a {{cvt|0.5|oz|g|order=flip}} bat could carry a payload of {{cvt|15-18|g|oz}}. The napalm was stored in small [[cellulose]] containers dubbed "H-2 units". After trying several attachment methods, they decided to attach the H-2 unit to the bats using an adhesive, gluing them to the front of the bats.<ref name="Duffin"/>
+
+The bomb carrier was a sheet metal tube approximately {{cvt|5|ft|m|order=flip}} in length. The inside of the tube was fitted with twenty-six circular trays, each of which was {{cvt|30|in|cm|order=flip}} in diameter. In total, each bomb carrier could hold 1,040 bats. It was planned that the carrier would be deployed from an airplane, descending to an altitude of {{cvt|4,000|ft|m|order=flip}} before deploying parachutes. The sides of the bomb carrier would then fall away, allowing the bats to disperse.<ref name="Duffin"/>
+
+==Setbacks and transfer to US Navy==
+[[File:Carlsbad AAF Fire after Bat Bomb Accident.jpg|right|thumb|upright|Errant bats from the experimental bat bomb set fire to the Carlsbad Army Airfield Auxiliary Air Base in New Mexico.]]
+A series of tests to answer various operational questions were conducted. In one incident, the [[Carlsbad Army Airfield]] Auxiliary Air Base ({{Coord|32|15|39|N|104|13|45|W|}}) near [[Carlsbad, New Mexico]], was set on fire on 15 May 1943, when armed bats were accidentally released.<ref>{{cite book | title=Einstein's Refrigerator: And Other Stories from the Flip Side of History | publisher=Andrews McMeel Publishing | author=Silverman, Steve | year=2001 | pages=122 | isbn=9780740714191}}</ref> The bats roosted under a fuel tank and incinerated the test range.
+
+Following this setback, the project was relegated to the [[United States Navy|Navy]] in August 1943, who renamed it ''Project&nbsp;X-Ray'', and then passed it to the [[United States Marine Corps|Marine Corps]] that December. The Marine Corps moved operations to the [[Marine Corps Air Station El Centro|Marine Corps Air Station at El Centro, California]]. After several experiments and operational adjustments, the definitive test was carried out on the "[[Japanese Village (Dugway Proving Ground)|Japanese Village]]", a mockup of a Japanese city built by the [[Chemical Corps|Chemical Warfare Service]] at their [[Dugway Proving Grounds|Dugway Proving Ground]] test site in [[Utah]].{{citation needed|date=February 2015}}
+
+Observers at this test offered optimistic accounts. The chief of incendiary testing at Dugway wrote:
+
+{{Blockquote|text=A reasonable number of destructive fires can be started in spite of the extremely small size of the units. The main advantage of the units would seem to be their placement within the enemy structures without the knowledge of the householder or fire watchers, thus allowing the fire to establish itself before being discovered.<ref name="theatlantic.com" />}}
+
+The [[National Defense Research Committee]] observer stated: "It was concluded that X-Ray is an effective weapon." The chief chemist's report stated that, on a weight basis, X-Ray was more effective than the standard incendiary bombs in use at the time: "Expressed in another way, the regular bombs would give probably 167 to 400 fires per bomb load where X-Ray would give 3,625 to 4,748 fires."{{citation needed|date=February 2015}}
+
+More tests were scheduled for mid-1944, but the program was canceled by [[Fleet Admiral]] [[Ernest J. King]] when he heard that it would likely not be combat ready until mid-1945. By that time, it was estimated that $2 million (equivalent to ${{inflation|US|2|1945|r=1|fmt=c}} million in {{Inflation/year|US}}) had been spent on the project. It is thought that development of the bat bomb was moving too slowly, and was overtaken in the race for a quick end to the war by the [[atomic bomb]] project. Adams maintained that the bat bombs would have been effective without the devastating effects of the atomic bomb: "Think of thousands of fires breaking out simultaneously over a circle of {{convert|40|mi|spell=in|disp=sqbr|}} in diameter for every bomb dropped. Japan could have been devastated, yet with small loss of lives."<ref name="AFA" />
+
+The infamous "Invasion by Bats" project was afterwards referred to by Stanley P. Lovell, director of research and development for [[Office of Strategic Services]], whom General [[William J. Donovan]] ordered to review the idea, as "Die Fledermaus Farce".<ref>Lovell, Stanley P. ''Of Spies & Stratagems''. Englewood Cliffs, N.J.: Prentice-Hall, 1963, p. 63.</ref>
+
+Lovell had also mentioned bats, during testing, were dropping to the ground like stones.<ref>Waller, Douglas C. ''Wild Bill Donovan: The Spymaster Who Created the OSS and Modern American Espionage''. New York: Free Press, 2011, p. 104.</ref>
+
+==See also==
+* [[Animal-borne bomb attacks]]
+* [[Anti-tank dog]]
+* [[Explosive rat]]
+* [[Harald Hardrada]] (using birds in a similar way to set fire to a besieged castle in Sicily)<ref>Snorri Snorluson in the [https://www.gutenberg.org/files/598/598-h/598-h.htm#link2H_4_0545 Heimskringla]</ref> 
+* [[Fu-Go balloon bomb|Japanese Balloon Bombs]]
+* [[Military animals]]
+* [[Olga of Kiev]] (using "pigeons or sparrows" as offensive weapons in the 900s AD)
+* [[Project Pigeon]]
+ 
+===Bibliography===
+* {{cite book|last = Couffer |first= Jack| year = 1992| title = Bat Bomb World War II's Secret Weapon | publisher = University of Texas Press |location = Austin Texas| isbn = 0-292-70790-8}}
+
+==References==
+{{Reflist|2}}
+
+{{New Mexico during World War II}}{{Office of Strategic Services|state=collapsed}}{{DEFAULTSORT:Bat Bomb}}
+[[Category:Animal cruelty incidents]]
+[[Category:Animal-borne bombs]]
+[[Category:Bats and humans]]
+[[Category:Incendiary weapons]]
+[[Category:Military animals of World War II]]
+[[Category:World War II aerial bombs of the United States]]

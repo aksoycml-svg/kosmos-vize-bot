@@ -2,6 +2,8 @@
 
 Araştırma tarihi: 2026-11-14. Ajan: araştırmacı.
 
+**GÜNCELLEME (tur 2):** Bu dosyanın sonundaki "Doğrulama turu 2 (tam metin)" bölümü, aşağıdaki "arama özeti" iddialarının bir kısmını yerel tam metinlerle teyit eder, bir kısmını değiştirir. Çelişki olursa tur 2 bölümü önceliklidir; ama tur 2'nin kendisi de yalnız Wikipedia ham metni ve dipnot künyelerine dayanır (dipnotların kendisi açılmadı).
+
 **DURUM (önce oku):** Bu oturumda WebFetch hiçbir dış alan adını çözemedi (en.wikipedia.org, wikipedia.com, historynet.com, americanheritage.com hata verdi; kiwix aynası denenmedi). Bu yüzden **hiçbir kaynağın tam metni açılamadı.** Aşağıdaki her bilgi **"arama özeti"** düzeyindedir: arama motorunun döndürdüğü özet/alıntı parçalarına dayanır. Birincil belgeler (Adams'ın mektubu, FDR notu, Couffer'in kitabı, ordu raporları, Fieser'in kendi anlatımı) **doğrudan görülmedi**. Kitabın kendisi: Jack Couffer, *Bat Bomb: World War II's Other Secret Weapon*, University of Texas Press, 1992 — bu konudaki neredeyse tüm yazıların asıl dayanağıdır; yani aşağıdaki kaynaklar **birbirinden bağımsız değildir**. "En az 3 bağımsız kaynak" şartı, çoğu madde için **sağlanamadı**; hangi maddenin kaç kaynağa dayandığı tablolarda yazılı.
 
 Kaynak gücü etiketi: **[B]** birincil (belge/tanık), **[Aka]** akademik/kurumsal (NPS, USAF, hakemli dergi), **[İ]** ikincil (saygın yayın/ansiklopedi), **[P]** popüler/blog (düşük güven).
@@ -187,3 +189,132 @@ Güven sütunu: **Y** = ≥3 kaynak özeti uyuşuyor (ama hepsi Couffer'e dayana
 ## 10. BAĞIMSIZLIK VE EKSİKLER
 - Hiçbir birincil belge görülmedi; bütün zincir Couffer + resmî NDRC raporları (Fieser) + birkaç USAF/NPS/AFTC özetinden gelir.
 - Kontrol edilmesi gereken (internet erişimi gelince): Wikipedia dipnotları, AFA makalesinin tamamı, AFTC sayfası, Plung makalesi, NPS Carlsbad Caverns "Historic Resource Study" (Adams ve ordu), Couffer kitabından sayfa, Fieser'in *Napalm* bölümü, Carlsbad Current-Argus arşivi, NARA/LoC görselleri.
+
+---
+---
+
+# Doğrulama turu 2 (tam metin) — 2026-11-14
+
+## T2.0 Kapsam ve dürüst sınır
+- **Açılan tam metinler (yerel):** Wikipedia ham metni (wikitext) dipnotlarıyla; 4 madde + 1 Commons dosya künyesi. Kaynaklar aşağıda **K1–K5** diye anılır.
+- **Hâlâ açılmayan (dipnotların kendisi):** Couffer 1992 (sayfa künyeleriyle atıf var), Duffin/Warfare History Network 2018, Madrigal/The Atlantic 2011, Glines/Air & Space Forces 1990, Silverman 2001, Lisle 2023, Waller 2011, Lovell 1963, Plung 2018. WebFetch bu oturumda `apjjf.org`, `warfarehistorynetwork.com`, `theatlantic.com`, `loc.gov`, `wikiwand.com`, `en.wikipedia.org` için çalışmadı (DNS/izin); bu alan adları oturumun ağ ayarlarında izinli değilse açılamaz. Web **araması** çalıştı; arama özetleri aşağıda "arama özeti" etiketli.
+- **Bağımsızlık uyarısı:** K1–K4 hepsi Wikipedia'dır (tek yayıncı). "Dipnot künyesiyle teyit" = *Wikipedia'nın bu cümleyi şu kaynağa bağladığı* demektir; kaynağın kendisini görmedim. En az 3 bağımsız kaynak şartı bu tur için de **sağlanmadı**; bağımsız dipnotlar (Couffer, Duffin, Atlantic, Silverman, Wilkins, Nature) açılınca kapanır.
+- Popüler yayınların (Task & Purpose vb.) Wikipedia'dan türemiş olması **olası (çıkarım)**; önceki turdaki "Y" güvenleri bu yüzden gevşetildi.
+
+**Kaynak etiketleri (tur 2)**
+- **K1** [Bat bomb — Wikipedia (ham metin)](https://en.wikipedia.org/wiki/Bat_bomb) — yerel: `kaynak/wiki_Bat_bomb.txt` **[İ]**
+- **K2** [Louis Fieser — Wikipedia](https://en.wikipedia.org/wiki/Louis_Fieser) — yerel: `kaynak/wiki_Louis_Fieser.txt` **[İ]**
+- **K3** [Mexican free-tailed bat — Wikipedia](https://en.wikipedia.org/wiki/Mexican_free-tailed_bat) — yerel: `kaynak/wiki_Mexican_free-tailed_bat.txt` **[İ]**; tür bölümü Wilkins 1989 (Mammalian Species, hakemli) dipnotlu
+- **K4** [Dugway Proving Ground — Wikipedia](https://en.wikipedia.org/wiki/Dugway_Proving_Ground) — yerel: `kaynak/wiki_Dugway_Proving_Ground.txt` **[İ]**
+- **K5** [File:Carlsbad AAF Fire after Bat Bomb Accident.jpg — Commons künyesi](https://commons.wikimedia.org/wiki/File:Carlsbad_AAF_Fire_after_Bat_Bomb_Accident.jpg) — yerel: `kaynak/commons_fire.txt` **[künye; görselin kendisi görülmedi]**
+- **K6** (arama özeti) Plung makalesi/jsis.washington.edu özeti, HAER-LoC kaydı özeti, wikiwand "Japanese Village" özeti — yalnız arama sonuç özeti.
+
+## T2.1 Madde madde karşılaştırma
+
+Sonuç etiketleri: **TEYİT** (tam metinde var, dipnot künyeli) · **DEĞİŞTİ** · **TEK** (tek dipnot/kaynak) · **METİNDE YOK** (tam metinde geçmiyor; önceki özet iddiası askıda) · **ŞÜPHELİ**.
+
+| # | İddia | Tam metin bulgusu (dipnot künyesi) | Sonuç |
+|---|---|---|---|
+| 1 | Adams, diş cerrahı, Irwin PA | "a dental surgeon from Irwin, Pennsylvania" — dipnot: Duffin, *Warfare History Network*, 24 Ekim 2018 [K1] | TEYİT (TEK dipnot) |
+| 2 | İlham: Carlsbad Caverns gezisi; mektup Ocak 1942, Pearl Harbor'dan "bir aydan biraz fazla" sonra | "a trip he took to Carlsbad Caverns National Park"; "letter to the White House in January 1942 – little more than a month after the attack on Pearl Harbor" — dipnot: Couffer, s. 6 [K1] | TEYİT (Couffer s.6, ikincil aktarım). Mektup günü yok; "12 Ocak" metinde **yok → doğrulanamadı** |
+| 3 | Adams, Eleanor Roosevelt'in tanıdığı biri | "an acquaintance of First Lady Eleanor Roosevelt" — dipnot: Madrigal, *The Atlantic*, 14 Nisan 2011 [K1] | TEYİT ("tanıdık"). "Eleanor ikna etti" metinde **yok → kanıtsız kalır** |
+| 4 | FDR notu | "This man is not a nut. It sounds like a perfectly wild idea but is worth your time looking into." Başkan mektubu **Donovan'a** (OSS direktörü) iletti, ekli not olarak — dipnotlar: Duffin + Atlantic [K1] | **DEĞİŞTİ** (tam söz artık var; önceki "worth looking into" kısaltmaydı). İkincil; birincil belge görülmedi |
+| 5 | Yönlendirme zinciri (Çelişki 4) | Donovan → Stanley Lovell (OSS R&D) → NDRC Division 19 → Harris Chadwell → Harvard zoologu Donald Griffin işe alındı (Lisle 2023). "Plan, Roosevelt tarafından Griffin'in tavsiyesiyle onaylandı" — dipnotlar: Glines/AFA 1990 + APA Monitor 2011 [K1] | **ÇÖZÜLDÜ:** ikisi birbirini dışlamıyor. Zincirin ilk halkaları (Lisle) TEK |
+| 6 | Fieser, napalm, beyaz fosfor yerine | "American chemist Louis Fieser, Griffin's former roommate at Harvard, joined the team and white phosphorus was replaced with his invention, napalm" — Duffin + Lisle [K1]; "invented militarily effective napalm while at Harvard in 1942" — Nature, 4 Nisan 2013 [K2] | TEYİT. "Mart 1943'te katıldı" metinde **yok → TEK/özet kalır** |
+| 7 | Tür: Meksika serbest kuyruklu yarasa | "After testing several species, the Mexican free-tailed bat was selected" [K1]. **Seçim gerekçesi (bolluk/boyut/taşıma) metinde yok** | TEYİT (tür); gerekçe **çıkarım** olarak işaretlenmeli |
+| 8 | Yarasa ağırlığı | Bat bomb maddesi: "a 0.5 oz bat" (≈14 g; `cvt` ile 14 g) — Duffin [K1]. Tür maddesi: "typically 9 cm in length and weigh around 7–12 g" — Wilkins 1989 [K3] | **ÇELİŞKİ (güncellendi):** 14 g (Duffin, popüler) vs 7–12 g (Wilkins, hakemli tür kaydı). Tür kaydı daha güvenilir; 14 g yuvarlak/ağır birey olabilir (**çıkarım**). Senaryo gram vermiyor, doğru |
+| 9 | Yük | "a 0.5 oz bat could carry a payload of 15–18 g"; napalm küçük **selüloz kaplarda ("H-2 units")**; **yapıştırıcıyla** yarasanın ön tarafına yapıştırıldı — Duffin [K1] | TEYİT (TEK). Yük, her iki ağırlık rakamında da yarasanın kendi ağırlığından fazla (aritmetik, **çıkarım**). "Kimyasal zamanlayıcı", "15 saat", "17,5 g", "0,6/1 oz" metinde **yok → TEK/özet** |
+| 10 | Taşıyıcı | "sheet metal tube approximately 5 ft (1.5 m) in length"; "twenty-six circular trays, each 30 in (76 cm) in diameter"; "1,040 bats"; "descending to an altitude of 4,000 ft before deploying parachutes"; "sides of the bomb carrier would then fall away" — Duffin [K1]. Giriş: "over a thousand compartments" | TEYİT (TEK dipnot). **40 yarasa/tepsi = 1.040/26 (aritmetik, çıkarım)**. Bilgi kutusundaki "123 kg / 123 cm" **ŞÜPHELİ** (yer tutucu gibi; gövde metniyle 1,5 m çelişir) → kullanılmaz |
+| 11 | Buz tepsisi | "The bats had to be kept in hibernation while they were shipped. To accomplish this, they were stuck in ice cube trays and cooled." — Atlantic [K1] | TEYİT (TEK). **Bu, nakliye soğutmasıdır; taşıyıcı içi tepsiyle aynı şey olduğu metinde yok.** "Yumurta kolisi" benzetmesi metinde **yok → özet** |
+| 12 | Carlsbad yangını: tarih/yer | "Carlsbad Army Airfield Auxiliary Air Base (32°15′39″N 104°13′45″W) near Carlsbad, New Mexico, was set on fire on 15 May 1943, when armed bats were accidentally released" — dipnot: Silverman, *Einstein's Refrigerator*, 2001, s. 122 [K1]; Commons künyesi "Taken on 1943-05-15" [K5] | TEYİT (iki künye; ikisi de Couffer'e dayanıyor olabilir). Koordinat yalnız K1'de, **doğrulanamadı** |
+| 13 | **Yakıt tankı altına tüneme** | "The bats roosted under a fuel tank and incinerated the test range." — **Silverman 2001, s. 122** [K1] | TEYİT ama **TEK dipnot (popüler anekdot kitabı)**. "Tank yandı" ifadesi **yok**: yanan "test range" |
+| 14 | Ne yandı | K2: "ignited Carlsbad Airfield's **hangars, barracks, and a general's car**" ve Couffer s. 233'ten alıntı: "The accidental incineration of Carlsbad Auxiliary Army Airfield by incendiary bats was both a high and a low for Project X-Ray." [K2] | **DEĞİŞTİ:** generalin arabası artık Couffer s.233'e bağlı bir cümlede (dipnot alıntının sonunda; arabayı mı alıntıyı mı kapsadığı belirsiz → "orta"). Kule/kışla (T&P) → metinde **hangar + kışla**; **kule yok** |
+| 15 | Fieser kendi kitabında yangını anlatmadı | "Fieser omitted the account of the fires from his own account of the bat tests" — Fieser 1964, *The Scientific Method* [K2] | TEYİT (TEK) → yeni hikâye altını |
+| 16 | Donanma/USMC | "relegated to the Navy in August 1943, who renamed it Project X-Ray, … Marine Corps that December … Marine Corps Air Station at El Centro" [K1] | TEYİT. Cümlede dipnot yok; "bu aksilikten sonra" nedensellik ima eder, Silverman dipnotu yalnız yangın cümlesini kapsar |
+| 17 | Dugway'de yarasa testi | "the definitive test was carried out on the 'Japanese Village' … at Dugway … Utah.**{{citation needed|date=February 2015}}**" [K1] | **TEK/KAYNAKSIZ** (Wikipedia kendisi "citation needed" işaretli). Test tarihi yok |
+| 18 | Gözlemci "effective" | "The National Defense Research Committee observer stated: 'It was concluded that X-Ray is an effective weapon.'" — **citation needed** (Şubat 2015) [K1]. Aynı bölümde Dugway yangın testi şefi alıntısı ("A reasonable number of destructive fires can be started…") dipnot: Atlantic. Baş kimyager raporu "167–400 yangın vs 3.625–4.748 yangın" — **citation needed** | **KAYNAKSIZ (Wikipedia'da)**; "etkili" sözü kesin alıntı olarak verilmemeli. Test-şefi alıntısı Atlantic dipnotlu (TEK, açılmadı) |
+| 19 | King iptali, "mid-1945" | "More tests were scheduled for mid-1944, but the program was canceled by Fleet Admiral Ernest J. King when he heard that it would likely not be combat ready until mid-1945." (cümlede dipnot yok; paragraf sonunda AFA) [K1] | TEYİT (zayıf: dipnotsuz cümle). İptal ayı **yok** |
+| 20 | $2 milyon | "it was estimated that $2 million … had been spent" — dipnotsuz [K1] | **TEK/dipnotsuz** (bu cümleye bağlı kaynak yok) |
+| 21 | Atom bombası nedeni | "It is thought that development … was overtaken … by the atomic bomb project." — dipnotsuz, "it is thought" [K1] | **Kaynaksız yorum**; senaryoda zaten yok, doğru |
+| 22 | Hiç kullanılmadı | Bilgi kutusu: "service = Never used" [K1] | TEYİT |
+| 23 | ~6.000 yarasa / 3.500 Carlsbad | Metinlerde **yok** | **METİNDE YOK → TEK/özet** |
+| 24 | 21 Mayıs Muroc B-25 testi, 5 °C, Teksas mağaraları, Devil's Sinkhole | Metinlerde **yok**. K1 yalnız "A series of tests to answer various operational questions" der | **METİNDE YOK → özet düzeyinde kalır** |
+| 25 | Uyanma zamanı ayarlanamadı (bölümün "engel"i) | Metinde doğrudan **yok**. Yakın destek: Lovell, yarasalar testte "dropping to the ground like stones" — Waller 2011, s. 104 [K1] | **METİNDE YOK (kısmi destek)**, bkz. T2.5-C |
+| 26 | "Dawn" bırakış | Giriş: "Dropped from a bomber at dawn" (dipnotsuz); Conception: "dropped over the city after dark and the bats would simply roost" — Bills 2013 [K1] | **İÇ ÇELİŞKİ (Wikipedia'nın kendi içinde):** şafakta / karanlıkta. Birlikte okunursa "şafak öncesi" (**çıkarım**). Senaryo bırakış saati vermiyor, etkilenmez |
+| 27 | Etki yarıçapı | Giriş: "20–40 mi radius"; Adams alıntısı: "circle of 40 miles in diameter" — AFA [K1] | **İÇ ÇELİŞKİ** (yarıçap vs çap). Kullanılmaz |
+| 28 | Adams doğum yılı | Metin "1881–1970"; dipnot başlığı "(1883-1970)" — Christen & Christen 2005 [K1] | **İÇ ÇELİŞKİ** (1881/1883); kullanılmaz |
+
+## T2.2 Kısa karar: neler değişti
+1. **FDR notunun tam sözü** artık metinde (2 dipnot: Duffin, Atlantic). Not **Donovan'a** gitti; Eleanor'un rolü hâlâ yalnız "tanıdık".
+2. **Generalin arabası** için kaynak durumu iyileşti: Couffer s.233'e bağlı (Fieser maddesi). Ama aynı cümle **hangar + kışla** diyor, **kule demiyor**; tank ise **Silverman s.122**'den ayrı bir dipnot. İki ayrı kaynak aynı olayı farklı yapılarla anlatıyor (çelişmiyor, tamamlıyor; ikisi de tek-dipnotlu).
+3. **Yarasa ağırlığı** çelişkisi sertleşti: 14 g (Duffin) vs 7–12 g (hakemli tür kaydı). Senaryoda gram yok → sorun yok.
+4. **Kovan ölçüleri** (1,5 m, 26 tepsi, 76 cm çap, 1.040, 4.000 ft) tam metinde teyit; "1.000 ft'te açılır" **hiçbir tam metinde yok**.
+5. **Dugway testi ve "effective" sözü Wikipedia'nın kendi işaretiyle kaynaksız**; önceki "O" güveni **T/kaynaksız**'a indi.
+6. **Hâlâ tek kaynaklı:** tank altına tüneme (Silverman), $2M, 15–18 g yük, ölçüler (Duffin), buz tepsisi (Atlantic), Dugway testi, Fieser'in kitabında yangını anlatmaması.
+
+## T2.3 Dugway "Japon köyü": yapım tarihi ve niteliği
+- **Tarih:** "During 1943 the 'German Village' and 'Japanese Village' set-piece domestic 'hamlets' were built at Dugway" — dipnotlar: Fox, *High Country News*, 3 Nisan 2017 (Almanya için); Plung, *Asia-Pacific Journal: Japan Focus* 16(8), 15 Nisan 2018 (Japonya için) [K4]. Dugway'in kendisi 1942'de kuruldu, test mid-1942'de başladı [K4]. **Plung künyesi çözüldü:** cilt 16, sayı 8, 15 Nisan 2018, URL `apjjf.org/2018/08/Plung.html` (önceki "16/3" hatalıydı) [K4].
+- **Nitelik:** Alman ve Japon **evlerinin tipik taklitleri ("set-piece domestic hamlets")**, "fire-bombing" pratiği için; Almanya ve Japon ana adalarının kentsel konutları örnek alındı [K4]. Dugway'in genel görevi o dönem yangın bombası taktiklerini de kapsıyordu ("fire bombing tactics") [K4].
+- **Yarasa bombasıyla ilişki:** Dugway maddesi **yarasa bombasından hiç söz etmiyor** [K4]; köy **genel yangın testi** içindir (arama özeti: Mayıs–Eylül 1943 testleri, napalmlı M-69 ön planda — K6, tek özet). Bat bomb maddesi yarasa testini bu köye bağlıyor ama **citation needed** [K1]. Yani köy yarasa için **kurulmadı**; yarasa testi köyün kullanıldığı testlerden biri **olabilir** (kaynaksız). Köy 1943'te yapıldı; yarasa testi Aralık 1943 devrinden **sonra** sayılıyor [K1], tarihi yok → "1944" **çıkarım**, kullanılmamalı.
+- **Arama özeti düzeyi (K6, açılmadı):** mimar Antonin Raymond, Boris Laiming'in 1923 Tokyo yangını raporu; evler yakıldıktan sonra tekrar yeniden inşa edildi; HAER kaydına göre Japon köyü artık yok, Alman köyü duruyor; Plung'un görselleri Standard Oil'in "Design and Construction of Typical German and Japanese Test Structures at Dugway Proving Grounds, Utah, 1943" raporundan. (Önceki tablodaki rapor adı "…Typical German and Japanese Structures…" idi; özet şimdi "Test Structures" diyor — **doğrulanamadı**, Plung açılınca bakılmalı.)
+- **Telifsiz görsel kaynak:** HAER **UT-92** "Dugway Proving Ground, German-Japanese Village … in WWII Incendiary Test Area" (27 veri sayfası); UT-92-A Alman köyü (14 fotoğraf, 3 çizim), UT-92-B gözlem sığınağı (3 fotoğraf) — Library of Congress HAER [K4 dış bağlantılar]; Japon köyüne ait kareler için LoC kaydı (`loc.gov/pictures/item/ut0664/`, arama sonucu) ayrıca açılıp hak durumu **doğrulanmalı**.
+- **Mekân (K4):** Great Salt Lake Desert, Salt Lake City'nin ~85 mil (≈137 km) güneybatısı, üç yanı dağ sıralarıyla çevrili; toprak "talcum powder" gibi ince (Genesis 2004 notu) [K4].
+
+## T2.4 Dönem fotoğrafı: Carlsbad yangını (tasarım referansı)
+- **Künye [K5]:** Açıklama (en): "Errant bats from the experimental Bat Bomb set the Army Air Base in Carlsbad, New Mexico on fire, 1943." Kaynak: Couffer 1992 (UT Press). Yazar: United States Army Air Forces. Tarih: 15 Mayıs 1943. İzin: USGOV-PD; şablon `PD-USGov-Military-Air_Force`. Kategoriler: siyah-beyaz fotoğraf, "Buildings in Carlsbad, New Mexico", "Fires in New Mexico", 1943.
+- **Kullanım durumu:** Commons künyesi **kamu malı** diyor (ABD hava kuvvetleri görevlisi eseri → PD ile uyumlu; **lisans etiketi yükleyenin beyanı**, NARA kaydıyla doğrulanması önerilir). Görselin **kendisi bu turda görülmedi** (yalnız künye); içeriği (hangar mı kışla mı, alev/duman yönü, çatı tipi) **doğrulanamadı** → tasarımcı dosyayı kullanıcı/başka makinede açıp bakmalı (Wikimedia bu sunucudan 429 veriyor).
+- **Tasarım notu (çıkarım, görsel görülmeden):** kategoriler "binalar" ve siyah-beyaz; K2 hangar/kışla/araba diyor → referans, ahşap/hafif askerî yapı yangını olabilir. **Kule ve yakıt tankı** için bu fotoğraf kanıt değildir.
+- **Diğer PD adayları (K1/K3'te Commons dosya adları, içerik görülmedi):** `Bat Bomb Canister.jpg` (bat bomb bilgi kutusu: "canister later used to hold the hibernating bats"), `Tadarida brasiliensis outflight Hristov Carlsbad Caverns.jpg` (Carlsbad Caverns'tan akşam çıkışı; lisans **doğrulanamadı**), `Tadarida brasiliensis.jpg`.
+- **Yarasa morfolojisi (K3, Wilkins 1989):** boy ≈9 cm; kuyruk toplam boyun neredeyse yarısı ve **uropatagiumdan dışarı uzanır**; kulaklar geniş, yuvarlak, yüzün önünde neredeyse birleşir; kanatlar uzun, dar, uçları sivri; tüy koyu kahve–gri; ayaklarda uzun beyaz kıllar. Binalarda "açıklıklar ve tavan/duvar karanlık girintileri" olan her yapıda tüner; yaş, yükseklik, mimari, malzeme fark etmez. Mağarada **spiral** biçimde sürü uçar (havalandırma için "thought to").
+
+## T2.5 SENARYOYLA ÇELİŞEN / SENARYOYU ETKİLEYEN BULGULAR (ayrı başlık)
+`senaryo.md` okundu, değiştirilmedi. Kararı orkestra/senarist verir.
+
+| # | Plan | Senaryodaki ifade | Tam metin bulgusu | Önerilen yön (karar sahibi: senarist) |
+|---|---|---|---|---|
+| A | P10 ekran | "Yeni binalar ve yakıt tankı yandı" | (i) K1: yarasalar **tankın altına tünedi, "test range" yandı**; tankın yandığı yazmıyor. (ii) "Yeni" (yeni inşa) K1–K4'te **yok**; önceki T&P/AVA özetinde. (iii) K2: hangar, kışla, generalin arabası | "Yandı: tankın yanındaki test sahası" ya da "Hangarlar ve kışlalar" (K2). "Yeni" sözcüğü kaynaklı değil → düşür |
+| B | P08 | "New Mexico'daki **yeni** üste" | "Yeni" tam metinlerde yok; "Auxiliary Air Base" var [K1] | "yardımcı hava üssünde" |
+| C | P07 / omurga 3 | "yarasanın ne zaman uyanacağı ayarlanamıyordu" (bölümün engeli) | Tam metinde **doğrudan yok**. Destek: yarasalar testte "taş gibi yere düşüyordu" (Lovell, Waller s.104) [K1]. Muroc/hibernasyon özeti yalnız arama özeti | Ya "testlerde bazı yarasalar taş gibi düştü" (K1, Waller) ile yumuşat, ya da "uyanma ayarlanamıyor" cümlesini "arama özeti, T–O" olarak kullanıcıya bildir |
+| D | P10 ekran | "anlatılana göre bir generalin arabası da" | K2: general's car, Couffer s.233 bağlı cümlede. **Güven "orta"ya çıktı** | "anlatılana göre" kalabilir; ya da "hangarlar, kışlalar, bir generalin arabası (Couffer)" |
+| E | P11 | "gözlemci: 'etkili'" ve Dugway'de yarasa testi | Hem test cümlesi hem "effective" alıntısı Wikipedia'da **citation needed** [K1]; Dugway maddesi yarasadan söz etmiyor [K4] | Tırnak içi "etkili" kullanılmaz ya da "bir rapor 'etkili' dedi (kaynağı zayıf)" kullanıcıya bildirilir. Dugway testi "anlatılana göre" ya da çıkar |
+| F | P06 | "yumurta kolisi gibi gözlü tepsiler", kesit | K1: **dairesel** tepsiler (76 cm çap), 26 adet, 1,5 m metal tüp; "compartments" var, göz biçimi yok. Buz tepsisi = nakliye soğutması | Kesitte yumurta kolisi yerine **yuvarlak, üst üste 26 tepsi** (çıkarım: kompartmanlı); buz küpü kalıbı ayrı insert olabilir |
+| G | P05 | "kapsül silindirik, ucunda kapalı kapak" | K1: **selüloz kap (H-2 unit)**, **yapıştırıcıyla** yapıştırıldı; zamanlayıcının biçimi metinde yok | "iliştiriyor" → "yapıştırıyor"; kapak/kadran biçimi tasarım serbestliği (kaynaksız) |
+| H | P04 ekran | "Başkanın notu, kabaca: 'bu adam kaçık değil'" | Tam söz teyitli (K1, 2 dipnot): "This man is not a nut. It sounds like a perfectly wild idea but is worth your time looking into." | "kabaca" düşürülebilir (ikincil kaynak notuyla). Not **Donovan'a** gitti: "Başkan işe baktırdı" doğru |
+| I | P03/P09 | "yarasa karanlık çatı altına tüner" | K1: "roost in eaves and attics"; K3 (Wilkins): binalarda karanlık girintiler | TEYİT; senaryoyla çelişmez |
+| J | P11 | "Amiral King … en erken 1945 ortası" | K1 "Fleet Admiral", mid-1945. **Rütbe: King'in Fleet Admiral rütbesini Aralık 1944'te aldığı genel bilgi (bu kaynaklarda yok, doğrulanamadı); iptal tarihi yok** | "Amiral" güvenli; "Fleet Admiral" yazılmaz |
+| K | §8 açıklama metni | "araştırmada tam metin görülmedi" | Artık Wikipedia ham metni ve dipnot künyeleri görüldü; birincil kaynaklar hâlâ görülmedi | Cümle: "Kaynaklar çoğunlukla Couffer'e dayanır; ikincil aktarımla doğrulandı" gibi güncellenebilir |
+
+Çelişmeyen ve teyitli olanlar: P02 (Adams, diş hekimi, Carlsbad gezisi), P03 kuralı, P04 "Ocak 1942 / Pearl Harbor'dan bir ay sonra" (ikincil, Couffer s.6), P05 "napalm'i geliştiren Fieser", P06 "~1.000 yarasa" (1.040), P08 tarih (15 Mayıs 1943) ve "kazayla salındı", P12 "hiç kullanılmadı".
+
+## T2.6 Yeni hikâye altınları (yalnız dipnotlu; alıntılar K1/K2'den)
+- **Adams'ın mektubu (Couffer s.6):** yarasayı "lowest form of animal life" diye anıp bunca zamandır varlık nedeninin "unexplained" kaldığını yazdı; yarasaların "by God to await this hour" yaratıldığını ileri sürdü [K1]. (Kısa, doğrulanmış, tırnaklı; ironik ton.)
+- **Fieser, yarasa testindeki yangını kendi kitabında hiç anlatmadı** (Fieser 1964) [K2]. Kurulum→karşılık adayı: "Napalm'in mucidi, bu yangını kitabına yazmadı."
+- **Couffer'in cümlesi (s.233):** yangın Project X-Ray için "both a high and a low" idi [K2]; çifte okunur ("hem zirve hem dip") — P09/P10 ironisine uyar.
+- **Lovell'in lakabı:** OSS Ar-Ge şefi Stanley Lovell projeyi "Die Fledermaus Farce" diye andı (Lovell 1963, s.63) [K1]. ("Fledermaus" = Almanca yarasa; operet adıyla oyun **çıkarım/genel bilgi**.)
+- **Kadro:** Adams ekibine aktör **Tim Holt**, eski bir gangster ve eski bir otel müdürü de girdi; üyeler "acting" astsubay yapıldı (Duffin) [K1]. Mammalog ekibi "birkaç milyon yarasayı feda etmenin ahlakını/ekolojik sonucunu" sormadıklarını yazdı (Couffer s.9) [K1] — ölçülü ton için bilgi; ekranda kullanılması senarist kararı.
+- **Park izni:** Adams, Griffin'in federal arazideki mağaralardan çok sayıda yarasa toplayabilmesi için **National Park Service'ten izin istemek zorunda kaldı** [K1].
+- **Griffin–Fieser:** Fieser, Griffin'in Harvard'daki eski oda arkadaşıydı [K1] — fikir tesadüf değil tanıdık ağıyla büyüdü.
+- **Adams'ın tezi:** atom bombası olmasa da yarasalar "binlerce yangın" çıkarıp "az can kaybıyla" Japonya'yı yıkabilirdi (Adams, AFA) [K1]. Savaş/ölüm konusunda hassas; alıntı yalnız bağlamla kullanılır.
+
+## T2.7 Güncel çelişki tablosu (tur 2 sonrası)
+| # | Konu | Durum |
+|---|---|---|
+| 1 | Yangın tarihi | 15 Mayıs 1943: K1 (Silverman s.122) + K5 (fotoğraf tarihi). Diğer tarihler hata. **Kullanılır** |
+| 2 | Ne yandı | K1: test range (tank altı, Silverman); K2: hangar, kışla, general arabası (Couffer s.233); T&P: kule+kışla (tek, özet). **Yumuşak:** "üssün yapıları" / "test sahası"; ayrıntı "anlatılana göre" |
+| 3 | Eleanor | Yalnız "tanıdık" (Atlantic) |
+| 4 | FDR → Donovan / Griffin | **Çözüldü** (zincir: Lisle; onay: AFA/APA) |
+| 5 | Yarasa ağırlığı | **Açık:** 14 g (Duffin) vs 7–12 g (Wilkins). Gram verilmez |
+| 6 | Bırakış irtifası | 4.000 ft paraşüt açılışı (Duffin, TEK). "1.000 ft" ve "5.000 ft Muroc testi" tam metinde yok. Sayı verilmez |
+| 7 | İptal nedeni | King: mid-1945 (teyit, zayıf); atom bombası "it is thought" (kaynaksız) |
+| 8 | İptal ayı | Yok; "1944'te" bile K1'de değil (yalnız "mid-1944'te testler planlanmıştı"). T&P "Ekim 1944" arama özeti, TEK |
+| 9 | Son test yeri | Dugway (K1, K4); testin kendisi citation needed |
+| 10 | Maliyet | $2M, dipnotsuz cümle → "söylenir" bile zayıf |
+| 11 | Yarasa sayısı | Metinde yok |
+| 12 (yeni) | Wikipedia iç çelişkileri | şafak/karanlık bırakış; yarıçap/çap; Adams 1881/1883; bilgi kutusu 123 kg/cm |
+
+## T2.8 Hâlâ yapılması gerekenler (erişim açılırsa)
+1. Silverman 2001 s.122 ve Couffer s.233 / Duffin (WHN) / Atlantic: tank altı + ne yandı + FDR notu birincile yakın doğrulama (`warfarehistorynetwork.com`, `theatlantic.com` alan adları izinli olmalı).
+2. Plung 2018 (`apjjf.org`): köy yapım ayı, yapı sayısı/malzemesi, yarasa testine değinip değinmediği.
+3. Couffer'in yarasa testi bölümü: uyanma sorunu (Muroc 21 Mayıs), Dugway test tarihi ve gözlemci raporu.
+4. Commons görselinin kendisi + NARA künyesi (tasarım referansı).
+5. HAER UT-92 / LoC Japon köyü fotoğrafları (hak durumu).

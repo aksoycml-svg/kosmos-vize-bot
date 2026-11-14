@@ -1,0 +1,26 @@
+== {{int:filedesc}} ==
+{{Information
+|Description    ={{en|1=Errant bats from the experimental Bat Bomb set the Army Air Base in Carlsbad, New Mexico on fire, 1943.}}
+|Source         =Bat Bomb: World War II's Other Secret Weapon, by Jack Couffer, University of Texas Press, 1992
+|Author         =United States Army Air Forces
+|Date           ={{Taken on|1943-05-15}}
+|Permission     =USGOV-PD
+|other_versions =
+}}
+
+== {{int:license-header}} ==
+{{PD-USGov-Military-Air_Force}}
+
+[[Category:Black and white photographs of buildings in the United States]]
+[[Category:Black and white photographs of New Mexico]]
+[[Category:Black and white photographs of the United States in the 1940s]]
+[[Category:Black and white photographs of World War II]]
+[[Category:Buildings in Carlsbad, New Mexico]]
+[[Category:Buildings in the United States photographed in 1943]]
+[[Category:Geography of New Mexico]]
+[[Category:Fires in New Mexico]]
+[[Category:May 1943 United States photographs]]
+[[Category:1943 fires in the United States]]
+[[Category:1943 in New Mexico]]
+[[Category:World War II in May 1943]]
+[[Category:World War II weapons of the United States]]

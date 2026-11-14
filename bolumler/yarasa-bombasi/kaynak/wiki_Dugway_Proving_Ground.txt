@@ -1,0 +1,234 @@
+{{short description|US Army facility in Tooele County, Utah}}
+{{Use American English|date=July 2025}}
+{{Infobox military installation
+| name          = Dugway Proving Ground
+| ensign        = 
+| ensign_size   = 
+| native_name   = 
+| part_of       = <!-- for elements within a larger site -->
+| location      = [[Tooele County, Utah]]
+| nearest_town  = <!-- used in military test site infobox -->
+| country       = the United States
+| image         = File:Dugway Proving Ground.jpg
+| image_alt     = 
+| caption       = Dugway Proving Ground encompasses a vast area of the western Utah desert
+| image2        = [[File:Dugway proving ground badge.png|100px]]
+| image2_alt    = 
+| caption2      = 
+| type          = Military test center
+| coordinates   = {{coord|40|13|15|N|112|44|39|W|display=inline,title}}
+| gridref       = 
+| image_map     = 
+| map_size      = 
+| map_alt       = 
+| map_caption   = 
+| pushpin_map   = United States
+| pushpin_map_size = 
+| pushpin_alt   = 
+| pushpin_caption = Location in the United States
+| pushpin_relief = 
+| pushpin_image = 
+| pushpin_label = Dugway
+| pushpin_label_position = 
+| pushpin_mark  = 
+| pushpin_mark_size = 
+| owner         = [[United States Department of Defense|Department of Defense]]
+| operator      = {{flagicon|US}} United States
+| controlled_by = [[File:United_States_Army_Test_and_Evaluation_Command_SSI.png|25px]] [[United States Army Test and Evaluation Command]]
+| open_to_public = <!-- for out of use sites/sites with museums etc -->
+| site_other_label = <!-- for renaming "Other facilities" in infobox -->
+| site_other    = <!-- for other sorts of facilities – radar types etc -->
+| site_area     = <!-- area of site m2, km2 square mile etc -->
+| code          = <!--facility/installation code, applies to US -->
+| built         = {{Start date|1942}}
+| in_use        = 1942 – present <!--{{End date|1946}} -->
+| builder       = 
+| materials     = 
+| height        = <!-- height of tallest part, not above sea level -->
+| length        = <!-- for border fences or other DMZs -->
+| fate          = <!--changed from demolished parameter-->
+| condition     = Operational
+| battles       = 
+| events        = [[Dugway sheep incident]] (1968)
+| current_commander = [[Colonel (United States)|Colonel]] Brian A. Sansom
+| past_commanders = <!-- past notable commander(s) -->
+| garrison      = <!-- such as the 25th Bombardment Group -->
+| occupants     = <!-- squadrons only -->
+| designations  = 
+| website       = {{Official website|https://www.army.mil/dugway}}
+| footnotes     = <!-- catchall in case it's needed to preserve something in infobox that doesn't work in new code -->
+}}
+
+'''Dugway Proving Ground''' ('''DPG''') is a [[United States Army]] facility established in 1942 to test [[biological weapon|biological]] and [[Chemical warfare|chemical weapon]]s, located about {{convert|85|mi|km|abbr=out}} southwest of [[Salt Lake City]], Utah, and {{convert|13|mi|km|abbr=out}} south of the {{convert|2624|sqmi|km2|abbr=out|adj=on}} [[Utah Test and Training Range]].
+
+==Location==
+[[File:Dugway-proving-grounds-zoom-2.jpg|thumbnail|300px|Dugway Proving Ground as seen from Simpson Springs Campground|left]]
+Dugway Proving Ground is located about {{convert|85|mi|km|abbr=on}} southwest of [[Salt Lake City]], Utah, in southern [[Tooele County, Utah|Tooele County]] and just north of [[Juab County, Utah|Juab County]]. It encompasses {{convert|801505|acre|sqmi km2|abbr=on}} of the [[Great Salt Lake Desert]], an area the size of the state of [[Rhode Island]], and is surrounded on three sides by mountain ranges. It had a resident population of 342 as of the [[2020 United States census]],<ref>{{cite web|url=http://gis.utah.gov/sgid-other-vector-/2010-census-utah-population-counts-municipalities-and-estimates-unincorporated-places |title=2010 Census: Utah Population Counts (Municipalities) and Estimates (Unincorporated Places) - Utah GIS Portal |access-date=April 16, 2012 |url-status=dead |archive-url=https://web.archive.org/web/20120416115245/http://gis.utah.gov/sgid-other-vector-/2010-census-utah-population-counts-municipalities-and-estimates-unincorporated-places |archive-date=April 16, 2012 }} ''gis.utah.gov''</ref> all of whom lived in the community of [[Dugway, Utah]], at its extreme eastern end.
+
+It is {{convert|13|mi|km|abbr=on}} south of the {{convert|2624|sqmi|km2|0|abbr=on}} [[Utah Test and Training Range]] and together they form the largest block of overland contiguous special use airspace measured from surface or near surface within the continental U.S. ({{convert|207|by|122|mi|km|abbr=on}}).<ref>[http://www.hill.af.mil/shared/media/document/AFD-120821-035.pdf "Utah Test and Training Range (UTTR) Fact Sheet"] {{webarchive|url=https://web.archive.org/web/20150318023832/http://www.hill.af.mil/shared/media/document/AFD-120821-035.pdf |date=2015-03-18 }}, ''hill.af.mil'', August 2012.</ref>
+
+The transcontinental [[Lincoln Highway]] passed through the present site of the Dugway Proving Ground, and is the only section of the old highway closed to the public. At least one old wooden bridge over a creek still stands.<ref>{{Cite web |url=http://ludb.clui.org/ex/i/UT3143/ |title=Lincoln Memorial Highway Bridge |access-date=2006-02-01 |archive-date=2011-06-06 |archive-url=https://web.archive.org/web/20110606104330/http://ludb.clui.org/ex/i/UT3143/ |url-status=dead }}</ref> The name ''Dugway'' comes from a technique of digging a trench into a hillside to create a flat surface along which a wagon can travel.<ref>Van Cott, J. W., 1990, ''Utah Place Names'', {{ISBN|978-0-87480-345-7}}</ref>
+
+==Mission==
+Dugway's mission is to test United States and Allied [[biological weapon|biological]] and [[Chemical warfare|chemical weapon]] defense systems in a secure and isolated environment. In addition to chem/bio defense testing and evaluation, Dugway supports training for joint, multinational military organizations and first responders, testing and evaluation of obscurants, and the development, testing, and integration of unmanned aircraft systems, missiles and more. DPG also serves as a facility for [[United States Army Reserve|US Army Reserve]] and [[United States National Guard|US National Guard]] maneuver training, and [[United States Air Force|US Air Force]] flight tests, mostly from nearby [[Hill Air Force Base]] in Davis County, UT. DPG is controlled by the [[United States Army Test and Evaluation Command]] (ATEC). The area was also used by [[United States Army Special Forces|Army Special Forces]] for training in preparation for deployments to the [[War in Afghanistan (2001–2021)|war in Afghanistan]].<ref>Logan, Laura, "Special Forces Prepare For Alien Conflicts", ''[[CBS Evening News]]'', July 14, 2009.</ref>
+
+==History==
+In 1941, the US Army Chemical Warfare Service (CWS) determined it needed a testing facility more remote than the US Army's [[Edgewood Arsenal]] in [[Maryland]]. The CWS surveyed the [[Western United States|Western U.S.]] for a new location to conduct its tests, and in early 1942, construction of Dugway Proving Ground began, including the establishment of [[Michael Army Airfield]]. Since its founding, much of Dugway Proving Ground activity has been a closely guarded secret.{{citation needed|date=May 2016}}
+
+Testing commenced in mid-1942. During [[World War II]], DPG tested toxic agents, [[flamethrower]]s, chemical spray systems, [[biological warfare]] weapons, [[fire bombing]] tactics, antidotes for chemical agents, and protective clothing.<ref>{{Cite web |title=Dugway Proving Grounds - United States Nuclear Forces |url=https://www.globalsecurity.org/wmd/facility/dugway.htm |access-date=2026-05-12 |website=www.globalsecurity.org}}</ref> During 1943 the "[[German Village (Dugway Proving Ground)|German Village]]" and "[[Japanese Village (Dugway Proving Ground)|Japanese Village]]" set-piece domestic "hamlets" were built at Dugway, for practice in the fire-bombing of homes of the types in urbanized areas of [[Nazi Germany]]<ref>{{Cite web |last=Fox |first=Douglas |date=2017-04-03 |title=Inside the firestorm |url=https://www.hcn.org/issues/49-6/inside-the-dangerous-and-unpredictable-behavior-of-wildfire/ |access-date=2026-08-14 |website=High Country News |language=en-US}}</ref> and the [[Empire of Japan]]'s [[Japanese archipelago|Home Islands]].<ref>{{cite journal |last1=Plung |first1=Dylan |title=The Japanese Village at Dugway Proving Ground: An Unexamined Context to the Firebombing of Japan |journal=Asia-Pacific Journal: Japan Focus |date=April 15, 2018 |volume=16 |issue=8 |url=https://apjjf.org/2018/08/Plung.html}}</ref>
+
+In October 1943, DPG established biological warfare facilities at UTTR's range telemetry and tracking radar installation, which is an isolated area within DPG known as the [[Granite Peak Installation]]. DPG was slowly phased out after World War II, becoming inactive in August 1946.<ref name="wmddpg"/>
+
+The base was reactivated during the [[Korean War]], under Commanding Officer Lieutenant Colonel Speers Ponder,<ref>[http://www.dugway.army.mil/index.php/index/content/id/83 Dugway Proving Ground, History 1945-1950] {{webarchive |url=https://web.archive.org/web/20100713065300/http://www.dugway.army.mil/index.php/index/content/id/83 |date=July 13, 2010 }}</ref> and in 1954 was confirmed as a permanent [[United States Department of the Army|Department of the Army]] installation. In October 1958, the United States Army Chemical Center, Maryland, moved the [[U.S. Army Chemical, Biological, and Radiological Weapons School]] to Dugway Proving Ground.<ref name="wmddpg">{{cite web|title=Weapons of Mass Destruction (WMD)|url=https://www.globalsecurity.org/wmd/facility/dugway.htm|website=globalsecurity.org|access-date=7 December 2017}}</ref> In the late 1950s and early 1960s, [[Project Bellwether]]—a study of weaponized, mosquito-spread infections—was based at DPG.<ref name="bellwether">{{cite web|title=Dugway declassified: A rare look at the mysterious Utah site's experiments, then and now|url=https://fox13now.com/2016/05/12/a-rare-look-at-dugways-experiments-then-and-now/|archive-url=https://web.archive.org/web/20181019141530/https://fox13now.com/2016/05/12/a-rare-look-at-dugways-experiments-then-and-now/|url-status=dead|archive-date=2018-10-19}}</ref>
+
+From 1985 to 1991, Dugway Proving Ground was home to the [[Ranger School]]'s short-lived Desert Training Phase.<ref>{{Cite web |title=U.S. Army {{!}} Infantry Magazine |url=https://www.benning.army.mil/infantry/magazine/spotlight/ranger/Foss.html |access-date=2026-05-12 |website=www.benning.army.mil}}</ref> It was first known as the Desert Ranger Division (DRD) until redesignated the [[Ranger Training Brigade]]'s 7th Ranger Training Battalion in 1987, and taught students basic desert survival skills and small unit tactics. The program was later moved back to its original site at [[Fort Bliss]], Texas, in 1991, where it was deactivated in 1995.{{citation needed|date=May 2016}}
+
+On September 8, 2004, the [[Genesis (spacecraft)|''Genesis'']], a NASA spacecraft, was directed to impact into the desert floor of the Dugway Proving Ground because the topsoil there is like talcum powder, or moondust, and would likely cushion the troubled spacecraft's impact. The ''Genesis'' spacecraft's accelerometer had been installed backwards, which caused the spacecraft to malfunction upon re-entry to Earth's atmosphere preventing the originally planned air retrieval.<ref>[http://curator.jsc.nasa.gov/genesis/field.cfm Genesis Utah Recovery] {{webarchive |url=https://web.archive.org/web/20070712170138/http://curator.jsc.nasa.gov/genesis/field.cfm |date=July 12, 2007 }}</ref>
+
+On January 26, 2011, Dugway Proving Ground was placed on lockdown. Al Vogel, a public affairs specialist for the installation, would only say that the lockdown began at 5:24&nbsp;p.m. Employees were not allowed to leave, and those coming to work were not allowed in. Vogel said there were no injuries, no damage and no threats reported at the proving ground. There were about 1,200 to 1,400 people at Dugway when the lockdown occurred. It was later announced that the lockdown was in response to the temporary loss of a vial containing [[VX (nerve agent)|VX nerve agent]]. The lockdown was lifted on January 27 following recovery of the material. The incident was described as a mislabeling problem.<ref>{{cite news| url=https://www.bbc.co.uk/news/world-us-canada-12295554 | work=BBC News | title=Lost Army 'nerve agent' found after Utah base lock down | date=January 27, 2011}}</ref><ref>{{cite web|url=http://www.fox13now.com/news/local/kstu-dugway-lockdown,0,4633684.story |title=DUGWAY ARMY BASE: Misplaced vial of nerve agent responsible for Dugway lockdown - KSTU |access-date=August 18, 2011 |url-status=dead |archive-url=https://web.archive.org/web/20110914053358/http://www.fox13now.com/news/local/kstu-dugway-lockdown%2C0%2C4633684.story |archive-date=September 14, 2011 }} Fox13</ref><ref>Laughing Wolf, [http://www.blackfive.net/main/2011/01/dugway-lockdown-lifted.html "Dugway lockdown lifted?"], ''blackfive.net'', January 27, 2011.</ref><ref>[https://www.nbcnews.com/id/wbna41288977 "Biological weapons base reopens after scare"], ''msnbc.msn.com'', January 27, 2011.</ref>
+
+Dugway Proving Ground was also home to the [[High Resolution Fly's Eye Cosmic Ray Detector]], which discovered the first [[ultra-high-energy cosmic ray]]. Dugway is home to several radio telemetry and tracking radar (i.e. RIR-777, TPQ-39 (Ver. V) and MPQ-39) sites which track national flight assets during flight tests at [[Utah Test and Training Range|UTTR]].
+
+Activities included aerial nerve agent testing. According to reports from ''New Scientist'', Dugway was still producing quantities of [[Anthrax toxin|anthrax]] spores as late as 2015 to be used to develop anthrax testing detection and countermeasures, more than four decades after the United States renounced biological weapons, and shipping material intended to be inert to military bases and military contractors around the globe.<ref name="redorbit.com">Norrell, Brenda, [http://www.redorbit.com/news/science/285387/skull_valleys_nerve_gas_neighbors/ "Skull Valley's Nerve Gas Neighbors"], ''Indian Country Today'' (Oneida, N.Y.), October 26, 2005.</ref><ref name=AP>McCombs, Brady, and Robert Burns, [http://www.militarytimes.com/story/military/2015/05/30/pentagon-anthrax-shipments-broader-than-first-thought/28208319/ "Pentagon: Anthrax shipments broader than first thought"], [[Associated Press|AP]] via ''Military Times'', May 30, 2015. Retrieved 2015-05-31.</ref> There were at least 1,100 other chemical tests at Dugway during the period of the Dugway sheep incident (see below). In total, almost 500,000&nbsp;lb (230,000&nbsp;kg) of nerve agent were dispersed during open-air tests.<ref name="redorbit.com"/> There were also tests at Dugway involving other weapons of mass destruction, including 328 open-air tests of biological weapons, 74 dirty bomb tests, and eight furnace heatings of nuclear material under open-air conditions to simulate the dispersal of fallout in the case of meltdown of aeronautic nuclear reactors.<ref name="redorbit.com"/>
+
+On December 13, 2019, the U.S. Air Force said it had kept the Ultra Long Endurance Aircraft Platform (Ultra LEAP) at the Dugway Proving Ground in Utah airborne for two days during testing of the surveillance drone at the site.<ref>{{cite web |last1=Pawlyk |first1=Oriana |title=The Air Force Just Flew a Surveillance Drone for 2 Days Straight|url=https://www.military.com/daily-news/2019/12/13/air-force-just-flew-surveillance-drone-2-days-straight.html|website=Military.com |date=13 December 2019 |access-date=13 December 2019}}</ref>
+
+==="Sheep Kill" incident===
+{{main|Dugway sheep incident}}
+{{Unreferenced section|subsection|date=June 2016}}
+In March 1968, 6,249 [[sheep]] died in [[Skull Valley (Utah)|Skull Valley]], an area nearly thirty miles from Dugway's testing sites. When examined, the sheep were found to have been poisoned by an [[organophosphate]] chemical. The sickening of the sheep, known as the [[Dugway sheep incident]], coincided with several open-air tests of the [[nerve agent]] [[VX (nerve agent)|VX]] at Dugway. Local attention focused on the Army, which initially denied that VX had caused the deaths, instead blaming the local use of organophosphate [[pesticide]]s on crops. Necropsies conducted on the dead sheep later definitively identified the presence of VX. The Army never admitted liability, but did pay the ranchers for their losses. On the official record, the claim was for 4,372 "disabled" sheep, of which about 2,150 were either killed outright by the VX exposure or were so critically injured that they needed to be [[euthanasia|euthanized]] on-site by veterinarians. Another 1,877 sheep were "temporarily" injured, or showed no signs of injury but ultimately were not marketable due to their potential exposure. All of the exposed sheep that survived the initial exposure were eventually euthanized by the ranchers, since even the potential for exposure had rendered the sheep permanently unsalable for either meat or wool.
+
+The incident, coinciding with the birth of the [[environmental movement]] and anti-[[Vietnam War]] protests, created an uproar in Utah and the international community.<ref>{{cite web |url=https://historytogo.utah.gov/utah_chapters/utah_today/chemicalweaponscreatedcontroversyatdugway.html |title=Chemical Weapons Created Controversy at Dugway |website=historytogo.utah.gov |url-status=dead |archive-url=https://web.archive.org/web/20060215151619/http://historytogo.utah.gov/utah_chapters/utah_today/chemicalweaponscreatedcontroversyatdugway.html |archive-date=2006-02-15}}</ref>
+
+===U.S. GAO report===
+The [[Government Accountability Office|U.S. General Accounting Office]] issued a report on September 28, 1994, which stated that between 1940 and 1974, [[United States Department of Defense|DOD]] and other national security agencies performed "hundreds, perhaps thousands" of weapons tests and experiments involving hazardous substances.
+
+The quote from the study:
+
+{{blockquote|... Dugway Proving Ground is a military testing facility located approximately 80&nbsp;miles southwest of Salt Lake City. For several decades, Dugway has been the site of testing for various chemical and biological agents. From 1951 through 1969, hundreds, perhaps thousands of open-air tests using bacteria and viruses that cause disease in human, animals, and plants were conducted at Dugway ... It is unknown how many people in the surrounding vicinity were also exposed to potentially harmful agents used in open-air tests at Dugway.<ref name=GAO>"Is Military Research Hazardous to Veterans Health? Lessons Spanning Half A Century" 103rd Congress, 2nd Session-S. Prt. 103-97; Staff Report prepared for the committee on veterans' affairs, December 8, 1994, John D. Rockefeller IV, West Virginia, Chairman. {{cite web|url=http://www.gulfweb.org/bigdoc/rockrep.cfm |title=Archived copy |access-date=July 30, 2006 |url-status=dead |archive-url=https://web.archive.org/web/20060813164326/http://gulfweb.org/bigdoc/rockrep.cfm |archive-date=August 13, 2006 }}</ref>}}
+
+There are reports that certain nerve agents such as [[tetrodotoxin]] and ''[[Datura stramonium]]'' have been tested at this military base.{{Citation needed|reason=This statement needs to be supported by a citation of a reliable source.|date=June 2016}}
+
+===Anthrax shipments===
+In May 2015 it was revealed that Dugway lab had inadvertently shipped live anthrax bacillus to locations around the country. Shipped samples, it was said, were supposed to be inert. Labs receiving the live samples were in Texas, Maryland, Wisconsin, Delaware, New Jersey, Tennessee, New York, California and Virginia, the Associated Press reported.<ref>Barnes, Julian E.,[http://www.marketwatch.com/story/live-anthrax-samples-mistakenly-shipped-to-nine-states-2015-05-27-161035915 "Live anthrax samples mistakenly shipped to nine states"], ''[[MarketWatch]]'', May 27, 2015. Retrieved 2015-05-28.</ref> Days after the first report, the military divulged that the mis-shipments had been broader than initially reported and launched an investigation.<ref name = AP /> Dugway was involved in developing a test to identify biological threats in the field.<ref name=wp>{{cite news|author1=Dan Lamothe|title=Pentagon: Live anthrax inadvertently distributed by Army laboratory|url=https://www.washingtonpost.com/news/checkpoint/wp/2015/05/27/pentagon-army-laboratory-inadvertently-distributed-live-anthrax/|access-date=3 September 2015|newspaper=Washington Post|date=May 27, 2015}}</ref>
+
+In September 2018, the U.S. Government Accountability Office (GAO) released findings of an investigation into the anthrax shipping lapses made at Dugway. The investigation looked into whether "systemic oversight changes regarding biosecurity have since been implemented across DOD facilities. The findings are mixed." The U.S. Army had sought 35 specific changes, but only 18 of them had been made, as of the GAO report. According to the report, the DOD "had not fully identified the infrastructure capabilities required to address threats, had not planned to identify potential duplication without considering information from existing federal studies, and had not updated its guidance and planning process to include specific responsibilities and time frames for risk assessments."<ref>{{Cite news|url=https://homelandprepnews.com/countermeasures/30657-gao-report-gives-clear-assessment-of-dod-laboratory-oversight-post-anthrax-scare/|title=GAO report gives clear assessment of DOD laboratory oversight post-anthrax scare|date=2018-09-28|access-date=2018-10-25|language=en-US}}</ref>
+
+==UFO speculation==
+Following the public attention drawn to [[Area 51]] in the early 1990s, UFOlogists and concerned citizens have suggested that whatever covert operations may have been underway at that location, if any, were subsequently transferred to DPG.<ref name="DN">{{cite journal
+| first =Joe
+| last =Bauman
+| date =November 4, 2004
+| title =Is Dugway's expansion an alien concept?
+| journal =Deseret Morning News
+| url =http://deseretnews.com/dn/view/0,1249,595102911,00.html
+| archive-url =https://web.archive.org/web/20041208003735/http://deseretnews.com/dn/view/0,1249,595102911,00.html
+| url-status =dead
+| archive-date =December 8, 2004
+}}</ref><ref name="size">{{cite journal
+ |first=Lee 
+ |last=Davidson 
+ |date=August 1, 2005 
+ |title=Dugway's size unclear 
+ |journal=Deseret Morning News 
+ |url=http://bailey83221.livejournal.com/96302.html 
+ |url-status=dead 
+ |archive-url=https://web.archive.org/web/20061020013849/http://bailey83221.livejournal.com/96302.html 
+ |archive-date=October 20, 2006 
+}}</ref><ref name="Bull">{{cite journal
+ |first=Linda 
+ |last=Rothstein 
+ |date=May 15, 1998 
+ |title=Area 51: The Dreamland Chronicles; book reviews 
+ |journal=Bulletin of the Atomic Scientists 
+ |volume=54 
+ |issue=3 
+ |page=64 
+ |url=http://bailey83221.livejournal.com/96302.html#A 
+ |issn=0096-3402 
+ |url-status=dead 
+ |archive-url=https://web.archive.org/web/20061020013849/http://bailey83221.livejournal.com/96302.html 
+ |archive-date=October 20, 2006 
+}}</ref><ref name="PM">{{cite journal
+ |first=Jim 
+ |last=Wilson 
+ |date=June 1997 
+ |title=The new 'Area 51.'U.S. Air Force moves its top-secret test site 
+ |journal=Popular Mechanics 
+ |volume=174 
+ |issue=6 
+ |page=54 
+ |url=http://bailey83221.livejournal.com/96302.html#B 
+ |issn=0032-4558 
+ |url-status=dead 
+ |archive-url=https://web.archive.org/web/20061020013849/http://bailey83221.livejournal.com/96302.html 
+ |archive-date=2006-10-20 
+}}</ref><ref name="ST">{{cite journal
+ |first=Christopher 
+ |last=Smith 
+ |date=May 23, 1997 
+ |title=Report: Utah Town, Air Force Headed for Close Encounter; Secret Base: Is It Headed For Utah? 
+ |journal=Salt Lake Tribune 
+ |issue=" 
+ |pages=A1 
+ |url=http://bailey83221.livejournal.com/96302.html#C 
+ |url-status=dead 
+ |archive-url=https://web.archive.org/web/20061020013849/http://bailey83221.livejournal.com/96302.html 
+ |archive-date=October 20, 2006 
+}}</ref>
+
+The ''[[Deseret News]]'' reported that Dave Rosenfeld, president of Utah UFO Hunters, claimed but provided no proof for "Numerous UFOs have been stored and reported in the area in and around Dugway ... [military aircraft can't account for] all the unknowns seen in the area. It might be that our star visitors are keeping an eye on Dugway too. ... [Dugway is] the ''new'' Area 51. And probably the new military spaceport."<ref name="DN" />
+
+Dugway Proving Ground has often made light of the rumors, satirizing the conspiracy on their official social media posts. A 2021 community event at the base had shooting targets with alien profiles set up by the base's police department for children to target with an [[airsoft gun]].<ref>{{cite web |url=https://www.facebook.com/DugwayProvingGround/photos/pb.100064748346306.-2207520000/4922046547824138/?type=3 |title=Just let those pesky aliens sneak back into Dugway! |author=<!--Not stated--> |date=September 28, 2021 |website=facebook.com |publisher=Dugway Proving Ground |access-date=October 16, 2023}}</ref> A 2023 [[5K run]] & [[10K run]] [[Halloween]] costume race announced at the base was dubbed the "Alien Invasion" with the tag-line "come see the history of Area 52".<ref>{{cite web |url=https://www.facebook.com/photo/?fbid=718116300356642&set=a.247129620788648 |title=Alien Invasion Facebook Post |author=<!--Not stated--> |date=October 16, 2023 |website=facebook.com |publisher=Dugway Proving Ground |access-date=October 16, 2023}}</ref>
+
+==See also==
+* [[Aberdeen Proving Ground]]
+* [[Granite Peak Installation]]
+* [[Human experimentation in the United States]]
+* [[Naval Air Weapons Station China Lake]]
+* [[Oh-My-God particle]]
+* [[Tonopah Test Range]]
+* [[Tooele Army Depot]]
+
+==References==
+{{reflist}}
+* [https://www.census.gov Dugway Proving Ground: Blocks 3000, 3001, 3004, and 3005, Census Tract 1306, Tooele County, Utah] United States Census Bureau
+
+==External links==
+{{Commons category|Dugway Proving Ground}}
+*{{Official website|http://www.dugway.army.mil/}}
+*[https://www.army.mil/dugwaygarrison/?from=wiki Dugway Proving Ground News]
+*[https://web.archive.org/web/20051112184230/http://www.wdtc.army.mil/ West Desert Test Center]
+*[https://www.deseret.com/2004/11/4/19859503/is-dugway-s-expansion-an-alien-concept/ Article: Is Dugway's Expansion an Alien Concept?]
+*[https://www.ksl.com/article/81575/does-utah-have-an-area-51 Article: Does Utah Have an 'Area 51'?]
+*[https://www.deseret.com/2005/3/31/19884737/dugway-expansion-a-mystery/ Article: Dugway Expansion a Mystery]
+*[http://www.cosmic-ray.org High Resolution Fly's Eye Experiment]
+*[[Historic American Engineering Record]] (HAER) documentation, filed under Dugway, Tooele County, UT:
+**{{HAER |survey=UT-35 |id=ut0187 |title=Dugway Proving Ground, Dugway, Tooele County, UT |data=43 |link=no}}
+**{{HAER |survey=UT-92 |id=ut0664 |title=Dugway Proving Ground, German-Japanese Village, South of Stark Road, in WWII Incendiary Test Area |data=27 |link=no}}
+**{{HAER |survey=UT-92-A |id=ut0568 |title=Dugway Proving Ground, German-Japanese Village, German Village, South of Stark Road, in WWII Incendiary Test Area |photos=14 |dwgs=3 |data=22 |cap=1 |link=no}}
+**{{HAER |survey=UT-92-B |id=ut0569 |title=Dugway Proving Ground, German-Japanese Village, Observation Bunker, South of Stark Road, in WWII Incendiary Test Area |photos=3 |dwgs=1 |data= |cap=1 |link=no}}
+*[http://archives.lib.byu.edu/repositories/14/resources/7946 P. Bradford Westwood collection on the Dugway Proving Ground, MSS 7524] at [https://sites.lib.byu.edu/sc/ L. Tom Perry Special Collections], [[Brigham Young University]]
+
+{{U.S. biological weapons}}
+{{U.S. biological defense}}
+{{US Proving Grounds}}
+
+{{Authority control}}
+
+[[Category:Biological warfare facilities]]
+[[Category:Buildings and structures in Tooele County, Utah]]
+[[Category:Chemical warfare facilities]]
+[[Category:Government buildings on the National Register of Historic Places in Utah]]
+[[Category:Great Salt Lake Desert]]
+[[Category:Lincoln Highway]]
+[[Category:Military installations in Utah]]
+[[Category:Proving grounds]]
+[[Category:Research installations of the United States Army]]
+[[Category:Military facilities on the National Register of Historic Places in Utah]]
+[[Category:Historic American Buildings Survey in Utah]]
+[[Category:Historic American Engineering Record in Utah]]
+[[Category:National Register of Historic Places in Tooele County, Utah]]
+[[Category:1942 establishments in Utah]]
+[[Category:United States biological weapons program]]
+[[Category:Military installations established in 1942]]
