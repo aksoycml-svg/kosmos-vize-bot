@@ -1620,3 +1620,30 @@
 - Diğer planlar: P01 (dolly, `dolly.ts` katman benzerlik dönüşümü, `catiDekor` anahtarlı `rnd` dünya-sabit) ve P08 (Harita, CSS `scale(cs)` sürekli) kameraya bağlı rastgelelik/Dmin yok; mp4 ardışık kare farkı düzgün (P01 2. türev medyanı 0.31, P08 basamaklar olay geçişleri). Düzeltme gerekmedi.
 - Uyguladığım kurallar: doku seed sabit / kaynamaz (CLAUDE.md mekân dili); "önce teşhis, sonra yalnız neden olan parametre"; görünüm değişmedi (plan başı ve kontrol kareleri birebir).
 - Açık notlar: P07 A'da hareketli karelerde bina dizilimi eski render'dan farklı (eskisi zaten her kare farklıydı); yeni dizilim plan başındakinin kendisi, kamera ile birlikte akar. Yeniden render: **mutlak kare 1999–2334 (P07 tamamı; değişen fiilen 2000–2158 ve 2249–2334)**. Sepet (P07 B) f250–320 H 150→300 artışında da aynı reshuffle vardı (ince ufuk bandı), aynı düzeltmeyle giderildi.
+
+## teknisyen · 2026-11-14 · Paris kuşatması tam render 3 (P07 titreme düzeltmesi + foley −3 dB miks)
+
+- Ne yaptım / çalıştırdığım komutlar:
+  - `node tools/bolum_dogrula.mjs bolumler/paris-kusatmasi/bolum.json --tam` → GEÇTİ (11 plan, 3493 kare, 58.22 sn, 59 temas, 8 dokunuş).
+  - `bash tools/paris_render.sh --is 4` (tam render). Görüntü parçaları 6 parça halinde tamamlandı, birleştirilmiş `gorsel.mov` 3493 kare doğrulandı; yazı katmanı TR aşamasında disk dolduğu için hata verdi (aşağıya bak).
+  - `YALNIZ_YAZI=1 bash tools/paris_render.sh --is 4` (yalnız yazı katmanları + birleştirme; mevcut `gorsel.mov` kullanıldı, görüntü yeniden render edilmedi). RC=0.
+  - Ölçüm (ffprobe + ebur128): süre 58.217 sn, 3493 kare, 1080x1920, 60 fps, AAC 48 kHz stereo.
+  - P07 şeridi: `ffmpeg select='gte(n,2004)*lt(n,2052)*not(mod(n,4))'` → tile 6x2, scale 270 genişlik (2004–2048 kareleri, yani 33.40–34.13 sn; her 4 karede bir, 12 kare). Genel bakış: `fps=32/58.216667,scale=320:-1,tile=8x4`, her dil için; PNG'den PIL ile jpg q85.
+  - Dinlet: `ffmpeg … scale=720:1280 -c:v libx264 -crf 23 -c:a aac -b:a 192k` → `public/paris/dinlet/paris-taslak-{tr,en}.mp4` (720x1280, 58.218 sn, üzerine yazıldı).
+  - Ses kenarı: `python3 -I tools/ses_kenar.py kontrol public/paris/miks/{tr,en}.wav` → iki dil de temiz (baş −59.7/−58.5 dB, son −57.8/−57.1 dB).
+  - Dalga formu: `ffmpeg … showwavespic` (log ölçek, mono) → `/tmp/claude-0/-home-user-kosmos-vize-bot/edbfb7ac-b85b-5e30-9937-bc6f77cb9e98/scratchpad/dalga-{tr,en}.png`. Yoğun, dengeli; ani kesik veya sıçrayan seviye görünmüyor. Kenar sütunu görüntüde tam genlikte gözükse de ses_kenar ölçümü baş ve sonu sessiz gösteriyor; bu bir çizim artefaktı olarak değerlendirildi (eleştirmen bakışına açık).
+  - Git, katkı dışında hiçbir işlem yapılmadı.
+- Üretilen dosyalar:
+  - `out/paris/paris-tr.mp4` (113.7 MB, 19:55), `out/paris/paris-en.mp4` (114.1 MB, 19:59)
+  - `bolumler/paris-kusatmasi/kalibrasyon/tam-render-3/P07-serit.jpg` (1620x960, 6x2, 270 px kare)
+  - `bolumler/paris-kusatmasi/kalibrasyon/tam-render-3/genel-tr.jpg`, `genel-en.jpg` (2560x2276, 8x4, 32 kare)
+  - `public/paris/dinlet/paris-taslak-tr.mp4`, `paris-taslak-en.mp4` (720x1280)
+- Ölçüm sonuçları:
+  - TR: I = −14.0 LUFS, TP = −2.0 dBTP, LRA 2.2 → hedef geçti.
+  - EN: I = −14.3 LUFS, TP = −1.9 dBTP, LRA 3.5 → I hedef aralığının (−14 ±0.3) alt sınırında; TP geçti. Kullanıcı kararı gerekmiyor ama sınırda olduğu bilinmeli.
+- Hatalar ve çözümler:
+  - İlk tam render (19:15–19:39) görüntüyü 3493 kare olarak bitirdi, sonra yazı katmanı TR'de başarısız oldu: `No space left on device`. Kök disk 252 GB'lık sürücüde 696 MB'a kadar dolmuştu. Neden: `out/paris/_is/` altında eski ara dosyalar (yazi_*.mov 1.35 GB, görüntü parçaları 1.8 GB, birleştirilmiş `gorsel.mov` ile aynı içerik) ve `/tmp/remotion-webpack-bundle-*` (≈1 GB) birikmişti.
+  - Çözüm: yalnız görüntü parçaları (`gorsel_00*.mov`), eski `yazi_{tr,en}.mov` ve eski webpack bundle'ları silindi. Doğrulanmış birleştirilmiş `gorsel.mov` (3493 kare) korundu. Sonra `YALNIZ_YAZI=1` ile devam edildi; disk 16 GB boş bırakıldı.
+  - Küçük not: ilk render'ın log yönlendirmesini `/tmp/claude-0/...` altına yaptım; oturum scratchpad'ini kullanmalıydım. Log içeriği `out/paris/render.log`da zaten var.
+  - P07 şeridi: "her 4 karede bir 12 kare" talimatı, 12 kare × 4 kare aralıkla yalnız 33.40–34.13 sn'yi kapsıyor (talimatta 33.4–35.6 sn aralığı yazıyordu). Literal uygulandı; 35.6 sn'ye kadar tam kapsam için 33 kare (3 sayfa veya 6x6 şerit) gerekir. Açık soru: kapsam istenirse hangisi?
+- Açık: Mixte EN −14.3 LUFS (sınırda) — kullanıcı dinlemesi için not. P07'nin titreme düzeltmesinin doğruluğu bu teknisyen turunda görsel olarak değerlendirilmedi; eleştirmen kontrolüne bırakıldı.
