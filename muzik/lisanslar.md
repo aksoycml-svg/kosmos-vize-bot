@@ -45,23 +45,24 @@ Ağ notu: archive.org / incompetech / pixabay / musopen bu sunucudan erişilemed
 
 ## Paris kuşatması (bolumler/paris-kusatmasi) — 2026-11-14
 
-Ağ notu (güncel): incompetech.com ve archive.org (metadata API) erişilebilir; archive.org dosya CDN düğümleri 403.
+Ağ notu (güncel): archive.org dosya CDN düğümleri artık izinli; Chopin indirildi.
 
-### Müzik — KULLANILAN (yedek): Incompetech "Gymnopedie No. 1"
+### Müzik — KULLANILAN: Chopin Nocturne Op. 9 no. 2 (Musopen, CC0)
 | Alan | Değer |
 |---|---|
-| Eser | Gymnopédie No. 1 (Erik Satie, 1888; besteci kamu malı) |
-| İcracı / kayıt | Kevin MacLeod (Incompetech), piyano |
-| Kaynak URL | https://incompetech.com/music/royalty-free/mp3-royaltyfree/Gymnopedie%20No%201.mp3 (parça kaydı: pieces.json, isrc USUAN1100787, yüklenme 2011-01-10, 3:07, 77 bpm; filmmusic.io: https://incompetech.filmmusic.io/song/3837-gymnopedie-no-1/) |
-| Lisans | Creative Commons Attribution 4.0 (CC BY 4.0) — Incompetech SSS sayfası (faq.html, 2026-11-14 okundu): kullanım için kredi zorunlu; kredi biçimi aşağıda. Ticari kullanım uygun. |
-| **Atıf (açıklamaya ZORUNLU, TR ve EN)** | `Gymnopedie No. 1 Kevin MacLeod (incompetech.com)` `Licensed under Creative Commons: By Attribution 4.0 License` `http://creativecommons.org/licenses/by/4.0/` |
-| Dosya | ham: `muzik/kaynak/gymnopedie-no1-kevin-macleod.mp3` (320 kbps, sha256 8cba6bb3da51066ad39520ec218a327bb6222d8fb32bc52f28a1e90b67756f70); kesim: `public/paris/muzik/paris-gymnopedie-58.mp3` (58.22 sn, `tools/paris_muzik.py`; ölçü ızgarası ve çapraz sönümlerle düzenlendi, "değiştirildi" notu atıfa eklenebilir) |
-| Not | Eser dönem (1888) 1870'ten sonradır; ses olarak sorun görülmedi, kullanıcı karar versin. |
+| Eser | Nocturne in E-flat major, Op. 9 no. 2 (Frédéric Chopin, 1830–32; Paris dönemi; besteci kamu malı) — Blanc'taki B.108'den farklı parça |
+| İcracı / kayıt | Musopen "The Complete Chopin Collection" (piyano; yükleyen aaron@musopen.org) |
+| Kaynak URL | https://archive.org/details/musopen-chopin — dosya: https://archive.org/download/musopen-chopin/Nocturne%20Op.%209%20no.%202%20in%20E%20flat%20major.mp3 (indirme 2026-11-14, dn710801.ca.archive.org) |
+| Lisans | CC0 1.0 / Public Domain Dedication (öğe metadata `licenseurl`: http://creativecommons.org/publicdomain/zero/1.0/, 2026-11-14 doğrulandı) — ticari kullanıma uygun, atıf zorunlu değil |
+| Atıf (isteğe bağlı) | Müzik: Chopin, Nocturne Op. 9 no. 2 (kamu malı, CC0 kayıt, Musopen/Internet Archive) |
+| Dosya | ham: `muzik/kaynak/chopin-nocturne-op9-no2-musopen.mp3` (4:36.65, md5 0cff0b549e8d7e2944bbfbf91b8a9a57 = listelenen md5 ✓, sha256 d6a289cd51123f0033fb6e4014277495340c6d3afa3a4e42e7cd89bcf634d917); kesim: `public/paris/muzik/paris-chopin-op9no2-58.mp3` (58.22 sn, `tools/paris_muzik.py`; 3 parça, %6.4 yavaşlatma, çapraz sönüm) |
+| Not | Lisans metadata'dan doğrulandı; kaydın hak beyanı yükleyene dayanır (Blanc ile aynı Musopen CC0 serisi). Kayıt rubato olduğundan kesimler ölçü ızgarasıyla değil Eb/Bb tonik–dominant noktalarından yapıldı. |
 
-### Chopin (istenen birinci tercih) — indirilemedi
-- Musopen "The Complete Chopin Collection" (https://archive.org/details/musopen-chopin, yükleyen aaron@musopen.org): öğe metadata `licenseurl` = http://creativecommons.org/publicdomain/zero/1.0/ (CC0) **doğrulandı** (2026-11-14, archive.org/metadata API).
-- Hedef parça: "Nocturne Op. 9 no. 2 in E flat major.mp3" (4:36; md5 0cff0b549e8d7e2944bbfbf91b8a9a57). Dosya indirmesi archive.org'un CDN düğümlerine yönleniyor (ia800404.us.archive.org, dn710801.ca.archive.org); proxy politika denetimi 403 verdi, **yeniden denenmedi**. Düğümler izinlenirse bu parça ve CC0 lisansı hazır; Blanc'ta kullanılan B.108'den farklı parça.
-- ElevenLabs Music: ticari hak teyidi hâlâ açık; kullanılmadı.
+### Müzik — KULLANILMIYOR (yedek): Incompetech "Gymnopedie No. 1"
+Orkestra kararıyla (dönem uygunluğu: Satie 1888, 1830'lar Paris değil) Chopin ile değiştirildi. **Bu parça bölümde kullanılmıyor; açıklamaya Incompetech atfı EKLENMEZ.** Yedek olarak dosyalar duruyor (`muzik/kaynak/gymnopedie-no1-kevin-macleod.mp3`, `public/paris/muzik/paris-gymnopedie-58.mp3`, `tools/paris_muzik_satie.py`). Geri dönülürse atıf zorunlu: `Gymnopedie No. 1 Kevin MacLeod (incompetech.com)` `Licensed under Creative Commons: By Attribution 4.0 License` `http://creativecommons.org/licenses/by/4.0/` (CC BY 4.0; kaynak https://incompetech.com/music/royalty-free/mp3-royaltyfree/Gymnopedie%20No%201.mp3; ham sha256 8cba6bb3da51066ad39520ec218a327bb6222d8fb32bc52f28a1e90b67756f70).
+
+### ElevenLabs Music
+Ticari hak teyidi hâlâ açık; kullanılmadı.
 
 ### Foley / ortam
 - 14 foley ses mevcut proje arşivinden yeniden kullanıldı (Blanc/Evliya ElevenLabs SFX, Creator plan; ticari uygun, atıf gerekmez): kus-kanat, kagit-hisirti, kagit-yatis, sayfa-yatis, dosya-tok, dugum-tok, ip-zit, kalem-cizirti, teleskop-tik, sayac-tik, ahsap-tik, kagit-katlama, kagit-acilis, baslik-inis.

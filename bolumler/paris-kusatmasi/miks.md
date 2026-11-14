@@ -6,7 +6,8 @@ Plan başları (sn): P01 0 · P02 6.37 · P03 12.30 · P04 17.85 · P05 22.30 ·
 
 ## 1. Durum (2026-11-14, ikinci tur: üretildi + taslak miks)
 - Foley: 39 ad / 49 temas şemada eksiksiz; **26 ses ElevenLabs SFX ile üretildi** (tek çekim, KESIK yok; 17 klip CIT → `ses_kenar.py duzelt`; ardından temiz). 14 ses proje arşivinden. `bolum_dogrula --tam`: GEÇTİ, 0 hata, **1 uyarı** (P01 f3 `pk-kanat` baş kırpma → yönetmen).
-- Müzik: **Incompetech "Gymnopedie No. 1" (Kevin MacLeod, CC BY 4.0)** kullanıldı. Chopin/Musopen (Op.9 No.2) istendi: archive.org öğe metadata'sı CC0 (`licenseurl`) doğrulandı, ama dosya indirme CDN düğümleri (ia800404.us.archive.org, dn710801.ca.archive.org) proxy politikasıyla 403 → **indirilemedi**; yedek devreye girdi. Ağ açılırsa Chopin ile değiştirme yolu §4.
+- Müzik (güncel, 2026-11-14 üçüncü tur): **Chopin Nocturne Op. 9 no. 2 (Musopen, CC0)** — §4b. Aşağıdaki Gymnopédie anlatımı eski/yedek.
+- (Eski) Müzik: **Incompetech "Gymnopedie No. 1" (Kevin MacLeod, CC BY 4.0)** kullanıldı. Chopin/Musopen (Op.9 No.2) istendi: archive.org öğe metadata'sı CC0 (`licenseurl`) doğrulandı, ama dosya indirme CDN düğümleri (ia800404.us.archive.org, dn710801.ca.archive.org) proxy politikasıyla 403 → **indirilemedi**; yedek devreye girdi. Ağ açılırsa Chopin ile değiştirme yolu §4.
 - Taslak miks üretildi (TR + EN): `python3 -I tools/paris_miks.py` → `public/paris/miks/{tr,en}.wav` (−14 LUFS), stem'ler `{tr,en}/{anlatim,foley,muzik,ortam}.wav`, dalga PNG. wav'lar .gitignore'da.
 - Kural çatışması çözüldü (orkestra): P07'de tam susma yok; tek alçak nota + yatak dinamiği.
 
@@ -50,6 +51,16 @@ Bookend: A teması P01 (çıplak) → P10 (tam) → P11 (motif) → P01 (aynı i
 | 24– (56.26–58.22) | 24– | sakin LH, kuş konma 56.37'ye oturur, sönme 57.6–58.22; ölçü 24 (çift) → döngüde ölçü 0 (çift) aynı akor |
 Chopin'e geçiş (ağ açılırsa): Musopen Chopin "Nocturne Op. 9 no. 2 in E flat major.mp3" (öğe `musopen-chopin`, sha1 c23ff410…); betiğin P listesi ve ölçü ızgarası yeniden ölçülür.
 
+## 4b. Müzik (güncel): Chopin Op. 9 no. 2
+`public/paris/muzik/paris-chopin-op9no2-58.mp3` (58.22 sn), `tools/paris_muzik.py` (Satie sürümü `paris_muzik_satie.py`), kaynak `muzik/kaynak/chopin-nocturne-op9-no2-musopen.mp3`. Rubato kayıt → sabit ızgara yok; kesimler Eb/Bb noktalarından, 0.5 sn eşit güç çapraz.
+| Çıkış (sn) | Kaynak (sn) | Bağ |
+|---|---|---|
+| 0.0–41.9 (S1) | 0–39.4, %6.4 yavaş (rubberband) | ilk nota 0.45 (yumuşak giriş, 0.3 sn fade); kaynak 8.15 Do-minör dönüşü = **tel kopması 8.67**; kaynak 35.5 melodi yükselişi = **"yükseldi" 37.77**; darbe 35.12 kaynakta 33.0 (dominant ölçü, Eb'ye çözülmeden önce) |
+| 41.72–53.65 (S2) | 0–11.9 (ilk cümle, DÖNÜŞ) | S1 41.5–42.0 söner, tema Bb/Eb açılışıyla geri gelir (P01 karşılığı); kaynak 10.0 tepe = **"okudu" 51.72**; "yansıdı" 46.86 = kaynak 5.1, "büyüdü" 49.65 = 7.9; sonu Bb/F |
+| 53.65–58.22 (S3) | 53.8–58.4 (koda, −3.5 dB) | Bb→Eb çözülme; "Ama" 54.34 tonik, kuş 56.37 tonikte; sonu F/Bb dominant → döngüde P01'in Bb/Eb açılışına akar; 57.6–58.22 sönme |
+Bookend: tema P01 (çıplak) → P02 (devam) → P10 (tam dönüş) → P11 koda → P01. İki tema yerine tek tema (Chopin'in LH arpejî zaten ostinato). P07'de tam susma yok (kaynak 33–35.5 sakin Eb; darbe müzik üstünde −22 yatağın 6–8 dB üstü).
+Miks değişiklikleri: `mom98` → %99.5 (müzik tepeleri −22/−16'ya oturur), P11 zarfı 54.9'da −3.5 dB (EN gap).
+
 ## 5. ElevenLabs SFX kredi (HARCANDI)
 - 26 ses (25 temas sesi + `pk-halat-kavra`), tek çekim, ikinci çekim gerekmedi. İstenen süre toplamı ≈ 29.5 sn.
 - Abonelik sayacı (`character_count`) 44 208 → 44 538: **+330** (limit 129 065). Tahminimden (590–2 600) çok düşük; sayaç birimi SFX için farklı olabilir, fatura değil abonelik sayacı.
@@ -89,5 +100,5 @@ Müzik referansı: zirve momentary %98 = −18 LUFS (tepelere de −22/−16 uyg
 ## 8. Sonraki adımlar
 1. Yönetmen: #21 temasını `bolum.json`'a (satır §6), P10 f120 db −18, P01 kanat f9 → doğrulayıcı 0 uyarı.
 2. Teknisyen/orkestra: kullanıcı kulak listesini dinler; müzik seviyesi/ Chopin kararı.
-3. Chopin istenirse ağ izni (ia*/dn* archive.org düğümleri) → `tools/paris_muzik.py` ızgarası yeniden.
+3. ~~Chopin~~ yapıldı (§4b).
 4. `ses_isle.py` kurulunca anlatım zinciri miks girişine eklenir (şimdi `paris_ses_final.py` çıktısı doğrudan).

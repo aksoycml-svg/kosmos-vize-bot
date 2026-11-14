@@ -6,7 +6,7 @@ import json, subprocess, sys, os, re
 import numpy as np
 SR, FPS = 44100, 60
 B = "bolumler/paris-kusatmasi"; PUB = "public/"; OUT = PUB + "paris/miks/"
-MUZIK = PUB + "paris/muzik/paris-gymnopedie-58.mp3"
+MUZIK = PUB + "paris/muzik/paris-chopin-op9no2-58.mp3"
 # bolum.json'da olmayan temaslar (yönetmen ekleyene dek): (plan, kare, ad, dosya, tepe_ms, db)   TOPLU-DUZELTME #21
 EK_TEMAS = [("P06", 218, "pk-halat-kavra", "paris/sfx/pk-halat-kavra.mp3", 37, -16)]
 DB_ON = {"pk-odak-disli": -18}   # görünmeyen kaynak -> ortam seviyesi (bolum.json -10 yazıyor)
@@ -18,7 +18,7 @@ def lufs(x):
     return float(re.findall(r"I:\s+(-?[\d.]+) LUFS", p)[-1])
 def mom98(x):
     p = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-", "-af", "ebur128", "-f", "null", "-"], input=x.astype(np.float32).tobytes(), capture_output=True).stderr.decode()
-    M = np.array([float(v) for v in re.findall(r"M:\s*(-?[\d.]+)\s+S:", p)]); return float(np.percentile(M[M > -60], 98))
+    M = np.array([float(v) for v in re.findall(r"M:\s*(-?[\d.]+)\s+S:", p)]); return float(np.percentile(M[M > -60], 99.5))
 g = lambda db: 10 ** (db / 20)
 def yaz(f, x):
     os.makedirs(os.path.dirname(f), exist_ok=True)
@@ -50,7 +50,7 @@ def muzik_ek():  # (sn, dB) kontrol noktaları; tavan -16 ayrıca uygulanır
     f = tp
     return np.array([(0, 0), (f("P07", 100), 0), (f("P07", 108), -3), (f("P07", 190), -3), (f("P07", 200), 0),
                      (f("P07", 214), 1.5), (f("P07", 280), 0), (f("P10", 48), 0), (f("P10", 96), 1.5), (f("P10", 230), 2), (f("P10", 300), 0),
-                     (f("P11", 60), -1.5), (f("P11", 110), 0), (TOP, 0)])
+                     (f("P11", 60), -1.5), (f("P11", 135), -3.5), (f("P11", 170), 0), (TOP, 0)])
 def zarf(n):
     p = muzik_ek(); s = np.interp(np.arange(n) / SR, p[:, 0], p[:, 1]); h = int(.25 * SR)
     return g(np.convolve(s, np.ones(h) / h, "same"))
