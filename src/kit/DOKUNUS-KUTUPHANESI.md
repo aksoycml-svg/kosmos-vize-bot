@@ -29,6 +29,19 @@ Senaryo v5 (11 plan) ile hizalı: D1 P02 · D2 P03 · D4 P04 · D5 P05 · D8 P06
 | PK-D7 | Filmin perdede büyümesi + odak | DAGRON-INSERT perde | `perde {film, odak, buyume}` (dil-nötr satırlar) | cam tık, odak dişlisi | yok |
 | PK-D8 | Ağır sandık sepete konur, sepet çöker, halat gerilir (P06; eski Norveç D8 silindi) | MONTMARTRE sepet | `sepet {yuk: sandik, coke}` + `halat.gerilme` | sandık tok, hasır gıcır, halat gıırt | yok |
 
+## Çiçero (CI) — 2026-11-14
+Senaryo (10 plan) ile hizalı: P02 · P03 · P04 · P06 · P07 · P08 · P09. Hepsi **yok** (1940'lar kiti yeni: ELÇİ-ODASI, ARABA, BERLİN, BANKNOT). Ayrıntı: `bolumler/cicero/dokunuslar.md`.
+
+| id | ad | şablon | kurulum önerisi | temas/ses | durum |
+|---|---|---|---|---|---|
+| CI-D1 | Anahtarı komodine bırakma | ELÇİ-ODASI insert | `kutu.kilit` + `anahtar {komodin}` | kilit tık, metal çın | yok |
+| CI-D2 | Mum izi, yarım kalan anahtar çizimi | ELÇİ-ODASI insert | `mum {iz, cizim.yarim}` | mum bası, kalem | yok |
+| CI-D3 | Kapı altında ayak gölgesi, su kesilir | ELÇİ-ODASI insert | `kapiAltiIsik {golge, su}` | su kesilir, 3 terlik adımı | yok |
+| CI-D4 | Dolu çekmece, sıkışan dosya köşesi | BERLİN | `cekmece {yigin, dosya.atis, kose.sikisma}` | kayma, kâğıt, tok kapanış | yok |
+| CI-D5 | Bakmadan sayılan para, iki aynı banknot, kırmızı çarpı | BANKNOT insert | `zarf.ac` + `banknot {dok, say, carpi}` | zarf, kâğıt, fırça | yok |
+| CI-D6 | Yetkili bakmadan çay fincanını alır | ELÇİ-ODASI gündüz | `fincan` + `tepsi` + `el.uzat` | fincan tın | yok |
+| CI-D7 | Lamba söner, oda kararır | ELÇİ-ODASI | `lamba {son, filaman}` | düğme tık | yok |
+
 ## Yeni dokunuş eklerken
 - Satır ekle: id (bölüm-öneki ile, ör. `BL-D1`), şablon, hangi parametre/jest/prop ile kurulur, temas listesi, durum.
 - "yok/kısmi" olanlar için kurulum ekibine tek satır iş: hangi şablona hangi parametre.
