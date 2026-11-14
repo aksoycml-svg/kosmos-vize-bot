@@ -1,0 +1,20 @@
+{
+ "_not": "Ortam yatakları (foley.json'da DEĞİL: temasla çalmaz).",
+ "yataklar": {
+  "ruzgar-col": {
+   "dosya": "yarasa/foley/ruzgar-col.mp3",
+   "sure_ms": 8000,
+   "tepe_dbfs": -3.5
+  },
+  "oda-tonu": {
+   "dosya": "yarasa/foley/oda-tonu.mp3",
+   "sure_ms": 8000,
+   "tepe_dbfs": -2.5
+  },
+  "tank-inleme": {
+   "dosya": "yarasa/foley/tank-inleme.mp3",
+   "sure_ms": 6090,
+   "tepe_dbfs": -2.5
+  }
+ }
+}

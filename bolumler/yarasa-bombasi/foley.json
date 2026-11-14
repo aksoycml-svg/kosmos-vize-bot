@@ -1,0 +1,173 @@
+{
+ "kalem-kagit": {
+  "dosya": "yarasa/foley/kalem-kagit.mp3",
+  "tepe_ms": 48,
+  "sure_ms": 690,
+  "tepe_dbfs": -2.6,
+  "en_yuksek_ms": 504,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -10
+ },
+ "kalem-tik": {
+  "dosya": "yarasa/foley/kalem-tik.mp3",
+  "tepe_ms": 66,
+  "sure_ms": 480,
+  "tepe_dbfs": -3.1,
+  "en_yuksek_ms": 188,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -9
+ },
+ "kagit-tok": {
+  "dosya": "yarasa/foley/kagit-tok.mp3",
+  "tepe_ms": 48,
+  "sure_ms": 570,
+  "tepe_dbfs": -3.9,
+  "en_yuksek_ms": 90,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -9
+ },
+ "not-birak": {
+  "dosya": "yarasa/foley/not-birak.mp3",
+  "tepe_ms": 46,
+  "sure_ms": 570,
+  "tepe_dbfs": -3.4,
+  "en_yuksek_ms": 100,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -9
+ },
+ "kagit-hisirti": {
+  "dosya": "yarasa/foley/kagit-hisirti.mp3",
+  "tepe_ms": 46,
+  "sure_ms": 770,
+  "tepe_dbfs": -3.7,
+  "en_yuksek_ms": 276,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -12
+ },
+ "damla-yapistir": {
+  "dosya": "yarasa/foley/damla-yapistir.mp3",
+  "tepe_ms": 46,
+  "sure_ms": 570,
+  "tepe_dbfs": -3.3,
+  "en_yuksek_ms": 110,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -9
+ },
+ "pens-tik": {
+  "dosya": "yarasa/foley/pens-tik.mp3",
+  "tepe_ms": 46,
+  "sure_ms": 570,
+  "tepe_dbfs": -3.6,
+  "en_yuksek_ms": 52,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -9
+ },
+ "kap-oturma": {
+  "dosya": "yarasa/foley/kap-oturma.mp3",
+  "tepe_ms": 110,
+  "sure_ms": 480,
+  "tepe_dbfs": -2.9,
+  "en_yuksek_ms": 114,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -6
+ },
+ "tepsi-dizilim": {
+  "dosya": "yarasa/foley/tepsi-dizilim.mp3",
+  "tepe_ms": 40,
+  "sure_ms": 1290,
+  "tepe_dbfs": -2.6,
+  "en_yuksek_ms": 76,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -12
+ },
+ "kovan-ac": {
+  "dosya": "yarasa/foley/kovan-ac.mp3",
+  "tepe_ms": 46,
+  "sure_ms": 890,
+  "tepe_dbfs": -2.4,
+  "en_yuksek_ms": 72,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -9
+ },
+ "kanat-uzak": {
+  "dosya": "yarasa/foley/kanat-uzak.mp3",
+  "tepe_ms": 44,
+  "sure_ms": 1480,
+  "tepe_dbfs": -5.1,
+  "en_yuksek_ms": 418,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -12
+ },
+ "kanat-titrek": {
+  "dosya": "yarasa/foley/kanat-titrek.mp3",
+  "tepe_ms": 44,
+  "sure_ms": 570,
+  "tepe_dbfs": -4.2,
+  "en_yuksek_ms": 284,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -10
+ },
+ "tutun-uzak": {
+  "dosya": "yarasa/foley/tutun-uzak.mp3",
+  "tepe_ms": 26,
+  "sure_ms": 600,
+  "tepe_dbfs": -1.7,
+  "en_yuksek_ms": 110,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -9
+ },
+ "kivilcim-cirt": {
+  "dosya": "yarasa/foley/kivilcim-cirt.mp3",
+  "tepe_ms": 46,
+  "sure_ms": 570,
+  "tepe_dbfs": -4.7,
+  "en_yuksek_ms": 86,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -7
+ },
+ "ates-tutus": {
+  "dosya": "yarasa/foley/ates-tutus.mp3",
+  "tepe_ms": 8,
+  "sure_ms": 1200,
+  "tepe_dbfs": -3.5,
+  "en_yuksek_ms": 54,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -7
+ },
+ "ates-yatak": {
+  "dosya": "yarasa/foley/ates-yatak.mp3",
+  "tepe_ms": 66,
+  "sure_ms": 6000,
+  "tepe_dbfs": -3.3,
+  "en_yuksek_ms": 4626,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -12
+ },
+ "igne-tak": {
+  "dosya": "yarasa/foley/igne-tak.mp3",
+  "tepe_ms": 40,
+  "sure_ms": 480,
+  "tepe_dbfs": -4.2,
+  "en_yuksek_ms": 364,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -9
+ },
+ "muhur-tok": {
+  "dosya": "yarasa/foley/muhur-tok.mp3",
+  "tepe_ms": 146,
+  "sure_ms": 600,
+  "tepe_dbfs": -3.8,
+  "en_yuksek_ms": 146,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = en yuksek",
+  "onerilen_db": -5
+ },
+ "kagit-cevir": {
+  "dosya": "yarasa/foley/kagit-cevir.mp3",
+  "tepe_ms": 48,
+  "sure_ms": 770,
+  "tepe_dbfs": -4.0,
+  "en_yuksek_ms": 502,
+  "kaynak": "elevenlabs-sfx (yarasa_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = ilk net baslangic (-20 dB esigi)",
+  "onerilen_db": -9
+ }
+}
