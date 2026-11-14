@@ -1555,3 +1555,10 @@
   - Genel bakış PNG'leri ve dalga görüntüleri üretildi; genel bakış sayfası göz kontrolü yapılmadı (eleştirmene bırakıldı).
   - Dalga formu (TR/EN): kenarlarda kesik ya da sıçrama görünmüyor, konuşma blokları arasında sessizlik var; seviye tutarlı.
   - Git işlemi yapılmadı (talep gereği).
+
+## eleştirmen · 2026-11-14 · ilk tam render jüri (günlük mod)
+- Ne yaptım: TR/EN tam render'ı günlük mod 6 soruyla taradım. Üst bant kırpıntıları (11 an × 2 dil), P01→P02 ve P07 düşüşü için 4 karelik hareket şeritleri, P11 sayaç yakın kırpıntısı, döngü (son ↔ ilk kare), temas kareleri (darbe, iğne). Foley stem ve final mp4'te çapraz korelasyonla senkron ölçtüm. Kesme ve döngü seviyelerini ölçtüm.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/tam-render/elestiri.md (yeni), bolumler/paris-kusatmasi/katki-raporu.md (ek). Kod/git yok.
+- Aldığım kararlar ve gerekçeleri: Kullanıcıya gösterilmez. Yazı katmanında üç kritik sorun var: kadraj dışına taşma (kit `en=0.52`), P11 sayacının tek satıra sıkışması, P02'de "2.000.000"ün aşırı kesinliği (E1: mertebe). Görüntü ve ses yeniden yapılmaz; yalnız yazı katmanı yeniden render + birleştirme.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: Yazı bandı/yan güvenli alan (8 yazıda taşma), okunurluk (P11 sayaç 6–9 px telefonda), doğruluk (tek kesin sayı yok), fizik/derinlik (P07 uzak balon gar önünden geçiyor), dil katmanı ayrımı temiz, temas sesi ±5 ms.
+- Açık sorular / bir sonraki ajana notlar: Motion: `yazi.tsx` genişlik katsayısı başka bölümleri de etkiler; Evliya/Blanc yazı katmanları regresyon için yeniden bakılsın. Kurgucu: döngü kenarında müzik sönüyor (son −48 dBFS → ilk −31/−24); kulakla dinlenmeli. Senarist (isteğe bağlı, ses kredisi gerektirir): EN P07 "Dagron's dumped sand" ve P11 "Those that did carried" okunuşu.
