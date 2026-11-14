@@ -248,10 +248,10 @@
       293,
       548
      ],
-     "kopma_kare": 138,
+     "kopma_kare": 144,
      "uc_sonum": {
-      "bas": 138,
-      "bit": 188
+      "bas": 144,
+      "bit": 194
      },
      "tel_kalinlik_px": 10,
      "uc_boy_px": 220,
@@ -259,13 +259,13 @@
     },
     "kalabalik": {
      "bas": 192,
-     "bit": 300,
+     "bit": 270,
      "tur": "kâğıt kesme siluetler: aile, asker, çocuk (yüzsüz)",
      "sayi": 40,
      "boy_px": [60, 90],
-     "bant_r": [200, 395],
+     "bant_r": [45, 150],
      "yon": "dışa dönük (sırt merkeze); merkez P04/P11 için boş",
-     "ic": "halkanın içi dolar",
+     "ic": "sur içi dolar (Parisliler; kuşatan asker okunmaz). Dolum f205-260 (bas+13 .. bit-10); sur oval B339-D729 / K750-G1054, bant sur içinde, r<45 kümes/yığın boşluğu",
      "dis": "halkanın dışı boş kalır"
     },
     "animasyonlar": [
@@ -276,13 +276,13 @@
      },
      {
       "ad": "tel kopar, uc sonumu",
-      "bas": 138,
-      "bit": 188
+      "bas": 144,
+      "bit": 194
      },
      {
       "ad": "kalabalik dolumu",
       "bas": 192,
-      "bit": 300
+      "bit": 270
      },
      {
       "ad": "sayac",
@@ -391,8 +391,8 @@
      "db": -8
     },
     {
-     "kare": 138,
-     "olay": "telgraf teli kopar",
+     "kare": 144,
+     "olay": "telgraf teli kopar (son işaret f132 teli 12 kare bastırır)",
      "ses": "pk-tel-kopma",
      "db": -7
     },
@@ -407,7 +407,7 @@
     "id": "PK-D1",
     "ad": "Halka kapanır, tel kopar",
     "bas": 96,
-    "bit": 188
+    "bit": 194
    },
    "okunurluk": {
     "nesne": "halka + kopan tel",
@@ -421,25 +421,25 @@
    },
    "sfx": [
     "pk-halka-tik f132",
-    "pk-tel-kopma f138",
+    "pk-tel-kopma f144",
     "pk-kagit-sil f214",
     "kopmadan sonra ~0.5 sn kısık sessizlik"
    ],
    "muzik_notu": "Pad alçalır, 'kesti'da tek sert nota ve kesilen tel boşluğu; 'iki milyon'da yavaş ağır tek nota, 0.7 sn nefes (dinlenme).",
-   "kontrol_kare": 140,
+   "kontrol_kare": 150,
    "kontrol_kare_ek": [
-    250
+    290
    ],
    "lint": {"izin": [], "not": "harita turu render edildi (kalibrasyon/H, motion 2026-11-14)"},
    "harita_etiket": "yok (paris-cevre: etiket yok, §5H.7)",
-   "hareket_seridi": [{"bas": 120, "bit": 190, "adim": 4, "not": "halka kapanış + kopma"}],
+   "hareket_seridi": [{"bas": 120, "bit": 200, "adim": 4, "not": "halka kapanış + kopma"}],
    "alt_ucte_bir": "halkanın alt yayı (y ≈1330) + Fransa parşömeni; kalabalık dolumunda halka içi siluetler",
    "kit_eksik": [
     "KE-PK-H1",
     "KE-PK-H2",
     "KE-PK-F1"
    ],
-   "not": "SENARYO→PARAMETRE: 'Prusya işaretleri halka olup kapanıyor' = halka; 'telgraf çizgisi tam o noktada kopuyor, uçlar kıvrılıp duruyor' = telgraf_teli; 'halkanın içi kâğıt siluetlerle doluyor, dışı boş' = kalabalik; 'sessizlik, kamera geri çekilir' = kamera f196-344. TR 'kesti' f150, EN 'cut' f103-112 / 'telegraph' f120-150: kopma f138 ortak pencere. Ekran yazısı 1 f170'te biter, sayaç f196'da başlar (üst bantta çakışma yok). 'donus' kullanılmadı: 'İKİ MİLYON İNSAN' yazıya dönmesi anlatımı tekrar eder; sayı 2.000.000 kalır.",
+   "not": "SENARYO→PARAMETRE: 'Prusya işaretleri halka olup kapanıyor' = halka; 'telgraf çizgisi tam o noktada kopuyor, uçlar kıvrılıp duruyor' = telgraf_teli; 'halkanın içi kâğıt siluetlerle doluyor, dışı boş' = kalabalik; 'sessizlik, kamera geri çekilir' = kamera f196-344. TR 'kesti' f150, EN 'cut' f103-112 / 'telegraph' f120-150: kopma f144 ortak pencere (H2: son işaret f132 teli 12 kare bastırır). Ekran yazısı 1 f170'te biter, sayaç f196'da başlar (üst bantta çakışma yok). 'donus' kullanılmadı: 'İKİ MİLYON İNSAN' yazıya dönmesi anlatımı tekrar eder; sayı 2.000.000 kalır.",
    "ses": [
     {
      "dosya": "paris/ses/tr/P02.mp3",
@@ -560,6 +560,7 @@
       "yaricap": 430,
       "kalici": true
      },
+     "tel_kopuk": true, "kalabalik": {"bas": -120, "bit": -20, "sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu durumu hazır (sur içi, merkez boş); negatif kare = f0'da ayakta"},
      "balon_izi": {
       "bas": 164,
       "bit": 214,
@@ -809,6 +810,7 @@
      "yaricap": 430,
      "kalici": true
     },
+    "tel_kopuk": true, "kalabalik": {"bas": -120, "bit": -20, "sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu durumu hazır (sur içi, merkez boş); negatif kare = f0'da ayakta"},
     "guvercin_cizgisi": {
      "bas": 30,
      "bit": 108,
@@ -2317,18 +2319,6 @@
     "rota_segment_stil": ["dolu", "noktali"],
     "svg_etiket": false,
     "etiket_katmani": "yazı katmanı: PARIS halkanın sol-üstü, sağ kenarı halkanın 10 px solunda; TOURS altta (§5H.7)",
-    "kamera_takip": {
-     "kare": [
-      0,
-      150
-     ],
-     "cs": 1.8,
-     "ekran": [
-      460,
-      900
-     ],
-     "gecis": 20
-    },
     "igne": {
      "kare": 164,
      "dusme": 14,
@@ -2341,10 +2331,12 @@
      "poligon_not": "lon/lat, stilize, sınır kaynaksız (§5H.5-I); Vitry (4.58,48.73) içeride, batı kenarı Paris küçük halkasına değer, Tours dışarıda",
      "not": "iniş noktası bu bölgenin içinde; yer adı söylenmez/yazılmaz"
     },
+    "paris_halka_kucuk": {"yaricap_px": 40, "cizgi_px": 5, "cubuk": {"adet": 10, "boyut_px": [12, 6]}, "not": "H2 açık: kalıcı oturmuş küçük Paris halkası (kit varsayılanıyla aynı; ekran px ÷ cs 1.8)"},
+    "tours_ikon": {"bina_ekran_px": [84, 84], "yigin_ekran_px": 36, "not": "H2 açık: Tours binası + yığın hazır çizili (ciz yok = kalıcı); ekran px ÷ cs 1.8"},
     "balon_ikon_inis": {
      "bas": 52,
      "bit": 76,
-     "ikon_px": 56,
+     "ikon_px": 90,
      "not": "f52'den gölge ofseti 18→4, ikon 6 px alçalır; f76 sepet kâğıda değer (3 karede ezilir)"
     },
     "sepet_yatik_ikon": {
@@ -2387,27 +2379,9 @@
     "tr": "Prusya bölgesine indi, kaçıp Tours'a vardı.",
     "en": "He landed in Prussian territory and escaped to Tours."
    },
-   "olcek": "orta harita, kamera rota ucunu izler (cs 1.8) → son: yakın (iğne Tours'a batar)",
+   "olcek": "orta harita, kamera rota ucunu izler (cs 1.8) → f52-100 iniş noktasına push-in cs 2.4 (ikon ≈120 px) → geri 1.8 → son: yakın (iğne Tours'a batar)",
    "tempo": "hizli",
-   "kamera": {
-    "kare": [
-     0,
-     150
-    ],
-    "cs": [
-     1.4,
-     1.4
-    ],
-    "cx": [
-     0,
-     0
-    ],
-    "cy": [
-     0,
-     0
-    ],
-    "egri": "inout"
-   },
+   "kamera": {"kare": [0,6,12,18,24,30,36,42,48,54,60,66,72,78,84,90,96,102,108,114,120,126,132,138,144,150,209], "cs": [1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.867,2.067,2.267,2.4,2.4,2.4,2.4,2.4,2.35,2.2,2.05,1.9,1.8,1.8,1.8,1.8,1.8,1.8], "cx": [-210,-211,-215,-225,-246,-280,-330,-391,-435,-478,-540,-595,-628,-629,-625,-611,-577,-506,-389,-247,-135,-68,-30,-10,-2,-1,-1], "cy": [502,502,502,501,499,496,492,487,483,501,559,618,658,658,656,649,632,588,501,403,319,267,248,238,234,234,234], "egri": "lineer", "not": "H2: kamera_takip yerine elle rota ucu takibi (ekran 460,900); f52-70 push-in 1.8→2.4 iniş noktasına, f70-100 tut, f100-124 geri 1.8; iniş ikonu 90×2.4/1.8=120 px ekranda"},
    "ekran_yazisi": [
     {
      "bant": "ust",
@@ -3311,12 +3285,12 @@
      "yaricap": 430,
      "kalici": true
     },
+    "tel_kopuk": true, "kalabalik": {"bas": -120, "bit": -20, "sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu durumu hazır (sur içi, merkez boş); negatif kare = f0'da ayakta"},
     "kumes_ikon": {"konum": [560, 930], "not": "f0'da hazır (P10→P11 çıplak kesme: halka + 40 siluet + kümes; P03/P04 iz, ok, yığın taşınmaz)"},
-    "kalabalik_hazir": 40,
     "kus_cizgileri": {
      "sayi": 12,
      "baslangic_dekor": [[-20, 420], [-20, 520], [-20, 640], [-20, 760], [-20, 880], [-20, 1000], [-20, 1120], [-20, 1240], [-20, 1360], [160, 1600], [330, 1600], [520, 1600]],
-     "t_dur": [0.18, 0.32, 0.25, null, 0.41, 0.22, null, 0.36, 0.28, null, 0.47, 0.30],
+     "t_dur": [0.18, 0.32, 0.25, null, 0.41, 0.22, null, 0.36, 0.28, 0.47, null, 0.30],
      "dur_kare": [30, 96],
      "ikon_px": 44,
      "varan_no": [4, 7, 11],
