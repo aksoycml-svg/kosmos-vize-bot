@@ -1409,3 +1409,21 @@
   - Orkestra: siluetler surun dışında ve dışa dönük. "Parisliler" yerine "kuşatanlar" gibi okunma riski var. `kalabalik.bant_r` sur içine alınsın mı?
   - Mekân sorumlusu: tel yönü KB, Tours GB. Anlamı doğrulasın.
   - Yönetmen: P08 push-in f56–100. P02 kontrol karesi f250 → f300 ya da dolum sıkıştırılsın. P02 temas f132 → f144 kayarsa temaslar.json güncellensin.
+
+## yonetmen · 2026-11-14 · Harita H2 düzeltmeleri (bolum.json)
+- Ne yaptım:
+  - P08: `kamera_takip` kaldırıldı, yerine elle rota-ucu takibi (27 anahtar, ekran 460,900). f52–70 push-in 1.8→2.4, f70–100 tut, f100–124 geri 1.8. `balon_ikon_inis.ikon_px` 56→90: ekranda 90×2.4/1.8 = 120 px (f84 render: ≈120 px, doğrulandı). `paris_halka_kucuk` ve `tours_ikon` açık yazıldı (kit varsayılanlarıyla aynı değerler; görüntü değişmez).
+  - P02: tel kopma 138→144 (`kopma_kare`, `uc_sonum` 144–194, animasyonlar, temas, sfx, dokunuş bit 194, hareket şeridi 120–200; son işaret f132 kalır = 12 kare bastırma). `temaslar.json` P02 kopma kare 520→526 (sn 8.767). `foley.json` plan bazlı kare tutmadığı için değişmedi. Kalabalık dolumu sıkıştırıldı: `bit` 300→270 (siluetler f205–260), `kontrol_kare` 140→150, `kontrol_kare_ek` 250→290. `bant_r` [200,395]→[45,150] (Thiers sur ovali ≈ B339–D729, K750–G1054, merkezden ≤150 güvenli).
+  - P03B/P04A/P11A: `tel_kopuk: true` açık; `kalabalik` {bas −120, bit −20, bant_r [45,150]} ile "hazır" siluetler sur içine alındı (kalabalik_hazir kodda sabit [200,395] bant kullandığı için; P11'deki `kalabalik_hazir` satırı kaldırıldı). P03B f200 render'ında siluetler sur içinde.
+  - P11 `t_dur`: null'lar #4/#7/#11'e (idx 3, 6, 10) hizalandı; değerlerin sırası aynı, kodun dağıtımı değişmez.
+  - `src/kit/sinirlar.json` HARITA kamera: cs 1.6→2.4, cx/cy ±300→±700 (yalnız P08 için gereken kadar).
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/bolum.json, temaslar.json, katki-raporu.md; src/kit/sinirlar.json; kalibrasyon/H2/yonetmen/ (P08-f070/f084/f100, P02-f150/f290, P03B-f200).
+- Aldığım kararlar ve gerekçeleri:
+  - Takip cs'i kodda sabit olduğu için push-in kamera anahtarlarıyla yapıldı (kod değişmedi). f0 cs 1.4→1.8 oldu (eski takip zaten 1.8'e blend ediyordu).
+  - P02 için "sıkıştır" seçildi (sayaç f196–262 ile örtüşür, anlatıma uygun); ek kontrol karesi yine de f290 (dolu).
+  - Tel yönü KB kaldı (orkestra kararı).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: kural 2 (animasyon ≥12 kare önce biter: kopma 194 < 356), kural 6 (doğrulayıcı `--tam` GEÇTİ 0 hata 0 uyarı), kural 7 (P08 f70/f84/f100 ve P02 f150/f290 kendim render ettim, 0.25 ölçek; P08 f84 ayrıca 0.5). Kod gerektiren kısımlar render edilmedi: tel θ0/serbest uç (motion).
+- Açık sorular / bir sonraki ajana notlar:
+  - P08 ikon boyutu doğru ama biçim hâlâ "mercek" okunuyor (motion: yatık sepet + buruşuk kumaş).
+  - P02 f290: 40 siluet r 45–150 bandında sıkışık ve merkezdeki kümes noktasını (560,930) örtüyor; "merkezde boşluk" için motion `kalabalikHesap` iç sıra ofsetini (bant[0]+35) ya da sayıyı gözden geçirmeli. Kopma f144 görseli (uç biçimi) motion düzeltmesine bağlı; P02 f150 render'ı eski tel kıvrımını gösterir.
+  - P03B/P04A/P11A'da negatif `kalabalik.bas/bit` bir kit çözümlemesi hilesi; motion `kalabalik_hazir`'a bant_r parametresi eklerse eski hâline dönülebilir.
