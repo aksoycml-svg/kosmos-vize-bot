@@ -9,6 +9,7 @@ B = "bolumler/paris-kusatmasi"; PUB = "public/"; OUT = PUB + "paris/miks/"
 MUZIK = PUB + "paris/muzik/paris-chopin-op9no2-58.mp3"
 # bolum.json'da olmayan temaslar (yönetmen ekleyene dek): (plan, kare, ad, dosya, tepe_ms, db)   TOPLU-DUZELTME #21
 EK_TEMAS = []
+FOLEY_KAZANC_DB = -3.0   # tur-18: tüm foley stem'ine tek global kazanç (ducking sonrası; tek tek db oranları korunur)
 DB_ON = {"pk-odak-disli": -18}   # görünmeyen kaynak -> ortam seviyesi (bolum.json -10 yazıyor)
 def oku(f):
     b = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", f, "-f", "f32le", "-ac", "2", "-ar", str(SR), "-"], capture_output=True, check=True).stdout
@@ -75,6 +76,7 @@ for dil in (sys.argv[1:] or ["tr", "en"]):
     k = np.where(ra > .02, np.clip(ra * g(-4) / (rf + 1e-9), g(-8), 1), 1.0)
     k = np.minimum(np.minimum(k, np.roll(k, 1)), np.roll(k, -1)); k = np.convolve(k, np.ones(3) / 3, "same")
     fol *= np.interp(np.arange(len(fol)), (np.arange(nb) + .5) * hb, k)[:, None]
+    fol *= g(FOLEY_KAZANC_DB)
     # ortam
     amb = np.zeros((N, 2))
     for ad, o in ORT.items():
