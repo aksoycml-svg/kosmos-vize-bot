@@ -94,6 +94,8 @@ def plan():
 
 def dinlet(lang):
     os.makedirs(ADAY, exist_ok=True); pl = json.load(open(f"{ROOT}/plan-sureleri.json")); V5.ADAY = ADAY; V5.birlestir(ROOT, lang, IDS, pl, f"public/cicero/dinlet/final-{lang}.mp3", f"final-{lang}")
+    # V5.birlestir dalga png yolunu public/paris/dinlet/ olarak sabitler: cicero klasorune tasi, paris dosyasini geri al
+    os.replace(f"public/paris/dinlet/dalga-final-{lang}.png", f"public/cicero/dinlet/dalga-final-{lang}.png"); subprocess.run(["git", "checkout", "--", f"public/paris/dinlet/dalga-final-{lang}.png"], check=False)
 
 if __name__ == "__main__":
     a = sys.argv[1:]
