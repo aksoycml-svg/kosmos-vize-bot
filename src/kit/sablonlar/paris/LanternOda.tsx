@@ -149,7 +149,7 @@ const memurKafa = (x: number, tepe: number, B: number, tip: BasTip, egim: number
   return { kafa, sac, tf, w, h, cx, cy, yanEg, boyunY, merkez: [cx, cy] as P };
 };
 
-const M3_PALTO = "#3d414c"; // M1: memur-1/2 (#2c2f36) sırtından bir ton açık — 360'ta koyu duvardan ayrışır
+const M3_PALTO = "#4a505c"; // M1 + H2: memur-1/2 (#2c2f36) sırtından iki ton açık — 360'ta koyu duvar ve koltuk sırtından ayrışır
 const MemurArka: React.FC<{ x: number; tepe: number; B: number; tip: BasTip; egim: number; isik: number; uid: string; omuzY: number; sadece?: "govde" | "bas";
   // M1 (T eleştirisi): renk = palto dolgusu (memur-3 bir ton açık), kenar = lantern tarafı (sol) omuz/sırt kenar ışığı alfa
   renk?: string; kenar?: number }> = ({ x, tepe, B, tip, egim, isik, uid, omuzY, sadece, renk = LP.memur, kenar = 0 }) => {

@@ -245,10 +245,11 @@ const dagronPoz = (f: number, A: Ar): Poz & { yerde: [boolean, boolean]; keys: n
   const k1 = ayakta(S, 0, 0.1);
   const sagaEg = (q: Poz, d: number) => { const m = (v: V3): V3 => [v[0] + DG_A[0] * d, v[1], v[2] + DG_A[1] * d]; q.bas = m(q.bas); q.boyun = m(q.boyun); q.omuz = [m(q.omuz[0]), m(q.omuz[1])]; q.dirsek = [m(q.dirsek[0]), m(q.dirsek[1])]; q.el[1] = m(q.el[1]); };
   sagaEg(k1, DG_EG);
-  k1.ayak[0] = DG_RIM; k1.kalca = [W(S, -0.1, 0.93, 0.03), W(S, 0.09, 0.93, 0.03)]; k1.diz[0] = (() => { const h = k1.kalca[0], m: V3 = [(h[0] + DG_RIM[0]) / 2, (h[1] + DG_RIM[1]) / 2, (h[2] + DG_RIM[2]) / 2], d: V3 = [-0.42 * DG_A[0] - 0.05 * DG_F[0], 0.88, -0.42 * DG_A[1] - 0.05 * DG_F[1]], L = Math.hypot(...d), b = 0.41; return [m[0] + d[0] / L * b, m[1] + d[1] / L * b, m[2] + d[2] / L * b] as V3; })();
+  k1.ayak[0] = DG_RIM; k1.kalca = [W(S, -0.1, 0.93, 0.03), W(S, 0.09, 0.93, 0.03)]; k1.diz[0] = (() => { const h = k1.kalca[0], m: V3 = [(h[0] + DG_RIM[0]) / 2, (h[1] + DG_RIM[1]) / 2, (h[2] + DG_RIM[2]) / 2], d: V3 = [-0.55 * DG_A[0] - 0.05 * DG_F[0], 0.7, -0.55 * DG_A[1] - 0.05 * DG_F[1]], L = Math.hypot(...d), b = 0.41; return [m[0] + d[0] / L * b, m[1] + d[1] / L * b, m[2] + d[2] / L * b] as V3; })();
+  // H2 (eleştiri küçük): rimdeki dizin yüksekliği k1 0.88→0.7 yukarı / k2 h 1.42→1.30, daha dışa (−0.36) → f228–236 diz baş hizasına çıkmaz, bacak gövdeden ayrışır
   // k2 (≈f237): ağırlık rimdeki ayakta, kalça rimin üstünde, gövde sepete eğik; sağ bacak arka rimin ÜSTÜNDEN içeri geçer
   const k2: Poz = {
-    ayak: [DG_RIM, W(S, 0.12, 1.08, 0.62)], diz: [W(S, -0.3, 1.42, 0.12), W(S, 0.12, 1.5, 0.5)], kalca: [W(S, -0.08, 1.25, 0.22), W(S, 0.08, 1.25, 0.2)],
+    ayak: [DG_RIM, W(S, 0.12, 1.08, 0.62)], diz: [W(S, -0.36, 1.3, 0.1), W(S, 0.12, 1.5, 0.5)], kalca: [W(S, -0.08, 1.25, 0.22), W(S, 0.08, 1.25, 0.2)],
     omuz: [W(S, -0.2, 1.68, 0.32), W(S, 0.2, 1.68, 0.3)], dirsek: [W(S, -0.3, 1.6, 0.3), W(S, 0.3, 1.5, 0.3)], el: [DG_EL, W(S, 0.3, 1.25, 0.36)],
     boyun: W(S, 0, 1.76, 0.34), bas: W(S, 0, 1.88, 0.38),
   };

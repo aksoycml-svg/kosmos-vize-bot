@@ -112,6 +112,7 @@ export const SU_CIZGI = [
 ];
 export const NEHIR_D = { seine: yolD(SEINE), marne: yolD(MARNE) };
 
-// ---- telgraf teli: Cité → KB → kopma (293,548) → kadrajın sol-üst köşesi (§5H.5-B) ----
+// ---- telgraf teli: sur kapısı (KB, Cité yönünde) → kopma (293,548) → kadrajın sol-üst köşesi (§5H.5-B) ----
+// H2 (eleştiri #1): iç hat Cité'ye uzanmaz, KB sur kapısında biter (uzun "sap" okunmasın).
 export const KOPMA: Pt = [293, 548];
-export const TEL_K: Pt[] = [[569, 911], [430, 730], KOPMA, [-220, -126]];
+export const TEL_K: Pt[] = [[462, 772], [430, 730], KOPMA, [-220, -126]];

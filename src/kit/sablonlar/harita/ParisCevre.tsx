@@ -2,21 +2,21 @@
 // Tek kâğıt (kit parşömeni) üstünde 1870 kuşatma planı gravürü (GravurArazi) + kukla tiyatrosu parçaları:
 //  KusatmaHalkasi  halka {merkez, yaricap, isaret_sayisi, isaret{boyut_px, aci_sapma_derece}, bas, son_isaret_oturur, kalici}
 //  TelgrafTeli     telgraf_teli {kopma_noktasi, kopma_kare, uc_sonum{bas,bit}, tel_kalinlik_px, uc_boy_px}; yoksa `tel_kopuk` (vars. true) = kopuk dinlenme hâli
-//  KagitKalabalik  kalabalik {bas, bit, sayi, boy_px, bant_r} (menteşeyle kalkış) | kalabalik_hazir N (vars. halka.kalici ? 40 : 0)
+//  KagitKalabalik  kalabalik {bas, bit, sayi, boy_px, bant_r, bosluk} (menteşeyle kalkış) | kalabalik_hazir N ya da {sayi, boy_px, bant_r, bosluk} (vars. halka.kalici ? 40 : 0)
 //  P03B            balon_izi {bas,bit} · ruzgar_cizgileri {bas,bit} · geri_ok {ciz, suprulur} · yazi_yigini {bas, baslangic, carpma_nokta, carpma}
 //  P04A            kumes_ikon {konum, ciz{bas,bit}} · guvercin_cizgisi {bas, bit, baslangic}
 //  P11A            kus_cizgileri {baslangic_dekor, t_dur, varan_no, varis_kare, dur_kare} · serit_yagmuru {bas, adet, yigin_merkez, yigin_px, ilk_inis, son_firlatma, son_inis}
 // Fiziksel giriş/çıkış (§5H.6): fade yok — parçalar kadraj dışından kayar, kâğıttan kalkar, mürekkep kendini çizer, rüzgârla kenardan çıkar.
 // Işık tek kaynak: masa ışığı KB → gölge GD (+5,+6) α .22; havadaki parçada ofset büyür (§5H.4).
 import React from "react";
-import { Easing, Img, interpolate, interpolateColors, staticFile } from "remotion";
+import { Easing, Img, interpolate, staticFile } from "remotion";
 import type { KilitNokta } from "../../../doku/GuvenliAlan";
 import { SiluetFigur, SiluetKod, siluetBoy } from "../../props/paris/SiluetFigur";
 import type { Plan } from "../../tipler";
 import { param } from "../../ortak";
 import { cl, ekranNokta, KameraDurum } from "../../zaman";
-import { egri, kumulatif, mesafe, noktaS, parca, Pt, rng, yay, yolD } from "./cizgi";
-import { AGACLAR, CITE, FORTLAR, fortYol, KOPMA, NEHIR_D, nehreUzak, PK, SEED, SU_CIZGI, SUR_D, TARAMA, TEL_K } from "./parisCevre";
+import { egri, icinde, kumulatif, mesafe, noktaS, parca, Pt, rng, yay, yolD } from "./cizgi";
+import { AGACLAR, CITE, FORTLAR, fortYol, KOPMA, NEHIR_D, nehreUzak, PK, SEED, SU_CIZGI, SUR, SUR_D, TARAMA, TEL_K } from "./parisCevre";
 import { BalonIkon, Golgeli, KumesIkon, KusIkon, SeritIkon, YiginIkon } from "./ikonlar";
 
 type Halka = { merkez?: Pt; yaricap?: number; isaret_sayisi?: number; isaret?: { boyut_px?: [number, number]; aci_sapma_derece?: number }; bas?: number; son_isaret_oturur?: number; kalici?: boolean };
@@ -75,7 +75,7 @@ const halkaDuzen = (c: Pt, R: number, n: number, kopma: Pt, bas: number, sonOtur
   out[0].bas = sonOtur - 20; out[0].otur = sonOtur;
   return out;
 };
-const KusatmaHalkasi: React.FC<{ h: Halka; p: number; tel: TelGeo }> = ({ h, p, tel }) => {
+const KusatmaHalkasi: React.FC<{ h: Halka; p: number; tel: TelGeo; baski?: number }> = ({ h, p, tel, baski }) => {
   const c = h.merkez ?? [540, 900], R = h.yaricap ?? 430, n = h.isaret_sayisi ?? 22, [bw, bh] = h.isaret?.boyut_px ?? [32, 16];
   const animasyon = h.bas !== undefined; // bas yoksa kalıcı (kapanmış) hâl
   const sonOtur = h.son_isaret_oturur ?? 132, bas = h.bas ?? 8;
@@ -109,8 +109,9 @@ const KusatmaHalkasi: React.FC<{ h: Halka; p: number; tel: TelGeo }> = ({ h, p, 
         if (m.son) {
           // son işaret: kadrajın sol-üstünden telin üstünde kayar (boncuk gibi), kopma noktasına oturur
           const q = t01(pp, m.bas, m.otur, OUT3);
-          const s = tel.sKopma + (1 - q) * 720;
+          const s = tel.sKopma + (1 - q) * 720, v = baski ?? 0;
           [x, y] = noktaS(tel.duz, tel.c, s).p;
+          x += BASKI_YON[0] * v; y += BASKI_YON[1] * v;
         } else {
           const rr = R + (1150 - R) * (1 - t01(pp, m.bas, m.otur, OUT3));
           x = c[0] + Math.cos(m.th) * rr; y = c[1] + Math.sin(m.th) * rr;
@@ -127,7 +128,11 @@ const KusatmaHalkasi: React.FC<{ h: Halka; p: number; tel: TelGeo }> = ({ h, p, 
 };
 
 // ================= TelgrafTeli =================
+// H2 (eleştiri #1 "baston"): kopan uçlar kıvrılmaz. Her uç çapasından (direk) ≤ 80 px düz uzanır, θ0 ≤ 20° sönümlü salınır, uçta 3 kısa
+// çatallı lifle (kopuk tel) biter; iki uç arası ≥ 60 px boşluk (kopmada uçlar geri teper: boşluk 0 → 2·UC_BOSLUK, 6 kare).
+// Kopmadan önce son işaret teli bastırır (son_isaret_oturur → kopma): tel kopma noktasında içe (halka merkezine) V çizer, son 4 karede titrer.
 type TelGeo = { duz: Pt[]; c: number[]; sKopma: number; direkler: number[] };
+const UC_BOSLUK = 50, UC_MAX = 80, CAPA = UC_BOSLUK + 75; // çapa kopmadan 125 px (uç 75 px + yarım boşluk; lifler dahil uçlar arası ≥ 66 dekor px)
 const TEL: TelGeo = (() => {
   const duz = egri(TEL_K, false, 3);
   // Catmull-Rom köşeleri yumuşatır; kopma noktasının yay uzunluğu en yakın örnekten
@@ -135,46 +140,64 @@ const TEL: TelGeo = (() => {
   let sK = 0, dmin = 1e9;
   duz.forEach((q, i) => { const d = mesafe(q, KOPMA); if (d < dmin) { dmin = d; sK = c[i]; } });
   const direkler: number[] = [];
-  for (let s = sK - 235; s > 40; s -= 120) direkler.unshift(s);
-  for (let s = sK + 235; s < c[c.length - 1]; s += 120) direkler.push(s);
+  for (let s = sK - CAPA; s > 30; s -= 120) direkler.unshift(s);
+  for (let s = sK + CAPA; s < c[c.length - 1]; s += 120) direkler.push(s);
   return { duz, c, sKopma: sK, direkler };
 })();
-// direkler arası 6 px sarkma (aşağı)
-const sarkikTel = (s0: number, s1: number, d0: number[]): Pt[] => {
+// bastırma vektörü: kopma noktasında halka merkezine doğru (son işaret ringi sıkıştırır); kopmada 3 karede geri
+const BASKI_YON: Pt = (() => { const d: Pt = [540 - KOPMA[0], 900 - KOPMA[1]], L = Math.hypot(d[0], d[1]); return [d[0] / L, d[1] / L]; })();
+export const telBaski = (p: number, bas: number, kopma: number): number => {
+  if (p < bas) return 0;
+  if (p >= kopma) return 10 * (1 - t01(p, kopma, kopma + 3, OUT3));
+  const titre = p >= kopma - 4 ? 1.5 * Math.sin((p - (kopma - 4)) * 2.6) : 0;
+  return 10 * t01(p, bas, kopma - 3, Easing.inOut(Easing.quad)) + titre;
+};
+// direkler arası 6 px sarkma (aşağı); baskı: |s − sKopma| < 70 px içinde V (doğrusal)
+const sarkikTel = (s0: number, s1: number, d0: number[], baski = 0): Pt[] => {
   const pts: Pt[] = [], dug = [s0, ...d0.filter((s) => s > s0 && s < s1), s1];
   for (let i = 0; i < dug.length - 1; i++) {
     const a = dug[i], b = dug[i + 1], n = Math.max(2, Math.ceil((b - a) / 8));
-    for (let j = 0; j <= n; j++) { const s = a + ((b - a) * j) / n, q = noktaS(TEL.duz, TEL.c, s).p; pts.push([q[0], q[1] + 6 * Math.sin((Math.PI * j) / n)]); }
+    for (let j = 0; j <= n; j++) {
+      const s = a + ((b - a) * j) / n, q = noktaS(TEL.duz, TEL.c, s).p, v = baski * Math.max(0, 1 - Math.abs(s - TEL.sKopma) / 70);
+      pts.push([q[0] + BASKI_YON[0] * v, q[1] + 6 * Math.sin((Math.PI * j) / n) + BASKI_YON[1] * v]);
+    }
   }
   return pts;
 };
-// serbest uç: çapadan (direk) kopmaya doğru L px; ilk 15 px düz, uç kıvrılır (uçta yarıçap ~28 px), sönümlü salınım
-const serbestUc = (sCapa: number, yon: 1 | -1, t: number, taraf: 1 | -1, L = 235): Pt[] => {
-  const A = noktaS(TEL.duz, TEL.c, sCapa).p, B = noktaS(TEL.duz, TEL.c, sCapa + yon * L).p;
-  const phi0 = Math.atan2(B[1] - A[1], B[0] - A[0]);
-  // kıvrım uçta toplanır: son ~110 px'te eğrilik 0 → 1/28 (uçta yarıçap 28 px), gövde düz kalır → uçlar kopma boşluğunun iki yanında
-  // durur. Uç açısı θ(t) = θ0·e^(−t/14)·cos(2πt/20), θ0 = 70° (§5H.5-B) yalnız kıvrık kısma biner; f(sönüm bit) dinlenme.
-  const N = 60, ds = L / N, out: Pt[] = [A];
-  const th = t < 0 ? 0 : ((70 * Math.PI) / 180) * Math.exp(-t / 14) * Math.cos((2 * Math.PI * t) / 20) * (1 - Math.exp(-t / 1.5)) * Math.max(0, 1 - t / 50);
-  const cc = t < 0 ? 0 : 1 - Math.exp(-t / 3);
-  const k0 = L - 115, k1 = L - 75;
+// serbest uç: çapadan kopmaya doğru L px, düz; açı = dinlenme sarkması 7° (ekranda aşağı) + θ(t) = θ0·e^(−t/14)·cos(2πt/20), uca doğru artan
+// (yay gibi hafif bükülür, kıvrılmaz). Uçta 3 lif (çatal). Döner: gövde + lifler.
+const serbestUc = (sCapa: number, yon: 1 | -1, t: number, L: number, th0: number): { govde: Pt[]; lif: Pt[][] } => {
+  const A = noktaS(TEL.duz, TEL.c, sCapa).p, B = noktaS(TEL.duz, TEL.c, sCapa + yon * (L + UC_BOSLUK)).p;
+  const phi0 = Math.atan2(B[1] - A[1], B[0] - A[0]), taraf = Math.cos(phi0) >= 0 ? 1 : -1; // + dönüş ekranda aşağı
+  const geriTep = t < 0 ? 0 : t01(t, 0, 6, OUT3); // kopmada uç kopma noktasında, 6 karede çapaya doğru geri teper
+  const Lt = L + UC_BOSLUK * (1 - geriTep);
+  const th = t < 0 ? 0 : ((th0 * Math.PI) / 180) * Math.exp(-t / 14) * Math.cos((2 * Math.PI * t) / 20);
+  const dinlen = ((7 * Math.PI) / 180) * (t < 0 ? 0 : 1 - Math.exp(-t / 8));
+  const N = 24, ds = Lt / N, govde: Pt[] = [A];
   let x = A[0], y = A[1], a = phi0;
   for (let i = 1; i <= N; i++) {
-    const s = i * ds, w = s <= k0 ? 0 : s >= k1 ? 1 : ((s - k0) / (k1 - k0)) ** 2 * (3 - 2 * ((s - k0) / (k1 - k0)));
-    a += taraf * w * ds * (cc / 28 + th / 110);
-    x += Math.cos(a) * ds; y += Math.sin(a) * ds; out.push([x, y]);
+    const w = i / N; // eğrilik uca doğru doğrusal artar → toplam büküm ≈ (dinlen + th)
+    a += (taraf * 2 * w * (dinlen + th)) / N;
+    x += Math.cos(a) * ds; y += Math.sin(a) * ds; govde.push([x, y]);
   }
-  return out;
+  const lif = ([[-0.55, 15], [0.08, 18], [0.6, 13]] as [number, number][]).map(([da, l]) => {
+    const b = a + da, m: Pt = [x + Math.cos(b) * l * 0.55 + Math.cos(b + 1.57) * 1.5 * Math.sign(da || 1), y + Math.sin(b) * l * 0.55 + Math.sin(b + 1.57) * 1.5 * Math.sign(da || 1)];
+    return [[x, y], m, [x + Math.cos(b) * l, y + Math.sin(b) * l]] as Pt[];
+  });
+  return { govde, lif };
 };
 const SICRANTI: [number, number, number][] = [[-15, 11, 3.5], [13, -10, 2.5], [7, 17, 2.2]];
-const TelgrafTeli: React.FC<{ p: number; kopma: number; sonum: [number, number]; kalin: number; boy: number }> = ({ p, kopma, sonum, kalin, boy }) => {
+const TelgrafTeli: React.FC<{ p: number; kopma: number; sonum: [number, number]; kalin: number; boy: number; th0?: number; baskiBas?: number }> = ({ p, kopma, sonum, kalin, boy, th0 = 18, baskiBas }) => {
   const kopuk = p >= kopma, t = p - kopma;
   const ic = TEL.direkler.filter((s) => s < TEL.sKopma), dis = TEL.direkler.filter((s) => s > TEL.sKopma);
   const icCapa = ic[ic.length - 1], disCapa = dis[0];
-  const tt = p >= sonum[1] ? 1e6 : t; // sönüm bitince dinlenme hâli (kıvrık)
+  const tt = p >= sonum[1] ? 1e6 : t; // sönüm bitince dinlenme
+  const L = Math.min(UC_MAX, boy, CAPA - UC_BOSLUK), tet = Math.min(20, th0);
+  const uclar = kopuk ? [serbestUc(icCapa, 1, tt, L, tet), serbestUc(disCapa, -1, tt, L, tet)] : [];
+  const baski = !kopuk && baskiBas !== undefined ? telBaski(p, baskiBas, kopma) : 0;
   const parcalar: Pt[][] = kopuk
-    ? [sarkikTel(0, icCapa, ic), serbestUc(icCapa, 1, tt, 1, Math.min(boy + 15, TEL.sKopma - icCapa)), serbestUc(disCapa, -1, tt, -1, Math.min(boy + 15, disCapa - TEL.sKopma)), sarkikTel(disCapa, TEL.c[TEL.c.length - 1], dis)]
-    : [sarkikTel(0, TEL.c[TEL.c.length - 1], TEL.direkler)];
+    ? [sarkikTel(0, icCapa, ic), ...uclar.map((u) => u.govde), sarkikTel(disCapa, TEL.c[TEL.c.length - 1], dis)]
+    : [sarkikTel(0, TEL.c[TEL.c.length - 1], TEL.direkler, baski)];
   const sq = t01(p, kopma, kopma + 4, OUT3);
   return (
     <g>
@@ -184,11 +207,16 @@ const TelgrafTeli: React.FC<{ p: number; kopma: number; sonum: [number, number];
           <path d={d} strokeWidth={kalin + 6} opacity={0.15} /><path d={d} strokeWidth={kalin} />
         </g>;
       })}
+      {/* kopuk uç lifleri: 3 kısa çatal (≈ 4.5 px), tel kalınlığından incelir */}
+      {uclar.map((u, i) => <g key={`l${i}`} fill="none" stroke={PK.murekkep} strokeLinecap="round" strokeLinejoin="round">
+        {u.lif.map((l, j) => <path key={j} d={yolD(l)} strokeWidth={Math.max(5, kalin * 0.5)} />)}
+      </g>)}
       {/* direkler: dikey 24 px, 4 px; çapraz kol yok (T okutmaz) */}
       {TEL.direkler.map((s, i) => { const q = noktaS(TEL.duz, TEL.c, s).p; return <g key={i}>
         <ellipse cx={q[0] + 4} cy={q[1] + 25} rx={5} ry={2} fill={PK.kontur} opacity={0.3} />
         <line x1={q[0]} y1={q[1] - 2} x2={q[0]} y2={q[1] + 24} stroke={PK.murekkep} strokeWidth={4} strokeLinecap="round" />
       </g>; })}
+      {/* sur kapısı: hattın iç ucu (Cité'ye uzanmaz) */}
       <circle cx={TEL_K[0][0]} cy={TEL_K[0][1]} r={kalin * 0.7} fill={PK.murekkep} />
       {/* kopma anında 3 mürekkep sıçrantısı: kopma noktasından fırlar, kâğıtta kalır */}
       {kopuk && SICRANTI.map(([dx, dy, r], i) => <circle key={i} cx={KOPMA[0] + dx * sq} cy={KOPMA[1] + dy * sq} r={r * sq} fill={PK.murekkep} />)}
@@ -198,23 +226,28 @@ const TelgrafTeli: React.FC<{ p: number; kopma: number; sonum: [number, number];
 
 // ================= KagitKalabalik (KE-PK-F1 kâğıt kesik varyantı) =================
 type Figur = { q: Pt; boy: number; kod: SiluetKod; yon: 1 | -1; bas: number };
+// H2: siluetler SUR İÇİNDE (Parisliler). bant_r = merkezden radyal bant (yatayda sur ovaline göre ×1.3); `bosluk` [x0,y0,x1,y1] dikdörtgeni
+// (vars. kümes + kuş çatısı + şerit yığını) hiçbir siluetin gövde kutusuyla kesişmez; ayak ve baş surun içinde; ayak suya basmaz.
+type KalabalikAyar = { sayi?: number; boy_px?: [number, number]; bant_r?: [number, number]; bosluk?: [number, number, number, number] };
+export const KALABALIK_VARS = { sayi: 40, boy_px: [60, 90] as [number, number], bant_r: [45, 150] as [number, number], bosluk: [515, 820, 655, 1018] as [number, number, number, number] };
 const KALABALIK_ONBELLEK = new Map<string, Figur[]>();
-const kalabalikDuzen = (c: Pt, n: number, boy: [number, number], bant: [number, number], bas0: number, son: number): Figur[] => {
-  const key = JSON.stringify([c, n, boy, bant, bas0, son]);
-  if (!KALABALIK_ONBELLEK.has(key)) KALABALIK_ONBELLEK.set(key, kalabalikHesap(c, n, boy, bant, bas0, son));
+const kalabalikDuzen = (c: Pt, a: KalabalikAyar, bas0: number, son: number): Figur[] => {
+  const n = a.sayi ?? KALABALIK_VARS.sayi, boy = a.boy_px ?? KALABALIK_VARS.boy_px, bant = a.bant_r ?? KALABALIK_VARS.bant_r, bos = a.bosluk ?? KALABALIK_VARS.bosluk;
+  const key = JSON.stringify([c, n, boy, bant, bos, bas0, son]);
+  if (!KALABALIK_ONBELLEK.has(key)) KALABALIK_ONBELLEK.set(key, kalabalikHesap(c, n, boy, bant, bos, bas0, son));
   return KALABALIK_ONBELLEK.get(key)!;
 };
-const kalabalikHesap = (c: Pt, n: number, boy: [number, number], bant: [number, number], bas0: number, son: number): Figur[] => {
-  const r = rng(SEED + 60), sira = [bant[0] + 35, (bant[0] + bant[1]) / 2, bant[1] - 23], out: Figur[] = [];
-  for (let k = 0; k < 4000 && out.length < n; k++) {
-    const rr = sira[k % 3] + (r() - 0.5) * 24, a = r() * Math.PI * 2;
-    const q: Pt = [c[0] + Math.cos(a) * rr, c[1] + Math.sin(a) * rr];
+const kalabalikHesap = (c: Pt, n: number, boy: [number, number], bant: [number, number], bos: [number, number, number, number], bas0: number, son: number): Figur[] => {
+  const r = rng(SEED + 60), out: Figur[] = [];
+  for (let k = 0; k < 20000 && out.length < n; k++) {
+    const rr = bant[0] + r() * (bant[1] - bant[0]), a = r() * Math.PI * 2;
+    const q: Pt = [c[0] + Math.cos(a) * rr * 1.3, c[1] + Math.sin(a) * rr];
     const u = r(), kod: SiluetKod = u < 0.2 ? "cocuk" : u < 0.5 ? "yetiskin-a" : u < 0.82 ? "yetiskin-b" : "omuzda-cubuk";
     const b = kod === "cocuk" ? boy[0] + r() * 6 : boy[0] + 14 + r() * (boy[1] - boy[0] - 14);
-    if (q[1] > 1285 || mesafe([q[0], q[1] - b], c) > 418) continue; // ayak alt bandın üstünde, baş halkanın içinde
-    if (FORTLAR.some(([, f]) => mesafe(f, q) < 43 || mesafe(f, [q[0], q[1] - b / 2]) < 40)) continue; // fortlardan ≥ 30 px
+    if (!icinde([q[0], q[1] + 6], SUR) || !icinde([q[0] - 14, q[1]], SUR) || !icinde([q[0] + 14, q[1]], SUR) || !icinde([q[0], q[1] - b * 0.4], SUR)) continue; // sur içi (ayak + gövde ortası)
+    if (q[0] + 15 > bos[0] && q[0] - 15 < bos[2] && q[1] + 4 > bos[1] && q[1] - b < bos[3]) continue; // merkez boşluğu (kümes/yığın)
     if (!nehreUzak(q, 14)) continue; // ayak suya basmaz
-    if (out.some((o) => Math.abs(o.q[0] - q[0]) < 30 && Math.abs(o.q[1] - q[1]) < 44)) continue;
+    if (out.some((o) => Math.abs(o.q[0] - q[0]) < 24 && Math.abs(o.q[1] - q[1]) < 28)) continue;
     out.push({ q, boy: b, kod, yon: q[0] >= c[0] ? 1 : -1, bas: 0 });
   }
   // sıra: güneyden saat yönünde; her ~6 karede 2–3 siluet, son siluet `son`da kalkar
@@ -253,45 +286,56 @@ const KayanCizgi: React.FC<{ y0: number; bas: number; v: number; L: number; p: n
     const a = Math.atan2(yf(x1 + 1) - yf(x1), 1), R = 11;
     for (let k = 1; k <= 8; k++) { const u = (k / 8) * Math.PI * 1.25; pts.push([x1 + Math.cos(a) * R * Math.sin(u) + Math.sin(a) * R * (1 - Math.cos(u)), yf(x1) + Math.sin(a) * R * Math.sin(u) - Math.cos(a) * R * (1 - Math.cos(u))]); }
   }
-  return <Murekkep d={yolD(pts)} w={4} renk={PK.kontur} />;
+  return <Murekkep d={yolD(pts)} w={7} renk={PK.kontur} />; // H2: 360 px sayfada görünür kalınlık
 };
 
-// ================= çizgi ucunda kuş (çırpan; varınca küçülüp kümese konar ya da damlaya gömülür) =================
-const KusUcta: React.FC<{ q: Pt; aci: number; p: number; olcek: number; kon?: boolean; gom?: number }> = ({ q, aci, p, olcek, kon, gom = 0 }) => {
-  const kanat = (kon ? 1 : Math.floor(p / 6) % 2) as 0 | 1;
-  const a = kon ? 0 : Math.max(-40, Math.min(40, aci)) + 30 * gom;
-  const s = olcek * (1 - 0.85 * gom);
-  if (s <= 0.02) return null;
-  return <g transform={`translate(${q[0]},${q[1]}) rotate(${a}) scale(${s})`}>
-    <Golgeli dx={kon ? 4 : 8} dy={kon ? 5 : 10}>{(g) => <KusIkon golge={g} kanat={kanat} />}</Golgeli>
+// ================= çizgi ucunda kuş (H2: ≥ 90 px) =================
+// uçan: çırpar, çizginin yönünde; kon: kanat toplu, dik (kümes çatısında); dus 0..1: yolda düşer — gölge ofseti (yükseklik) 8/10 → 3/4,
+// gövde uçuş yönünden +155° döner (sırt üstü yan yatık: "düştü" okunur), kanat aşağı-düz kalır; inişte 3 karelik ezilme. Yok olmaz: çizgi ucunda yatık kalır (fade yok).
+const KUS_OLCU = 48; // KusIkon gövde boyu (yerel px)
+const KusUcta: React.FC<{ q: Pt; aci: number; p: number; px: number; kon?: boolean; dus?: number; ez?: number }> = ({ q, aci, p, px, kon, dus = 0, ez = 0 }) => {
+  const kanat = (kon || dus > 0 ? 1 : Math.floor(p / 6) % 2) as 0 | 1;
+  const a0 = Math.max(-40, Math.min(40, aci));
+  const a = kon ? 0 : a0 + 155 * dus;
+  const s = px / KUS_OLCU;
+  const gx = kon ? 4 : 8 - 5 * dus, gy = kon ? 5 : 10 - 6 * dus;
+  return <g transform={`translate(${q[0]},${q[1]}) rotate(${a}) scale(${s * (1 + 0.08 * ez)},${s * (1 - 0.12 * ez)})`}>
+    <Golgeli dx={gx / s} dy={gy / s}>{(g) => <KusIkon golge={g} kanat={kanat} />}</Golgeli>
   </g>;
 };
 
 export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[]; k: KameraDurum }> = ({ plan, p, kilit, k }) => {
   const h = param<Halka>(plan, "halka", {});
   const c = (h.merkez ?? [540, 900]) as Pt;
-  const tl = param<{ kopma_kare?: number; uc_sonum?: { bas: number; bit: number }; tel_kalinlik_px?: number; uc_boy_px?: number } | null>(plan, "telgraf_teli", null);
+  const tl = param<{ kopma_kare?: number; uc_sonum?: { bas: number; bit: number }; tel_kalinlik_px?: number; uc_boy_px?: number; uc_theta0_derece?: number } | null>(plan, "telgraf_teli", null);
+  const kopmaK = tl?.kopma_kare ?? 144;
   const telKopuk = param<boolean>(plan, "tel_kopuk", true);
-  const kb = param<{ bas: number; bit: number; sayi?: number; boy_px?: [number, number]; bant_r?: [number, number] } | null>(plan, "kalabalik", null);
-  const hazirN = param<number>(plan, "kalabalik_hazir", h.kalici ? 40 : 0);
-  const figurler = kb ? kalabalikDuzen(c, kb.sayi ?? 40, kb.boy_px ?? [60, 90], kb.bant_r ?? [200, 395], kb.bas + 13, kb.bit - 10) : hazirN > 0 ? kalabalikDuzen(c, hazirN, [60, 90], [200, 395], 0, 0) : [];
+  const kb = param<(KalabalikAyar & { bas: number; bit: number }) | null>(plan, "kalabalik", null);
+  // kalabalik_hazir: sayı (vars. bant) ya da {sayi, boy_px, bant_r, bosluk} — P02 sonundaki düzenin aynısı f0'da ayakta (negatif kare gerekmez)
+  const hzRaw = param<number | KalabalikAyar | false>(plan, "kalabalik_hazir", h.kalici ? KALABALIK_VARS.sayi : 0);
+  const hz: KalabalikAyar | null = typeof hzRaw === "number" ? (hzRaw > 0 ? { sayi: hzRaw } : null) : hzRaw || null;
+  const figurler = kb ? kalabalikDuzen(c, kb, kb.bas + 13, kb.bit - 10) : hz ? kalabalikDuzen(c, hz, 0, 0) : [];
   const E = (q: Pt) => ekranNokta(k, q);
   const id = `pc-${plan.id}`;
 
   // ---- P03B ----
-  const bi = param<{ bas: number; bit: number } | null>(plan, "balon_izi", null);
+  const bi = param<{ bas: number; bit: number; ikon_px?: number } | null>(plan, "balon_izi", null); // H2: balon >= 70 px (vars. 76)
   const rz = param<{ bas: number; bit: number } | null>(plan, "ruzgar_cizgileri", null);
   const ok = param<{ ciz: { bas: number; bit: number }; suprulur: { bas: number; bit: number } } | null>(plan, "geri_ok", null);
   const yg = param<{ bas: number; baslangic?: Pt; carpma_nokta?: Pt; carpma?: number; ikon_px?: number } | null>(plan, "yazi_yigini", null);
   // ---- P04A / P11A ----
-  const km = param<{ konum?: Pt; ciz?: { bas: number; bit: number } } | null>(plan, "kumes_ikon", null);
+  const km = param<{ konum?: Pt; ciz?: { bas: number; bit: number }; boyut_px?: [number, number] } | null>(plan, "kumes_ikon", null);
   const gv = param<{ bas: number; bit: number; baslangic?: Pt } | null>(plan, "guvercin_cizgisi", null);
   const kc = param<{ baslangic_dekor: Pt[]; t_dur: (number | null)[]; varis_kare: Record<string, number>; dur_kare?: [number, number]; ikon_px?: number } | null>(plan, "kus_cizgileri", null);
   const sy = param<{ bas: number; adet?: number; yigin_merkez?: Pt; yigin_px?: [number, number]; ilk_inis?: number; son_firlatma?: number; son_inis?: number } | null>(plan, "serit_yagmuru", null);
 
   const kumesQ = (km?.konum ?? [560, 930]) as Pt;
   const kumesCiz = km?.ciz ? t01(p, km.ciz.bas, km.ciz.bit, Easing.inOut(Easing.quad)) : 1;
-  const catı: Pt = [kumesQ[0], kumesQ[1] - 42]; // kuşun konduğu çatı tepesi
+  const kumesS = (km?.boyut_px?.[1] ?? 80) / 40; // H2: kümes ≥ 72 px (vars. 80)
+  const catı: Pt = [kumesQ[0], kumesQ[1] - 42 * kumesS]; // kuşun konduğu çatı tepesi
+  const kusPx = kc?.ikon_px ?? 90, konPx = Math.round(kusPx * 0.52); // H2: kuş ≥ 90 px uçarken; konan kuş kanat toplu ~47 px
+  // çatıya konan kuşlar: tepe, sol eğim, sağ eğim (çatı eğimi 45°; gövde merkezi çatının ~0.13·konPx üstünde)
+  const konus = (v: number): Pt => { const dx = [0, -1, 1][v % 3] * 15 * kumesS, h = konPx * 0.14; return [catı[0] + dx, catı[1] + Math.abs(dx) - h]; };
 
   if (tl) kilit.push({ ad: "kopma", p: E(KOPMA), tur: "dokunus" });
   if (km) kilit.push({ ad: "kümes", p: E(kumesQ), tur: "kurulum" });
@@ -305,7 +349,7 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
     const uc = yol[yol.length - 1];
     const kalk = t01(p, bi.bas, bi.bas + 16, OUT3);
     if (q > 0.002) iz = <><Murekkep d={yolD(yol)} w={6} /><circle cx={uc[0]} cy={uc[1]} r={5} fill={PK.murekkep} /></>;
-    balon = <g transform={`translate(${uc[0]},${uc[1]}) scale(${0.85 + 0.15 * kalk})`}><Golgeli dx={5 + 9 * kalk} dy={6 + 12 * kalk}>{(g) => <BalonIkon golge={g} />}</Golgeli></g>;
+    balon = <g transform={`translate(${uc[0]},${uc[1]}) scale(${((bi.ikon_px ?? 76) / 56) * (0.85 + 0.15 * kalk)})`}><Golgeli dx={5 + 9 * kalk} dy={6 + 12 * kalk}>{(g) => <BalonIkon golge={g} />}</Golgeli></g>;
   }
   // ---- geri ok + süpürülme (P03B) ----
   let okCiz: React.ReactNode = null;
@@ -319,12 +363,12 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
     const izKuru = p >= gBas + (652 + 60) / vG;
     if (kismi.length > 1) {
       const u = kismi[kismi.length - 1], u0 = kismi[Math.max(0, kismi.length - 3)], a = Math.atan2(u[1] - u0[1], u[0] - u0[0]);
-      const ch = 28 * t01(q, 0.82, 1);
+      const ch = 36 * t01(q, 0.82, 1);
       const kol = (s: number): Pt => [u[0] - Math.cos(a + s) * ch, u[1] - Math.sin(a + s) * ch];
       okCiz = <>
-        {izKuru && <path d={yolD(govde)} fill="none" stroke={PK.tarama} strokeWidth={4} strokeDasharray="9 4 14 3 6 5" strokeLinecap="butt" />}
-        <Murekkep d={yolD(kismi)} w={4} renk={PK.kontur} />
-        {ch > 0 && <Murekkep d={`M${kol(0.5).join(",")} L${u.join(",")} L${kol(-0.5).join(",")}`} w={4} renk={PK.kontur} />}
+        {izKuru && <path d={yolD(govde)} fill="none" stroke={PK.tarama} strokeWidth={5} strokeDasharray="9 4 14 3 6 5" strokeLinecap="butt" />}
+        <Murekkep d={yolD(kismi)} w={7} renk={PK.kontur} />
+        {ch > 0 && <Murekkep d={`M${kol(0.5).join(",")} L${u.join(",")} L${kol(-0.5).join(",")}`} w={7} renk={PK.kontur} />}
       </>;
     }
   }
@@ -353,11 +397,11 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
   // ---- güvercin çizgisi (P04A) ----
   let guv: React.ReactNode = null, guvKus: React.ReactNode = null;
   if (gv && p >= gv.bas) {
-    const yol = yay((gv.baslangic ?? [36, 1238]) as Pt, catı, -0.08, 5), cy = kumulatif(yol), L = cy[cy.length - 1];
+    const yol = yay((gv.baslangic ?? [36, 1238]) as Pt, konus(0), -0.08, 5), cy = kumulatif(yol), L = cy[cy.length - 1];
     const q = t01(p, gv.bas, gv.bit, SIN), uc = noktaS(yol, cy, L * q);
     guv = <Murekkep d={yolD(parca(yol, cy, 0, L * q))} w={4} renk={PK.kontur} />;
-    const kon = p >= gv.bit, son = t01(p, gv.bit - 10, gv.bit);
-    guvKus = <KusUcta q={kon ? [catı[0], catı[1] - 4] : uc.p} aci={(Math.atan2(uc.t[1], uc.t[0]) * 180) / Math.PI} p={p} olcek={(44 - 16 * son) / 48} kon={kon} />;
+    const kon = p >= gv.bit, son = t01(p, gv.bit - 12, gv.bit, OUT3);
+    guvKus = <KusUcta q={kon ? konus(0) : uc.p} aci={(Math.atan2(uc.t[1], uc.t[0]) * 180) / Math.PI} p={p} px={kusPx + (konPx - kusPx) * son} kon={kon} />;
   }
   // ---- kuş çizgileri (P11A) ----
   const kusCizgi: React.ReactNode[] = [], kusUcu: React.ReactNode[] = [];
@@ -377,7 +421,7 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
     kc.baslangic_dekor.forEach((s0, i) => {
       const sis = (0.06 + r() * 0.04) * (r() < 0.5 ? 1 : -1), bas = Math.round(r() * 18);
       const v = varanlar.findIndex((x) => x.i === i), varan = v >= 0;
-      const hedef: Pt = varan ? [catı[0] + (v - 1) * 11, catı[1] - 4] : catı;
+      const hedef: Pt = varan ? konus(v) : catı;
       const yol = yay(s0 as Pt, hedef, sis, 5), cy = kumulatif(yol), L = cy[cy.length - 1];
       const tDur = varan ? 1 : tDurHiz[i] ?? 1, bit = varan ? varanlar[v].f : durKare[i];
       const q = tDur * t01(p, bas, bit, varan ? SIN : Easing.out(Easing.quad));
@@ -385,20 +429,21 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
       if (q > 0.001) kusCizgi.push(<Murekkep key={i} d={yolD(parca(yol, cy, 0, L * q))} w={4} renk={PK.kontur} />);
       const aci = (Math.atan2(uc.t[1], uc.t[0]) * 180) / Math.PI;
       if (varan) {
-        const kon = p >= bit, son = t01(p, bit - 10, bit);
-        kusUcu.push(<KusUcta key={i} q={kon ? hedef : uc.p} aci={aci} p={p + i * 2} olcek={(44 - 16 * son) / 48} kon={kon} />);
+        const kon = p >= bit, son = t01(p, bit - 12, bit, OUT3);
+        kusUcu.push(<KusUcta key={i} q={kon ? hedef : uc.p} aci={aci} p={p + i * 2} px={kusPx + (konPx - kusPx) * son} kon={kon} />);
       } else {
-        // yolda durur: kuş 8 karede 30° aşağı dönüp küçülerek damlaya gömülür; damla r 5 → 8, 12 karede #1c1915 → #8a7a5c (emilme)
-        const g = t01(p, bit, bit + 8, Easing.in(Easing.quad));
-        if (p >= bit) {
-          const dr = interpolate(p, [bit, bit + 12], [5, 8], cl), renk = interpolateColors(p, [bit, bit + 12], [PK.murekkep, PK.tarama]);
-          const sq = t01(p, bit + 2, bit + 6, OUT3);
+        // H2: yolda durur → kuş 7 karede kâğıda düşer (gölge kısalır), yan yatar; temas karesinde 3 kare ezilir ve mürekkep damlası
+        // (koyu, emilmez) çizgi ucunda kalır. Kuş yok olmaz.
+        const dus = t01(p, bit, bit + 7, Easing.in(Easing.quad)), tc = bit + 7;
+        const ez = p >= tc && p < tc + 3 ? Math.sin((Math.PI * (p - tc)) / 3) : 0;
+        if (p >= tc) {
+          const sq = t01(p, tc, tc + 4, OUT3);
           kusCizgi.push(<g key={`d${i}`}>
-            <circle cx={uc.p[0]} cy={uc.p[1]} r={dr} fill={renk} />
-            {p >= bit + 2 && [[9, -6], [-5, 10]].map(([dx, dy], j) => <circle key={j} cx={uc.p[0] + dx * sq} cy={uc.p[1] + dy * sq} r={2 * sq} fill={renk} />)}
+            <circle cx={uc.p[0]} cy={uc.p[1]} r={4 + 3 * sq} fill={PK.murekkep} />
+            {[[11, -7], [-6, 12]].map(([dx, dy], j) => <circle key={j} cx={uc.p[0] + dx * sq} cy={uc.p[1] + dy * sq} r={2.2 * sq} fill={PK.murekkep} />)}
           </g>);
         }
-        if (g < 1) kusUcu.push(<KusUcta key={i} q={uc.p} aci={aci} p={p + i * 2} olcek={44 / 48} gom={g} />);
+        kusUcu.push(<KusUcta key={i} q={uc.p} aci={aci} p={p + i * 2} px={kusPx} dus={dus} ez={ez} />);
       }
     });
   }
@@ -407,7 +452,7 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
   if (sy) {
     const n = sy.adet ?? 38, ym = (sy.yigin_merkez ?? [600, 985]) as Pt, [yw, yh] = sy.yigin_px ?? [110, 56];
     const t0 = sy.bas, tSon = sy.son_firlatma ?? 150, ilk = sy.ilk_inis ?? 130, sonI = sy.son_inis ?? 166;
-    const r = rng(SEED + 80);
+    const r = rng(SEED + 80), kapi: Pt = [kumesQ[0], kumesQ[1] - 19 * kumesS]; // H2: şeritler kümes kapısından çıkar (çatıdaki 3 kuş açık kalır)
     if (p >= (sy.ilk_inis ?? 130)) kilit.push({ ad: "yığın", p: E(ym), tur: "kurulum" });
     for (let i = 0; i < n; i++) {
       const tf = t0 + ((tSon - t0) * i) / (n - 1);
@@ -418,8 +463,8 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
       const kemer = 60 + r() * 80, dons = (r() < 0.5 ? -1 : 1) * (140 + r() * 60), dinlen = (r() - 0.5) * 60;
       if (p < tf) continue;
       const u = Math.min(1, (p - tf) / uc);
-      const x = catı[0] + (yer[0] - catı[0]) * u + (u > 0.6 && u < 1 ? 6 * Math.sin((u - 0.6) * 25) * (1 - u) : 0);
-      const y = catı[1] + (yer[1] - catı[1]) * u - 4 * kemer * u * (1 - u);
+      const x = kapi[0] + (yer[0] - kapi[0]) * u + (u > 0.6 && u < 1 ? 6 * Math.sin((u - 0.6) * 25) * (1 - u) : 0);
+      const y = kapi[1] + (yer[1] - kapi[1]) * u - 4 * kemer * u * (1 - u);
       const aci = dinlen - dons * (1 - u);
       const havada = u < 1;
       seritler.push(<g key={i} transform={`translate(${x},${y}) rotate(${aci})`}>
@@ -436,15 +481,15 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
         <GravurArazi />
         {/* kâğıda basılı mürekkep: tel, halka çizgisi, izler, rüzgâr, kesik çizgi, kuş çizgileri (gölge vermez) */}
         {tl
-          ? <TelgrafTeli p={p} kopma={tl.kopma_kare ?? 138} sonum={[tl.uc_sonum?.bas ?? 138, tl.uc_sonum?.bit ?? 188]} kalin={tl.tel_kalinlik_px ?? 10} boy={tl.uc_boy_px ?? 220} />
-          : telKopuk && <TelgrafTeli p={1e6} kopma={0} sonum={[0, 1]} kalin={10} boy={220} />}
+          ? <TelgrafTeli p={p} kopma={kopmaK} sonum={[tl.uc_sonum?.bas ?? kopmaK, tl.uc_sonum?.bit ?? kopmaK + 50]} kalin={tl.tel_kalinlik_px ?? 10} boy={tl.uc_boy_px ?? 75} th0={tl.uc_theta0_derece ?? 18} baskiBas={h.bas !== undefined ? h.son_isaret_oturur ?? 132 : undefined} />
+          : telKopuk && <TelgrafTeli p={1e6} kopma={0} sonum={[0, 1]} kalin={10} boy={75} />}
         {iz}{okCiz}{kesik}{guv}{kusCizgi}
         {rz && [[600, 0, 30, 420, 0.4], [720, 2, 28, 340, 2.1], [840, 4, 30, 280, 4.0]].map(([y0, d, v, L, f], i) => <KayanCizgi key={i} y0={y0} bas={rz.bas + d} v={v} L={L} p={p} faz={f} />)}
         {ok && <KayanCizgi y0={690} bas={ok.suprulur.bas - 14} v={50} L={380} p={p} faz={1.3} />}
         {/* kâğıttan kalkan parçalar (gölgeli) */}
-        {(h.bas !== undefined || h.kalici) && <KusatmaHalkasi h={h} p={p} tel={TEL} />}
+        {(h.bas !== undefined || h.kalici) && <KusatmaHalkasi h={h} p={p} tel={TEL} baski={tl && h.bas !== undefined ? telBaski(p, h.son_isaret_oturur ?? 132, kopmaK) : 0} />}
         <KagitKalabalik figurler={figurler} p={p} hazir={!kb} />
-        {km && <g transform={`translate(${kumesQ[0]},${kumesQ[1]})`}><Golgeli>{(g) => <KumesIkon golge={g} ciz={kumesCiz} id={`${id}-k${g ? "g" : ""}`} />}</Golgeli></g>}
+        {km && <g transform={`translate(${kumesQ[0]},${kumesQ[1]}) scale(${kumesS})`}><Golgeli dx={5 / kumesS} dy={6 / kumesS}>{(g) => <KumesIkon golge={g} ciz={kumesCiz} id={`${id}-k${g ? "g" : ""}`} />}</Golgeli></g>}
         {seritler}
         {yigin}{balon}{guvKus}{kusUcu}
       </svg>

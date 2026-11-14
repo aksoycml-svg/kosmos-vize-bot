@@ -17,48 +17,53 @@ export const Golgeli: React.FC<{ dx?: number; dy?: number; children: (golge: boo
 );
 const r = (g: boolean, renk: string) => (g ? GOLGE.renk : renk);
 
-// ---- balon (56 px): küre ø 40, kontur 3, 3 meridyen 2.5; sepet 12×9, 2 halat. (0,0) = sepet tabanı ortası (temas noktası) ----
-// sonme 0..1: küre söner (scaleY 1 → .3, en 1.3×), sepetin yanına (sağ) katlanmış yığın olarak yatar; meridyenler 4 kıvrıma döner.
-// devril (derece): sepet sağ alt köşesi üstünde devrilir (pivot o köşe).
+// ---- balon (56 px): küre ø 40, kontur 3, 3 meridyen; sepet 16×12 (hasır: 2 dikey örgü), 2 halat. (0,0) = sepet tabanı ortası (temas) ----
+// H2 (eleştiri #2 "göz/mercek"): sonme 0..1 — küre 12 noktalı çevresiyle sepetin SAĞINA, yere yayılmış buruşuk kumaşa dönüşür
+// (asimetrik, dalgalı üst kenar, tabanı yerde; beyaz yarık yok). Meridyenler aynı noktalara bağlı kalır → kumaşta kıvrım çizgisine
+// dönüşür (pop/fade yok). devril (derece): sepet sağ alt köşesi üstünde devrilir, kumaş yığınına yaslanır.
+const KURE_ACI = [120, 100, 80, 60, 25, -10, -45, -80, -115, -150, -185, -215];
+const KUMAS: [number, number][] = [[12, 0], [32, 1.5], [52, 0], [72, 1], [76, -6], [67, -12], [59, -7], [50, -17], [41, -9], [31, -19], [22, -12], [14, -10]];
+const MERID: [number, number, number][] = [[7, 1, -0.55], [6, 2, 0], [8, 0, 0.55]]; // [üst idx, alt idx, küre şişkinliği]
+const kapaliYol = (P: [number, number][]) => {
+  const n = P.length, m = (i: number) => [(P[i % n][0] + P[(i + 1) % n][0]) / 2, (P[i % n][1] + P[(i + 1) % n][1]) / 2];
+  let d = `M${m(n - 1).join(",")}`;
+  for (let i = 0; i < n; i++) d += ` Q${P[i][0]},${P[i][1]} ${m(i).join(",")}`;
+  return d + "Z";
+};
 export const BalonIkon: React.FC<{ golge?: boolean; sonme?: number; devril?: number; ezil?: number; kontur?: string }> = ({ golge = false, sonme = 0, devril = 0, ezil = 1, kontur = PK.murekkep }) => {
   const k = r(golge, kontur), dol = r(golge, PK.ikon);
-  const sy = 1 - 0.7 * sonme, sx = 1 + 0.3 * sonme;
-  // küre merkezi: havada sepetin 36 px üstü → sönünce sepetin sağında yerde (+30, −6)
-  const kx = interpolate(sonme, [0, 1], [0, 30], cl), ky = interpolate(sonme, [0, 1], [-37, -6], cl);
-  const R = 20;
+  const R = 20, ky = -40, e = Math.max(0, Math.min(1, sonme));
+  const eu = e * e * (3 - 2 * e); // üst kenar önce çöker (yumuşak), sonra yana yayılır
+  const P: [number, number][] = KURE_ACI.map((a, i) => {
+    const q = [Math.cos((a * Math.PI) / 180) * R, ky + Math.sin((a * Math.PI) / 180) * R * 1.02], c = KUMAS[i];
+    const w = q[1] < ky ? eu : e; // üst yarı biraz gecikmeli iner
+    return [q[0] + (c[0] - q[0]) * w, q[1] + (c[1] - q[1]) * w];
+  });
+  const SW = 16, SH = 12;
   const sepet = (
-    <g transform={`translate(6,0) rotate(${devril}) translate(-6,0) scale(${1 / Math.sqrt(ezil)},${ezil})`}>
-      <rect x={-6} y={-9} width={12} height={9} fill={dol} stroke={k} strokeWidth={2.5} strokeLinejoin="round" />
-      {!golge && <line x1={-6} y1={-4.5} x2={6} y2={-4.5} stroke={k} strokeWidth={1.5} />}
+    <g transform={`translate(${SW / 2},0) rotate(${devril}) translate(${-SW / 2},0) scale(${1 / Math.sqrt(ezil)},${ezil})`}>
+      <rect x={-SW / 2} y={-SH} width={SW} height={SH} fill={dol} stroke={k} strokeWidth={2.5} strokeLinejoin="round" />
+      {!golge && <g stroke={k} strokeWidth={1.8}><line x1={-SW / 2} y1={-SH / 2} x2={SW / 2} y2={-SH / 2} /><line x1={-SW / 6} y1={-SH} x2={-SW / 6} y2={0} /><line x1={SW / 6} y1={-SH} x2={SW / 6} y2={0} /></g>}
     </g>
   );
-  // halatlar: sepet üst köşeleri (devrik sepette döndürülmüş) → küre alt kenarı
-  const rot = (x: number, y: number): [number, number] => { const a = (devril * Math.PI) / 180, dx = x - 6; return [6 + dx * Math.cos(a) - y * Math.sin(a), dx * Math.sin(a) + y * Math.cos(a)]; };
-  const [h1x, h1y] = rot(-6, -9), [h2x, h2y] = rot(6, -9);
-  const altY = ky + R * sy * 0.82;
+  // halatlar: sepet üst köşeleri (devrik sepette döndürülmüş) → kumaşın alt-sol iki noktası (küre alt kenarı)
+  const rot = (x: number, y: number): [number, number] => { const a = (devril * Math.PI) / 180, dx = x - SW / 2; return [SW / 2 + dx * Math.cos(a) - y * Math.sin(a), dx * Math.sin(a) + y * Math.cos(a)]; };
+  const [h1x, h1y] = rot(-SW / 2, -SH), [h2x, h2y] = rot(SW / 2, -SH);
+  const sark = 3 + 4 * e;
   return (
     <g>
-      {sonme < 0.98 && <g stroke={k} strokeWidth={2} fill="none" strokeLinecap="round">
-        <path d={`M${h1x},${h1y} Q${(h1x + kx - 9 * sx) / 2},${(h1y + altY) / 2 + 2 * sonme} ${kx - 9 * sx},${altY}`} />
-        <path d={`M${h2x},${h2y} Q${(h2x + kx + 9 * sx) / 2},${(h2y + altY) / 2 + 2 * sonme} ${kx + 9 * sx},${altY}`} />
+      <g stroke={k} strokeWidth={2} fill="none" strokeLinecap="round">
+        <path d={`M${h1x},${h1y} Q${(h1x + P[0][0]) / 2},${(h1y + P[0][1]) / 2 + sark} ${P[0][0]},${P[0][1]}`} />
+        <path d={`M${h2x},${h2y} Q${(h2x + P[2][0]) / 2},${(h2y + P[2][1]) / 2 + sark} ${P[2][0]},${P[2][1]}`} />
+      </g>
+      <path d={kapaliYol(P)} fill={dol} stroke={k} strokeWidth={3} strokeLinejoin="round" />
+      {!golge && <g stroke={k} strokeWidth={2.5} fill="none" strokeLinecap="round">
+        {MERID.map(([u, a, b], i) => {
+          const U = P[u], A = P[a], mx = (U[0] + A[0]) / 2 + b * R * 0.9 * (1 - e) + (i - 1) * 2 * e, my = (U[1] + A[1]) / 2;
+          return <path key={i} d={`M${U[0]},${U[1]} Q${mx},${my} ${A[0]},${A[1]}`} />;
+        })}
       </g>}
       {sepet}
-      <g transform={`translate(${kx},${ky}) scale(${sx},${sy})`}>
-        {/* küre: sönerken alt kenar yere yaslanır, üst kenar yumuşak sarkar (katı kalıp değil) */}
-        <path d={`M ${-R} 0 C ${-R} ${-R * 1.1} ${R} ${-R * 1.1} ${R} 0 C ${R} ${R * (0.8 - 0.25 * sonme)} ${R * 0.35} ${R * 1.05} 0 ${R * 1.05} C ${-R * 0.35} ${R * 1.05} ${-R} ${R * (0.8 - 0.25 * sonme)} ${-R} 0 Z`}
-          fill={dol} stroke={k} strokeWidth={3 / Math.sqrt(sy)} strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
-        {!golge && sonme < 0.6 && <g stroke={k} strokeWidth={2.5} fill="none" vectorEffect="non-scaling-stroke" opacity={1}>
-          <line x1={0} y1={-R * 0.82} x2={0} y2={R * 1.02} vectorEffect="non-scaling-stroke" />
-          <path d={`M 0 ${-R * 0.82} C ${-R * 0.62} ${-R * 0.5} ${-R * 0.62} ${R * 0.6} 0 ${R * 1.02}`} vectorEffect="non-scaling-stroke" />
-          <path d={`M 0 ${-R * 0.82} C ${R * 0.62} ${-R * 0.5} ${R * 0.62} ${R * 0.6} 0 ${R * 1.02}`} vectorEffect="non-scaling-stroke" />
-        </g>}
-      </g>
-      {/* kıvrım çizgileri (4): sönme ilerledikçe kendini çizer (meridyenlerin yerini alır) */}
-      {!golge && sonme > 0.35 && [-0.6, -0.2, 0.2, 0.6].map((u, i) => {
-        const q = interpolate(sonme, [0.35, 1], [0, 1], cl);
-        const x = kx + u * R * sx, y0 = ky - R * sy * 0.5, L = R * sy * 1.2 * q;
-        return <path key={i} d={`M${x},${y0} q ${3 * (i % 2 ? 1 : -1)},${L / 2} 0,${L}`} stroke={k} strokeWidth={2} fill="none" strokeLinecap="round" />;
-      })}
     </g>
   );
 };

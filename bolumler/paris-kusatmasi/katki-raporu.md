@@ -1427,3 +1427,40 @@
   - P08 ikon boyutu doğru ama biçim hâlâ "mercek" okunuyor (motion: yatık sepet + buruşuk kumaş).
   - P02 f290: 40 siluet r 45–150 bandında sıkışık ve merkezdeki kümes noktasını (560,930) örtüyor; "merkezde boşluk" için motion `kalabalikHesap` iç sıra ofsetini (bant[0]+35) ya da sayıyı gözden geçirmeli. Kopma f144 görseli (uç biçimi) motion düzeltmesine bağlı; P02 f150 render'ı eski tel kıvrımını gösterir.
   - P03B/P04A/P11A'da negatif `kalabalik.bas/bit` bir kit çözümlemesi hilesi; motion `kalabalik_hazir`'a bant_r parametresi eklerse eski hâline dönülebilir.
+
+## motion · 2026-11-14 · Harita H2 düzeltme turu
+- Ne yaptım:
+  - **Tel uçları (kritik #1):** kıvrım kaldırıldı. Her uç çapasından 75 px düz uzanıyor. θ0 18° (`telgraf_teli.uc_theta0_derece`, kodda ≤20'ye kenetli), 7° dinlenme sarkması var. Uçlar 3 kısa çatallı lifle (5 px) bitiyor. Kopmada uçlar 6 karede geri tepiyor. Uçlar arası 100 dekor px, lifler dahil ≥66 (ekranda ≈75). İç hat Cité'ye gitmiyor, KB sur kapısında (462,772) bitiyor. Bastırma f132→f144: son işaret teli halka merkezine doğru 10 px V'ye bastırıyor (son 4 karede titriyor), işaret de V ile birlikte iniyor.
+  - **P08 iniş ikonu (#2):** sönmüş balon artık yana yatmış hasır sepet (16×12, örgü çizgili) ve sağına yayılmış buruşuk kumaş: asimetrik, dalgalı üst kenar, beyaz yarık yok. Küre 12 noktalı çevresiyle kumaşa dönüşüyor. Meridyenler kıvrım çizgisine dönüşüyor, pop ya da fade yok. `ikon_px` 90 okunuyor; f84'te ekranda ≈160×40 px.
+  - **Kuşlar (#3):** uçan kuş 90 px (`kus_cizgileri.ikon_px`, vars. 90), kümes 80 px (`kumes_ikon.boyut_px`, vars. [56,80]). Varan kuşlar 47 px'e küçülüp çatıya konuyor (tepe, sol eğim, sağ eğim). P11'de dönemeyen kuş silinmiyor: 7 karede kâğıda düşüyor (gölge 8/10→3/4), +155° dönüp sırt üstü yan yatıyor. Temasta 3 kare eziliyor; koyu mürekkep damlası emilmeden kalıyor. Şeritler çatı yerine kümes kapısından çıkıyor, böylece çatıdaki 3 kuş açık kalıyor.
+  - **Siluetler (#4):** `kalabalik` ve `kalabalik_hazir` aynı `{sayi, boy_px, bant_r, bosluk}` ayarını okuyor. `kalabalik_hazir` artık sayı ya da nesne alabiliyor. Ayak, iki yan ve gövde ortası sur poligonunun içinde. Bant yatayda ×1.3 (sur ovali). Merkezde kümes ve yığın boşluğu var: `bosluk` [515,820,655,1018], hiçbir siluetin kutusu bu alana girmiyor. Ölçüm: 40/40 siluet yerleşiyor.
+  - **Küçükler:** P03B rüzgâr çizgileri ve geri ok 4→7 px (ok ucu 36). Balon ikonu 76 px (`balon_izi.ikon_px`). P10 memur-3 paltosu #4a505c. P06b'de diz k1 yukarı bileşeni 0.88→0.7, k2 h 1.42→1.30 ve daha dışarıda.
+- Dokunduğum dosyalar: src/kit/sablonlar/harita/{ParisCevre.tsx, ikonlar.tsx, parisCevre.ts}, src/kit/sablonlar/paris/{LanternOda.tsx, Montmartre.tsx}, src/kit/KATALOG.md, bolumler/paris-kusatmasi/bolum.json (yalnız tablodaki alanlar), bolumler/paris-kusatmasi/kalibrasyon/H2/ (10 kare × tam/-360/-guvenli/-guvenli-360, 4 şerit, ozet.png), bu rapor.
+- Aldığım kararlar ve gerekçeleri:
+
+  | Yer | Alan | Eski | Yeni | Neden |
+  |---|---|---|---|---|
+  | P02 | `telgraf_teli.uc_boy_px` | 220 | 75 | serbest uç ≤80 px |
+  | P03B, P04, P11 | `kalabalik` {bas −120, bit −20, …} | negatif kare hilesi | `kalabalik_hazir` {sayi 40, boy_px [60,90], bant_r [45,150]} | yönetmenin geçici çözümü parametreye döndü; düzen P02 sonuyla aynı |
+  | P04 | `kumes_ikon.boyut_px` | [28,40] | [56,80] | kümes ≥72 px |
+  | P11 | `kus_cizgileri.ikon_px` | 44 | 90 | kuş ≥90 px |
+  | kod | kalabalık bant | [200,395] varsayılan | [45,150] ×1.3 + boşluk + sur içi | orkestra kararı (sur içi, merkez boş); 40 siluetin sığması için aralık 30×44 → 24×28 |
+  | kod | tel iç ucu | Cité (569,911) | sur kapısı (462,772) | uzun "sap" okunmasın |
+
+  - P08'de `devrilme_derece` 60 olarak kaldı. Sepet kumaş yığınına yaslanıyor; desteksiz köşede durmuyor.
+  - Tel yönü KB olarak kaldı (orkestra kararı).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Fade yok: P11 kuş emilmesi kaldırıldı, kuş fiziksel olarak düşüp kalıyor. Balon sönmesi ve meridyenler sürekli biçim dönüşümü.
+  - Ölçüm (10 kare): kırmızı %0, C* > 32 %0, C* ortalaması harita karelerinde 21.5–22.1, P10'da 9.6, P06b'de 12.7.
+  - Güvenli alan: bindirmede harita karelerinde ihlal 0. P06b f232'deki "sepet tabanı FL" uyarısı benim değişikliğimden değil: sepet bu turda değişmedi, yalnız diz değişti.
+  - Regresyon: Paris P01 f24 ve P03 f80'de değişiklik öncesi/sonrası piksel farkı 0. Blanc harita karesini render etmedim. Blanc paris-cevre görünümünü ve fransa eklerini kullanmıyor; değişen kod yalnız bu yollarda.
+  - tsc temiz. Doğrulayıcı `--tam` GEÇTİ (0 hata, 0 uyarı).
+- Açık sorular / bir sonraki ajana notlar:
+  1. **Yönetmen:** P11'de t_dur 0.18/0.22 olan kuşlar çizgi ucunda x≈40–130'da yatıyor, sol yan güvenli bandına (80 px) taşıyor. t_dur ≥0.28 ya da başlangıç x'i içeri alınmalı.
+  2. **Yönetmen ve kurgucu:** P11'de 9 kuşun kâğıda düşme teması plan içinde `durKare + 7`, yani f37…f103. Bu temaslar `temaslar.json`'da yok. 90 px'lik ikonlarla artık görünür oldukları için hafif bir kâğıt tıkı (küçük temas) eklenip eklenmeyeceğine karar verilmeli.
+  3. **Eleştirmen:** 360 px'te bakılacaklar:
+     - P08 f84'te sepet + kumaş, "göz" okuması kalktı mı?
+     - P11 f150'de çatıdaki 3 kuş, şerit yığınının yanında sayılıyor mu?
+     - P06b f232–240'ta diz göğüs/omuz hizasında. Baş hizasından indi ama bacak hâlâ koyu kütleye yakın, açık kontur eklenmedi.
+     - P02'deki bastırma (10 px V) telefonda ince kalabilir.
+  4. Öz puan 7. En zayıf yerler P11 sol kenar kalabalığı ve P06b bacak kütlesi.

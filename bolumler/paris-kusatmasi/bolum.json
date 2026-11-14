@@ -254,7 +254,7 @@
       "bit": 194
      },
      "tel_kalinlik_px": 10,
-     "uc_boy_px": 220,
+     "uc_boy_px": 75,
      "not": "uçlar yaylanıp kıvrılır (iç uç Paris'e, dış uç boşluğa), sönümlenip durur"
     },
     "kalabalik": {
@@ -560,7 +560,7 @@
       "yaricap": 430,
       "kalici": true
      },
-     "tel_kopuk": true, "kalabalik": {"bas": -120, "bit": -20, "sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu durumu hazır (sur içi, merkez boş); negatif kare = f0'da ayakta"},
+     "tel_kopuk": true, "kalabalik_hazir": {"sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu düzeni f0'da ayakta (sur içi, merkezde kümes/yığın boşluğu); motion H2: negatif kare hilesi kaldırıldı"},
      "balon_izi": {
       "bas": 164,
       "bit": 214,
@@ -810,7 +810,7 @@
      "yaricap": 430,
      "kalici": true
     },
-    "tel_kopuk": true, "kalabalik": {"bas": -120, "bit": -20, "sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu durumu hazır (sur içi, merkez boş); negatif kare = f0'da ayakta"},
+    "tel_kopuk": true, "kalabalik_hazir": {"sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu düzeni f0'da ayakta (sur içi, merkezde kümes/yığın boşluğu); motion H2: negatif kare hilesi kaldırıldı"},
     "guvercin_cizgisi": {
      "bas": 30,
      "bit": 108,
@@ -828,7 +828,7 @@
       930
      ],
      "ciz": {"bas": 0, "bit": 10},
-     "boyut_px": [28, 40]
+     "boyut_px": [56, 80]
     },
     "animasyonlar": [
      {
@@ -3285,14 +3285,14 @@
      "yaricap": 430,
      "kalici": true
     },
-    "tel_kopuk": true, "kalabalik": {"bas": -120, "bit": -20, "sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu durumu hazır (sur içi, merkez boş); negatif kare = f0'da ayakta"},
+    "tel_kopuk": true, "kalabalik_hazir": {"sayi": 40, "boy_px": [60, 90], "bant_r": [45, 150], "not": "P02 sonu düzeni f0'da ayakta (sur içi, merkezde kümes/yığın boşluğu); motion H2: negatif kare hilesi kaldırıldı"},
     "kumes_ikon": {"konum": [560, 930], "not": "f0'da hazır (P10→P11 çıplak kesme: halka + 40 siluet + kümes; P03/P04 iz, ok, yığın taşınmaz)"},
     "kus_cizgileri": {
      "sayi": 12,
      "baslangic_dekor": [[-20, 420], [-20, 520], [-20, 640], [-20, 760], [-20, 880], [-20, 1000], [-20, 1120], [-20, 1240], [-20, 1360], [160, 1600], [330, 1600], [520, 1600]],
      "t_dur": [0.18, 0.32, 0.25, null, 0.41, 0.22, null, 0.36, 0.28, 0.47, null, 0.30],
      "dur_kare": [30, 96],
-     "ikon_px": 44,
+     "ikon_px": 90,
      "varan_no": [4, 7, 11],
      "varis_kare": {"7": 62, "11": 84, "4": 108},
      "son_varan": 4,
