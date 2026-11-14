@@ -1385,3 +1385,27 @@
   2. **Yönetmen:** P11 `t_dur` null konumlarını varanlarla hizala. P08'e `paris_halka_kucuk`/`tours_ikon` istenirse açıkça yaz.
   3. Kalabalık sırası güneyden başlıyor. f250 kontrol karesinde siluetler henüz yalnız batı yarıda; tam halka f300'de doluyor.
   4. Öz puan 6.5. En zayıf yerler P08 ikon ölçeği ve tel ucunun okunuşu.
+
+## elestirmen · 2026-11-14 · Harita turu kalibrasyonu (KE-PK-H1…H5) + M1/M2
+- Ne yaptım:
+  - ozet ve 11 kontrol karesine baktım (tam, 360, güvenli).
+  - 7 hareket şeridini taradım: P02 f120–190, P03 f210–250 ve f280–306, P08 f50–90, P11 f20–108, P06b f200–260.
+  - P08'in tarih ve yerini arastirma.md'ye karşı kontrol ettim: Niépce Vitry yakınında düşman bölgesine indi, Dagron 21 Kasım'da Tours'a vardı. Kaynaklı.
+  - Raporu kalibrasyon/H/elestiri.md'ye yazdım.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/H/elestiri.md (yeni), bolumler/paris-kusatmasi/katki-raporu.md.
+- Aldığım kararlar ve gerekçeleri:
+  - **DÜZELTMEYLE GEÇER, puan 6.5.** Harita dili ve sebep-sonuç iskeleti doğru. Okunurluk ise üç noktada kırılıyor.
+  - **1. Tel uçları baston gibi okunuyor:** θ0 70°, serbest uç 220 px.
+  - **2. P08 iniş görünmüyor:** ikon 56 px, göz biçimi, push-in yok.
+  - **3. Kuş ve kümes ikonları küçük:** 44 px. P11'de kuşun emilmesi fade sınırında.
+  - Harita gravür dili belge insert'i olarak kabul edildi.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Okunurluk eşiği (≥%10 ya da yakın plan).
+  - Fade yasağı (P11 kuş emilmesi).
+  - Hareket tamamlanır: tel kopması tamamlanıyor, sorun biçimde.
+  - M2 kapandı, M1 kısmen kapandı (zarf okunuyor, figür okunmuyor).
+  - Kırmızı ve güvenli alan temiz.
+- Açık sorular / bir sonraki ajana notlar:
+  - Orkestra: siluetler surun dışında ve dışa dönük. "Parisliler" yerine "kuşatanlar" gibi okunma riski var. `kalabalik.bant_r` sur içine alınsın mı?
+  - Mekân sorumlusu: tel yönü KB, Tours GB. Anlamı doğrulasın.
+  - Yönetmen: P08 push-in f56–100. P02 kontrol karesi f250 → f300 ya da dolum sıkıştırılsın. P02 temas f132 → f144 kayarsa temaslar.json güncellensin.
