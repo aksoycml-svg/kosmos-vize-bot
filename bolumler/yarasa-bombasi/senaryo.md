@@ -1,7 +1,20 @@
-# Senaryo v1 (TR): Yarasa Bombası — "Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı."
+# Senaryo v1.1 (TR): Yarasa Bombası — "Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı."
 
-Kaynak: yalnız `arastirma.md` (arama özeti düzeyi; birincil belge görülmedi). Kanal: TR. Eşi: `senaryo-en.md` (aynı 12 plan, aynı zamanlama).
-Format: 1080x1920 · **≈64.5 sn** (plan süresi = iki dilin uzunu + anahtar tutma) · **12 plan** · **113 kelime** (≈54 sn konuşma) · mekânlar (4 şablon): **MAĞARA** (akşam çıkışı), **ÇÖL-ÜS** (New Mexico yeni üs), **MASA** (defter/mektup/kapsül/kovan kesiti/belge insert), **HARİTA** (ABD, kinetik yazı).
+Kaynak: yalnız `arastirma.md` (arama özeti düzeyi + Doğrulama turu 2 / T2.5; birincil belge görülmedi). Kanal: TR. Eşi: `senaryo-en.md` (aynı 12 plan, aynı zamanlama).
+Format: 1080x1920 · **≈64.5 sn** (plan süresi = iki dilin uzunu + anahtar tutma) · **12 plan** · **114 kelime** (≈54 sn konuşma) · mekânlar (3 şablon, Yöntem C): **MASA** (Adams'ın defteri: mağara mürekkep çizimi olarak burada + mektup/kapsül/kovan kesiti/belge insert), **ÇÖL-ÜS** (New Mexico yardımcı hava üssü, tek gerçek mekân), **HARİTA** (ABD, kinetik yazı). Ayrı MAĞARA mekânı yok.
+
+## v1.1 değişiklik listesi (yalnız bunlar; kaynak: arastirma.md T2.5 A–K, yöntem: notlar/tur-1.md + mekan-dokumu.md)
+| # | Plan | Değişiklik | T2.5 |
+|---|---|---|---|
+| 1 | P07 | Anlatım: "uyanacağı ayarlanamıyordu" (kaynaksız) → "Ama nereye tüneceğine yarasa kendi karar verir." Ekran: "Tüneyeceği yer: saçak altı, tavan arası". Kadran/ibre kaldırıldı; görsel: yarasa kanadı titrer, başını karanlığa çevirir. Omurga engeli, geçişler, tablolar buna göre | C |
+| 2 | P08 | Anlatım: "New Mexico'daki yeni üste" → "bir yardımcı hava üssünde" (New Mexico ekrana alındı, süre aynı); görselde "yeni" düştü | B |
+| 3 | P10 | Ekran: "Yeni binalar ve yakıt tankı yandı" → "Test sahası yandı · anlatılana göre hangar, kışla, generalin arabası" | A, D |
+| 4 | P11 | Ekran: tırnaklı "etkili", "→ 1944" ve gözlemci notu çıktı; Dugway "anlatılana göre". Anlatım aynı | E |
+| 5 | P04 | Ekran: "kabaca" düştü; sözün aslına sadık: "Bu adam kaçık değil." | H |
+| 6 | P05, P06 | P05 "iliştiriyor" → selüloz kabı yapıştırıcıyla yapıştırıyor. P06 yumurta kolisi → üst üste ~26 yuvarlak tepsi | G, F |
+| 7 | P01, P02, P08, P12, başlık | Yöntem C: mağara artık mekân değil, defterde mürekkep çizimi. P01 ikinci yarı ÇÖL-ÜS. Döngü P12 → defter çizimi → P01 ilk karesi | tur-1 |
+| — | Sonuç tabloları | Kurulum→Karşılık, geçişler, ilk-izleyen testi, açıklama, doğruluk kararları, kelime tablosu (113 → 114 kelime; plan süreleri aynı, toplam ≈64.5) eşlendi | |
+Eklenmedi (karar 8): Fledermaus, Tim Holt ve diğer yeni hikâye altınları.
 
 ## 0. Dönüş, omurga, son
 
@@ -12,37 +25,37 @@ Format: 1080x1920 · **≈64.5 sn** (plan süresi = iki dilin uzunu + anahtar tu
 **Beş satır omurga**
 1. **Durum:** Pearl Harbor'dan bir ay sonra, Pennsylvania'lı bir diş hekimi (Adams), Carlsbad Mağarası'nda yarasa sürüsü izlerken bir şey fark ediyor.
 2. **İstek:** Yarasaları, ahşap Japon evlerinin çatı altlarına tüneyip aynı anda çok yerde yangın başlatacak bir silaha çevirmek.
-3. **Engel:** Yarasayı kontrol etmek: uyutulmuş hayvanın ne zaman uyanacağı ayarlanamıyor.
-4. **Değişim:** 15 Mayıs 1943'te silahlı yarasalar kazayla salınıyor, karanlık köşe arıyor ve yeni üste, yakıt tankının altına bile tünüyor; kapsüller yanıyor.
+3. **Engel:** Yarasayı yönlendirmek: nereye tüneyeceğine yarasa kendi karar veriyor, kimse seçemiyor (P03 kuralının karanlık yüzü).
+4. **Değişim:** 15 Mayıs 1943'te silahlı yarasalar bir yardımcı hava üssünde kazayla salınıyor, karanlık köşe arıyor ve yakıt tankının altına bile tünüyor; kapsüller yanıyor.
 5. **Sonuç:** Proje sürüyor, Amiral King "geç hazır olacak" diye iptal ediyor; silah hiç kullanılmıyor, en bilinen yangını kendi üssünde çıkarıyor.
 
-**Önce son:** "Savaşta hiç kullanılmadı. En bilinen yangınını kendi üssünde çıkardı." Sonun gerektirdikleri: *yarasa karanlık çatı altına tüner* (P03, 8.6 sn), *kapsül yakar* (P05, 21 sn), *sürü uyutulup bırakılır, uyanışı ayarlanamaz* (P06–P07, 26–36 sn), *hedef Japonya / yanan yer* (P01 ekran). Not: P05–P07 tam ilk üçte bire (~21 sn) sığmıyor; ama P03 kural + P05 kapsül hemen oradan başlıyor ve P01 ekranı hedefi baştan veriyor.
+**Önce son:** "Savaşta hiç kullanılmadı. En bilinen yangınını kendi üssünde çıkardı." Sonun gerektirdikleri: *yarasa karanlık çatı altına tüner* (P03, 8.6 sn), *kapsül yakar* (P05, 21 sn), *sürü uyutulup bırakılır, tüneyeceği yeri kendi seçer* (P06–P07, 26–36 sn), *hedef Japonya / yanan yer* (P01 ekran). Not: P05–P07 tam ilk üçte bire (~21 sn) sığmıyor; ama P03 kural + P05 kapsül hemen oradan başlıyor ve P01 ekranı hedefi baştan veriyor.
 
 ## 1. Kanca (3 alternatif, üç katman)
 
 | | Söz | İlk kare | Ekran yazısı |
 |---|---|---|---|
-| **K1 ★ (seçilen)** | "Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı." | Alacakaranlık, mağara ağzından yarasa sürüsü spiral çıkıyor (hareket ortada başlıyor); ≈2.2 sn'de kesme: çöl üssünün çatısında alev, kadraj alevin kenarında. | **Hedef: Japonya** (2.6 sn'de altına gelir) **Yanan: ?** |
+| **K1 ★ (seçilen)** | "Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı." | Adams'ın defter sayfasında mürekkep çizim: mağara ağzından yarasa sürüsü spiral yükseliyor (çizgiler hareketin ortasında); ≈2.2 sn'de kesme: çöl üssünün çatısında alev, kadraj alevin kenarında. | **Hedef: Japonya** (2.6 sn'de altına gelir) **Yanan: ?** |
 | K2 | "Bu silah düşmana ulaşmadan kendi üssünü yaktı. Hem de tasarlandığı gibi çalışarak." | Çöl üssü, kıvılcım, alev | Yanan: kendi üssü |
-| K3 | "Bir diş hekimi, ordunun en tuhaf silahını bir mağarada buldu." | Mağara ağzı, defterli bir silüet | 1942 · ABD |
+| K3 | "Bir diş hekimi, ordunun en tuhaf silahını bir mağarada buldu." | Defter sayfasında mağara ağzı çizimi, kalemli bir el | 1942 · ABD |
 
 **Neden K1:** Paradoks ("tam istenen şeyi yaptı" + "kendi üssünü yaktı") iki soru açıyor: ne istenmişti, nasıl oldu da kendi üssü. Cevap P03 (kural), P09 (doruk), P10 (alev). Son cümle ("En bilinen yangınını kendi üssünde çıkardı") sözle döngü kurar: izleyici tekrar başlarken "tam istenen şeyi yaptı" artık başka okunur. K2 ilk cümlede bilgiyi tüketiyor ve "silah" sözcüğüyle hikâyeyi soyut bırakıyor. K3 mekanizmayı açıklamadan ironiyi vermiyor ve sonuca (iptal) dönmüyor. İlk kare "ses kapalı": sürü + yangın + "Hedef: Japonya / Yanan: ?" yeterli.
 
 ## 2. Plan tablosu
 
-Işık: MAĞARA alacakaranlık (kaynak: sürü akşam alacakaranlıkta çıkar). ÇÖL-ÜS için kaynak yangın saatini vermiyor (açık soru 3); varsayılan geç ikindi. Ekran yazıları üst bantta (y 240–400). Replik yok. Yarasaların yanması/ölümü ekranda gösterilmez; alev yalnız bina ve tankta. Yarasa rengi/boyu nötr koyu siluet; kapsül gram/oran verilmez. Üniforma ve bina tipi doğrulanamadı: yüzsüz siluet, nötr alçak yapılar.
+Işık: mağara çizimi defter sayfasında mürekkep (gerçek mekân değil; sürünün akşam alacakaranlıkta çıktığı bilgisi çizimin gök tonuyla verilir; masa ışığı sıcak, kâğıt dokulu, kararı yönetmen/mekân). ÇÖL-ÜS için kaynak yangın saatini vermiyor (açık soru 3); varsayılan geç ikindi. Ekran yazıları üst bantta (y 240–400). Replik yok. Yarasaların yanması/ölümü ekranda gösterilmez; alev yalnız bina ve tankta. Yarasa rengi/boyu nötr koyu siluet; kapsül gram/oran verilmez. Üniforma ve bina tipi doğrulanamadı: yüzsüz siluet, nötr alçak yapılar.
 
-### P01 · 0.0–5.4 · MAĞARA → ÇÖL-ÜS (kanca)
+### P01 · 0.0–5.4 · MASA (defter çizimi) → ÇÖL-ÜS (kanca)
 - **Söz:** "Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı."
-  - [GÖRSEL: cümle 1 — mağara ağzı, akşam; sürü spiral bulut olup yükseliyor, ilk kare hareketin ortasında]
-  - [GÖRSEL: cümle 2 — ≈2.6 sn'de kesme: çöl üssünde alçak bir binanın çatısı alevde; kadraj alevin yanına, yarım kalmış; arka planda yarasa siluetleri uzaklaşıyor, yanma gösterilmez]
+  - [GÖRSEL: cümle 1 — Adams'ın defter sayfası, kadraj sayfayı doldurur; mürekkep çizim: mağara ağzı, ağızdan yarasa sürüsü spiral bulut olup kâğıtta yükseliyor (çizgiler çizilirken değil, canlı hareket eder); ilk kare hareketin ortasında. Sayfa kenarı ve kâğıt dokusu görünür, sıcak ışık]
+  - [GÖRSEL: cümle 2 — ≈2.6 sn'de sert kesme (mürekkep spiral kadrajı doldururken; defterden gerçek mekâna): ÇÖL-ÜS, çöl üssünde alçak bir binanın çatısı alevde; kadraj alevin yanına, yarım kalmış; arka planda yarasa siluetleri uzaklaşıyor, yanma gösterilmez]
 - **Ekran:** Hedef: Japonya · Yanan: ?
 - **Saklanan şey:** "Yanan: ?" yarım; alevin hangi üste ait olduğu kadraj dışında.
 - **Çıkış:** P02: "Her şey" geri sarıp başa götürür.
 
-### P02 · 5.4–8.6 · MAĞARA
+### P02 · 5.4–8.6 · MASA (defter çizimi)
 - **Söz:** "Her şey bir diş hekiminin fikriydi."
-  - [GÖRSEL: mağara ağzı, sürü hâlâ çıkıyor; yamaçta şapkalı sivil figür arkadan, elinde defter; defter sayfasında yarım yarasa çizimi, göğsü boş bırakılmış. Dönem kıyafeti nötr]
+  - [GÖRSEL: geri sarım: aynı defter sayfası, kamera biraz geri çekilir; üstte mürekkep mağara ağzı ve hâlâ yükselen sürü çizimi, altında yarım yarasa çizimi, göğsü boş bırakılmış. Kenarda sivil bir el (nötr kol manşeti, dönem iddiası yok) kalemi tutuyor. Adams kadrajda yalnız bu el ve defter]
 - **Ekran:** Dr. Lytle Adams · diş hekimi · Carlsbad Mağarası
 - **Saklanan şey:** Çizimde yarasanın göğsü boş; kalem tam oraya geliyor, kadraj defterde kalıyor.
 - **Bağ:** P01 "ne istenmişti?" → "bir fikir" → P03'te fikir açılıyor.
@@ -59,38 +72,39 @@ Işık: MAĞARA alacakaranlık (kaynak: sürü akşam alacakaranlıkta çıkar).
 - **Söz:** "Pearl Harbor'dan bir ay sonra Adams Beyaz Saray'a yazdı. Başkan işe baktırdı."
   - [GÖRSEL: cümle 1 — harita çizgisi Pennsylvania (Irwin) → Washington; defter sayfası zarfa katlanıp harita üstünde ilerliyor; zarf kapağında Beyaz Saray adresi (okunur harf yok, dil-nötr)]
   - [GÖRSEL: cümle 2 — masada zarfın yanına bir el kısa not düşürüyor; not kenarında kısa satır, metin ekran yazısında]
-- **Ekran:** Ocak 1942 · Başkanın notu, kabaca: "bu adam kaçık değil"
+- **Ekran:** Ocak 1942 · Başkanın notu: "Bu adam kaçık değil."
 - **Saklanan şey:** Notun geri kalanı (kenarı kıvrık, ikinci satır görünmüyor).
-- **Doğruluk:** Not metni doğrulanamadı; "kabaca" ve anlatımda "işe baktırdı" kullanılıyor. Eleanor çıkarıldı.
+- **Doğruluk:** Söz teyitli (T2.1 #4: "This man is not a nut…", Duffin + Atlantic dipnotu; birincil belge görülmedi, açıklamada ikincil aktarım). Ekranda yalnız ilk cümle, aslına sadık çeviri; anlatımda "işe baktırdı". Not Donovan'a ekli gitti, anlatım bununla çelişmiyor. Eleanor çıkarıldı.
 
 ### P05 · 21.2–26.2 · MASA (laboratuvar insert)
 - **Söz:** "Napalm'i geliştiren Fieser, yarasaya takılacak minik bir kapsül yaptı."
-  - [GÖRSEL: cımbızlı bir el, uyuyan yarasanın (kımıltısız) göğsüne küçük silindirik kapsülü iliştiriyor; kapsül ucunda kapalı küçük kapak; yarasa sakin, acı/çırpınma yok]
+  - [GÖRSEL: cımbızlı bir el, uyuyan yarasanın (kımıltısız) göğsüne küçük silindirik selüloz kabı yapıştırıcı damlasıyla yapıştırıyor; kabın ucunda kapalı küçük kapak (kapak biçimi tasarım serbestliği, kaynaksız); yarasa sakin, acı/çırpınma yok]
 - **Ekran:** Louis Fieser · Harvard kimyacısı · napalm
-- **Saklanan şey:** Kapsül ucundaki kapağın altı (zamanlayıcı) kapalı; P07'de açılır.
+- **Saklanan şey:** Kapsül ucundaki kapağın altı kapalı; karşılığı P09'da kapsül ucundaki ışık noktası.
 - **Bağ:** P03 "yangın bağlasan" → somut hâli.
 
 ### P06 · 26.2–31.6 · MASA (kesit insert)
 - **Söz:** "Kapsüllü yarasalar uyutulup kovana dizildi; havada açılınca uyanıp çatılara tünecekti."
-  - [GÖRSEL: bomba biçimli kovanın kesiti; içinde yumurta kolisi gibi gözlü tepsiler, her gözde sakin uyuyan yarasa; kovan açılıyor, yarasalar dışarı dağılıyor — diyagram dili, düzlem çizim; sonra kovan kapağı yeniden kapanan ilk durumda kalır]
+  - [GÖRSEL: bomba biçimli kovanın kesiti; içinde üst üste ~26 yuvarlak tepsi (düz daireler, yan kesitte kat kat), her tepsinin bölmelerinde sakin uyuyan yarasa; kovan açılıyor, yarasalar dışarı dağılıyor — diyagram dili, düzlem çizim; sonra kovan kapağı yeniden kapanan ilk durumda kalır]
 - **Ekran:** Soğukla uyutuldu · kovan başı ~1.000 yarasa
-- **Saklanan şey:** Tepsilerden birindeki göz, açılma anında hafifçe kıpırdıyor (P07 bunu açar).
-- **Doğruluk:** Soğutma ısısı verilmiyor (tek kaynak). Kovan başı "yaklaşık 1.000" (1.040, O).
+- **Saklanan şey:** Tepsilerden birindeki bir bölme, açılma anında hafifçe kıpırdıyor (P07 bunu açar).
+- **Doğruluk:** Soğutma ısısı verilmiyor (tek kaynak). Kovan başı "yaklaşık 1.000" (1.040, O). Tepsiler dairesel, 26 adet (Duffin, tek dipnot): "~26" ve "yuvarlak" kaynaklı; bölme biçimi kaynaksız, sade.
 
 ### P07 · 31.6–35.6 · MASA (tepsi insert)
-- **Söz:** "Ama yarasanın ne zaman uyanacağı ayarlanamıyordu."
-  - [GÖRSEL: tepsi yakın plan; bir gözde yarasa kanadı titriyor (erken uyanış); yanındaki kapsülün küçük kadranında ibre soruluyor, durur, geri geliyor; diğer gözler kımıltısız]
-- **Ekran:** Uyanma saati: ayarlanamıyor
-- **Saklanan şey:** Kadranın sayısı donuyor; kaç dakika kaldığı görünmüyor.
-- **Bağ:** P06 kıpırdayan göz → engel. Cevap P08.
+- **Söz:** "Ama nereye tüneceğine yarasa kendi karar verir."
+  - [GÖRSEL: yuvarlak tepsi yakın plan; bölmelerde uyuyan yarasalar kımıltısız. Bir bölmedeki yarasa kanadını titretir, başını tepsi kenarının karanlık gölgesine doğru çevirir; diğerleri kımıltısız. Kadran/ibre yok]
+- **Ekran:** Tüneyeceği yer: saçak altı, tavan arası
+- **Saklanan şey:** Yarasanın baktığı karanlık köşe kadraj dışında; başı döndü ama nereye tüneyeceği görünmüyor.
+- **Bağ:** P06 kıpırdayan bölme → engel (tüneme yerini seçen yarasa, ne kapsül ne ordu). Cevap P08–P09.
+- **Doğruluk:** "Binalarda saçak, tavan arası ve karanlık girintilere tüner" (K1, K3 Wilkins) teyitli; "kimse seçemez" bunun çıkarımı. Uyanma saati iddiası kaldırıldı (kaynak yok).
 
 ### P08 · 35.6–41.1 · ÇÖL-ÜS
-- **Söz:** "15 Mayıs 1943'te, New Mexico'daki yeni üste, silahlı yarasalar kazayla salındı."
-  - [GÖRSEL: geniş plan, ÇÖL-ÜS, geç ikindi; alçak, yeni, nötr yapılar, çıplak toprak. Mağara spiralinin aynısı: yarasa bulutu yükselip üssün üstüne yayılıyor. Kazanın nedeni gösterilmez]
-- **Ekran:** Carlsbad yardımcı sahası · kaza (kaynakta neden yok)
+- **Söz:** "15 Mayıs 1943'te bir yardımcı hava üssünde silahlı yarasalar kazayla salındı."
+  - [GÖRSEL: geniş plan, ÇÖL-ÜS, geç ikindi; alçak, nötr yapılar, çıplak toprak. Defterdeki mürekkep spiralin aynısı, bu kez gerçek: yarasa bulutu yükselip üssün üstüne yayılıyor. Kazanın nedeni gösterilmez]
+- **Ekran:** Carlsbad yardımcı sahası · New Mexico · kaza (kaynakta neden yok)
 - **Saklanan şey:** Sürünün nereye ineceği: bulut kadrajın üstünde, binalar altta; hiçbir şey yere inmedi.
-- **Ayna:** P01'deki mağara spirali ile aynı biçim, farklı yerde (P02 → P08).
-- **Doğruluk:** Tarih 15 Mayıs 1943 (Y). "Yardımcı saha" notu araştırmadaki "auxiliary" için; kule/kışla/hangar tipi çizilmez.
+- **Ayna:** P01–P02'deki defter çizimi spiraliyle aynı biçim; çizgiden gerçeğe (P02 → P08).
+- **Doğruluk:** Tarih 15 Mayıs 1943 (Y). "Yardımcı hava üssü" = "Carlsbad Army Airfield Auxiliary Air Base" (K1); "yeni" kaynaksız, düştü (T2.5-B). Kule/kışla/hangar tipi çizilmez.
 
 ### P09 · 41.1–47.3 · ÇÖL-ÜS (yakın) **anahtar** (hold: 4.3 + 1.5 = 5.8 sn)
 - **Söz:** "Karanlık köşe arayan yarasalar, yakıt tankının altına bile tünedi."
@@ -103,24 +117,25 @@ Işık: MAĞARA alacakaranlık (kaynak: sürü akşam alacakaranlıkta çıkar).
 ### P10 · 47.3–50.9 · ÇÖL-ÜS
 - **Söz:** "Kapsüller tek tek yandı. Üs tutuştu."
   - [GÖRSEL: tank altında ilk kıvılcım; alev saçağa, çatıya yayılıyor; yarasa siluetleri alevden uzaklaşan bulutta, yanma gösterilmez; geniş plan, binalar alevde]
-- **Ekran:** Yeni binalar ve yakıt tankı yandı · anlatılana göre bir generalin arabası da
+- **Ekran:** Test sahası yandı · anlatılana göre hangar, kışla, bir generalin arabası da
 - **Saklanan şey:** Arabanın hangisi olduğu görünmüyor (ekran yazısı).
-- **Doğruluk:** "Generalin arabası" yalnız ekranda, "anlatılana göre" ile (kaynak orta/düşük). Kule/kışla seçilmedi. Foley: ateş; riser/whoosh yok (savaş/felaket konusu).
+- **Doğruluk:** Kaynak: yarasalar tankın altına tünedi, "test range" yandı (Silverman s.122, tek dipnot); tankın yandığı yazmıyor, "yeni" yok. Hangar/kışla/generalin arabası Couffer s.233'e bağlı (orta) → "anlatılana göre". Kule seçilmedi. Görselde alev saçak/çatılara yayılır, tankın kendisi yanarken gösterilmez. Foley: ateş; riser/whoosh yok (savaş/felaket konusu).
 
 ### P11 · 50.9–57.9 · HARİTA + MASA
 - **Söz:** "Yine de proje sürdü. Sonunda Amiral King, silah geç hazır olacağı için iptal etti."
-  - [GÖRSEL: cümle 1 — harita: Utah'ta Dugway; çöl üzerinde Japon evi kopyalarından oluşan küçük bir köy çizilir, yarasa bulutu köyün üstüne iniyor (yanma gösterilmez); köyün yanında gözlemci notu]
+  - [GÖRSEL: cümle 1 — harita: Utah'ta Dugway; çöl üzerinde Japon evi kopyalarından oluşan küçük bir köy çizilir, yarasa bulutu köyün üstüne iniyor (yanma gösterilmez)]
   - [GÖRSEL: cümle 2 — masa: belge, kalem, kırmızı mühür havada, belgenin üstüne iniyor, "iptal" mührü (dil-nötr çarpı biçimi) vurulur; hareket plan sonundan ≥12 kare önce biter]
-- **Ekran:** Dugway, Utah · Japon evi kopyaları · gözlemci: "etkili" → 1944 · en erken 1945 ortası · ~2 milyon $ harcandığı söylenir
+- **Ekran:** Anlatılana göre Dugway, Utah'ta Japon evi kopyaları · en erken 1945 ortası · ~2 milyon $ harcandığı söylenir
 - **Saklanan şey:** Belgenin başlığı mühür inene kadar görünmüyor; mühür tam vurulunca açılıyor.
-- **Doğruluk:** Dugway test tarihi verilmiyor. 2 milyon $ yalnız "söylenir". Kaynakların atom bombasına kayması ekranda yer bulmazsa açıklamaya.
+- **Doğruluk:** Dugway'de yarasa testi Wikipedia'da "citation needed" (T2.5-E): "anlatılana göre"; test tarihi, "1944" ve gözlemcinin "etkili" sözü kullanılmıyor. Japon evi köyünün kendisi 1943'te yapıldı (K4, Plung). 2 milyon $ yalnız "söylenir". Kaynakların atom bombasına kayması ekranda yer bulmazsa açıklamaya.
 
-### P12 · 57.9–64.5 · MASA → ÇÖL-ÜS (kapanış) **anahtar** (hold: 4.3–5.1 + 1.5)
+### P12 · 57.9–64.5 · MASA → ÇÖL-ÜS → MASA (kapanış) **anahtar** (hold: 4.3–5.1 + 1.5)
 - **Söz:** "Savaşta hiç kullanılmadı. En bilinen yangınını kendi üssünde çıkardı."
   - [GÖRSEL: cümle 1 — masada defter, P03'teki çizim; kenarda mühürlü belge. Kamera çizime yaklaşır]
-  - [GÖRSEL: cümle 2 — çizimdeki çatı çizgisi canlı çatıya dönüşür: P10'daki yanmış saçak ve kararmış tank gölgesi; kamera duruyor, 1.5 sn tutulur; çevre geri çekilir]
+  - [GÖRSEL: cümle 2 — çizimdeki çatı çizgisi canlı çatıya dönüşür: P10'daki yanmış saçak ve kararmış tank gölgesi; kamera duruyor, ilk ≈0.8 sn sabit tutulur (ekran yazısı okunur); çevre geri çekilir]
+  - [GÖRSEL: döngü, son ≈0.7 sn (tutma süresinin içinde, hareket plan sonundan ≥12 kare önce biter) — yanmış çatı mürekkebe geri döner: kamera geri çekilir, çatı defter sayfasındaki çizime çekilir, sayfa geri çevrilir; son kare = defterin ilk sayfası, mağara ağzı ve yükselen mürekkep sürü, P01'in ilk karesiyle aynı kompozisyon]
 - **Ekran:** Hedef: Japonya · Yanan: New Mexico
-- **Saklanan şey:** Yok; cevap açılır (P01'deki "?" kapanır). Döngü: son kare mağara spirali ilk kareyle eşleşir.
+- **Saklanan şey:** Yok; cevap açılır (P01'deki "?" kapanır). Döngü: son kare defterdeki mürekkep mağara spirali, P01 ilk kareyle eşleşir.
 - **Döngü:** "kendi üssünde" ↔ P01 "kendi üssünü yaktı"; P01 ekranındaki "Yanan: ?" burada "New Mexico" olur.
 
 ## 3. Kurulum → Karşılık
@@ -132,10 +147,10 @@ Işık: MAĞARA alacakaranlık (kaynak: sürü akşam alacakaranlıkta çıkar).
 | Defterde göğsü boş yarasa | P02 | Kalem göğse alev çizer; sonra aynı defter çizimi canlı çatıya döner | P03, P12 |
 | "Yarasa karanlık çatı altına tüner" | P03 | "Karanlık köşe arayan yarasalar… tünedi" | P09 |
 | "Göğsüne yangın bağlasan, o çatı yanar" | P03 | Kapsül göğse takılır; kapsüller yandı | P05, P10 |
-| Kapsül ucundaki kapalı kapak | P05 | Kadran ve kırmızı nokta | P07, P09 |
-| Tepsideki kıpırdayan göz | P06 | "ne zaman uyanacağı ayarlanamıyordu" | P07 |
-| Mağara spirali | P01, P02 | Aynı spiral üssün üstünde | P08 |
-| Başkanın notu ("kaçık değil") | P04 | Dugway'de "etkili", ama yine de iptal | P11 |
+| Kapsül ucundaki kapalı kapak | P05 | Kapsül ucunda ışık noktası | P09 |
+| Tepsideki kıpırdayan bölme | P06 | "nereye tüneceğine yarasa kendi karar verir" → tank altı | P07, P09 |
+| Defterdeki mürekkep spiral | P01, P02 | Aynı spiral gerçek üssün üstünde; son karede yine defterde (döngü) | P08, P12 |
+| Başkanın notu ("kaçık değil") | P04 | "Yine de proje sürdü", ama yine de iptal | P11 |
 | "Yine de proje sürdü" | P11 | "Savaşta hiç kullanılmadı" | P12 |
 | Mühür (kırmızı) | P11 | Belge kenarda, yangın izi yanında | P12 |
 
@@ -150,8 +165,8 @@ Karşılıksız öğe yok. Dışarıda: Eleanor, FDR'nin tam sözü, Donovan/Gri
 | P03→P04 | Fikir var, kim kullanır? → Adams başkana yazıyor | tamam |
 | P04→P05 | "İşe baktırdı" → ilk ciddi adım: kapsülü yapan kimyacı | tamam |
 | P05→P06 | Kapsül var, yarasayı Japonya'ya nasıl götürürler? → kovan | tamam |
-| P06→P07 | Kovan açılınca uyanma → uyanma ayarlanıyor mu? Hayır | tamam |
-| P07→P08 | Kontrol edilemeyen şey fiilen oldu (kaza). Nedeni kaynakta yok; zamansal bağ, nedensel iddia yok | **kabul, gerekçeli** |
+| P06→P07 | Kovan açılınca yarasalar uyanıp tünecek → nereye tünecek, kim seçer? Yarasa | tamam |
+| P07→P08 | Yarasa yerini kendi seçer → serbest kalınca nereye gitti? Kaza nedeni kaynakta yok; zamansal bağ, nedensel iddia yok | **kabul, gerekçeli** |
 | P08→P09 | Sürü salındı → ne yaptı? Kuralı uyguladı | tamam |
 | P09→P10 | Tünediler, kapsüller çalışıyor → alev | tamam |
 | P10→P11 | Silah çalıştı, yine de? → "Yine de proje sürdü… iptal etti" | tamam |
@@ -161,23 +176,23 @@ Karşılıksız öğe yok. Dışarıda: Eleanor, FDR'nin tam sözü, Donovan/Gri
 
 ### Ses kapalı (görsel + ekran yazısı)
 ```
-P01 Hedef: Japonya · Yanan: ?             (mağara spirali → çatıda alev)
+P01 Hedef: Japonya · Yanan: ?             (defterde mürekkep sürü spirali → çatıda alev)
 P02 Dr. Lytle Adams · diş hekimi · Carlsbad Mağarası    (defter, göğsü boş yarasa)
 P03 Hedef: ahşap Japon şehirleri          (kalem alevi çizer, çatı yanar)
-P04 Ocak 1942 · Başkanın notu: "kaçık değil" (zarf, harita, not)
+P04 Ocak 1942 · Başkanın notu: "Bu adam kaçık değil." (zarf, harita, not)
 P05 Louis Fieser · Harvard kimyacısı · napalm (kapsül göğse)
 P06 Soğukla uyutuldu · kovan başı ~1.000 yarasa (kesit)
-P07 Uyanma saati: ayarlanamıyor           (titreyen kanat, kadran)
-P08 Carlsbad yardımcı sahası · kaza       (üs üstünde sürü)
+P07 Tüneyeceği yer: saçak altı, tavan arası (titreyen kanat, karanlığa dönen baş)
+P08 Carlsbad yardımcı sahası · New Mexico · kaza (üs üstünde sürü)
 P09 Zamanlayıcılar işliyor                (tank altı, kırmızı noktalar)
-P10 Yeni binalar ve yakıt tankı yandı     (alev)
-P11 Dugway · gözlemci: "etkili" → iptal mührü
-P12 Hedef: Japonya · Yanan: New Mexico    (çizim → yanmış çatı)
+P10 Test sahası yandı · anlatılana göre hangar, kışla, generalin arabası (alev)
+P11 Dugway köyü (anlatılana göre) → iptal mührü
+P12 Hedef: Japonya · Yanan: New Mexico    (çizim → yanmış çatı → defterde yine spiral)
 ```
 Ses kapalı da hikâye çıkıyor: yarasalara yangın takıp Japonya'ya yollayacaklardı, ama kendi üssü yandı. Zayıf: P08 "kaza"nın nasıl olduğu belli değil (kaynakta da yok).
 
 ### Ses açık (yalnız anlatım)
-"Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı. / Her şey bir diş hekiminin fikriydi. / Yarasa karanlık çatı altına tüner. Göğsüne yangın bağlasan, o çatı yanar. / Pearl Harbor'dan bir ay sonra Adams Beyaz Saray'a yazdı. Başkan işe baktırdı. / Napalm'i geliştiren Fieser, yarasaya takılacak minik bir kapsül yaptı. / Kapsüllü yarasalar uyutulup kovana dizildi; havada açılınca uyanıp çatılara tünecekti. / Ama yarasanın ne zaman uyanacağı ayarlanamıyordu. / 15 Mayıs 1943'te, New Mexico'daki yeni üste, silahlı yarasalar kazayla salındı. / Karanlık köşe arayan yarasalar, yakıt tankının altına bile tünedi. / Kapsüller tek tek yandı. Üs tutuştu. / Yine de proje sürdü. Sonunda Amiral King, silah geç hazır olacağı için iptal etti. / Savaşta hiç kullanılmadı. En bilinen yangınını kendi üssünde çıkardı."
+"Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı. / Her şey bir diş hekiminin fikriydi. / Yarasa karanlık çatı altına tüner. Göğsüne yangın bağlasan, o çatı yanar. / Pearl Harbor'dan bir ay sonra Adams Beyaz Saray'a yazdı. Başkan işe baktırdı. / Napalm'i geliştiren Fieser, yarasaya takılacak minik bir kapsül yaptı. / Kapsüllü yarasalar uyutulup kovana dizildi; havada açılınca uyanıp çatılara tünecekti. / Ama nereye tüneceğine yarasa kendi karar verir. / 15 Mayıs 1943'te bir yardımcı hava üssünde silahlı yarasalar kazayla salındı. / Karanlık köşe arayan yarasalar, yakıt tankının altına bile tünedi. / Kapsüller tek tek yandı. Üs tutuştu. / Yine de proje sürdü. Sonunda Amiral King, silah geç hazır olacağı için iptal etti. / Savaşta hiç kullanılmadı. En bilinen yangınını kendi üssünde çıkardı."
 
 ### "Eee yani?" taraması
 | Plan | Soru | Durum |
@@ -188,7 +203,7 @@ Ses kapalı da hikâye çıkıyor: yarasalara yangın takıp Japonya'ya yollayac
 | P04 | "Neden Beyaz Saray?" | Pearl Harbor bağlamı, "başkan işe baktırdı" |
 | P05 | "Yangın nasıl takılır?" | Kapsül görüntüsü |
 | P06 | "Japonya'ya nasıl gider?" | Kovan kesiti, "havada açılınca" |
-| P07 | "Sorun ne?" | Uyanma zamanı ayarlanamıyor |
+| P07 | "Sorun ne?" | Yarasa tüneyeceği yeri kendi seçiyor; kimse yönlendiremez |
 | P08 | "Kaza nasıl?" | Cevap yok (kaynak yok), kabul; ekran "kaza" |
 | P09 | "Neden tank altı?" | "Karanlık köşe arayan" (P03 kuralı) |
 | P10 | "Yarasalar ne oldu?" | Gösterilmez (ton kararı); ekran yangın |
@@ -200,9 +215,9 @@ Ses kapalı da hikâye çıkıyor: yarasalara yangın takıp Japonya'ya yollayac
 |---|---|---|---|
 | P03 | Kural (tüner, yanar) | Hedef | Çizim |
 | P06 | Uyanıp tünecekti (plan) | Soğuk, sayı | Kovan kesiti |
-| P07 | Sorun (ayarlanamıyor) | Uyanma saati | Titreyen kanat |
+| P07 | Sorun (yarasa kendi seçer) | Tüneyeceği yer (saçak, tavan arası) | Titreyen kanat, dönen baş |
 | P09 | Neden orada (karanlık köşe) | Zamanlayıcılar | Tank altı |
-| P10 | Yangın ve sonuç | Yeni binalar, araba | Alev |
+| P10 | Yangın ve sonuç | Test sahası, hangar/kışla/araba (anlatılana göre) | Alev |
 
 Anlatım ekrandaki yazıyı tekrar etmiyor; sayılar, tarih, isim ekranda.
 
@@ -223,33 +238,36 @@ Anlatım ekrandaki yazıyı tekrar etmiyor; sayılar, tarih, isim ekranda.
 | P04 | 12 | 5.7 | 6.3 |
 | P05 | 9 | 4.3 | 5.0 |
 | P06 | 10 | 4.8 | 5.4 |
-| P07 | 6 | 2.9 | 4.0 |
+| P07 | 7 | 3.3 | 4.0 |
 | P08 | 11 | 5.2 | 5.5 |
 | P09 | 9 | 4.3 | 6.2 (anahtar) |
 | P10 | 6 | 2.9 | 3.6 |
 | P11 | 14 | 6.7 | 7.0 |
 | P12 | 9 | 4.3 | 6.6 (anahtar) |
-| **Toplam** | **113** | **≈53.8** | **≈64.5** |
+| **Toplam** | **114** | **≈54.2** | **≈64.5** |
+
+v1.1: P07 6→7 kelime (+0.4 sn konuşma, plan süresi 4.0 içinde); P08 11 kelime aynı ("New Mexico" sesten ekrana taşındı); P12 döngü geçişi tutma süresinin içinde (son ≈0.7 sn), plan süresi aynı.
 
 Sıkışırsa kısaltma sırası: P11 "Yine de proje sürdü." → "Sonunda Amiral King iptal etti."; P04 "Başkan işe baktırdı." kalır, "Pearl Harbor'dan" kalır.
 
 ## 8. Paylaşım
 - **Kapak:** KENDİ ÜSSÜNÜ YAKTI
-- **Açıklama:** İkinci Dünya Savaşı sırasında Pennsylvania'lı diş hekimi Lytle Adams'ın Carlsbad Mağarası'ndaki yarasalardan esinlenen fikri, Pearl Harbor'dan yaklaşık bir ay sonra Beyaz Saray'a yazılan bir mektupla ordunun gündemine girdi. Napalmı geliştiren Louis Fieser yarasalara takılacak küçük yangın kapsülleri yaptı; uyutulan yarasalar kovanlara dizilecek, havada açılınca uyanıp çatılara tünecekti. 15 Mayıs 1943'te New Mexico'daki yeni bir hava sahasında silahlı yarasalar kazayla salındı; üssün yeni binaları ve bir yakıt tankı yandı. Bazı anlatımlara göre bir generalin arabası da yandı; bu ayrıntı birincil kaynakla doğrulanamadı. Proje sonra Donanma ve Deniz Piyadeleri'ne geçti, Utah'taki bir test sahasında denendi ve bir gözlemci "etkili" buldu; yaklaşık 2 milyon dolar harcandığı söylenir. Amiral King, silah en erken 1945 ortasında hazır olacağı için projeyi iptal etti; silah savaşta hiç kullanılmadı. Kaynaklar çoğunlukla Jack Couffer'in "Bat Bomb" (1992) kitabına dayanır; araştırmada tam metin görülmedi, bu yüzden rakamlar ve bazı ayrıntılar yumuşak verildi. Sahneler, defter ve mektup dramatizasyondur; hayvanlara zarar gösterilmedi. Seslendirme yapay zekâ ile yapıldı.
+- **Açıklama:** İkinci Dünya Savaşı sırasında Pennsylvania'lı diş hekimi Lytle Adams'ın Carlsbad Mağarası'ndaki yarasalardan esinlenen fikri, Pearl Harbor'dan yaklaşık bir ay sonra Beyaz Saray'a yazılan bir mektupla ordunun gündemine girdi. Napalmı geliştiren Louis Fieser yarasalara takılacak küçük yangın kapsülleri yaptı; uyutulan yarasalar kovanlara dizilecek, havada açılınca uyanıp çatılara tünecekti. 15 Mayıs 1943'te New Mexico'daki bir yardımcı hava üssünde silahlı yarasalar kazayla salındı; yarasalar bir yakıt tankının altına tünedi ve test sahası yandı. Bazı anlatımlara göre hangarlar, kışlalar ve bir generalin arabası da yandı; bu ayrıntılar birincil kaynakla doğrulanamadı. Proje sonra Donanma ve Deniz Piyadeleri'ne geçti; anlatılana göre Utah'taki Dugway'de Japon evi kopyalarından oluşan bir köyde denendi. Yaklaşık 2 milyon dolar harcandığı söylenir. Amiral King, silah en erken 1945 ortasında hazır olacağı için projeyi iptal etti; silah savaşta hiç kullanılmadı. Kaynaklar çoğunlukla Jack Couffer'in "Bat Bomb" (1992) kitabına dayanır; araştırmada tam metin görülmedi, bu yüzden rakamlar ve bazı ayrıntılar yumuşak verildi. Sahneler, defter ve mektup dramatizasyondur; hayvanlara zarar gösterilmedi. Seslendirme yapay zekâ ile yapıldı.
 - **Hashtag:** #tarih #ikincidünyasavaşı #yarasa #bilinmeyentarih #savaştarihi
 - EN: `senaryo-en.md`.
 
 ## 9. Doğruluk kararları
 - "Pearl Harbor'dan bir ay sonra": [AFA] Ocak 1942 (O); gün verilmedi.
 - Eleanor Roosevelt çıkarıldı; "ikna etti" kanıtsız.
-- FDR notu "kaçık değil" ekranda "kabaca", anlatımda yalnız "işe baktırdı".
+- FDR notu ekranda "Bu adam kaçık değil." (söz teyitli, ikincil: Duffin + Atlantic dipnotu), anlatımda yalnız "işe baktırdı".
 - Fieser: "napalm'i geliştiren" (Y). Mart 1943 katılım tarihi kullanılmadı (T).
 - "bin kadar": ekran "~1.000"; gram, 15 saat, 17,5 g kullanılmadı.
 - Soğutma ısısı (≈5 °C) kullanılmadı.
-- Carlsbad tarihi 15 Mayıs 1943 (Y). "Yeni üs" ve "yakıt tankı altına tünme" (Y). Kule/kışla/hangar çizilmiyor.
-- General arabası: yalnız ekranda, "anlatılana göre" (orta/düşük). Çıkarılabilir.
+- Carlsbad tarihi 15 Mayıs 1943 (Y). "Yardımcı hava üssü" (K1); "yeni üs/yeni binalar" kaynaksız, çıkarıldı. "Yakıt tankı altına tünme" TEK dipnot (Silverman s.122); tankın yandığı iddia edilmiyor. Kule/kışla/hangar çizilmiyor.
+- Ne yandı: ekranda "test sahası"; hangar/kışla/generalin arabası Couffer s.233 (orta), "anlatılana göre". Çıkarılabilir.
 - Kaza nedeni anlatılmıyor; kaynakta yok.
-- Dugway: yer (Y), tarih yok; "etkili" gözlemci (O).
+- P07 engeli: "nereye tüneceğine yarasa kendi karar verir" = K1/K3 tüneme davranışından çıkarım; uyanma-zamanı iddiası kaynaksız olduğu için kaldırıldı.
+- Dugway: yer ve 1943 köy yapımı (K4); yarasa testi Wikipedia'da "citation needed" → yalnız "anlatılana göre"; "etkili" sözü ve "1944" kullanılmıyor.
 - Maliyet: ekranda "söylenir" (T).
 - King: "geç hazır olacağı için" ve ekran "en erken 1945 ortası". Atom bombası ekranda yazılmadı (yer yok); istenirse P11 ekranına eklenir.
 - Yangın saati doğrulanamadı: geç ikindi varsayımı.
@@ -264,4 +282,4 @@ Sıkışırsa kısaltma sırası: P11 "Yine de proje sürdü." → "Sonunda Amir
 6. **Atom bombası** ekranda yer almadı, açıklama metnine de eklenmedi (kaynak: Atlas Obscura + King, orta güven). İstenirse P11 ekranına konabilir.
 7. **Replik yok**, bu bölümde tek ses (anlatım).
 
-Dokunuş sütunu yok (sahibi yaratıcı yönetmen). Adaylar: P03 kalemin duraklaması (alev önce çizilmeden), P06–P07 tepsideki tek kıpırdayan göz, P08 mağara spiralinin üs üstünde ayna olması, P09 tank altı push-in ve sessizlik, P11 mühür.
+Dokunuş sütunu yok (sahibi yaratıcı yönetmen). Adaylar: P03 kalemin duraklaması (alev önce çizilmeden), P06–P07 tepsideki tek kıpırdayan bölme, P08 defter spiralinin üs üstünde ayna olması, P09 tank altı push-in ve sessizlik, P11 mühür.
