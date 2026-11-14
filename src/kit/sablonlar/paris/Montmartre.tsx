@@ -267,8 +267,31 @@ const dagronPoz = (f: number, A: Ar): Poz & { yerde: [boolean, boolean]; keys: n
   if (i === 0) { const tt = t01(f, keys[0] + 6, keys[1], INOUT); o.ayak[0] = lerp3(k0.ayak[0], DG_RIM, tt); o.ayak[0][1] += 0.3 * Math.sin(Math.PI * tt); o.ayak[0][0] -= 0.12 * Math.sin(Math.PI * tt); o.diz[0] = lerp3(k0.diz[0], k1.diz[0], Math.sqrt(tt)); }
   if (i === 1) { const g0 = k1.ayak[1], g1 = k2.ayak[1], ff = t * t, hh = 1 - (1 - t) * (1 - t); o.ayak[1] = [lerp(g0[0], g1[0], ff), lerp(g0[1], g1[1], hh) + 0.15 * Math.sin(Math.PI * t), lerp(g0[2], g1[2], ff)]; o.diz[1] = [lerp(k1.diz[1][0], k2.diz[1][0], Math.sqrt(t)), lerp(k1.diz[1][1], k2.diz[1][1], Math.sqrt(t)), lerp(k1.diz[1][2], k2.diz[1][2], Math.sqrt(t))]; }
   // tutunan el: f bas → bas+6 halata uzanır, sonra halattaki noktada sabit (el halatı izlemez, halat eli değil: tutuş)
+  // M2 (T eleştirisi): gövde eğimi ≤ 25° — kalça ortası → boyun vektörünün yatay bileşeni dikeyin tan 25°'sini aşarsa üst gövde
+  // noktaları (boyun, baş, omuzlar, dirsekler, serbest el) kalça ortasına doğru orantılı çekilir (tutunan el halatta kalır)
+  {
+    const hm: V3 = [(o.kalca[0][0] + o.kalca[1][0]) / 2, (o.kalca[0][1] + o.kalca[1][1]) / 2, (o.kalca[0][2] + o.kalca[1][2]) / 2];
+    const dx = o.boyun[0] - hm[0], dz = o.boyun[2] - hm[2], dy = o.boyun[1] - hm[1], yat = Math.hypot(dx, dz), tav = Math.tan((10 * Math.PI) / 180) * Math.max(0.1, dy); // dünya 10° → ekranda ≤ ~25° (alçak kamera izdüşümü eğimi büyütür)
+    if (yat > tav) {
+      const kc = tav / yat;
+      const ck = (v: V3): V3 => { const r = (v[1] - hm[1]) / Math.max(0.1, dy); return [v[0] - dx * (1 - kc) * r, v[1], v[2] - dz * (1 - kc) * r]; };
+      o.boyun = ck(o.boyun); o.bas = ck(o.bas); o.omuz = [ck(o.omuz[0]), ck(o.omuz[1])]; o.dirsek = [ck(o.dirsek[0]), ck(o.dirsek[1])]; o.el[1] = ck(o.el[1]);
+    }
+  }
+  // M2: tutunan el f bas → bas+6 halata DIŞARIDAN-AŞAĞIDAN uzanır (Bezier ara noktası omuzun 0.55 m solunda, h 1.2): şapka siperinin
+  // üstünden geçmez; sonra halattaki noktada sabit (tutuş). Dirsek ara noktayla birlikte dışarıda kalır.
   const kav = A.bas + 6;
-  o.el[0] = f < kav ? lerp3(k0.el[0], DG_EL, t01(f, A.bas, kav, GIRIS)) : lerp3(DG_EL, DG_EL_KAP, t01(f, keys[2], A.bit, INOUT));
+  if (f < kav) {
+    const u = t01(f, A.bas, kav, GIRIS), c: V3 = W(S, -0.55, 1.2, 0.02), a0 = k0.el[0], v = 1 - u;
+    o.el[0] = [v * v * a0[0] + 2 * v * u * c[0] + u * u * DG_EL[0], v * v * a0[1] + 2 * v * u * c[1] + u * u * DG_EL[1], v * v * a0[2] + 2 * v * u * c[2] + u * u * DG_EL[2]];
+    o.dirsek[0] = lerp3(o.dirsek[0], W(S, -0.42, 1.12, 0.02), Math.sin(Math.PI * u) * 0.8);
+  } else o.el[0] = lerp3(DG_EL, DG_EL_KAP, t01(f, keys[2], A.bit, INOUT));
+  // M2: tutunan kolun dirseği el ile omuz arasının DIŞINDA ve elin ALTINDA (kol halata aşağıdan uzanır; yatay "selam" kolu oluşmaz)
+  if (f >= A.bas) {
+    const om = o.omuz[0], el = o.el[0], w = t01(f, A.bas, kav, GIRIS);
+    const alt: V3 = [(om[0] + el[0]) / 2 + DG_A[0] * -0.16, Math.min(om[1], el[1]) - 0.2, (om[2] + el[2]) / 2 + DG_A[1] * -0.16];
+    o.dirsek[0] = lerp3(o.dirsek[0], alt, w);
+  }
   return { ...o, yerde: [o.ayak[0][1] < 0.03, o.ayak[1][1] < 0.03], keys };
 };
 const yukleyiciPoz = (X: number, Z: number, H: number, el: [V3, V3] | null): Poz => {

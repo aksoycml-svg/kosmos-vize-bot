@@ -430,7 +430,7 @@
    "kontrol_kare_ek": [
     250
    ],
-   "lint": {"izin": [], "not": "harita turu, render motion sonrası"},
+   "lint": {"izin": [], "not": "harita turu render edildi (kalibrasyon/H, motion 2026-11-14)"},
    "harita_etiket": "yok (paris-cevre: etiket yok, §5H.7)",
    "hareket_seridi": [{"bas": 120, "bit": 190, "adim": 4, "not": "halka kapanış + kopma"}],
    "alt_ucte_bir": "halkanın alt yayı (y ≈1330) + Fransa parşömeni; kalabalık dolumunda halka içi siluetler",
@@ -787,7 +787,7 @@
     "izin": [
      "olu_alan_gecici"
     ],
-    "not": "P03 f0–45 balon şişmeden önce sağ üst gök, kullanıcı varsayılanı tur-9. Harita turu (B yarı): render motion sonrası."
+    "not": "P03 f0–45 balon şişmeden önce sağ üst gök, kullanıcı varsayılanı tur-9. Harita turu (B yarı) render edildi (kalibrasyon/H)."
    }
   },
   {
@@ -1079,7 +1079,7 @@
    "kontrol_kare_ek": [
     206
    ],
-   "lint": {"izin": [], "not": "harita turu, render motion sonrası"},
+   "lint": {"izin": [], "not": "harita turu render edildi (kalibrasyon/H, motion 2026-11-14)"},
    "harita_etiket": "yok (paris-cevre)",
    "alt_ucte_bir": "kafes: sepet hasırı ve uzak tarla zemini (y 1250-1500); harita: Fransa güneyi",
    "kit_eksik": [
@@ -1894,7 +1894,7 @@
     "izin": [
      "guvenli_alt_gecici"
     ],
-    "not": "P06b açılış, sepet tabanı alt bant, temas yok — tur-13. B2, harita turu (P06a), render motion sonrası; P06b H2.9 kamera (cy +160 açılış, cx 40-50 biniş) ve Daguerre X 8.4 şablon koduna işlenmeden render edilmedi."
+    "not": "P06b açılış, sepet tabanı alt bant, temas yok — tur-13. B2; harita turu (P06a) render edildi (kalibrasyon/H); P06b H2.9 kamera (cy +160 açılış, cx 40-50 biniş) ve Daguerre X 8.4 şablon koduna işlenmeden render edilmedi."
    }
   },
   {
@@ -2469,7 +2469,7 @@
     164
    ],
    "hareket_seridi": [{"bas": 50, "bit": 92, "adim": 4, "not": "iniş + yatık sepet"}],
-   "lint": {"izin": [], "not": "harita turu, render motion sonrası"},
+   "lint": {"izin": [], "not": "harita turu render edildi (kalibrasyon/H, motion 2026-11-14)"},
    "alt_ucte_bir": "harita: Fransa merkezi/güneybatı, kesikli kaçış çizgisi ve Tours işareti (y 1250-1500)",
    "kit_eksik": [
     "KE-PK-H4",
@@ -3579,7 +3579,7 @@
     }
    ],
    "lint": {
-    "not": "v2 kamera + harita turu (P11a), render motion sonrası",
+    "not": "v2 kamera + harita turu (P11a) render edildi (kalibrasyon/H)",
     "izin": []
    }
   }

@@ -149,7 +149,10 @@ const memurKafa = (x: number, tepe: number, B: number, tip: BasTip, egim: number
   return { kafa, sac, tf, w, h, cx, cy, yanEg, boyunY, merkez: [cx, cy] as P };
 };
 
-const MemurArka: React.FC<{ x: number; tepe: number; B: number; tip: BasTip; egim: number; isik: number; uid: string; omuzY: number; sadece?: "govde" | "bas" }> = ({ x, tepe, B, tip, egim, isik, uid, omuzY, sadece }) => {
+const M3_PALTO = "#3d414c"; // M1: memur-1/2 (#2c2f36) sırtından bir ton açık — 360'ta koyu duvardan ayrışır
+const MemurArka: React.FC<{ x: number; tepe: number; B: number; tip: BasTip; egim: number; isik: number; uid: string; omuzY: number; sadece?: "govde" | "bas";
+  // M1 (T eleştirisi): renk = palto dolgusu (memur-3 bir ton açık), kenar = lantern tarafı (sol) omuz/sırt kenar ışığı alfa
+  renk?: string; kenar?: number }> = ({ x, tepe, B, tip, egim, isik, uid, omuzY, sadece, renk = LP.memur, kenar = 0 }) => {
   const { kafa, sac, w, h, cx, cy, yanEg, boyunY } = memurKafa(x, tepe, B, tip, egim);
   const ow = (tip === "kel" ? 2.2 : 1.95) * B / 2;
   const govde = `M${cx - w * 0.24} ${boyunY - 6} C${cx - w * 0.3} ${omuzY - 14} ${cx - ow * 0.7} ${omuzY - 4} ${cx - ow} ${omuzY + 0.18 * ow} L${cx - ow * 1.1} ${omuzY + 2.4 * B} L${cx + ow * 1.1} ${omuzY + 2.4 * B} L${cx + ow} ${omuzY + 0.18 * ow} C${cx + ow * 0.7} ${omuzY - 4} ${cx + w * 0.3} ${omuzY - 14} ${cx + w * 0.24} ${boyunY - 6} Z`;
@@ -158,10 +161,14 @@ const MemurArka: React.FC<{ x: number; tepe: number; B: number; tip: BasTip; egi
   return (
     <g transform={`rotate(${yanEg} ${cx} ${boyunY})`}>
       <defs><clipPath id={`${uid}k`}><path d={kafa} /></clipPath></defs>
-      {govdeVar && <path d={govde} fill={LP.memur} stroke={LP.memurKontur} strokeWidth={kw} strokeLinejoin="round" />}
+      {govdeVar && <path d={govde} fill={renk} stroke={LP.memurKontur} strokeWidth={kw} strokeLinejoin="round" />}
+      {govdeVar && kenar > 0 && <g>
+        <defs><clipPath id={`${uid}ks`}><rect x={cx - ow * 1.3} y={boyunY - 20} width={ow * 0.95} height={3 * B + 80} /></clipPath></defs>
+        <path d={govde} fill="none" stroke={LP.kenarSoguk} strokeWidth={3} strokeLinejoin="round" opacity={kenar} clipPath={`url(#${uid}ks)`} transform="translate(2,1)" />
+      </g>}
       {/* yaka */}
-      {!govdeVar ? null : tip === "ayrik" ? <path d={`M${cx - w * 0.36} ${boyunY + 2} L${cx - w * 0.3} ${boyunY - 0.16 * B} L${cx + w * 0.3} ${boyunY - 0.16 * B} L${cx + w * 0.36} ${boyunY + 2} Z`} fill={LP.memur} stroke={LP.memurKontur} strokeWidth={kw} />
-        : <path d={`M${cx - w * 0.5} ${boyunY + 6} Q${cx} ${boyunY - (tip === "kel" ? 0.02 : 0.12) * B} ${cx + w * 0.5} ${boyunY + 6} L${cx + w * 0.62} ${boyunY + 0.14 * B} Q${cx} ${boyunY + 0.02 * B} ${cx - w * 0.62} ${boyunY + 0.14 * B} Z`} fill={LP.memur} stroke={LP.memurKontur} strokeWidth={kw} />}
+      {!govdeVar ? null : tip === "ayrik" ? <path d={`M${cx - w * 0.36} ${boyunY + 2} L${cx - w * 0.3} ${boyunY - 0.16 * B} L${cx + w * 0.3} ${boyunY - 0.16 * B} L${cx + w * 0.36} ${boyunY + 2} Z`} fill={renk} stroke={LP.memurKontur} strokeWidth={kw} />
+        : <path d={`M${cx - w * 0.5} ${boyunY + 6} Q${cx} ${boyunY - (tip === "kel" ? 0.02 : 0.12) * B} ${cx + w * 0.5} ${boyunY + 6} L${cx + w * 0.62} ${boyunY + 0.14 * B} Q${cx} ${boyunY + 0.02 * B} ${cx - w * 0.62} ${boyunY + 0.14 * B} Z`} fill={renk} stroke={LP.memurKontur} strokeWidth={kw} />}
       {basVar && <g transform={`rotate(${egim * 0.25} ${cx} ${boyunY})`}>
         <path d={kafa} fill={tip === "kel" ? LP.kelTen : LP.sacK} stroke={LP.memurKontur} strokeWidth={kw} />
         <g clipPath={`url(#${uid}k)`}>
@@ -355,10 +362,10 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
           const alt: P = [m3m.x + s * ow3 * 0.4 + sal + 40 * kalkT, 1960];
           return <polygon key={`bc${s}`} points={pt([[ust[0] - 52, ust[1]], [ust[0] + 52, ust[1]], [alt[0] + 40, alt[1]], [alt[0] - 40, alt[1]]])} fill="#24262c" stroke={LP.memurKontur} strokeWidth={2.5} />;
         })}
-        {m3m.egil > 0 && <ellipse cx={m3m.x + 8 * kalkT} cy={m3m.pivotY + 10} rx={ow3 * 0.98} ry={56} fill={LP.memur} stroke={LP.memurKontur} strokeWidth={2.5} />}
+        {m3m.egil > 0 && <ellipse cx={m3m.x + 8 * kalkT} cy={m3m.pivotY + 10} rx={ow3 * 0.98} ry={56} fill={M3_PALTO} stroke={LP.memurKontur} strokeWidth={2.5} />}
         <defs><clipPath id={`${uid}m3k`}><rect x={-400} y={-400} width={2400} height={m3m.egil > 0 ? m3m.pivotY + 400 + 12 : 2800} /></clipPath></defs>
         <g transform={`rotate(${m3m.egil} ${m3m.x} ${m3m.pivotY})`}><g clipPath={`url(#${uid}m3k)`}>
-          <MemurArka x={m3m.x} tepe={m3m.tepe} B={m3m.B} tip={m3m.tip} egim={m3m.egim} isik={memurIsik} uid={`${uid}m3`} omuzY={m3m.omuzY} sadece="govde" />
+          <MemurArka x={m3m.x} tepe={m3m.tepe} B={m3m.B} tip={m3m.tip} egim={m3m.egim} isik={memurIsik} uid={`${uid}m3`} omuzY={m3m.omuzY} sadece="govde" renk={M3_PALTO} kenar={0.85} />
         </g></g>
       </g>}
       {/* sandalye arkalıkları (memur-3'ünki yerinde kalır: memur yana kayarak çıkar, sandalye itilmez) */}
@@ -382,7 +389,10 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
         const zw = 49, zh = 34;
         const elAci = Math.atan2(zc[1] - solBilek[1], zc[0] - solBilek[0]) * 180 / Math.PI;
         return <g>
-          <path d={kol.d} fill={LP.memur} stroke={LP.memurKontur} strokeWidth={2.5} strokeLinejoin="round" />
+          <path d={kol.d} fill={M3_PALTO} stroke={LP.memurKontur} strokeWidth={2.5} strokeLinejoin="round" />
+          {/* M1: lantern tarafı (sol/üst) kol kenar ışığı — zarfı tutan kol koyu duvardan ayrışır */}
+          <path d={kol.d} fill="none" stroke={LP.kenarSoguk} strokeWidth={3} opacity={0.75} transform="translate(-2,-1)" strokeDasharray="0" clipPath={`url(#${uid}kolK)`} />
+          <defs><clipPath id={`${uid}kolK`}><polygon points={pt([[solOmuz[0] - 200, solOmuz[1] - 200], [solOmuz[0] + 60, solOmuz[1] - 200], [solBilek[0] + 10, solBilek[1] + 40], [solBilek[0] - 200, solBilek[1] + 200]])} /></clipPath></defs>
           <GravurEl bilek={kol.ileri(2)} aci={elAci} E={70} poz={GRAVUR_POZ.kistir} isik={[-0.6, -0.8]} taramaAci={78} palet={ODA_EL} katman="arka" />
           <polygon points={pt([zr(-zw, -zh), zr(zw, -zh), zr(zw, zh), zr(-zw, zh)])} fill={LP.zarf} stroke={LP.memurKontur} strokeWidth={2.5} strokeLinejoin="round" />
           <polyline points={pt([zr(-zw, -zh), zr(0, 4), zr(zw, -zh)])} stroke={LP.zarfCizgi} strokeWidth={2} fill="none" />

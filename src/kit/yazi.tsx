@@ -114,6 +114,11 @@ export const KitReplik: React.FC<{ metin: string; kim?: string; vurgu?: string[]
 // Ekran koordinatı çağıranda (görüntüyle aynı kamera fonksiyonu: ekranNokta) hesaplanır. t: giriş/çıkış 0–1.
 export const HARITA_FIS = { px: 30, harf: 0.6 + 0.08, padY: 8, padX: 14, kenar: 1.5 } as const;
 export const haritaFisBoyut = (metin: string) => ({ w: metin.length * HARITA_FIS.harf * HARITA_FIS.px + 2 * (HARITA_FIS.padX + HARITA_FIS.kenar), h: HARITA_FIS.px * 1.2 + 2 * (HARITA_FIS.padY + HARITA_FIS.kenar) });
+// §5H.7 şehir adı (yazı katmanı, dekora yapışık): Playfair 900, mürekkep; merkez ekran px, px = 40 × cs
+export const KitHaritaAdi: React.FC<{ metin: string; merkez: [number, number]; px: number; t: number; dil?: string }> = ({ metin, merkez, px, t, dil = "tr" }) => (
+  <div lang={dil} style={{ position: "absolute", left: merkez[0], top: merkez[1], transform: `translate(-50%,-50%) scale(${0.92 + 0.08 * t})`, opacity: t,
+    fontFamily: serif, fontWeight: 900, fontSize: px, lineHeight: 1, color: MUREKKEP, whiteSpace: "nowrap", letterSpacing: "0.02em" }}>{metin}</div>
+);
 export const KitHaritaEtiketi: React.FC<{ metin: string; kutu: [number, number]; nokta: [number, number]; t: number; dil?: string }> = ({ metin, kutu, nokta, t, dil = "tr" }) => {
   const { w, h } = haritaFisBoyut(metin);
   // çizgi: noktadan fişin en yakın kenar noktasına (fiş içindeyse yok)

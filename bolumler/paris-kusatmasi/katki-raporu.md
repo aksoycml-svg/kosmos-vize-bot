@@ -1338,3 +1338,50 @@
 - Aldığım kararlar ve gerekçeleri: P11 varış sırası §5H.5-N'ye göre (son varan #4 f108; M'deki "#4/#7/#11 = f62/f84/f108" ile çelişkiyi N çözer). P06 eski kontrol_kare 230 (hale) ve P11 270/190 (P11B) ek'e taşındı, kontrol kapsamı kaybolmasın. Zamanlama, metin, ses dosyaları değişmedi. Harita planlarında render yok (kod motion'da).
 - Uyguladığım kurallar / yakaladığım ihlaller: kural 2 (animasyon ≥12 kare erken biter: P04 çizgi bit 108 < kesme 122; P08 yatık sepet bit 90) sağlanıyor; kural 3 kontrol_kare her planda; kural 6 `bolum_dogrula --tam` GEÇTİ (0 hata, 0 uyarı; foley ve P01 kanat uyarıları kapandı). Kural 7: P10 f240 (memur-3 başı tabla alt kenarı ~1222'nin altında, zarf görünür; başı tabla/ayak arasında okunur) ve f84 render edildi. f84'te cx −30 yetmedi: levhayı tutan elin parmak uçları IG sütununa ~20 px giriyor → `lint.izin` (temas yuvası güvenli).
 - Açık sorular / bir sonraki ajana notlar: KURGUCU/teknisyen: `tools/paris_miks.py` içindeki `EK_TEMAS` (P06 f218 pk-halat-kavra) artık temaslar.json'da; kaldırılmazsa aynı ses iki kez çalar. MOTION: harita kodu (`harita/*` modülleri, `rota_ciz.q0`, `rota_segment_stil`, `svg_etiket`, `etiket_katmani`, `igne.renk`) json'daki yeni alanları okumalı; render sonrası P02 f140+f250 + şerit f120–190 önce. P10 oda `kamera.cx` −30 kodda okunuyor mu f84 karesinde doğrulandı (kayma görünüyor).
+
+## motion · 2026-11-14 · Harita turu KE-PK-H1…H5 + M1/M2 (tur-17)
+- Ne yaptım:
+  - **`paris-cevre` görünümünü** kurdum (`src/kit/sablonlar/harita/`). Gravür arazi: çift kıyılı Seine/Marne ve su çizgileri, Cité, bastiyonlu sur, 16 fort, KB ışıklı tepe taraması, orman işaretleri. Hepsi seed 171 ile, kaynamaz.
+  - **Halka (H1/H2):** 22 teğet çubuk işaret, iki kollu kıskaç (f8'den her 4 karede, 26 karelik radyal kayma, oturma ezilmesi). Yaylar mürekkeple çiziliyor. Son işaret telin üstünde kayarak gelip f132'de kopma noktasına oturuyor.
+  - **Tel (H2):** direkler, 6 px sarkma. f138'de kopuyor; uçlar θ0 70° sönümle kıvrılıyor, f188'de duruyor. 3 mürekkep sıçrantısı kâğıtta kalıyor.
+  - **Kalabalık (F1):** 40 kâğıt siluet. f205'ten itibaren güneyden saat yönünde menteşeyle kalkıyor; ilk oturma f214, son f299.
+  - **P03B:** balon izi, 3 kayan rüzgâr çizgisi, geri okun çizilmesi ve rüzgârla süpürülmesi (kuru iz kalıyor), yazı yığınının f290 çarpması (ezilme, sekme, üst sayfa kayması, 2 zerre).
+  - **P04A:** kümes kendini çiziyor, kuş çizgisi f30–108.
+  - **P11A:** 12 kuş çizgisi: 3'ü varıyor, 9'u duruyor (kuş damlaya gömülüyor, mürekkep emiliyor). 38 film şeridi yağıyor, yığın büyüyor.
+  - **Fransa ekleri (H4):** `rota_ciz.q0`, segment stili + `gizli_segment`, iğne `murekkep`, Prusya bölgesi (düz dolgu + tik bandı), küçük Paris halkası, Tours binası + kâğıt yığını, balon inişi + yatık sepet.
+  - **Kit düzeltmeleri:** şehir adları yazı katmanına taşındı (`haritaAdlari` → `KitHaritaAdi`, §5H.7 yerleşimi, çakışmada sonraki yöne geçiyor). Tarama 2.5 px. İğne mürekkep siyahı. Hepsi parametreye bağlı.
+  - **M1:** memur-3 paltosu `#3d414c` (memur-1/2'den bir ton açık). Lantern tarafında omuz/sırt ve zarfı tutan kola soğuk kenar ışığı.
+  - **M2:** tutunan el halata dışarıdan-aşağıdan Bezier yolla gidiyor; dirsek elin altında ve dışında. Gövde eğimine dünya düzleminde 10° tavanı kondu (ekranda ≈ 15°, şerit f228–240'ta gövde dik, eklemler bağlı).
+- Dokunduğum dosyalar: src/kit/sablonlar/harita/{cizgi.ts, parisCevre.ts, ikonlar.tsx, ParisCevre.tsx} (yeni), src/kit/sablonlar/Harita.tsx, src/kit/Bolum.tsx, src/kit/yazi.tsx, src/kit/KATALOG.md, src/kit/sablonlar/paris/{LanternOda,Montmartre}.tsx, bolumler/paris-kusatmasi/bolum.json (yalnız 6 `lint.not` metni), bolumler/paris-kusatmasi/kalibrasyon/H/ (11 kare × tam/-360/-guvenli/-guvenli-360, 7 şerit, ozet.png), bu rapor.
+- Aldığım kararlar ve gerekçeleri:
+
+  | Öğe | Şartname/json | Uygulanan | Neden |
+  |---|---|---|---|
+  | rüzgâr kuyruk gecikmesi | 22 kare | ≈10–15 kare (v 28–30 px/kare, boy 280–420) | 22 kare + boy 260–420 + "f216'da sağdan çıkar" birlikte sağlanamıyor |
+  | geri ok süpürmesi | kuyruk önce | uç önce vuruluyor, kuyruk önce çıkıyor (ok büzülüyor) | rüzgâr soldan esiyor; uç solda |
+  | yatık sepet devrilmesi | f70–90 | f76 temasından sonra başlıyor, f84'te duruyor | temastan önce devrilme fiziksel değil |
+  | P11 t_dur | null'lar #4/#7/#10'da, varanlar #4/#7/#11 | 9 değer sırayla 9 varmayan çizgiye | json listesi kaymış; yönetmen düzeltsin |
+  | sur dişi | 40 diş | aralık kuralı (30–42 px) → ≈32 diş | iki şart çelişiyor; aralık okunuru belirliyor |
+  | siluet tipleri | 6 tip (kasket, etek) | SiluetFigur'un 4 kodu (yetişkin a/b, çocuk, omuzda çubuk) | kit seti "kepi/etek yok" diyor (tasarım §3.1) |
+  | P03B/P04A/P11A durumu | P11'de tel yazmıyor | kopuk tel üç planda da (`tel_kopuk`, vars. true) | kuşatma boyunca telgraf kesik; false ile kapanır. **Onay bekliyor** |
+  | P03B/P04A kalabalık | json'da yok | `kalabalik_hazir` vars. 40 (halka.kalici) | §5H.5-C "aynı harita durumu" |
+  | P08 Paris halkası / Tours binası | json'da yok | fransa görünümünde vars. hazır | §5H.5-H "kalıcı durum". **Onay bekliyor** (yönetmen json'a yazabilir) |
+  | parşömen doygunluğu | — | yalnız paris-cevre/fransa'da saturate .62 | leke C* > 32 %1.4 → %0.00 (§5H.3 notunun öngördüğü düzeltme) |
+  | noktalı segment | 4 / 12 px | dekor px (ekranda ≈ 7 / 22) | kit rotasının 5 px dekor kalınlığıyla aynı ölçek |
+
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Ölçüm: kırmızı her karede %0. Sarı metal ve C* > 32 tüm harita karelerinde %0.00 (önce %0.05–1.5). C* ortalaması harita 20.8–23.0, P10 9.9, P06b 12.9.
+  - Fade yok: işaretler kadraj dışından, siluetler menteşeyle, rüzgâr ve ok sağ kenardan, kuş damlaya gömülüyor.
+  - Temas kareleri json ile aynı (f132, f138, f214, f290, f76, f78/f164, f130).
+  - Güvenli alan: ihlal 0. P08 f84'te iğne kilidi kadraj dışında (iğne henüz düşmemiş; kit davranışı).
+  - Regresyon yok: Blanc P03 f198 (global 666), Paris P01 f24 ve P03 f80 piksel farkı 0.
+  - tsc temiz. Paris `--tam` GEÇTİ (0/0). Blanc GEÇTİ (13 eski uyarı). Evliya `--tam` önceden de GEÇMİYOR: süre 77.1 sn; Evliya'ya ve doğrulayıcıya dokunulmadı, HARITA kullanmıyor.
+  - "render motion sonrası" lint notları kaldırıldı (P02/P03/P04/P06/P08/P11; P07'deki harita dışı not duruyor).
+- Açık sorular / bir sonraki ajana notlar:
+  1. **Eleştirmen:** 360'ta bakılacaklar:
+     - P08 balon ikonu ve yatık sepet küçük (56 px ekran ≈ 19 px). Söndükten sonra "göz" biçimli bir lekeye benziyor.
+     - P10 memur-3: gövde hâlâ koyu; zarf ve kol artık açık.
+     - İç tel ucu Paris'in ortasından geçen uzun bir "baston" gibi okunabilir (şartnamedeki 220 px serbest uç + Cité'den çıkan hat).
+  2. **Yönetmen:** P11 `t_dur` null konumlarını varanlarla hizala. P08'e `paris_halka_kucuk`/`tours_ikon` istenirse açıkça yaz.
+  3. Kalabalık sırası güneyden başlıyor. f250 kontrol karesinde siluetler henüz yalnız batı yarıda; tam halka f300'de doluyor.
+  4. Öz puan 6.5. En zayıf yerler P08 ikon ölçeği ve tel ucunun okunuşu.

@@ -7,12 +7,12 @@ import { Audio } from "@remotion/media";
 import { ArsivKatmani } from "../doku/ArsivKatmani";
 import { GuvenliAlan, KilitNokta } from "../doku/GuvenliAlan";
 import { IsimEtiketi } from "../components/EkranYazisi";
-import { KitEkranYazisi, KitHaritaEtiketi, KitHaritaKart, KitReplik, KitSayac } from "./yazi";
+import { KitEkranYazisi, KitHaritaAdi, KitHaritaEtiketi, KitHaritaKart, KitReplik, KitSayac } from "./yazi";
 import { anaDil, Dil, ekranCoz, etiketCoz, haritaCoz, kartCoz, replikCoz, sayiBicim } from "./dil";
 import type { BolumJson, Plan, PlanSes } from "./tipler";
 import { altyaziAyar, altyaziBant, altyaziGruplari, altyaziVarMi, KelimeHarita, kelimeYolu, KitAltyazi, sesListesi } from "./altyazi";
 import { DarbeKatmani, donusumNokta, SahneDonusum, sahneDonusum, SahneSarmal } from "./kameraDili";
-import { haritaKamera, igneNokta } from "./sablonlar/Harita";
+import { haritaAdlari, haritaKamera, igneNokta } from "./sablonlar/Harita";
 import { SABLONLAR } from "./sablonlar";
 import { CIKIS, cl, ekranNokta, GIRIS, kameraHesapla } from "./zaman";
 import { anlatimAraliklari, FoleyKatmani, foleyYukle, miksYukle, MuzikKatmani, sesSureleri } from "./ses";
@@ -108,6 +108,11 @@ const HaritaEtiketleri: React.FC<{ ham: Plan; p: number; dil: Dil; ana: Dil; d?:
   })}</>;
 };
 
+// §5H.7 şehir adları (svg_etiket: false): Harita yerleşim kuralı → ekran; sahne dönüşümü (whip/darbe) aynen uygulanır
+const HaritaAdlari: React.FC<{ ham: Plan; p: number; d: SahneDonusum }> = ({ ham, p, d }) => (
+  <>{haritaAdlari(etkinPlan(ham, p), p).map((a, i) => <KitHaritaAdi key={i} metin={a.metin} merkez={donusumNokta(d, a.merkez)} px={a.px} t={a.t} />)}</>
+);
+
 // etiket: karakterin başının üstünde (Sahne'nin kilit listesindeki "<kim> yüz" noktasından)
 const Etiketler: React.FC<{ plan: Plan; p: number; kilit: KilitNokta[]; dil: Dil; ana: Dil }> = ({ plan, p, kilit, dil, ana }) => (
   <>
@@ -174,6 +179,7 @@ const PlanGoster: React.FC<{ plan: Plan; guvenli?: boolean; mod: BolumMod; dil: 
       {gorsel && <SahneSarmal d={d} id={ham.id}>{S.arsivAtla?.(plan, p) ? sahne : <ArsivKatmani mod={S.arsiv(plan)}>{sahne}</ArsivKatmani>}{!darbeKendi && <DarbeKatmani plan={plan} p={p} />}</SahneSarmal>}
       {kilitGerek && <div style={{ display: "none" }}>{sahne}</div>}
       {yazi && <HaritaEtiketleri ham={ham} p={p} dil={dil} ana={ana} d={d} />}
+      {yazi && <HaritaAdlari ham={ham} p={p} d={d} />}
       {yazi && <HaritaKartlari ham={ham} p={p} dil={dil} ana={ana} d={d} />}
       {yazi && <Etiketler plan={plan} p={p} kilit={kilit} dil={dil} ana={ana} />}
       {yazi && <YaziKatmani plan={ham} p={p} dil={dil} ana={ana} />}
