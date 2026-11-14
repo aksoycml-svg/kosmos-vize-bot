@@ -71,8 +71,7 @@ Elçinin kendi uşağı, onun banyodayken ya da piyano çalarken bırakıp gitti
 8. **Britanyalılar fark etti mi?** "Aralık 1943'te sızıntı fark edildi, Bazna şüpheliydi" vs. "Cicero hiç bulunamadı" vs. "MI6'nın tüm bilgisi vardı". Üçü birlikte tutarlı olabilir (sızıntı fark edildi, kişi tespit edilemedi/ciddiye alınmadı); **çift ajan iddiası için hiçbir özette kanıt çıkmadı → efsane/doğrulanamadı**.
 9. **Ölüm yılı.** 1970 (Britannica, çoğu kaynak) vs. 1971 (bir blog) → 1970 güçlü.
 10. **Berlin'in güvensizliği nedeni.** "Fazla iyi" (Ribbentrop) + Papen rekabeti + tuzak korkusu. Nedenlerin ağırlığı tarihçiler arasında tartışmalı; Ribbentrop alıntısı **tek kaynaklı**.
-11. **Bazna sahteliği ne zaman öğrendi?** Özetler tarihi net vermiyor ("savaştan sonra, otel işine girişirken" tek anlatım) → **doğrulanamadı**; kesin tarih verilmez. İlginç ayrıntı: çıkarım — Bernhard notları Almanya içinde SD tarafından da ödemelerde kullanıldı; Wires bunu kapsıyor olmalı, açılamadı.
-
+11. **Bazna sahteliği ne zaman öğrendi?** Özetler tarihi net vermiyor ("savaştan sonra, otel işine girişirken" tek anlatım) → **doğrulanamadı**; kesin tarih verilmez.
 ## 5. DÖNEM / GÖRSEL DOĞRULAMA (çizilebilirlik)
 Bu bölümde doğrulama zayıf; çoğu "doğrulanamadı → nötr".
 | Konu | Bulgu | Durum |
