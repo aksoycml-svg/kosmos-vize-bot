@@ -1471,3 +1471,23 @@
 - Kararlar: dar kümelenen kareler (iki kuş aynı kare) ayrışsın diye 0.18→0.34, 0.25→0.38 (yalnız ≥0.28 koşulunu sağlamak yetmiyordu, 3 çift kare çakışıyordu).
 - Kurallar: kural 7 (P11 f150 render edildi, kuş çizgileri güvenli alanda okunuyor), kural 6 (doğrulayıcı --tam: 0 hata, 2 uyarı = ses dosyası ve tepe_ms eksik, beklenen). Temas = ses.
 - Açık: kurgucu `pk-kagit-tik.mp3` üretip tepe_ms/sure_ms'i foley.json'a ölçüp yazacak. Kareler f≈227t−4 formülüne dayanır; Guvercin çizim koduyla birebir f ölçülmedi, kontrol: P11 f60–103 şeridi.
+
+## elestirmen · 2026-11-14 · Harita H2 son kontrol (şablon kabulü)
+- Ne yaptım:
+  - ozet ve 10 kontrol karesine baktım (tam/360).
+  - 4 şeridi taradım: P02 f120–192, P08 f50–110, P11 f20–112, P06b f216–244.
+  - P11 f100/f150, P08 f84 ve P02 f150'yi tam boyda kırparak inceledim.
+  - Raporu kalibrasyon/H2/elestiri.md'ye yazdım.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/H2/elestiri.md (yeni), bolumler/paris-kusatmasi/katki-raporu.md.
+- Aldığım kararlar ve gerekçeleri:
+  - **GEÇER, puan 7.** Tel, P08 ikonu, kuş/kümes ölçeği ve sur içi siluetler düzeltmeleri tuttu.
+  - Kalan sorunlar parametre ya da json düzeyinde: P11 yığın konumu, P08 kamera hedefi, P11 foley kararı.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Okunurluk: P11 f150'de yığın çatıdaki 3 kuşu örtüyor.
+  - Temas = ses: P11'de 9 kuş düşmesi artık görünür; foley ya da izin kararı açık.
+  - Güvenli alan: P08 Paris halkası sol kenarda kesiliyor. P11 sol bant zaten yönetmende.
+  - Fade kapandı. Kırmızı %0.
+- Açık sorular / bir sonraki ajana notlar:
+  - Orkestra: P11 düşme temasları için foley mi, `lint.izin` mi?
+  - Motion: P11 yığın konumu ya da z sırası; P08 sönme 10–12 kare; tel kalabalığın altına alınsın.
+  - Yönetmen: P08 push-in hedefi x≈540 ya da cs 2.2; P04 kontrol_kare; P11 t_dur.
