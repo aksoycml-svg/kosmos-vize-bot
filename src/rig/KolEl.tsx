@@ -25,7 +25,7 @@ export const KOL_PALET: Record<KolTip, KolPalet> = {
   // Paris kuşatması (tasarim §3.3): memur/okuyan eli — kömür-gri manşet, düğme/metal YOK (sarı metal yasağı), ten Dagron'dan ayrışır
   // v2 (tasarım §13.8): ten ışık #d6b49c / gölge #8f7360 (C* ≤ 28, kılıfa ΔE ≥ 15), manşet kömür-gri
   // v4 (V3 eleştirisi: el sırtında "yara izi" gibi açık çapraz çizgiler): lavanta damar çizgisi yok, tendonlar ince ve soluk
-  parisGri: { kol: "#34363d", kolIsik: "#4b4e57", kolGolge: "#222329", manset: "#5d5f63", mansetKir: "#46484c", ten: "#d6b49c", tenGolge: "#8f7360", elSirt: { tendonAlfa: 0.28, tendonKalin: 0.9, damar: false } },
+  parisGri: { kol: "#34363d", kolIsik: "#4b4e57", kolGolge: "#222329", manset: "#5d5f63", mansetKir: "#46484c", ten: "#d6b49c", tenGolge: "#8f7360", elSirt: { tendonAlfa: 0.12, tendonKalin: 0.8, damar: false } }, // T #27: tendon α .28 → .12 (P10 el sırtı)
   // Paris kuşatması C turu (mekanlar §3v2.9, tasarım §3.2): Dagron eli — koyu sepya manşet, DÜĞME/METAL YOK (parisManset'teki altın düğme
   // sarı metal yasağına aykırı), palto kolu §14.2 dagronIsik. Ten #c9a58a / gölge #8e6a52. Damar yok, tendon soluk (V4 dersi).
   dagronSepya: { kol: "#5a5068", kolIsik: "#7a6f86", kolGolge: "#3a3550", manset: "#4a3a2c", mansetKir: "#2e2318", ten: "#c9a58a", tenGolge: "#8e6a52", elSirt: { tendonAlfa: 0.26, tendonKalin: 0.9, damar: false } },

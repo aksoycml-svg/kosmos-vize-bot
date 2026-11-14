@@ -439,7 +439,9 @@ const MasaParis: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
     if (p >= gel && p <= elCek.bit) {
       const d: [number, number] = [Math.cos(sm.phi), Math.sin(sm.phi)], n: [number, number] = [-d[1], d[0]];
       // C2 (§15.1.5): sol el masaya yatık, işaret parmağı şeridin SOL yanında ona paralel (başparmak şerit tarafında, V'de şerit); uç Paris ucuna 0.04 E yakın
-      const tip: V3 = [sm.C[0] + d[0] * (seritL / 2 - 0.006) + n[0] * 0.034, sm.C[1] + d[1] * (seritL / 2 - 0.006) + n[1] * 0.034, 0.008];
+      // T (KE-PK-O3): yan ofset json `nesneler.parmak.yan_ofset_m` (0.055): parmak kenarı şeride değmez, şerit elin altına girmez
+      const yo = ((nes.parmak as { yan_ofset_m?: number } | undefined)?.yan_ofset_m) ?? 0.055;
+      const tip: V3 = [sm.C[0] + d[0] * (seritL / 2 - 0.006) + n[0] * yo, sm.C[1] + d[1] * (seritL / 2 - 0.006) + n[1] * yo, 0.008];
       const nefes = 0.0008 * Math.sin((p - otur) / 9);
       const u = yol([gel, otur, elCek.bas, elCek.bit], [[-0.3, 0.02, 0.06], tip, [tip[0], tip[1] + nefes, tip[2]], [-0.36, 0.05, 0.08]], p) as V3;
       const tipE = mp(...tip), arkaE = mp(tip[0] - d[0] * 0.07, tip[1] - d[1] * 0.07, tip[2]);
@@ -527,7 +529,7 @@ const MasaTours: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
   const tOtur = temas.find((q) => q >= yer.bas && q <= yer.bit) ?? 34, tCek = temas.find((q) => q >= den.bas && q <= den.bit) ?? 118;
   // kuş: avuçta, gövde yatay, kuyruk sola; kılıf merkezi K0 (dekor) — giriş sağdan, çıkış sağ-üste
   const olc = 139 / KILIF.L; // dekor px/mm: cs 2.0'da kılıf 278 px (mekanlar §3v2.8)
-  const tutus: KusPoz = { ...KUS_POZ["tunek"], govde: 6, kuyruk: 0.18, kuyrukAci: -4, bacak: 0.05 };
+  const tutus: KusPoz = { ...KUS_POZ["tunek"], govde: 6, kuyruk: 0, kuyrukAci: -4, bacak: 0.05 }; // T #13: kuyruk kapalı (yandan görünüş; yelpaze üstten okunuyordu)
   const cekis = p > tCek - 4 && p < tCek + 12 ? Math.sin(((p - tCek + 4) / 16) * Math.PI) : 0;
   let capa: P = [K0[0] + 760 * (1 - t01(p, gir.bas, gir.bit, GIRIS)) - 5 * cekis, K0[1] + 40 * (1 - t01(p, gir.bas, gir.bit, GIRIS)) + 3 * cekis];
   let poz = tutus;
@@ -559,14 +561,15 @@ const MasaTours: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
   const pxmEl = 2150; // kılıf derinliği (z ≈ 0.55 m) yerel px/m
   const kOfs: P = [yerel([0, 6])[0] - yerel([0, 0])[0], yerel([0, 6])[1] - yerel([0, 0])[1]];
   const kMerkez: P = solPinch ? [solPinch[0] - kOfs[0], solPinch[1] - kOfs[1]] : yerel([0, 0]);
-  const kilifCiz = <g transform={`translate(${kMerkez[0]} ${kMerkez[1]}) rotate(${kilifAci}) scale(${olc})`}><Kilif olcek={olc} coz={1} ipUc={[24, 30]} /></g>;
+  const kilifCiz = <g transform={`translate(${kMerkez[0]} ${kMerkez[1]}) rotate(${kilifAci}) scale(${olc})`}><Kilif olcek={olc} coz={1} ipUc={[24, 30]} ipStil="koyu" /></g>;
   const coz = p < ip.bas ? 1 : p < ip.bit ? 1 - t01(p, ip.bas, ip.bit, INOUT) : 0;
   const ipUcEkran: P | undefined = solPinch && p >= tOtur && p < den.bas ? solPinch : undefined;
   const parilti = p >= par.bas && p <= par.bit ? -1 + 2 * t01(p, par.bas, par.bit) : null;
   const kusVar = capa[0] < 1900;
   // sağ el: kuşun gövdesini alttan kavrar (avuç), salmada açılır ve aşağı çekilir
   const karin = Y.ekran([-46, 40]);
-  const sagUc: P = p < sal.bas ? karin : (() => { const t = t01(p, sal.bas, sal.bit + 10, CIKIS), k0 = kusYerlesim(tutus, [K0[0], K0[1]], olc).ekran([-46, 40]); return [k0[0] + 120 * t, k0[1] + 260 * t]; })();
+  // T #13: el kuşu TAŞIR — avuç karnın altında, parmaklar gövdenin yakın yüzüne kıvrılır (karın çizgisinin ~50 px üstüne biner)
+  const sagUc: P = p < sal.bas ? [karin[0] + 10, karin[1] - 48] : (() => { const t = t01(p, sal.bas, sal.bit + 10, CIKIS), k0 = kusYerlesim(tutus, [K0[0], K0[1]], olc).ekran([-46, 40]); return [k0[0] + 10 + 120 * t, k0[1] - 48 + 260 * t]; })();
   const solEl: ElDurum | null = solPinch ? { uc: solPinch, aci: -38, kolAci: -52, pxm: pxmEl, poz: p < tOtur ? "kistir" : "kistirSiki" } : null;
   const golgeD: P = [46, -30]; // el/kuş yüksekliği ≈ 5 cm → gölge sağ-yukarı (ekranda (+0.84, −0.55))
   // gölgeler: kuş (gövde lekesi) + eller

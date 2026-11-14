@@ -141,7 +141,22 @@ export const FigurSiluet: React.FC<{
       {tar && <g mask={`url(#${id}m)`}><g transform={`rotate(${bAci} ${N[0]} ${N[1]})`}>{Array.from({ length: Math.ceil(m(0.3) / 6) }, (_, j) => { const x0 = N[0] + (tarama === "sag" ? 1 : -1) * (m(0.02) + j * 6) - m(0.08); return <line key={j} x1={x0 - m(0.07)} y1={N[1] - m(0.3)} x2={x0 + m(0.4)} y2={N[1] + m(1.9)} stroke="#2f2d46" strokeWidth={2} />; })}</g></g>}
       {kenar && <rect x={-3000} y={-3000} width={8000} height={8000} fill={kenar.renk} mask={`url(#${id}k)`} />}
       {/* öne kalkan bacak (biniş adımı): gövdenin ÖNÜNDE kendi konturuyla — siluette kaybolmasın */}
-      {onBacak !== undefined && K.bacak && (() => { const i = onBacak, uy = uzuv(e.kalca[i], e.diz[i], m(0.15), m(0.115)), al = uzuv(e.diz[i], e.ayak[i], m(0.11), m(0.085)); const ay = <ellipse cx={e.ayak[i][0] + m(0.015)} cy={e.ayak[i][1] - m(0.035)} rx={m(0.072)} ry={m(0.04)} />; return <g><g fill={kontur} stroke={kontur} strokeWidth={kw * 2} strokeLinejoin="round"><path d={uy} /><path d={al} />{ay}</g><g fill={karisR(renk, "#9a92ae", 0.12)}><path d={uy} /><path d={al} />{ay}</g><path d={`M${e.diz[i][0] - m(0.05)} ${e.diz[i][1] - m(0.02)}Q${e.diz[i][0]} ${e.diz[i][1] + m(0.03)} ${e.diz[i][0] + m(0.05)} ${e.diz[i][1] - m(0.02)}`} fill="none" stroke={cizgiR} strokeWidth={ic} /></g>; })()}
+      {onBacak !== undefined && K.bacak && (() => {
+        // T #17 (B3 #2): pantolon paltodan bir ton KOYU; uyluk/baldır iki ton (baldır gölgede) + diz kırığı; bot ayrı koyu biçim (taban + topuk)
+        const i = onBacak, uy = uzuv(e.kalca[i], e.diz[i], m(0.15), m(0.12)), al = uzuv(e.diz[i], e.ayak[i], m(0.115), m(0.085));
+        const kd = e.diz[i], ay = e.ayak[i], dx = ay[0] - kd[0], dy = ay[1] - kd[1], L = Math.hypot(dx, dy) || 1, u: P = [dx / L, dy / L], n: P = [-u[1], u[0]];
+        const yon = n[0] < 0 ? -1 : 1; // burun, baldıra dik ve ekranda sola (duvara) bakar
+        const q = (a: number, b: number): P => [ay[0] + u[0] * a + n[0] * b * yon, ay[1] + u[1] * a + n[1] * b * yon];
+        const bot = [q(-m(0.06), -m(0.05)), q(-m(0.06), m(0.05)), q(m(0.01), m(0.16)), q(m(0.05), m(0.15)), q(m(0.05), -m(0.06))].map((v) => `${v[0].toFixed(1)},${v[1].toFixed(1)}`).join(" ");
+        const pant = karisR(renk, "#2a2638", 0.3), pantG = karisR(renk, "#2a2638", 0.45);
+        return <g>
+          <g fill={kontur} stroke={kontur} strokeWidth={kw * 2} strokeLinejoin="round"><path d={uy} /><path d={al} /><polygon points={bot} /></g>
+          <path d={al} fill={pantG} /><path d={uy} fill={pant} />
+          <path d={`M${kd[0] - m(0.06)} ${kd[1] - m(0.03)}Q${kd[0]} ${kd[1] + m(0.045)} ${kd[0] + m(0.06)} ${kd[1] - m(0.03)}`} fill="none" stroke={kontur} strokeWidth={Math.max(2, ic * 1.5)} />
+          <polygon points={bot} fill="#2a2430" />
+          <line x1={q(m(0.05), -m(0.06))[0]} y1={q(m(0.05), -m(0.06))[1]} x2={q(m(0.05), m(0.15))[0]} y2={q(m(0.05), m(0.15))[1]} stroke="#6a5a52" strokeWidth={Math.max(1.5, ic)} />
+        </g>;
+      })()}
       {elCiz}
     </g>
   );

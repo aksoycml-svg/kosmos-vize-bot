@@ -1,7 +1,7 @@
 // ===== PARIS-CATI v2 dekor modülleri (mekanlar.md §1v2, tasarim.md §13) — Haussmann SONRASI Paris çatısı, 1870 =====
 // Tek dekor, tek doğrusal dolly (dolly.ts). Uzak katmanlar (gök, hale, K1–K4) DEKOR px (cs 1) + katman eşleyicisi L(d);
 // yakın katmanlar (teras, kümes, sağ baca, tekne) DÜNYA modeli (X sağ, h teras üstü, Z geniş kameradan ileri; m) → dunyaEkran.
-// Kemer yok (düz lento), panjur/fener/yarı ahşap yok, korniş kesintisiz; anıt: yalnız Panthéon (haçsız, yaldızsız).
+// Kemer yok (düz lento), panjur/fener/yarı ahşap yok, korniş kesintisiz; anıt: yalnız Panthéon (küçük haç, yaldızsız).
 // Gök: 5 düz basamak + litografi geçişi (ince yatay çizgi + tane), yumuşak gradyan YOK. Güneş diski YOK, yalnız hale (tur-5).
 // TEK IŞIK: `ISIK_YON[saat]` dünya vektörü → yüz tonu (isikliYuz), kenar ışığı yanı (isikSagMi), zemin gölgesi (golgeVektor) aynı kaynaktan.
 // Kılıf tekliği (tasarım §13.3): sahnede C* ≤ 28; imza kehribarı yalnız kılıfta. Kırmızı yok; sarı metal yok.
@@ -113,12 +113,13 @@ export const GokLitografi: React.FC<{ C: CatiPalet; k: KameraDurum; seed: number
   C.gok.forEach((renk, i) => parca.push(<rect key={`b${i}`} x={X0} y={sinir[i]} width={X1 - X0} height={sinir[i + 1] - sinir[i]} fill={renk} />));
   GOK_SINIR.forEach((y, i) => {
     const ust = C.gok[i];
-    for (let j = 0; j < 3; j++) parca.push(<rect key={`c${i}-${j}`} x={X0} y={y + 4 + j * 7} width={X1 - X0} height={2.5} fill={ust} opacity={0.35} />);
-    // tane (stipple) şeridi: 24 px, ø 2.5, yoğunluk .08 — seed sabit, kaynamaz
-    const n = Math.round(((X1 - X0) * 24 * 0.08) / 14);
+    // T #8/#23: geçiş çizgileri 3 → 2 ve α .35 → .2 (P10 f48'de ayrı yatay şerit izi okunuyordu); tane yoğunluğu .08 → .03, α .35 → .25 (1080'de kir)
+    for (let j = 0; j < 2; j++) parca.push(<rect key={`c${i}-${j}`} x={X0} y={y + 4 + j * 8} width={X1 - X0} height={2.5} fill={ust} opacity={0.2} />);
+    // tane (stipple) şeridi: 24 px, ø 2.5, yoğunluk .03 — seed sabit, kaynamaz
+    const n = Math.round(((X1 - X0) * 24 * 0.03) / 14);
     for (let j = 0; j < n; j++) {
       const x = X0 + rnd(seed, `gx${i}-${j}`) * (X1 - X0), yy = y + 24 + rnd(seed, `gy${i}-${j}`) ** 1.6 * 24;
-      parca.push(<circle key={`t${i}-${j}`} cx={x} cy={yy} r={1.25} fill={ust} opacity={0.35} />);
+      parca.push(<circle key={`t${i}-${j}`} cx={x} cy={yy} r={1.25} fill={ust} opacity={0.25} />);
     }
   });
   return <g transform={`translate(${k.cx} ${k.cy})`}>{parca}</g>;
@@ -133,7 +134,7 @@ export const HaleParilti: React.FC<{ C: CatiPalet; k: KameraDurum }> = ({ C, k }
   </g>
 );
 
-// ---- 1 K1 sırt (Montagne Sainte-Geneviève yükselişi) + Panthéon (×1.6 stilize; fener ucu nötr, haç yok) ----
+// ---- 1 K1 sırt (Montagne Sainte-Geneviève yükselişi) + Panthéon (×1.6 stilize; fener ucunda küçük haç — T #22) ----
 export const K1Sirt: React.FC<{ C: CatiPalet; L: Katman; seed: number; pantheon: number | false }> = ({ C, L, seed, pantheon }) => {
   const T = L.T, pts: P[] = [[-500, 1000], [-500, 617]], DY = -35; // v3: K1 sırt 615 → 562 (Panthéon yanı)
   for (let x = -500; x <= 1600; x += 22) {
@@ -165,6 +166,9 @@ export const K1Sirt: React.FC<{ C: CatiPalet; L: Katman; seed: number; pantheon:
         <path d={kubbeG} fill={C.kubbeG} />
         <polygon points={pl(fener)} fill={C.kubbe} />
         <polygon points={pl(R4(T, s(-1.5), y_(462), 3, 10))} fill={C.kubbe} />
+        {/* T #22: fener tepesinde küçük haç (1870: Panthéon kilise — 1851–1885; tur-9 varsayılanı, arastirma Ek E3 orta güven) */}
+        <polygon points={pl(R4(T, s(-1.5), y_(446), 3, 16))} fill={C.kubbeG} />
+        <polygon points={pl(R4(T, s(-5), y_(450.5), 10, 3))} fill={C.kubbeG} />
       </g>
     );
   })();
@@ -275,7 +279,7 @@ export const K4_BINALAR: SiraBina[] = [
 ];
 // v4: baca boyu 0.6–1.8 m, külah 2–8 (baca başına seed); K3b'de bacalar seyrek (ortak duvarların %35'i) ve önündeki K3'ün arkasında kalan çizilmez.
 export const SIRALAR = (C: CatiPalet): SiraT[] => {
-  const K3: SiraT = { ad: "K3", Z: 40, hK: -2.0, binalar: sira("K3", 40, -2.0, 40, null, [8, 15], [-40, 40], 2.8, 0.25), renk: C.sira.K3, kontur: 3, isikliOran: C.isikliOran > 0 ? 0.4 : 0, cephe: false, lucarne: "tam", kulah: true, bacaH: [0.6, 1.8], bacaOran: 0.7, seed: 40 };
+  const K3: SiraT = { ad: "K3", Z: 40, hK: -2.0, binalar: sira("K3", 40, -2.0, 40, null, [8, 15], [-40, 40], 2.8, 0.15 /* T #25: 0.25 → 0.15 */), renk: C.sira.K3, kontur: 3, isikliOran: C.isikliOran > 0 ? 0.4 : 0, cephe: false, lucarne: "tam", kulah: true, bacaH: [0.6, 1.8], bacaOran: 0.7, seed: 40 };
   return [
     { ad: "K3b", Z: 52, hK: -0.6, binalar: sira("K3b", 52, -0.6, 52, null, [9, 16], [-50, 50], 3, 0.3), renk: C.sira.K3b, kontur: 0, isikliOran: 0, cephe: false, lucarne: "yarim", kulah: true, bacaH: [0.6, 1.2], bacaOran: 0.35, ortu: K3, seed: 52 },
     K3,
@@ -671,7 +675,7 @@ export type KumesDunyaT = { R: [number, number]; yaw: number; en: number; derin:
   aciklik: { ic: number; w: number; h: number; esik: number }[]; tahta: { h: number; derin: number; sagTasma: number; solBit: number; kalin: number }; payanda: number; kapak: [number, number, number, number] };
 // tahta üstü 0.655 / eşik 0.67: kuş rig'inin ayak–kılıf aralığı (motion v2 raporu, tablo); açıklık-1 iç 0.08 (kılıf arkası koyu)
 export const KUMES_V2: KumesDunyaT = {
-  R: [-0.85, 8.0], yaw: 30, en: 1.0, derin: 0.8, ayak: 0.15, sacak: [1.0, 1.2], tasma: [0.1, 0.05],
+  R: [-0.85, 8.0], yaw: 30, en: 1.0, derin: 0.8, ayak: 0.15, sacak: [1.0, 1.1] /* T #24: fark 0.2 → 0.1 (devrilen kulübe okuması) */, tasma: [0.1, 0.05],
   aciklik: [{ ic: 0.08, w: 0.2, h: 0.28, esik: 0.67 }, { ic: 0.55, w: 0.2, h: 0.28, esik: 0.67 }],
   tahta: { h: 0.655, derin: 0.25, sagTasma: 0.1, solBit: 0.92, kalin: 0.028 }, payanda: 0.03, kapak: [0.18, 0.62, 0.3, 0.42],
 };

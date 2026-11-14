@@ -139,7 +139,7 @@ export const GravurEl: React.FC<{
   }
   // ---- tarama: gölge tarafında kontura bitişik kısa konik çizgiler (b.4) ----
   const buyuk = Es >= 400;
-  const butce: Record<string, number> = buyuk ? { avuc: 6, bas: 3, p0: 2, p1: 1, p2: 1, p3: 1 } : { avuc: 1, bas: 3, p0: 1, p1: 1 };
+  const butce: Record<string, number> = buyuk ? { avuc: 3, bas: 3, p0: 2, p1: 1, p2: 1, p3: 1 } /* T #11: avuç 6 → 3 (ağda tarak okunuyordu) */ : { avuc: 1, bas: 3, p0: 1, p1: 1 };
   const aralik = (buyuk ? 7 : 6) * px, w0 = (buyuk ? 2.5 : 2) * px, w1 = 0.8 * px;
   const th = (taramaAci * Math.PI) / 180, hd: P = [-Math.sin(th), Math.cos(th)];
   const cizgiler: { ad: string; q: P[] }[] = [];
@@ -190,6 +190,8 @@ export const GravurEl: React.FC<{
         <mask id={`${uid}g`} maskUnits="userSpaceOnUse" x={-4000} y={-4000} width={10000} height={10000}>
           {sec.map((p) => <path key={p.ad} d={p.d} fill="#fff" />)}
           <g transform={`translate(${lx * bant} ${ly * bant})`}>{(katman !== "on" || onMaske ? g.parca : sec).map((p) => <path key={p.ad} d={p.d} fill="#000" />)}</g>
+          {/* T #11: parmak uçlarında gölge şeridi yok (uç tonu düz; hilal "yüksük/tırnak" okunuyordu) */}
+          {katman !== "on" && g.uc.map((u, i) => <circle key={`u${i}`} cx={u[0]} cy={u[1]} r={0.075 * E} fill="#000" />)}
         </mask>
         {konturMaske && <mask id={`${uid}k`} maskUnits="userSpaceOnUse" x={-4000} y={-4000} width={10000} height={10000}>
           <rect x={-4000} y={-4000} width={10000} height={10000} fill="#fff" />

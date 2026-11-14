@@ -189,7 +189,15 @@ export const Balon: React.FC<{ b: BalonDurum }> = ({ b }) => {
       <g>{ag.filter((a) => a.d.includes("Q")).map((a, i) => <path key={`h${i}`} d={a.d} fill="none" stroke={PAL.agGolge} strokeWidth={2.2} />)}</g>
       <path d={zarfD} fill="none" stroke={PAL.konturGolge} strokeWidth={K} strokeLinejoin="round" />
       <g clipPath={`url(#${uid}l)`}><path d={zarfD} fill="none" stroke={PAL.konturIsik} strokeWidth={K} strokeLinejoin="round" /></g>
-      {b.coker && b.coker.t > 0 && <Delik c={[c[0] + b.coker.delik[0], c[1] + b.coker.delik[1]]} r={26 * 1.6 * Math.min(1, b.coker.t * 6) * (R / 145)} seed={b.coker.seed} />}
+      {b.coker && b.coker.t > 0 && (() => {
+        const dc: P = [c[0] + b.coker.delik[0], c[1] + b.coker.delik[1]], dr = 26 * 1.6 * Math.min(1, b.coker.t * 6) * (R / 145);
+        // T: ağ zarfın DIŞINDA → ip ağı deliğin üstünden kesintisiz geçer (delik ağı kesmez)
+        return <g>
+          <Delik c={dc} r={dr} seed={b.coker.seed} />
+          <defs><clipPath id={`${uid}dl`}><ellipse cx={dc[0]} cy={dc[1]} rx={dr * 1.3} ry={dr * 1.0} /></clipPath></defs>
+          <g clipPath={`url(#${uid}dl)`}>{ag.map((a, i) => <path key={`dl${i}`} d={a.d} fill="none" stroke={PAL.agIsik} strokeWidth={2.2} strokeLinecap="round" />)}{dugum.map((q, i) => <circle key={`dd${i}`} cx={q[0]} cy={q[1]} r={2.6} fill={PAL.agIsik} />)}</g>
+        </g>;
+      })()}
     </g>
   );
 };
@@ -199,7 +207,10 @@ const Delik: React.FC<{ c: P; r: number; seed: number }> = ({ c, r, seed }) => {
   if (r < 0.5) return null;
   const g = rng(seed);
   const n = 17;
-  const kenar: P[] = Array.from({ length: n }, (_, i) => { const a = (i / n) * Math.PI * 2 + (g() - 0.5) * 0.25, q = r * (0.62 + 0.5 * g()) * (i % 3 === 0 ? 1.18 : 1); return [c[0] + q * Math.cos(a) * 1.15, c[1] + q * Math.sin(a) * 0.85]; });
+  // T #18 (B3 #3): kontur yırtık (sık, küçük testere dişleri; yuvarlak lob yok), iç kenarda ince krem kumaş kenarı
+  const m = 30; void n;
+  const kenar: P[] = Array.from({ length: m }, (_, i) => { const a = (i / m) * Math.PI * 2 + (g() - 0.5) * 0.12, q = r * (0.86 + 0.12 * g()) * (i % 2 ? 0.88 : 1.04) * (1 + 0.1 * Math.cos(2 * a + 0.7)); return [c[0] + q * Math.cos(a) * 1.15, c[1] + q * Math.sin(a) * 0.85]; });
+  const ic = kenar.map((q) => [c[0] + (q[0] - c[0]) * 0.86, c[1] + (q[1] - c[1]) * 0.86] as P);
   // B3: yırtık diller 6 kısa, AÇIK (kumaşın iç yüzü), kenara yapışık (≤ 0.22 r) — B2'de uzun koyu diller "kulak/kanat" (kuş/yarasa) okutuyordu
   const diller = [0.2, 1.25, 2.3, 3.3, 4.3, 5.4].map((a0) => {
     const a = a0 + (g() - 0.5) * 0.35, w = 0.2 + 0.1 * g(), L = r * (0.12 + 0.1 * g());
@@ -210,7 +221,8 @@ const Delik: React.FC<{ c: P; r: number; seed: number }> = ({ c, r, seed }) => {
   return (
     <g strokeLinejoin="round">
       <polygon points={pts(kenar.map((q) => [c[0] + (q[0] - c[0]) * 1.12, c[1] + (q[1] - c[1]) * 1.12] as P))} fill={PAL.terminator} />
-      <polygon points={pts(kenar)} fill={PAL.delik} stroke={PAL.konturGolge} strokeWidth={1.5} />
+      <polygon points={pts(kenar)} fill={PAL.yirtikIc} stroke={PAL.konturGolge} strokeWidth={1.5} />
+      <polygon points={pts(ic)} fill={PAL.delik} />
       {diller.map((d, i) => <path key={i} d={d.d} fill={d.ic ? PAL.yirtikIc : PAL.balonGolge} stroke={PAL.konturGolge} strokeWidth={1.5} />)}
     </g>
   );

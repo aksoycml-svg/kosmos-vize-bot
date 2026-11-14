@@ -10,7 +10,8 @@ import { golgeVek, IsikAd, Kam, kirp, lerp, PAL, pr, pts, pxm, rng, V3, yolKapal
 // ---------------------------------------------------------------- GÖK ----------------------------------------------------------------
 export const GOK_ORAN = [0.322, 0.583, 0.767, 0.905];
 export const gokSinir = (ufuk: number) => GOK_ORAN.map((r) => Math.round(ufuk * r));
-export const GokBasamak: React.FC<{ ufuk: number; seed: number; isima?: boolean; renkler?: string[] }> = ({ ufuk, seed, isima = true, renkler }) => {
+export const GokBasamak: React.FC<{ ufuk: number; seed: number; isima?: boolean; renkler?: string[]; siklik?: number }> = ({ ufuk, seed, isima = true, renkler, siklik = 1 }) => {
+  // T #20: `siklik` < 1 → tarama satırları seyrekleşir (P06b hale/cam arkası ×0.6: 360'ta titreşim)
   const GR = renkler ?? PAL.gok;
   const s = gokSinir(ufuk), sinir = [-2400, ...s, ufuk + 900];
   const X0 = -300, X1 = 1380;
@@ -26,11 +27,12 @@ export const GokBasamak: React.FC<{ ufuk: number; seed: number; isima?: boolean;
   };
   s.forEach((y, i) => {
     const ust = GR[i], alt = GR[i + 1];
-    const Ha = Math.min(64, (sinir[i + 2] - y) * 0.42), Hu = Math.min(30, (y - sinir[i]) * 0.2);
+    // T #20: ilk (en üst, en kontrastlı) sınırda geçiş bandı geniş (P07 A üst bant sert kenarı) — alt 64 → 110, üst 30 → 56 px
+    const Ha = Math.min(i === 0 ? 110 : 64, (sinir[i + 2] - y) * 0.42), Hu = Math.min(i === 0 ? 56 : 30, (y - sinir[i]) * 0.2);
     let d = 1.2, j = 0;
-    while (d < Ha) { const u = d / Ha; parca.push(satir(y + d, lerp(3.4, 1.6, u), 1 - u * 0.85, ust, `ga${i}-${j}`)); d += lerp(4.5, 13, u); j++; }
+    while (d < Ha) { const u = d / Ha; parca.push(satir(y + d, lerp(3.4, 1.6, u), 1 - u * 0.85, ust, `ga${i}-${j}`)); d += lerp(4.5, 13, u) / siklik; j++; }
     d = 3.2; j = 0;
-    while (d < Hu) { const u = d / Hu; parca.push(satir(y - d, lerp(2.2, 1.6, u), 0.75 - u * 0.6, alt, `gu${i}-${j}`)); d += lerp(6, 12, u); j++; }
+    while (d < Hu) { const u = d / Hu; parca.push(satir(y - d, lerp(2.2, 1.6, u), 0.75 - u * 0.6, alt, `gu${i}-${j}`)); d += lerp(6, 12, u) / siklik; j++; }
   });
   // sol ışıma (B3): basamaklı dikdörtgenler yerine uçları incelen düzensiz yatay çizgiler (gravür). Ufka yakın sık-kalın-uzun, yukarı
   // seyrek-ince-kısa; uç x'leri düzensiz → sağ kenar dişli, düz kenar yok. Güneş kadraj dışında solda (ışık yönüyle aynı).

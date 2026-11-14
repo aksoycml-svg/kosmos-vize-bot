@@ -299,7 +299,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   );
   const kilifCiz = kusEkran ? (
     <g transform={`translate(${kusEkran.capa[0]} ${kusEkran.capa[1]}) rotate(${kusEkran.aci}) scale(${kusEkran.olcek})`}>
-      <Kilif olcek={kusEkran.olcek} parilti={parilti} coz={cozT} kapak={kapak} serit={serit} ipUc={ipUc ? (() => { const dx = ipUc[0] - kusEkran.capa[0], dy = ipUc[1] - kusEkran.capa[1], r = (-kusEkran.aci * Math.PI) / 180; return [(dx * Math.cos(r) - dy * Math.sin(r)) / kusEkran.olcek, (dx * Math.sin(r) + dy * Math.cos(r)) / kusEkran.olcek] as P; })() : undefined} />
+      <Kilif olcek={kusEkran.olcek} parilti={parilti} coz={cozT} kapak={kapak} serit={serit} ipStil="koyu" ipUc={ipUc ? (() => { const dx = ipUc[0] - kusEkran.capa[0], dy = ipUc[1] - kusEkran.capa[1], r = (-kusEkran.aci * Math.PI) / 180; return [(dx * Math.cos(r) - dy * Math.sin(r)) / kusEkran.olcek, (dx * Math.sin(r) + dy * Math.cos(r)) / kusEkran.olcek] as P; })() : undefined} />
     </g>
   ) : null;
   void KIRIK_Z;
@@ -314,7 +314,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
         {kus && kusEkran && (
           <Guvercin poz={kus.poz} capa={kusEkran.capa} olcek={kusEkran.olcek}
             kenar={(() => { const r = Math.max(2.5, Math.min(7, 2.2 * kusEkran.olcek)); return { renk: C.kenar, dx: saat === "gun" ? -r : r, dy: -r }; })()}
-            kilif={{ parilti, coz: cozT, kapak, serit, ipUcEkran: ipUc }} />
+            kilif={{ parilti, coz: cozT, kapak, serit, ipUcEkran: ipUc, ipStil: "koyu" }} /* T #9: koyu ip P01/P10/P11 (P09 ile aynı) */ />
         )}
         <OnCerceve D={D} k={k} C={C} />
         {elVar && kusEkran && coz && <ElKatmani coz={coz} p={p} dugum={kusEkran.dugum} pxm={kusEkran.pxm} kilif={kilifCiz} gun={saat === "gun"} />}

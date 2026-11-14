@@ -1218,3 +1218,54 @@
 - Kararlar: kalkış erken başlatıldı (oda f60–266 içinde); zarf memur-3'ün önceden hazır ilk kopyası olarak f200'de alınır (yazma f206'da başlıyor, çelişmesin diye `yazar_haric`). Eğik poz kitte yok ve baş tepesi 973 kodda sabit → json süreyi/hedefi taşır, görüntü kod gelene kadar DEĞİŞMEZ.
 - Kural ihlali/uyarı: render şeridinde f240–264 hâlâ eski kod davranışı (memur-3 görünmüyor); bu beklenen, KE-PK-O1 çözülünce şerit yeniden alınmalı. P05 f280'de şerit–parmak teması hâlâ var (kodda sabit 0.034 m). Kural 2 (≥12 kare erken bitiş) plan sonuna göre sağlanıyor (262 << 398).
 - Notlar: motion'a kalan 24 satır (kritik 1: O1). Koyu kılıf ipi (P01/P10/P11) motion; P01 f24 kılıf okunurluğu korunmalı. Kurgucu: P06b f218 foley.
+
+## motion · 2026-11-14 · Toplu düzeltme turu T (TOPLU-DUZELTME.md, motion satırları)
+- Ne yaptım: Motion'a ait 24 satırın 23'ünü yaptım, 1'ini yapmadım (#28). Durum sütunu güncellendi.
+  - **KE-PK-O1 (kritik, P10):** Memur-3 artık eğilerek kalkıyor. Gövde kalça pivotunda `egim_derece` (38°) kadar sağa/öne eğiliyor. Pivot, baş tepesi `tepe_y_hedef` (1310) olacak şekilde hesaplanıyor; huzmenin ve lantern tablasının altında kalıyor. Bacaklar ve kalça dik çiziliyor, ±70 px adım ve 5 px sekme var. Zarf f200'de masadan sol elle kalkıyor, omuz önünde taşınıyor. Çıkış f262'de sağ kenardan; f262–266 boş kapanış. Eski 30 px'lik sandalye sıçraması kaldırıldı: sandalye yerinde kalıyor. `yazar_haric` okunuyor.
+  - **P10 lantern (#5 #6 #7):** Lantern dünya izdüşümüyle (KAM_ODA) yeniden kuruldu: X 0.40, Z 2.15, yaw −29.5° (perdeye dönük). 0.24 m'lik koyu mercek tüpü, iki halka ve ağız eklendi; huzme tüp ucundaki tek noktadan (650,1066) çıkıyor. Yuva (872,992); `levha teması` kilidi yeşil. Levha temastan önce eli izliyor, havada asılı kalmıyor; yuvaya 30 px giriyor. El için yeni `LEVHA_POZ` (4 parmak aralıklı).
+  - **O2 (P07 B):** `govde_on_m` (varsayılan 0.3): baş, boyun ve omuz rime 0.3 m, kalça 0.2 m yaklaştı.
+  - **O3 (P05):** Parmak ofseti json `nesneler.parmak.yan_ofset_m` (0.055) üzerinden okunuyor.
+  - **Ellerdeki küçükler:** GravurEl'de parmak ucu gölge hilali maskelendi, `butce.avuc` 6→3 (#11). P10 f330 uzak el uçları yeniden çizildi (#14). KolEl parisGri tendon α .28→.12 (#27).
+  - **P09 (#13):** El karnın altına çıktı, parmaklar gövdeye biniyor. Tutuşta kuyruk kapalı (0). Salma anına geçişte el sıçraması giderildi.
+  - **Kılıf ipi (#9):** Koyu ip (`ipStil:"koyu"`) ParisCati'de (P01/P10/P11) ve P09'daki el kılıfında da uygulanıyor.
+  - **Kuş (#26):** Kuyruk uç bandı artık tüy ucunu izliyor.
+  - **Gök (#8 #23):** Geçiş çizgileri 3→2 ve α .2; tane yoğunluğu .03, α .25.
+  - **Çatılar (#22 #24 #25):** Panthéon fenerine küçük haç; kümes saçak farkı 0.1; K3 `lucYok` 0.15.
+  - **MONTMARTRE (#16–#20):**
+    - Biniş: el h 1.58'de, kapanışta 1.38'e kayıyor; gövde sağa 0.2; f212'de baş sepete yatıyor.
+    - Öndeki bacak: koyu pantolon, iki ton, diz kırığı, ayrı bot.
+    - Delik: yırtık kontur, krem iç kenar; beyaz puf noktası kaldırıldı; ağ deliğin üstünden geçiyor.
+    - Duman: tek, incelen şerit.
+    - `GokBasamak.siklik`: hale arkasında 0.6. İlk sınırın geçiş bandı genişletildi.
+- Dokunduğum dosyalar: src/kit/sablonlar/paris/{LanternOda,DagronInsert,Montmartre,montmartreDekor,ParisCati,catiDekor}.tsx, src/kit/props/paris/{GravurEl,Guvercin,Balon,SabahFigur}.tsx, src/rig/KolEl.tsx (yalnız parisGri paleti), bolumler/paris-kusatmasi/TOPLU-DUZELTME.md (durum sütunu), bolumler/paris-kusatmasi/kalibrasyon/T/ (12 kare × tam/-360/-guvenli/-guvenli-360 + P10-f084, 3 şerit, ozet.png, once-sonra.png), bu rapor.
+- Aldığım kararlar ve gerekçeleri:
+
+  | Öğe | Eski | Yeni | Neden |
+  |---|---|---|---|
+  | lantern | ekran kutusu x 915–1200, y 1000–1290, yaw 0 | dünya X 0.40, Z 2.15, W .28, D .32, Y 1.43–1.66, yaw −29.5° | ≥100 px sola; mercek tüpü ancak perdeye dönük kutuda görünür |
+  | mercek (huzme kaynağı) | (954,1120), kutunun arkasında gizli | (650,1066), tüp ucu | tek noktadan huzme |
+  | yuva / temas | (1018,998) IG sütununda | (872,992) | güvenli alan |
+  | memur-3 oturuş DY | 10 | 30 (baş tepesi ≥1252) | tabla alt kenarı (~1222) başı kesmesin |
+  | memur-3 yürüyüş eğrisi | t² (0.27 sn) | 0.1t+0.9t², f218–262 | zarf ≈ f254'e kadar kadrajda |
+  | P07 B gövde Z | 0 | −0.3 (kalça −0.2) | yönetmen on_kol_onay |
+  | P06b tutunma h | 1.80 | 1.58 → 1.38 (kapanış) | selam okuması |
+
+  - Huzme–baş açıklığı: lantern solda olduğu için huzme memur-2'nin (x 671) üstüne hiç gelmiyor. Memur-1'de (x 344) ışın y≈1025, baş tepesi ≥1244 (≈220 px).
+  - P10 f230 önce/sonra karşılaştırmasında "sonra" karesi f232 (şeritten alındı).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Fade yok: zarf masadan yükselip memurla kadrajdan çıkıyor; duman kaynak ucundan çekiliyor.
+  - Tutulan nesne eli izliyor: levha artık havada değil.
+  - Derinlik sırası: lantern bacakları memur-3'ün önünde.
+  - Tek ışık: mercek parıltısı ve yarıklar lambadan.
+  - Ölçüm: kırmızı her karede %0. Sarı metal/kehribar yalnız kılıf kutusunda (P01 f0/f24, P09, P11; %0.18), diğer karelerde 0.
+  - C* ortalaması 9.9–19.6 (P10 oda 9.9, önceki turla aynı aralık).
+  - Güvenli alan: tek ihlal P06b sepet tabanı FL; önceden `lint.izin`'de.
+  - Döngü kilidi: P01 f0 ve P11 son karede kılıf bbox birebir (280–469 × 930–991). Fark yalnız kanat fazında (x 360–828, y 629–1085), bu turdan önce de vardı; kaynağı ParisCati kuş pozu, bu turda dokunulmadı.
+  - P01 f24'te kılıf ≈193 px (≥%10 korunuyor).
+  - tsc temiz. `bolum_dogrula --tam` GEÇTİ (0 hata; tek uyarı foley.json yok, önceden de vardı).
+- Açık sorular / bir sonraki ajana notlar:
+  1. **Zarf hedefin altında:** P10'da zarf f200–~254 arasında, yani ≈0.9 sn görünüyor; json hedefi 62 kare. Memur x 860 sağ kenara yalnız 0.34 m uzakta. Tam 1 sn için yönetmen `konum_dekor_x[3]`'ü ≈800'e alabilir (lantern tablası x ~850'den sonra; başın tabla altında kalması yeniden ölçülmeli).
+  2. Memur-3 koyu duvar önünde koyu siluet olarak kalıyor. Kenar ışığı ve zarf okunuyor, ama eleştirmen 360'ta "eğilen adam" okumasına baksın (şerit P10 f236–252).
+  3. #28 (çatı birim ölçeği) yapılmadı. Kabul edilmiş ızgarayı bozar; mekân sorumlusu referans karesiyle ayrı tur gerekir.
+  4. Kurgucu: P10 için yeni temas yok (sandalye artık itilmiyor). Levha teması f84 aynı.
+  5. Öz puan 7. Eleştirmen muhtemelen 6–6.5 verir; en zayıf yer P10 memur-3 okunurluğu.

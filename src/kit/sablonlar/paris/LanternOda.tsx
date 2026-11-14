@@ -20,7 +20,7 @@ import { cl, CIKIS, ekranNokta, GIRIS, INOUT, kameraHesapla, katDonusum } from "
 import { param, Sablon, SablonProps } from "../../ortak";
 import { satirYollari } from "../../props/paris/Sayfa";
 import { SiluetFigur } from "../../props/paris/SiluetFigur";
-import { GravurEl, GRAVUR_POZ, GravurPalet, konikKol } from "../../props/paris/GravurEl";
+import { GravurEl, GRAVUR_POZ, GravurPalet, GravurPoz, konikKol } from "../../props/paris/GravurEl";
 import type { Kam } from "./montmartreDunya";
 
 type Ar = { bas: number; bit: number; temas?: number; kare?: number };
@@ -44,16 +44,48 @@ const LP = {
   koridorTarama: "#a88c80", sogukBasamak: "#3a3850", gomlek: "#5d5f63",
 };
 
-// ---- lantern geometrisi (C4, oda görünümü ekran koordinatı; kaçış noktası (540,960), Z ≈ 2.0 m, mercek ≈ 1.5 m) ----
+// ---- lantern geometrisi (T turu; oda kamerası KAM_ODA ile DÜNYA koordinatında: X sağ, Y yukarı, Z derinlik, m) ----
+// T (TOPLU #5/#6): kutu ≥ 100 px sola (levha yuvası + temas eli IG sütununun dışında, x < 920) ve perdeye DÖNÜK (yaw −29.5°:
+// mercek ekseni perde merkezine bakar). Mercek tüpü (0.24 m, ön yüzden) kutunun sol yüzünün ötesine taşar; huzme tüp ucundaki
+// tek noktadan çıkar. Kutu tabanı + tabla, oturan memur başlarının (memur-2 y ≥ 1204, memur-3 y ≥ 1252) ÜSTÜNDE biter.
 const LN = (() => {
-  const VP: P = [540, 960], s = 0.85; // ön yüz: kutu derinliği ≈ 0.35 m
-  const bx0 = 915, bx1 = 1200, by0 = 1000, by1 = 1290;
-  const on = (q: P): P => [VP[0] + (q[0] - VP[0]) * s, VP[1] + (q[1] - VP[1]) * s];
-  const merk: P = [(bx0 + bx1) / 2, by0 + (by1 - by0) * 0.55];
-  const mercek: P = [VP[0] + (merk[0] - VP[0]) * 0.8, VP[1] + (merk[1] - VP[1]) * 0.8]; // mercek borusu ucu (kutunun arkasında gizli)
+  const F = KAM_ODA.F, e = KAM_ODA.e;
+  const pr = (X: number, Y: number, Z: number): P => [540 + (F * X) / Z, KAM_ODA.U + (F * (e - Y)) / Z];
+  const cX = 0.4, cZ = 2.15, W = 0.28, D = 0.32, yb = 1.43, yt = 1.66, yaw = (-29.5 * Math.PI) / 180;
+  const f = [Math.sin(yaw), Math.cos(yaw)], r = [Math.cos(yaw), -Math.sin(yaw)];
+  /** kutu yerel (a: sağa, b: öne/perdeye, Y) → ekran */
+  const w = (a: number, b: number, Y: number): P => pr(cX + r[0] * a + f[0] * b, Y, cZ + r[1] * a + f[1] * b);
+  const ka = W / 2, kb = D / 2;
+  const tY = 1.545, tA = -0.05, tR = 0.052, tL = 0.24; // mercek tüpü: ön yüzde biraz sola, yarıçap, boy
+  // tüp silüeti: iki uç çemberinin (eksene dik düzlem) izdüşümlerinin dışbükey zarfı
+  const cember = (b: number, R: number): P[] => Array.from({ length: 20 }, (_, i) => { const t = (i / 20) * Math.PI * 2; return w(tA + Math.cos(t) * R, b, tY + Math.sin(t) * R); });
+  const zarf = (q: P[]): P[] => {
+    const s = [...q].sort((A, B) => A[0] - B[0] || A[1] - B[1]);
+    const cr = (o: P, A: P, B: P) => (A[0] - o[0]) * (B[1] - o[1]) - (A[1] - o[1]) * (B[0] - o[0]);
+    const lo: P[] = [], hi: P[] = [];
+    for (const v of s) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], v) <= 0) lo.pop(); lo.push(v); }
+    for (const v of [...s].reverse()) { while (hi.length >= 2 && cr(hi[hi.length - 2], hi[hi.length - 1], v) <= 0) hi.pop(); hi.push(v); }
+    return [...lo.slice(0, -1), ...hi.slice(0, -1)];
+  };
+  const tupKok = cember(kb, tR * 1.25), tupUc = cember(kb + tL, tR), tupAgiz = cember(kb + tL - 0.035, tR * 1.12);
+  const yuva = w(0.02, -0.03, yt);
+  const tabla = (a: number, b: number, Y: number) => w(a * 1.18, b * 1.15, Y);
+  const bacak = (a: number, b: number): [P, P] => [tabla(a, b, yb - 0.025), w(a * 1.1, b * 1.08, 0.2)];
   return {
-    bx0, bx1, by0, by1, mercek, onSolUst: on([bx0, by0]), onSolAlt: on([bx0, by1]), onSagUstX: on([bx1, by0])[0],
-    bacaX: 922, bacaY: 790, yuva: [1018, 998] as P, sehpaOnBacak: [on([bx0 + 10, by1 + 20]), on([bx0 + 10, 1990])] as [P, P],
+    w, mercek: w(tA, kb + tL, tY),
+    // kutu yüzleri (görünen: arka, sol, ince üst)
+    arka: [w(-ka, -kb, yt), w(ka, -kb, yt), w(ka, -kb, yb), w(-ka, -kb, yb)] as P[],
+    sol: [w(-ka, kb, yt), w(-ka, -kb, yt), w(-ka, -kb, yb), w(-ka, kb, yb)] as P[],
+    ust: [w(-ka, kb, yt), w(ka, kb, yt), w(ka, -kb, yt), w(-ka, -kb, yt)] as P[],
+    tup: zarf([...tupKok, ...tupUc]), tupAgiz: zarf(tupAgiz), tupUc,
+    tupHalka: [0.06, 0.15].map((b) => zarf([...cember(kb + b, tR * 1.08), ...cember(kb + b + 0.018, tR * 1.08)])),
+    yuva, yuvaYol: [w(-0.035, -0.045, yt), w(0.075, -0.045, yt), w(0.075, -0.015, yt), w(-0.035, -0.015, yt)] as P[],
+    baca: { alt: w(-0.07, -0.08, yt), ust: w(-0.07, -0.08, yt + 0.2), en: (0.055 * F) / (cZ - 0.05) },
+    tabla: { ust: [tabla(-ka, kb, yb), tabla(ka, kb, yb), tabla(ka, -kb, yb), tabla(-ka, -kb, yb)] as P[], sol: [tabla(-ka, kb, yb), tabla(-ka, -kb, yb), tabla(-ka, -kb, yb - 0.025), tabla(-ka, kb, yb - 0.025)] as P[], arka: [tabla(-ka, -kb, yb), tabla(ka, -kb, yb), tabla(ka, -kb, yb - 0.025), tabla(-ka, -kb, yb - 0.025)] as P[] },
+    // bacaklar: uzak (ön) iki bacak memurların önünde ama kutunun arkasında; yakın (arka) iki bacak en önde
+    bacakUzak: [bacak(-ka, kb), bacak(ka, kb)], bacakYakin: [bacak(-ka, -kb), bacak(ka, -kb)],
+    capraz: [tabla(-ka, -kb, 0.62), tabla(ka, -kb, 0.62)] as [P, P], caprazSol: [tabla(-ka, kb, 0.62), tabla(-ka, -kb, 0.62)] as [P, P],
+    bacakEn: (0.035 * F) / cZ,
   };
 })();
 
@@ -193,19 +225,45 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
   const zarfPts = [kaynak, uc(TR), uc(BR), uc(BL)];
   // memurlar (§4v3.2 tablo): Z 2.6, x 82/344/671/945; baş tepe y 1222 (dik) / 1320 (yazarken); omuz y ≈ 1385
   const xs = mm.konum_dekor_x ?? [82, 344, 671, 945];
-  const TIP: BasTip[] = ["daginik", "kel", "ayrik", "daginik2"], BM = [156, 150, 148, 160], DY = [0, 22, -18, 10];
+  // T (KE-PK-O1): memur-3 (i 3) huzmeyi kesmemek için EĞİLEREK kalkar: oturuştan öne eğik yarı-çömelik yürüyüşe (gövde kalça
+  // pivotunda `egim_derece` döner, baş tepesi `tepe_y_hedef`e iner: huzmenin ve lantern tablasının altında), sağ kenardan çıkar
+  // (duvarsız kadraj kenarı). Zarf sol elinde f`zarf_gorunur.bas`'tan çıkışa kadar görünür (masadan alır → omuz hizasında taşır).
+  const m3 = (mm.memur3_kalkis ?? {}) as { tepe_y_hedef?: number; egim_derece?: number; zarf_gorunur?: Ar; yazar_haric?: number[] };
+  const yazHaric = m3.yazar_haric ?? [3];
+  const zg = ar(m3.zarf_gorunur, { bas: 200, bit: 262 });
+  const TIP: BasTip[] = ["daginik", "kel", "ayrik", "daginik2"], BM = [156, 150, 148, 160], DY = [0, 22, -18, 30];
   const bakis = t01(p, du.bas, du.bas + 14) * (1 - t01(p, ya.bas, ya.bas + 10)); // perdeye bakarken baş kalkık
+  const kalkT = t01(p, mk.bas, mk.bas + 16, GIRIS); // öne eğilip kalkış (16 kare)
+  const yurT = t01(p, mk.bas + 6, mk.bit, (t) => 0.1 * t + 0.9 * t * t); // yürüyüş: çömelik yavaş başlar, hızlanır; zarf ≈ f258e dek kadrajda (≥ 1 sn)
   const memur = xs.map((x0, i) => {
-    const yaz = p >= ya.bas && p < ya.bit + 10 ? Math.max(0, Math.sin(((p - ya.bas + i * 5) / 11) * Math.PI)) * (1 - t01(p, ya.bit, ya.bit + 10)) : 0;
-    const egim = 12 + i * 4 - 10 * bakis + 6 * yaz; // öne eğik 12–25° (yazarlar)
-    let x = x0, tepe = 1222 + DY[i] + (1 - bakis) * 40 + yaz * 8, omuzY = 1385 + DY[i] * 0.6 + yaz * 5;
-    if (i === 3 && p >= mk.bas - 4) {
-      const kalk = t01(p, mk.bas - 4, mk.bas + 6, INOUT); // kalkar: baş tepe → y 973 (ayakta yetişkin, ufka yakın)
-      tepe = tepe + (973 - tepe) * kalk; omuzY = omuzY + (973 + 150 + 30 - omuzY) * kalk;
-      x = x0 + 420 * t01(p, mk.bas + 4, mk.bit, (t) => t * t); // sağ kenardan (duvarsız kadraj kenarı) çıkar
-    }
-    return { x, tepe, omuzY, B: BM[i], tip: TIP[i], egim };
+    const yazan = !yazHaric.includes(i);
+    const yaz = yazan && p >= ya.bas && p < ya.bit + 10 ? Math.max(0, Math.sin(((p - ya.bas + i * 5) / 11) * Math.PI)) * (1 - t01(p, ya.bit, ya.bit + 10)) : 0;
+    const bk = i === 3 && p >= zg.bas ? Math.max(bakis, 1 - t01(p, zg.bas, zg.bas + 10)) : bakis; // memur-3 zarfı alırken başı kalkık kalır
+    const egim = 12 + i * 4 - 10 * bk + 6 * yaz; // öne eğik 12–25° (yazarlar)
+    const x = x0, tepe = 1222 + DY[i] + (1 - bk) * 40 + yaz * 8, omuzY = 1385 + DY[i] * 0.6 + yaz * 5;
+    return { x, tepe, omuzY, B: BM[i], tip: TIP[i], egim, egil: 0, pivotY: 0 };
   });
+  // memur-3 eğik yürüyüş: dönme pivotu (kalça) baş tepesi hedefine göre çözülür: tepe' = pv − (pv − tepe0)·cos(eğim)
+  const egHedef = m3.egim_derece ?? 38, tepeHedef = m3.tepe_y_hedef ?? 1310;
+  const adimFaz = ((p - mk.bas - 6) / 14) * Math.PI, adimAg = t01(p, mk.bas + 6, mk.bas + 14);
+  {
+    const m = memur[3], cg = Math.cos((egHedef * Math.PI) / 180);
+    const tepe0 = m.tepe;
+    m.pivotY = (tepeHedef - tepe0 * cg) / (1 - cg) + 5 * Math.abs(Math.sin(adimFaz)) * adimAg; // adım sekmesi ±5 px
+    m.egil = egHedef * kalkT;
+    m.x = xs[3] + 450 * yurT; // sağ kenardan çıkar: f bit'te sol kalça kenarı x > 1080
+  }
+  const m3m = memur[3];
+  const ow3 = (1.95 * m3m.B) / 2;
+  const don3 = (q: P): P => { const a = (m3m.egil * Math.PI) / 180, dx = q[0] - m3m.x, dy = q[1] - m3m.pivotY; return [m3m.x + dx * Math.cos(a) - dy * Math.sin(a), m3m.pivotY + dx * Math.sin(a) + dy * Math.cos(a)]; };
+  // sol kol + zarf: oturuşta zarfı masadan alır (bilek y 1640 → başın solunda omuz hizası), yürürken omuz önünde taşır
+  const zarfVar = p >= zg.bas && p <= mk.bit + 4;
+  const solOmuz = don3([m3m.x - ow3 * 0.82, m3m.omuzY + 12]);
+  const alT = t01(p, zg.bas, zg.bas + 10, GIRIS);
+  const bilekOtur: P = lp([m3m.x - ow3 * 0.55, 1645], [m3m.x - ow3 * 0.62, m3m.omuzY - 46], alT);
+  const bilekYuru: P = [solOmuz[0] + 22, solOmuz[1] + 40];
+  const solBilek: P = lp(bilekOtur, bilekYuru, kalkT);
+  const solDirsek: P = lp([m3m.x - ow3 * 1.02, m3m.omuzY + 150], [solOmuz[0] - 34, solOmuz[1] + 150], kalkT);
   const memurIsik = lamba && uzan >= 1 ? Math.min(1, 0.45 + (yw - 40) / 200) : 0;
   // C4 (orkestra kararı): perdede baş gölgesi YOK — mercek tüm başların üstünde, huzme hiçbir başı kesmez (maske/gölge kaldırıldı).
   const toz = Array.from({ length: 8 }, (_, i) => {
@@ -216,11 +274,12 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
   const yuva: P = LN.yuva;
   const cT = cam.temas ?? 84;
   const elIn = t01(p, cam.bas - 14, cam.bas - 2, GIRIS), elOut = t01(p, cT + 2, cam.bit + 14, CIKIS);
-  const levhaAlt = p < cT ? yuva[1] - 70 * (1 - t01(p, cam.bas - 2, cT, INOUT)) : yuva[1];
+  const levhaAlt = p < cT ? yuva[1] + 30 - 100 * (1 - t01(p, cam.bas - 2, cT, INOUT)) : yuva[1] + 30; // levha yuvaya 30 px girer
   const elUc: P = [yuva[0] + 6 + 460 * (1 - elIn) + 460 * elOut, levhaAlt - 74 - 60 * (1 - elIn) - 40 * elOut];
   const elGor = p >= cam.bas - 14 && p <= cam.bit + 14;
   // bez: tek kapalı yol (üst düz, yanlar dalgalı, alt sarkık + köşe kıvrımları)
   const bezYol = `M92 526 L752 526 Q754 640 751 760 Q749 900 752 1045 Q748 1052 742 1050 Q600 1072 422 1078 Q240 1072 102 1050 Q96 1052 92 1045 Q95 900 93 760 Q90 640 92 526 Z`;
+  if (p >= cT - 4 && p <= cT + 4) kilit.push({ ad: "levha teması", p: ekranNokta(k, yuva), tur: "temas" });
   if (p >= bo.bit) kilit.push({ ad: "perde", p: ekranNokta(k, C), tur: "dokunus" });
   return (
     <g transform={katDonusum(k)}>
@@ -288,11 +347,22 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
         <path d="M92 1045 Q98 1030 108 1040" stroke="#24232f" strokeWidth={2} fill="none" /><path d="M752 1045 Q746 1030 736 1040" stroke="#24232f" strokeWidth={2} fill="none" />
       </g>
       {/* memur gövdeleri (huzmenin altında: ışın lantern tarafında, gövdelerin önünden geçer); başlar huzmeden SONRA (opak, ışığı keser) */}
-      {memur.map((m, i) => <MemurArka key={i} x={m.x} tepe={m.tepe} B={m.B} tip={m.tip} egim={m.egim} isik={memurIsik} uid={`${uid}m${i}`} omuzY={m.omuzY} sadece="govde" />)}
-      {/* sandalye arkalıkları */}
-      {memur.slice(0, 3).map((m, i) => <rect key={`s${i}`} x={xs[i] - 0.95 * m.B} y={1660} width={1.9 * m.B} height={300} rx={8} fill="#1f1e2a" stroke={LP.memurKontur} strokeWidth={2.5} />)}
-      {p < mk.bas + 6 && <rect x={xs[3] - 0.95 * 160} y={1660} width={1.9 * 160} height={300} rx={8} fill="#1f1e2a" stroke={LP.memurKontur} strokeWidth={2.5} />}
-      {p >= mk.bas + 6 && <rect x={xs[3] - 0.95 * 160 + 30} y={1690} width={1.9 * 160} height={300} rx={8} fill="#1f1e2a" stroke={LP.memurKontur} strokeWidth={2.5} />}
+      {memur.map((m, i) => i !== 3 ? <MemurArka key={i} x={m.x} tepe={m.tepe} B={m.B} tip={m.tip} egim={m.egim} isik={memurIsik} uid={`${uid}m${i}`} omuzY={m.omuzY} sadece="govde" /> : null)}
+      {/* memur-3: kalkışta bacaklar + kalça (dik, yerçekimi), gövde kalça pivotunda öne (sağa) eğik; oturuşta tek parça */}
+      {m3m.x < 1080 + 2.4 * ow3 && <g>
+        {m3m.egil > 0 && [-1, 1].map((s) => {
+          const ust: P = [m3m.x + s * ow3 * 0.42, m3m.pivotY + 6], sal = 70 * Math.sin(adimFaz) * s * adimAg;
+          const alt: P = [m3m.x + s * ow3 * 0.4 + sal + 40 * kalkT, 1960];
+          return <polygon key={`bc${s}`} points={pt([[ust[0] - 52, ust[1]], [ust[0] + 52, ust[1]], [alt[0] + 40, alt[1]], [alt[0] - 40, alt[1]]])} fill="#24262c" stroke={LP.memurKontur} strokeWidth={2.5} />;
+        })}
+        {m3m.egil > 0 && <ellipse cx={m3m.x + 8 * kalkT} cy={m3m.pivotY + 10} rx={ow3 * 0.98} ry={56} fill={LP.memur} stroke={LP.memurKontur} strokeWidth={2.5} />}
+        <defs><clipPath id={`${uid}m3k`}><rect x={-400} y={-400} width={2400} height={m3m.egil > 0 ? m3m.pivotY + 400 + 12 : 2800} /></clipPath></defs>
+        <g transform={`rotate(${m3m.egil} ${m3m.x} ${m3m.pivotY})`}><g clipPath={`url(#${uid}m3k)`}>
+          <MemurArka x={m3m.x} tepe={m3m.tepe} B={m3m.B} tip={m3m.tip} egim={m3m.egim} isik={memurIsik} uid={`${uid}m3`} omuzY={m3m.omuzY} sadece="govde" />
+        </g></g>
+      </g>}
+      {/* sandalye arkalıkları (memur-3'ünki yerinde kalır: memur yana kayarak çıkar, sandalye itilmez) */}
+      {memur.map((m, i) => <rect key={`s${i}`} x={xs[i] - 0.95 * m.B} y={1660} width={1.9 * m.B} height={300} rx={8} fill="#1f1e2a" stroke={LP.memurKontur} strokeWidth={2.5} />)}
       {/* huzme: zarf dolgusu α .10 + iç ışınlar 2 px α .20 + 2 sınır ışını 3 px α .55 + toz (lantern gövdesinin altında) */}
       {lamba > 0 && <g>
         <polygon points={pt(zarfPts)} fill={LP.huzme} fillOpacity={0.1} />
@@ -300,54 +370,94 @@ const OdaSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonProp
         <g stroke={LP.huzme} strokeWidth={3} strokeOpacity={0.55} strokeLinecap="round">{[TR, BL].map((q, i) => { const e = uc(q); return <line key={i} x1={kaynak[0]} y1={kaynak[1]} x2={e[0]} y2={e[1]} />; })}</g>
         {uzan >= 1 && toz.map((q, i) => <circle key={i} cx={q[0]} cy={q[1]} r={1.5 + (i % 3)} fill={LP.huzme} opacity={0.5} />)}
       </g>}
-      {memur.map((m, i) => <MemurArka key={`b${i}`} x={m.x} tepe={m.tepe} B={m.B} tip={m.tip} egim={m.egim} isik={memurIsik} uid={`${uid}mb${i}`} omuzY={m.omuzY} sadece="bas" />)}
+      {memur.map((m, i) => i !== 3 ? <MemurArka key={`b${i}`} x={m.x} tepe={m.tepe} B={m.B} tip={m.tip} egim={m.egim} isik={memurIsik} uid={`${uid}mb${i}`} omuzY={m.omuzY} sadece="bas" /> : null)}
+      {m3m.x < 1080 + 2.4 * ow3 && <g transform={`rotate(${m3m.egil} ${m3m.x} ${m3m.pivotY})`}>
+        <MemurArka x={m3m.x} tepe={m3m.tepe} B={m3m.B} tip={m3m.tip} egim={m3m.egim} isik={memurIsik} uid={`${uid}mb3`} omuzY={m3m.omuzY} sadece="bas" />
+      </g>}
+      {/* memur-3 sol kolu + zarf (kol yerçekimiyle sarkar; zarf elle hareket eder, fade yok: masadan yükselir, memurla kadrajdan çıkar) */}
+      {zarfVar && (() => {
+        const kol = konikKol(solOmuz, solDirsek, solBilek, [78, 66, 46]);
+        const zAci = -12 + 22 * kalkT, zc: P = [solBilek[0] + 18, solBilek[1] - 26];
+        const zr = (u: number, v: number): P => { const a = (zAci * Math.PI) / 180; return [zc[0] + u * Math.cos(a) - v * Math.sin(a), zc[1] + u * Math.sin(a) + v * Math.cos(a)]; };
+        const zw = 49, zh = 34;
+        const elAci = Math.atan2(zc[1] - solBilek[1], zc[0] - solBilek[0]) * 180 / Math.PI;
+        return <g>
+          <path d={kol.d} fill={LP.memur} stroke={LP.memurKontur} strokeWidth={2.5} strokeLinejoin="round" />
+          <GravurEl bilek={kol.ileri(2)} aci={elAci} E={70} poz={GRAVUR_POZ.kistir} isik={[-0.6, -0.8]} taramaAci={78} palet={ODA_EL} katman="arka" />
+          <polygon points={pt([zr(-zw, -zh), zr(zw, -zh), zr(zw, zh), zr(-zw, zh)])} fill={LP.zarf} stroke={LP.memurKontur} strokeWidth={2.5} strokeLinejoin="round" />
+          <polyline points={pt([zr(-zw, -zh), zr(0, 4), zr(zw, -zh)])} stroke={LP.zarfCizgi} strokeWidth={2} fill="none" />
+          <GravurEl bilek={kol.ileri(2)} aci={elAci} E={70} poz={GRAVUR_POZ.kistir} isik={[-0.6, -0.8]} taramaAci={78} palet={ODA_EL} katman="on" onMaske />
+        </g>;
+      })()}
       {/* cam levha (yuvaya iner; yuva altında gövde içine girer) */}
       {p >= cam.bas - 14 && <g clipPath={`url(#${uid}ly)`}>
-        <rect x={yuva[0] - 36} y={levhaAlt - 84} width={72} height={84} fill="#8a8494" stroke={LP.sehpa} strokeWidth={7} />
-        <line x1={yuva[0] - 28} y1={levhaAlt - 76} x2={yuva[0] + 28} y2={levhaAlt - 76} stroke={LP.huzme} strokeWidth={2} opacity={0.5} />
+        {/* T: temastan önce levha eli izler (elde taşınır), temasta yuvaya oturur ve kalır */}
+        {(() => { const lx = p < cT ? elUc[0] - 6 : yuva[0]; return <>
+          <rect x={lx - 36} y={levhaAlt - 84} width={72} height={84} fill="#8a8494" stroke={LP.sehpa} strokeWidth={7} />
+          <line x1={lx - 28} y1={levhaAlt - 76} x2={lx + 28} y2={levhaAlt - 76} stroke={LP.huzme} strokeWidth={2} opacity={0.5} />
+        </>; })()}
       </g>}
-      {/* lantern (C4): yüksek ahşap sehpa üstünde, arkadan-soldan görülen kutu; derinlik kenarları kaçış noktasına (540,960) gider.
-          Arka yüz kameraya bakar; mercek borusu ön yüzde (gizli). Ön bacak + sehpa tablası + arka bacak; ayaklar kadraj altında zemine iner. */}
+      {/* lantern (T): yüksek ahşap sehpa üstünde, perdeye dönük kutu (dünya izdüşümü LN.w). Çizim sırası derinliğe göre:
+          uzak bacaklar + çapraz → mercek tüpü (kutunun arkasında kalan kısmı kutu örter) → tabla → kutu (sol, üst, arka) → yakın bacaklar. */}
       <g strokeLinejoin="round">
-        {/* ön (uzak) sehpa bacağı + kayıt çıtası */}
-        <polygon points={pt([LN.sehpaOnBacak[0], [LN.sehpaOnBacak[0][0] + 20, LN.sehpaOnBacak[0][1]], [LN.sehpaOnBacak[1][0] + 20, 1990], [LN.sehpaOnBacak[1][0], 1990]])} fill="#2c251f" stroke={LP.memurKontur} strokeWidth={2.5} />
-        <polygon points={pt([[LN.sehpaOnBacak[0][0] + 20, 1640], [LN.bx0 + 4, 1660], [LN.bx0 + 4, 1684], [LN.sehpaOnBacak[0][0] + 20, 1662]])} fill="#2c251f" stroke={LP.memurKontur} strokeWidth={2} />
-        {/* sol yüz (derinlik), üst yüz (ince: göz hizasına yakın), arka yüz */}
-        <polygon points={pt([[LN.bx0, LN.by0], LN.onSolUst, LN.onSolAlt, [LN.bx0, LN.by1]])} fill="#272a30" stroke={LP.lanternKenar} strokeWidth={3} />
-        <polygon points={pt([[LN.bx0, LN.by0], LN.onSolUst, [LN.onSagUstX, LN.onSolUst[1]], [LN.bx1, LN.by0]])} fill="#3a3d44" stroke={LP.lanternKenar} strokeWidth={3} />
-        {/* baca (havalandırma şapkalı), sol-arka köşede */}
-        <rect x={LN.bacaX} y={LN.bacaY} width={52} height={LN.by0 - LN.bacaY} fill={LP.lantern} stroke={LP.lanternKenar} strokeWidth={3} />
-        <rect x={LN.bacaX - 9} y={LN.bacaY - 14} width={70} height={14} fill={LP.lanternKenar} stroke="#1a1a24" strokeWidth={3} />
-        <line x1={LN.bacaX} y1={LN.bacaY} x2={LN.bacaX} y2={LN.by0} stroke={LP.kenarSoguk} strokeWidth={2} opacity={0.35 * lamba} />
+        {LN.bacakUzak.map(([u, a], i) => <polygon key={`bu${i}`} points={pt([[u[0] - LN.bacakEn * 0.4, u[1]], [u[0] + LN.bacakEn * 0.4, u[1]], [a[0] + LN.bacakEn * 0.45, a[1]], [a[0] - LN.bacakEn * 0.45, a[1]]])} fill="#2c251f" stroke={LP.memurKontur} strokeWidth={2.5} />)}
+        <polygon points={pt([LN.caprazSol[0], LN.caprazSol[1], [LN.caprazSol[1][0], LN.caprazSol[1][1] + 18], [LN.caprazSol[0][0], LN.caprazSol[0][1] + 16]])} fill="#2c251f" stroke={LP.memurKontur} strokeWidth={2} />
+        {/* mercek tüpü: koyu (pirinç değil — sarı metal yalnız kılıfta), iki halka, ağız; lamba yanınca ağızda tek nokta ışık */}
+        <polygon points={pt(LN.tup)} fill="#25272c" stroke={LP.lanternKenar} strokeWidth={3} />
+        {LN.tupHalka.map((h, i) => <polygon key={`th${i}`} points={pt(h)} fill="#34363d" stroke="#1a1a24" strokeWidth={2} />)}
+        <polygon points={pt(LN.tupAgiz)} fill="#1c1d22" stroke={LP.lanternKenar} strokeWidth={2.5} />
+        <polyline points={pt(LN.tupUc.slice(5, 12))} stroke={LP.kenarSoguk} strokeWidth={2} fill="none" opacity={0.25 + 0.35 * lamba} />
+        {lamba > 0 && <><circle cx={LN.mercek[0]} cy={LN.mercek[1]} r={14} fill={LP.huzme} opacity={0.18} /><circle cx={LN.mercek[0]} cy={LN.mercek[1]} r={5} fill={LP.huzme} opacity={0.85} /></>}
+        {/* sehpa tablası */}
+        <polygon points={pt(LN.tabla.sol)} fill="#3a3129" stroke={LP.memurKontur} strokeWidth={2} />
+        <polygon points={pt(LN.tabla.arka)} fill={LP.sehpa} stroke={LP.memurKontur} strokeWidth={2.5} />
+        {/* kutu: sol yüz (derinlik, taralı), ince üst yüz, arka yüz */}
+        <polygon points={pt(LN.sol)} fill="#272a30" stroke={LP.lanternKenar} strokeWidth={3} />
+        <defs><clipPath id={`${uid}ly2`}><polygon points={pt(LN.sol)} /></clipPath></defs>
+        <g clipPath={`url(#${uid}ly2)`}><TaramaCizgi aci={100} kutu={[LN.sol[0][0] - 10, LN.sol[0][1] - 10, LN.sol[2][0] + 10, LN.sol[2][1] + 10]} aralik={() => 7} renk="#1a1a24" kalin={2} alfa={0.85} seed={S + 5} /></g>
+        <polygon points={pt(LN.ust)} fill="#3a3d44" stroke={LP.lanternKenar} strokeWidth={2.5} />
+        {/* baca (havalandırma şapkalı), arka-sol köşede */}
+        <rect x={LN.baca.ust[0] - LN.baca.en / 2} y={LN.baca.ust[1]} width={LN.baca.en} height={LN.baca.alt[1] - LN.baca.ust[1]} fill={LP.lantern} stroke={LP.lanternKenar} strokeWidth={3} />
+        <rect x={LN.baca.ust[0] - LN.baca.en / 2 - 9} y={LN.baca.ust[1] - 14} width={LN.baca.en + 18} height={14} fill={LP.lanternKenar} stroke="#1a1a24" strokeWidth={3} />
+        <line x1={LN.baca.ust[0] - LN.baca.en / 2} y1={LN.baca.ust[1]} x2={LN.baca.alt[0] - LN.baca.en / 2} y2={LN.baca.alt[1]} stroke={LP.kenarSoguk} strokeWidth={2} opacity={0.35 * lamba} />
         {/* yuva (levha ağzı) üst yüzde */}
-        <rect x={yuva[0] - 36} y={yuva[1] - 4} width={72} height={8} fill="#1a1a24" />
-        <rect x={LN.bx0} y={LN.by0} width={LN.bx1 - LN.bx0} height={LN.by1 - LN.by0} fill={LP.lantern} stroke={LP.lanternKenar} strokeWidth={4} />
-        <defs><clipPath id={`${uid}ly2`}><polygon points={pt([[LN.bx0, LN.by0], LN.onSolUst, LN.onSolAlt, [LN.bx0, LN.by1]])} /></clipPath></defs>
-        <g clipPath={`url(#${uid}ly2)`}><TaramaCizgi aci={100} kutu={[LN.onSolUst[0], LN.by0, LN.bx0, LN.by1]} aralik={() => 6} renk="#1a1a24" kalin={2} alfa={0.85} seed={S + 5} /></g>
-        <rect x={LN.bx0 + 50} y={LN.by0 + 110} width={110} height={130} fill="none" stroke={LP.lanternKenar} strokeWidth={4} />
-        {/* havalandırma yarıkları: lamba yanınca içeriden ışık sızar (tek kaynak: lamba) */}
-        {[LN.by0 + 34, LN.by0 + 54].map((y, i) => <line key={i} x1={LN.bx0 + 30} y1={y} x2={LN.bx1 - 40} y2={y} stroke={lamba ? LP.huzme : "#1a1a24"} strokeWidth={3} opacity={lamba ? 0.6 : 1} />)}
-        {[[LN.bx0 + 16, LN.by0 + 16], [LN.bx0 + 16, LN.by1 - 16]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r={3} fill={LP.lanternKenar} />)}
-        <line x1={LN.bx0} y1={LN.by0} x2={LN.bx1} y2={LN.by0} stroke={LP.kenarSoguk} strokeWidth={2} opacity={0.35 * lamba} />
-        <line x1={LN.bx0} y1={LN.by0} x2={LN.bx0} y2={LN.by1} stroke={LP.kenarSoguk} strokeWidth={2} opacity={0.3 * lamba} />
-        {/* sehpa tablası (sol yüz + ön kenar) ve arka (yakın) bacak; ayak kadraj altında */}
-        <polygon points={pt([[LN.bx0 - 16, LN.by1], [LN.onSolAlt[0] - 14, LN.onSolAlt[1]], [LN.onSolAlt[0] - 14, LN.onSolAlt[1] + 16], [LN.bx0 - 16, LN.by1 + 22]])} fill="#3a3129" stroke={LP.memurKontur} strokeWidth={2} />
-        <rect x={LN.bx0 - 16} y={LN.by1} width={1200 - LN.bx0} height={22} fill={LP.sehpa} stroke={LP.memurKontur} strokeWidth={2.5} />
-        <rect x={LN.bx0 + 6} y={LN.by1 + 22} width={30} height={1990 - LN.by1} fill={LP.sehpa} stroke={LP.memurKontur} strokeWidth={2.5} />
-        <line x1={LN.bx0 + 6} y1={LN.by1 + 24} x2={LN.bx0 + 6} y2={1960} stroke={LP.kenarSoguk} strokeWidth={1.5} opacity={0.25 * lamba} />
-        <rect x={LN.bx0 + 36} y={1700} width={1200 - LN.bx0} height={22} fill="#3a3129" stroke={LP.memurKontur} strokeWidth={2} />
+        <polygon points={pt(LN.yuvaYol)} fill="#1a1a24" stroke="#1a1a24" strokeWidth={4} />
+        <polygon points={pt(LN.arka)} fill={LP.lantern} stroke={LP.lanternKenar} strokeWidth={4} />
+        {(() => {
+          // arka yüz ayrıntıları: kapak (lamba kapısı), havalandırma yarıkları (lamba yanınca ışık sızar), perçinler — arka yüz düzleminde
+          const [A, B, , Dq] = LN.arka, m = dortgen(A, B, LN.arka[2], Dq);
+          return <g>
+            <polygon points={pt([m(0.2, 0.42), m(0.62, 0.42), m(0.62, 0.9), m(0.2, 0.9)])} fill="none" stroke={LP.lanternKenar} strokeWidth={4} />
+            <circle cx={m(0.56, 0.66)[0]} cy={m(0.56, 0.66)[1]} r={4} fill={LP.lanternKenar} />
+            {[0.13, 0.22].map((v, i) => <line key={i} x1={m(0.1, v)[0]} y1={m(0.1, v)[1]} x2={m(0.86, v)[0]} y2={m(0.86, v)[1]} stroke={lamba ? LP.huzme : "#1a1a24"} strokeWidth={3} opacity={lamba ? 0.6 : 1} />)}
+            {[m(0.05, 0.06), m(0.05, 0.94), m(0.95, 0.06), m(0.95, 0.94)].map((q, i) => <circle key={`r${i}`} cx={q[0]} cy={q[1]} r={3} fill={LP.lanternKenar} />)}
+          </g>;
+        })()}
+        <line x1={LN.arka[0][0]} y1={LN.arka[0][1]} x2={LN.arka[1][0]} y2={LN.arka[1][1]} stroke={LP.kenarSoguk} strokeWidth={2} opacity={0.35 * lamba} />
+        <line x1={LN.arka[0][0]} y1={LN.arka[0][1]} x2={LN.arka[3][0]} y2={LN.arka[3][1]} stroke={LP.kenarSoguk} strokeWidth={2} opacity={0.3 * lamba} />
+        {/* yakın bacaklar + arka çapraz (kadraj altında zemine iner) */}
+        <polygon points={pt([LN.capraz[0], LN.capraz[1], [LN.capraz[1][0], LN.capraz[1][1] + 22], [LN.capraz[0][0], LN.capraz[0][1] + 22]])} fill="#3a3129" stroke={LP.memurKontur} strokeWidth={2} />
+        {LN.bacakYakin.map(([u, a], i) => <g key={`by${i}`}>
+          <polygon points={pt([[u[0] - LN.bacakEn / 2, u[1]], [u[0] + LN.bacakEn / 2, u[1]], [a[0] + LN.bacakEn * 0.55, a[1]], [a[0] - LN.bacakEn * 0.55, a[1]]])} fill={LP.sehpa} stroke={LP.memurKontur} strokeWidth={2.5} />
+          <line x1={u[0] - LN.bacakEn / 2 + 2} y1={u[1] + 2} x2={a[0] - LN.bacakEn * 0.55 + 2} y2={Math.min(a[1], 1960)} stroke={LP.kenarSoguk} strokeWidth={1.5} opacity={0.25 * lamba} />
+        </g>)}
       </g>
       {elGor && (() => {
-        const bilek: P = [elUc[0] + 150, elUc[1] - 10];
-        const kol = konikKol([bilek[0] + 330, bilek[1] + 60], [bilek[0] + 190, bilek[1] + 40], bilek, [110, 92, 62]);
+        // T (#7): levhayı üst-sağ köşesinden tutan el, parmaklar levha arka yüzünde açık (4 parmak seçilir), başparmak önde;
+        // temas noktası (parmak uçları) yuvanın üstünde, x < 920 (IG sütunu dışında); kol sağ-üstten gelir ve aynı yoldan çıkar
+        const bilek: P = [elUc[0] + 92, elUc[1] - 70];
+        const kol = konikKol([bilek[0] + 300, bilek[1] - 150], [bilek[0] + 170, bilek[1] - 30], bilek, [104, 86, 58]);
         return <g>
           <path d={kol.d} fill="#34363d" stroke={LP.memurKontur} strokeWidth={3} />
-          <GravurEl bilek={bilek} aci={172} E={150} poz={GRAVUR_POZ.kistir} isik={[-0.6, -0.8]} taramaAci={78} palet={{ ...ODA_EL }} />
+          <polygon points={pt([kol.ileri(-26), kol.ileri(-2)].flatMap((q, j) => j ? [[q[0] + kol.n2[0] * 30, q[1] + kol.n2[1] * 30], [q[0] - kol.n2[0] * 30, q[1] - kol.n2[1] * 30]] as P[] : [[q[0] - kol.n2[0] * 32, q[1] - kol.n2[1] * 32], [q[0] + kol.n2[0] * 32, q[1] + kol.n2[1] * 32]] as P[]))} fill={ODA_EL.manset} stroke={ODA_EL.mansetGolge} strokeWidth={2.5} />
+          <GravurEl bilek={bilek} aci={142} E={128} poz={LEVHA_POZ} isik={[-0.6, -0.8]} taramaAci={78} palet={{ ...ODA_EL }} />
         </g>;
       })()}
     </g>
   );
 };
+// levha tutuşu: dört parmak hafif kıvrık ve aralıklı (parmaklar seçilir), başparmak işarete karşı (kıstırma)
+const LEVHA_POZ: GravurPoz = { parmak: [{ a: -10, b: 18, k: 0.95 }, { a: -2, b: 24, k: 0.93 }, { a: 6, b: 30, k: 0.9 }, { a: 14, b: 36, k: 0.86 }], bas: { a: -34, b: 8, k: 1.05 } };
 const ODA_EL: GravurPalet = { isik: "#a89a9a", golge: "#6a5c62", konturYuk: "#3a3036", konturIsik: "#7a6a6e", kenar: "#c4ccbc", tarama: "#4a3c44", manset: "#5d5f63", mansetGolge: "#3e3f44" };
 
 // ================================================================== KAPI görünümü (§4v3.5 + tasarım §15.2) ==================================================================
@@ -607,13 +717,10 @@ const KapiSahne: React.FC<{ plan: Plan; p: number; uid: string; kilit: SablonPro
         return <g>
           <path d={disYol} fill="#8f7360" stroke="#5a4438" strokeWidth={3} strokeLinejoin="round" />
           {uclar.map((a, i) => {
-            const w = 15 - i;
-            const d = `M${a[0] - 2} ${a[1] - w / 2} L${a[0] + L - w / 2} ${a[1] - w / 2 + 1} A${w / 2} ${w / 2} 0 0 1 ${a[0] + L - w / 2} ${a[1] + w / 2 - 1} L${a[0] - 2} ${a[1] + w / 2} Z`;
-            return <g key={i}>
-              <path d={d} fill="#d6b49c" stroke="#5a4438" strokeWidth={2} strokeLinejoin="round" transform="translate(-1.2 1.2)" />
-              <path d={d} fill="#d6b49c" stroke="#a8836c" strokeWidth={1.3} strokeLinejoin="round" />
-              <path d={`M${a[0] + L - w * 0.9} ${a[1] - w / 2 + 2} q${w * 0.3} ${w * 0.4} 0 ${w - 4}`} stroke="#a8836c" strokeWidth={1.2} fill="none" />
-            </g>;
+            // T #14: parmak uçları farklı boy/kalınlıkta, uca doğru incelir, hafif aşağı kıvrılır; tırnak yayı ve sert ikinci kontur yok (mandal okuması)
+            const w = [13, 12, 10][i], Li = L * [1, 0.82, 0.62][i], egr = [2, 3, 4][i];
+            const d = `M${a[0] - 2} ${a[1] - w / 2} Q${a[0] + Li * 0.6} ${a[1] - w / 2 + egr * 0.4} ${a[0] + Li - w * 0.3} ${a[1] - w * 0.3 + egr} Q${a[0] + Li + w * 0.1} ${a[1] + egr * 0.8} ${a[0] + Li - w * 0.35} ${a[1] + w * 0.32 + egr} Q${a[0] + Li * 0.5} ${a[1] + w / 2 + egr * 0.4} ${a[0] - 2} ${a[1] + w / 2} Z`;
+            return <path key={i} d={d} fill={i === 0 ? "#d6b49c" : "#c9a690"} stroke="#7a5e4c" strokeWidth={1.8} strokeLinejoin="round" />;
           })}
         </g>;
       })()}

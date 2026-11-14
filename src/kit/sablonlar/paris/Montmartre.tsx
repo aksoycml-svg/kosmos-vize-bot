@@ -226,7 +226,9 @@ const DG_A: [number, number] = [0.906, 0.423], DG_F: [number, number] = [0.423, 
 const DG_IC: [number, number] = [-0.451, 0.209]; // sepet içi duruş (sandığın arkasında değil, sol-arkada)
 const W = (o: [number, number], a: number, h: number, f: number): V3 => [o[0] + DG_A[0] * a + DG_F[0] * f, h, o[1] + DG_A[1] * a + DG_F[1] * f];
 const dgHalat = (h: number): V3 => { const q = sepetKose({ X: 0, h: 0, Z: 0 }).ust[3], an = Math.atan2(q[2], q[0]), u: V3 = [Math.cos(an) * 0.45, 2.6, Math.sin(an) * 0.45]; return lerp3(q, u, (h - q[1]) / (2.6 - q[1])); };
-const DG_EL = dgHalat(1.8); // B3: el halatta baş hizasının üstünde-solunda; gövde biniş boyunca sepete (sağa) eğilir → halat başın solunda kalır, kol yukarı-sola uzanır, dirsek dışa-aşağı (1.55/1.72 denemelerinde el başa yapışık "selam" okunuyordu)
+const DG_EL = dgHalat(1.58); // T #16 (B3 #1): h 1.80 → 1.58 + gövde sağa 0.2 → el omuz–kulak hizasında, başın ≥ 1 baş genişliği solunda (selam okuması kalkar)
+const DG_EL_KAP = dgHalat(1.38); // kapanış: el halat boyunca göğüs hizasına iner (tutuş gevşer, kayar)
+const DG_EG = 0.2; // B3: el halatta baş hizasının üstünde-solunda; gövde biniş boyunca sepete (sağa) eğilir → halat başın solunda kalır, kol yukarı-sola uzanır, dirsek dışa-aşağı (1.55/1.72 denemelerinde el başa yapışık "selam" okunuyordu)
 const DG_RIM: V3 = (() => { const q = sepetKose({ X: 0, h: 0, Z: 0 }).ust[3]; return [q[0] * 0.94, q[1] + 0.02, q[2] * 0.94]; })(); // köşe rimi (içe 6 %)
 type Poz = EklemDunya;
 const dagronPoz = (f: number, A: Ar): Poz & { yerde: [boolean, boolean]; keys: number[] } => {
@@ -238,10 +240,11 @@ const dagronPoz = (f: number, A: Ar): Poz & { yerde: [boolean, boolean]; keys: n
     boyun: W(o, 0, h0 + 1.5, ef), bas: W(o, 0, h0 + 1.63, ef + 0.02),
   });
   const k0 = ayakta(S, 0, 0.04);
+  { const m = (v: V3): V3 => [v[0] + DG_A[0] * 0.12, v[1], v[2] + DG_A[1] * 0.12]; k0.bas = m(k0.bas); k0.boyun = m(k0.boyun); } // T #16: halata uzanırken baş sepete yatar (halattan uzaklaşır)
   // k1 (f226): sol ayak köşe rimine basar, diz yukarı-dışa (köşenin solunda); gövde duvara eğik, sağ bacak yerde
   const k1 = ayakta(S, 0, 0.1);
   const sagaEg = (q: Poz, d: number) => { const m = (v: V3): V3 => [v[0] + DG_A[0] * d, v[1], v[2] + DG_A[1] * d]; q.bas = m(q.bas); q.boyun = m(q.boyun); q.omuz = [m(q.omuz[0]), m(q.omuz[1])]; q.dirsek = [m(q.dirsek[0]), m(q.dirsek[1])]; q.el[1] = m(q.el[1]); };
-  sagaEg(k1, 0.13);
+  sagaEg(k1, DG_EG);
   k1.ayak[0] = DG_RIM; k1.kalca = [W(S, -0.1, 0.93, 0.03), W(S, 0.09, 0.93, 0.03)]; k1.diz[0] = (() => { const h = k1.kalca[0], m: V3 = [(h[0] + DG_RIM[0]) / 2, (h[1] + DG_RIM[1]) / 2, (h[2] + DG_RIM[2]) / 2], d: V3 = [-0.42 * DG_A[0] - 0.05 * DG_F[0], 0.88, -0.42 * DG_A[1] - 0.05 * DG_F[1]], L = Math.hypot(...d), b = 0.41; return [m[0] + d[0] / L * b, m[1] + d[1] / L * b, m[2] + d[2] / L * b] as V3; })();
   // k2 (≈f237): ağırlık rimdeki ayakta, kalça rimin üstünde, gövde sepete eğik; sağ bacak arka rimin ÜSTÜNDEN içeri geçer
   const k2: Poz = {
@@ -249,10 +252,10 @@ const dagronPoz = (f: number, A: Ar): Poz & { yerde: [boolean, boolean]; keys: n
     omuz: [W(S, -0.2, 1.68, 0.32), W(S, 0.2, 1.68, 0.3)], dirsek: [W(S, -0.3, 1.6, 0.3), W(S, 0.3, 1.5, 0.3)], el: [DG_EL, W(S, 0.3, 1.25, 0.36)],
     boyun: W(S, 0, 1.76, 0.34), bas: W(S, 0, 1.88, 0.38),
   };
-  sagaEg(k2, 0.1);
+  sagaEg(k2, DG_EG);
   // k3 (f248): sepetin içinde ayakta (taban h 0.1), el halatta kalır (kapanış)
   const k3 = ayakta(B, 0.1, 0.03);
-  sagaEg(k3, 0.12); // kapanış: gövde sepetin içine dönük, halat başın solunda kalır
+  sagaEg(k3, DG_EG); // kapanış: gövde sepetin içine dönük, halat başın solunda kalır
   const t1 = A.ayak_temas ?? 226, keys = [A.bas, t1, Math.round((t1 + A.bit) / 2), A.bit], P = [k0, k1, k2, k3];
   let i = 0; while (i < 2 && f > keys[i + 1]) i++;
   const t = t01(f, keys[i], keys[i + 1], INOUT);
@@ -265,7 +268,7 @@ const dagronPoz = (f: number, A: Ar): Poz & { yerde: [boolean, boolean]; keys: n
   if (i === 1) { const g0 = k1.ayak[1], g1 = k2.ayak[1], ff = t * t, hh = 1 - (1 - t) * (1 - t); o.ayak[1] = [lerp(g0[0], g1[0], ff), lerp(g0[1], g1[1], hh) + 0.15 * Math.sin(Math.PI * t), lerp(g0[2], g1[2], ff)]; o.diz[1] = [lerp(k1.diz[1][0], k2.diz[1][0], Math.sqrt(t)), lerp(k1.diz[1][1], k2.diz[1][1], Math.sqrt(t)), lerp(k1.diz[1][2], k2.diz[1][2], Math.sqrt(t))]; }
   // tutunan el: f bas → bas+6 halata uzanır, sonra halattaki noktada sabit (el halatı izlemez, halat eli değil: tutuş)
   const kav = A.bas + 6;
-  o.el[0] = f < kav ? lerp3(k0.el[0], DG_EL, t01(f, A.bas, kav, GIRIS)) : DG_EL;
+  o.el[0] = f < kav ? lerp3(k0.el[0], DG_EL, t01(f, A.bas, kav, GIRIS)) : lerp3(DG_EL, DG_EL_KAP, t01(f, keys[2], A.bit, INOUT));
   return { ...o, yerde: [o.ayak[0][1] < 0.03, o.ayak[1][1] < 0.03], keys };
 };
 const yukleyiciPoz = (X: number, Z: number, H: number, el: [V3, V3] | null): Poz => {
@@ -362,7 +365,7 @@ const Yukleme: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2
   if (p >= db.bas + 6 && p <= db.bit) kilit.push({ ad: "el halatta (IK, f218)", p: E(pr(k, ...DG_EL)), tur: "dokunus" });
   [0, 1].forEach((i) => { if (dg.yerde[i]) kilit.push({ ad: `Dagron ayak ${i}`, p: E(pr(k, ...dg.ayak[i])), tur: "ayak" }); });
   if (p >= hg.bas) kilit.push({ ad: "halat gerilme (f262)", p: E(pr(k, ...bagNok[0])), tur: "temas" });
-  const gok = <GokBasamak ufuk={k.U} seed={158} />;
+  const gok = <GokBasamak ufuk={k.U} seed={158} siklik={arka === "hale" ? 0.6 : 1} />; // T #20: hale (cam) arkasında tarama ×0.6
   // Niépce zarfı (H2.5): halka (h 2.6) → ağın h 4.5 paralel düğümlerine askı halatları; boğaz (h 2.9–3.4) kumaş tüpü zarfın önünde
   const szp = (plan.parametreler?.ikinci_balon as Record<string, unknown> | undefined)?.sarkik_zarf as { X?: number; Z?: number; seed?: number } | undefined;
   const sz = { X: szp?.X ?? -22, Z: szp?.Z ?? 65, seed: szp?.seed ?? 183 };
@@ -470,22 +473,22 @@ const Gok: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: { 
     // B3: delik zarfın içinde → iz, zarf siluetine (≈ R) 40 px kala biter (balona değmez); TMAX her karede yoldan bulunur
     let TMAX = 0.84; for (let j = 0; j <= 200; j++) { const t = j / 200, q = yolN(t); if (Math.hypot(q[0] - dgG.c[0], q[1] - dgG.c[1]) < dgG.R * 1.12 + 40) { TMAX = Math.max(0.3, t - 0.005); break; } }
     const uc = TMAX * ilerle, dag = p < fD ? 0 : (p - fD) / 42;
-    // 6 kopuk parça: her biri düzensiz kenarlı, uca doğru incelen şerit; aralarda boşluk; dağılırken kaynaktan başlayıp yükselir/kısalır
-    const kesim = [0, 0.15, 0.31, 0.45, 0.58, 0.7, 0.8].map((v, i) => (i ? v + (r() - 0.5) * 0.03 : v));
+    // T #19 (B3): TEK duman şeridi — kaynakta kalın, uca doğru incelir; kenarlar düzensiz (gravür), ayrık yaprak yok.
+    // Dağılırken kaynak ucu önce çekilir (şerit kısalır) ve yükselir; fade yok.
     const parca: React.ReactNode[] = [];
-    for (let i = 0; i < kesim.length - 1; i++) {
-      const t0 = kesim[i] * (TMAX / 0.8), t1 = Math.min(kesim[i + 1] * (TMAX / 0.8) - 0.025, uc); if (t1 <= t0 + 0.01) continue;
-      const kay = dag > 0 ? dag * 1.3 - (1 - t0 / TMAX) * 0.5 : -1; if (kay > 0.9) continue; // kaynak ucu önce dağılır
-      const kis = Math.max(0, kay) * (t1 - t0) * 0.8, a0 = t0 + kis / 2, a1 = t1 - kis / 2; if (a1 <= a0 + 0.008) continue;
-      const n = 8, ust: P[] = [], alt: P[] = [];
+    const a0 = Math.min(uc, dag > 0 ? Math.min(1, dag * 1.3) * uc : 0), a1 = uc - (dag > 0 ? Math.max(0, dag * 1.3 - 0.75) * uc : 0);
+    if (a1 > a0 + 0.01) {
+      const n = 32, ust: P[] = [], alt: P[] = [];
       for (let k = 0; k <= n; k++) {
         const t = lerp(a0, a1, k / n), q = yolN(t), q2 = yolN(Math.min(1, t + 0.01)), dx = q2[0] - q[0], dy = q2[1] - q[1], L = Math.hypot(dx, dy) || 1;
-        const w = lerp(13, 3, t / TMAX) * (0.75 + 0.5 * r()) * Math.sin(Math.PI * (0.15 + 0.85 * (k / n))) * (1 - 0.5 * Math.max(0, dag));
+        const ucIn = Math.min(1, (a1 - t) / 0.04 + 0.15), kokIn = Math.min(1, (t - a0) / 0.03 + (a0 > 0 ? 0.2 : 1));
+        const w = lerp(13, 3, t / TMAX) * (0.82 + 0.36 * r()) * ucIn * kokIn * (1 - 0.4 * Math.max(0, dag));
         const yuk = dag * (14 + 24 * (1 - t / TMAX));
         ust.push([q[0] - (dy / L) * w, q[1] + (dx / L) * w - yuk]); alt.push([q[0] + (dy / L) * w * 0.8, q[1] - (dx / L) * w * 0.8 - yuk]);
       }
-      parca.push(<polygon key={i} points={pts([...ust, ...alt.reverse()])} fill={PAL.kulIsik} stroke={PAL.kulGolge} strokeWidth={1.5} strokeLinejoin="round" />);
-      if (t1 - t0 > 0.05) { const m = yolN((a0 + a1) / 2); parca.push(<path key={`g${i}`} d={`M${(m[0] + 10).toFixed(1)} ${(m[1] + 3 - dag * 20).toFixed(1)}Q${m[0].toFixed(1)} ${(m[1] + 5 - dag * 20).toFixed(1)} ${(m[0] - 12).toFixed(1)} ${(m[1] + 2 - dag * 20).toFixed(1)}`} fill="none" stroke={PAL.kulGolge} strokeWidth={1.5} />); }
+      parca.push(<polygon key="s" points={pts([...ust, ...alt.reverse()])} fill={PAL.kulIsik} stroke={PAL.kulGolge} strokeWidth={1.5} strokeLinejoin="round" />);
+      // alt kenarda kısa gölge kıvrımları (tarama), şerit boyunca 3 adet
+      [0.25, 0.5, 0.75].forEach((v, i) => { const t = lerp(a0, a1, v); if (t > TMAX * 0.85) return; const m = yolN(t), yy = m[1] + 3 - dag * (14 + 24 * (1 - t / TMAX)); parca.push(<path key={`g${i}`} d={`M${(m[0] + 10).toFixed(1)} ${yy.toFixed(1)}Q${m[0].toFixed(1)} ${(yy + 2).toFixed(1)} ${(m[0] - 12).toFixed(1)} ${(yy - 1).toFixed(1)}`} fill="none" stroke={PAL.kulGolge} strokeWidth={1.5} />); });
     }
     return <g>{parca}</g>;
   })() : null;
@@ -517,7 +520,8 @@ const Gok: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: { 
       return <g key={i}><polygon points={pts(kenar)} fill={PAL.kulIsik} stroke={PAL.kulGolge} strokeWidth={2} strokeLinejoin="round" /><path d={`M${c[0] - rr * 0.6} ${c[1] + rr * 0.3}Q${c[0]} ${c[1] + rr * 0.7} ${c[0] + rr * 0.7} ${c[1] + rr * 0.25}`} fill="none" stroke={PAL.kulGolge} strokeWidth={3} /><path d={`M${c[0] - rr * 1.1} ${c[1]}A${rr} ${rr} 0 0 1 ${c[0] - rr * 0.2} ${c[1] - rr * 0.95}`} fill="none" stroke={PAL.kenar} strokeWidth={2} /></g>;
     })}</g>;
   })() : null;
-  const puf = pT >= 2 && pT < 26 ? (() => { const t = (pT - 2) / 24, c: P = [hedef[0] - 20, hedef[1] - dus + 10]; return <g fill={PAL.puf}>{[0, 1].map((i) => { const rr = (10 + i * 6) * Math.sin(Math.PI * t); return rr > 1 ? <circle key={i} cx={c[0] - 20 * t - i * 12} cy={c[1] - 26 * t - i * 8} r={rr} /> : null; })}</g>; })() : null;
+  // T #18: delikteki küçük beyaz puf noktası ("göz" okuması) kaldırıldı — kül dumanı (kul) isabeti zaten taşır
+  const puf = false && pT >= 2 && pT < 26 ? (() => { const t = (pT - 2) / 24, c: P = [hedef[0] - 20, hedef[1] - dus + 10]; return <g fill={PAL.puf}>{[0, 1].map((i) => { const rr = (10 + i * 6) * Math.sin(Math.PI * t); return rr > 1 ? <circle key={i} cx={c[0] - 20 * t - i * 12} cy={c[1] - 26 * t - i * 8} r={rr} /> : null; })}</g>; })() : null;
   // şehirden iki ince baca dumanı (D 500 / 800)
   const dgGor = p < fD + 52;
   const E = (q: P) => ekranNokta(k2, q);
@@ -584,10 +588,12 @@ const Sepet: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: 
   const basDon = t01(p, 164, 184);
   const t4 = onYuzNokta(sp, torbaU[3]), t3 = onYuzNokta(sp, torbaU[2]);
   const elHedef: V3 = p < (t1.bas) ? [0.62, 0.99, -0.5] : p < (t1.birakma ?? 196) + 2 ? lerp3([0.62, 0.99, -0.5], [t4[0] - 0.01, t4[1] + 0.02, t4[2] - 0.02], t01(p, t1.bas, (t1.birakma ?? 196) - 2)) : p < (t2.birakma ?? 214) + 2 ? lerp3([t4[0], t4[1] + 0.08, t4[2]], [t3[0] - 0.01, t3[1] + 0.02, t3[2] - 0.02], t01(p, (t1.birakma ?? 196) + 3, (t2.birakma ?? 214) - 2)) : lerp3([t3[0], t3[1] + 0.06, t3[2]], [0.62, 0.99, -0.5], t01(p, (t2.birakma ?? 214) + 4, (t2.birakma ?? 214) + 22));
+  // T (KE-PK-O2, yönetmen on_kol_onay): gövde ön rime +0.3 m (omuz–rim ≈ 0.54 → 0.24 m); kalça 0.2 m, göğüs öne eğik → ön kol rimin ÜSTÜNDEN uzanır
+  const gOn = Number(plan.parametreler?.govde_on_m ?? 0.3), kOn = gOn * 0.67;
   const D: EklemDunya = {
-    bas: [0.48 - 0.04 * basDon, dn(1.3), 0.0], boyun: [0.48, 1.18, 0.02],
-    omuz: [[0.27, 1.12, 0.06], [0.69, 1.12, 0.0]], kalca: [[0.38, 0.82, 0.32], [0.58, 0.82, 0.3]],
-    dirsek: [[0.15, 0.98, -0.25], [0.8, 1.02, -0.35]], el: [[0.12, 0.99, -0.62], elHedef],
+    bas: [0.48 - 0.04 * basDon, dn(1.3), -gOn], boyun: [0.48, 1.18, 0.02 - gOn],
+    omuz: [[0.27, 1.12, 0.06 - gOn], [0.69, 1.12, -gOn]], kalca: [[0.38, 0.82, 0.32 - kOn], [0.58, 0.82, 0.3 - kOn]],
+    dirsek: [[0.15, 0.98, -0.25 - gOn * 0.5], [0.8, 1.02, -0.35]], el: [[0.12, 0.99, -0.62], elHedef],
     diz: [[0.38, 0.45, 0.2], [0.58, 0.45, 0.18]], ayak: [[0.38, 0.05, 0.42], [0.58, 0.05, 0.4]],
   };
   const dE = eklemIzdus(k, D);

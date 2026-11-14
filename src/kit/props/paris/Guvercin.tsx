@@ -228,7 +228,9 @@ export const Guvercin: React.FC<{
     const P_ = (a: number, b: number) => add(add(k0, mul(u, a)), mul(n, b));
     const yol = `M ${P_(0, 7).join(" ")} L ${P_(L - 16, 13).join(" ")} Q ${P_(L + 6, 11).join(" ")} ${P_(L + 2, 0).join(" ")} Q ${P_(L + 6, -11).join(" ")} ${P_(L - 16, -13).join(" ")} L ${P_(0, -7).join(" ")} Z`;
     const gen = (a: number) => 7 + (6 * Math.min(a, L - 16)) / (L - 16);
-    const bant = [P_(L - 30, gen(L - 30)), P_(L - 12, 12.6), P_(L - 12, -12.6), P_(L - 30, -gen(L - 30))];
+    // T #26: uç bandı tüy ucunu izler (dış kenar = tüy ucu eğrisi, iç kenar uca paralel kavis) — düz dikdörtgen değil
+    const f2 = (q: P) => q.join(" ");
+    const bant = `M ${f2(P_(L - 30, gen(L - 30)))} L ${f2(P_(L - 16, 13))} Q ${f2(P_(L + 6, 11))} ${f2(P_(L + 2, 0))} Q ${f2(P_(L + 6, -11))} ${f2(P_(L - 16, -13))} L ${f2(P_(L - 30, -gen(L - 30)))} Q ${f2(P_(L - 16, 0))} ${f2(P_(L - 30, gen(L - 30)))} Z`;
     const sap = [P_(6, 0), P_(L - 4, 0)];
     return { i, yol, bant, sap };
   });
@@ -270,7 +272,7 @@ export const Guvercin: React.FC<{
         {tuyler.map((t) => (
           <g key={t.i}>
             <path d={t.yol} fill={f(t.i === 4 ? R.ust : R.kanat)} {...st} />
-            {!duz && <path d={d(t.bant)} fill={R.uc} />}
+            {!duz && <path d={t.bant} fill={R.uc} />}
             {!duz && <path d={d(t.sap, false)} stroke={R.kontur} strokeWidth={Math.max(1, kw * 0.45)} opacity={0.55} fill="none" style={nss} />}
             {!duz && <path d={t.yol} fill="none" stroke={R.kontur} strokeWidth={kw} style={nss} />}
           </g>
