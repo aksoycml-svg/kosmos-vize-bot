@@ -134,13 +134,19 @@ const Pantheon: React.FC<{ c: Cam; X: number; D: number; o: number }> = ({ c, X,
 };
 
 // ---------------------------------------------------------------- ana bileşen ----------------------------------------------------------------
-export const HavadanParis: React.FC<{ H: number; zeminUstu?: number; drift?: number; U: number; seed: number; isik: IsikAd; imza?: boolean; anitOlcek?: number; uid: string; gokIsima?: boolean }> = ({ H, zeminUstu = 20, drift = 0, U, seed, isik, imza = true, anitOlcek = 1.8, uid, gokIsima = false }) => {
+export const HavadanParis: React.FC<{ H: number; zeminUstu?: number; drift?: number; U: number; seed: number; isik: IsikAd; imza?: boolean; anitOlcek?: number; uid: string; gokIsima?: boolean; modelH?: number }> = ({ H, zeminUstu = 20, drift = 0, U, seed, isik, imza = true, anitOlcek = 1.8, uid, gokIsima = false, modelH }) => {
   const c: Cam = { Hc: H + zeminUstu, drift, U };
+  // tur-18 (titreme düzeltmesi): dünya modeli (çatı satırları, su çizgileri, LOD eşikleri) KAMERADAN BAĞIMSIZ, sabit bir referans
+  // kameradan (modelH, drift 0) kurulur. Eskiden satirModel'in Dmin'i ve su çizgisi örneklemesi her karenin H/drift'inden türüyordu →
+  // kamera hareket ederken her karede şehir yeniden rastgele dizildi (titreme). modelH verilmezse eski davranış (statik kamera için aynı).
+  const cR: Cam = { Hc: (modelH ?? H) + zeminUstu, drift: modelH === undefined ? drift : 0, U };
   const p = (X: number, h: number, D: number) => prj(c, X, h, D);
   const L = ISIK_YON[isik]; // ışığa doğru (X, h, D)
   const isikta = (nx: number, nD: number) => nx * L[0] + nD * L[2] > 0.02;
   const Dalt = (c.Hc * F) / (1990 - U) - drift; // alt kenarın zemin D'si
   const D0 = Math.max(imza ? 105 : 40, Dalt * 0.9);
+  const D0R = Math.max(imza ? 105 : 40, ((cR.Hc * F) / (1990 - U) - cR.drift) * 0.9); // model başlangıcı (referans kamera, sabit)
+  const sR = (D: number) => F / Math.max(0.5, D + cR.drift); // LOD eşikleri için dünya-sabit ölçek
   const tar = `${uid}hp-t`;
   const zemin: React.ReactNode[] = [], dik: { D: number; el: React.ReactNode }[] = [];
   // ---- zemin: kentin taban tonu (gölgedeki sokak) + uzak buğu bandı ----
@@ -167,15 +173,18 @@ export const HavadanParis: React.FC<{ H: number; zeminUstu?: number; drift?: num
     zemin.push(<g key="ray">{balast}<path d={raylar.join("")} fill="none" stroke="#6a6280" strokeWidth={2.5} /></g>);
     // ---- rıhtım (Quai d'Austerlitz) yolu + Seine (G5/G3) ----
     zemin.push(<polygon key="rihtim" points={pts([p(58, 0, Db), p(95, 0, Db), p(95, 0, 700), p(58, 0, 700)])} fill="#d3bba6" />);
-    const Ds: number[] = []; for (let D = Db; D < 6400; D *= 1.04) Ds.push(D);
+    const Ds: number[] = [Db]; for (let D = Math.max(D0R, 30); D < 6400; D *= 1.04) if (D > Db + 0.01) Ds.push(D); // tur-18: dünya-sabit örnek ızgarası
     const sol = Ds.map((D) => p(seineSol(D), 0, D)), sag = Ds.map((D) => p(seineSag(D), 0, D));
     zemin.push(<polygon key="seine" points={pts([...sol, ...sag.reverse()])} fill="#cdc6d0" />);
     zemin.push(<polygon key="seineU" points={pts([...Ds.filter((D) => D > 1200).map((D) => p(seineSol(D), 0, D)), ...Ds.filter((D) => D > 1200).map((D) => p(seineSag(D), 0, D)).reverse()])} fill="#dccfcf" />);
     // su çizgileri: yatay, kesik (30–90 px), D < 700'de 2 px / 7 px aralık → uzakta 1.5 px / 4 px; kıyıya yakın sık
-    { const r2 = rng(185), su: string[] = [], su2: string[] = []; let D = Db + 3;
-      while (D < 2600) { const y = p(0, 0, D)[1], xl = p(seineSol(D), 0, D)[0], xr = p(seineSag(D), 0, D)[0]; const n = Math.max(1, Math.round((xr - xl) / 120));
-        for (let k = 0; k < n; k++) { const L0 = 30 + r2() * 60, kiyi = r2() < 0.5 ? xl + r2() * 60 : xl + r2() * (xr - xl); const x0 = Math.max(xl + 3, kiyi), x1 = Math.min(xr - 3, x0 + L0 * Math.min(1, 900 / D)); if (x1 > x0 + 4) (D < 700 ? su : su2).push(`M${x0.toFixed(1)} ${y.toFixed(1)}L${x1.toFixed(1)} ${y.toFixed(1)}`); }
-        const ar = D < 700 ? 7 : 4; if (y - ar - U < 2) break; D = (c.Hc * F) / (y - ar - U) - drift; }
+    // tur-18: çizgiler referans kamerada örneklenir, dünya koordinatında (X, D) saklanır, güncel kamerayla izdüşürülür (kameraya yapışmaz).
+    { const r2 = rng(185), su: string[] = [], su2: string[] = []; const pR = (X: number, h: number, D: number) => prj(cR, X, h, D);
+      const DbR = Math.max(D0R, 30); let D = DbR + 3; const seg: [number, number, number][] = [];
+      while (D < 2600) { const y = pR(0, 0, D)[1], xl = pR(seineSol(D), 0, D)[0], xr = pR(seineSag(D), 0, D)[0]; const n = Math.max(1, Math.round((xr - xl) / 120));
+        for (let k = 0; k < n; k++) { const L0 = 30 + r2() * 60, kiyi = r2() < 0.5 ? xl + r2() * 60 : xl + r2() * (xr - xl); const x0 = Math.max(xl + 3, kiyi), x1 = Math.min(xr - 3, x0 + L0 * Math.min(1, 900 / D)); if (x1 > x0 + 4) { const m = Math.max(0.5, D + cR.drift) / F; seg.push([(x0 - 540) * m, (x1 - 540) * m, D]); } }
+        const ar = D < 700 ? 7 : 4; if (y - ar - U < 2) break; D = (cR.Hc * F) / (y - ar - U) - cR.drift; }
+      for (const [X0, X1, Ds2] of seg) { if (Ds2 < Db) continue; const a = p(X0, 0, Ds2), b = p(X1, 0, Ds2); (Ds2 < 700 ? su : su2).push(`M${a[0].toFixed(1)} ${a[1].toFixed(1)}L${b[0].toFixed(1)} ${b[1].toFixed(1)}`); }
       zemin.push(<path key="su" d={su.join("")} fill="none" stroke="#9a92ae" strokeWidth={2} />, <path key="su2" d={su2.join("")} fill="none" stroke="#9a92ae" strokeWidth={1.5} />); }
     // rıhtım duvarı (sol kıyı)
     zemin.push(<path key="kiyi" d={`M${Ds.filter((D) => D < 2600).map((D) => P2(p(seineSol(D), 0, D))).join("L")}`} fill="none" stroke="#7a7394" strokeWidth={2.5} />);
@@ -246,11 +255,11 @@ export const HavadanParis: React.FC<{ H: number; zeminUstu?: number; drift?: num
         dik.push({ D: Da, el: <g key={`vg${v}`} strokeLinejoin="round"><polygon points={pts(sagY)} fill="#7a7394" stroke="#4a4560" strokeWidth={2} /><polygon points={pts(sagY)} fill={`url(#${tar})`} /><polygon points={pts(tavan)} fill="#a89fbe" stroke="#4a4560" strokeWidth={2} /><polygon points={pts(on)} fill="#e0c8b2" stroke="#4a4560" strokeWidth={2} /></g> }); } }
   }
   // ---- çatı denizi (satır) ----
-  const binalar = satirModel(seed, imza, D0);
+  const binalar = satirModel(seed, imza, D0R);
   for (const b of binalar) {
     const D = b.D, Dv = D + drift; if (Dv < 30) continue;
     const xa = p(b.X0, 0, D)[0], xb = p(b.X1, 0, D)[0]; if (xb < -320 || xa > 1400) continue;
-    const s = F / Dv, yak = D < 700, orta = D < 1500;
+    const s = F / Dv, s0 = sR(D), yak = D < 700, orta = D < 1500;
     const kont = D < 400 ? 2.5 : D < 700 ? 1.5 : 0;
     const cepheIsik = isikta(0, -1), yanSolIsik = isikta(-1, 0);
     const cR = bugu(cepheIsik ? ["#e0c8b2", "#d8b8a4", "#e8d0ba"][b.ton] : "#9a92ae", D), golgeR = bugu("#9a92ae", D), mansR = bugu("#a89fbe", D), terR = bugu("#b4abc8", D);
@@ -261,7 +270,7 @@ export const HavadanParis: React.FC<{ H: number; zeminUstu?: number; drift?: num
     if (orta && b.sokakSol && b.X0 > 0) { const w = [p(b.X0, 0, D), p(b.X0, 0, D + b.derin), p(b.X0, b.h, D + b.derin), p(b.X0, b.h, D)]; el.push(<polygon key="yl" points={pts(w)} fill={bugu(yanSolIsik ? "#e0c8b2" : "#9a92ae", D)} />); }
     el.push(<polygon key="c" points={pts(yuz)} fill={cR} stroke={kont ? bugu("#7a7394", D) : "none"} strokeWidth={kont} strokeLinejoin="round" />);
     // pencere tikleri (yakın bant): 1.0 × 2.0 m, 3 m ritim; Haussmann dili: 2. ve son katta sürekli balkon çizgisi + saçak silmesi
-    if (yak && s * 1.0 >= 2.5) { const n = Math.floor((b.X1 - b.X0 - 1.5) / 3), katN = Math.floor((b.h - 3) / 3.1), wd: string[] = []; for (let k = 0; k < katN; k++) for (let i = 0; i < n; i++) { const X = b.X0 + 1.5 + i * 3 + 0.4, hh = 1.2 + k * 3.1; const a = p(X, hh + 2, D); wd.push(`M${a[0].toFixed(1)} ${a[1].toFixed(1)}h${(1.0 * s).toFixed(1)}v${(2 * s).toFixed(1)}h${(-1.0 * s).toFixed(1)}Z`); } el.push(<path key="w" d={wd.join("")} fill={bugu("#7a7394", D)} />);
+    if (yak && s0 * 1.0 >= 2.5) { const n = Math.floor((b.X1 - b.X0 - 1.5) / 3), katN = Math.floor((b.h - 3) / 3.1), wd: string[] = []; for (let k = 0; k < katN; k++) for (let i = 0; i < n; i++) { const X = b.X0 + 1.5 + i * 3 + 0.4, hh = 1.2 + k * 3.1; const a = p(X, hh + 2, D); wd.push(`M${a[0].toFixed(1)} ${a[1].toFixed(1)}h${(1.0 * s).toFixed(1)}v${(2 * s).toFixed(1)}h${(-1.0 * s).toFixed(1)}Z`); } el.push(<path key="w" d={wd.join("")} fill={bugu("#7a7394", D)} />);
       if (b.h > 12) { const bl = [1.2 + 3.1, 1.2 + (katN - 1) * 3.1].map((hh) => { const a = p(b.X0 + 0.5, hh + 0.05, D), c2 = p(b.X1 - 0.5, hh + 0.05, D); return `M${a[0].toFixed(1)} ${a[1].toFixed(1)}L${c2[0].toFixed(1)} ${c2[1].toFixed(1)}`; }); el.push(<path key="bk" d={bl.join("")} stroke={bugu("#5a5278", D)} strokeWidth={Math.max(1.5, 0.5 * s)} />); }
     }
     if (orta) { const a = p(b.X0, b.h, D), c2 = p(b.X1, b.h, D); el.push(<line key="sm" x1={a[0]} y1={a[1] + 0.5} x2={c2[0]} y2={c2[1] + 0.5} stroke={bugu("#f0c4a8", D)} strokeWidth={Math.max(1, Math.min(2, 0.4 * s))} />); }
@@ -270,13 +279,13 @@ export const HavadanParis: React.FC<{ H: number; zeminUstu?: number; drift?: num
       const br = [p(b.X0, b.h, D), p(b.X1, b.h, D), p(b.X1, b.h + 4.2, D + 1.5), p(b.X0, b.h + 4.2, D + 1.5)];
       const te = [p(b.X0, b.h + 4.2, D + 1.5), p(b.X1, b.h + 4.2, D + 1.5), p(b.X1, b.h + 4.7, D + b.derin), p(b.X0, b.h + 4.7, D + b.derin)];
       el.push(<polygon key="te" points={pts(te)} fill={terR} />, <polygon key="br" points={pts(br)} fill={mansR} stroke={kont ? bugu("#7a7394", D) : "none"} strokeWidth={kont * 0.6} />);
-      if (yak && s * 1.0 >= 2.5) { const n = Math.floor((b.X1 - b.X0 - 1.5) / 3), ld: string[] = []; for (let i = 0; i < n; i++) { const a = p(b.X0 + 1.6 + i * 3, b.h + 3.4, D + 1.0); ld.push(`M${(a[0] - 0.25 * s).toFixed(1)} ${(a[1] - 0.4 * s).toFixed(1)}l${(0.75 * s).toFixed(1)} ${(-0.5 * s).toFixed(1)}l${(0.75 * s).toFixed(1)} ${(0.5 * s).toFixed(1)}v${(1.9 * s).toFixed(1)}h${(-1.5 * s).toFixed(1)}Z`); } el.push(<path key="lu" d={ld.join("")} fill={bugu("#e0c8b2", D)} stroke={bugu("#7a7394", D)} strokeWidth={Math.max(1, 0.35 * s)} />); }
+      if (yak && s0 * 1.0 >= 2.5) { const n = Math.floor((b.X1 - b.X0 - 1.5) / 3), ld: string[] = []; for (let i = 0; i < n; i++) { const a = p(b.X0 + 1.6 + i * 3, b.h + 3.4, D + 1.0); ld.push(`M${(a[0] - 0.25 * s).toFixed(1)} ${(a[1] - 0.4 * s).toFixed(1)}l${(0.75 * s).toFixed(1)} ${(-0.5 * s).toFixed(1)}l${(0.75 * s).toFixed(1)} ${(0.5 * s).toFixed(1)}v${(1.9 * s).toFixed(1)}h${(-1.5 * s).toFixed(1)}Z`); } el.push(<path key="lu" d={ld.join("")} fill={bugu("#e0c8b2", D)} stroke={bugu("#7a7394", D)} strokeWidth={Math.max(1, 0.35 * s)} />); }
     } else {
       const rid = b.h + (b.derin / 2) * 0.7;
       el.push(<polygon key="eg" points={pts([p(b.X0, b.h, D), p(b.X1, b.h, D), p(b.X1, rid, D + b.derin / 2), p(b.X0, rid, D + b.derin / 2)])} fill={bugu(cepheIsik ? "#b39a9e" : "#7a7394", D)} />);
     }
     // baca kümesi (parsel sınırında, cephe üstünden 2 m; tepede külah tikleri)
-    if (b.baca && D < 1500 && s * 0.8 >= 0.7) {
+    if (b.baca && D < 1500 && s0 * 0.8 >= 0.7) {
       const X = b.X1 - 0.4, Dd = D + b.derin * 0.45, ht = b.h + (b.cati === "mansard" ? 4.7 : 3.6) + 2.4;
       const a = p(X - 0.5, b.h + 2, Dd), t2 = p(X + 0.5, ht, Dd), w = Math.max(2, t2[0] - a[0]), wl = Math.max(1.5, w * 0.45);
       el.push(<rect key="bc" x={a[0]} y={t2[1]} width={w} height={a[1] - t2[1]} fill={bugu("#8a6458", D)} />, <rect key="bci" x={a[0]} y={t2[1]} width={wl} height={a[1] - t2[1]} fill={bugu(cepheIsik ? "#c99a86" : "#8a6458", D)} />);

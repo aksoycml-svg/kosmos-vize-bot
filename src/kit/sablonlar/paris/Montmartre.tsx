@@ -561,7 +561,7 @@ const Gok: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: { 
   const nG = balonGeo(nK, { s: 1, dh: 0, X: 0, Z: 0 });
   return (
     <g>
-      {geri ? <HavadanParis H={H} drift={drift} U={900} seed={173} isik="havaGeri" anitOlcek={anitO} uid={uid} /> : <><GokBasamak ufuk={900} seed={158} /><HavadanSehir H={H} U={900} seed={173} isik="haleSabah" raylar={arka === "hale"} uid={uid} /></>}
+      {geri ? <HavadanParis H={H} modelH={Hm[0]} drift={drift} U={900} seed={173} isik="havaGeri" anitOlcek={anitO} uid={uid} /> : <><GokBasamak ufuk={900} seed={158} /><HavadanSehir H={H} U={900} seed={173} isik="haleSabah" raylar={arka === "hale"} uid={uid} /></>}
       {dumanCiz}
       {dgGor && (
         <g>
@@ -636,7 +636,7 @@ const Sepet: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; k2: 
   const halatlar = <g>{ust.map((q, i) => { const a = pr(k, ...q), b = pr(k, q[0] * 0.3, 2.7, q[2] * 0.3); const m: P = [(a[0] + b[0]) / 2 + gevsek * 30 * (i % 2 ? 1 : -1), (a[1] + b[1]) / 2]; return <path key={i} d={`M${a[0]} ${a[1] + sy}Q${m[0]} ${m[1] + sy} ${b[0]} ${b[1] + sy}`} fill="none" stroke={PAL.halat} strokeWidth={5} />; })}</g>;
   return (
     <g>
-      {arka === "hale" ? <HavadanParis H={H} zeminUstu={0} U={k.U} seed={177} isik="haleSabah" imza={false} gokIsima uid={uid} /> : <><GokBasamak ufuk={k.U} seed={158} /><HavadanSehir H={H} U={k.U} seed={173} isik="haleSabah" raylar={false} uid={uid} /></>}
+      {arka === "hale" ? <HavadanParis H={H} modelH={Hm[0]} zeminUstu={0} U={k.U} seed={177} isik="haleSabah" imza={false} gokIsima uid={uid} /> : <><GokBasamak ufuk={k.U} seed={158} /><HavadanSehir H={H} U={k.U} seed={173} isik="haleSabah" raylar={false} uid={uid} /></>}
       <g transform={`translate(${sx} ${yk})`}>
       <g transform={`translate(0 ${sy})`}>
         <SepetArka k={k} s={sp} isikYuz={PAL.hasirIsikHale} />
