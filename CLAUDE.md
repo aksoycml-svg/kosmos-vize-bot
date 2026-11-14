@@ -115,7 +115,7 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 ### Ses
 - **Temas = ses:** görünür her çarpma/basma/vurma/açılma-kapanma/bırakma anı kendi foley'ini alır, tam o karede. Temas anları olay listesine yazılır, sesler aynı listeden yerleştirilir.
 - **Görünürlük–ses:** görmediğimiz dokunuşun sesi olmaz. Görünmeyen kaynaklar sadece kısık ortam sesi olabilir (uzak çan, laterna, rüzgâr). Seviye ekrandaki büyüklükle orantılı.
-- Miks: anlatım 0 dB ref, foley −2/−6 dB (kullanıcı foley'i yüksek bulur — temkinli ol), müzik aşağıdaki seviye kuralıyla. Final −14 LUFS, tepe −1.5 dBTP.
+- Miks: anlatım 0 dB ref, foley −5/−9 dB (kullanıcı foley'i yüksek bulur; Paris ilk kurguda "efekt sesleri 3 db kısılmalı" → eski −2/−6'dan 3 dB aşağı), müzik aşağıdaki seviye kuralıyla. Final −14 LUFS, tepe −1.5 dBTP.
 - **Müzik akar:** müzik plan sınırında kesilmez, ani düşüşle "gitmez"; vurgu müzikal cümleyle (dinamik, enstrüman, cümle sonu) yapılır. Tam sessizlik yalnız kullanıcı onaylı bir karardır. Ses efekti oyunculuğa uyar (esneme acı gibi, hasta sesi sağlıklı gibi duyulmaz); anlamsız efekt (iç çekiş vb.) konmaz.
 - **Müzik seviyesi (kullanıcı kararı, Evliya):** konuşmada anlatımın −22 dB altı, aralarda en fazla −16 dB (eski −8 dB'lik yükselme kullanıcıya "dip ses" gibi geldi). Vuruş/darbe sesleri yatağın 6–8 dB üstü, küçük temaslar müzik tepelerinin 10–15 dB altı.
 - **Geçiş sesi bütçesi:** 30 sn'de en çok 2 whoosh, alçak bir kabarma; aynı geçiş sesi üst üste yok. Savaş/ölüm/felaket konularında gösteri sesi (riser, whoosh) yok.
