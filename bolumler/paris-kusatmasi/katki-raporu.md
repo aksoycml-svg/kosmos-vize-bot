@@ -1269,3 +1269,10 @@
   3. #28 (çatı birim ölçeği) yapılmadı. Kabul edilmiş ızgarayı bozar; mekân sorumlusu referans karesiyle ayrı tur gerekir.
   4. Kurgucu: P10 için yeni temas yok (sandalye artık itilmiyor). Levha teması f84 aynı.
   5. Öz puan 7. Eleştirmen muhtemelen 6–6.5 verir; en zayıf yer P10 memur-3 okunurluğu.
+
+## elestirmen · 2026-11-14 · Toplu düzeltme turu T son kontrolü
+- Ne yaptım: P10/P06b/P07 şeritleri, ozet (11 kare), once-sonra, P10 f84/f200 güvenli+360, beş plan 360 karesi tarandı; P10 huzme ve P06b tırmanış kareleri büyütülerek incelendi. Rapor `kalibrasyon/T/elestiri.md`.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/kalibrasyon/T/elestiri.md, bolumler/paris-kusatmasi/katki-raporu.md
+- Aldığım kararlar ve gerekçeleri: C4 kritik kapandı (baş+zarf+çıkış+kapanış var); memur-3 okunurluğu orta (360'ta uçan zarf gibi) → M1 + Y1. Dört şablon GEÇER (MONTMARTRE ve LANTERN-ODA şartlı), kullanıcıya gösterilebilir. Puan 7.
+- Uyguladığım kurallar / yakaladığım ihlaller: hareket şeridi (P10, P06b, P07); P06b f216–224 el şapka siperinde (#16 kısmen açık), f228–240 kırık poz; P10 f84 el/lantern IG sütununda kısmen (temas güvenli); P10 f200 zarf alt bantta 4 kare; gerileme yok.
+- Açık sorular / notlar: Y1 `konum_dekor_x[3]` ≈800 sonrası f240 kontrol karesi şart (baş–tabla açıklığı). #28 ve #21 sonra. foley.json yok → ses maddesi denetlenmedi.
