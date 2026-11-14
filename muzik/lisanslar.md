@@ -73,3 +73,6 @@ Ticari hak teyidi hâlâ açık; kullanılmadı.
 Müzik: Incompetech "Measured Paces" (Kevin MacLeod, CC BY 4.0, **atıf zorunlu**). Tam kayıt, atıf metni, kesim ve elenen adaylar: `bolumler/cicero/muzik/lisanslar.md`.
 Atıf (açıklamaya): `Measured Paces Kevin MacLeod (incompetech.com)` · `Licensed under Creative Commons: By Attribution 4.0 License` · `http://creativecommons.org/licenses/by/4.0/`
 Foley: 45 ElevenLabs SFX (Creator plan, atıf gerekmez; 4'ü proje arşivinden yeniden kullanıldı).
+
+## Yarasa bombası (bolumler/yarasa-bombasi) — 2026-11-14
+Müzik: Chopin Prelude Op. 28 no. 15, Musopen CC0 (Internet Archive). Ayrıntı: `bolumler/yarasa-bombasi/muzik/lisanslar.md`. Atıf zorunlu değil.
