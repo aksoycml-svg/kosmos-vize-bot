@@ -26,3 +26,6 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 - Mevcut görsellerde dönem hatası tara (kâğıt para, yel değirmeni/pilon kule, arma).
 - Kompars ana kadrodan ayrışır; kırmızı yalnız mühür/hata/vurgu (sardunya bile değil).
 - Hikâye nesnesinin dönem biçimi (paket = kâğıt+ip, koli değil) tanımda net olmalı; motion "kutu" çizdi.
+
+## Zorunlu okuma
+İşe başlamadan CLAUDE.md "Paris dersleri" bölümünü oku ve uygula; ihlal eden çıktı teslim edilmez.

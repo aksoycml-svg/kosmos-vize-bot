@@ -161,6 +161,18 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - **İmza nesnesi tekildir:** hikâyenin imza nesnesinin (Blanc: beyaz eldiven) rengi/biçimi başka bir nesnede ya da kostümde tekrarlanmaz; aksi halde dokunuş boşa düşer. Nesne ölçüsü gerçek ölçüyle tutarlı (eldiven = bir el boyu).
 - **Gravür telefonda okunur:** tarama ve kontur 360 px'te görünür olmalı (yarım pikselin altına inen çizgi yok sayılır). Tarama ışığın mimariyi anlattığı yerde (kemer içi, saçak altı, pencere çevresi), büyük önemsiz yüzeyde değil. Çapraz tarama yalnız küçük derin gölgede; geniş alanda kafes/tel örgü deseni yasak (dönem dışı okunur). Gölge kenarı net.
 
+### Paris dersleri (kullanıcı revizyonları, 2026-11 — her yeni bölüm bunlarla başlar)
+Ayrıntı ve kanıt: `bolumler/paris-kusatmasi/notlar/` (tur-1…19), `kalibrasyon/*/elestiri.md`, `tasarim.md` §13–15, `mekanlar.md`.
+- **"Çok soğuk, estetik yok" (çatı/güvercin A turu):** tek renk ailesi + ışıksız + derinliksiz + dokusuz kare reddedildi. Her mekân baştan: **sıcak–soğuk karşıtlık** (gölge mavi-mor, ışık gül-altın/şeftali), görünür tek ışık kaynağı ve kenar ışığı, arka planda atmosferik derinlik (flu katmanlar), görünür gravür taraması + kâğıt dokusu. Ölçüt: sıcak piksel ≥%14, p95 L* ≥75.
+- **Kod yazmadan önce yön onayı:** yeni görsel dil/mekân için önce kullanıcıya tek hedef kare (onaylı önceki hedeflerin dili + kamu malı gravür tarifi; Gemini yalnız kullanıcı onayıyla) ya da kalibrasyon karesi; onaydan sonra motion. Hedef görselsiz kurulan iç mekân/figürler (P05 el, P10) "çok kötü" bulundu.
+- **İmza nesnesi doygunluk/parlaklıkla tekil:** sahnenin geri kalanı C* ≤28, L* ≤88; imza nesnesi en doygun ve en parlak nokta (ton yasağı değil — o, sahnenin sıcaklığını öldürdü).
+- **Tekrarlı yapı ızgara gibi durmaz:** çatı/kalabalık/şehir seed'li düzensizlik (boy, aralık, ayrıntı varlığı); "yumurta kolisi" okuması reddedildi.
+- **Figür ve el:** yüzsüz siluet bile yön ve duruş okutur (burun-çene silueti, kenar ışığı, eğik baş); kollar dirsekli, el tek parça siluet (iç dikiş/bant/tırnak yok — "eldiven" okundu); havada tek kalkık parmak yok. Kompars yerleşimi anlam taşır (sur dışındaki koyu siluetler "kuşatan asker" okundu).
+- **Aynı karakter tek rig:** pozlar ayrı çizilmez; oranlar sabit, poz parametreleri sürekli (kuş tahtada/uçarken "çok fark" bulundu).
+- **Hareket/ölçekte kaynama yok:** kamera hareket ederken dünya modeli sabit referanstan kurulur; rastgelelik kameraya/kareye bağlanmaz (P07 "şehir titriyor"). Yazı genişliği font metriğiyle ölçülür, tahminle değil (yazılar kadrajdan taştı).
+- **Telefonda okunurluk:** her hikâye nesnesi/ikon 360 px'te ≥ ~20 px ve biçimi yanlış okunmaz (söndürülmüş balon "göz", kopuk tel "baston" okundu). Ölçek tek başına değil, biçim de kontrol edilir.
+- **Ses:** foley kullanıcıya yüksek gelir (−5/−9 dB); müzik dönem uygun kamu malı (kayıt lisansı doğrulanmış); kanıt yoksa sayı "~" ile.
+
 ### Kontrol karesi protokolü (eleştirmen)
 - Her plan için: ilk kare + dokunuş/temas karesi + kapanış karesi; tam boy + 360x640 telefon sayfası + güvenli alan bindirmeli sürüm. Renk ölçüm tablosu (duvar/zemin/gök hedef hex'e karşı).
 - **Hareket şeridi zorunlu:** yürüme, giriş/çıkış, düşen/atılan nesne, kamera hareketi olan planlarda her 4 karede şerit (çok kareli render'dan). Orta kare hareketi gizler (Evliya: meşale yayı ve demet düşüşü kontrol kareleri arasında kaldı).

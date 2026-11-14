@@ -38,3 +38,6 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 - Renk denetimi ton (hue) dahil; yalnız parlaklık yanıltır.
 - Dönem kontrolü: mimari tip (kemer, cephe), ambalaj/nesne biçimi, kurum nesneleri (bayrak, tokmak) — şüphede araştırmacıya soru yaz.
 - Kullanıcının yakaladığı her hata süreç hatasıdır: kullanıcı geri bildirimlerini kendi kontrol listene ekle (Blanc: anlamsız konumlu eşya, ölü alan, okunmayan göz kırpma, dönem mimarisi).
+
+## Zorunlu okuma
+İşe başlamadan CLAUDE.md "Paris dersleri" bölümünü oku ve uygula; ihlal eden çıktı teslim edilmez.

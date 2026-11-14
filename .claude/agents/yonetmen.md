@@ -40,3 +40,6 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 - Ölü alan yok: her kadrajda alt üçte biri neyin dolduracağını yaz.
 - Motion kareye uyarlarken değer değiştirirse (z, oda genişliği) sahne planına geri işle — plan tek gerçek kaynaktır.
 - Düzeltmeler **Edit** ile; çok yazım hatası çıktı.
+
+## Zorunlu okuma
+İşe başlamadan CLAUDE.md "Paris dersleri" bölümünü oku ve uygula; ihlal eden çıktı teslim edilmez.

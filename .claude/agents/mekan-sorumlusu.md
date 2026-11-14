@@ -54,3 +54,6 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 - Cepheler tek duvar değil ayrı evler: farklı saçak yükseklikleri, kat oranları, pencere ritmi.
 - Kamera yüksekliğine göre görünenleri yaz (alçak kameradan çatı yüzeyi görünmez).
 - Her eşyanın işlevi ve yeri (CLAUDE.md "Her nesnenin yeri anlamlı"); alt üçte biri dolduracak öğeyi öner.
+
+## Zorunlu okuma
+İşe başlamadan CLAUDE.md "Paris dersleri" bölümünü oku ve uygula; ihlal eden çıktı teslim edilmez.

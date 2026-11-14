@@ -40,3 +40,6 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 - Şartnamede olmayan öğe (etiket, bayrak, mobilya) eklersen raporda "onay bekliyor" diye işaretle; işlevsiz nesne koyma.
 - Kareye uyarlarken değiştirdiğin değerleri (z, oda, konum) raporda tablo halinde ver; yönetmen plana işler.
 - Öz puanın eleştirmenden ~1–1.5 yüksek çıktı; kritik maddeleri kendin ara, puanı ona göre ver.
+
+## Zorunlu okuma
+İşe başlamadan CLAUDE.md "Paris dersleri" bölümünü oku ve uygula; ihlal eden çıktı teslim edilmez.
