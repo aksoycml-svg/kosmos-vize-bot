@@ -1,0 +1,97 @@
+{
+ "id": "P03",
+ "lang": "en",
+ "text": "Reportedly, Bazna pressed the key into wax while the ambassador bathed, then copied it.",
+ "words": [
+  {
+   "t": "Reportedly,",
+   "s": 0.1,
+   "e": 0.81
+  },
+  {
+   "t": "Bazna",
+   "s": 1.09,
+   "e": 1.42
+  },
+  {
+   "t": "pressed",
+   "s": 1.46,
+   "e": 1.75
+  },
+  {
+   "t": "the",
+   "s": 1.76,
+   "e": 1.84
+  },
+  {
+   "t": "key",
+   "s": 1.88,
+   "e": 2.04
+  },
+  {
+   "t": "into",
+   "s": 2.06,
+   "e": 2.22
+  },
+  {
+   "t": "wax",
+   "s": 2.27,
+   "e": 2.68
+  },
+  {
+   "t": "while",
+   "s": 2.87,
+   "e": 3.06
+  },
+  {
+   "t": "the",
+   "s": 3.07,
+   "e": 3.15
+  },
+  {
+   "t": "ambassador",
+   "s": 3.21,
+   "e": 3.84
+  },
+  {
+   "t": "bathed,",
+   "s": 3.89,
+   "e": 4.25
+  },
+  {
+   "t": "then",
+   "s": 4.58,
+   "e": 4.69
+  },
+  {
+   "t": "copied",
+   "s": 4.75,
+   "e": 5.1
+  },
+  {
+   "t": "it.",
+   "s": 5.13,
+   "e": 5.19
+  }
+ ],
+ "dur": 5.433,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.2,
+ "hisirti_6k_dbfs": -88.6,
+ "pad_nf_dbfs": -76.5,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

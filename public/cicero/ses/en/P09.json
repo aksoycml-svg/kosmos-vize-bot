@@ -1,0 +1,92 @@
+{
+ "id": "P09",
+ "lang": "en",
+ "text": "When Moyzisch's secretary fled to the Americans, Bazna quit, afraid of being caught.",
+ "words": [
+  {
+   "t": "When",
+   "s": 0.1,
+   "e": 0.25
+  },
+  {
+   "t": "Moyzisch's",
+   "s": 0.3,
+   "e": 0.93
+  },
+  {
+   "t": "secretary",
+   "s": 1.16,
+   "e": 1.73
+  },
+  {
+   "t": "fled",
+   "s": 1.77,
+   "e": 1.98
+  },
+  {
+   "t": "to",
+   "s": 2.01,
+   "e": 2.07
+  },
+  {
+   "t": "the",
+   "s": 2.12,
+   "e": 2.2
+  },
+  {
+   "t": "Americans,",
+   "s": 2.24,
+   "e": 2.82
+  },
+  {
+   "t": "Bazna",
+   "s": 3.41,
+   "e": 3.8
+  },
+  {
+   "t": "quit,",
+   "s": 3.86,
+   "e": 4.12
+  },
+  {
+   "t": "afraid",
+   "s": 4.62,
+   "e": 4.93
+  },
+  {
+   "t": "of",
+   "s": 4.96,
+   "e": 5.01
+  },
+  {
+   "t": "being",
+   "s": 5.04,
+   "e": 5.22
+  },
+  {
+   "t": "caught.",
+   "s": 5.27,
+   "e": 5.53
+  }
+ ],
+ "dur": 5.773,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.0,
+ "hisirti_6k_dbfs": -88.3,
+ "pad_nf_dbfs": -61.7,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

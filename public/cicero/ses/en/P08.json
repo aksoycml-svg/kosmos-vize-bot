@@ -1,0 +1,94 @@
+{
+ "id": "P08",
+ "lang": "en",
+ "text": "He didn't know. The British noticed a leak but never found the leaker.",
+ "words": [
+  {
+   "t": "He",
+   "s": 0.1,
+   "e": 0.18
+  },
+  {
+   "t": "didn't",
+   "s": 0.22,
+   "e": 0.44
+  },
+  {
+   "t": "know.",
+   "s": 0.47,
+   "e": 0.76
+  },
+  {
+   "t": "The",
+   "s": 1.2,
+   "e": 1.29
+  },
+  {
+   "t": "British",
+   "s": 1.35,
+   "e": 1.67
+  },
+  {
+   "t": "noticed",
+   "s": 1.73,
+   "e": 2.04
+  },
+  {
+   "t": "a",
+   "s": 2.07,
+   "e": 2.11
+  },
+  {
+   "t": "leak",
+   "s": 2.17,
+   "e": 2.4
+  },
+  {
+   "t": "but",
+   "s": 2.47,
+   "e": 2.58
+  },
+  {
+   "t": "never",
+   "s": 2.61,
+   "e": 2.81
+  },
+  {
+   "t": "found",
+   "s": 2.86,
+   "e": 3.04
+  },
+  {
+   "t": "the",
+   "s": 3.07,
+   "e": 3.15
+  },
+  {
+   "t": "leaker.",
+   "s": 3.17,
+   "e": 3.51
+  }
+ ],
+ "dur": 3.762,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.6,
+ "hisirti_6k_dbfs": -90.0,
+ "pad_nf_dbfs": -82.4,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  36.95
+ ]
+}

@@ -1,0 +1,57 @@
+{
+ "id": "P05",
+ "lang": "tr",
+ "text": "Filmleri, Alman elçiliğindeki Moyzisch'e arabada sattı.",
+ "words": [
+  {
+   "t": "Filmleri,",
+   "s": 0.22,
+   "e": 0.89
+  },
+  {
+   "t": "Alman",
+   "s": 1.02,
+   "e": 1.37
+  },
+  {
+   "t": "elçiliğindeki",
+   "s": 1.43,
+   "e": 2.08
+  },
+  {
+   "t": "Moyzisch'e",
+   "s": 2.13,
+   "e": 2.67
+  },
+  {
+   "t": "arabada",
+   "s": 2.72,
+   "e": 3.09
+  },
+  {
+   "t": "sattı.",
+   "s": 3.13,
+   "e": 3.48
+  }
+ ],
+ "dur": 3.709,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -74.0,
+ "hisirti_6k_dbfs": -84.3,
+ "pad_nf_dbfs": -86.3,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

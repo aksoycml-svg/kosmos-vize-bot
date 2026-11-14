@@ -1,0 +1,87 @@
+{
+ "id": "P04",
+ "lang": "en",
+ "text": "Before the ambassador returned, Bazna photographed the papers and put everything back.",
+ "words": [
+  {
+   "t": "Before",
+   "s": 0.1,
+   "e": 0.37
+  },
+  {
+   "t": "the",
+   "s": 0.39,
+   "e": 0.47
+  },
+  {
+   "t": "ambassador",
+   "s": 0.5,
+   "e": 1.05
+  },
+  {
+   "t": "returned,",
+   "s": 1.12,
+   "e": 1.66
+  },
+  {
+   "t": "Bazna",
+   "s": 1.82,
+   "e": 2.25
+  },
+  {
+   "t": "photographed",
+   "s": 2.3,
+   "e": 2.78
+  },
+  {
+   "t": "the",
+   "s": 2.79,
+   "e": 2.87
+  },
+  {
+   "t": "papers",
+   "s": 2.89,
+   "e": 3.24
+  },
+  {
+   "t": "and",
+   "s": 3.27,
+   "e": 3.36
+  },
+  {
+   "t": "put",
+   "s": 3.39,
+   "e": 3.54
+  },
+  {
+   "t": "everything",
+   "s": 3.57,
+   "e": 3.86
+  },
+  {
+   "t": "back.",
+   "s": 3.9,
+   "e": 4.22
+  }
+ ],
+ "dur": 4.467,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -59.8,
+ "hisirti_6k_dbfs": -72.5,
+ "pad_nf_dbfs": -67.2,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

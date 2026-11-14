@@ -1,0 +1,74 @@
+{
+ "id": "P10",
+ "lang": "tr",
+ "text": "Sonradan öğrendi: o sahte parayı, sırlarına inanmayan Almanlar basmıştı.",
+ "words": [
+  {
+   "t": "Sonradan",
+   "s": 0.11,
+   "e": 0.6
+  },
+  {
+   "t": "öğrendi:",
+   "s": 0.67,
+   "e": 1.06
+  },
+  {
+   "t": "o",
+   "s": 1.71,
+   "e": 1.8
+  },
+  {
+   "t": "sahte",
+   "s": 1.86,
+   "e": 2.18
+  },
+  {
+   "t": "parayı,",
+   "s": 2.24,
+   "e": 2.56
+  },
+  {
+   "t": "sırlarına",
+   "s": 2.83,
+   "e": 3.37
+  },
+  {
+   "t": "inanmayan",
+   "s": 3.4,
+   "e": 3.91
+  },
+  {
+   "t": "Almanlar",
+   "s": 3.97,
+   "e": 4.43
+  },
+  {
+   "t": "basmıştı.",
+   "s": 4.48,
+   "e": 4.99
+  }
+ ],
+ "dur": 5.251,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -87.6,
+ "hisirti_6k_dbfs": -102.4,
+ "pad_nf_dbfs": -87.4,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  57.8
+ ]
+}

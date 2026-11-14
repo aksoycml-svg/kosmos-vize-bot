@@ -1,0 +1,82 @@
+{
+ "id": "P07",
+ "lang": "tr",
+ "text": "Üstelik ona ödenen yaklaşık üç yüz bin sterlinin büyük kısmı sahteydi.",
+ "words": [
+  {
+   "t": "Üstelik",
+   "s": 0.1,
+   "e": 0.51
+  },
+  {
+   "t": "ona",
+   "s": 0.56,
+   "e": 0.69
+  },
+  {
+   "t": "ödenen",
+   "s": 0.72,
+   "e": 1.09
+  },
+  {
+   "t": "yaklaşık",
+   "s": 1.16,
+   "e": 1.62
+  },
+  {
+   "t": "üç",
+   "s": 1.73,
+   "e": 1.95
+  },
+  {
+   "t": "yüz",
+   "s": 2.01,
+   "e": 2.16
+  },
+  {
+   "t": "bin",
+   "s": 2.22,
+   "e": 2.4
+  },
+  {
+   "t": "sterlinin",
+   "s": 2.45,
+   "e": 3.02
+  },
+  {
+   "t": "büyük",
+   "s": 3.1,
+   "e": 3.34
+  },
+  {
+   "t": "kısmı",
+   "s": 3.43,
+   "e": 3.76
+  },
+  {
+   "t": "sahteydi.",
+   "s": 3.8,
+   "e": 4.36
+  }
+ ],
+ "dur": 4.598,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -66.0,
+ "hisirti_6k_dbfs": -81.5,
+ "pad_nf_dbfs": -86.7,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

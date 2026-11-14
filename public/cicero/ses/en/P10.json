@@ -1,0 +1,97 @@
+{
+ "id": "P10",
+ "lang": "en",
+ "text": "He learned later: the Germans who doubted his secrets had printed the fake money.",
+ "words": [
+  {
+   "t": "He",
+   "s": 0.1,
+   "e": 0.19
+  },
+  {
+   "t": "learned",
+   "s": 0.25,
+   "e": 0.46
+  },
+  {
+   "t": "later:",
+   "s": 0.48,
+   "e": 0.75
+  },
+  {
+   "t": "the",
+   "s": 0.76,
+   "e": 0.84
+  },
+  {
+   "t": "Germans",
+   "s": 0.88,
+   "e": 1.18
+  },
+  {
+   "t": "who",
+   "s": 1.19,
+   "e": 1.29
+  },
+  {
+   "t": "doubted",
+   "s": 1.34,
+   "e": 1.66
+  },
+  {
+   "t": "his",
+   "s": 1.71,
+   "e": 1.81
+  },
+  {
+   "t": "secrets",
+   "s": 1.86,
+   "e": 2.27
+  },
+  {
+   "t": "had",
+   "s": 2.29,
+   "e": 2.41
+  },
+  {
+   "t": "printed",
+   "s": 2.44,
+   "e": 2.7
+  },
+  {
+   "t": "the",
+   "s": 2.71,
+   "e": 2.79
+  },
+  {
+   "t": "fake",
+   "s": 2.81,
+   "e": 3.02
+  },
+  {
+   "t": "money.",
+   "s": 3.06,
+   "e": 3.33
+  }
+ ],
+ "dur": 3.579,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -55.9,
+ "hisirti_6k_dbfs": -67.7,
+ "pad_nf_dbfs": -78.7,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

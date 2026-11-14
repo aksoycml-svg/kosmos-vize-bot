@@ -1,0 +1,102 @@
+{
+ "id": "P02",
+ "lang": "en",
+ "text": "His boss, the British ambassador, kept secret papers in a locked box in the bedroom.",
+ "words": [
+  {
+   "t": "His",
+   "s": 0.1,
+   "e": 0.27
+  },
+  {
+   "t": "boss,",
+   "s": 0.34,
+   "e": 0.81
+  },
+  {
+   "t": "the",
+   "s": 0.82,
+   "e": 0.9
+  },
+  {
+   "t": "British",
+   "s": 0.93,
+   "e": 1.2
+  },
+  {
+   "t": "ambassador,",
+   "s": 1.23,
+   "e": 1.88
+  },
+  {
+   "t": "kept",
+   "s": 2.18,
+   "e": 2.41
+  },
+  {
+   "t": "secret",
+   "s": 2.44,
+   "e": 2.74
+  },
+  {
+   "t": "papers",
+   "s": 2.79,
+   "e": 3.16
+  },
+  {
+   "t": "in",
+   "s": 3.2,
+   "e": 3.27
+  },
+  {
+   "t": "a",
+   "s": 3.3,
+   "e": 3.34
+  },
+  {
+   "t": "locked",
+   "s": 3.4,
+   "e": 3.59
+  },
+  {
+   "t": "box",
+   "s": 3.68,
+   "e": 3.93
+  },
+  {
+   "t": "in",
+   "s": 3.98,
+   "e": 4.03
+  },
+  {
+   "t": "the",
+   "s": 4.06,
+   "e": 4.14
+  },
+  {
+   "t": "bedroom.",
+   "s": 4.17,
+   "e": 4.56
+  }
+ ],
+ "dur": 4.807,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -76.2,
+ "hisirti_6k_dbfs": -87.4,
+ "pad_nf_dbfs": -89.5,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

@@ -1,0 +1,94 @@
+{
+ "id": "P06",
+ "lang": "en",
+ "text": "Berlin got the films but didn't trust them. Most went unused, Normandy included.",
+ "words": [
+  {
+   "t": "Berlin",
+   "s": 0.18,
+   "e": 0.46
+  },
+  {
+   "t": "got",
+   "s": 0.5,
+   "e": 0.67
+  },
+  {
+   "t": "the",
+   "s": 0.71,
+   "e": 0.79
+  },
+  {
+   "t": "films",
+   "s": 0.84,
+   "e": 1.19
+  },
+  {
+   "t": "but",
+   "s": 1.22,
+   "e": 1.34
+  },
+  {
+   "t": "didn't",
+   "s": 1.36,
+   "e": 1.58
+  },
+  {
+   "t": "trust",
+   "s": 1.6,
+   "e": 1.85
+  },
+  {
+   "t": "them.",
+   "s": 1.87,
+   "e": 2.07
+  },
+  {
+   "t": "Most",
+   "s": 2.59,
+   "e": 2.85
+  },
+  {
+   "t": "went",
+   "s": 2.88,
+   "e": 3.05
+  },
+  {
+   "t": "unused,",
+   "s": 3.08,
+   "e": 3.55
+  },
+  {
+   "t": "Normandy",
+   "s": 3.79,
+   "e": 4.24
+  },
+  {
+   "t": "included.",
+   "s": 4.28,
+   "e": 4.78
+  }
+ ],
+ "dur": 5.042,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.3,
+ "hisirti_6k_dbfs": -89.4,
+ "pad_nf_dbfs": -89.2,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  28.84
+ ]
+}

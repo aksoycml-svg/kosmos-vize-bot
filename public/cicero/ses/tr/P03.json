@@ -1,0 +1,99 @@
+{
+ "id": "P03",
+ "lang": "tr",
+ "text": "Anlatıya göre, elçi banyodayken Bazna anahtarın izini bir parça muma bastırdı ve kopyasını yaptırdı.",
+ "words": [
+  {
+   "t": "Anlatıya",
+   "s": 0.1,
+   "e": 0.54
+  },
+  {
+   "t": "göre,",
+   "s": 0.58,
+   "e": 0.83
+  },
+  {
+   "t": "elçi",
+   "s": 1.11,
+   "e": 1.4
+  },
+  {
+   "t": "banyodayken",
+   "s": 1.44,
+   "e": 2.22
+  },
+  {
+   "t": "Bazna",
+   "s": 2.29,
+   "e": 2.7
+  },
+  {
+   "t": "anahtarın",
+   "s": 2.72,
+   "e": 3.21
+  },
+  {
+   "t": "izini",
+   "s": 3.27,
+   "e": 3.6
+  },
+  {
+   "t": "bir",
+   "s": 3.86,
+   "e": 3.97
+  },
+  {
+   "t": "parça",
+   "s": 4.04,
+   "e": 4.37
+  },
+  {
+   "t": "muma",
+   "s": 4.42,
+   "e": 4.63
+  },
+  {
+   "t": "bastırdı",
+   "s": 4.68,
+   "e": 5.2
+  },
+  {
+   "t": "ve",
+   "s": 5.42,
+   "e": 5.55
+  },
+  {
+   "t": "kopyasını",
+   "s": 5.62,
+   "e": 6.13
+  },
+  {
+   "t": "yaptırdı.",
+   "s": 6.16,
+   "e": 6.61
+  }
+ ],
+ "dur": 6.844,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -72.3,
+ "hisirti_6k_dbfs": -87.5,
+ "pad_nf_dbfs": -86.3,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  13.55
+ ]
+}

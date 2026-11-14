@@ -1,0 +1,92 @@
+{
+ "id": "P04",
+ "lang": "tr",
+ "text": "Elçi dönmeden belgeleri yatağa serip fotoğrafladı, sonra her şeyi olduğu gibi yerine koydu.",
+ "words": [
+  {
+   "t": "Elçi",
+   "s": 0.25,
+   "e": 0.59
+  },
+  {
+   "t": "dönmeden",
+   "s": 0.63,
+   "e": 1.18
+  },
+  {
+   "t": "belgeleri",
+   "s": 1.25,
+   "e": 1.82
+  },
+  {
+   "t": "yatağa",
+   "s": 1.87,
+   "e": 2.18
+  },
+  {
+   "t": "serip",
+   "s": 2.23,
+   "e": 2.43
+  },
+  {
+   "t": "fotoğrafladı,",
+   "s": 2.51,
+   "e": 3.14
+  },
+  {
+   "t": "sonra",
+   "s": 3.39,
+   "e": 3.74
+  },
+  {
+   "t": "her",
+   "s": 3.8,
+   "e": 3.98
+  },
+  {
+   "t": "şeyi",
+   "s": 4.09,
+   "e": 4.28
+  },
+  {
+   "t": "olduğu",
+   "s": 4.39,
+   "e": 4.77
+  },
+  {
+   "t": "gibi",
+   "s": 4.82,
+   "e": 5.02
+  },
+  {
+   "t": "yerine",
+   "s": 5.06,
+   "e": 5.35
+  },
+  {
+   "t": "koydu.",
+   "s": 5.39,
+   "e": 5.71
+  }
+ ],
+ "dur": 5.956,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -55.5,
+ "hisirti_6k_dbfs": -63.9,
+ "pad_nf_dbfs": -86.2,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

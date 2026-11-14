@@ -1,0 +1,74 @@
+{
+ "id": "P09",
+ "lang": "tr",
+ "text": "Moyzisch'in sekreteri Amerikalılara kaçınca Bazna yakalanmaktan korkup işi bıraktı.",
+ "words": [
+  {
+   "t": "Moyzisch'in",
+   "s": 0.1,
+   "e": 0.66
+  },
+  {
+   "t": "sekreteri",
+   "s": 0.73,
+   "e": 1.26
+  },
+  {
+   "t": "Amerikalılara",
+   "s": 1.31,
+   "e": 1.99
+  },
+  {
+   "t": "kaçınca",
+   "s": 2.03,
+   "e": 2.51
+  },
+  {
+   "t": "Bazna",
+   "s": 2.75,
+   "e": 3.1
+  },
+  {
+   "t": "yakalanmaktan",
+   "s": 3.13,
+   "e": 3.83
+  },
+  {
+   "t": "korkup",
+   "s": 3.89,
+   "e": 4.31
+  },
+  {
+   "t": "işi",
+   "s": 4.37,
+   "e": 4.55
+  },
+  {
+   "t": "bıraktı.",
+   "s": 4.58,
+   "e": 4.98
+  }
+ ],
+ "dur": 5.224,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -68.6,
+ "hisirti_6k_dbfs": -87.4,
+ "pad_nf_dbfs": -86.3,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  52.16
+ ]
+}

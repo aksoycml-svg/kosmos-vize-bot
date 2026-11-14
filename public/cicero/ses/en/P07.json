@@ -1,0 +1,87 @@
+{
+ "id": "P07",
+ "lang": "en",
+ "text": "Worse, most of the roughly 300,000 pounds he was paid was fake.",
+ "words": [
+  {
+   "t": "Worse,",
+   "s": 0.12,
+   "e": 0.5
+  },
+  {
+   "t": "most",
+   "s": 0.57,
+   "e": 0.8
+  },
+  {
+   "t": "of",
+   "s": 0.84,
+   "e": 0.91
+  },
+  {
+   "t": "the",
+   "s": 0.94,
+   "e": 1.02
+  },
+  {
+   "t": "roughly",
+   "s": 1.08,
+   "e": 1.42
+  },
+  {
+   "t": "300,000",
+   "s": 1.5,
+   "e": 2.43
+  },
+  {
+   "t": "pounds",
+   "s": 2.49,
+   "e": 2.77
+  },
+  {
+   "t": "he",
+   "s": 2.8,
+   "e": 2.86
+  },
+  {
+   "t": "was",
+   "s": 2.89,
+   "e": 3.0
+  },
+  {
+   "t": "paid",
+   "s": 3.06,
+   "e": 3.24
+  },
+  {
+   "t": "was",
+   "s": 3.28,
+   "e": 3.39
+  },
+  {
+   "t": "fake.",
+   "s": 3.44,
+   "e": 3.77
+  }
+ ],
+ "dur": 3.997,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -53.3,
+ "hisirti_6k_dbfs": -65.8,
+ "pad_nf_dbfs": -82.6,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

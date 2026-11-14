@@ -1,0 +1,97 @@
+{
+ "id": "P01",
+ "lang": "tr",
+ "text": "Bir uşak, patronunun sırlarını Almanlara sattı. Karşılığında aldığı paranın büyük kısmı da sahte çıktı.",
+ "words": [
+  {
+   "t": "Bir",
+   "s": 0.04,
+   "e": 0.26
+  },
+  {
+   "t": "uşak,",
+   "s": 0.3,
+   "e": 0.61
+  },
+  {
+   "t": "patronunun",
+   "s": 0.83,
+   "e": 1.4
+  },
+  {
+   "t": "sırlarını",
+   "s": 1.45,
+   "e": 1.9
+  },
+  {
+   "t": "Almanlara",
+   "s": 1.97,
+   "e": 2.52
+  },
+  {
+   "t": "sattı.",
+   "s": 2.57,
+   "e": 2.92
+  },
+  {
+   "t": "Karşılığında",
+   "s": 3.61,
+   "e": 4.28
+  },
+  {
+   "t": "aldığı",
+   "s": 4.34,
+   "e": 4.7
+  },
+  {
+   "t": "paranın",
+   "s": 4.76,
+   "e": 5.09
+  },
+  {
+   "t": "büyük",
+   "s": 5.16,
+   "e": 5.4
+  },
+  {
+   "t": "kısmı",
+   "s": 5.49,
+   "e": 5.79
+  },
+  {
+   "t": "da",
+   "s": 5.81,
+   "e": 5.91
+  },
+  {
+   "t": "sahte",
+   "s": 5.96,
+   "e": 6.3
+  },
+  {
+   "t": "çıktı.",
+   "s": 6.33,
+   "e": 6.65
+  }
+ ],
+ "dur": 6.896,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -85.8,
+ "hisirti_6k_dbfs": -98.3,
+ "pad_nf_dbfs": -23.4,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

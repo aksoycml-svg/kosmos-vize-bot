@@ -1,0 +1,84 @@
+{
+ "id": "P02",
+ "lang": "tr",
+ "text": "Patronu, İngiliz elçisi, gizli belgelerini yatak odasındaki kilitli bir kutuda tutardı.",
+ "words": [
+  {
+   "t": "Patronu,",
+   "s": 0.25,
+   "e": 0.76
+  },
+  {
+   "t": "İngiliz",
+   "s": 0.85,
+   "e": 1.27
+  },
+  {
+   "t": "elçisi,",
+   "s": 1.34,
+   "e": 1.79
+  },
+  {
+   "t": "gizli",
+   "s": 2.08,
+   "e": 2.36
+  },
+  {
+   "t": "belgelerini",
+   "s": 2.4,
+   "e": 3.0
+  },
+  {
+   "t": "yatak",
+   "s": 3.05,
+   "e": 3.26
+  },
+  {
+   "t": "odasındaki",
+   "s": 3.35,
+   "e": 3.86
+  },
+  {
+   "t": "kilitli",
+   "s": 3.9,
+   "e": 4.27
+  },
+  {
+   "t": "bir",
+   "s": 4.3,
+   "e": 4.38
+  },
+  {
+   "t": "kutuda",
+   "s": 4.43,
+   "e": 4.72
+  },
+  {
+   "t": "tutardı.",
+   "s": 4.74,
+   "e": 5.18
+  }
+ ],
+ "dur": 5.407,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -71.3,
+ "hisirti_6k_dbfs": -85.4,
+ "pad_nf_dbfs": -86.3,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  8.8
+ ]
+}
