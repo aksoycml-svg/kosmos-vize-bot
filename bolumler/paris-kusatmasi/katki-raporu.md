@@ -1562,3 +1562,10 @@
 - Aldığım kararlar ve gerekçeleri: Kullanıcıya gösterilmez. Yazı katmanında üç kritik sorun var: kadraj dışına taşma (kit `en=0.52`), P11 sayacının tek satıra sıkışması, P02'de "2.000.000"ün aşırı kesinliği (E1: mertebe). Görüntü ve ses yeniden yapılmaz; yalnız yazı katmanı yeniden render + birleştirme.
 - Uyguladığım kurallar / yakaladığım kural ihlalleri: Yazı bandı/yan güvenli alan (8 yazıda taşma), okunurluk (P11 sayaç 6–9 px telefonda), doğruluk (tek kesin sayı yok), fizik/derinlik (P07 uzak balon gar önünden geçiyor), dil katmanı ayrımı temiz, temas sesi ±5 ms.
 - Açık sorular / bir sonraki ajana notlar: Motion: `yazi.tsx` genişlik katsayısı başka bölümleri de etkiler; Evliya/Blanc yazı katmanları regresyon için yeniden bakılsın. Kurgucu: döngü kenarında müzik sönüyor (son −48 dBFS → ilk −31/−24); kulakla dinlenmeli. Senarist (isteğe bağlı, ses kredisi gerektirir): EN P07 "Dagron's dumped sand" ve P11 "Those that did carried" okunuşu.
+
+## yönetmen · 2026-11-14 · tam render jürisi iki json düzeltmesi
+- Ne yaptım: (1) P02 sayaç `ekran_yazisi[1]` metin "~{n} İNSAN" / en "~{n} PEOPLE" (E1 mertebe, kesin sayı yok). (2) P11 plan altyazısına `grup: 3, maks_harf: 14` (EN "Those that did" / "carried a" / "city's letters."; "did carried" oluşmaz). Metin/ses değişmedi.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/bolum.json
+- Kararlar: kitte elle grup kırılımı alanı yok; kod değişmeden tek yol plan düzeyi grup/maks_harf. Aynı ayar TR gruplamasını da etkiler (kelime sınırları yaklaşık aynı, küçük fark olabilir).
+- Kurallar: doğrulayıcı --tam çalıştırıldı. "~" glifi motion yazi.tsx düzeltmesine bağlı.
+- Açık: render yok; yazi.tsx düzeltmesi sonrası P02 sayaç "~" ve P11 grupları kontrol karesiyle bakılmalı.

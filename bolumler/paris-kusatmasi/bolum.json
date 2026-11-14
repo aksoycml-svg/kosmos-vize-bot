@@ -366,8 +366,8 @@
     {
      "bant": "ust",
      "tur": "sayac",
-     "metin": "{n} İNSAN",
-     "en": "{n} PEOPLE",
+     "metin": "~{n} İNSAN",
+     "en": "~{n} PEOPLE",
      "vurgu": [
       "İNSAN"
      ],
@@ -3864,6 +3864,8 @@
     }
    ],
    "altyazi": {
+    "grup": 3,
+    "maks_harf": 14,
     "vurgu": {
      "tr": [
       "çoğu",
