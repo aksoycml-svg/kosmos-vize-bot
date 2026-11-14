@@ -1531,3 +1531,27 @@
   - Eleştirmen: P08 f84'te ipler kumaşın alt kenarı boyunca, 360 px'te ince (≈1.5 px). Bir bakılsın.
   - Kalabalık dizilimi değişti; P02 f290, P03B, P04 kareleri yeniden bakılmalı (yalnız P02 f290 render edildi, telin geçtiği yer temiz).
   - Öz puan 7.
+
+## teknisyen · 2026-11-14 · Paris kuşatması ilk tam render (TR + EN)
+
+- Ne yaptım / çalıştırdığım komutlar:
+  - `tools/evliya_render.sh` kopyalanıp `tools/paris_render.sh` yapıldı; yalnız yollar uyarlandı (YOL=paris-kusatmasi/bolum.json, miks public/paris/miks/{tr,en}.wav, çıktı out/paris/paris-{tr,en}.mp4, tarayıcı varsayılanı headless shell, --gl=angle). Mantık değişmedi.
+  - `node tools/bolum_dogrula.mjs bolumler/paris-kusatmasi/bolum.json --tam` → GEÇTİ (0 hata, 0 uyarı; 11 plan, 3493 kare, 58.22 sn, 59 temas, 8 dokunuş).
+  - `tools/paris_render.sh --is 4` (arka planda, ~2391 sn): bundle, görüntü 6 parça (ProRes), concat, yazı katmanı TR ve EN (ProRes 4444 alfa), birleştirme + ses.
+  - Ölçüm: ffmpeg ebur128; kontrol: `fps=32/58.22,scale=320:-1,tile=8x4`; taslak: 720x1280 H.264 CRF 23, AAC 192k.
+  - Ses kenarı: `python3 -I tools/ses_kenar.py kontrol` miks TR ve EN mp3 kopyalarında (scratchpad) → ikisi de "temiz" (bas −61.4/−59.7 dB, son −58.3/−57.2 dB).
+- Üretilen dosyalar:
+  - out/paris/paris-tr.mp4 · 115 030 831 B (~115 MB) · 1080x1920 · 60 fps · 3493 kare · 58.217 sn · H.264 yuv420p bt709 · AAC 48 kHz stereo
+  - out/paris/paris-en.mp4 · 115 355 501 B (~115 MB) · aynı özellikler · 3493 kare · 58.217 sn
+  - Loudness (tam dosya): TR I −14.0 LUFS, TP −1.9 dBFS, LRA 2.3 LU · EN I −14.3 LUFS, TP −1.9 dBFS, LRA 3.8 LU
+  - bolumler/paris-kusatmasi/kalibrasyon/tam-render/genel-tr.png · genel-en.png (32 kare, 8x4, 6.8 MB her biri)
+  - bolumler/paris-kusatmasi/kalibrasyon/tam-render/dalga-tr.png · dalga-en.png (showwavespic, 1600x240)
+  - public/paris/dinlet/paris-taslak-tr.mp4 · 12 652 634 B (~12.7 MB) · 720x1280 · 58.218 sn
+  - public/paris/dinlet/paris-taslak-en.mp4 · 12 550 375 B (~12.6 MB) · 720x1280 · 58.218 sn
+- Hatalar ve çözümler:
+  - Hata yok; tüm aşamalar exit 0, kare sayıları beklenenle eşleşti.
+  - EN integrated −14.3 LUFS: hedef −14 ±0.3 sınırında (tam sınır). Kabul edildi, düzeltme yapılmadı (miks kullanıcı ses kararı; yeniden ölçüm/düzeltme kararı orkestraya ait).
+  - Kalibrasyon klasörü için komutta "R" yer tutucusu vardı; mevcut adlandırmada karşılığı olmadığından `kalibrasyon/tam-render/` kullanıldı.
+  - Genel bakış PNG'leri ve dalga görüntüleri üretildi; genel bakış sayfası göz kontrolü yapılmadı (eleştirmene bırakıldı).
+  - Dalga formu (TR/EN): kenarlarda kesik ya da sıçrama görünmüyor, konuşma blokları arasında sessizlik var; seviye tutarlı.
+  - Git işlemi yapılmadı (talep gereği).
