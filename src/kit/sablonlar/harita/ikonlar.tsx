@@ -22,7 +22,11 @@ const r = (g: boolean, renk: string) => (g ? GOLGE.renk : renk);
 // (asimetrik, dalgalı üst kenar, tabanı yerde; beyaz yarık yok). Meridyenler aynı noktalara bağlı kalır → kumaşta kıvrım çizgisine
 // dönüşür (pop/fade yok). devril (derece): sepet sağ alt köşesi üstünde devrilir, kumaş yığınına yaslanır.
 const KURE_ACI = [120, 100, 80, 60, 25, -10, -45, -80, -115, -150, -185, -215];
-const KUMAS: [number, number][] = [[12, 0], [32, 1.5], [52, 0], [72, 1], [76, -6], [67, -12], [59, -7], [50, -17], [41, -9], [31, -19], [22, -12], [14, -10]];
+// S (eleştiri H2 küçük "ayakkabı"): kumaş ≈ 1.5× yüksek (ekranda ≈ 40 → 55 px) ve sağa açıldı: sol üst ucu devrik sepetin üst köşesine
+// yaslanır (destek), altında sepet ağzı ile kumaş arasında üçgen boşluk kalır; 3 ip bu boşluktan kumaşın ağzına girer.
+const KUMAS: [number, number][] = [[46, 0], [58, 1.5], [70, 0], [86, 1], [90, -9], [80, -18], [71, -11], [62, -26], [53, -14], [43, -28], [30, -22], [11, -20]];
+// sönmüş kumaşta iplerin bittiği noktalar (kumaşın içinde: ip kumaşın altına girer, yalnız boşluktaki kısmı görünür)
+const IP_UC: [number, number][] = [[38, -16], [44, -9], [50, -3]];
 const MERID: [number, number, number][] = [[7, 1, -0.55], [6, 2, 0], [8, 0, 0.55]]; // [üst idx, alt idx, küre şişkinliği]
 const kapaliYol = (P: [number, number][]) => {
   const n = P.length, m = (i: number) => [(P[i % n][0] + P[(i + 1) % n][0]) / 2, (P[i % n][1] + P[(i + 1) % n][1]) / 2];
@@ -46,16 +50,23 @@ export const BalonIkon: React.FC<{ golge?: boolean; sonme?: number; devril?: num
       {!golge && <g stroke={k} strokeWidth={1.8}><line x1={-SW / 2} y1={-SH / 2} x2={SW / 2} y2={-SH / 2} /><line x1={-SW / 6} y1={-SH} x2={-SW / 6} y2={0} /><line x1={SW / 6} y1={-SH} x2={SW / 6} y2={0} /></g>}
     </g>
   );
-  // halatlar: sepet üst köşeleri (devrik sepette döndürülmüş) → kumaşın alt-sol iki noktası (küre alt kenarı)
+  // halatlar: sepet üst köşeleri (devrik sepette döndürülmüş) → küre alt kenarı; sönerken uçlar kumaşın ağzındaki IP_UC'ye kayar
+  // (S: sepet–kumaş arası 3 ip → "balon" okunur, "ayakkabı" değil). Orta ip yalnız sönmede (uzayarak). Kumaş ip uçlarını örter.
   const rot = (x: number, y: number): [number, number] => { const a = (devril * Math.PI) / 180, dx = x - SW / 2; return [SW / 2 + dx * Math.cos(a) - y * Math.sin(a), dx * Math.sin(a) + y * Math.cos(a)]; };
-  const [h1x, h1y] = rot(-SW / 2, -SH), [h2x, h2y] = rot(SW / 2, -SH);
-  const sark = 3 + 4 * e;
+  const [h1x, h1y] = rot(-SW / 2, -SH), [h2x, h2y] = rot(SW / 2, -SH), [hmx, hmy] = rot(0, -SH);
+  const sark = 3 - 1.5 * e; // kısa iplerde sarkma az
+  const uc = (i: number, j: number): [number, number] => [P[i][0] + (IP_UC[j][0] - P[i][0]) * e, P[i][1] + (IP_UC[j][1] - P[i][1]) * e];
+  const ip = (a: [number, number], b: [number, number]) => `M${a[0]},${a[1]} Q${(a[0] + b[0]) / 2},${(a[1] + b[1]) / 2 + sark} ${b[0]},${b[1]}`;
+  const ipler = (
+    <g stroke={k} strokeWidth={2 + 0.4 * e} fill="none" strokeLinecap="round">
+      <path d={ip([h1x, h1y], uc(0, 0))} />
+      <path d={ip([h2x, h2y], uc(2, 2))} />
+      {e > 0 && <path d={ip([hmx, hmy], [hmx + (uc(1, 1)[0] - hmx) * e, hmy + (uc(1, 1)[1] - hmy) * e])} />}
+    </g>
+  );
   return (
     <g>
-      <g stroke={k} strokeWidth={2} fill="none" strokeLinecap="round">
-        <path d={`M${h1x},${h1y} Q${(h1x + P[0][0]) / 2},${(h1y + P[0][1]) / 2 + sark} ${P[0][0]},${P[0][1]}`} />
-        <path d={`M${h2x},${h2y} Q${(h2x + P[2][0]) / 2},${(h2y + P[2][1]) / 2 + sark} ${P[2][0]},${P[2][1]}`} />
-      </g>
+      {ipler}
       <path d={kapaliYol(P)} fill={dol} stroke={k} strokeWidth={3} strokeLinejoin="round" />
       {!golge && <g stroke={k} strokeWidth={2.5} fill="none" strokeLinecap="round">
         {MERID.map(([u, a, b], i) => {

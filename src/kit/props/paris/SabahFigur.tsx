@@ -154,6 +154,14 @@ export const FigurSiluet: React.FC<{
           <path d={al} fill={pantG} /><path d={uy} fill={pant} />
           <path d={`M${kd[0] - m(0.06)} ${kd[1] - m(0.03)}Q${kd[0]} ${kd[1] + m(0.045)} ${kd[0] + m(0.06)} ${kd[1] - m(0.03)}`} fill="none" stroke={kontur} strokeWidth={Math.max(2, ic * 1.5)} />
           <polygon points={bot} fill="#2a2430" />
+          {/* S (eleştiri H2 küçük): ışık (kenar) yanında 1.75 px açık kontur — koyu bacak gövde kütlesinden ayrışır */}
+          {kenar && (() => { const L0 = Math.hypot(kenar.dx, kenar.dy) || 1, ox = (kenar.dx / L0) * 1.75, oy = (kenar.dy / L0) * 1.75, mid = `${id}ob`;
+            return <g>
+              <defs><mask id={mid} maskUnits="userSpaceOnUse" x={-3000} y={-3000} width={8000} height={8000}>
+                <g fill="#fff"><path d={uy} /><path d={al} /></g><g fill="#000" transform={`translate(${-ox} ${-oy})`}><path d={uy} /><path d={al} /></g>
+              </mask></defs>
+              <rect x={-3000} y={-3000} width={8000} height={8000} fill={kenar.renk} mask={`url(#${mid})`} />
+            </g>; })()}
           <line x1={q(m(0.05), -m(0.06))[0]} y1={q(m(0.05), -m(0.06))[1]} x2={q(m(0.05), m(0.15))[0]} y2={q(m(0.05), m(0.15))[1]} stroke="#6a5a52" strokeWidth={Math.max(1.5, ic)} />
         </g>;
       })()}

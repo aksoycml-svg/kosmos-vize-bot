@@ -145,20 +145,27 @@ const TEL: TelGeo = (() => {
   return { duz, c, sKopma: sK, direkler };
 })();
 // bastırma vektörü: kopma noktasında halka merkezine doğru (son işaret ringi sıkıştırır); kopmada 3 karede geri
-const BASKI_YON: Pt = (() => { const d: Pt = [540 - KOPMA[0], 900 - KOPMA[1]], L = Math.hypot(d[0], d[1]); return [d[0] / L, d[1] / L]; })();
+// S: tel kopmada halka merkezine neredeyse paralel uzanıyordu → merkez yönlü V tel boyunca kayıp görünmüyordu. Artık telin NORMALİ
+// (merkez tarafı): V tele dik çentik olarak okunur.
+const BASKI_YON: Pt = (() => {
+  const t = noktaS(TEL.duz, TEL.c, TEL.sKopma).t, L = Math.hypot(t[0], t[1]) || 1, n: Pt = [-t[1] / L, t[0] / L];
+  return n[0] * (540 - KOPMA[0]) + n[1] * (900 - KOPMA[1]) >= 0 ? n : [-n[0], -n[1]];
+})();
+// S (eleştiri H2 küçük): V derinliği 10 → 20 px, kol yarı boyu 70 → 90 px (360 px sayfada ≈ 7 px okunur çentik)
+const BASKI_PX = 20, BASKI_YARI = 90;
 export const telBaski = (p: number, bas: number, kopma: number): number => {
   if (p < bas) return 0;
-  if (p >= kopma) return 10 * (1 - t01(p, kopma, kopma + 3, OUT3));
-  const titre = p >= kopma - 4 ? 1.5 * Math.sin((p - (kopma - 4)) * 2.6) : 0;
-  return 10 * t01(p, bas, kopma - 3, Easing.inOut(Easing.quad)) + titre;
+  if (p >= kopma) return BASKI_PX * (1 - t01(p, kopma, kopma + 3, OUT3));
+  const titre = p >= kopma - 4 ? 2.5 * Math.sin((p - (kopma - 4)) * 2.6) : 0;
+  return BASKI_PX * t01(p, bas, kopma - 3, Easing.inOut(Easing.quad)) + titre;
 };
-// direkler arası 6 px sarkma (aşağı); baskı: |s − sKopma| < 70 px içinde V (doğrusal)
+// direkler arası 6 px sarkma (aşağı); baskı: |s − sKopma| < BASKI_YARI px içinde V (doğrusal)
 const sarkikTel = (s0: number, s1: number, d0: number[], baski = 0): Pt[] => {
   const pts: Pt[] = [], dug = [s0, ...d0.filter((s) => s > s0 && s < s1), s1];
   for (let i = 0; i < dug.length - 1; i++) {
     const a = dug[i], b = dug[i + 1], n = Math.max(2, Math.ceil((b - a) / 8));
     for (let j = 0; j <= n; j++) {
-      const s = a + ((b - a) * j) / n, q = noktaS(TEL.duz, TEL.c, s).p, v = baski * Math.max(0, 1 - Math.abs(s - TEL.sKopma) / 70);
+      const s = a + ((b - a) * j) / n, q = noktaS(TEL.duz, TEL.c, s).p, v = baski * Math.max(0, 1 - Math.abs(s - TEL.sKopma) / BASKI_YARI);
       pts.push([q[0] + BASKI_YON[0] * v, q[1] + 6 * Math.sin((Math.PI * j) / n) + BASKI_YON[1] * v]);
     }
   }
@@ -231,6 +238,10 @@ type Figur = { q: Pt; boy: number; kod: SiluetKod; yon: 1 | -1; bas: number };
 type KalabalikAyar = { sayi?: number; boy_px?: [number, number]; bant_r?: [number, number]; bosluk?: [number, number, number, number] };
 export const KALABALIK_VARS = { sayi: 40, boy_px: [60, 90] as [number, number], bant_r: [45, 150] as [number, number], bosluk: [515, 820, 655, 1018] as [number, number, number, number] };
 const KALABALIK_ONBELLEK = new Map<string, Figur[]>();
+// S (eleştiri H2 küçük "tel başların üstünden geçiyor"): sur içindeki tel parçası (+ sur kapısı ucu) çevresinde 10 px koridor boş kalır;
+// tel kâğıtta mürekkep, siluetler zaten üstte — koridor telin baş/omuz aralarından geçiyormuş gibi okunmasını önler.
+const TEL_KORIDOR = 10;
+const TEL_SUR_ICI: Pt[] = [...TEL.duz.filter((q) => icinde(q, SUR)), TEL_K[0] as Pt];
 const kalabalikDuzen = (c: Pt, a: KalabalikAyar, bas0: number, son: number): Figur[] => {
   const n = a.sayi ?? KALABALIK_VARS.sayi, boy = a.boy_px ?? KALABALIK_VARS.boy_px, bant = a.bant_r ?? KALABALIK_VARS.bant_r, bos = a.bosluk ?? KALABALIK_VARS.bosluk;
   const key = JSON.stringify([c, n, boy, bant, bos, bas0, son]);
@@ -247,6 +258,7 @@ const kalabalikHesap = (c: Pt, n: number, boy: [number, number], bant: [number, 
     if (!icinde([q[0], q[1] + 6], SUR) || !icinde([q[0] - 14, q[1]], SUR) || !icinde([q[0] + 14, q[1]], SUR) || !icinde([q[0], q[1] - b * 0.4], SUR)) continue; // sur içi (ayak + gövde ortası)
     if (q[0] + 15 > bos[0] && q[0] - 15 < bos[2] && q[1] + 4 > bos[1] && q[1] - b < bos[3]) continue; // merkez boşluğu (kümes/yığın)
     if (!nehreUzak(q, 14)) continue; // ayak suya basmaz
+    if (TEL_SUR_ICI.some((t) => t[0] > q[0] - 15 - TEL_KORIDOR && t[0] < q[0] + 15 + TEL_KORIDOR && t[1] > q[1] - b - TEL_KORIDOR && t[1] < q[1] + 6 + TEL_KORIDOR)) continue; // S: tel koridoru (baş/gövde telin üstüne binmez)
     if (out.some((o) => Math.abs(o.q[0] - q[0]) < 24 && Math.abs(o.q[1] - q[1]) < 28)) continue;
     out.push({ q, boy: b, kod, yon: q[0] >= c[0] ? 1 : -1, bas: 0 });
   }
@@ -293,14 +305,16 @@ const KayanCizgi: React.FC<{ y0: number; bas: number; v: number; L: number; p: n
 // uçan: çırpar, çizginin yönünde; kon: kanat toplu, dik (kümes çatısında); dus 0..1: yolda düşer — gölge ofseti (yükseklik) 8/10 → 3/4,
 // gövde uçuş yönünden +155° döner (sırt üstü yan yatık: "düştü" okunur), kanat aşağı-düz kalır; inişte 3 karelik ezilme. Yok olmaz: çizgi ucunda yatık kalır (fade yok).
 const KUS_OLCU = 48; // KusIkon gövde boyu (yerel px)
-const KusUcta: React.FC<{ q: Pt; aci: number; p: number; px: number; kon?: boolean; dus?: number; ez?: number }> = ({ q, aci, p, px, kon, dus = 0, ez = 0 }) => {
+// ayna −1..1: yatay yön (kon kuşu dışa döner; inişte 8 karede döner, pop yok). Gölge dünya +x'te kalır.
+const KusUcta: React.FC<{ q: Pt; aci: number; p: number; px: number; kon?: boolean; dus?: number; ez?: number; ayna?: number }> = ({ q, aci, p, px, kon, dus = 0, ez = 0, ayna = 1 }) => {
   const kanat = (kon || dus > 0 ? 1 : Math.floor(p / 6) % 2) as 0 | 1;
   const a0 = Math.max(-40, Math.min(40, aci));
   const a = kon ? 0 : a0 + 155 * dus;
   const s = px / KUS_OLCU;
   const gx = kon ? 4 : 8 - 5 * dus, gy = kon ? 5 : 10 - 6 * dus;
-  return <g transform={`translate(${q[0]},${q[1]}) rotate(${a}) scale(${s * (1 + 0.08 * ez)},${s * (1 - 0.12 * ez)})`}>
-    <Golgeli dx={gx / s} dy={gy / s}>{(g) => <KusIkon golge={g} kanat={kanat} />}</Golgeli>
+  const ay = Math.abs(ayna) < 0.05 ? (ayna < 0 ? -0.05 : 0.05) : ayna;
+  return <g transform={`translate(${q[0]},${q[1]}) rotate(${a}) scale(${s * (1 + 0.08 * ez) * ay},${s * (1 - 0.12 * ez)})`}>
+    <Golgeli dx={gx / (s * ay)} dy={gy / s}>{(g) => <KusIkon golge={g} kanat={kanat} />}</Golgeli>
   </g>;
 };
 
@@ -335,7 +349,10 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
   const catı: Pt = [kumesQ[0], kumesQ[1] - 42 * kumesS]; // kuşun konduğu çatı tepesi
   const kusPx = kc?.ikon_px ?? 90, konPx = Math.round(kusPx * 0.52); // H2: kuş ≥ 90 px uçarken; konan kuş kanat toplu ~47 px
   // çatıya konan kuşlar: tepe, sol eğim, sağ eğim (çatı eğimi 45°; gövde merkezi çatının ~0.13·konPx üstünde)
-  const konus = (v: number): Pt => { const dx = [0, -1, 1][v % 3] * 15 * kumesS, h = konPx * 0.14; return [catı[0] + dx, catı[1] + Math.abs(dx) - h]; };
+  // S (eleştiri H2 #1 "9'a 3"): yan kuşlar saçak uçlarında (yerel ±18 → ekran ±36), tepe kuşundan ≥ 7 px dikey açıklık; sol kuş dışa (sola)
+  // döner → başı tepe kuşunun kanadına değmez. Tepe (v 0) P04 ile aynı yerde.
+  const konus = (v: number): Pt => { const dx = [0, -1, 1][v % 3] * (v % 3 ? 18 : 0) * kumesS, h = konPx * 0.14; return [catı[0] + dx, catı[1] + Math.abs(dx) - h]; };
+  const konAyna = (v: number, p: number, bit: number) => (v % 3 === 1 ? Math.cos(Math.PI * t01(p, bit - 8, bit, SIN)) : 1);
 
   if (tl) kilit.push({ ad: "kopma", p: E(KOPMA), tur: "dokunus" });
   if (km) kilit.push({ ad: "kümes", p: E(kumesQ), tur: "kurulum" });
@@ -430,7 +447,7 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
       const aci = (Math.atan2(uc.t[1], uc.t[0]) * 180) / Math.PI;
       if (varan) {
         const kon = p >= bit, son = t01(p, bit - 12, bit, OUT3);
-        kusUcu.push(<KusUcta key={i} q={kon ? hedef : uc.p} aci={aci} p={p + i * 2} px={kusPx + (konPx - kusPx) * son} kon={kon} />);
+        kusUcu.push(<KusUcta key={i} q={kon ? hedef : uc.p} aci={aci} p={p + i * 2} px={kusPx + (konPx - kusPx) * son} kon={kon} ayna={konAyna(v, p, bit)} />);
       } else {
         // H2: yolda durur → kuş 7 karede kâğıda düşer (gölge kısalır), yan yatar; temas karesinde 3 kare ezilir ve mürekkep damlası
         // (koyu, emilmez) çizgi ucunda kalır. Kuş yok olmaz.
@@ -452,7 +469,9 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
   if (sy) {
     const n = sy.adet ?? 38, ym = (sy.yigin_merkez ?? [600, 985]) as Pt, [yw, yh] = sy.yigin_px ?? [110, 56];
     const t0 = sy.bas, tSon = sy.son_firlatma ?? 150, ilk = sy.ilk_inis ?? 130, sonI = sy.son_inis ?? 166;
-    const r = rng(SEED + 80), kapi: Pt = [kumesQ[0], kumesQ[1] - 19 * kumesS]; // H2: şeritler kümes kapısından çıkar (çatıdaki 3 kuş açık kalır)
+    // S (eleştiri H2 #1): şeritler kümesin iniş tahtasından (yerel y −12) çıkar, alçak kemerle (≤ 16 px) yığına düşer → havadaki şeritler
+    // çatı ve saçaktaki 3 kuşun altında kalır (f150'de "üst yığın" oluşmaz).
+    const r = rng(SEED + 80), kapi: Pt = [kumesQ[0] + 6 * kumesS, kumesQ[1] - 12 * kumesS];
     if (p >= (sy.ilk_inis ?? 130)) kilit.push({ ad: "yığın", p: E(ym), tur: "kurulum" });
     for (let i = 0; i < n; i++) {
       const tf = t0 + ((tSon - t0) * i) / (n - 1);
@@ -460,7 +479,7 @@ export const ParisCevreSahne: React.FC<{ plan: Plan; p: number; kilit: KilitNokt
       // yığın yuvası: içten dışa (yığın büyür), sonrakiler biraz daha yukarıda (üst üste)
       const rr = Math.sqrt((i + 0.5) / n), a = r() * Math.PI * 2;
       const yer: Pt = [ym[0] + Math.cos(a) * rr * (yw / 2 - 12), ym[1] + Math.sin(a) * rr * (yh / 2 - 6) - i * 0.25];
-      const kemer = 60 + r() * 80, dons = (r() < 0.5 ? -1 : 1) * (140 + r() * 60), dinlen = (r() - 0.5) * 60;
+      const kemer = r() * 16, dons = (r() < 0.5 ? -1 : 1) * (140 + r() * 60), dinlen = (r() - 0.5) * 60;
       if (p < tf) continue;
       const u = Math.min(1, (p - tf) / uc);
       const x = kapi[0] + (yer[0] - kapi[0]) * u + (u > 0.6 && u < 1 ? 6 * Math.sin((u - 0.6) * 25) * (1 - u) : 0);

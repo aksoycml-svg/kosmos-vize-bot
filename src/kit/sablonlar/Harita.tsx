@@ -211,7 +211,8 @@ const FransaEkleri: React.FC<{ plan: Plan; p: number; kat: "alt" | "ust"; kilit:
     const ez = p >= bi.bit && p < bi.bit + 3 ? 1 - 0.14 * Math.sin((Math.PI * (p - bi.bit)) / 3) : 1;
     const dv = sy ? sy.devrilme_derece ?? 60 : 0, t0 = Math.max(bi.bit, sy?.bas ?? bi.bit);
     const devril = sy ? interpolate(p, [t0, t0 + 5, t0 + 7, Math.min(sy.bit - 6, t0 + 8)], [0, dv * 1.1, dv * 0.97, dv], { ...cl, easing: Easing.out(Easing.quad) }) : 0;
-    const sonme = sy ? interpolate(p, [sy.bas + 4, sy.bit], [0, 1], { ...cl, easing: Easing.out(Easing.cubic) }) : 0;
+    // S (eleştiri H2 küçük): sönme 12 karede (inOut sin) — önceki out-cubic 4 karede bitiyordu ("anahtar" gibi atlıyordu)
+    const sonme = sy ? interpolate(p, [sy.bas + 4, Math.min(sy.bit, sy.bas + 16)], [0, 1], { ...cl, easing: Easing.inOut(Easing.sin) }) : 0;
     out.push(<g key="bi" transform={`translate(${ucQ[0]},${ucQ[1] - yuk * s}) scale(${s})`}>
       <Golgeli dx={gof * 0.8} dy={gof}>{(g) => <BalonIkon golge={g} ezil={ez} devril={devril} sonme={sonme} />}</Golgeli>
     </g>);

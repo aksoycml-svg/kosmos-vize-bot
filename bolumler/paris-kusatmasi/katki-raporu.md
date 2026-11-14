@@ -1506,3 +1506,28 @@
 - Kurallar: kenar kontrolü geçti; final TR −14.0 LUFS / TP −2.0; EN −14.3 LUFS / TP −1.9 (≤ −1.5 tamam); plan LUFS medyandan ±3 LU dışı yok (EN P11 −15.3, P07 −13.1 sınır içi). Müzik −22/−16 miks kuralıyla. Dalga formu (tr/en-dalga.png) baktım: ani kesik, kırpılma, üst üste binme yok. Doğrulayıcı `--tam`: 0 hata, 0 uyarı.
 - KREDİ: ElevenLabs SFX 1 çağrı (0.5 sn istek, ≈10–20 kredi/sn varsayımla ≤10 kredi); abonelik sayacı 44 538 → 44 544 (+6, limit 129 065). Başka dış maliyet yok.
 - Açık / dinleme notu (TR+EN ayrı): P11 f60–103 (52.5–54.5 sn) 9 kâğıt tıkı: duyulur ama müziği ezmiyor mu, ritmik düşme gibi mi; 8.57/8.77 halka tiki + tel kopması (f526) ayrı mı; P01 0.15 kanat; P06 32.2 sn halat kavrama tek kez mi; P10 f120 (−18) kısık mı. EN P11 (−15.3 LUFS) kuyruk hafif kısık olabilir.
+
+## motion · 2026-11-14 · H2 son küçük düzeltmeler (kurulum kapanışı)
+- Ne yaptım:
+  1. **P11 kuşlar / yığın:** Yan kuşlar artık saçak uçlarında (yerel ±18 → ekran ±36; önce ±30). Sol kuş inişte 8 karede dışa döner (`KusUcta.ayna`, cos geçişi, pop yok; gölge dünya +x'te kalır). Tepe kuşu (P04 ile ortak `konus(0)`) yerinde kaldı. Havadaki şeritler kümes kapısından değil iniş tahtasından çıkıyor ve alçak kemerle düşüyor (kemer 60–140 → 0–16 px). Böylece f150'de çatı üstünde "üst yığın" oluşmuyor. Yığın merkezi json'da (600,985); oraya dokunmadım. Yığın kümes tabanının altında, çatıdan ≥75 px uzakta kalıyor. f100/f110/f170'te 3 kuş ayrı siluet; tepe kuşunun kanat ucu ile yan kuşlar arasında dikey açıklık ≈7 px.
+  2. **P08 balon:** Sönme süresi out-cubic [74,90] (pratikte 4 kare) → inOut-sin [74,86] (12 kare). Kumaş ≈1.5× yükseldi ve sağa açıldı: sol üst ucu devrik sepetin köşesine yaslanıyor. Sepet ağzı ile kumaş arasında üçgen boşluk kaldı; bu boşluktan kumaşın ağzına 3 ip giriyor (orta ip yalnız sönmede uzuyor). P03B'deki şişkin balon değişmedi (e=0 yolu aynı).
+  3. **Tel / kalabalık:** z sırası zaten doğruydu (tel kâğıtta, siluetler üstte; telsiz/kalabalıksız deney render'larıyla kanıtlandı). Asıl kusur, telin sur içindeki son parçasının baş ve omuz aralarından geçmesiydi. Bu yüzden kalabalık yerleşimine 10 px tel koridoru ekledim. P02, P03B, P04 ve P11'de düzen aynı algoritmayla yeniden hesaplanıyor; siluet dizilimi bir miktar değişti.
+  4. **P02 bastırma:** Teşhis: bastırma yönü halka merkezine bakıyordu ve tel kopma noktasında neredeyse bu yöne paralel uzanıyor. Bu yüzden V tel boyunca kayıyor, çentik görünmüyordu. Yön artık telin normali (merkez tarafı). Derinlik 10 → 20 px, kol 70 → 90 px, titreme 1.5 → 2.5. 360 px sayfada f140'ta çentik görünüyor.
+  5. **P06b bacak:** `FigurSiluet` öne kalkan bacağa, kenar ışığı yönünde 1.75 px açık kontur eklendi (maske farkı, `kenar.renk`). Yalnız `onBacak` + `kenar` olan figürü (Dagron) etkiliyor.
+- Dokunduğum dosyalar: src/kit/sablonlar/harita/ParisCevre.tsx, src/kit/sablonlar/harita/ikonlar.tsx, src/kit/sablonlar/Harita.tsx, src/kit/props/paris/SabahFigur.tsx, bolumler/paris-kusatmasi/kalibrasyon/S/*.png (P11 f100/f170, P08 f84/f100, P02 f140, P06b f232: tam + 360 + güvenli-360 [P08-f100 hariç]; şerit P08 f60–108, P11 f30–118), katki-raporu.md
+- Aldığım kararlar ve gerekçeleri:
+  | Yer | Değer | Eski | Yeni | Neden |
+  |---|---|---|---|---|
+  | P11 | yan kuş dx (ekran) | ±30 | ±36 (saçak ucu) + sol kuş ayna | 3 kuş ayrı sayılsın |
+  | P11 | şerit kemeri / çıkış | 60–140 px / kapı (y−38) | 0–16 px / iniş tahtası (y−24, x+12) | havadaki şeritler çatıdaki kuşları örtmesin |
+  | P08 | sönme aralığı | [74,90] out-cubic | [74,86] inOut-sin | 4 kare atlama → 12 kare |
+  | P08 | kumaş | x 12–76, h ≤19 | x 11–90, h ≤28 + 3 ip | "ayakkabı" okunmasın |
+  | P02 | bastırma | 10 px, merkez yönü | 20 px, tel normali | V görünür |
+  | kod | kalabalık | — | tel koridoru 10 px | baş-tel binmesi |
+  - bolum.json, temaslar.json ve foley.json'a dokunulmadı; temas kareleri değişmedi (kuşların düşme ve iniş kareleri aynı).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: Fade yok (kuş dönüşü ölçekle, sönme biçim dönüşümüyle). Regresyon: P01 f24 ve P03 f80 piksel farkı 0. tsc temiz. Doğrulayıcı `--tam` GEÇTİ (0 hata, 0 uyarı).
+- Açık sorular / bir sonraki ajana notlar:
+  - Eleştirmen: P11 f170'te 360 px'te konan kuşlar ≈16 px. Ayrı sayılıyorlar ama küçükler; "9'a 3" yeterince okunmuyorsa yönetmen kontrol_kare'yi ya da kamerayı yaklaştırmalı (konan kuş boyu kodda 0.52×ikon_px).
+  - Eleştirmen: P08 f84'te ipler kumaşın alt kenarı boyunca, 360 px'te ince (≈1.5 px). Bir bakılsın.
+  - Kalabalık dizilimi değişti; P02 f290, P03B, P04 kareleri yeniden bakılmalı (yalnız P02 f290 render edildi, telin geçtiği yer temiz).
+  - Öz puan 7.
