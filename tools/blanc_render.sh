@@ -31,13 +31,18 @@ for d in $DILLER; do
   PROPS="{\"yol\":\"$YOL\",\"miks\":\"$MIKS\",\"guvenli\":false}"
   V="$IS_D/video-$d.mp4"; W="$IS_D/ses-$d.wav"; O="$OUT/blanc-$d.mp4"
 
+  NV=$( [ -s "$V" ] && ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_frames -of default=nk=1:nw=1 "$V" | tr -dc 0-9 || true)
+  if [ "$NV" = "$N" ]; then log "$d görüntü zaten tam ($N kare), atlanıyor"; else
   log "$d görüntü+yazı (sessiz, $N kare)"
   npx remotion render "$B" Bolum "$V" --props="$PROPS" --frames=0-$((N-1)) --codec=h264 --crf=16 --muted "${RFLAGS[@]}" >>"$LOG" 2>&1
   NV=$(ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_frames -of default=nk=1:nw=1 "$V" | tr -dc 0-9)
   [ "$NV" = "$N" ] || { log "HATA: $d görüntü $NV kare, beklenen $N"; exit 1; }
+  fi
 
+  if [ -s "$W" ] && python3 -I -c "import sys,wave;w=wave.open(sys.argv[1]);sys.exit(0 if abs(w.getnframes()/w.getframerate()-$N/60)<0.1 else 1)" "$W" 2>/dev/null; then log "$d ses zaten tam, atlanıyor"; else
   log "$d ses (miks, WAV)"
   npx remotion render "$B" Bolum "$W" --props="$PROPS" --frames=0-$((N-1)) --codec=wav "${RFLAGS[@]}" >>"$LOG" 2>&1
+  fi
 
   log "$d loudnorm ölçüm (1. geçiş)"
   J=$(ffmpeg -hide_banner -i "$W" -af loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json -f null - 2>&1 | sed -n '/^{/,/^}/p')
