@@ -18,7 +18,7 @@ Etiketler: **[A]** arastirma.md'de kaynaklı · **[S]** sahne planı · **[G]** 
 9. **Tarama kalınlığı alt sınırı 2.0 px:** GORSEL-RECETE A9'daki 1.1/1.6 px değerleri 360 px'te 0.37/0.53 px'e iner ve yok sayılır (CLAUDE "Gravür telefonda okunur"). Uzakta tarama yok; orta 2.0 px / 9 px; yakın 2.2 / 7.5; insert 2.6 / 8.
 10. **HARITA-MEIS kıyı verisi:** Natural Earth 10m bu ölçekte (2 km'lik boğaz) Meis'i 3–5 noktaya indirir ve kullanılamaz. Öneri: GSHHG "full" (LGPL, veri serbest) ya da OSM kıyı çizgisinden elle sadeleştirilmiş iz (ODbL, açıklamada atıf). Orkestra kararı (§4).
 12. **P10a saygı anı (yönetmene düzeltme önerisi):** sahne planındaki b 100 ile "arkada batık gemi + solda kale" fiziksel olarak birlikte olamaz. Batarya'dan enkaz ve kale 190°–200° yönündedir; b 100'de ikisi de kameranın ≈ 90° sağında, kadraj dışında kalır, sol taraf da anakara olur. Bir başka sorun da şu: yüzü görünen (profil) bir figür, kendi bakış yönündeki nesneyi asla kadrajın içinde tutamaz. **Çözüm (hilesiz):** P10a = P01/P06 V1 dünyası. Kamera b 190°, mevziin ≈ 20 m gerisinde, telefoto F 11 270, 0.6° aşağı tilt (göz hizası y 643). Erler ve teğmen ön planda profil olarak sağa (batıya, gün batımı denizine) bakar; enkaz ve kale arkada, gerçek yerlerindedir. Alçak güneş (az 235, 6°) yüzlerin **ön düzlemini** (alın, burun, çene, göğüs) gül-altınla aydınlatır; kameraya bakan yanaklar mavi-mor gölgede kalır. Uzun gölgeler kameraya ve sola düşer (§3.6).
-13. **Dolly / dolly zoom (tur-6 notu):** bütün görünümler katman başına Z ile kurulur (2.5D). Dolly zoom öneri anı: **P07c** (yanan gemi aynı boyda kalır, ada ve kale arkadan büyüyerek üstüne kapanır; anlam: "kaçamıyordu"). Alternatif P04 (oyuk sabit, sırt büyür). Karar yönetmenin (§0.11).
+13. **Dolly / dolly zoom (tur-6 notu):** bütün görünümler katman başına Z ile kurulur (2.5D). Dolly zoom öneri anı: **P04** (oyuk aynı boyda kalır, Likya sırtı ×2 büyüyerek üstüne kapanır; fiziksel olarak güçlü). Alternatif **P07c** (yanan gemi sabit, ada ve kale "sahne perdesi" olarak büyür; [T]). 2 km'deki gemiyle gerçek dolly zoom telefonda okunmaz. Karar yönetmenin (§0.11).
 11. **Yön karesi zorunlu (Paris çıtası 1):** §5'teki iki İngilizce tarif (P01 k124, P07b k2388) kullanıcıya gider. Teğmen için P05 k150 ayrı kare olarak gider (tasarım §9). Onaydan önce motion kod yazmaz.
 
 ---
@@ -129,9 +129,18 @@ P01'de gemi 5.6 px/m (uzak-orta sınırı): kontur 2.5 px yalnız gövde silueti
 - **Kaya:** gri-beyaz kireçtaşı `#d9b99a` (ışık) / `#b89a86` (orta) / `#6f6488` (gölge) / `#4a4468` (derin). Yüzeyde dikey erime olukları (karren) vardır: yakında 3–5 oluk, her biri 2 çizgi (gölge kenarı `#6f6488` 4 px + ışık kenarı `#eec5a2` 2 px), seed +7. Ceplerde soluk kızıl toprak **[yeni] `#a07e6a`** (h ≈ 55°, C* ≈ 17; kırmızı bandı dışında).
 - **Doğrulama:** mevzi yeri, yüksekliği ve oyuk varlığı kaynakta yok [A §5: "mevzi gizleme doğrulanamadı"]. Oyuk hikâyenin görsel aracıdır ve kaynak iddiası değildir [T]. Kamuflaj ağı ve çalı örtüsü çizilmez (tasarım §4.4).
 
+### 0.11 2.5D derinlik, dolly ve dolly zoom (tur-6 notu)
+- Her katmanın Z'si (m) katman tablolarındadır. Ekran ölçeği `s_k = F(t)/Z_k(t)`, `Z_k(t) = Z_k − d(t)` (d: kameranın ileri gidişi). Katmanın ekran konumu, kendi dünya noktasının izdüşümüyle hesaplanır. cs zoom yalnız F'yi değiştirir, parallaks vermez; dolly d'yi değiştirir ve parallaks verir.
+- **Dolly zoom:** konu katmanı Z_s'nin ekran boyu sabit tutulur, `F(t) = F_0 · (Z_s − d(t))/Z_s`. Kamera geri giderken (d < 0) F büyür: arka plan büyür, ön plan küçülür. Uzak katman (Z ≥ 2 000) yalnız F oranında büyür. Ön plan kaya hızla küçülür ve kadrajdan çıkar; çıkış kadraj kenarından olur, katman "kaybolmaz".
+- **Fizik sınırı:** dolly zoom yalnız konu yakınken güçlüdür. Konu 2 km'deyse (gemi) kamera 1.2 km geri gitse bile (F × 1.6) ada sırtı ancak ×1.14, kale ×1.035 büyür. Bu etki telefonda okunmaz.
+- **Öneri 1 (fiziksel, güçlü): P04 `yamac-oyuk`.** Konu oyuk (Z_s 20 m). Kamera 20 m geri çekilir (d −20), F × 2. Sonuç: oyuk ekranda aynı boyda kalır; Likya sırtı (Z 6 000) ve gök basamakları ≈ ×2 büyüyerek oyuğun üstüne kapanır; ön plan taş ve ot (Z 2–5) ×0.2'ye küçülür ve alt kenardan çıkar. Anlam: boş görünen kıyı birden ağırlaşır. Sahne planındaki itme (cs 1→2.4) yerine ya da onun ilk 1.5 sn'si olarak kullanılabilir; parıltı (yerel 190) dolly zoom bittikten sonra, kamera dururken gelir.
+- **Öneri 2 (2.5D, [T]): P07c.** Konu yanan gemi. Gerçek dolly zoom zayıf kalacağı için sırt ve kale katmanları "sahne perdesi" olarak ek ×1.25 büyür (Özet 6'daki sıkıştırılmış dekorla tutarlı). Bu bilinçli sapma `lint: {izin:["dolly_zoom_perde"]}` ile kaydedilir. Anlam: liman gemiyi kapatır, "dönemiyordu".
+- Süre 1.5–2.5 sn, ease in-out. Yasak: kesmeyi geçmek, titreme, iki dolly zoom (bölümde tek; karar yönetmenin).
+- Seed dünya koordinatına bağlı olduğu için dolly sırasında doku kaymaz ve kaynamaz (Paris P07 dersi). Flu σ, katmanın Z'sine göre dolly ile yeniden hesaplanır (`fluSigma(Z, odak)`).
+
 ---
 
-## 1. LIMAN (P01, P03a, P03c, P06 V2, P06 V3, P07c, P10a)
+## 1. LIMAN (P01, P03a, P03c, P06 V2, P06 V3, P07c; P10a arka plan plakası)
 
 ### 1.1 Duygusal amaç ve görsel dil
 - **Amaç:** sakin, ışıklı, güvenli görünen bir kış limanı. İzleyici P01'de yalnız bir şey sezer: karanlık bir oyuktan gemiye uzanan çizgi. Aynı kadraj P07c'de yanan gemiye, P10a'da gün batımında enkaza döner (kurulum → karşılık).
