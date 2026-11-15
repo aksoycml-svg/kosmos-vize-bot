@@ -1,11 +1,11 @@
 # Senaryo v1 (TR): Zaro Ağa — "Amerika bir adamı değil, bir sayıyı izledi"
 
 Kaynak: yalnız `arastirma.md` (KISMİ DOĞRULAMA; dönem basını ve TR kaynaklar yalnız arama özeti, güç etiketlerine uyuldu). Kanal: TR. Eşi: `senaryo-en.md` (aynı 10 plan, aynı süreler).
-Format: 1080x1920 · **65.0 sn** (plan süresi = iki dilin uzunu + kuyruk; EN belirler, P03/P06/P09'da TR) · **10 plan** · TR 114 kelime (≈54 sn konuşma) · EN 127 kelime (≈60 sn) · mekânlar: İSKELE (İstanbul + New York rıhtımı varyantı), ÇADIR (dış + iç), MASA-INSERT (pasaport, röntgen, belgeler, harita), CENAZE (avlu + ev eşiği).
+Format: 1080x1920 · **65.0 sn** (plan süresi = iki dilin uzunu + kuyruk; EN belirler, P03/P06/P09'da TR) · **10 plan** · TR 118 kelime (≈56 sn konuşma) · EN 125 kelime (≈60 sn) · mekânlar: İSKELE (İstanbul + New York rıhtımı varyantı), ÇADIR (dış + iç), MASA-INSERT (pasaport, röntgen, belgeler, harita), EŞİK (ev kapısı + sokak ucu). (v2: P10 kapanışı kullanıcı notuyla değişti, bkz. §11.)
 
 ## 0. Önce bunlar
 
-**Dönüş satırı:** Önce: Amerika, yaşı yüz elli altı denen bir adamı değil o sayıyı görmeye gidiyor; sayı büyüdükçe adam küçülüyor. / Sonra: sayı belgede, taşta, hesapta üç ayrı değere bölünüyor; adamı ise ailesi "dünyasına doyamadan gitti" diye anıyor. Tür: **ayna / karşıtlık** (sayı ↔ insan; taşıyan ↔ taşınan).
+**Dönüş satırı:** Önce: Amerika, yaşı yüz elli altı denen bir adamı değil o sayıyı görmeye gidiyor; sayı büyüdükçe adam küçülüyor. / Sonra: sayı belgede, taşta, hesapta üç ayrı değere bölünüyor ve bugün hâlâ tartışılıyor; adamın kendi işi ise ölümünden iki yıl sonra sessizce kalkıyor, geriye çividen asılı boş bir semer kalıyor. Tür: **ayna / karşıtlık** (sayı ↔ insan; taşıyan ↔ taşınan).
 
 **Kahraman:** Zaro Ağa, İstanbul'da yıllarca hamallık yapmış yaşlı işçi. İzleyici onun sırtındaki semeri ve ayağındaki sandalyeyi izler. Yüzü P05'e kadar saklı (P01 perde ardı, P02 profil).
 
@@ -14,10 +14,10 @@ Format: 1080x1920 · **65.0 sn** (plan süresi = iki dilin uzunu + kuyruk; EN be
 2. **İstek:** Yaşının doğru sayılması. (Röntgen anında belgesini göstermesinden çıkarım; tek kaynak. Organizatörün isteği ise para.)
 3. **Engel:** Kanıt tek bir kâğıt; doktorlar inanmıyor; sayı artık onun değil, gösterinin malı.
 4. **Değişim:** Yük taşıyan adam, sirk çadırında sergilenen sayıya dönüyor; sayı büyüdükçe kendisi görünmez oluyor.
-5. **Sonuç:** Ölümünden sonra belge 157, mezar taşı 160, bir hesap uzmanı ~97 diyor. Cenazede yakınları sayıdan değil, "dünyasına doyamadan gitti" diye ağlıyor.
+5. **Sonuç:** Ölümünden sonra belge 157, mezar taşı 160, bir hesap uzmanı ~97 diyor; yaş bugün hâlâ tartışılıyor. Adamın yaptığı iş ise iki yıl sonra kaldırılıyor; sayı konuşulmaya devam ediyor, işi ve semeri kimsenin gündeminde değil.
 
-**Son cümle (önce yazıldı):** "Cenazede ise yakınları, anlatıldığına göre, 'dünyasına doyamadan gitti' diye ağlıyordu."
-Son cümlenin gerektirdikleri ve nerede kurulduğu: "sayı" P01 · "yakınları" (genç akraba) P04 · "taşıma/semer" P02 · "kapı ve eşik" P08 · "sayıların üç ayrı değeri" P09. İlk üçte birde (≤21.7 sn) kurulan: sayı, semer, pasaport tarihi, akraba. Döngü: son kare boş semer → P01'in ışıklı sayı tabelasına eşleşen kesme.
+**Son cümle (önce yazıldı):** "Ölümünden iki yıl sonra, sırtta yük taşıma işi de kaldırıldı."
+Son cümlenin gerektirdikleri ve nerede kurulduğu: "sayı" P01 · "sırtta yük/semer" P02 · "kasket" P02 · "kapı ve eşik" P08 · "sayının üç ayrı değeri" P09. Hepsi ilk üçte birde ya da öncesinde kurulu (semer, sayı, kasket P01–P02; kapı P08). Döngü: son kare çividen asılı boş semer, P01'in ışıklı sayı tabelasına eşleşen kesme: "bir adamı değil bir sayıyı" cümlesi, sayı ayakta kalıp adamın işi gidince tamamlanır.
 
 ## 1. Doğruluk kararları
 - **Yaş:** 1930 varışında söylenen sayı **156** (pasaport, dönem basın alt yazısı). "157" yalnız ölüm belgesinde (P09), "160" mezar taşında. Yaş her yerde "pasaportuna göre", "yazıyor", "öne sürdü"; hiçbir yerde kesin yaş yok. Yıl anlatıda **yok** (ekran yazısında: 1774, 1930, 1934).
