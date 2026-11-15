@@ -5,7 +5,8 @@ import type { Agiz, Palet } from "../rig/Kukla";
 
 export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU" | "GALATA-TEPE" | "BOGAZ" | "KITAP-INSERT" | "PARIS-CATI" | "MONTMARTRE" | "DAGRON-INSERT" | "LANTERN-ODA"
   | "ARABA" // Çiçero (1940'lar kiti): sedan kesiti (ic) / sokak (dis)
-  | "COL-US" | "MASA-YB"; // Yarasa bombası: çöl üssü / tepeden masa-defter
+  | "COL-US" | "MASA-YB" // Yarasa bombası: çöl üssü / tepeden masa-defter
+  | "LIMAN" | "GEMI-INSERT" | "KIYI-BATARYA"; // Ben-my-Chree (1917 kiti, 2.5D kamera25d) — kalibrasyon turu 1
 export type Bant = "ust" | "alt";
 export type P = [number, number];
 

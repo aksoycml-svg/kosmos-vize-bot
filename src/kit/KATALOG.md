@@ -397,3 +397,21 @@ Kod: `src/kit/sablonlar/cicero/Araba.tsx` · şartname `bolumler/cicero/mekanlar
 | `el40[].tut` anahtar bırakma (MASA komodin) | `"tut":{"prop":"anahtar","bas":0,"bit":74,"dx":-10}` + prop `{"tur":"anahtar","id":"anahtar","x":300,"y":1170}` | `bit` = bırakma (temas `cic_anahtar_komodin_cin`) |
 | `lamba.yanik` (MASA bazna, P10) | `"lamba":{"yanik":[0,1],"kare":[24,38]}` | havuz kaynaktan radyal uzar; 0'da masa #2f3450, banknot sönük ton |
 | `SiluetFigur40.adim` | (şablon içi) | yürüme fazı → bacak makası ±22° |
+
+## Ben-my-Chree kiti (1917; motion kurulum turu 1, 2026-11-15) — **KALİBRE EDİLMEDİ** (eleştirmen ≥ 7 vermeden bölümde kullanılmaz)
+Kod: `src/kit/sablonlar/benmychree/` · 2.5D kamera: `src/kit/kamera25d.ts` (paylaşılan, yalnız ekleme; eski şablonlar içe aktarmaz).
+Kalibrasyon: `bolumler/ben-my-chree/kalibrasyon.json` + `tools/benmychree_kalibrasyon.sh` (+ `tools/benmychree_kor.py`). Kurulmamış görünüm render'da AÇIK HATA verir.
+
+### 2.5D kamera (`parametreler.kamera25`, şablon görünüm kaydını ezer)
+`{ kare, konum_yol [[x,y,z] m], konum_kare?, yon_yol [[pan°, tilt°]], yon_kare?, lens_mm [], lens_kare?, odak_z [m], odak_kare?, diyafram (f-sayısı), egri, odak_egri?, dolly_zoom? {konu:[x,y,z]}, merkez? [x,y], ekipman }`
+- F = mm·30 px (375 mm ≈ 11 250 px). Bulanıklık = ince mercek: CoC = a·F·|1/z − 1/odak|, a = F/(30 000·N); σ = CoC/2.5 (≤ 16). Rack focus = `odak_z` yolu.
+- Dolly zoom türetilir: `dolly_zoom.konu` verilince F(t) = F0·|konu − C(t)|/|konu − C(0)| (konu ekran boyu sabit). Konum yolu konu eksenince verilmeli.
+- Katman = plaka: referans kamerada ekran px ile çizilir, `plaka(ref, k, z)` gerçek izdüşümle afin matrise eşler (paralaks, dolly). Seed plaka koordinatına bağlı → kaynama yok. Zemin/duvar 3B çokgenleri `izdPoli` (yakın düzlem kırpmalı).
+- Fizik notu: eksen boyunca dolly zoom'da yakın ön plan merkeze doğru küçülür (alt kenardan ÇIKMAZ); P04'te yakın blok bu yüzden yok.
+
+| şablon | kurulu görünüm | parametreler | kurulmadı |
+|---|---|---|---|
+| `LIMAN` | `kiyidan-ada` (P01; b 190, göz +50 m, 375 mm) | `gemi_durum` (demirli · vurulmus/yanan duman+alev ilk sürüm), `gun_yuksekligi`, `cizgi_mevzi {bas, bit, ilk}`, `seed` | ada-rihtim, karsi-kiyi, rihtim-yan, hangar-yakin, enkaz |
+| `GEMI-INSERT` | `hangar-kapi` (P07b; 3B koridor, 33 mm) | `kapi {sizinti [a,b], itilir, aci, oturma}` (uzak kanat sönümlü açılır; itilir = temas), `t3 {geri [a,b]}`, `gun_yuksekligi` | kic, korkuluk, bas-capa, kic-su, bot, korkuluk-su |
+| `KIYI-BATARYA` | `yamac-oyuk` (P04 dolly zoom), `tegmen` (P05) | yamac-oyuk: `parilti {kare, cikis [a,b], donus [a,b]}`, `bulut_golgesi {bas, bit}` · tegmen: `tegmen {pat: kare[]}` | top-onplan, saygi |
+Ortak: `GemiProfil` (tek rig, `Gemi.tsx`), `Duman`, `Alev` (imza KOR), `Gok5`, `BulutSerit`, `Tara`, `Katman/Flu` (`bmcOrtak.tsx`), yüzlü figür `BasProfil` + `ProfilFigur` + `YUZ_KART` (teğmen, E1–E4, T1–T4; `Figur.tsx`, yalnız PROFİL — ¾ görünüm kit_eksik). Kollar `props/cicero/El40.tsx` (`ElKol40`: dirsek 70–160°, bilek ≤ 30°).

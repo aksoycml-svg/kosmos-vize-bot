@@ -18,8 +18,12 @@ import { LANTERN_ODA } from "./paris/LanternOda";
 import { ARABA } from "./cicero/Araba";
 import { COL_US } from "./colus/ColUs";
 import { MASA_YB } from "./masayb/MasaYb";
+import { LIMAN } from "./benmychree/Liman";
+import { KIYI_BATARYA } from "./benmychree/KiyiBatarya";
+import { GEMI_INSERT } from "./benmychree/GemiInsert";
 
 export const SABLON_KAYIT = {} as Record<SablonAdi, Sablon>;
 Object.assign(SABLON_KAYIT, { SOKAK, "IC-ODA": IC_ODA, "MASA-INSERT": MASA_INSERT, "KULE-DIS": KULE_DIS, HARITA, SARAYBURNU, "GALATA-TEPE": GALATA_TEPE, BOGAZ, "KITAP-INSERT": KITAP_INSERT, "PARIS-CATI": PARIS_CATI, MONTMARTRE, "DAGRON-INSERT": DAGRON_INSERT, "LANTERN-ODA": LANTERN_ODA });
 SABLON_KAYIT.ARABA = ARABA; // Çiçero (1940'lar kiti, KC-S2)
 SABLON_KAYIT["COL-US"] = COL_US; SABLON_KAYIT["MASA-YB"] = MASA_YB; // Yarasa bombası (1943 kiti)
+SABLON_KAYIT.LIMAN = LIMAN; SABLON_KAYIT["KIYI-BATARYA"] = KIYI_BATARYA; SABLON_KAYIT["GEMI-INSERT"] = GEMI_INSERT; // Ben-my-Chree (1917 kiti; kalibre edilmedi)
