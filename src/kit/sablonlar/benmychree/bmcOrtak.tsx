@@ -127,7 +127,7 @@ export const Duman: React.FC<DumanAyar> = ({ taban, t, hiz, genis0, genis1, ruz,
 };
 
 // ---------- alev (imza KOR): 3 katman yaprak, uç rüzgârla kıvrık; yıldız/kıvılcım yok ----------
-export const Alev: React.FC<{ taban: P2; gen: number; boy: number; t: number; ruz: number; seed: string; n?: number; kontur?: number }> = ({ taban, gen, boy, t, ruz, seed, n = 6, kontur = 2.5 }) => {
+export const Alev: React.FC<{ taban: P2; gen: number; boy: number; t: number; ruz: number; seed: string; n?: number; kontur?: number; konturRenk?: string }> = ({ taban, gen, boy, t, ruz, seed, n = 6, kontur = 2.5, konturRenk = BP.alevKontur }) => {
   const yaprak = (i: number, k: number) => {
     const u = n === 1 ? 0 : i / (n - 1) - 0.5, h = boy * (0.55 + 0.45 * rr(`${seed}h${i}`)) * (1 + 0.12 * Math.sin(t * (4 + rr(`${seed}f${i}`) * 2) * 2 * Math.PI + rr(`${seed}p${i}`) * 6)) * k;
     const w = (gen / n) * 1.5 * k, x0 = taban[0] + u * gen * 0.9, uc: P2 = [x0 + ruz * h * 0.35 + (rr(`${seed}u${i}`) - 0.5) * w * 0.6, taban[1] - h];
@@ -135,7 +135,7 @@ export const Alev: React.FC<{ taban: P2; gen: number; boy: number; t: number; ru
   };
   return (
     <g strokeLinejoin="round">
-      {Array.from({ length: n }).map((_, i) => <path key={`d${i}`} d={yaprak(i, 1)} fill={BP.alevDis} stroke={BP.alevKontur} strokeWidth={kontur} />)}
+      {Array.from({ length: n }).map((_, i) => <path key={`d${i}`} d={yaprak(i, 1)} fill={BP.alevDis} stroke={konturRenk} strokeWidth={kontur} />)}
       {Array.from({ length: n }).map((_, i) => <path key={`o${i}`} d={yaprak(i, 0.7)} fill={BP.alevOrta} />)}
       {Array.from({ length: n }).map((_, i) => <path key={`c${i}`} d={yaprak(i, 0.42)} fill={BP.alevCekirdek} />)}
     </g>
