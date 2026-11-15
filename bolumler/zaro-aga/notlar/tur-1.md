@@ -10,3 +10,7 @@ Hedef: P10 (TR+EN) kapanışı yeniden yazılır; diğer planlar değişmez (ger
 
 (Kullanıcı orkestranın kanca açıklamasını alıntılayıp mevcut kancayı — P01 "Amerika'da insanlar bir adamı değil, bir sayıyı görmeye gidiyordu. Pasaportuna göre yüz elli altı yaşındaydı." — beğenmedi.)
 Hedef: P01 kanca (TR+EN, söz + ilk kare + ekran yazısı) yeniden; P10 ile döngü birlikte tasarlanır.
+
+## Tur 1c — kaza kancası önerisine not (2026-11-15)
+
+> New York’ta bir araba, 156 yaşında olduğu söylenen bir adama çarptı. kanca iyi değl
