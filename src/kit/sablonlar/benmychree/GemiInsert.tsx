@@ -15,7 +15,7 @@ import { RenkKaydi } from "../../../doku/Tarama";
 import { ElKol40 } from "../../props/cicero/El40";
 import { Alev, BP, Duman, Flu, gokSutun, Gok5, kirik, P2, pts, rr, Tara } from "./bmcOrtak";
 import { karisim as mix } from "./renk";
-import { ProfilFigur, profilIskelet, YUZ_KART } from "./Figur";
+import { KolOmuz, ProfilFigur, profilIskelet, YUZ_KART } from "./Figur";
 
 type Gorunum = "kic" | "korkuluk" | "bas-capa" | "kic-su" | "hangar-kapi" | "bot" | "korkuluk-su";
 const KURULU: Gorunum[] = ["hangar-kapi"];
@@ -116,12 +116,14 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
         <ellipse cx={ayak[0] + 40} cy={ayak[1] + 4} rx={0.32 * s3} ry={0.06 * s3} fill="#2a2638" opacity={0.6} />
         <path d={`M${ayak[0]},${ayak[1]} L${ayak[0] + 1.6 * s3},${ayak[1] + 0.3 * s3} L${ayak[0] + 1.6 * s3},${ayak[1] + 0.42 * s3} L${ayak[0] - 0.1 * s3},${ayak[1] + 0.08 * s3} Z`} fill="#2e2a40" opacity={0.35} />
         {(() => {
-          const pz = { egilme: -7 * geri - 2, basEgim: -3, adim: 0.18 + 0.22 * geri };
+          const pz = { egilme: -9 * geri - 3, basEgim: 10, adim: 0.18 + 0.24 * geri };
           const sk = profilIskelet(ayak, s3, -1, 1.75, pz);
-          const kiy = { tur: "kazak" as const, renk: govdeRenk, isik: govdeIsik, golge: govdeGolge, pantolon: "#4a4a62", pantolonIsik: mix("#6a6a82", BP.havuz, 0.4), cizme: "#2a2836" };
-          const onKol = <ElKol40 ad="T3 kol" omuz={[sk.omuz[0] - 0.02 * s3, sk.omuz[1] + 0.02 * s3]} bilek={[sk.omuz[0] - 0.36 * s3, sk.omuz[1] + 0.12 * s3]} E={0.18 * s3} poz="avuc" elAci={-150} kolBoy={[0.29 * s3, 0.26 * s3]} bukum={-1} ayna palet={EL_T} kolRenk={govdeRenk} kolKontur="#24223a" gen={[0.1 * s3, 0.085 * s3, 0.066 * s3]} isik={[-0.9, -0.3]} taramaAci={65} kenar={{ renk: BP.havuz, alfa: 0.9 }} />;
-          const arkaKol = <path d={`M${sk.omuz[0] + 0.03 * s3},${sk.omuz[1]} q${0.05 * s3},${0.2 * s3} ${0.0},${0.36 * s3}`} stroke={mix(govdeGolge, "#1c1a24", 0.3)} strokeWidth={0.08 * s3} fill="none" strokeLinecap="round" />;
-          return <ProfilFigur ayak={ayak} s={s3} yon={-1} boy={1.75} pz={pz} k={kiy} kart={YUZ_KART.T3} isik="on" sicak={BP.havuz} bakisY={-0.3} onKol={onKol} arkaKol={arkaKol} />;
+          // 1917 denizci iş kıyafeti: açık V yakalı kazak (iç fanila), kollar sıvalı, baş açık; kemer/ceket yok
+          const kiy = { tur: "kazak" as const, renk: "#5f6278", isik: mix("#7a7c92", BP.havuz, 0.5), golge: "#44465c", pantolon: "#545a6e", pantolonIsik: mix("#6e7488", BP.havuz, 0.45), cizme: "#2a2836" };
+          // ön kol yüzü korur: el yüz hizasında öne, avuç aleve dönük; dirsek aşağıda
+          const onKol = <KolOmuz omuzR={0.07 * s3} omuzIsik={BP.havuz} kolluk={{ renk: kiy.renk, oran: 0.55 }} ad="T3 kol" omuz={sk.omuz} bilek={[sk.bas[0] - 0.2 * s3, sk.bas[1] + 0.02 * s3]} E={0.18 * s3} poz="avuc" elAci={-125} kolBoy={[0.29 * s3, 0.26 * s3]} bukum={-1} ayna palet={EL_T} kolRenk={mix(EL_T.isik, EL_T.golge, 0.3)} kolKontur="#24223a" gen={[0.095 * s3, 0.075 * s3, 0.06 * s3]} isik={[-0.9, -0.3]} taramaAci={65} kenar={{ renk: BP.havuz, alfa: 0.9 }} />;
+          const arkaKol = <path d={`M${sk.omuz[0] + 0.02 * s3},${sk.omuz[1]} q${0.06 * s3},${0.2 * s3} ${0.02 * s3},${0.36 * s3}`} stroke={mix(kiy.golge, "#1c1a24", 0.3)} strokeWidth={0.085 * s3} fill="none" strokeLinecap="round" />;
+          return <ProfilFigur ayak={ayak} s={s3} yon={-1} boy={1.75} pz={pz} k={kiy} kart={YUZ_KART.T3} isik="on" sicak={BP.havuz} bakisY={-0.2} onKol={onKol} arkaKol={arkaKol} />;
         })()}
         <Flu s={6}>{(() => { const c = P(k, [DUVAR_X + 0.45, 0, 0.55]), sc = izd(k, [DUVAR_X + 0.45, 0, 0.55])!.s; return <g>
           {[0.32, 0.26, 0.2, 0.14].map((rr2, i) => <ellipse key={i} cx={c[0]} cy={c[1] - sc * 0.05 * i} rx={sc * rr2} ry={sc * rr2 * 0.42} fill="none" stroke={i % 2 ? BP.halat : "#8a7660"} strokeWidth={sc * 0.06} />)}
