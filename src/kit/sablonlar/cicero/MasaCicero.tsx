@@ -17,7 +17,7 @@ import { param, SablonProps } from "../../ortak";
 import { propDurum } from "../../props";
 import { deger, ekranNokta, kameraHesapla } from "../../zaman";
 import { CIC, EL_BAZNA, EL_BERLIN } from "../../paletler/cicero";
-import { Anahtar, Banknot, Belge, Carpi, Makine, Zarf } from "../../props/cicero/Esyalar40";
+import { Anahtar, Balmumu, Banknot, Belge, Carpi, Dosya40, FilmKutusu, Makine, Zarf } from "../../props/cicero/Esyalar40";
 
 export type MasaAd = "komodin" | "berlin" | "bazna";
 export const MASA40: MasaAd[] = ["komodin", "berlin", "bazna"];
@@ -65,12 +65,16 @@ const PropCiz40: React.FC<{ pr: Prop; p: number; pxm: number; kisalma: number; g
   const tr = `translate(${x} ${y}) scale(1 ${kisalma}) rotate(${a})`;
   const n = (k: string, v: number) => (typeof d[k] === "number" ? (d[k] as number) : v);
   switch (pr.tur) {
-    case "banknot": return <g transform={tr}><Banknot W={0.211 * pxm * o} yuz={(d.yuz as "on" | "arka") ?? "on"} golge={n("golge", isik >= 0.75 ? 0 : 1 - isik)} kivrik={n("kivrik", 0.25)} sonuk={sonuk} golgeKay={[golgeKay[0], golgeKay[1] / kisalma]} seed={401} /></g>;
+    // kaldir 0..1: banknot ışığa doğru kalkar (kameraya yaklaşır → büyür, gölgesi uzaklaşır)
+    case "banknot": return <g transform={`${tr} scale(${1 + 0.3 * n("kaldir", 0)})`}><Banknot W={0.211 * pxm * o} sizinti={n("sizinti", 0)} yuz={(d.yuz as "on" | "arka") ?? "on"} golge={n("golge", isik >= 0.75 ? 0 : 1 - isik)} kivrik={n("kivrik", 0.25)} sonuk={sonuk} golgeKay={[golgeKay[0], golgeKay[1] / kisalma]} seed={401} /></g>;
     case "carpi": return <g transform={tr}><Carpi L={(o * pxm * 0.09)} ilerleme={n("ilerleme", 2)} /></g>;
     case "zarf": return <g transform={tr}><Zarf W={0.24 * pxm * o} acik={n("acik", 0)} golge={n("golge", (1 - isik) * 0.8)} golgeKay={golgeKay} /></g>;
     case "belge": return <g transform={tr}><Belge W={0.21 * pxm * o} isik={isik} /></g>;
     case "makine": return <g transform={tr}><Makine W={0.13 * pxm * o} /></g>;
     case "anahtar": return <g transform={tr}><Anahtar L={0.07 * 1.8 * pxm * o} isik={isik} cevir={n("cevir", 0)} /></g>;
+    case "balmumu": return <g transform={tr}><Balmumu W={0.06 * 1.5 * pxm * o} iz={n("iz", 0)} cizim={n("cizim", 0)} /></g>;
+    case "filmKutusu": return <g transform={tr}><FilmKutusu H={0.055 * 1.5 * pxm * o} /></g>;
+    case "dosya40": return <g transform={tr}><Dosya40 W={0.32 * pxm * o} golge={n("golge", 1 - isik)} /></g>;
     default: return null;
   }
 };
@@ -121,7 +125,11 @@ export const MasaCiceroSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     </g>;
   };
   // ---- masa yüzeyleri ----
-  let zemin: React.ReactNode = null, ust: React.ReactNode = null;
+  let zemin: React.ReactNode = null, ust: React.ReactNode = null, cekIc: React.ReactNode = null, cekOn: React.ReactNode = null;
+  // berlin orta çekmecesi: acik 0..1 (öne/aşağı 170 px kayar), kose 0..1 (kapalıyken ağızda sıkışan dosya köşesi). durum.cekmecede = 1 olan prop çekmece içinde (kırpılı, çekmeceyle kayar)
+  const CK = param<{ acik?: Sayi; kose?: Sayi; kare?: number[] } | null>(plan, "cekmece", null);
+  const cekKay = CK ? 170 * deger(CK.acik ?? 0, CK.kare, p) : 0, cekKose = CK ? deger(CK.kose ?? 0, CK.kare, p) : 0;
+  const icinde = (pr: Prop) => masa === "berlin" && (propDurum(pr, p).cekmecede as number) > 0.5;
   if (masa === "bazna") {
     const gen = [0.17, 0.22, 0.19, 0.24].map((m) => m * pxm);
     let x = -80; const derz: number[] = []; for (const g of gen) { x += g; derz.push(x); }
@@ -213,19 +221,31 @@ export const MasaCiceroSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       <rect x={-400} y={520} width={1900} height={570} fill={CIC.maun} />
       <rect x={160} y={600} width={760} height={440} fill={CIC.sumen} stroke={CIC.murekkep} strokeWidth={3} />
       {havuzBant([CIC.berlinCekirdek, CIC.berlinCekirdek, CIC.berlinOrta], true)}
-      <polygon points={poly(elipsY(580, 860, 520 * yanik, 420 * yanik))} fill={CIC.berlinOrta} opacity={0.35} />
       {/* harita (Normandiya halkası, etiketsiz) */}
       <g transform="rotate(-3 540 730)">
         <rect x={250} y={560} width={580} height={340} fill={CIC.harita} stroke={CIC.murekkep} strokeWidth={3} />
-        <path d="M 250 560 L 830 560 L 830 660 Q 700 640 640 700 Q 560 690 500 640 Q 440 690 380 660 Q 320 650 250 680 Z" fill={CIC.deniz} />
-        <circle cx={500} cy={700} r={80} fill="none" stroke={CIC.halka} strokeWidth={10} />
+        {/* Manş kıyısı: batıda Cotentin yarımadası kuzeye çıkıntı, doğuda Seine ağzına inen kıyı (etiketsiz) */}
+        <path d="M 250 560 L 830 560 L 830 672 L 770 684 Q 730 676 700 700 Q 650 712 600 702 L 540 708 Q 500 712 478 690 L 474 628 Q 470 604 446 600 Q 418 602 410 628 L 404 690 Q 380 704 340 696 Q 300 690 250 706 Z" fill={CIC.deniz} stroke="#6a7a88" strokeWidth={3} />
+        <path d="M 700 700 Q 720 730 760 740" stroke="#6a7a88" strokeWidth={4} fill="none" />
+        <circle cx={540} cy={740} r={78} fill="none" stroke={CIC.halka} strokeWidth={10} />
       </g>
       <rect x={-400} y={1090} width={1900} height={12} fill="#8a7468" />
-      <rect x={300} y={1100} width={480} height={160} fill={CIC.maun} stroke={CIC.murekkep} strokeWidth={4} />
-      <rect x={510} y={1170} width={60} height={18} rx={6} fill={CIC.kaide} />
-      <rect x={-400} y={1260} width={660} height={1200} fill="#4a3a36" /><rect x={820} y={1260} width={700} height={1200} fill="#4a3a36" />
-      <rect x={260} y={1260} width={560} height={1200} fill="#1e1c28" />
+      <rect x={-400} y={1102} width={1900} height={1400} fill="#4a3a36" />
+      <rect x={260} y={1102} width={560} height={1400} fill="#1e1c28" />
     </g>;
+    // çekmece içi (üstten görünür, kayma kadar): koyu ahşap + okunmamış karton yığını
+    cekIc = cekKay > 1 && <g>
+      <rect x={310} y={1092} width={460} height={cekKay + 10} fill="#2e2620" />
+      {[0, 1, 2, 3].map((i) => <rect key={i} x={330 + i * 6} y={1100 + i * 4} width={410 - i * 10} height={Math.max(0, cekKay - 18)} fill={i % 2 ? "#a8956f" : CIC.dosya} stroke="#5a4a3a" strokeWidth={2} />)}
+    </g>;
+    cekOn = <g>
+      <rect x={300} y={1100 + cekKay} width={480} height={160} fill={CIC.maun} stroke={CIC.murekkep} strokeWidth={4} />
+      <Tarama sekil={[[300, 1100 + cekKay], [780, 1100 + cekKay], [780, 1116 + cekKay], [300, 1116 + cekKay]]} basamak="III" aci={TH} renk={CIC.tarama} derinlik="insert" seed={S + 12} />
+      <rect x={510} y={1170 + cekKay} width={60} height={18} rx={6} fill={CIC.kaide} stroke={CIC.murekkep} strokeWidth={2} />
+      <circle cx={522} cy={1176 + cekKay} r={3} fill={CIC.metalNokta} />
+      {cekKose > 0.01 && <polygon points={poly([[694, 1100], [786, 1100], [770 - 20 * (1 - cekKose), 1100 - 46 * cekKose]])} fill={CIC.belgeIsik} stroke={CIC.murekkep} strokeWidth={2.5} />}
+    </g>;
+    kilit.push({ ad: "çekmece", p: ekranNokta(k, [540, 1180 + cekKay]), tur: "dokunus" });
     ust = <g>
       <ellipse cx={L.kaide[0]} cy={L.kaide[1]} rx={70} ry={22} fill={CIC.kaide} stroke={CIC.murekkep} strokeWidth={3} />
       <line x1={L.kaide[0]} y1={L.kaide[1]} x2={L.agiz[0] + 20} y2={L.agiz[1] - 40} stroke={CIC.kaide} strokeWidth={10} />
@@ -239,14 +259,26 @@ export const MasaCiceroSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   </g>;
   return (
     <svg width={1080} height={1920} viewBox="0 0 1080 1920">
-      <defs><Desen id="mcTar" aci={TH} aralik={7} kalin={2.4} renk={CIC.tarama} alfa={0.6} seed={S + 9} /></defs>
+      <defs><clipPath id="mcCek"><rect x={310} y={1092} width={460} height={cekKay + 10} /></clipPath><Desen id="mcTar" aci={TH} aralik={7} kalin={2.4} renk={CIC.tarama} alfa={0.6} seed={S + 9} /></defs>
       <rect x={0} y={0} width={1080} height={1920} fill="#1e1c28" />
       <RenkKaydi>
         <g transform={kam}>
           {zemin}
+          {cekIc}
+          {cekKay > 1 && <g clipPath="url(#mcCek)"><g transform={`translate(0 ${cekKay})`}>{serbest.filter(icinde).map((pr) => propC(pr))}</g></g>}
+          {cekOn}
           {golgeler}
-          {serbest.filter((pr) => pr.tur !== "carpi").map((pr) => propC(pr))}
-          {serbest.filter((pr) => pr.tur === "carpi").map((pr) => propC(pr))}
+          {serbest.filter((pr) => pr.tur !== "carpi" && !icinde(pr)).map((pr) => propC(pr))}
+          {/* çarpı hedef banknotun kâğıdına kırpılır (boya kâğıt dışına taşmaz; eleştiri #8) */}
+          {serbest.filter((pr) => pr.tur === "carpi").map((pr, i) => {
+            const cx = deger(pr.x, pr.kare, p), cy = deger(pr.y, pr.kare, p);
+            const W = 0.211 * pxm, H = W / 1.575;
+            const hedef = serbest.filter((q) => q.tur === "banknot").map((q) => ({ x: deger(q.x, q.kare, p), y: deger(q.y, q.kare, p), a: deger(q.aci ?? 0, q.kare, p), o: q.olcek ?? 1 }))
+              .find((q) => { const r = (-q.a * Math.PI) / 180, dx = cx - q.x, dy = cy - q.y; return Math.abs(dx * Math.cos(r) - dy * Math.sin(r)) < (W * q.o) / 2 && Math.abs(dx * Math.sin(r) + dy * Math.cos(r)) < (H * q.o) / 2; });
+            if (!hedef) return propC(pr);
+            const id = `mcCarpi${i}`;
+            return <g key={id}><defs><clipPath id={id}><rect x={-(W * hedef.o) / 2 + 3} y={-(H * hedef.o) / 2 + 3} width={W * hedef.o - 6} height={H * hedef.o - 6} transform={`translate(${hedef.x} ${hedef.y}) scale(1 ${kisalma}) rotate(${hedef.a})`} /></clipPath></defs><g clipPath={`url(#${id})`}>{propC(pr)}</g></g>;
+          })}
           {ust}
           {eller.map((e, i) => {
             const pr = e.tut ? props.find((q) => q.id === e.tut!.prop) : undefined;

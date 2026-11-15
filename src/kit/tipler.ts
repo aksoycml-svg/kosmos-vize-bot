@@ -50,7 +50,7 @@ export type PropTur = "paket" | "eldiven" | "corap" | "dosya" | "kitap" | "kese"
   | "tas" // Evliya (GALATA-TEPE, K5: KE-P5)
   | "marti" // Evliya (BOGAZ, K8: KE-P6; uzay ekran)
   | "defter" | "kivilcim" // Evliya (KITAP-INSERT, K8: KE-P8 defter; kıvılcım = çizimdeki fitilde KE-E1)
-  | "banknot" | "carpi" | "zarf" | "belge" | "makine" | "anahtar"; // Çiçero (MASA-INSERT masa: komodin|berlin|bazna; ARABA): props/cicero/Esyalar40
+  | "banknot" | "carpi" | "zarf" | "belge" | "makine" | "anahtar" | "balmumu" | "filmKutusu" | "dosya40"; // Çiçero (MASA-INSERT masa: komodin|berlin|bazna; ARABA): props/cicero/Esyalar40
 export type Prop = {
   tur: PropTur; id?: string;
   x?: Sayi; y?: Sayi; kare?: number[];         // MASA-INSERT: ekran px (masa düzlemi). IC-ODA: x = u (m), y = z (m). SARAYBURNU: dekor px (zemin teması)

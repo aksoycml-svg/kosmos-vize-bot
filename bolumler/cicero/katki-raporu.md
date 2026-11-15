@@ -133,3 +133,55 @@
 - Uyguladığım kurallar / yakaladığım ihlaller: (KRİTİK) ufuk–ölçek, ELÇİ-ODASI Bazna ≈1.51 m (`ElciOda.tsx:27` 0.00298) · (KRİTİK) p170'te kalçasız devrilme + ayak–temas gölgesi kopuk · (KRİTİK) K-C Bazna baş 1.6× Moyzisch, yan güvenli alan aşımı, alt bacak/ayak yok · (KRİTİK) Moyzisch dirseksiz kol, sütun gövde (Paris figür dersi) · tek ışık: lamba çevresine ışık düşmüyor, V dokunuşun önüne geçiyor (`ElciOda.tsx:65,78`) · yüz karikatür + dokunuşla çelişen ifade (`BAZNA_YUZ.yasCizgi`, `browHeavy`, `sideburn`) · ölü alan K-C alt · çarpı kâğıt dışına taşıyor. Orkestra gözlemlerinden "baş kesik" kısmen doğru (kesik değil, güvenli alan dışı). Diğerleri doğrulandı.
 - Açık sorular / sonraki ajana: (1) K-C banknot arka yüzü 360 px'te "mektup" okunuyor. Ön yüz baskısının tersten sızması için `kit_eksik: banknot.sizinti`, orkestra kararı. (2) Güvenli alan betiği figür bbox'ını ölçmüyor (teknisyen/motion). (3) P01 p0–48 ve P04 p196–228 şeritleri yok. (4) V küçülürse mekân sorumlusu "1940'lar ışık imzası" kararını güncellemeli. (5) IcOda'daki 0.00298 sabiti eski rig için doğruysa dokunulmaz, düzeltme yalnız cicero şablonlarında.
 - (orkestra, kalibrasyon eleştirisi sonrası) 8 düzeltmenin hepsi onaylı. `banknot.sizinti` EKLENİR (arka yüzden ön yüz baskısı belli belirsiz sızar → P01/P10'da "para" okunur). Lint izinleri eleştirmenin önerdiği şekilde kabul. Süre baskısı nedeniyle motion düzeltme + yeniden render + aşama 2 kitini tek görevde yapar; düzeltilen K-A/K-C karelerini orkestra kendi gözüyle kapılar, tam film eleştirmen jürisinden geçer.
+
+## motion · 2026-11-15 · v2 (eleştiri 8 düzeltme + banknot.sizinti) + aşama 2 (kalan kit)
+- Ne yaptım:
+  - **v2 (8 düzeltme):**
+    - #1 ELÇİ-ODASI Kukla birimi `KUKLA40_M = 1.70/506` (yalnız cicero yolu): Bazna artık 1.70 m.
+    - #2 Kalçadan eğilme (`lean` + `thighF = thighB = −lean`, `knee 8`), P04 u −0.45 → −0.25: ayak gölgenin üstünde, lamba başın yanında.
+    - #3 ARABA `kuklaOlcek 0.72`, `arkaKanepe 0.06`; Bazna'nın baldırı ve ayağı ayak boşluğunda (taban h 0.24, ikinci kırpılı geçiş). Figür bbox kilitleri (baş üstü/ense/sırt) eklendi.
+    - #4 Moyzisch profil siluet (omuz ×0.75, göğüs/kürek, etek genişlemesi yok) + `el.moyzisch.dirsek` ile koltuk sırtı üstünde dirsek.
+    - #5 V daraltıldı, tavanda tek basamak; abajur çevresine duvar yayılması, komodin üstü yayılma, lento/perde kutusu ışık alır.
+    - #6 Bazna yüzü (yasCizgi 0, kaş .85, favori .15); planda ifade anahtarları (`browF/B`, `blinkF/B`, `agiz`).
+    - #7 Kanepe dikiş hatları + biye, kapı paneli 2 ton, kolçak ışık basamağı, C direği güneş yaması.
+    - #8 Çarpı hedef banknotun kâğıdına otomatik kırpılır + json (705, 1035).
+    - Küçük notlar: makinede kıstıran parmaklar (a), zarf kapağı tek üçgen (d), güvenli alan bbox (e), P01 p0–48 ve P04 p196–228 şeritleri (f). Ceket eteği kalça boyu.
+  - **`banknot.sizinti`:** arka yüzden aynalı, belli belirsiz ön baskı. P01'de 0.12, P10 ışığa tutmada 0.12 → 0.35 + `kaldir`.
+  - **Aşama 2:**
+    - komodin: anahtar bırakma (`el40.tut`) + `balmumu {iz, cizim}`
+    - ELÇİ-ODASI: `belgeler.yay/topla/kutuya/el`, `filmKutusu`, komodin `cekmece` (+ makine içinde), `lamba.filaman` + sönükte ay ışığı, `siluetKol` (+ `tepsiye`), `tepsi` + fincan devri, Kukla `palet.yuzsuz` (P08)
+    - Berlin: `cekmece {acik, kose}` + `dosya40 {cekmecede}` + Manş kıyısı (Cotentin) haritası, yarı saydam elips kaldırıldı
+    - ARABA: `nesneler` (P05 film kutusu/zarf), `gorunum: "dis"` alacakaranlık (cephe, kapı/saçak/basamak, 3 yanık pencere + kaldırım yamuğu, park sedan, sekreter yürüyüşü `SiluetFigur40.adim`, arabaya biniş, araba gider)
+    - MASA bazna: `lamba.yanik` + banknotu ışığa kaldırma
+    - Baş sallama yapılmadı (düşük öncelik, çıkarılabilir).
+  - Gerileme: Blanc/Evliya/Paris kareleri HEAD ile piksel farkı 0 (v2 sonrası yeniden ölçüldü).
+- Dokunduğum dosyalar: `src/kit/sablonlar/cicero/{ElciOda,Araba,MasaCicero}.tsx`, `src/kit/props/cicero/{Esyalar40,SiluetFigur40}.tsx`, `src/kit/paletler/cicero.ts`, `src/rig/Kukla.tsx` (yalnız takim40 eteği), `src/kit/{tipler.ts,props/index.tsx,sinirlar.json,KATALOG.md}`, `tools/cicero_kalibrasyon.sh` (v2 kareleri/şeritleri), `bolumler/cicero/kalibrasyon.json` (yönetmen parametreleri işlendi), `bolumler/cicero/kalibrasyon/v2/*`.
+- Ölçüm (v2, `kalibrasyon/v2/olcum_*.json`; güvenli alan bbox dahil: 5 karede 0 ihlal):
+
+  | Kare | sıcak % | p95 L* | imza dışı max L* / C* | izinsiz kırmızı | banknot L* |
+  |---|---|---|---|---|---|
+  | K-C P01 p24 | 19.6 | **72.1** (< 75) | 87.3 / 32.0 (66 px, lint) | 0 | 93.2 |
+  | K-C P01 p437 | 22.5 | **68.3** | 87.6 / 31.6 | 0 | — |
+  | K-A P04 p170 | 20.6 | **70.8** | 86.6 / 32.1 (14 px) | 0 | — |
+  | K-A P04 p270 | 14.7 (≥ 14, < 18) | **70.1** (< lint tabanı 72) | 86.0 / 30.7 (9 px) | 0 | — |
+  | K-B P07 p300 | 55.7 | 93.9 | 82.1 / 23.8 | 0 (çarpı kâğıtta) | 93.2 |
+
+- Kararlar ve gerekçeleri:
+  - V'nin küçültülmesi (#5) p95'i 75'ten 70'e düşürdü. Komodin/lento/kapı aralığı ışıklarıyla 70.1'den yukarı çıkmadı. K-A'da p95 için lint izni yazıldı (eleştirmenin tabanı 72'ydi, 70.1 kaldı: **karar orkestrada**: ya V gövdesi biraz daha geniş/parlak, ya izin 70).
+  - P01'de büyük Kukla başı ve cephe örtülüyor; cephe #e0caaf'a açıldı, p95 72. Kukla ölçeği ile baş oranı arasındaki çelişki rig kaynaklı (`kuklaOlcek 0.72` uzlaşma).
+  - P01 kamera push cx 20 → −100, cs 1.2 → 1.15 (p437'de banknot/el IG sütununa giriyordu).
+  - kalibrasyon.json'a lint izinleri yazıldı (P01 imzaDisiC28 · P04 imzaDisiC28/uzunGolge/p95L · P07 guvenliAlanYan).
+- Uyguladığım kurallar / yakaladığım ihlaller: ufuk–ölçek (1.51 → 1.70 m), ayak teması (p170 kayma giderildi), görünen lamba çevresini aydınlatır, tutulan nesne eli izler (makine parmakları, fincan elde, deste elde, film kutusu cebe arkadan), boya kâğıt dışına taşmaz (klip), hareket tamamlanır (sekreter arabanın arkasına iner, araba kadrajdan çıkar; belgeler kutunun içine iner), görünürlük (yüzsüz Bazna P08).
+- Bilinen kusurlar:
+  1. K-A p95 70.1, K-C p95 72.1 / 68.3 (ölçüt 75).
+  2. Bazna Kukla yüzü hâlâ karikatür sınıfında; P01'de başı Moyzisch'ten ≈ %25 büyük.
+  3. Yetkili ve elçi siluetleri düz/bloklu; yetkili eğilmiyor.
+  4. P08 tepsi Bazna'nın kolundan uzakta duruyor (kol pozu json'da ayarlanır).
+  5. P09a alt %35 (yol + karşı kaldırım) boş; kamera cs 1.1 + cy ile kırpılmalı.
+  6. P05 zarf ilk karede görünür (yönetmen anahtar kareleri verir).
+  7. P09b filaman küçük (cs 2.2'de ≈ 20 px).
+  8. Berlin hâlâ kalibre edilmedi (test karesi var, ölçüm: sıcak %18, p95 78).
+- Açık sorular / sonraki ajana notlar:
+  - (1) Yönetmen tam bolum.json'u KATALOG "Çiçero v2 + aşama 2 ekleri" tablosundan yazar. Test kareleri `kalibrasyon/v2/test_*.png`, test json'ları örnek olarak raporda.
+  - (2) Orkestra: K-A p95 izin tabanı (70) kararı.
+  - (3) Eleştirmen: v2 kareleri + iki yeni şerit.

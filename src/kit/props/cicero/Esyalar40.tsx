@@ -15,7 +15,9 @@ const karis = (a: string, b: string, t: number) => {
 // ---- BANKNOT ----
 // W: uzun kenar ekran px (gerçek 211 × 134 mm, oran 1.57) · yuz "on" | "arka" · golge 0 (ışıkta) … 1 (gölgede) · kivrik: sağ-alt köşe kıvrımı 0..1
 // sonuk: P10 p0–24 gece (#b8bccc) · golgeKay: düşen gölge [dx, dy] (ekran px; 0 → yok)
-export const Banknot: React.FC<{ W: number; yuz?: "on" | "arka"; golge?: number; kivrik?: number; sonuk?: number; golgeKay?: P; golgeRenk?: string; seed?: number }> = ({ W, yuz = "on", golge = 0, kivrik = 0.25, sonuk = 0, golgeKay, golgeRenk = "#2a2230", seed = 401 }) => {
+// sizinti 0..1: arka yüzden ön yüz baskısının ince kâğıttan tersten (aynalı) belli belirsiz görünmesi — "para" okutur, mektup değil.
+//   0.12 ≈ masada/elde; ışığa tutulunca (P10) 0.3–0.4. Kâğıt L* değişmez (yalnız ince gri çizgiler).
+export const Banknot: React.FC<{ W: number; yuz?: "on" | "arka"; golge?: number; kivrik?: number; sonuk?: number; golgeKay?: P; golgeRenk?: string; seed?: number; sizinti?: number }> = ({ W, yuz = "on", golge = 0, kivrik = 0.25, sonuk = 0, golgeKay, golgeRenk = "#2a2230", seed = 401, sizinti = 0 }) => {
   const H = W / 1.575, w = W / 2, h = H / 2;
   const kag = karis(karis(CIC.banknot, CIC.banknotGolge, golge), "#b8bccc", sonuk);
   const mur = karis(CIC.banknotMurekkep, "#3a3a48", sonuk * 0.5);
@@ -41,7 +43,7 @@ export const Banknot: React.FC<{ W: number; yuz?: "on" | "arka"; golge?: number;
       {golgeKay && <path d={dis} transform={`translate(${golgeKay[0]} ${golgeKay[1]})`} fill={golgeRenk} opacity={0.55} />}
       <path d={dis} fill={kag} stroke={karis(kag, "#5a5660", 0.45)} strokeWidth={1.6 * k} strokeLinejoin="round" />
       {kv > 0.5 && <path d={`M ${w} ${h - kv} Q ${w - kv * 0.55} ${h - kv * 0.55} ${w - kv} ${h} Z`} fill={karis(kag, "#8a8698", 0.35)} />}
-      {yuz === "on" && <g>
+      {(yuz === "on" || sizinti > 0) && <g transform={yuz === "on" ? undefined : "scale(-1 1)"} opacity={yuz === "on" ? 1 : Math.min(0.45, sizinti)} style={yuz === "on" ? undefined : { filter: "blur(0.6px)" }}>
         <rect x={-w + m} y={-h + m} width={W - 2 * m} height={H - 2 * m} fill="none" stroke={mur} strokeWidth={4.2 * k} />
         <rect x={-w + m * 1.7} y={-h + m * 1.7} width={W - 3.4 * m} height={H - 3.4 * m} fill="none" stroke={mur} strokeWidth={2.2 * k} />
         {[[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([sx, sy], i) => rozet(sx * (w - m - r0 * 1.15), sy * (h - m - r0 * 1.15), r0, i))}
@@ -86,7 +88,6 @@ export const Zarf: React.FC<{ W: number; acik?: number; golge?: number; golgeKay
       <rect x={-w} y={-h} width={W} height={H} rx={W * 0.02} fill={c} stroke={ink} strokeWidth={4} />
       {/* kabarık içerik: alt kenarda iki yumuşak şişkinlik çizgisi */}
       <path d={`M ${-w * 0.9} ${h * 0.55} Q 0 ${h * 0.75} ${w * 0.9} ${h * 0.55}`} stroke={karis(c, "#2a2028", 0.35)} strokeWidth={3} fill="none" />
-      <path d={`M ${-w} ${h} L 0 ${h * 0.05} L ${w} ${h}`} stroke={karis(c, "#2a2028", 0.4)} strokeWidth={3} fill="none" />
       <polygon points={poly([[-w, -h], [w, -h], [0, kapY]])} fill={karis(c, acik > 0.5 ? "#e0c8a8" : "#2a2028", 0.12)} stroke={ink} strokeWidth={4} strokeLinejoin="round" />
     </g>
   );
@@ -136,3 +137,70 @@ export const Anahtar: React.FC<{ L: number; isik?: number; cevir?: number }> = (
     </g>
   );
 };
+
+// ---- BALMUMU (avuç içi yumuşak yassı oval, bal-ten; silindir/mum çubuğu DEĞİL) ----
+// iz 0..1: anahtar izi kabartması belirir (basış anı = 1'e geçiş); cizim 0..1: iz üstünde ince anahtar çizimi kendini çizer
+// (yarım bırakmak için cizim'i 0.55'te durdur — "saklanan şey"). W uzun eksen px.
+export const Balmumu: React.FC<{ W: number; iz?: number; cizim?: number }> = ({ W, iz = 0, cizim = 0 }) => {
+  const H = W * 0.72, c = "#c2a67e", g = "#7a6a60";
+  const L = W * 0.62, r = L * 0.16, t = L * 0.08;
+  // anahtar silüeti yolu (iz + çizim aynı yol): halka + çubuk + 2 diş
+  const yol = `M ${-L / 2} 0 a ${r} ${r} 0 1 1 ${2 * r} 0 a ${r} ${r} 0 1 1 ${-2 * r} 0 M ${-L / 2 + 2 * r} ${-t / 2} L ${L / 2} ${-t / 2} L ${L / 2} ${t / 2 + L * 0.12} L ${L / 2 - L * 0.07} ${t / 2 + L * 0.12} L ${L / 2 - L * 0.07} ${t / 2} L ${L / 2 - L * 0.13} ${t / 2} L ${L / 2 - L * 0.13} ${t / 2 + L * 0.09} L ${L / 2 - L * 0.2} ${t / 2 + L * 0.09} L ${L / 2 - L * 0.2} ${t / 2} L ${-L / 2 + 2 * r} ${t / 2}`;
+  const uzun = L * 3.2;
+  return (
+    <g>
+      <ellipse cx={8} cy={10} rx={W / 2} ry={H / 2} fill="#2a2230" opacity={0.45} />
+      <path d={`M ${-W / 2} 0 Q ${-W / 2} ${-H / 2} ${-W * 0.1} ${-H * 0.52} Q ${W / 2} ${-H * 0.5} ${W / 2} ${-H * 0.05} Q ${W * 0.48} ${H / 2} 0 ${H * 0.5} Q ${-W * 0.5} ${H * 0.48} ${-W / 2} 0 Z`} fill={c} stroke={karis(c, "#2a2028", 0.55)} strokeWidth={Math.max(2, W * 0.012)} />
+      <path d={`M ${-W * 0.35} ${-H * 0.32} Q 0 ${-H * 0.44} ${W * 0.32} ${-H * 0.3}`} stroke="#dcc49c" strokeWidth={Math.max(2, W * 0.012)} fill="none" opacity={0.7} />
+      {iz > 0 && <g opacity={Math.min(1, iz)}>
+        <path d={yol} transform="translate(3 3)" fill="none" stroke="#e2cca4" strokeWidth={t * 0.9} strokeLinejoin="round" />
+        <path d={yol} fill={g} fillRule="evenodd" opacity={0.75} />
+      </g>}
+      {cizim > 0 && <path d={yol} fill="none" stroke="#2a2430" strokeWidth={Math.max(2.4, W * 0.01)} strokeDasharray={`${uzun * cizim} ${uzun}`} strokeLinecap="round" />}
+    </g>
+  );
+};
+
+// ---- FİLM KUTUSU (35 mm kartuş: kısa koyu silindir + kapak halkası + yazısız etiket bandı). H boy px ----
+export const FilmKutusu: React.FC<{ H: number }> = ({ H }) => {
+  const W = H * 0.62;
+  return (
+    <g>
+      <rect x={-W / 2} y={-H / 2} width={W} height={H} rx={W * 0.12} fill="#2a2830" stroke="#14121a" strokeWidth={Math.max(1.5, H * 0.03)} />
+      <rect x={-W / 2 - 2} y={-H / 2 - H * 0.08} width={W + 4} height={H * 0.14} rx={3} fill="#3a3842" stroke="#14121a" strokeWidth={1.5} />
+      <rect x={-W / 2} y={-H * 0.1} width={W} height={H * 0.32} fill="#8a8470" />
+      <line x1={-W * 0.32} y1={-H / 2 + 3} x2={-W * 0.32} y2={H / 2 - 3} stroke="#6a6870" strokeWidth={Math.max(1.5, H * 0.03)} opacity={0.6} />
+    </g>
+  );
+};
+
+// ---- KARTON DOSYA (Berlin; üstten, kapak kapalı; ince sırt bandı; yazısız) W uzun kenar px ----
+export const Dosya40: React.FC<{ W: number; golge?: number }> = ({ W, golge = 0 }) => {
+  const H = W * 0.72, c = karis(CIC.dosya, "#6e6052", golge), ink = karis(c, "#2a2028", 0.55);
+  return (
+    <g>
+      <rect x={-W / 2 + 4} y={-H / 2 + 4} width={W - 4} height={H - 4} fill={karis(CIC.belgeIsik, "#8b88a0", golge)} stroke={ink} strokeWidth={2} />
+      <rect x={-W / 2} y={-H / 2} width={W - 8} height={H - 8} fill={c} stroke={ink} strokeWidth={Math.max(2, W * 0.012)} />
+      <rect x={-W / 2} y={-H / 2} width={W * 0.06} height={H - 8} fill={karis(c, "#2a2028", 0.25)} />
+      <line x1={-W * 0.25} y1={0} x2={W * 0.3} y2={0} stroke={ink} strokeWidth={Math.max(1.5, W * 0.008)} opacity={0.35} />
+    </g>
+  );
+};
+
+// ---- FİNCAN + TABAK (koyu mavi emaye, kulplu) ve TEPSİ (koyu metal yuvarlak) — yandan; W fincan çapı px ----
+export const Fincan: React.FC<{ W: number }> = ({ W }) => (
+  <g>
+    <ellipse cx={0} cy={0} rx={W * 0.8} ry={W * 0.14} fill="#3f4d6b" stroke="#1c2230" strokeWidth={2} />
+    <path d={`M ${-W / 2} ${-W * 0.62} L ${W / 2} ${-W * 0.62} Q ${W * 0.46} ${-W * 0.05} 0 ${-W * 0.02} Q ${-W * 0.46} ${-W * 0.05} ${-W / 2} ${-W * 0.62} Z`} fill="#3f4d6b" stroke="#1c2230" strokeWidth={2} />
+    <ellipse cx={0} cy={-W * 0.62} rx={W / 2} ry={W * 0.1} fill="#2e3850" stroke="#1c2230" strokeWidth={1.5} />
+    <path d={`M ${W * 0.48} ${-W * 0.5} q ${W * 0.28} ${W * 0.06} ${W * 0.02} ${W * 0.32}`} stroke="#3f4d6b" strokeWidth={Math.max(3, W * 0.09)} fill="none" />
+    <path d={`M ${-W * 0.3} ${-W * 0.5} L ${-W * 0.28} ${-W * 0.15}`} stroke="#8a9ab8" strokeWidth={Math.max(1.5, W * 0.05)} opacity={0.6} />
+  </g>
+);
+export const Tepsi: React.FC<{ W: number }> = ({ W }) => (
+  <g>
+    <ellipse cx={0} cy={0} rx={W / 2} ry={W * 0.09} fill="#4a4a52" stroke="#1c1a22" strokeWidth={2.5} />
+    <ellipse cx={0} cy={-W * 0.012} rx={W * 0.44} ry={W * 0.07} fill="#3a3a42" />
+    <line x1={-W * 0.3} y1={-W * 0.05} x2={W * 0.1} y2={-W * 0.06} stroke={CIC.metalNokta} strokeWidth={2} opacity={0.5} />
+  </g>
+);

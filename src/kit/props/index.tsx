@@ -148,7 +148,7 @@ export const PROPLAR: Record<PropTur, React.FC<PropCiz>> = { paket: Paket, eldiv
   defter: () => { throw new Error('[kit] prop "defter" yalnız KITAP-INSERT şablonunda çizilir'); },
   kivilcim: () => { throw new Error('[kit] prop "kivilcim" yalnız KITAP-INSERT şablonunda çizilir'); },
   // Çiçero (1940'lar): MASA-INSERT masa komodin|berlin|bazna ve ARABA kendi çizer (props/cicero/Esyalar40)
-  banknot: Cicero40("banknot"), carpi: Cicero40("carpi"), zarf: Cicero40("zarf"), belge: Cicero40("belge"), makine: Cicero40("makine"), anahtar: Cicero40("anahtar") };
+  banknot: Cicero40("banknot"), carpi: Cicero40("carpi"), zarf: Cicero40("zarf"), belge: Cicero40("belge"), makine: Cicero40("makine"), anahtar: Cicero40("anahtar"), balmumu: Cicero40("balmumu"), filmKutusu: Cicero40("filmKutusu"), dosya40: Cicero40("dosya40") };
 
 // Prop'un p anındaki durum değerleri (dizi → kare ile anahtarlanır)
 export const propDurum = (pr: Prop, p: number): PropCiz["durum"] => {

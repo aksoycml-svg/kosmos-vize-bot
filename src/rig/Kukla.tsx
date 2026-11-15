@@ -680,7 +680,7 @@ const Ceket40Etek: React.FC<{ pz: Poz; p: Palet }> = ({ pz, p }) => {
   const ink = useInk(inkTemel);
   const c = p.coat, t = Math.max(-90, Math.min(0, pz.thighF)), otur = Math.min(1, -t / 80);
   // oturunca: etek kucağa yatar (uyluğun üstünde yuvarlak kenar), arkada oturağa iner
-  const L = 92 - 52 * otur, on = 50 + 60 * otur;
+  const L = 56 - 20 * otur, on = 50 + 60 * otur; // kalça boyu: etek kalça altında biter (uzun palto okunmasın)
   const d = `M -52 -262 L 50 -262 Q ${on} ${-252 + 10 * otur} ${on + 8} ${-226 + L * (1 - otur * 0.6)} Q ${on - 30 * otur} ${-226 + L + 4} ${8 - 10 * otur} ${-226 + L} L -50 ${-226 + L} Q -56 -226 -52 -262 Z`;
   return (
     <g>

@@ -21,23 +21,6 @@
     "moyzisch": {
      "x": -0.24
     },
-    "bazna": {
-     "x": [
-      0.5,
-      0.5,
-      0.52
-     ],
-     "lean": [
-      14,
-      10,
-      6
-     ],
-     "kare": [
-      0,
-      60,
-      150
-     ]
-    },
     "banknot": {
      "kare": [
       0,
@@ -53,17 +36,17 @@
       590,
       660,
       700,
-      880,
-      985,
-      1030
+      790,
+      850,
+      870
      ],
      "y": [
-      880,
-      872,
-      866,
-      850,
+      965,
+      958,
+      952,
       940,
-      1000,
+      980,
+      1020,
       1060
      ],
      "aci": [
@@ -84,7 +67,8 @@
       0,
       1,
       1
-     ]
+     ],
+     "sizinti": 0.12
     },
     "el": {
      "moyzisch": {
@@ -97,24 +81,46 @@
       ],
       "bilek": [
        [
-        300,
-        915
+        330,
+        995
        ],
        [
-        370,
-        905
+        400,
+        985
        ],
        [
-        420,
+        450,
+        980
+       ],
+       [
+        410,
+        1000
+       ],
+       [
+        390,
+        1010
+       ]
+      ],
+      "dirsek": [
+       [
+        352,
         900
        ],
        [
-        380,
-        960
+        366,
+        892
        ],
        [
-        360,
-        990
+        380,
+        888
+       ],
+       [
+        372,
+        905
+       ],
+       [
+        362,
+        915
        ]
       ],
       "aci": [
@@ -140,51 +146,63 @@
       ],
       "bilek": [
        [
-        920,
-        930
+        860,
+        1010
        ],
        [
-        880,
-        905
+        830,
+        995
        ],
        [
-        790,
-        880
-       ],
-       [
-        820,
-        880
+        770,
+        975
        ],
        [
         790,
-        960
+        980
        ],
        [
-        880,
-        1030
+        810,
+        1010
        ],
        [
-        900,
-        1080
+        850,
+        1020
        ],
        [
-        900,
-        1090
+        860,
+        1010
+       ],
+       [
+        860,
+        1010
        ]
       ],
       "aci": [
        195,
        192,
-       190,
+       188,
        186,
-       200,
-       205,
-       240,
-       250
+       170,
+       120,
+       100,
+       100
       ],
       "poz": "gevsek",
       "bukum": -1
      }
+    },
+    "bazna": {
+     "lean": [
+      6,
+      6,
+      4
+     ],
+     "kare": [
+      0,
+      60,
+      150
+     ]
     }
    },
    "kamera": {
@@ -196,17 +214,17 @@
     "cs": [
      1.0,
      1.0,
-     1.2
+     1.15
     ],
     "cx": [
      0,
      0,
-     20
+     -100
     ],
     "cy": [
      0,
      0,
-     30
+     20
     ],
     "egri": "lineer"
    },
@@ -220,9 +238,11 @@
      "yon": -1,
      "yuz": {
       "bakis": [
-       -0.6,
-       0.2
-      ]
+       0.9,
+       0.35
+      ],
+      "ifade": "M",
+      "kas": -0.15
      }
     }
    ],
@@ -239,7 +259,13 @@
     }
    ],
    "not": "KALİBRASYON K-C (p24). Kanca: banknot p0'da yolun ortasında, p42 Bazna kavrar, p118'den ceket arkasına (iç cep) girer, p150 tamam. Kamera p150–438 yavaş push 1.0→1.2 (lineer).",
-   "dokunus": null
+   "dokunus": null,
+   "lint": {
+    "izin": [
+     "imzaDisiC28"
+    ],
+    "not": "Bazna dudak/yanak ≤100 px C* 28–33; imza değil, kırmızı değil"
+   }
   },
   {
    "id": "P04",
@@ -419,10 +445,10 @@
       }
      },
      "belgeler": {
-      "u0": -1.42,
-      "u1": -1.1,
-      "z0": 3.75,
-      "z1": 4.4,
+      "u0": -1.32,
+      "u1": -1.08,
+      "z0": 3.7,
+      "z1": 4.25,
       "n": 5
      },
      "makine": {
@@ -447,17 +473,45 @@
         0,
         0
        ],
+       "thighF": [
+        -3,
+        -20,
+        -20,
+        -3,
+        -3
+       ],
+       "thighB": [
+        4,
+        -20,
+        -20,
+        4,
+        4
+       ],
+       "kneeF": [
+        3,
+        8,
+        8,
+        3,
+        3
+       ],
+       "kneeB": [
+        2,
+        8,
+        8,
+        2,
+        2
+       ],
        "shF": [
         -20,
-        -60,
-        -60,
+        -70,
+        -70,
         -12,
         -12
        ],
        "elF": [
         -30,
-        -14,
-        -14,
+        -10,
+        -10,
         -112,
         -112
        ],
@@ -474,6 +528,58 @@
         -1,
         1,
         1
+       ]
+      },
+      {
+       "kim": "bazna",
+       "kare": [
+        58,
+        228,
+        236,
+        312,
+        322
+       ],
+       "browF": [
+        0,
+        0,
+        0.5,
+        0.5,
+        0
+       ],
+       "browB": [
+        0,
+        0,
+        0.5,
+        0.5,
+        0
+       ],
+       "blinkF": [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       "blinkB": [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       "lookX": [
+        0.8,
+        0.8,
+        1,
+        1,
+        0.8
+       ],
+       "agiz": [
+        "dinlen",
+        "dinlen",
+        "M",
+        "M",
+        "dinlen"
        ]
       }
      ]
@@ -517,7 +623,7 @@
        3.8
       ],
       "u": [
-       -0.45,
+       -0.25,
        0.15
       ],
       "yon": -1,
@@ -608,6 +714,14 @@
     "ad": "kapı altı ayak gölgesi",
     "bas": 215,
     "bit": 330
+   },
+   "lint": {
+    "izin": [
+     "imzaDisiC28",
+     "uzunGolge",
+     "p95L"
+    ],
+    "not": "≤10 px kenar ışığı C* 28–31; ampul h 1.0 < figür → zemin gölgesi kadraj sonuna uzar (fizik doğru); V bilerek kısıldı (eleştiri #5), göz kapı şeridine — p95 L* ≥ 72 kabul"
    }
   },
   {
@@ -920,8 +1034,8 @@
     },
     {
      "tur": "carpi",
-     "x": 715,
-     "y": 1000,
+     "x": 705,
+     "y": 1035,
      "olcek": 1.0,
      "kare": [
       238,
@@ -972,7 +1086,13 @@
     "bas": 30,
     "bit": 256
    },
-   "not": "KALİBRASYON K-B (p300). Zarf p10–30 açılır, banknotlar p40–68 dökülür, el p70–150 bakmadan sayar ve p168'de sağ-alttan çıkar, kamera p150–215 iki banknot arasında, çarpı p238/p250 iki fırça (kendini çizer), p256–352 kamera durur."
+   "not": "KALİBRASYON K-B (p300). Zarf p10–30 açılır, banknotlar p40–68 dökülür, el p70–150 bakmadan sayar ve p168'de sağ-alttan çıkar, kamera p150–215 iki banknot arasında, çarpı p238/p250 iki fırça (kendini çizer), p256–352 kamera durur.",
+   "lint": {
+    "izin": [
+     "guvenliAlanYan"
+    ],
+    "not": "yığın banknotu sol kenarda, dolgu, hikâye nesnesi değil"
+   }
   }
  ]
 }

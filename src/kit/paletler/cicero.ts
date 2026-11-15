@@ -9,10 +9,10 @@ export const BAZNA: Palet = {
   cravat: "#2c2a38", shirt: "#b8b09c",
   pants: "#34334a", shoe: "#1c1a22", glove: "#c9a58a", skin: "#c9a58a", skinDark: "#8e6a52",
   hair: "#2a2226", hat: "#2a2830", hatBand: "#1c1a22",
-  sideburn: 0.35, browHeavy: 1.05, biyik: "yok", sapka: "yok",
+  sideburn: 0.15, browHeavy: 0.85, biyik: "yok", sapka: "yok",
   kostum: "takim40", gozAk: "#d6cdc0", // göz akı L* ≈ 83 (banknot tek beyaz)
 };
-export const BAZNA_YUZ: Partial<Palet> = { yuz: { genislik: 1.0, uzunluk: 1.02, burunTip: "duz", sac: "kisa", kasAci: 0, yasCizgi: 0.25 }, biyik: "yok", sakal: false, sapka: "yok", burun: 1.04 };
+export const BAZNA_YUZ: Partial<Palet> = { yuz: { genislik: 1.0, uzunluk: 1.02, burunTip: "duz", sac: "kisa", kasAci: 0, yasCizgi: 0 }, biyik: "yok", sakal: false, sapka: "yok", burun: 1.04 };
 
 // Sahne paleti (tek yerde; şablonlar buradan okur)
 export const CIC = {
@@ -32,7 +32,7 @@ export const CIC = {
   // ARABA
   tavanIsik: "#9a8070", tavanGolge: "#4a4560", kesit: "#26283a", krom: "#8e8e96",
   koltuk: "#3a3750", koltukIsik: "#6a5c68", gokTepe: "#6f86ad", gokOrta: "#a9b7cc", ufuk: "#f0d0bc", agac: "#d9b896", agacPus: "#b39a8a",
-  cepheIsik: "#d0baa2", cepheGolge: "#8f8aa0", andezit: "#5e5a66", daktiloIc: "#eed2ac", sekreter: "#463f55",
+  cepheIsik: "#e0caaf", cepheGolge: "#8f8aa0", andezit: "#5e5a66", daktiloIc: "#eed2ac", sekreter: "#463f55",
   // MASA bazna
   masaCekirdek: "#a6826c", masaIsik: "#8c6f66", masaGolge: "#5a4a44", masaSonuk: "#2f3450", zarf: "#a88b66", zarfGolge: "#6e5a48",
   // berlin

@@ -364,3 +364,29 @@ Sedan yan kesiti, kukla tiyatrosu (yakın kapı yok), araba sola bakar. F 1265, 
 ### Ölçüm / kontrol
 - `python3 -I tools/kalibrasyon_olcum.py kare.png [--imza kutu…] [--kirmizi kutu…] [--bolge ad=kutu]` → sıcak %, p95 L*, imza dışı max L*/C*, izinsiz kırmızı (HSV + C* > 40).
 - `bash tools/cicero_kalibrasyon.sh` → K-A/K-B/K-C tam + 360 + güvenli alan + 2 şerit + ölçüm json (`bolumler/cicero/kalibrasyon/`).
+
+### Çiçero v2 + aşama 2 ekleri (motion, 2026-11-15) — test kareleri `bolumler/cicero/kalibrasyon/v2/test_*.png`
+**Değişen varsayılanlar (yalnız cicero yolu; eski bölümler piksel farkı 0):** ELÇİ-ODASI Kukla birimi `KUKLA40_M = 1.70/506` (Bazna 1.70 m; eski 0.00298 = 1.51 m) · V daraltıldı (dik ±16°, bükük −6/+22°), abajur çevresi duvar yayılması + komodin üstü yayılma (her boyunda), bükük boyunda zemine yalnız yayılma bandı, kapı aralığında 2 parlak basamak · ARABA `kuklaOlcek` 0.72 (taban KUKLA40_M), `arkaKanepe` 0.06 (ayak boşluğu −0.13…ARK; Bazna'nın baldır+ayağı boşlukta, taban h 0.24), kanepe dikiş hatları + biye, kapı paneli 2 ton, C direği güneş yaması · takim40 ceket eteği kalça boyu · BAZNA yüzü: yasCizgi 0, browHeavy .85, sideburn .15 · Moyzisch profil siluet: omuz ×0.75, göğüs/kürek asimetrisi, oturanda etek genişlemesi yok · zarf kapağında çapraz çizgi yok · `carpi` hedef banknotun kâğıdına otomatik kırpılır.
+
+| Parametre (şablon) | Kullanım örneği | Not |
+|---|---|---|
+| `banknot.sizinti` (prop durum, MASA; ARABA `banknot.sizinti`) | `{"tur":"banknot","durum":{"yuz":"arka","sizinti":0.12}}` · P10 ışığa tutma `"kare":[62,110],"durum":{"sizinti":[0.12,0.35],"kaldir":[0,1]}` | arka yüzden ön baskı aynalı, belli belirsiz (≤ .45); kâğıt L* değişmez. ARABA varsayılan 0.12 |
+| `banknot.kaldir` (MASA) | `"kaldir":[0,1]` | ışığa kalkar → ×1.3 büyür |
+| `poz[]` ek anahtarlar (IC-ODA elci-yatak) | `{"kim":"bazna","kare":[58,228,236,312,322],"browF":[0,0,.5,.5,0],"browB":[…],"blinkF":[0…],"agiz":["dinlen","dinlen","M","M","dinlen"]}` | ayrıca `thighF/thighB/kneeF/kneeB/footF/footB`; kalçadan eğilme: `lean L` + `thighF = thighB = −L`, `knee ≈ 8` |
+| `belgeler.yay / topla / kutuya / el` (IC-ODA) | `"belgeler":{"u0":-1.32,"u1":-1.08,"z0":3.7,"z1":4.25,"n":5,"yay":[104,130],"topla":[332,346],"kutuya":348,"el":"bazna"}` | belgeler `el` karakterin ön elinden yatağa tek tek uçar; topla tersi; deste elde, `kutuya`'da kutunun içine iner |
+| `filmKutusu` (IC-ODA) | `{"kim":"bazna","bas":352,"bit":372}` | elden iç cebe; son %30 ceketin arkasında |
+| `cekmece` (IC-ODA komodin) | `{"acik":[0,1,1,0],"kare":[190,200,212,222]}` | ön yüz 0.3 m öne; `makine.bit`'ten sonra makine çekmecede |
+| `lamba.filaman` (IC-ODA) | `"lamba":{"yanik":[1,1,0],"kare":[0,262,292],"filaman":[262,300]}` | şeftali-kor kızarma (≤ %0.3 ekran); yanik < .5'te figür ışığı ay olur, ay yaması α .30→.45 |
+| `siluetKol` (IC-ODA) | `[{"kim":"yetkili","kare":[0,378],"bilek":[[330,1010],[330,1010]],"aci":[-60,-60],"poz":"kistir","tepsiye":[118,142,170]}]` | yüzsüz siluete dirsekli konik kol + GravurEl; `tepsiye [a,b,c]`: bakmadan tepsideki fincana uzanır, `b` = kavrama |
+| `tepsi` (IC-ODA) | `{"kim":"bazna","fincan":{"kare":142,"alan":"yetkili"}}` | Kukla ön elinde koyu metal tepsi + emaye fincan; kavramadan sonra fincan alanın elinde |
+| karakter `palet.yuzsuz` (Kukla) | `{"kim":"bazna","palet":{"yuzsuz":true}}` | P08 kontra Bazna (yüz görünmez) |
+| `cekmece` (MASA berlin) | `"cekmece":{"acik":[0,1,1,0],"kose":[0,0,0,1],"kare":[200,230,420,440]}` | orta çekmece 170 px öne kayar, içi karton yığını; `kose` = kapalıyken ağızdan çıkan dosya köşesi |
+| prop `dosya40` (MASA berlin) | `{"tur":"dosya40","x":[540,560],"y":[760,1180],"aci":[-4,2],"kare":[290,312],"durum":{"cekmecede":[0,1]}}` | `cekmecede` 1 → çekmece içinde kırpılı, çekmeceyle kayar |
+| prop `balmumu` (MASA komodin) | `{"tur":"balmumu","x":650,"y":1250,"olcek":2,"kare":[150,170,262,358],"durum":{"iz":[0,1,1,1],"cizim":[0,0,0,0.55]}}` | `iz` kabartma belirir (basış = 1'e geçiş), `cizim` kendini çizen anahtar; 0.55'te durdur = yarım |
+| prop `filmKutusu` (MASA) | `{"tur":"filmKutusu","x":…,"y":…}` | 35 mm kartuş, yazısız etiket |
+| `el40[].tut` anahtar bırakma (MASA komodin) | `"tut":{"prop":"anahtar","bas":0,"bit":74,"dx":-10}` + prop `{"tur":"anahtar","id":"anahtar","x":300,"y":1170}` | `bit` = bırakma (temas `cic_anahtar_komodin_cin`) |
+| `lamba.yanik` (MASA bazna, P10) | `"lamba":{"yanik":[0,1],"kare":[24,38]}` | havuz kaynaktan radyal uzar; 0'da masa #2f3450, banknot sönük ton |
+| `nesneler` (ARABA ic, P05) | `[{"tur":"filmKutusu","kare":[0,40,44,70],"x":[800,700,690,560],"y":[1070,985,985,1040],"aci":[0,0,0,10]},{"tur":"zarf","kare":[60,84,110,140],"x":[…],"y":[…],"aci":[…],"arkada":[0,0,0,0]}]` | elden ele; `arkada` 1 = ceket/kucak arkasında |
+| `el.<kim>.dirsek` (ARABA) | `"dirsek":[[352,900],[366,892],…]` | Moyzisch'in dirseği koltuk sırtı üstünde (eleştiri #4) |
+| `gorunum: "dis"`, `saat: "alacakaranlik"` (ARABA, P09a) | `"sekreter":{"kare":[56,74,108],"x":[407,430,800],"pencereKalkis":30,"kapidan":56,"biner":120},"araba":{"kare":[124,156],"x":[0,600],"kapi":[0,1,1,0],"kapiKare":[104,108,116,120]}` | elçilik cephesi (andezit, beton saçak, 3 yanık pencere + kaldırım yamuğu), park sedan; sekreter yürür (siluet `adim` bacak makası), `biner`'de arabanın arkasına iner; araba sağdan çıkar |
+| `SiluetFigur40.adim` | (şablon içi) | yürüme fazı → bacak makası ±22° |

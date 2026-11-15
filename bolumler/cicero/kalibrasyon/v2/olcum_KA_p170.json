@@ -1,0 +1,13 @@
+{
+ "dosya": "/home/user/kosmos-vize-bot/bolumler/cicero/kalibrasyon/v2/KA_P04_p170.png",
+ "sicak_yuzde": 20.6,
+ "p95_L": 70.8,
+ "max_L_disari": 86.6,
+ "p999_L_disari": 84.4,
+ "max_C_disari": 32.1,
+ "p999_C_disari": 26.1,
+ "C28_ustu_px": 14,
+ "L88_ustu_px": 0,
+ "kirmizi_izinsiz_px": 0,
+ "kirmizi_izinli_px": 0
+}

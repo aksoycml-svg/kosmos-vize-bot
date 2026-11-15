@@ -11,20 +11,24 @@ import React from "react";
 import { Isik } from "../../../doku/Isik";
 import { RenkKaydi, Tarama } from "../../../doku/Tarama";
 import { P, poly, rnd } from "../../../doku/sabitler";
-import { elDunya } from "../../../rig/kinematik";
+import { elDunya, govdeDunya } from "../../../rig/kinematik";
 import { karakterPoz, Yerlesim } from "../../jestler";
 import { KarakterCiz, karakterKilit, param, Sablon, SablonProps } from "../../ortak";
 import { deger, ekranNokta, kameraHesapla } from "../../zaman";
 import type { Sayi } from "../../tipler";
 import { CIC } from "../../paletler/cicero";
-import { Belge, Makine } from "../../props/cicero/Esyalar40";
-import { SiluetFigur40, Siluet40Kod } from "../../props/cicero/SiluetFigur40";
+import { Belge, FilmKutusu, Fincan, Makine, Tepsi } from "../../props/cicero/Esyalar40";
+import { GravurEl, GRAVUR_POZ, konikKol } from "../../props/paris/GravurEl";
+import { EL_BAZNA } from "../../paletler/cicero";
+import { SiluetFigur40, Siluet40Kod, siluet40Yol } from "../../props/cicero/SiluetFigur40";
 
 const F = 1150, UFUK = 760, GOZ = 1.6, SEED = 181;
 const X = (u: number, z: number) => 540 + (u * F) / z;
 const Y = (h: number, z: number) => UFUK + ((GOZ - h) * F) / z;
 const Q = (u: number, h: number, z: number): P => [X(u, z), Y(h, z)];
-export const ELCI_YER: Yerlesim = { yer: (z, u) => ({ x: X(u, z), y: Y(0, z), s: (F * 0.00298) / z }), faz: (dz, du) => Math.hypot(dz, du) * 4.5 };
+// Kukla birimi: takim40 rig ≈ 506 birim = 1.70 m → 0.00336 m/birim (eski IC-ODA 0.00298 = 1.51 m; eleştiri #1). Yalnız cicero yolu.
+export const KUKLA40_M = 1.7 / 506;
+export const ELCI_YER: Yerlesim = { yer: (z, u) => ({ x: X(u, z), y: Y(0, z), s: (F * KUKLA40_M) / z }), faz: (dz, du) => Math.hypot(dz, du) * 4.5 };
 // yüzsüz siluet karakterleri (Kukla değil): kim → kod + renk
 export const SILUET40_KAYIT: Record<string, { kod: Siluet40Kod; renk: string }> = {
   elci: { kod: "yasli", renk: CIC.elci }, moyzisch: { kod: "sapkali", renk: CIC.moyzisch }, yetkili: { kod: "uzun-ince", renk: CIC.yetkili }, sekreter: { kod: "topuzlu", renk: CIC.sekreter },
@@ -34,10 +38,10 @@ const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const elips = (cu: number, cz: number, ru: number, rz: number, h: number, n = 40): P[] => Array.from({ length: n }, (_, i) => { const a = (i / n) * Math.PI * 2; return Q(cu + Math.cos(a) * ru, h, cz + Math.sin(a) * rz); });
 const d = (pts: P[]) => `M ${poly(pts).split(" ").join(" L ")} Z`;
 
-type LambaP = { u?: number; z?: number; boyun?: Sayi; yanik?: Sayi; kare?: number[] };
+type LambaP = { u?: number; z?: number; boyun?: Sayi; yanik?: Sayi; kare?: number[]; filaman?: [number, number] };
 type KapiP = { ayak?: { gel: number; dur: number; git: number; don: number } | null };
 // poz: Kukla poz anahtarları (karakterPoz'un ÜSTÜNE, kare ile) — yon: basamaklı yön (1/−1; dönüş adım ortasında, kukla 3/4 aynalanır)
-type PozAnahtar = { kim: string; kare: number[]; yon?: (1 | -1)[] } & Partial<Record<"shF" | "elF" | "shB" | "elB" | "lean" | "headTilt" | "lookX" | "lookY" | "thighF" | "kneeF" | "thighB" | "kneeB", number[]>>;
+type PozAnahtar = { kim: string; kare: number[]; yon?: (1 | -1)[]; agiz?: string[] } & Partial<Record<"shF" | "elF" | "shB" | "elB" | "lean" | "headTilt" | "lookX" | "lookY" | "thighF" | "kneeF" | "thighB" | "kneeB" | "footF" | "footB" | "browF" | "browB" | "blinkF" | "blinkB", number[]>>;
 
 const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const ARKA = param<number>(plan, "arka", 5.0), YARI = param<number>(plan, "yari", 2.1), TAVAN = param<number>(plan, "tavan", 3.2);
@@ -56,13 +60,14 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const lambaIsik: Isik = { tip: "nokta", ad: "başucu lambası", zemin: Q(Lu, 0, Lz), yukseklik: Y(0, Lz) - Y(BH, Lz), renk: CIC.kenar };
   const gunIsik: Isik = { tip: "yonlu", ad: "güneş (pencere)", yon: [-0.3, 0.95], renk: "#f0d8c0" };
   const ayIsik: Isik = { tip: "yonlu", ad: "ay (pencere)", yon: [-0.3, 0.6], renk: CIC.hilal };
-  const isik = isikAd === "lamba" ? lambaIsik : isikAd === "gun" ? gunIsik : ayIsik;
+  // lamba sönünce (yanik < .5) figür ışığı ay olur (yüz lamba ışığı almaz)
+  const isik = isikAd === "lamba" && yanik >= 0.5 ? lambaIsik : isikAd === "gun" ? gunIsik : ayIsik;
   const TH = isikAd === "lamba" ? 35 : 72; // tarama açısı (ışık yönüne dik; sahnede tek)
   const tarRenk = gece ? CIC.tarama : CIC.taramaGun;
   // havuz bir yatay düzlemde (h): merkez + yarı eksenler (koni ekseni boyunca)
   const havuz = (h: number) => { const t = (BH - h) / -A[1]; return { cu: Lu + A[0] * t, cz: Lz + A[2] * t, ru: t * lerp(0.84, 0.55, b) * yanik, rz: t * lerp(0.84, 0.7, b) * yanik }; };
   // duvar V'si: tepe ampulün duvardaki izdüşümünde (h 1.05), kenarlar düşeyden aL/aR derece (boyun bükülünce sağa yatar)
-  const aL = lerp(-24, -8, b), aR = lerp(24, 34, b);
+  const aL = lerp(-16, -6, b), aR = lerp(16, 22, b); // v2: V daraltıldı (eleştiri #5: spot gibi, dokunuşun önüne geçiyordu)
   const vTepe = Q(Lu, 1.05, ARKA), vUst = Y(TAVAN, ARKA);
   const vBoy = (vTepe[1] - vUst) * yanik;
   // bantlar AÇIYLA iç içe (ofsetle değil: tepe yakınında çekirdek kaybolmasın): da = kenarları içe (−) / dışa (+) döndürme (°), off = dış ofset px
@@ -88,17 +93,37 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const mur = CIC.murekkep;
   // ---- karakterler ----
   const pozA = param<PozAnahtar[]>(plan, "poz", []);
+  // belgeler: yatakta serili; yay [bas, bit] = elden yatağa tek tek bırakılır, topla [bas, bit] = yataktan ele, kutuya kare = deste elden kutunun içine iner (sonra görünmez).
+  // el: desteyi tutan karakter (ön el). Deste elde: yay öncesi (yay varsa), topla sonrası → kutuya.
+  const BG = param<{ u0: number; u1: number; z0: number; z1: number; n: number; yay?: [number, number]; topla?: [number, number]; kutuya?: number; el?: string } | null>(plan, "belgeler", null);
   const makineP = param<{ kim: string; bas: number; bit: number } | null>(plan, "makine", null);
   const kar = (plan.karakterler ?? []).map((c, i) => {
     const sil = SILUET40_KAYIT[c.kim];
     const z = deger(c.z, c.kare, p, 3.8), u = deger(c.u, c.kare, p, 0);
     if (sil) return { c, i, z, u, sil, d: null as null | ReturnType<typeof karakterPoz> };
     const dd = karakterPoz(c, p, ELCI_YER);
-    for (const pa of pozA.filter((q) => q.kim === c.kim)) for (const key of ["shF", "elF", "shB", "elB", "lean", "headTilt", "lookX", "lookY", "thighF", "kneeF", "thighB", "kneeB"] as const) { const v = pa[key]; if (v) (dd.pz as Record<string, unknown>)[key] = deger(v, pa.kare, p); }
+    for (const pa of pozA.filter((q) => q.kim === c.kim)) for (const key of ["shF", "elF", "shB", "elB", "lean", "headTilt", "lookX", "lookY", "thighF", "kneeF", "thighB", "kneeB", "footF", "footB", "browF", "browB", "blinkF", "blinkB"] as const) { const v = pa[key]; if (v) (dd.pz as Record<string, unknown>)[key] = deger(v, pa.kare, p); }
+    for (const pa of pozA.filter((q) => q.kim === c.kim && q.agiz)) { let a = pa.agiz![0]; pa.kare.forEach((kq, j) => { if (p >= kq) a = pa.agiz![j]; }); dd.pz.agiz = a as typeof dd.pz.agiz; }
     for (const pa of pozA.filter((q) => q.kim === c.kim && q.yon)) { let y = pa.yon![0]; pa.kare.forEach((kq, j) => { if (p >= kq) y = pa.yon![j]; }); dd.pz.facing = y; }
     return { c, i, z, u, sil: null, d: dd };
   });
-  for (const q of kar) if (q.d) kilit.push(...karakterKilit(q.c.kim, q.d, k)); else kilit.push({ ad: `${q.c.kim} ayak`, p: ekranNokta(k, Q(q.u, 0, q.z)), tur: "ayak" });
+  // ---- deste (belgeler), film kutusu: tutan elin dünya noktası ----
+  const elNokta = (kim?: string): P | null => { const q = kar.find((x) => x.c.kim === kim && x.d); return q ? elDunya(q.d!.pz, true, [0, 10]) : null; };
+  const desteEl = elNokta(BG?.el);
+  // belge i'nin durumu: t 0 = elde/kutuda (çizilmez), 0..1 elden yatağa yolda, 1 yatakta
+  const belgeYer = (i: number): { t: number; el?: P } => {
+    if (!BG) return { t: 1 };
+    const n = BG.n, pencere = (ab: [number, number]) => { const L = (ab[1] - ab[0]) / (n * 0.6 + 0.4); const a = ab[0] + i * L * 0.6; return [a, a + L] as [number, number]; };
+    let t = BG.yay ? Math.max(0, Math.min(1, (p - pencere(BG.yay)[0]) / (pencere(BG.yay)[1] - pencere(BG.yay)[0]))) : 1;
+    if (BG.topla && p >= BG.topla[0]) { const w = pencere(BG.topla); t = 1 - Math.max(0, Math.min(1, (p - w[0]) / (w[1] - w[0]))); }
+    return { t: t > 0 && t < 1 && !desteEl ? 1 : t, el: desteEl ?? undefined };
+  };
+  const desteSayisi = BG ? Array.from({ length: BG.n }).filter((_, i) => belgeYer(i).t <= 0).length : 0;
+  const desteKutuda = !!BG?.kutuya && p >= BG.kutuya + 10;
+  const FK = param<{ kim: string; bas: number; bit: number } | null>(plan, "filmKutusu", null);
+  const CKm = param<{ acik?: Sayi; kare?: number[] } | null>(plan, "cekmece", null);
+  const cekA = CKm ? deger(CKm.acik ?? 0, CKm.kare, p) : 0;
+  for (const q of kar) if (q.d) { kilit.push(...karakterKilit(q.c.kim, q.d, k)); for (const [ad, lp] of [["baş üstü", [20, -540]], ["sırt", [-60, -360]], ["ön", [70, -330]]] as [string, P][]) kilit.push({ ad: `${q.c.kim} ${ad}`, p: ekranNokta(k, govdeDunya(q.d.pz, lp)), tur: "yuz" }); } else kilit.push({ ad: `${q.c.kim} ayak`, p: ekranNokta(k, Q(q.u, 0, q.z)), tur: "ayak" });
   // ---- kapı altı (ikincil kaynak) ----
   const KP = param<KapiP>(plan, "kapi", {});
   const ay = KP.ayak;
@@ -125,7 +150,6 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const yatakUst: P[] = [Q(yat.u0, yat.h, yat.zb), Q(yat.u1, yat.h, yat.zb), Q(yat.u1, yat.h, yat.zf), Q(yat.u0, yat.h, yat.zf)];
   const komUst: P[] = [Q(kom.u0, kom.h, kom.z1), Q(kom.u1, kom.h, kom.z1), Q(kom.u1, kom.h, kom.z0), Q(kom.u0, kom.h, kom.z0)];
   // belgeler (yatakta serili) — param belgeler {u0,u1,z0,z1,n}
-  const BG = param<{ u0: number; u1: number; z0: number; z1: number; n: number } | null>(plan, "belgeler", null);
   const KT = param<{ kapak?: Sayi; kare?: number[] } | null>(plan, "kutu", { kapak: 0 });
   const kapak = KT ? deger(KT.kapak ?? 0, KT.kare, p) : 0;
   const lambaH = { kaide: 0.62, mafsal: 0.95 };
@@ -147,6 +171,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       <polygon points={poly(koni)} fill={CIC.abajurDis} stroke={mur} strokeWidth={2.5} strokeLinejoin="round" />
       <Tarama sekil={golgeYari} basamak="III" aci={TH} renk={tarRenk} derinlik="yakin" seed={SEED + 40} />
       <ellipse cx={agiz[0]} cy={agiz[1]} rx={wA} ry={wA * ici} transform={`rotate(${(Math.atan2(ny, nx) * 180) / Math.PI} ${agiz[0]} ${agiz[1]})`} fill={yanik > 0 ? CIC.abajurIc : "#6a5a50"} stroke={mur} strokeWidth={2} />
+      {LP.filaman && p >= LP.filaman[0] && p < LP.filaman[1] && (() => { const t = (p - LP.filaman![0]) / (LP.filaman![1] - LP.filaman![0]); const a = Math.sin(t * Math.PI) * (1 - t * 0.4); return <g opacity={a}><circle cx={agiz[0]} cy={agiz[1] - 0.02 * s} r={0.05 * s} fill="#e8a276" opacity={0.3} /><circle cx={agiz[0]} cy={agiz[1] - 0.02 * s} r={0.022 * s} fill="#e8a276" /></g>; })()}
       <ellipse cx={tepe[0]} cy={tepe[1]} rx={wT} ry={wT * 0.35} transform={`rotate(${(Math.atan2(ny, nx) * 180) / Math.PI} ${tepe[0]} ${tepe[1]})`} fill={yanik > 0 ? CIC.vUst : "#4a4048"} stroke={mur} strokeWidth={1.5} />
     </g>;
   };
@@ -176,11 +201,19 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     {/* komodin: üst + ön + sağ yan (ışık almayan) */}
     <polygon points={poly(komUst)} fill={CIC.cevizIsik} stroke={mur} strokeWidth={2.5} />
     {havuzCiz(kom.h, "url(#eoKomUst)", ["#a07f6c", "#8a6a5a", "#6b5148"])}
+    {/* abajur ağzı çevresi: komodin üstü her boyun açısında ışık alır (r ≈ 0.25 m) — kutu ve kenar da */}
+    {yanik > 0 && <g clipPath="url(#eoKomUst)"><path d={d(elips(Lu + 0.12, Lz - 0.08, 0.3 * yanik, 0.25 * yanik, kom.h))} fill="#8a6a5a" /><path d={d(elips(Lu + 0.06, Lz - 0.05, 0.18 * yanik, 0.15 * yanik, kom.h))} fill="#a07f6c" /></g>}
     <polygon points={poly([Q(kom.u1, kom.h, kom.z0), Q(kom.u1, kom.h, kom.z1), Q(kom.u1, 0, kom.z1), Q(kom.u1, 0, kom.z0)])} fill={CIC.cevizGolge} stroke={mur} strokeWidth={2.5} />
     <Tarama sekil={[Q(kom.u1, kom.h, kom.z0), Q(kom.u1, kom.h, kom.z1), Q(kom.u1, 0, kom.z1), Q(kom.u1, 0, kom.z0)]} basamak="III" aci={TH} renk={tarRenk} derinlik="yakin" seed={SEED + 5} />
     <polygon points={poly([Q(kom.u0, kom.h, kom.z0), Q(kom.u1, kom.h, kom.z0), Q(kom.u1, 0, kom.z0), Q(kom.u0, 0, kom.z0)])} fill={yanik > 0 ? "#5a4440" : CIC.cevizGolge} stroke={mur} strokeWidth={2.5} />
-    <polygon points={poly([Q(kom.u0 + 0.03, 0.58, kom.z0), Q(kom.u1 - 0.03, 0.58, kom.z0), Q(kom.u1 - 0.03, 0.45, kom.z0), Q(kom.u0 + 0.03, 0.45, kom.z0)])} fill={CIC.cevizIsik} stroke={mur} strokeWidth={2} />
-    <circle cx={X((kom.u0 + kom.u1) / 2, kom.z0)} cy={Y(0.515, kom.z0)} r={4} fill={CIC.kolMetal} />
+    {/* çekmece: cekmece.acik 0..1 → ön yüz 0.3 m öne kayar, iç (koyu) üstten görünür; makine.bit sonrası makine içinde */}
+    {(() => { const zf = kom.z0 - 0.3 * cekA, u0 = kom.u0 + 0.03, u1 = kom.u1 - 0.03; return <g>
+      {cekA > 0.02 && <polygon points={poly([Q(u0, 0.58, kom.z0), Q(u1, 0.58, kom.z0), Q(u1, 0.58, zf), Q(u0, 0.58, zf)])} fill="#241f2c" stroke={mur} strokeWidth={2} />}
+      {cekA > 0.02 && <polygon points={poly([Q(u1, 0.58, kom.z0), Q(u1, 0.58, zf), Q(u1, 0.45, zf), Q(u1, 0.45, kom.z0)])} fill={CIC.cevizGolge} stroke={mur} strokeWidth={2} />}
+      {cekA > 0.2 && makineP && p >= makineP.bit && <g transform={`translate(${X((u0 + u1) / 2, (zf + kom.z0) / 2)} ${Y(0.58, (zf + kom.z0) / 2) + 4}) scale(1 0.7)`}><Makine W={0.13 * 1.4 * F / kom.z0} /></g>}
+      <polygon points={poly([Q(u0, 0.58, zf), Q(u1, 0.58, zf), Q(u1, 0.45, zf), Q(u0, 0.45, zf)])} fill={CIC.cevizIsik} stroke={mur} strokeWidth={2} />
+      <circle cx={X((kom.u0 + kom.u1) / 2, zf)} cy={Y(0.515, zf)} r={4} fill={CIC.kolMetal} />
+    </g>; })()}
     <polygon points={poly([Q(kom.u0 + 0.03, 0.4, kom.z0), Q(kom.u1 - 0.03, 0.4, kom.z0), Q(kom.u1 - 0.03, 0.08, kom.z0), Q(kom.u0 + 0.03, 0.08, kom.z0)])} fill="#241f2c" />
     <line x1={X(kom.u0 + 0.02, kom.z0)} y1={Y(kom.h - 0.005, kom.z0) + 2} x2={X(kom.u1 - 0.02, kom.z0)} y2={Y(kom.h - 0.005, kom.z0) + 2} stroke={yanik > 0 ? "#c8a98e" : "#5a4a50"} strokeWidth={2} opacity={0.8} />
     {kutuCiz()}
@@ -205,19 +238,63 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
     {BG && Array.from({ length: BG.n }).map((_, i) => {
       const u = lerp(BG.u0, BG.u1, (i % 2 ? 0.75 : 0.25) + (rnd(SEED + 11, `u${i}`) - 0.5) * 0.3), z = lerp(BG.z0, BG.z1, (Math.floor(i / 2) + 0.5) / Math.ceil(BG.n / 2));
       const H = havuz(yat.h), ic = ((u - H.cu) / H.ru) ** 2 + ((z - H.cz) / H.rz) ** 2 < 1;
-      const c = Q(u, yat.h, z), s = F / z;
-      return <g key={i} transform={`translate(${c[0]} ${c[1]}) scale(1 ${0.42 + 0.1 * (5 - z)}) rotate(${(rnd(SEED + 11, `a${i}`) - 0.5) * 24})`}><Belge W={0.21 * s} isik={ic ? 1 : 0.15} seed={SEED + i} /></g>;
+      const yer = belgeYer(i);
+      if (yer.t <= 0) return null; // elde (deste) ya da kutuda
+      const c0 = Q(u, yat.h, z), s = F / z;
+      const c: P = yer.t >= 1 ? c0 : [lerp(yer.el![0], c0[0], yer.t), lerp(yer.el![1], c0[1], yer.t) - Math.sin(yer.t * Math.PI) * 30];
+      const yat0 = 0.42 + 0.1 * (5 - z), sy = yer.t >= 1 ? yat0 : lerp(0.9, yat0, yer.t);
+      return <g key={i} transform={`translate(${c[0]} ${c[1]}) scale(1 ${sy}) rotate(${(rnd(SEED + 11, `a${i}`) - 0.5) * 24})`}><Belge W={0.21 * s} isik={ic ? 1 : 0.15} seed={SEED + i} /></g>;
     })}
   </g> });
+  // siluetKol: yüzsüz siluete dirsekli konik kol + GravurEl (P08 yetkili "bakmadan" fincan alır). Koordinatlar dekor px (cs 1).
+  // tepsi: Kukla'nın ön elinde koyu metal tepsi + emaye fincan; fincan.kare'de fincan tepsi → alan siluetin eline geçer.
+  // tepsiye [a, b, c]: a→b el (bakmadan) tepsideki fincana uzanır, b = kavrama (fincan.kare ile aynı), b→c anahtarlı yoluna döner
+  type SKol = { kim: string; kare: number[]; bilek: P[]; aci: number[]; dirsek?: P[]; poz?: "gevsek" | "kistir" | "tutus" | "cimdik"; tepsiye?: [number, number, number] };
+  const SK = param<SKol[]>(plan, "siluetKol", []);
+  const TP = param<{ kim: string; fincan?: { kare: number; alan: string } } | null>(plan, "tepsi", null);
+  const anahP = (arr: P[], kr: number[]): P => [deger(arr.map((q) => q[0]), kr, p), deger(arr.map((q) => q[1]), kr, p)];
+  const skUc: Record<string, P> = {};
+  const skCiz = (sk: SKol, q: (typeof kar)[number], tutulanFn?: (uc: P) => React.ReactNode) => {
+    const pxm = F / q.z, geo = siluet40Yol(q.sil!.kod), yon = q.c.yon ?? 1, ay = Q(q.u, 0, q.z);
+    const omuz: P = [ay[0] + yon * geo.omuz[0] * pxm * 0.6, ay[1] - geo.omuz[1] * pxm];
+    let bilek = anahP(sk.bilek, sk.kare); const aci = deger(sk.aci, sk.kare, p), E = 0.19 * pxm;
+    if (sk.tepsiye && TP) { const [a, b2, c] = sk.tepsiye, tq = kar.find((x) => x.c.kim === TP.kim && x.d);
+      if (tq) { const tp = elDunya(tq.d!.pz, true, [0, 2]), w = p < a ? 0 : p < b2 ? (p - a) / (b2 - a) : p < c ? 1 - (p - b2) / (c - b2) : 0, ee = Math.sin((w * Math.PI) / 2);
+        const hedef: P = [tp[0] + 0.04 * pxm - Math.cos((aci * Math.PI) / 180) * 0.5 * E, tp[1] - 0.06 * pxm];
+        bilek = [lerp(bilek[0], hedef[0], ee), lerp(bilek[1], hedef[1], ee)]; } }
+    const dir: P = sk.dirsek ? anahP(sk.dirsek, sk.kare) : [lerp(omuz[0], bilek[0], 0.5), lerp(omuz[1], bilek[1], 0.5) + 0.08 * pxm];
+    const kol = konikKol(omuz, dir, bilek, [0.1 * pxm, 0.085 * pxm, 0.065 * pxm]);
+    const a = (aci * Math.PI) / 180; skUc[sk.kim] = [bilek[0] + Math.cos(a) * 0.55 * E, bilek[1] + Math.sin(a) * 0.55 * E];
+    kilit.push({ ad: `${sk.kim} eli`, p: ekranNokta(k, bilek), tur: "dokunus" });
+    const tutulan = tutulanFn?.(skUc[sk.kim]);
+    const pal = { ...EL_BAZNA, isik: "#d6b49c", golge: "#8f7360", manset: "#9a9488" };
+    return <g key={`sk${sk.kim}`}><path d={kol.d} fill={q.sil!.renk} stroke={mur} strokeWidth={2.5} strokeLinejoin="round" />
+      <GravurEl bilek={kol.ileri(-0.02 * E)} aci={aci} E={E} poz={GRAVUR_POZ[sk.poz ?? "gevsek"]} palet={pal} isik={[-0.6, -0.8]} taramaAci={TH} katman="arka" />
+      {tutulan}
+      <GravurEl bilek={kol.ileri(-0.02 * E)} aci={aci} E={E} poz={GRAVUR_POZ[sk.poz ?? "gevsek"]} palet={pal} isik={[-0.6, -0.8]} taramaAci={TH} katman="on" onMaske /></g>;
+  };
   // karakterler
   for (const q of kar) {
-    if (q.sil) { const pxm = F / q.z; nesneler.push({ z: q.z, el: <SiluetFigur40 key={`s${q.i}`} kod={q.sil.kod} ayak={Q(q.u, 0, q.z)} pxm={pxm} renk={q.sil.renk} yon={q.c.yon ?? 1} kenar={{ renk: isik.renk, dx: isikAd === "lamba" ? -2 : 2 }} /> }); continue; }
+    if (q.sil) { const pxm = F / q.z; const fAlan = TP?.fincan && TP.fincan.alan === q.c.kim && p >= TP.fincan.kare;
+      nesneler.push({ z: q.z, el: <g key={`s${q.i}`}><SiluetFigur40 kod={q.sil.kod} ayak={Q(q.u, 0, q.z)} pxm={pxm} renk={q.sil.renk} yon={q.c.yon ?? 1} kenar={{ renk: isik.renk, dx: isikAd === "lamba" ? -2 : 2 }} />
+        {SK.filter((x) => x.kim === q.c.kim).map((x) => skCiz(x, q, fAlan ? (uc) => <g transform={`translate(${uc[0]} ${uc[1] + 0.05 * pxm})`}><Fincan W={0.08 * 1.3 * pxm} /></g> : undefined))}</g> }); continue; }
     const dd = q.d!;
     const mk = makineP && makineP.kim === q.c.kim && p >= makineP.bas && p < makineP.bit;
     const elP = mk ? elDunya(dd.pz, true, [0, 10]) : null;
+    const fk = FK && FK.kim === q.c.kim && p >= FK.bas && p < FK.bit ? (() => { const t = (p - FK.bas) / (FK.bit - FK.bas), el = elDunya(dd.pz, true, [0, 6]), cep = govdeDunya(dd.pz, [24, -318]); const w = Math.max(0, (t - 0.35) / 0.65); return { xy: [lerp(el[0], cep[0], w), lerp(el[1], cep[1], w)] as P, arkada: t > 0.7 }; })() : null;
+    const fkCiz = fk && <g transform={`translate(${fk.xy[0]} ${fk.xy[1]})`}><FilmKutusu H={0.055 * 1.6 * F / q.z} /></g>;
+    const deste = BG?.el === q.c.kim && desteSayisi > 0 && !desteKutuda && desteEl ? (() => { const kt = BG!.kutuya ? Math.max(0, Math.min(1, (p - BG!.kutuya) / 10)) : 0; const kc = Q(-0.53, kom.h + 0.08, 4.74); const xy: P = [lerp(desteEl[0], kc[0], kt), lerp(desteEl[1], kc[1], kt)]; const s2 = F / q.z;
+      return <g transform={`translate(${xy[0]} ${xy[1]}) rotate(-8) scale(1 0.8)`}>{Array.from({ length: Math.min(4, desteSayisi) }).map((_, j) => <g key={j} transform={`translate(${j * 2} ${-j * 3})`}><Belge W={0.21 * s2} isik={0.8} seed={SEED + 40 + j} /></g>)}</g>; })() : null;
     nesneler.push({ z: q.z, el: <g key={`k${q.i}`}>
+      {fk?.arkada && fkCiz}
       <KarakterCiz d={dd} isik={isik} kamera={k} murekkep={mur} seed={SEED + 300 + q.i * 11} golgeAlfa={0.55} golgeKlip="url(#eoZemin)" />
-      {elP && <g transform={`translate(${elP[0]} ${elP[1]})`}><Makine W={0.13 * 1.4 * F / q.z} isikYon={[ampul[0] - elP[0], ampul[1] - elP[1]]} /></g>}
+      {fk && !fk.arkada && fkCiz}
+      {TP && TP.kim === q.c.kim && (() => { const el = elDunya(dd.pz, true, [0, 2]), W = 0.4 * F / q.z, fincanVar = !TP.fincan || p < TP.fincan.kare; kilit.push({ ad: "tepsi", p: ekranNokta(k, el), tur: "dokunus" });
+        return <g transform={`translate(${el[0]} ${el[1]})`}><Tepsi W={W} />{fincanVar && <g transform={`translate(${W * 0.1} ${-W * 0.02})`}><Fincan W={0.08 * 1.3 * F / q.z} /></g>}</g>; })()}
+      {deste}
+      {elP && (() => { const W = 0.13 * 1.4 * F / q.z, f = dd.pz.facing ?? 1; return <g transform={`translate(${elP[0]} ${elP[1]})`}><Makine W={W} isikYon={[ampul[0] - elP[0], ampul[1] - elP[1]]} />
+        {/* kıstıran parmaklar gövdenin önünde (tutulan nesne eli izler) */}
+        <g transform={`scale(${f} 1)`}><path d={`M ${-W * 0.62} ${-W * 0.16} q ${W * 0.16} ${-W * 0.06} ${W * 0.2} ${W * 0.08} l 0 ${W * 0.2} q ${-W * 0.1} ${W * 0.1} ${-W * 0.2} ${W * 0.02} Z`} fill={dd.palet.skin} stroke={dd.palet.skinDark} strokeWidth={1.5} /></g></g>; })()}
     </g> });
     if (elP) kilit.push({ ad: "makine", p: ekranNokta(k, elP), tur: "dokunus" });
   }
@@ -237,6 +314,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
         <clipPath id="eoTavan"><polygon points={poly(tavanK)} /></clipPath>
         <clipPath id="eoZemin"><polygon points={poly([[-3000, Y(0, ARKA)], [4000, Y(0, ARKA)], [4000, 5000], [-3000, 5000]])} /></clipPath>
         <clipPath id="eoPen"><polygon points={poly(penK)} /></clipPath>
+        <clipPath id="eoLento"><path d={`${d([Q(-0.35, 2.6, 4.96), Q(0.75, 2.6, 4.96), Q(0.75, 2.45, 4.96), Q(-0.35, 2.45, 4.96)])} ${d([Q(pen.u0 - 0.08, pen.h1 + 0.08, ARKA), Q(pen.u1 + 0.08, pen.h1 + 0.08, ARKA), Q(pen.u1 + 0.08, pen.h1, ARKA), Q(pen.u0 - 0.08, pen.h1, ARKA)])}`} /></clipPath>
         <clipPath id="eoYatak"><polygon points={poly(yatakUst)} /></clipPath>
         <clipPath id="eoKomUst"><polygon points={poly(komUst)} /></clipPath>
         <clipPath id="eoPerde"><path d={`${d([Q(-0.35, 2.45, 4.96), Q(-0.15, 2.45, 4.96), Q(-0.15, 0.02, 4.96), Q(-0.35, 0.02, 4.96)])} ${d([Q(0.55, 2.45, 4.96), Q(0.75, 2.45, 4.96), Q(0.75, 0.02, 4.96), Q(0.55, 0.02, 4.96)])}`} /></clipPath>
@@ -246,7 +324,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
         <g transform={kam}>
           {/* tavan + kartonpiyer */}
           <polygon points={poly(tavanK)} fill={tavan} />
-          {yanik > 0 && <g clipPath="url(#eoTavan)"><path d={d(tavanYay(1.3))} fill={CIC.lambaYayilma} /><path d={d(tavanYay(1.08))} fill={CIC.vDis} /><path d={d(tavanYay(1.0))} fill={CIC.vUst} /></g>}
+          {yanik > 0 && <g clipPath="url(#eoTavan)"><path d={d(tavanYay(0.75))} fill={CIC.lambaYayilma} /></g>}
           {/* yan duvarlar */}
           <polygon points={poly(solDuvar)} fill={isikAd === "gun" ? "#a89080" : "#363a5a"} stroke={mur} strokeWidth={3} />
           <polygon points={poly(sagDuvar)} fill={isikAd === "gun" ? "#b09a88" : CIC.duvarKose} stroke={mur} strokeWidth={3} />
@@ -257,11 +335,17 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           <Tarama sekil={[Q(-YARI, TAVAN - 0.15, ARKA), Q(YARI, TAVAN - 0.15, ARKA), Q(YARI, TAVAN - 0.2, ARKA), Q(-YARI, TAVAN - 0.2, ARKA)]} basamak="II" aci={TH} renk={tarRenk} derinlik="yakin" seed={SEED + 3} />
           {yanik > 0 && <g clipPath="url(#eoDuvar)">
             {/* yayılma (V dışı bant) · dış kenar şeridi · gövde · alt %45 çekirdek — kenarlar net, iç 2 basamak */}
-            <polygon points={poly(vPoly(9, 30))} fill={CIC.lambaYayilma} />
-            <polygon points={poly(vPoly(3, 6))} fill={CIC.vDis} />
-            <polygon points={poly(vPoly(0))} fill={CIC.vUst} />
-            <g clipPath="url(#eoVAlt)"><polygon points={poly(vPoly(-2))} fill={CIC.vCekirdek} /></g>
-            <defs><clipPath id="eoVAlt"><rect x={-2000} y={vTepe[1] - 0.58 * (vTepe[1] - vUst)} width={5000} height={2000} /></clipPath></defs>
+            {/* abajur çevresi yayılma (duvar, koyu-sıcak tek basamak) */}
+            <ellipse cx={ampul[0] + 10} cy={ampul[1] + 10} rx={0.6 * F / ARKA} ry={0.4 * F / ARKA} fill={CIC.lambaYayilma} />
+            <polygon points={poly(vPoly(4, 22))} fill={CIC.lambaYayilma} />
+            <polygon points={poly(vPoly(0))} fill={CIC.vDis} />
+            <polygon points={poly(vPoly(-3))} fill={CIC.vUst} />
+            <defs><clipPath id="eoVAlt"><rect x={-2000} y={vTepe[1] - 0.4 * (vTepe[1] - vUst)} width={5000} height={2000} /></clipPath></defs>
+            <g clipPath="url(#eoVAlt)"><polygon points={poly(vPoly(-5))} fill={CIC.vCekirdek} /></g>
+            {/* aşağı koni duvarı yalar (lamba duvardan 0.15 m): abajur ağzından komodin üstüne genişleyen Λ — ışık lambadan gelir okunsun */}
+            {(() => { const ag = Q(Lu - 0.2 * b, 0.9, ARKA), alt = Y(kom.h, ARKA), Lm = (alt - ag[1]) * yanik, t = Math.tan((48 * Math.PI) / 180), kay = -60 * b;
+              const L = (k2: number, off: number): P[] => [[ag[0] - 26 - off, ag[1] - off * 0.4], [ag[0] + 26 + off, ag[1] - off * 0.4], [ag[0] + kay + Lm * t * k2 + off, ag[1] + Lm], [ag[0] + kay - Lm * t * k2 - off, ag[1] + Lm]];
+              return <g><polygon points={poly(L(1.15, 26))} fill={CIC.lambaYayilma} /><polygon points={poly(L(1, 4))} fill={CIC.vDis} /><polygon points={poly(L(0.7, 0))} fill={CIC.vUst} /></g>; })()}
           </g>}
           {/* pencere: dış (gece gök + hilal + sırt / gündüz), cam, iki kanat + kayıt, söve, denizlik */}
           <g clipPath="url(#eoPen)">
@@ -281,6 +365,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           </g>; })()}
           {/* perde kutusu + perdeler (ağır kumaş, dikey kıvrım, dipte tarama öbekleri) */}
           <polygon points={poly([Q(-0.35, 2.6, 4.96), Q(0.75, 2.6, 4.96), Q(0.75, 2.45, 4.96), Q(-0.35, 2.45, 4.96)])} fill="#3a3448" stroke={mur} strokeWidth={2} />
+          {yanik > 0 && <g clipPath="url(#eoLento)"><polygon points={poly(vPoly(0))} fill={CIC.vDis} opacity={0.75} /></g>}
           <g clipPath="url(#eoPerde)">
             <rect x={0} y={0} width={1080} height={1920} fill={gece ? CIC.perdeGolge : "#8a7a80"} />
             {yanik > 0 && <polygon points={poly(vPoly(0))} fill={CIC.perdeIsik} />}
@@ -304,11 +389,16 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           {parke.map((u, i) => { const z = 1.3 + rnd(SEED + 2, i) * 3.6; return <line key={`e${i}`} x1={X(u, z)} y1={Y(0, z)} x2={X(parke[i + 1] ?? u + 0.08, z)} y2={Y(0, z)} stroke={CIC.parkeCizgi} strokeWidth={2} opacity={0.6} />; })}
           <polygon points={poly([Q(-0.95, 0, 4.4), Q(1.0, 0, 4.4), Q(1.0, 0, 3.1), Q(-0.95, 0, 3.1)])} fill="#3e3858" />
           <polygon points={poly([Q(-0.83, 0, 4.28), Q(0.88, 0, 4.28), Q(0.88, 0, 3.22), Q(-0.83, 0, 3.22)])} fill={CIC.hali} />
-          <polygon points={poly(isikAd === "gun" ? gunYama : ayYama)} fill={isikAd === "gun" ? CIC.gunYama : CIC.ayYama} opacity={isikAd === "gun" ? 0.9 : isikAd === "sonuk" ? 0.45 : 0.3} />
+          <polygon points={poly(isikAd === "gun" ? gunYama : ayYama)} fill={isikAd === "gun" ? CIC.gunYama : CIC.ayYama} opacity={isikAd === "gun" ? 0.9 : isikAd === "sonuk" ? 0.45 : 0.3 + 0.15 * (1 - yanik)} />
           {/* zemin havuzu yalnız dik boyunda (bükükken koniyi yatak keser) */}
           {b < 0.99 && <g opacity={1 - b}>{havuzCiz(0, "url(#eoZemin)", ["#8c6f66", "#7a6658", "#5e5058"])}</g>}
+          {/* bükük boyunda koninin dış kenarı yatağın sağında zemine taşar: yalnız yayılma basamağı (koyu-sıcak, net kenar) */}
+          {b > 0 && yanik > 0 && (() => { const H = havuz(0); return <g clipPath="url(#eoZemin)" opacity={b}><path d={d(elips(H.cu, H.cz, H.ru * 1.25, H.rz * 1.2, 0))} fill={CIC.lambaYayilma} /></g>; })()}
           {isikAd === "lamba" && <g>
             <polygon points={poly(kapiHavuz)} fill={CIC.kapiHavuz} />
+            {/* aralığa yakın parlak basamak (kaynak kapının ardında, yakın zemin daha aydınlık; ayak kamaları bu bandı keser → dokunuş okunur) */}
+            <polygon points={poly([Q(kapi.u0, 0, ARKA), Q(kapi.u1, 0, ARKA), Q(kapi.u1 + 0.2, 0, ARKA - 0.2), Q(kapi.u0 - 0.2, 0, ARKA - 0.2)])} fill={CIC.vDis} />
+            <polygon points={poly([Q(kapi.u0, 0, ARKA), Q(kapi.u1, 0, ARKA), Q(kapi.u1 + 0.08, 0, ARKA - 0.08), Q(kapi.u0 - 0.08, 0, ARKA - 0.08)])} fill={CIC.vUst} />
             <rect x={X(kapi.u0, ARKA)} y={Y(0, ARKA) - 4} width={X(kapi.u1, ARKA) - X(kapi.u0, ARKA)} height={8} fill={CIC.kapiSerit} />
             {ayakVar && [kc - 0.12, kc + 0.12].map((cu, i) => <g key={i}>
               <rect x={X(cu - 0.05, ARKA)} y={Y(0, ARKA) - 4} width={X(cu + 0.05, ARKA) - X(cu - 0.05, ARKA)} height={8} fill={CIC.ayakGolge} />

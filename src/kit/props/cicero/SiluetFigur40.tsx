@@ -22,9 +22,10 @@ export const siluet40Boy = (k: Siluet40Kod) => OLCU[k].H;
 const dz = (q: [number, number][]) => q.map(([x, y]) => [x, -y] as [number, number]);
 
 /** Siluet yolları (metre, yukarı −y). Baş yönü `yon`a göre (sağa bakan çizilir, aynalama dışarıda). */
-export const siluet40Yol = (kod: Siluet40Kod, o: { oturan?: number; govdeDon?: boolean; profil?: boolean } = {}) => {
+export const siluet40Yol = (kod: Siluet40Kod, o: { oturan?: number; govdeDon?: boolean; profil?: boolean; ayriBacak?: boolean } = {}) => {
+  let bacak: [string, string] = ["", ""];
   // profil: yandan görünüş (gövde derinliği ≈ omuz genişliğinin %58'i; göğüs önde, sırt düz)
-  const O0 = OLCU[kod], O = o.profil ? { ...O0, omuz: O0.omuz * 0.58, bel: O0.bel * 0.62, etek: O0.etek * 0.6 } : O0;
+  const O0 = OLCU[kod], O = o.profil ? { ...O0, omuz: O0.omuz * 0.75, bel: O0.bel * 0.7, etek: O0.etek * 0.65 } : O0; // v2: omuz ×0.75 (yuvarlak omuz kaybolmasın)
   const otur = o.oturan; // oturak yüksekliği (m) ya da undefined
   const kalca = otur !== undefined ? otur + 0.06 : O.H * 0.5;
   const omuzY = otur !== undefined ? kalca + 0.32 * O.H : 0.82 * O.H; // kalça → omuz ≈ 0.32 H
@@ -32,16 +33,25 @@ export const siluet40Yol = (kod: Siluet40Kod, o: { oturan?: number; govdeDon?: b
   const t = Math.tan((O.egim * Math.PI) / 180);
   const sh = (x: number, y: number): [number, number] => [x + t * (y - kalca), y];
   // gövde (ceket/palto): omuz yuvarlak, sırt düz, bel hafif içe
-  const gov = dz([
+  // gövde (ceket/palto). Profilde ASİMETRİK: önde (+x) göğüs çıkıntısı, arkada kürek kemiği yuvarlağı; omuz yuvarlak.
+  // Oturanda etek genişlemesi YOK: gövde kalçada uyluğa döner (uyluk aşağıda ayrı çizilir).
+  const alt = otur !== undefined ? kalca - 0.02 : kalca - (O.H * 0.5 - O.etekY);
+  const gov = o.profil ? dz([
+    sh(-0.04, omuzY + 0.07), sh(-w * 0.7, omuzY + 0.05), sh(-w * 1.02, omuzY - 0.04), sh(-w * 1.05, omuzY - 0.16), sh(-w * 0.9, omuzY - 0.34), sh(-b, kalca + 0.08),
+    sh(-b * 1.02, alt), sh(b * (otur !== undefined ? 1.0 : 1.08), alt), sh(b * 1.02, kalca + 0.1), sh(w * 0.98, omuzY - 0.2), sh(w * 1.06, omuzY - 0.1),
+    sh(w * 0.8, omuzY + 0.02), sh(w * 0.35, omuzY + 0.07), sh(0.05, omuzY + 0.08),
+  ]) : dz([
     sh(-0.05, omuzY + 0.06), sh(-w * 0.75, omuzY + 0.03), sh(-w, omuzY - 0.06), sh(-w * 0.95, omuzY - 0.3), sh(-b, kalca + 0.1),
-    sh(-b * 1.05, kalca - (otur !== undefined ? 0.04 : O.H * 0.5 - O.etekY)), sh(b * 1.1, kalca - (otur !== undefined ? 0.04 : O.H * 0.5 - O.etekY)),
+    sh(-b * 1.05, alt), sh(b * 1.1, alt),
     sh(b, kalca + 0.1), sh(w * 0.95, omuzY - 0.3), sh(w, omuzY - 0.06), sh(w * 0.75, omuzY + 0.03), sh(0.05, omuzY + 0.06),
   ]);
   let yol = yumusakYol(gov);
   // bacaklar
   if (otur === undefined) {
-    const lg = (x0: number) => `M ${x0 - 0.065} ${-(O.etekY + 0.02)} L ${x0 + 0.065} ${-(O.etekY + 0.02)} L ${x0 + 0.06} 0 L ${x0 + 0.13} 0 L ${x0 + 0.13} -0.06 L ${x0 - 0.065} -0.06 Z`;
-    yol += ` ${lg(-0.07)} ${lg(0.07)}`;
+    // pantolon paçası daralır (diz 0.07 → bilek 0.05), ayakkabı önde burunlu, topuk arkada (yön okutur)
+    const lg = (x0: number) => `M ${x0 - 0.07} ${-(O.etekY + 0.02)} L ${x0 + 0.068} ${-(O.etekY + 0.02)} L ${x0 + 0.052} -0.07 Q ${x0 + 0.13} -0.065 ${x0 + 0.15} -0.02 L ${x0 + 0.15} 0 L ${x0 - 0.06} 0 L ${x0 - 0.06} -0.03 L ${x0 - 0.052} -0.07 Z`;
+    bacak = [lg(-0.055), lg(0.06)];
+    if (!o.ayriBacak) yol += ` ${bacak[0]} ${bacak[1]}`;
   } else {
     // oturan: uyluk öne (sağa) yatay, baldır aşağı (zemine)
     yol += ` M ${-b} ${-(kalca + 0.08)} L ${0.45} ${-(kalca + 0.08)} Q ${0.53} ${-(kalca + 0.02)} ${0.5} ${-(kalca - 0.08)} L ${0.47} 0 L ${0.33} 0 L ${0.35} ${-(kalca - 0.08)} L ${-b} ${-(kalca - 0.08)} Z`;
@@ -59,12 +69,14 @@ export const siluet40Yol = (kod: Siluet40Kod, o: { oturan?: number; govdeDon?: b
     basYol += ` M ${bx - 0.14} ${-(ty + 0.012)} Q ${bx - 0.1} ${-(ty - 0.002)} ${bx} ${-(ty - 0.004)} Q ${bx + 0.12} ${-(ty - 0.006)} ${bx + 0.175} ${-(ty - 0.03)} L ${bx + 0.17} ${-(ty - 0.045)} Q ${bx + 0.1} ${-(ty - 0.024)} ${bx} ${-(ty - 0.026)} Q ${bx - 0.1} ${-(ty - 0.024)} ${bx - 0.142} ${-(ty - 0.004)} Z`;
   }
   if (kod === "topuzlu") basYol += ` M ${bx - 0.1} ${-(by + 0.0)} a 0.055 0.05 0 1 0 0.0001 0 Z`;
-  return { yol, basYol, kalca, omuzY, basM: by, omuz: [t * (omuzY - kalca) + w * 0.85, omuzY - 0.05] as [number, number] };
+  return { yol, basYol, bacak, etekY: O.etekY, kalca, omuzY, basM: by, omuz: [t * (omuzY - kalca) + w * 0.85, omuzY - 0.05] as [number, number] };
 };
 
-export const SiluetFigur40: React.FC<{ kod: Siluet40Kod; ayak: P; pxm: number; renk: string; kenar?: { renk: string; dx: number; dy?: number }; yon?: 1 | -1; basYon?: 1 | -1; oturan?: number; kirp?: number; golge?: boolean; donus?: number; profil?: boolean }> = ({ kod, ayak, pxm, renk, kenar, yon = 1, basYon, oturan, kirp, golge = true, donus = 0, profil }) => {
+export const SiluetFigur40: React.FC<{ kod: Siluet40Kod; ayak: P; pxm: number; renk: string; kenar?: { renk: string; dx: number; dy?: number }; yon?: 1 | -1; basYon?: 1 | -1; oturan?: number; kirp?: number; golge?: boolean; donus?: number; profil?: boolean; adim?: number }> = ({ kod, ayak, pxm, renk, kenar, yon = 1, basYon, oturan, kirp, golge = true, donus = 0, profil, adim }) => {
   const id = "s40" + useId().replace(/:/g, "");
-  const { yol, basYol } = siluet40Yol(kod, { oturan, profil });
+  // adim: yürüme fazı (radyan) → bacaklar kalçadan makas (±22°), gövde 1 cm iner-kalkar
+  const { yol, basYol, bacak, etekY } = siluet40Yol(kod, { oturan, profil, ayriBacak: adim !== undefined });
+  const ba = adim !== undefined ? 22 * Math.sin(adim) : 0;
   const tr = `translate(${ayak[0]} ${ayak[1]}) scale(${pxm * yon} ${pxm}) rotate(${donus})`;
   const trB = `translate(${ayak[0]} ${ayak[1]}) scale(${pxm * (basYon ?? yon)} ${pxm}) rotate(${donus})`;
   return (
@@ -72,6 +84,7 @@ export const SiluetFigur40: React.FC<{ kod: Siluet40Kod; ayak: P; pxm: number; r
       {kirp !== undefined && <defs><clipPath id={id}><rect x={-5000} y={-5000} width={10000} height={kirp + 5000} /></clipPath></defs>}
       {golge && oturan === undefined && <ellipse cx={ayak[0]} cy={ayak[1]} rx={0.3 * pxm} ry={0.05 * pxm} fill="#14120f" opacity={0.5} />}
       {kenar && <g transform={`translate(${kenar.dx} ${kenar.dy ?? 0})`} fill={kenar.renk}><path d={yol} transform={tr} /><path d={basYol} transform={trB} /></g>}
+      {adim !== undefined && bacak.map((b, i) => <path key={i} d={b} transform={`${tr} rotate(${i ? ba : -ba} 0 ${-etekY})`} fill={renk} />)}
       <path d={yol} transform={tr} fill={renk} />
       <path d={basYol} transform={trB} fill={renk} />
     </g>
