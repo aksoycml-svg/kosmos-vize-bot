@@ -10,6 +10,7 @@ MUZIK = PUB + "yarasa/muzik/yarasa-raindrop-63.mp3"
 GB, DUCK_DB = -7.0, -6.0         # müzik taban kazancı, konuşmada ek duck (dosya yerel ≈ -27 LUFS -> aralar ≈ -34, konuşma ≈ -40 LUFS; anlatım -18)
 CAP_ARA, CAP_KON = -35.5, -43.0  # mutlak tavanlar (LUFS momentary): anlatıma göre -16 / -22
 FOLEY_KAZANC_DB = -3.0   # ducking sonrası global: foley tepeleri anlatım tepesinin medyan ≈ -7 dB altında (-5/-9 kuralı; Paris tur-18 ile aynı)
+HOLD_TAVAN = -34.0   # P09 hold müzik tavanı (momentary LUFS; anlatıma göre -16)
 ORT_DB = {"oda-tonu": -27, "ruzgar-col": -25, "tank-inleme": -26}   # anlatıma göre (ortam yatakları -18 LUFS'e eşitlenip bu kadar altına)
 ORT_PLAN = {"oda-tonu": ["P01","P02","P03","P04","P05","P06","P07"], "ruzgar-col": ["P08","P09","P12"], "tank-inleme": ["P09"]}
 def run(cmd, inp=None): return subprocess.run(cmd, input=inp, capture_output=True, check=True)
@@ -60,14 +61,25 @@ TOP = t0 / FPS; N = int(round(TOP * SR)); tp = lambda pid, k: (bas[pid] + k) / F
 sure = {p["id"]: p["sure_kare"] for p in bolum["planlar"]}
 dils = sys.argv[1:] or ["tr", "en"]
 cache = {}; fol_raw = None
+TEM = json.load(open(f"{B}/temaslar.json"))["temaslar"]   # mutlak kare (motion kaydırınca burası güncellenir; betik oradan okur)
+YATAK_DB = -8.0   # P10 ateş yatağı (ekranda büyük alev): anlatıma göre, ortam stem'inde, ducking'siz
 def foley():
     fol = np.zeros((N, 2)); c = {}
-    for p in bolum["planlar"]:
-        for t in p["temaslar"]:
-            a = t["ses"]; d = FOL[a]
-            if a not in c: x = oku(PUB + d["dosya"]); c[a] = x / max(np.abs(x).max(), 1e-6) * g(-3)
-            koy(fol, kenar(c[a] * g(t["db"]), 3), tp(p["id"], t["kare"]) - d["tepe_ms"] / 1000)
+    for t in TEM:
+        a = t["ses"]; d = FOL[a]
+        if a == "ates-yatak" and t["plan"] == "P10": continue   # ortam yatağı olarak ortam() kurar
+        if a not in c: x = oku(PUB + d["dosya"]); c[a] = x / max(np.abs(x).max(), 1e-6) * g(-3)
+        koy(fol, kenar(c[a] * g(t["db"]), 3), t["kare"] / FPS - d["tepe_ms"] / 1000)
     return fol
+def ates_yatagi():
+    """P10 ateş yatağı: ateş-tutuş temasından başlar, P10 boyunca sürer, kesmeden (P11 başı) sonra 0.2 sn tutup 0.8 sn'de söner."""
+    k0 = next(t["kare"] for t in TEM if t["ses"] == "ates-yatak" and t["plan"] == "P10")
+    x = oku(PUB + "yarasa/foley/ates-yatak.mp3"); x = x * g(-18 - lufs(x)) * g(YATAK_DB)
+    t0, kes = k0 / FPS, bas["P11"] / FPS; t1 = kes + 1.0
+    n = int((t1 - t0) * SR); y = np.resize(x, (n, 2)).copy()
+    y[:int(.3 * SR)] *= np.linspace(0, 1, int(.3 * SR))[:, None]
+    i0 = int((kes + .2 - t0) * SR); y[i0:] *= np.linspace(1, 0, n - i0)[:, None] ** 2
+    return t0, y
 def ortam():
     amb = np.zeros((N, 2))
     for ad, planlar in ORT_PLAN.items():
@@ -77,6 +89,7 @@ def ortam():
             if ad == "ruzgar-col": y = lp(y, 1500)
             y = y * g(ORT_DB[ad]); f = int(.4 * SR); y[:f] *= np.linspace(0, 1, f)[:, None]; y[-f:] *= np.linspace(1, 0, f)[:, None]
             koy(amb, y, tp(pid, 0) - .2)
+    ty, yy = ates_yatagi(); koy(amb, yy, ty)
     return amb
 def anlat(dil):
     key = "ses" if dil == "tr" else "ses_en"; ses = np.zeros((N, 2))
@@ -91,13 +104,23 @@ def duck_foley(fol, ses):
     k = np.where(ra > .02, np.clip(ra * g(-4) / (rf + 1e-9), g(-8), 1), 1.0)
     k = np.minimum(np.minimum(k, np.roll(k, 1)), np.roll(k, -1)); k = np.convolve(k, np.ones(3) / 3, "same")
     return fol * np.interp(np.arange(len(fol)), (np.arange(nb) + .5) * hb, k)[:, None] * g(FOLEY_KAZANC_DB)
+def runmax(v, s):
+    from numpy.lib.stride_tricks import sliding_window_view
+    k = max(1, int(s * SR / 240)); w = v[::240]
+    mx = sliding_window_view(np.pad(w, (0, k - 1), mode="edge"), k).max(axis=1)[:len(w)]
+    return np.interp(np.arange(len(v)), np.arange(len(w)) * 240, mx)
+def gdb_hold(hedef, L): return np.clip(hedef - L, -30, 10)
 def muzik(ses):
     m = oku(MUZIK)[:N]; m = np.vstack([m, np.zeros((N - len(m), 2))]) if len(m) < N else m
     t, M = mseries(m); Lm = np.interp(np.arange(N) / SR, t - .2, M)   # momentary pencere ortasına hizala
     e = env(ses, .12, .6)
     gdb = np.minimum(GB + DUCK_DB * e, (CAP_ARA * (1 - e) + CAP_KON * e) - Lm)
     gdb = sm(runmin(gdb, .5), .3)
-    gdb = np.minimum(gdb, (CAP_ARA * (1 - e) + CAP_KON * e) - Lm + 0.0) if False else gdb
+    ps = json.load(open(PUB + "yarasa/ses/plan-sureleri.json")); h0 = bas["P09"] / FPS + ps["P09"]; h1 = bas["P10"] / FPS   # P09 hold (anlatım bitişi -> P10 başı)
+    tt = np.arange(N) / SR; w = (tt >= h0) & (tt < h1)
+    Lla = Lm   # ileri bakış: P10 ff girişi M penceresini aşmasın
+    hedef = CAP_ARA + (HOLD_TAVAN - CAP_ARA) * np.clip((tt - h0) / (h1 - h0 - .3), 0, 1) ** 1.5   # müzikal cümle: hold boyunca yavaş yükseliş
+    gdb = np.where(w, np.minimum(gdb_hold(hedef, Lla), gdb + 12), gdb)
     m = m * g(gdb)[:, None]
     f = int(.3 * SR); m[:f] *= np.linspace(0, 1, f)[:, None]; nf = int(1.2 * SR); m[-nf:] *= np.linspace(1, 0, nf)[:, None]
     return m
