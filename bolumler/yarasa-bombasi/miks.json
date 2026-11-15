@@ -1,0 +1,27 @@
+{
+  "fps": 60,
+  "toplam_kare": 3760,
+  "referans": "Anlatım klipleri −24.9 LUFS (volume 1 = 0 dB ref). Müzik dosyası bütünde −22.8 LUFS, P01–P09 yerel ≈ −27 LUFS (kendi zarfı), P10 ≈ −21, P11 ≈ −23, P12 ≈ −30. db −14 → aralarda ≈ −41 LUFS = anlatımın ≈16 dB altı (≤ −16 ✓); duck −20 → konuşmada ≈ −47 LUFS = −22 dB (P01–P09). P10/P11 konuşma anları dosyada daha dolgun olduğu için muzik_istisnalari ile ek tavan. Foley: temas.db > onerilen_db (−5…−14). Whoosh/riser yok.",
+  "muzik": {
+    "dosya": "yarasa/muzik/yarasa-raindrop-63.mp3",
+    "bas_kare": 0,
+    "db": -14,
+    "fade_in_kare": 18,
+    "fade_out_kare": 60,
+    "duck": { "anlatim_db": -20, "atak_kare": 9, "birakma_kare": 24 },
+    "not": "Chopin Op.28 no.15 (Musopen CC0), 62.72 sn; plan sınırında kesme yok. Kesimler miks.md §2."
+  },
+  "foley_varsayilan_db": -7,
+  "istisnalar": {},
+  "muzik_istisnalari": [
+    { "kare": [2773, 2869], "muzik_db": -26 },
+    { "kare": [2910, 2954], "muzik_db": -26 },
+    { "kare": [2991, 3375], "muzik_db": -24 },
+    { "kare": [2767, 2991], "muzik_db": -20 }
+  ],
+  "ortam": "ortam.json yatakları (temasla çalmaz; kurgucu/teknisyen kanalı): P01–P07 oda-tonu, P08 ruzgar-col, P09 tank-inleme + ruzgar-col, P12 B ruzgar-col",
+  "kurgucu_notlari": [
+    "P10 doruğu (kare 2767–2991) müzikte tavan −20 dB: CLAUDE.md '≤ −16 aralarda' kuralı için; kulakla bakılacak: doruk yeterince hissediliyor mu (miks.md §5 madde 3, 6).",
+    "Müzik istisnaları P10 konuşma (p6–102, p143–187) ve P11 konuşma için yaklaşık; ses .json'dan kesinleştirilebilir."
+  ]
+}

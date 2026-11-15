@@ -34,10 +34,6 @@
     },
     "alt_sayfa": {
      "cati": true,
-     "yarasa": true,
-     "alev": true,
-     "alev_cizgi": true,
-     "kirmizi": true,
      "geri": {
       "bas": -100,
       "bit": -90
@@ -550,6 +546,13 @@
       "dx": -700,
       "dy": 400
      },
+     "alt_sayfa": {
+      "cati": true,
+      "yarasa": true,
+      "alev": true,
+      "alev_cizgi": true,
+      "kirmizi": true
+     },
      "nesneler": [
       {
        "tur": "zarf",
@@ -703,6 +706,13 @@
      "dx": -760,
      "dy": 300
     },
+    "alt_sayfa": {
+     "cati": true,
+     "yarasa": true,
+     "alev": true,
+     "alev_cizgi": true,
+     "kirmizi": true
+    },
     "nesneler": [
      {
       "tur": "kapsul-set",
@@ -798,6 +808,12 @@
      "kare": 0
     }
    ],
+   "lint": {
+    "izin": [
+     "foley_kullanilmayan:damla-yapistir"
+    ],
+    "not": "damla görünmediği için damla-yapistir temasa yazılmadı (görünmeyen ses çalınmaz)"
+   },
    "metin": ""
   },
   {
@@ -819,8 +835,8 @@
       "olcek": 0.75,
       "tepsi_n": 26,
       "diz": {
-       "bas": 15,
-       "bit": 100
+       "bas": -40,
+       "bit": 38
       },
       "ac": {
        "bas": 170,
@@ -845,8 +861,8 @@
      2.6,
      1.0,
      1.0,
-     1.35,
-     2.0
+     1.4,
+     2.6
     ],
     "cx": [
      0,
@@ -856,11 +872,11 @@
      0
     ],
     "cy": [
-     153,
+     301,
      0,
      0,
      55,
-     118
+     153
     ],
     "egri": "inout"
    },
@@ -973,16 +989,16 @@
      208
     ],
     "cs": [
-     2.0,
-     2.25
+     2.6,
+     2.8
     ],
     "cx": [
-     -68,
-     -76
+     -88,
+     -95
     ],
     "cy": [
-     -656,
-     -738
+     -853,
+     -918
     ],
     "egri": "lineer"
    },
@@ -1603,6 +1619,13 @@
       "dx": -400,
       "dy": -170
      },
+     "alt_sayfa": {
+      "cati": true,
+      "yarasa": true,
+      "alev": true,
+      "alev_cizgi": true,
+      "kirmizi": true
+     },
      "nesneler": [
       {
        "tur": "belge",
@@ -1899,10 +1922,6 @@
       },
       "alt_sayfa": {
        "cati": true,
-       "yarasa": true,
-       "alev": true,
-       "alev_cizgi": true,
-       "kirmizi": true,
        "geri": {
         "bas": -100,
         "bit": -90
@@ -1981,6 +2000,12 @@
      "kare": 0
     }
    ],
+   "lint": {
+    "izin": [
+     "foley_kullanilmayan:kagit-cevir"
+    ],
+    "not": "sayfa çevirme yok (mekanlar §5.5), foley kullanılmadı"
+   },
    "kit_eksik": [
     "KE-kagit-cevir: sayfa çevirme yok; mekanlar §5.5: döngü kamera alt sayfadan üst sayfaya kayarak kurulur (kagit-cevir foley'i kullanılmadı)"
    ],
