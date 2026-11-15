@@ -55,6 +55,20 @@ Senaryo v1.1 (12 plan): D1 P03 · D2 P05 · D3 P07 · D4 P08 · D5 P09 · D6 P10
 | YB-D6 | Yarasalar tünekten ayrılır, üç kıvılcım, sonra alev | COL-US | `tunek_dalgasi.birak`, `kivilcim_dizisi`, `alev` | kivilcim-cirt, ates-tutus | var |
 | YB-D7 | Mühür iner, başlık açılır | MASA-YB | `nesneler: belge, muhur` | muhur-tok | var |
 
+## Ben-my-Chree (BMC) — 2026-11-15
+Metin v5 (10 plan): D1 P02 · D2 P03 · D3 P04 · D4 P05 · D5 P06 · D6 P07 · D7 P08 · D8 P09. Hepsi **yok** (şablonlar yeni: LİMAN, GEMİ-INSERT, KIYI-BATARYA). Ayrıntı: `bolumler/ben-my-chree/dokunuslar.md`.
+
+| id | ad | şablon | kurulum önerisi | temas/ses | durum |
+|---|---|---|---|---|---|
+| BMC-D1 | Derrick deniz uçağını suya indirir | GEMİ-INSERT kıç | `derrick {ucak.indir, halat.gevsek}` + `ucak {samandira}` | vinç-halat, şamandıra şap | yok |
+| BMC-D2 | Çıpa iner, zincir gerilir | GEMİ-INSERT baş | `capa {birak, zincir.gerilme}` | zincir akış, şap, gerilme | yok |
+| BMC-D3 | Kaya gölgesinde namlu ucu parlar | KIYI-BATARYA insert | `namlu.parilti {bas, bit}` + push-in | kuru ot, kısık metal tink | yok |
+| BMC-D4 | Teğmen namluya iki pat | KIYI-BATARYA yakın | `el.pat {hedef: namlu, sayi: 2}` | avuç-metal pat x2 | yok |
+| BMC-D5 | İki su sütunu, üçüncüde sütun yok, hangarda çakım | LİMAN + ön plan top | `atis {sira: 1..3, sutun}` + `hangar.cakim` | top gümleme x3, su sütunu x2, isabet tok | yok |
+| BMC-D6 | Kapalı hangar kapısı alevle açılır | GEMİ-INSERT hangar | `hangarKapi {alev, kanat.sallan}` | ateş tutuş, kapı çatırtı, menteşe | yok |
+| BMC-D7 | Ölü motor, tutan motor | LİMAN orta | `bot {motor: olu→tutar}` | krank tık, motor tutuş | yok |
+| BMC-D8 | Can simidi kancadan çıkar, suya düşer | LİMAN orta-yakın | `simit {kancadan.cik, su}` + gemi `yatis` | simit pat, gövde inleme, kabarcık | yok |
+
 ## Yeni dokunuş eklerken
 - Satır ekle: id (bölüm-öneki ile, ör. `BL-D1`), şablon, hangi parametre/jest/prop ile kurulur, temas listesi, durum.
 - "yok/kısmi" olanlar için kurulum ekibine tek satır iş: hangi şablona hangi parametre.

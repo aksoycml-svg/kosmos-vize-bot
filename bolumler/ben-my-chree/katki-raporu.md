@@ -26,3 +26,10 @@
 - Kararlar: yalnız bütün cümle ya da yan bilgi çıkarıldı, özne kırpılmadı; korunacaklar (müttefik, ada, teğmen önce, tek bot, batış, savaşın adı) duruyor; P09 kedi/köpek en büyük tasarruf olarak çıktı.
 - Yakalanan: v4 P09'da kurtarma sırası araştırmaya aykırı (batıştan önce). P05 anı atfı yalnız ekranda kalıyor (tek kaynak riski).
 - Açık sorular: kedi/köpek geri konsun mu (+≈4.5 sn); P05'e sesli "Anılarına göre" (+2 sn) eklensin mi.
+
+## yaratici-yonetmen · 2026-11-15 · dokunuşlar (v5 metin, 10 plan)
+- Ne yaptım: P02–P09 için 8 dokunuş (BMC-D1…D8) yazdım; her biri plan içi saniye, bağlı eylem, okunurluk, foley, kaynak gerekçesi ve katman notu (ön plan / ışık / atmosfer) ile. P01 ve P10 için yalnız katman notu. Kütüphaneye BMC bloğu eklendi.
+- Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/ben-my-chree/dokunuslar.md, /home/user/kosmos-vize-bot/src/kit/DOKUNUS-KUTUPHANESI.md, /home/user/kosmos-vize-bot/bolumler/ben-my-chree/katki-raporu.md
+- Kararlar ve gerekçeleri: Kurulum→karşılık zinciri kurdum (P02 kapalı hangar kapısı/can simidi/botlar → P07, P08, P09; P03 zincir → P07 "dönemiyor"). Kanıtsız detay (boya, üniforma, kamuflaj, uçak envanteri) nötr bırakıldı; mevzi gizleme yalnız kaya gölgesi. Savaş: riser/whoosh yok, yangın ve su sütunu ölçülü. P06 dokunuşu "üçüncüde sütun yok" (yokluk vuruşu). Süreler plan içi; mutlak zaman ses ölçülünce yönetmende.
+- Uyguladığım kurallar / yakaladığım ihlaller: Tekrar taraması (derrick yalnız P02'de dokunuş, P09'da farklı nesne); hareket plan bitmeden ≥0.2 sn önce; küçük jest (D3, D4) yakın/insert; yazı bandı çakışması (P06 sütun tepeleri y>400). Ortam dokusu dokunuş sayılmadı. P08 motor "ölü/tutar" ve P05 pat dramatizasyon (açıklamada belirtilir).
+- Açık sorular / notlar: (1) BMC-D4 (P05) en zayıf, süre/jüri gerekirse çıkar. (2) Yönetmen: P02 kadrajında simit, kapalı hangar kapısı, üç can botu görünmeli. (3) Motion: hepsi "yok" kitte (GEMİ-INSERT, LİMAN, KIYI-BATARYA); yön karesi kullanıcıya gitmeden kod yazılmaz. (4) Araştırmacı: dönemde elle çevirme motor/can simidi biçimi ve katırla dağ topu yükü doğrulansın.
