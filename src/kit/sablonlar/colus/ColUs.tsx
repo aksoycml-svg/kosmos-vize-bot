@@ -12,6 +12,7 @@ import type { P, Plan } from "../../tipler";
 import { cl, CIKIS, GIRIS, INOUT, kameraHesapla, katDonusum } from "../../zaman";
 import { param, Sablon, SablonProps } from "../../ortak";
 import { Yarasa, YR } from "../../props/yarasa/Yarasa";
+import { karistir } from "../../../doku/sabitler";
 import { Suru, SuruAyar } from "../../props/yarasa/Suru";
 import {
   B1, D, GOLGE_MAKS, Gorunum, gorunur, isik, kamKaris, kutu, mertekS, N, projeksiyon, Proj, S, TANK, tankKesis, tankNokta, tankNormal, temelKam, TUNEKLER, V3, W, Yuz, zeminGolge, KAMERALAR,
@@ -61,7 +62,7 @@ const Gok: React.FC<{ pr: Proj; g: Gorunum }> = ({ pr, g }) => {
     <g>
       {sinir.map(([y, c], i) => <rect key={i} x={-1200} y={y} width={3480} height={(sinir[i + 1]?.[0] ?? U + 40) - y + 1} fill={c} />)}
       {/* litografi geçişi: sınırın üstünde alt tonda 3 ince çizgi + nokta */}
-      {sinir.slice(1).map(([y], i) => <g key={i}>{[0, 1, 2].map((j) => <line key={j} x1={-1200} x2={2280} y1={y - 5 - j * 6} y2={y - 5 - j * 6} stroke={sinir[i + 1][1]} strokeWidth={1.6} opacity={0.5 - j * 0.12} />)}
+      {g !== "yanik" && sinir.slice(1).map(([y], i) => <g key={i}>
         {Array.from({ length: 70 }).map((_, j) => <circle key={`n${j}`} cx={-200 + r(`gn${i}${j}`) * 1480} cy={y - 8 - r(`gy${i}${j}`) * 26} r={1.1} fill={sinir[i + 1][1]} opacity={0.6} />)}</g>)}
       {/* güneş parıltısı: disk çizilmez; 4 düz halka (litografi basamağı, yumuşak gradyan yok) */}
       {g !== "yanik" && <><clipPath id="cuParilti"><rect x={-1200} y={U - 330 * f} width={3480} height={400} /></clipPath>
@@ -122,19 +123,24 @@ const Cali: React.FC<{ pr: Proj; v: V3; h: number; k: number; golge?: boolean }>
   const px = pr.pxm(v), H = h * px;
   if (golge) { const g = zeminGolge([v[0], h * 0.6, v[2]]), w = h * 0.3; return <polygon points={zeminCokgen(pr, [[v[0] - w * N[0], 0, v[2] - w * N[1]], [v[0] + w * N[0], 0, v[2] + w * N[1]], g])} fill={CP.toprakGolge} opacity={0.85} />; }
   if (H < 6) return <ellipse cx={b[0]} cy={b[1] - H * 0.4} rx={H * 0.7} ry={H * 0.45} fill={CP.cali} />;
-  // kreozot benzeri topak: tabandan gövdeler + loblu yaprak kütlesi (ışık sol-üst, gölge sağ-alt), seed'li
-  const n = 11 + Math.floor(r(`cn${k}`) * 5), sw = Math.max(1, Math.min(3.5, H / 50)), m: P = [b[0] + H * 0.05, b[1] - H * 0.58];
-  const lob = (rx: number, ry: number, dx: number, dy: number, key: string) => { const A: P[] = []; for (let i = 0; i < 22; i++) { const a = (i / 22) * 2 * Math.PI, q = 1 + 0.16 * Math.sin(a * 5 + r(`${key}a`) * 6) + 0.08 * (r(`${key}${i}`) - 0.5); A.push([m[0] + dx + Math.cos(a) * rx * q, m[1] + dy + Math.sin(a) * ry * q]); } return pts(A); };
+  // kreozot benzeri: 3–4 taban gövdesi, her biri 2 dala ayrılır; dal boyunca tırtıklı küçük yaprak kümeleri (lob/kaya yok)
+  const sw = Math.max(1, Math.min(3.5, H / 55)), nt = 3 + Math.floor(r(`cn${k}`) * 2);
+  const yildiz = (c: P, rr: number, key: string) => { const A: P[] = []; for (let i = 0; i < 14; i++) { const a = (i / 14) * 2 * Math.PI, q = rr * (i % 2 ? 0.55 : 1) * (0.8 + 0.4 * r(`${key}${i}`)); A.push([c[0] + Math.cos(a) * q, c[1] + Math.sin(a) * q]); } return pts(A); };
+  const dallar: { a: P; b: P }[] = [], kume: { c: P; rr: number; ton: string; key: string }[] = [];
+  for (let t = 0; t < nt; t++) {
+    const bx = b[0] + (t - (nt - 1) / 2) * H * 0.12 + (r(`bx${k}${t}`) - 0.5) * H * 0.06, a0 = ((t - (nt - 1) / 2) * 22 + (r(`ba${k}${t}`) - 0.5) * 12) * (Math.PI / 180);
+    const L = H * (0.5 + 0.25 * r(`bl${k}${t}`)), orta: P = [bx + Math.sin(a0) * L * 0.5, b[1] - Math.cos(a0) * L * 0.5];
+    dallar.push({ a: [bx, b[1]], b: orta });
+    for (const da of [-0.35, 0.3]) { const a1 = a0 + da + (r(`d${k}${t}${da}`) - 0.5) * 0.3, L2 = L * (0.55 + 0.25 * r(`l${k}${t}${da}`)), uc: P = [orta[0] + Math.sin(a1) * L2, orta[1] - Math.cos(a1) * L2];
+      dallar.push({ a: orta, b: uc });
+      for (let q = 0; q < 4; q++) { const f = 0.35 + 0.22 * q, c: P = [orta[0] + (uc[0] - orta[0]) * f + (r(`kx${k}${t}${da}${q}`) - 0.5) * H * 0.08, orta[1] + (uc[1] - orta[1]) * f];
+        const sag = c[0] > b[0] + H * 0.08 && c[1] > b[1] - H * 0.75; kume.push({ c, rr: H * (0.045 + 0.035 * r(`kr${k}${t}${da}${q}`)), ton: sag ? CP.caliGolge : c[0] < b[0] ? CP.caliIsik : CP.cali, key: `k${k}${t}${da}${q}` }); } }
+  }
   return (
     <g>
-      {Array.from({ length: n }).map((_, i) => { const a = (-60 + (120 * i) / (n - 1) + (r(`ca${k}${i}`) - 0.5) * 14) * (Math.PI / 180), L = H * (0.55 + 0.35 * r(`cl${k}${i}`));
-        return <line key={i} x1={b[0]} y1={b[1]} x2={b[0] + Math.sin(a) * L * 0.9} y2={b[1] - Math.cos(a) * L} stroke={CP.caliGolge} strokeWidth={sw} strokeLinecap="round" />; })}
-      <polygon points={lob(H * 0.55, H * 0.36, 0, 0, `l${k}`)} fill={CP.cali} />
-      <polygon points={lob(H * 0.36, H * 0.2, H * 0.14, H * 0.14, `g${k}`)} fill={CP.caliGolge} opacity={0.45} />
-      <polygon points={lob(H * 0.32, H * 0.17, -H * 0.17, -H * 0.13, `i${k}`)} fill={CP.caliIsik} />
-      {H > 30 && Array.from({ length: 26 }).map((_, i) => { const a = Math.PI * (1.02 + 0.96 * (i / 25)) + (r(`tw${k}${i}`) - 0.5) * 0.1, q: P = [m[0] + Math.cos(a) * H * 0.5, m[1] + Math.sin(a) * H * 0.33], L = H * (0.06 + 0.07 * r(`tl${k}${i}`));
-        return <line key={`t${i}`} x1={q[0]} y1={q[1]} x2={q[0] + Math.cos(a) * L} y2={q[1] + Math.sin(a) * L * 1.3} stroke={i < 12 ? CP.caliIsik : CP.cali} strokeWidth={Math.max(1, sw * 0.6)} strokeLinecap="round" />; })}
-      {H > 30 && <path d={`M${m[0] - H * 0.5},${m[1] - H * 0.05} Q${m[0] - H * 0.42},${m[1] - H * 0.36} ${m[0]},${m[1] - H * 0.37}`} fill="none" stroke={CP.kenar} strokeWidth={Math.max(1.5, H / 160)} strokeLinecap="round" opacity={0.9} />}
+      {dallar.map((d, i) => <line key={i} x1={d.a[0]} y1={d.a[1]} x2={d.b[0]} y2={d.b[1]} stroke={CP.caliGolge} strokeWidth={sw} strokeLinecap="round" />)}
+      {kume.map((q) => <polygon key={q.key} points={yildiz(q.c, q.rr, q.key)} fill={q.ton} />)}
+      {H > 80 && kume.filter((q) => q.ton === CP.caliGolge).slice(0, 5).map((q, i) => <line key={`h${i}`} x1={q.c[0] - q.rr * 0.3} y1={q.c[1] + q.rr} x2={q.c[0] + q.rr * 0.3 * 0.32} y2={q.c[1] - q.rr} stroke={CP.toprakDerin} strokeWidth={2.5} opacity={0.6} />)}
     </g>
   );
 };
@@ -142,6 +148,9 @@ const Cali: React.FC<{ pr: Proj; v: V3; h: number; k: number; golge?: boolean }>
 const IZ = (() => { const k = KAMERALAR.genis, a = ((k.az + 5) * Math.PI) / 180, f: [number, number] = [Math.sin(a), Math.cos(a)], rr: [number, number] = [Math.cos(a), -Math.sin(a)];
   return [-0.8, 0.8].map((o) => [3, 34].map((L) => [k.C[0] + f[0] * L + rr[0] * (o - 1.6), 0, k.C[1] + f[1] * L + rr[1] * (o - 1.6)] as V3)); })();
 
+// yer çizgisi kameranın 1.5 m önünde kırpılır (yakın uçta kalınlık patlamasın)
+const izKirp = (pr: Proj, L: V3[]): V3[] | null => { const za = pr.z(L[0]) - 1.5, zb = pr.z(L[1]) - 1.5; if (za < 0 && zb < 0) return null; if (za >= 0 && zb >= 0) return L;
+  const t = za / (za - zb), m: V3 = [L[0][0] + (L[1][0] - L[0][0]) * t, 0, L[0][2] + (L[1][2] - L[0][2]) * t]; return za < 0 ? [m, L[1]] : [L[0], m]; };
 const Zemin: React.FC<{ pr: Proj; yanik: number }> = ({ pr, yanik }) => {
   const U = pr.kam.U;
   const yamalar = Array.from({ length: 14 }).map((_, i) => { const X = -30 + r(`yx${i}`) * 50, Z = -14 + r(`yz${i}`) * 60, rx = 3 + r(`yr${i}`) * 7;
@@ -150,10 +159,10 @@ const Zemin: React.FC<{ pr: Proj; yanik: number }> = ({ pr, yanik }) => {
     <g>
       <rect x={-1200} y={U} width={3480} height={3000} fill={CP.toprak} />
       {/* hava perspektifi: ufka yakın uzak zemin pusla açılır (gravür basamağı: 2 düz bant) */}
-      <rect x={-1200} y={U} width={3480} height={46 * (pr.kam.F / 1400)} fill="#e2bf9e" />
-      <rect x={-1200} y={U} width={3480} height={20 * (pr.kam.F / 1400)} fill="#ebcba9" />
+      <rect x={-1200} y={U} width={3480} height={80 * (pr.kam.F / 1400)} fill="#e2bf9e" />
+      <rect x={-1200} y={U} width={3480} height={32 * (pr.kam.F / 1400)} fill="#ebcba9" />
       {yamalar.map((q, i) => (q.every(Boolean) ? <polygon key={i} points={pts(q)} fill={CP.toprakOrta} opacity={0.55} /> : null))}
-      {IZ.map((L, i) => { const a = pr.P(L[0]), b = pr.P(L[1]); return a && b ? <g key={i}><line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={CP.toprakOrta} strokeWidth={Math.max(2, 0.22 * pr.pxm(L[0]))} opacity={0.45} /><line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={CP.toprakGolge} strokeWidth={2} strokeDasharray="2 9" opacity={0.4} /></g> : null; })}
+      {IZ.map((L0, i) => { const L = izKirp(pr, L0); if (!L) return null; const a = pr.P(L[0]), b = pr.P(L[1]); return a && b ? <g key={i}><line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={CP.toprakOrta} strokeWidth={Math.max(2, Math.min(40, 0.12 * pr.pxm(L[0])))} opacity={0.3} /><line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={CP.toprakGolge} strokeWidth={2} strokeDasharray="2 9" opacity={0.4} /></g> : null; })}
       {CAKIL.map((c, i) => { const v: V3 = [c.X, 0, c.Z], q = pr.P(v); if (!q || q[1] < U + 4) return null; const px = pr.pxm(v); if (px < 60) return null;
         return <circle key={i} cx={q[0]} cy={q[1]} r={Math.min(5, 1 + c.s * 2 + px / 260)} fill={CP.toprakGolge} opacity={0.5} />; })}
       {yanik > 0 && <ellipse cx={540} cy={U + 480} rx={900} ry={260} fill={CP.dumanGolge} opacity={0.12 * yanik} />}
@@ -183,7 +192,8 @@ const B1Ciz: React.FC<{ pr: Proj; kat: "duvar" | "sacak"; yanik: number; alevIsi
         {hs.map((h, i) => { const a = pr.P(W(B1.sSol, 0, h)), b = pr.P(W(B1.sSag, 0, h)); return a && b ? <g key={i}><line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={CP.kaplamaGolge} strokeWidth={2.5} opacity={0.7} /><line x1={a[0]} y1={a[1] + 2} x2={b[0]} y2={b[1] + 2} stroke={CP.kenar} strokeWidth={1} opacity={0.4} /></g> : null; })}
         {hs.map((h, i) => { const s = B1.sSol - 0.6 - ((i * 1.37 + r(`ek${i}`) * 2.4) % 8.4); const a = pr.P(W(s, 0, h)), b = pr.P(W(s, 0, h + 0.15)); return a && b ? <line key={`e${i}`} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={CP.kaplamaGolge} strokeWidth={1.5} opacity={0.6} /> : null; })}
         {PW.every(Boolean) && <g>
-          <polygon points={pts(PW)} fill={CP.cam} stroke={CP.kontur} strokeWidth={4} />
+          <polygon points={pts(PW)} fill={yanik > 0 ? CP.yanik : CP.cam} stroke={CP.kontur} strokeWidth={4} />
+          {yanik > 0 && <polygon points={pts([PW[3], [PW[3]![0] + (PW[2]![0] - PW[3]![0]) * 0.4, PW[3]![1] + (PW[2]![1] - PW[3]![1]) * 0.4], [PW[3]![0] + (PW[0]![0] - PW[3]![0]) * 0.55 + 6, PW[3]![1] + (PW[0]![1] - PW[3]![1]) * 0.55]])} fill="#1c1820" />}
           <line x1={(PW[0]![0] + PW[3]![0]) / 2} y1={(PW[0]![1] + PW[3]![1]) / 2} x2={(PW[1]![0] + PW[2]![0]) / 2} y2={(PW[1]![1] + PW[2]![1]) / 2} stroke={CP.kaplama} strokeWidth={4} />
           <line x1={(PW[0]![0] + PW[1]![0]) / 2} y1={(PW[0]![1] + PW[1]![1]) / 2} x2={(PW[3]![0] + PW[2]![0]) / 2} y2={(PW[3]![1] + PW[2]![1]) / 2} stroke={CP.kaplama} strokeWidth={4} />
           <polygon points={pts([PW[0], [PW[0]![0] + (PW[1]![0] - PW[0]![0]) * 0.35, PW[0]![1]], PW[3]])} fill={CP.camYansima} opacity={0.3} />
@@ -213,7 +223,8 @@ const B1Ciz: React.FC<{ pr: Proj; kat: "duvar" | "sacak"; yanik: number; alevIsi
         return <polygon key={i} points={pts(q)} fill={y.n[1] !== 0 ? CP.ahsapGolge : isik(y.n) > 0.1 ? CP.catiKenar : CP.ahsap} stroke={CP.kontur} strokeWidth={4} strokeLinejoin="round" />; })}
       {yanik > 0 && (() => { const A: (P | null)[] = [], B: (P | null)[] = [];
         for (let s = 2.9; s >= -2.9; s -= 0.2) { A.push(pr.P(W(s, B1.sacak + 0.05, B1.alinUst + 0.02))); B.unshift(pr.P(W(s, B1.sacak + 0.05, B1.alinAlt - 0.02))); }
-        return <g><polygon points={pts([...A, ...B])} fill={CP.yanik} />
+        const kop = [-1.9, 0.25, 1.6].map((s0, i) => [W(s0, B1.sacak + 0.06, B1.alinUst + 0.03), W(s0 + 0.32 + 0.1 * i, B1.sacak + 0.06, B1.alinUst + 0.03), W(s0 + 0.22, B1.sacak + 0.06, B1.alinAlt + 0.02 + 0.05 * i), W(s0 + 0.05, B1.sacak + 0.06, B1.alinAlt + 0.06)].map(pr.P));
+        return <g><polygon points={pts([...A, ...B])} fill={CP.yanik} />{kop.map((q, i) => q.every(Boolean) ? <polygon key={`kp${i}`} points={pts(q)} fill={CP.gok[1]} /> : null)}
           {Array.from({ length: 26 }).map((_, i) => { const s = 2.7 - i * 0.21, a = pr.P(W(s, B1.sacak + 0.05, B1.alinUst - 0.02)), b = pr.P(W(s + 0.04, B1.sacak + 0.05, B1.alinAlt + 0.03)); return a && b ? <line key={i} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={CP.caliGolge} strokeWidth={1.5} /> : null; })}</g>; })()}
       {/* rulo kaplama dudağı + alın (gable) kenarı: çatı yüzeyi görünmez (göz < saçak) */}
       {(() => { const a = pr.P(W(sMax, B1.sacak + 0.04, B1.alinUst + 0.03)), b = pr.P(W(sMin, B1.sacak + 0.04, B1.alinUst + 0.03)); return a && b ? <line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={CP.kenar} strokeWidth={3} strokeLinecap="round" /> : null; })()}
@@ -224,7 +235,7 @@ const B1Ciz: React.FC<{ pr: Proj; kat: "duvar" | "sacak"; yanik: number; alevIsi
 
 // ---------- tank ----------
 const TankCiz: React.FC<{ pr: Proj; kurum: number; clipId?: string }> = ({ pr, kurum, clipId }) => {
-  const k = pr.kam, L2 = TANK.L / 2, adim = 15;
+  const k = pr.kam, L2 = TANK.L / 2, adim = pr.pxm(W(0, TANK.t, TANK.h)) > 200 ? 7.5 : 15;
   const cam: V3 = [k.C[0], k.goz, k.C[1]];
   const bakar = (v: V3, n: V3) => (cam[0] - v[0]) * n[0] + (cam[1] - v[1]) * n[1] + (cam[2] - v[2]) * n[2] > 0;
   const seritler: { q: (P | null)[]; c: string; z: number }[] = [];
@@ -233,12 +244,17 @@ const TankCiz: React.FC<{ pr: Proj; kurum: number; clipId?: string }> = ({ pr, k
     if (!bakar(m, n)) continue;
     const L = isik(n), ust = f > 20 && f < 160;
     let c = L > 0.45 ? CP.tankKenar : L > 0.1 ? CP.tank : CP.tankGolge;
-    if (kurum > 0 && ust) c = L > 0.1 ? "#5c5f78" : CP.dumanGolge;
+    if (kurum > 0) c = karistir(c, ust ? CP.yanik : "#3e3b5c", (ust ? 0.75 : 0.45) * kurum);
     seritler.push({ q: [tankNokta(L2, f), tankNokta(-L2, f), tankNokta(-L2, f + adim + 0.5), tankNokta(L2, f + adim + 0.5)].map(pr.P), c, z: pr.z(m) });
   }
   seritler.sort((a, b) => b.z - a.z);
   const kapak = (s: number) => { const n: V3 = [D[0] * Math.sign(s), 0, D[1] * Math.sign(s)]; const v = W(s, TANK.t, TANK.h); if (!bakar(v, n)) return null;
-    const q = Array.from({ length: 24 }).map((_, i) => pr.P(tankNokta(s, i * 15))); return <polygon points={pts(q)} fill={isik(n) > 0.3 ? CP.tankKenar : isik(n) > 0 ? CP.tank : CP.tankGolge} stroke={CP.kontur} strokeWidth={4} />; };
+    const q = Array.from({ length: 24 }).map((_, i) => pr.P(tankNokta(s, i * 15))), q2 = Array.from({ length: 24 }).map((_, i) => pr.P(W(s, TANK.t + TANK.r * 0.86 * Math.cos((i * 15 * Math.PI) / 180), TANK.h + TANK.r * 0.86 * Math.sin((i * 15 * Math.PI) / 180))));
+    const c0 = isik(n) > 0.3 ? CP.tankKenar : isik(n) > 0 ? CP.tank : CP.tankGolge, c = kurum > 0 ? karistir(c0, "#3e3b5c", 0.5 * kurum) : c0;
+    return <g><polygon points={pts(q)} fill={c} stroke={CP.kontur} strokeWidth={4} />
+      {isik(n) < 0.3 && <polygon points={pts(q)} fill="url(#cuTarama)" opacity={0.35} />}
+      <polygon points={pts(q2)} fill="none" stroke={CP.kontur} strokeWidth={2.5} opacity={0.6} />
+      {q2.map((x, i) => (i % 2 === 0 && x ? <circle key={i} cx={x[0]} cy={x[1]} r={Math.max(1.5, 0.012 * pr.pxm(W(s, TANK.t, TANK.h)))} fill={CP.kontur} opacity={0.6} /> : null))}</g>; };
   const govde = hull([...Array.from({ length: 24 }).flatMap((_, i) => [pr.P(tankNokta(L2, i * 15)), pr.P(tankNokta(-L2, i * 15))]).filter(Boolean) as P[]]);
   const dikis = (s: number) => { const A: P[] = []; for (let f = 0; f <= 360; f += 10) { if (!bakar(tankNokta(s, f), tankNormal(f))) continue; const q = pr.P(tankNokta(s, f)); if (q) A.push(q); } return A.length > 1 ? <polyline points={pts(A)} fill="none" stroke={CP.tankGolge} strokeWidth={2} opacity={0.8} /> : null; };
   const kapakUst = pr.P(W(0.6, TANK.t, TANK.h + TANK.r)), boru = [pr.P(W(-0.9, TANK.t, TANK.h + TANK.r)), pr.P(W(-0.9, TANK.t, TANK.h + TANK.r + 0.6))];
@@ -248,6 +264,9 @@ const TankCiz: React.FC<{ pr: Proj; kurum: number; clipId?: string }> = ({ pr, k
       {kapak(L2)}{kapak(-L2)}
       {seritler.map((s, i) => <polygon key={i} points={pts(s.q)} fill={s.c} stroke={s.c} strokeWidth={1} />)}
       {dikis(TANK.L / 6)}{dikis(-TANK.L / 6)}
+      {[-150, -120, -90, -60, -30].map((f) => { if (!bakar(tankNokta(0, f), tankNormal(f))) return null; const a = pr.P(tankNokta(L2 * 0.98, f)), b = pr.P(tankNokta(-L2 * 0.98, f)); return a && b ? <line key={`b${f}`} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={CP.kontur} strokeWidth={f === -90 ? 3 : 1.8} opacity={0.45} /> : null; })}
+      {kurum > 0 && (() => { const A: P[] = []; for (let x = 1.8; x >= -1.8; x -= 0.3) { const q = pr.P(tankNokta(x, 150)); if (q) A.push(q); } for (let x = -1.8; x <= 1.8; x += 0.3) { const q = pr.P(tankNokta(x, 40 + 22 * random(`tk${x.toFixed(1)}`))); if (q) A.push(q); }
+        return A.length > 3 ? <polygon points={pts(A)} fill={CP.yanik} opacity={0.75 * kurum} /> : null; })()}
       {Array.from({ length: 4 }).map((_, i) => { const s = 0.9 - i * 0.45, a = pr.P(tankNokta(s, 70)), b = pr.P(tankNokta(s - 0.05, 20)); return a && b ? <line key={i} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="#8b90a0" strokeWidth={2.5} opacity={0.25} /> : null; })}
       {/* terminatör taraması (alt yüz, ≤ 0.25 çap) */}
       {(() => { const A: P[] = []; for (let f = -100; f <= -60; f += 8) { if (!bakar(tankNokta(0, f), tankNormal(f))) continue; const q = pr.P(tankNokta(L2 * 0.9, f)), q2 = pr.P(tankNokta(-L2 * 0.9, f)); if (q && q2) A.push(q, q2); }
@@ -343,7 +362,7 @@ const Tunemis: React.FC<{ pr: Proj; plan: Plan; p: number; alev: boolean }> = ({
       const qq = GIRIS(q), x = e0[0] + (e[0] - e0[0]) * qq, y = e0[1] + (e[1] - e0[1]) * qq - Math.sin(Math.PI * q) * 90;
       return <Yarasa key={i} z={{ x, y: y + 0.52 * u, u, faz: (p / 10) % 1, kanat: 0.05, aci: -20 + 30 * q, stil, kenar: true, kapsul }} />;
     }
-    const d = p - a, don = interpolate(d, [0, 10], [0, 180], { ...cl, easing: GIRIS }), kat = interpolate(d, [0, 16], [0.1, 0.95], { ...cl, easing: GIRIS });
+    const d = p - a, don = interpolate(d, [0, 10], [0, 180], { ...cl, easing: GIRIS }), kat = interpolate(d, [0, 16], [0.1, random(`kk${sd}${i}`) < 0.6 ? 0.68 : 0.92], { ...cl, easing: GIRIS });
     const sallan = Math.sin(d / 9) * 6 * Math.exp(-d / 30);
     return <Yarasa key={i} z={{ x: e[0], y: e[1], capa: "ayak", u, aci: 180 + sallan - (180 - don), kanat: kat, faz: 0.25, nefes: 0.5 + 0.5 * Math.sin(p / 9 + i), stil, kenar: stil === "gercek", kapsul, nabiz: nab }} />;
   })}</g>;
@@ -354,11 +373,11 @@ const Kivilcimlar: React.FC<{ pr: Proj; plan: Plan; p: number }> = ({ pr, plan, 
   const L = tunekListesi(pr, td.adet), cs = kameraHesapla(plan.kamera, p).cs;
   return <g>{kv.map((q, i) => { const t = L[q.tunek]; if (!t || p < q.kare) return null;
     const u = 0.11 * 1.25 * pr.pxm(t.v), e: P = [t.e![0], t.e![1] + 0.75 * u]; // kapsül başı (asılı: baş aşağı)
-    const d = p - q.kare, sn = interpolate(d, [0, 10], [1, 0.45], cl), R = 45 / cs;
+    const d = p - q.kare, sn = interpolate(d, [0, 10], [1, 0.5], cl), R = 60 / cs;
     return <g key={i}>
-      <circle cx={e[0]} cy={e[1] - 0.25 * u} r={R} fill={YR.amber} opacity={0.22 * sn} />
-      <line x1={e[0]} y1={e[1]} x2={e[0] - 2 / cs} y2={e[1] - 9 / cs} stroke={YR.koz} strokeWidth={2.5 / cs} strokeLinecap="round" />
-      <circle cx={e[0]} cy={e[1]} r={3 / cs} fill={YR.hilal} />
+      <circle cx={e[0]} cy={e[1] - 0.25 * u} r={R} fill={YR.amber} opacity={0.28 * sn} />
+      <line x1={e[0]} y1={e[1]} x2={e[0] - 3 / cs} y2={e[1] - 14 / cs} stroke={YR.koz} strokeWidth={3 / cs} strokeLinecap="round" />
+      <circle cx={e[0]} cy={e[1]} r={4.5 / cs} fill={YR.hilal} />
     </g>; })}</g>;
 };
 
@@ -379,7 +398,7 @@ const Alev: React.FC<{ pr: Proj; plan: Plan; p: number; kat: "isik" | "alev" }> 
   });
   if (kat === "isik") {
     const m = dil.reduce((q, d) => [q[0] + d.b[0] / dil.length, q[1] + d.b[1] / dil.length], [0, 0]), H = Math.max(...dil.map((d) => d.h), 1);
-    return <g style={{ mixBlendMode: "screen" }}><circle cx={m[0]} cy={m[1]} r={2 * H + 60} fill={CP.alevIsik} opacity={0.14} /><circle cx={m[0]} cy={m[1]} r={H + 30} fill={CP.alevOrta} opacity={0.2} /></g>;
+    return <g style={{ mixBlendMode: "screen" }} clipPath="url(#cuAlevKlip)"><circle cx={m[0]} cy={m[1]} r={H + 30} fill={CP.alevOrta} opacity={0.2} /></g>;
   }
   const yaprak = (b: P, h: number, w: number, egim: number) => `M${b[0] - w},${b[1]} C${b[0] - w},${b[1] - h * 0.5} ${b[0] + egim * 0.5},${b[1] - h * 0.7} ${b[0] + egim},${b[1] - h} C${b[0] + w * 0.6},${b[1] - h * 0.55} ${b[0] + w},${b[1] - h * 0.3} ${b[0] + w},${b[1]} Z`;
   return <g>{dil.map((d) => { const w = d.h * 0.32, eg = d.h * 0.28;
@@ -391,17 +410,24 @@ const Duman: React.FC<{ pr: Proj; plan: Plan; p: number }> = ({ pr, plan, p }) =
   const dm = param<DumanP | null>(plan, "duman", null) ?? (alevler(plan).length ? { bas: alevler(plan)[0].bas + 6 } : null);
   if (!dm || p < dm.bas) return null;
   const kay = dm.kaynak ?? [0.6, -0.8, 1.8], ince = !!dm.ince, out: React.ReactNode[] = [];
+  const kenar: React.ReactNode[] = [], govde: React.ReactNode[] = [], ic: React.ReactNode[] = [];
   kay.forEach((s, ki) => {
     const b = pr.P(W(s, B1.sacak, B1.alinUst + 0.1)); if (!b) return;
-    const px = pr.pxm(W(s, B1.sacak, 3)), ar = ince ? 6 : 5, omur = ince ? 220 : 420;
+    const ks = 0.75 + 0.6 * random(`dk${ki}`), drift = (ince ? 0.3 : 1.1) + 0.5 * random(`dd${ki}`);
+    const px = pr.pxm(W(s, B1.sacak, 3)), ar = ince ? 7 : 5, omur = ince ? 240 : 420;
     for (let j = Math.max(0, Math.floor((p - dm.bas - omur) / ar)); j * ar <= p - dm.bas; j++) {
-      const yas = p - dm.bas - j * ar, R = (ince ? 0.06 : 0.3) * px * (1 + Math.min(yas, 160) / (ince ? 90 : 50)) * (0.8 + 0.4 * random(`dr${ki}${j}`));
-      const x = b[0] + yas * (ince ? 0.45 : 1.4) + Math.sin(j * 0.7 + yas / 40) * R * (ince ? 0.15 : 0.4), y = b[1] - yas * (ince ? 2.6 : 3.4);
-      if (y + R < -900) continue; // kadraj üstünden çıkar (fade yok); ömür dolan lob kadraj dışındadır
-      out.push(<g key={`${ki}-${j}`}><circle cx={x - R * 0.14} cy={y} r={R} fill="#e3b8a4" /><circle cx={x + R * 0.05} cy={y} r={R * 0.97} fill={j % 5 === 2 ? CP.dumanGolge : CP.duman} />
-        {!ince && <circle cx={x} cy={y + R * 0.45} r={R * 0.55} fill="#c08a6c" opacity={yas < 40 ? 0.6 : 0} />}</g>);
+      const yas = p - dm.bas - j * ar + (random(`dj${ki}${j}`) - 0.5) * ar * 0.9; if (yas < 0) continue;
+      const R = ks * (ince ? 0.07 : 0.3) * px * (1 + Math.min(yas, 160) / (ince ? 180 : 50)) * (0.6 + 0.8 * random(`dr${ki}${j}`));
+      const x = b[0] + yas * drift + (random(`dx${ki}${j}`) - 0.5) * R * 0.9, y = b[1] - yas * (ince ? 2.4 : 3.4) * (0.9 + 0.2 * random(`dv${ki}`));
+      if (y + R < -900) continue; // kadraj üstünden çıkar (fade yok)
+      const k2 = `${ki}-${j}`, ua = random(`du${ki}${j}`) * 6.283;
+      kenar.push(<circle key={k2} cx={x - R * 0.16} cy={y - R * 0.05} r={R} fill="#e3b8a4" />);
+      govde.push(<g key={k2}><circle cx={x} cy={y} r={R} fill={CP.duman} /><circle cx={x + Math.cos(ua) * R} cy={y + Math.sin(ua) * R} r={R * 0.35} fill={CP.duman} /></g>);
+      if (random(`dg${ki}${j}`) < 0.1) ic.push(<circle key={k2} cx={x + R * 0.35} cy={y + R * 0.2} r={R * 0.45} fill={CP.dumanGolge} opacity={0.7} />);
+      if (!ince && yas < 40) ic.push(<circle key={`a${k2}`} cx={x} cy={y + R * 0.45} r={R * 0.55} fill="#c08a6c" opacity={0.6} />);
     }
   });
+  out.push(<g key="k">{kenar}</g>, <g key="g">{govde}</g>, <g key="i">{ic}</g>);
   return <g>{out}</g>;
 };
 
@@ -430,8 +456,9 @@ const SuruGolgesi: React.FC<{ pr: Proj; plan: Plan; p: number; kat: "zemin" | "t
     const st = tankKesis(b.v, Ld), tank = st !== null;
     if ((kat === "tank") !== tank) return null;
     const hit: V3 = tank ? [b.v[0] + Ld[0] * st!, b.v[1] + Ld[1] * st!, b.v[2] + Ld[2] * st!] : zeminGolge(b.v);
-    const e = pr.P(hit); if (!e) return null; const R = 0.55 * pr.pxm(hit);
-    return <ellipse key={i} cx={e[0]} cy={e[1]} rx={R * (tank ? 1 : 1.6)} ry={R * (tank ? 0.8 : 0.45)} fill={CP.toprakDerin} opacity={0.16} />;
+    const e = pr.P(hit); if (!e) return null; const R = 0.22 * pr.pxm(hit);
+    const e2 = tank ? null : pr.P([hit[0] - S[0], 0, hit[2] - S[2]]), ang = e2 ? (Math.atan2(e2[1] - e[1], e2[0] - e[0]) * 180) / Math.PI : -8;
+    return <ellipse key={i} cx={e[0]} cy={e[1]} rx={R * (tank ? 1.4 : 2.6)} ry={R * (tank ? 0.7 : 0.55)} transform={`rotate(${ang} ${e[0]} ${e[1]})`} fill={CP.toprakDerin} opacity={0.4} />;
   });
   return <g clipPath={kat === "tank" ? `url(#${clipId})` : undefined}>{lek}</g>;
 };
@@ -458,6 +485,14 @@ const baskiDurum = (plan: Plan, p: number) => {
 };
 const yirtik = (x: number, k: string) => { const A: P[] = [[-1300, -900]]; for (let y = -900; y <= 2900; y += 60) A.push([x + (random(`yr${k}${y}`) - 0.5) * 34, y]); A.push([-1300, 2900]); return pts(A); };
 
+// alev ikinci ışığının düşebileceği yüzeyler (mekanlar §1.6): cephe, saçak altı, alın tahtası, tank, zemin — gök yok
+const alevYuzey = (pr: Proj) => {
+  const Q = (A: V3[]) => <polygon points={pts(A.map(pr.P))} />;
+  const tank = hull(Array.from({ length: 24 }).flatMap((_, i) => [pr.P(tankNokta(TANK.L / 2, i * 15)), pr.P(tankNokta(-TANK.L / 2, i * 15))]).filter(Boolean) as P[]);
+  return <>{Q([W(sMax, 0, 0), W(sMin, 0, 0), W(sMin, 0, B1.duvar), W(sMax, 0, B1.duvar)])}{Q([W(sMax, 0, B1.alinAlt), W(sMin, 0, B1.alinAlt), W(sMin, B1.sacak + 0.05, B1.alinAlt), W(sMax, B1.sacak + 0.05, B1.alinAlt)])}
+    {Q([W(sMax, B1.sacak, B1.alinAlt), W(sMin, B1.sacak, B1.alinAlt), W(sMin, B1.sacak, B1.alinUst + 0.04), W(sMax, B1.sacak, B1.alinUst + 0.04)])}<polygon points={pts(tank)} /><polygon points={zeminCokgen(pr, [W(sMax + 1, 0, 0), W(sMin - 2, 0, 0), W(sMin - 2, 5, 0), W(sMax + 1, 5, 0)])} /></>;
+};
+
 // ---------- sahne ----------
 const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const { g, pr } = kamera(plan, p), k = kameraHesapla(plan.kamera, p);
@@ -482,6 +517,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
         <pattern id="cuTaramaK" patternUnits="userSpaceOnUse" width={13.3} height={13.3} patternTransform="rotate(72)"><line x1={0} y1={6.65} x2={13.3} y2={6.65} stroke={CP.yanik} strokeWidth={4.75} /></pattern>
         <pattern id="cuTaramaR" patternUnits="userSpaceOnUse" width={13.3} height={13.3} patternTransform="rotate(72)"><line x1={0} y1={6.65} x2={13.3} y2={6.65} stroke={CP.kirmizi} strokeWidth={4.75} /></pattern>
         {[0, 1, 2, 3].map((i) => <clipPath key={i} id={`cuBaski${i}`}><polygon points={yirtik(-80 + 1240 * Math.min(1, Math.max(0, bs.ilerle - i)), `${i}`)} /></clipPath>)}
+        <clipPath id="cuAlevKlip">{alevVar && alevYuzey(pr)}</clipPath>
         <radialGradient id="cuVin" cx="50%" cy="52%" r="75%"><stop offset="55%" stopColor="#2f2c45" stopOpacity={0} /><stop offset="100%" stopColor="#2f2c45" stopOpacity={1} /></radialGradient>
       </defs>
       <rect x={0} y={0} width={1080} height={1920} fill={CP.kagit} />

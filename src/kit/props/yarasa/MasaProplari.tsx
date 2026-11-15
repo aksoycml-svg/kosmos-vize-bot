@@ -6,7 +6,7 @@ import { interpolate, random } from "remotion";
 import type { P } from "../../tipler";
 import { cl, CIKIS, GIRIS } from "../../zaman";
 import { Yarasa, YR } from "./Yarasa";
-import { ParisEl } from "../paris/ParisEl";
+import { EL_CIKIS, ElSiluet } from "./El";
 
 export const PXCM = 31.9;
 export const MP = {
@@ -42,6 +42,8 @@ const Not: React.FC<{ n: Nesne; p: number }> = ({ n, p }) => {
   </g>;
 };
 // kapsül seti (P05): pamuk yatak + uyuyan yarasa (kanat 1) + Fieser eli cımbızla kapsülü göğse koyar (temas = kapsül yarasada)
+// pamuk: lifli tırtıklı topak (düz disk değil)
+const lif = (x: number, y: number, r: number, k: number) => Array.from({ length: 18 }, (_, i) => { const a = (i / 18) * 6.283, q = r * (0.78 + 0.3 * random(`lf${k}${i}`)); return `${(x + Math.cos(a) * q).toFixed(1)},${(y + Math.sin(a) * q * 0.8).toFixed(1)}`; }).join(" ");
 const KapsulSet: React.FC<{ n: Nesne; p: number; pxcm: number }> = ({ n, p, pxcm }) => {
   const u = 9 * pxcm * 0.55, c = (n.cimbiz ?? null) as (Ar & { temas: number }) | null;
   const temas = c?.temas ?? -1, takili = c ? p >= temas : !!n.kapsul;
@@ -50,14 +52,18 @@ const KapsulSet: React.FC<{ n: Nesne; p: number; pxcm: number }> = ({ n, p, pxcm
   const d = yaklas + cek, uc: P = [gogus[0] + d * 3.2 * u, gogus[1] - 0.22 * u + d * 2.4 * u], h = 1.5 + 2 * d;
   const pamuk = Array.from({ length: 9 }).map((_, i) => [(-1 + 2 * random(`pm${i}`)) * u * 0.9, (-1 + 2 * random(`pn${i}`)) * u * 0.6, u * (0.35 + 0.25 * random(`pr${i}`))]);
   return <g>
-    {pamuk.map(([x, y, r], i) => <circle key={`g${i}`} cx={x + 10} cy={y + 10} r={r} fill={MP.golge} opacity={0.35} />)}
-    {pamuk.map(([x, y, r], i) => <circle key={i} cx={x} cy={y} r={r} fill={i % 3 ? MP.pamuk : MP.pamukGolge} />)}
-    <Yarasa z={{ x: 0, y: 0, u, aci: n.aci ?? 0, kanat: 1, nefes: 0.5 + 0.5 * Math.sin(p / 9), kapsul: takili ? "kapsul" : "yok", kenar: true }} />
+    {pamuk.map(([x, y, r], i) => <polygon key={`g${i}`} points={lif(x + 10, y + 10, r, i)} fill={MP.golge} opacity={0.3} />)}
+    {pamuk.map(([x, y, r], i) => <polygon key={i} points={lif(x, y, r, i)} fill={i % 3 ? MP.pamuk : MP.pamukGolge} />)}
+    {pamuk.map(([x, y, r], i) => <path key={`l${i}`} d={`M${x - r * 0.6},${y - r * 0.2} q${r * 0.5},${-r * 0.3} ${r},${r * 0.1} M${x - r * 0.3},${y + r * 0.3} q${r * 0.4},${-r * 0.2} ${r * 0.8},0`} fill="none" stroke={MP.pamukGolge} strokeWidth={2} opacity={0.7} />)}
+    <Yarasa z={{ x: 0, y: 0, u, aci: n.aci ?? 0, kanat: 0.78, nefes: 0.5 + 0.5 * Math.sin(p / 9), kapsul: takili ? "kapsul" : "yok", kenar: true }} />
     {c && p >= c.bas && p <= c.bit && <g>
       <g transform={`translate(${golge(h)[0]},${golge(h)[1]})`} opacity={0.55}><path d={`M${uc[0]},${uc[1]} l${2.6 * u},${-1.6 * u}`} stroke={MP.golge} strokeWidth={0.1 * u} /></g>
       {!takili && <g transform={`translate(${uc[0]},${uc[1] + 0.22 * u}) scale(${u})`}><rect x={-0.1} y={-0.22} width={0.2} height={0.55} rx={0.1} fill={YR.amber} stroke={YR.amberKontur} strokeWidth={1.6 / u} /><rect x={-0.102} y={-0.24} width={0.204} height={0.07} fill={YR.kapak} /></g>}
-      <path d={`M${uc[0]},${uc[1] - 4} L${uc[0] + 2.6 * u},${uc[1] - 1.6 * u - 16} M${uc[0]},${uc[1] + 4} L${uc[0] + 2.6 * u},${uc[1] - 1.6 * u + 10}`} stroke={MP.cimbiz} strokeWidth={0.05 * u} strokeLinecap="round" />
-      <ParisEl d={{ uc: [uc[0] + 2.0 * u, uc[1] - 1.25 * u], aci: -148, kolAci: -150, pxm: pxcm * 100, poz: "kistir" }} tip="lab" />
+      <g transform={`translate(${uc[0]},${uc[1]}) rotate(-31.6) scale(${pxcm})`}>
+        <path d="M0,-0.12 L3.2,-0.3 M0,0.12 L3.2,0.3" stroke={MP.cimbiz} strokeWidth={0.22} strokeLinecap="round" />
+        <g transform="translate(0.6,0)"><ElSiluet tip="lab" isikY={0.4} /></g>
+        <path d={`M${EL_CIKIS + 0.6},-0.3 L15.5,-0.5 M${EL_CIKIS + 0.6},0.3 L15.5,0.5`} stroke={MP.cimbiz} strokeWidth={0.22} strokeLinecap="round" />
+      </g>
     </g>}
   </g>;
 };
@@ -80,7 +86,9 @@ const Kovan: React.FC<{ n: Nesne; p: number }> = ({ n, p }) => {
       const el = i < 3;
       return <g key={i} transform={`translate(${(1 - gir) * -60},${tit}) `}>
         {el ? <ellipse cx={0} cy={y} rx={W / 2 - 10} ry={ara * 0.9} fill={MP.kagit} stroke={MP.hat} strokeWidth={2.5} /> : <line x1={-W / 2 + 10} x2={W / 2 - 10} y1={y} y2={y} stroke={MP.hat} strokeWidth={3.5} />}
-        {Array.from({ length: el ? 5 : 6 }).map((_, j) => <ellipse key={j} cx={-W / 2 + 34 + j * ((W - 68) / (el ? 4 : 5))} cy={y - (el ? 0 : ara * 0.32)} rx={ara * 0.42} ry={ara * 0.22} fill={MP.murekkep} />)}
+        {/* bölmelerde uyuyan yarasalar: tepsi başına seed'li sayı/konum/boy (ızgara/radyatör okunmasın) */}
+        {Array.from({ length: 3 + Math.floor(random(`kn${i}`) * 4) }).map((_, j, A) => { const t = (j + 0.5 + (random(`kj${i}${j}`) - 0.5) * 0.7) / A.length, s = 0.7 + 0.5 * random(`ks${i}${j}`);
+          return <ellipse key={j} cx={-W / 2 + 26 + t * (W - 52)} cy={y - (el ? 0 : ara * 0.32)} rx={ara * 0.46 * s} ry={ara * 0.2 * s} transform={`rotate(${(random(`ka${i}${j}`) - 0.5) * 30} ${-W / 2 + 26 + t * (W - 52)} ${y})`} fill={MP.murekkep} />; })}
       </g>;
     })}
     {panel(-1)}{panel(1)}
@@ -94,11 +102,11 @@ const Tepsi: React.FC<{ n: Nesne; p: number }> = ({ n, p }) => {
     <circle cx={14} cy={14} r={R} fill={MP.golge} opacity={0.5} />
     <circle r={R} fill={MP.tepsi} stroke={MP.hat} strokeWidth={4} />
     {Array.from({ length: m }).map((_, i) => {
-      const a = (i / m) * 2 * Math.PI + 0.12, rr = R * 0.66, x = Math.cos(a) * rr, y = Math.sin(a) * rr, w = R * 0.34, h = R * 0.22;
+      const a = (i / m) * 2 * Math.PI + 0.12 + (random(`ta${i}`) - 0.5) * 0.06, rr = R * (0.64 + 0.04 * random(`tr${i}`)), x = Math.cos(a) * rr, y = Math.sin(a) * rr, w = R * 0.34, h = R * 0.22;
       const sg = titre.some((k) => p >= k && p < k + 6) && i === odak ? 9 : 0;
       return <g key={i} transform={`translate(${x},${y}) rotate(${(a * 180) / Math.PI + 90})`}>
         <rect x={-w / 2} y={-h / 2} width={w} height={h} rx={h * 0.35} fill={MP.bolme} stroke={MP.hat} strokeWidth={3} />
-        <Yarasa z={{ x: 0, y: 0, u: h * 0.62, aci: 90, kanat: 1 - sg / 60, nefes: 0.5 + 0.5 * Math.sin(p / 10 + i), kapsul: "kapsul", basDon: i === odak && bd ? interpolate(p, [bd.bas, bd.bit], [0, bd.aci], { ...cl, easing: GIRIS }) : 0 }} />
+        <Yarasa z={{ x: (random(`tx${i}`) - 0.5) * w * 0.15, y: 0, u: h * 0.62, aci: 90 + (random(`tb${i}`) - 0.5) * 40, kanat: 1 - sg / 60, nefes: 0.5 + 0.5 * Math.sin(p / 10 + i), kapsul: "kapsul", basDon: i === odak && bd ? interpolate(p, [bd.bas, bd.bit], [0, bd.aci], { ...cl, easing: GIRIS }) : 0 }} />
       </g>;
     })}
     <circle r={R * 0.3} fill={MP.tepsi} stroke={MP.hat} strokeWidth={3} />
@@ -122,13 +130,21 @@ const Muhur: React.FC<{ n: Nesne; p: number }> = ({ n, p }) => {
   const yuk = p < temas ? interpolate(p, [gir.bas, gir.bit, temas - 12, temas], [1400, 260, 260, 0], { ...cl, easing: (t) => t }) : interpolate(p, [temas + 4, cik.bas, cik.bit], [0, 160, 1600], { ...cl, easing: CIKIS });
   const g = golge(Math.min(40, yuk / PXCM) * 0.5 + 1.2);
   const ezil = p >= temas && p < temas + 4 ? 0.94 : 1;
-  const tutacak = <g><rect x={-R * 0.95} y={-R * 0.95} width={R * 1.9} height={R * 1.9} rx={R * 0.95} fill={MP.tutacak} stroke={MP.hat} strokeWidth={4} /><circle r={R * 0.42} fill="#5e4a52" stroke={MP.hat} strokeWidth={3} /><circle cx={-R * 0.15} cy={-R * 0.18} r={R * 0.12} fill="#7a6670" /></g>;
+  // tepe kamerası ≈8° önden eğik: sap yukarı-sola eğik izdüşer (tabanı, sapı, topuzu ayrı okunur — "yo-yo" değil)
+  const sx = -R * 0.35, sy = -R * 1.25;
+  const tutacak = <g>
+    <ellipse cx={0} cy={0} rx={R * 0.95} ry={R * 0.86} fill="#3e3036" stroke={MP.hat} strokeWidth={4} />
+    <ellipse cx={0} cy={-R * 0.06} rx={R * 0.88} ry={R * 0.78} fill={MP.tutacak} />
+    <path d={`M${-R * 0.16},0 L${sx - R * 0.12},${sy} L${sx + R * 0.12},${sy} L${R * 0.16},0 Z`} fill="#6a5550" stroke={MP.hat} strokeWidth={3.5} strokeLinejoin="round" />
+    <ellipse cx={sx} cy={sy} rx={R * 0.28} ry={R * 0.24} fill="#7a6258" stroke={MP.hat} strokeWidth={3.5} />
+    <ellipse cx={sx - R * 0.08} cy={sy - R * 0.07} rx={R * 0.08} ry={R * 0.06} fill="#9a8270" />
+  </g>;
   return <g>
     {iz && <g opacity={0.92}><circle r={R * 0.92} fill="none" stroke={MP.kirmizi} strokeWidth={18} /><path d={`M${-R * 0.55},${-R * 0.55} L${R * 0.55},${R * 0.55} M${R * 0.55},${-R * 0.55} L${-R * 0.55},${R * 0.55}`} stroke={MP.kirmizi} strokeWidth={30} strokeLinecap="round" /></g>}
     {yuk < 1500 && <g>
       <g transform={`translate(${g[0]},${g[1]})`} opacity={0.5}><circle r={R * 0.95} fill={MP.golge} /></g>
       <g transform={`translate(${-yuk * 0.15},${-yuk}) scale(${(1 + yuk / 2600) * ezil})`}>{tutacak}
-        <ParisEl d={{ uc: [R * 0.3, R * 0.1], aci: -60, kolAci: -70, pxm: 3190 * 0.75, poz: "kistir" }} tip="gorevliYB" /></g>
+        <g transform={`translate(${sx},${sy + R * 0.5}) rotate(-62) scale(${PXCM * 0.95}) translate(-6,0)`}><ElSiluet tip="gorevliYB" isikY={-0.3} /></g></g>
     </g>}
   </g>;
 };

@@ -262,6 +262,7 @@ Kod: `src/kit/sablonlar/masayb/MasaYb.tsx`, proplar `src/kit/props/yarasa/{Yaras
 | `kalem` | `{el: "adams"\|"lab"\|"gorevliYB", cikis {bas,bit}}` — uç otomatik aktif çizginin ucunda; çizgiler arası havada (0.8 cm) GIRIS geçiş. El = tek parça siluet (başparmak + işaret lobu, iç çizgi yok), ×0.85 |
 | `nesneler` | `[{tur, x, y, olcek, aci, …}]`: `zarf` · `not {dus{kare}}` · `kapsul-set {cimbiz{bas, temas, bit}}` (lab eli, temas = kapsül göğüste) · `kovan {tepsi_n 26, diz{bas,bit}, ac{bas,bit}, titre{tepsi,kare}}` · `tepsi {cap, bolme_n, odak, titre[kare], bas_don{bas,bit,aci}}` · `belge {ortu{kare,kayma}}` · `muhur {cap, temas, giris{bas,bit}, cikis{bas,bit}}` (iz daire+çarpı, kırmızı tek) |
 | `vinyet` | `{kare[], deger[]}` |
+Kalibrasyon 2: el ortak modül `props/yarasa/El.tsx` (`ElSiluet`, tek dış kontur; kalem/cımbız ekseni x > `EL_CIKIS` elin üstünde), kalem açısı 15° (el çizimin sağında). Mühür saplı (taban + sap + topuz). Yarasa: `urop(kanat)` katlıda ayak hattını geçmez, kapsül L 0.30 mat, yüz u > 50.
 Sınır: cs 1.0–2.8, cx ±400, cy −1400…400. P03 göğüs dekor ≈ (`altSayfaCizim.gogus`), P12 A sonu cs 1.9 cy −1303 → çizim = `yanik` ekranı.
 
 ## HARITA `harita_gorunum: "abd"` (yarasa bombası KE-8)

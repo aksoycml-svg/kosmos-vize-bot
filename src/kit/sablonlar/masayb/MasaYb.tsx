@@ -15,7 +15,8 @@ import { param, Sablon, SablonProps } from "../../ortak";
 import { Yarasa } from "../../props/yarasa/Yarasa";
 import { akisYolu, Suru, SuruAyar } from "../../props/yarasa/Suru";
 import { MasaNesne, Nesne, PXCM } from "../../props/yarasa/MasaProplari";
-import { KOL_PALET, KolTip } from "../../../rig/KolEl";
+import type { KolTip } from "../../../rig/KolEl";
+import { EL_CIKIS, ElSiluet } from "../../props/yarasa/El";
 import { cizimHatlari } from "../colus/ColUs";
 
 export const MY = {
@@ -67,7 +68,7 @@ export const altSayfaCizim = (() => {
     { a: H1, tur: "hat" }, { a: H1b, tur: "hat" }, { a: H2, tur: "hat" }, ...M.map((m) => ({ a: m, tur: "hat" as const })), { a: H3, tur: "hat" },
     ...T1.map((s) => ({ a: s as P[], tur: "tarama" as const })), ...T2.map((s) => ({ a: s as P[], tur: "tarama" as const })), ...kap.map((k) => ({ a: k, tur: "hat" as const })),
   ];
-  const k = 1.5, tip: P = [gogus[0] + 6 * k, gogus[1] - 66 * k];
+  const k = 1.0, tip: P = [gogus[0] + 6 * k, gogus[1] - 66 * k];
   // alev: üç dilli eğrisel kontur (örneklenmiş Bézier; kalem ucu bu noktaları izler)
   const bz = (a: P, c1: P, c2: P, b: P, n = 8) => Array.from({ length: n }, (_, i) => { const t = (i + 1) / n, m = 1 - t; return [m * m * m * a[0] + 3 * m * m * t * c1[0] + 3 * m * t * t * c2[0] + t * t * t * b[0], m * m * m * a[1] + 3 * m * m * t * c1[1] + 3 * m * t * t * c2[1] + t * t * t * b[1]] as P; });
   const A0: P[] = [[-16, 0], [-26, -18], [-20, -34], [-14, -46], [-10, -30], [-2, -52], [6, -66], [10, -46], [14, -36], [18, -50], [24, -26], [16, 0]];
@@ -76,8 +77,11 @@ export const altSayfaCizim = (() => {
     ...bz(G[6], [G[6][0] + 6, G[6][1] + 14], G[7], G[8]), ...bz(G[8], [G[8][0] + 2, G[8][1] - 6], G[9], G[9], 4), ...bz(G[9], G[10], [G[11][0] + 4, G[11][1] - 10], G[11]), G[0]];
   const h2y = (x: number) => H2[0][1] + ((H2[1][1] - H2[0][1]) * (x - H2[0][0])) / (H2[1][0] - H2[0][0]);
   const h1y = (x: number) => H1[0][1] + ((H1[1][1] - H1[0][1]) * (x - H1[0][0])) / (H1[1][0] - H1[0][0]);
-  const alevCizgi: P[] = [tip]; for (let y = tip[1] - 8, i = 0; y > h2y(tip[0]) + 4; y -= 10, i++) alevCizgi.push([tip[0] + (i % 2 ? 7 : -7), y]);
-  [0, 70, 140, -70].forEach((dx) => { const x = tip[0] + dx; alevCizgi.push([x - 10, h1y(x) - 2], [x + 2, h1y(x) - 30], [x + 10, h1y(x) - 2]); });
+  // alev çizgisi: göğüsten kirişe dalgalı tek dil, çatı hattında TEK büyük alev (sıra sıra dişler "çelenk" okunuyordu)
+  const alevCizgi: P[] = [tip]; for (let y = tip[1] - 8, i = 0; y > h1y(tip[0]) + 2; y -= 12, i++) alevCizgi.push([tip[0] + (i % 2 ? 9 : -9), y]);
+  const r0: P = [tip[0], h1y(tip[0])];
+  ([[-26, 0], [-34, -30], [-16, -52], [-10, -38], [2, -78], [12, -44], [22, -60], [30, -24], [26, 0]] as P[]).forEach(([x, y]) => alevCizgi.push([r0[0] + x, r0[1] + y]));
+  void h2y;
   return { cati, catiL: cati.reduce((s, c) => s + uz(c.a), 0), ayak, u, gogus, alev, alevCizgi, H2, H3 };
 })();
 const kesitCiz = (strokes: { a: P[] }[], L: number) => { // uzunluk kadar çizilmiş kısım + uç noktası
@@ -135,8 +139,10 @@ const UstSayfa: React.FC<{ prm: Record<string, unknown>; p: number }> = ({ prm, 
         {kaya.map((A, i) => kesik(A, i).map((B, j) => B.length > 1 ? <polyline key={`${i}${j}`} points={pts(B)} fill="none" stroke={MY.murekkep} strokeWidth={i === 0 ? 3.5 : 2.5} strokeLinecap="round" /> : null))}
         {[[150, 440], [640, 515], [700, 585], [200, 585]].map(([x, y], g) => <g key={g} stroke={MY.murekkep} strokeWidth={2.5} strokeLinecap="round">{Array.from({ length: 8 }).map((_, i) => { const q = L(x + i * 7, y); return <line key={i} x1={q[0]} y1={q[1]} x2={q[0] + 7} y2={q[1] + 22} />; })}</g>)}
         {[[230, 425], [470, 418], [690, 432]].map(([x, y], i) => <g key={i} stroke={MY.murekkep} strokeWidth={2.5} strokeLinecap="round">{[-50, -25, 0, 25, 50].map((a) => { const q = L(x, y), r = (a * Math.PI) / 180; return <line key={a} x1={q[0]} y1={q[1]} x2={q[0] + Math.sin(r) * 20} y2={q[1] - Math.cos(r) * 22} />; })}</g>)}
-        {prm.magara !== false && <g><path d={agiz} fill={MY.lavis} opacity={0.75} stroke={MY.murekkep} strokeWidth={3.5} />
-          <ellipse cx={L(430, 525)[0]} cy={L(430, 525)[1]} rx={95} ry={30} fill={MY.cekirdek} />
+        {prm.magara !== false && <g><path d={agiz} fill={MY.lavis} opacity={0.6} stroke="none" />
+          <polygon points={pts([L(320, 528), L(350, 505), L(420, 498), L(470, 512), L(540, 515), L(555, 536), L(480, 552), L(400, 556), L(340, 548)])} fill={MY.cekirdek} />
+          <g stroke={MY.murekkep} strokeWidth={2.5} strokeLinecap="round">{Array.from({ length: 9 }).map((_, i) => { const q = L(300 + i * 28, 470 + (i % 3) * 4); return <line key={i} x1={q[0]} y1={q[1]} x2={q[0] + 8} y2={q[1] + 26} />; })}</g>
+          <polyline points={pts([L(270, 470), L(330, 452), L(410, 448), L(470, 455), L(560, 470), L(600, 500)])} fill="none" stroke={MY.murekkep} strokeWidth={3.5} strokeLinecap="round" />
           <g stroke={MY.murekkep} strokeWidth={2.5} opacity={0.8}>{Array.from({ length: 6 }).map((_, i) => <g key={i}><line x1={L(395 + i * 12, 512)[0]} y1={L(0, 512)[1]} x2={L(405 + i * 12, 540)[0]} y2={L(0, 540)[1]} /><line x1={L(405 + i * 12, 512)[0]} y1={L(0, 512)[1]} x2={L(395 + i * 12, 540)[0]} y2={L(0, 540)[1]} /></g>)}</g></g>}
         {Array.from({ length: 4 }).map((_, i) => <path key={i} d={akisYolu(suru, (i / 4) * 2 * Math.PI + 0.4, 760)} fill="none" stroke={MY.murekkep} strokeWidth={2.5} strokeDasharray="18 14" strokeDashoffset={-pe * 0.667} opacity={0.4} />)}
         <Suru A={suru} p={pe} />
@@ -179,7 +185,7 @@ const AltSayfa: React.FC<{ a: AltP; p: number }> = ({ a, p }) => {
         void l0;
         return <polyline key={s.i} points={pts(s.a)} fill="none" stroke={renk} strokeWidth={tarama ? 2.5 : 3.5} strokeLinecap="round" strokeLinejoin="round" />;
       })}
-      {yar > 0 && <Yarasa z={{ x: C.ayak[0], y: C.ayak[1], capa: "ayak", u: C.u, aci: 180, kanat: 0.95, stil: "murekkep", ciz: yar, gogusBos: a.gogus_bos && alv <= 0 }} />}
+      {yar > 0 && <Yarasa z={{ x: C.ayak[0], y: C.ayak[1], capa: "ayak", u: C.u, aci: 180, kanat: 0.7, stil: "murekkep", ciz: yar, gogusBos: a.gogus_bos && alv <= 0 }} />}
       {dmla > 0 && p <= (a.durak?.bit ?? 0) + 2 && <circle cx={C.gogus[0]} cy={C.gogus[1]} r={dmla} fill={MY.islak} />}
       {alv > 0 && <polygon points={pts(C.alev)} fill="none" stroke={MY.kirmizi} strokeWidth={3.5} strokeLinejoin="round" pathLength={1} strokeDasharray={`${alv} 1.02`} />}
       {alv >= 1 && <path d={`M${C.gogus[0] - 10},${C.gogus[1] - 6} Q${C.gogus[0]},${C.gogus[1] - 48} ${C.gogus[0] + 7},${C.gogus[1] - 9}`} fill="none" stroke={MY.kirmizi} strokeWidth={3} />}
@@ -193,28 +199,7 @@ const AltSayfa: React.FC<{ a: AltP; p: number }> = ({ a, p }) => {
 // Kalem tutan el: TEK PARÇA siluet (Paris dersi: iç dikiş/bant/tırnak yok; havada tek parmak yok). Yerel çerçeve: x kalem ekseni boyunca
 // uçtan geriye (cm), y eksene dik (+ = kâğıda doğru/sağ-alt). İşaret parmağı kalemin üstünde, başparmak karşı yanda, diğerleri avuca kıvrık;
 // bilek → manşet → kol kadraj dışına. Ölçek: bilekten parmak ucuna ≈ 16 cm (gerçek 18–19; insert'te çizimi örtmesin diye ×0.85, raporda).
-const EL_YOL = "M2.2,-0.9 C2.0,-1.6 3.4,-1.9 4.6,-1.7 L7.6,-1.6 C8.6,-2.4 10.6,-3.0 12.4,-2.6 C14.6,-2.2 16.2,-1.0 17.4,0.2 L17.6,5.6 C15.6,6.6 13.0,6.8 11.2,6.0 C9.6,5.6 8.2,5.0 7.0,4.6 C6.0,4.9 5.0,4.6 4.6,3.9 C4.0,3.6 3.6,2.9 3.9,2.3 C3.0,2.1 2.5,1.5 2.7,0.9 C2.2,0.6 2.0,-0.2 2.2,-0.9 Z";
-const EL_GOLGE = "M7.0,4.6 C8.2,5.0 9.6,5.6 11.2,6.0 C13.0,6.8 15.6,6.6 17.6,5.6 L17.5,3.6 C15.0,4.6 12.0,4.4 9.6,3.6 C8.6,3.4 7.6,3.6 7.0,4.6 Z M3.9,2.3 C4.6,2.7 5.4,2.9 6.2,2.6 L6.0,3.4 C5.4,3.7 4.6,3.6 4.6,3.9 C4.0,3.6 3.6,2.9 3.9,2.3 Z";
-const EL_BAS = "M3.2,-1.1 C2.9,-1.9 3.6,-2.6 4.6,-2.6 C6.4,-2.7 8.6,-3.2 10.4,-3.4 L11.2,-2.4 C9.4,-1.9 7.2,-1.2 5.0,-0.8 C4.2,-0.6 3.4,-0.6 3.2,-1.1 Z"; // başparmak (kalemin karşı yanı)
-const EL_ISARET = "M2.2,-0.4 C2.2,-1.0 2.8,-1.2 3.6,-1.0 L8.4,-0.4 L8.6,1.0 L3.4,1.0 C2.6,1.0 2.2,0.4 2.2,-0.4 Z"; // işaret parmağı kalemin üstünde
-const EL_KENAR = "M2.2,-0.9 C2.0,-1.6 3.4,-1.9 4.6,-1.7 L7.6,-1.6 C8.6,-2.4 10.6,-3.0 12.4,-2.6 C14.6,-2.2 16.2,-1.0 17.4,0.2";
-const ElSiluet: React.FC<{ tip: KolTip; golge?: string }> = ({ tip, golge }) => {
-  const K = KOL_PALET[tip] ?? KOL_PALET.adams;
-  if (golge) return <g fill={golge}><path d={EL_YOL} /><path d={EL_BAS} /><path d="M17.2,-0.6 L30,-1.5 L30,8 L17.4,6.2 Z" /></g>;
-  return (
-    <g strokeLinejoin="round">
-      <path d="M18.6,-0.9 L30,-1.6 L30,8.2 L18.8,6.4 Z" fill={K.kol} stroke={K.kolGolge} strokeWidth={0.09} />
-      <path d="M18.6,-0.9 L30,-1.6 L30,0.6 L18.7,1.0 Z" fill={K.kolIsik} />
-      <path d="M16.9,-0.5 L19.0,-0.9 L19.2,6.5 L17.3,6.0 Z" fill={K.manset} stroke={K.mansetKir} strokeWidth={0.08} />
-      <path d={EL_YOL} fill={K.ten} stroke={K.tenGolge} strokeWidth={0.09} />
-      <path d={EL_GOLGE} fill={K.tenGolge} opacity={0.85} />
-      <path d={EL_BAS} fill={K.ten} stroke={K.tenGolge} strokeWidth={0.09} />
-      <path d={EL_ISARET} fill={K.ten} stroke={K.tenGolge} strokeWidth={0.09} />
-      <path d={EL_KENAR} fill="none" stroke="#e8b99a" strokeWidth={0.12} strokeLinecap="round" />
-    </g>
-  );
-};
-const KALEM_ACI = 50, KALEM_L = 14 * PXCM, EL_OLCEK = 0.85;
+const KALEM_ACI = 15, KALEM_L = 14 * PXCM, EL_OLCEK = 0.85;
 const Kalem: React.FC<{ uc: P; h: number; tip: KolTip }> = ({ uc, h, tip }) => {
   const v: P = [Math.cos((KALEM_ACI * Math.PI) / 180), Math.sin((KALEM_ACI * Math.PI) / 180)], n: P = [-v[1], v[0]];
   const at = (L: number, w: number, hh: number): P => { const g = 0.71 * hh * PXCM; return [uc[0] + v[0] * L + n[0] * w + g, uc[1] + v[1] * L + n[1] * w + g]; };
@@ -229,10 +214,10 @@ const Kalem: React.FC<{ uc: P; h: number; tip: KolTip }> = ({ uc, h, tip }) => {
       <g transform={Telx(h + 2.6)} opacity={0.55}><ElSiluet tip={tip} golge={MY.golge} /></g>
       <polygon points={pts(uc3(sifir))} fill={MY.uc} stroke={MY.murekkep} strokeWidth={2.5} strokeLinejoin="round" />
       <polygon points={pts(govde(sifir))} fill={MY.kalem} stroke="#1f2129" strokeWidth={3} strokeLinejoin="round" />
-      <g transform={Telx(0)}><ElSiluet tip={tip} /></g>
+      <g transform={Telx(0)}><ElSiluet tip={tip} isikY={-0.5} /></g>
       {/* işaret parmağının üstünden çıkan arka gövde (kalem elin üstünde yatar) */}
-      <polygon points={pts(govde(sifir, 8.2 * PXCM * EL_OLCEK))} fill={MY.kalem} stroke="#1f2129" strokeWidth={3} strokeLinejoin="round" />
-      <line x1={at(8.4 * PXCM * EL_OLCEK, -9, 0)[0]} y1={at(8.4 * PXCM * EL_OLCEK, -9, 0)[1]} x2={at(KALEM_L - 10, -11, 0)[0]} y2={at(KALEM_L - 10, -11, 0)[1]} stroke={MY.kalemIsik} strokeWidth={4} strokeLinecap="round" />
+      <polygon points={pts(govde(sifir, EL_CIKIS * PXCM * EL_OLCEK))} fill={MY.kalem} stroke="#1f2129" strokeWidth={3} strokeLinejoin="round" />
+      <line x1={at((EL_CIKIS + 0.3) * PXCM * EL_OLCEK, -9, 0)[0]} y1={at((EL_CIKIS + 0.3) * PXCM * EL_OLCEK, -9, 0)[1]} x2={at(KALEM_L - 10, -11, 0)[0]} y2={at(KALEM_L - 10, -11, 0)[1]} stroke={MY.kalemIsik} strokeWidth={4} strokeLinecap="round" />
     </g>
   );
 };

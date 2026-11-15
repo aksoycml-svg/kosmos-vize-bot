@@ -61,26 +61,26 @@ const kanatYol = (kanat: number, faz: number) => {
   const K = kanatNoktalari(kanat, faz);
   return `M${f(K.omuz)} L${f(K.dirsek)} L${f(K.bilek)} L${f(K.d3)} ${tarak(K.d3, K.d4, K.bilek)} ${tarak(K.d4, K.d5, K.bilek)} ${tarak(K.d5, K.ayak, K.bilek, 0.22)} L${f(K.kalca)} Z`;
 };
-const UROP = "M0.15,0.3 L0.11,0.52 Q0.07,0.8 0,0.92 Q-0.07,0.8 -0.11,0.52 L-0.15,0.3 Z";
+const UROP0 = "M0.15,0.3 L0.11,0.52 Q0.07,0.8 0,0.92 Q-0.07,0.8 -0.11,0.52 L-0.15,0.3 Z";
+// uropatagium: açıkta uç 0.92; katlıda (kanat → 1) uç karna kıvrılır (0.40), ayak hattı 0.52'yi geçmez → tüneğe batmaz
+const urop = (kanat: number) => { const k = Math.min(1, Math.max(0, kanat)); if (k < 0.01) return UROP0; const u = 0.92 - 0.52 * k, c = 0.8 - 0.36 * k;
+  return `M0.15,0.3 L0.11,${0.52 - 0.04 * k} Q0.07,${c} 0,${u} Q-0.07,${c} -0.11,${0.52 - 0.04 * k} L-0.15,0.3 Z`; };
 const GOVDE = "M0,-0.3 C0.2,-0.3 0.21,0.12 0.17,0.3 C0.12,0.46 -0.12,0.46 -0.17,0.3 C-0.21,0.12 -0.2,-0.3 0,-0.3 Z";
-const kulak = (s: number) => `M${0.02 * s},-0.5 C${0.03 * s},-0.74 ${0.24 * s},-0.76 ${0.22 * s},-0.5 C${0.2 * s},-0.42 ${0.1 * s},-0.4 ${0.02 * s},-0.5 Z`; // geniş yuvarlak, önde 0.04 aralık
+const kulak = (s: number) => `M${0.02 * s},-0.5 C${0.0 * s},-0.66 ${0.1 * s},-0.76 ${0.26 * s},-0.7 C${0.24 * s},-0.6 ${0.2 * s},-0.47 ${0.1 * s},-0.43 Z`; // öne yatık, uçta hafif sivri; önde 0.04 aralık
 
 // Kapsül (tasarım §2): silindir boy 0.55 × çap 0.20 (×1.5 stilize), göğüste gövde eksenine paralel; kapak + halka baş tarafında
 export const Kapsul: React.FC<{ durum: KapsulDurum; nabiz?: number; w: number }> = ({ durum, nabiz = 0, w }) => {
   if (durum === "yok") return null;
-  const L = 0.44, R = 0.08, y0 = -0.2, y1 = y0 + L; // tasarım ×1.5 → ×1.2 (kalibrasyon: ×1.5 kapsül yarasayı "fener" okutuyordu)
-  const kenar = 1.6 * w;
+  // kalibrasyon 2: jel şeridi + parlama hilali + gri kapak "ampul + duy" okutuyordu → düz mat silindir, L 0.30, uç halkası ince
+  const L = 0.3, R = 0.065, y0 = -0.12;
   const n = durum === "koz" || durum === "kivilcim" ? Math.max(0, Math.min(1, nabiz)) : 0;
   return (
     <g>
-      {n > 0 && <circle cx={0} cy={y0 + 0.05} r={0.1 + 0.07 * n} fill={YR.koz} opacity={0.3 * n} />}
-      <rect x={-R} y={y0} width={2 * R} height={L} rx={R} fill={YR.amber} stroke={YR.amberKontur} strokeWidth={kenar} />
-      <rect x={-R * 0.45} y={y0 + 0.12} width={R * 0.9} height={L - 0.2} rx={R * 0.45} fill={YR.jel} opacity={0.75} />
-      <path d={`M${-R * 0.7},${y0 + 0.16} Q${-R * 0.75},${y0 + 0.3} ${-R * 0.5},${y0 + 0.4}`} stroke={YR.hilal} strokeWidth={0.035} fill="none" strokeLinecap="round" />
-      <circle cx={0.04} cy={y1 - 0.12} r={0.022} fill="#cdbf9a" /> {/* yapıştırıcı damlası (soluk, amber değil) */}
-      <rect x={-R * 1.02} y={y0 - 0.02} width={2 * R * 1.02} height={0.07} rx={0.02} fill={YR.kapak} stroke={YR.kontur} strokeWidth={kenar * 0.8} />
-      <rect x={-R * 1.06} y={y0 + 0.045} width={2 * R * 1.06} height={0.022} fill={n > 0 ? YR.koz : YR.halka} opacity={n > 0 ? 0.55 + 0.45 * n : 1} />
-      {durum === "kivilcim" && <circle cx={0} cy={y0 - 0.05} r={0.05} fill={YR.hilal} />}
+      <rect x={-R} y={y0} width={2 * R} height={L} rx={R} fill={YR.amber} stroke={YR.amberKontur} strokeWidth={1.4 * w} />
+      <rect x={-R} y={y0 + L * 0.55} width={R * 0.7} height={L * 0.35} fill={YR.jel} opacity={0.35} />
+      <rect x={-R * 1.02} y={y0 + 0.01} width={2 * R * 1.02} height={0.035} fill={n > 0 ? YR.koz : YR.amberKontur} opacity={n > 0 ? 0.5 + 0.5 * n : 0.8} />
+      {n > 0 && <circle cx={0} cy={y0 + 0.03} r={0.05 + 0.05 * n} fill={YR.koz} opacity={0.35 * n} />}
+      {durum === "kivilcim" && <circle cx={0} cy={y0 - 0.02} r={0.035} fill={YR.hilal} />}
     </g>
   );
 };
@@ -102,9 +102,10 @@ export const Yarasa: React.FC<{ z: YarasaPoz }> = ({ z }) => {
   const sade = acikl < 60;
   const kanatD = kanatYol(kanat, faz);
   const nef = 1 + 0.02 * (z.nefes ?? 0);
-  const kanatlar = <><path d={kanatD} /><path d={kanatD} transform="scale(-1,1)" />{kanat > 0.5 && <ellipse cx={0} cy={0.06} rx={0.31 * (kanat - 0.5) * 2} ry={0.52} />}</>;
+  const kanatlar = <><path d={kanatD} /><path d={kanatD} transform="scale(-1,1)" />{kanat > 0.5 && <ellipse cx={0} cy={0.02} rx={0.31 * (kanat - 0.5) * 2} ry={0.46} />}</>;
+  const UROP = urop(kanat);
   const govde = <><path d={UROP} /><path d={GOVDE} transform={`scale(${nef},1)`} /><circle cx={0} cy={-0.4} r={0.17} /><path d={kulak(1)} /><path d={kulak(-1)} /></>;
-  const kuyrukUc = 1.2 - 0.62 * Math.min(1, kanat); // katlıda serbest uç uropatagiuma toplanır (asılıyken tüneğe batmaz)
+  const kuyrukUc = 1.2 - 0.82 * Math.min(1, kanat); // katlıda serbest uç uropatagiuma toplanır (asılıyken tüneğe batmaz)
   const kuyruk = <line x1={0} y1={0.4} x2={0} y2={kuyrukUc} />;
 
   if (stil === "murekkep") {
@@ -114,13 +115,14 @@ export const Yarasa: React.FC<{ z: YarasaPoz }> = ({ z }) => {
     // birleşim konturu: parçalar 2× kalın mürekkeple çizilir, üstüne kâğıt dolgu → yalnız DIŞ kontur kalır (iç parça hatları yok)
     const st = { stroke: YR.murekkep, strokeWidth: 7 * w, strokeLinejoin: "round" as const, strokeLinecap: "round" as const, pathLength: 1, strokeDasharray: `${c} 1.02`, fill: "none" };
     const parca = (q: Record<string, unknown>) => <>
-      <path d={kanatD} {...q} /><path d={kanatD} transform="scale(-1,1)" {...q} />{kanat > 0.5 && <ellipse cx={0} cy={0.06} rx={0.31 * (kanat - 0.5) * 2} ry={0.52} {...q} />}
-      <path d={UROP} {...q} /><path d={GOVDE} {...q} /><circle cx={0} cy={-0.4} r={0.17} {...q} /><path d={kulak(1)} {...q} /><path d={kulak(-1)} {...q} /></>;
+      <path d={kanatD} {...q} /><path d={kanatD} transform="scale(-1,1)" {...q} />{kanat > 0.5 && <ellipse cx={0} cy={0.02} rx={0.31 * (kanat - 0.5) * 2} ry={0.46} {...q} />}
+      <path d={urop(kanat)} {...q} /><path d={GOVDE} {...q} /><circle cx={0} cy={-0.4} r={0.17} {...q} /><path d={kulak(1)} {...q} /><path d={kulak(-1)} {...q} /></>;
     return (
       <g transform={T}>
         {parca(st)}
-        <line x1={0} y1={0.4} x2={0} y2={1.2 - 0.62 * Math.min(1, kanat)} {...st} strokeWidth={3.5 * w} />
-        {parca({ fill: "#e6d8b9", stroke: "none" })}
+        <line x1={0} y1={0.4} x2={0} y2={1.2 - 0.82 * Math.min(1, kanat)} {...st} strokeWidth={3.5 * w} />
+        {/* kâğıt dolgu ilerlemeyle ayak noktasına doğru büzülür (geri çizimde birden kaybolmaz) */}
+        <g transform={`translate(0,0.52) scale(${Math.min(1, c * 2)}) translate(0,-0.52)`}>{parca({ fill: "#e6d8b9", stroke: "none" })}</g>
         {c >= 1 && <g stroke={YR.murekkep} strokeWidth={2.5 * w} strokeLinecap="round" fill="none">
           {kanat > 0.5 && <path d="M-0.27,-0.2 Q-0.31,0.1 -0.19,0.46 M0.27,-0.2 Q0.31,0.1 0.19,0.46" />}
           <path d="M0.06,-0.44 Q0.1,-0.6 0.16,-0.56 M-0.06,-0.44 Q-0.1,-0.6 -0.16,-0.56" />
@@ -131,6 +133,8 @@ export const Yarasa: React.FC<{ z: YarasaPoz }> = ({ z }) => {
     );
   }
 
+  // ışık ekranda sol-üst (lamba/güneş): yerel −x ekranda sola düşüyorsa 1, değilse (aci ≈ 180) −1 → ayna
+  const isikYan = Math.cos((aci * Math.PI) / 180) >= 0 ? 1 : -1;
   const zar = stil === "gercek" ? (z.arkaIsik ? YR.zarArka : YR.zar) : renk;
   const kont = stil === "gercek" && !sade ? { stroke: YR.kontur, strokeWidth: 2.5 * w, strokeLinejoin: "round" as const } : {};
   return (
@@ -144,16 +148,19 @@ export const Yarasa: React.FC<{ z: YarasaPoz }> = ({ z }) => {
       })()}
       <g stroke={stil === "gercek" ? YR.kontur : renk} strokeWidth={Math.max(0.04, 2.2 * w)} strokeLinecap="round">{kuyruk}</g>
       <g fill={stil === "gercek" ? YR.govde : renk} {...kont}>{govde}</g>
+      {!sade && kanat > 0.5 && (() => { const K = kanatNoktalari(kanat, faz); return <g fill="none" stroke={stil === "gercek" ? YR.kontur : renk} strokeWidth={2.4 * w} strokeLinecap="round">{[1, -1].map((s) => <path key={s} d={`M${s * K.bilek[0]},${K.bilek[1]} q${s * 0.07},${-0.02} ${s * 0.08},${-0.08}`} />)}</g>; })()}
       {stil === "gercek" && !sade && kanat > 0.7 && <path d="M-0.3,-0.22 Q-0.35,0.12 -0.2,0.5 M0.3,-0.22 Q0.35,0.12 0.2,0.5" fill="none" stroke={YR.govdeGolge} strokeWidth={3 * w} strokeLinecap="round" />}
-      {stil === "gercek" && !sade && kanat > 0.7 && <path d="M-0.3,-0.22 Q-0.35,0.12 -0.2,0.5" transform={`translate(${-1.5 * w},0)`} fill="none" stroke={YR.kenar} strokeWidth={1.6 * w} strokeLinecap="round" opacity={0.8} />}
-      {stil === "gercek" && <path d={GOVDE} fill={YR.govdeGolge} transform="translate(0.07,0) scale(0.62,0.94)" opacity={0.75} />}
+      {stil === "gercek" && !sade && kanat > 0.7 && <path d="M-0.3,-0.22 Q-0.35,0.12 -0.2,0.5" transform={`scale(${isikYan},1) translate(${-1.5 * w},0)`} fill="none" stroke={YR.kenar} strokeWidth={1.6 * w} strokeLinecap="round" opacity={0.8} />}
+      {stil === "gercek" && <path d={GOVDE} fill={YR.govdeGolge} transform={`translate(${0.07 * isikYan * -1},0) scale(0.62,0.94)`} opacity={0.75} />}
       {stil === "gercek" && !sade && <>
         <path d={kulak(1)} fill={YR.kulakIc} transform="translate(0.03,0.04) scale(0.6)" />
         <path d={kulak(-1)} fill={YR.kulakIc} transform="translate(-0.03,0.04) scale(0.6)" />
-        <g stroke={YR.kil} strokeWidth={1.2 * w} strokeLinecap="round">{[-1, 1].map((s) => [0, 1, 2, 3].map((i) => <line key={`${s}${i}`} x1={s * (0.08 + i * 0.015)} y1={0.5} x2={s * (0.06 + i * 0.03)} y2={0.6} />))}</g>
-        {(z.basDon ?? 0) !== 0 || z.u > 120 ? <g transform={`rotate(${z.basDon ?? 0} 0 -0.4)`}>
-          <circle cx={-0.06} cy={-0.42} r={0.022} fill="#1c1915" /><circle cx={0.06} cy={-0.42} r={0.022} fill="#1c1915" />
-          <circle cx={-0.066} cy={-0.428} r={0.007} fill="#e6d8b9" /><circle cx={0.054} cy={-0.428} r={0.007} fill="#e6d8b9" />
+        <g stroke={YR.kil} strokeWidth={1.2 * w} strokeLinecap="round">{[-1, 1].map((s) => [0, 1, 2].map((i) => <line key={`${s}${i}`} x1={s * (0.08 + i * 0.02)} y1={0.44} x2={s * (0.07 + i * 0.03)} y2={0.51} />))}</g>
+        <g fill="none" stroke={YR.kontur} strokeWidth={2 * w} strokeLinecap="round">{[-1, 1].map((s) => <path key={s} d={`M${s * 0.06},0.47 Q${s * 0.11},0.53 ${s * 0.15},0.49`} />)}</g>
+        {(z.basDon ?? 0) !== 0 || z.u > 50 ? <g transform={`rotate(${z.basDon ?? 0} 0 -0.4)`}>
+          <ellipse cx={0} cy={-0.33} rx={0.085} ry={0.06} fill={YR.kulakIc} /><path d="M-0.025,-0.355 L0.025,-0.355 L0,-0.325 Z" fill="#1c1915" />
+          <circle cx={-0.065} cy={-0.43} r={0.03} fill="#1c1915" /><circle cx={0.065} cy={-0.43} r={0.03} fill="#1c1915" />
+          <circle cx={-0.072} cy={-0.44} r={Math.max(0.011, 0.9 * w)} fill="#e6d8b9" /><circle cx={0.058} cy={-0.44} r={Math.max(0.011, 0.9 * w)} fill="#e6d8b9" />
           <path d="M-0.05,-0.31 Q0,-0.28 0.05,-0.31 M-0.04,-0.34 Q0,-0.32 0.04,-0.34 M-0.03,-0.365 Q0,-0.355 0.03,-0.365" stroke={YR.govdeGolge} strokeWidth={1.2 * w} fill="none" />
         </g> : null}
       </>}
