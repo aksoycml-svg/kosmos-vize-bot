@@ -72,21 +72,36 @@ export const siluet40Yol = (kod: Siluet40Kod, o: { oturan?: number; govdeDon?: b
   return { yol, basYol, bacak, etekY: O.etekY, kalca, omuzY, basM: by, omuz: [t * (omuzY - kalca) + w * 0.85, omuzY - 0.05] as [number, number] };
 };
 
-export const SiluetFigur40: React.FC<{ kod: Siluet40Kod; ayak: P; pxm: number; renk: string; kenar?: { renk: string; dx: number; dy?: number }; yon?: 1 | -1; basYon?: 1 | -1; oturan?: number; kirp?: number; golge?: boolean; donus?: number; profil?: boolean; adim?: number }> = ({ kod, ayak, pxm, renk, kenar, yon = 1, basYon, oturan, kirp, golge = true, donus = 0, profil, adim }) => {
+// v3: opak iki ton (ışık yanı renk, gölge yanı %35 koyu, net terminatör) + sıcak kenar ışığı; egil = gövde kalçadan öne eğilir (°, bacaklar dik);
+// isikX: ışığın geldiği ekran yönü (−1 sol, +1 sağ) → gölge yanı karşıda. adim: yürüme fazı → bacak makası.
+const koyu = (h: string, k: number) => "#" + [1, 3, 5].map((i) => Math.round(parseInt(h.slice(i, i + 2), 16) * (1 - k)).toString(16).padStart(2, "0")).join("");
+export const SiluetFigur40: React.FC<{ kod: Siluet40Kod; ayak: P; pxm: number; renk: string; kenar?: { renk: string; dx: number; dy?: number }; yon?: 1 | -1; basYon?: 1 | -1; oturan?: number; kirp?: number; golge?: boolean; donus?: number; profil?: boolean; adim?: number; egil?: number; isikX?: 1 | -1 }> = ({ kod, ayak, pxm, renk, kenar, yon = 1, basYon, oturan, kirp, golge = true, donus = 0, profil, adim, egil = 0, isikX }) => {
   const id = "s40" + useId().replace(/:/g, "");
-  // adim: yürüme fazı (radyan) → bacaklar kalçadan makas (±22°), gövde 1 cm iner-kalkar
-  const { yol, basYol, bacak, etekY } = siluet40Yol(kod, { oturan, profil, ayriBacak: adim !== undefined });
+  const ayri = adim !== undefined || egil !== 0;
+  const { yol, basYol, bacak, etekY, kalca } = siluet40Yol(kod, { oturan, profil, ayriBacak: ayri });
   const ba = adim !== undefined ? 22 * Math.sin(adim) : 0;
+  const zip = adim !== undefined ? Math.abs(Math.sin(adim)) * 0.012 : 0; // adımda kalça hafif iner
   const tr = `translate(${ayak[0]} ${ayak[1]}) scale(${pxm * yon} ${pxm}) rotate(${donus})`;
-  const trB = `translate(${ayak[0]} ${ayak[1]}) scale(${pxm * (basYon ?? yon)} ${pxm}) rotate(${donus})`;
+  const govT = `translate(0 ${zip}) rotate(${egil} 0 ${-kalca})`;
+  const trB = `translate(${ayak[0]} ${ayak[1]}) scale(${pxm * (basYon ?? yon)} ${pxm}) rotate(${donus}) ${govT}`;
+  const golgeTon = koyu(renk, 0.38);
+  // gölge yanı: yerel x işareti (ışık sağdan → ekran solu gölge)
+  const gx = isikX !== undefined ? -isikX * yon : 0;
+  const govdeler = (fill: string) => <g fill={fill}>
+    {ayri && bacak.map((b, i) => <path key={i} d={b} transform={`${tr} rotate(${i ? ba : -ba} 0 ${-etekY})`} />)}
+    <path d={yol} transform={`${tr} ${govT}`} />
+    <path d={basYol} transform={trB} />
+  </g>;
   return (
     <g clipPath={kirp !== undefined ? `url(#${id})` : undefined}>
-      {kirp !== undefined && <defs><clipPath id={id}><rect x={-5000} y={-5000} width={10000} height={kirp + 5000} /></clipPath></defs>}
-      {golge && oturan === undefined && <ellipse cx={ayak[0]} cy={ayak[1]} rx={0.3 * pxm} ry={0.05 * pxm} fill="#14120f" opacity={0.5} />}
-      {kenar && <g transform={`translate(${kenar.dx} ${kenar.dy ?? 0})`} fill={kenar.renk}><path d={yol} transform={tr} /><path d={basYol} transform={trB} /></g>}
-      {adim !== undefined && bacak.map((b, i) => <path key={i} d={b} transform={`${tr} rotate(${i ? ba : -ba} 0 ${-etekY})`} fill={renk} />)}
-      <path d={yol} transform={tr} fill={renk} />
-      <path d={basYol} transform={trB} fill={renk} />
+      <defs>
+        {kirp !== undefined && <clipPath id={id}><rect x={-5000} y={-5000} width={10000} height={kirp + 5000} /></clipPath>}
+        {gx !== 0 && <clipPath id={`${id}g`}><rect x={gx < 0 ? -3 : -0.015} y={-3} width={3.015} height={3.2} transform={tr} /></clipPath>}
+      </defs>
+      {golge && oturan === undefined && <ellipse cx={ayak[0]} cy={ayak[1]} rx={0.26 * pxm} ry={0.045 * pxm} fill="#14120f" opacity={0.6} />}
+      {kenar && <g transform={`translate(${kenar.dx} ${kenar.dy ?? 0})`}>{govdeler(kenar.renk)}</g>}
+      {govdeler(renk)}
+      {gx !== 0 && <g clipPath={`url(#${id}g)`}>{govdeler(golgeTon)}</g>}
     </g>
   );
 };

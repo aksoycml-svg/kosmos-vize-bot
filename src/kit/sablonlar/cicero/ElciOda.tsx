@@ -8,7 +8,7 @@
 // Lamba: lamba {u, z, boyun: Sayi (0 dik → 1 yatağa bükük), yanik: Sayi (0..1 huzme kaynaktan uzar/çekilir), kare}.
 // Seed sabit (DOKU_SEED.elciOda 181): parke, perde kıvrımı, örtü kıvrımı dünyaya bağlı — kameraya/kareye bağlı rastgelelik yok.
 import React from "react";
-import { Isik } from "../../../doku/Isik";
+import { Golge, Isik } from "../../../doku/Isik";
 import { RenkKaydi, Tarama } from "../../../doku/Tarama";
 import { P, poly, rnd } from "../../../doku/sabitler";
 import { elDunya, govdeDunya } from "../../../rig/kinematik";
@@ -31,7 +31,8 @@ export const KUKLA40_M = 1.7 / 506;
 export const ELCI_YER: Yerlesim = { yer: (z, u) => ({ x: X(u, z), y: Y(0, z), s: (F * KUKLA40_M) / z }), faz: (dz, du) => Math.hypot(dz, du) * 4.5 };
 // yüzsüz siluet karakterleri (Kukla değil): kim → kod + renk
 export const SILUET40_KAYIT: Record<string, { kod: Siluet40Kod; renk: string }> = {
-  elci: { kod: "yasli", renk: CIC.elci }, moyzisch: { kod: "sapkali", renk: CIC.moyzisch }, yetkili: { kod: "uzun-ince", renk: CIC.yetkili }, sekreter: { kod: "topuzlu", renk: CIC.sekreter },
+  // v3: opak koyu (soluk lila "hayalet" okunuyordu); gölge yanı SiluetFigur40 içinde %38 koyu, ışık yanı kenar ışığı
+  elci: { kod: "yasli", renk: "#3a3446" }, moyzisch: { kod: "sapkali", renk: CIC.moyzisch }, yetkili: { kod: "uzun-ince", renk: "#36303e" }, sekreter: { kod: "topuzlu", renk: CIC.sekreter },
 };
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -39,7 +40,8 @@ const elips = (cu: number, cz: number, ru: number, rz: number, h: number, n = 40
 const d = (pts: P[]) => `M ${poly(pts).split(" ").join(" L ")} Z`;
 
 type LambaP = { u?: number; z?: number; boyun?: Sayi; yanik?: Sayi; kare?: number[]; filaman?: [number, number] };
-type KapiP = { ayak?: { gel: number; dur: number; git: number; don: number } | null };
+// acik: Sayi 0 kapalı … 1 açık (kanat banyoya döner, menteşe sağda; açıklıkta aydınlık banyo + zemine ışık kaması) · serit: şeridin yandığı kare (önce banyo karanlık)
+type KapiP = { ayak?: { gel: number; dur: number; git: number; don: number } | null; acik?: Sayi; kare?: number[]; serit?: number };
 // poz: Kukla poz anahtarları (karakterPoz'un ÜSTÜNE, kare ile) — yon: basamaklı yön (1/−1; dönüş adım ortasında, kukla 3/4 aynalanır)
 type PozAnahtar = { kim: string; kare: number[]; yon?: (1 | -1)[]; agiz?: string[] } & Partial<Record<"shF" | "elF" | "shB" | "elB" | "lean" | "headTilt" | "lookX" | "lookY" | "thighF" | "kneeF" | "thighB" | "kneeB" | "footF" | "footB" | "browF" | "browB" | "blinkF" | "blinkB", number[]>>;
 
@@ -126,6 +128,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   for (const q of kar) if (q.d) { kilit.push(...karakterKilit(q.c.kim, q.d, k)); for (const [ad, lp] of [["baş üstü", [20, -540]], ["sırt", [-60, -360]], ["ön", [70, -330]]] as [string, P][]) kilit.push({ ad: `${q.c.kim} ${ad}`, p: ekranNokta(k, govdeDunya(q.d.pz, lp)), tur: "yuz" }); } else kilit.push({ ad: `${q.c.kim} ayak`, p: ekranNokta(k, Q(q.u, 0, q.z)), tur: "ayak" });
   // ---- kapı altı (ikincil kaynak) ----
   const KP = param<KapiP>(plan, "kapi", {});
+  const kapiA = deger(KP.acik ?? 0, KP.kare, p), seritVar = p >= (KP.serit ?? -1e9) || kapiA > 0.02;
   const ay = KP.ayak;
   const ayakL = ay ? (p < ay.gel ? 0 : p < ay.dur ? (p - ay.gel) / (ay.dur - ay.gel) : p < ay.git ? 1 : p < ay.don ? 1 - (p - ay.git) / (ay.don - ay.git) : 0) : 0;
   const ayakVar = !!ay && p >= ay.gel && p < ay.don + 2;
@@ -273,10 +276,21 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       {tutulan}
       <GravurEl bilek={kol.ileri(-0.02 * E)} aci={aci} E={E} poz={GRAVUR_POZ[sk.poz ?? "gevsek"]} palet={pal} isik={[-0.6, -0.8]} taramaAci={TH} katman="on" onMaske /></g>;
   };
+  const kapiIci: React.ReactNode[] = [];
   // karakterler
   for (const q of kar) {
     if (q.sil) { const pxm = F / q.z; const fAlan = TP?.fincan && TP.fincan.alan === q.c.kim && p >= TP.fincan.kare;
-      nesneler.push({ z: q.z, el: <g key={`s${q.i}`}><SiluetFigur40 kod={q.sil.kod} ayak={Q(q.u, 0, q.z)} pxm={pxm} renk={q.sil.renk} yon={q.c.yon ?? 1} kenar={{ renk: isik.renk, dx: isikAd === "lamba" ? -2 : 2 }} />
+      // yürüme: yuru jesti aralığında katedilen yol (m) → bacak fazı (yarım adım 0.35 m); egil: poz.lean (gövde kalçadan)
+      const yj = (q.c.jestler ?? []).find((j) => j.ad === "yuru");
+      let yolM = 0; if (yj && p > yj.bas) { let u0 = deger(q.c.u, q.c.kare, yj.bas), z0 = deger(q.c.z, q.c.kare, yj.bas); for (let t = yj.bas + 1; t <= Math.min(p, yj.bit); t++) { const u1 = deger(q.c.u, q.c.kare, t), z1 = deger(q.c.z, q.c.kare, t); yolM += Math.hypot(u1 - u0, z1 - z0); u0 = u1; z0 = z1; } }
+      const adim = yj && p >= yj.bas && p <= yj.bit + 6 ? (yolM / 0.35) * Math.PI * (p <= yj.bit ? 1 : 1) : undefined;
+      const egP = pozA.find((x) => x.kim === q.c.kim && x.lean), egil = egP ? deger(egP.lean!, egP.kare, p) : 0;
+      const isikX: 1 | -1 = isik.tip === "nokta" ? (isik.zemin[0] < X(q.u, q.z) ? -1 : 1) : isik.yon[0] > 0 ? -1 : 1;
+      const ay = Q(q.u, 0, q.z), H = siluet40Yol(q.sil.kod).omuzY + 0.3;
+      const fig = <g><g clipPath="url(#eoZemin)"><Golge isik={isik} ayak={ay} h={H * pxm * 0.9} genislik={0.32 * pxm} alfa={0.5} stil="gravur" seed={SEED + 70 + q.i} /></g>
+        <SiluetFigur40 kod={q.sil.kod} ayak={ay} pxm={pxm} renk={q.sil.renk} yon={q.c.yon ?? 1} adim={adim} egil={egil} isikX={isikX} kenar={{ renk: isik.renk, dx: isikX * 3, dy: -1 }} /></g>;
+      if (q.z > ARKA - 0.06) { kapiIci.push(fig); continue; } // kapı açıklığının ardında (banyoda): yalnız açıklıktan görünür
+      nesneler.push({ z: q.z, el: <g key={`s${q.i}`}>{fig}
         {SK.filter((x) => x.kim === q.c.kim).map((x) => skCiz(x, q, fAlan ? (uc) => <g transform={`translate(${uc[0]} ${uc[1] + 0.05 * pxm})`}><Fincan W={0.08 * 1.3 * pxm} /></g> : undefined))}</g> }); continue; }
     const dd = q.d!;
     const mk = makineP && makineP.kim === q.c.kim && p >= makineP.bas && p < makineP.bit;
@@ -375,11 +389,17 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           {/* banyo kapısı: söve (iç yanak taramalı), kanat iki pano, yuvarlak kol */}
           {(() => { const s = F / ARKA, sv = 0.08 * s, [ka, kb] = [kapiK[0], kapiK[2]], kr = isikAd === "gun" ? CIC.kapiGun : CIC.kapiGece; return <g>
             <path fillRule="evenodd" d={`M ${ka[0] - sv} ${ka[1] - sv} H ${kb[0] + sv} V ${kb[1]} H ${ka[0] - sv} Z M ${ka[0]} ${ka[1]} H ${kb[0]} V ${kb[1]} H ${ka[0]} Z`} fill="#3a3448" stroke={mur} strokeWidth={2} />
-            <rect x={ka[0]} y={ka[1]} width={kb[0] - ka[0]} height={kb[1] - ka[1]} fill={kr} stroke={mur} strokeWidth={2.5} />
+            {/* açıklık (banyo, aydınlık): kanat açıldıkça görünür; içerdeki figür yalnız açıklıktan */}
+            <defs><clipPath id="eoKapiAc"><rect x={ka[0]} y={ka[1]} width={kb[0] - ka[0]} height={kb[1] - ka[1]} /></clipPath></defs>
+            <rect x={ka[0]} y={ka[1]} width={kb[0] - ka[0]} height={kb[1] - ka[1]} fill={kapiA > 0.01 || seritVar ? "#c8a98e" : "#2a2636"} />
+            {kapiA > 0.01 && <g clipPath="url(#eoKapiAc)"><rect x={ka[0]} y={kb[1] - 0.6 * s} width={kb[0] - ka[0]} height={0.6 * s} fill="#a88e7e" />{kapiIci}</g>}
+            {(() => { const w = (kb[0] - ka[0]) * Math.cos((kapiA * 80 * Math.PI) / 180), x0 = kb[0] - w; const ic = (uu: number) => x0 + (uu - kapi.u0) / (kapi.u1 - kapi.u0) * w; return <g>
+              <rect x={x0} y={ka[1]} width={w} height={kb[1] - ka[1]} fill={kapiA > 0.01 ? "#3e3446" : kr} stroke={mur} strokeWidth={2.5} />
+              {w > 20 && <><rect x={ic(kapi.u0 + 0.12)} y={Y(1.95, ARKA)} width={w * 0.7} height={Y(1.25, ARKA) - Y(1.95, ARKA)} fill="none" stroke="#2e2838" strokeWidth={3} />
+              <rect x={ic(kapi.u0 + 0.12)} y={Y(1.05, ARKA)} width={w * 0.7} height={Y(0.15, ARKA) - Y(1.05, ARKA)} fill="none" stroke="#2e2838" strokeWidth={3} />
+              <circle cx={ic(1.03)} cy={Y(1.0, ARKA)} r={6} fill={CIC.kolMetal} stroke={mur} strokeWidth={1.5} /></>}
+            </g>; })()}
             <Tarama sekil={[[ka[0], ka[1]], [ka[0] + 10, ka[1]], [ka[0] + 10, kb[1]], [ka[0], kb[1]]]} basamak="III" aci={TH} renk={tarRenk} derinlik="yakin" seed={SEED + 15} />
-            <rect x={X(kapi.u0 + 0.12, ARKA)} y={Y(1.95, ARKA)} width={X(kapi.u1 - 0.12, ARKA) - X(kapi.u0 + 0.12, ARKA)} height={Y(1.25, ARKA) - Y(1.95, ARKA)} fill="none" stroke="#2e2838" strokeWidth={3} />
-            <rect x={X(kapi.u0 + 0.12, ARKA)} y={Y(1.05, ARKA)} width={X(kapi.u1 - 0.12, ARKA) - X(kapi.u0 + 0.12, ARKA)} height={Y(0.15, ARKA) - Y(1.05, ARKA)} fill="none" stroke="#2e2838" strokeWidth={3} />
-            <circle cx={X(1.03, ARKA)} cy={Y(1.0, ARKA)} r={6} fill={CIC.kolMetal} stroke={mur} strokeWidth={1.5} />
           </g>; })()}
           {/* süpürgelik */}
           {[[-YARI, kapi.u0 - 0.08], [kapi.u1 + 0.08, YARI]].map(([u0, u1], i) => <polygon key={i} points={poly([Q(u0, 0.12, ARKA), Q(u1, 0.12, ARKA), Q(u1, 0, ARKA), Q(u0, 0, ARKA)])} fill="#2a2434" />)}
@@ -394,7 +414,8 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           {b < 0.99 && <g opacity={1 - b}>{havuzCiz(0, "url(#eoZemin)", ["#8c6f66", "#7a6658", "#5e5058"])}</g>}
           {/* bükük boyunda koninin dış kenarı yatağın sağında zemine taşar: yalnız yayılma basamağı (koyu-sıcak, net kenar) */}
           {b > 0 && yanik > 0 && (() => { const H = havuz(0); return <g clipPath="url(#eoZemin)" opacity={b}><path d={d(elips(H.cu, H.cz, H.ru * 1.25, H.rz * 1.2, 0))} fill={CIC.lambaYayilma} /></g>; })()}
-          {isikAd === "lamba" && <g>
+          {isikAd === "lamba" && kapiA > 0.01 && <polygon points={poly([Q(kapi.u0, 0, ARKA), Q(kapi.u0 + (kapi.u1 - kapi.u0) * (1 - Math.cos((kapiA * 80 * Math.PI) / 180)), 0, ARKA), Q(kapi.u1 + 0.5, 0, ARKA - 1.1 * kapiA), Q(kapi.u0 - 0.3, 0, ARKA - 1.1 * kapiA)])} fill="#8c6f66" />}
+          {isikAd === "lamba" && seritVar && kapiA <= 0.01 && <g>
             <polygon points={poly(kapiHavuz)} fill={CIC.kapiHavuz} />
             {/* aralığa yakın parlak basamak (kaynak kapının ardında, yakın zemin daha aydınlık; ayak kamaları bu bandı keser → dokunuş okunur) */}
             <polygon points={poly([Q(kapi.u0, 0, ARKA), Q(kapi.u1, 0, ARKA), Q(kapi.u1 + 0.2, 0, ARKA - 0.2), Q(kapi.u0 - 0.2, 0, ARKA - 0.2)])} fill={CIC.vDis} />

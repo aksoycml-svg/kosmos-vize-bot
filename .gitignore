@@ -5,3 +5,8 @@ public/evliya/miks/*.wav
 __pycache__/
 public/paris/miks/**/*.wav
 public/paris/miks/*.wav
+
+# Çiçero: büyük ara çıktılar (betikle yeniden üretilir)
+public/cicero/miks/**/*.wav
+public/cicero/miks/*.wav
+out/cicero/

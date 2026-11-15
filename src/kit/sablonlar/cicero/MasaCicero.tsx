@@ -227,11 +227,18 @@ export const MasaCiceroSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
         {/* Manş kıyısı: batıda Cotentin yarımadası kuzeye çıkıntı, doğuda Seine ağzına inen kıyı (etiketsiz) */}
         <path d="M 250 560 L 830 560 L 830 672 L 770 684 Q 730 676 700 700 Q 650 712 600 702 L 540 708 Q 500 712 478 690 L 474 628 Q 470 604 446 600 Q 418 602 410 628 L 404 690 Q 380 704 340 696 Q 300 690 250 706 Z" fill={CIC.deniz} stroke="#6a7a88" strokeWidth={3} />
         <path d="M 700 700 Q 720 730 760 740" stroke="#6a7a88" strokeWidth={4} fill="none" />
+        {/* karşı kıyı (İngiltere güney kıyısı): üstte kara şeridi → kâğıtta iki kara arasında Manş okunur */}
+        <path d="M 250 560 L 830 560 L 830 590 Q 760 604 700 596 Q 620 612 560 600 Q 470 614 400 598 Q 330 606 250 596 Z" fill={CIC.kara} stroke="#6a7a88" strokeWidth={3} />
+        {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M ${300 + i * 110} ${640 + (i % 2) * 14} q 14 -6 28 0 t 28 0`} stroke="#7a8c98" strokeWidth={2.5} fill="none" />)}
         <circle cx={540} cy={740} r={78} fill="none" stroke={CIC.halka} strokeWidth={10} />
       </g>
       <rect x={-400} y={1090} width={1900} height={12} fill="#8a7468" />
+      {/* masa önü (ağır yazı masası): iki ayak dolabı çekmeceli + kapalı ön panel — koyu diz boşluğu yok (ölü alan) */}
       <rect x={-400} y={1102} width={1900} height={1400} fill="#4a3a36" />
-      <rect x={260} y={1102} width={560} height={1400} fill="#1e1c28" />
+      {[[-380, 250], [830, 1460]].map(([x0, x1], i) => <g key={i}>{[0, 1, 2].map((j) => <g key={j}><rect x={x0 + 20} y={1290 + j * 210} width={x1 - x0 - 40} height={180} fill="#54423c" stroke={CIC.murekkep} strokeWidth={3} /><rect x={(x0 + x1) / 2 - 30} y={1370 + j * 210} width={60} height={16} rx={6} fill={CIC.kaide} /></g>)}</g>)}
+      <rect x={260} y={1270} width={560} height={1300} fill="#3e302c" stroke={CIC.murekkep} strokeWidth={3} />
+      {[0, 1].map((j) => <rect key={j} x={300} y={1310 + j * 300} width={480} height={260} fill="none" stroke="#2e2420" strokeWidth={4} />)}
+      <Tarama sekil={[[260, 1270], [820, 1270], [820, 1300], [260, 1300]]} basamak="III" aci={TH} renk={CIC.tarama} derinlik="insert" seed={S + 14} />
     </g>;
     // çekmece içi (üstten görünür, kayma kadar): koyu ahşap + okunmamış karton yığını
     cekIc = cekKay > 1 && <g>
@@ -243,7 +250,7 @@ export const MasaCiceroSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       <Tarama sekil={[[300, 1100 + cekKay], [780, 1100 + cekKay], [780, 1116 + cekKay], [300, 1116 + cekKay]]} basamak="III" aci={TH} renk={CIC.tarama} derinlik="insert" seed={S + 12} />
       <rect x={510} y={1170 + cekKay} width={60} height={18} rx={6} fill={CIC.kaide} stroke={CIC.murekkep} strokeWidth={2} />
       <circle cx={522} cy={1176 + cekKay} r={3} fill={CIC.metalNokta} />
-      {cekKose > 0.01 && <polygon points={poly([[694, 1100], [786, 1100], [770 - 20 * (1 - cekKose), 1100 - 46 * cekKose]])} fill={CIC.belgeIsik} stroke={CIC.murekkep} strokeWidth={2.5} />}
+      {cekKose > 0.01 && <polygon points={poly([[640, 1100], [800, 1100], [780 - 30 * (1 - cekKose), 1100 - 84 * cekKose]])} fill={CIC.belgeIsik} stroke={CIC.murekkep} strokeWidth={2.5} />}
     </g>;
     kilit.push({ ad: "çekmece", p: ekranNokta(k, [540, 1180 + cekKay]), tur: "dokunus" });
     ust = <g>

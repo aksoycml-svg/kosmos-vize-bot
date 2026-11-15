@@ -86,12 +86,13 @@
       "karakterMaks": 3,
       "z": [
         2.2,
-        4.0
+        5.5
       ],
       "u": [
         -2.0,
         2.0
       ],
+      "_z_not": "Çiçero tur 3: z üst sınırı 4.0 → 5.5 (elci-yatak arka 5.0; banyo kapısından içeri giriş z 5.0–5.4). Eski odalar etkilenmez (yalnız gevşetme).",
       "ortusme": {
         "dz": 0.6,
         "omuzM": 0.6,
