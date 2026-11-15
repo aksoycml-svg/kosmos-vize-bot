@@ -42,6 +42,19 @@ Senaryo (10 plan) ile hizalı: P02 · P03 · P04 · P06 · P07 · P08 · P09. He
 | CI-D6 | Yetkili bakmadan çay fincanını alır | ELÇİ-ODASI gündüz | `fincan` + `tepsi` + `el.uzat` | fincan tın | yok |
 | CI-D7 | Lamba söner, oda kararır | ELÇİ-ODASI | `lamba {son, filaman}` | düğme tık | yok |
 
+## Yarasa bombası (YB) — 2026-11-15
+Senaryo v1.1 (12 plan): D1 P03 · D2 P05 · D3 P07 · D4 P08 · D5 P09 · D6 P10 · D7 P11. Kit kuruldu (COL-US, MASA-YB, yarasa rig/sürü, HARITA abd); ilk kurgu render'ında görüldü. Ayrıntı: `bolumler/yarasa-bombasi/dokunuslar.md`.
+
+| id | ad | şablon | kurulum | temas/ses | durum |
+|---|---|---|---|---|---|
+| YB-D1 | Kalem durur, alev çatıya sıçrar (çizim) | MASA-YB | `alt_sayfa {durak, alev, kirmizi}` + `kalem` | kalem-kagit, kalem-tik | var |
+| YB-D2 | Kapsül yapıştırılır | MASA-YB | `nesneler: kapsul-set` | pens-tik, kap-oturma | var |
+| YB-D3 | Kanat titrer, baş karanlığa döner | MASA-YB tepsi | `nesneler: tepsi` | kanat-titrek | var |
+| YB-D4 | Sürü gölgesi tanktan geçer (defter spiralinin aynası) | COL-US genis | `suru`, `suru_golgesi` | kanat-uzak | var |
+| YB-D5 | Tünme dalgası + amber nabız | COL-US tank-alti | `tunek_dalgasi`, `kapsul_nabiz` | tutun-uzak | var |
+| YB-D6 | Yarasalar tünekten ayrılır, üç kıvılcım, sonra alev | COL-US | `tunek_dalgasi.birak`, `kivilcim_dizisi`, `alev` | kivilcim-cirt, ates-tutus | var |
+| YB-D7 | Mühür iner, başlık açılır | MASA-YB | `nesneler: belge, muhur` | muhur-tok | var |
+
 ## Yeni dokunuş eklerken
 - Satır ekle: id (bölüm-öneki ile, ör. `BL-D1`), şablon, hangi parametre/jest/prop ile kurulur, temas listesi, durum.
 - "yok/kısmi" olanlar için kurulum ekibine tek satır iş: hangi şablona hangi parametre.
