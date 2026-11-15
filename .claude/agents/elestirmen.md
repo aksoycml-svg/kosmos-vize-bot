@@ -44,3 +44,4 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 
 ## Paris çıtası (zorunlu)
 CLAUDE.md "Paris çıtası" maddesini uygula: her puanlamada kareleri `bolumler/paris-kusatmasi/kalibrasyon/tam-render-3/genel-tr.jpg` ve `bolumler/paris-kusatmasi/hedef/hedef-ozet.jpg` ile yan yana karşılaştır. Paris'in gerisinde kalan her kare için nedeni (ışık, derinlik, doku, sıcak–soğuk, figür) ve sahibini/parametresini yaz. Puan <7 ise "geçer" deme.
+- Görsel reçete: `src/kit/GORSEL-RECETE.md` maddelerini (A ışık/derinlik/doku, B bina ayrıntısı, C mekân seçimi) uygula / madde madde işaretle.

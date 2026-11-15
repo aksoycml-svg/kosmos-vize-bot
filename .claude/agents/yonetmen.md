@@ -46,3 +46,4 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 
 ## Paris çıtası
 CLAUDE.md "Paris çıtası" maddesine uy: yeni mekân/karakter için kod öncesi tek yön karesi kullanıcıya gider (yetki devredilmiş olsa bile); referans `bolumler/paris-kusatmasi/kalibrasyon/tam-render-3/genel-tr.jpg`.
+- Görsel reçete: `src/kit/GORSEL-RECETE.md` maddelerini (A ışık/derinlik/doku, B bina ayrıntısı, C mekân seçimi) uygula / madde madde işaretle.

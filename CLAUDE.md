@@ -79,6 +79,7 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
   3. **Yeni şablon en az 2 kalibrasyon turu:** ilk kurulum teslim edilmez; eleştirmen ≥7 vermeden şablon kabul edilmez (en çok 4 tur; 4'te geçmezse kullanıcıya yön karesiyle döner).
   4. **Bölüm eşiği 7:** jüri puanı <7 olan bölüm teslim edilmez; en zayıf planlar (eleştirmen teşhisiyle) düzeltilir. Kotaya sığmıyorsa kullanıcıya puan ve eksik açıkça yazılır, "bitti" denmez.
   5. **Kullanıcı notu kurala çevrilir:** her kullanıcı notu (`notlar/tur-N.md`) eleştirmenin kontrol listesine eklenir; aynı not ikinci bölümde gelirse süreç hatasıdır.
+  6. **Görsel reçete zorunlu:** her yeni mekân şablonu `src/kit/GORSEL-RECETE.md` (A: ışık/derinlik/doku 13 madde, B: bina/mimari ayrıntı 10 madde, C: mekân seçimi) maddelerinin hepsini uygular; eksik madde `lint` gerekçesiz kabul edilmez. Mekân sorumlusu spesifikasyonda, motion kodda, eleştirmen kalibrasyonda madde madde işaretler. Paris'te hazır olan parçalar yeniden yazılmaz, ortak koddan çağrılır.
   - Kota notu: bu ek turlar yeni şablon kurulumunda harcanır; kitten gelen günlük bölüm yine ~%3–5 hedefinde kalır.
 - **Açık soru biriktir:** her adımın sonunda kullanıcıya gereken kararlar tek mesajda toplanır; karar gelmeden bağımlı adım başlamaz (varsayılan seçilirse açıkça yazılır).
 - **Övülen kilitlenir:** kullanıcının beğendiği plan/satır `bolum.json`'da `kilit: true` olur; düzeltme turlarında dokunulmaz.
