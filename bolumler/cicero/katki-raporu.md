@@ -341,3 +341,21 @@
   4. **Kucak (P05):** Kollar hâlâ uzun ve ağır, kare kalabalık. Eller büyük ama 0.18 m × 2300 doğru ölçü. Okunurluk eleştirmene.
   5. **Kaçış arabası (dış):** Yeşil sedanın arkası biraz kutu gibi duruyor; fastback eğrisi kısa.
   6. P08 yetkili ↔ Bazna örtüşme uyarısı eskiden kalma, bu tura ait değil.
+
+### motion · 2026-11-15 · ek: P05 kucak düzeltmesi (orkestra KC4 notu) + orkestra kararları
+- **Ne yaptım:**
+  - Kucak görünümü v2.1 olarak yeniden kuruldu. Kadrajda en çok 3 el var: Moyzisch'in sol eli jantta, tam kadraj içinde; parmaklar jantın arkasında, başparmak önde (jant parçası elin iki katmanı arasında çiziliyor). Yanında devri yapan iki el.
+  - Boştaki eller (Bazna p44–96, Moyzisch p0–20 ve p104 sonrası) dizine iniyor ve omuz bandının ardında kalıyor; görünmüyorlar. Bazna'nın sağ eli kaldırıldı.
+  - Altta flu, yüzsüz ön plan omuz bandı eklendi (iki ceket omzu). Kollar buradan kısa ön kol olarak giriyor; alttaki ölü alan doldu.
+  - Elin üstündeki tarama kaldırıldı (`GravurEl.taramasiz`, ekleme; Paris değişmedi).
+  - Eller json'daki `hedef` ile zarfın uçlarına oturuyor (IK yinelemesi). Zarf kendi anahtarıyla hareket ediyor, iki el zarfın iki ucunda; üst üste binme yok.
+  - Fener bandı kucaklara ve zarfa düşüyor.
+- **Ölçüm (KC4):** p95 L* 69.7, sıcak %13.4. bolum.json P05: lint izni `p95L` ("gece araba içi, orkestra onaylı").
+- **Orkestra kararları uygulandı:**
+  - P01 lint izni `p95L` (K-C2 74.4, p0 70.0).
+  - `foley.json` → `cic_araba_kapi_ac` = `cic_araba_kapi_tok` klibi, `onerilen_db` −17 (kapanışın −9'undan 8 dB kısık). Yeni ses üretilmedi.
+  - Doğrulayıcı: 0 hata.
+- **Dokunduğum dosyalar:** `src/kit/sablonlar/cicero/Araba.tsx` (kucak), `src/kit/props/cicero/El40.tsx`, `src/kit/props/paris/GravurEl.tsx` (`taramasiz`), `bolumler/cicero/bolum.json` (P05, P01 lint), `bolumler/cicero/foley.json`, `kalibrasyon/araba-v2/KC4_*`, `serit/serit_P05_p030-130.png`.
+- **Bilinen:**
+  - KC4'te sıcak piksel %13.4; ölçüt %14, sınırda.
+  - Devir anında iki kol alttan V biçiminde giriyor (dirsekler bandın hemen üstünde).

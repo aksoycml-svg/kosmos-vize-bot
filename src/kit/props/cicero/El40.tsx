@@ -43,7 +43,7 @@ export type ElKol40Props = {
   ad: string; omuz: P; bilek: P; E: number; poz: El40Poz; elAci?: number; /** verilmezse ön kol yönü */ kolBoy?: [number, number]; dirsek?: P;
   bukum?: 1 | -1; palet: GravurPalet; kolRenk: string; kolKontur: string; gen: [number, number, number]; isik: P; taramaAci: number;
   tutulan?: React.ReactNode; ayna?: boolean; olcek?: number; kenar?: { renk: string; alfa: number }; temasGolge?: { renk: string; kay: P; alfa?: number };
-  mansetBoy?: number; gizliKol?: boolean;
+  mansetBoy?: number; gizliKol?: boolean; taramasiz?: boolean;
 };
 /** Konik ceket kolu (omuz → dirsek → bilek) + manşet + GravurEl (arka … tutulan … ön). Ekran 2B. */
 /** geometri (şablon tutulan nesneyi aynı hesaptan yerleştirir): dirsek (IK), kırpılmış el açısı, el bileği, kavrama noktası */
@@ -71,9 +71,9 @@ export const ElKol40: React.FC<ElKol40Props> = (pr) => {
       {!pr.gizliKol && <path d={kol.d} fill={pr.kolRenk} stroke={pr.kolKontur} strokeWidth={3} strokeLinejoin="round" />}
       {!pr.gizliKol && pr.kenar && <path d={kol.kenar} fill="none" stroke={pr.kenar.renk} strokeWidth={3} opacity={pr.kenar.alfa} transform={`translate(${isik[0] * 3} ${isik[1] * 3})`} />}
       <polygon points={[q(mA, w * 1.04), q(mB, w), q(mB, -w), q(mA, -w * 1.04)].map((v) => `${v[0].toFixed(1)},${v[1].toFixed(1)}`).join(" ")} fill={palet.manset} stroke={palet.mansetGolge} strokeWidth={2.5} />
-      <GravurEl bilek={elB} aci={aci} E={E} poz={poz} ayna={pr.ayna} palet={palet} isik={isik} taramaAci={taramaAci} katman="arka" olcek={pr.olcek} />
+      <GravurEl bilek={elB} aci={aci} E={E} poz={poz} ayna={pr.ayna} palet={palet} isik={isik} taramaAci={taramaAci} katman="arka" olcek={pr.olcek} taramasiz={pr.taramasiz} />
       {pr.tutulan}
-      <GravurEl bilek={elB} aci={aci} E={E} poz={poz} ayna={pr.ayna} palet={palet} isik={isik} taramaAci={taramaAci} katman="on" onMaske olcek={pr.olcek} />
+      <GravurEl bilek={elB} aci={aci} E={E} poz={poz} ayna={pr.ayna} palet={palet} isik={isik} taramaAci={taramaAci} katman="on" onMaske olcek={pr.olcek} taramasiz={pr.taramasiz} />
     </g>
   );
 };

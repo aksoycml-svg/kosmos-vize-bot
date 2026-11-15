@@ -128,8 +128,8 @@ export const gravurElGeo = (bilek: P, aci: number, E: number, poz: GravurPoz, ay
 export const GravurEl: React.FC<{
   bilek: P; aci: number; E: number; poz: GravurPoz; ayna?: boolean; palet?: GravurPalet;
   isik: P; /** ekranda ışığa doğru birim vektör */ taramaAci: number; katman?: "arka" | "on" | "hepsi"; golge?: string; golgeKay?: P;
-  olcek?: number; bilekX?: number; onMaske?: boolean;
-}> = ({ bilek, aci, E, poz, ayna, palet = GRAVUR_PALET.paris, isik, taramaAci, katman = "hepsi", golge, golgeKay, olcek = 1, bilekX = -0.02, onMaske }) => {
+  olcek?: number; bilekX?: number; onMaske?: boolean; /** Çiçero kucak: el üstünde kısa tarama yok (tek parça siluet + 2 ton) */ taramasiz?: boolean;
+}> = ({ bilek, aci, E, poz, ayna, palet = GRAVUR_PALET.paris, isik, taramaAci, katman = "hepsi", golge, golgeKay, olcek = 1, bilekX = -0.02, onMaske, taramasiz }) => {
   const uid = "ge" + useId().replace(/:/g, "");
   const g = gravurElGeo(bilek, aci, E, poz, ayna);
   const Es = E * olcek, px = 1 / olcek; // ekran px → çizim px
@@ -151,7 +151,7 @@ export const GravurEl: React.FC<{
   const th = (taramaAci * Math.PI) / 180, hd: P = [-Math.sin(th), Math.cos(th)];
   const cizgiler: { ad: string; q: P[] }[] = [];
   for (const pr of sec) {
-    const n = butce[pr.ad] ?? 0;
+    const n = taramasiz ? 0 : butce[pr.ad] ?? 0;
     if (!n) continue;
     const q = pr.q, yl = pr.yerel, N = q.length;
     let alan = 0; for (let i = 0; i < N; i++) { const a = q[i], b = q[(i + 1) % N]; alan += a[0] * b[1] - b[0] * a[1]; }

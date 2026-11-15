@@ -403,5 +403,15 @@
   "en_yuksek_ms": 80,
   "kaynak": "yeniden-kullanim public/blanc/sfx-v3/kagit-hisirti.mp3; tepe_ms = ilk net baslangic (-20 dB esigi)",
   "onerilen_db": -11
+ },
+ "cic_araba_kapi_ac": {
+  "dosya": "cicero/foley/cic_araba_kapi_tok.mp3",
+  "tepe_ms": 80,
+  "sure_ms": 770,
+  "tepe_dbfs": -3.3,
+  "en_yuksek_ms": 80,
+  "kaynak": "elevenlabs-sfx (cicero_sfx.py, tek cekim, ses_kenar duzelt); tepe_ms = en yuksek",
+  "onerilen_db": -17,
+  "not": "orkestra tur-4: yeni ses üretilmedi; cic_araba_kapi_tok klibi −8 dB kısık (−9 → −17) = uzak arka kapının açılışı (P09a p100)"
  }
 }
