@@ -75,7 +75,15 @@ Ayrıca gerekenler:
 - **Ses profili:** `~/.claude/youtube/voice.md` boş şablon. Kullanıcı "Sessiz Dosya tarzına göre doldur" dedi; bu iş **açık**.
 
 ## 5. Açık işler
-1. `~/.claude/youtube/voice.md` dosyasını Sessiz Dosya tarzıyla doldur. Kaynaklar: `CLAUDE.md` "Senaryo ve yazı" bölümü, ses Doga/Brian, sade, meraklı, slogan yok.
+1. ~~`~/.claude/youtube/voice.md` dosyasını doldur.~~ **Yapıldı (2026-11-15, bilgisayarda):** `CLAUDE.md` "Senaryo ve yazı" kurallarına göre yazıldı. Varsayım: Doga = Türkçe, Brian = İngilizce; kullanıcı doğrulamadı. Onaylı Çiçero anlatımı final olunca "How I actually talk" bölümüne yapıştırılacak.
 2. Çiçero v3'ü kullanıcı izleyecek; notlarını `bolumler/cicero/notlar/tur-5.md`'ye aynen yaz.
 3. Instagram hesapları açılınca profilleri doldur.
 4. YouTube EN kanalının ikamet ülkesini ve TR kanalının "çocuklara özel değil" ayarını kontrol et.
+5. `evliya`, `paris`, `blanc`, `yarasa` render betiklerinde Mac düzeltmesi yok (sabit `/opt/pw-browsers` yolu, `nproc`). Örnek: `tools/cicero_render.sh`.
+
+## 6. Bilgisayar kurulumu notları (2026-11-15)
+- Repo `~/kosmos-vize-bot` altında kuruldu, `npm install` tamam. Node 24, Python 3.14, ffmpeg 8.1.
+- youtube-agent-skill bu bilgisayarda **kurulu** (`~/.claude/skills/yt-*`); 4. bölümdeki "o oturum" bu bilgisayardaki oturumdu.
+- Instagram kiti artık repoda: `marka/instagram-kurulum-kiti.md`.
+- **Mac büyük/küçük harf ayırmaz:** `parisCevre.ts` ile `ParisCevre.tsx` çakışıp paketlemeyi bozuyordu; veri dosyası `parisCevreVeri.ts` oldu. Aynı klasörde yalnız harf büyüklüğüyle ayrılan dosya adı açma.
+- Mac'te Çiçero'dan tek kare üretildi (kare 600). Tam render denenmedi; miks wav'ları ve anahtarlar bu bilgisayarda yok.

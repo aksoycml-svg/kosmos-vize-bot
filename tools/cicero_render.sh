@@ -20,7 +20,7 @@ cd "$(dirname "$0")/.."
 
 YOL="cicero/bolum.json"
 BR="${REMOTION_BROWSER:-/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell}"
-FPS=60; PARCA=600; DILLER="tr en"; ARALIK=""; TUT=0; YPNG=0; IS="$(nproc)"
+FPS=60; PARCA=600; DILLER="tr en"; ARALIK=""; TUT=0; YPNG=0; IS="$(nproc 2>/dev/null || sysctl -n hw.ncpu)"
 while [ $# -gt 0 ]; do
   case "$1" in
     --aralik) ARALIK="$2"; shift 2;;
@@ -42,7 +42,9 @@ LOG="$OUT/render.log"; : > "$LOG"
 t0=$(date +%s)
 kare_say() { ffprobe -v error -count_packets -select_streams v:0 -show_entries stream=nb_read_packets -of default=nk=1:nw=1 "$1" | head -1 | tr -dc 0-9; }
 log() { echo "[$(date +%H:%M:%S) +$(( $(date +%s)-t0 ))s] $*" | tee -a "$LOG"; }
-RFLAGS=(--gl=angle --browser-executable="$BR" --concurrency="$IS" --muted --log=error)
+RFLAGS=(--gl=angle --concurrency="$IS" --muted --log=error)
+# Tarayıcı yolu yalnız varsa verilir (bulut: /opt/pw-browsers); yoksa Remotion kendi Chromium'unu indirir (bilgisayar).
+[ -x "$BR" ] && RFLAGS+=(--browser-executable="$BR")
 
 for d in $DILLER; do [ -f "public/cicero/miks/$d.wav" ] || { echo "eksik: public/cicero/miks/$d.wav" >&2; exit 1; }; done
 log "doğrulayıcı"; node tools/bolum_dogrula.mjs "bolumler/$YOL" | tail -1 | tee -a "$LOG"

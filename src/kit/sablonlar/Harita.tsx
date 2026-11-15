@@ -17,7 +17,7 @@ import type { Plan } from "../tipler";
 import { param, Sablon, SablonProps } from "../ortak";
 import { ParisCevreSahne } from "./harita/ParisCevre";
 import { BalonIkon, Golgeli, ToursIkon, YiginIkon } from "./harita/ikonlar";
-import { PK } from "./harita/parisCevre";
+import { PK } from "./harita/parisCevreVeri";
 import { abdMi, abdPj, AbdHarita } from "./harita/Abd";
 
 const K = 70, X0 = -5.4, Y0 = 51.3, YS = 1.45, OX = 70, OY = 400;

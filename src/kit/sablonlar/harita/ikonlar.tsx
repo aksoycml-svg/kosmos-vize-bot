@@ -5,7 +5,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { cl } from "../../zaman";
-import { PK } from "./parisCevre";
+import { PK } from "./parisCevreVeri";
 
 export const GOLGE = { dx: 5, dy: 6, renk: PK.kontur, alfa: 0.22 };
 // gölge + parça: children biçimi iki kez çizilir (gölge: düz renk, α)

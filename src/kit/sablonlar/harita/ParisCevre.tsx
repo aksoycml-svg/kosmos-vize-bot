@@ -16,7 +16,7 @@ import type { Plan } from "../../tipler";
 import { param } from "../../ortak";
 import { cl, ekranNokta, KameraDurum } from "../../zaman";
 import { egri, icinde, kumulatif, mesafe, noktaS, parca, Pt, rng, yay, yolD } from "./cizgi";
-import { AGACLAR, CITE, FORTLAR, fortYol, KOPMA, NEHIR_D, nehreUzak, PK, SEED, SU_CIZGI, SUR, SUR_D, TARAMA, TEL_K } from "./parisCevre";
+import { AGACLAR, CITE, FORTLAR, fortYol, KOPMA, NEHIR_D, nehreUzak, PK, SEED, SU_CIZGI, SUR, SUR_D, TARAMA, TEL_K } from "./parisCevreVeri";
 import { BalonIkon, Golgeli, KumesIkon, KusIkon, SeritIkon, YiginIkon } from "./ikonlar";
 
 type Halka = { merkez?: Pt; yaricap?: number; isaret_sayisi?: number; isaret?: { boyut_px?: [number, number]; aci_sapma_derece?: number }; bas?: number; son_isaret_oturur?: number; kalici?: boolean };

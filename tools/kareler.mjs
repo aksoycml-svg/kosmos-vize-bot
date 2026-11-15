@@ -12,7 +12,7 @@ import { openBrowser, renderStill, selectComposition } from "@remotion/renderer"
 const kok = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const liste = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
 const gl = process.env.KARE_GL ?? "angle";
-const chrome = [process.env.CHROME, ...fs.readdirSync("/opt/pw-browsers").filter((d) => d.startsWith("chromium_headless_shell")).map((d) => `/opt/pw-browsers/${d}/chrome-headless-shell-linux64/chrome-headless-shell`)].find((c) => c && fs.existsSync(c));
+const chrome = [process.env.CHROME, ...(fs.existsSync("/opt/pw-browsers") ? fs.readdirSync("/opt/pw-browsers") : []).filter((d) => d.startsWith("chromium_headless_shell")).map((d) => `/opt/pw-browsers/${d}/chrome-headless-shell-linux64/chrome-headless-shell`)].find((c) => c && fs.existsSync(c));
 const serveUrl = process.env.KARE_BUNDLE ?? (await bundle({ entryPoint: path.join(kok, "src/index.ts"), rspack: true, publicDir: path.join(kok, "public") }));
 const tarayici = await openBrowser("chrome", { browserExecutable: chrome ?? null, chromiumOptions: { gl } });
 const secim = new Map();
