@@ -1,0 +1,89 @@
+{
+ "id": "P04",
+ "lang": "en",
+ "text": "That shore looked empty. But guns had been moved there in secret.",
+ "words": [
+  {
+   "t": "That",
+   "s": 0.1,
+   "e": 0.26
+  },
+  {
+   "t": "shore",
+   "s": 0.3,
+   "e": 0.52
+  },
+  {
+   "t": "looked",
+   "s": 0.54,
+   "e": 0.73
+  },
+  {
+   "t": "empty.",
+   "s": 0.75,
+   "e": 1.09
+  },
+  {
+   "t": "But",
+   "s": 1.64,
+   "e": 1.76
+  },
+  {
+   "t": "guns",
+   "s": 1.82,
+   "e": 2.09
+  },
+  {
+   "t": "had",
+   "s": 2.13,
+   "e": 2.23
+  },
+  {
+   "t": "been",
+   "s": 2.26,
+   "e": 2.41
+  },
+  {
+   "t": "moved",
+   "s": 2.44,
+   "e": 2.65
+  },
+  {
+   "t": "there",
+   "s": 2.66,
+   "e": 2.81
+  },
+  {
+   "t": "in",
+   "s": 2.84,
+   "e": 2.91
+  },
+  {
+   "t": "secret.",
+   "s": 2.97,
+   "e": 3.33
+  }
+ ],
+ "dur": 3.579,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -85.5,
+ "hisirti_6k_dbfs": -92.6,
+ "pad_nf_dbfs": -82.6,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  18.36
+ ]
+}

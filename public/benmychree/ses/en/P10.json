@@ -1,0 +1,132 @@
+{
+ "id": "P10",
+ "lang": "en",
+ "text": "She was the only aircraft carrier sunk by enemy fire in the First World War. And the fire came from land.",
+ "words": [
+  {
+   "t": "She",
+   "s": 0.12,
+   "e": 0.28
+  },
+  {
+   "t": "was",
+   "s": 0.32,
+   "e": 0.45
+  },
+  {
+   "t": "the",
+   "s": 0.49,
+   "e": 0.57
+  },
+  {
+   "t": "only",
+   "s": 0.65,
+   "e": 0.94
+  },
+  {
+   "t": "aircraft",
+   "s": 0.99,
+   "e": 1.48
+  },
+  {
+   "t": "carrier",
+   "s": 1.52,
+   "e": 1.84
+  },
+  {
+   "t": "sunk",
+   "s": 1.89,
+   "e": 2.11
+  },
+  {
+   "t": "by",
+   "s": 2.15,
+   "e": 2.26
+  },
+  {
+   "t": "enemy",
+   "s": 2.32,
+   "e": 2.59
+  },
+  {
+   "t": "fire",
+   "s": 2.65,
+   "e": 2.94
+  },
+  {
+   "t": "in",
+   "s": 2.96,
+   "e": 3.03
+  },
+  {
+   "t": "the",
+   "s": 3.04,
+   "e": 3.12
+  },
+  {
+   "t": "First",
+   "s": 3.15,
+   "e": 3.38
+  },
+  {
+   "t": "World",
+   "s": 3.42,
+   "e": 3.62
+  },
+  {
+   "t": "War.",
+   "s": 3.66,
+   "e": 3.96
+  },
+  {
+   "t": "And",
+   "s": 4.53,
+   "e": 4.65
+  },
+  {
+   "t": "the",
+   "s": 4.69,
+   "e": 4.77
+  },
+  {
+   "t": "fire",
+   "s": 4.83,
+   "e": 5.14
+  },
+  {
+   "t": "came",
+   "s": 5.19,
+   "e": 5.4
+  },
+  {
+   "t": "from",
+   "s": 5.42,
+   "e": 5.57
+  },
+  {
+   "t": "land.",
+   "s": 5.64,
+   "e": 6.0
+  }
+ ],
+ "dur": 6.243,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -79.0,
+ "hisirti_6k_dbfs": -87.3,
+ "pad_nf_dbfs": -99.0,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

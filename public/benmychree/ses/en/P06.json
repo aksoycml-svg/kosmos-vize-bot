@@ -1,0 +1,144 @@
+{
+ "id": "P06",
+ "lang": "en",
+ "text": "Two hours after she anchored, the guns opened fire. The first two shells fell into the sea. The third shell hit the ship.",
+ "words": [
+  {
+   "t": "Two",
+   "s": 0.1,
+   "e": 0.26
+  },
+  {
+   "t": "hours",
+   "s": 0.32,
+   "e": 0.59
+  },
+  {
+   "t": "after",
+   "s": 0.63,
+   "e": 0.83
+  },
+  {
+   "t": "she",
+   "s": 0.87,
+   "e": 0.99
+  },
+  {
+   "t": "anchored,",
+   "s": 1.06,
+   "e": 1.4
+  },
+  {
+   "t": "the",
+   "s": 1.41,
+   "e": 1.49
+  },
+  {
+   "t": "guns",
+   "s": 1.54,
+   "e": 1.76
+  },
+  {
+   "t": "opened",
+   "s": 1.79,
+   "e": 2.02
+  },
+  {
+   "t": "fire.",
+   "s": 2.05,
+   "e": 2.4
+  },
+  {
+   "t": "The",
+   "s": 2.86,
+   "e": 2.94
+  },
+  {
+   "t": "first",
+   "s": 2.99,
+   "e": 3.21
+  },
+  {
+   "t": "two",
+   "s": 3.24,
+   "e": 3.4
+  },
+  {
+   "t": "shells",
+   "s": 3.46,
+   "e": 3.79
+  },
+  {
+   "t": "fell",
+   "s": 3.82,
+   "e": 3.98
+  },
+  {
+   "t": "into",
+   "s": 4.02,
+   "e": 4.16
+  },
+  {
+   "t": "the",
+   "s": 4.21,
+   "e": 4.29
+  },
+  {
+   "t": "sea.",
+   "s": 4.32,
+   "e": 4.67
+  },
+  {
+   "t": "The",
+   "s": 5.09,
+   "e": 5.17
+  },
+  {
+   "t": "third",
+   "s": 5.23,
+   "e": 5.47
+  },
+  {
+   "t": "shell",
+   "s": 5.51,
+   "e": 5.73
+  },
+  {
+   "t": "hit",
+   "s": 5.77,
+   "e": 5.91
+  },
+  {
+   "t": "the",
+   "s": 5.94,
+   "e": 6.02
+  },
+  {
+   "t": "ship.",
+   "s": 6.05,
+   "e": 6.31
+  }
+ ],
+ "dur": 6.557,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -86.0,
+ "hisirti_6k_dbfs": -92.2,
+ "pad_nf_dbfs": -99.2,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  26.8
+ ]
+}

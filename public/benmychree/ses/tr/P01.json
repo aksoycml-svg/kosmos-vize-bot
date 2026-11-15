@@ -1,0 +1,52 @@
+{
+ "id": "P01",
+ "lang": "tr",
+ "text": "Bu uçak gemisini karadan batırdılar.",
+ "words": [
+  {
+   "t": "Bu",
+   "s": 0.06,
+   "e": 0.23
+  },
+  {
+   "t": "uçak",
+   "s": 0.3,
+   "e": 0.59
+  },
+  {
+   "t": "gemisini",
+   "s": 0.71,
+   "e": 1.14
+  },
+  {
+   "t": "karadan",
+   "s": 1.21,
+   "e": 1.62
+  },
+  {
+   "t": "batırdılar.",
+   "s": 1.67,
+   "e": 2.23
+  }
+ ],
+ "dur": 2.482,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -72.1,
+ "hisirti_6k_dbfs": -87.3,
+ "pad_nf_dbfs": -25.6,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

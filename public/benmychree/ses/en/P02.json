@@ -1,0 +1,104 @@
+{
+ "id": "P02",
+ "lang": "en",
+ "text": "She was Ben-my-Chree, a fast British ferry rebuilt in the war as an aircraft carrier.",
+ "words": [
+  {
+   "t": "She",
+   "s": 0.11,
+   "e": 0.24
+  },
+  {
+   "t": "was",
+   "s": 0.29,
+   "e": 0.41
+  },
+  {
+   "t": "Ben-my-Chree,",
+   "s": 0.47,
+   "e": 1.24
+  },
+  {
+   "t": "a",
+   "s": 1.72,
+   "e": 1.77
+  },
+  {
+   "t": "fast",
+   "s": 1.91,
+   "e": 2.29
+  },
+  {
+   "t": "British",
+   "s": 2.38,
+   "e": 2.75
+  },
+  {
+   "t": "ferry",
+   "s": 2.81,
+   "e": 3.12
+  },
+  {
+   "t": "rebuilt",
+   "s": 3.2,
+   "e": 3.61
+  },
+  {
+   "t": "in",
+   "s": 3.67,
+   "e": 3.76
+  },
+  {
+   "t": "the",
+   "s": 3.78,
+   "e": 3.86
+  },
+  {
+   "t": "war",
+   "s": 3.9,
+   "e": 4.22
+  },
+  {
+   "t": "as",
+   "s": 4.39,
+   "e": 4.56
+  },
+  {
+   "t": "an",
+   "s": 4.61,
+   "e": 4.67
+  },
+  {
+   "t": "aircraft",
+   "s": 4.7,
+   "e": 5.16
+  },
+  {
+   "t": "carrier.",
+   "s": 5.2,
+   "e": 5.58
+  }
+ ],
+ "dur": 5.825,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -84.7,
+ "hisirti_6k_dbfs": -91.2,
+ "pad_nf_dbfs": -81.6,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  4.38
+ ]
+}

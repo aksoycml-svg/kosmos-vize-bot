@@ -1,0 +1,84 @@
+{
+ "id": "P02",
+ "lang": "tr",
+ "text": "Adı Ben-my-Chree'ydi. Hızlı bir İngiliz yolcu vapuruydu; savaşta uçak gemisine çevrilmişti.",
+ "words": [
+  {
+   "t": "Adı",
+   "s": 0.1,
+   "e": 0.36
+  },
+  {
+   "t": "Ben-my-Chree'ydi.",
+   "s": 0.43,
+   "e": 1.49
+  },
+  {
+   "t": "Hızlı",
+   "s": 1.96,
+   "e": 2.3
+  },
+  {
+   "t": "bir",
+   "s": 2.35,
+   "e": 2.45
+  },
+  {
+   "t": "İngiliz",
+   "s": 2.49,
+   "e": 2.88
+  },
+  {
+   "t": "yolcu",
+   "s": 2.93,
+   "e": 3.23
+  },
+  {
+   "t": "vapuruydu;",
+   "s": 3.26,
+   "e": 3.77
+  },
+  {
+   "t": "savaşta",
+   "s": 4.08,
+   "e": 4.63
+  },
+  {
+   "t": "uçak",
+   "s": 4.72,
+   "e": 5.0
+  },
+  {
+   "t": "gemisine",
+   "s": 5.11,
+   "e": 5.51
+  },
+  {
+   "t": "çevrilmişti.",
+   "s": 5.55,
+   "e": 6.24
+  }
+ ],
+ "dur": 6.478,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -87.2,
+ "hisirti_6k_dbfs": -100.2,
+ "pad_nf_dbfs": -87.5,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  6.41
+ ]
+}

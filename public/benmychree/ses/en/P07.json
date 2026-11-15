@@ -1,0 +1,119 @@
+{
+ "id": "P07",
+ "lang": "en",
+ "text": "Later shells wrecked her steering and set the hangar on fire. The fast ferry could no longer turn.",
+ "words": [
+  {
+   "t": "Later",
+   "s": 0.1,
+   "e": 0.39
+  },
+  {
+   "t": "shells",
+   "s": 0.44,
+   "e": 0.71
+  },
+  {
+   "t": "wrecked",
+   "s": 0.74,
+   "e": 0.97
+  },
+  {
+   "t": "her",
+   "s": 0.98,
+   "e": 1.06
+  },
+  {
+   "t": "steering",
+   "s": 1.1,
+   "e": 1.53
+  },
+  {
+   "t": "and",
+   "s": 1.81,
+   "e": 1.91
+  },
+  {
+   "t": "set",
+   "s": 1.96,
+   "e": 2.12
+  },
+  {
+   "t": "the",
+   "s": 2.15,
+   "e": 2.23
+  },
+  {
+   "t": "hangar",
+   "s": 2.28,
+   "e": 2.55
+  },
+  {
+   "t": "on",
+   "s": 2.59,
+   "e": 2.67
+  },
+  {
+   "t": "fire.",
+   "s": 2.73,
+   "e": 3.12
+  },
+  {
+   "t": "The",
+   "s": 3.69,
+   "e": 3.76
+  },
+  {
+   "t": "fast",
+   "s": 3.8,
+   "e": 4.08
+  },
+  {
+   "t": "ferry",
+   "s": 4.11,
+   "e": 4.31
+  },
+  {
+   "t": "could",
+   "s": 4.34,
+   "e": 4.47
+  },
+  {
+   "t": "no",
+   "s": 4.51,
+   "e": 4.58
+  },
+  {
+   "t": "longer",
+   "s": 4.64,
+   "e": 4.88
+  },
+  {
+   "t": "turn.",
+   "s": 4.92,
+   "e": 5.23
+  }
+ ],
+ "dur": 5.486,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -84.3,
+ "hisirti_6k_dbfs": -90.8,
+ "pad_nf_dbfs": -82.5,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  34.39
+ ]
+}

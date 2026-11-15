@@ -1,0 +1,104 @@
+{
+ "id": "P03",
+ "lang": "tr",
+ "text": "O gün gemi, müttefik Fransızların elindeki Meis adasına demirledi. Karşıdaki kıyı Osmanlı'nındı, iki kilometre ötedeydi.",
+ "words": [
+  {
+   "t": "O",
+   "s": 0.1,
+   "e": 0.15
+  },
+  {
+   "t": "gün",
+   "s": 0.23,
+   "e": 0.39
+  },
+  {
+   "t": "gemi,",
+   "s": 0.44,
+   "e": 0.72
+  },
+  {
+   "t": "müttefik",
+   "s": 0.94,
+   "e": 1.34
+  },
+  {
+   "t": "Fransızların",
+   "s": 1.39,
+   "e": 2.06
+  },
+  {
+   "t": "elindeki",
+   "s": 2.11,
+   "e": 2.56
+  },
+  {
+   "t": "Meis",
+   "s": 2.62,
+   "e": 2.88
+  },
+  {
+   "t": "adasına",
+   "s": 2.94,
+   "e": 3.28
+  },
+  {
+   "t": "demirledi.",
+   "s": 3.33,
+   "e": 3.81
+  },
+  {
+   "t": "Karşıdaki",
+   "s": 4.22,
+   "e": 4.73
+  },
+  {
+   "t": "kıyı",
+   "s": 4.77,
+   "e": 5.01
+  },
+  {
+   "t": "Osmanlı'nındı,",
+   "s": 5.07,
+   "e": 5.95
+  },
+  {
+   "t": "iki",
+   "s": 6.23,
+   "e": 6.45
+  },
+  {
+   "t": "kilometre",
+   "s": 6.49,
+   "e": 7.0
+  },
+  {
+   "t": "ötedeydi.",
+   "s": 7.03,
+   "e": 7.54
+  }
+ ],
+ "dur": 7.732,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -68.3,
+ "hisirti_6k_dbfs": -82.9,
+ "pad_nf_dbfs": -87.3,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  15.28
+ ]
+}

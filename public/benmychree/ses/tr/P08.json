@@ -1,0 +1,84 @@
+{
+ "id": "P08",
+ "lang": "tr",
+ "text": "Ateş başladıktan kırk dakika sonra mürettebat gemiyi terk etti. Kimse ölmedi.",
+ "words": [
+  {
+   "t": "Ateş",
+   "s": 0.1,
+   "e": 0.39
+  },
+  {
+   "t": "başladıktan",
+   "s": 0.46,
+   "e": 1.08
+  },
+  {
+   "t": "kırk",
+   "s": 1.16,
+   "e": 1.35
+  },
+  {
+   "t": "dakika",
+   "s": 1.41,
+   "e": 1.78
+  },
+  {
+   "t": "sonra",
+   "s": 1.83,
+   "e": 2.18
+  },
+  {
+   "t": "mürettebat",
+   "s": 2.42,
+   "e": 3.05
+  },
+  {
+   "t": "gemiyi",
+   "s": 3.09,
+   "e": 3.39
+  },
+  {
+   "t": "terk",
+   "s": 3.47,
+   "e": 3.74
+  },
+  {
+   "t": "etti.",
+   "s": 3.83,
+   "e": 4.1
+  },
+  {
+   "t": "Kimse",
+   "s": 4.75,
+   "e": 5.19
+  },
+  {
+   "t": "ölmedi.",
+   "s": 5.27,
+   "e": 5.73
+  }
+ ],
+ "dur": 5.982,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -84.8,
+ "hisirti_6k_dbfs": -96.8,
+ "pad_nf_dbfs": -85.5,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  44.1
+ ]
+}

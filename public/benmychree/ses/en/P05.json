@@ -1,0 +1,67 @@
+{
+ "id": "P05",
+ "lang": "en",
+ "text": "Their commander was a young lieutenant, Mustafa Ertuğrul.",
+ "words": [
+  {
+   "t": "Their",
+   "s": 0.1,
+   "e": 0.25
+  },
+  {
+   "t": "commander",
+   "s": 0.29,
+   "e": 0.71
+  },
+  {
+   "t": "was",
+   "s": 0.76,
+   "e": 0.88
+  },
+  {
+   "t": "a",
+   "s": 0.93,
+   "e": 0.96
+  },
+  {
+   "t": "young",
+   "s": 1.03,
+   "e": 1.22
+  },
+  {
+   "t": "lieutenant,",
+   "s": 1.27,
+   "e": 1.71
+  },
+  {
+   "t": "Mustafa",
+   "s": 1.94,
+   "e": 2.41
+  },
+  {
+   "t": "Ertuğrul.",
+   "s": 2.47,
+   "e": 3.05
+  }
+ ],
+ "dur": 3.291,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.1,
+ "hisirti_6k_dbfs": -89.3,
+ "pad_nf_dbfs": -82.8,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

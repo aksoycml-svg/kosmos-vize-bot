@@ -1,0 +1,62 @@
+{
+ "id": "P05",
+ "lang": "tr",
+ "text": "Topların komutanı genç bir teğmendi, Mustafa Ertuğrul.",
+ "words": [
+  {
+   "t": "Topların",
+   "s": 0.11,
+   "e": 0.56
+  },
+  {
+   "t": "komutanı",
+   "s": 0.59,
+   "e": 1.02
+  },
+  {
+   "t": "genç",
+   "s": 1.07,
+   "e": 1.31
+  },
+  {
+   "t": "bir",
+   "s": 1.37,
+   "e": 1.44
+  },
+  {
+   "t": "teğmendi,",
+   "s": 1.48,
+   "e": 2.0
+  },
+  {
+   "t": "Mustafa",
+   "s": 2.3,
+   "e": 2.78
+  },
+  {
+   "t": "Ertuğrul.",
+   "s": 2.83,
+   "e": 3.3
+  }
+ ],
+ "dur": 3.579,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.8,
+ "hisirti_6k_dbfs": -94.4,
+ "pad_nf_dbfs": -86.2,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

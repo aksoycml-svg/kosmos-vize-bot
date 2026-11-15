@@ -1,0 +1,82 @@
+{
+ "id": "P08",
+ "lang": "en",
+ "text": "Forty minutes into the shelling, the crew abandoned ship. Nobody died.",
+ "words": [
+  {
+   "t": "Forty",
+   "s": 0.18,
+   "e": 0.49
+  },
+  {
+   "t": "minutes",
+   "s": 0.54,
+   "e": 0.8
+  },
+  {
+   "t": "into",
+   "s": 0.83,
+   "e": 0.99
+  },
+  {
+   "t": "the",
+   "s": 1.05,
+   "e": 1.13
+  },
+  {
+   "t": "shelling,",
+   "s": 1.16,
+   "e": 1.63
+  },
+  {
+   "t": "the",
+   "s": 1.78,
+   "e": 1.88
+  },
+  {
+   "t": "crew",
+   "s": 1.92,
+   "e": 2.12
+  },
+  {
+   "t": "abandoned",
+   "s": 2.16,
+   "e": 2.6
+  },
+  {
+   "t": "ship.",
+   "s": 2.62,
+   "e": 2.85
+  },
+  {
+   "t": "Nobody",
+   "s": 3.37,
+   "e": 3.75
+  },
+  {
+   "t": "died.",
+   "s": 3.79,
+   "e": 4.17
+  }
+ ],
+ "dur": 4.415,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.5,
+ "hisirti_6k_dbfs": -89.9,
+ "pad_nf_dbfs": -91.9,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

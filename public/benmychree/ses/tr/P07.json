@@ -1,0 +1,87 @@
+{
+ "id": "P07",
+ "lang": "tr",
+ "text": "Ardından gelen mermiler dümeni bozdu, hangarı yaktı. O hızlı vapur artık dönemiyordu.",
+ "words": [
+  {
+   "t": "Ardından",
+   "s": 0.21,
+   "e": 0.77
+  },
+  {
+   "t": "gelen",
+   "s": 0.82,
+   "e": 1.09
+  },
+  {
+   "t": "mermiler",
+   "s": 1.16,
+   "e": 1.73
+  },
+  {
+   "t": "dümeni",
+   "s": 1.86,
+   "e": 2.23
+  },
+  {
+   "t": "bozdu,",
+   "s": 2.27,
+   "e": 2.68
+  },
+  {
+   "t": "hangarı",
+   "s": 2.99,
+   "e": 3.43
+  },
+  {
+   "t": "yaktı.",
+   "s": 3.48,
+   "e": 3.87
+  },
+  {
+   "t": "O",
+   "s": 4.5,
+   "e": 4.59
+  },
+  {
+   "t": "hızlı",
+   "s": 4.69,
+   "e": 5.02
+  },
+  {
+   "t": "vapur",
+   "s": 5.05,
+   "e": 5.42
+  },
+  {
+   "t": "artık",
+   "s": 5.5,
+   "e": 5.79
+  },
+  {
+   "t": "dönemiyordu.",
+   "s": 5.9,
+   "e": 6.57
+  }
+ ],
+ "dur": 6.818,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -84.3,
+ "hisirti_6k_dbfs": -97.1,
+ "pad_nf_dbfs": -77.5,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

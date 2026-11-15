@@ -1,0 +1,57 @@
+{
+ "id": "P09",
+ "lang": "tr",
+ "text": "Gemi birkaç saat sonra limanda battı.",
+ "words": [
+  {
+   "t": "Gemi",
+   "s": 0.1,
+   "e": 0.42
+  },
+  {
+   "t": "birkaç",
+   "s": 0.49,
+   "e": 0.88
+  },
+  {
+   "t": "saat",
+   "s": 0.94,
+   "e": 1.18
+  },
+  {
+   "t": "sonra",
+   "s": 1.24,
+   "e": 1.55
+  },
+  {
+   "t": "limanda",
+   "s": 1.6,
+   "e": 2.03
+  },
+  {
+   "t": "battı.",
+   "s": 2.08,
+   "e": 2.41
+  }
+ ],
+ "dur": 2.638,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -75.4,
+ "hisirti_6k_dbfs": -89.0,
+ "pad_nf_dbfs": -85.6,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

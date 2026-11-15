@@ -1,0 +1,79 @@
+{
+ "id": "P09",
+ "lang": "en",
+ "text": "A few hours later, the ship sank in the harbor.",
+ "words": [
+  {
+   "t": "A",
+   "s": 0.1,
+   "e": 0.17
+  },
+  {
+   "t": "few",
+   "s": 0.25,
+   "e": 0.42
+  },
+  {
+   "t": "hours",
+   "s": 0.44,
+   "e": 0.68
+  },
+  {
+   "t": "later,",
+   "s": 0.73,
+   "e": 1.01
+  },
+  {
+   "t": "the",
+   "s": 1.02,
+   "e": 1.1
+  },
+  {
+   "t": "ship",
+   "s": 1.14,
+   "e": 1.35
+  },
+  {
+   "t": "sank",
+   "s": 1.39,
+   "e": 1.61
+  },
+  {
+   "t": "in",
+   "s": 1.65,
+   "e": 1.71
+  },
+  {
+   "t": "the",
+   "s": 1.73,
+   "e": 1.81
+  },
+  {
+   "t": "harbor.",
+   "s": 1.85,
+   "e": 2.21
+  }
+ ],
+ "dur": 2.456,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.0
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -81.3,
+ "hisirti_6k_dbfs": -91.0,
+ "pad_nf_dbfs": -77.2,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  43.45
+ ]
+}
