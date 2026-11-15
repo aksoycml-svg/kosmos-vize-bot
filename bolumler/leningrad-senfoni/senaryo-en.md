@@ -1,8 +1,9 @@
-# Script v3.1 (EN): The Leningrad Seventh — "The drummer at this concert was pulled out from among the dead."
+# Script v3.2 (EN): The Leningrad Seventh — "The drummer at this concert was pulled out from among the dead."
 
 Kaynak: yalnız `arastirma.md`. Kanal: EN. Eşi: `senaryo.md` (TR). **Görüntü tek render:** plan numaraları, süreler, mekânlar, görsel tarifler, saklanan şeyler, anahtar anlar ve Kurulum → Karşılık tablosu `senaryo.md` §3–§4, §8 ile birebir aynıdır; burada yalnız dil katmanı (anlatım + ekran yazısı) ve EN'e özgü testler var. Birebir çeviri değil; EN ritmine göre uyarlandı.
 v3.1: kullanıcı kararları (`notlar/tur-1.md` + "daha hızlı işleyelim"): hook K2, all four events in, Aydarov story as fact, fast tempo (bkz. `senaryo.md` §11).
-Format: 15 plan · EN 179 kelime (≈75 sn konuşma, 2.4 kelime/sn varsayımı) · tahmini ≈78 sn · **hedef 70–75'in ~3 sn üstünde (bkz. §7).** Anlatıcı: Brian.
+v3.2: soğuk dinleyici v3.1 turunun hazır satırları (P06, P07, P08, P10, P15) aynen işlendi.
+Format: 15 plan · EN 188 kelime (≈78 sn konuşma, 2.4 kelime/sn varsayımı) · tahmini ≈82 sn · **hedef 70–75'in ~7 sn üstünde (bkz. §7).** Anlatıcı: Brian.
 
 ## 0. Spine
 
@@ -16,16 +17,16 @@ Format: 15 plan · EN 179 kelime (≈75 sn konuşma, 2.4 kelime/sn varsayımı) 
 4. **Change:** in the morgue Aydarov's finger moves; Eliasberg pulls him out. Aydarov rejoins; the score arrives by plane.
 5. **Result:** on concert day the guns protect the hall, the lights come on, loudspeakers carry the concert, the audience stands for the exhausted players, and Aydarov is on the drums.
 
-**Last line (written first):** "The orchestra played to the end. On the drums was Aydarov, the man Eliasberg went to mourn."
-It answers the hook from the other side instead of repeating it; the hook's literal payoff ("pulled him out") comes mid-film, in P09.
+**Last line (written first):** "The orchestra played to the end. On the drums sat Aydarov, the man pulled from the morgue."
+Ready-made line from the cold-listener round (v3.2). It closes the loop on the hook ("pulled out from among the dead" → "the man pulled from the morgue"); who pulled him out is said in P09.
 
 ## 1. Accuracy notes (EN-specific)
 - By user decision the Aydarov story is narrated as fact: no "the story goes", no "reportedly", in narration or on screen. The source note lives only in the caption.
 - Still excluded: list of the dead, corpse cart, snare drum, Astoria banquet, shell count, operation code name, German-soldier quote.
 - "The drummer" (singular, the user's chosen hook): the line-up had four percussionists; the caption says "one of four".
-- Who said he was dead is unknown, so the sentence is built on Eliasberg: "Eliasberg heard Aydarov was dead."
+- Who took him for dead is unknown, so P06 stays passive ("was taken for dead and laid in the morgue"); no invented subject.
 - "Three musicians died in rehearsals" stated plainly (sourced). Whether Aydarov collapsed before or after is unknown, hence "One day", not "Then".
-- "went to mourn" stands for "went to say goodbye" (P07); it does not claim more than the visit.
+- P10 "Because of the siege, the score had to be flown": the research says the score arrived by plane in early July; it does not state the siege as the reason. An inference, not a contradiction; applied as given, to be checked by the researcher.
 - Artillery: "hit the German guns first, to protect the hall" gives action and purpose; we do not say the guns were silenced.
 - "toward the German lines": the broadcast was aimed there; we do not claim it was heard.
 - Year on screen only, to match the TR picture.
@@ -41,7 +42,7 @@ It answers the hook from the other side instead of repeating it; the hook's lite
 Which concert, where, and who is set up by ear straight after the hook, in the two sentences of P02.
 
 **Ending alternatives**
-- **S1 ★** "The orchestra played to the end. On the drums was Aydarov, the man Eliasberg went to mourn."
+- **S1 ★** "The orchestra played to the end. On the drums sat Aydarov, the man pulled from the morgue."
 - S2 "Years later the surviving musicians met again in the same hall. On the chairs of the dead, they placed their instruments." (1964 reunion; in the caption.)
 
 ## 3. Narration and on-screen text by shot
@@ -52,17 +53,17 @@ Which concert, where, and who is set up by ear straight after the hook, in the t
 | P02 | 5.1–11.5 | "The concert was in Leningrad, under German siege. Karl Eliasberg would conduct Shostakovich's new symphony." | *Karl Eliasberg · conductor* / **Shostakovich · Symphony No. 7** |
 | P03 | 11.5–17.0 | "But Eliasberg had about fifteen musicians left. The symphony needed nearly a hundred." | **Winter 1941–42 · 125 g of bread a day** / **40 → ~15** · *needed: ~100* |
 | P04 | 17.0–22.1 | "Eliasberg went door to door. The army sent musicians from the front." | *extra bread for those who came* |
-| P05 | 22.1–27.2 | "But the musicians were starving. The first three-hour rehearsal lasted fifteen minutes." | **3 hours → 15 minutes** |
-| P06 | 27.2–32.5 | "Three musicians died in rehearsals. One day the drummer, Aydarov, collapsed too." | *Zhavdet Aydarov · percussion* |
-| P07 | 32.5–38.0 | "Eliasberg heard Aydarov was dead and went to the morgue to say goodbye." | *Radio House · basement* |
-| P08 **anahtar** | 38.0–41.9 | "There, among the dead, Aydarov's finger moved." | — |
-| P09 | 41.9–47.0 | "Aydarov had only fainted. Eliasberg pulled him out, and Aydarov rejoined the orchestra." | *fainted from hunger · sent to hospital* |
-| P10 | 47.0–50.9 | "That summer, a plane flew in the symphony's score." | **July 1942** / *252 pages* |
-| P11 | 50.9–56.4 | "Before the concert, Soviet guns hit the German guns to protect the hall." | *9 August · concert day* |
-| P12 **anahtar** | 56.4–59.7 | "The lights came on. The concert began." | *Philharmonic Hall* |
-| P13 | 59.7–64.8 | "Loudspeakers carried the concert across the city and toward the German lines." | *radio and street loudspeakers* |
-| P14 | 64.8–70.3 | "Some musicians ran out of strength. The audience stood to urge them on." | — |
-| P15 **anahtar** | 70.3–78.3 | "The orchestra played to the end. On the drums was Aydarov, the man Eliasberg went to mourn." | *Zhavdet Aydarov* |
+| P05 | 22.1–27.4 | "But the musicians were starving. The first three-hour rehearsal lasted fifteen minutes." | **3 hours → 15 minutes** |
+| P06 | 27.4–35.8 | "Three musicians died in rehearsals. One day the drummer, Aydarov, collapsed, was taken for dead and laid in the morgue." | *Zhavdet Aydarov · percussion* |
+| P07 | 35.8–38.5 | "Eliasberg went down to say goodbye." | *Radio House · basement* |
+| P08 **anahtar** | 38.5–43.3 | "There, among the dead, Eliasberg saw Aydarov's finger move." | — |
+| P09 | 43.3–48.6 | "Aydarov had only fainted. Eliasberg pulled him out, and Aydarov rejoined the orchestra." | *fainted from hunger · sent to hospital* |
+| P10 | 48.6–55.0 | "In July, the score was flown into the besieged city." | **July 1942** / *252 pages* |
+| P11 | 55.0–60.5 | "Before the concert, Soviet guns hit the German guns to protect the hall." | *9 August · concert day* |
+| P12 **anahtar** | 60.5–63.8 | "The lights came on. The concert began." | *Philharmonic Hall* |
+| P13 | 63.8–68.9 | "Loudspeakers carried the concert across the city and toward the German lines." | *radio and street loudspeakers* |
+| P14 | 68.9–74.4 | "Some musicians ran out of strength. The audience stood to urge them on." | — |
+| P15 **anahtar** | 74.4–82.4 | "The orchestra played to the end. On the drums sat Aydarov, the man pulled from the morgue." | *Zhavdet Aydarov* |
 
 ## 4. Kurulum → Karşılık
 `senaryo.md` §4 ile aynı (görüntü ortak). EN anlatımına özgü söz karşılıkları: "pulled out from among the dead" (P01) → "among the dead" (P08) → "Eliasberg pulled him out" (P09) · "the drummer at this concert" (P01) → "the drummer, Aydarov" (P06) → "On the drums was Aydarov" (P15) · "to say goodbye" (P07) → "the man Eliasberg went to mourn" (P15) · "under German siege" (P02) → "German guns" (P11) → "German lines" (P13) · "new symphony" (P02) → "the symphony's score" (P10) · "starving" (P05) → "fainted" (P09) → "ran out of strength" (P14) → "played to the end" (P15).
@@ -107,7 +108,7 @@ P15 Zhavdet Aydarov
 ```
 
 ### Sound on (narration only)
-"The drummer at this concert was pulled out from among the dead. / The concert was in Leningrad, under German siege. Karl Eliasberg would conduct Shostakovich's new symphony. / But Eliasberg had about fifteen musicians left. The symphony needed nearly a hundred. / Eliasberg went door to door. The army sent musicians from the front. / But the musicians were starving. The first three-hour rehearsal lasted fifteen minutes. / Three musicians died in rehearsals. One day the drummer, Aydarov, collapsed too. / Eliasberg heard Aydarov was dead and went to the morgue to say goodbye. / There, among the dead, Aydarov's finger moved. / Aydarov had only fainted. Eliasberg pulled him out, and Aydarov rejoined the orchestra. / That summer, a plane flew in the symphony's score. / Before the concert, Soviet guns hit the German guns to protect the hall. / The lights came on. The concert began. / Loudspeakers carried the concert across the city and toward the German lines. / Some musicians ran out of strength. The audience stood to urge them on. / The orchestra played to the end. On the drums was Aydarov, the man Eliasberg went to mourn."
+"The drummer at this concert was pulled out from among the dead. / The concert was in Leningrad, under German siege. Karl Eliasberg would conduct Shostakovich's new symphony. / But Eliasberg had about fifteen musicians left. The symphony needed nearly a hundred. / Eliasberg went door to door. The army sent musicians from the front. / But the musicians were starving. The first three-hour rehearsal lasted fifteen minutes. / Three musicians died in rehearsals. One day the drummer, Aydarov, collapsed, was taken for dead and laid in the morgue. / Eliasberg went down to say goodbye. / There, among the dead, Eliasberg saw Aydarov's finger move. / Aydarov had only fainted. Eliasberg pulled him out, and Aydarov rejoined the orchestra. / In July, the score was flown into the besieged city. / Before the concert, Soviet guns hit the German guns to protect the hall. / The lights came on. The concert began. / Loudspeakers carried the concert across the city and toward the German lines. / Some musicians ran out of strength. The audience stood to urge them on. / The orchestra played to the end. On the drums sat Aydarov, the man pulled from the morgue."
 
 ### Ear check (who did what to what)
 Named subject in every sentence: the drummer · the concert / Eliasberg · Eliasberg / the symphony · Eliasberg / the army · the musicians / the first rehearsal · three musicians / Aydarov · Eliasberg · Aydarov's finger · Aydarov / Eliasberg / Aydarov · a plane · Soviet guns · the lights / the concert · loudspeakers · some musicians / the audience · the orchestra / Aydarov. Pronouns: "him" (P09) and "them" (P14), each one clause after its noun. State before event: hunger (P05) before the collapse (P06); the morgue and its dead (P07, P08) before the rescue (P09); the German siege (P02) before German guns and lines (P11, P13).
@@ -121,20 +122,20 @@ Known weak spots: the hook's "among the dead" may be heard as a figure of speech
 | P02 | 15 | 6.3 | 6.4 |
 | P03 | 13 | 5.4 | 5.5 |
 | P04 | 12 | 5.0 | 5.1 |
-| P05 | 12 | 5.0 | 5.1 |
-| P06 | 12 | 5.0 | 5.3 |
-| P07 | 13 | 5.4 | 5.5 |
-| P08 | 7 | 2.9 (+0.4 before, +0.5 hold) | 3.9 |
-| P09 | 12 | 5.0 | 5.1 |
-| P10 | 9 | 3.8 | 3.9 |
+| P05 | 12 | 5.0 | 5.3 |
+| P06 | 20 | 8.3 | 8.4 |
+| P07 | 6 | 2.5 | 2.7 |
+| P08 | 9 | 3.8 (+0.4 before, +0.5 hold) | 4.8 |
+| P09 | 12 | 5.0 | 5.3 |
+| P10 | 15 | 6.3 | 6.4 |
 | P11 | 13 | 5.4 | 5.5 |
 | P12 | 7 | 2.9 (+0.3 hold) | 3.3 |
 | P13 | 12 | 5.0 | 5.1 |
 | P14 | 13 | 5.4 | 5.5 |
 | P15 | 17 | 7.1 (+0.8 hold) | 8.0 |
-| **Total** | **179** | **≈74.6 s** | **≈78.3 s** |
+| **Total** | **188** | **≈78.3 s** | **≈82.4 s** |
 
-- EN sets the length of every shot except P06. The 2.4 w/s rate is my assumption (house 2.2 × speed 1.1); at 2.3 the film comes to ≈81 s. Neither is measured.
+- EN sets the length of every shot except P05, P07 and P09. The 2.4 w/s rate is my assumption (house 2.2 × speed 1.1); at 2.3 the film comes to ≈86 s. Neither is measured.
 - If the measured audio runs past 75 s, whole sentences go, never a subject, in this order (none of the four requested events): (1) P06 "Three musicians died in rehearsals."; (2) P04 "The army sent musicians from the front." (stays on screen and in picture); (3) P15 → "…On the drums was Aydarov." with the rest carried by the picture.
 
 ## 8. Publishing

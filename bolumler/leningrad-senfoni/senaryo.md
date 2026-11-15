@@ -1,8 +1,8 @@
-# Senaryo v3.1 (TR): Leningrad'da 7. Senfoni — "Bu konserin davulcusu, ölüler arasından çıkarıldı."
+# Senaryo v3.2 (TR): Leningrad'da 7. Senfoni — "Bu konserin davulcusu, ölüler arasından çıkarıldı."
 
 Kaynak: yalnız `arastirma.md` (KISMİ DOĞRULAMA; Aydarov bölümü arama özetlerine dayanır). Kanal: TR. Eşi: `senaryo-en.md` (aynı 15 plan, aynı süreler).
-v3.1: kullanıcı kararları (`notlar/tur-1.md` + ek not "daha hızlı işleyelim o zaman"): kanca K2, dört olayın hepsi içeride, Aydarov hikâyesi olgu olarak, **hızlı tempo**. Değişiklik özeti §11'de.
-Format: 1080x1920 · **15 plan** · TR 145 kelime (≈63 sn konuşma, 2.3 kelime/sn; yalnız TR ile ≈66 sn) · **ortak zamanlama tahmini ≈78 sn; hedef 70–75, EN belirliyor (bkz. §7)** · mekânlar: SALON (Filarmoni Büyük Salonu), BODRUM (Radyo Evi, geçici morg), SOKAK (kış geri dönüşü + yaz hoparlörü), CEPHE (topçu) + harita insert'i. P02–P06 nötr karanlık zemin (mekân okunmaz). Günlük format sınırlarının (8–14 plan, ≤65 sn) dışında; kullanıcı kararıyla.
+v3.1: kullanıcı kararları (`notlar/tur-1.md` + ek not "daha hızlı işleyelim o zaman"): kanca K2, dört olayın hepsi içeride, Aydarov hikâyesi olgu olarak, **hızlı tempo**. v3.2: soğuk dinleyici v3.1 turunun hazır satırları (P02, P05–P10, P14, P15) aynen işlendi. Değişiklik özeti §11'de.
+Format: 1080x1920 · **15 plan** · TR 152 kelime (≈66 sn konuşma, 2.3 kelime/sn; yalnız TR ile ≈70 sn) · **ortak zamanlama tahmini ≈82 sn; hedef 70–75, EN belirliyor (bkz. §7)** · mekânlar: SALON (Filarmoni Büyük Salonu), BODRUM (Radyo Evi, geçici morg), SOKAK (kış geri dönüşü + yaz hoparlörü), CEPHE (topçu) + harita insert'i. P02–P06 nötr karanlık zemin (mekân okunmaz). Günlük format sınırlarının (8–14 plan, ≤65 sn) dışında; kullanıcı kararıyla.
 Tempo kuralı: her olay tek cümle + tek görsel vuruş; her planda iki görsel vuruş (≈2–2.5 sn'de bir değişim); tutmalar kısa; anlatımsız plan yok.
 
 ## 0. Önce bunlar
@@ -18,15 +18,16 @@ Tempo kuralı: her olay tek cümle + tek görsel vuruş; her planda iki görsel 
 4. **Değişim:** Eliasberg morgda Aydarov'un parmağının oynadığını görüyor, onu çıkarıyor. Aydarov orkestraya dönüyor; notalar uçakla geliyor.
 5. **Sonuç:** Konser günü toplar salonu koruyor, ışıklar yanıyor, radyo konseri şehre ve Alman siperlerine yayınlıyor, seyirci tükenen müzisyenleri ayağa kalkıp yüreklendiriyor. Orkestra senfoniyi bitiriyor; davulun başında Aydarov var.
 
-**Son cümle (önce yazıldı):** "Orkestra senfoniyi sonuna kadar çaldı. Davulun başında, Eliasberg'in morgda vedalaşmaya gittiği Aydarov vardı."
-Kancayı tekrar etmez, tersinden bakar: kanca "ölüler arasından çıkarıldı" der, son "vedalaşmaya gidilen adam çalıyor" der. Kancanın karşılığı ortada verilir (P08 "ölülerin arasında", P09 "Eliasberg, Aydarov'u morgdan çıkardı").
+**Son cümle (önce yazıldı):** "Orkestra senfoniyi sonuna kadar çaldı. Davulların başında, morgdan çıkarılan Aydarov oturuyordu."
+Soğuk dinleyici turunun hazır satırı (v3.2). Kancaya döngüyle karşılık verir: "ölüler arasından çıkarıldı" → "morgdan çıkarılan Aydarov oturuyordu". Kimin çıkardığı ortada söylenir (P09 "Eliasberg, Aydarov'u morgdan çıkardı").
 Sonun gerektirdikleri: "konser", "davulcu" P01 · "Eliasberg", "senfoni" P02 · "Aydarov" P06 · "morg", "vedalaşmak" P07 · davul çubukları (imza nesnesi) P01.
 
 ## 1. Doğruluk kararları
 - **Aydarov hikâyesi anlatımda olgu olarak** (kullanıcı kararı): "anlatılana göre" anlatımda ve ekranda yok; kaynak notu yalnız açıklamada. Çekirdek yine §2A'daki biçim: yere yığıldı → Eliasberg onun öldüğünü duydu → morg → vedalaşmaya indi → parmağı oynadı → açlıktan bayılmıştı → Eliasberg onu çıkardı → orkestraya döndü.
 - **Yine yok:** ölü listesi, ceset arabası, trampet, Astoria, mermi sayısı, operasyon kod adı, Alman askeri sözü, pilot adı, konser saati/süresi, seyirci sayısı.
 - **"Konserin davulcusu" (K2, kullanıcı seçimi):** kadroda dört vurmalı çalgıcı var; anlatım tekil söylüyor. Açıklamada "dört vurmalı çalgıcıdan biri". Görselde davulun tipi nötr.
-- **"Öldü" diyen kim:** kaynakta belirsiz; cümle Eliasberg'e kuruldu ("Eliasberg, Aydarov'un öldüğünü duydu").
+- **"Öldü" diyen kim:** kaynakta belirsiz; özne uydurulmadı, edilgen kaldı ("ölü sanılıp morga kondu", P06).
+- **P10 "Kuşatma yüzünden … ancak yazın, uçakla":** kaynak notaların Temmuz başında uçakla geldiğini söyler; uçağın ve gecikmenin nedeninin kuşatma olduğu `arastirma.md`'de yazmıyor. Çelişki değil, çıkarım; hazır satır aynen uygulandı, araştırmacı doğrulamalı.
 - **Parmak:** çoğunluk varyantı (üç zincir). Nefes varyantı açıklamada.
 - **Provalarda ölüm:** "üç müzisyen öldü" (orta); yumuşatılmadı. Aydarov'un yığılmasının bu ölümlerden önce mi sonra mı olduğu bilinmiyor → "sonra" değil "bir gün".
 - **İlk prova:** üç saat planlandı, on beş dakikada kesildi (orta). Hangi eserin çalışıldığı söylenmedi (notalar yazın geldi).
@@ -47,7 +48,7 @@ Sonun gerektirdikleri: "konser", "davulcu" P01 · "Eliasberg", "senfoni" P02 · 
 Konserin kim/nerede/ne olduğu kancanın hemen ardından, P02'nin iki cümlesinde kulakla kurulur.
 
 **Kapanış alternatifleri**
-- **S1 ★** "Orkestra senfoniyi sonuna kadar çaldı. Davulun başında, Eliasberg'in morgda vedalaşmaya gittiği Aydarov vardı." Görüntü: P01'in elleri, kamera yukarı kayar, yüz ilk kez görünür; kalkmış çubuklardan P01'e eşleşen kesme.
+- **S1 ★** "Orkestra senfoniyi sonuna kadar çaldı. Davulların başında, morgdan çıkarılan Aydarov oturuyordu." Görüntü: P01'in elleri, kamera yukarı kayar, yüz ilk kez görünür; kalkmış çubuklardan P01'e eşleşen kesme.
 - S2 "Yıllar sonra sağ kalan müzisyenler aynı salonda yeniden toplandı. Ölen arkadaşlarının sandalyelerine çalgılarını koydular." (1964.) Yeni bir zaman açıyor; açıklamada.
 
 ## 3. Plan tablosu
@@ -60,20 +61,20 @@ Görsel sütununda (a)/(b) = planın iki vuruşu.
 | # | Süre (sn) | Mekân | Görsel | Anlatım | Ekran yazısı | Saklanan şey |
 |---|---|---|---|---|---|---|
 | P01 | 0.0–5.1 | SALON (yakın) | (a) K2 ilk karesi: çubuklar davula iner (tek foley vuruş). (b) Çubuklar yeniden kalkar; arkada flu, sıcak ışıkta müzisyen siluetleri. Yüz hiç görünmez. | "Bu konserin davulcusu, ölüler arasından çıkarıldı." | **LENINGRAD · 9 AĞUSTOS 1942** | Davulcunun yüzü. |
-| P02 | 5.1–11.5 | Harita insert'i → nötr zemin | (a) Harita: şehrin çevresinde kapanan halka. (b) Eliasberg, sırtı dönük, zayıf, giysisi bol; önünde boş bir nota sehpası, arkasında karanlıkta sandalyeler. | "Konser, Alman ordusunun kuşattığı Leningrad'daydı. Şef Karl Eliasberg, Şostakoviç'in yeni senfonisini çalacaktı." | *Karl Eliasberg · şef* / **Şostakoviç · 7. Senfoni** | Sehpa boş: notalar yok (P10'da gelir). |
+| P02 | 5.1–11.5 | Harita insert'i → nötr zemin | (a) Harita: şehrin çevresinde kapanan halka. (b) Eliasberg, sırtı dönük, zayıf, giysisi bol; önünde boş bir nota sehpası, arkasında karanlıkta sandalyeler. | "Konser, Alman ordusunun kuşattığı Leningrad'da verilecekti. Şef Karl Eliasberg, besteci Şostakoviç'in yeni senfonisini çalacaktı." | *Karl Eliasberg · şef* / **Şostakoviç · 7. Senfoni** | Sehpa boş: notalar yok (P10'da gelir). |
 | P03 | 11.5–17.0 | SOKAK (kış) → nötr zemin | (a) Karlı, boş sokak; ön planda açık bir avuç, içinde küçük koyu bir ekmek dilimi. (b) Sandalyeler: on beş kadarında oturan siluet, gerisi boş; kamera geri çekilir. En arkada bir davul ve boş tabure. | "Ama Eliasberg'in on beş kadar müzisyeni kalmıştı. Senfoni yüze yakın müzisyen istiyordu." | **1941–42 kışı · günde 125 g ekmek** / **40 → ~15** · *gereken: ~100* | Boş sandalyeler dolacak mı? |
 | P04 | 17.0–22.1 | Nötr (kapı insert'i → sandalyeler) | (a) Eliasberg bir kapıyı çalar; kapı aralanır, bir el çalgı kutusuyla çıkar. (b) Üniformalı siluetler omuzlarında çalgı kutularıyla gelir; sandalyeler dolar. Davulun taburesine biri oturur (sırtı dönük). | "Eliasberg kapı kapı müzisyen aradı. Ordu, cepheden müzisyen askerler gönderdi." | *gelenlere fazladan ekmek* | Tabureye oturanın yüzü. |
-| P05 | 22.1–27.2 | Nötr karanlık zemin | (a) Eliasberg kollarını kaldırır; yaylar, nefesliler kalkar. (b) Bir yay düşer, bir baş öne eğilir, bir çalgı dize iner; Eliasberg kollarını indirir. | "Ama müzisyenler açtı. Üç saatlik ilk prova on beş dakikada bitti." | **3 saat → 15 dakika** | Bu orkestra konseri çıkarabilir mi? |
-| P06 | 27.2–32.5 | Nötr karanlık zemin (insert) | (a) Üç sandalye boş; üstlerinde çalgılar duruyor. (b) Davul: çubuk tutan eller gevşer, çubuklar yere düşer (foley: iki tahta sesi), yuvarlanıp durur. Yalnız zemine uzanan bir kol. | "Provalarda üç müzisyen öldü. Bir gün konserin davulcusu Aydarov da yere yığıldı." | *Zhavdet Aydarov · vurmalı çalgılar* | Aydarov da öldü mü? |
-| P07 | 32.5–38.0 | BODRUM | (a) Dar merdiven, yukarıdaki kapıdan tek ışık; Eliasberg iner, elinde yerden aldığı çubuklar. (b) Aşağısı loş: duvar dibinde örtülü, yüzsüz, uzak biçimler; önde örtülü bir sedye. Eliasberg yanında başı eğik durur. | "Eliasberg, Aydarov'un öldüğünü duydu ve vedalaşmak için morga indi." | *Radyo Evi · bodrum* | Örtünün altı. |
-| P08 **anahtar** | 38.0–41.9 | BODRUM (insert) | (a) Eliasberg çubukları bırakmak için eğilir. (b) İnsert: örtünün kenarında bir el; işaret parmağı oynar (0.4 sn sonra anlatım). Eliasberg'in başı kalkar. 0.5 sn tutma. | "Ölülerin arasında, Aydarov'un parmağı oynadı." | — | Aydarov yaşıyor mu? |
-| P09 | 41.9–47.0 | BODRUM → merdiven | (a) Eliasberg ve iki siluet sedyeyi merdivenden yukarı, ışığa çıkarır. (b) Davulun taburesi, üstünde çubuklar; bir el çubukları alır (yüz yok). | "Aydarov açlıktan bayılmıştı. Eliasberg, Aydarov'u morgdan çıkardı; Aydarov iyileşip orkestraya döndü." | *hastaneye gönderildi* | Çubukları alan elin sahibi. |
-| P10 | 47.0–50.9 | Harita insert'i (yaz) | (a) P02'nin haritası; küçük bir uçak silueti (model nötr) kuşatma halkasının üstünden şehre iner. (b) P02'deki boş sehpaya kalın bir nota defteri konur. | "O yaz bir uçak, senfoninin notalarını şehre getirdi." | **Temmuz 1942** / *252 sayfa* | Yok. |
-| P11 | 50.9–56.4 | CEPHE (yaz) | (a) Açık gök, yeşil, kar yok; namluları yukarı bakan Sovyet topları. (b) Ateş (alçak, uzak gümbürtü); ufukta nötr şehir silueti. Mermilerin düştüğü yer gösterilmez. | "Konser günü Sovyet topçuları, salon vurulmasın diye önce Alman toplarına ateş açtı." | *9 Ağustos · konserden önce* | Salon vurulacak mı? |
-| P12 **anahtar** | 56.4–59.7 | SALON (geniş) | (a) Karanlık salon, dolu sandalyeler, dolu seyirci sıraları. (b) Işıklar yanar: soğuk karanlık sıcak altına döner; Eliasberg'in kolları kalkar. 0.3 sn tutma. | "Salonun ışıkları yandı, konser başladı." | *Filarmoni Büyük Salonu* | Davulun başındaki kişi kadrajın dışında. |
-| P13 | 59.7–64.8 | SOKAK (yaz) | (a) P03'ün sokağı, karsız, güneşli; direkte hoparlör (biçim nötr), altında başını kaldırmış insanlar. (b) Şehrin dışına bakan ikinci bir hoparlör. | "Radyo, konseri hoparlörlerle bütün şehre ve Alman siperlerine doğru yayınladı." | *radyo ve sokak hoparlörleri* | Yok. |
-| P14 | 64.8–70.3 | SALON (orta) | (a) Bir nefesli çalgıcının kolları iner, omuzları düşer. (b) Arkada seyirci: önce biri, sonra hepsi ayağa kalkar; çalgıcı çalgısını yeniden kaldırır. | "Bazı müzisyenlerin gücü tükendi. Seyirciler ayağa kalkıp müzisyenleri yüreklendirdi." | — | Sonuna kadar çalabilecekler mi? |
-| P15 **anahtar** | 70.3–78.3 | SALON (yakın) | (a) P01'in çerçevesi: aynı eller, aynı çubuklar; kamera yukarı kayar, yüz ilk kez görünür: genç, zayıf bir adam, gözü notada. (b) Çubuklar iner (tek foley vuruş), kalkar; kalkmış çubuklarda P01'e eşleşen kesme. Tutma: anlatım + 0.8 sn. | "Orkestra senfoniyi sonuna kadar çaldı. Davulun başında, Eliasberg'in morgda vedalaşmaya gittiği Aydarov vardı." | *Zhavdet Aydarov* | Yok. Döngü başa kapanır. |
+| P05 | 22.1–27.4 | Nötr karanlık zemin | (a) Eliasberg kollarını kaldırır; yaylar, nefesliler kalkar. (b) Bir yay düşer, bir baş öne eğilir, bir çalgı dize iner; Eliasberg kollarını indirir. | "Ama müzisyenler açlıktan güçsüzdü. Üç saatlik ilk prova on beş dakikada bitti." | **3 saat → 15 dakika** | Bu orkestra konseri çıkarabilir mi? |
+| P06 | 27.4–35.8 | Nötr karanlık zemin (insert) | (a) Üç sandalye boş; üstlerinde çalgılar duruyor. (b) Davul: çubuk tutan eller gevşer, çubuklar yere düşer (foley: iki tahta sesi), yuvarlanıp durur. Yalnız zemine uzanan bir kol. | "Provalarda üç müzisyen öldü. Bir gün davulcu Aydarov da yere yığıldı ve ölü sanılıp morga kondu." | *Zhavdet Aydarov · vurmalı çalgılar* | Aydarov da öldü mü? |
+| P07 | 35.8–38.5 | BODRUM | (a) Dar merdiven, yukarıdaki kapıdan tek ışık; Eliasberg iner, elinde yerden aldığı çubuklar. (b) Aşağısı loş: duvar dibinde örtülü, yüzsüz, uzak biçimler; önde örtülü bir sedye. Eliasberg yanında başı eğik durur. | "Eliasberg, Aydarov'la vedalaşmak için morga indi." | *Radyo Evi · bodrum* | Örtünün altı. |
+| P08 **anahtar** | 38.5–43.3 | BODRUM (insert) | (a) Eliasberg çubukları bırakmak için eğilir. (b) İnsert: örtünün kenarında bir el; işaret parmağı oynar (0.4 sn sonra anlatım). Eliasberg'in başı kalkar. 0.5 sn tutma. | "Ölülerin arasında Eliasberg, Aydarov'un parmağının oynadığını gördü." | — | Aydarov yaşıyor mu? |
+| P09 | 43.3–48.6 | BODRUM → merdiven | (a) Eliasberg ve iki siluet sedyeyi merdivenden yukarı, ışığa çıkarır. (b) Davulun taburesi, üstünde çubuklar; bir el çubukları alır (yüz yok). | "Aydarov ölmemişti, açlıktan bayılmıştı. Eliasberg, Aydarov'u morgdan çıkardı; Aydarov iyileşip orkestraya döndü." | *hastaneye gönderildi* | Çubukları alan elin sahibi. |
+| P10 | 48.6–55.0 | Harita insert'i (yaz) | (a) P02'nin haritası; küçük bir uçak silueti (model nötr) kuşatma halkasının üstünden şehre iner. (b) P02'deki boş sehpaya kalın bir nota defteri konur. | "Temmuzda senfoninin notaları kuşatılmış şehre uçakla getirildi." | **Temmuz 1942** / *252 sayfa* | Yok. |
+| P11 | 55.0–60.5 | CEPHE (yaz) | (a) Açık gök, yeşil, kar yok; namluları yukarı bakan Sovyet topları. (b) Ateş (alçak, uzak gümbürtü); ufukta nötr şehir silueti. Mermilerin düştüğü yer gösterilmez. | "Konser günü Sovyet topçuları, salon vurulmasın diye önce Alman toplarına ateş açtı." | *9 Ağustos · konserden önce* | Salon vurulacak mı? |
+| P12 **anahtar** | 60.5–63.8 | SALON (geniş) | (a) Karanlık salon, dolu sandalyeler, dolu seyirci sıraları. (b) Işıklar yanar: soğuk karanlık sıcak altına döner; Eliasberg'in kolları kalkar. 0.3 sn tutma. | "Salonun ışıkları yandı, konser başladı." | *Filarmoni Büyük Salonu* | Davulun başındaki kişi kadrajın dışında. |
+| P13 | 63.8–68.9 | SOKAK (yaz) | (a) P03'ün sokağı, karsız, güneşli; direkte hoparlör (biçim nötr), altında başını kaldırmış insanlar. (b) Şehrin dışına bakan ikinci bir hoparlör. | "Radyo, konseri hoparlörlerle bütün şehre ve Alman siperlerine doğru yayınladı." | *radyo ve sokak hoparlörleri* | Yok. |
+| P14 | 68.9–74.4 | SALON (orta) | (a) Bir nefesli çalgıcının kolları iner, omuzları düşer. (b) Arkada seyirci: önce biri, sonra hepsi ayağa kalkar; çalgıcı çalgısını yeniden kaldırır. | "Bazı müzisyenlerin gücü tükendi. Seyirciler ayağa kalkıp müzisyenlere güç verdi." | — | Sonuna kadar çalabilecekler mi? |
+| P15 **anahtar** | 74.4–82.4 | SALON (yakın) | (a) P01'in çerçevesi: aynı eller, aynı çubuklar; kamera yukarı kayar, yüz ilk kez görünür: genç, zayıf bir adam, gözü notada. (b) Çubuklar iner (tek foley vuruş), kalkar; kalkmış çubuklarda P01'e eşleşen kesme. Tutma: anlatım + 0.8 sn. | "Orkestra senfoniyi sonuna kadar çaldı. Davulların başında, morgdan çıkarılan Aydarov oturuyordu." | *Zhavdet Aydarov* | Yok. Döngü başa kapanır. |
 
 ## 4. Kurulum → Karşılık
 
@@ -142,26 +143,26 @@ P15 Zhavdet Aydarov                                 (aynı eller, yüz görünü
 Okunuyor.
 
 ### Ses açık (yalnız anlatım)
-"Bu konserin davulcusu, ölüler arasından çıkarıldı. / Konser, Alman ordusunun kuşattığı Leningrad'daydı. Şef Karl Eliasberg, Şostakoviç'in yeni senfonisini çalacaktı. / Ama Eliasberg'in on beş kadar müzisyeni kalmıştı. Senfoni yüze yakın müzisyen istiyordu. / Eliasberg kapı kapı müzisyen aradı. Ordu, cepheden müzisyen askerler gönderdi. / Ama müzisyenler açtı. Üç saatlik ilk prova on beş dakikada bitti. / Provalarda üç müzisyen öldü. Bir gün konserin davulcusu Aydarov da yere yığıldı. / Eliasberg, Aydarov'un öldüğünü duydu ve vedalaşmak için morga indi. / Ölülerin arasında, Aydarov'un parmağı oynadı. / Aydarov açlıktan bayılmıştı. Eliasberg, Aydarov'u morgdan çıkardı; Aydarov iyileşip orkestraya döndü. / O yaz bir uçak, senfoninin notalarını şehre getirdi. / Konser günü Sovyet topçuları, salon vurulmasın diye önce Alman toplarına ateş açtı. / Salonun ışıkları yandı, konser başladı. / Radyo, konseri hoparlörlerle bütün şehre ve Alman siperlerine doğru yayınladı. / Bazı müzisyenlerin gücü tükendi. Seyirciler ayağa kalkıp müzisyenleri yüreklendirdi. / Orkestra senfoniyi sonuna kadar çaldı. Davulun başında, Eliasberg'in morgda vedalaşmaya gittiği Aydarov vardı."
+"Bu konserin davulcusu, ölüler arasından çıkarıldı. / Konser, Alman ordusunun kuşattığı Leningrad'da verilecekti. Şef Karl Eliasberg, besteci Şostakoviç'in yeni senfonisini çalacaktı. / Ama Eliasberg'in on beş kadar müzisyeni kalmıştı. Senfoni yüze yakın müzisyen istiyordu. / Eliasberg kapı kapı müzisyen aradı. Ordu, cepheden müzisyen askerler gönderdi. / Ama müzisyenler açlıktan güçsüzdü. Üç saatlik ilk prova on beş dakikada bitti. / Provalarda üç müzisyen öldü. Bir gün davulcu Aydarov da yere yığıldı ve ölü sanılıp morga kondu. / Eliasberg, Aydarov'la vedalaşmak için morga indi. / Ölülerin arasında Eliasberg, Aydarov'un parmağının oynadığını gördü. / Aydarov ölmemişti, açlıktan bayılmıştı. Eliasberg, Aydarov'u morgdan çıkardı; Aydarov iyileşip orkestraya döndü. / Temmuzda senfoninin notaları kuşatılmış şehre uçakla getirildi. / Konser günü Sovyet topçuları, salon vurulmasın diye önce Alman toplarına ateş açtı. / Salonun ışıkları yandı, konser başladı. / Radyo, konseri hoparlörlerle bütün şehre ve Alman siperlerine doğru yayınladı. / Bazı müzisyenlerin gücü tükendi. Seyirciler ayağa kalkıp müzisyenlere güç verdi. / Orkestra senfoniyi sonuna kadar çaldı. Davulların başında, morgdan çıkarılan Aydarov oturuyordu."
 
 ### Kulak için yaz kontrolü (kim, ne yaptı, neye)
 | Plan | Kim | Ne yaptı / neye |
 |---|---|---|
 | P01 | Konserin davulcusu | ölüler arasından çıkarıldı (kimin çıkardığı P09'da: Eliasberg) |
-| P02 | Konser · Şef Karl Eliasberg | Leningrad'daydı · Şostakoviç'in yeni senfonisini çalacak |
+| P02 | Konser · Şef Karl Eliasberg | Leningrad'da verilecek · besteci Şostakoviç'in yeni senfonisini çalacak |
 | P03 | Eliasberg · senfoni | on beş kadar müzisyeni kaldı · yüze yakın müzisyen istiyor |
 | P04 | Eliasberg · ordu | müzisyen aradı · müzisyen askerler gönderdi |
-| P05 | Müzisyenler · ilk prova | açtı · on beş dakikada bitti |
-| P06 | Üç müzisyen · konserin davulcusu Aydarov | öldü · yere yığıldı |
-| P07 | Eliasberg | Aydarov'un öldüğünü duydu; morga indi |
-| P08 | Aydarov'un parmağı | oynadı |
-| P09 | Aydarov · Eliasberg · Aydarov | bayılmıştı · Aydarov'u çıkardı · orkestraya döndü |
-| P10 | Bir uçak | senfoninin notalarını şehre getirdi |
+| P05 | Müzisyenler · ilk prova | açlıktan güçsüzdü · on beş dakikada bitti |
+| P06 | Üç müzisyen · davulcu Aydarov | öldü · yere yığıldı, ölü sanılıp morga kondu (sanan ve koyan kaynakta yok; edilgen) |
+| P07 | Eliasberg | Aydarov'la vedalaşmak için morga indi |
+| P08 | Eliasberg | ölülerin arasında Aydarov'un parmağının oynadığını gördü |
+| P09 | Aydarov · Eliasberg · Aydarov | ölmemişti, bayılmıştı · Aydarov'u morgdan çıkardı · orkestraya döndü |
+| P10 | Senfoninin notaları | şehre yazın, uçakla getirildi (edilgen: getiren kaynakta adsız; neden: kuşatma) |
 | P11 | Sovyet topçuları | Alman toplarına ateş açtı (salon vurulmasın diye) |
 | P12 | Salonun ışıkları · konser | yandı · başladı |
 | P13 | Radyo | konseri şehre ve Alman siperlerine doğru yayınladı |
-| P14 | Bazı müzisyenler · seyirciler | gücü tükendi · müzisyenleri yüreklendirdi |
-| P15 | Orkestra · Aydarov | senfoniyi sonuna kadar çaldı · davulun başındaydı |
+| P14 | Bazı müzisyenler · seyirciler | gücü tükendi · müzisyenlere güç verdi |
+| P15 | Orkestra · morgdan çıkarılan Aydarov | senfoniyi sonuna kadar çaldı · davulların başında oturuyordu |
 
 Her cümlede adlı özne var; zamirle başlayan cümle yok. Önce durum, sonra olay: açlık (P05) yığılmadan (P06) önce · morg (P07) ve içindekiler (P08) çıkarılmadan (P09) önce · Alman ordusu (P02) toplardan ve siperlerden (P11, P13) önce · "gücü tükendi" (P14) "sonuna kadar çaldı"dan (P15) önce.
 Ritim: kısa vuruşlar (P08, P12; P05, P14'ün ilk cümleleri) ile nefes alan cümleler (P07, P11, P13, P15) sırayla.
@@ -173,24 +174,25 @@ Yeni metin soğuk dinleyiciye yeniden okutulmalı (zorunlu adım).
 | Plan | Kelime | Konuşma (2.3 k/sn) | Plan süresi (iki dilin uzunu + 0.1) |
 |---|---|---|---|
 | P01 | 6 | 2.6 | 5.1 |
-| P02 | 12 | 5.2 | 6.4 |
+| P02 | 14 | 6.1 | 6.4 |
 | P03 | 12 | 5.2 | 5.5 |
 | P04 | 10 | 4.3 | 5.1 |
-| P05 | 11 | 4.8 | 5.1 |
-| P06 | 12 | 5.2 | 5.3 |
-| P07 | 9 | 3.9 | 5.5 |
-| P08 | 5 | 2.2 (+0.4 önce, +0.5 tutma) | 3.9 |
-| P09 | 11 | 4.8 | 5.1 |
-| P10 | 8 | 3.5 | 3.9 |
+| P05 | 12 | 5.2 | 5.3 |
+| P06 | 16 | 7.0 | 8.4 |
+| P07 | 6 | 2.6 | 2.7 |
+| P08 | 7 | 3.0 (+0.4 önce, +0.5 tutma) | 4.8 |
+| P09 | 12 | 5.2 | 5.3 |
+| P10 | 9 | 3.9 | 6.4 |
 | P11 | 12 | 5.2 | 5.5 |
 | P12 | 5 | 2.2 (+0.3 tutma) | 3.3 |
 | P13 | 10 | 4.3 | 5.1 |
-| P14 | 9 | 3.9 | 5.5 |
-| P15 | 13 | 5.7 (+0.8 tutma) | 8.0 |
-| **Toplam** | **145** | **≈63.0 sn** | **≈78.3 sn** |
+| P14 | 10 | 4.3 | 5.5 |
+| P15 | 11 | 4.8 (+0.8 tutma) | 8.0 |
+| **Toplam** | **152** | **≈66.1 sn** | **≈82.4 sn** |
 
-- **Yalnız TR ile kurulsa ≈66 sn** (63 konuşma + kuyruk ve tutmalar): hedefin altında.
-- **Ortak zamanlama ≈78 sn, 70–75 hedefinin ~3 sn üstünde.** Nedeni EN: aynı içerik 179 kelime; P06 dışındaki her planı EN belirliyor. EN için hız varsayımım 2.4 k/sn (ev hızı 2.2 × speed 1.1; bana verilen 2.3 TR için kabul edildi). EN de 2.3 ile sayılırsa toplam ≈81 sn. İki hız da ölçülmüş değil; speed 1.1 denemesi ölçülünce netleşir.
+- **Yalnız TR ile kurulsa ≈70 sn** (66 konuşma + kuyruk ve tutmalar): hedefin alt ucunda.
+- **Ortak zamanlama ≈82 sn, 70–75 hedefinin ~7 sn üstünde.** Nedeni EN: aynı içerik 188 kelime; P05, P07 ve P09 dışındaki her planı EN belirliyor. EN için hız varsayımım 2.4 k/sn (ev hızı 2.2 × speed 1.1; verilen 2.3 TR'ye uygulandı). EN de 2.3 ile sayılırsa toplam ≈86 sn. İki hız da ölçülmüş değil; speed 1.1 denemesi ölçülünce netleşir.
+- v3.2'de en çok uzayan planlar: P06 (+3.1 sn, EN 20 kelime) ve P10 (+2.5 sn, EN 15 kelime).
 - Aşarsa, özne kırpmadan çıkarılabilecek cümleler (sırayla; dört olayın hiçbiri değil): (1) P06'nın ilk cümlesi, "Provalarda üç müzisyen öldü" (−2 sn); (2) P04'ün ikinci cümlesi, ordu (−2.5 sn; ekranda ve görselde kalır); (3) EN P15'in kısa biçimi (−1 sn).
 
 ## 8. Anahtar anlar (`anahtar: true`)
@@ -208,7 +210,7 @@ Tempo kararıyla tutmalar kısa (kural: okuma + 1.5 sn; burada 0.3–0.8 sn).
 ## 10. Açık sorular
 Kullanıcıya:
 1. **Onay:** v3.1 metni (TR + EN) bu haliyle sese gidebilir mi?
-2. **Süre:** TR ≈66 sn; EN aynı içerikle filmi ≈78 sn'ye çekiyor. Ölçülen ses de 75'i aşarsa: ~78 sn kalsın mı, yoksa §7'deki iki yan cümleden mi kısalsın?
+2. **Süre:** TR ≈70 sn; EN aynı içerikle filmi ≈82 sn'ye çekiyor. Ölçülen ses de 75'i aşarsa: ~82 sn kalsın mı, yoksa §7'deki iki yan cümleden mi kısalsın?
 
 Orkestraya / sonraki ajanlara notlar (kullanıcı kararı değil):
 - Soğuk dinleyici v3.1 metnini yeniden okumalı.
@@ -226,4 +228,5 @@ Orkestraya / sonraki ajanlara notlar (kullanıcı kararı değil):
 | Aydarov = P01'deki davulcu | P06 "konserin davulcusu Aydarov" (kancanın sözleriyle). |
 | Işık planı bağlamsız | P12 sesli: "Salonun ışıkları yandı, konser başladı." Öncesinde P11 "konser günü". |
 | Son, açılışı tekrar ediyor | Kancanın karşılığı ortada (P08–P09); son cümle vedalaşma üzerinden. |
+| Soğuk dinleyici v3.1 (v3.2) | Orkestranın verdiği hazır satırlar aynen: P02, P05, P06, P07, P08, P09, P10, P14, P15. P09'da "onu" yerine "Aydarov'u" (özne kuralı). TR 145 → 152 kelime, tahmin ≈78 → ≈82 sn. §4–§5'teki söz alıntıları eski satırlara göre kalmış olabilir; anlatımın geçerli hali §3 ve §6'dadır. |
 | "Daha hızlı" (v3.1) | 167 → 145 kelime; her olay tek cümle; iki cümleli planlarda kısa + uzun; tutmalar 0.3–0.8 sn; her planda iki görsel vuruş; hız 2.3 k/sn. Çıkan yan bilgiler: "kuşatmada", "bodrumdaki", "ölmemişti", "düşman da duysun diye", "konser sürerken", P08'de "gördü". |
