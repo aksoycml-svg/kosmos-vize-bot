@@ -78,3 +78,8 @@
 - Teknik değişenler: P02a Eye→Low Angle (hayranlık); P05 Pull Out→Slow Push In + arc (güç/kararlılık; pull out yalnızlık verirdi); P06 V3 rack focus (halka→kapı, fark ediş); P08a Low→Eye Level (empati). Rack focus 5 oldu.
 - Eğri düzeltmeleri: P02b merak/önem, P03c huzursuz sakinlik, P07c çaresizlik eklendi. Slow motion kullanılmadı; panik seti yok.
 - Dokunduğum dosyalar: bolumler/ben-my-chree/sahne-plani.md, katki-raporu.md
+
+## yonetmen · 2026-11-15 · mekanlar.md bulgularının işlenmesi
+- Ne yaptım: P01 kamerası kayanın 1.2 m üstü / deniz +50 m (375 mm, F 11 270); oyuk y 1130–1270 ve çizgi başı y 1235'e alındı, ekran yazısı üstte, altyazı altta (hiçbiri kurulum nesnesine binmez). P05 arc b 100→125°, gemi kadraj dışı kabul, arka plan Kaş sırtı. P06 V1 kamera mevziin ≈ 20 m gerisinde, 375 mm, OTS 3 er, dolly 1.2 m. P10a b=190°, Eye Level (telefoto 20 m'de alçak açı mümkün değil), ön sıra bölündü, enkaz bacaları x 410–640 arasından görünür, top y 760–1200. Rüzgâr 335° tek vektör ve `lint sirt_sikistirma` §0'a. P04 dolly zoom mekân önerisiyle eşitlendi: oyuk sabit (200 px/m), z 0→−30 m, 200→400 mm, sırt ×2. Kalibrasyon: P01 k124, P07b k2388, P05 k150, P04 hareket şeridi.
+- Dokunduğum dosyalar: bolumler/ben-my-chree/sahne-plani.md, katki-raporu.md
+- Notlar: P04'te ön plan taşı artık sabit değil, alt kenardan çıkıyor (eski "taş %14 sabit" geçersiz). P10a alçak açı kartı Eye Level'a döndü (alçak açı listesinden çıktı).
