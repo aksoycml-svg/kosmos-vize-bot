@@ -1,0 +1,87 @@
+{
+ "id": "P11",
+ "lang": "tr",
+ "text": "Konser günü Sovyet topçuları, salon vurulmasın diye önce Alman toplarına ateş açtı.",
+ "words": [
+  {
+   "t": "Konser",
+   "s": 0.1,
+   "e": 0.42
+  },
+  {
+   "t": "günü",
+   "s": 0.46,
+   "e": 0.67
+  },
+  {
+   "t": "Sovyet",
+   "s": 0.72,
+   "e": 1.0
+  },
+  {
+   "t": "topçuları,",
+   "s": 1.07,
+   "e": 1.53
+  },
+  {
+   "t": "salon",
+   "s": 1.77,
+   "e": 2.07
+  },
+  {
+   "t": "vurulmasın",
+   "s": 2.09,
+   "e": 2.58
+  },
+  {
+   "t": "diye",
+   "s": 2.62,
+   "e": 2.82
+  },
+  {
+   "t": "önce",
+   "s": 2.91,
+   "e": 3.23
+  },
+  {
+   "t": "Alman",
+   "s": 3.32,
+   "e": 3.63
+  },
+  {
+   "t": "toplarına",
+   "s": 3.68,
+   "e": 4.15
+  },
+  {
+   "t": "ateş",
+   "s": 4.2,
+   "e": 4.46
+  },
+  {
+   "t": "açtı.",
+   "s": 4.51,
+   "e": 4.75
+  }
+ ],
+ "dur": 4.989,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -74.4,
+ "hisirti_6k_dbfs": -85.6,
+ "pad_nf_dbfs": -86.6,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

@@ -1,0 +1,109 @@
+{
+ "id": "P06",
+ "lang": "tr",
+ "text": "Provalarda üç müzisyen öldü. Bir gün davulcu Aydarov da yere yığıldı ve ölü sanılıp morga kondu.",
+ "words": [
+  {
+   "t": "Provalarda",
+   "s": 0.1,
+   "e": 0.59
+  },
+  {
+   "t": "üç",
+   "s": 0.64,
+   "e": 0.75
+  },
+  {
+   "t": "müzisyen",
+   "s": 0.81,
+   "e": 1.21
+  },
+  {
+   "t": "öldü.",
+   "s": 1.26,
+   "e": 1.46
+  },
+  {
+   "t": "Bir",
+   "s": 2.03,
+   "e": 2.12
+  },
+  {
+   "t": "gün",
+   "s": 2.14,
+   "e": 2.32
+  },
+  {
+   "t": "davulcu",
+   "s": 2.37,
+   "e": 2.74
+  },
+  {
+   "t": "Aydarov",
+   "s": 2.79,
+   "e": 3.13
+  },
+  {
+   "t": "da",
+   "s": 3.17,
+   "e": 3.24
+  },
+  {
+   "t": "yere",
+   "s": 3.29,
+   "e": 3.47
+  },
+  {
+   "t": "yığıldı",
+   "s": 3.52,
+   "e": 3.9
+  },
+  {
+   "t": "ve",
+   "s": 4.15,
+   "e": 4.25
+  },
+  {
+   "t": "ölü",
+   "s": 4.33,
+   "e": 4.53
+  },
+  {
+   "t": "sanılıp",
+   "s": 4.56,
+   "e": 4.89
+  },
+  {
+   "t": "morga",
+   "s": 4.96,
+   "e": 5.27
+  },
+  {
+   "t": "kondu.",
+   "s": 5.31,
+   "e": 5.59
+  }
+ ],
+ "dur": 5.851,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -85.9,
+ "hisirti_6k_dbfs": -98.7,
+ "pad_nf_dbfs": -86.5,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  31.16
+ ]
+}

@@ -1,0 +1,115 @@
+{
+ "id": "P15",
+ "lang": "en",
+ "text": "The orchestra played to the end. On the drums sat Aydarov, the man pulled from the morgue.",
+ "words": [
+  {
+   "t": "The",
+   "s": 0.1,
+   "e": 0.19
+  },
+  {
+   "t": "orchestra",
+   "s": 0.24,
+   "e": 0.66
+  },
+  {
+   "t": "played",
+   "s": 0.7,
+   "e": 0.92
+  },
+  {
+   "t": "to",
+   "s": 0.93,
+   "e": 0.99
+  },
+  {
+   "t": "the",
+   "s": 1.04,
+   "e": 1.12
+  },
+  {
+   "t": "end.",
+   "s": 1.16,
+   "e": 1.45
+  },
+  {
+   "t": "On",
+   "s": 1.84,
+   "e": 1.96
+  },
+  {
+   "t": "the",
+   "s": 2.0,
+   "e": 2.08
+  },
+  {
+   "t": "drums",
+   "s": 2.12,
+   "e": 2.44
+  },
+  {
+   "t": "sat",
+   "s": 2.46,
+   "e": 2.61
+  },
+  {
+   "t": "Aydarov,",
+   "s": 2.66,
+   "e": 3.14
+  },
+  {
+   "t": "the",
+   "s": 3.47,
+   "e": 3.55
+  },
+  {
+   "t": "man",
+   "s": 3.59,
+   "e": 3.76
+  },
+  {
+   "t": "pulled",
+   "s": 3.82,
+   "e": 4.1
+  },
+  {
+   "t": "from",
+   "s": 4.12,
+   "e": 4.26
+  },
+  {
+   "t": "the",
+   "s": 4.29,
+   "e": 4.37
+  },
+  {
+   "t": "morgue.",
+   "s": 4.39,
+   "e": 4.74
+  }
+ ],
+ "dur": 4.989,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -86.4,
+ "hisirti_6k_dbfs": -93.3,
+ "pad_nf_dbfs": -83.2,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  62.18,
+  63.8
+ ]
+}

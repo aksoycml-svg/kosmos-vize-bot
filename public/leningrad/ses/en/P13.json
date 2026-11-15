@@ -1,0 +1,87 @@
+{
+ "id": "P13",
+ "lang": "en",
+ "text": "Loudspeakers carried the concert across the city and toward the German lines.",
+ "words": [
+  {
+   "t": "Loudspeakers",
+   "s": 0.1,
+   "e": 0.63
+  },
+  {
+   "t": "carried",
+   "s": 0.68,
+   "e": 0.94
+  },
+  {
+   "t": "the",
+   "s": 0.96,
+   "e": 1.04
+  },
+  {
+   "t": "concert",
+   "s": 1.07,
+   "e": 1.55
+  },
+  {
+   "t": "across",
+   "s": 1.58,
+   "e": 1.92
+  },
+  {
+   "t": "the",
+   "s": 1.96,
+   "e": 2.04
+  },
+  {
+   "t": "city",
+   "s": 2.07,
+   "e": 2.31
+  },
+  {
+   "t": "and",
+   "s": 2.34,
+   "e": 2.42
+  },
+  {
+   "t": "toward",
+   "s": 2.44,
+   "e": 2.65
+  },
+  {
+   "t": "the",
+   "s": 2.66,
+   "e": 2.74
+  },
+  {
+   "t": "German",
+   "s": 2.77,
+   "e": 3.02
+  },
+  {
+   "t": "lines.",
+   "s": 3.06,
+   "e": 3.38
+  }
+ ],
+ "dur": 3.631,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -52.1,
+ "hisirti_6k_dbfs": -65.7,
+ "pad_nf_dbfs": -83.0,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

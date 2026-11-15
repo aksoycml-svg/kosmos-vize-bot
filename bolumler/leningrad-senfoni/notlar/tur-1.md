@@ -11,3 +11,8 @@ Uygulama:
 > daha hızlı işleyelim o zaman
 
 Yorum: dört olay eklenince süre uzamasın diye anlatım temposu hızlanır — kısa, sıkı cümleler, kısa tutmalar, plan başına daha hızlı görsel değişim; hedef ~70–75 sn. Ses hızı için ElevenLabs speed 1.0 → 1.1 tek satır denemesiyle sınanır.
+
+## Tur 1c — senaryo v3.2 onayı (2026-11-15)
+> onaylıyorum, 1.1 ile direkt git
+
+Uygulama: senaryo v3.2 (TR+EN) onaylı, kilitli. Ses: Doga/Brian, multilingual_v2, speed 1.1 (diğer ayarlar kanal varsayılanı), tek çağrı/dil.

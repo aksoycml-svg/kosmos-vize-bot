@@ -1,0 +1,87 @@
+{
+ "id": "P04",
+ "lang": "en",
+ "text": "Eliasberg went door to door. The army sent musicians from the front.",
+ "words": [
+  {
+   "t": "Eliasberg",
+   "s": 0.11,
+   "e": 0.59
+  },
+  {
+   "t": "went",
+   "s": 0.63,
+   "e": 0.78
+  },
+  {
+   "t": "door",
+   "s": 0.8,
+   "e": 0.97
+  },
+  {
+   "t": "to",
+   "s": 1.01,
+   "e": 1.07
+  },
+  {
+   "t": "door.",
+   "s": 1.11,
+   "e": 1.43
+  },
+  {
+   "t": "The",
+   "s": 1.81,
+   "e": 1.89
+  },
+  {
+   "t": "army",
+   "s": 1.94,
+   "e": 2.15
+  },
+  {
+   "t": "sent",
+   "s": 2.19,
+   "e": 2.37
+  },
+  {
+   "t": "musicians",
+   "s": 2.4,
+   "e": 2.91
+  },
+  {
+   "t": "from",
+   "s": 2.94,
+   "e": 3.08
+  },
+  {
+   "t": "the",
+   "s": 3.1,
+   "e": 3.18
+  },
+  {
+   "t": "front.",
+   "s": 3.22,
+   "e": 3.48
+  }
+ ],
+ "dur": 3.709,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -81.7,
+ "hisirti_6k_dbfs": -88.6,
+ "pad_nf_dbfs": -79.4,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

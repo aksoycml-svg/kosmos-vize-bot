@@ -1,0 +1,77 @@
+{
+ "id": "P14",
+ "lang": "tr",
+ "text": "Bazı müzisyenlerin gücü tükendi. Seyirciler ayağa kalkıp müzisyenlere güç verdi.",
+ "words": [
+  {
+   "t": "Bazı",
+   "s": 0.1,
+   "e": 0.35
+  },
+  {
+   "t": "müzisyenlerin",
+   "s": 0.38,
+   "e": 1.0
+  },
+  {
+   "t": "gücü",
+   "s": 1.05,
+   "e": 1.25
+  },
+  {
+   "t": "tükendi.",
+   "s": 1.28,
+   "e": 1.64
+  },
+  {
+   "t": "Seyirciler",
+   "s": 1.95,
+   "e": 2.49
+  },
+  {
+   "t": "ayağa",
+   "s": 2.55,
+   "e": 2.77
+  },
+  {
+   "t": "kalkıp",
+   "s": 2.82,
+   "e": 3.08
+  },
+  {
+   "t": "müzisyenlere",
+   "s": 3.16,
+   "e": 3.72
+  },
+  {
+   "t": "güç",
+   "s": 3.75,
+   "e": 3.9
+  },
+  {
+   "t": "verdi.",
+   "s": 3.95,
+   "e": 4.21
+  }
+ ],
+ "dur": 4.441,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -69.0,
+ "hisirti_6k_dbfs": -83.9,
+ "pad_nf_dbfs": -86.1,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

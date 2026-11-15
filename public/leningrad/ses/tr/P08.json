@@ -1,0 +1,64 @@
+{
+ "id": "P08",
+ "lang": "tr",
+ "text": "Ölülerin arasında Eliasberg, Aydarov'un parmağının oynadığını gördü.",
+ "words": [
+  {
+   "t": "Ölülerin",
+   "s": 0.1,
+   "e": 0.51
+  },
+  {
+   "t": "arasında",
+   "s": 0.55,
+   "e": 0.96
+  },
+  {
+   "t": "Eliasberg,",
+   "s": 1.01,
+   "e": 1.53
+  },
+  {
+   "t": "Aydarov'un",
+   "s": 1.81,
+   "e": 2.3
+  },
+  {
+   "t": "parmağının",
+   "s": 2.33,
+   "e": 2.79
+  },
+  {
+   "t": "oynadığını",
+   "s": 2.84,
+   "e": 3.28
+  },
+  {
+   "t": "gördü.",
+   "s": 3.31,
+   "e": 3.59
+  }
+ ],
+ "dur": 3.84,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -86.5,
+ "hisirti_6k_dbfs": -99.1,
+ "pad_nf_dbfs": -87.6,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  37.84
+ ]
+}

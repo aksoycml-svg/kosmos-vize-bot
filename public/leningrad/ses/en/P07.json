@@ -1,0 +1,57 @@
+{
+ "id": "P07",
+ "lang": "en",
+ "text": "Eliasberg went down to say goodbye.",
+ "words": [
+  {
+   "t": "Eliasberg",
+   "s": 0.1,
+   "e": 0.64
+  },
+  {
+   "t": "went",
+   "s": 0.67,
+   "e": 0.85
+  },
+  {
+   "t": "down",
+   "s": 0.88,
+   "e": 1.09
+  },
+  {
+   "t": "to",
+   "s": 1.1,
+   "e": 1.16
+  },
+  {
+   "t": "say",
+   "s": 1.21,
+   "e": 1.37
+  },
+  {
+   "t": "goodbye.",
+   "s": 1.39,
+   "e": 1.86
+  }
+ ],
+ "dur": 2.116,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.2,
+ "hisirti_6k_dbfs": -88.9,
+ "pad_nf_dbfs": -81.6,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

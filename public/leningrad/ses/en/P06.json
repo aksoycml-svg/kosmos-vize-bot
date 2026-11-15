@@ -1,0 +1,127 @@
+{
+ "id": "P06",
+ "lang": "en",
+ "text": "Three musicians died in rehearsals. One day the drummer, Aydarov, collapsed, was taken for dead and laid in the morgue.",
+ "words": [
+  {
+   "t": "Three",
+   "s": 0.1,
+   "e": 0.28
+  },
+  {
+   "t": "musicians",
+   "s": 0.32,
+   "e": 0.84
+  },
+  {
+   "t": "died",
+   "s": 0.88,
+   "e": 1.09
+  },
+  {
+   "t": "in",
+   "s": 1.12,
+   "e": 1.17
+  },
+  {
+   "t": "rehearsals.",
+   "s": 1.22,
+   "e": 1.74
+  },
+  {
+   "t": "One",
+   "s": 2.61,
+   "e": 2.83
+  },
+  {
+   "t": "day",
+   "s": 2.86,
+   "e": 3.0
+  },
+  {
+   "t": "the",
+   "s": 3.04,
+   "e": 3.12
+  },
+  {
+   "t": "drummer,",
+   "s": 3.17,
+   "e": 3.57
+  },
+  {
+   "t": "Aydarov,",
+   "s": 3.64,
+   "e": 4.2
+  },
+  {
+   "t": "collapsed,",
+   "s": 4.45,
+   "e": 4.98
+  },
+  {
+   "t": "was",
+   "s": 5.01,
+   "e": 5.14
+  },
+  {
+   "t": "taken",
+   "s": 5.19,
+   "e": 5.47
+  },
+  {
+   "t": "for",
+   "s": 5.52,
+   "e": 5.64
+  },
+  {
+   "t": "dead",
+   "s": 5.69,
+   "e": 5.98
+  },
+  {
+   "t": "and",
+   "s": 6.22,
+   "e": 6.35
+  },
+  {
+   "t": "laid",
+   "s": 6.41,
+   "e": 6.62
+  },
+  {
+   "t": "in",
+   "s": 6.66,
+   "e": 6.71
+  },
+  {
+   "t": "the",
+   "s": 6.74,
+   "e": 6.82
+  },
+  {
+   "t": "morgue.",
+   "s": 6.84,
+   "e": 7.14
+  }
+ ],
+ "dur": 7.393,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -82.3,
+ "hisirti_6k_dbfs": -88.9,
+ "pad_nf_dbfs": -81.9,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

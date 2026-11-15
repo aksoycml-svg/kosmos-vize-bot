@@ -1,0 +1,87 @@
+{
+ "id": "P09",
+ "lang": "tr",
+ "text": "Aydarov ölmemişti, açlıktan bayılmıştı. Eliasberg, Aydarov'u morgdan çıkardı; Aydarov iyileşip orkestraya döndü.",
+ "words": [
+  {
+   "t": "Aydarov",
+   "s": 0.1,
+   "e": 0.46
+  },
+  {
+   "t": "ölmemişti,",
+   "s": 0.53,
+   "e": 1.06
+  },
+  {
+   "t": "açlıktan",
+   "s": 1.38,
+   "e": 1.83
+  },
+  {
+   "t": "bayılmıştı.",
+   "s": 1.88,
+   "e": 2.37
+  },
+  {
+   "t": "Eliasberg,",
+   "s": 2.93,
+   "e": 3.47
+  },
+  {
+   "t": "Aydarov'u",
+   "s": 3.77,
+   "e": 4.25
+  },
+  {
+   "t": "morgdan",
+   "s": 4.36,
+   "e": 4.74
+  },
+  {
+   "t": "çıkardı;",
+   "s": 4.77,
+   "e": 5.15
+  },
+  {
+   "t": "Aydarov",
+   "s": 5.64,
+   "e": 6.08
+  },
+  {
+   "t": "iyileşip",
+   "s": 6.19,
+   "e": 6.56
+  },
+  {
+   "t": "orkestraya",
+   "s": 6.62,
+   "e": 7.16
+  },
+  {
+   "t": "döndü.",
+   "s": 7.19,
+   "e": 7.44
+  }
+ ],
+ "dur": 7.68,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -86.0,
+ "hisirti_6k_dbfs": -99.9,
+ "pad_nf_dbfs": -86.4,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

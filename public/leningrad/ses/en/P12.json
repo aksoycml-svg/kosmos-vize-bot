@@ -1,0 +1,64 @@
+{
+ "id": "P12",
+ "lang": "en",
+ "text": "The lights came on. The concert began.",
+ "words": [
+  {
+   "t": "The",
+   "s": 0.1,
+   "e": 0.17
+  },
+  {
+   "t": "lights",
+   "s": 0.22,
+   "e": 0.44
+  },
+  {
+   "t": "came",
+   "s": 0.48,
+   "e": 0.67
+  },
+  {
+   "t": "on.",
+   "s": 0.71,
+   "e": 0.94
+  },
+  {
+   "t": "The",
+   "s": 1.33,
+   "e": 1.41
+  },
+  {
+   "t": "concert",
+   "s": 1.45,
+   "e": 1.83
+  },
+  {
+   "t": "began.",
+   "s": 1.88,
+   "e": 2.3
+  }
+ ],
+ "dur": 2.56,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -84.0,
+ "hisirti_6k_dbfs": -90.1,
+ "pad_nf_dbfs": -81.8,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  52.3
+ ]
+}

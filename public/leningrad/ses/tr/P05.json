@@ -1,0 +1,87 @@
+{
+ "id": "P05",
+ "lang": "tr",
+ "text": "Ama müzisyenler açlıktan güçsüzdü. Üç saatlik ilk prova on beş dakikada bitti.",
+ "words": [
+  {
+   "t": "Ama",
+   "s": 0.21,
+   "e": 0.34
+  },
+  {
+   "t": "müzisyenler",
+   "s": 0.38,
+   "e": 0.97
+  },
+  {
+   "t": "açlıktan",
+   "s": 1.06,
+   "e": 1.56
+  },
+  {
+   "t": "güçsüzdü.",
+   "s": 1.61,
+   "e": 2.12
+  },
+  {
+   "t": "Üç",
+   "s": 2.72,
+   "e": 2.86
+  },
+  {
+   "t": "saatlik",
+   "s": 2.89,
+   "e": 3.26
+  },
+  {
+   "t": "ilk",
+   "s": 3.31,
+   "e": 3.46
+  },
+  {
+   "t": "prova",
+   "s": 3.51,
+   "e": 3.78
+  },
+  {
+   "t": "on",
+   "s": 3.9,
+   "e": 4.07
+  },
+  {
+   "t": "beş",
+   "s": 4.12,
+   "e": 4.29
+  },
+  {
+   "t": "dakikada",
+   "s": 4.34,
+   "e": 4.75
+  },
+  {
+   "t": "bitti.",
+   "s": 4.79,
+   "e": 5.06
+  }
+ ],
+ "dur": 5.303,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -86.0,
+ "hisirti_6k_dbfs": -99.7,
+ "pad_nf_dbfs": -86.3,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

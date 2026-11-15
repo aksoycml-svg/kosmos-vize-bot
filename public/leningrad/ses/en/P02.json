@@ -1,0 +1,105 @@
+{
+ "id": "P02",
+ "lang": "en",
+ "text": "The concert was in Leningrad, under German siege. Karl Eliasberg would conduct Shostakovich's new symphony.",
+ "words": [
+  {
+   "t": "The",
+   "s": 0.1,
+   "e": 0.19
+  },
+  {
+   "t": "concert",
+   "s": 0.24,
+   "e": 0.7
+  },
+  {
+   "t": "was",
+   "s": 0.74,
+   "e": 0.89
+  },
+  {
+   "t": "in",
+   "s": 0.93,
+   "e": 1.0
+  },
+  {
+   "t": "Leningrad,",
+   "s": 1.05,
+   "e": 1.64
+  },
+  {
+   "t": "under",
+   "s": 1.85,
+   "e": 2.07
+  },
+  {
+   "t": "German",
+   "s": 2.12,
+   "e": 2.41
+  },
+  {
+   "t": "siege.",
+   "s": 2.45,
+   "e": 2.78
+  },
+  {
+   "t": "Karl",
+   "s": 3.29,
+   "e": 3.53
+  },
+  {
+   "t": "Eliasberg",
+   "s": 3.59,
+   "e": 4.18
+  },
+  {
+   "t": "would",
+   "s": 4.23,
+   "e": 4.4
+  },
+  {
+   "t": "conduct",
+   "s": 4.43,
+   "e": 4.77
+  },
+  {
+   "t": "Shostakovich's",
+   "s": 4.81,
+   "e": 5.63
+  },
+  {
+   "t": "new",
+   "s": 5.68,
+   "e": 5.81
+  },
+  {
+   "t": "symphony.",
+   "s": 5.84,
+   "e": 6.26
+  }
+ ],
+ "dur": 6.504,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -87.6,
+ "hisirti_6k_dbfs": -93.8,
+ "pad_nf_dbfs": -92.8,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  6.14,
+  9.66
+ ]
+}

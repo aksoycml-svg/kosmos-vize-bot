@@ -1,0 +1,94 @@
+{
+ "id": "P14",
+ "lang": "en",
+ "text": "Some musicians ran out of strength. The audience stood to urge them on.",
+ "words": [
+  {
+   "t": "Some",
+   "s": 0.12,
+   "e": 0.33
+  },
+  {
+   "t": "musicians",
+   "s": 0.36,
+   "e": 0.87
+  },
+  {
+   "t": "ran",
+   "s": 0.94,
+   "e": 1.13
+  },
+  {
+   "t": "out",
+   "s": 1.17,
+   "e": 1.28
+  },
+  {
+   "t": "of",
+   "s": 1.31,
+   "e": 1.36
+  },
+  {
+   "t": "strength.",
+   "s": 1.4,
+   "e": 1.85
+  },
+  {
+   "t": "The",
+   "s": 2.23,
+   "e": 2.36
+  },
+  {
+   "t": "audience",
+   "s": 2.41,
+   "e": 2.79
+  },
+  {
+   "t": "stood",
+   "s": 2.81,
+   "e": 3.02
+  },
+  {
+   "t": "to",
+   "s": 3.05,
+   "e": 3.11
+  },
+  {
+   "t": "urge",
+   "s": 3.15,
+   "e": 3.35
+  },
+  {
+   "t": "them",
+   "s": 3.36,
+   "e": 3.49
+  },
+  {
+   "t": "on.",
+   "s": 3.54,
+   "e": 3.78
+  }
+ ],
+ "dur": 4.023,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -83.8,
+ "hisirti_6k_dbfs": -90.1,
+ "pad_nf_dbfs": -75.7,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": [
+  58.27
+ ]
+}

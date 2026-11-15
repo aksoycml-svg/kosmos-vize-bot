@@ -1,0 +1,77 @@
+{
+ "id": "P04",
+ "lang": "tr",
+ "text": "Eliasberg kapı kapı müzisyen aradı. Ordu, cepheden müzisyen askerler gönderdi.",
+ "words": [
+  {
+   "t": "Eliasberg",
+   "s": 0.1,
+   "e": 0.66
+  },
+  {
+   "t": "kapı",
+   "s": 0.75,
+   "e": 1.04
+  },
+  {
+   "t": "kapı",
+   "s": 1.27,
+   "e": 1.51
+  },
+  {
+   "t": "müzisyen",
+   "s": 1.54,
+   "e": 1.95
+  },
+  {
+   "t": "aradı.",
+   "s": 1.98,
+   "e": 2.21
+  },
+  {
+   "t": "Ordu,",
+   "s": 2.65,
+   "e": 2.98
+  },
+  {
+   "t": "cepheden",
+   "s": 3.21,
+   "e": 3.64
+  },
+  {
+   "t": "müzisyen",
+   "s": 3.69,
+   "e": 4.07
+  },
+  {
+   "t": "askerler",
+   "s": 4.11,
+   "e": 4.48
+  },
+  {
+   "t": "gönderdi.",
+   "s": 4.53,
+   "e": 4.93
+  }
+ ],
+ "dur": 5.146,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -84.8,
+ "hisirti_6k_dbfs": -99.2,
+ "pad_nf_dbfs": -85.7,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

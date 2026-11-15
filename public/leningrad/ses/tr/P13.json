@@ -1,0 +1,77 @@
+{
+ "id": "P13",
+ "lang": "tr",
+ "text": "Radyo, konseri hoparlörlerle bütün şehre ve Alman siperlerine doğru yayınladı.",
+ "words": [
+  {
+   "t": "Radyo,",
+   "s": 0.11,
+   "e": 0.48
+  },
+  {
+   "t": "konseri",
+   "s": 0.62,
+   "e": 1.01
+  },
+  {
+   "t": "hoparlörlerle",
+   "s": 1.06,
+   "e": 1.76
+  },
+  {
+   "t": "bütün",
+   "s": 1.81,
+   "e": 2.05
+  },
+  {
+   "t": "şehre",
+   "s": 2.08,
+   "e": 2.36
+  },
+  {
+   "t": "ve",
+   "s": 2.39,
+   "e": 2.5
+  },
+  {
+   "t": "Alman",
+   "s": 2.54,
+   "e": 2.81
+  },
+  {
+   "t": "siperlerine",
+   "s": 2.86,
+   "e": 3.38
+  },
+  {
+   "t": "doğru",
+   "s": 3.41,
+   "e": 3.63
+  },
+  {
+   "t": "yayınladı.",
+   "s": 3.65,
+   "e": 4.02
+  }
+ ],
+ "dur": 4.258,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -63.1,
+ "hisirti_6k_dbfs": -80.6,
+ "pad_nf_dbfs": -58.0,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

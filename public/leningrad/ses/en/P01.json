@@ -1,0 +1,87 @@
+{
+ "id": "P01",
+ "lang": "en",
+ "text": "The drummer at this concert was pulled out from among the dead.",
+ "words": [
+  {
+   "t": "The",
+   "s": 0.08,
+   "e": 0.16
+  },
+  {
+   "t": "drummer",
+   "s": 0.19,
+   "e": 0.49
+  },
+  {
+   "t": "at",
+   "s": 0.53,
+   "e": 0.61
+  },
+  {
+   "t": "this",
+   "s": 0.63,
+   "e": 0.77
+  },
+  {
+   "t": "concert",
+   "s": 0.82,
+   "e": 1.27
+  },
+  {
+   "t": "was",
+   "s": 1.32,
+   "e": 1.47
+  },
+  {
+   "t": "pulled",
+   "s": 1.56,
+   "e": 1.81
+  },
+  {
+   "t": "out",
+   "s": 1.83,
+   "e": 1.96
+  },
+  {
+   "t": "from",
+   "s": 1.98,
+   "e": 2.13
+  },
+  {
+   "t": "among",
+   "s": 2.18,
+   "e": 2.41
+  },
+  {
+   "t": "the",
+   "s": 2.46,
+   "e": 2.54
+  },
+  {
+   "t": "dead.",
+   "s": 2.56,
+   "e": 2.86
+  }
+ ],
+ "dur": 3.109,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -61.6,
+ "hisirti_6k_dbfs": -88.3,
+ "pad_nf_dbfs": -55.9,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

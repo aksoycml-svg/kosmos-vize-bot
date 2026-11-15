@@ -1,0 +1,72 @@
+{
+ "id": "P08",
+ "lang": "en",
+ "text": "There, among the dead, Eliasberg saw Aydarov's finger move.",
+ "words": [
+  {
+   "t": "There,",
+   "s": 0.11,
+   "e": 0.37
+  },
+  {
+   "t": "among",
+   "s": 0.38,
+   "e": 0.63
+  },
+  {
+   "t": "the",
+   "s": 0.66,
+   "e": 0.74
+  },
+  {
+   "t": "dead,",
+   "s": 0.79,
+   "e": 1.18
+  },
+  {
+   "t": "Eliasberg",
+   "s": 1.21,
+   "e": 1.83
+  },
+  {
+   "t": "saw",
+   "s": 1.89,
+   "e": 2.09
+  },
+  {
+   "t": "Aydarov's",
+   "s": 2.15,
+   "e": 2.65
+  },
+  {
+   "t": "finger",
+   "s": 2.68,
+   "e": 2.96
+  },
+  {
+   "t": "move.",
+   "s": 3.01,
+   "e": 3.35
+  }
+ ],
+ "dur": 3.605,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -57.3,
+ "hisirti_6k_dbfs": -63.9,
+ "pad_nf_dbfs": -81.8,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

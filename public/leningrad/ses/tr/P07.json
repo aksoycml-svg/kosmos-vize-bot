@@ -1,0 +1,57 @@
+{
+ "id": "P07",
+ "lang": "tr",
+ "text": "Eliasberg, Aydarov'la vedalaşmak için morga indi.",
+ "words": [
+  {
+   "t": "Eliasberg,",
+   "s": 0.11,
+   "e": 0.61
+  },
+  {
+   "t": "Aydarov'la",
+   "s": 0.89,
+   "e": 1.4
+  },
+  {
+   "t": "vedalaşmak",
+   "s": 1.43,
+   "e": 1.93
+  },
+  {
+   "t": "için",
+   "s": 1.95,
+   "e": 2.11
+  },
+  {
+   "t": "morga",
+   "s": 2.15,
+   "e": 2.41
+  },
+  {
+   "t": "indi.",
+   "s": 2.45,
+   "e": 2.67
+  }
+ ],
+ "dur": 2.926,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -84.2,
+ "hisirti_6k_dbfs": -96.7,
+ "pad_nf_dbfs": -86.7,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

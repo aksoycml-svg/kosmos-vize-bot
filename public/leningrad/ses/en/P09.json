@@ -1,0 +1,92 @@
+{
+ "id": "P09",
+ "lang": "en",
+ "text": "Aydarov had only fainted. Eliasberg pulled him out, and Aydarov rejoined the orchestra.",
+ "words": [
+  {
+   "t": "Aydarov",
+   "s": 0.1,
+   "e": 0.51
+  },
+  {
+   "t": "had",
+   "s": 0.56,
+   "e": 0.66
+  },
+  {
+   "t": "only",
+   "s": 0.71,
+   "e": 0.89
+  },
+  {
+   "t": "fainted.",
+   "s": 0.94,
+   "e": 1.37
+  },
+  {
+   "t": "Eliasberg",
+   "s": 1.8,
+   "e": 2.42
+  },
+  {
+   "t": "pulled",
+   "s": 2.48,
+   "e": 2.73
+  },
+  {
+   "t": "him",
+   "s": 2.74,
+   "e": 2.83
+  },
+  {
+   "t": "out,",
+   "s": 2.88,
+   "e": 3.06
+  },
+  {
+   "t": "and",
+   "s": 3.23,
+   "e": 3.33
+  },
+  {
+   "t": "Aydarov",
+   "s": 3.38,
+   "e": 3.74
+  },
+  {
+   "t": "rejoined",
+   "s": 3.8,
+   "e": 4.16
+  },
+  {
+   "t": "the",
+   "s": 4.17,
+   "e": 4.25
+  },
+  {
+   "t": "orchestra.",
+   "s": 4.3,
+   "e": 4.79
+  }
+ ],
+ "dur": 5.042,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -81.6,
+ "hisirti_6k_dbfs": -88.5,
+ "pad_nf_dbfs": -81.6,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

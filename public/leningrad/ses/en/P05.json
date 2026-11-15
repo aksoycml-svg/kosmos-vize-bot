@@ -1,0 +1,87 @@
+{
+ "id": "P05",
+ "lang": "en",
+ "text": "But the musicians were starving. The first three-hour rehearsal lasted fifteen minutes.",
+ "words": [
+  {
+   "t": "But",
+   "s": 0.1,
+   "e": 0.2
+  },
+  {
+   "t": "the",
+   "s": 0.21,
+   "e": 0.29
+  },
+  {
+   "t": "musicians",
+   "s": 0.33,
+   "e": 0.82
+  },
+  {
+   "t": "were",
+   "s": 0.85,
+   "e": 1.0
+  },
+  {
+   "t": "starving.",
+   "s": 1.03,
+   "e": 1.51
+  },
+  {
+   "t": "The",
+   "s": 1.93,
+   "e": 2.0
+  },
+  {
+   "t": "first",
+   "s": 2.05,
+   "e": 2.3
+  },
+  {
+   "t": "three-hour",
+   "s": 2.35,
+   "e": 2.78
+  },
+  {
+   "t": "rehearsal",
+   "s": 2.84,
+   "e": 3.3
+  },
+  {
+   "t": "lasted",
+   "s": 3.36,
+   "e": 3.7
+  },
+  {
+   "t": "fifteen",
+   "s": 3.74,
+   "e": 4.13
+  },
+  {
+   "t": "minutes.",
+   "s": 4.17,
+   "e": 4.55
+  }
+ ],
+ "dur": 4.807,
+ "voice": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -81.4,
+ "hisirti_6k_dbfs": -87.4,
+ "pad_nf_dbfs": -82.0,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

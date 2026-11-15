@@ -1,0 +1,62 @@
+{
+ "id": "P10",
+ "lang": "tr",
+ "text": "Temmuzda senfoninin notaları kuşatılmış şehre uçakla getirildi.",
+ "words": [
+  {
+   "t": "Temmuzda",
+   "s": 0.1,
+   "e": 0.54
+  },
+  {
+   "t": "senfoninin",
+   "s": 0.71,
+   "e": 1.31
+  },
+  {
+   "t": "notaları",
+   "s": 1.35,
+   "e": 1.71
+  },
+  {
+   "t": "kuşatılmış",
+   "s": 1.74,
+   "e": 2.21
+  },
+  {
+   "t": "şehre",
+   "s": 2.22,
+   "e": 2.51
+  },
+  {
+   "t": "uçakla",
+   "s": 2.56,
+   "e": 2.88
+  },
+  {
+   "t": "getirildi.",
+   "s": 2.92,
+   "e": 3.31
+  }
+ ],
+ "dur": 3.553,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -67.4,
+ "hisirti_6k_dbfs": -80.3,
+ "pad_nf_dbfs": -87.2,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}

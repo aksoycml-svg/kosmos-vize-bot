@@ -1,0 +1,97 @@
+{
+ "id": "P02",
+ "lang": "tr",
+ "text": "Konser, Alman ordusunun kuşattığı Leningrad'da verilecekti. Şef Karl Eliasberg, besteci Şostakoviç'in yeni senfonisini çalacaktı.",
+ "words": [
+  {
+   "t": "Konser,",
+   "s": 0.1,
+   "e": 0.51
+  },
+  {
+   "t": "Alman",
+   "s": 0.6,
+   "e": 0.89
+  },
+  {
+   "t": "ordusunun",
+   "s": 0.94,
+   "e": 1.38
+  },
+  {
+   "t": "kuşattığı",
+   "s": 1.44,
+   "e": 1.89
+  },
+  {
+   "t": "Leningrad'da",
+   "s": 1.94,
+   "e": 2.54
+  },
+  {
+   "t": "verilecekti.",
+   "s": 2.58,
+   "e": 3.13
+  },
+  {
+   "t": "Şef",
+   "s": 3.68,
+   "e": 3.93
+  },
+  {
+   "t": "Karl",
+   "s": 3.98,
+   "e": 4.25
+  },
+  {
+   "t": "Eliasberg,",
+   "s": 4.29,
+   "e": 4.83
+  },
+  {
+   "t": "besteci",
+   "s": 5.0,
+   "e": 5.4
+  },
+  {
+   "t": "Şostakoviç'in",
+   "s": 5.44,
+   "e": 6.12
+  },
+  {
+   "t": "yeni",
+   "s": 6.18,
+   "e": 6.37
+  },
+  {
+   "t": "senfonisini",
+   "s": 6.4,
+   "e": 6.95
+  },
+  {
+   "t": "çalacaktı.",
+   "s": 6.99,
+   "e": 7.49
+  }
+ ],
+ "dur": 7.732,
+ "voice": "ctoYieZ4J7WwcdhujpMq",
+ "model": "eleven_multilingual_v2",
+ "ayar": {
+  "stability": 0.45,
+  "similarity_boost": 0.8,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "seed": 7,
+ "tek_cekim": true,
+ "final": true,
+ "kenar": "temiz",
+ "nf_dbfs": -80.3,
+ "hisirti_6k_dbfs": -91.0,
+ "pad_nf_dbfs": -71.8,
+ "kelime_zamani": "sinyale yapisik",
+ "cit_kaymasi": 0.0,
+ "nefes_temizlendi": []
+}
