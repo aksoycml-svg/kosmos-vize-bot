@@ -1,7 +1,7 @@
 # Yarasa bombası — durum (2026-11-15 sabahı)
 
 ## İzlenecek
-- `out/yarasa/yarasa-tr.mp4` ve `out/yarasa/yarasa-en.mp4` — ilk kurgu, 62.7 sn, 1080x1920, 60 fps, −14 LUFS.
+- `out/yarasa/yarasa-tr.mp4` ve `out/yarasa/yarasa-en.mp4` — ilk kurgu, 64.2 sn, 1080x1920, 60 fps, −14 LUFS.
 - Genel bakış (32 kare): `bolumler/yarasa-bombasi/kontrol/final/genel-tr.png`.
 
 ## Akış (kullanıcı yetkisi: `notlar/tur-2.md` — "soru sorma, kontrol sende")
@@ -24,7 +24,7 @@ Araştırma (+ Wikipedia tam metin doğrulama turu) → senaryo v1 (kullanıcı 
 - Kanca: alev ve "Yanan: ?" 2.3 sn'de geliyor; ilk 2 sn yalnız defter çizimi.
 - P07 tepsi yakın planı "üç koyu yastık" okunabilir; en zayıf 5 sn 29.9–34.9.
 - P10/P11 ikinci ekran yazısı küçük (telefonda sınırda); P12'de vurgu yalnız "Mexico" kırmızı.
-- EN P03 "Give one a fire" yapay duyulabilir.
+- (tur 3) P03 anlatımı düzeltildi: "Göğsüne minik bir yangın bombası takarsan" / "Strap a tiny firebomb to one".
 
 ## Sıradaki (onaydan sonra)
 - Kullanıcı notları → `notlar/tur-3.md` (kelimesi kelimesine) → en çok gerekli düzeltme.
