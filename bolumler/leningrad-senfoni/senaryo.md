@@ -9,6 +9,12 @@ Tempo kuralı: her olay tek cümle + tek görsel vuruş; her planda iki görsel 
 
 **Dönüş satırı:** Önce: davulcu ölülerin arasında yatıyor, şef onunla vedalaşmaya iniyor / Sonra: aynı davulcu sahnede, senfoniyi sonuna kadar çalıyor. Tür: **tersine dönüş.**
 
+**Soru–cevap omurgası (CLAUDE.md, 2026-11-16 kuralı; orkestra eki, metin değişmedi):**
+- Tek gerçek soru (P01, 0 sn): "Bu davulcu nasıl ölüler arasından çıktı — ve çalabildi mi?"
+- Ara cevap + yeni soru (12–15 sn): P02 (3.6–12.3) hangi konser/kim cevabı → P03 (12.3) yeni soru "15 kişiyle yüz kişilik senfoni nasıl çalınacak?"
+- Cevap: P08–P09 (41–54 sn) ölüler arasından nasıl çıktı; P15 (78–87 sn) çalabildi mi → evet, soru kapanır.
+- Hedef duygu: hayranlık (şaşkınlıkla açılan). Beklenen tepki: paylaşım.
+
 **Kahraman:** Şef Karl Eliasberg, tek kahraman. Konseri o verecek, müzisyeni o arıyor, morga o iniyor, Aydarov'u oradan o çıkarıyor. Aydarov onun davulcusudur; bağ P06, P07, P09 ve P15'te adıyla kurulur.
 
 **Beş satırlık omurga**
