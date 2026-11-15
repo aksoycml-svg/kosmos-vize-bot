@@ -72,3 +72,17 @@ Metin v5 (10 plan): D1 P02 · D2 P03 · D3 P04 · D4 P05 · D5 P06 · D6 P07 · 
 ## Yeni dokunuş eklerken
 - Satır ekle: id (bölüm-öneki ile, ör. `BL-D1`), şablon, hangi parametre/jest/prop ile kurulur, temas listesi, durum.
 - "yok/kısmi" olanlar için kurulum ekibine tek satır iş: hangi şablona hangi parametre.
+
+## Leningrad 7. Senfoni (LS) — 2026-11-15
+Senaryo v3.2 (15 plan): D1 P03 · D2 P06 · D3 P07 · D4 P08 · D5 P10 · D6 P12 · D7 P13 · D8 P14. Hepsi **yok** (şablonlar yeni: SALON, BODRUM, SOKAK-LG, CEPHE, HARİTA-LG). Ayrıntı: `bolumler/leningrad-senfoni/dokunuslar.md`.
+
+| id | ad | şablon | kurulum önerisi | temas/ses | durum |
+|---|---|---|---|---|---|
+| LS-D1 | Müzisyen avucundaki ekmekten düşen kırıntıyı kardan toplar (kış) | SOKAK-LG insert | `avuc {ekmek, kirinti.dus, topla}` | kar sürtme | yok |
+| LS-D2 | Çubuklar düşer, yuvarlanır, boş tabureye dayanır | BODRUM-dışı nötr zemin, floor level | `cubuk {dus, yuvarlan, tabure.carpma}` + `tabure` | ahşap tok x2, yuvarlanma, tabure tık | yok |
+| LS-D3 | Kapı tam kapanmaz, ışık çizgisi sedyeye uzanır | BODRUM merdiven | `kapi {aralik}` + `huzme {kaynak: kapi}` | menteşe gıcır kısık, kapı tok | yok |
+| LS-D4 | Örtü kenarında parmak seğirir + yüzde dolly zoom (bölümde tek) | BODRUM insert + yüz | `el.insert {parmak.segir}` + `kamera.dollyZoom {hedef: yuz}` | kumaş-deri sürtünme x2 | yok |
+| LS-D5 | Kalın nota defteri sehpayı yaylandırır | HARİTA-LG → nota sehpası | `sehpa {yuk, yay}` + `defter {sayfa: 252}` | defter tok, sehpa gıcır | yok |
+| LS-D6 | Avize ışığı arkadan sahneye dalgalanır, davul kasnağında biter | SALON geniş | `avize {dalga {bas, bit}}` + `kasnak.parilti` | yalnız kısık elektrik ambiyansı | yok |
+| LS-D7 | Kadın kovayı yere koyar, su durulur (hoparlör başlayınca) | SOKAK-LG yaz | `kova {birak}` + `su.yuzey {sonum}` | kova tak, su şap kısık | yok |
+| LS-D8 | Koltuk değnekli asker ilk ayağa kalkar, ardından salon | SALON orta | `seyirci {kalkis.dalga}` + `degnek` + `rackFocus` | değnek tok, sandalye gıcır x5 | yok |
