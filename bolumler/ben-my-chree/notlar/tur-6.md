@@ -13,3 +13,6 @@ Uygulama: her mekân kendi estetiğiyle (Meis rıhtımı ≠ Kaş yamacı ≠ g�
 Uygulama: yeni şablonlar 2.5D katman derinliği (her katmanın z mesafesi) ile kurulur; kamera dolly (z ilerleme, paralaks) ve dolly zoom (kamera geri + odak uzaklığı artar → arka plan büyür, konu sabit) parametre olarak desteklenir. Yönetmen bölümde en güçlü 1 anda dolly zoom, gerekli yerlerde dolly kullanır.
 
 > bu işe gider
+> kamera haraketleri
+
+Uygulama: kamera hareketi bu bölümün dilinin parçası; sabit kare yalnız bilinçli tutmada (saygı anı, anahtar okuma).
