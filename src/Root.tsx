@@ -13,6 +13,7 @@ import { Sb2Borsa, SB2_BORSA_SURE } from "./kit/sablonlar/avlu-salon/AvluSalon";
 import { Bolum, bolumMetadata, BolumProps } from "./kit/Bolum";
 import { Sb2BorsaHibrit, SB2_BORSA_HIBRIT_SURE } from "./bolumler/blanc/sb2/Sb2BorsaHibrit";
 import { PropTest } from "./bolumler/blanc/sb2/PropTest";
+import { LeningradKalibrasyon } from "./kit/sablonlar/leningrad/Kalibrasyon";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -34,5 +35,6 @@ export const RemotionRoot: React.FC = () => (
     {/* SET KİTİ K1: bölüm = bolum.json (props.yol: bolumler/ altındaki göreli yol; süre json'dan) */}
     <Composition id="Bolum" component={Bolum} durationInFrames={600} fps={60} width={1080} height={1920} defaultProps={{ yol: "blanc-kardesler/bolum.ornek.json", guvenli: false } as BolumProps} calculateMetadata={bolumMetadata} />
     <Composition id="SB2-SOKAK-FARE" component={Sb2SokakFare} durationInFrames={SB2_SOKAK_SURE} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
+    <Composition id="LeningradKalibrasyon" component={LeningradKalibrasyon} durationInFrames={209} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
   </>
 );
