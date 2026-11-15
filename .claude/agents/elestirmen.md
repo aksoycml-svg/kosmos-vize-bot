@@ -41,3 +41,6 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 
 ## Zorunlu okuma
 İşe başlamadan CLAUDE.md "Paris dersleri" bölümünü oku ve uygula; ihlal eden çıktı teslim edilmez.
+
+## Paris çıtası (zorunlu)
+CLAUDE.md "Paris çıtası" maddesini uygula: her puanlamada kareleri `bolumler/paris-kusatmasi/kalibrasyon/tam-render-3/genel-tr.jpg` ve `bolumler/paris-kusatmasi/hedef/hedef-ozet.jpg` ile yan yana karşılaştır. Paris'in gerisinde kalan her kare için nedeni (ışık, derinlik, doku, sıcak–soğuk, figür) ve sahibini/parametresini yaz. Puan <7 ise "geçer" deme.

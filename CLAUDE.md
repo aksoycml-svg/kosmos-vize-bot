@@ -73,6 +73,13 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - **Tek sahiplik:** her belgenin tek sahibi vardır; diğerleri doğrudan değiştirmez, notu orkestraya (ana oturum) yazar, orkestra sahibine iletir.
 - **Yukarı akış:** alt adımda bir sorun üst adımın belgesini etkiliyorsa (ör. dönem bulgusu), önce o belgenin sahibi düzeltir, sonra aşağıdakiler sırayla güncellenir — hepsi aynı anda değil.
 - **Küçük kararı sorma** (kullanıcı kararı, Paris: "sorma neden soruyorsun"): teknik/estetik ayrıntı, ajan önerisi ve varsayılanlar orkestra tarafından karara bağlanır, kullanıcıya yalnız bildirilir. Kullanıcıya yalnız gerçekten onun kararı olanlar gider: senaryo/metin onayı, yön değişikliği (yeni görsel dil, mekân değişikliği), dış maliyet, kapsam/kota.
+- **Paris çıtası (kullanıcı kararı, Çiçero/Yarasa sonrası: "bundan sonra aynı kalitede iş yapılsın"):** Çiçero ve Yarasa onay yetkisi devredilip birer turda bitti, 6 puanda kaldı; Paris kullanıcının 19 notluk turuyla 7'ye çıktı. Kalitenin kaynağı kullanıcının gözü, bu yüzden:
+  1. **Yön karesi devredilmez:** kullanıcı "sorma, sen karar ver" dese bile her yeni mekân/karakter/görsel dil için motion kod yazmadan önce **tek yön karesi** kullanıcıya gider (tek mesajda, evet/hayır). Diğer küçük kararlar sorulmaz.
+  2. **Referans çıtası:** eleştirmen kareleri soyut kurala değil Paris referansına karşı puanlar: `bolumler/paris-kusatmasi/kalibrasyon/tam-render-3/genel-tr.jpg` ve `bolumler/paris-kusatmasi/hedef/hedef-ozet.jpg`. Soru: "Bu kare Paris'in yanına konsa geri kalır mı?" — kalırsa neden (ışık, derinlik, doku, sıcak–soğuk, figür) yazılır.
+  3. **Yeni şablon en az 2 kalibrasyon turu:** ilk kurulum teslim edilmez; eleştirmen ≥7 vermeden şablon kabul edilmez (en çok 4 tur; 4'te geçmezse kullanıcıya yön karesiyle döner).
+  4. **Bölüm eşiği 7:** jüri puanı <7 olan bölüm teslim edilmez; en zayıf planlar (eleştirmen teşhisiyle) düzeltilir. Kotaya sığmıyorsa kullanıcıya puan ve eksik açıkça yazılır, "bitti" denmez.
+  5. **Kullanıcı notu kurala çevrilir:** her kullanıcı notu (`notlar/tur-N.md`) eleştirmenin kontrol listesine eklenir; aynı not ikinci bölümde gelirse süreç hatasıdır.
+  - Kota notu: bu ek turlar yeni şablon kurulumunda harcanır; kitten gelen günlük bölüm yine ~%3–5 hedefinde kalır.
 - **Açık soru biriktir:** her adımın sonunda kullanıcıya gereken kararlar tek mesajda toplanır; karar gelmeden bağımlı adım başlamaz (varsayılan seçilirse açıkça yazılır).
 - **Övülen kilitlenir:** kullanıcının beğendiği plan/satır `bolum.json`'da `kilit: true` olur; düzeltme turlarında dokunulmaz.
 - **Notlar kelimesi kelimesine:** kullanıcı geri bildirimi `bolumler/<slug>/notlar/tur-N.md`'ye aynen yazılır; düzeltme bu dosyadan yapılır.

@@ -57,3 +57,6 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 
 ## Zorunlu okuma
 İşe başlamadan CLAUDE.md "Paris dersleri" bölümünü oku ve uygula; ihlal eden çıktı teslim edilmez.
+
+## Paris çıtası
+CLAUDE.md "Paris çıtası" maddesine uy: yeni mekân/karakter için kod öncesi tek yön karesi kullanıcıya gider (yetki devredilmiş olsa bile); referans `bolumler/paris-kusatmasi/kalibrasyon/tam-render-3/genel-tr.jpg`.
