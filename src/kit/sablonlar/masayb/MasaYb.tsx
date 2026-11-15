@@ -63,7 +63,7 @@ export const altSayfaCizim = (() => {
   const kap = [26, 52].map((d) => { const a = H3[0], b = H3[1], t0 = (ALT[0] + 180 - a[0]) / (b[0] - a[0]), t1 = (ALT[0] + 620 - a[0]) / (b[0] - a[0]); return [[a[0] + (b[0] - a[0]) * t0, a[1] + (b[1] - a[1]) * t0 + d], [a[0] + (b[0] - a[0]) * t1, a[1] + (b[1] - a[1]) * t1 + d]] as P[]; });
   // yarasa: yerel x ≈ 409 (dekor 519) en yakın merteğin alın ucundan asılı
   const m4 = M.reduce((b, m) => (Math.abs(m[1][0] - 519) < Math.abs(b[1][0] - 519) ? m : b), M[0]);
-  const ayak: P = [m4[1][0], m4[1][1] + 4], u = 150, gogus: P = [ayak[0], ayak[1] + 0.5 * u];
+  const ayak: P = [m4[1][0], m4[1][1] + 4], u = 150, gogus: P = [ayak[0] + 0.15 * u, ayak[1] + 0.52 * u]; // profil asılı: yan-göğüs
   const cati: { a: P[]; tur: "hat" | "tarama" }[] = [
     { a: H1, tur: "hat" }, { a: H1b, tur: "hat" }, { a: H2, tur: "hat" }, ...M.map((m) => ({ a: m, tur: "hat" as const })), { a: H3, tur: "hat" },
     ...T1.map((s) => ({ a: s as P[], tur: "tarama" as const })), ...T2.map((s) => ({ a: s as P[], tur: "tarama" as const })), ...kap.map((k) => ({ a: k, tur: "hat" as const })),
@@ -125,7 +125,7 @@ const Notlar: React.FC<{ o: P; xs: [number, number][]; seed: string }> = ({ o, x
 );
 
 // ---------- üst sayfa: mağara + sürü ----------
-export const DEFTER_SURU: SuruAyar = { n: 90, seed: 223, kaynak: [540, 1080], a: 10, b: 0.06, yon: -1, omega: 0.05, yukselis: 0.75, egim: 0.3, kayma: 0.2, u: [3.5, 11], mod: "surekli", donem: 760, stil: "dolu" };
+export const DEFTER_SURU: SuruAyar = { n: 90, seed: 223, kaynak: [540, 1080], a: 10, b: 0.06, yon: -1, omega: 0.05, yukselis: 0.75, egim: 0.3, kayma: 0.2, u: [6, 13], mod: "surekli", donem: 760, stil: "dolu" };
 const UstSayfa: React.FC<{ prm: Record<string, unknown>; p: number }> = ({ prm, p }) => {
   const o = UST, L = (x: number, y: number): P => [o[0] + x, o[1] + y];
   const suru = { ...DEFTER_SURU, ...((prm.suru as Partial<SuruAyar>) ?? {}) }, canli = prm.canli !== false, pe = canli ? p : 0;
@@ -185,7 +185,7 @@ const AltSayfa: React.FC<{ a: AltP; p: number }> = ({ a, p }) => {
         void l0;
         return <polyline key={s.i} points={pts(s.a)} fill="none" stroke={renk} strokeWidth={tarama ? 2.5 : 3.5} strokeLinecap="round" strokeLinejoin="round" />;
       })}
-      {yar > 0 && <Yarasa z={{ x: C.ayak[0], y: C.ayak[1], capa: "ayak", u: C.u, aci: 180, kanat: 0.7, stil: "murekkep", ciz: yar, gogusBos: a.gogus_bos && alv <= 0 }} />}
+      {yar > 0 && <Yarasa z={{ x: C.ayak[0], y: C.ayak[1], gorus: "profil", yonX: 1, u: C.u, kanat: 0.42, stil: "murekkep", ciz: yar, gogusBos: a.gogus_bos && alv <= 0 }} />}
       {dmla > 0 && p <= (a.durak?.bit ?? 0) + 2 && <circle cx={C.gogus[0]} cy={C.gogus[1]} r={dmla} fill={MY.islak} />}
       {alv > 0 && <polygon points={pts(C.alev)} fill="none" stroke={MY.kirmizi} strokeWidth={3.5} strokeLinejoin="round" pathLength={1} strokeDasharray={`${alv} 1.02`} />}
       {alv >= 1 && <path d={`M${C.gogus[0] - 10},${C.gogus[1] - 6} Q${C.gogus[0]},${C.gogus[1] - 48} ${C.gogus[0] + 7},${C.gogus[1] - 9}`} fill="none" stroke={MY.kirmizi} strokeWidth={3} />}

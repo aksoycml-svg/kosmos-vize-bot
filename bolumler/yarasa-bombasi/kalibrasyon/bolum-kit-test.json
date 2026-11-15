@@ -14,10 +14,15 @@
     "gorunum": "genis",
     "saat": "ikindi",
     "tunek_dalgasi": {
-     "bas": 150,
+     "bas": 196,
      "bit": 250,
-     "adet": 9,
-     "seed": 5
+     "adet": 4,
+     "seed": 5,
+     "olcek": 1.6,
+     "yuzey": [
+      "semer0"
+     ],
+     "acik_n": 2
     },
     "kapsul_nabiz": {
      "bas": 180,
@@ -76,7 +81,7 @@
     ],
     "egri": "inout"
    },
-   "_not": "P09: dolly genis→tank-alti p0–150 (P08 sonu k 0.15), tünme p150–250 (sahne planı p48–258 → dolly bitişine kaydırıldı, yönetmene not)"
+   "_not": "P09: dolly genis→tank-alti p0–150; tünme (temas) p196–250, uçuşlar p150'den sonra"
   },
   {
    "id": "K2",
@@ -334,8 +339,13 @@
     "tunek_dalgasi": {
      "bas": -300,
      "bit": -200,
-     "adet": 9,
-     "seed": 5
+     "adet": 4,
+     "seed": 5,
+     "olcek": 1.6,
+     "yuzey": [
+      "semer0"
+     ],
+     "acik_n": 2
     },
     "tunek_stil": "gomulu",
     "kapsul_nabiz": {
@@ -348,15 +358,15 @@
     "kivilcim_dizisi": [
      {
       "kare": 12,
-      "tunek": 1
+      "tunek": 0
      },
      {
       "kare": 42,
-      "tunek": 3
+      "tunek": 1
      },
      {
       "kare": 72,
-      "tunek": 5
+      "tunek": 2
      }
     ],
     "alev": [
@@ -386,7 +396,8 @@
      "mod": "surekli",
      "donem": 1200,
      "stil": "siluet"
-    }
+    },
+    "on_plan": true
    },
    "kamera": {
     "kare": [

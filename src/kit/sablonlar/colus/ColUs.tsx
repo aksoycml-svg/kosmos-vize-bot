@@ -60,10 +60,11 @@ const Gok: React.FC<{ pr: Proj; g: Gorunum }> = ({ pr, g }) => {
   const dist = Math.max(0, -sun[0]);
   return (
     <g>
-      {sinir.map(([y, c], i) => <rect key={i} x={-1200} y={y} width={3480} height={(sinir[i + 1]?.[0] ?? U + 40) - y + 1} fill={c} />)}
-      {/* litografi geçişi: sınırın üstünde alt tonda 3 ince çizgi + nokta */}
-      {g !== "yanik" && sinir.slice(1).map(([y], i) => <g key={i}>
-        {Array.from({ length: 70 }).map((_, j) => <circle key={`n${j}`} cx={-200 + r(`gn${i}${j}`) * 1480} cy={y - 8 - r(`gy${i}${j}`) * 26} r={1.1} fill={sinir[i + 1][1]} opacity={0.6} />)}</g>)}
+      {/* 2. tur (orkestra): sert bant yok → aynı 5 tonla yumuşak dikey geçiş (bant merkezleri durak) */}
+      <defs><linearGradient id={`cuGok${g}`} gradientUnits="userSpaceOnUse" x1={0} y1={-2000} x2={0} y2={U + 40}>
+        {(g === "yanik" ? [...sinir.map(([y, c]) => [Math.max(y, 0) + (y > 0 ? 60 : 0), c] as [number, string]), [700, CP.gok[0]] as [number, string]] : sinir.map(([y, c], i) => [Math.max(-2000, (Math.max(y, -400) + (sinir[i + 1]?.[0] ?? U + 40)) / 2), c] as [number, string])).map(([m, c], i) => <stop key={i} offset={Math.min(1, (m + 2000) / (U + 2040))} stopColor={c} />)}
+        <stop offset={1} stopColor={sinir[sinir.length - 1][1]} /></linearGradient></defs>
+      <rect x={-1200} y={-2000} width={3480} height={U + 2042} fill={`url(#cuGok${g})`} />
       {/* güneş parıltısı: disk çizilmez; 4 düz halka (litografi basamağı, yumuşak gradyan yok) */}
       {g !== "yanik" && <><clipPath id="cuParilti"><rect x={-1200} y={U - 330 * f} width={3480} height={400} /></clipPath>
         <g style={{ mixBlendMode: "screen" }} clipPath="url(#cuParilti)">{[520, 300, 140].map((dr, i) => <circle key={i} cx={sun[0]} cy={sun[1]} r={dist + dr} fill="#f6dcb8" opacity={0.14} />)}</g></>}
@@ -327,7 +328,11 @@ const Golgeler: React.FC<{ pr: Proj; kat: "zemin" | "duvar" }> = ({ pr, kat }) =
 };
 
 // ---------- tünek dalgası + köz nabzı ----------
-type TunekP = { bas: number; bit: number; adet: number; seed?: number };
+// olcek: gövde boyu = 0.11 m × olcek (kalibrasyon 3: 1.6, yakın birey 360 px'te ≥ 60 px); yuzey: tünek id öneki süzgeci (ör. ["semer0"]);
+// acik_n: en yakın n birey kanadı yarı açık (taraklı kenar + parmak çizgileri net)
+type TunekP = { bas: number; bit: number; adet: number; seed?: number; olcek?: number; yuzey?: string[]; acik_n?: number };
+const tunekU = (td: TunekP, pr: Proj, v: V3) => 0.11 * (td.olcek ?? 1.6) * pr.pxm(v);
+const tunekYon = (sd: number, i: number): 1 | -1 => (random(`ty${sd}${i}`) < 0.5 ? 1 : -1);
 type Nabiz = { bas: number; periyot?: [number, number]; bit?: number };
 const nabizDeger = (nb: Nabiz | null, p: number, faz: number) => {
   if (!nb || p < nb.bas) return 0;
@@ -335,44 +340,47 @@ const nabizDeger = (nb: Nabiz | null, p: number, faz: number) => {
   const ph = Math.abs(T1 - T0) < 1e-3 ? x / T0 : (L / (T1 - T0)) * Math.log((T0 + (T1 - T0) * (x / L)) / T0) + Math.max(0, p - nb.bas - L) / T1;
   return 0.35 + 0.65 * (0.5 + 0.5 * Math.sin(2 * Math.PI * (ph + faz) - Math.PI / 2));
 };
-export const tunekListesi = (pr: Proj, adet: number) => TUNEKLER
+export const tunekListesi = (pr: Proj, adet: number, td?: TunekP) => TUNEKLER
+  .filter((t) => !td?.yuzey || td.yuzey.some((y) => t.id.startsWith(y)))
   .map((t) => ({ ...t, e: pr.P(t.v) }))
   .filter((t) => { // tank gövdesinin arkasında kalan tünek seçilmez (önde olan arkadakini örter)
     const c: V3 = [pr.kam.C[0], pr.kam.goz, pr.kam.C[1]], L: V3 = [t.v[0] - c[0], t.v[1] - c[1], t.v[2] - c[2]], s = tankKesis(c, L);
     return s === null || s > 0.97; })
   .filter((t) => t.e && t.e[0] > -60 && t.e[0] < 1140 && t.e[1] > -60 && t.e[1] < 1980)
   .sort((a, b) => pr.z(a.v) - pr.z(b.v)) // yakın önce; ekranda üst üste binen (aralık < 0.55 gövde boyu) elenir
-  .reduce((acc, t) => { const u = 0.11 * 1.25 * pr.pxm(t.v); if (!acc.some((q) => Math.abs(q.e![0] - t.e![0]) < 0.55 * u * 1.6 && Math.abs(q.e![1] - t.e![1]) < 1.6 * u)) acc.push(t); return acc; }, [] as (Tunek0 & { e: P | null })[])
+  .reduce((acc, t) => { const u = 0.11 * (td?.olcek ?? 1.6) * pr.pxm(t.v); if (!acc.some((q) => Math.abs(q.e![0] - t.e![0]) < 0.75 * u && Math.abs(q.e![1] - t.e![1]) < 1.2 * u)) acc.push(t); return acc; }, [] as (Tunek0 & { e: P | null })[])
   .sort((a, b) => a.e![0] - b.e![0]).slice(0, adet);
 type Tunek0 = (typeof TUNEKLER)[number];
 const Tunemis: React.FC<{ pr: Proj; plan: Plan; p: number; alev: boolean }> = ({ pr, plan, p, alev }) => {
   const td = param<TunekP | null>(plan, "tunek_dalgasi", null); if (!td) return null;
   const nb = param<Nabiz | null>(plan, "kapsul_nabiz", null), kv = param<{ kare: number; tunek: number }[]>(plan, "kivilcim_dizisi", []);
   const stil = alev ? "gomulu" : param<"gercek" | "gomulu">(plan, "tunek_stil", "gercek");
-  const L = tunekListesi(pr, td.adet), sd = td.seed ?? 5;
+  const L = tunekListesi(pr, td.adet, td), sd = td.seed ?? 5;
+  const yakin = [...L].sort((a, b) => pr.z(a.v) - pr.z(b.v)).slice(0, td.acik_n ?? 2).map((t) => t.id);
   return <g>{L.map((t, i) => {
     const a = td.bas + (td.bit - td.bas) * (L.length > 1 ? i / (L.length - 1) : 0) + (random(`tk${sd}${i}`) - 0.5) * 16;
-    const e = t.e!, u = 0.11 * 1.25 * pr.pxm(t.v), uc = 46;
+    const e = t.e!, u = tunekU(td, pr, t.v), uc = 46, yx = tunekYon(sd, i);
     const kivi = kv.find((q) => q.tunek === i && p >= q.kare);
     const kapsul = kivi ? "kivilcim" : nb && p >= nb.bas ? "koz" : "kapsul";
     const nab = nabizDeger(nb, p, random(`nf${sd}${i}`));
     if (p < a - uc) return null;
     if (p < a) { // uçarak gelir: soldan-alttan, kanat çırpar
       const q = (p - (a - uc)) / uc, e0: P = [e[0] - 420 - 160 * random(`tx${i}`), e[1] + 260 + 120 * random(`ty${i}`)];
-      const qq = GIRIS(q), x = e0[0] + (e[0] - e0[0]) * qq, y = e0[1] + (e[1] - e0[1]) * qq - Math.sin(Math.PI * q) * 90;
-      return <Yarasa key={i} z={{ x, y: y + 0.52 * u, u, faz: (p / 10) % 1, kanat: 0.05, aci: -20 + 30 * q, stil, kenar: true, kapsul }} />;
+      const qq = GIRIS(q), x = e0[0] + (e[0] - e0[0]) * qq, y = e0[1] + (e[1] - e0[1]) * qq + Math.sin(Math.PI * q) * 60; // tüneğe ALTTAN yaklaşır (kirişin üstünden aşmaz)
+      return <Yarasa key={i} z={{ x, y: y + 0.52 * u * Math.min(1, (1 - q) * 3) + 0.6 * u, u, faz: (p / 10) % 1, kanat: 0.05, aci: -20 + 30 * q, stil, kenar: true, kapsul }} />;
     }
-    const d = p - a, don = interpolate(d, [0, 10], [0, 180], { ...cl, easing: GIRIS }), kat = interpolate(d, [0, 16], [0.1, random(`kk${sd}${i}`) < 0.6 ? 0.68 : 0.92], { ...cl, easing: GIRIS });
-    const sallan = Math.sin(d / 9) * 6 * Math.exp(-d / 30);
-    return <Yarasa key={i} z={{ x: e[0], y: e[1], capa: "ayak", u, aci: 180 + sallan - (180 - don), kanat: kat, faz: 0.25, nefes: 0.5 + 0.5 * Math.sin(p / 9 + i), stil, kenar: stil === "gercek", kapsul, nabiz: nab }} />;
+    // temas: ayak tünek alt yüzüne değer → profil asılı görünüş; 10 karede ters döner (dönüş ayak çevresinde), 16 karede kanat yerleşir
+    const d = p - a, don = interpolate(d, [0, 10], [0, 180], { ...cl, easing: GIRIS }), kat = interpolate(d, [0, 16], [0.3, yakin.includes(t.id) ? 0.42 : 0.95], { ...cl, easing: GIRIS });
+    const sallan = Math.sin(d / 9) * 5 * Math.exp(-d / 30);
+    return <g key={i} transform={`rotate(${don - 180 + sallan} ${e[0]} ${e[1]})`}><Yarasa z={{ x: e[0], y: e[1], u, gorus: "profil", yonX: yx, kanat: kat, stil, kenar: stil === "gercek", kapsul, nabiz: nab, arkaIsik: true }} /></g>;
   })}</g>;
 };
 const Kivilcimlar: React.FC<{ pr: Proj; plan: Plan; p: number }> = ({ pr, plan, p }) => {
   const kv = param<{ kare: number; tunek: number; siddet?: number }[]>(plan, "kivilcim_dizisi", []), td = param<TunekP | null>(plan, "tunek_dalgasi", null);
   if (!kv.length || !td) return null;
-  const L = tunekListesi(pr, td.adet), cs = kameraHesapla(plan.kamera, p).cs;
+  const L = tunekListesi(pr, td.adet, td), cs = kameraHesapla(plan.kamera, p).cs, sd = td.seed ?? 5;
   return <g>{kv.map((q, i) => { const t = L[q.tunek]; if (!t || p < q.kare) return null;
-    const u = 0.11 * 1.25 * pr.pxm(t.v), e: P = [t.e![0], t.e![1] + 0.75 * u]; // kapsül başı (asılı: baş aşağı)
+    const u = tunekU(td, pr, t.v), e: P = [t.e![0] + 0.15 * u * tunekYon(sd, q.tunek), t.e![1] + 0.62 * u]; // profil: yan-göğüs kapsülün baş ucu
     const d = p - q.kare, sn = interpolate(d, [0, 10], [1, 0.5], cl), R = 60 / cs;
     return <g key={i}>
       <circle cx={e[0]} cy={e[1] - 0.25 * u} r={R} fill={YR.amber} opacity={0.28 * sn} />
@@ -506,7 +514,7 @@ const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const katGor = (i: number) => !bs.aktif || bs.ilerle - i > 0;
   const tankZ = pr.z(W(0, TANK.t, 0));
   const calis = CALILAR.map((c) => ({ ...c, z: pr.z(c.v) })).filter((c) => c.z > 0.5);
-  if (td(plan)) tunekListesi(pr, td(plan)!.adet).forEach((t, i) => kilit.push({ ad: `tünek ${i}`, p: [540 + k.cx + (t.e![0] - 540) * k.cs, 960 + k.cy + (t.e![1] - 960) * k.cs], tur: "temas" }));
+  if (td(plan)) tunekListesi(pr, td(plan)!.adet, td(plan)!).forEach((t, i) => kilit.push({ ad: `tünek ${i}`, p: [540 + k.cx + (t.e![0] - 540) * k.cs, 960 + k.cy + (t.e![1] - 960) * k.cs], tur: "temas" }));
   const H = cizimHatlari();
   const T1 = [H.H2[0], H.H2[1], H.H3[1], H.H3[0]], T2 = [H.H3[0], H.H3[1], H.H4[1], H.H4[0]];
   const kx = interpolate(bs.kirmizi, [0, 1], [-200, 1280]);

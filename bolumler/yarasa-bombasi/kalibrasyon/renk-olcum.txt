@@ -1,7 +1,6 @@
-K1-P09-p300.png        sicak%= 18.3 p95L*= 75.7 Lmax= 87.5 Lmin=  8.7 C>32%=0.19 imza%=0.09 kirmizi%=0.00
-K2-P03-p264.png        sicak%= 26.6 p95L*= 81.2 Lmax= 82.9 Lmin= 17.3 C>32%=0.15 imza%=0.00 kirmizi%=0.14
-K2-P03-p310.png        sicak%= 24.2 p95L*= 81.2 Lmax= 82.9 Lmin= 20.7 C>32%=4.00 imza%=0.00 kirmizi%=3.57
-K3-P12B-p88.png        sicak%= 19.5 p95L*= 76.5 Lmax= 82.2 Lmin=  9.1 C>32%=0.00 imza%=0.00 kirmizi%=0.00
-P10-p60.png            sicak%= 18.4 p95L*= 76.5 Lmax= 90.8 Lmin= 17.4 C>32%=0.20 imza%=0.09 kirmizi%=0.00
-P10-p108.png           sicak%= 18.5 p95L*= 76.5 Lmax= 90.9 Lmin= 17.4 C>32%=0.21 imza%=0.09 kirmizi%=0.00
-P10-p200.png           sicak%= 52.1 p95L*= 80.1 Lmax= 91.7 Lmin= 17.4 C>32%=0.36 imza%=0.08 kirmizi%=0.01
+K1-P09-p300.png        sicak%= 17.3 p95L*= 76.2 Lmax= 86.4 Lmin=  8.7 C>32%=0.07 imza%=0.03 kirmizi%=0.00
+K2-P03-p264.png        sicak%= 25.9 p95L*= 81.2 Lmax= 82.9 Lmin= 17.3 C>32%=0.15 imza%=0.00 kirmizi%=0.14
+K2-P03-p310.png        sicak%= 24.3 p95L*= 81.2 Lmax= 82.9 Lmin= 20.7 C>32%=4.12 imza%=0.00 kirmizi%=3.67
+K3-P12B-p88.png        sicak%= 20.0 p95L*= 78.0 Lmax= 85.9 Lmin=  9.1 C>32%=0.00 imza%=0.00 kirmizi%=0.00
+P10-p60.png            sicak%= 17.5 p95L*= 77.2 Lmax= 90.9 Lmin= 17.5 C>32%=0.08 imza%=0.03 kirmizi%=0.00
+P10-p200.png           sicak%= 44.7 p95L*= 79.8 Lmax= 90.9 Lmin= 17.9 C>32%=0.37 imza%=0.08 kirmizi%=0.01

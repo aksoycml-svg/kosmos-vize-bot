@@ -25,6 +25,8 @@ export type YarasaPoz = {
   basDon?: number;           // baş dönüşü (derece, yakın plan)
   ciz?: number;              // murekkep: çizim ilerlemesi 0…1 (stroke)
   gogusBos?: boolean;        // murekkep: göğüs boş daire (P02)
+  gorus?: "on" | "profil";   // profil: asılı (baş aşağı) yan görünüş — ayaklar (x,y)'de, gövde aşağı sarkar; aci yok sayılır
+  yonX?: 1 | -1;             // profil: karın yönü (ekranda sağ +1 / sol −1)
 };
 
 export const YR = {
@@ -85,7 +87,63 @@ export const Kapsul: React.FC<{ durum: KapsulDurum; nabiz?: number; w: number }>
   );
 };
 
+// ---- PROFİL ASILI (kalibrasyon 3, orkestra yönü): ayak (0,0) tünekte, gövde +y'ye sarkar, baş en altta (sivri kulak + burun).
+// Kanat k: 1 katlı (bilek ayak yanında, önkol sırtta, başparmak tüneğe yakın) … 0.4 yarı açık (zar aşağı-dışa sarkar: taraklı kenar + parmak çizgileri).
+// Kapsül yan-göğüste, boy ≤ %22 gövde, mat; köz yalnız uçta küçük çekirdek. x ekseni karın yönüne göre (yonX) aynalanır.
+const pl = (a: P, b: P, t: number): P => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+export const profilNokta = (kanat: number) => {
+  const t = Math.min(1, Math.max(0, (1 - kanat) / 0.6)); // 0 katlı … 1 yarı açık
+  const omuz: P = [-0.06, 0.66], bilek = pl([-0.1, 0.1], [-0.42, 0.24], t), d3 = pl([-0.16, 0.86], [-0.86, 1.0], t), d4 = pl([-0.14, 0.82], [-0.62, 1.12], t), d5 = pl([-0.11, 0.78], [-0.34, 1.06], t);
+  return { omuz, bilek, d3, d4, d5, govdeYan: [-0.12, 0.78] as P, kapsul: [0.15, 0.5] as P };
+};
+const profilYollar = (kanat: number) => {
+  const K = profilNokta(kanat), F = (q: P) => `${q[0].toFixed(3)},${q[1].toFixed(3)}`;
+  const zar = `M${F(K.omuz)} L${F(K.bilek)} L${F(K.d3)} ${tarak(K.d3, K.d4, K.bilek, 0.3)} ${tarak(K.d4, K.d5, K.bilek, 0.3)} ${tarak(K.d5, K.govdeYan, K.bilek, 0.25)} Z`;
+  const kemik = `M${F(K.omuz)} L${F(K.bilek)} M${F(K.bilek)} L${F(K.d3)} M${F(K.bilek)} L${F(K.d4)} M${F(K.bilek)} L${F(K.d5)}`;
+  const govde = "M0,0.04 C0.16,0.1 0.2,0.4 0.17,0.62 C0.15,0.76 0.1,0.8 0.04,0.8 C-0.08,0.8 -0.14,0.62 -0.13,0.42 C-0.12,0.2 -0.08,0.06 0,0.04 Z";
+  const bas = "M0.04,0.74 C0.16,0.74 0.2,0.86 0.24,0.95 L0.15,0.99 C0.1,1.0 0.02,0.98 -0.03,0.92 C-0.08,0.84 -0.04,0.74 0.04,0.74 Z"; // burun +x-aşağı
+  const kulak = "M-0.02,0.9 C-0.08,0.98 -0.06,1.1 0.02,1.17 C0.06,1.08 0.07,0.98 0.05,0.92 Z M0.06,0.93 C0.06,1.02 0.1,1.1 0.16,1.14 C0.17,1.06 0.15,0.98 0.12,0.95 Z"; // iki sivri kulak, en altta
+  const ayak = "M-0.03,0.0 Q-0.04,0.06 0,0.1 M0.04,0.0 Q0.05,0.06 0.02,0.1";
+  return { K, zar, kemik, govde, bas, kulak, ayak };
+};
+const ProfilAsili: React.FC<{ z: YarasaPoz }> = ({ z }) => {
+  const kanat = z.kanat ?? 0.9, Y = profilYollar(kanat), sx = z.yonX ?? 1, w = 1 / z.u, stil = z.stil ?? "gercek";
+  const T = `translate(${z.x},${z.y}) scale(${sx * z.u},${z.u})`;
+  if (stil === "murekkep") {
+    const c = Math.max(0, Math.min(1, z.ciz ?? 1)); if (c <= 0) return null;
+    const st = { stroke: YR.murekkep, strokeWidth: 7 * w, strokeLinejoin: "round" as const, strokeLinecap: "round" as const, pathLength: 1, strokeDasharray: `${c} 1.02`, fill: "none" };
+    const parca = (q: Record<string, unknown>) => <><path d={Y.zar} {...q} /><path d={Y.govde} {...q} /><path d={Y.bas} {...q} /><path d={Y.kulak} {...q} /></>;
+    return <g transform={T}>{parca(st)}<g transform={`translate(0,0) scale(${Math.min(1, c * 2)})`}>{parca({ fill: "#e6d8b9", stroke: "none" })}</g>
+      {c >= 1 && <g stroke={YR.murekkep} strokeWidth={2.5 * w} fill="none" strokeLinecap="round"><path d={Y.kemik} /><path d={Y.ayak} strokeWidth={3.5 * w} /><circle cx={0.12} cy={0.85} r={0.018} fill={YR.murekkep} />
+        {!z.gogusBos && [0, 1, 2].map((i) => <line key={i} x1={0.05} y1={0.3 + i * 0.1} x2={0.12} y2={0.26 + i * 0.1} />)}</g>}</g>;
+  }
+  const renk = stil === "gomulu" ? YR.gomulu : null;
+  const zar = renk ?? (z.arkaIsik ? YR.zarArka : YR.zar), gov = renk ?? YR.govde;
+  const kont = renk ? {} : { stroke: YR.kontur, strokeWidth: 2.5 * w, strokeLinejoin: "round" as const };
+  const n = z.kapsul === "koz" || z.kapsul === "kivilcim" ? Math.max(0, Math.min(1, z.nabiz ?? 0)) : 0, K = Y.K;
+  return (
+    <g transform={T}>
+      {!renk && z.kenar && <g fill={YR.kenar} transform={`translate(${-2 * w * sx},${-1.6 * w})`}><path d={Y.zar} /><path d={Y.govde} /><path d={Y.bas} /><path d={Y.kulak} /></g>}
+      <path d={Y.zar} fill={zar} {...kont} />
+      {!renk && <path d={Y.kemik} fill="none" stroke={YR.govdeGolge} strokeWidth={2 * w} strokeLinecap="round" />}
+      <path d={Y.ayak} fill="none" stroke={renk ?? YR.kontur} strokeWidth={3 * w} strokeLinecap="round" />
+      <path d={Y.govde} fill={gov} {...kont} />
+      {!renk && <path d="M-0.13,0.42 C-0.12,0.2 -0.08,0.06 0,0.04 C-0.04,0.2 -0.06,0.5 -0.03,0.78 C-0.1,0.74 -0.14,0.6 -0.13,0.42 Z" fill={YR.govdeGolge} opacity={0.7} />}
+      <path d={Y.kulak} fill={renk ?? YR.govde} {...kont} />
+      <path d={Y.bas} fill={gov} {...kont} />
+      {!renk && <><circle cx={0.12} cy={0.85} r={0.022} fill="#1c1915" /><circle cx={0.115} cy={0.845} r={Math.max(0.008, 0.8 * w)} fill="#e6d8b9" /><path d="M0.2,0.93 L0.24,0.95" stroke={YR.kontur} strokeWidth={2 * w} /></>}
+      {!renk && <path d={`M${K.bilek[0]},${K.bilek[1]} q-0.06,-0.02 -0.07,-0.07`} fill="none" stroke={YR.kontur} strokeWidth={2.4 * w} strokeLinecap="round" />}
+      {z.kapsul && z.kapsul !== "yok" && <g>
+        <rect x={0.115} y={0.42} width={0.07} height={0.2} rx={0.035} fill={YR.amber} stroke={YR.amberKontur} strokeWidth={1.2 * w} />
+        <circle cx={0.15} cy={0.62} r={0.018 + 0.012 * n} fill={n > 0 ? YR.koz : YR.amberKontur} />
+        {z.kapsul === "kivilcim" && <circle cx={0.15} cy={0.65} r={0.03} fill={YR.hilal} />}
+      </g>}
+    </g>
+  );
+};
+
 export const Yarasa: React.FC<{ z: YarasaPoz }> = ({ z }) => {
+  if (z.gorus === "profil") return <ProfilAsili z={z} />;
   const kanat = z.kanat ?? 0, faz = z.faz ?? 0, stil = z.stil ?? "gercek", aci = z.aci ?? 0;
   const acikl = 3.1 * z.u * (1 - 0.55 * kanat); // ekrandaki yaklaşık genişlik (LOD ölçüsü)
   const capaY = z.capa === "ayak" ? -AYAK[1] : 0;
@@ -94,7 +152,7 @@ export const Yarasa: React.FC<{ z: YarasaPoz }> = ({ z }) => {
   const renk = stil === "siluet" ? YR.siluet : stil === "gomulu" ? YR.gomulu : stil === "murekkep" || stil === "dolu" ? YR.murekkep : YR.govde;
   // --- LOD ---
   if (acikl < 6) return <circle cx={z.x} cy={z.y} r={Math.max(1, acikl / 3)} fill={renk} />;
-  if (acikl < 18 && stil !== "murekkep") {
+  if (acikl < 12 && stil !== "murekkep") {
     const K = kanatNoktalari(kanat, faz);
     const d = `M${f([-K.d3[0], K.d3[1]])} L${f([-K.bilek[0], K.bilek[1]])} L${f([-K.dirsek[0], K.dirsek[1]])} L0,0 L${f(K.dirsek)} L${f(K.bilek)} L${f(K.d3)}`;
     return <g transform={T}><path d={d} fill="none" stroke={renk} strokeWidth={Math.max(1.6, acikl / 7) * w} strokeLinejoin="round" strokeLinecap="round" /><ellipse cx={0} cy={0.05} rx={0.2} ry={0.36} fill={renk} /></g>;
