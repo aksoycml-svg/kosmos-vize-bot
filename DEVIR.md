@@ -77,7 +77,7 @@ Ayrıca gerekenler:
 ## 5. Açık işler
 1. ~~`~/.claude/youtube/voice.md` dosyasını doldur.~~ **Yapıldı (2026-11-15, bilgisayarda):** `CLAUDE.md` "Senaryo ve yazı" kurallarına göre yazıldı. Varsayım: Doga = Türkçe, Brian = İngilizce; kullanıcı doğrulamadı. Onaylı Çiçero anlatımı final olunca "How I actually talk" bölümüne yapıştırılacak.
 2. Çiçero v3'ü kullanıcı izleyecek; notlarını `bolumler/cicero/notlar/tur-5.md`'ye aynen yaz.
-3. Instagram hesapları açılınca profilleri doldur.
+3. ~~Instagram hesapları açılınca profilleri doldur.~~ **Yapıldı (2026-11-15):** `sessizdosyahq` (Sessiz Dosya) ve `thesilentdossierhq` (The Silent Dossier) açıldı; ad, logo, biyografi girildi, ikisi de içerik üreticisi hesabı, kategori Education. Kalan (kullanıcı, telefon uygulamasından): EN profile YouTube bağlantısı, iki hesapta iki adımlı doğrulama.
 4. YouTube EN kanalının ikamet ülkesini ve TR kanalının "çocuklara özel değil" ayarını kontrol et.
 5. `evliya`, `paris`, `blanc`, `yarasa` render betiklerinde Mac düzeltmesi yok (sabit `/opt/pw-browsers` yolu, `nproc`). Örnek: `tools/cicero_render.sh`.
 
