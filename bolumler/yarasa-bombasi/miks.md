@@ -69,3 +69,8 @@ Seviyeler (anlatım klipleri −18 LUFS = 0 dB ref):
 7. **54.7–54.9:** mühür-tok (−5, en yüksek foley) + kâğıt hışırtısı.
 8. **59.5–62.7:** son akor ve yankı sönümü; rüzgâr ortamı; döngüde 0.0 notasına bağlanıyor mu.
 9. **EN:** aynı saniyeler; EN P06 (29–30) ve P07 (30.4–30.9) kanat-titrek foley'i konuşmayla çakışıyor mu.
+
+### 6b. Jüri düzeltmesi (2026-11-15)
+- Betik artık temas zamanlarını `temaslar.json`'dan (mutlak kare) okur; motion kaydırırsa yeniden çalıştırmak yeter. P10 `ates-yatak` temas karesinden başlayan **ortam yatağı** olarak kurulur (anlatıma göre −8 dB, ducking'siz), P10 boyunca sürer, kesmeden (P11 başı) sonra 0.2 sn tutup 0.8 sn'de söner. 49.25–49.75 sn çukuru: TR −45 → −26/−31 dB RMS, EN −41 → −25/−30.
+- P09 hold (44.63–46.12): müzik hold boyunca yükselir, P10 girişinde anlatıma göre −16.0 dB (≤ −16 ✓); hold RMS −34 → −30 (TR) / −29 (EN). Hold sonu → P10 konuşma tavanına 0.5 sn'de iniş (ff doruk hâlâ bastırılmış).
+- Final: TR −14.0 LUFS / TP −1.6; EN −14.0 / −1.7. Plan: P10 TR −14.6, EN −15.5 (yatak ve hold nedeniyle medyandan en çok 1.4 LU; 3 LU dışı yok). Müzik konuşmada −22.9/−22.3, aralarda −15.9.
