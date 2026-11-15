@@ -18,6 +18,7 @@ import { param, Sablon, SablonProps } from "../ortak";
 import { ParisCevreSahne } from "./harita/ParisCevre";
 import { BalonIkon, Golgeli, ToursIkon, YiginIkon } from "./harita/ikonlar";
 import { PK } from "./harita/parisCevre";
+import { abdMi, abdPj, AbdHarita } from "./harita/Abd";
 
 const K = 70, X0 = -5.4, Y0 = 51.3, YS = 1.45, OX = 70, OY = 400;
 const pj = (lon: number, lat: number): [number, number] => [OX + (lon - X0) * K, OY + (Y0 - lat) * K * YS];
@@ -39,9 +40,9 @@ export const ROTALAR: Record<string, [string, number, number, boolean][]> = {
   ],
 };
 type RotaNokta = [string, number, number, boolean];
-const rotaYol = (ad: string, ozel?: RotaNokta[]) => {
+const rotaYol = (ad: string, ozel?: RotaNokta[], proj: (lo: number, la: number) => [number, number] = pj) => {
   const R = ozel?.length ? ozel : ROTALAR[ad] ?? ROTALAR["paris-bordeaux"];
-  const PTS = R.map(([, lo, la]) => pj(lo, la));
+  const PTS = R.map(([, lo, la]) => proj(lo, la));
   const SEG = PTS.slice(1).map((q, i) => Math.hypot(q[0] - PTS[i][0], q[1] - PTS[i][1]));
   const TOT = SEG.reduce((a, b) => a + b, 0);
   const at = (q: number): [number, number] => {
@@ -64,7 +65,7 @@ const rotaYol = (ad: string, ozel?: RotaNokta[]) => {
 type RotaCiz = { bas: number; bit: number; q0?: number | string };
 type Takip = { kare: [number, number]; cs: number; ekran?: [number, number]; gecis?: number };
 type Igne = { kare: number; dusme?: number; renk?: "pirinc" | "murekkep" }; // renk "murekkep" (Paris): baş #1c1915, hilal #6d6a63 — varsayılan pirinç (Blanc)
-const rotaPlan = (plan: Plan) => rotaYol(param<string>(plan, "rota", "paris-bordeaux"), param<RotaNokta[] | undefined>(plan, "rota_noktalar", undefined));
+const rotaPlan = (plan: Plan) => rotaYol(param<string>(plan, "rota", "paris-bordeaux"), param<RotaNokta[] | undefined>(plan, "rota_noktalar", undefined), abdMi(plan) ? abdPj(plan) : pj);
 const q0Coz = (v: number | string | undefined, ORAN: number[]) => {
   if (typeof v === "number") return v;
   const m = typeof v === "string" ? /ORAN\[(\d+)\]/.exec(v) : null;
@@ -97,7 +98,7 @@ export const igneNokta = (plan: Plan): [number, number] | null => {
   if (!param<Igne | null>(plan, "igne", null)) return null;
   const { R } = rotaPlan(plan);
   const s = R[R.length - 1];
-  return pj(s[1], s[2]);
+  return (abdMi(plan) ? abdPj(plan) : pj)(s[1], s[2]);
 };
 const IgneCiz: React.FC<{ x: number; y: number; ig: Igne; p: number }> = ({ x, y, ig, p }) => {
   const n = ig.dusme ?? 14, t = p - ig.kare;
@@ -226,7 +227,7 @@ const FransaEkleri: React.FC<{ plan: Plan; p: number; kat: "alt" | "ust"; kilit:
 // binerse sıradaki yöne (alt, üst, sağ, sol) geçer; güvenli alana kenetlenir. Playfair 900, 40 px × cs. Dönüş: EKRAN px (sahne dönüşümü öncesi).
 export type HaritaAdi = { metin: string; merkez: [number, number]; px: number; t: number };
 export const haritaAdlari = (plan: Plan, p: number): HaritaAdi[] => {
-  if (plan.sablon !== "HARITA" || param<boolean>(plan, "svg_etiket", true) || param<string>(plan, "harita_gorunum", "") === "paris-cevre") return [];
+  if (plan.sablon !== "HARITA" || param<boolean>(plan, "svg_etiket", true) || param<string>(plan, "harita_gorunum", "") === "paris-cevre" || abdMi(plan)) return [];
   const { R, at, ORAN } = rotaPlan(plan), k = haritaKamera(plan, p), rc = param<RotaCiz | null>(plan, "rota_ciz", null), qr = rotaIlerleme(plan, p);
   const E = (q: [number, number]): [number, number] => [540 + k.cx + (q[0] - 540) * k.cs, 960 + k.cy + (q[1] - 960) * k.cs];
   const px = 40 * k.cs, h = px * 0.95, cs0 = ekranCs(plan);
@@ -259,6 +260,7 @@ export const haritaAdlari = (plan: Plan, p: number): HaritaAdi[] => {
 
 const Sahne: React.FC<SablonProps> = (props) => {
   if (param<string>(props.plan, "harita_gorunum", "") === "paris-cevre") return <ParisCevreKap {...props} />;
+  if (abdMi(props.plan)) return <AbdSahne {...props} />;
   return <FransaSahne {...props} />;
 };
 const ParisCevreKap: React.FC<SablonProps> = ({ plan, p, kilit }) => {
@@ -357,6 +359,29 @@ const FransaSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       {/* K4 çift sayaç: telgraf üstte, posta altta (ikisi birden varsa); tek vuruşta tek kutu eski yerinde */}
       {tel && p >= tel.bas && <SayacKutu y={posta ? 1290 : 1320} giris={interpolate(p, [tel.bas, tel.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={<TIkon renk="#f1e4c4" />} metin={etSaat(saat)} sag={sayacSag} />}
       {posta && p >= posta.bas && <SayacKutu y={tel ? 1400 : 1320} giris={interpolate(p, [posta.bas, posta.bas + 12], [0, 1], { ...cl, easing: Easing.bezier(0.16, 1, 0.3, 1) })} ikon={gece ? <Ay /> : <Gunes />} metin={etGun(gun)} sag={sayacSag} />}
+    </div>
+  );
+};
+
+// yarasa-bombasi KE-8: ABD görünümü (rota/iğne/kamera_takip ortak; projeksiyon Albers)
+const AbdSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
+  const { YOL, at } = rotaPlan(plan), rc = param<RotaCiz | null>(plan, "rota_ciz", null), qr = rotaIlerleme(plan, p);
+  const ig = param<Igne | null>(plan, "igne", null), igN = igneNokta(plan), k = haritaKamera(plan, p), uc = at(qr);
+  if (rc) kilit.push({ ad: "rota ucu", p: [540 + k.cx + (uc[0] - 540) * k.cs, 960 + k.cy + (uc[1] - 960) * k.cs], tur: "dokunus" });
+  return (
+    <div style={{ position: "absolute", inset: 0, backgroundColor: "#1a120b", overflow: "hidden" }}>
+      <div style={{ position: "absolute", inset: 0, transform: `translate(${k.cx}px,${k.cy}px) scale(${k.cs})` }}>
+        <Img src={staticFile("blanc/img/parsomen.jpg")} style={{ position: "absolute", left: -1400, top: -1500, width: 3880, height: 4920, objectFit: "cover", filter: "saturate(0.62)" }} />
+        <svg width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
+          <AbdHarita plan={plan} kat="alt" p={p} cs={k.cs} />
+          {rc && qr > 0 && <><path d={YOL} fill="none" stroke={INK} strokeWidth={14 / k.cs} pathLength={1} strokeDasharray={`${qr} 2`} strokeLinecap="round" opacity={0.18} />
+            <path d={YOL} fill="none" stroke="#1c1915" strokeWidth={6 / k.cs} pathLength={1} strokeDasharray={`${qr} 2`} strokeLinecap="round" />
+            {qr < 1 && <circle cx={uc[0]} cy={uc[1]} r={8 / k.cs} fill="#1c1915" />}</>}
+          {rotaPlan(plan).R.map(([nm, lo, la, big], i) => { if (!big) return null; const q = abdPj(plan)(lo, la); return <circle key={nm + i} cx={q[0]} cy={q[1]} r={11 / k.cs} fill="#1c1915" />; })}
+          <AbdHarita plan={plan} kat="ust" p={p} uc={uc} cs={k.cs} />
+          {ig && igN && <g transform={`translate(${igN[0]},${igN[1]}) scale(${1 / k.cs}) translate(${-igN[0]},${-igN[1]})`}><IgneCiz x={igN[0]} y={igN[1]} ig={ig} p={p} /></g>}
+        </svg>
+      </div>
     </div>
   );
 };

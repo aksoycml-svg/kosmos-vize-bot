@@ -231,6 +231,42 @@ Kod `src/kit/sablonlar/paris/LanternOda.tsx`. Şartname `mekanlar.md` §4v2 (+ �
 - **`oda`:** `huzme.lamba_acilir{temas}` (lamba yanar; huzme kaynaktan uzar — fade yok), `cam_levha{bas,bit,temas}` (parisGri el levhayı yuvaya indirir), `buyume_odak{bas,bit}` (154 px kare → perde; 3 kopya ±14 px birleşir), huzme gravür (4 sınır ışını, 2.5° iç ışınlar, dolgu α .12, toz), perde çevresi 2. ton halka; 3 memur sırttan (gravür baş-omuz, soğuk kenar ışığı, 78° tarama) `memurlar.durur/yazar` (omuz ritmi, farklı faz), `memur3_kalkis` (kalkar, sağ kenardan çıkar); lantern gövdesi sol-altta (mercek gizli), havalandırma ışık çizgileri.
 - **`kapi`:** perde şeridi + halka, karanlık duvar + lambri, söve + yanak, sıcak gün koridoru `#e8cdb6` (söve gölgesi taraması), 2 bekleyen (`SiluetFigur yetiskin-a`, P01 tasarımı, kapı açıklığına kırpılı), okuyan (`FigurSiluet` palto, başlıksız, saç + kulak + iki renkli kenar ışığı; kollar KolEl `parisGri` omuzdan IK). `memur_eli.giris/cikis` (soldan zarf), `zarf_verilir.kare`, `zarf_acilir{bas,bit,temas}` (kapak döner, sayfa zarftan çekilir), `okuma`, `kapanis`.
 
+## COL-US (yarasa bombası 1943, Carlsbad yardımcı üssü — kurulu: `genis`/`tank-alti`/`yanik` (+ `yangin-kenar`/`yangin` = genis kamerası) + `ikindi`; motion kurulum 2026-11-14)
+Kod: `src/kit/sablonlar/colus/ColUs.tsx` + `colusDunya.ts` (tek dünya modeli, mekanlar.md §1.2). Görüntüde yazı yok. Kanıt: `bolumler/yarasa-bombasi/kalibrasyon/bolum-kit-test.json` K1, K3, S8, X10.
+| alan | değer |
+|---|---|
+| `gorunum` | `genis` C(5.2,−15.6) göz 1.7 az 335 F1400 ufuk 1010 · `tank-alti` **C(3.1,−4.12) göz 0.3 az 309** (kalibrasyonda değişti, tank ekseni boyunca; kirişin altında ufuk) · `yanik` C(−2.54,−4.33) göz 0.6 az 40 F1150 |
+| `dolly` | `{hedef, kare[], k[]}` — kamera konumu görünümden hedefe doğrusal (P08→P09). `plan.kamera` cs/cx/cy bunun ÜSTÜNE 2B kırpma |
+| `kamera3b` | `{az?, C?, goz?, F?, U?}` görünüm kaydına ince ayar (yönetmen sınırı ±10° az, ±1 m) |
+| `suru` | SuruAyar (dekor px): `{n, seed, kaynak[x,y], a, b, yon −1, omega, yukselis, egim, kayma, u[min,max] gövde px, mod "bas"\|"surekli", bas, yayilim, donem, faz0, stil "siluet", kenar}` |
+| `suru_golgesi` | `{bas, bit, n 80, h[2,5], seed}` alçak akış (sağdan sola) + her bireyin güneş izdüşümü: tanka çarpan tankta, gerisi zeminde (elle konmaz) |
+| `tunek_dalgasi` | `{bas, bit, adet, seed}` soldan sağa tünek; uçarak gelir → ayak teması → 10 karede ters döner, 16 karede kanat katlar. Tünekler dünyada (semer kirişi alt yüzü h 0.40, tank altı oyuk, saçak altı); tankın arkasında kalan / ekranda üst üste binen elenir. Kilit: `tünek i` (temas) |
+| `tunek_stil` | `gercek` (varsayılan) · `gomulu` (karanlıkta seçilmez; alev karesinde otomatik) |
+| `kapsul_nabiz` | `{bas, periyot[96,68], bit}` köz nabzı, periyot plan boyunca kısalır, faz yarasa başına seed'li |
+| `kivilcim_dizisi` | `[{kare, tunek: i}]` tünek i'nin kapsül başında amber nokta + 45 px yüzey yaması (10 kare sönüm). Temaslar'a yönetmen yazar |
+| `alev` | `[{bas, s0 (m, cephe ekseni), hiz, boy (m), smin, smax}]` alın tahtası boyunca yayılan 3 katman yaprak alev + ikinci ışık halkaları; duman otomatik |
+| `duman` | `{bas, kaynak[s…], ince}` (P12 ince sütun) — loblar kadrajın üstünden çıkar, fade yok |
+| `yanik` | `{oran 0–1}` (yanik görünümünde varsayılan 1): kömür alın/mertek, duvar kurumu 3 basamak, tank üst kurumu; amber/alev/kor yok |
+| `cizimden` / `cizime` | `{bas, bit}` P12 baskı geçişi: 10 kare tarama kırmızı→kömür (soldan sağa) + 4 katman × 4 kare yırtık kenarlı baskı (gök → duvar → tank+zemin → saçak); mürekkep hatları (MASA-YB alt sayfasıyla aynı `cizimHatlari()`) üstte |
+| `vinyet` | `{kare[], deger[]}` 0–0.7 (K1'de 0.12; 0.35 p95 L*'ı düşürmedi ama gerek yok) |
+| `on_plan` | genis'te Ç0 ön plan çalısı (varsayılan açık) |
+Sınır: cs 0.9–3.0, cx ±450, cy −500…400. Bilinen eksik: kompars siluet (≤1, P10) kurulmadı; alev ikinci ışığı yüzey maskesiz halka.
+
+## MASA-YB (yarasa bombası — Adams'ın masası, tepeden; lamba)
+Kod: `src/kit/sablonlar/masayb/MasaYb.tsx`, proplar `src/kit/props/yarasa/{Yarasa,Suru,MasaProplari}.tsx`. Dekor: üst sayfa x110–970 y610–1310, oluk 1310–1346, alt sayfa 1346–2046; lamba havuzu merkez (420,1180) R1 720 / R2 1100. Kanıt: kit-test K2, X01, X02, X04, X05, X06, X07, X11.
+| alan | değer |
+|---|---|
+| `defter` | `{dx, dy}` kaydırma \| `false` (yok) |
+| `ust_sayfa` | `{magara, suru (DEFTER_SURU'yu ezer), canli (false = donuk), notlar}` — P01 p0 = P12 son: cs 2.4, cx 0, cy 0, aynı `faz0` |
+| `alt_sayfa` | zaman alanları `true` (hazır) \| `{bas, bit, q0?}`: `cati` (H1, dudak, H2, mertekler, H3, tarama T1/T2, kaplama — uzunlukla orantılı), `yarasa` (q0 0.6 = P02 yarım), `gogus_bos`, `durak` (damla ø6→9), `alev` (kırmızı 3 dilli), `alev_cizgi` (kirişe + çatı hattına), `kirmizi` (tarama soldan sağa kırmızı), `geri` (yarasa+alev geri çizilir, P12 A) |
+| `kalem` | `{el: "adams"\|"lab"\|"gorevliYB", cikis {bas,bit}}` — uç otomatik aktif çizginin ucunda; çizgiler arası havada (0.8 cm) GIRIS geçiş. El = tek parça siluet (başparmak + işaret lobu, iç çizgi yok), ×0.85 |
+| `nesneler` | `[{tur, x, y, olcek, aci, …}]`: `zarf` · `not {dus{kare}}` · `kapsul-set {cimbiz{bas, temas, bit}}` (lab eli, temas = kapsül göğüste) · `kovan {tepsi_n 26, diz{bas,bit}, ac{bas,bit}, titre{tepsi,kare}}` · `tepsi {cap, bolme_n, odak, titre[kare], bas_don{bas,bit,aci}}` · `belge {ortu{kare,kayma}}` · `muhur {cap, temas, giris{bas,bit}, cikis{bas,bit}}` (iz daire+çarpı, kırmızı tek) |
+| `vinyet` | `{kare[], deger[]}` |
+Sınır: cs 1.0–2.8, cx ±400, cy −1400…400. P03 göğüs dekor ≈ (`altSayfaCizim.gogus`), P12 A sonu cs 1.9 cy −1303 → çizim = `yanik` ekranı.
+
+## HARITA `harita_gorunum: "abd"` (yarasa bombası KE-8)
+`src/kit/sablonlar/harita/Abd.tsx` + `abd.json` (us-atlas 3 / ABD Census, kamu malı; kıta 48 eyalet). Albers konik. `rota: "ozel"` + `rota_noktalar` (lon/lat), `rota_ciz`, `kamera_takip`, `igne` ortak kod. `bolge` `ulusal` (920 px) \| `dogu` (900 px). Ekler: `zarf_ikon {bas, bit, boyut_px}`, `koy_ikon {lonlat, ev_n, ikon_px, ciz{bas,bit,stagger}}`, `suru_ikon {bas, bit, lonlat, n}`, `isaret {lonlat, bas}` (turuncu halka), `magara_ikon {lonlat}`. SVG etiket yok → `harita_etiketleri` (dekor px) yazı katmanında; nokta için `abdProj(bolge)(lon, lat)`.
+
 ## Plan içi kesme (`devam_plan`, K5)
 - `devam_plan {kare_bas, sablon, parametreler, kamera, karakterler, props}`: `kare_bas`'tan itibaren görüntü bu şablondan (plan karesi aynı; ses/yazı/temas planın kendisinde). `parametreler.plan_ici_kesme {kare, sonraki_sablon}` ile aynı olmalı. İlk bölümün kamera/prop/jest anahtarları kesmeden önce biter (doğrulayıcı).
 - **İkinci kesme (Paris C):** `devam_plan.kesme_2 {kare_bas, sablon?, parametreler, kamera}` — aynı (ya da verilen) şablonda başka görünüm (P10: LANTERN-ODA `oda` → `kapi`). Doğrulayıcı: kare sırası, `plan_ici_kesme_2.kare` uyumu, parametre/kurulu, kamera aralığı `gorunum_sinirlari`'ndan, ilk görünümün animasyon/kamerası kesmeyi aşmaz.

@@ -4,7 +4,8 @@
 import type { Agiz, Palet } from "../rig/Kukla";
 
 export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARITA" | "YAKIN-YUZ" | "SARAYBURNU" | "GALATA-TEPE" | "BOGAZ" | "KITAP-INSERT" | "PARIS-CATI" | "MONTMARTRE" | "DAGRON-INSERT" | "LANTERN-ODA"
-  | "ARABA"; // Çiçero (1940'lar kiti): sedan kesiti (ic) / sokak (dis)
+  | "ARABA" // Çiçero (1940'lar kiti): sedan kesiti (ic) / sokak (dis)
+  | "COL-US" | "MASA-YB"; // Yarasa bombası: çöl üssü / tepeden masa-defter
 export type Bant = "ust" | "alt";
 export type P = [number, number];
 

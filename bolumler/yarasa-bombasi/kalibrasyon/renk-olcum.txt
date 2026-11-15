@@ -1,0 +1,4 @@
+K1-P09-p300.png        sicak%= 20.1 p95L*= 76.7 Lmax= 91.2 Lmin= 11.2 C>32%=0.30 imza%=0.08 kirmizi%=0.00
+K2-P03-p264.png        sicak%= 30.0 p95L*= 80.8 Lmax= 82.9 Lmin= 16.8 C>32%=0.22 imza%=0.00 kirmizi%=0.21
+K2-P03-p310.png        sicak%= 34.3 p95L*= 80.5 Lmax= 82.9 Lmin= 16.9 C>32%=3.30 imza%=0.00 kirmizi%=2.95
+K3-P12B-p88.png        sicak%= 20.4 p95L*= 76.6 Lmax= 82.2 Lmin= 15.9 C>32%=0.00 imza%=0.00 kirmizi%=0.00

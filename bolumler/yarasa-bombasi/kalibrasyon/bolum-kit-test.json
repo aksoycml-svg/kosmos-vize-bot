@@ -1,0 +1,684 @@
+{
+ "slug": "yarasa-bombasi-kit-test",
+ "baslik": "Yarasa bombası — kit kalibrasyonu (motion, kurulum)",
+ "fps": 60,
+ "gorsel_yazisiz": true,
+ "_not": "Kalibrasyon: K1 = P09 tank-alti köz nabzı (kontrol_kare 300), K2 = P03 defter alev (264 / 310), K3 = P12 B yanik (cizimden geçişi + hold), S8 = P08 benzeri sürü şeridi, ek: prop/harita doğrulama planları. Kamera değerleri sahne-plani + mekanlar §1.2/§5.",
+ "planlar": [
+  {
+   "id": "K1",
+   "sablon": "COL-US",
+   "sure_kare": 373,
+   "kontrol_kare": 300,
+   "parametreler": {
+    "gorunum": "tank-alti",
+    "saat": "ikindi",
+    "tunek_dalgasi": {
+     "bas": 70,
+     "bit": 245,
+     "adet": 9,
+     "seed": 5
+    },
+    "kapsul_nabiz": {
+     "bas": 180,
+     "periyot": [
+      96,
+      68
+     ],
+     "bit": 372
+    },
+    "vinyet": {
+     "kare": [
+      120,
+      258
+     ],
+     "deger": [
+      0,
+      0.12
+     ]
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     220,
+     372
+    ],
+    "cs": [
+     1.35,
+     2.5,
+     2.53
+    ],
+    "cx": [
+     0,
+     40,
+     40
+    ],
+    "cy": [
+     -220,
+     -400,
+     -405
+    ],
+    "egri": "inout"
+   }
+  },
+  {
+   "id": "K2",
+   "sablon": "MASA-YB",
+   "sure_kare": 339,
+   "kontrol_kare": 264,
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "alt_sayfa": {
+     "cati": {
+      "bas": 6,
+      "bit": 96
+     },
+     "yarasa": {
+      "bas": 100,
+      "bit": 140,
+      "q0": 0.6
+     },
+     "gogus_bos": true,
+     "durak": {
+      "bas": 180,
+      "bit": 204
+     },
+     "alev": {
+      "bas": 204,
+      "bit": 254
+     },
+     "alev_cizgi": {
+      "bas": 258,
+      "bit": 294
+     },
+     "kirmizi": {
+      "bas": 276,
+      "bit": 318
+     }
+    },
+    "kalem": {
+     "el": "adams"
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     150,
+     204,
+     338
+    ],
+    "cs": [
+     1.02,
+     1.35,
+     1.7,
+     1.72
+    ],
+    "cx": [
+     0,
+     20,
+     31,
+     31
+    ],
+    "cy": [
+     -300,
+     -661,
+     -1062,
+     -1075
+    ],
+    "egri": "inout"
+   }
+  },
+  {
+   "id": "K3",
+   "sablon": "COL-US",
+   "sure_kare": 206,
+   "kontrol_kare": 88,
+   "parametreler": {
+    "gorunum": "yanik",
+    "saat": "ikindi",
+    "yanik": {
+     "oran": 1
+    },
+    "duman": {
+     "bas": -300,
+     "ince": true,
+     "kaynak": [
+      0.4,
+      -1.3
+     ]
+    },
+    "cizimden": {
+     "bas": 0,
+     "bit": 26
+    },
+    "vinyet": {
+     "kare": [
+      60,
+      200
+     ],
+     "deger": [
+      0,
+      0.3
+     ]
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     60,
+     205
+    ],
+    "cs": [
+     1.0,
+     1.0,
+     0.95
+    ],
+    "egri": "inout"
+   }
+  },
+  {
+   "id": "S8",
+   "sablon": "COL-US",
+   "sure_kare": 392,
+   "kontrol_kare": 315,
+   "parametreler": {
+    "gorunum": "genis",
+    "saat": "ikindi",
+    "suru": {
+     "n": 170,
+     "seed": 223,
+     "kaynak": [
+      930,
+      1180
+     ],
+     "a": 30,
+     "b": 0.07,
+     "yon": -1,
+     "omega": 0.035,
+     "yukselis": 5.5,
+     "egim": 0.3,
+     "kayma": -0.18,
+     "u": [
+      7,
+      26
+     ],
+     "mod": "bas",
+     "bas": 200,
+     "yayilim": 150,
+     "stil": "siluet",
+     "kenar": true
+    },
+    "suru_golgesi": {
+     "bas": 262,
+     "bit": 352,
+     "n": 80,
+     "h": [
+      2,
+      5
+     ]
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     260,
+     340,
+     391
+    ],
+    "cs": [
+     1.0,
+     1.06,
+     1.06,
+     1.35
+    ],
+    "cx": [
+     0,
+     0,
+     0,
+     -60
+    ],
+    "cy": [
+     0,
+     0,
+     0,
+     -90
+    ],
+    "egri": "inout"
+   }
+  },
+  {
+   "id": "X10",
+   "sablon": "COL-US",
+   "sure_kare": 224,
+   "kontrol_kare": 200,
+   "parametreler": {
+    "gorunum": "genis",
+    "saat": "ikindi",
+    "alev": [
+     {
+      "bas": 102,
+      "s0": 0.2,
+      "hiz": 1.4,
+      "boy": 1.4
+     }
+    ],
+    "suru": {
+     "n": 60,
+     "seed": 224,
+     "kaynak": [
+      240,
+      900
+     ],
+     "a": 40,
+     "b": 0.03,
+     "yon": -1,
+     "omega": 0.03,
+     "yukselis": 0.4,
+     "u": [
+      1.5,
+      3.5
+     ],
+     "mod": "surekli",
+     "donem": 1200,
+     "stil": "siluet"
+    }
+   },
+   "kamera": {
+    "kare": [
+     0
+    ],
+    "cs": [
+     1.0
+    ]
+   }
+  },
+  {
+   "id": "X01",
+   "sablon": "MASA-YB",
+   "sure_kare": 120,
+   "kontrol_kare": 0,
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "ust_sayfa": {
+     "canli": true
+    },
+    "alt_sayfa": {
+     "cati": true,
+     "yarasa": true,
+     "alev": true,
+     "alev_cizgi": true,
+     "kirmizi": true
+    }
+   },
+   "kamera": {
+    "kare": [
+     0
+    ],
+    "cs": [
+     2.4
+    ],
+    "cx": [
+     0
+    ],
+    "cy": [
+     0
+    ]
+   }
+  },
+  {
+   "id": "X02",
+   "sablon": "MASA-YB",
+   "sure_kare": 120,
+   "kontrol_kare": 0,
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "alt_sayfa": {
+     "cati": true,
+     "yarasa": {
+      "bas": 0,
+      "bit": 1,
+      "q0": 0.6
+     },
+     "gogus_bos": true
+    }
+   },
+   "kamera": {
+    "kare": [
+     0
+    ],
+    "cs": [
+     1.0
+    ],
+    "cy": [
+     -290
+    ]
+   }
+  },
+  {
+   "id": "X05",
+   "sablon": "MASA-YB",
+   "sure_kare": 290,
+   "kontrol_kare": 230,
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "defter": {
+     "dx": -760,
+     "dy": 300
+    },
+    "nesneler": [
+     {
+      "tur": "kapsul-set",
+      "x": 560,
+      "y": 980,
+      "olcek": 1.9,
+      "aci": 0,
+      "cimbiz": {
+       "bas": 120,
+       "temas": 210,
+       "bit": 250
+      }
+     }
+    ]
+   },
+   "kamera": {
+    "kare": [
+     0
+    ],
+    "cs": [
+     1.0
+    ]
+   }
+  },
+  {
+   "id": "X06",
+   "sablon": "MASA-YB",
+   "sure_kare": 339,
+   "kontrol_kare": 260,
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "defter": false,
+    "nesneler": [
+     {
+      "tur": "kovan",
+      "x": 540,
+      "y": 1000,
+      "olcek": 1.0,
+      "tepsi_n": 26,
+      "diz": {
+       "bas": 10,
+       "bit": 100
+      },
+      "ac": {
+       "bas": 230,
+       "bit": 320
+      },
+      "titre": {
+       "tepsi": 12,
+       "kare": 180
+      }
+     }
+    ]
+   },
+   "kamera": {
+    "kare": [
+     0
+    ],
+    "cs": [
+     1.0
+    ]
+   }
+  },
+  {
+   "id": "X07",
+   "sablon": "MASA-YB",
+   "sure_kare": 209,
+   "kontrol_kare": 160,
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "defter": false,
+    "nesneler": [
+     {
+      "tur": "tepsi",
+      "x": 540,
+      "y": 960,
+      "cap": 1000,
+      "bolme_n": 14,
+      "odak": 3,
+      "titre": [
+       40,
+       70
+      ],
+      "bas_don": {
+       "bas": 110,
+       "bit": 150,
+       "aci": -45
+      }
+     }
+    ]
+   },
+   "kamera": {
+    "kare": [
+     0
+    ],
+    "cs": [
+     1.0
+    ]
+   }
+  },
+  {
+   "id": "X11",
+   "sablon": "MASA-YB",
+   "sure_kare": 238,
+   "kontrol_kare": 196,
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "defter": {
+     "dx": -780,
+     "dy": -200
+    },
+    "nesneler": [
+     {
+      "tur": "belge",
+      "x": 560,
+      "y": 960,
+      "ortu": {
+       "kare": 150,
+       "kayma": 260
+      }
+     },
+     {
+      "tur": "muhur",
+      "x": 560,
+      "y": 900,
+      "cap": 340,
+      "temas": 150,
+      "giris": {
+       "bas": 0,
+       "bit": 56
+      },
+      "cikis": {
+       "bas": 156,
+       "bit": 196
+      }
+     }
+    ]
+   },
+   "kamera": {
+    "kare": [
+     0
+    ],
+    "cs": [
+     1.0
+    ]
+   }
+  },
+  {
+   "id": "X04",
+   "sablon": "MASA-YB",
+   "sure_kare": 133,
+   "kontrol_kare": 100,
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "defter": {
+     "dx": -700,
+     "dy": 400
+    },
+    "nesneler": [
+     {
+      "tur": "zarf",
+      "x": 560,
+      "y": 900,
+      "aci": -6
+     },
+     {
+      "tur": "not",
+      "x": 600,
+      "y": 1300,
+      "aci": 8,
+      "dus": {
+       "kare": 60
+      }
+     }
+    ]
+   },
+   "kamera": {
+    "kare": [
+     0
+    ],
+    "cs": [
+     1.0
+    ]
+   }
+  },
+  {
+   "id": "H04",
+   "sablon": "HARITA",
+   "sure_kare": 228,
+   "kontrol_kare": 200,
+   "parametreler": {
+    "harita_gorunum": "abd",
+    "bolge": "dogu",
+    "svg_etiket": false,
+    "rota_noktalar": [
+     [
+      "Irwin",
+      -79.7,
+      40.32,
+      true
+     ],
+     [
+      "Washington",
+      -77.04,
+      38.9,
+      true
+     ]
+    ],
+    "rota_ciz": {
+     "bas": 20,
+     "bit": 150
+    },
+    "zarf_ikon": {
+     "bas": 20,
+     "bit": 150,
+     "boyut_px": 140
+    },
+    "rota": "ozel"
+   },
+   "kamera": {
+    "kare": [
+     0
+    ],
+    "cs": [
+     1.0
+    ]
+   }
+  },
+  {
+   "id": "H11",
+   "sablon": "HARITA",
+   "sure_kare": 144,
+   "kontrol_kare": 120,
+   "parametreler": {
+    "harita_gorunum": "abd",
+    "bolge": "ulusal",
+    "svg_etiket": false,
+    "rota_noktalar": [
+     [
+      "Dugway",
+      -112.9,
+      40.2,
+      true
+     ]
+    ],
+    "igne": {
+     "kare": 60,
+     "renk": "murekkep"
+    },
+    "isaret": {
+     "lonlat": [
+      -104.23,
+      32.26
+     ],
+     "bas": 0
+    },
+    "magara_ikon": {
+     "lonlat": [
+      -104.44,
+      32.18
+     ]
+    },
+    "koy_ikon": {
+     "lonlat": [
+      -112.9,
+      40.2
+     ],
+     "ev_n": 4,
+     "ikon_px": 112,
+     "ciz": {
+      "bas": 62,
+      "bit": 100,
+      "stagger": 8
+     }
+    },
+    "suru_ikon": {
+     "bas": 100,
+     "bit": 138,
+     "lonlat": [
+      -112.9,
+      40.2
+     ],
+     "n": 16
+    },
+    "rota": "ozel"
+   },
+   "kamera": {
+    "kare": [
+     0,
+     110
+    ],
+    "cs": [
+     1.0,
+     2.0
+    ],
+    "cx": [
+     0,
+     640
+    ],
+    "cy": [
+     0,
+     -80
+    ],
+    "egri": "inout"
+   }
+  }
+ ]
+}
