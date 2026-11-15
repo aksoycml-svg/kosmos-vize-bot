@@ -1,0 +1,8 @@
+The glove that hacked France: the Blanc brothers
+
+In 1834–36, François and Louis Blanc of Bordeaux used France's state-only Chappe optical telegraph to learn Paris bond prices before anyone else. They bribed operators at the Tours station; a parcel from Paris held a glove if prices rose, a stocking if they fell. The operator added a deliberate error to an official message and corrected it straight away, and an accomplice in Bordeaux read that "error" as the news. Sources differ on the exact form of the correction signal. In 1836 an operator in on the scheme fell gravely ill (some sources say he died) and confessed. On 14 March 1837 the court in Tours acquitted the brothers because no law made it a crime; the same year a law put the telegraph under state monopoly. Some now call it the first cyberattack. Scenes, gestures and lines are dramatized. Voiceover is AI-generated. Sources: Wikipédia (Piratage du télégraphe Chappe), Wikipedia (Chappe telegraph), Tom Standage via Schneier on Security ("1834: The First Cyberattack").
+
+Music: Frédéric Chopin, Nocturne in C minor, B. 108 (public domain). Recording: Musopen / Internet Archive, CC0 1.0.
+(Music shortened and rearranged; the opening motif repeats at the end.)
+
+#history #france #telegraph #untoldhistory #cyberattack

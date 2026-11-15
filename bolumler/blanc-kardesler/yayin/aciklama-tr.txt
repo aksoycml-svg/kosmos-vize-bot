@@ -1,0 +1,8 @@
+Devleti hackleyen eldiven: Blanc kardeşler
+
+1834–1836'da Bordeaux'lu François ve Louis Blanc, Paris Borsası'ndaki devlet tahvili fiyatını herkesten önce öğrenmek için yalnız devlete açık Chappe optik telgrafını kullandı. Tours istasyonundaki memurlara rüşvet verdiler; Paris'ten gelen pakette eldiven fiyatın yükseldiğini, çorap düştüğünü bildiriyordu. Memur resmî mesaja kasıtlı bir hata ekleyip hemen düzeltiyordu; Bordeaux'daki suç ortağı bu "hatayı" haber olarak okuyordu. Düzeltme işaretinin tam biçimi kaynaklara göre değişir. 1836'da işe karışan bir memur ağır hastalanınca (bazı kaynaklara göre ölmeden önce) olayı anlattı. Tours'daki mahkeme 14 Mart 1837'de kardeşleri beraat ettirdi, çünkü bu işi suç sayan bir yasa yoktu; telgraf aynı yıl yasayla devlet tekeline alındı. Bugün bazıları buna "ilk siber saldırı" diyor. Sahneler, jestler ve replikler dramatizasyondur. Seslendirme yapay zekâ ile yapıldı. Kaynaklar: Wikipédia (Piratage du télégraphe Chappe), Wikipedia (Chappe telegraph), Tom Standage / Schneier on Security ("1834: The First Cyberattack").
+
+Müzik: Frédéric Chopin, Nocturne in C minor, B. 108 (kamu malı). Kayıt: Musopen / Internet Archive, CC0 1.0.
+(Müzik kısaltıldı ve yeniden düzenlendi; açılış motifi sonda tekrarlandı.)
+
+#tarih #fransa #telgraf #sibersaldırı #bilinmeyentarih
