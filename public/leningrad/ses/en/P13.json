@@ -5,66 +5,66 @@
  "words": [
   {
    "t": "Loudspeakers",
-   "s": 0.1,
-   "e": 0.63
+   "s": 0.11,
+   "e": 0.72
   },
   {
    "t": "carried",
-   "s": 0.68,
-   "e": 0.94
+   "s": 0.76,
+   "e": 1.03
   },
   {
    "t": "the",
-   "s": 0.96,
-   "e": 1.04
+   "s": 1.04,
+   "e": 1.12
   },
   {
    "t": "concert",
-   "s": 1.07,
-   "e": 1.55
+   "s": 1.14,
+   "e": 1.51
   },
   {
    "t": "across",
-   "s": 1.58,
-   "e": 1.92
+   "s": 1.53,
+   "e": 1.83
   },
   {
    "t": "the",
-   "s": 1.96,
-   "e": 2.04
+   "s": 1.86,
+   "e": 1.94
   },
   {
    "t": "city",
-   "s": 2.07,
-   "e": 2.31
+   "s": 1.97,
+   "e": 2.22
   },
   {
    "t": "and",
-   "s": 2.34,
-   "e": 2.42
+   "s": 2.25,
+   "e": 2.33
   },
   {
    "t": "toward",
-   "s": 2.44,
-   "e": 2.65
+   "s": 2.35,
+   "e": 2.56
   },
   {
    "t": "the",
-   "s": 2.66,
-   "e": 2.74
+   "s": 2.57,
+   "e": 2.65
   },
   {
    "t": "German",
-   "s": 2.77,
-   "e": 3.02
+   "s": 2.67,
+   "e": 2.93
   },
   {
    "t": "lines.",
-   "s": 3.06,
-   "e": 3.38
+   "s": 2.97,
+   "e": 3.32
   }
  ],
- "dur": 3.631,
+ "dur": 3.579,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -72,15 +72,15 @@
   "similarity_boost": 0.8,
   "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.05
  },
  "seed": 7,
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -52.1,
- "hisirti_6k_dbfs": -65.7,
- "pad_nf_dbfs": -83.0,
+ "nf_dbfs": -52.5,
+ "hisirti_6k_dbfs": -67.7,
+ "pad_nf_dbfs": -86.1,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": []

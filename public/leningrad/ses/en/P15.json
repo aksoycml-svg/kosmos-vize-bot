@@ -10,86 +10,86 @@
   },
   {
    "t": "orchestra",
-   "s": 0.24,
+   "s": 0.25,
    "e": 0.66
   },
   {
    "t": "played",
-   "s": 0.7,
-   "e": 0.92
+   "s": 0.71,
+   "e": 0.94
   },
   {
    "t": "to",
-   "s": 0.93,
-   "e": 0.99
+   "s": 0.96,
+   "e": 1.01
   },
   {
    "t": "the",
-   "s": 1.04,
-   "e": 1.12
+   "s": 1.06,
+   "e": 1.14
   },
   {
    "t": "end.",
-   "s": 1.16,
-   "e": 1.45
+   "s": 1.19,
+   "e": 1.46
   },
   {
    "t": "On",
-   "s": 1.84,
-   "e": 1.96
+   "s": 1.92,
+   "e": 2.06
   },
   {
    "t": "the",
-   "s": 2.0,
-   "e": 2.08
+   "s": 2.08,
+   "e": 2.16
   },
   {
    "t": "drums",
-   "s": 2.12,
-   "e": 2.44
+   "s": 2.19,
+   "e": 2.5
   },
   {
    "t": "sat",
-   "s": 2.46,
-   "e": 2.61
+   "s": 2.52,
+   "e": 2.69
   },
   {
    "t": "Aydarov,",
-   "s": 2.66,
-   "e": 3.14
+   "s": 2.76,
+   "e": 3.24
   },
   {
    "t": "the",
-   "s": 3.47,
-   "e": 3.55
+   "s": 3.68,
+   "e": 3.75
   },
   {
    "t": "man",
-   "s": 3.59,
-   "e": 3.76
+   "s": 3.79,
+   "e": 3.96
   },
   {
    "t": "pulled",
-   "s": 3.82,
-   "e": 4.1
+   "s": 4.03,
+   "e": 4.27
   },
   {
    "t": "from",
-   "s": 4.12,
-   "e": 4.26
+   "s": 4.29,
+   "e": 4.43
   },
   {
    "t": "the",
-   "s": 4.29,
-   "e": 4.37
+   "s": 4.45,
+   "e": 4.53
   },
   {
    "t": "morgue.",
-   "s": 4.39,
-   "e": 4.74
+   "s": 4.56,
+   "e": 4.9
   }
  ],
- "dur": 4.989,
+ "dur": 5.146,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -97,19 +97,16 @@
   "similarity_boost": 0.8,
   "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.05
  },
  "seed": 7,
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -86.4,
- "hisirti_6k_dbfs": -93.3,
- "pad_nf_dbfs": -83.2,
+ "nf_dbfs": -82.4,
+ "hisirti_6k_dbfs": -88.5,
+ "pad_nf_dbfs": -82.2,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
- "nefes_temizlendi": [
-  62.18,
-  63.8
- ]
+ "nefes_temizlendi": []
 }

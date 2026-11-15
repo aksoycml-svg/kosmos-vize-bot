@@ -5,66 +5,66 @@
  "words": [
   {
    "t": "Ama",
-   "s": 0.12,
-   "e": 0.35
+   "s": 0.1,
+   "e": 0.31
   },
   {
    "t": "Eliasberg'in",
-   "s": 0.4,
-   "e": 1.08
+   "s": 0.38,
+   "e": 1.13
   },
   {
    "t": "on",
-   "s": 1.22,
-   "e": 1.41
+   "s": 1.27,
+   "e": 1.45
   },
   {
    "t": "beş",
-   "s": 1.47,
-   "e": 1.63
+   "s": 1.52,
+   "e": 1.7
   },
   {
    "t": "kadar",
-   "s": 1.69,
-   "e": 1.94
+   "s": 1.77,
+   "e": 2.04
   },
   {
    "t": "müzisyeni",
-   "s": 1.99,
-   "e": 2.43
+   "s": 2.09,
+   "e": 2.56
   },
   {
    "t": "kalmıştı.",
-   "s": 2.47,
-   "e": 2.92
+   "s": 2.59,
+   "e": 3.07
   },
   {
    "t": "Senfoni",
-   "s": 3.5,
-   "e": 3.96
+   "s": 3.69,
+   "e": 4.19
   },
   {
    "t": "yüze",
-   "s": 3.99,
-   "e": 4.21
+   "s": 4.22,
+   "e": 4.45
   },
   {
    "t": "yakın",
-   "s": 4.24,
-   "e": 4.47
+   "s": 4.48,
+   "e": 4.73
   },
   {
    "t": "müzisyen",
-   "s": 4.51,
-   "e": 4.89
+   "s": 4.76,
+   "e": 5.17
   },
   {
    "t": "istiyordu.",
-   "s": 4.94,
-   "e": 5.36
+   "s": 5.22,
+   "e": 5.69
   }
  ],
- "dur": 5.616,
+ "dur": 5.93,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -72,15 +72,15 @@
   "similarity_boost": 0.8,
   "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.05
  },
  "seed": 7,
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -85.1,
- "hisirti_6k_dbfs": -96.8,
- "pad_nf_dbfs": -71.2,
+ "nf_dbfs": -86.8,
+ "hisirti_6k_dbfs": -99.6,
+ "pad_nf_dbfs": -87.5,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": []

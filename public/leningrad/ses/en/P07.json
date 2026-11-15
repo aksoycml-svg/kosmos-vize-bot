@@ -6,35 +6,35 @@
   {
    "t": "Eliasberg",
    "s": 0.1,
-   "e": 0.64
+   "e": 0.79
   },
   {
    "t": "went",
-   "s": 0.67,
-   "e": 0.85
+   "s": 0.84,
+   "e": 1.0
   },
   {
    "t": "down",
-   "s": 0.88,
-   "e": 1.09
+   "s": 1.03,
+   "e": 1.2
   },
   {
    "t": "to",
-   "s": 1.1,
-   "e": 1.16
+   "s": 1.21,
+   "e": 1.27
   },
   {
    "t": "say",
-   "s": 1.21,
-   "e": 1.37
+   "s": 1.31,
+   "e": 1.46
   },
   {
    "t": "goodbye.",
-   "s": 1.39,
-   "e": 1.86
+   "s": 1.48,
+   "e": 1.91
   }
  ],
- "dur": 2.116,
+ "dur": 2.168,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -42,15 +42,15 @@
   "similarity_boost": 0.8,
   "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.05
  },
  "seed": 7,
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -82.2,
- "hisirti_6k_dbfs": -88.9,
- "pad_nf_dbfs": -81.6,
+ "nf_dbfs": -80.9,
+ "hisirti_6k_dbfs": -87.7,
+ "pad_nf_dbfs": -79.7,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": []

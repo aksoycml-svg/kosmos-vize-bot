@@ -16,3 +16,9 @@ Yorum: dört olay eklenince süre uzamasın diye anlatım temposu hızlanır —
 > onaylıyorum, 1.1 ile direkt git
 
 Uygulama: senaryo v3.2 (TR+EN) onaylı, kilitli. Ses: Doga/Brian, multilingual_v2, speed 1.1 (diğer ayarlar kanal varsayılanı), tek çağrı/dil.
+
+## Tur 1d — ses 1.1 dinlemesi (2026-11-15)
+> ses bir tık hızlı gibi
+> koşuyor ses
+
+Uygulama: speed 1.1 → 1.05 ile iki dil yeniden üretilir (metin aynı, seed 7).

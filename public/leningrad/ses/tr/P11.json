@@ -5,66 +5,66 @@
  "words": [
   {
    "t": "Konser",
-   "s": 0.1,
-   "e": 0.42
+   "s": 0.11,
+   "e": 0.48
   },
   {
    "t": "günü",
-   "s": 0.46,
-   "e": 0.67
+   "s": 0.53,
+   "e": 0.74
   },
   {
    "t": "Sovyet",
-   "s": 0.72,
-   "e": 1.0
+   "s": 0.79,
+   "e": 1.11
   },
   {
    "t": "topçuları,",
-   "s": 1.07,
-   "e": 1.53
+   "s": 1.16,
+   "e": 1.64
   },
   {
    "t": "salon",
-   "s": 1.77,
-   "e": 2.07
+   "s": 1.89,
+   "e": 2.25
   },
   {
    "t": "vurulmasın",
-   "s": 2.09,
-   "e": 2.58
-  },
-  {
-   "t": "diye",
-   "s": 2.62,
+   "s": 2.28,
    "e": 2.82
   },
   {
+   "t": "diye",
+   "s": 2.86,
+   "e": 3.08
+  },
+  {
    "t": "önce",
-   "s": 2.91,
-   "e": 3.23
+   "s": 3.19,
+   "e": 3.54
   },
   {
    "t": "Alman",
-   "s": 3.32,
-   "e": 3.63
+   "s": 3.64,
+   "e": 4.0
   },
   {
    "t": "toplarına",
-   "s": 3.68,
-   "e": 4.15
+   "s": 4.05,
+   "e": 4.53
   },
   {
    "t": "ateş",
-   "s": 4.2,
-   "e": 4.46
+   "s": 4.59,
+   "e": 4.87
   },
   {
    "t": "açtı.",
-   "s": 4.51,
-   "e": 4.75
+   "s": 4.93,
+   "e": 5.2
   }
  ],
- "dur": 4.989,
+ "dur": 5.46,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -72,16 +72,18 @@
   "similarity_boost": 0.8,
   "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.05
  },
  "seed": 7,
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
  "nf_dbfs": -74.4,
- "hisirti_6k_dbfs": -85.6,
- "pad_nf_dbfs": -86.6,
+ "hisirti_6k_dbfs": -86.9,
+ "pad_nf_dbfs": -87.0,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
- "nefes_temizlendi": []
+ "nefes_temizlendi": [
+  57.6
+ ]
 }

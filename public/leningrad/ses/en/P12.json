@@ -10,13 +10,13 @@
   },
   {
    "t": "lights",
-   "s": 0.22,
-   "e": 0.44
+   "s": 0.21,
+   "e": 0.43
   },
   {
    "t": "came",
-   "s": 0.48,
-   "e": 0.67
+   "s": 0.47,
+   "e": 0.68
   },
   {
    "t": "on.",
@@ -25,21 +25,21 @@
   },
   {
    "t": "The",
-   "s": 1.33,
-   "e": 1.41
+   "s": 1.37,
+   "e": 1.44
   },
   {
    "t": "concert",
-   "s": 1.45,
-   "e": 1.83
+   "s": 1.48,
+   "e": 1.79
   },
   {
    "t": "began.",
-   "s": 1.88,
-   "e": 2.3
+   "s": 1.82,
+   "e": 2.25
   }
  ],
- "dur": 2.56,
+ "dur": 2.508,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -47,18 +47,16 @@
   "similarity_boost": 0.8,
   "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.05
  },
  "seed": 7,
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -84.0,
- "hisirti_6k_dbfs": -90.1,
- "pad_nf_dbfs": -81.8,
+ "nf_dbfs": -81.9,
+ "hisirti_6k_dbfs": -88.2,
+ "pad_nf_dbfs": -81.4,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
- "nefes_temizlendi": [
-  52.3
- ]
+ "nefes_temizlendi": []
 }

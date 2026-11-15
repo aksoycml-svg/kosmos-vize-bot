@@ -11,50 +11,50 @@
   {
    "t": "July,",
    "s": 0.26,
-   "e": 0.67
+   "e": 0.68
   },
   {
    "t": "the",
-   "s": 0.68,
-   "e": 0.76
+   "s": 0.7,
+   "e": 0.78
   },
   {
    "t": "score",
-   "s": 0.78,
-   "e": 1.01
+   "s": 0.81,
+   "e": 1.06
   },
   {
    "t": "was",
-   "s": 1.03,
-   "e": 1.14
+   "s": 1.08,
+   "e": 1.18
   },
   {
    "t": "flown",
-   "s": 1.19,
-   "e": 1.47
+   "s": 1.23,
+   "e": 1.46
   },
   {
    "t": "into",
-   "s": 1.5,
-   "e": 1.68
+   "s": 1.49,
+   "e": 1.65
   },
   {
    "t": "the",
-   "s": 1.72,
-   "e": 1.8
+   "s": 1.71,
+   "e": 1.79
   },
   {
    "t": "besieged",
-   "s": 1.83,
-   "e": 2.16
+   "s": 1.81,
+   "e": 2.2
   },
   {
    "t": "city.",
-   "s": 2.18,
-   "e": 2.48
+   "s": 2.23,
+   "e": 2.58
   }
  ],
- "dur": 2.691,
+ "dur": 2.821,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -62,18 +62,16 @@
   "similarity_boost": 0.8,
   "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.05
  },
  "seed": 7,
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -62.6,
- "hisirti_6k_dbfs": -83.7,
- "pad_nf_dbfs": -75.4,
+ "nf_dbfs": -73.9,
+ "hisirti_6k_dbfs": -88.4,
+ "pad_nf_dbfs": -79.3,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
- "nefes_temizlendi": [
-  45.91
- ]
+ "nefes_temizlendi": []
 }

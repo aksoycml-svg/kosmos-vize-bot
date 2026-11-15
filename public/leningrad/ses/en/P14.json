@@ -5,71 +5,71 @@
  "words": [
   {
    "t": "Some",
-   "s": 0.12,
-   "e": 0.33
+   "s": 0.13,
+   "e": 0.36
   },
   {
    "t": "musicians",
-   "s": 0.36,
-   "e": 0.87
+   "s": 0.38,
+   "e": 0.91
   },
   {
    "t": "ran",
-   "s": 0.94,
-   "e": 1.13
+   "s": 0.96,
+   "e": 1.12
   },
   {
    "t": "out",
-   "s": 1.17,
-   "e": 1.28
+   "s": 1.16,
+   "e": 1.27
   },
   {
    "t": "of",
-   "s": 1.31,
-   "e": 1.36
+   "s": 1.29,
+   "e": 1.35
   },
   {
    "t": "strength.",
-   "s": 1.4,
-   "e": 1.85
+   "s": 1.39,
+   "e": 1.79
   },
   {
    "t": "The",
-   "s": 2.23,
-   "e": 2.36
+   "s": 2.27,
+   "e": 2.35
   },
   {
    "t": "audience",
-   "s": 2.41,
-   "e": 2.79
+   "s": 2.4,
+   "e": 2.76
   },
   {
    "t": "stood",
-   "s": 2.81,
-   "e": 3.02
+   "s": 2.77,
+   "e": 3.0
   },
   {
    "t": "to",
-   "s": 3.05,
-   "e": 3.11
+   "s": 3.02,
+   "e": 3.07
   },
   {
    "t": "urge",
-   "s": 3.15,
-   "e": 3.35
+   "s": 3.13,
+   "e": 3.33
   },
   {
    "t": "them",
-   "s": 3.36,
-   "e": 3.49
+   "s": 3.35,
+   "e": 3.48
   },
   {
    "t": "on.",
-   "s": 3.54,
-   "e": 3.78
+   "s": 3.53,
+   "e": 3.79
   }
  ],
- "dur": 4.023,
+ "dur": 4.049,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -77,18 +77,18 @@
   "similarity_boost": 0.8,
   "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.05
  },
  "seed": 7,
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -83.8,
- "hisirti_6k_dbfs": -90.1,
- "pad_nf_dbfs": -75.7,
+ "nf_dbfs": -86.9,
+ "hisirti_6k_dbfs": -93.6,
+ "pad_nf_dbfs": -83.7,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": [
-  58.27
+  60.44
  ]
 }

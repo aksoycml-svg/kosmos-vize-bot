@@ -6,30 +6,30 @@
   {
    "t": "Salonun",
    "s": 0.1,
-   "e": 0.48
+   "e": 0.54
   },
   {
    "t": "ışıkları",
-   "s": 0.5,
-   "e": 0.89
+   "s": 0.56,
+   "e": 0.96
   },
   {
    "t": "yandı,",
-   "s": 0.92,
-   "e": 1.23
+   "s": 0.99,
+   "e": 1.31
   },
   {
    "t": "konser",
-   "s": 1.38,
-   "e": 1.71
+   "s": 1.6,
+   "e": 1.99
   },
   {
    "t": "başladı.",
-   "s": 1.76,
-   "e": 2.11
+   "s": 2.03,
+   "e": 2.44
   }
  ],
- "dur": 2.351,
+ "dur": 2.691,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -37,15 +37,15 @@
   "similarity_boost": 0.8,
   "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.05
  },
  "seed": 7,
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -84.5,
- "hisirti_6k_dbfs": -95.3,
- "pad_nf_dbfs": -86.1,
+ "nf_dbfs": -85.2,
+ "hisirti_6k_dbfs": -96.8,
+ "pad_nf_dbfs": -87.4,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": []

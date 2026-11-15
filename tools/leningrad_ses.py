@@ -1,5 +1,5 @@
 """Leningrad anlatim: Doga (TR) + Brian (EN), eleven_multilingual_v2, TEK CEKIM, etiketsiz, buyuk harfsiz.
-Anahtar: elevenlabs_api_key (yazdirilmaz). Ayar B: stability .45, style .2, similarity .8, speed 1.1 (kullanici karari), seed 7 (KESIK/sorunluysa 8, 9).
+Anahtar: elevenlabs_api_key (yazdirilmaz). Ayar B: stability .45, style .2, similarity .8, speed 1.05 (kullanici: 1.1 "kosuyor"), seed 7 (KESIK/sorunluysa 8, 9).
   python3 -I tools/cicero_ses.py metin                    -> 15 plan metni (senaryo.md / senaryo-en.md kalin tirnakli anlatimdan)
   python3 -I tools/cicero_ses.py uret tr|en SEED...       -> ham tek cekim ADAY/{lang}/s{seed}/_tam.mp3/.json (API cagrisi, plan degil bolum tek cagri)
   python3 -I tools/cicero_ses.py kes tr|en SEED [KOK]     -> nefes temizligi + sinyal sessizligine gore 15 plana kesim + kenar kontrol/duzelt
@@ -17,7 +17,7 @@ import paris_ses as P, paris_ses_v4 as V4, paris_ses_v5 as V5
 SR = 44100; ROOT = "public/leningrad/ses"; IDS = [f"P{i:02d}" for i in range(1, 16)]; HEAD = V5.HEAD; TAIL = V5.TAIL
 ADAY = "/tmp/claude-0/-home-user-kosmos-vize-bot/bb636422-f14f-5a04-964f-4a5d1bb276c4/scratchpad/ses"
 SES = {"tr": ("ctoYieZ4J7WwcdhujpMq", "Doga"), "en": ("nPczCjzI2devNBz1zQrb", "Brian")}
-AYAR = {"stability": 0.45, "similarity_boost": 0.8, "style": 0.2, "use_speaker_boost": True, "speed": 1.1}
+AYAR = {"stability": 0.45, "similarity_boost": 0.8, "style": 0.2, "use_speaker_boost": True, "speed": 1.05}
 MODEL = "eleven_multilingual_v2"; BELGE = {"tr": "bolumler/leningrad-senfoni/senaryo.md", "en": "bolumler/leningrad-senfoni/senaryo-en.md"}
 
 def planlar(lang):

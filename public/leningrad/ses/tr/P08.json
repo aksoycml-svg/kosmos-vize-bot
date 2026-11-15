@@ -6,40 +6,40 @@
   {
    "t": "Ölülerin",
    "s": 0.1,
-   "e": 0.51
+   "e": 0.53
   },
   {
    "t": "arasında",
-   "s": 0.55,
-   "e": 0.96
+   "s": 0.56,
+   "e": 0.93
   },
   {
    "t": "Eliasberg,",
-   "s": 1.01,
-   "e": 1.53
+   "s": 0.98,
+   "e": 1.61
   },
   {
    "t": "Aydarov'un",
-   "s": 1.81,
-   "e": 2.3
+   "s": 1.84,
+   "e": 2.34
   },
   {
    "t": "parmağının",
-   "s": 2.33,
-   "e": 2.79
+   "s": 2.39,
+   "e": 2.84
   },
   {
    "t": "oynadığını",
-   "s": 2.84,
-   "e": 3.28
+   "s": 2.88,
+   "e": 3.29
   },
   {
    "t": "gördü.",
-   "s": 3.31,
-   "e": 3.59
+   "s": 3.33,
+   "e": 3.62
   }
  ],
- "dur": 3.84,
+ "dur": 3.866,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -47,18 +47,18 @@
   "similarity_boost": 0.8,
   "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.05
  },
  "seed": 7,
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -86.5,
- "hisirti_6k_dbfs": -99.1,
- "pad_nf_dbfs": -87.6,
+ "nf_dbfs": -73.9,
+ "hisirti_6k_dbfs": -87.7,
+ "pad_nf_dbfs": -86.0,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": [
-  37.84
+  40.8
  ]
 }

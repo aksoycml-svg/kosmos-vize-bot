@@ -6,80 +6,80 @@
   {
    "t": "The",
    "s": 0.1,
-   "e": 0.19
+   "e": 0.18
   },
   {
    "t": "concert",
    "s": 0.24,
-   "e": 0.7
+   "e": 0.74
   },
   {
    "t": "was",
-   "s": 0.74,
-   "e": 0.89
+   "s": 0.78,
+   "e": 0.93
   },
   {
    "t": "in",
-   "s": 0.93,
-   "e": 1.0
+   "s": 0.98,
+   "e": 1.04
   },
   {
    "t": "Leningrad,",
-   "s": 1.05,
-   "e": 1.64
+   "s": 1.1,
+   "e": 1.76
   },
   {
    "t": "under",
-   "s": 1.85,
-   "e": 2.07
+   "s": 1.97,
+   "e": 2.19
   },
   {
    "t": "German",
-   "s": 2.12,
-   "e": 2.41
+   "s": 2.24,
+   "e": 2.53
   },
   {
    "t": "siege.",
-   "s": 2.45,
-   "e": 2.78
+   "s": 2.58,
+   "e": 2.95
   },
   {
    "t": "Karl",
-   "s": 3.29,
-   "e": 3.53
+   "s": 3.45,
+   "e": 3.71
   },
   {
    "t": "Eliasberg",
-   "s": 3.59,
-   "e": 4.18
+   "s": 3.79,
+   "e": 4.46
   },
   {
    "t": "would",
-   "s": 4.23,
-   "e": 4.4
+   "s": 4.51,
+   "e": 4.68
   },
   {
    "t": "conduct",
-   "s": 4.43,
-   "e": 4.77
+   "s": 4.7,
+   "e": 5.07
   },
   {
    "t": "Shostakovich's",
-   "s": 4.81,
-   "e": 5.63
+   "s": 5.11,
+   "e": 5.99
   },
   {
    "t": "new",
-   "s": 5.68,
-   "e": 5.81
+   "s": 6.05,
+   "e": 6.17
   },
   {
    "t": "symphony.",
-   "s": 5.84,
-   "e": 6.26
+   "s": 6.21,
+   "e": 6.66
   }
  ],
- "dur": 6.504,
+ "dur": 6.896,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -87,19 +87,19 @@
   "similarity_boost": 0.8,
   "style": 0.2,
   "use_speaker_boost": true,
-  "speed": 1.1
+  "speed": 1.05
  },
  "seed": 7,
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -87.6,
- "hisirti_6k_dbfs": -93.8,
- "pad_nf_dbfs": -92.8,
+ "nf_dbfs": -85.7,
+ "hisirti_6k_dbfs": -92.3,
+ "pad_nf_dbfs": -84.6,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": [
-  6.14,
-  9.66
+  6.39,
+  10.16
  ]
 }
