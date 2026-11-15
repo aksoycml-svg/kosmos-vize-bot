@@ -10,7 +10,7 @@
   },
   {
    "t": "tam",
-   "s": 0.78,
+   "s": 0.77,
    "e": 0.96
   },
   {
@@ -26,11 +26,11 @@
   {
    "t": "yaptı.",
    "s": 1.69,
-   "e": 2.04
+   "e": 2.03
   },
   {
    "t": "Ve",
-   "s": 2.49,
+   "s": 2.5,
    "e": 2.67
   },
   {
@@ -40,7 +40,7 @@
   },
   {
    "t": "kendi",
-   "s": 3.29,
+   "s": 3.3,
    "e": 3.62
   },
   {
@@ -68,12 +68,12 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -88.0,
- "hisirti_6k_dbfs": -101.9,
- "pad_nf_dbfs": -50.6,
+ "nf_dbfs": -85.7,
+ "hisirti_6k_dbfs": -99.2,
+ "pad_nf_dbfs": -53.4,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": [
-  4.48
+  4.58
  ]
 }

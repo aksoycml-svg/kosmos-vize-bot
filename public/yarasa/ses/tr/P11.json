@@ -6,75 +6,75 @@
   {
    "t": "Yine",
    "s": 0.1,
-   "e": 0.39
+   "e": 0.38
   },
   {
    "t": "de",
    "s": 0.43,
-   "e": 0.54
+   "e": 0.6
   },
   {
    "t": "proje",
-   "s": 0.62,
+   "s": 0.69,
    "e": 0.99
   },
   {
    "t": "sürdü.",
-   "s": 1.03,
-   "e": 1.4
+   "s": 1.04,
+   "e": 1.35
   },
   {
    "t": "Sonunda",
-   "s": 1.92,
-   "e": 2.37
+   "s": 2.0,
+   "e": 2.44
   },
   {
    "t": "Amiral",
-   "s": 2.41,
-   "e": 2.83
+   "s": 2.5,
+   "e": 2.86
   },
   {
    "t": "King,",
-   "s": 2.89,
-   "e": 3.16
+   "s": 2.93,
+   "e": 3.2
   },
   {
    "t": "silah",
    "s": 3.41,
-   "e": 3.79
+   "e": 3.76
   },
   {
    "t": "geç",
-   "s": 3.9,
-   "e": 4.15
+   "s": 3.84,
+   "e": 4.06
   },
   {
    "t": "hazır",
-   "s": 4.2,
-   "e": 4.42
+   "s": 4.09,
+   "e": 4.31
   },
   {
    "t": "olacağı",
-   "s": 4.46,
-   "e": 4.8
+   "s": 4.34,
+   "e": 4.68
   },
   {
    "t": "için",
-   "s": 4.83,
-   "e": 5.04
+   "s": 4.71,
+   "e": 4.92
   },
   {
    "t": "iptal",
-   "s": 5.07,
-   "e": 5.41
+   "s": 4.95,
+   "e": 5.28
   },
   {
    "t": "etti.",
-   "s": 5.46,
-   "e": 5.72
+   "s": 5.31,
+   "e": 5.53
   }
  ],
- "dur": 5.956,
+ "dur": 5.773,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -88,10 +88,12 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -85.5,
- "hisirti_6k_dbfs": -96.9,
- "pad_nf_dbfs": -86.9,
+ "nf_dbfs": -86.1,
+ "hisirti_6k_dbfs": -99.8,
+ "pad_nf_dbfs": -86.2,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
- "nefes_temizlendi": []
+ "nefes_temizlendi": [
+  52.63
+ ]
 }

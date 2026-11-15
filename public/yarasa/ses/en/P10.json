@@ -5,7 +5,7 @@
  "words": [
   {
    "t": "Then",
-   "s": 0.1,
+   "s": 0.11,
    "e": 0.21
   },
   {
@@ -15,31 +15,31 @@
   },
   {
    "t": "capsules",
-   "s": 0.35,
-   "e": 0.81
+   "s": 0.36,
+   "e": 0.83
   },
   {
    "t": "lit.",
-   "s": 0.87,
-   "e": 1.12
+   "s": 0.94,
+   "e": 1.17
   },
   {
    "t": "The",
-   "s": 1.64,
-   "e": 1.73
+   "s": 1.71,
+   "e": 1.79
   },
   {
    "t": "base",
-   "s": 1.76,
-   "e": 1.97
+   "s": 1.82,
+   "e": 2.08
   },
   {
    "t": "burned.",
-   "s": 2.01,
-   "e": 2.35
+   "s": 2.11,
+   "e": 2.53
   }
  ],
- "dur": 2.612,
+ "dur": 2.769,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -53,9 +53,9 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -82.6,
- "hisirti_6k_dbfs": -89.1,
- "pad_nf_dbfs": -82.3,
+ "nf_dbfs": -84.1,
+ "hisirti_6k_dbfs": -90.4,
+ "pad_nf_dbfs": -86.7,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": []

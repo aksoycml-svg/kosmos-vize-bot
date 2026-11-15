@@ -6,55 +6,55 @@
   {
    "t": "Kapsüllü",
    "s": 0.1,
-   "e": 0.58
+   "e": 0.61
   },
   {
    "t": "yarasalar",
-   "s": 0.63,
-   "e": 1.11
+   "s": 0.65,
+   "e": 1.13
   },
   {
    "t": "uyutulup",
-   "s": 1.15,
-   "e": 1.57
+   "s": 1.19,
+   "e": 1.63
   },
   {
    "t": "kovana",
-   "s": 1.63,
-   "e": 1.96
+   "s": 1.69,
+   "e": 2.05
   },
   {
    "t": "dizildi;",
-   "s": 2.0,
-   "e": 2.38
+   "s": 2.09,
+   "e": 2.51
   },
   {
    "t": "havada",
-   "s": 2.74,
-   "e": 3.09
+   "s": 2.99,
+   "e": 3.36
   },
   {
    "t": "açılınca",
-   "s": 3.12,
-   "e": 3.54
+   "s": 3.39,
+   "e": 3.97
   },
   {
    "t": "uyanıp",
-   "s": 3.57,
-   "e": 3.89
+   "s": 4.12,
+   "e": 4.4
   },
   {
    "t": "çatılara",
-   "s": 3.95,
-   "e": 4.33
+   "s": 4.54,
+   "e": 4.94
   },
   {
    "t": "tüneyecekti.",
-   "s": 4.36,
-   "e": 4.99
+   "s": 4.97,
+   "e": 5.58
   }
  ],
- "dur": 5.251,
+ "dur": 5.825,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -68,12 +68,10 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -75.1,
- "hisirti_6k_dbfs": -86.4,
- "pad_nf_dbfs": -85.4,
+ "nf_dbfs": -85.4,
+ "hisirti_6k_dbfs": -97.4,
+ "pad_nf_dbfs": -86.9,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
- "nefes_temizlendi": [
-  25.92
- ]
+ "nefes_temizlendi": []
 }

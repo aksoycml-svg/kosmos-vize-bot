@@ -5,61 +5,61 @@
  "words": [
   {
    "t": "15",
-   "s": 0.19,
+   "s": 0.13,
    "e": 0.46
   },
   {
    "t": "Mayıs",
    "s": 0.58,
-   "e": 0.83
+   "e": 0.8
   },
   {
    "t": "1943'te",
-   "s": 0.94,
-   "e": 2.17
+   "s": 0.88,
+   "e": 2.07
   },
   {
    "t": "bir",
-   "s": 2.42,
-   "e": 2.55
+   "s": 2.3,
+   "e": 2.46
   },
   {
    "t": "yardımcı",
-   "s": 2.56,
-   "e": 3.0
+   "s": 2.49,
+   "e": 2.98
   },
   {
    "t": "hava",
-   "s": 3.03,
-   "e": 3.23
+   "s": 3.01,
+   "e": 3.19
   },
   {
    "t": "üssünde",
-   "s": 3.27,
-   "e": 3.74
+   "s": 3.25,
+   "e": 3.67
   },
   {
    "t": "silahlı",
-   "s": 3.93,
-   "e": 4.4
+   "s": 3.72,
+   "e": 4.1
   },
   {
    "t": "yarasalar",
-   "s": 4.44,
-   "e": 4.91
+   "s": 4.13,
+   "e": 4.62
   },
   {
    "t": "kazayla",
-   "s": 5.0,
-   "e": 5.46
+   "s": 4.98,
+   "e": 5.45
   },
   {
    "t": "salındı.",
-   "s": 5.52,
-   "e": 5.91
+   "s": 5.49,
+   "e": 5.92
   }
  ],
- "dur": 6.139,
+ "dur": 6.165,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -73,10 +73,12 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -68.4,
- "hisirti_6k_dbfs": -83.8,
- "pad_nf_dbfs": -86.8,
+ "nf_dbfs": -77.9,
+ "hisirti_6k_dbfs": -88.6,
+ "pad_nf_dbfs": -85.0,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
- "nefes_temizlendi": []
+ "nefes_temizlendi": [
+  36.76
+ ]
 }

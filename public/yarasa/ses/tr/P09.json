@@ -6,50 +6,50 @@
   {
    "t": "Karanlık",
    "s": 0.11,
-   "e": 0.45
+   "e": 0.43
   },
   {
    "t": "köşe",
-   "s": 0.54,
-   "e": 0.79
+   "s": 0.51,
+   "e": 0.76
   },
   {
    "t": "arayan",
-   "s": 0.83,
-   "e": 1.12
+   "s": 0.78,
+   "e": 1.07
   },
   {
    "t": "yarasalar,",
-   "s": 1.18,
-   "e": 1.71
+   "s": 1.12,
+   "e": 1.64
   },
   {
    "t": "yakıt",
-   "s": 1.99,
-   "e": 2.29
+   "s": 1.87,
+   "e": 2.15
   },
   {
    "t": "tankının",
-   "s": 2.46,
-   "e": 2.92
+   "s": 2.29,
+   "e": 2.72
   },
   {
    "t": "altına",
-   "s": 3.03,
-   "e": 3.45
+   "s": 2.79,
+   "e": 3.15
   },
   {
    "t": "bile",
-   "s": 3.49,
-   "e": 3.69
+   "s": 3.19,
+   "e": 3.37
   },
   {
    "t": "tünedi.",
-   "s": 3.73,
-   "e": 4.06
+   "s": 3.4,
+   "e": 3.74
   }
  ],
- "dur": 4.31,
+ "dur": 3.971,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -63,10 +63,12 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -79.0,
- "hisirti_6k_dbfs": -92.0,
- "pad_nf_dbfs": -85.4,
+ "nf_dbfs": -86.4,
+ "hisirti_6k_dbfs": -99.0,
+ "pad_nf_dbfs": -85.0,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
- "nefes_temizlendi": []
+ "nefes_temizlendi": [
+  42.98
+ ]
 }

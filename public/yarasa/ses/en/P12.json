@@ -5,61 +5,61 @@
  "words": [
   {
    "t": "Never",
-   "s": 0.16,
-   "e": 0.44
+   "s": 0.12,
+   "e": 0.39
   },
   {
    "t": "used",
-   "s": 0.5,
-   "e": 0.7
+   "s": 0.46,
+   "e": 0.68
   },
   {
    "t": "in",
-   "s": 0.73,
-   "e": 0.81
+   "s": 0.71,
+   "e": 0.78
   },
   {
    "t": "war.",
-   "s": 0.87,
-   "e": 1.2
+   "s": 0.83,
+   "e": 1.17
   },
   {
    "t": "Its",
-   "s": 1.65,
-   "e": 1.85
+   "s": 1.56,
+   "e": 1.75
   },
   {
    "t": "best-known",
-   "s": 1.91,
-   "e": 2.49
+   "s": 1.79,
+   "e": 2.28
   },
   {
    "t": "fire",
-   "s": 2.57,
-   "e": 2.97
+   "s": 2.34,
+   "e": 2.69
   },
   {
    "t": "burned",
-   "s": 3.03,
-   "e": 3.35
+   "s": 2.72,
+   "e": 2.99
   },
   {
    "t": "its",
-   "s": 3.38,
-   "e": 3.5
+   "s": 3.01,
+   "e": 3.14
   },
   {
    "t": "own",
-   "s": 3.54,
-   "e": 3.7
+   "s": 3.18,
+   "e": 3.32
   },
   {
    "t": "base.",
-   "s": 3.75,
-   "e": 4.12
+   "s": 3.37,
+   "e": 3.75
   }
  ],
- "dur": 4.362,
+ "dur": 3.997,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -73,9 +73,9 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -82.4,
- "hisirti_6k_dbfs": -88.3,
- "pad_nf_dbfs": -82.3,
+ "nf_dbfs": -81.8,
+ "hisirti_6k_dbfs": -88.2,
+ "pad_nf_dbfs": -85.2,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": []

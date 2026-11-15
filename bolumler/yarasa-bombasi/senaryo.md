@@ -61,7 +61,7 @@ Işık: mağara çizimi defter sayfasında mürekkep (gerçek mekân değil; sü
 - **Bağ:** P01 "ne istenmişti?" → "bir fikir" → P03'te fikir açılıyor.
 
 ### P03 · 8.6–14.9 · MASA (defter insert)
-- **Söz:** "Yarasa karanlık çatı altına tüner. Göğsüne yangın bağlasan, o çatı yanar."
+- **Söz:** "Yarasa karanlık çatı altına tüner. Göğsüne minik bir yangın bombası takarsan, o çatı yanar."
   - [GÖRSEL: cümle 1 — defterde kalem çatı çizgisinin altına yarasa tüneyen çizim yapar; çatı çizgisi ahşap taramalı, sade siluet, Japon üslubu iddiası yok]
   - [GÖRSEL: cümle 2 — kalem yarasa göğsüne küçük kırmızı alev çizer (kırmızı yalnız vurgu); alev çatı çizgisine geçer, çatı tarama kırmızıya döner. Hareket plan sonundan ≥12 kare önce biter]
 - **Ekran:** Hedef: ahşap Japon şehirleri
@@ -81,7 +81,7 @@ Işık: mağara çizimi defter sayfasında mürekkep (gerçek mekân değil; sü
   - [GÖRSEL: cımbızlı bir el, uyuyan yarasanın (kımıltısız) göğsüne küçük silindirik selüloz kabı yapıştırıcı damlasıyla yapıştırıyor; kabın ucunda kapalı küçük kapak (kapak biçimi tasarım serbestliği, kaynaksız); yarasa sakin, acı/çırpınma yok]
 - **Ekran:** Louis Fieser · Harvard kimyacısı · napalm
 - **Saklanan şey:** Kapsül ucundaki kapağın altı kapalı; karşılığı P09'da kapsül ucundaki ışık noktası.
-- **Bağ:** P03 "yangın bağlasan" → somut hâli.
+- **Bağ:** P03 "yangın bombası takarsan" → somut hâli.
 
 ### P06 · 26.2–31.6 · MASA (kesit insert)
 - **Söz:** "Kapsüllü yarasalar uyutulup kovana dizildi; havada açılınca uyanıp çatılara tüneyecekti."
@@ -146,7 +146,7 @@ Işık: mağara çizimi defter sayfasında mürekkep (gerçek mekân değil; sü
 | "Hedef: Japonya · Yanan: ?" | P01 | "Yanan: New Mexico" | P12 |
 | Defterde göğsü boş yarasa | P02 | Kalem göğse alev çizer; sonra aynı defter çizimi canlı çatıya döner | P03, P12 |
 | "Yarasa karanlık çatı altına tüner" | P03 | "Karanlık köşe arayan yarasalar… tünedi" | P09 |
-| "Göğsüne yangın bağlasan, o çatı yanar" | P03 | Kapsül göğse takılır; kapsüller yandı | P05, P10 |
+| "Göğsüne minik bir yangın bombası takarsan, o çatı yanar" | P03 | Kapsül göğse takılır; kapsüller yandı | P05, P10 |
 | Kapsül ucundaki kapalı kapak | P05 | Kapsül ucunda ışık noktası | P09 |
 | Tepsideki kıpırdayan bölme | P06 | "nereye tüneyeceğine yarasa kendi karar verir" → tank altı | P07, P09 |
 | Defterdeki mürekkep spiral | P01, P02 | Aynı spiral gerçek üssün üstünde; son karede yine defterde (döngü) | P08, P12 |
@@ -192,7 +192,7 @@ P12 Hedef: Japonya · Yanan: New Mexico    (çizim → yanmış çatı → defte
 Ses kapalı da hikâye çıkıyor: yarasalara yangın takıp Japonya'ya yollayacaklardı, ama kendi üssü yandı. Zayıf: P08 "kaza"nın nasıl olduğu belli değil (kaynakta da yok).
 
 ### Ses açık (yalnız anlatım)
-"Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı. / Her şey bir diş hekiminin fikriydi. / Yarasa karanlık çatı altına tüner. Göğsüne yangın bağlasan, o çatı yanar. / Pearl Harbor'dan bir ay sonra Adams Beyaz Saray'a yazdı. Başkan işe baktırdı. / Napalm'i geliştiren Fieser, yarasaya takılacak minik bir kapsül yaptı. / Kapsüllü yarasalar uyutulup kovana dizildi; havada açılınca uyanıp çatılara tüneyecekti. / Ama nereye tüneyeceğine yarasa kendi karar verir. / 15 Mayıs 1943'te bir yardımcı hava üssünde silahlı yarasalar kazayla salındı. / Karanlık köşe arayan yarasalar, yakıt tankının altına bile tünedi. / Kapsüller tek tek yandı. Üs tutuştu. / Yine de proje sürdü. Sonunda Amiral King, silah geç hazır olacağı için iptal etti. / Savaşta hiç kullanılmadı. En bilinen yangınını kendi üssünde çıkardı."
+"Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı. / Her şey bir diş hekiminin fikriydi. / Yarasa karanlık çatı altına tüner. Göğsüne minik bir yangın bombası takarsan, o çatı yanar. / Pearl Harbor'dan bir ay sonra Adams Beyaz Saray'a yazdı. Başkan işe baktırdı. / Napalm'i geliştiren Fieser, yarasaya takılacak minik bir kapsül yaptı. / Kapsüllü yarasalar uyutulup kovana dizildi; havada açılınca uyanıp çatılara tüneyecekti. / Ama nereye tüneyeceğine yarasa kendi karar verir. / 15 Mayıs 1943'te bir yardımcı hava üssünde silahlı yarasalar kazayla salındı. / Karanlık köşe arayan yarasalar, yakıt tankının altına bile tünedi. / Kapsüller tek tek yandı. Üs tutuştu. / Yine de proje sürdü. Sonunda Amiral King, silah geç hazır olacağı için iptal etti. / Savaşta hiç kullanılmadı. En bilinen yangınını kendi üssünde çıkardı."
 
 ### "Eee yani?" taraması
 | Plan | Soru | Durum |

@@ -5,66 +5,66 @@
  "words": [
   {
    "t": "Pearl",
-   "s": 0.18,
-   "e": 0.43
+   "s": 0.1,
+   "e": 0.39
   },
   {
    "t": "Harbor'dan",
-   "s": 0.48,
-   "e": 1.08
+   "s": 0.41,
+   "e": 0.96
   },
   {
    "t": "bir",
-   "s": 1.15,
-   "e": 1.36
+   "s": 1.01,
+   "e": 1.15
   },
   {
    "t": "ay",
-   "s": 1.39,
-   "e": 1.49
+   "s": 1.18,
+   "e": 1.28
   },
   {
    "t": "sonra",
-   "s": 1.56,
-   "e": 1.91
+   "s": 1.35,
+   "e": 1.71
   },
   {
    "t": "Adams",
-   "s": 2.18,
-   "e": 2.57
+   "s": 1.97,
+   "e": 2.36
   },
   {
    "t": "Beyaz",
-   "s": 2.64,
-   "e": 2.94
+   "s": 2.43,
+   "e": 2.72
   },
   {
    "t": "Saray'a",
-   "s": 2.95,
-   "e": 3.33
+   "s": 2.74,
+   "e": 3.11
   },
   {
    "t": "yazdı.",
-   "s": 3.37,
-   "e": 3.75
+   "s": 3.15,
+   "e": 3.51
   },
   {
    "t": "Başkan",
-   "s": 4.28,
-   "e": 4.64
+   "s": 4.12,
+   "e": 4.48
   },
   {
    "t": "işe",
-   "s": 4.69,
-   "e": 4.87
+   "s": 4.52,
+   "e": 4.69
   },
   {
    "t": "baktırdı.",
-   "s": 4.9,
-   "e": 5.38
+   "s": 4.73,
+   "e": 5.23
   }
  ],
- "dur": 5.616,
+ "dur": 5.46,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -78,9 +78,9 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -85.7,
+ "nf_dbfs": -86.0,
  "hisirti_6k_dbfs": -99.0,
- "pad_nf_dbfs": -76.8,
+ "pad_nf_dbfs": -86.7,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": []

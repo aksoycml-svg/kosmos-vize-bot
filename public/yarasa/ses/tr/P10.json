@@ -6,35 +6,35 @@
   {
    "t": "Kapsüller",
    "s": 0.1,
-   "e": 0.77
+   "e": 0.75
   },
   {
    "t": "tek",
-   "s": 0.89,
-   "e": 1.11
+   "s": 0.91,
+   "e": 1.13
   },
   {
    "t": "tek",
-   "s": 1.16,
-   "e": 1.37
+   "s": 1.22,
+   "e": 1.43
   },
   {
    "t": "yandı.",
-   "s": 1.43,
-   "e": 1.71
+   "s": 1.49,
+   "e": 1.84
   },
   {
    "t": "Üs",
-   "s": 2.39,
-   "e": 2.6
+   "s": 2.53,
+   "e": 2.71
   },
   {
    "t": "tutuştu.",
-   "s": 2.66,
-   "e": 3.11
+   "s": 2.76,
+   "e": 3.2
   }
  ],
- "dur": 3.344,
+ "dur": 3.448,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -48,9 +48,9 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -85.7,
- "hisirti_6k_dbfs": -99.7,
- "pad_nf_dbfs": -86.0,
+ "nf_dbfs": -84.5,
+ "hisirti_6k_dbfs": -98.5,
+ "pad_nf_dbfs": -84.5,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": []

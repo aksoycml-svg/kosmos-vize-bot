@@ -6,40 +6,40 @@
   {
    "t": "Ama",
    "s": 0.1,
-   "e": 0.27
+   "e": 0.31
   },
   {
    "t": "nereye",
-   "s": 0.32,
-   "e": 0.63
+   "s": 0.38,
+   "e": 0.75
   },
   {
    "t": "tüneyeceğine",
-   "s": 0.67,
-   "e": 1.26
+   "s": 0.78,
+   "e": 1.38
   },
   {
    "t": "yarasa",
-   "s": 1.31,
-   "e": 1.7
+   "s": 1.42,
+   "e": 1.85
   },
   {
    "t": "kendi",
-   "s": 1.84,
-   "e": 2.18
+   "s": 1.95,
+   "e": 2.26
   },
   {
    "t": "karar",
-   "s": 2.21,
-   "e": 2.52
+   "s": 2.3,
+   "e": 2.58
   },
   {
    "t": "verir.",
-   "s": 2.56,
-   "e": 2.84
+   "s": 2.64,
+   "e": 2.91
   }
  ],
- "dur": 3.082,
+ "dur": 3.161,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -53,9 +53,9 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -74.0,
- "hisirti_6k_dbfs": -84.1,
- "pad_nf_dbfs": -84.9,
+ "nf_dbfs": -74.2,
+ "hisirti_6k_dbfs": -85.9,
+ "pad_nf_dbfs": -87.5,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": []

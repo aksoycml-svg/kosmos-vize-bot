@@ -5,61 +5,61 @@
  "words": [
   {
    "t": "Asleep",
-   "s": 0.15,
+   "s": 0.1,
    "e": 0.47
   },
   {
    "t": "in",
-   "s": 0.51,
-   "e": 0.56
+   "s": 0.53,
+   "e": 0.6
   },
   {
    "t": "a",
-   "s": 0.59,
-   "e": 0.62
+   "s": 0.62,
+   "e": 0.66
   },
   {
    "t": "canister,",
-   "s": 0.66,
-   "e": 1.13
+   "s": 0.71,
+   "e": 1.34
   },
   {
    "t": "they'd",
-   "s": 1.15,
-   "e": 1.32
+   "s": 1.49,
+   "e": 1.7
   },
   {
    "t": "wake",
-   "s": 1.34,
-   "e": 1.54
+   "s": 1.74,
+   "e": 1.98
   },
   {
    "t": "when",
-   "s": 1.55,
-   "e": 1.67
+   "s": 2.01,
+   "e": 2.14
   },
   {
    "t": "it",
-   "s": 1.69,
-   "e": 1.75
+   "s": 2.17,
+   "e": 2.25
   },
   {
    "t": "opened",
-   "s": 1.78,
-   "e": 2.06
+   "s": 2.3,
+   "e": 2.61
   },
   {
    "t": "and",
-   "s": 2.09,
-   "e": 2.17
+   "s": 2.63,
+   "e": 2.72
   },
   {
    "t": "roost.",
-   "s": 2.21,
-   "e": 2.54
+   "s": 2.78,
+   "e": 3.21
   }
  ],
- "dur": 2.795,
+ "dur": 3.448,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -73,10 +73,12 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -80.7,
- "hisirti_6k_dbfs": -87.0,
- "pad_nf_dbfs": -81.5,
+ "nf_dbfs": -78.8,
+ "hisirti_6k_dbfs": -89.9,
+ "pad_nf_dbfs": -90.9,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
- "nefes_temizlendi": []
+ "nefes_temizlendi": [
+  25.22
+ ]
 }

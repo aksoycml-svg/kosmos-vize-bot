@@ -10,56 +10,56 @@
   },
   {
    "t": "bats",
-   "s": 0.22,
-   "e": 0.44
+   "s": 0.2,
+   "e": 0.42
   },
   {
    "t": "did",
-   "s": 0.46,
-   "e": 0.58
+   "s": 0.47,
+   "e": 0.61
   },
   {
    "t": "exactly",
-   "s": 0.62,
-   "e": 1.07
+   "s": 0.66,
+   "e": 1.22
   },
   {
    "t": "what",
-   "s": 1.11,
-   "e": 1.24
+   "s": 1.26,
+   "e": 1.4
   },
   {
    "t": "was",
-   "s": 1.26,
-   "e": 1.38
+   "s": 1.44,
+   "e": 1.55
   },
   {
    "t": "asked.",
-   "s": 1.42,
-   "e": 1.78
+   "s": 1.61,
+   "e": 1.98
   },
   {
    "t": "America's",
-   "s": 2.33,
-   "e": 2.79
+   "s": 2.39,
+   "e": 2.9
   },
   {
    "t": "own",
-   "s": 2.82,
-   "e": 2.95
+   "s": 2.96,
+   "e": 3.2
   },
   {
    "t": "base",
-   "s": 2.99,
-   "e": 3.23
+   "s": 3.25,
+   "e": 3.52
   },
   {
    "t": "burned.",
-   "s": 3.29,
-   "e": 3.72
+   "s": 3.61,
+   "e": 4.01
   }
  ],
- "dur": 3.84,
+ "dur": 4.258,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -73,12 +73,12 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -90.1,
- "hisirti_6k_dbfs": -96.4,
- "pad_nf_dbfs": -73.9,
+ "nf_dbfs": -84.1,
+ "hisirti_6k_dbfs": -90.4,
+ "pad_nf_dbfs": -80.7,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": [
-  2.02
+  2.12
  ]
 }

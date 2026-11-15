@@ -5,51 +5,51 @@
  "words": [
   {
    "t": "Savaşta",
-   "s": 0.11,
-   "e": 0.61
+   "s": 0.1,
+   "e": 0.57
   },
   {
    "t": "hiç",
-   "s": 0.64,
-   "e": 0.79
+   "s": 0.6,
+   "e": 0.74
   },
   {
    "t": "kullanılmadı.",
-   "s": 0.85,
-   "e": 1.46
+   "s": 0.8,
+   "e": 1.4
   },
   {
    "t": "En",
-   "s": 1.87,
-   "e": 2.09
+   "s": 1.83,
+   "e": 2.02
   },
   {
    "t": "bilinen",
-   "s": 2.15,
-   "e": 2.56
+   "s": 2.08,
+   "e": 2.48
   },
   {
    "t": "yangınını",
-   "s": 2.64,
-   "e": 3.14
+   "s": 2.58,
+   "e": 3.06
   },
   {
    "t": "kendi",
-   "s": 3.2,
-   "e": 3.49
+   "s": 3.11,
+   "e": 3.41
   },
   {
    "t": "üssünde",
-   "s": 3.51,
-   "e": 3.83
+   "s": 3.43,
+   "e": 3.75
   },
   {
    "t": "çıkardı.",
-   "s": 3.88,
-   "e": 4.31
+   "s": 3.8,
+   "e": 4.2
   }
  ],
- "dur": 4.545,
+ "dur": 4.441,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -63,9 +63,9 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -77.8,
- "hisirti_6k_dbfs": -91.5,
- "pad_nf_dbfs": -86.7,
+ "nf_dbfs": -85.4,
+ "hisirti_6k_dbfs": -99.2,
+ "pad_nf_dbfs": -86.4,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": []

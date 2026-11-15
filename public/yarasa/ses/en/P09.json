@@ -5,56 +5,56 @@
  "words": [
   {
    "t": "Seeking",
-   "s": 0.13,
-   "e": 0.54
+   "s": 0.17,
+   "e": 0.58
   },
   {
    "t": "dark",
-   "s": 0.6,
-   "e": 0.8
+   "s": 0.64,
+   "e": 0.87
   },
   {
    "t": "corners,",
-   "s": 0.91,
-   "e": 1.46
+   "s": 0.93,
+   "e": 1.42
   },
   {
    "t": "bats",
-   "s": 1.67,
-   "e": 1.94
+   "s": 1.72,
+   "e": 2.06
   },
   {
    "t": "roosted",
-   "s": 2.02,
-   "e": 2.4
+   "s": 2.14,
+   "e": 2.58
   },
   {
    "t": "even",
-   "s": 2.43,
-   "e": 2.61
-  },
-  {
-   "t": "under",
-   "s": 2.64,
-   "e": 2.83
-  },
-  {
-   "t": "a",
-   "s": 2.86,
+   "s": 2.65,
    "e": 2.9
   },
   {
-   "t": "fuel",
-   "s": 2.96,
+   "t": "under",
+   "s": 2.94,
+   "e": 3.11
+  },
+  {
+   "t": "a",
+   "s": 3.15,
    "e": 3.18
   },
   {
+   "t": "fuel",
+   "s": 3.23,
+   "e": 3.45
+  },
+  {
    "t": "tank.",
-   "s": 3.21,
-   "e": 3.46
+   "s": 3.49,
+   "e": 3.72
   }
  ],
- "dur": 3.709,
+ "dur": 3.971,
  "voice": "nPczCjzI2devNBz1zQrb",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -68,9 +68,9 @@
  "tek_cekim": true,
  "final": true,
  "kenar": "temiz",
- "nf_dbfs": -81.8,
- "hisirti_6k_dbfs": -88.1,
- "pad_nf_dbfs": -75.3,
+ "nf_dbfs": -80.2,
+ "hisirti_6k_dbfs": -87.5,
+ "pad_nf_dbfs": -63.4,
  "kelime_zamani": "sinyale yapisik",
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": []

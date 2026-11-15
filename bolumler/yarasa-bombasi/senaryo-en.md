@@ -59,7 +59,7 @@ Light: the cave is ink on a notebook page (not a real location; the dusk outflig
 - **Hidden thing:** The bat's chest is blank; the pencil reaches it and the frame stays on the notebook.
 
 ### P03 · 8.6–14.9 · DESK (notebook insert)
-- **Voice:** "Bats roost under dark roofs. Give one a fire, and the roof burns."
+- **Voice:** "Bats roost under dark roofs. Strap a tiny firebomb to one, and the roof burns."
   - [VISUAL: sentence 1 — in the notebook, a pencil draws a bat roosting under a roof line; roof line hatched as wood, a simple silhouette, no claim of a Japanese style]
   - [VISUAL: sentence 2 — the pencil draws a small red flame on the bat's chest; the flame passes to the roof line and the hatching turns red. Motion ends ≥12 frames before the plan ends]
 - **Screen:** Target: wooden Japanese cities
@@ -141,7 +141,7 @@ Light: the cave is ink on a notebook page (not a real location; the dusk outflig
 | "Target: Japan · Burned: ?" | P01 | "Burned: New Mexico" | P12 |
 | Bat with a blank chest in the notebook | P02 | Pencil draws the flame; later the same drawing becomes a real roof | P03, P12 |
 | "Bats roost under dark roofs" | P03 | "Seeking dark corners… roosted" | P09 |
-| "Give one a fire, and the roof burns" | P03 | Capsule fixed on a chest; capsules lit | P05, P10 |
+| "Strap a tiny firebomb to one, and the roof burns" | P03 | Capsule fixed on a chest; capsules lit | P05, P10 |
 | Closed cover on the capsule tip | P05 | Light dot on the capsule tip | P09 |
 | The shifting compartment | P06 | "a bat picks its own roost" → under the tank | P07, P09 |
 | Ink spiral in the notebook | P01, P02 | Same spiral, real, over the base; last frame back in the notebook (loop) | P08, P12 |
@@ -187,7 +187,7 @@ P12 Target: Japan · Burned: New Mexico     (drawing → burned roof → noteboo
 Sound off the story still comes through: they meant to send fire-carrying bats at Japan, and their own base burned. Weak: P08 "accident" is unexplained (the sources do not explain it either).
 
 ### Sound on (voice only)
-"The bats did exactly what was asked. America's own base burned. / It began with a dentist's idea. / Bats roost under dark roofs. Give one a fire, and the roof burns. / After Pearl Harbor, Adams wrote the White House. The president had it studied. / Fieser, the napalm chemist, built a tiny capsule for bats. / Asleep in a canister, they'd wake when it opened and roost. / But a bat picks its own roost. / On May 15, 1943, armed bats escaped at an auxiliary airfield. / Seeking dark corners, bats roosted even under a fuel tank. / Then the capsules lit. The base burned. / Still, it went on, until Admiral King cancelled it as too slow. / Never used in war. Its best-known fire burned its own base."
+"The bats did exactly what was asked. America's own base burned. / It began with a dentist's idea. / Bats roost under dark roofs. Strap a tiny firebomb to one, and the roof burns. / After Pearl Harbor, Adams wrote the White House. The president had it studied. / Fieser, the napalm chemist, built a tiny capsule for bats. / Asleep in a canister, they'd wake when it opened and roost. / But a bat picks its own roost. / On May 15, 1943, armed bats escaped at an auxiliary airfield. / Seeking dark corners, bats roosted even under a fuel tank. / Then the capsules lit. The base burned. / Still, it went on, until Admiral King cancelled it as too slow. / Never used in war. Its best-known fire burned its own base."
 
 ### "So what?" scan
 | Plan | Question | Status |
