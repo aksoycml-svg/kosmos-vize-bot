@@ -65,10 +65,10 @@ export const Flu: React.FC<{ s: number; children: React.ReactNode }> = ({ s, chi
   );
 };
 /** Plaka katmanı: ref kamerada px ile çizilir, z derinliğinde; bulanıklık = optik (z, odak, N) + atmosfer (ek σ) */
-export const Katman: React.FC<{ r: Kam25; k: Kam25; z: number; ek?: number; maks?: number; children: React.ReactNode }> = ({ r, k, z, ek = 0, maks = 16, children }) => {
+export const Katman: React.FC<{ r: Kam25; k: Kam25; z: number; ek?: number; maks?: number; children: React.ReactNode }> = ({ r, k, z, ek = 0, maks = 3, children }) => {
   const P = plaka(r, k, z);
   if (!P.gorunur) return null;
-  return <Flu s={Math.hypot(fluSigma(k, P.z, maks), ek)}><g transform={P.m}>{children}</g></Flu>;
+  return <Flu s={Math.min(maks, Math.hypot(fluSigma(k, P.z, maks), ek))}><g transform={P.m}>{children}</g></Flu>;
 };
 
 // ---------- litografi gök: 5 düz basamak + sınır altı ince çizgiler + stipple ----------
@@ -162,10 +162,11 @@ export const BulutSerit: React.FC<{ x0: number; x1: number; y: number; h: number
 // (2) gölge taraması: sahnenin kendi parlaklığından maske → L < eşik bölgelerde TEK yönlü (ışıktan türeyen θ) sepya çizgi,
 //     2.6 px / 9 px (360 px'te ≈ 0.9 px / 3 px görünür); çok koyu (L < .2) küçük bölgelerde ikinci yön (çapraz) α düşük
 // (3) kâğıt lifi çarpma katmanı (public/doku/kagit-lif.png) α .32 — ArsivKatmani'nin .14'üne EK (eski bölümler etkilenmez)
-export const Isleme: React.FC<{ aci: number; children: React.ReactNode; tarama?: number }> = ({ aci, children, tarama = 0.5 }) => {
+export const Isleme: React.FC<{ aci: number; children: React.ReactNode; tarama?: number }> = ({ aci, children, tarama = 0 }) => {
+  // tur-4 (kontrast, eleştiri 1): sepya %8, kâğıt .12, global tarama KAPALI (tarama yalnız mekanlar.md tarama yerlerinde, Tara ile)
   const id = useId().replace(/:/g, "");
   const sep = (r: number, g: number, b: number) => `${r} ${g} ${b}`;
-  const k = 0.16, L = [0.2126, 0.7152, 0.0722];
+  const k = 0.08, L = [0.2126, 0.7152, 0.0722];
   const row = (i: number, tint: number) => sep(...(L.map((l, j) => (j === i ? 1 - k : 0) + k * tint * l) as [number, number, number])) + " 0 0";
   return (
     <g>
@@ -188,9 +189,9 @@ export const Isleme: React.FC<{ aci: number; children: React.ReactNode; tarama?:
         <mask id={`c${id}`} maskUnits="userSpaceOnUse" x={0} y={0} width={1080} height={1920}><use href={`#g${id}`} filter={`url(#d${id})`} /></mask>
       </defs>
       <g filter={`url(#s${id})`}><use href={`#g${id}`} /></g>
-      <rect x={0} y={0} width={1080} height={1920} fill={`url(#p${id})`} mask={`url(#k${id})`} opacity={tarama} />
-      <rect x={0} y={0} width={1080} height={1920} fill={`url(#q${id})`} mask={`url(#c${id})`} opacity={tarama * 0.6} />
-      <image href={staticFile("doku/kagit-lif.png")} x={0} y={0} width={1080} height={1920} preserveAspectRatio="none" style={{ mixBlendMode: "multiply" }} opacity={0.32} />
+      {tarama > 0 && <rect x={0} y={0} width={1080} height={1920} fill={`url(#p${id})`} mask={`url(#k${id})`} opacity={tarama} />}
+      {tarama > 0 && <rect x={0} y={0} width={1080} height={1920} fill={`url(#q${id})`} mask={`url(#c${id})`} opacity={tarama * 0.6} />}
+      <image href={staticFile("doku/kagit-lif.png")} x={0} y={0} width={1080} height={1920} preserveAspectRatio="none" style={{ mixBlendMode: "multiply" }} opacity={0.12} />
     </g>
   );
 };
