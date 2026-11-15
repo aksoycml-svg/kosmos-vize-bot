@@ -6,7 +6,7 @@ Format: 1080x1920 · **65.0 sn** (plan süresi = iki dilin uzunu + tutma; kâğ�
 
 ## 0. Önce bunlar
 
-**Dönüş satırı:** Önce: Amerikalılar, pasaportuna göre yüz elli altı yaşında olan bir hamalı izlemeye geliyor; hamal gazetecilere "ilk yüz yıl en zorudur" diyor. / Sonra: bir sigorta hesapçısına göre doksan yedi yaşında öldü; hesapçı haklıysa o "en zorudur" dediği ilk yüz yılı hiç bitirmedi. Tür: **tersine dönüş** (baştaki şaka sonda gerçeğe dönüyor; sayı↔adam).
+**Dönüş satırı:** Önce: Amerikalılar, pasaportuna göre yüz elli altı yaşında olan bir hamalı izlemeye geliyor; hamal gazetecilere "ilk yüz yıl en zorudur" diyor. / Sonra: bir istatistik uzmanına göre doksan yedi yaşında öldü; uzman haklıysa o "en zorudur" dediği ilk yüz yılı hiç bitirmedi. Tür: **tersine dönüş** (baştaki şaka sonda gerçeğe dönüyor; sayı↔adam).
 
 **Kahraman:** Zaro Ağa, İstanbullu hamal. İzleyici onun ellerini, yüzünü ve cebindeki kâğıdı takip eder.
 
@@ -17,10 +17,10 @@ Format: 1080x1920 · **65.0 sn** (plan süresi = iki dilin uzunu + tutma; kâğ�
 2. **İstek:** Kâğıdına inanılması. (Doktorlara belgesini göstermesinden çıkarım; tek kaynaklı an, anlatımda "söylenene göre".) Organizatörün isteği: para.
 3. **Engel:** Çadırda "dünyanın en yaşlı adamı" diye gösterilirken doktorlar kemiğine bakıp sayıyı düşürüyor; kâğıdı kimseyi ikna etmiyor.
 4. **Değişim:** Sayı onun elinden çıkıyor, her elde değişiyor: pasaportta 156, doktorda en fazla 120, ölüm belgesinde 157, mezar taşında 160.
-5. **Sonuç:** Bir sigorta hesapçısı 97 diyor. Haklıysa Zaro Ağa, kendi "en zorudur" dediği ilk yüz yılı hiç bitirmedi. Gerçek yaşı bugün de bilinmiyor.
+5. **Sonuç:** Bir istatistik uzmanı 97 diyor. Haklıysa Zaro Ağa, kendi "en zorudur" dediği ilk yüz yılı hiç bitirmedi. Gerçek yaşı bugün de bilinmiyor.
 
-**Son cümle (önce yazıldı):** "Sigorta hesapçısı haklıysa, pasaportuna göre yüz elli altı yaşındaki hamal, 'en zorudur' dediği ilk yüz yılı hiç bitirmemişti."
-Sonun gerektirdikleri: "pasaportuna göre yüz elli altı", "hamal" P01 · doğum yılı P03 · "ilk yüz yıl en zorudur" P05 (18.6–25.0) · "sigorta hesapçısı" P09. Dürüst not: söz ilk üçte birin (21.7 sn) yaklaşık 3 sn dışına taşıyor; nedeni soğuk dinleyicinin istediği davet köprüsü (P04). Son cümle sözü kısmen tekrar ettiği için geri çağrı tanınır.
+**Son cümle (önce yazıldı):** "İstatistik uzmanı haklıysa, pasaportuna göre yüz elli altı yaşındaki hamal, 'en zorudur' dediği ilk yüz yılı hiç bitirmemişti."
+Sonun gerektirdikleri: "pasaportuna göre yüz elli altı", "hamal" P01 · doğum yılı P03 · "ilk yüz yıl en zorudur" P05 (18.6–25.0) · "istatistik uzmanı" P09. Dürüst not: söz ilk üçte birin (21.7 sn) yaklaşık 3 sn dışına taşıyor; nedeni soğuk dinleyicinin istediği davet köprüsü (P04). Son cümle sözü kısmen tekrar ettiği için geri çağrı tanınır.
 
 **Ton:** Alay yok. Yaş Zaro Ağa'nın yalanı gibi sunulmaz; iddianın sahibi her yerde kâğıttır ("pasaportuna göre"). Son cümledeki ironi sayıya yönelir; şaka onun kendi şakasıdır.
 
@@ -33,7 +33,7 @@ Sonun gerektirdikleri: "pasaportuna göre yüz elli altı", "hamal" P01 · doğu
 - **Söz (P05):** dönem basın fotoğrafı alt yazısından, tercüman aracılığıyla; anlatım "gazeteciler şu sözünü yazdı" der. Tercüman (büyük-büyük-torunu) yalnız ekranda.
 - **Sergi (P06):** sirk çadırları, "dünyanın en yaşlı adamı" (orta).
 - **Doktorlar (P07–P08):** "kemik röntgeniyle en fazla 120" ve Zaro Ağa'nın öfkelenip doğum belgesini göstermesi tek kaynak → "söylenene göre" + ekranda "tek kaynak". "Yüz elli altı değil" kısmı kaynağın açık sonucu (iddia 156, doktor ≤120). Kaynak "doğum belgesi" der; pasaportla aynı kâğıt olup olmadığı belirsiz. Anlatım P03'te "pasaportunda … doğum yılı", P08'de "doğum yılının yazdığı belgesi" der: dinleyici "doğum yılı" üzerinden bağlar, aynı kâğıt olduğu iddia edilmez.
-- **Sigorta hesapçısı (P09):** aktüer, 1939; ~97 öne sürdü (orta). Hesabın dayanağı kaynakta görülmedi, bu yüzden anlatım dayanak söylemez; kim olduğu ("sigorta hesapçısı") ve "öne sürdü" ile yetinir. Ad ve "itiraf" söylentisi yok.
+- **İstatistik uzmanı (P09):** aktüer, 1939; ~97 öne sürdü (orta). Hesabın dayanağı kaynakta görülmedi, bu yüzden anlatım dayanak söylemez; kim olduğu ("istatistik uzmanı") ve "öne sürdü" ile yetinir. Ad ve "itiraf" söylentisi yok.
 - **Ölüm:** İstanbul, 29 Haziran 1934 (ekranda; anlatım "ölümünden sonra").
 - **Yıl:** TR anlatımda yıl seslendirilmez; P03 "çok eski bir doğum yılı" der, 1774 ekranda.
 - **Anlatımdan çıkanlar (süre; ekranda/görüntüde duruyor ya da açıklamada):** otomobil kazası (açıklamada), ailenin itirazına rağmen otopsi (P09 görüntü + ekran), 157 ve 160 (P09 ekran), Avrupa turu (P06 ekran etiketi). Kaza, soğuk dinleyicinin 5. maddesi nedeniyle çıktı: kazadaki röntgenle "120" muayenesinin aynı olduğu kaynakta yok, bağ kurulamıyordu.
@@ -54,7 +54,7 @@ Sonun gerektirdikleri: "pasaportuna göre yüz elli altı", "hamal" P01 · doğu
 
 | | Söz | Son imge |
 |---|---|---|
-| **S1 ★** | "Zaro Ağa'nın ölümünden sonra bir sigorta hesapçısı, Zaro Ağa'nın aslında doksan yedi yaşında öldüğünü öne sürdü. Sigorta hesapçısı haklıysa, pasaportuna göre yüz elli altı yaşındaki hamal, 'en zorudur' dediği ilk yüz yılı hiç bitirmemişti." | Çadırda tabelanın ampulleri sırayla söner; yalnız adamın yüzü aydınlık kalır. Kamera ellerine iner, P01'e eşleşen kesme. |
+| **S1 ★** | "Zaro Ağa'nın ölümünden sonra bir istatistik uzmanı, Zaro Ağa'nın aslında doksan yedi yaşında öldüğünü öne sürdü. İstatistik uzmanı haklıysa, pasaportuna göre yüz elli altı yaşındaki hamal, 'en zorudur' dediği ilk yüz yılı hiç bitirmemişti." | Çadırda tabelanın ampulleri sırayla söner; yalnız adamın yüzü aydınlık kalır. Kamera ellerine iner, P01'e eşleşen kesme. |
 | S2 | "…öne sürdü. Zaro Ağa'nın gerçek yaşını bugün de kimse bilmiyor. Amerikalılar bir sayıyı izlemeye gelmişti; İstanbul ise bir hamalı toprağa verdi." | Masada sayı kâğıtları; üstlerine bir kasket konur. |
 
 **Seçilen: S1.** Tek vuruş; sözü kısmen tekrar ederek P05'i geri çağırır, 156 ile 97'yi yan yana koyar, kancanın kelimeleriyle döner. "Gerçek yaşı bilinmiyor" ekran yazısında.
@@ -73,8 +73,8 @@ Ekran yazıları üst bantta (y 240–400), ayrı dil katmanı. Replik yok. Gör
 | P06 | 25.4–31.3 (5.9) | ÇADIR (iç) | P01 perdesinin öbür yüzü. Zaro Ağa sade bir sandalyede, elleri dizinde. Arkasında boyunun birkaç katı ışıklı 156. Kenarda P04'ün takım elbiseli silueti perdeyi açık tutar. Seyirciler sırayla geçer; biri sayıyı gösterir, biri fotoğraf çeker. Hiçbiri yüzüne bakmaz. Kamera geri çekilir: sayı büyür, adam küçülür. | "Organizatör, Zaro Ağa'yı sirk çadırlarında 'dünyanın en yaşlı adamı' diye gösterdi." | *aylarca · 1930–31, Amerika ve Avrupa* | Kimse yüzüne bakmıyor (cevap: P07, doktor da kemiğine bakar). |
 | P07 | 31.3–40.8 (9.5) | MASA-INSERT (röntgen) | Üç vuruş: (1) ışık kutusuna bir röntgen filmi takılır: kol ve el kemikleri; (2) manşetli bir doktor eli kemik hizasını parmağıyla izler; (3) el, filmin yanındaki 156 yazılı kartın üstünü çizer ve yanına yeni kart bırakır: 120. | "Ama söylenene göre doktorlar, kemik röntgenine bakıp Zaro Ağa'nın yüz elli altı değil, en fazla yüz yirmi yaşında olduğunu söyledi." | **156 → en fazla 120?** / *tek kaynak; söylenene göre* | Zaro Ağa'nın tepkisi (cevap: P08). |
 | P08 | 40.8–46.8 (6.0) **anahtar** | MASA-INSERT (röntgen) | Karşı kesme, Zaro Ağa yakın plan: kaşlar çatılır, çene sıkılır, el yeleğin iç cebine gider. P03'teki katlı kâğıt açılır ve 120 kartının üstüne sertçe konur (tok ses); kâğıtta 1774 görünür. Doktor eli kâğıda uzanmaz. Son 0.5 sn: üst üste iki sayı, tutma. | "Zaro Ağa öfkelendi ve doktorlara, doğum yılının yazdığı belgesini gösterdi." | *belgede: 1774* | Doktor kâğıda bakmaz. Kim haklı? (cevap: P09–P10). |
-| P09 | 46.8–54.4 (7.6) | MASA-INSERT (belgeler) | Aynı masa, başka gün. (1) Koyu kollu bir el (aileden biri) boş bir belgenin üstüne kapanır; doktor eli onu nazikçe kenara çeker ve yazar: 157. Yanına bir mezar taşı çizimi konur: 160. (2) Sağdaki boş kâğıda cetvelli sütunlar ve bir toplama gelir; altına 97 yazılır. Kamera beş sayının üstünden kayar: 156, 120, 157, 160, 97. Beden, oda, alet gösterilmez. | "Zaro Ağa'nın ölümünden sonra bir sigorta hesapçısı, Zaro Ağa'nın aslında doksan yedi yaşında öldüğünü öne sürdü." | **İstanbul · 29 Haziran 1934** / *ailesinin itirazına rağmen otopsi · ölüm belgesi 157 · mezar taşı 160* → *1939 · aktüer: ~97* | Sayıların altındaki adam ortada yok (cevap: P10). |
-| P10 | 54.4–65.0 (10.6) **anahtar** | ÇADIR (iç) → eşleşen kesme P01 | P06'nın karesi, çadır boş. Tabelanın ampulleri sırayla söner (ampul tıkları); 156 kararır. Tek lambanın ışığında yalnız yüz kalır: P05'teki sakin, hafif gülümseyen yüz. Kamera ilk kez sayıya değil yüze yaklaşır, 1.5 sn tutar; sonra ellerine iner, P01'e eşleşen kesme. | "Sigorta hesapçısı haklıysa, pasaportuna göre yüz elli altı yaşındaki hamal, 'en zorudur' dediği ilk yüz yılı hiç bitirmemişti." | **156 mı, 97 mi?** → *"İlk yüz yıl en zorudur."* → **Gerçek yaşı bugün de bilinmiyor.** | Yok. Döngü başa kapanır. |
+| P09 | 46.8–54.4 (7.6) | MASA-INSERT (belgeler) | Aynı masa, başka gün. (1) Koyu kollu bir el (aileden biri) boş bir belgenin üstüne kapanır; doktor eli onu nazikçe kenara çeker ve yazar: 157. Yanına bir mezar taşı çizimi konur: 160. (2) Sağdaki boş kâğıda cetvelli sütunlar ve bir toplama gelir; altına 97 yazılır. Kamera beş sayının üstünden kayar: 156, 120, 157, 160, 97. Beden, oda, alet gösterilmez. | "Zaro Ağa'nın ölümünden sonra bir istatistik uzmanı, Zaro Ağa'nın aslında doksan yedi yaşında öldüğünü öne sürdü." | **İstanbul · 29 Haziran 1934** / *ailesinin itirazına rağmen otopsi · ölüm belgesi 157 · mezar taşı 160* → *1939 · aktüer: ~97* | Sayıların altındaki adam ortada yok (cevap: P10). |
+| P10 | 54.4–65.0 (10.6) **anahtar** | ÇADIR (iç) → eşleşen kesme P01 | P06'nın karesi, çadır boş. Tabelanın ampulleri sırayla söner (ampul tıkları); 156 kararır. Tek lambanın ışığında yalnız yüz kalır: P05'teki sakin, hafif gülümseyen yüz. Kamera ilk kez sayıya değil yüze yaklaşır, 1.5 sn tutar; sonra ellerine iner, P01'e eşleşen kesme. | "İstatistik uzmanı haklıysa, pasaportuna göre yüz elli altı yaşındaki hamal, 'en zorudur' dediği ilk yüz yılı hiç bitirmemişti." | **156 mı, 97 mi?** → *"İlk yüz yıl en zorudur."* → **Gerçek yaşı bugün de bilinmiyor.** | Yok. Döngü başa kapanır. |
 
 ## 5. Kurulum → Karşılık
 
@@ -91,8 +91,8 @@ Ekran yazıları üst bantta (y 240–400), ayrı dil katmanı. Replik yok. Gör
 | Genç akraba (tercüman) | P05 | Ailenin eli belgeye kapanır | P09 |
 | "Dünyanın en yaşlı adamı" | P06 | "Ama … doktorlar": iddiaya ilk itiraz | P07 |
 | Kimse yüzüne bakmıyor | P06 | Kamera ilk kez sayıya değil yüze yaklaşır | P10 |
-| Doktor kâğıda bakmaz, "kim haklı?" | P08 | Sigorta hesapçısı: 97 | P09 |
-| "Bir sigorta hesapçısı" | P09 | "Sigorta hesapçısı haklıysa…" | P10 |
+| Doktor kâğıda bakmaz, "kim haklı?" | P08 | İstatistik uzmanı: 97 | P09 |
+| "Bir istatistik uzmanı" | P09 | "İstatistik uzmanı haklıysa…" | P10 |
 
 Karşılıksız öğe yok. Dışarıda bırakılanlar: otomobil kazası, organizatörün adı ve ücretler, Chrysler çatısı, Brooklands uçuşu, eş/çocuk sayıları, ölüm sebebi ve yeri, cenaze sözü, boş semer.
 
@@ -107,7 +107,7 @@ Karşılıksız öğe yok. Dışarıda bırakılanlar: otomobil kazası, organiz
 | P05 → P06 | Organizatör onu çağırmıştı; sonra ne yaptı? Çadırlarda "dünyanın en yaşlı adamı" diye gösterdi. |
 | P06 → P07 | Herkes inandı mı? "Ama" doktorlar inanmadı: 156 değil, en fazla 120. |
 | P07 → P08 | Yaşına inanılmayan Zaro Ağa ne yaptı? Öfkelendi, doğum yılının yazdığı belgesini gösterdi. |
-| P08 → P09 | Kim haklıydı? Tartışma Zaro Ağa ölünce de bitmedi: bir sigorta hesapçısı 97 dedi. |
+| P08 → P09 | Kim haklıydı? Tartışma Zaro Ağa ölünce de bitmedi: bir istatistik uzmanı 97 dedi. |
 | P09 → P10 | 97 doğruysa ne anlama gelir? 156 denen hamal, "en zorudur" dediği ilk yüz yılı hiç bitirmedi. |
 
 ## 7. İlk kez izleyen testi
@@ -136,8 +136,8 @@ Okunuyor. P05'teki söz sessiz izleyene P10'daki ekran yazısıyla ulaşır; yö
 6. Organizatör, Zaro Ağa'yı sirk çadırlarında "dünyanın en yaşlı adamı" diye gösterdi.
 7. Ama söylenene göre doktorlar, kemik röntgenine bakıp Zaro Ağa'nın yüz elli altı değil, en fazla yüz yirmi yaşında olduğunu söyledi.
 8. Zaro Ağa öfkelendi ve doktorlara, doğum yılının yazdığı belgesini gösterdi.
-9. Zaro Ağa'nın ölümünden sonra bir sigorta hesapçısı, Zaro Ağa'nın aslında doksan yedi yaşında öldüğünü öne sürdü.
-10. Sigorta hesapçısı haklıysa, pasaportuna göre yüz elli altı yaşındaki hamal, "en zorudur" dediği ilk yüz yılı hiç bitirmemişti.
+9. Zaro Ağa'nın ölümünden sonra bir istatistik uzmanı, Zaro Ağa'nın aslında doksan yedi yaşında öldüğünü öne sürdü.
+10. İstatistik uzmanı haklıysa, pasaportuna göre yüz elli altı yaşındaki hamal, "en zorudur" dediği ilk yüz yılı hiç bitirmemişti.
 
 ### "Kim, ne yaptı, neye?" (senaristin taraması; asıl test soğuk dinleyicide)
 | # | Kim | Ne yaptı | Neye / kime |
@@ -150,8 +150,8 @@ Okunuyor. P05'teki söz sessiz izleyene P10'daki ekran yazısıyla ulaşır; yö
 | 6 | Organizatör | gösterdi ("dünyanın en yaşlı adamı" diye) | Zaro Ağa'yı, sirk çadırlarında |
 | 7 | Doktorlar | "156 değil, en fazla 120" dedi | Zaro Ağa için, kemik röntgenine bakıp |
 | 8 | Zaro Ağa | öfkelendi, belgesini gösterdi | doktorlara |
-| 9 | Bir sigorta hesapçısı | öne sürdü | Zaro Ağa'nın 97 yaşında öldüğünü |
-| 10 | Hamal (Zaro Ağa) | bitirmemişti (hesapçı haklıysa) | "en zorudur" dediği ilk yüz yılı |
+| 9 | Bir istatistik uzmanı | öne sürdü | Zaro Ağa'nın 97 yaşında öldüğünü |
+| 10 | Hamal (Zaro Ağa) | bitirmemişti (uzman haklıysa) | "en zorudur" dediği ilk yüz yılı |
 
 Kalan riskler (dürüstçe): cümle 9'da hesabın dayanağı yine yok, çünkü kaynakta yok; cümle 10'da özne "hamal" (ad tekrarlanmadı; kanca sözcüğüyle döngü için). Cümle 7 yirmi kelime, en uzun cümle.
 
@@ -213,6 +213,6 @@ Kalan riskler (dürüstçe): cümle 9'da hesabın dayanağı yine yok, çünkü 
 | 3 | Pasaport yaş mı yazar? | P03: "pasaportunda çok eski bir doğum yılı yazıyordu"; yıl ekranda. |
 | 4 | "tek kemiği kırık çıkmadı" çift okunuyor | Kaza cümlesi tümüyle çıktı (madde 5). |
 | 5 | Kaza–doktor bağı yok; P07 karışık | Kaza çıktı. "Ama" artık "dünyanın en yaşlı adamı"na karşı. Doktor cümlesi ve Zaro Ağa'nın tepkisi iki ayrı plan; belge "doğum yılının yazdığı belgesi" (P03'e bağlanır). |
-| 6 | "hesap uzmanı" belirsiz, dayanak yok | "sigorta hesapçısı". Dayanak kaynakta yok, uydurulmadı; "öne sürdü" ve "haklıysa" ile koşullu. |
+| 6 | "hesap uzmanı" belirsiz, dayanak yok | "istatistik uzmanı". Dayanak kaynakta yok, uydurulmadı; "öne sürdü" ve "haklıysa" ile koşullu. |
 | 7 | Ana soru kurulmuyor | P07 "yüz elli altı değil, en fazla yüz yirmi"; P09 "aslında doksan yedi"; P10 "pasaportuna göre yüz elli altı yaşındaki hamal … ilk yüz yılı". Ekranda "1774?", "156 → 120?", "156 mı, 97 mi?". |
 | 8 | Geri çağrı uzak | Son cümle sözü kısmen tekrar eder: "'en zorudur' dediği ilk yüz yıl"; ekranda sözün tamamı. |
