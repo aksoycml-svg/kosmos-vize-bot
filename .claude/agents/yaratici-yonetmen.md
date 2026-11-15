@@ -31,3 +31,5 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 - Aynı mekanizmanın tekrarını yakala (kendiliğinden oynayan kol 3 planda vardı).
 - Küçük jestli dokunuş (kaş, göz kırpma, parmak) yakın plan ister — ölçeğini yaz (CLAUDE.md "Küçük jest = yakın kamera").
 - Düzeltmeler **Edit** ile.
+
+- **Katman notu zorunlu (CLAUDE.md "Görsel zenginlik"):** her plana dokunuşa ek olarak ön plan öğesi · ışık olayı · atmosfer yaz. Boş/düz kare önerme.

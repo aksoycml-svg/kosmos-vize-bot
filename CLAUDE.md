@@ -169,6 +169,12 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - **Mesafeye göre ayrıntı:** yakın = doku + süsleme; orta = oran + ritim; uzak = tek siluet.
 - Her mekân için önce **mimari kart** (dönem/üslup, yapı tipi, kat düzeni, açıklık ve kemer tipi, süsleme, iç mimari, kameradan görünen), sonra doku.
 
+- **Görsel zenginlik — katman notu (kullanıcı kararı, Ben-my-Chree tur-3/6: "görseller zengin olacak", "görsel estetikte de mekan estetiğinde de kolaya kaçmayalım"):** her plan üç katmanla tanımlanır ve bu katmanlar `dokunuslar.md`'de (yaratıcı yönetmen), `mekanlar.md`'de (z, hex, tarama, seed) ve çekim kartında yazılıdır:
+  1. **Ön plan öğesi:** kameraya en yakın nesne (kaya, halat, korkuluk, omuz, dal); derinlik ve paralaks verir.
+  2. **Işık olayı:** sahnede görünür bir ışık anı (alçak güneş, kenar ışığı, alev, su ışıltısı, pencere); tek kaynaktan türer.
+  3. **Atmosfer:** havada bir şey (duman, toz, buğu, su sütunu, sis); arka planı flu katmanlarla derinleştirir.
+  Her mekân kendi estetiğiyle kurulur (ışık karakteri, malzeme, kompozisyon fikri ayrı); düz panel, tek renk ailesi, boş gök, ızgara tekrar ve "yeterli" sade çözüm reddedilir. Eleştirmen her karede üç katmanı ayrı ayrı sorar.
+- **Kamera hareket eder (kullanıcı kararı, Ben-my-Chree tur-6: "kamera dolly falan da kullanılabilir. dolly zoom gibi", "kamera haraketleri"):** şablonlar 2.5D kurulur (her katmanın gerçek z mesafesi); her çekimin anlamlı fiziksel bir hareketi vardır (dolly, truck, crane/jib, pan/tilt, arc, OTS geçişi); sabit kare yalnız bilinçli tutmada (saygı anı, anahtar okuma). Dolly zoom bölümde en çok bir kez, en güçlü anda. Hareket yumuşak ve fiziksel, kaynamaz; savaş/ölüm konusunda gösteriş sarsıntısı yok.
 - Şehirler stil ile değil taş, çatı, ışık ve imza siluetle ayrışır; ilk 0.5 sn'de ses kapalı okunur. Arşiv/renk derecelendirmesi şehir paletini karartıp aynılaştırmaz (renk ölçüm tablosu ile kontrol).
 - Doku el yapımı vektör: seed sabit (doku kaynamaz), saf siyah/beyaz yok, en fazla 3 doku katmanı, kırmızı yalnız mühür/hata/vurgu için.
 - Kamera yüksekliği fiziksel tutarlı: alçak kameradan çatı yüzeyi görünmez, saçak altı görünür. Katmanlar arasında maske kenarı/şerit kalmaz.
