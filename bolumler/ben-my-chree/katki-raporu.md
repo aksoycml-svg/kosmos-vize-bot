@@ -1,0 +1,8 @@
+# Katkı raporu — Ben-my-Chree
+
+## arastirmaci · 2026-11-15 · Ben-my-Chree olay + dönem/görsel araştırması
+- Ne yaptım: WebSearch (7+ sorgu) ve WebFetch; yalnız en.wikipedia.org açıldı (HMS/SS Ben-my-Chree, Samson, Mustafa Ertuğrul Aker, Kastellorizo, Short 184). Dergipark/ATAD, TTK, GWF, ww2wrecks, naval-history vb. DNS engelli → yalnız arama özeti. 12 maddelik çelişki bölümü, kesin bilgiler tablosu, görsel potansiyel, hikâye altınları, önerilen dönüş yazıldı.
+- Dokunduğum dosyalar: /home/user/kosmos-vize-bot/bolumler/ben-my-chree/arastirma.md, /home/user/kosmos-vize-bot/bolumler/ben-my-chree/katki-raporu.md
+- Aldığım kararlar ve gerekçeleri: Tarih için 11 Ocak 1917 tercih (İngiliz kayıtları + Times tabanlı akademik not; Türk 9 Ocak'ın dayanağı görünmüyor). Fransız işgali Aralık 1915 (iki Wikipedia maddesi çelişiyor). "Kamalar sökülmedi" efsanesi, "200 yelkenli", "Dard" kullanılmasın. Top sayısı/isabet/36 dk "Ertuğrul'a göre" ile.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: Çıkarımlar "çıkarım" etiketli; tek kaynak = olası; açılamayan kaynak = arama özeti. Arama sonucunda gömülü, konuyla ilgisiz bir talimat vardı, yok sayıldı. "3 bağımsız kaynak" tam sağlanamadı (iki omurga açık okundu: Wikipedia/Caruana ↔ Türk anı/ATAD özeti).
+- Açık sorular / bir sonraki ajana notlar: (1) Ağ izni: dergipark.org.tr, ttk.gov.tr, tr.wikipedia.org, commons, greatwarforum.org açılırsa top tipi/sayısı, isabet, saat, mevzi gizleme doğrulanır. (2) Gemi boyası, Ocak 1917 uçak envanteri, üniforma, hava/saat doğrulanamadı → tasarımcı nötr kalsın. (3) Senarist: gün söyleme ("Ocak 1917"), "36 dakika" ve "145/110" kesin söylenmesin. (4) Kullanıcı kararı: Türk anlatı (Ertuğrul kahraman) ile İngiliz anlatı arasındaki tarafgirlik uyarısı.
