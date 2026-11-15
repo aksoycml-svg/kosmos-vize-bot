@@ -59,8 +59,8 @@ Bulut: 2–3 düz yatay şerit, `#e8d3d0` (ışık yüzü) / `#9a94b4` (gölge y
 | can botu | gövde `#b79877` · iç `#8a7260` · kenar `#4b4a5a` | |
 | can simidi | doğal mantar-bez `#c9b08a`, 4 bant `#5a5278`, halat `#7a6a58` | **kırmızı/beyaz bant yok** (kırmızı yasak, kanıtsız) |
 | çıpa / zincir / makara | demir `#4c4a60`, ışık `#a8a2b4`, damla `#e6dac6` | |
-| tayfa (yüzsüz) | `#585870` tek ton, kenar ışığı `#eec5a2` | koyu mavi/beyaz ayrımı yok (doğrulanamadı) |
-| sargı (yaralı, P08) | `#d8c9ac` | |
+| Royal Navy tayfası (§4.5, yüzlü) | kıyafet `#585870` orta / `#3f3e58` gölge / ışık `#7a7a92`, ten `#c9a88f`, kenar ışığı `#eec5a2` | koyu mavi/beyaz ayrımı yok (doğrulanamadı); yalnız uzak (< %5 ekran) siluet |
+| sargı (yaralı, P08) | `#d8c9ac`, leke yok | acı/kan gösterisi yok |
 | duman | ışık `#b5a9ae` · gölge `#5e566e` · çekirdek `#3a3450` · alev ışıklı alt yüz `#e0b090` | gravür tırtıklı küme, fade yok |
 | kontur | `ink(dolgu)` (dolgudan türetilir), taban `#2f2d46`; kalınlık clamp(1.5, 6) ölçeğe göre | tek çizgi kalınlığı mantığı her şablonda aynı |
 | harita (HARITA-MEIS) | parşömen `theme.paper/paperDark`, deniz tarama `#3e4c63`/`#52627a`, rota `#1c1915` | iğne başı mürekkep siyahı (Paris kararı) |
@@ -106,8 +106,26 @@ Bulut: 2–3 düz yatay şerit, `#e8d3d0` (ışık yüzü) / `#9a94b4` (gölge y
 - **Yüz (yakın planda detaylı):** profil sağa-aşağı (güney, gemi). Kaş: kalın, koyu `#4a3a3a`, düz (açı 0–4°, sakin), üst göz kapağı tek yay + alt çizgi, göz beyazı `#e3d8c6` küçük, iris/göz bebeği tek koyu `#14120f` (parıltı noktası yok, imza korla karışmasın), burun profil çıkıntısı belirgin, ağız kapalı ince üst dudak + alt dudak gölge çizgisi, çene net, yanak gölgesinde 4–6 kısa tarama (ışığa göre), kulak sade. İfade: sakin-kararlı; göz kırpma/kaş oyunu yok (P05'te küçük jest yok).
 - **Okunurluk:** ön yüz gölgede (ışık sağ-arka) ama L* ≥ 50 + gökten yansıma hilali ile yüz okunur; ana ayrışma silüet (burun-çene-başlık) + 2–3 px kenar ışığı.
 
-### 4.2 Topçu erleri (kompars, ana kadrodan ayrışır)
-- **Yüzsüz siluet**, tek ton `#5a5278`, kenar ışığı `#eec5a2`; teğmenden **kısa ve kalın** (1.64 m, omuz geniş), öne eğik duruş; başlık yok (siluet baş yuvarlak; burun-çene silueti yön okutur), omuzda ip/halat kangalı ya da mermi sandığı (`#8a6f5a`) taşıma pozu. Teğmenin yüzü/başlığı kopyalanmaz. Kullanım: P05 uzak arka (flu), P06 V1 kundak yanında 1–2 figür (flu ön plan değil, orta). Yerleşim anlam taşır: top çevresinde, kıyıda sıralanmış "asker dizisi" yok.
+### 4.2 Osmanlı topçu erleri (tur-4: yüzsüz yok; her biri kendi yüzüyle, emek ve ağırbaşlılık)
+Bu insanların çoğu şehit düştü/kayıp; değer çizimde **yüz, yaş, emek ve ağırbaşlılıkla** verilir. Karikatür yok (abartılı burun/çene/göz yok), koyu kütle yok (gölgede bile L* ≥ 40, yüz ve kıyafet ayrıntısı okunur), acı/zafer gösterisi yok.
+- **Ortak:** aynı rig/oran sistemi (7.5 baş boyu), **teğmenle aynı ışık modeli**: sağ-arka kenar ışığı `#eec5a2` 2–3 px (yüz/ense/omuz/kol), gölgede mavi-mor ton + yüz/kıyafet kıvrımında kısa tarama (§A9), gökten yansıma hilali `#b9a8b4`. Kostüm haki-toprak nötr (kanıtsız [G]): ışık `#8f8a6c` / orta `#7d7860` / gölge `#615c70`, kollar sıvalı (emek), toz `#c9b8b0` diz-dirsek-omuzda. **Başlık nötr ama baş görünür:** alçak yuvarlak başlık `#7a7458`, alın/kulak/şakak açıkta, rozet yok; "başlıksız yuvarlak siluet" yok. Ten (C* ≤ 20): her er farklı tonda — `#c4a088`, `#d0ae96`, `#b89480` (güneşten yanmış), `#c9a88f`; gölge `#8a6f7a`. Teğmenden ayrışma: **farklı yüz + yapı** (aşağıdaki kartlar) + kostüm kirliliği; teğmen bıyıksız, temiz, dik ve genç.
+- **Yüz kartları (en az 3; dördü yazıldı):**
+| Kart | Yaş | Yüz biçimi | Bireysel ayrıntı | Duruş / iş (plan) |
+|---|---|---|---|---|
+| **E1 usta er** | ≈ 38 | geniş kare çene, kalın boyun, geniş omuz; kısa kalın kaş | gür koyu bıyık, alında ter ve toz çizgisi, göz altı yorgunluk, güneş yanığı ten | nişan alan: gözleri kısık, bir elde yükseltme çarkı, diğeri lafette (P06 V1 kundak yanı; yüz ≥ 150 px) |
+| **E2 genç er** | ≈ 19 | ince uzun yüz, çıkık elmacık, iri göz; bıyıksız, ince boyun | yanakta toz izi, şakakta tek ter damlası, yarım yamuk bakış (dikkatli) | mermi taşıyan: iki eliyle mermi sandığı, omuzda ip; gövde öne dengeli (P06 V1 / P05 arka) |
+| **E3 orta yaşlı er** | ≈ 30 | yuvarlak yüz, dolgun yanak, kısa alın | kısa kirli sakal, sol kaşta eski yara izi, çene sıkık (emek) | top çeken: halat omuzda, öne eğik, iki elle halat (P04/P06 arka, orta plan) |
+| **E4 yaşlı er** | ≈ 45 | kemikli, uzun yüz, derin kırışık, kalın kaşlar | seyrek kır bıyık, gözde sakin yorgunluk, kulak büyük | katır yularını tutar, katırın boynuna elini koyar (P05 arka/P10a) |
+- Her kart aynı rig'in parametresi (yüz kemiği, bıyık/sakal, kaş, ten, yaş çizgisi); poz ayrı çizilmez (Paris "aynı karakter tek rig"). Yüz ayrıntısı orta planda da okunur: **yüz ≥ 110 px (%5.7; 360 px'te ≥ 37 px)**; yakın planda göz kapağı, kaş, ağız, yaş çizgisi tam detay.
+- **Duruş:** ağırbaşlı, dik; emek (çekme, taşıma, nişan) okunur, bacak ve eller işe dayalı, boşta sarkmaz (Çiçero el kuralı, el = 0.75×yüz). Gülme, selam, zafer pozu, korku/acı yüzü yok.
+- **kit_eksik (motion):** yüzlü er kuklası (4 kart parametresi). Siluet figür bu kişiler için kullanılmaz.
+- Yerleşim anlam taşır: top çevresinde iş başında; kıyıda sıralanmış "asker dizisi"/kuşatan koyu siluet yok.
+- **Saygı anı önerisi (karar orkestranın; gösteri değil):** **P10a'da** kaya mevzide top yerinde, E1, E2, E3, E4 topun yanında **ayakta, sessiz, denize bakar**; alçak güneşte (6°) yüzlerinde ve omuzlarında `#eec5a2` kenar ışığı, gölgede mavi-mor; kor yok, duman yok, tören/selam/bayrak yok; 1.5 sn durağan, kamera sabit (itme yok). Gemi arkada yarı yatık enkaz. Not: sahne planında P10a ön planı "boş kaya oyuğu"; bu öneri onu değiştirir (kurulum→karşılık hâlâ tutar: aynı kaya, aynı yer, artık içinde insanlar). Alternatif/hafif: yalnız E1 ve E4 profil, orta plan (≥ %5 figür).
+### 4.2b Royal Navy tayfası ve yaralılar (tur-4: insan olarak, yüzlü)
+- **Kural:** orta ve yakın planda (P02a, P07b, P08) yüz var; **yalnız figür ekran yüksekliğinin < %5'i** (< 96 px) olan uzak planda siluet. Aynı ışık modeli (kenar ışığı + gölgede tarama), kıyafet nötr koyu (G11).
+- **Kartlar:** **T1** ≈ 22, ince yüz, kısa saç, tüysüz, dikkatli bakış (P02a halat yönlendirir) · **T2** ≈ 40, geniş yüz, kırlaşmış gür bıyık, güneş yanığı (P02a bumbaya asılır) · **T3** ≈ 28, kemikli, kaşlarda toz, bakış kapıya, **kontrollü şaşkınlık** (P07b geri adım; korku maskesi yok) · **T4** ≈ 33, çene sıkık, şakakta ter (P08a krank çeviren, omuz çöker). Yüz ≥ %4 ekran (≥ 75 px) orta-yakın planda okunur.
+- **Yaralılar (P08, 5 kişi, saygılı ve sessiz):** botta oturur, sargılı kol/baş (`#d8c9ac`, kan/leke yok), yüzler sakin, gözler aşağıda ya da ufukta; biri ötekinin omzuna yaslı (yalnız değil); acı yüzü, inleme pozu, kıvranma yok. Yakın plan yok; orta planda yüz okunur (≥ 60 px).
+
 ### 4.3 Katır
 - Omuz yüksekliği 1.35 m [T]; **uzun kulaklar** (0.25 m) + uzun yüz + ince püsküllü kuyruk (at/eşekten ayırır). Renk `#6e6068`, ışık kenarı `#eec5a2`, semer `#8a6f5a` üzerinde top parçası kılıfı (koyu `#4c4a60`). Kamerada yalnız P05 sol-üst **flu baş/kulak** + P04 **taze katır izi** (toz çizgisi + 3 küçük toynak izi). Tam katır siluet çizimi yok (kaynakta sayı/düzen yok, doğrulanamadı).
 ### 4.4 7.7 cm dağ topu (model **doğrulanamadı**, genel dağ topu)
@@ -143,7 +161,7 @@ Bulut: 2–3 düz yatay şerit, `#e8d3d0` (ışık yüzü) / `#9a94b4` (gölge y
 - **Bayrak:** tricolore `meltem` ile dalgalanır; yalnız kale direği + (P03a) rıhtım direği, her biri ≤ 40×27 px.
 
 ## 7. Kompars/ayrışma ve tekillik kontrolü
-- Teğmen (yüz+başlık+haki) ↔ erler (yüzsüz, kısa-kalın, başlıksız, tek ton) ↔ Royal Navy tayfası (yüzsüz, `#585870`, kıyafet nötr) ↔ yaralılar (sargı `#d8c9ac`, yüzsüz, oturur): hepsi silüet düzeyinde ayrışır; hiçbirinde kor rengi, simit bandı veya uçak bezi tonu tekrar etmez.
+- Teğmen (genç, bıyıksız, temiz haki, dik) ↔ Osmanlı erleri (E1–E4: farklı yaş/yüz/bıyık, sıvalı kol, tozlu haki, nötr başlık) ↔ Royal Navy tayfası (T1–T4, koyu `#585870` kıyafet, kısa saç/başlıksız) ↔ yaralılar (sargı `#d8c9ac`, oturur): **hepsi yüzlü**; ayrışma yüz, yapı ve kostümle sağlanır, yalnız uzak planda (figür < %5) siluet. Hiçbirinde kor rengi, simit bandı veya uçak bezi tonu tekrar etmez.
 - İmza beyazı yok; en açık yüzey su sütunu `#e6dac6` (L* ≈ 87.5) ve bayrak beyazı (≤ 40 px).
 - Mürekkep çizgi motifi yalnız P01 ve P10b'de; ikisinin çizgi kalınlığı/rengi aynı (`#1c1915`, 10–12 px, uçta damla).
 
@@ -160,7 +178,7 @@ Bulut: 2–3 düz yatay şerit, `#e8d3d0` (ışık yüzü) / `#9a94b4` (gölge y
 | G8 | 7.7 cm dağ topu modeli/kalkanı | [G] | genel dağ topu, kalkan yok |
 | G9 | bot tipi, motor, krank | [G] | motor gösterilmez, açık kayık |
 | G10 | can simidi biçimi/rengi | [G] | mantar-bez, kırmızı yok |
-| G11 | Royal Navy tayfa kıyafeti | [G] | nötr koyu tek ton |
+| G11 | Royal Navy tayfa kıyafeti | [G] | nötr koyu ton, yüzler bireysel (§4.5) |
 | G12 | tricolore şerit oranı | [G] | eşit üç şerit, küçük |
 | G13 | olay saati/hava | [G] | "Ocak öğleden sonra, nötr ama sıcak" (kaynak iddiası değil) |
 
