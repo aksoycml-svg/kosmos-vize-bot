@@ -20,20 +20,21 @@ const S = 1942; // seed
 /** derinliğe göre buğu (hava perspektifi), maks α .4. Hedef rengi ışık durumundan: loşta #b98a9e (gül-mor), avizeler yandıkça
  *  gül-altına ısınır (tasarım §0 "yaz/konser = gül-altın hacim, gölgeler mor kalır"). Tek tanım: KonserSahne bağlamı verir. */
 const BuguCtx = React.createContext<string>(LG.uzak);
-const useBug = () => { const hedef = React.useContext(BuguCtx); return (renk: string, z: number) => karistir(renk, hedef, Math.min(0.48, Math.max(0, (z - 12) / 18) * 0.48)); };
+const useBug = () => { const hedef = React.useContext(BuguCtx); return (renk: string, z: number) => karistir(renk, hedef, Math.min(0.3, Math.max(0, (z - 12) / 18) * 0.3)); }; // tur-2: .48 → .30 (kullanıcı "kontrast düşük, gri")
 const kenarEl: GravurPalet = { isik: LG.ten, golge: LG.tenGolge, konturYuk: "#5a4438", konturIsik: "#a8836c", kenar: LG.kenar, tarama: "#6a4f40", manset: LG.gomlek, mansetGolge: "#8a8474" };
 
 // ======================================================= TAVAN + ARKA DUVAR =======================================================
 const Tavan: React.FC<{ K: SalonKam; A: AvizeDurum[] }> = ({ K, A }) => {
   const bug = useBug();
-  const H = SALON.tavan, bant = [14, 17.5, 21, 24.5, 28, 30.5], renk = [LG.gece, "#2c2c4c", LG.golge, LG.hacim, "#5b5072"];
+  const H = SALON.tavan, bant = [14, 17.5, 21, 24.5, 28, 30.5], renk = [LG.gece, LG.gece, LG.derin, LG.golge, LG.hacim]; // tur-2: tavan derin (değer aralığının koyu ucu)
   return (
     <g>
       {renk.map((r, i) => <polygon key={i} points={dunyaPoly(K, [[-9.5, H, bant[i]], [9.5, H, bant[i]], [9.5, H, bant[i + 1]], [-9.5, H, bant[i + 1]]])} fill={r} />)}
       {/* litografi basamak çizgileri */}
       {bant.slice(1, -1).map((z, i) => <polyline key={`c${i}`} points={dunyaPoly(K, [[-9.5, H, z + 0.25], [9.5, H, z + 0.25]])} stroke={renk[i]} strokeWidth={2.5} opacity={0.35} fill="none" />)}
       {/* avize üstü sıcak lekeler (tavanda) */}
-      {A.filter((a) => a.z >= 14).map((a, i) => <polygon key={`l${i}`} points={ptsS(yatayCember(K, [a.u, H, a.z], 2.4 * a.hale))} fill={LG.tavanLeke} opacity={0.4 * a.yanik} />)}
+      {A.filter((a) => a.z >= 18).map((a, i) => <polygon key={`l${i}`} points={ptsS(yatayCember(K, [a.u, H, a.z], 2.0 * a.hale))} fill={LG.havuz[2]} opacity={0.8 * a.yanik} />)}
+      {A.filter((a) => a.z >= 18).map((a, i) => <polygon key={`li${i}`} points={ptsS(yatayCember(K, [a.u, H, a.z], 1.1 * a.hale))} fill={LG.havuz[1]} opacity={0.85 * a.yanik} />)}
       {/* kaset şeridi: enine kirişler (sütun eksenlerinde) + boyuna iki çıta (avize sıraları üstünde) */}
       {[16, 20, 24, 28].map((z) => <g key={`k${z}`}>
         <polygon points={dunyaPoly(K, [[-6, 12.6, z - 0.3], [6, 12.6, z - 0.3], [6, 12.6, z + 0.3], [-6, 12.6, z + 0.3]])} fill={bug("#3a3452", z)} />
@@ -53,8 +54,8 @@ const Sutun: React.FC<{ K: SalonKam; u: number; z: number; isik: number; uid: st
   // t: 0 dış kenar → 1 iç kenar
   const serit = (t0: number, t1: number) => [yer(t0, true), yer(t1, true), yer(t1, false), yer(t0, false)];
   const D = 2 * rb, bas = ek(K, u, SALON.baslikUst, z), Hc = b[1] - bas[1];
-  const isikR = bug(karistir(LG.sutOrta, LG.sutIsik, isik), z), ortaR = bug(LG.sutOrta, z), golR = bug(LG.sutGolge, z);
-  const kont = ink(ortaR), kw = Math.max(1.6, Math.min(4, D / 30));
+  const isikR = bug(karistir(LG.sutOrta, karistir(LG.sutIsik, LG.havuz[0], 0.5), Math.min(1, isik * 1.2)), z), ortaR = bug(LG.sutGolge, z), golR = bug(LG.sutDerin, z);
+  const kont = ink(ortaR), kw = Math.max(3, Math.min(5, D / 22)); // tur-2: kontur 360 px'te ≥ 1 px
   const lod = D >= 70 ? 2 : D >= 40 ? 1 : 0;
   // Korint başlık (ekranda, D'ye göre): astragal → çan → iki sıra yaprak → köşe volütleri → içbükey abakus
   const cx = b[0], yb = b[1], yt = bas[1];
@@ -97,7 +98,9 @@ const Sutun: React.FC<{ K: SalonKam; u: number; z: number; isik: number; uid: st
       </g>)}
       {lod >= 1 && <path d={abak} fill={isikR} stroke={kont} strokeWidth={kw * 0.8} />}
       {/* başlık gölge yarısı: tarama (yalnız çap ≥ 70 px) */}
-      {lod >= 2 && <Tarama sekil={golgeYari} basamak="III" aci={72} renk={LG.tarama} derinlik={D > 90 ? "yakin" : "uzak"} seed={S + 11 + z} alfaCarpan={0.8} />}
+      {lod >= 2 && <Tarama sekil={golgeYari} basamak="III" aci={72} renk={LG.tarama} aralik={10} kalinlik={2.8} seed={S + 11 + z} alfaCarpan={0.9} />}
+      {/* gövde gölge şeridinde tarama (telefonda görünür: aralık 10, çizgi 2.8) */}
+      {D >= 50 && <Tarama sekil={serit(0, 0.32)} basamak="III" aci={72} renk="#1f1d33" aralik={10} kalinlik={2.8} seed={S + 13 + z + u} alfaCarpan={0.85} />}
     </g>
   );
 };
@@ -112,12 +115,12 @@ const Saclik: React.FC<{ K: SalonKam; s: number; z0: number; z1: number }> = ({ 
   const altE = [ek(K, u, 11.0, z0), ek(K, u, 11.0, z1), ek(K, uk, 11.0, z1), ek(K, uk, 11.0, z0)];
   return (
     <g strokeLinejoin="round">
-      <polygon points={dunyaPoly(K, bant(10.0, 10.25))} fill={bug(LG.sutOrta, zm)} stroke={ink(LG.sutOrta)} strokeWidth={2} />
-      <polygon points={dunyaPoly(K, bant(10.25, 10.5))} fill={bug(LG.sutIsik, zm)} stroke={ink(LG.sutOrta)} strokeWidth={2} />
-      <polygon points={dunyaPoly(K, bant(10.5, 11.0))} fill={bug("#a9969e", zm)} stroke={ink(LG.sutOrta)} strokeWidth={2} />
+      <polygon points={dunyaPoly(K, bant(10.0, 10.25))} fill={bug(LG.sutOrta, zm)} stroke={ink(LG.sutOrta)} strokeWidth={3} />
+      <polygon points={dunyaPoly(K, bant(10.25, 10.5))} fill={bug(LG.sutIsik, zm)} stroke={ink(LG.sutOrta)} strokeWidth={3} />
+      <polygon points={dunyaPoly(K, bant(10.5, 11.0))} fill={bug("#a9969e", zm)} stroke={ink(LG.sutOrta)} strokeWidth={3} />
       <polygon points={dunyaPoly(K, alt)} fill={bug(LG.sutGolge, zm)} />
-      <Tarama sekil={altE} basamak="III" aci={72} renk={LG.tarama} derinlik="orta" seed={S + 21 + s} />
-      <polygon points={dunyaPoly(K, bant(11.0, 11.4, uk))} fill={bug(LG.sutOrta, zm)} stroke={ink(LG.sutOrta)} strokeWidth={2} />
+      <Tarama sekil={altE} basamak="III" aci={72} renk={LG.tarama} aralik={10} kalinlik={2.8} seed={S + 21 + s} />
+      <polygon points={dunyaPoly(K, bant(11.0, 11.4, uk))} fill={bug(LG.sutOrta, zm)} stroke={ink(LG.sutOrta)} strokeWidth={3} />
       <polyline points={dunyaPoly(K, [[uk, 11.4, z0], [uk, 11.4, z1]])} stroke={bug(LG.kenar, zm)} strokeWidth={2.5} fill="none" />
     </g>
   );
@@ -155,15 +158,15 @@ const Galeri: React.FC<{ K: SalonKam; s: number }> = ({ K, s }) => {
       {/* galeri döşemesi altı (kameradan görünür) */}
       {(() => { const alt = [ek(K, uk, G, z0), ek(K, uk, G, z1), ek(K, ud, G, z1), ek(K, ud, G, z0)]; return <g>
         <polygon points={ptsS(alt)} fill={LG.derin} />
-        <Tarama sekil={alt} basamak="III" aci={72} renk="#1f1d33" derinlik="orta" seed={S + 31 + s} />
+        <Tarama sekil={alt} basamak="III" aci={72} renk="#1f1d33" aralik={10} kalinlik={2.8} seed={S + 31 + s} />
       </g>; })()}
       {/* korkuluk: alt kaide + babalar (ritim 0.3 m; < 8 px → bant) + küpeşte (üstü kenar ışığı) */}
-      <polygon points={dunyaPoly(K, [[uk, G - 0.4, z0], [uk, G - 0.4, z1], [uk, G + 0.12, z1], [uk, G + 0.12, z0]])} fill={bug(LG.sutOrta, 22)} stroke={ink(LG.sutOrta)} strokeWidth={2} />
+      <polygon points={dunyaPoly(K, [[uk, G - 0.4, z0], [uk, G - 0.4, z1], [uk, G + 0.12, z1], [uk, G + 0.12, z0]])} fill={bug(LG.sutOrta, 22)} stroke={ink(LG.sutOrta)} strokeWidth={3} />
       {Array.from({ length: 60 }, (_, i) => z0 + 0.15 + i * 0.3).filter((z) => z < z1).map((z, i) => {
         const a = ek(K, uk, G + 0.12, z), b = ek(K, uk, G + 0.9, z), w = 0.09 * pxm(K, uk, G, z);
         return w * 3.3 < 8 ? null : <line key={i} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={bug(LG.sutOrta, z)} strokeWidth={w} />;
       })}
-      <polygon points={dunyaPoly(K, [[uk, G + 0.9, z0], [uk, G + 0.9, z1], [uk, G + 1.05, z1], [uk, G + 1.05, z0]])} fill={bug(LG.sutIsik, 22)} stroke={ink(LG.sutOrta)} strokeWidth={2} />
+      <polygon points={dunyaPoly(K, [[uk, G + 0.9, z0], [uk, G + 0.9, z1], [uk, G + 1.05, z1], [uk, G + 1.05, z0]])} fill={bug(LG.sutIsik, 22)} stroke={ink(LG.sutOrta)} strokeWidth={3} />
       <polyline points={dunyaPoly(K, [[uk, G + 1.05, z0], [uk, G + 1.05, z1]])} stroke={LG.kenar} strokeWidth={2} fill="none" />
     </g>
   );
@@ -174,15 +177,14 @@ const ArkaDuvar: React.FC<{ K: SalonKam; A: AvizeDurum[]; uid: string }> = ({ K,
   const z = SALON.arkaZ;
   return (
     <g>
-      <polygon points={dunyaPoly(K, [[-9, 0, z], [9, 0, z], [9, 13, z], [-9, 13, z]])} fill={bug(karistir(LG.sivaGolge, LG.sivaIsik, 0.55), 30)} />
-      {/* arka duvara düşen sıcak lekeler (z22 avizeleri) — 2 basamak, net kenar */}
-      {A.filter((a) => a.z === 22).map((a, i) => { const c = ek(K, a.u, 6.5, z), R = 3.2 * pxm(K, a.u, 6.5, z) * a.hale; return <g key={i} opacity={a.yanik}>
-        <ellipse cx={c[0]} cy={c[1]} rx={R} ry={R * 1.25} fill={bug(LG.havuz[2], 30)} opacity={0.85} />
-        <ellipse cx={c[0]} cy={c[1] - R * 0.1} rx={R * 0.62} ry={R * 0.8} fill={bug(LG.havuz[1], 30)} opacity={0.85} />
-      </g>; })}
+      <polygon points={dunyaPoly(K, [[-9, 0, z], [9, 0, z], [9, 13, z], [-9, 13, z]])} fill={karistir(LG.sivaGolge, LG.hacim, 0.3)} />
+      {/* arka duvar ışık havuzu: avize grubunun ağırlık merkezinin ardında 3 düz basamak (litografi; net kenar, gradyan yok).
+          Bölümün en geniş parlak alanı — tur-2 "kontrast düşük": p95 L* buradan gelir, orkestra siluetleri bunun önünde koyu okunur. */}
+      {(() => { const y = A.reduce((s0, a) => s0 + a.yanik, 0) / A.length; if (y <= 0) return null; const c = ek(K, 0, 5.2, z), m = pxm(K, 0, 5.2, z);
+        return [[9.0, LG.havuz[2]], [6.4, LG.havuz[1]], [4.2, LG.havuz[0]]].map(([r, f], i) => <ellipse key={i} cx={c[0]} cy={c[1]} rx={(r as number) * m * (0.6 + 0.4 * y)} ry={(r as number) * m * 0.78 * (0.6 + 0.4 * y)} fill={f as string} opacity={y} />); })()}
       {/* arka sütun dizisi (U dönüşü) + saçaklık */}
       {[-4, 0, 4].map((u) => <Sutun key={u} K={K} u={u} z={29} isik={0.6} uid={`${uid}a${u}`} />)}
-      <polygon points={dunyaPoly(K, [[-6, 10, 28.6], [6, 10, 28.6], [6, 11.4, 28.6], [-6, 11.4, 28.6]])} fill={bug("#a9969e", 29)} stroke={ink(LG.sutOrta)} strokeWidth={2} />
+      <polygon points={dunyaPoly(K, [[-6, 10, 28.6], [6, 10, 28.6], [6, 11.4, 28.6], [-6, 11.4, 28.6]])} fill={bug("#a9969e", 29)} stroke={ink(LG.sutOrta)} strokeWidth={3} />
       <polyline points={dunyaPoly(K, [[-6, 11.4, 28.6], [6, 11.4, 28.6]])} stroke={bug(LG.kenar, 29)} strokeWidth={2.5} fill="none" />
       <polygon points={dunyaPoly(K, [[-6, 10.95, 28.6], [6, 10.95, 28.6], [6, 11.05, 28.6], [-6, 11.05, 28.6]])} fill={bug(LG.sutGolge, 29)} />
     </g>
@@ -193,13 +195,18 @@ const ArkaDuvar: React.FC<{ K: SalonKam; A: AvizeDurum[]; uid: string }> = ({ K,
 const AvizeHale: React.FC<{ K: SalonKam; a: AvizeDurum }> = ({ K, a }) => {
   if (a.yanik <= 0) return null;
   const c = ek(K, a.u, SALON.avizeH, a.z), D = 2.2 * pxm(K, a.u, SALON.avizeH, a.z);
+  // tur-2: az sayıda net hale (Paris): yalnız sahne üstü çifti (z14/18) iki disk, uzak çift tek küçük disk; köşe avizelerinde hale yok
   return <g opacity={a.yanik}>
-    <circle cx={c[0]} cy={c[1]} r={D * 0.95 * a.hale} fill={LG.altin} opacity={0.21} />
-    <circle cx={c[0]} cy={c[1]} r={D * 0.55 * a.hale} fill={LG.havuz[0]} opacity={0.3} />
+    {/* tur-2b: düşük alfalı disk lacivert tavanla gri çamur yapıyordu → daha opak sıcak iki basamak, yalnız z14'te dış halka */}
+    {a.z === 14 && <circle cx={c[0]} cy={c[1]} r={D * 0.85 * a.hale} fill={LG.havuz[1]} opacity={0.24} />}
+    <circle cx={c[0]} cy={c[1]} r={D * (a.z <= 18 ? 0.5 : 0.4) * a.hale} fill={LG.altin} opacity={0.5} />
   </g>;
 };
 const Avize: React.FC<{ K: SalonKam; a: AvizeDurum }> = ({ K, a }) => {
-  const H = SALON.avizeH, m = pxm(K, a.u, H, a.z), kat: [number, number, number][] = [[0.45, H + 0.45, 10], [1.1, H, 16], [0.7, H - 0.45, 12]];
+  const sd = `${a.u}${a.z}`, rv = (k: string) => rnd(S + 120, `${k}${sd}`);
+  // tur-2: lamba sayısı azaldı ve seed'le değişir; bazı ampuller sönük (savaş yılı); halka yarıçapı ±%8; dönüş seed'li
+  const H = SALON.avizeH, m = pxm(K, a.u, H, a.z), kat: [number, number, number][] = [[0.45, H + 0.45, 5 + Math.floor(rv("a") * 2)], [1.05 + rv("r") * 0.15, H, 8 + Math.floor(rv("b") * 3)], [0.68, H - 0.45, 6 + Math.floor(rv("c") * 2)]];
+  const don = rv("d") * Math.PI;
   const ust = ek(K, a.u, SALON.tavan, a.z), alt = ek(K, a.u, H - 0.8, a.z);
   const metal = LG.metal, mw = Math.max(1.6, 0.055 * m);
   const yanik = a.yanik, nokta = yanik > 0 ? LG.cekirdek : a.filaman ? LG.filaman : "#6e5a52";
@@ -210,32 +217,41 @@ const Avize: React.FC<{ K: SalonKam; a: AvizeDurum }> = ({ K, a }) => {
       {Array.from({ length: 10 }, (_, i) => { const q = ek(K, a.u, H + 0.7 + i * 0.5, a.z); return <ellipse key={i} cx={q[0]} cy={q[1]} rx={mw * 0.9} ry={mw * 1.6} fill="none" stroke={metal} strokeWidth={mw * 0.5} />; })}
       {/* kollar: merkez dikmeden orta halkaya 6 kavis */}
       {Array.from({ length: 6 }, (_, i) => { const t = (i / 6) * Math.PI * 2 + 0.3, r = kat[1][0]; const o = ek(K, a.u, H + 0.3, a.z), e = ek(K, a.u + Math.cos(t) * r, H, a.z + Math.sin(t) * r), mid = ek(K, a.u + Math.cos(t) * r * 0.5, H - 0.12, a.z + Math.sin(t) * r * 0.5); return <path key={i} d={`M${o[0]} ${o[1]} Q${mid[0]} ${mid[1]} ${e[0]} ${e[1]}`} stroke={metal} strokeWidth={mw * 0.7} fill="none" />; })}
+      {/* gövde kütlesi: orta halkanın altında koyu bronz kase + üstte taç (tel değil, kütle) */}
+      {(() => { const k0 = yatayCember(K, [a.u, H - 0.05, a.z], 0.42, 24), k1 = ek(K, a.u, H - 0.55, a.z), t0 = yatayCember(K, [a.u, H + 0.62, a.z], 0.22, 16), t1 = ek(K, a.u, H + 0.95, a.z);
+        return <g>
+          <polygon points={ptsS(zarf([...k0, k1]))} fill={metal} stroke={ink(metal)} strokeWidth={Math.max(2, mw * 0.5)} strokeLinejoin="round" />
+          <polygon points={ptsS(zarf([...k0.filter((q) => q[1] >= ek(K, a.u, H - 0.05, a.z)[1] - 1), k1]))} fill={LG.kenarLamba} opacity={0.25 * yanik} />
+          <polygon points={ptsS(zarf([...t0, t1]))} fill={metal} stroke={ink(metal)} strokeWidth={Math.max(2, mw * 0.5)} strokeLinejoin="round" />
+        </g>; })()}
       {kat.map(([r, h, n], i) => {
         const c = yatayCember(K, [a.u, h, a.z], r, 32);
         return <g key={i}>
           <polygon points={ptsS(c)} fill="none" stroke={metal} strokeWidth={mw} strokeLinejoin="round" />
           {yanik > 0 && <polygon points={ptsS(c.map((q) => [q[0], q[1] + mw * 0.55] as P))} fill="none" stroke={LG.kenarLamba} strokeWidth={Math.max(1.5, mw * 0.35)} opacity={0.8 * yanik} />}
-          {Array.from({ length: n }, (_, j) => { const t = (j / n) * Math.PI * 2 + i * 0.2, q = prj(K, a.u + Math.cos(t) * r, h + 0.06, a.z + Math.sin(t) * r), rr = Math.max(1.6, (0.055 * K.F) / q[2]); return <g key={j}>
-            {yanik > 0 && <circle cx={q[0]} cy={q[1]} r={rr * 1.5} fill={LG.altin} opacity={0.3 * yanik} />}
-            <circle cx={q[0]} cy={q[1]} r={a.filaman ? rr * 0.7 : rr} fill={nokta} />
-          </g>; })}
+          {Array.from({ length: n }, (_, j) => { const t = (j / n) * Math.PI * 2 + i * 0.4 + don, q = prj(K, a.u + Math.cos(t) * r, h + 0.08, a.z + Math.sin(t) * r), rr = Math.max(2.4, (0.08 * K.F) / q[2]);
+            const sonuk = rv(`s${i}-${j}`) < 0.18; // sönük ampul
+            return <g key={j}>
+              {!sonuk && yanik > 0 && <circle cx={q[0]} cy={q[1]} r={rr * 1.9} fill={LG.altin} opacity={0.4 * yanik} />}
+              <circle cx={q[0]} cy={q[1]} r={a.filaman ? rr * 0.7 : rr} fill={sonuk && yanik > 0 ? "#7a6458" : nokta} stroke={sonuk ? ink(metal) : LG.kenarLamba} strokeWidth={1.2} />
+            </g>; })}
         </g>;
       })}
       {/* alt katın altında 6 kısa sarkıt izi + uç damla */}
-      {Array.from({ length: 6 }, (_, j) => { const t = (j / 6) * Math.PI * 2 + 0.5, q0 = ek(K, a.u + Math.cos(t) * 0.55, H - 0.45, a.z + Math.sin(t) * 0.55), q1 = ek(K, a.u + Math.cos(t) * 0.55, H - 0.68, a.z + Math.sin(t) * 0.55); return <line key={j} x1={q0[0]} y1={q0[1]} x2={q1[0]} y2={q1[1]} stroke={metal} strokeWidth={mw * 0.5} />; })}
+      {Array.from({ length: 4 }, (_, j) => { const t = (j / 4) * Math.PI * 2 + 0.5 + don, q0 = ek(K, a.u + Math.cos(t) * 0.55, H - 0.45, a.z + Math.sin(t) * 0.55), q1 = ek(K, a.u + Math.cos(t) * 0.55, H - 0.68, a.z + Math.sin(t) * 0.55); return <line key={j} x1={q0[0]} y1={q0[1]} x2={q1[0]} y2={q1[1]} stroke={metal} strokeWidth={mw * 0.5} />; })}
       <circle cx={alt[0]} cy={alt[1]} r={mw * 1.3} fill={metal} />
     </g>
   );
 };
 
 // ======================================================= SAHNE + ORKESTRA =======================================================
-type Calgici = { u: number; z: number; h: number; kod: Siluet40Kod; yon: 1 | -1; egil: number; calgi: "keman" | "cello" | "nefes" | "yok"; renk: string; boy: number };
+type Calgici = { u: number; z: number; h: number; kod: Siluet40Kod; yon: 1 | -1; egil: number; calgi: "keman" | "cello" | "nefes" | "yok"; renk: string; boy: number; basDon?: boolean };
 const orkestra = (): Calgici[] => {
   const out: Calgici[] = [];
   const ekle = (u: number, z: number, h: number, i: number, calgi: Calgici["calgi"]) => {
     const r = (k: string) => rnd(S + 50, `${k}${i}`);
     const kod = (["yasli", "uzun-ince", "topuzlu", "uzun-ince", "yasli"] as Siluet40Kod[])[Math.floor(r("k") * 5)];
-    out.push({ u: u + (r("u") - 0.5) * 0.18, z: z + (r("z") - 0.5) * 0.25, h, kod, yon: (u < 0.2 ? 1 : -1) as 1 | -1, egil: -6 + r("e") * 18, calgi, renk: LG.muzisyen[Math.floor(r("r") * 4)], boy: 0.96 + r("b") * 0.08 });
+    out.push({ u: u + (r("u") - 0.5) * 0.22, z: z + (r("z") - 0.5) * 0.3, h, kod, yon: (u < 0.2 ? 1 : -1) as 1 | -1, egil: -10 + r("e") * 28, calgi, renk: LG.muzisyen[Math.floor(r("r") * 4)], boy: 0.94 + r("b") * 0.1, basDon: r("bd") < 0.2 });
   };
   let i = 0;
   // ön yay (yaylılar) — şefin iki yanı açık
@@ -250,16 +266,21 @@ const orkestra = (): Calgici[] => {
 };
 const ORKESTRA = orkestra();
 
-const CalgiciCiz: React.FC<{ K: SalonKam; c: Calgici }> = ({ K, c }) => {
+const CalgiciCiz: React.FC<{ K: SalonKam; c: Calgici; L?: V3 }> = ({ K, c, L = [0, 7.5, 16] }) => {
   const bug = useBug();
   const a = ek(K, c.u, c.h, c.z), m = pxm(K, c.u, c.h, c.z) * c.boy, oturak = 0.46;
   const g = siluet40Yol(c.kod, { oturan: oturak, profil: true });
   const T = (x: number, y: number): P => [a[0] + x * m * c.yon, a[1] - y * m];
-  const renk = bug(karistir(c.renk, LG.derin, 0.35), c.z), by = g.basM, kalca = g.kalca;
+  const renk = bug(karistir(c.renk, LG.derin, 0.45), c.z), by = g.basM, kalca = g.kalca;
+  // tek kaynaktan kısa atılan gölge (sahneye, kameraya doğru): baş ve omuz noktalarının zemin izdüşümü
+  const gol = ([[-0.2, 0], [0.3, 0], [-0.15, kalca + 0.3], [0.15, kalca + 0.3], [0.02, by + 0.1]] as P[]).map(([x, y]) => { const q = golgeNokta(L, [c.u + x * c.yon, c.h + y, c.z], c.h); return ek(K, q[0], c.h, q[2]); });
+  const isikX = (L[0] > c.u ? 1 : -1) as 1 | -1;
+  const ink0 = "#1c1a2a";
   const kw = Math.max(1.5, 0.012 * m);
   return (
     <g>
-      <ellipse cx={a[0] + 0.15 * m * c.yon} cy={a[1]} rx={0.36 * m} ry={0.05 * m} fill="#1f1d30" opacity={0.55} />
+      <polygon points={ptsS(zarf(gol))} fill="#1f1d30" opacity={0.45} />
+      <ellipse cx={a[0] + 0.05 * m * c.yon} cy={a[1]} rx={0.3 * m} ry={0.045 * m} fill="#1f1d30" opacity={0.6} />
       {/* sandalye: oturak + iki ayak (koyu), arkalık */}
       <g stroke={bug(LG.cerceve, c.z)} strokeWidth={Math.max(1.5, 0.025 * m)}>
         <line x1={T(-0.2, oturak)[0]} y1={T(-0.2, oturak)[1]} x2={T(-0.2, 0)[0]} y2={T(-0.2, 0)[1]} />
@@ -271,7 +292,9 @@ const CalgiciCiz: React.FC<{ K: SalonKam; c: Calgici }> = ({ K, c }) => {
         <line x1={T(0.4, kalca + 0.35)[0]} y1={T(0.4, kalca + 0.35)[1]} x2={T(0.32, by + 0.15)[0]} y2={T(0.32, by + 0.15)[1]} stroke={ink(LG.keman)} strokeWidth={kw * 1.4} />
         <line x1={T(0.42, -0.0)[0]} y1={T(0.42, 0)[1]} x2={T(0.42, kalca - 0.12)[0]} y2={T(0.42, kalca - 0.12)[1]} stroke={ink(LG.keman)} strokeWidth={kw} />
       </g>}
-      <SiluetFigur40 kod={c.kod} ayak={a} pxm={m} renk={renk} kenar={{ renk: LG.kenar, dx: -c.yon * 1.2, dy: -2.8 }} yon={c.yon} oturan={oturak} profil egil={c.egil} golge={false} />
+      {/* mürekkep konturu: siluetin 4 yöne kaydırılmış koyu kopyası (kit bileşeni değişmeden) */}
+      {([[2, 0], [-2, 0], [0, 2], [0, -2]] as P[]).map(([dx, dy], j) => <g key={j} transform={`translate(${dx} ${dy})`}><SiluetFigur40 kod={c.kod} ayak={a} pxm={m} renk={ink0} yon={c.yon} basYon={c.basDon ? ((-c.yon) as 1 | -1) : undefined} oturan={oturak} profil egil={c.egil} golge={false} /></g>)}
+      <SiluetFigur40 kod={c.kod} ayak={a} pxm={m} renk={renk} kenar={{ renk: LG.kenar, dx: isikX * 2.5, dy: -3 }} yon={c.yon} basYon={c.basDon ? ((-c.yon) as 1 | -1) : undefined} oturan={oturak} profil egil={c.egil} golge={false} isikX={isikX} />
       {c.calgi === "keman" && <g>
         <ellipse cx={T(0.1, by - 0.13)[0]} cy={T(0.1, by - 0.13)[1]} rx={0.13 * m} ry={0.055 * m} transform={`rotate(${-18 * c.yon} ${T(0.1, by - 0.13)[0]} ${T(0.1, by - 0.13)[1]})`} fill={bug(LG.keman, c.z)} stroke={ink(LG.keman)} strokeWidth={kw} />
         <line x1={T(0.0, by - 0.02)[0]} y1={T(0.0, by - 0.02)[1]} x2={T(0.55, by - 0.32)[0]} y2={T(0.55, by - 0.32)[1]} stroke="#5a3f4a" strokeWidth={kw} />
@@ -324,7 +347,7 @@ const SahneZemin: React.FC<{ K: SalonKam; L: V3; uid: string }> = ({ K, L, uid }
         return <g key={i}>
           <polygon points={dunyaPoly(K, ustK)} fill={bug(karistir(LG.tahtaGolge, LG.tahtaIsik, 0.45), k.z)} />
           <polygon points={ptsS(on)} fill={bug("#4a4060", k.z)} />
-          <Tarama sekil={on} basamak="III" aci={72} renk={LG.tarama} derinlik="orta" seed={S + 70 + i} alfaCarpan={0.7} />
+          <Tarama sekil={on} basamak="III" aci={72} renk={LG.tarama} aralik={9} kalinlik={2.6} seed={S + 70 + i} />
           <polyline points={dunyaPoly(K, [[-W, k.h, k.z], [W, k.h, k.z]])} stroke={bug(LG.kenarLamba, k.z)} strokeWidth={2} fill="none" />
         </g>;
       })}
@@ -394,16 +417,19 @@ const Sef: React.FC<{ K: SalonKam; kol: number; L: V3 }> = ({ K, kol, L }) => {
   // şef kolları: hazır duruş (dirsek dışa, el göğüs önünde) → Y (eller baş üstü, dışa). El ekseni bilekte kırık: parmaklar dışa-öne
   // (yatay +25°), avuç aşağı — "eller yukarı / teslim" okunmaz (tur-1 iç teşhis). Arkadan elin sırtı görünür.
   const kollar = [-1, 1].map((s) => {
-    const omuz = T(s * 0.2, 1.43), dirsek = T(s * lerp(0.4, 0.5), lerp(1.2, 1.6)), bilek = T(s * lerp(0.38, 0.66), lerp(1.36, 1.86));
+    const omuz = T(s * 0.19, 1.39 + 0.05 * kol), dirsek = T(s * lerp(0.4, 0.5), lerp(1.2, 1.6)), bilek = T(s * lerp(0.38, 0.66), lerp(1.36, 1.86));
     const elAci = s > 0 ? lerp(-10, -38) : 180 + lerp(10, 38);
     return { s, omuz, dirsek, bilek, elAci, k: konikKol(omuz, dirsek, bilek, [0.15 * m, 0.125 * m, 0.095 * m]) };
   });
-  const govde = `M${T(-0.23, 0.74)} L${T(-0.25, 1.1)} Q${T(-0.27, 1.38)} ${T(-0.22, 1.45)} Q${T(-0.12, 1.5)} ${T(-0.06, 1.5)} L${T(0.06, 1.5)} Q${T(0.12, 1.5)} ${T(0.22, 1.45)} Q${T(0.27, 1.38)} ${T(0.25, 1.1)} L${T(0.23, 0.74)} Z`.replace(/,/g, " ");
+  const oy = 1.45 + 0.05 * kol; // omuz üst hattı kolla kalkar
+  const govde = `M${T(-0.23, 0.74)} L${T(-0.25, 1.1)} Q${T(-0.27, oy - 0.07)} ${T(-0.22, oy)} Q${T(-0.12, 1.5)} ${T(-0.06, 1.51)} L${T(0.06, 1.51)} Q${T(0.12, 1.5)} ${T(0.22, oy)} Q${T(0.27, oy - 0.07)} ${T(0.25, 1.1)} L${T(0.23, 0.74)} Z`.replace(/,/g, " ");
+  // omuz başlığı (deltoid): kol yönünde döndürülmüş elips; gövde ve kol arasında köprü, kavisli kol dikişi
+  const baslik = (k: { s: number; omuz: P; dirsek: P }) => { const aci = (Math.atan2(k.dirsek[1] - k.omuz[1], k.dirsek[0] - k.omuz[0]) * 180) / Math.PI; return { aci, c: [k.omuz[0] + (k.dirsek[0] - k.omuz[0]) * 0.12, k.omuz[1] + (k.dirsek[1] - k.omuz[1]) * 0.12] as P }; };
   const bas = (dy = 0) => `M${T(-0.085, 1.56 + dy)} Q${T(-0.095, 1.74 + dy)} ${T(0, 1.76 + dy)} Q${T(0.095, 1.74 + dy)} ${T(0.085, 1.56 + dy)} Q${T(0.06, 1.5 + dy)} ${T(0, 1.5 + dy)} Q${T(-0.06, 1.5 + dy)} ${T(-0.085, 1.56 + dy)}Z`.replace(/,/g, " ");
   // gölge: tek kaynaktan (avize ağırlık merkezi) podyuma; kısa, kameraya doğru
   const gp = ([[-0.15, 0], [0.15, 0], [-0.25, 1.43], [0.25, 1.43], [0, 1.76], [-0.55, 1.9], [0.55, 1.9]] as P[]).map(([x, y]) => { const g = golgeNokta(L, [u0 + x, h0 + y, z0], h0); return ek(K, g[0], h0, g[2]); });
   const sil = (renk: string) => <g fill={renk}>
-    <path d={govde} />{kollar.map((k) => <path key={k.s} d={k.k.d} />)}<path d={bas()} />
+    <path d={govde} />{kollar.map((k) => { const b = baslik(k); return <g key={k.s}><path d={k.k.d} /><ellipse cx={b.c[0]} cy={b.c[1]} rx={0.11 * m} ry={0.085 * m} transform={`rotate(${b.aci} ${b.c[0]} ${b.c[1]})`} /></g>; })}<path d={bas()} />
   </g>;
   const ISIK: P = [0, -1];
   return (
@@ -417,14 +443,20 @@ const Sef: React.FC<{ K: SalonKam; kol: number; L: V3 }> = ({ K, kol, L }) => {
       </g>)}
       {/* sıcak kenar ışığı: siluetin yukarı kaydırılmış kopyası (ışık önden-üstten → omuz, kol üstü, saç tepesi) */}
       <g transform="translate(0 -3)">{sil(LG.kenar)}</g>
-      <path d={govde} fill={LG.ceketGolge} stroke={ink(LG.ceket)} strokeWidth={2.5} />
+      <path d={govde} fill={LG.ceketGolge} stroke={ink(LG.ceket)} strokeWidth={3} />
       {/* sırt orta dikişi + yırtmaç; kürek kemikleri arası hafif ışık */}
       <path d={`M${T(0, 1.46)} L${T(0, 0.92)}`.replace(/,/g, " ")} stroke={ink(LG.ceket)} strokeWidth={2} />
       <path d={`M${T(-0.2, 1.36)} Q${T(0, 1.42)} ${T(0.2, 1.36)}`.replace(/,/g, " ")} stroke={LG.ceket} strokeWidth={0.1 * m} fill="none" opacity={0.8} />
       {/* kol altı taraması (ışık almayan) */}
       {kollar.map((k) => <Tarama key={`t${k.s}`} sekil={[T(k.s * 0.24, 1.36), T(k.s * 0.12, 1.3), T(k.s * 0.14, 1.06), T(k.s * 0.25, 1.1)]} basamak="III" aci={72} renk={LG.tarama} derinlik="yakin" seed={S + 80 + k.s} />)}
       {kollar.map((k) => <g key={k.s}>
-        <path d={k.k.d} fill={LG.ceket} stroke={ink(LG.ceket)} strokeWidth={2.2} />
+        <path d={k.k.d} fill={LG.ceket} stroke={ink(LG.ceket)} strokeWidth={2.6} />
+        {(() => { const b = baslik(k); return <g transform={`rotate(${b.aci} ${b.c[0]} ${b.c[1]})`}>
+          <ellipse cx={b.c[0]} cy={b.c[1]} rx={0.11 * m} ry={0.085 * m} fill={LG.ceket} />
+          {/* dış kontur yalnız omuz yuvarlağında (gövde tarafı açık: başlık gövdeye kumaşla bağlanır) */}
+          <path d={`M${b.c[0] - 0.02 * m} ${b.c[1] - 0.085 * m} A${0.11 * m} ${0.085 * m} 0 0 1 ${b.c[0] + 0.1 * m} ${b.c[1] + 0.035 * m}`} stroke={ink(LG.ceket)} strokeWidth={2.6} fill="none" />
+          <path d={`M${b.c[0] - 0.035 * m} ${b.c[1] - 0.075 * m} Q${b.c[0] + 0.02 * m} ${b.c[1]} ${b.c[0] - 0.03 * m} ${b.c[1] + 0.08 * m}`} stroke={LG.ceketGolge} strokeWidth={1.8} fill="none" />
+        </g>; })()}
         {/* bol manşet: gömlek kenarı bilekte */}
         <line x1={k.k.ileri(-0.03 * m)[0]} y1={k.k.ileri(-0.03 * m)[1]} x2={k.k.ileri(0.005 * m)[0]} y2={k.k.ileri(0.005 * m)[1]} stroke={LG.gomlek} strokeWidth={0.085 * m} />
         <GravurEl bilek={k.k.ileri(0.01 * m)} aci={k.elAci} E={0.19 * m} poz={GRAVUR_POZ.gevsek} ayna={k.s < 0} palet={kenarEl} isik={ISIK} taramaAci={72} taramasiz />
@@ -434,7 +466,7 @@ const Sef: React.FC<{ K: SalonKam; kol: number; L: V3 }> = ({ K, kol, L }) => {
       <path d={`M${T(-0.07, 1.555)} Q${T(0, 1.575)} ${T(0.07, 1.555)}`.replace(/,/g, " ")} stroke={LG.gomlek} strokeWidth={0.018 * m} fill="none" />
       {[-1, 1].map((s) => <ellipse key={s} cx={T(s * 0.088, 1.64)[0]} cy={T(s * 0.088, 1.64)[1]} rx={0.018 * m} ry={0.03 * m} fill={LG.tenGolge} stroke={ink(LG.tenGolge)} strokeWidth={1.5} />)}
       <path d={bas(0.015)} fill={LG.sac} stroke={ink(LG.sac)} strokeWidth={2} />
-      <path d={`M${T(-0.05, 1.57)} Q${T(0, 1.56)} ${T(0.05, 1.57)}`.replace(/,/g, " ")} stroke={LG.tenGolge} strokeWidth={0.012 * m} fill="none" />
+      {/* tur-2: ense ten yayı kaldırıldı (saç üstünde "ağız" gibi okunuyordu → sırttan figür yüz dönmüş sanılırdı) */}
     </g>
   );
 };
@@ -442,13 +474,13 @@ const Sef: React.FC<{ K: SalonKam; kol: number; L: V3 }> = ({ K, kol, L }) => {
 // ======================================================= SEYİRCİ (arkadan) =======================================================
 type BasTip = "kisa" | "topuz" | "kel" | "kasket" | "esarp";
 const SAC = ["#2a2226", "#54402f", "#5a4638", "#7a6e6a", "#6e5444", "#7a5c44"];
-const Seyirci: React.FC<{ x: number; y: number; B: number; tip: BasTip; sac: string; palto: string; egim: number; yaka: number; isik: number }> = ({ x, y, B, tip, sac: sac0, palto: palto0, egim, yaka, isik }) => {
+const Seyirci: React.FC<{ x: number; y: number; B: number; tip: BasTip; sac: string; palto: string; egim: number; yaka: number; isik: number; don?: number }> = ({ x, y, B, tip, sac: sac0, palto: palto0, egim, yaka, isik, don = 0 }) => {
   // arkadan (kameraya bakan sırt) ışık: yalnız kişinin GERİSİNDE kalan avizelerden (tek kaynak listesi) — ön sıralar gölgede, kenar ışıklı
   const palto = karistir(palto0, LG.havuz[2], 0.42 * isik), sac = karistir(sac0, "#8a6c58", 0.4 * isik);
-  const w = B, h = B * 1.18, oy = y + h * 0.62, ow = B * 1.38, kw = Math.max(1.5, B * 0.02);
+  const w = B, h = B * 1.18, oy = y + h * 0.62, ow = B * 1.38, kw = Math.max(2.5, B * 0.03); // tur-2: mürekkep 360 px'te görünür
   const omuz = `M${x - w * 0.28} ${oy - h * 0.12} C${x - w * 0.5} ${oy} ${x - ow * 0.8} ${oy} ${x - ow} ${oy + B * 0.35} L${x - ow * 1.08} ${oy + B * 3.2} L${x + ow * 1.08} ${oy + B * 3.2} L${x + ow} ${oy + B * 0.35} C${x + ow * 0.8} ${oy} ${x + w * 0.5} ${oy} ${x + w * 0.28} ${oy - h * 0.12}Z`;
   const kafa = `M${x - w / 2} ${y} C${x - w / 2} ${y - h * 0.62} ${x + w / 2} ${y - h * 0.62} ${x + w / 2} ${y} C${x + w * 0.48} ${y + h * 0.3} ${x + w * 0.3} ${y + h * 0.48} ${x} ${y + h * 0.5} C${x - w * 0.3} ${y + h * 0.48} ${x - w * 0.48} ${y + h * 0.3} ${x - w / 2} ${y}Z`;
-  const rim = (d: string) => <path d={d} stroke={LG.kenar} strokeWidth={Math.max(2, B * 0.035)} fill="none" strokeLinecap="round" />;
+  const rim = (d: string) => <path d={d} stroke={LG.kenar} strokeWidth={Math.max(3, B * 0.045)} fill="none" strokeLinecap="round" />;
   return (
     <g>
       <path d={omuz} fill={palto} stroke={ink(palto)} strokeWidth={kw} />
@@ -459,7 +491,9 @@ const Seyirci: React.FC<{ x: number; y: number; B: number; tip: BasTip; sac: str
         ? <path d={`M${x - w * 0.42} ${oy + B * 0.05} L${x - w * 0.36} ${oy - h * 0.3} Q${x} ${oy - h * 0.22} ${x + w * 0.36} ${oy - h * 0.3} L${x + w * 0.42} ${oy + B * 0.05} Q${x} ${oy - h * 0.05} ${x - w * 0.42} ${oy + B * 0.05}Z`} fill={karistir(palto, "#000000", 0.15)} stroke={ink(palto)} strokeWidth={kw} />
         : <rect x={x - w * 0.24} y={oy - h * 0.2} width={w * 0.48} height={h * 0.2} fill={LG.tenGolge} />}
       <g transform={`rotate(${egim} ${x} ${oy - h * 0.1})`}>
-        {[-1, 1].map((s) => <ellipse key={s} cx={x + s * w * 0.5} cy={y + h * 0.06} rx={w * 0.09} ry={h * 0.13} fill={LG.tenGolge} stroke={ink(LG.tenGolge)} strokeWidth={kw} />)}
+        {/* dönük baş (don ±1): o yandaki yanak-çene kütlesi ten tonunda görünür (iç çizgi yok), kulak içe kayar; öbür kulak gizlenir */}
+        {don !== 0 && <ellipse cx={x + don * w * 0.4} cy={y + h * 0.2} rx={w * 0.2} ry={h * 0.26} fill={karistir(LG.tenGolge, LG.ten, 0.3 + 0.4 * isik)} stroke={ink(LG.tenGolge)} strokeWidth={kw} />}
+        {[-1, 1].filter((s) => don === 0 || s === don).map((s) => <ellipse key={s} cx={x + s * w * (don ? 0.36 : 0.5)} cy={y + h * 0.06} rx={w * 0.09} ry={h * 0.13} fill={LG.tenGolge} stroke={ink(LG.tenGolge)} strokeWidth={kw} />)}
         <path d={kafa} fill={tip === "kel" ? karistir(LG.tenGolge, LG.ten, 0.5 * isik) : tip === "esarp" ? "#7a6670" : sac} stroke={ink(sac)} strokeWidth={kw} />
         {tip === "kisa" && <path d={`M${x - w * 0.32} ${y + h * 0.36} Q${x} ${y + h * 0.3} ${x + w * 0.32} ${y + h * 0.36} L${x + w * 0.24} ${y + h * 0.47} Q${x} ${y + h * 0.52} ${x - w * 0.24} ${y + h * 0.47}Z`} fill={LG.tenGolge} />}
         {tip === "kel" && <path d={`M${x - w * 0.5} ${y + h * 0.02} Q${x} ${y + h * 0.22} ${x + w * 0.5} ${y + h * 0.02} L${x + w * 0.42} ${y + h * 0.3} Q${x} ${y + h * 0.42} ${x - w * 0.42} ${y + h * 0.3}Z`} fill={sac} />}
@@ -472,18 +506,21 @@ const Seyirci: React.FC<{ x: number; y: number; B: number; tip: BasTip; sac: str
   );
 };
 
-type Koltuk = { u: number; z: number; bos: boolean; tip: BasTip; sac: string; palto: string; egim: number; yaka: number; boy: number };
+type Koltuk = { u: number; z: number; bos: boolean; tip: BasTip; sac: string; palto: string; egim: number; yaka: number; boy: number; don: number; olcek: number; kay: number };
 const SIRALAR = [9.7, 8.8, 7.9, 7.0, 6.1, 5.2, 4.3, 3.4, 2.5];
 const koltuklar = (z: number, ri: number): Koltuk[] => {
   const out: Koltuk[] = [];
   for (let k = 0; k < 26; k++) {
-    const u = -6.6 + k * 0.56 + (ri % 2) * 0.28 + (rnd(S + 90, `u${ri}-${k}`) - 0.5) * 0.14;
+    const u = -6.6 + k * 0.56 + (ri % 2) * 0.28 + (rnd(S + 90, `sira${ri}`) - 0.5) * 0.2;
     if (u > -5.0 && u < -4.2) continue; // yan koridor (u ≈ −4.6; mekanlar §2 "u ≈ −1.6" kameranın yanında ölü kama bırakıyordu → tablo)
     if (u > 6.6) break;
     const r = (s: string) => rnd(S + 90, `${s}${ri}-${k}`);
     const tipR = r("t");
     const tip: BasTip = tipR < 0.42 ? "kisa" : tipR < 0.62 ? "topuz" : tipR < 0.74 ? "kel" : tipR < 0.84 ? "esarp" : tipR < 0.9 ? "kasket" : "kisa";
-    out.push({ u, z: z + (r("z") - 0.5) * 0.14, bos: r("b") < 0.06 && z > 3, tip, sac: SAC[Math.floor(r("s") * SAC.length)], palto: LG.palto[Math.floor(r("p") * 3)], egim: (r("e") - 0.5) * 18, yaka: r("y"), boy: (tip === "topuz" || tip === "esarp" ? -0.05 : 0) + (r("h") - 0.5) * 0.11 });
+    // tur-2 (ızgara kırılır): oturuş kayması ±11 cm (koltukta yana/öne kayan beden), boy ±7 cm, ölçek ±%6, baş eğimi ±14°,
+    // %16 dönük baş (yanındakine/galeriye), %10 boş koltuk
+    const donR = r("dn");
+    out.push({ u, z: z + (r("z") - 0.5) * 0.24, bos: r("b") < 0.1 && z > 3, tip, sac: SAC[Math.floor(r("s") * SAC.length)], palto: LG.palto[Math.floor(r("p") * 3)], egim: (r("e") - 0.5) * 28, yaka: r("y"), boy: (tip === "topuz" || tip === "esarp" ? -0.05 : 0) + (r("h") - 0.5) * 0.14, don: donR < 0.08 ? -1 : donR < 0.16 ? 1 : 0, olcek: 0.94 + r("o") * 0.12, kay: (r("k") - 0.5) * 0.22 });
   }
   return out;
 };
@@ -492,14 +529,17 @@ const SeyirciSirasi: React.FC<{ K: SalonKam; z: number; ri: number; A: AvizeDuru
   const arkaIsik = (k: Koltuk) => Math.min(1, A.filter((a) => a.z < k.z - 0.2).reduce((s, a) => s + a.yanik * Math.max(0, 1 - Math.hypot(k.z - a.z, (k.u - a.u) * 0.5) / 5.5), 0));
   return <g>
     {ks.map((k, i) => {
-      const hb = 1.17 + k.boy, c = ek(K, k.u, hb, k.z), m = pxm(K, k.u, hb, k.z);
+      const hb = 1.17 + k.boy, c = ek(K, k.u + k.kay, hb, k.z), m = pxm(K, k.u, hb, k.z);
       if (c[0] < -260 || c[0] > 1340) return null;
       // koltuk arkalığı: oturanın arkasında (kameraya yakın), üst kenar h 0.84 — omuz (≈1.0) üstte kalır
-      const sirt = [ek(K, k.u - 0.24, 0.84, k.z + 0.3), ek(K, k.u + 0.24, 0.84, k.z + 0.3), ek(K, k.u + 0.24, 0.35, k.z + 0.3), ek(K, k.u - 0.24, 0.35, k.z + 0.3)];
+      // tur-2: arkalıklar bitişik (kutu ızgarası yerine sıra bandı), aralarında yalnız ince dikiş
+      const zs = z + 0.3, sirt = [ek(K, k.u - 0.29, 0.84, zs), ek(K, k.u + 0.29, 0.84, zs), ek(K, k.u + 0.29, 0.35, zs), ek(K, k.u - 0.29, 0.35, zs)];
       const isik = arkaIsik(k);
       return <g key={i}>
-        {!k.bos && <Seyirci isik={isik} x={c[0]} y={c[1]} B={0.17 * m} tip={k.tip} sac={k.sac} palto={karistir(k.palto, LG.derin, 0.3)} egim={k.egim} yaka={k.yaka} />}
-        <polygon points={ptsS(sirt)} fill={karistir(LG.koltukDerin, LG.koltukIsik, 0.7 * isik)} stroke={LG.cerceve} strokeWidth={Math.max(1.5, 0.02 * m)} strokeLinejoin="round" />
+        {!k.bos && <Seyirci isik={isik} don={k.don} x={c[0]} y={c[1]} B={0.17 * m * k.olcek} tip={k.tip} sac={k.sac} palto={karistir(k.palto, LG.derin, 0.45 * (1 - isik))} egim={k.egim} yaka={k.yaka} />}
+        <polygon points={ptsS(sirt)} fill={karistir(LG.koltukDerin, LG.koltukIsik, 0.7 * isik)} />
+        <line x1={sirt[0][0]} y1={sirt[0][1]} x2={sirt[3][0]} y2={sirt[3][1]} stroke={LG.cerceve} strokeWidth={Math.max(1.5, 0.015 * m)} />
+        {z < 5 && <Tarama sekil={[ek(K, k.u - 0.29, 0.62, zs), ek(K, k.u + 0.29, 0.62, zs), sirt[2], sirt[3]]} basamak="III" aci={72} renk="#1f1a26" aralik={11} kalinlik={3} seed={S + 140 + i + ri * 30} alfaCarpan={0.8} />}
         <line x1={sirt[0][0]} y1={sirt[0][1]} x2={sirt[1][0]} y2={sirt[1][1]} stroke={LG.koltukIsik} strokeWidth={Math.max(2, 0.03 * m)} strokeLinecap="round" />
         <polygon points={ptsS([sirt[0], sirt[1], [sirt[1][0], sirt[1][1] + 0.06 * m], [sirt[0][0], sirt[0][1] + 0.06 * m]])} fill={LG.koltukIsik} opacity={0.35} />
       </g>;
@@ -545,7 +585,7 @@ const KonserSahne: React.FC<{ plan: SablonProps["plan"]; p: number; kilit: Sablo
     <g>
       <rect x={-50} y={-50} width={1180} height={2020} fill={LG.golge} />
       {/* katman 1–2: tavan, arka duvar, galeri, uzak sütunlar (flu + buğu) */}
-      <Flu id={`${uid}f1`} sigma={2.5}>
+      <Flu id={`${uid}f1`} sigma={1.2}>
         <KonturTitreme derinlik="uzak" seed={S + 1}>
           <Tavan K={K} A={A} />
           <ArkaDuvar K={K} A={A} uid={`${uid}ad`} />
@@ -554,7 +594,7 @@ const KonserSahne: React.FC<{ plan: SablonProps["plan"]; p: number; kilit: Sablo
           <BuguBandi K={K} h0={4.6} h1={6.4} z={29} alfa={0.24} />
         </KonturTitreme>
       </Flu>
-      <Flu id={`${uid}f2`} sigma={1.2}>
+      <Flu id={`${uid}f2`} sigma={0.5}>
         <KonturTitreme derinlik="orta" seed={S + 2}>
           {[28, 24, 20, 16].flatMap((z) => [-6, 6].map((u) => <Sutun key={`${u}${z}`} K={K} u={u} z={z} isik={sutunIsik(z)} uid={`${uid}s${u}${z}`} />))}
           <Saclik K={K} s={-1} z0={12} z1={28.6} /><Saclik K={K} s={1} z0={12} z1={28.6} />
@@ -567,11 +607,11 @@ const KonserSahne: React.FC<{ plan: SablonProps["plan"]; p: number; kilit: Sablo
       <KonturTitreme derinlik="orta" seed={S + 3}>
         <SahneZemin K={K} L={L} uid={uid} />
         <BuguBandi K={K} h0={2.6} h1={4.2} z={22} alfa={0.14} />
-        <Flu id={`${uid}f3`} sigma={1}>
-          {sirala(kademeC(2.2)).map((c, i) => <CalgiciCiz key={`k3${i}`} K={K} c={c} />)}
-          {sirala(kademeC(1.8)).map((c, i) => <CalgiciCiz key={`k2${i}`} K={K} c={c} />)}
+        <Flu id={`${uid}f3`} sigma={0.4}>
+          {sirala(kademeC(2.2)).map((c, i) => <CalgiciCiz key={`k3${i}`} K={K} c={c} L={L} />)}
+          {sirala(kademeC(1.8)).map((c, i) => <CalgiciCiz key={`k2${i}`} K={K} c={c} L={L} />)}
           {[-3.35, -1.15, 1.05, 3.25].map((u) => <Sehpa key={`sk2${u}`} K={K} u={u} z={17.15} h={1.8} />)}
-          {sirala(kademeC(1.4)).map((c, i) => <CalgiciCiz key={`k1${i}`} K={K} c={c} />)}
+          {sirala(kademeC(1.4)).map((c, i) => <CalgiciCiz key={`k1${i}`} K={K} c={c} L={L} />)}
         </Flu>
         {/* gizli davulcu (yüz görünmez: sehpa ve önündeki nefesli örter) + davul + çubuklar */}
         <SiluetFigur40 kod="uzun-ince" ayak={ek(K, 2.2, 1.4, 16.25)} pxm={pxm(K, 2.2, 1.4, 16.25)} renk="#45473f" kenar={{ renk: LG.kenar, dx: 0, dy: -2.5 }} yon={-1} oturan={0.5} profil egil={6} golge={false} />
@@ -580,10 +620,10 @@ const KonserSahne: React.FC<{ plan: SablonProps["plan"]; p: number; kilit: Sablo
         <Sehpa K={K} u={2.22} z={15.4} h={1.4} boy={0.95} tabla={[0.3, 0.5]} /* tabla h 2.35–2.85: davulcunun başı + üst gövdesi örtülür (saklanan) */ />
         <Flu id={`${uid}f4`} sigma={0.6}>
           {[-3.85, -2.05, -0.25, 3.75].map((u) => <Sehpa key={`sk1${u}`} K={K} u={u} z={15.25} h={1.4} />)}
-          {sirala(onCalgici.filter((c) => c.z > 13.8)).map((c, i) => <CalgiciCiz key={`o2${i}`} K={K} c={c} />)}
-          <CalgiciCiz K={K} c={{ u: 1.15, z: 14.75, h: SALON.sahneH, kod: "yasli", yon: -1, egil: 4, calgi: "nefes", renk: LG.muzisyen[2], boy: 1 }} />
+          {sirala(onCalgici.filter((c) => c.z > 13.8)).map((c, i) => <CalgiciCiz key={`o2${i}`} K={K} c={c} L={L} />)}
+          <CalgiciCiz K={K} c={{ u: 1.15, z: 14.75, h: SALON.sahneH, kod: "yasli", yon: -1, egil: 4, calgi: "nefes", renk: LG.muzisyen[2], boy: 1 }} L={L} />
           {[-4.3, -2.7, -1.1, 3.4].map((u) => <Sehpa key={`so${u}`} K={K} u={u} z={13.55 + 0.03 * u * u} h={SALON.sahneH} boy={1.0} />)}
-          {sirala(onCalgici.filter((c) => c.z <= 13.8)).map((c, i) => <CalgiciCiz key={`o1${i}`} K={K} c={c} />)}
+          {sirala(onCalgici.filter((c) => c.z <= 13.8)).map((c, i) => <CalgiciCiz key={`o1${i}`} K={K} c={c} L={L} />)}
         </Flu>
         {/* şef podyumu */}
         <polygon points={dunyaPoly(K, [[-0.45, 1.3, 11.6], [0.45, 1.3, 11.6], [0.45, 1.3, 12.4], [-0.45, 1.3, 12.4]])} fill={LG.tahtaIsik} />
@@ -593,7 +633,7 @@ const KonserSahne: React.FC<{ plan: SablonProps["plan"]; p: number; kilit: Sablo
         {(() => { const on = [ek(K, -5.4, 0, 11), ek(K, 5.4, 0, 11), ek(K, 5.4, 1.0, 11), ek(K, -5.4, 1.0, 11)]; const ustS = [ek(K, -5.4, 0.85, 11), ek(K, 5.4, 0.85, 11), ek(K, 5.4, 1.0, 11), ek(K, -5.4, 1.0, 11)]; return <g>
           <polygon points={ptsS(on)} fill={LG.sahneOn} stroke={ink(LG.sahneOn)} strokeWidth={2} />
           {[-2.4, 0.6, 3.6, -5.4 + 0.02].map((u) => <polyline key={u} points={dunyaPoly(K, [[u, 0.05, 11], [u, 0.85, 11]])} stroke={ink(LG.sahneOn)} strokeWidth={2} fill="none" />)}
-          <Tarama sekil={ustS} basamak="III" aci={72} renk={LG.tarama} derinlik="yakin" seed={S + 95} />
+          <Tarama sekil={ustS} basamak="III" aci={72} renk={LG.tarama} aralik={10} kalinlik={3} seed={S + 95} />
           <polyline points={dunyaPoly(K, [[-5.4, 1.0, 11], [5.4, 1.0, 11]])} stroke={LG.kenarLamba} strokeWidth={2.5} fill="none" />
         </g>; })()}
       </KonturTitreme>
@@ -604,8 +644,8 @@ const KonserSahne: React.FC<{ plan: SablonProps["plan"]; p: number; kilit: Sablo
         <KonturTitreme derinlik={z > 6 ? "orta" : "yakin"} seed={S + 100 + ri}><SeyirciSirasi K={K} z={z} ri={ri} A={A} /></KonturTitreme>
       </Flu>)}
       {/* katman 7: ön plan avize altları (z6/z10, köşeler, flu) */}
-      <Flu id={`${uid}f7`} sigma={4}>
-        {[...yakinAv].sort((a, b) => b.z - a.z).map((a, i) => <AvizeHale key={`yh${i}`} K={K} a={a} />)}
+      {/* tur-2: köşe avizeleri hale/bokeh diski olmadan, hafif flu (σ 1.5) — tavan temiz */}
+      <Flu id={`${uid}f7`} sigma={1.5}>
         {[...yakinAv].sort((a, b) => b.z - a.z).map((a, i) => <Avize key={`ya${i}`} K={K} a={a} />)}
       </Flu>
     </g>

@@ -106,3 +106,26 @@
   - Mimari iskelet (sütun, galeri, avize biçimi) **[G]**, kaynak bekliyor; yön karesi kullanıcıya bu notla gitmeli.
   - Render: bu sunucuda remotion.media kapalı. Yerel Chrome: `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`.
   - `prova` durumu, crane hareket şeridi (f0–208) ve diğer kareler kodlanmadı (yön onayı bekleniyor).
+
+## motion · 2026-11-16 · SALON `konser` kalibrasyon tur-2 (P12 f96; kullanıcı notu tur-2 "kontrast düşük gri")
+- Ne yaptım: Kullanıcı notunu ve orkestranın 6 maddesini sırayla uyguladım, 2 iç turda bitirdim. Yapılanlar:
+  1. **Değer aralığı:** buğu alfası en çok .48'den .30'a indi. Tavan gece-lacivert. Arka duvarda avize ağırlık merkezinin ardında 3 düz basamaklı şeftali havuz var. Sütunlarda dış yüz `#3e3b5c`, ışık yüzü havuz-altın. Uzak flu σ 2.5 → 1.2, sütun σ 1.2 → 0.5, orkestra σ 1 → 0.4.
+  2. **Haleler:** köşe avizelerinde hale ve bokeh diski kaldırıldı (flu σ 4 → 1.5). Hale yalnız sahne üstü çiftlerinde: z14'te iki disk, z18/z22'de tek disk, daha opak ve sıcak. Tavan lekeleri yalnız z18/z22'de, iki basamaklı ve sıcak.
+  3. **Avize:** lamba sayısı azaldı ve seed'le değişiyor (5–6 / 8–10 / 6–7). %18 ampul sönük (savaş yılı). Halka yarıçapı ve dönüşü seed'li. Gövde kütlesi eklendi (kase + taç). Lamba çevresinde sıcak kenar ve parıltı var.
+  4. **Tarama ve kontur:** aralık 9–11 px, çizgi 2.6–3 px. Telefonda (1/3) yaklaşık 1 px kalıyor. Sütun gölge şeridi, başlık, korniş altı, galeri altı, kademe, sahne önü ve ön koltuk arkalıklarında var. Sütun konturu ≥ 3 px; saçaklık, seyirci ve şef konturu 2.5–3 px.
+  5. **Çalgıcılar:** tek kaynaktan sahneye kısa atılan gölge (`golgeNokta` + `zarf`). İki ton: `isikX` avize merkezine göre. 2.5 px kenar ışığı. 4 yöne kaydırılmış mürekkep konturu (kit bileşeni değişmeden). Eğim −10…+18°, %20 başı yana dönük.
+  6. **Seyirci:** oturuş kayması ±11 cm, boy ±7 cm, ölçek ±%6, baş eğimi ±14°. %16 dönük baş (yanak-çene kütlesi ten tonunda, iç çizgi yok), %10 boş koltuk, sıra başına seed'li kayma. Arkalıklar kutu ızgarası yerine bitişik bant oldu.
+  7. **Omuz (CLAUDE.md yeni kural):** Eliasberg'in omuz eklemi gövde içinde (±0.19 m). Omuz başlığı (deltoid elips) kol yönünde döner; gövdeye açık kenarla bağlanıyor, kavisli kol dikişi var. Omuz üst hattı kolla +5 cm kalkıyor. 2× kırpımla kontrol ettim: kol boru gibi durmuyor.
+  8. Kendi yakaladığım kusur: Eliasberg'in ensesindeki açık ten yayı saçın üstünde "ağız" gibi okunuyordu; kaldırdım.
+- Dokunduğum dosyalar: `/home/user/kosmos-vize-bot/src/kit/sablonlar/leningrad/Salon.tsx` (yalnız Leningrad şablonu); `/home/user/kosmos-vize-bot/bolumler/leningrad-senfoni/kalibrasyon/tur-2/{p12-f96.png, p12-f96-360.png, p12-f96-guvenli.png, paris-yaninda.jpg, olcum.md}`; bu rapor. Ortak kit dosyasına dokunulmadı, eski bölümler piksel-aynı.
+- Aldığım kararlar ve gerekçeleri: Arka duvar havuzu, değer aralığının parlak ucu (p95) ve orkestra siluetlerinin koyu okunacağı fon olarak seçildi (Paris'teki gün batımı önünde siluet mantığı). Düşük alfalı sıcak disk lacivert tavanla gri çamur yapıyordu; haleler bu yüzden daha opak ve az sayıda. Mürekkep konturu `SiluetFigur40`'a parametre eklemek yerine kaydırılmış kopyalarla verildi (kit yalnız ekleme kuralı).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: CLAUDE.md Omuz, Yüzde iç çizgi (dönük seyirci başında yüz çizgisi yok), Gravür telefonda okunur, Tek ışık (gölgeler ve sırt ışığı aynı avize listesinden), imza tekil. Proje genelinde `tsc` 1 hata veriyor: `src/kit/sablonlar/benmychree/Liman.tsx(155)` 'ON_KAYA' kullanılmıyor. Bu hata benim değişikliğim değil, Ben-my-Chree commit'i `2416c44`'ten geliyor; Leningrad dosyaları hatasız.
+- Açık sorular / bir sonraki ajana notlar:
+  - **Öz puan 6.5/10** (tur-1: 5.5). Paris yanında kontrast, kontur ve sıcak–soğuk artık aynı ailede. Hâlâ geri kaldığı yerler:
+    1. Tavandaki sıcak avize lekeleri havada asılı "yumurta" ovalleri gibi duruyor.
+    2. z14 haleleri lacivert üstünde hâlâ gri-lavanta disk okunuyor.
+    3. Ön koltuk bandı (y 1650–1920) geniş, düz ve flu; taraması flu yüzünden kayboluyor.
+    4. Sıcak %34.4 (<35) ve p95 L* 79.2 (<85, tasarım hedefi) karşılanmadı.
+    5. Köşe avizeleri büyük ve lamba "boncuk" tekrarı azaldı ama sürüyor.
+  - Tur-3 önerisi: tavan lekelerini kaldırıp yerine kaset kirişlerinin alt kenarında kenar ışığı; z14 halesini tek opak sıcak disk + ince halka yap; ön koltuk bandını σ 2'ye indirip kenar ışığı ve dikiş ritmi ver; p95 için sahne havuzunu ve sütun ışık yüzlerini havuz çekirdeğine (`#efd0b6`) taşı.
+  - Eleştirmen kalibrasyonu (≥7) bekleniyor; bu tur teslimi şablon kabulü değildir.
