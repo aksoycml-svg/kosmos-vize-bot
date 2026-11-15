@@ -1,0 +1,1998 @@
+{
+ "slug": "yarasa-bombasi",
+ "baslik": "Yarasa bombası: Amerika'nın kendi üssünü yakan silah",
+ "fps": 60,
+ "dil_katmanlari": [
+  "tr",
+  "en"
+ ],
+ "gorsel_yazisiz": true,
+ "altyazi": {
+  "acik": true,
+  "grup": 2,
+  "maks_harf": 14,
+  "bant": "oto",
+  "noktalamasiz": true
+ },
+ "_not": "Yönetmen, 2026-11-15. Plan süresi = plan-sureleri.json (P09/P12 +1.5 sn tutma). ses = TR, ses_en = EN (f0). Görüntü yazısız; ekran yazısı metin=TR, en=EN. Kit düzeltmeleri: mekanlar §5 + motion tur 1–2 (P09 tünme p196–250, P10 son cs 1.12/cy −120).",
+ "planlar": [
+  {
+   "id": "P01",
+   "tip": "document",
+   "sablon": "MASA-YB",
+   "sure_kare": 301,
+   "tempo": "hizli",
+   "olcek": "insert (spiral %60 sayfa) → geniş (kesme p135)",
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "ust_sayfa": {
+     "canli": true,
+     "suru": {
+      "faz0": 0.55
+     }
+    },
+    "alt_sayfa": {
+     "cati": true,
+     "yarasa": true,
+     "alev": true,
+     "alev_cizgi": true,
+     "kirmizi": true,
+     "geri": {
+      "bas": -100,
+      "bit": -90
+     }
+    },
+    "plan_ici_kesme": {
+     "kare": 135,
+     "sonraki_sablon": "COL-US"
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     134
+    ],
+    "cs": [
+     2.4,
+     2.7
+    ],
+    "cx": [
+     0,
+     0
+    ],
+    "cy": [
+     0,
+     -30
+    ],
+    "egri": "inout"
+   },
+   "devam_plan": {
+    "kare_bas": 135,
+    "sablon": "COL-US",
+    "parametreler": {
+     "gorunum": "yangin-kenar",
+     "saat": "ikindi",
+     "alev": [
+      {
+       "bas": 135,
+       "s0": -1.2,
+       "hiz": 0.9,
+       "boy": 1.8
+      }
+     ],
+     "suru": {
+      "n": 40,
+      "seed": 301,
+      "kaynak": [
+       640,
+       900
+      ],
+      "a": 20,
+      "b": 0.05,
+      "yon": -1,
+      "omega": 0.04,
+      "yukselis": 1.2,
+      "u": [
+       1.5,
+       3.5
+      ],
+      "mod": "surekli",
+      "donem": 900,
+      "stil": "siluet"
+     },
+     "plan_ici_kesme": {
+      "kare": 135,
+      "sonraki_sablon": "COL-US"
+     }
+    },
+    "kamera": {
+     "kare": [
+      135,
+      300
+     ],
+     "cs": [
+      1.0,
+      1.1
+     ],
+     "cx": [
+      -60,
+      -80
+     ],
+     "cy": [
+      0,
+      0
+     ],
+     "egri": "lineer"
+    }
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Hedef: Japonya",
+     "en": "Target: Japan",
+     "tur": "iddia",
+     "bas": 9,
+     "bit": 156
+    },
+    {
+     "bant": "ust",
+     "metin": "Hedef: Japonya\nYanan: ?",
+     "en": "Target: Japan\nBurned: ?",
+     "tur": "iddia",
+     "bas": 156,
+     "bit": 288,
+     "vurgu": [
+      "?"
+     ],
+     "vurgu_en": [
+      "?"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 135,
+     "olay": "çatı alev alır (kesme vurgusu)",
+     "ses": "ates-tutus",
+     "db": -9
+    },
+    {
+     "kare": 136,
+     "olay": "yükselen sürü kanat sesi köprüsü",
+     "ses": "kanat-uzak",
+     "db": -14
+    },
+    {
+     "kare": 138,
+     "olay": "ateş yatağı başlar",
+     "ses": "ates-yatak",
+     "db": -14
+    }
+   ],
+   "tasiyici": {
+    "cikis": "p135: yükselen siluet kümesi (defter sürüsü üst-sağ x 560–900 y 380–800 yukarı-sağ → üste aynı bölgede gerçek siluetler) + kanat sesi; P01→P02: çıplak #1 (kanca→geri sarım, zaman atlaması; ses: ateş yatağı + müzik sürer)",
+    "giris": "yok (ilk plan; döngü: P12 son karesi = bu planın p0'ı)"
+   },
+   "anahtar": false,
+   "saklanan": "'Yanan: ?' yarım; alevin hangi üsse ait olduğu kadraj dışı",
+   "okunurluk": {
+    "nesne": "alev / spiral",
+    "nesne_pct": 15,
+    "net_sn": 2.75
+   },
+   "kontrol_kare": 210,
+   "dokunus": null,
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P01.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P01.mp3",
+     "kare": 0
+    }
+   ],
+   "lint": {
+    "izin": [],
+    "not": "P01 p0 = P12 son kare: cs 2.4/cx 0/cy 0, ust_sayfa suru faz0 0.55 (P12: 0.0421, 386 kare ofset)"
+   },
+   "metin": ""
+  },
+  {
+   "id": "P02",
+   "tip": "document",
+   "sablon": "MASA-YB",
+   "sure_kare": 163,
+   "tempo": "nefes",
+   "olcek": "yakın (cs 1.40) → orta (1.02)",
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "ust_sayfa": {
+     "canli": true
+    },
+    "alt_sayfa": {
+     "cati": {
+      "bas": 900,
+      "bit": 940,
+      "q0": 0.3
+     },
+     "yarasa": {
+      "bas": 900,
+      "bit": 940,
+      "q0": 0.6
+     },
+     "gogus_bos": true,
+     "durak": {
+      "bas": 118,
+      "bit": 162
+     }
+    },
+    "kalem": {
+     "el": "adams"
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     100,
+     162
+    ],
+    "cs": [
+     1.4,
+     1.02,
+     1.02
+    ],
+    "cx": [
+     20,
+     0,
+     0
+    ],
+    "cy": [
+     -737,
+     -300,
+     -300
+    ],
+    "egri": "giris"
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Dr. Lytle Adams · diş hekimi\nCarlsbad Mağarası",
+     "en": "Dr. Lytle Adams · dentist\nCarlsbad Caverns",
+     "tur": "iddia",
+     "bas": 8,
+     "bit": 150
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 118,
+     "olay": "kalem ucu göğse değer, durur",
+     "ses": "kalem-tik",
+     "db": -9
+    }
+   ],
+   "tasiyici": {
+    "cikis": "kalem ucu + yarım yarasa (cs 1.02, cx 0, cy −300) → P03 aynı kamera/kalem durumu",
+    "giris": "çıplak #1 (P01 → P02): ses (ateş yatağı sönümü + müzik)"
+   },
+   "anahtar": false,
+   "saklanan": "yarasa göğsü boş; kalem durur, çizilmez",
+   "okunurluk": {
+    "nesne": "el + kalem + yarım yarasa",
+    "nesne_pct": 12,
+    "net_sn": 0.7
+   },
+   "kontrol_kare": 150,
+   "dokunus": null,
+   "kit_eksik": [
+    "KE-kalem-giris: kalem sağ-alttan girişi yok; kalem p0'dan göğüs üstünde havada (kamera geri çekilirken kadrajda), p118'de değer (durak)"
+   ],
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P02.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P02.mp3",
+     "kare": 0
+    }
+   ],
+   "lint": {
+    "izin": [
+     "okunurluk_net_sure"
+    ],
+    "not": "ana okuma yarım yarasa/boş göğüs ≥2 sn; kalem net 0.6 sn kapanış anı"
+   },
+   "metin": ""
+  },
+  {
+   "id": "P03",
+   "tip": "document",
+   "sablon": "MASA-YB",
+   "sure_kare": 339,
+   "tempo": "bekle",
+   "olcek": "orta (cs 1.02) → yakın (göğüs+alev, cs 1.72)",
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "ust_sayfa": {
+     "canli": true
+    },
+    "alt_sayfa": {
+     "cati": {
+      "bas": 6,
+      "bit": 96,
+      "q0": 0.3
+     },
+     "yarasa": {
+      "bas": 100,
+      "bit": 140,
+      "q0": 0.6
+     },
+     "gogus_bos": true,
+     "durak": {
+      "bas": 180,
+      "bit": 204
+     },
+     "alev": {
+      "bas": 204,
+      "bit": 254
+     },
+     "alev_cizgi": {
+      "bas": 258,
+      "bit": 294
+     },
+     "kirmizi": {
+      "bas": 276,
+      "bit": 318
+     }
+    },
+    "kalem": {
+     "el": "adams",
+     "cikis": {
+      "bas": 296,
+      "bit": 326
+     }
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     150,
+     204,
+     338
+    ],
+    "cs": [
+     1.02,
+     1.35,
+     1.7,
+     1.72
+    ],
+    "cx": [
+     0,
+     20,
+     31,
+     31
+    ],
+    "cy": [
+     -300,
+     -661,
+     -1062,
+     -1075
+    ],
+    "egri": "inout"
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Hedef: ahşap Japon şehirleri",
+     "en": "Target: wooden Japanese cities",
+     "tur": "iddia",
+     "bas": 72,
+     "bit": 320
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 6,
+     "olay": "kalem çatı çizgisine başlar",
+     "ses": "kalem-kagit",
+     "db": -9
+    },
+    {
+     "kare": 100,
+     "olay": "kalem yarasa ayaklarını kirişe oturtur",
+     "ses": "kalem-kagit",
+     "db": -9
+    },
+    {
+     "kare": 204,
+     "olay": "kalem küçük alevi başlatır",
+     "ses": "kalem-tik",
+     "db": -6
+    },
+    {
+     "kare": 210,
+     "olay": "alev çizilir",
+     "ses": "kalem-kagit",
+     "db": -9
+    },
+    {
+     "kare": 258,
+     "olay": "alev çizgisi göğüsten kirişe",
+     "ses": "kalem-kagit",
+     "db": -9
+    },
+    {
+     "kare": 278,
+     "olay": "çatı taraması kırmızıya döner",
+     "ses": "kalem-kagit",
+     "db": -10
+    }
+   ],
+   "tasiyici": {
+    "cikis": "kâğıt: sayfa merkezi (540,1000) → P04 zarf/harita merkezi (540,1000), kâğıt krem ton",
+    "giris": "kamera P02 son durumundan (cs 1.02, cx 0, cy −300), kalem ucu"
+   },
+   "anahtar": false,
+   "saklanan": "alev göğüste mi çatıda mı başlıyor: kalem 0.4 sn durur, sonra çizer",
+   "okunurluk": {
+    "nesne": "alev + kalem",
+    "nesne_pct": 10.4,
+    "net_sn": 1.9
+   },
+   "kontrol_kare": 264,
+   "dokunus": {
+    "id": "YB-D1",
+    "ad": "Kalem durur, alev çatıya sıçrar",
+    "bas": 180,
+    "bit": 318
+   },
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P03.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P03.mp3",
+     "kare": 0
+    }
+   ],
+   "metin": ""
+  },
+  {
+   "id": "P04",
+   "tip": "map",
+   "sablon": "HARITA",
+   "sure_kare": 361,
+   "tempo": "hizli",
+   "olcek": "geniş (harita, cs 1.0→1.5) → orta/insert (masa)",
+   "parametreler": {
+    "rota": "ozel",
+    "harita_gorunum": "abd",
+    "bolge": "dogu",
+    "svg_etiket": false,
+    "rota_noktalar": [
+     [
+      "Irwin",
+      -79.7,
+      40.32,
+      true
+     ],
+     [
+      "Washington",
+      -77.04,
+      38.9,
+      true
+     ]
+    ],
+    "rota_ciz": {
+     "bas": 18,
+     "bit": 200
+    },
+    "zarf_ikon": {
+     "bas": 18,
+     "bit": 200,
+     "boyut_px": 150
+    },
+    "kamera_takip": {
+     "kare": [
+      10,
+      200
+     ],
+     "cs": 1.5,
+     "ekran": [
+      540,
+      950
+     ],
+     "gecis": 20
+    },
+    "plan_ici_kesme": {
+     "kare": 228,
+     "sonraki_sablon": "MASA-YB"
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     200
+    ],
+    "cs": [
+     1.0,
+     1.0
+    ],
+    "cx": [
+     0,
+     0
+    ],
+    "cy": [
+     0,
+     0
+    ],
+    "egri": "inout"
+   },
+   "devam_plan": {
+    "kare_bas": 228,
+    "sablon": "MASA-YB",
+    "parametreler": {
+     "aci": "tepe",
+     "isik": "lamba",
+     "defter": {
+      "dx": -700,
+      "dy": 400
+     },
+     "nesneler": [
+      {
+       "tur": "zarf",
+       "x": 560,
+       "y": 900,
+       "olcek": 0.75,
+       "aci": -6
+      },
+      {
+       "tur": "not",
+       "x": 740,
+       "y": 1130,
+       "aci": 8,
+       "dus": {
+        "kare": 297
+       }
+      }
+     ]
+    },
+    "kamera": {
+     "kare": [
+      228,
+      350
+     ],
+     "cs": [
+      1.0,
+      1.25
+     ],
+     "cx": [
+      -20,
+      -25
+     ],
+     "cy": [
+      60,
+      75
+     ],
+     "egri": "inout"
+    }
+   },
+   "harita_etiketleri": [
+    {
+     "ad": "Irwin",
+     "metin": {
+      "tr": "Irwin",
+      "en": "Irwin"
+     },
+     "x": 403.8,
+     "y": 835.3,
+     "kutu": [
+      350,
+      780
+     ],
+     "bas": 12,
+     "bit": 227
+    },
+    {
+     "ad": "Washington",
+     "metin": {
+      "tr": "Washington",
+      "en": "Washington"
+     },
+     "x": 717.9,
+     "y": 979.0,
+     "kutu": [
+      790,
+      1040
+     ],
+     "bas": 190,
+     "bit": 227
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Ocak 1942",
+     "en": "January 1942",
+     "tur": "iddia",
+     "bas": 15,
+     "bit": 225
+    },
+    {
+     "bant": "ust",
+     "metin": "Başkanın notu:\n\"Bu adam kaçık değil.\"",
+     "en": "The president's note:\n\"This man is not a nut.\"",
+     "tur": "iddia",
+     "bas": 246,
+     "bit": 345
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 204,
+     "olay": "zarf haritaya konar",
+     "ses": "kagit-tok",
+     "db": -9
+    },
+    {
+     "kare": 228,
+     "olay": "kesme köprüsü: kâğıt hışırtısı",
+     "ses": "kagit-hisirti",
+     "db": -12
+    },
+    {
+     "kare": 297,
+     "olay": "not zarfın yanına düşer",
+     "ses": "not-birak",
+     "db": -9
+    }
+   ],
+   "tasiyici": {
+    "cikis": "p228: zarf ikonu merkezi (540,950) → masada zarf aynı ekran konumu; kâğıt tonu; P04→P05: aynı masa/ışık, el yönü, kâğıt hışırtısı → cımbız tıkı",
+    "giris": "kâğıt (P03 sayfa merkezi (540,1000) → harita zarf ikonu)"
+   },
+   "anahtar": false,
+   "saklanan": "notun geri kalanı (kenar kıvrık, ikinci satır kapalı)",
+   "okunurluk": {
+    "nesne": "zarf ikonu / masada zarf+not",
+    "nesne_pct": 11,
+    "net_sn": 1.0
+   },
+   "kontrol_kare": 306,
+   "dokunus": null,
+   "kit_eksik": [
+    "KE-el-ceket-not: not bırakan el (ceket manşet) MASA-YB'de yok; not kendi düşer (14 kare, elsiz). Orkestra karar: el insert ya da kabul"
+   ],
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P04.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P04.mp3",
+     "kare": 0
+    }
+   ],
+   "metin": ""
+  },
+  {
+   "id": "P05",
+   "tip": "document",
+   "sablon": "MASA-YB",
+   "sure_kare": 290,
+   "tempo": "nefes",
+   "olcek": "orta (cs 1.0) → yakın (kapsül, cs 1.9)",
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "defter": {
+     "dx": -760,
+     "dy": 300
+    },
+    "nesneler": [
+     {
+      "tur": "kapsul-set",
+      "x": 560,
+      "y": 980,
+      "olcek": 1.9,
+      "aci": 0,
+      "cimbiz": {
+       "bas": 30,
+       "temas": 192,
+       "bit": 250
+      }
+     }
+    ]
+   },
+   "kamera": {
+    "kare": [
+     0,
+     130,
+     289
+    ],
+    "cs": [
+     1.0,
+     1.9,
+     1.95
+    ],
+    "cx": [
+     0,
+     -38,
+     -40
+    ],
+    "cy": [
+     0,
+     2,
+     2
+    ],
+    "egri": "inout"
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Louis Fieser · Harvard kimyacısı · napalm",
+     "en": "Louis Fieser · Harvard chemist · napalm",
+     "tur": "iddia",
+     "bas": 24,
+     "bit": 264
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 192,
+     "olay": "cımbızdaki kapsül göğse değer",
+     "ses": "pens-tik",
+     "db": -6
+    },
+    {
+     "kare": 196,
+     "olay": "kap oturur, kapak kapalı",
+     "ses": "kap-oturma",
+     "db": -6
+    }
+   ],
+   "tasiyici": {
+    "cikis": "kapsüllü yarasa ekran (540,1000), aynı boyut → P06 bölmesi",
+    "giris": "aynı masa/ışık, el yönü sağdan"
+   },
+   "anahtar": false,
+   "saklanan": "kapak altı (P09'da amber nabız)",
+   "okunurluk": {
+    "nesne": "kapsül",
+    "nesne_pct": 12,
+    "net_sn": 1.6
+   },
+   "kontrol_kare": 216,
+   "dokunus": {
+    "id": "YB-D2",
+    "ad": "Kapsül yapıştırılır, kapak kapalı kalır",
+    "bas": 144,
+    "bit": 228
+   },
+   "kit_eksik": [
+    "KE-damlalik: yapıştırıcı damlası/damlalık yok; temas kapsül göğse değişiyle gösterilir (damla-yapistir kullanılmadı)"
+   ],
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P05.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P05.mp3",
+     "kare": 0
+    }
+   ],
+   "metin": ""
+  },
+  {
+   "id": "P06",
+   "tip": "chart",
+   "sablon": "MASA-YB",
+   "sure_kare": 339,
+   "tempo": "hizli",
+   "olcek": "insert (bölme cs 2.6) → geniş (kovan 1.0) → yakın (bölme 2.0)",
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "defter": false,
+    "nesneler": [
+     {
+      "tur": "kovan",
+      "x": 540,
+      "y": 960,
+      "olcek": 0.75,
+      "tepsi_n": 26,
+      "diz": {
+       "bas": 15,
+       "bit": 100
+      },
+      "ac": {
+       "bas": 170,
+       "bit": 262
+      },
+      "titre": {
+       "tepsi": 12,
+       "kare": 300
+      }
+     }
+    ]
+   },
+   "kamera": {
+    "kare": [
+     0,
+     100,
+     215,
+     280,
+     327
+    ],
+    "cs": [
+     2.6,
+     1.0,
+     1.0,
+     1.35,
+     2.0
+    ],
+    "cx": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "cy": [
+     153,
+     0,
+     0,
+     55,
+     118
+    ],
+    "egri": "inout"
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Soğukla uyutuldu · kovan başı ~1.000 yarasa",
+     "en": "Chilled to sleep · ~1,000 bats per canister",
+     "tur": "iddia",
+     "bas": 30,
+     "bit": 250
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 25,
+     "olay": "tepsiler üstten dizilir",
+     "ses": "tepsi-dizilim",
+     "db": -12
+    },
+    {
+     "kare": 185,
+     "olay": "kovan kapakları açılır",
+     "ses": "kovan-ac",
+     "db": -9
+    },
+    {
+     "kare": 225,
+     "olay": "yarasalar dağılır",
+     "ses": "kanat-uzak",
+     "db": -12
+    },
+    {
+     "kare": 305,
+     "olay": "tek bölmede kanat titrer",
+     "ses": "kanat-titrek",
+     "db": -10
+    }
+   ],
+   "tasiyici": {
+    "cikis": "merkezdeki kıpırdayan bölme ekran (540,960), aynı boyut → P07",
+    "giris": "P05 kapsüllü yarasa bölmesi (match)"
+   },
+   "anahtar": false,
+   "saklanan": "kıpırdayan bölme (P07 açar)",
+   "okunurluk": {
+    "nesne": "kovan kesiti / bölme",
+    "nesne_pct": 45,
+    "net_sn": 0.65
+   },
+   "kontrol_kare": 305,
+   "dokunus": null,
+   "kit_eksik": [
+    "KE-kapak-kapanis: kovan kapağının yeniden kapanışı çıkarıldı (süre yok)"
+   ],
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P06.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P06.mp3",
+     "kare": 0
+    }
+   ],
+   "lint": {
+    "izin": [
+     "okunurluk_net_sure"
+    ],
+    "not": "kıpırdama devamı P07'de yakın planda"
+   },
+   "metin": ""
+  },
+  {
+   "id": "P07",
+   "tip": "chart",
+   "sablon": "MASA-YB",
+   "sure_kare": 209,
+   "tempo": "bekle",
+   "olcek": "yakın/insert (cs 2.0 → 2.25)",
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "defter": false,
+    "nesneler": [
+     {
+      "tur": "tepsi",
+      "x": 540,
+      "y": 960,
+      "cap": 1000,
+      "bolme_n": 14,
+      "odak": 3,
+      "titre": [
+       30,
+       60
+      ],
+      "bas_don": {
+       "bas": 84,
+       "bit": 144,
+       "aci": -45
+      }
+     }
+    ]
+   },
+   "kamera": {
+    "kare": [
+     0,
+     208
+    ],
+    "cs": [
+     2.0,
+     2.25
+    ],
+    "cx": [
+     -68,
+     -76
+    ],
+    "cy": [
+     -656,
+     -738
+    ],
+    "egri": "lineer"
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Tüneyeceği yer: saçak altı, tavan arası",
+     "en": "Where it roosts: eaves, attics",
+     "tur": "iddia",
+     "bas": 21,
+     "bit": 190
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 30,
+     "olay": "kanat seğirir",
+     "ses": "kanat-titrek",
+     "db": -9
+    },
+    {
+     "kare": 60,
+     "olay": "kanat ikinci kez seğirir",
+     "ses": "kanat-titrek",
+     "db": -9
+    }
+   ],
+   "tasiyici": {
+    "cikis": "yön SOL (baş dönüşü) + kanat sesi → P08 sürü gölgesi sağdan sola; kesme hareket bittikten sonra",
+    "giris": "P06 merkezdeki bölme (540,960)"
+   },
+   "anahtar": false,
+   "saklanan": "baktığı karanlık köşe kadraj dışı",
+   "okunurluk": {
+    "nesne": "yarasa başı",
+    "nesne_pct": 12,
+    "net_sn": 2.3
+   },
+   "kontrol_kare": 120,
+   "dokunus": {
+    "id": "YB-D3",
+    "ad": "Kanat titrer, baş karanlığa döner",
+    "bas": 30,
+    "bit": 168
+   },
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P07.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P07.mp3",
+     "kare": 0
+    }
+   ],
+   "metin": ""
+  },
+  {
+   "id": "P08",
+   "tip": "tower",
+   "sablon": "COL-US",
+   "sure_kare": 392,
+   "tempo": "nefes",
+   "olcek": "geniş (cs 1.0) → orta-geniş (1.35, tank)",
+   "parametreler": {
+    "gorunum": "genis",
+    "saat": "ikindi",
+    "dolly": {
+     "hedef": "tank-alti",
+     "kare": [
+      340,
+      391
+     ],
+     "k": [
+      0,
+      0.15
+     ]
+    },
+    "suru": {
+     "n": 170,
+     "seed": 223,
+     "kaynak": [
+      930,
+      1180
+     ],
+     "a": 30,
+     "b": 0.1,
+     "yon": -1,
+     "omega": 0.035,
+     "yukselis": 5.5,
+     "egim": 0.3,
+     "kayma": -0.18,
+     "u": [
+      7,
+      26
+     ],
+     "mod": "bas",
+     "bas": 200,
+     "yayilim": 220,
+     "stil": "siluet",
+     "kenar": true
+    },
+    "suru_golgesi": {
+     "bas": 262,
+     "bit": 352,
+     "n": 80,
+     "h": [
+      2,
+      5
+     ]
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     260,
+     340,
+     391
+    ],
+    "cs": [
+     1.0,
+     1.06,
+     1.06,
+     1.35
+    ],
+    "cx": [
+     0,
+     0,
+     0,
+     -60
+    ],
+    "cy": [
+     0,
+     0,
+     0,
+     -90
+    ],
+    "egri": "inout"
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Carlsbad yardımcı sahası · New Mexico · kaza",
+     "en": "Carlsbad auxiliary field · New Mexico · by accident",
+     "tur": "iddia",
+     "bas": 30,
+     "bit": 372
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 200,
+     "olay": "sürü yükselir (uzak kanat sesi)",
+     "ses": "kanat-uzak",
+     "db": -9
+    }
+   ],
+   "tasiyici": {
+    "cikis": "tank aynı ekran konumu/ölçek, kamera hareketi + dolly k 0.15 sürer, rüzgâr yatağı → P09 (kesme yok)",
+    "giris": "yön SOL + kanat sesi (P07)"
+   },
+   "anahtar": false,
+   "saklanan": "sürünün nereye ineceği (bulut üstte, hiçbir şey yere inmedi)",
+   "okunurluk": {
+    "nesne": "sürü gölgesi tankta",
+    "nesne_pct": 35,
+    "net_sn": 1.08
+   },
+   "kontrol_kare": 315,
+   "dokunus": {
+    "id": "YB-D4",
+    "ad": "Defter spiralinin aynası",
+    "bas": 200,
+    "bit": 372
+   },
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P08.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P08.mp3",
+     "kare": 0
+    }
+   ],
+   "metin": ""
+  },
+  {
+   "id": "P09",
+   "tip": "tower",
+   "sablon": "COL-US",
+   "sure_kare": 373,
+   "tempo": "bekle",
+   "olcek": "orta (genis dolly) → yakın (tank altı, cs 2.53)",
+   "parametreler": {
+    "gorunum": "genis",
+    "saat": "ikindi",
+    "tunek_dalgasi": {
+     "bas": 196,
+     "bit": 250,
+     "adet": 4,
+     "seed": 5,
+     "olcek": 1.6,
+     "yuzey": [
+      "semer0"
+     ],
+     "acik_n": 2
+    },
+    "kapsul_nabiz": {
+     "bas": 180,
+     "periyot": [
+      96,
+      68
+     ],
+     "bit": 372
+    },
+    "vinyet": {
+     "kare": [
+      120,
+      258
+     ],
+     "deger": [
+      0,
+      0.12
+     ]
+    },
+    "dolly": {
+     "hedef": "tank-alti",
+     "kare": [
+      0,
+      150
+     ],
+     "k": [
+      0.15,
+      1
+     ]
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     150,
+     220,
+     372
+    ],
+    "cs": [
+     1.35,
+     1.35,
+     2.5,
+     2.53
+    ],
+    "cx": [
+     -60,
+     0,
+     60,
+     60
+    ],
+    "cy": [
+     -90,
+     -150,
+     -330,
+     -335
+    ],
+    "egri": "inout"
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Zamanlayıcılar işliyor",
+     "en": "Timers running",
+     "tur": "iddia",
+     "bas": 48,
+     "bit": 355
+    }
+   ],
+   "altyazi": false,
+   "temaslar": [
+    {
+     "kare": 200,
+     "olay": "uzak yarasa kirişe tutunur",
+     "ses": "tutun-uzak",
+     "db": -9
+    },
+    {
+     "kare": 218,
+     "olay": "ikinci yarasa tutunur",
+     "ses": "tutun-uzak",
+     "db": -9
+    },
+    {
+     "kare": 236,
+     "olay": "üçüncü yarasa tutunur",
+     "ses": "tutun-uzak",
+     "db": -9
+    }
+   ],
+   "tasiyici": {
+    "cikis": "son amber nabız noktası → P10 ilk kıvılcım (aynı kare konumu), P10 kamerası bu son durumdan",
+    "giris": "tank aynı konum (P08 sonu, dolly k 0.15), rüzgâr yatağı"
+   },
+   "anahtar": true,
+   "saklanan": "kaç dakika kaldığı bilinmiyor (nabız sabit, sayaç yok)",
+   "okunurluk": {
+    "nesne": "asılı yarasa + kapsül nabzı",
+    "nesne_pct": 15,
+    "net_sn": 1.5
+   },
+   "tutma": {
+    "bas": 258,
+    "bit": 348,
+    "not": "okuma 4.3 sn + 1.5 sn; vinyet çevreyi geri çeker; müzik tek nota"
+   },
+   "kontrol_kare": 300,
+   "dokunus": {
+    "id": "YB-D5",
+    "ad": "Tünme dalgası + amber nabız",
+    "bas": 196,
+    "bit": 348
+   },
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P09.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P09.mp3",
+     "kare": 0
+    }
+   ],
+   "lint": {
+    "izin": [
+     "okunurluk_net_sure"
+    ],
+    "not": "tünme p196–250 (motion: uçuşlar dolly bitişinden sonra)"
+   },
+   "metin": ""
+  },
+  {
+   "id": "P10",
+   "tip": "tower",
+   "sablon": "COL-US",
+   "sure_kare": 224,
+   "tempo": "hizli",
+   "olcek": "yakın (cs 2.53) → geniş (cs 1.12, cy −120)",
+   "parametreler": {
+    "gorunum": "tank-alti",
+    "saat": "ikindi",
+    "dolly": {
+     "hedef": "genis",
+     "kare": [
+      110,
+      208
+     ],
+     "k": [
+      0,
+      1
+     ]
+    },
+    "tunek_dalgasi": {
+     "bas": -300,
+     "bit": -200,
+     "adet": 4,
+     "seed": 5,
+     "olcek": 1.6,
+     "yuzey": [
+      "semer0"
+     ],
+     "acik_n": 2
+    },
+    "tunek_stil": "gomulu",
+    "kapsul_nabiz": {
+     "bas": -300,
+     "periyot": [
+      68,
+      68
+     ]
+    },
+    "kivilcim_dizisi": [
+     {
+      "kare": 12,
+      "tunek": 0
+     },
+     {
+      "kare": 42,
+      "tunek": 1
+     },
+     {
+      "kare": 72,
+      "tunek": 2
+     }
+    ],
+    "alev": [
+     {
+      "bas": 102,
+      "s0": -0.4,
+      "hiz": 1.4,
+      "boy": 1.4
+     }
+    ],
+    "suru": {
+     "n": 60,
+     "seed": 224,
+     "kaynak": [
+      240,
+      900
+     ],
+     "a": 40,
+     "b": 0.03,
+     "yon": -1,
+     "omega": 0.03,
+     "yukselis": 0.4,
+     "u": [
+      1.5,
+      3.5
+     ],
+     "mod": "surekli",
+     "donem": 1200,
+     "stil": "siluet"
+    },
+    "on_plan": true
+   },
+   "kamera": {
+    "kare": [
+     0,
+     110,
+     208
+    ],
+    "cs": [
+     2.53,
+     2.53,
+     1.12
+    ],
+    "cx": [
+     60,
+     60,
+     0
+    ],
+    "cy": [
+     -335,
+     -335,
+     -120
+    ],
+    "egri": "inout"
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Test sahası yandı · anlatılana göre\nhangar, kışla, bir generalin arabası da",
+     "en": "Test range burned · by one account,\nhangars, barracks, a general's car too",
+     "tur": "iddia",
+     "bas": 30,
+     "bit": 212
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 12,
+     "olay": "birinci kıvılcım",
+     "ses": "kivilcim-cirt",
+     "db": -9
+    },
+    {
+     "kare": 42,
+     "olay": "ikinci kıvılcım",
+     "ses": "kivilcim-cirt",
+     "db": -7
+    },
+    {
+     "kare": 72,
+     "olay": "üçüncü kıvılcım",
+     "ses": "kivilcim-cirt",
+     "db": -5
+    },
+    {
+     "kare": 102,
+     "olay": "alev saçağa tutuşur",
+     "ses": "ates-tutus",
+     "db": -7
+    },
+    {
+     "kare": 105,
+     "olay": "ateş yatağı",
+     "ses": "ates-yatak",
+     "db": -12
+    }
+   ],
+   "tasiyici": {
+    "cikis": "çıplak #2 (şok → harita, zaman atlaması): ses (ateş yatağı kuyruğu −14→−30) + renk (alev turuncusu → harita turuncu halka)",
+    "giris": "P09 amber nabız → ilk kıvılcım; kamera P09 son durumundan (cs 2.53, cx 60, cy −335)"
+   },
+   "anahtar": false,
+   "saklanan": "hangi arabanın general'in olduğu (yalnız yazı)",
+   "okunurluk": {
+    "nesne": "kıvılcım halo / alev",
+    "nesne_pct": 12,
+    "net_sn": 2.2
+   },
+   "kontrol_kare": 150,
+   "dokunus": {
+    "id": "YB-D6",
+    "ad": "Üç kıvılcım, sonra alev",
+    "bas": 12,
+    "bit": 144
+   },
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P10.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P10.mp3",
+     "kare": 0
+    }
+   ],
+   "kit_eksik": [
+    "KE-kompars-siluet: P10 geniş karede kompars yok (kurulmadı)"
+   ],
+   "metin": ""
+  },
+  {
+   "id": "P11",
+   "tip": "map",
+   "sablon": "HARITA",
+   "sure_kare": 382,
+   "tempo": "nefes",
+   "olcek": "geniş (cs 1.0) → orta (2.0, Dugway) → insert (masa belge)",
+   "parametreler": {
+    "rota": "ozel",
+    "harita_gorunum": "abd",
+    "bolge": "ulusal",
+    "svg_etiket": false,
+    "rota_noktalar": [
+     [
+      "Dugway",
+      -112.9,
+      40.2,
+      true
+     ]
+    ],
+    "igne": {
+     "kare": 60,
+     "renk": "murekkep"
+    },
+    "isaret": {
+     "lonlat": [
+      -104.23,
+      32.26
+     ],
+     "bas": 0
+    },
+    "magara_ikon": {
+     "lonlat": [
+      -104.44,
+      32.18
+     ]
+    },
+    "koy_ikon": {
+     "lonlat": [
+      -112.9,
+      40.2
+     ],
+     "ev_n": 4,
+     "ikon_px": 112,
+     "ciz": {
+      "bas": 62,
+      "bit": 100,
+      "stagger": 8
+     }
+    },
+    "suru_ikon": {
+     "bas": 100,
+     "bit": 138,
+     "lonlat": [
+      -112.9,
+      40.2
+     ],
+     "n": 16
+    },
+    "plan_ici_kesme": {
+     "kare": 144,
+     "sonraki_sablon": "MASA-YB"
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     110
+    ],
+    "cs": [
+     1.0,
+     2.0
+    ],
+    "cx": [
+     0,
+     640
+    ],
+    "cy": [
+     0,
+     -80
+    ],
+    "egri": "inout"
+   },
+   "devam_plan": {
+    "kare_bas": 144,
+    "sablon": "MASA-YB",
+    "parametreler": {
+     "aci": "tepe",
+     "isik": "lamba",
+     "defter": {
+      "dx": -400,
+      "dy": -170
+     },
+     "nesneler": [
+      {
+       "tur": "belge",
+       "x": 800,
+       "y": 960,
+       "ortu": {
+        "kare": 298,
+        "kayma": 260
+       }
+      },
+      {
+       "tur": "muhur",
+       "x": 800,
+       "y": 900,
+       "cap": 340,
+       "temas": 294,
+       "giris": {
+        "bas": 144,
+        "bit": 200
+       },
+       "cikis": {
+        "bas": 302,
+        "bit": 340
+       }
+      }
+     ]
+    },
+    "kamera": {
+     "kare": [
+      144
+     ],
+     "cs": [
+      1.0
+     ],
+     "cx": [
+      0
+     ],
+     "cy": [
+      0
+     ]
+    }
+   },
+   "harita_etiketleri": [
+    {
+     "ad": "Dugway",
+     "metin": {
+      "tr": "Dugway",
+      "en": "Dugway"
+     },
+     "x": 315.1,
+     "y": 911.8,
+     "kutu": [
+      290,
+      840
+     ],
+     "bas": 14,
+     "bit": 143
+    }
+   ],
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Anlatılana göre Dugway, Utah'ta\nJapon evi kopyaları",
+     "en": "By one account, Dugway, Utah:\nJapanese-house replicas",
+     "tur": "iddia",
+     "bas": 6,
+     "bit": 230
+    },
+    {
+     "bant": "ust",
+     "metin": "en erken 1945 ortası · ~2 milyon $ harcandığı söylenir",
+     "en": "ready mid-1945 at the earliest · about $2 million spent, it is said",
+     "tur": "iddia",
+     "bas": 236,
+     "bit": 366
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 60,
+     "olay": "iğne haritaya batar",
+     "ses": "igne-tak",
+     "db": -9
+    },
+    {
+     "kare": 62,
+     "olay": "köy ikonları çizilir",
+     "ses": "kalem-kagit",
+     "db": -10
+    },
+    {
+     "kare": 144,
+     "olay": "kesme köprüsü: parşömen → belge",
+     "ses": "kagit-hisirti",
+     "db": -12
+    },
+    {
+     "kare": 294,
+     "olay": "iptal mührü belgeye iner",
+     "ses": "muhur-tok",
+     "db": -5
+    },
+    {
+     "kare": 298,
+     "olay": "başlık örtüsü kayar",
+     "ses": "kagit-hisirti",
+     "db": -12
+    }
+   ],
+   "tasiyici": {
+    "cikis": "p144: kâğıt (parşömen ↔ belge; ikon merkezi → belge merkezi) + ses; P11→P12: mühür izi (kırmızı) belgede kalır, belge sağ kenarda (800,960 → P12 dekor 1200,1130), defter köşesi sol kenarda kurulu",
+    "giris": "çıplak #2: alev turuncusu → turuncu halka (Carlsbad), ateş yatağı kuyruğu"
+   },
+   "anahtar": false,
+   "saklanan": "belge başlığı mühür inene kadar kapalı",
+   "okunurluk": {
+    "nesne": "mühür",
+    "nesne_pct": 18,
+    "net_sn": 1.27
+   },
+   "kontrol_kare": 340,
+   "dokunus": {
+    "id": "YB-D7",
+    "ad": "Mühür belgenin üstüne iner, başlık açılır",
+    "bas": 264,
+    "bit": 340
+   },
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P11.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P11.mp3",
+     "kare": 0
+    }
+   ],
+   "lint": {
+    "izin": [],
+    "not": "köy ikonları 112 px (telefonda ≥20 px)"
+   },
+   "metin": ""
+  },
+  {
+   "id": "P12",
+   "tip": "document",
+   "sablon": "MASA-YB",
+   "sure_kare": 387,
+   "tempo": "bekle",
+   "olcek": "orta → yakın (A) · orta tank altı (B, yanik) · orta → yakın (C, döngü)",
+   "parametreler": {
+    "aci": "tepe",
+    "isik": "lamba",
+    "alt_sayfa": {
+     "cati": true,
+     "yarasa": true,
+     "alev": true,
+     "alev_cizgi": true,
+     "kirmizi": true,
+     "geri": {
+      "bas": 82,
+      "bit": 96
+     }
+    },
+    "ust_sayfa": {
+     "canli": true
+    },
+    "nesneler": [
+     {
+      "tur": "belge",
+      "x": 1200,
+      "y": 1130,
+      "aci": -3,
+      "ortu": {
+       "kare": -300,
+       "kayma": 260
+      }
+     },
+     {
+      "tur": "muhur",
+      "x": 1200,
+      "y": 1070,
+      "cap": 340,
+      "temas": -300,
+      "giris": {
+       "bas": -400,
+       "bit": -350
+      },
+      "cikis": {
+       "bas": -290,
+       "bit": -250
+      }
+     }
+    ],
+    "plan_ici_kesme": {
+     "kare": 112,
+     "sonraki_sablon": "COL-US"
+    }
+   },
+   "kamera": {
+    "kare": [
+     0,
+     80,
+     111
+    ],
+    "cs": [
+     1.0,
+     1.9,
+     1.9
+    ],
+    "cx": [
+     -400,
+     0,
+     0
+    ],
+    "cy": [
+     -170,
+     -1303,
+     -1303
+    ],
+    "egri": "inout"
+   },
+   "devam_plan": {
+    "kare_bas": 112,
+    "sablon": "COL-US",
+    "parametreler": {
+     "gorunum": "yanik",
+     "saat": "ikindi",
+     "yanik": {
+      "oran": 1
+     },
+     "duman": {
+      "bas": -300,
+      "ince": true,
+      "kaynak": [
+       0.4,
+       -1.3
+      ]
+     },
+     "cizimden": {
+      "bas": 112,
+      "bit": 138
+     },
+     "cizime": {
+      "bas": 292,
+      "bit": 316
+     },
+     "vinyet": {
+      "kare": [
+       138,
+       300
+      ],
+      "deger": [
+       0,
+       0.35
+      ]
+     },
+     "plan_ici_kesme": {
+      "kare": 112,
+      "sonraki_sablon": "COL-US"
+     },
+     "plan_ici_kesme_2": {
+      "kare": 318
+     }
+    },
+    "kamera": {
+     "kare": [
+      112,
+      172,
+      282,
+      316
+     ],
+     "cs": [
+      1.0,
+      1.0,
+      0.955,
+      1.0
+     ],
+     "egri": "inout"
+    },
+    "kesme_2": {
+     "kare_bas": 318,
+     "sablon": "MASA-YB",
+     "parametreler": {
+      "aci": "tepe",
+      "isik": "lamba",
+      "ust_sayfa": {
+       "canli": true,
+       "suru": {
+        "faz0": 0.0421
+       }
+      },
+      "alt_sayfa": {
+       "cati": true,
+       "yarasa": true,
+       "alev": true,
+       "alev_cizgi": true,
+       "kirmizi": true,
+       "geri": {
+        "bas": -100,
+        "bit": -90
+       }
+      }
+     },
+     "kamera": {
+      "kare": [
+       318,
+       372,
+       386
+      ],
+      "cs": [
+       1.9,
+       2.4,
+       2.4
+      ],
+      "cx": [
+       0,
+       0,
+       0
+      ],
+      "cy": [
+       -1303,
+       0,
+       0
+      ],
+      "egri": "inout"
+     }
+    }
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Hedef: Japonya\nYanan: New Mexico",
+     "en": "Target: Japan\nBurned: New Mexico",
+     "tur": "iddia",
+     "bas": 118,
+     "bit": 340,
+     "vurgu": [
+      "Mexico"
+     ],
+     "vurgu_en": [
+      "Mexico"
+     ]
+    }
+   ],
+   "temaslar": [],
+   "tasiyici": {
+    "cikis": "p112: çatı çizgisi (çizim = yanmış saçak, aynı ekran konumu, cs 1.9/cy −1303 ↔ yanik cs 1.0) ; p318: yanmış çatı mürekkebe döner (cizime) ; döngü: son kare = P01 p0 (cs 2.4, cx 0, cy 0, spiral fazı eş)",
+    "giris": "aynı masa: mühür izi + belge sağ kenarda (P11 B)"
+   },
+   "anahtar": true,
+   "tutma": {
+    "bas": 112,
+    "bit": 340,
+    "not": "ilk 0.8 sn tam sabit; ekran yazısı 3.7 sn; vinyet çevreyi geri çeker"
+   },
+   "saklanan": "yok; '?' kapanır",
+   "okunurluk": {
+    "nesne": "yanık saçak + tank gölgesi",
+    "nesne_pct": 35,
+    "net_sn": 3.7
+   },
+   "kontrol_kare": 200,
+   "dokunus": null,
+   "ses": [
+    {
+     "dosya": "yarasa/ses/tr/P12.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "yarasa/ses/en/P12.mp3",
+     "kare": 0
+    }
+   ],
+   "kit_eksik": [
+    "KE-kagit-cevir: sayfa çevirme yok; mekanlar §5.5: döngü kamera alt sayfadan üst sayfaya kayarak kurulur (kagit-cevir foley'i kullanılmadı)"
+   ],
+   "metin": ""
+  }
+ ],
+ "ozet": {
+  "toplam_kare": 3760,
+  "sablonlar": [
+   "MASA-YB",
+   "COL-US",
+   "HARITA"
+  ]
+ }
+}

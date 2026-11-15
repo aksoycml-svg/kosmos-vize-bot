@@ -1,0 +1,285 @@
+{
+  "fps": 60,
+  "temaslar": [
+    {
+      "plan": "P01",
+      "kare": 135,
+      "sn": 2.25,
+      "olay": "çatı alev alır (kesme vurgusu)",
+      "ses": "ates-tutus",
+      "db": -9
+    },
+    {
+      "plan": "P01",
+      "kare": 136,
+      "sn": 2.267,
+      "olay": "yükselen sürü kanat sesi köprüsü",
+      "ses": "kanat-uzak",
+      "db": -14
+    },
+    {
+      "plan": "P01",
+      "kare": 138,
+      "sn": 2.3,
+      "olay": "ateş yatağı başlar",
+      "ses": "ates-yatak",
+      "db": -14
+    },
+    {
+      "plan": "P02",
+      "kare": 419,
+      "sn": 6.983,
+      "olay": "kalem ucu göğse değer, durur",
+      "ses": "kalem-tik",
+      "db": -9
+    },
+    {
+      "plan": "P03",
+      "kare": 470,
+      "sn": 7.833,
+      "olay": "kalem çatı çizgisine başlar",
+      "ses": "kalem-kagit",
+      "db": -9
+    },
+    {
+      "plan": "P03",
+      "kare": 564,
+      "sn": 9.4,
+      "olay": "kalem yarasa ayaklarını kirişe oturtur",
+      "ses": "kalem-kagit",
+      "db": -9
+    },
+    {
+      "plan": "P03",
+      "kare": 668,
+      "sn": 11.133,
+      "olay": "kalem küçük alevi başlatır",
+      "ses": "kalem-tik",
+      "db": -6
+    },
+    {
+      "plan": "P03",
+      "kare": 674,
+      "sn": 11.233,
+      "olay": "alev çizilir",
+      "ses": "kalem-kagit",
+      "db": -9
+    },
+    {
+      "plan": "P03",
+      "kare": 722,
+      "sn": 12.033,
+      "olay": "alev çizgisi göğüsten kirişe",
+      "ses": "kalem-kagit",
+      "db": -9
+    },
+    {
+      "plan": "P03",
+      "kare": 742,
+      "sn": 12.367,
+      "olay": "çatı taraması kırmızıya döner",
+      "ses": "kalem-kagit",
+      "db": -10
+    },
+    {
+      "plan": "P04",
+      "kare": 1007,
+      "sn": 16.783,
+      "olay": "zarf haritaya konar",
+      "ses": "kagit-tok",
+      "db": -9
+    },
+    {
+      "plan": "P04",
+      "kare": 1031,
+      "sn": 17.183,
+      "olay": "kesme köprüsü: kâğıt hışırtısı",
+      "ses": "kagit-hisirti",
+      "db": -12
+    },
+    {
+      "plan": "P04",
+      "kare": 1100,
+      "sn": 18.333,
+      "olay": "not zarfın yanına düşer",
+      "ses": "not-birak",
+      "db": -9
+    },
+    {
+      "plan": "P05",
+      "kare": 1356,
+      "sn": 22.6,
+      "olay": "cımbızdaki kapsül göğse değer",
+      "ses": "pens-tik",
+      "db": -6
+    },
+    {
+      "plan": "P05",
+      "kare": 1360,
+      "sn": 22.667,
+      "olay": "kap oturur, kapak kapalı",
+      "ses": "kap-oturma",
+      "db": -6
+    },
+    {
+      "plan": "P06",
+      "kare": 1479,
+      "sn": 24.65,
+      "olay": "tepsiler üstten dizilir",
+      "ses": "tepsi-dizilim",
+      "db": -12
+    },
+    {
+      "plan": "P06",
+      "kare": 1639,
+      "sn": 27.317,
+      "olay": "kovan kapakları açılır",
+      "ses": "kovan-ac",
+      "db": -9
+    },
+    {
+      "plan": "P06",
+      "kare": 1679,
+      "sn": 27.983,
+      "olay": "yarasalar dağılır",
+      "ses": "kanat-uzak",
+      "db": -12
+    },
+    {
+      "plan": "P06",
+      "kare": 1759,
+      "sn": 29.317,
+      "olay": "tek bölmede kanat titrer",
+      "ses": "kanat-titrek",
+      "db": -10
+    },
+    {
+      "plan": "P07",
+      "kare": 1823,
+      "sn": 30.383,
+      "olay": "kanat seğirir",
+      "ses": "kanat-titrek",
+      "db": -9
+    },
+    {
+      "plan": "P07",
+      "kare": 1853,
+      "sn": 30.883,
+      "olay": "kanat ikinci kez seğirir",
+      "ses": "kanat-titrek",
+      "db": -9
+    },
+    {
+      "plan": "P08",
+      "kare": 2202,
+      "sn": 36.7,
+      "olay": "sürü yükselir (uzak kanat sesi)",
+      "ses": "kanat-uzak",
+      "db": -9
+    },
+    {
+      "plan": "P09",
+      "kare": 2594,
+      "sn": 43.233,
+      "olay": "uzak yarasa kirişe tutunur",
+      "ses": "tutun-uzak",
+      "db": -9
+    },
+    {
+      "plan": "P09",
+      "kare": 2612,
+      "sn": 43.533,
+      "olay": "ikinci yarasa tutunur",
+      "ses": "tutun-uzak",
+      "db": -9
+    },
+    {
+      "plan": "P09",
+      "kare": 2630,
+      "sn": 43.833,
+      "olay": "üçüncü yarasa tutunur",
+      "ses": "tutun-uzak",
+      "db": -9
+    },
+    {
+      "plan": "P10",
+      "kare": 2779,
+      "sn": 46.317,
+      "olay": "birinci kıvılcım",
+      "ses": "kivilcim-cirt",
+      "db": -9
+    },
+    {
+      "plan": "P10",
+      "kare": 2809,
+      "sn": 46.817,
+      "olay": "ikinci kıvılcım",
+      "ses": "kivilcim-cirt",
+      "db": -7
+    },
+    {
+      "plan": "P10",
+      "kare": 2839,
+      "sn": 47.317,
+      "olay": "üçüncü kıvılcım",
+      "ses": "kivilcim-cirt",
+      "db": -5
+    },
+    {
+      "plan": "P10",
+      "kare": 2869,
+      "sn": 47.817,
+      "olay": "alev saçağa tutuşur",
+      "ses": "ates-tutus",
+      "db": -7
+    },
+    {
+      "plan": "P10",
+      "kare": 2872,
+      "sn": 47.867,
+      "olay": "ateş yatağı",
+      "ses": "ates-yatak",
+      "db": -12
+    },
+    {
+      "plan": "P11",
+      "kare": 3051,
+      "sn": 50.85,
+      "olay": "iğne haritaya batar",
+      "ses": "igne-tak",
+      "db": -9
+    },
+    {
+      "plan": "P11",
+      "kare": 3053,
+      "sn": 50.883,
+      "olay": "köy ikonları çizilir",
+      "ses": "kalem-kagit",
+      "db": -10
+    },
+    {
+      "plan": "P11",
+      "kare": 3135,
+      "sn": 52.25,
+      "olay": "kesme köprüsü: parşömen → belge",
+      "ses": "kagit-hisirti",
+      "db": -12
+    },
+    {
+      "plan": "P11",
+      "kare": 3285,
+      "sn": 54.75,
+      "olay": "iptal mührü belgeye iner",
+      "ses": "muhur-tok",
+      "db": -5
+    },
+    {
+      "plan": "P11",
+      "kare": 3289,
+      "sn": 54.817,
+      "olay": "başlık örtüsü kayar",
+      "ses": "kagit-hisirti",
+      "db": -12
+    }
+  ]
+}
