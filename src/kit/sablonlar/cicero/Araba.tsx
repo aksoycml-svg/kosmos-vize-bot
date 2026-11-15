@@ -35,7 +35,7 @@ const anP = (arr: P[], kare: number[], p: number): P => [deger(arr.map((q) => q[
 const adim = <T,>(v: T | T[], kare: number[], p: number): T => { if (!Array.isArray(v)) return v; let r = v[0]; kare.forEach((q, j) => { if (p >= q && j < v.length) r = v[j]; }); return r; };
 const kamS = (plan: SablonProps["plan"], p: number) => { const k = kameraHesapla(plan.kamera, p); return { k, kam: `translate(${540 + k.cx},${960 + k.cy}) scale(${k.cs}) translate(-540,-960)` }; };
 // sıcak bant: iç mekân grubunun kopyası, bant poligonuna kırpılıp "screen" ile fener rengine açılır (net kenar, blur yok; arka plan etkilenmez)
-const SicakFiltre: React.FC<{ id: string; a?: number }> = ({ id, a = 0.3 }) => { const c = [0.93, 0.76, 0.62]; return <filter id={id} x="0" y="0" width="1" height="1" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" values={`${1 - a * c[0]} 0 0 0 ${a * c[0]} 0 ${1 - a * c[1]} 0 0 ${a * c[1]} 0 0 ${1 - a * c[2]} 0 ${a * c[2]} 0 0 0 1 0`} /></filter>; };
+const SicakFiltre: React.FC<{ id: string; a?: number }> = ({ id, a = 0.3 }) => { const c = [0.97, 0.7, 0.5]; /* fener rengi (gül-şeftali) */ return <filter id={id} x="0" y="0" width="1" height="1"><feColorMatrix type="matrix" values={`${1 - a * c[0]} 0 0 0 ${a * c[0]} 0 ${1 - a * c[1]} 0 0 ${a * c[1]} 0 0 ${1 - a * c[2]} 0 ${a * c[2]} 0 0 0 1 0`} /></filter>; };
 /** duvar feneri: duvar kolu + buzlu küre (ampul görünmez, L* ≤ 88) + 2 net hale basamağı */
 const Fener: React.FC<{ c: P; r: number; hale: [number, number]; kol?: 1 | -1 }> = ({ c, r, hale, kol = -1 }) => (
   <g>
@@ -317,90 +317,66 @@ const PencereGorunum: React.FC<SablonProps> = ({ plan, p, kilit }) => {
 };
 
 // =====================================================================================================================
-// KUCAK (P05) v2.1 (orkestra KC4 notu): tavandan 70° aşağı, ön = üst. Devir düzlemi 2300 px/m. Kadrajda en çok 3 el:
-// Moyzisch'in sol eli jantta (tam kadrajda, parmaklar jantın ARKASINDA, başparmak önde) + devri yapan iki el (ya da devirden sonra
-// Bazna'nın zarfa bastıran eli ve Moyzisch'in dizine dayanan eli). Kollar alt köşelerdeki omuz bandından kısa ön kol olarak girer
-// (ön plan: iki omuz, flu, yüzsüz). El üstünde tarama yok. Fener bandı (net kenar) kucaklara ve zarfa düşer.
-// parametreler: el {moyzischSol, moyzisch, bazna} · nesneler [{tur, kare, x, y, aci, olcek, tutan (el adı | "cep" | null), uc? (tutulan
-//   ucun nesne-yerel konumu −1…1, adım; −0.8 = sol uç)}]
+// KUCAK (P05) v3 (orkestra: "masa-insert diline geç, P10 elleri iyi okunuyor"): tepeden, iki koltuk arasındaki DERİ SEDİR düz yüzey
+// (2000 px/m); solda Moyzisch'in, sağda Bazna'nın kucak kenarı. Üst kenarda yalnız torpido kenarı + direksiyonun alt yayı (elsiz, bağlam).
+// En çok 2 el, tek parça siluet, avuç aşağı, parmaklar yüzeye yatık; Moyzisch soldan, Bazna sağdan YATAY girer (kısa ön kol, kenardan).
+// Nesneler hep elde ya da sedirde (zarf sedirde itilir/çekilir; kutu sedire konur, elle alınır). Fener bandı sedire düşer (net kenar).
+// parametreler: el {moyzisch, bazna: ElA (hedef = kavrama noktası)} · nesneler [{tur, kare, x, y, aci, tutan (el adı = elde | null = sedirde)}]
 // =====================================================================================================================
 const KucakGorunum: React.FC<SablonProps> = ({ plan, p, kilit }) => {
-  const PXM = 2300, { k, kam } = kamS(plan, p);
+  const PXM = 2000, { k, kam } = kamS(plan, p);
   const EL = param<Record<string, ElA>>(plan, "el", {});
-  const NS = param<(NesneA & { tur: "zarf" | "filmKutusu"; uc?: number[] })[]>(plan, "nesneler", []);
-  const isik: P = [-0.95, -0.2], TH = 70, KOLK = 0.5; // tepeden: üst kol aşağı iner → ekranda ≈ yarı boy
+  const NS = param<(NesneA & { tur: "zarf" | "filmKutusu" })[]>(plan, "nesneler", []);
+  const isik: P = [-0.7, -0.7], TH = 45, E = 0.18 * PXM;
   const geo: Record<string, ReturnType<typeof elGeo>> = {};
-  for (const [ad, e] of Object.entries(EL)) geo[ad] = elGeo(e, p, PXM, KOLK);
-  const nesne = (n: NesneA & { tur: "zarf" | "filmKutusu"; uc?: number[] }, i: number) => {
+  for (const [ad, e] of Object.entries(EL)) geo[ad] = elGeo(e, p, PXM);
+  const ns = NS.map((n, i) => {
     const tutan = adim((n.tutan ?? [null]) as (string | null)[], n.kare, p);
-    if (tutan === "cep") return { tutan, g: null as React.ReactNode };
-    const a = deger(n.aci, n.kare, p), o = n.olcek ? deger(n.olcek, n.kare, p) : 1;
-    const W = n.tur === "zarf" ? 0.24 * PXM * o : 0.0825 * PXM * 0.92 * o, uc = n.uc ? adim(n.uc, n.kare, p) : 0, ra = (a * Math.PI) / 180;
-    // küçük nesne (film kutusu) kavrama noktasında; zarf kendi anahtarında (eller json'da `hedef` ile zarfın uçlarına oturur)
-    const xy: P = n.tur === "filmKutusu" && tutan && geo[tutan] ? [geo[tutan].kavrama[0] - Math.cos(ra) * uc * 0.5 * W, geo[tutan].kavrama[1] - Math.sin(ra) * uc * 0.5 * W] : [deger(n.x, n.kare, p), deger(n.y, n.kare, p)];
+    const xy: P = tutan && geo[tutan] ? geo[tutan].kavrama : [deger(n.x, n.kare, p), deger(n.y, n.kare, p)];
+    const a = deger(n.aci, n.kare, p);
     kilit.push({ ad: n.tur, p: ekranNokta(k, xy), tur: "dokunus" });
-    const g = <g key={`n${i}`} transform={`translate(${xy[0]} ${xy[1]}) rotate(${a})`}>{n.tur === "zarf" ? <Zarf W={W} golge={tutan ? 0 : 0.3} golgeKay={tutan ? [14, 10] : [8, 6]} /> : <FilmKutusu H={W} />}</g>;
-    return { tutan, g };
-  };
-  const ns = NS.map(nesne);
+    return { tutan, g: <g key={`n${i}`} transform={`translate(${xy[0]} ${xy[1]}) rotate(${a})`}>{n.tur === "zarf" ? <Zarf W={0.24 * PXM} golge={0.25} golgeKay={[10, 12]} /> : <FilmKutusu H={0.055 * 2.0 * PXM} />}</g> };
+  });
   const tutulan = (ad: string) => { const t = ns.filter((q) => q.tutan === ad).map((q) => q.g); return t.length ? <g>{t}</g> : undefined; };
   const serbest = ns.filter((q) => !q.tutan).map((q) => q.g);
-  const rulo: number[] = []; for (let x = 380, i = 0; x < 720 && i < 8; i++) { rulo.push(x); x += 60 + rnd(SEED + 20, i) * 20; }
-  const jM: P = [430, 460], jR: [number, number] = [300, 225];
-  const elips = (a0: number, a1: number): P[] => Array.from({ length: 13 }, (_, i) => { const t = ((a0 + ((a1 - a0) * i) / 12) * Math.PI) / 180; return [jM[0] + Math.cos(t) * jR[0], jM[1] + Math.sin(t) * jR[1]] as P; });
-  // jant kavrama noktası (saat 8 civarı, kadraj içinde): parmaklar jantın arkasında → jant parçası el "arka" ile "ön" (başparmak) arasında
-  const jantParca = (a0: number, a1: number) => <g><polyline points={poly(elips(a0, a1))} fill="none" stroke={mur} strokeWidth={32} strokeLinecap="round" /><polyline points={poly(elips(a0, a1))} fill="none" stroke={ARAC.jant} strokeWidth={26} strokeLinecap="round" /></g>;
-  const ortak = { pxm: PXM, isik, th: TH, kol: KOLK, taramasiz: true } as const;
-  const bant: P[] = [[-200, 860], [1300, 980], [1300, 1420], [-200, 1300]];
   for (const [ad, e] of Object.entries(EL)) kilit.push({ ad: `${ad} eli`, p: ekranNokta(k, anP(e.bilek, e.kare, p)), tur: "dokunus" });
-  const zemin = (
+  // sedir: deri, boyuna rulolar (dikey), dikiş 6/6; seed'li aralık
+  const rulo: number[] = []; for (let x = 200, i = 0; x < 900 && i < 14; i++) { rulo.push(x); x += 82 + rnd(SEED + 20, i) * 26; }
+  const bant: P[] = [[-200, 560], [1300, 760], [1300, 1180], [-200, 980]];
+  const yuzey = (
     <g>
-      <rect x={-300} y={-300} width={1700} height={2600} fill={ARAC.paspas} />
-      {/* ön panel alt kenarı + krom şerit + düğme */}
-      <rect x={-300} y={-300} width={1700} height={590} fill={ARAC.panel} />
-      <rect x={-300} y={278} width={1700} height={12} fill={ARAC.krom} /><rect x={-300} y={278} width={1700} height={3} fill={ARAC.kromParlak} />
-      <circle cx={860} cy={210} r={22} fill={ARAC.krom} stroke={mur} strokeWidth={3} />
-      {/* kanepe oturağı (orta şerit, dikey rulolar) */}
-      <rect x={360} y={290} width={380} height={1800} fill={ARAC.oturakTepe} />
-      {rulo.map((x, i) => <g key={i}><line x1={x} y1={290} x2={x + 6} y2={2100} stroke={ARAC.dikis} strokeWidth={4} /><line x1={x + 5} y1={290} x2={x + 11} y2={2100} stroke="#5a464c" strokeWidth={2} strokeDasharray="6 6" /></g>)}
-      {/* Moyzisch'in uyluğu (sol) + palto eteği · Bazna'nın uyluğu (sağ) + ceket eteği */}
-      <path d="M -300 2100 L -300 640 Q -60 540 200 580 Q 380 610 400 780 L 390 1600 L -300 1700 Z" fill={ARAC.pantolonM} stroke={mur} strokeWidth={4} />
-      <path d="M 40 620 Q 180 650 300 780" stroke="#1c1a28" strokeWidth={4} fill="none" opacity={0.6} />
-      <path d="M 1400 2100 L 1400 680 Q 1100 570 870 630 Q 690 670 680 830 L 690 1600 L 1400 1700 Z" fill="#262536" stroke={mur} strokeWidth={4} />
-      {/* vites kolu (orta, Moyzisch'in boşalan eli için dayanak değil — yalnız ipucu) */}
-      <line x1={560} y1={290} x2={540} y2={520} stroke="#3a3848" strokeWidth={10} /><circle cx={540} cy={520} r={16} fill="#2e2c3a" stroke={mur} strokeWidth={3} />
-      {/* direksiyon: tam halka, 3 kol, göbek; kolon panele */}
-      <rect x={400} y={-300} width={60} height={760} fill="#24222e" />
-      <ellipse cx={jM[0]} cy={jM[1]} rx={jR[0]} ry={jR[1]} fill="none" stroke={mur} strokeWidth={32} />
-      <ellipse cx={jM[0]} cy={jM[1]} rx={jR[0]} ry={jR[1]} fill="none" stroke={ARAC.jant} strokeWidth={26} />
-      <polyline points={poly(elips(-80, 10))} fill="none" stroke={CIC.kenar} strokeWidth={3} />
-      {[90, 210, 330].map((a, i) => { const t = (a * Math.PI) / 180; return <line key={i} x1={jM[0]} y1={jM[1]} x2={jM[0] + Math.cos(t) * jR[0] * 0.93} y2={jM[1] + Math.sin(t) * jR[1] * 0.93} stroke={ARAC.jant} strokeWidth={18} />; })}
-      <circle cx={jM[0]} cy={jM[1]} r={35} fill={ARAC.jant} stroke={mur} strokeWidth={4} />
-      <Tarama sekil={[[jM[0], jM[1] - 35], [jM[0] + 35, jM[1]], [jM[0], jM[1] + 35]]} basamak="III" aci={TH} renk={CIC.tarama} derinlik="insert" seed={SEED + 21} />
+      <rect x={-300} y={-300} width={1700} height={2600} fill={ARAC.oturakTepe} />
+      {rulo.map((x, i) => <g key={i}><rect x={x + 10} y={-300} width={34} height={2600} rx={16} fill="#54424a" opacity={0.8} /><line x1={x} y1={-300} x2={x} y2={2300} stroke={ARAC.dikis} strokeWidth={4} /><line x1={x + 5} y1={-300} x2={x + 5} y2={2300} stroke="#6a5458" strokeWidth={2} strokeDasharray="6 6" /></g>)}
+      {/* kucak kenarları: solda Moyzisch'in pantolon/palto kenarı, sağda Bazna'nın */}
+      <path d="M -300 -300 L 150 -300 Q 190 400 170 1000 Q 150 1600 190 2300 L -300 2300 Z" fill={ARAC.pantolonM} stroke={mur} strokeWidth={4} />
+      <path d="M 1400 -300 L 920 -300 Q 880 400 905 1000 Q 925 1600 890 2300 L 1400 2300 Z" fill="#262536" stroke={mur} strokeWidth={4} />
       {serbest}
     </g>
   );
-  // ön plan omuz bandı (flu, yüzsüz): iki adamın omuzları/ceketleri — kolların kökünü örter, alt ölü alanı doldurur
-  const omuzBandi = (
-    <g filter="url(#arKuFlu)">
-      <path d="M -300 2200 L -300 1500 Q -40 1380 220 1440 Q 420 1490 470 1640 L 470 2200 Z" fill="#1e1d2a" />
-      <path d="M 1400 2200 L 1400 1500 Q 1140 1390 880 1450 Q 680 1500 640 1650 L 640 2200 Z" fill="#1a1a26" />
-      <path d="M -300 1500 Q -40 1380 220 1440 Q 420 1490 470 1640" fill="none" stroke={CIC.kenar} strokeWidth={4} opacity={0.35} />
+  const ust = (
+    <g>
+      {/* torpido kenarı + krom şerit; direksiyonun yalnız alt yayı (elsiz) */}
+      <rect x={-300} y={-300} width={1700} height={470} fill={ARAC.panel} />
+      <rect x={-300} y={158} width={1700} height={12} fill={ARAC.krom} /><rect x={-300} y={158} width={1700} height={3} fill={ARAC.kromParlak} />
+      <circle cx={860} cy={90} r={20} fill={ARAC.krom} stroke={mur} strokeWidth={3} />
+      <path d="M -40 160 Q 200 330 470 170" fill="none" stroke={mur} strokeWidth={34} strokeLinecap="round" />
+      <path d="M -40 160 Q 200 330 470 170" fill="none" stroke={ARAC.jant} strokeWidth={26} strokeLinecap="round" />
+      <path d="M 60 228 Q 200 300 380 224" fill="none" stroke={CIC.kenar} strokeWidth={3} />
     </g>
   );
+  const elOrtak = { pxm: PXM, isik, th: TH, taramasiz: true, gen: [0.78 * E, 0.66 * E, 0.46 * E] as [number, number, number], temas: [10, 12] as P };
   return (
     <svg width={1080} height={1920} viewBox="0 0 1080 1920">
-      <defs><clipPath id="arKuBant"><polygon points={poly(bant)} /></clipPath><SicakFiltre id="arKuSicak" a={0.5} /><filter id="arKuFlu" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation={9} /></filter></defs>
+      <defs><clipPath id="arKuBant"><polygon points={poly(bant)} /></clipPath><SicakFiltre id="arKuSicak" a={0.32} /></defs>
       <rect width={1080} height={1920} fill="#1c1a28" />
       <RenkKaydi>
         <g transform={kam}>
-          {zemin}
-          {/* fenerden net kenarlı sıcak bant: kucaklar + kucaktaki zarf (eller hariç; ten L* ≤ 75) */}
-          <g clipPath="url(#arKuBant)"><g filter="url(#arKuSicak)">{zemin}</g></g>
-          {elCiz("moyzisch sol (jant)", EL.moyzischSol, p, { ...ortak, palet: EL_MOYZISCH, kolRenk: ARAC.paltoM, gen: [150, 128, 100], kenar: 0.6, tutulan: jantParca(150, 175) })}
-          {elCiz("moyzisch sağ", EL.moyzisch, p, { ...ortak, palet: EL_MOYZISCH, kolRenk: ARAC.paltoM, gen: [160, 138, 108], kenar: 0.7, tutulan: tutulan("moyzisch"), temas: [10, 8] })}
-          {elCiz("bazna sol", EL.bazna, p, { ...ortak, palet: EL_BAZNA, kolRenk: "#3b3a4e", gen: [170, 146, 112], kenar: 0.5, tutulan: tutulan("bazna"), temas: [10, 8], ayna: true })}
-          {omuzBandi}
+          {yuzey}
+          {/* fenerden net kenarlı sıcak bant sedire ve üstündeki nesnelere düşer (eller hariç; ten L* ≤ 75) */}
+          <g clipPath="url(#arKuBant)"><g filter="url(#arKuSicak)">{yuzey}</g></g>
+          {ust}
+          {elCiz("moyzisch", EL.moyzisch, p, { ...elOrtak, palet: EL_MOYZISCH, kolRenk: ARAC.paltoM, kenar: 0.6, tutulan: tutulan("moyzisch") })}
+          {elCiz("bazna", EL.bazna, p, { ...elOrtak, palet: EL_BAZNA, kolRenk: "#3b3a4e", kenar: 0.5, tutulan: tutulan("bazna"), ayna: true })}
         </g>
       </RenkKaydi>
     </svg>

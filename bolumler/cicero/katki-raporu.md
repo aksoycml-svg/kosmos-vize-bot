@@ -359,3 +359,23 @@
 - **Bilinen:**
   - KC4'te sıcak piksel %13.4; ölçüt %14, sınırda.
   - Devir anında iki kol alttan V biçiminde giriyor (dirsekler bandın hemen üstünde).
+
+### motion · 2026-11-15 · ek 2: P05 kucak v3 (orkestra: masa-insert diline geç)
+- **Ne yaptım:**
+  - Kucak görünümü tepeden düz bir deri sedir yüzeyi oldu (2000 px/m). Solda ve sağda kucak kenarları var; üstte yalnız torpido kenarı ve direksiyonun alt yayı (elsiz).
+  - Kadrajda en çok 2 el var, ikisi de tek parça siluet ve taramasız. Avuçlar aşağıda; Moyzisch'in eli soldan, Bazna'nın eli sağdan yatay ve kısa ön kolla giriyor (dirsek kadraj dışında).
+  - Nesneler hep elde ya da sedirde, havada süzülen yok.
+  - Akış:
+    - p2: Bazna kutuyu sedire koyar (`cic_kutu_tutus`).
+    - p44: Moyzisch'in eli zarfa kapanır ve iter (`cic_dosya_kayma`, −3 dB).
+    - p80: Bazna'nın eli zarfın üstüne kapanır (`cic_zarf_tutus`).
+    - p104: Moyzisch kutuyu alır ve soldan çıkar (`cic_kutu_tutus`).
+    - p130: zarf Bazna'nın tarafına çekilir (`cic_zarf_kucak`).
+  - Fener bandı sedire düşüyor. SicakFiltre hatası düzeltildi: `userSpaceOnUse` yüzünden filtre hiç uygulanmıyordu.
+  - Kutu ve zarf alt yazı bandının (y 1290–1490) üstüne taşındı.
+- **Ölçüm (KC4 p80):** sıcak %16.0 · p95 L* 69.2 (lint izni `p95L`, "gece araba içi, orkestra onaylı") · max C* 23.7 · bilek 5.4° · dirsek 144.5° · E 360 px · zarf 480 px · kutu 220 px.
+- **Dosyalar:** `Araba.tsx` (kucak), `bolum.json` (P05: el, nesneler, temaslar, kontrol_kare 80), `KATALOG.md`, `kalibrasyon/araba-v2/KC4_P05_p080_kucak*`, `serit/serit_P05_p000-140.png`. Eski KC4 p100 dosyaları silindi.
+- **Bilinen:**
+  - Sedirin alt üçte biri yalnız rulo dokusu taşıyor; önemli nesne yok, ama boş görünüyor.
+  - P05 artık `cic_cep_kumas` kullanmıyor (başka planlarda kullanılıyor, uyarı yok).
+  - Doğrulayıcı: 0 hata.

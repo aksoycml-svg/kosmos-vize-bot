@@ -2061,328 +2061,249 @@
     "tr": "Filmleri, Alman elçiliğindeki Moyzisch'e arabada sattı.",
     "en": "He sold the films to Moyzisch, a German embassy official."
    },
-   "olcek": "insert-yakın (kucak, tavandan 70°): direksiyon tam halka + iki kucak; film kutusu 175 px, zarf 410→560 px; p150–232 hafif push cs 1.0→1.08 (zarf Bazna'nın kucağında)",
+   "olcek": "insert (tepeden sedir, 2000 px/m): film kutusu 176 px + el, zarf 480×320 px; eller kenardan yatay (en çok 2); p150–232 hafif push cs 1.0→1.08",
    "tempo": "nefes",
    "parametreler": {
     "gorunum": "kucak",
     "saat": "gece",
     "el": {
-     "moyzischSol": {
-      "kare": [
-       0
-      ],
-      "bilek": [
-       [
-        0,
-        0
-       ]
-      ],
-      "hedef": [
-       [
-        258,
-        644
-       ]
-      ],
-      "omuz": [
-       [
-        -200,
-        1250
-       ]
-      ],
-      "poz": "jant",
-      "bukum": 1
-     },
      "moyzisch": {
       "kare": [
        0,
-       20,
        30,
        44,
-       64,
-       72,
        80,
-       96,
+       86,
        104,
-       124
-      ],
-      "omuz": [
-       [
-        200,
-        1560
-       ],
-       [
-        200,
-        1560
-       ],
-       [
-        200,
-        1560
-       ],
-       [
-        200,
-        1560
-       ],
-       [
-        200,
-        1560
-       ],
-       [
-        200,
-        1560
-       ],
-       [
-        200,
-        1560
-       ],
-       [
-        200,
-        1560
-       ],
-       [
-        200,
-        1560
-       ],
-       [
-        200,
-        1560
-       ]
+       130
       ],
       "bilek": [
        [
-        0,
-        0
+        -700,
+        760
        ],
        [
-        0,
-        0
+        -700,
+        760
        ],
        [
-        0,
-        0
+        52,
+        700
        ],
        [
-        0,
-        0
+        282,
+        820
        ],
        [
-        0,
-        0
+        222,
+        880
        ],
        [
-        0,
-        0
+        482,
+        1130
        ],
        [
-        0,
-        0
-       ],
-       [
-        0,
-        0
-       ],
-       [
-        0,
-        0
-       ],
-       [
-        0,
-        0
+        -760,
+        1080
        ]
       ],
-      "hedef": [
+      "dirsek": [
        [
-        150,
-        1820
+        -1350,
+        800
        ],
        [
-        500,
-        900
+        -1350,
+        800
        ],
        [
-        548,
+        -598,
+        740
+       ],
+       [
+        -368,
         860
        ],
        [
-        560,
-        830
+        -428,
+        920
        ],
        [
-        -120,
+        -168,
+        1170
+       ],
+       [
+        -1410,
+        1120
+       ]
+      ],
+      "omuz": [
+       [
+        -1650,
+        1060
+       ],
+       [
+        -1650,
+        1060
+       ],
+       [
+        -898,
         1000
        ],
        [
-        120,
+        -668,
         1120
        ],
        [
-        80,
+        -728,
         1180
        ],
        [
-        379.2,
-        960
+        -468,
+        1430
        ],
        [
-        379.2,
-        960
-       ],
-       [
-        150,
-        1820
+        -1710,
+        1380
        ]
+      ],
+      "aci": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
       ],
       "poz": [
        "dayali",
-       "tutus",
-       "tutus",
-       "tutus",
-       "tutus",
-       "tutus",
-       "tutus",
-       "tutus",
        "dayali",
-       "dayali"
-      ],
-      "bukum": 1
+       "dayali",
+       "dayali",
+       "dayali",
+       "tutus",
+       "tutus"
+      ]
      },
      "bazna": {
       "kare": [
        0,
        2,
        30,
-       44,
-       60,
-       84,
-       96,
+       64,
+       80,
        104,
        130
       ],
-      "omuz": [
-       [
-        920,
-        1580
-       ],
-       [
-        920,
-        1580
-       ],
-       [
-        920,
-        1580
-       ],
-       [
-        920,
-        1580
-       ],
-       [
-        920,
-        1580
-       ],
-       [
-        920,
-        1580
-       ],
-       [
-        920,
-        1580
-       ],
-       [
-        920,
-        1580
-       ],
-       [
-        920,
-        1580
-       ]
-      ],
       "bilek": [
        [
-        0,
-        0
+        878,
+        1130
        ],
        [
-        0,
-        0
+        878,
+        1130
        ],
        [
-        0,
-        0
+        1560,
+        1130
        ],
        [
-        0,
-        0
+        1560,
+        840
        ],
        [
-        0,
-        0
+        878,
+        820
        ],
        [
-        0,
-        0
+        878,
+        820
        ],
        [
-        0,
-        0
-       ],
-       [
-        0,
-        0
-       ],
-       [
-        0,
-        0
+        1118,
+        900
        ]
       ],
-      "hedef": [
+      "dirsek": [
        [
-        1220,
-        1300
+        1528,
+        1170
        ],
        [
-        1060,
-        1080
+        1528,
+        1170
        ],
        [
-        575,
-        805
+        2210,
+        1170
        ],
        [
-        575,
-        805
+        2210,
+        880
        ],
        [
-        1060,
-        1880
+        1528,
+        860
        ],
        [
-        1060,
-        1880
+        1528,
+        860
        ],
        [
-        820.8,
-        960
-       ],
-       [
-        820.8,
-        960
-       ],
-       [
-        860,
-        1250
+        1768,
+        940
        ]
+      ],
+      "omuz": [
+       [
+        1828,
+        1430
+       ],
+       [
+        1828,
+        1430
+       ],
+       [
+        2510,
+        1430
+       ],
+       [
+        2510,
+        1140
+       ],
+       [
+        1828,
+        1120
+       ],
+       [
+        1828,
+        1120
+       ],
+       [
+        2068,
+        1200
+       ]
+      ],
+      "aci": [
+       180,
+       180,
+       180,
+       180,
+       180,
+       180,
+       180
       ],
       "poz": [
        "kistir",
-       "kistir",
-       "kistir",
        "dayali",
        "dayali",
        "dayali",
-       "tutus",
-       "tutus",
+       "dayali",
+       "dayali",
        "dayali"
-      ],
-      "bukum": -1
+      ]
      }
     },
     "nesneler": [
@@ -2390,77 +2311,60 @@
       "tur": "filmKutusu",
       "kare": [
        0,
-       2,
-       44,
-       64
+       104
       ],
       "x": [
-       0,
-       0,
-       0,
-       0
+       680,
+       680
       ],
       "y": [
-       0,
-       0,
-       0,
-       0
+       1130,
+       1130
       ],
       "aci": [
-       -20,
-       -20,
-       -30,
-       -30
+       90,
+       90
       ],
       "tutan": [
-       "cep",
-       "bazna",
-       "moyzisch",
-       "cep"
+       null,
+       "moyzisch"
       ]
      },
      {
       "tur": "zarf",
       "kare": [
        0,
+       44,
        80,
-       96,
        104,
        130
       ],
       "x": [
-       220,
-       220,
-       600,
-       600,
-       860
+       330,
+       330,
+       560,
+       560,
+       800
       ],
       "y": [
-       1180,
-       1180,
-       960,
-       960,
-       1250
+       700,
+       700,
+       820,
+       820,
+       900
       ],
       "aci": [
-       0,
-       0,
+       -4,
+       -4,
        0,
        0,
        4
       ],
-      "olcek": [
-       0.73,
-       0.73,
-       1.0,
-       1.0,
-       0.73
-      ],
       "tutan": [
        null,
-       "moyzisch",
-       "moyzisch",
-       "bazna",
+       null,
+       null,
+       null,
        null
       ]
      }
@@ -2480,12 +2384,12 @@
     "cx": [
      0,
      0,
-     -40
+     -30
     ],
     "cy": [
      0,
      0,
-     -40
+     -20
     ],
     "egri": "inout"
    },
@@ -2520,28 +2424,28 @@
    "temaslar": [
     {
      "kare": 2,
-     "olay": "Bazna'nın eli film kutusuyla cebinden çıkar (kadraja girer)",
-     "ses": "cic_cep_kumas"
-    },
-    {
-     "kare": 44,
-     "olay": "Moyzisch film kutusunu kavrar",
+     "olay": "Bazna'nın eli film kutusunu sedire koyar",
      "ses": "cic_kutu_tutus"
     },
     {
-     "kare": 80,
-     "olay": "Moyzisch zarfı kucağından alır",
-     "ses": "cic_zarf_tutus",
-     "db": -4
+     "kare": 44,
+     "olay": "Moyzisch'in eli zarfa kapanır, sedirde Bazna'ya doğru iter",
+     "ses": "cic_dosya_kayma",
+     "db": -3
     },
     {
-     "kare": 104,
-     "olay": "Bazna zarfı kavrar",
+     "kare": 80,
+     "olay": "Bazna'nın eli zarfın üstüne kapanır",
      "ses": "cic_zarf_tutus"
     },
     {
+     "kare": 104,
+     "olay": "Moyzisch film kutusunu sedirden alır",
+     "ses": "cic_kutu_tutus"
+    },
+    {
      "kare": 130,
-     "olay": "zarf Bazna'nın kucağına konur",
+     "olay": "zarf Bazna'nın tarafına çekilir, kucak kenarında durur",
      "ses": "cic_zarf_kucak"
     }
    ],
@@ -2558,23 +2462,23 @@
     }
    ],
    "dokunus": null,
-   "kontrol_kare": 100,
+   "kontrol_kare": 80,
    "okunurluk": {
     "nesne": "film kutusu ↔ zarf",
-    "nesne_pct": 15,
+    "nesne_pct": 12,
     "net_sn": 1.3,
-    "not": "kutu devri p30–44, zarf devri p96–104 (el+zarf bbox ≥%15)"
+    "not": "zarf 480 px (%25 genişlik), kutu+el bbox ≥%10; devir p44–130"
    },
    "saklanan": "zarfın içi (açılmaz; kraft/tütün, kalın)",
-   "alt_ucte_bir": "kanepe sırtı tabanı (dikişli) + iki kucak + Bazna'nın kucağındaki zarf (p130+)",
+   "alt_ucte_bir": "sedir (deri rulo/dikiş) + film kutusu (p0–104) + iki kucak kenarı",
    "tasiyici": {
     "giris": "eylem eşleşmesi: P04 p370 cebe giren el → P05 p2 cepten film kutusuyla çıkan el (aynı ceket, aynı el)",
     "cikis": "yok: Ankara → Berlin mekân sıçraması (bölümün tek bilinçli yer değişimi; ses: araba ortamı biter, Berlin odası girer; müzik akar)"
    },
    "sfx": [
-    "cic_cep_kumas p2",
-    "cic_kutu_tutus p44",
-    "cic_zarf_tutus p80 (−4 dB) / p104",
+    "cic_kutu_tutus p2 / p104",
+    "cic_dosya_kayma p44 (−3 dB)",
+    "cic_zarf_tutus p80",
     "cic_zarf_kucak p130"
    ],
    "muzik_notu": "akar; ortam değişir",
@@ -2583,7 +2487,7 @@
     "izin": [
      "p95L"
     ],
-    "not": "gece araba içi, orkestra onaylı (KC4 p95 L* 69.7; fener bandı kucaklara/zarfa düşer). Boştaki eller omuz bandının ardında (dizde, görünmez); kadrajda ≤3 el"
+    "not": "gece araba içi, orkestra onaylı (kucak v3 sedir; fener bandı sedire düşer; kadrajda ≤2 el)"
    },
    "baslangic_kare": 1603
   },

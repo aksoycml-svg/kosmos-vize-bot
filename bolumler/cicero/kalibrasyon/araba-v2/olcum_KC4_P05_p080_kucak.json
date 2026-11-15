@@ -1,0 +1,13 @@
+{
+ "dosya": "bolumler/cicero/kalibrasyon/araba-v2/KC4_P05_p080_kucak.png",
+ "sicak_yuzde": 16.0,
+ "p95_L": 69.2,
+ "max_L_disari": 81.5,
+ "p999_L_disari": 74.2,
+ "max_C_disari": 23.7,
+ "p999_C_disari": 19.8,
+ "C28_ustu_px": 0,
+ "L88_ustu_px": 0,
+ "kirmizi_izinsiz_px": 0,
+ "kirmizi_izinli_px": 0
+}
