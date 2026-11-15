@@ -31,3 +31,14 @@ Yorum: A kancası + "hamal" kelimesi. Bölüme devam; kaynaklı olaylar (kaza/r�
 > fable tekrar yazsın senaryoyu,
 
 Uygulama: senarist ajanı Fable modeliyle baştan çalıştırılır; önceki taslak yalnız "reddedilenler" olarak verilir.
+
+## Tur 1g — "Kulak için yaz" kuralı (2026-11-15)
+Kullanıcı (aynen):
+
+> CLAUDE.md’deki “Senaryo ve yazı” bölümüne bak **Kulak için yaz (kullanıcı kararı, Ben-my-Chree tur-2: "çok anlaşılmıyor", "gemiyi mi aldı?"):** anlatım okunmaz, bir kez duyulur; dinleyici geri dönemez.
+> 1. **Özne açık:** "sonrakiler", "üçüncüsü", "onlar", "bunu" gibi yarım özne/nesne yok; her cümlede kim, neyi yaptığı adıyla yazılır ("Ardından gelen mermiler geminin dümenini bozdu").
+> 2. **Önce durum, sonra olay:** bir şey kurtarılmadan, vurulmadan ya da bulunmadan önce orada olduğu söylenir ("Gemide bir kedi kalmıştı." → "Başmühendis onu kurtardı.").
+> 3. **Kısaltma özneden yapılmaz:** süre taşarsa bir cümle ya da plan çıkar; cümlenin içinden özne/nesne kırpılmaz.
+> 4. **Soğuk dinleyici (zorunlu adım):** senaryo kullanıcıya gitmeden önce, arastirma.md'yi ve senaryonun geri kalanını görmemiş ayrı bir ajan yalnız anlatım metnini (TR ve EN) cümle cümle okur; her cümle için "kim, ne yaptı, neye?" yazar. Cevaplayamadığı ya da yanlış cevapladığı cümle senariste geri döner. (İlk kez izleyen testini hikâyeyi bilen yapınca işlemedi: eksik parçayı kafasından tamamladı.)
+
+Not: bu madde bu oturumun çektiği CLAUDE.md'de henüz yok (paralel oturumda, push edilmemiş olabilir); kural bu bölümde aynen uygulanır.
