@@ -46,3 +46,7 @@ Not: bu madde bu oturumun çektiği CLAUDE.md'de henüz yok (paralel oturumda, p
 ## Tur 1h — v6'ya not (2026-11-15)
 
 > sigorta hesapçısı ne tr de böylr bişey yok
+
+## Tur 1i — bölüm bırakıldı (2026-11-15)
+
+> boş ver bunu ya 2. dünya savaşı hikayesi bakalım bilinmeyen rusların gözünde. belki redd army şarkılarına marşlarına konu olna bişey olabilir
