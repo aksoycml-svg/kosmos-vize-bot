@@ -257,3 +257,31 @@
 - Ne yaptım: (1) `zemin:"koyu"` tüm yazılardan silindi (P07 dahil). (2) Altyazı vurgusu yalnız P01 sahte/fake, P10 Almanlar/Germans; ekran yazısı vurgusu yalnız P06 TUZAK, P10 BERNHARD (TR+EN). (3) P07 tutar sabit `iddia` metin, `sayac` yok. (4) P04 kamera p310→p340: cs 1.4→1.45, cx −140→−220 (kapıya), makine p354'e kadar elde (kaybolmaz), belge/kapak temaslarına db −6. (5) Altyazı bandı bölüm düzeyinde sabit `alt`. (6) P02 kapı foley'i p246→p243.
 - Dosyalar: `bolumler/cicero/bolum.json`, bu rapor. Doğrulayıcı: 0 hata, 2 uyarı (eski).
 - Sapma: istenen `cx +250` hem IC-ODA sınırı (±220) dışında hem ters yön (kapı için cx negatif); −220 kullanıldı. Komodin/kutu sol kenarda kısmen (~150 px) kadrajda kalıyor, tam dışarı çıkmıyor (cs ↑ kapıyı da dışarı atar). Kontrol: P04 p300/340/352/366, P02 p243/330, P07 p300 bakıldı.
+
+## mekân sorumlusu · ARABA v2
+## mekan-sorumlusu · 2026-11-15 · ARABA v2 (tur-4: "Araba planları iyi değil", "Araba içleri iki yerde var", "El kol doğru değil özürlü gibi")
+- Ne yaptım: Mevcut kareleri ve `Araba.tsx`'i okudum. `mekanlar.md` §2 ARABA'yı yeniden yazdım. v1 kısa bir kayıt olarak kaldı (red nedenleri + v1'in araba-kaldırımda hatası). Dört görünüm kurdum: `el` (P01a insert), `pencere` (P01b, dışarıdan yolcu kapısı), `kucak` (P05, tepeden), `dis` (P09a, yakın cephe). Her biri için kamera (F, göz, ufuk, Z), px koordinatları, katman sırası, ışık bandı fiziği ve renk tablosu var. `Sedan40` mimari kartını, el ve kol poz tablosunu ve 6 el kuralını, malzeme ve doku tablosunu, 3 kalibrasyon hedef karesini (K-C1 P01 p30, K-C2 P01 p138, K-C3 P09a p70) kabul ölçütleriyle yazdım. §0.4, §0.5, §0.6, Özet ve §6'daki ARABA satırlarını güncelledim.
+- Dokunduğum dosyalar: `bolumler/cicero/mekanlar.md`, `bolumler/cicero/katki-raporu.md`.
+- Aldığım kararlar ve gerekçeleri:
+  - P05 = `kucak` (tepeden). Dışarıdan film kutusu ≤60 px kalırdı (şart ≥130). Kucaktaki devir bel çizgisinin altında, görünmez kalırdı. Bu açı P01b'nin tekrarı olurdu. Tepeden direksiyon tam halka olarak okunur.
+  - Araba sağa bakıyor, kamera yolcu tarafında. Bazna yakın ve yüzlü. Moyzisch uzakta, aydınlık uzak camın önünde siluet.
+  - Tek kaynak: elçilik kapısının sağındaki duvar feneri. Üç görünümde de aynı tanım. Işık bandı uzak camdan geometrik hesaplanır: yüzlerde kenar ışığı, çapraz A direği gölgesi.
+  - Lamba yolda `pencere`de yansımaz: gövde yansıma yolunu keser (fizik). Yansıma P09a'da var.
+  - Sedan tek model, iki renk: Moyzisch lacivert-siyah, kaçış arabası koyu yeşil. Aynı renk "sekreter Moyzisch'in arabasına bindi" okunurdu.
+  - P09a: araba yolda (v1'de kaldırımdaydı). Sekreter 237–277 px. Yürüyüş ≈2.1 m. Uzak kapıya biner, kapı yakın arka camdan görünür. Araba karşı şeritte sağa bakar ([T], kısa çıkış).
+  - Daktilo penceresi kapının solunda, zemin katta. İki görünümde aynı sıra.
+- Uyguladığım kurallar / yakaladığım ihlaller: Paris dersleri (sıcak–soğuk, tek görünür kaynak, net kenar, ızgarasız seed, 360 px okunurluk, imza tekilliği L\*/C\*, siluet en az 3 değer), kamera yüksekliği (çatı yüzeyi görünmez), mimari tip açıkça yazıldı (yuvarlak köşe dikdörtgen cam, kemer yok), "her nesnenin yeri", ölü alan yok. Yakalanan ihlaller:
+  - v1 park arabası kaldırım üstündeydi.
+  - v1 sekreter %9'du.
+  - v1 yürüyüş koşu hızındaydı (3 m/46 kare).
+  - v1'de kaldırım tarafındaki kapı karşıdan görünmüyordu.
+  - El kuralları: sarkık bilek, kopuk kol, el/yüz oranı.
+- Açık sorular / bir sonraki ajana notlar:
+  - Yönetmen: P01'i `el` p0–110 + `pencere` p110–438 olarak bölmeli. Banknotun cebe girmesi (p138) pencerede görünür olur. P05 temas kareleri `kucak` tablosuna uyar. P09a kare önerileri §2.9'da.
+  - Senarist: senaryo P05 sahne notunda "daktilo" görünmez. Kurulum P01b'de.
+  - Tasarımcı: Moyzisch ten rengi `#cdb09e`/`#7f6a64` önerisi ve el boyunun E = 0.18 m (0.19 değil) olması onay bekliyor.
+  - Motion: yeni pozlar `avuc`, `dayali`, `jant` gerekli. Omuz gövdeden alınacak, dirsek IK ile kısıtlanacak. Kontrol betiğine bilek açısı, el/yüz oranı ve dirsek açısı eklenmeli.
+  - [G] doğrulanmalı: basamak, havalandırma camı, deri kanepe, parke yol.
+  - El kuralları P04, P08, P09b ve P10'da da taranmalı.
+
+- (orkestra, ARABA v2 sonrası) mekanlar.md ARABA v2 tümüyle kabul: P01 = el-insert (p0–110) + pencere (p110–438); P05 = kucak (tepeden); P09a yeniden; iki renk sedan (Moyzisch lacivert-siyah, kaçış koyu yeşil); el-kol §2.10. Moyzisch ten #cdb09e ve el 0.18 m orkestra onaylı (tasarımcı yerine, kullanıcı yetki devri). P05 daktilo kurulumu yalnız P01b.

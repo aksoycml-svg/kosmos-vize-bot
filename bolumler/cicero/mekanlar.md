@@ -5,13 +5,13 @@ Bu belge **şartnamedir, kod değildir.** Görsel üretilmedi (Gemini yok, büt�
 Etiketler: **[A]** arastirma'da kaynaklı · **[S]** senaryo/sahne planı · **[G]** genel bilgi, kaynağı açılmadı, **doğrulanmalı** · **[T]** tasarım kararı (tarihî iddia değil). [G] öğe tek başına dokunuş taşımaz, metin içermez.
 
 ### Özet kararlar (orkestra için)
-1. **Üç mekân, kemer yok:** ELÇİ-ODASI (IC-ODA `oda: elci-yatak`, gece/gündüz/sönük), ARABA (yeni: `ic` yan kesit, `dis` sokak), MASA-INSERT (`komodin`, `berlin`, `bazna`). Bütün açıklıklar **düz lentolu dikdörtgen** (1930'lar Ankara'sı ve iç mekân). Sivri, yarım daire, basık kemer çizilmez.
+1. **Üç mekân, kemer yok:** ELÇİ-ODASI (IC-ODA `oda: elci-yatak`, gece/gündüz/sönük), ARABA (v2: `el`, `pencere`, `kucak`, `dis`), MASA-INSERT (`komodin`, `berlin`, `bazna`). Bütün açıklıklar **düz lentolu dikdörtgen** (1930'lar Ankara'sı ve iç mekân). Sivri, yarım daire, basık kemer çizilmez.
 2. **ELÇİ-ODASI kutusu yeniden ölçülendi:** arka duvar z **5.0**, oda genişliği **4.2 m** (u −2.1…2.1), tavan **3.2 m**. Arka duvar cs 1'de x 57–1023'e sığar, bütün oda tek bakışta okunur. Yerleşim (soldan sağa, arka duvar): **tek kişilik yatak · komodin + lamba + kutu · pencere · banyo kapısı** (§1.3). Gerekçe: 9:16'da Bazna'nın sol-önde durabilmesi (yatak ayak ucu z 3.1), K-A'da lamba + pencere önünde Bazna + kapı şeridinin aynı karede sığması.
 3. **K-A kamerası değişti (öneri):** P04 p200–240 için cs **1.4, cx −170, cy −90** (sahne önerisi cs 1.7 cx −240 idi). cs 1.7'de kapı şeridi alt banda (y > 1290) düşüyor, lamba kadraj dışında kalıyor. Yatak ve belgeler K-A'da kadraj dışında: p104–194'te görülürler, p200–240 pan'ı Bazna'nın bakışını kapıya taşır (§1.9).
 4. **Lamba tek tasarım:** "eklemli (tek mafsal) boyunlu, koni abajurlu başucu lambası" [G]. Tasarım (koni abajur, ağır kaide) ile sahne (boyun çevrilir) birleştirildi. Abajurun **üst ağzı duvara keskin kenarlı bir V ışık** atar. Bu bölümün 1940'lar ışık imzası ve sıcak piksel kaynağı budur. Boyun bükülünce V ters yöne yatar.
-5. **ARABA iç:** **kukla tiyatrosu kesiti** (yakın kapı yok). Araba sola bakar: ön koltukta Moyzisch (solda, geri dönük), arka koltukta Bazna (sağda, öne eğik). İki profil birbirine bakar, aralarında ön koltuk sırtı durur. Arka yan camdan elçiliğin **zemin kat** daktilo penceresi iki başın arasında görünür. Kamera araba tabanından 1.05 m yükseklikte, ufuk y 670 (§2.3). Daktilo penceresi "2. kat" değil zemin kat. Gerekçe: oturan kameradan yan camın üst kenarı ~7° yukarıyı keser, üst kat görünmez (fizik).
+5. **ARABA → v2 (tur-4, §2-v2):** `el` (P01a insert) · `pencere` (P01b, dışarıdan yolcu kapısı, gece, fener) · `kucak` (P05, tepeden) · `dis` (P09a, yakın). Aşağıdaki v1 notu geçersiz. ~~v1: **kukla tiyatrosu kesiti** (yakın kapı yok). Araba sola bakar: ön koltukta Moyzisch (solda, geri dönük), arka koltukta Bazna (sağda, öne eğik). İki profil birbirine bakar, aralarında ön koltuk sırtı durur. Arka yan camdan elçiliğin **zemin kat** daktilo penceresi iki başın arasında görünür. Kamera araba tabanından 1.05 m yükseklikte, ufuk y 670 (§2.3). Daktilo penceresi "2. kat" değil zemin kat. Gerekçe: oturan kameradan yan camın üst kenarı ~7° yukarıyı keser, üst kat görünmez (fizik).~~
 6. **Elçilik cephesi nötr, 1930'lar Ankara modern-klasik:** düz sıva, düz lento pencere, kat silmeleri, düz çatı + parapet, koyu **andezit taş subasman**, kapı üstünde ince **beton saçak**. Bayrak, arma, tabela yok. Bina kimliği iddia edilmez [G, doğrulanmalı].
-7. **Işık yönü (tasarımla hizalı):** ARABA güneşi **sol-ön-uzak** (ön yan camın ardından, alçak) gelir. Bazna'nın yüzü sıcak ışık alır, Moyzisch kontra kalır. Sahne planındaki "sağ-üst-arka" yerine tasarım §1 seçildi. Berlin lambası sıcak ama **daha az doygun ve sert kenarlı** (sahnenin "soğuk-nötr" isteği oda tonuyla verilir, havuzla değil: sıcak piksel ölçütü).
+7. **Işık yönü:** (ARABA kısmı v1, geçersiz → v2 tek kaynak elçilik feneri §2.4) ~~ARABA güneşi **sol-ön-uzak** (ön yan camın ardından, alçak) gelir. Bazna'nın yüzü sıcak ışık alır, Moyzisch kontra kalır.~~ Berlin lambası sıcak ama **daha az doygun ve sert kenarlı** (sahnenin "soğuk-nötr" isteği oda tonuyla verilir, havuzla değil: sıcak piksel ölçütü).
 8. **Dokunuş yüzeyleri ve sapmalar:** tepsi komodine sığmıyor (lamba + kutu doluyor), yeri **yatak ayak ucu sağ köşesi**. Yönetmene P02b/P03a/P08 konumları §1.8'de, ARABA ve MASA-INSERT koordinatları §2–§3'te.
 
 ---
@@ -42,7 +42,7 @@ Tasarım §0.1 çizgi ailesi geçerlidir: tarama ≥ 2 px, aralık ≥ 6 px. Yar
 ### 0.4 Tarama nerede (ışığın biçimi anlattığı yer; geniş yüzeyde yok)
 Renk gece `#2e3048`, gündüz `#6a6488` · α .55 · aralık `TARAMA_ARALIK` (yakın 7.5, insert 7) · kalınlık 2.2/2.4 px.
 - **ELÇİ-ODASI:** abajur dış yüzünün gölge yarısı · komodinin ışık almayan yan yüzü ve çekmece pervazı altı · kutunun düşen gölgesi (küçük, III) · kapı sövesinin iç yanağı · perde kıvrımlarının dip çizgileri (3–4 kısa dikey öbek) · tavan kartonpiyeri altı (ince şerit) · yatak örtüsü saçağı altı. **Duvar, döşeme, halı ve yatak yüzeyinde tarama yok.**
-- **ARABA:** koltuk sırtının gölge yanağı · kapı kolçağı altı · yan cam çerçevesinin iç kenarı · cephe pencere girintilerinin gölge yanağı (orta sınıf, yalnız sol söve) · `dis` görünümde beton saçak altı ve araba çamurluk altı.
+- **ARABA (v2):** §2.11 listesi (saçak altı, çamurluk altı/kavsi, kapı alt kıvrımı şeridi, uzak cam çerçevesi iç kenarı, kanepe sırtı gölge yanağı, direksiyon göbeği gölge yanı). Gövde, cam, oturak, yol taramasız.
 - **MASA-INSERT:** kutu/çekmece/zarf düşen gölgesi (küçük, III; çapraz IV yalnız ≤120 px kutuda) · masa ön kenar pervazı altı · lamba kaidesinin gölge yanı.
 
 ### 0.5 Işık (mekân başına tek tanım; huzme, havuz, gölge ve tarama açısı buradan türer)
@@ -51,8 +51,7 @@ Renk gece `#2e3048`, gündüz `#6a6488` · α .55 · aralık `TARAMA_ARALIK` (ya
 | ELÇİ gece | başucu lambası, ampul (u −0.83, h 1.00, z 4.85) | `nokta`, renk `#efd0b6`, havuz §1.6 | banyo kapı altı (kapı ardında, h 2.0) → yalnız şerit + zemin havuzu · ay yaması (pencere, `yonlu`, α .30, hep var) |
 | ELÇİ gündüz | pencere güneşi, yükseklik 30°, odaya doğru, hafif sola | `yonlu` yon [−0.30, 0.95] | lamba sönük |
 | ELÇİ sönük (P09b p292+) | ay yaması (pencere) tek kaynak | aynı ay tanımı, α .30 → .45 | yok |
-| ARABA ic | güneş, alçak (8°), sol-ön-uzak | `yonlu` yon [0.85, 0.15] | yok (daktilo penceresi uzak, ışık düşürmez) |
-| ARABA dis (akşam) | batı parıltısı (sol, kadraj dışı, alçak) | `yonlu` yon [0.90, 0.10], renk `#f0d0bc` | yanan pencereler: her biri kaldırıma kendi küçük yamuğunu düşürür |
+| ARABA v2 (el, pencere, kucak, dis) | **elçilik duvar feneri** (kapının sağı, h 2.0), §2.4 | `nokta`, `#efd0b6` | yok. Daktilo ve yanık pencereler yalnız kendi camı + küçük yamuk, kaynak sayılmaz |
 | MASA komodin | aynı başucu lambası (kadrajın sol-üstünde) | `nokta` | — |
 | MASA berlin | metal kubbe masa lambası, sağ-üst | `nokta`, renk `#e6cfb2` | — |
 | MASA bazna | aynı başucu lambası, sol-üst, boyun masaya eğik | `nokta` | P10 p0–24: yalnız soğuk ay dolgusu |
@@ -71,8 +70,8 @@ Renk gece `#2e3048`, gündüz `#6a6488` · α .55 · aralık `TARAMA_ARALIK` (ya
 | gündüz duvar dolaylı / güneş yaması | `#c0a48c` / `#e0c8b2` | 69/18 · 82/15 | ikisi de sıcak sayılır |
 | dış gece: gök / sırt | `#4d5b84` / `#2f3550` | | hilal `#8da0c8` (tasarım) |
 | dış gündüz: uzak bozkır sırtı | `#c9b8a0` | 76/15 | [G] Ankara bozkırı, nötr tek siluet |
-| araba tavan döşemesi ışıkta / gölgede | `#9a8070` / `#4a4560` | 56/14 · 31/17 | |
-| araba kesit kenarı (ön-plan çerçeve) | `#26283a` | 17/13 | |
+| araba tavan döşemesi ışıkta / gölgede (v1, kullanılmaz; v2 renkleri §2.8) | `#9a8070` / `#4a4560` | 56/14 · 31/17 | |
+| araba kesit kenarı (v1, kullanılmaz) | `#26283a` | 17/13 | |
 | araba krom (kapı kolu, cam kolu) | `#8e8e96` | 59/5 | sarı metal yok |
 | cephe sıva ışıkta (ic, sıyırma güneş) / akşam | `#c4ae96` / `#6e6470` | 72/16 · 44/8 | |
 | cephe gölge (pencere yanağı) | `#8f8aa0` | 59/13 | |
@@ -80,7 +79,7 @@ Renk gece `#2e3048`, gündüz `#6a6488` · α .55 · aralık `TARAMA_ARALIK` (ya
 | daktilo penceresi içi | `#e8c9a4` | 83/23 | cepheden ΔL\* ≥ 10 |
 | uzak ağaç/pus (gündüz) | `#d9b896` / `#b39a8a` | 77/23 · 65/14 | |
 | kaldırım / yol akşam / yol yakın | `#55606e` / `#2f3550` / `#26283a` | | |
-| 2. araba (P09a) | `#3d4640` | 29/6 | P01 arabasından farklı |
+| 2. araba (P09a, koyu yeşil, v2'de de) | `#3d4640` | 29/6 | Moyzisch arabası `#262836` (aynı model, farklı renk) |
 | Berlin lamba çekirdek / orta / oda en koyu | `#e6cfb2` / `#b89c86` / `#2e3048` | 84/18 · 66/17 · 21/16 | |
 | Bazna masası ışıkta çekirdek | `#a6826c` | 57/20/58 | masa ışık `#8c6f66`, gölge `#5a4a44` (tasarım ahşap ailesi) |
 | Bazna masası sönük (P10 p0–24) | `#2f3450` | 22/19 | P09b son karesiyle aynı hex (taşıyıcı) |
@@ -199,96 +198,235 @@ Kamera cs 1.4, cx −170, cy −90. Ekran konumları: lamba ampulü (94, 789), V
 
 ---
 
-## 2. ARABA — yeni şablon (`gorunum: ic` P01, P05 · `dis` P09a)
+## 2. ARABA
 
-### 2.1 Duygusal amaç ve görsel dil
-**Tek cümle:** dar, kapalı, gizli bir pazarlık kabini: iki yüz birbirine eğilir, dışarıdaki dünya (elçilik, daktilo) camın ardında sessizce izler.
-- **Şekil:** iç görünümde yatay bant (cam şeridi) + iki profil kütlesi + aradaki dikey koltuk sırtı. Tavan döşemesi dikişleri kaçış noktasından ışınsal açılır: derinlik ve hafif "kafes" hissi. **Ritim:** cam–direk–cam (ön cam, B direği, arka cam, yuvarlak C köşesi). **Sıcaklık:** sol (ön cam) sıcak alçak güneş, sağ ve alt mor-mavi döşeme. **Kontrast:** Bazna'nın yüzü ve banknot en açık. Moyzisch kontra.
+### 2.0 v1 (eski, 2026-11-14; tur-4'te reddedildi, yalnız kayıt)
+Kukla tiyatrosu yan kesiti (yakın kapı yok), gündüz alçak güneş sol-ön, Moyzisch ön koltukta geri dönük, Bazna arka koltukta. `dis`: cephe karşıdan, park araba Z 12.5. **Neden reddedildi** (kullanıcı tur-4 "Araba planları iyi değil", "Araba içleri iki yerde var", "El kol doğru değil özürlü gibi"; orkestra teşhisi): (1) araba okunmadı: direksiyon, panel, yuvarlak köşeli cam, kapı kolu, çamurluk yoktu, kesit tren/otobüs kompartımanı gibi okundu; (2) Moyzisch tek ton koyu blok; (3) eller soluk, büyük, bilekten sarkık, kol omuza bağsız; (4) alt yarı boş koltuk ve döşeme; (5) banknot devri küçük; (6) P01 ile P05 aynı açı ve ölçekteydi; (7) **v1 hatası:** `dis`te park araba Z 12.5'teydi, yani kaldırımın (Z 11–14) üstünde. v1 tabloları silindi. Elçilik cephesi kartı (eski §2.6) korunur, §2.9'da güncellendi.
 
-### 2.2 Mimari kart (araç iç mekânı = yapı)
-| Madde | Karar |
+---
+
+## 2-v2. ARABA v2 (2026-11-15, tur-4) · `gorunum: "el" | "pencere" | "kucak" | "dis"`
+
+### 2.1 Karar özeti (orkestra için)
+1. **Dört görünüm, üçü farklı açı.** Hiçbir görünüm iki planda aynı açı ve ölçekle tekrar etmez (kullanıcı: "Araba içleri iki yerde var").
+   | Plan | Görünüm | Açı | Ölçek | Ne okutur |
+   |---|---|---|---|---|
+   | P01a (p0–110) | `el` | içeriden, yolcu tarafından sürücüye, yan-alçak, 25° aşağı | insert | banknot devri, imza nesnesi |
+   | P01b (p110–438) | `pencere` | **dışarıdan**, kaldırımdan yolcu kapısına, yatay | göğüs/bel (iki kişi + kapı) | "araba + iki adam + elçilik penceresi" |
+   | P05 (tümü) | `kucak` | **tepeden**, tavandan iki kucağa, 70° aşağı | insert-yakın | film kutusu ve zarf devri, direksiyon tam daire |
+   | P09a | `dis` | karşı kaldırımdan elçilik cephesine, yatay | boy (sekreter ≥%12) | kaçış |
+   **P05 kararı (gerekçe):** P05'te dışarıdan pencere görünümü işe yaramaz. (a) Film kutusu ≈ 8 cm. Camın dışından en iyi ihtimalle 50–60 px olur, şart ≥130 px. (b) Kucaktaki devir camın alt kenarının (bel çizgisi) altında kalır, dışarıdan görünmez. (c) P01b ile aynı açı olur. Tepeden kucak görünümü üç sorunu birden çözer. Direksiyon **tam bir halka** olarak okunur (yandan çizgi gibi görünürdü). İki kucak, iki el ve iki nesne aynı karede durur. Zarfın kucağa konması (p118 temas) görünür. **Kaybedilen:** P05'te daktilo penceresi yok. Kurulum P01b'de yapılır (kurulum → P09a karşılık zinciri bozulmaz). Senaryo P05 sahne notundaki "pencerenin ardında cephe, daktilo" satırı senarist ve yönetmene not (§2.12).
+2. **Saat: alacakaranlık-gece (P01, P05, P09a).** Tek kaynak üçünde de aynı: **elçilik kapısının sağındaki duvar feneri** (§2.3). P01/P05'te gündüz güneşi kalkar. "ANKARA · 1943" gece okunur, sorun değil.
+3. **Tek sedan modeli, iki renk.** `Sedan40` tek gövde. Moyzisch'in arabası **siyah-lacivert**. P09a'daki kaçış arabası **koyu yeşil** (aynı model). Gerekçe: aynı model dönem ve sokak tutarlılığını verir. Renk farkı "bu başka araba" bilgisini taşır. Aynı renk olsaydı izleyici sekreteri Moyzisch'in arabasına binmiş sanırdı (anlatım: "bir başka arabaya biner").
+4. **Araba sağa bakar (ön = sağ)**, sol direksiyon. Kamera yolcu (sağ) tarafında. Bu yüzden Bazna kameraya yakın oturur, Moyzisch uzakta direksiyon başındadır. Kahraman büyük ve yüzlü kalır, Moyzisch aydınlık arka planın önünde siluet olur.
+5. **Lamba yansıması yolda:** `pencere` görünümünde fizik gereği **yok**. Fener arabanın ardında, gövde yansıma yolunu keser (hesap §2.5). Sıcak ışık orada arabanın üst siluetinde kenar ışığı olarak görünür. Yoldaki fener yansıması **P09a'da** var (yansıma yolu açık, §2.9). Orkestra yönünden tek sapma budur.
+
+### 2.2 Duygusal amaç ve görsel dil
+**Tek cümle:** karanlık bir sokakta, camın ardında, bir fenerin kenar ışığında yapılan sessiz alışveriş. Dışarıdaki dünya (elçilik, daktilo, fener) çok yakın, ama kimse bakmıyor.
+- **Şekil:** `pencere` = yatay bantlar (tavan eğrisi / cam / krom / kapı / basamak / yol) üstünde iki kafa. Camın yuvarlak köşeleri ve çamurluğun kavisi 1940'ları okutan iki eğridir. `el` = köşegen (sağ üst → sol alt el zinciri). `kucak` = halka (direksiyon) + iki yatay uyluk + ortada devir. `dis` = dikey kapı + fener + yatay araba.
+- **Ritim:** krom çıta, basamak lastiği nervürleri, deri pli'leri. Hepsi seed'li aralıklı, ızgara yok.
+- **Sıcaklık:** fener gül-şeftali (arka plan ve kenar ışığı), gövde ve gölge mavi-mor. **Kontrast:** en açık nokta banknot (P01). Ondan sonra fener çekirdeği, daktilo penceresi, yüz kenar ışığı gelir.
+
+### 2.3 Mimari kart (araç = yapı) · `Sedan40` [G: 1937–42 genel dört kapılı sedan, marka/rozet/yazı yok; araştırmada doğrulanmadı (A §5), nötr]
+| Madde | Karar (stilize ölçü, yerden m; **[T]** = okunurluk için hafif abartı) |
 |---|---|
-| Dönem/üslup | 1937–42 arası genel dört kapılı sedan [G]; marka/model **yok** [A §5: doğrulanamadı]. Okutan siluet: **arka yan camın arka-üst köşesi geniş yuvarlak** (C direği eğik), yuvarlatılmış cam köşeleri (r 0.05 m), kumaş tavan döşemesi, öne açılır güneşlik [G]. |
-| Kuruluş | Kabin iç yüksekliği 1.30 m, iç genişlik 1.45 m, ön ve arka **tek parça kanepe koltuk** [G]: oturak h 0.35, sırt üstü h 0.85, sırt kalınlığı 0.12 m, üstü yuvarlak. Kapı paneli: kolçak h 0.62, kapı kolu h 0.72, cam kolu (krank) h 0.55 [G]. Bel çizgisi (cam altı) h 0.85, cam üstü h 1.25. |
-| Açıklıklar | Uzak yan duvarda iki cam: ön (B direğine kadar) ve arka (yuvarlak arka-üst köşe). Direkler gövde rengi. Yakın taraf **kesilmiş** (kukla tiyatrosu kesiti). Kesit kenarı koyu ön-plan çerçevesi olur. |
-| Kameradan görünen | Kamera kabinde göz h 1.05 (oturan göz hizası), yakın kesit düzleminin 0.55 m dışında, yatay. **Tavan döşemesinin altı görünür**, araç dış kaportası ve tavanın üstü görünmez. Dışarısı yalnız camlardan, cam üst kenarı ~7° yukarıyı keser: **cephede yalnız zemin kat görünür**. |
-| Dış yapı (camdan + `dis`) | §2.6 cephe kartı. |
+| Gövde | Dört kapılı sedan, boy 4.9 m, genişlik 1.75 m (çamurluk dahil), çatı tepesi **1.62**. Ayrık ön/arka çamurluklar, **basamak** (running board) üstü 0.34, gövdeden 0.20 dışarı taşar [G: 1937–42'de basamak hâlâ yaygın, bazı modellerde gizli; doğrulanmalı]. |
+| Kat düzeni (yan) | çatı tepe 1.62 · yağmur oluğu 1.48 · **cam üstü 1.42** · **bel çizgisi + krom çıta 0.92** (cam altı) [T: gerçekte cam ≈0.40 m, burada 0.50, kapı 0.52] · kapı altı 0.40 · basamak 0.34 · zemin. |
+| Açıklıklar | Ön kapı camı: **dört köşesi yuvarlak dikdörtgen**. Arka-üst köşe r 0.07 m, arka-alt r 0.03, ön-üst r 0.10. Ön kenarı A direğine paralel eğik. **Üçgen havalandırma camı** (vent), ince krom dikme ile ayrılır [G: 1930'ların ortasından itibaren yaygın, doğrulanmalı]. B direği dik, A direği geriye yatık (≈14°). Kemer yok. |
+| Süsleme (imza, iki tane) | (1) **yuvarlak köşeli yan cam + krom çerçeve/bel çıtası**, (2) **çamurluk kavisi + basamak**. Ek: yatay **kapı kolu** (krom, itme düğmeli), cam üstü yağmur oluğu. Rozet, yazı, plaka yazısı, bayrak **yok**. Plaka: yazısız koyu dikdörtgen (yalnız `dis`). |
+| İç | Ön **tek parça kanepe** (oturak üstü 0.60, sırt üstü 1.12, yuvarlak rulo üst). Kaplama **koyu deri, dikey/boyuna rulo pli + dikiş** [G: deri ya da sık yün, ikisi de dönem içi; deri seçildi, ışığı daha iyi tutuyor]. Tavan döşemesi iç 1.55. **Direksiyon** ø 0.43 m, ince jant (0.025), 3 kollu, 30° yatık. Kolon panele iner. **Ön panel (gösterge tablosu)** üstü 1.00, alt kenarı 0.78, krom şerit + 1 yuvarlak düğme [G]. Dikiz aynası ön cam üstünde ortada. |
+| Kameradan görünen | `pencere`: göz 1.25, çatının altındasınız. **Çatı yüzeyi görünmez**, yalnız tavan eğrisinin silueti ve yağmur oluğu görünür. Kapı ve basamak üstü görünür (göz basamağın üstünde). `kucak`: tavandan, panel üstü ve ön cam görünmez, panel alt kenarı ve direksiyonun tamamı görünür. `el`: direksiyonun yalnız alt yayı ve panelin alt kenarı görünür. `dis`: göz 1.5, çatı tepesi gözün 0.12 m üstünde, çatı yüzeyi görünmez. |
 
-### 2.3 Kamera modeli `ic` (cs 1)
-F **1265** px · göz kabin h 1.05 (sokak +1.45) · **ufuk y 670** · figür düzlemi Z 1.10 (**1150 px/m**) · uzak kapı/cam Z 1.62 (781 px/m) · cephe Z 7.6 (166 px/m; sokak genişliği ≈ 6 m) · yakın kesit Z 0.55.
-`y = 670 + (1.05 − h)·F/Z` (h kabin tabanından m). `x = 540 + (X − X0)·F/Z` (X araç boyunca m, ön = sol).
-| Öğe | x | y | Not |
+### 2.4 Elçilik cephesi ve fener (bütün ARABA görünümlerinde aynı dünya)
+- Cephe kartı eski §2.6 aynen (1930'lar Ankara modern-klasik, düz lento, andezit subasman, beton saçak, kemer yok) [G]. **Değişen:** daktilo penceresi **zemin katta, kapının hemen solunda**. Sıralama soldan sağa: diğer pencere · **daktilo penceresi** (1.1 × 1.6, denizlik +1.2) · 0.35 m · **kapı** (1.4 × 2.6, iki andezit basamak, beton saçak h 3.1) · 1.4 m · **duvar feneri**. Bu sıralama `pencere` ve `dis`te birebir aynıdır.
+- **Duvar feneri (tek kaynak)** [T, nötr: sade 1930'lar duvar apliği; dönem/şehir tipi doğrulanmadı]: duvar kolu + buzlu cam küre ø 0.30, merkez h **2.0**. Küre içi `#efd0b6` (L\* 85; ampul görünmez, L\* ≤88). Hale iki net basamak: iç `#e4bc98`, dış `#e0c8b2`.
+- `Isik` tanımı (tek): `{ tip: "nokta", ad: "elçilik feneri", konum: dünya (X fener, h 2.0, Z cephe − 0.25), renk "#efd0b6" }`. Cephe havuzu, kaldırım yamuğu, araç içi ışık bandı, kenar ışıkları ve gölge yönleri **hep bu tanımdan** türer. Gök kaynak değildir (yalnız ortam tonu).
+
+### 2.5 `pencere` görünümü (P01b) · kamera, katmanlar, ölçü
+**Kamera:** yakın kaldırımda, göz h **1.25**, yatay, F **1265**, ufuk **y 578**. Kapı düzlemi Z **1.62** (780 px/m).
+Formül (cs 1): `x = 540 + X·F/Z`, `y = 578 + (1.25 − h)·F/Z`. X araç boyunca m (+ = ön/sağ, 0 = ekran ortası), h yerden m.
+Derinlikler: kaldırım bordürü Z 1.10–1.25 · basamak dış kenarı Z 1.42 · kapı/cam Z 1.62 · **Bazna Z 2.07 (611 px/m)** · ön kanepe sırtı X −0.45 · **Moyzisch Z 2.72 (465)** · direksiyon Z 2.55 · uzak cam Z 3.22 (393) · karşı bordür Z 7.7 · **cephe Z 10.2 (124)**.
+
+**Katmanlar (arkadan öne; px cs 1):**
+| # | Katman | Konum (x · y) | Renk / not |
 |---|---|---|---|
-| Kesit kenarı (tavan, Z 0.55) | 0–1080 | 0–95 | koyu `#26283a` bant + alt kenarda 2 px sıcak kenar `#9a8070` |
-| Güneşlik (ön, katlı) | 0–330 | 60–220 | koyu yamuk, 8° eğik, ön-plan çerçeve |
-| Tavan döşemesi | 0–1080 | 95–514 | dikiş çizgileri (5, seed'li aralık 0.30–0.42 m) kaçış noktası (540, 670) yönüne |
-| Uzak cam üst kenarı / bel çizgisi | — | 514 / 826 | |
-| Ön cam | 0–400 | 514–826 | ön kenarı kadraj dışında |
-| B direği | 400–445 | 514–826 | |
-| Arka cam | 445–930 | 514–826 | arka-üst köşe r 90 px |
-| C direği / arka iç panel | 930–1080 | 400–1490 | |
-| Uzak kapı paneli | 0–930 | 826–1490 | kolçak üstü y 1006, kapı kolu (560–640, 928), cam kolu (700, 1061) |
-| **Ön koltuk sırtı** (figür düzlemi, kenardan) | 395–500 | 900 (yuvarlak üst) – 1475 | dikey pli çizgileri |
-| Oturak ön yüzleri (yakına uzanır) | 0–1080 | 1475–1920 | pli + kenar biyesi. Alt üçte biri doldurur |
-| Moyzisch başı (önde, geri dönük, sağa bakar) | 170–400 | 417–682 | şapka tepesi y 268. Kenarlı şapka siluet yönü verir |
-| Bazna başı (arkada, öne eğik, sola bakar) | 720–940 | 417–682 | burun ucu x ≈ 720 |
-| **Daktilo penceresi** (cephe, arka camdan) | 480–663 | 514 (camla kesik) – 711 | iki başın arasında. Sekreter silueti (baş + omuz + daktilo üstü) y 645–711 (≈ 66 px) |
-| Banknot (P01 p0, sahne) | merkez (560, 820) | −12°, uzun kenar ≥ 260 px | Z ≈ 1.0 (figür düzleminin 0.1 m önü) → 267 px ✓ |
+| 1 | Cephe (Z 10.2) | tam genişlik, y −…–720 | sıva `#6e6470`, silme h 4.1 → y 213 (`#7a707c`, 18 px). Fener havuzu (cepheye, fenerden ışınsal, **net kenarlı 2 basamak**): r 300 px `#c8a98e`, r 170 px `#e0c8b2`. 1. kat pencereleri y 0–170: seed 193'le 3 karanlık (`#4d5b84`, gök yansıması), 1 yanık `#e4bc98` (x 180–300). Katman flu 3 px + pus `#a9b7cc` α .20. |
+| 1a | **Daktilo penceresi** | x 432–568 · y 386–584 (görünen kısım yalnız uzak cam bandında: y 511–584) | içi `#e8c9a4` (L\* 83). Sekreter (`topuzlu`, `#463f55`) oturur, baş + omuz + daktilo üstü y 522–584 (≈62 px). İki kafanın **arasında**, hiçbiriyle çakışmaz. |
+| 1b | Kapı + saçak + basamak | kapı x 612–786 · y 400–722. Saçak x 575–823 · y 338 (h 3.1), altı tarama. Basamaklar y 722–760 | kapı koyu ahşap `#3a3040`. Fener ışığında sağ kanat `#6b5148`. Büyük kısmı A direği ve havalandırma camının ardında kalır. Yalnız ipucu olarak görünür (P09a kurulumu). |
+| 1c | **Fener** | küre merkezi **(962, 485)**, r 19 px. Hale r 60 `#e4bc98`, r 110 `#e0c8b2` | A direğinin **sağında**, açık arka plan bölgesinde. Doğrudan görünen tek kaynak. Hale net kenarlı, blur yok. |
+| 2 | Karşı kaldırım + yol (Z 7.7–10) | y 690–750 (yalnız A direğinin sağında ve cam bantlarından) | `#55606e`, fener yamuğu `#8c6f66` |
+| 3 | Uzak taraf (Z 3.22): uzak kapı içi, uzak cam çerçevesi | uzak cam bandı y **511–653** | çerçeve `#26283a`. Bandın içinden 1 ve 2 görünür. |
+| 4 | Tavan döşemesi (iç) | y 446–511, cam üst kenarı ile uzak cam üstü arası | `#3a3d58`, ışıksız, dikişsiz |
+| 5 | Ön panel üstü + direksiyon (Z 2.4–2.6) | panel üst çizgisi y ≈ 718, x 800–950 (havalandırma camında). Direksiyon: dar elips, merkez (770, 700), yükseklik 212, en 74 (oran 0.35 [T: gerçekte neredeyse çizgi]), 30° geriye yatık. Bel çizgisi (y 835) altı görünmez | jant `#2a2834`, ışık kenarı `#f0c4a8` 2 px üst-sağda |
+| 6 | **Moyzisch** (Z 2.72, siluet `sapkali`) | şapka tepesi y 471, kenar y 520, göz y 560, çene y 620, omuz y 680. Baş merkezi x **660** (şapka kenarı 585–740) | §2.10 poz tablosu. Hafif öne eğik (10°), yüz **sağa** (yola) bakar |
+| 7 | Ön kanepe sırtı (X −0.45, Z 1.8–3.1, perspektifle) | yakın uç x 265 → uzak uç x 363, üst rulo h 1.12 (y 644 → 629) | deri `#4f3a3a`, ışık bandında `#7a5a50` |
+| 8 | **Bazna** (Z 2.07, Kukla `takim40`, yüzlü, `yon +1`) | baş tepesi y 480, çene y 695 (**baş 215 px**), baş merkezi x **300** (190–410). Omuz y ≈ 770 | §2.10. Sırtı kanepeye yaslı. Bakışı Moyzisch'e (sağa, `bakis [0.9, 0.1]`) |
+| 9 | Yakın cam (Z 1.62) | **ana cam x 135–785 · y 446–835**. Köşeler: arka-üst r 55 px, arka-alt r 24, ön-üst r 80. Havalandırma dikmesi x 785–797. Havalandırma camı dikmeden A direği iç kenarına [(840, 450) → (950, 835)] | yansıma: **iki çapraz şerit**, `#6f86ad` α .08, 60 px ve 18 px, A direğine paralel. Yalnız x 135–230 ve x 735–785'te. Banknot yolu ve yüzler şeritsiz |
+| 10 | Gövde (Z 1.62): çatı silueti, direkler, kapı | çatı silueti: (0, 300) → (300, 288) → (700, 312) → (880, 380) → A direği dış kenarı (880, 380) → (1000, 845). Yağmur oluğu y 399. B direği x 70–125. Arka kapı dilimi x 0–70. **Krom bel çıtası y 835–851** (x 0 → A direği dibi). Kapı x 128–905 · y 851–1241 (ön kenarı çamurluğa doğru kavisli). **Kapı kolu x 160–280, y 870–892** (krom, sağ ucunda itme düğmesi ø 14). Kapı alt kenarı içe kıvrık y 1241–1262 | gövde `#262836`. Kapının üst omzunda yatay yansıma bandı y 860–905, `#3e4262`. Kapının ortası `#262836`, alt kıvrım `#1c1d2a`. **Siluet kenarı** (çatı, A direği dış, kaput çizgisi, çamurluk tepesi): fenerden 2–3 px `#f0c4a8` |
+| 11 | Kaput + ön çamurluk | kaput yan çizgisi (905, 845) → (1080, 862). Çamurluk arka kavisi: (1080, 880) → (960, 960) → (915, 1150) → (930, 1290) basamağın ön ucuna. Lastik dilimi x 1010–1080 · y 1330–1692 | çamurluk `#262836`, **tepe kavsinde sıcak parlama** (fener, arkadan sıyırır) `#c8a98e` 40×6 px. Altı tarama. Lastik `#1e1c26` |
+| 12 | Basamak | üst yüz y **1288–1389** (lastik nervür 4 çizgi: y 1300, 1318, 1342, 1370, seed ±4). Dış kenar krom y 1389–1395. Ön yüz y 1395–1424 | lastik `#2a2834`, nervür `#3a3848`. Krom kenarda soğuk parıltı `#8e8e96` |
+| 13 | Gövde altı gölge | y 1424–1554 | `#1c1a28`, lastik dilimi. Altında gazete tanesi α .10 |
+| 14 | Oluk + su birikintisi (yol, Z 1.36–1.62) | y 1554–1691 | parke taşı (küp, seed'li sıra kayması). Birikinti x 220–760 `#2f3550`, içinde basamak kenarının **kırık yansıması** (3 parça, `#55606e`) |
+| 15 | Bordür (andezit) | y 1691–1760 | `#5e5a66`, üst kenar ışığı `#7a7684`, 2 dikey derz (seed) |
+| 16 | Kaldırım plakaları (ön plan, ıslak) | y 1760–1920 | `#4a4858` / derz `#2e2c3a`, soğuk ıslak parıltı noktacıkları `#6f86ad` α .5 (8–12 adet, seed 191) |
+- **Fener neden yolda yansımaz:** yansıma noktası yolda Z ≈ 1.3'te olur. Feneri gören ışın Z 1.62'de h ≈ 0.3'ten geçer, burası çamurluk/lastik bölgesidir. Işın kesilir.
+- **Işık bandı (içerde, fenerden):** fener uzak camın ardından gelir, eğimi ≈ 0.10. Uzak camın üst ve alt kenarı içeride net kenarlı bir **sıcak bant** düşürür. Bazna'da bant h **0.87–1.29** (gözler, burun, ağız, çene, yaka, göğüs). Alnı ve saçı tavan gölgesindedir. Moyzisch'te bant h 0.99–1.35. Bant kenarları sağa doğru 3° yükselir. Uzak A direği, Moyzisch'in omzunu sağ üstten sol alta çaprazlayan 40 px'lik gölge şeridi atar (**"cama vuran çapraz ışık"**).
+- **Kenar ışığı yönü:** fener sağ-arkadadır. Yüzlerin **sağa bakan profil kenarı** (alın, burun, dudak, çene) 2–3 px `#f0c4a8` alır. Kameraya dönük yanak gölgede kalır. Bazna'nın yanak gölgesi `#a8866e`: ifade okunsun diye çok koyu değil, `kuklaIsigi` yönü [0.95, −0.1].
+- **Gölgeler:** kameraya doğru düşer (görünmez yüzlere). Görünen tek düşen gölge: Bazna'nın başının kanepe sırtındaki gölgesi, sola, 30 px.
 
-### 2.4 Işık `ic` (gün, alçak güneş sol-ön-uzak, yon [0.85, 0.15])
-- **Ön cam:** üstte gök `#a9b7cc` (y 514–590), altta ufuk ışıması `#f0d0bc` (590–670). Ufuk altında puslu uzak ağaç tepeleri `#d9b896`/`#b39a8a` (flu 4 px, seed'li 5–7 tümsek, tür belirsiz). Güneş diski yok.
-- **Işık yamaları (`aciklikYamasi`, ön cam açıklığından):** Bazna'nın yüzü, boynu, yakası (`#e4bc98` yüz ışığı, ten tasarımdaki gibi), arka koltuk sırtı ve C direği iç yüzünde parçalı paralelkenar (x 860–1080, y 700–1300). Banknot yüzü bu huzmede (en parlak).
-- **Tavan döşemesi:** sol yarı ön camdan yansıyan sıcaklıkla `#9a8070`, sağ yarı `#4a4560`. Sınır net, dikiş çizgisine oturur.
-- **Moyzisch:** kontra. Şapka kenarı ve ense sol çizgisinde `#f0c4a8` 2 px, yüz yok.
-- **Cephe:** güneşi sıyırarak alır: sıva `#c4ae96`, pencere girintilerinin sağ yanağı gölge `#8f8aa0` (tarama, orta sınıf). Daktilo penceresi içi `#e8c9a4` (içeride masa lambası; kaynak sayılmaz, cepheye ışık düşürmez), sekreter silueti `#463f55`. Cephe katmanı flu 3 px + pus `#a9b7cc` α .25.
-- **Gölgeler:** sağa ve hafif aşağı (banknotun gölgesi koltuk sırtı üstüne sağ-alta, 8–12 px kayık).
+**Kadraj üçte birleri:** üst (0–640) cephe + fener + tavan eğrisi + iki baş · orta (640–1280) cam altı + krom + kapı + kol + çamurluk · alt (1280–1920) basamak + gövde altı + birikinti + bordür + kaldırım. Ölü alan yok. Alt bant (1290–1490) yalnız basamak/gölge taşır, önemli nesne yok.
+**Kamera hareketi (öneri, json yönetmenin):** p110 cs 1.0 → p438 cs 1.15, merkez Bazna'nın yüzü (cx +35, cy +20). cs 1.15'te Bazna'nın başı 247 px (%12.9). Küçük yüz jesti okunur.
 
-### 2.5 Malzeme ve doku `ic`
-| Yüzey | Malzeme | Doku | Kod | Parametre |
+### 2.6 `el` görünümü (P01a, kanca) · insert
+**Kamera:** araç içinde, yolcu tarafında, Bazna'nın sol dizi hizasında, göz h 1.15, sürücüye doğru, 25° aşağı. Devir noktası (h ≈ 1.00, kanepenin ortası üstü) kameradan 0.48 m uzakta, **2650 px/m**. Ön = sağ.
+| # | Katman (arkadan öne) | Konum (cs 1, p30) | Renk / not |
+|---|---|---|---|
+| 1 | Uzak taraf: sürücü kapısı içi + Moyzisch'in gövdesi (flu değil, koyu) | x 0–620 · y 0–520 | kapı `#2e3048`, palto `#3c3a4c`. Işık bandının üst kenarı yakasında |
+| 2 | **Ön panel alt kenarı** | x 560–1080 · y 0–150. Krom şerit y 140–150, yuvarlak düğme (900, 80) ø 40 | `#2e2c3a`, krom `#8e8e96` |
+| 3 | **Direksiyon alt yayı** | halka merkezi (990, 50), r 310, jant kalınlığı 28. Görünen yay x 690–1080 · y 200–360. Moyzisch'in **sol eli** jantı saat 7–8 konumunda kavrar (§2.10) | jant `#2a2834`, ışık kenarı `#f0c4a8` |
+| 4 | Ön kanepe sırtı (solda, arka) | x 0–300 · y 150–1300, dikey rulolar (70 px ± seed), üstü y 150'de yuvarlak | deri gölge `#4f3a3a`. Bantta `#7a5a50`, rulo tepesi `#8c6f66`. Dikişler 2 px `#2e2634` + dikiş çizgisi (6 px çizgi, 6 px boşluk) |
+| 5 | Kanepe oturağı (ortada, gölgede) | y 700–1920, boyuna rulolar yatay çizgiler halinde. Aralık aşağı doğru büyür: y 1080, 1130, 1195, 1275, 1375, 1500, 1650, 1830 (seed ±6). Sağ altta oturağın ön rulosu çapraz iner, altında koyu taban paspası `#1e1c2c` | rulo tepesi `#4a3a40`, oluk `#2e2634`. **Tarama yok** |
+| 6 | Moyzisch sağ ön kolu + eli | kol sağ üst kenardan girer: dirsek kadraj dışı (1130, 380), **bilek (930, 600)**. El sol-aşağı, kıstırma noktası (775, 785) | kol `#3c3a4c`, **manşet koyu** (açık gömlek şeridi yok). Ten §2.10 |
+| 7 | **Banknot** (arka yüz + sızıntı .12) | merkez **(540, 930)**, açı **+30°**, uzun kenar **561 px**, kısa 357. Uçları (783, 790) ↔ (297, 1070). Hafif kavisli (köşe kıvrık 6 px), katı levha değil | `#f6f1e4`, sızıntı ters yüz baskısı α .12. **Sahnenin en parlak noktası** |
+| 8 | Bazna sol ön kolu + eli (**avuç yukarı**) | kol sol alttan: dirsek (−40, 1440) kadraj dışı, **bilek (230, 1230)**. Avuç banknotun sol-alt ucunun altında, başparmak p42'de üste kapanır | ceket `#3b3a4e` + ecru manşet şeridi `#b8b09c` (0.08 E). Ten §2.10 |
+| 9 | Bazna sağ dizi + sağ eli (ön plan) | diz x 0–380 · y 1480–1920, sağ el dizin üstünde dayalı (avuç aşağı, parmaklar diz kapağını sarar) | pantolon `#262536`, ışıksız. El gölge tenleri |
+- **Işık bandı (fenerden, uzak sürücü camından):** net kenarlı sıcak bant. Üst kenar (0, 560) → (1080, 470), alt kenar (0, 1230) → (1080, 1080). Bant içinde: iki el, banknot, kanepe sırtının üst yarısı, Moyzisch'in kolunun üst kenarı. **Oturak bandın altında (gölgede).** Fizik: bandın alt kenarı ortada h ≈ 0.99, oturak h 0.60. Böylece banknot ve eller soğuk gölgedeki koltuğun üstünde en yüksek kontrastı alır.
+- **Gölgeler:** sola ve kameraya doğru. Banknotun düşen gölgesi oturakta görünmez (çok uzağa düşer). Yalnız **temas gölgeleri** görünür: parmak ile kâğıt arası 4–6 px `#2a2638` α .6, banknotun Bazna'nın avucuna düşen gölgesi.
+- **Okunurluk:** el + banknot + manşet bbox ≈ (180, 560)–(1000, 1300) = 820×740 = **%29** (şart ≥ %25). Banknot uzun kenarı ≥ 540 px.
+- Üst bant (240–400) yazısı yalnız panel ve direksiyonun üstüne biner, el ve banknot y ≥ 560. Alt bant boş görünmez (diz + oturak).
+
+### 2.7 `kucak` görünümü (P05) · tepeden insert
+**Kamera:** tavan iç yüzünde, iki koltuğun arası, h 1.50, **70° aşağı**, ön = **kadraj üstü**. Devir düzlemi (h ≈ 1.00) 0.55 m uzakta, **2300 px/m**. Kucak düzlemi (h 0.80) 0.75 m uzakta, 1690 px/m. Moyzisch solda, Bazna sağda (sol direksiyonlu araçta sürücü solda).
+| # | Katman | Konum (cs 1) | Renk / not |
+|---|---|---|---|
+| 1 | Taban paspası + pedallar (çok koyu) | y 0–220, yalnız iki diz arasından | `#1e1c2c`, pedal yok sayılabilir (gerekmiyor) |
+| 2 | **Ön panel alt kenarı** (yukarıdan görünen üst kenar) | x 0–1080 · y 180–300, krom şerit y 290–300 | `#2e2c3a` |
+| 3 | **Direksiyon (tam halka)** | elips merkezi (300, 470), yarıçaplar 330 × 250 (30° yatıklıktan), jant 26 px. 3 kol göbeğe (300, 470), göbek ø 70. Kolon panele | jant `#2a2834`. Sağ üst yayda ışık kenarı `#f0c4a8` |
+| 4 | Kanepe oturağı (orta şerit + iki kenar) | x 380–720 · y 300–1920 boyuna rulolar artık **dikey** çizgi (aralık 60–80, seed). Alt uçta sırt tabanı y 1700–1920 | gölge tenleri §2.6-5 |
+| 5 | Moyzisch uyluğu + dizi (solda) | x 0–420 · y 560–1500, diz üstte (y 560) | palto eteği `#3c3a4c`, pantolon `#2c2a38` |
+| 6 | Bazna uyluğu + dizi (sağda) | x 660–1080 · y 600–1600 | `#262536` / ceket eteği `#3b3a4e` |
+| 7 | **Zarf** (Moyzisch'in kucağında, p0'dan görünür: **kurulum**) | p0: merkez (220, 1180), 0°, 410 × 273 (kucak düzleminde). Devirde (h 1.0): ≈ 560 × 373 | kraft `#a88b66`, üçgen kapak çizgisi `#7a6450`. Yazı/pul yok |
+| 8 | **Film kutusu** (Bazna'nın elinde) | devirde uzunluk **175 px** (0.0825 m × 2300 × 0.92) | `#2a2830`, etiket bandı `#8a8470`, kenar ışığı `#f0c4a8` |
+| 9 | Eller ve kollar | §2.10 poz tablosu | |
+- **Işık:** fener aracın solundadır (elçilik tarafı, sürücü camından). Net kenarlı bant **soldan sağa yatay**: x 0 → 1080, y 640–1180 arası (devir yüksekliği). Moyzisch'in dizleri ve direksiyonun alt yarısı bandın üst kenarında. Bazna'nın uyluğu bandın sağ ucunda sönümlenir: ikinci basamak `#5a4a44`, sonra gölge. Kucak yüzeyleri (h 0.80) bandın altında, **zarf kucağa inince gölgeye girer** (L\* 59 → 44). Bu imza tekilliğine de yardım eder (P05'te banknot yok, en parlak yüzey zarfın ışıkta kalan kenarı ve eller).
+- **Gölge:** sağa (Bazna tarafı), temas gölgeleri 4–8 px. Zarf kucağa konunca altında 10 px'lik koyu temas gölgesi (p118 temas karesi).
+- Üçte birler: üst panel + direksiyon, orta devir, alt kucak + zarf + kanepe. Ölü alan yok.
+- **Kamera hareketi (öneri):** sabit cs 1.0 (p0–247). İstenirse p150 → 232 arasında cs 1.0 → 1.08, merkez zarf (kucağa konduktan sonra). Yakın planı kesip dolduran yüz yok (P05 "yüz kadrajı dolduruyor" sorunu bu görünümde oluşamaz).
+
+### 2.8 Renk (bu bölüme ek; hepsi L\* ≤ 88, C\* ≤ 28, banknot hariç)
+| Ad | Hex | ~L\*/C\* | Not |
+|---|---|---|---|
+| Moyzisch arabası gövde / omuz yansıma / alt kıvrım | `#262836` / `#3e4262` / `#1c1d2a` | 16/10 · 28/16 · 11/9 | siyah değil, lacivert-siyah |
+| P09a arabası gövde / yansıma | `#3d4640` / `#55605a` | 29/6 · 39/6 | koyu yeşil (eski P09a hex korunur) |
+| krom / krom parlama | `#8e8e96` / `#c4b5a8` | 59/5 · 74/8 | sarı metal yok |
+| lastik / basamak lastiği / nervür | `#1e1c26` / `#2a2834` / `#3a3848` | | |
+| deri gölge / bantta / rulo tepesi / dikiş | `#4f3a3a` / `#7a5a50` / `#8c6f66` / `#2e2634` | 27/10 · 41/14 · 49/14 | sıcak piksel (C\* ≥10) |
+| fener küre / hale iç / hale dış | `#efd0b6` / `#e4bc98` / `#e0c8b2` | 85/20 · 79/25 · 82/15 | banknotla ΔL\* ≥ 10 |
+| cephe fener havuzu | `#c8a98e` | 71/20 | |
+| parke/kaldırım ıslak / derz / soğuk parıltı | `#4a4858` / `#2e2c3a` / `#6f86ad` α .5 | | |
+| bordür andezit / üst kenar | `#5e5a66` / `#7a7684` | | |
+| Moyzisch ten ışık / gölge | `#cdb09e` / `#7f6a64` | 74/13 · 47/9 | Bazna'dan soğuk ve soluk (ayrışma). **Öneri, tasarımcı onaylar** |
+| Bazna ten ışık / gölge (tasarım) | `#c9a58a` / `#8e6a52` | 70/18 · 48/18 | |
+
+### 2.9 `dis` görünümü (P09a) · elçilik karşıdan, yakın
+**Neden değişti:** (1) v1'de araba kaldırımın üstündeydi (Z 12.5 > bordür Z 11). (2) Sekreter 1.62 m × 110 px/m = 178 px (%9.3), ≥%12 değildi. (3) Kapı ile araba arası yürüyüş, 46 karede 3+ m'ydi (koşu hızı). (4) Kaldırım tarafındaki araba kapısı karşı kaldırımdan **görünmez**. Burada sekreter kaldırım tarafındaki arka kapıya biner; **uzak kapının açılıp kapanması ve oturuşu yakın arka camın içinden görünür** (`pencere` ile aynı "camın ardını görme" dili).
+**Kamera:** karşı kaldırımda, göz h **1.5**, yatay, F **1300**, ufuk **y 1000**. Cephe Z **9.0** (144.4 px/m) · karşı bordür Z 7.0 · araba yakın yüzü Z **5.1** (255 px/m), uzak yüzü Z 6.85 · yakın bordür Z 2.6.
+| # | Katman | Konum (cs 1) | Renk / not |
+|---|---|---|---|
+| 1 | Cephe | tam genişlik, y 0–1195 (taban). 1. kat silmesi h 4.1 → y 488 (18 px). 1. kat pencereleri y 200–445 (aks 2.5 m, seed 193: biri yanık `#e4bc98`, kalanı `#4d5b84` = P09b pencere hex'i, gök yansıması). 2. kat denizlikleri y 0–40 | sıva `#6e6470`, fener havuzu r 330 `#c8a98e` / r 190 `#e0c8b2` (net kenar) |
+| 2 | **Daktilo penceresi** | x **251–410** · y 813–1043 (söve 0.1 m) | `#e8c9a4`. Sekreter oturur (baş y ≈ 1007), p16'da kalkar (baş y ≈ 935) |
+| 3 | **Kapı** + saçak + 2 basamak | kapı x **461–663** · y 782–1152. Saçak y 632 (x 432–692), altı tarama. Basamaklar Z 8.4–9.0, y 1152–1195 | kapı `#3a3040`, açılan kanat içi `#2a2632` |
+| 4 | **Fener** | küre merkezi **(692, 913)** (X 1.05, h 2.1), r 22. Hale r 70 / 125 | `#efd0b6` / `#e4bc98` / `#e0c8b2` |
+| 5 | Karşı kaldırım + bordür | y 1195–1279 | `#55606e`. Fener yamuğu `#8c6f66`, x 520–900. Bordür ön yüzü `#5e5a66` |
+| 6 | **Kaçış arabası** (`Sedan40`, koyu yeşil, **sağa bakar**, yakın yüzü Z 5.1) | arka tampon x **770**, ön kadraj dışında sağda. Çatı y 969, cam y 1020–1148, bel krom y 1148, kapı altı y 1280, basamak y 1291–1330, zemin y 1382. **Arka kapı x 922–1080+** (camı x 935–1060), bagaj eğrisi x 770–900 (tepesi h 1.05 → y 1115) | gövde `#3d4640`. Siluet kenarı fenerden `#f0c4a8`. Çamurluk altı tarama |
+| 7 | Yol (parke taşı, ıslak) | y 1279–1675 | `#2f3550` → `#26283a`. **Fener yansıması: dikey, kırık şerit x 680–705, y 1430–1640** (`#e4bc98` → `#8c6f66`, 5–7 parça, seed 194). Daktilo penceresinin yansıması x 251–410, y 1330–1520, sönük `#7a6658`. Arabanın kendi koyu yansıması gövdesinin altında |
+| 8 | Yakın bordür + kaldırım (ön plan) | bordür y 1675–1740, kaldırım y 1740–1920 | andezit `#5e5a66`, plakalar `#4a4858`, soğuk ıslak parıltı |
+- **Fener yansıması neden burada var:** yansıma noktası yolda Z ≈ 3.75 (x 692). Fenere giden ışın X ≈ 0.7'den geçer, araba arka tamponu X 0.9'dan başlar. Yol açık.
+- **Sekreter yolu (öneri, kareler yönetmenin):** p16 pencerede kalkar → p16–50 içeride sola, kapıya (pencere ile kapı arası 0.35 m) → p50 kapı açılır (temas) → p50–70 iki basamak (her adım bir basamağa) → p70–96 kaldırımda **sağa**, fenerin altından (kenar ışığı en güçlü an), bagajın arkasından (bel üstü görünür, bagaj h 1.05) arabanın uzak (kaldırım) arka kapısına (≈ 2.1 m, hızlı yürüyüş) → p96–104 uzak kapı açılır (çerçevesi **yakın arka camın içinden** görünür) → oturur, başı arka camda (y ≈ 1040) → p110 kapı kapanır (temas, cam içinden görünür) → p114–154 araba sağa kalkar (1.2 m'de kadrajdan çıkar). Plan sonundan ≥ 12 kare önce biter.
+- **Boy:** kapıda Z 8.9 → **237 px (%12.3)**. Kaldırımda Z 7.6 → 277 px (%14.4). Şart ≥ %12 karşılanır.
+- **Trafik yönü notu [G]:** Türkiye sağdan trafik. Karşı şeritte araç normalde sola bakar. Burada sağa bakar (kısa kaçış yolu: 1.2 m'de kadrajdan çıkar; sola baksaydı 5+ m gerekirdi). Kaçış anında ters yönde beklemek dramatik olarak kabul edilebilir. İzleyicinin fark etmesi beklenmez. Açıkça [T] tasarım kararı.
+- **Gök yok** (cephe kadrajı doldurur). Alacakaranlık yanık pencereler, `#4d5b84` gök yansıması (P09b'ye taşıyıcı hex) ve fenerle okunur.
+- Üçte birler: üst 1. kat pencereleri + silme · orta saçak, fener, kapı, daktilo penceresi, araba · alt ıslak yol, iki yansıma, bordür, kaldırım. Ölü alan yok.
+
+### 2.10 El ve kol poz tablosu (kullanıcı: "El kol doğru değil özürlü gibi"; motion rig parametresine çevirir)
+**Kurallar (bütün görünümler, ayrıca P04, P08, P09b, P10'da da kontrol):**
+1. **El havada sarkmaz.** Her el her karede bir şu durumdadır: (a) **dayalı**: direksiyon, diz, kucak, kanepe sırtı (temas gölgesi var); (b) **tutuyor**: nesneyi kavrar ya da kıstırır; (c) **iletiyor**: nesneyi taşıyan ya da almaya uzanan, avuç yönü tanımlı, parmaklar gergin, ≤ 40 karelik geçiş. "Gevşek, avuç aşağı, parmaklar sarkık" poz arabada **yasak**.
+2. **Bilek ön kolun devamıdır.** Ön kol ekseni ile el ekseni arasındaki açı: nötr ≤ 15°, kavrama/kıstırma ≤ 30°, **asla > 35°**. Avuç aşağı bükülü bilek (sarkık) yasak.
+3. **El boyu (bilek–orta parmak ucu) = aynı figürün yüz boyunun (çene–saç çizgisi) ≈ %75'i**, aynı derinlikte ölçülür. Siluet figürlerde yüz 0.24 m → **E = 0.18 m** (`0.19` değil). Kukla Bazna'da yüz karikatür ölçüsünde olduğu için el **rig yüzünden** hesaplanır: `E = 0.75 × yüzBoyu(px)` (baş 215 px, yüz ≈ 170 px → **E ≈ 128 px**). Sınır: 0.65–0.85 × yüz. v1'deki "dev el" (≈ 1.1 × yüz) ve gerçek ölçüden hesaplanan "bebek el" (0.5 × karikatür yüz) ikisi de yasak. Insert görünümlerinde yüz kadrajda yoktur. Orada E = 0.18 m × px/m.
+4. **Kol omuzdan dirsekle iner.** Omuz → dirsek → bilek üç nokta. Dirsek açısı 70°–160° (düz kol yok, katlanmış kol yok). Kol `konikKol` (omuz 0.11 m, dirsek 0.09, bilek 0.07 × px/m). Omuz noktası gövdenin omuz eklemine bağlıdır (`govdeDunya` / `siluet40Yol.omuzY`), serbest değildir.
+5. **Ten rengi:** banknottan koyu (L\* ≤ 75) ve az doygun (C\* ≤ 20). Eller ışık bandında bile `#c9a58a` (Bazna) / `#cdb09e` (Moyzisch) üstüne çıkmaz. Ten bant dışında gölge tenine iner. Banknot ile ΔL\* ≥ 20.
+6. **Tutma okunur:** kavrayan el, nesnenin **arkasından** sarar. 4 parmak altta (kısmen gizli), başparmak üstte görünür, nesne üstünde temas gölgesi. Kıstırmada başparmak ve işaret parmağı ucu nesnenin iki yüzündedir, arada kâğıt kalınlığı (3 px) görünür.
+
+**Yeni poz önerileri (`GRAVUR_POZ`'a):** `avuc` (avuç yukarı, parmaklar düz ve hafif açık, başparmak yanda; almaya hazır), `dayali` (avuç aşağı, parmaklar dize ya da kucağa uyacak biçimde 20–30° bükük, temas gölgeli), `jant` (direksiyon kavrayışı: 4 parmak jantın arkasında, başparmak önde, `tutus` türevi).
+
+| Görünüm / plan | Figür · el | Durum | Omuz → dirsek → bilek (cs 1 px) | El açısı / poz | Kareler (öneri) |
+|---|---|---|---|---|---|
+| `el` P01a | Moyzisch **sol** | direksiyonda dayalı (jant saat 7–8) | kadraj dışı (sağ üst) → kadraj dışı → bilek (1040, 330) | `jant`, avuç kameraya dönük, başparmak jantın önünde | p0–110 sabit |
+| `el` P01a | Moyzisch **sağ** | ileten → bırakan | dirsek (1130, 380) dışarıda → bilek (930, 600) → kıstırma (775, 785) | `kistir`, bilek–ön kol 10°. p42'den sonra p42–70 parmaklar açılır, el bilekten geri çekilir: bilek (1000, 520), poz `dayali`. Kucağına iner, kadrajın sağ üstünden çıkar (p70–96) | p0, 24, 42, 70, 96 |
+| `el` P01a | Bazna **sol** (alan) | **avuç yukarı** uzanır → kavrar → çeker | dirsek (−40, 1440) → bilek p0 (150, 1330) → p30 (230, 1230) | p0–30 `avuc`, avuç banknotun altında. **p42 başparmak üste kapanır** (`tutus`). p70–100 bilek (120, 1500)'e çekilir, banknotla birlikte sol alttan **kadrajdan çıkar** | p0, 30, 42, 70, 100 |
+| `el` P01a | Bazna **sağ** | dizinde dayalı | — (diz ön planda, x 0–380, y 1480+) | `dayali`, el diz kapağında (200, 1600), parmaklar dizin kavsine | sabit |
+| `pencere` P01b | Moyzisch **sağ** (yakın) | direksiyonda dayalı | omuz (640, 680) → dirsek (705, 770) → bilek (735, 650) | `jant`, jantın üstünde saat 11. Dirsek bel çizgisinin üstünde görünür (y 770 < 835) | sabit |
+| `pencere` P01b | Moyzisch sol | görünmez (uzak taraf) | — | — | — |
+| `pencere` P01b | Bazna **sağ** (yakın) | p110: kucakta, görünmez → p116–136 banknotla yükselir → **p138 ceket iç cebine girer** (temas) → p138–170 elini yakaya dayar → p170 iner ve bel altına çıkar | omuz (330, 770) → dirsek (250, 900) (cam altı, görünmez; kol bel çıtasının arkasından yükselir) → bilek p130 (360, 800) | banknot `tutus` ile, uzun kenar ≈ 150 px, bant içinde (en parlak). p138'den sonra `dayali` (yaka üstünde) | p110, 130, 138, 170 |
+| `pencere` P01b | Bazna sol | kucakta, görünmez | — | — | — |
+| `kucak` P05 | Moyzisch **sol** | direksiyonda dayalı (saat 9) | omuz kadraj dışı sol → bilek (40, 470) | `jant` | sabit |
+| `kucak` P05 | Moyzisch **sağ** | p0–30 **avuç yukarı** uzanır (film kutusunu alır) → p44 kavrar → p44–60 kutuyu palto iç cebine götürür (kadrajın sol üstünden çıkar) → p60 zarfı kucağından alır → p70–84 ileten → p84 bırakır → kucağa döner, `dayali` | dirsek (260, 900) → bilek p0 (330, 980) → p30 (430, 900) | `avuc` → `tutus` → `tutus` (zarfın sağ kenarı) → `dayali` | p0, 30, 44, 60, 84, 110 |
+| `kucak` P05 | Bazna **sol** (yakın merkez) | p2 kutuyu iç cebinden çıkarır (temas, kadrajın sağ üstünden girer) → p30 uzatır (kutu başparmak + 2 parmak arasında) → p44 bırakır → p70 **avuç yukarı** uzanır → p84 zarfı kavrar → p118 zarfı kucağına koyar (temas) → zarfın üstünde `dayali` | dirsek (900, 1000) → bilek p30 (650, 900) → p84 (620, 950) → p118 (820, 1250) | `kistir` → `avuc` → `tutus` → `dayali` | p2, 30, 44, 70, 84, 118 |
+| `kucak` P05 | Bazna **sağ** | dizinde dayalı | — | `dayali`, (980, 640) | sabit |
+| `dis` P09a | sekreter | kollar gövde yanında, yürüyüşte salınır. Kapı kolunu tutar (p50) | — | siluet el, tek parça | — |
+- Bütün geçişlerde el **nesneyle birlikte** hareket eder. Bırakılan nesne bir yüzeye oturur ya da öbür ele geçer, fade yok. Bilek anahtarları arasında `inout` eğri, ≥ 14 kare.
+- **Kontrol betiği önerisi (motion/teknisyen):** her kontrol karesinde her el için (a) bilek–ön kol açısı, (b) el boyu / baş boyu, (c) dirsek açısı yazdırılır. Sınır dışı = hata.
+
+### 2.11 Malzeme ve doku (≤ 3 katman, seed sabit; `DOKU_SEED.araba 191`, `ankaraCephe 193`, yol 194)
+| Yüzey | Malzeme | Doku tarifi | Kod yöntemi | Parametre |
 |---|---|---|---|---|
-| Koltuk / kapı paneli | yün döşeme kumaşı [G] | dikey pli çizgisi, aralık 22–40 px seed'li. Kenar biyesi 1 ton açık | yol | seed 191, `#3a3750`/`#6a5c68` |
-| Tavan döşemesi | kumaş | dikişler ışınsal; kumaşta tane yok | yol | seed 192 |
-| Krom | metal | tek parlama noktası | yol | `#8e8e96`, nokta `#c4b5a8` |
-| Cam | düz | tek yansıma çizgisi, ön camda yok (ışık zaten parlak) | çizgi | α .10 |
-| Cephe (camdan) | sıva + andezit | orta sınıf: yalnız kat silmesi + pencere sövesi; andezitte 2 sırada bir derz | `TasDuvar` (bulut kapalı) | seed 193 |
+| Gövde boyası | cilalı lacivert-siyah / koyu yeşil | düz ton + **tek yatay yansıma bandı** (kapı omzu) + siluet kenar ışığı. Gren yok | poligon + 2 px kenar yolu | bant α 1 (düz ton), seed yok |
+| Krom | çıta, kol, basamak kenarı, cam çerçevesi | tek parlama noktası, uzun kenarda 1 soğuk çizgi | yol | `#8e8e96`, nokta `#c4b5a8` |
+| Cam (yakın) | düz cam | 2 çapraz yansıma şeridi α .08. İçerisi tam görünür, ton kaydırması yok | poligon α | şeritler A direğine paralel |
+| Deri döşeme | koyu deri | rulo pli + dikiş çizgisi (6/6 px kesik). Rulo tepesi 1 ton açık | yol, seed'li aralık | 60–80 px, seed 191 |
+| Basamak | lastik | 4 boyuna nervür (perspektifle aralık açılır) | yol | seed ±4 px |
+| Parke taşı (yol) | küp taş [G: 1940'lar Ankara ana caddeleri asfalt ya da parke, doğrulanmalı; parke seçildi] | sıralar yatay, sıra içi kayma seed'li (ızgara değil), taşların %30'unda üstte soğuk ıslak parıltı | `IslakKaldirim.tsx` türevi | sıra yüksekliği perspektifle, seed 194 |
+| Kaldırım | andezit plaka | 2–3 derz, ıslak koyu ton | `TasDuvar` (bulut kapalı) | seed 193 |
+| Cephe | sıva + andezit | v1 aynen (orta sınıf: silme + söve) | `TasDuvar` | seed 193 |
+| Üst katman | kâğıt + gazete tanesi | `ArsivKatmani` `geceLapis`, gölgede tane α .10 | | tüm görünümler |
+**Tarama (§0.4, ARABA satırı v2):** saçak altı · çamurluk altı ve iç kavsi · kapı alt kıvrımı (yalnız 20 px şerit) · uzak cam çerçevesinin iç kenarı · kanepe sırtının gölge yanağı (`el`) · direksiyon göbeğinin gölge yanı (`kucak`). **Gövde düz yüzeyinde, camda, oturakta, yolda tarama yok.**
 
-### 2.6 Elçilik cephesi — mimari kart (camdan `ic` ve `dis`te aynı model)
-| Madde | Karar |
-|---|---|
-| Dönem/üslup | **1930'lar Ankara modern-klasik** ("Yeni Mimari") [G, doğrulanmalı]: kübik kütle, düz sıva, **düz lento** pencere, yatay kat silmeleri, düz çatı ve parapet. Alman elçiliği binasının kendisi **doğrulanamadı** [A §5], kimlik iddiası yok. Gerekçe: 1930'larda Ankara'nın yeni resmî ve diplomatik yapıları ağırlıkla bu dilde. Osmanlı canlandırması (sivri/basık kemer, geniş saçak, çini) belirli bir binayı ve 1920'leri okutur, kaçınıldı. |
-| Kuruluş | Bahçe içinde ayrık değil, sokak hattında 3 katlı yapı [T] (zemin + 2). Zemin döşemesi sokak +0.30 (iki andezit basamak), kat yükseklikleri 3.8 / 3.5 / 3.5, parapet 0.8 → toplam ≈ 11.9 m. Andezit subasman sokak 0–1.0 m. Kat silmeleri h 4.1 ve 7.6 (0.15 m). |
-| Açıklıklar | Zemin kat pencere 1.1 × 1.6 m, denizlik sokak +1.2, söve 0.1 m sıva içinde, demir parmaklık ve panjur yok. Üst katlar 1.1 × 1.7 m. Pencere aksı 2.5 m (iskele 1.4 m). Kapı 1.4 × 2.6 m, iki kanat koyu ahşap, düz lento. Üstünde **0.6 m çıkmalı ince beton saçak** (h 3.1), altı taramalı. |
-| İmza (iki tane) | koyu **andezit subasman** + **beton kapı saçağı**. |
-| Düzensizlik (ızgara değil) | Pencere içleri seed'li: perde yarım/açık, iç ton 3 basamak. Akşam yalnız 3–4 pencere yanık, biri daktilo. Bitişik yapı yok, sol boşlukta bahçe duvarı (h 2.2) ve 2 düzensiz ağaç tepesi var. |
-| Kameradan görünen | `ic`: yalnız zemin kat bandı (sokak +1.0…+2.6). `dis`: tüm cephe, parapetin üstü görünmez (göz 1.5 m). |
+### 2.12 Dönem/şehir doğruluğu (ARABA)
+- [A] Teslimler genelde Moyzisch'in arabasında. Marka ve model doğrulanmadı → rozet, yazı, ızgara armasız nötr gövde.
+- [G, doğrulanmalı]: 1937–42 sedanda basamak, üçgen havalandırma camı, deri kanepe, 3 kollu ince direksiyon, sol direksiyon (Türkiye sağdan trafik) · 1940'lar Ankara'da parke taşı yol · elçilik kapı feneri (tamamen [T] nötr) · daktilo penceresinin konumu ([T]).
+- **Senaryo/sahne notu (orkestraya, sahibi senarist/yönetmen):** senaryo P05 sahne sütunundaki "pencerenin ardında elçilik cephesi, üst katta daktilo" `kucak` görünümünde yok. Kurulum P01b'de (zemin kat, iki başın arasında). P09a karşılığı aynı pencere. Anlatım metni etkilenmez.
 
-### 2.7 `dis` görünümü (P09a, alacakaranlık) — kamera ve katmanlar
-F 1540 · göz 1.5 m · cephe Z 14 (110 px/m) · **ufuk y 1085** · sokak (cephe dibi) y 1250 · kaldırım kenarı (Z 11) y 1295 · park araba Z 12.5 (123 px/m).
-| Katman (arkadan öne) | x | y | Hex / not |
-|---|---|---|---|
-| Gök 3 basamak | 0–1080 | 0–… | üst `#4d5b84` (**P09b pencereyle aynı hex**) · orta `#6f86ad` · sol boşlukta çatı hizasında ışıma `#f0d0bc` (x 0–260, y 700–1000) |
-| Bahçe duvarı + 2 ağaç tepesi (siluet) | 0–260 | 820–1250 | `#2f3550`, seed 194 |
-| Cephe | 260–1080+ | ≈ −50–1250 | sıva `#6e6470`, silmeler 1 ton açık, andezit `#5e5a66` (y 1140–1250) |
-| Kapı + saçak + 2 basamak | 330–484 | kapı 931–1217, basamak 1217–1250, saçak 909 | saçak altı tarama. Basamak kenarları açık çizgi |
-| **Daktilo penceresi** | 520–640 | 942–1118 | `#e8c9a4`. Sekreter silueti ≈ 100 px (oturan, sonra kalkar) |
-| Diğer pencereler (seed'li ışık) | aks 2.5 m | 1. kat 513–700 · 2. kat 128–315 | 3 yanık `#e4bc98` (biri 1. kat), kalanı `#3a3d58` |
-| Kaldırım | 0–1080 | 1250–1295 | `#55606e`. Yanık pencerelerin altında kendi sıcak yamuğu `#8c6f66` |
-| Park araba (yan profil, sağa bakar) | 640–1206 | 1079–1270 | `#3d4640`. Ayrık çamurluk + basamak + yuvarlak bagaj [G]. Kapı x 760–880. Çamurluk altı tarama |
-| Yol | 0–1080 | 1295–1700 | `#2f3550` → `#26283a`. Araba gölgesi sola-öne. Derz yok |
-| Ön-plan: bu yakadaki kaldırım taşı | 0–1080 | 1700–1920 | andezit bordür `#5e5a66` + kaldırım. Alt üçte biri doldurur |
-- Sekreter yolu: kapı (x 405) → basamaklar (her adım bir basamağa) → kaldırımda sağa → araba kapısı (x 820). Ayak y 1250–1280 ✓. Araba sağ kenardan çıkar.
-- Işık: batı ışıması soldan, kenar ışığı figürlerin sol kenarında `#f0d0bc` 2 px. Sıcak ölçüt: yanık pencereler + ışıma + kaldırım yamukları ≥ %14. Tutmazsa yanık pencere sayısı (seed) artar.
+### 2.13 Kalibrasyon: üç hedef kare ve kabul ölçütü (Gemini yok; ilk render bunlar)
+**K-C1 · P01 p30 · `el`.** Kadrajın üst sağ köşesinde panelin krom alt kenarı ve direksiyonun alt yayı görünür, Moyzisch'in sol eli jantı kavrar. Sağ üstten koyu manşetli bir ön kol iner, el beyaz banknotun üst-sağ ucunu kıstırır. Sol alttan ecru manşetli bir el avuç yukarı uzanır, banknotun altına girer. Banknot +30° çapraz, arka yüzünde ters baskının soluk izi var. Net kenarlı sıcak bir bant iki eli ve kâğıdı aydınlatır. Altta soğuk gölgede deri oturak ve dikiş çizgileri, sol altta Bazna'nın dizinde dayalı sağ eli. Sol kenarda kanepe sırtının ruloları, üst yarısı bantta.
+1. Banknot L\* ≥ 92 ve sahnenin en parlak noktası. Geri kalan max L\* ≤ 88, max C\* ≤ 28. Ten L\* ≤ 75, C\* ≤ 20, banknotla ΔL\* ≥ 20.
+2. El + banknot + manşet bbox ≥ %25 alan. Banknot uzun kenarı ≥ 540 px.
+3. 360 px sayfada "direksiyon" ve "araba koltuğu" okunur (jant ≥ 20 px yay + dikişli rulolar). Eleştirmen tek cümleyle "ne görüyorsun" yazar, "tren/otobüs" yanıtı ret sebebi.
+4. El kuralları §2.10: bilek–ön kol ≤ 30°, el boyu E = 0.18 m × px/m (±10%), hiçbir el dayanaksız ve gevşek değil. Moyzisch'in manşeti koyu, Bazna'nınki ecru.
+5. Sıcak piksel ≥ %14, p95 L\* ≥ 75. Tarama yalnız §2.11 yerlerinde.
 
-### 2.8 K-C — P01 p24 (kanca) "bu kare böyle görünmeli"
-Kamera cs 1.0 (push p150'de başlar). Sol üçte birde kontra Moyzisch: kenarlı şapka, ense ve şapka kenarında sıcak çizgi, kolu koltuk sırtının üstünden sağa uzanmış. Sağda öne eğik Bazna profili: yüz ve yaka sıcak güneşte, sol eli yarı açık, banknota doğru. Aralarında y ≈ 800–830'da kayan **beyaz banknot**, boş arka yüzüyle (kenar ışıklı). Hemen üstünde, iki başın arasında, arka camdan flu cephede tek sıcak pencere ve daktilo başında küçük koyu siluet. Üstte ışınsal dikişli tavan + koyu güneşlik, altta kanepe pli'leri ve kapı paneli. Sol camda alçak, pembe-şeftali ufuk ışıması.
-**Kabul ölçütleri:**
-1. Banknot sahnenin en parlak noktası, L\* ≥ 92. Geri kalan max L\* ≤ 88, max C\* ≤ 28. Banknot ile komşu açık yüzeyler (ufuk ışıması `#f0d0bc`, daktilo penceresi) arasında ΔL\* ≥ 9 (`#f0d0bc` L 86 → banknot 95). Banknot uzun kenarı ≥ 260 px.
-2. Sıcak piksel ≥ %14, p95 L\* ≥ 75.
-3. Daktilo silueti + pencere ≥ 60 px yüksek, 360 px sayfada "pencerede birisi" okunur. Pencere y 420–760 içinde, hiçbir başla ve banknotla çakışmaz.
-4. İki profil yönü okunur (birbirine bakıyorlar). Moyzisch şapka siluetiyle Bazna'dan ayrışır. Yüzsüz kompars yüzü Bazna'yı kopyalamaz.
-5. Kadrajın her üçte biri dolu (tavan + güneşlik / camlar + başlar / kanepe + kapı paneli). Ölü alan yok. Alt bant (1290–1490) önemli nesne taşımaz.
-6. Tarama yalnız koltuk sırtı yanağı, kolçak altı, cam çerçevesi iç kenarı ve cephe pencere yanağında. Tavanda ve kumaşta tarama yok.
-7. 2 px'ten büyük motor titremesi yok, dünya kaynamaz (seed'ler sabit).
+**K-C2 · P01 p138 · `pencere` (iki kişi).** Gece kaldırımından lacivert-siyah bir sedanın yolcu kapısı görünür. Üstte tavan eğrisi var, silueti fenerden ince sıcak çizgi alır. Yuvarlak köşeli büyük yan cam krom çerçeveli, önünde havalandırma camı ve eğik A direği. Camın ardında yakında Bazna profilde sağa bakar: yüzünde ve yakasında net kenarlı sıcak bant, kameraya dönük yanağı yarı gölgede, sağ eli banknotu ceket iç cebine sokar (banknot en parlak). Uzakta direksiyon başında Moyzisch: kenarlı şapkalı koyu siluet, burun-çene profili aydınlık uzak camın önünde, sağ eli jantın üstünde, dirseği bükük. İki başın arasında uzak camdan sıcak daktilo penceresi ve içinde oturan küçük siluet. Sağ üstte A direğinin ötesinde elçilik kapısının kenarı, saçak ve fener (görünen tek kaynak). Cepheye düşen net kenarlı havuz. Altta krom bel çıtası, kapı kolu, çamurluk kavsi, nervürlü basamak, gövde altı gölge, birikinti, andezit bordür, ıslak kaldırım.
+1. 360 px'te ses kapalı: "gece, eski araba, içinde iki adam, dışarıda bina". Kapı kolu ≥ 20 px (360'ta), cam köşe yuvarlaklığı seçilir.
+2. Bazna başı ≥ 215 px (cs 1). Moyzisch'in burun-çene profili arka plana karşı ΔL\* ≥ 25, kenar ışığı görünür. Siluette en az 3 değer var (şapka kenarı / yüz / palto yakası). Tek ton blok ret sebebi.
+3. Daktilo silueti + pencere ≥ 60 px yükseklik, iki başla ve banknotla çakışmaz.
+4. Banknot L\* ≥ 92. Fener küresi ≤ 88, ΔL\* ≥ 7. Diğer her yer ≤ 88, C\* ≤ 28.
+5. Sıcak ≥ %14, p95 L\* ≥ 75 (fener haleleri + cephe havuzu + daktilo). Tutmazsa önce cephe havuzu r +40, sonra 1. katta ikinci yanık pencere.
+6. Üç üçte bir dolu. Alt bant (1290–1490) önemli nesne taşımaz. Krom çıta ve basamak düz ve ızgarasız (seed).
+7. El kuralları §2.10 (Moyzisch'in dirseği y < 835 görünür, bilek düz). Hareket şeridi p110–170: banknot hep bant içinde, el nesneyle birlikte.
+
+**K-C3 · P09a p70 · `dis` (sekreter).** Karşı kaldırımdan elçilik zemin katı. Solda sıcak daktilo penceresi boş (sandalye ve daktilo silueti), ortada açık kapı ve beton saçak. Sekreter (topuzlu yüzsüz siluet, diz altı etek-nötr) alt basamaktan kaldırıma iner. Sol kenarı ve topuzu fenerden kenar ışığı alır. Sağında fener ve cepheye düşen havuz. Sağda koyu yeşil sedanın arkası (bagaj eğrisi, arka kapı, çamurluk), bekler. Önde ıslak parke yolda fenerin kırık dikey yansıması ve daktilo penceresinin sönük yansıması. En altta yakın bordür ve kaldırım.
+1. Sekreter boyu ≥ 230 px (%12). Ayakları basamakta, temas gölgesi var. Yürüyüş şeridinde (her 4 kare) her adım bir basamağa.
+2. Araba yolda (yakın yüz Z 5.1, karşı bordürün önünde). Gövde kaldırıma basmaz. Arka kapı + bagaj + çamurluk ile "araba" okunur.
+3. Fener yansıması fenerin dikey hizasında (x ±15 px). Yansıma ile fener arasında gövde yok.
+4. Sıcak ≥ %14, p95 L\* ≥ 75. Max L\* ≤ 88 (banknot yok). Gök yok, P09b'ye taşıyıcı `#4d5b84` 1. kat camlarında var.
+5. Hareket şeridi p96–154: uzak kapı çerçevesi yakın arka camın içinden görünür. Kapanış (p110) temas karesi ses ile aynı kare. Araba plan sonundan ≥ 12 kare önce kadrajdan tamamen çıkar.
+
+### 2.14 Motion için çizim notları
+- `Araba.tsx` `gorunum`: `ic` kaldırılır (hata verir, json'da `pencere` / `el` / `kucak`). `dis` yeniden kurulur. Plan içi kesme P01'de `el` → `pencere` (p110) için mevcut `plan_ici_kesme` / `devam_plan` yapısı kullanılır.
+- **Yeni ortak modüller:** `Sedan40` (yan yüz parametrik: renk, X kaydırma, kapı açısı [uzak/yakın], cam içi slotu `icerik` [figürler arada çizilir], siluet kenar ışığı `Isik`'ten). `DuvarFeneri` (küre + hale basamakları + `Isik` nokta tanımı; havuz, yamuk ve yansıma aynı tanımdan). `DeriKanepe` (rulo + dikiş, `el` yan / `kucak` tepe yönleri). `Direksiyon` (halka + 3 kol + göbek, yatıklık ve görüş açısından elips). `IslakParke` (`src/doku/IslakKaldirim.tsx` türevi: seed'li sıra, yansıma sütunu `Isik`'ten).
+- **Türetme:** cephe `ModernCephe` (v1 kodundaki `DisSahne` cephesi) aynı dünya. Kenar ışığı `src/doku/Siluet.tsx`. Eller `GravurEl` + `konikKol` + yeni pozlar (`avuc`, `dayali`, `jant`). Figürler `SiluetFigur40` (`sapkali`, `topuzlu`) ve `Kukla takim40`, `yon +1`.
+- **Işık bandı geometrik hesaplanır:** fener noktası → uzak camın dört köşesi → figür düzlemi. Elle konmaz, net kenarlı, blur yok.
+- **Dünya sabit:** seed'ler dünya koordinatında. Push-in ve araba kalkışında doku kaynamaz. Motor titremesi yok (araba duruyor; P09a'da yalnız kalkış).
+- Mevcut kodda `el.*.dirsek` serbest nokta. v2'de omuz gövdeden gelir, dirsek kural 4'teki açı aralığına kısıtlanır (IK, `kinematik.ts`).
 
 ---
 
@@ -372,10 +510,11 @@ Kamera cs 1.45, cx 0, cy 0. Ekran konumları: sol banknot merkezi (330, 714), sa
 
 ## 6. Açık sorular / tasarımla çelişkiler (gerekçeli)
 1. **K-A kamerası** cs 1.7 → 1.4 (§1.9). Yatak ve belgeler K-A dışında kalır, p170 ek kontrol karesi önerildi. Yönetmen onaylar.
-2. **ARABA ışık yönü:** tasarım "sol-arkadan" ile sahne "sağ-üst-arka" çelişiyordu. Tasarım seçildi (sol-ön-uzak = ön camdan, alçak). Bazna'nın yüzü ışık alır, Moyzisch kontra kalır.
-3. **Daktilo penceresi zemin katta** (sahne "2. kat" demişti): oturan kameradan üst kat görünmez. P09a'da da zemin kat.
+2. **(v1, geçersiz; v2'de tek kaynak elçilik feneri §2.4)** ARABA ışık yönü: tasarım "sol-arkadan" ile sahne "sağ-üst-arka" çelişiyordu. Tasarım seçildi (sol-ön-uzak = ön camdan, alçak). Bazna'nın yüzü ışık alır, Moyzisch kontra kalır.
+3. **Daktilo penceresi zemin katta, kapının solunda** (v2 §2.4). `pencere` ve `dis`te aynı sıra.
 4. **Berlin lambası sıcak** (tasarım §1) ama daha az doygun ve sert kenarlı. Sahnenin "soğuk-nötr" isteği oda tonuyla karşılanır.
 5. **Tepsi** komodine sığmıyor, yeri yatak ayak ucu sağ köşesi (u −1.25, z 3.35). P02b'de bırakma anı yönetmene.
 6. **P02b/P03a adım sayısı:** Bazna–komodin mesafesi 0.85 m (2–3 adım). Sahne 4 adım yazdı.
 7. **P09b p292+ p95 L\*** ölçütü dışı (lint izni önerisi §1.7).
 8. Gemini mood referansı üretilmedi (bütçe ve kullanıcı kuralı). Gerekirse yön karesi önce kalibrasyon render'ı olarak alınır.
+9. **ARABA v2 (tur-4):** P05 `pencere` yerine `kucak` (tepeden) seçildi. Gerekçe §2.1: film kutusu dışarıdan ≥130 px olamaz, devir bel çizgisinin altında kalır, P01b ile aynı açı olurdu. Daktilo kurulumu yalnız P01b'de. Senaryo P05 sahne notu senarist/yönetmene iletilmeli. Lamba yansıması `pencere`de fizik gereği yok, P09a'da var. P09a kaçış arabası karşı şeritte sağa bakar ([T], kısa çıkış). Moyzisch ten rengi `#cdb09e` önerisi tasarımcı onayına.
