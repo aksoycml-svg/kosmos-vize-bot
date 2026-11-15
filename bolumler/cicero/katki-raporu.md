@@ -231,3 +231,24 @@
 
 - Sonuç: doğrulayıcı 0 hata, 1 uyarı (kalan). Kontrol kareleri 10 plan yeniden render edildi, `kontrol/genel.png` güncel, bakıldı. Eski bölümler (Blanc ×3, Evliya, Paris) piksel farkı 0.
 - Bilinen kusurlar: elçi kapıyı elsiz açıyor (kapı kendi kanadıyla döner); yetkili eğilmesi tek parça gövde dönüşü (bükülme yok); P02/P03 insertte abajurun tepesi kadraj üst kenarında hafif kesik; P08'de Bazna p176'da sol kenara yakın (baş içerde); P05'te Bazna yüzü hâlâ büyük; Berlin haritası stilize (etiketsiz) ve ölçülmedi.
+
+## eleştirmen · ilk kurgu
+## elestirmen · 2026-11-15 · ilk kurgu jürisi (günlük mod, tek tur)
+- Ne yaptım: Senaryo ve bolum.json okudum, genel32-tr'ye baktım. Kanca, P02 kapı, P04 ayak gölgesi, P04 kapanış ve P09a araba şeritlerini çıkardım. Üst bandı 360 px'te kırptım. Kesmelerde RMS ölçtüm, TR ebur128 ölçtüm (−14.0 LUFS / −1.9 dBFS).
+- Dokunduğum dosyalar: `bolumler/cicero/elestiri-ilk-kurgu.md` (yeni), `bolumler/cicero/katki-raporu.md` (ek). Geçici kareler yalnız scratchpad'de.
+- Aldığım kararlar ve gerekçeleri:
+  - Üç düzeltmenin üçü de yazı katmanında (ucuz, görüntü render'ı yok). Kaynak etiketlerinin okunmaması doğruluk taşıyıcısını kırdığı için 1. sırada.
+  - P04'te nesnelerin kendiliğinden hareket etmesi kritik fizik/süreklilik hatası; 3 sınırı dışında yazdım.
+  - Puan 6.
+- Uyguladığım kurallar / yakaladığım ihlaller:
+  - Hareket tamamlanır (P04 makine kaybolur, belgeler uçar, kapak kendi kapanır).
+  - Okunurluk/kontrast (`zemin:"koyu"` huzme üstünde).
+  - Kırmızı yalnız vurgu ve imza tekilliği (≈20 kırmızı kelime).
+  - Doğruluk (sayaç ara değerleri).
+  - Temas sesi zamanlaması (P02 kapı 3 kare geç, küçük).
+  - Lint izinleri yeniden açılmadı.
+- Açık sorular / bir sonraki ajana notlar:
+  - `altyazi.bant:"oto"` grup içinde bant değiştiriyor; kit düzeltmesi kurulum işi.
+  - P04 lamba V huzmesi boyun açısını izlemiyor (mekanlar.md §0.5).
+  - Müzik ilk yarıda ≈−30 LUFS; kesmelerden önce 0.5 sn boşluk var. EN 4.85–6.05 ve 61.7–63.55 sn kulakla dinlenmeli.
+  - P02 `kit_eksik` notu ("kapı statik") render'la çelişiyor, kapı oynuyor; json notu güncel değil.
