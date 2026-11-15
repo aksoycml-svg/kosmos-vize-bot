@@ -2,14 +2,14 @@
 
 Girdiler: `onayli-anlatim.md` (v5 kilit) · `public/benmychree/ses/plan-sureleri.json` + `{tr,en}/Pxx.json` · `dokunuslar.md` · `arastirma.md` · `src/kit/KATALOG.md`, `GORSEL-RECETE.md`.
 **Bu belge bolum.json değildir.** Deniz/liman/gemi/batarya şablonları kitte yok; kurulum ekibi kurar, sonra json yazılır. 1080x1920, **60 fps**. Kare = mutlak (bölüm başı 0). `yerel` = plan içi kare (bolum.json `kare` alanı bunu kullanır).
-Toplam: **3636 kare = 60.6 sn** (≤ 65). 10 plan, 19 çekim. Plan = max(TR,EN)+0.4 sn (kesin); plan içi kesmeler `devam_plan` / `kesme_2` ile (en çok 3 görünüm/plan, hepsi bu sınırda).
+Toplam: **3666 kare = 61.1 sn** (≤ 65; P10 sonunda +30 kare sessiz kuyruk dahil, orkestra kararı: varsayılan). 10 plan, 19 çekim. Plan = max(TR,EN)+0.4 sn (kesin); plan içi kesmeler `devam_plan` / `kesme_2` ile (en çok 3 görünüm/plan, hepsi bu sınırda).
 
 ## 0. Dünya ve ışık (tek kaynak, bütün şablonlar paylaşır)
 - **Tek ışık = güneş**, azimut 235° (GB), **yükseklik zamanla iner** (aynı vektör, yalnız yükseklik): P01–P05 22° · P06 20° · P07 18° · P08 16° · P09 12° · P10 6° (gün batımı). Saat kaynakta yok → "Ocak öğleden sonra, nötr ama sıcak" (kaynak iddiası değil). Gölge, kenar ışığı, su yolu, sütun parlaması, havuz aynı vektörden türer (GORSEL-RECETE A1).
 - Kamera yönü `b` (°, 0 = K) → güneş ekranda: `rel = (235 − b) mod 360` (0 ön, 90 sağ, 180 arka, 270 sol). Her çekimde yazıldı.
 - Palet (A8): gölge mavi-mor, ışık gül-altın/şeftali, su: gölgede çelik-mavi / yolda gül-altın; sıcak piksel ≥ %14, p95 L* ≥ 75. Kırmızı: yalnız hangar alevi + 1 sayı vurgusu + tricolore bayrak (küçük; `lint: {izin:["kirmizi"], not:"bayrak kimlik"}`).
 - Gemi/üniforma/kamuflaj rengi kanıtsız → **nötr gri-kum gövde**, baca nötr koyu; kamuflaj ağı yok; mevzi yalnız kaya gölgesi (dokunuslar notu).
-- **Sabit referans kadrajı (kurulum → karşılık):** LIMAN `kiyidan-ada`, b=190°, ufuk y 800 = **P01, P07c, P10a** (aynı kadraj; sağlam gemi → yanan gemi → enkaz); P06 V1 aynı noktadan ama ön planda top.
+- **Sabit referans kadrajı (kurulum → karşılık):** LIMAN `kiyidan-ada`, b=190°, ufuk y 800 = **P01, P07c** (aynı kadraj; sağlam gemi → yanan gemi); **P10a** kıyıdan (b=100°) aynı kaya oyuğunda erleri gösterir, enkaz arka plandadır; P06 V1 aynı noktadan ama ön planda top.
 - Telefon okunurluğu için LIMAN "tiyatro dekoru telefoto" dilidir: gemi uzunluğu ≈ 650–700 px (≈ 6° görüş), ön plan kaya iri/flu, arkada ada. Hafif abartı serbest (oran), yapı/dönem sabit.
 
 ## 1. Kitten eşleme (adıyla)
@@ -23,12 +23,12 @@ Toplam: **3636 kare = 60.6 sn** (≤ 65). 10 plan, 19 çekim. Plan = max(TR,EN)+
 | plan içi kesme | **`devam_plan` + `kesme_2`** | P02, P03, P06, P07, P08, P10 |
 | efekt | `Efektler.tsx`: `Dust` (tuz/toz), `Fog` (ufuk sisi), `Glow` (parıltı), `Clouds`, `FilmLook`; `Impact` | atmosfer |
 | fizik | `hareket/motion.ts` **`asiliNesne`** (derrick halatı, çıpa zinciri, simit), `yayKare`, `meltem` (bayrak, kuru ot) | P02, P03, P09 |
-| su efektleri | SARAYBURNU **E3 taç sıçrama** + **`okutma.dalga_izi`** (V iz) kodu | çıpa/şamandıra/su sütunu, bot izi |
+| su efektleri | SARAYBURNU **taç sıçrama (efekt kodu KE-E3)** + **`okutma.dalga_izi`** (V iz) kodu | çıpa/şamandıra/su sütunu, bot izi |
 | yangın/duman | COL-US **`alev`** (3 katman yaprak alev) + **`duman`** (loblar kadrajın üstünden çıkar, fade yok) | P06 V3, P07b/c |
-| toz | GALATA-TEPE **E4 toz** (yükselir, yayılır, oturur) | top geri tepme tozu P06 V1 |
+| toz | GALATA-TEPE **toz (efekt kodu KE-E4)** (yükselir, yayılır, oturur) | top geri tepme tozu P06 V1 |
 | doku/ışık | `doku/Tarama`, `RenkKaydi`, `KonturTitreme`, `ArsivKatmani litografi`, `isik.ts` (golgeCokgen), `GokLitografi`, `Hale`, `bugu`, `Flu` (Paris ortak kod) | tüm şablonlar |
-| figür | `SiluetFigur`/eklemli siluet (yüzsüz tayfa), `Kukla` + `yakin` yüz + `palet` override (teğmen), `KolEl` (el) | P02, P05, P07, P08 |
-| yok / `kit_eksik` | teğmen kostümü (nötr kep, nötr haki; rütbe/arma yok), yüzsüz Royal Navy tayfa kostümü (nötr), deniz uçağı (genel iki şamandıralı) | kurulum ekibi |
+| figür | **yüzlü** `Kukla` + `yakin` yüz + `palet`: teğmen, Osmanlı erleri **E1–E4** (tasarim.md §4.2), Royal Navy tayfası **T1–T4** ve 5 yaralı (§4.2b); `KolEl` (el). Siluet (`SiluetFigur`) yalnız figür ekran yüksekliğinin **%5'inden küçükse** (P06 V2/V3 uzak, P08b son kareler, P03a rıhtım) | P02, P05, P06 V1, P07, P08, P10a |
+| yok / `kit_eksik` | teğmen kostümü (nötr kep, nötr haki; rütbe/arma yok), Royal Navy tayfa kostümü (nötr koyu) + yüzlü er/tayfa kuklası (4+4 kart parametresi), deniz uçağı (genel iki şamandıralı) | kurulum ekibi |
 
 ## 2. Zaman tablosu (mutlak kare)
 | id | çekim | başlangıç–bitiş (kare) | süre sn | şablon | ölçek | tempo | taşıyıcı (çıkışta) |
@@ -50,9 +50,9 @@ Toplam: **3636 kare = 60.6 sn** (≤ 65). 10 plan, 19 çekim. Plan = max(TR,EN)+
 | P08 | P08a | 2607–2812 | 3.42 | GEMI-INSERT `bot` | orta-yakın | nefes | pan hızı (A botundan B botuna) |
 | | P08b | 2812–2990 | 2.97 | GEMI-INSERT `bot` (aynı) | orta-yakın → orta (geri çekilir) | bekle | botun V izi halkası → P09 |
 | P09 | P09 | 2990–3172 | 3.04 | GEMI-INSERT `korkuluk-su` | orta-yakın | nefes | yatık gövde çizgisi → P10a |
-| P10 | P10a | 3172–3406 | 3.90 | LIMAN `enkaz` (= P01 kadrajı) | geniş | bekle | enkaz gövde silueti → harita gemi ikonu |
-| | P10b | 3406–3636 | 3.83 | **YENİ: HARITA-MEIS** | geniş (harita) | nefes | — (son; döngü P01'e) |
-Opsiyonel: **P10'a +30 kare sessiz kuyruk** (3636→3666, 61.1 sn): P10 anahtar tutması + bölümün tek ≥1 sn ses dinlenmesi (konuşma 7.10'da biter → 1.14 sn). Orkestra kararı; aşağıda her ikisi de gösterilir.
+| P10 | P10a | 3172–3406 | 3.90 | **KIYI-BATARYA `saygi`** (ön plan, yüzlü erler) + LIMAN `enkaz` (arka) | orta (grup) + geniş arka | bekle (kamera sabit) | erlerin bakış yönü (denize, enkaza) → harita gemi ikonu |
+| | P10b | 3406–3666 | 4.33 | **YENİ: HARITA-MEIS** | geniş (harita) | nefes | — (son; döngü P01'e) |
+**P10 sonunda +30 kare sessiz kuyruk** (3636→3666) plana dahildir (orkestra: toplam 3666 kare = 61.1 sn): P10 anahtar tutması + bölümün tek ≥1 sn ses dinlenmesi (konuşma 7.10'da biter → 1.14 sn).
 Çekim süreleri çeşitli (2.0–4.95), üst üste 3 aynı tempo yok (…bekle, nefes, bekle, bekle, hizli, bekle, nefes, hizli, bekle, nefes, bekle, nefes, bekle, nefes, bekle, nefes). Patlama: P06 V3 isabeti (kare 2091) + P07b kapı (2386). Ses dinlenmesi + resim taşır: P06 V1 ilk 3 sn söz var ama resim sakin gerilim; ses boşluğunda (P06 TR 3.4–4.06, P08 4.1–4.75) resim eylemi taşır.
 
 **Kesme türleri:** çıplak (taşıyıcısız) yalnız **2**: (1) P08b→P09: zaman atlaması "birkaç saat" (kesme zaten araç; ses boşluğu 0.2 sn, kâğıt geçişi gerekmez); (2) P06 V1→V2: sert kesme, atış sesi vurgusu (şok; taşıyıcı ses). Kalan 16 kesme taşıyıcılı (tablo). Whip/whoosh yok.
@@ -82,7 +82,7 @@ Kaydırmalar ≤ plan süresi (en geç EN bitişi P06 8.07 < 9.12; P08 5.55 < 6.
 | P07 | Hangar arka bacanın gerisindeydi | The hangar sat behind the rear funnel | 160–330 (kesmeyi geçer) | S07c'de ok işareti arka baca–hangar |
 | P08 | 5 yaralı · ölen yok | 5 wounded · none dead | 250–375 | |
 | P09 | — | — | | altyazı serbest |
-| P10 | 1920'de yüzdürüldü | Refloated in 1920 | 70–225 (P10a) | |
+| P10 | 1920'de yüzdürüldü | Refloated in 1920 | 245–350 (P10b) | P10a'da yazı yok (yüzler) |
 
 ## 4. Plan plan
 
@@ -97,7 +97,7 @@ Not: "alt 1/3" = y 1280–1920. Altyazı alt bantta (1290–1490) iner → bu ba
 - **Foley:** ambient dalga, kısık rüzgâr; kare 124 mürekkep-damla (−12 dB). **kontrol_kare 124.**
 
 ### P02 · kare 190–603 · GEMI-INSERT (YENİ)
-**P02a · 190–480 (yerel 0–290), `kic`, orta → yakın, nefes.** Yükseklik 2.2 m (güverte), `b`=320° (rel 275 sol-yan ışık), itme cs 1.0→1.35, sağa hafif pan. Konumlar: derrick bumbası x 300–800 y 480–1000; **deniz uçağı** (genel Short tipi, 2 şamandıra) x 380–820 y 700–1050, ekran yüksekliğinin ≈ %30+; arkada solda **kapalı hangar kapısı** x 60–330 y 760–1120 (%18); sağ üstte borda üstünde **3 can botu** x 640–1000 y 560–700; yüzsüz tayfa ×2 (biri bumbaya asılı, biri halat yönlendirir) y 1020–1250. **Kurulum burada tamam:** kapı, botlar görünür; simit P02b'de.
+**P02a · 190–480 (yerel 0–290), `kic`, orta → yakın, nefes.** Yükseklik 2.2 m (güverte), `b`=320° (rel 275 sol-yan ışık), itme cs 1.0→1.35, sağa hafif pan. Konumlar: derrick bumbası x 300–800 y 480–1000; **deniz uçağı** (genel Short tipi, 2 şamandıra) x 380–820 y 700–1050, ekran yüksekliğinin ≈ %30+; arkada solda **kapalı hangar kapısı** x 60–330 y 760–1120 (%18); sağ üstte borda üstünde **3 can botu** x 640–1000 y 560–700; tayfa ×2 **yüzlü**: **T2** (≈40, kırlaşmış gür bıyık, güneş yanığı) bumbaya asılır, **T1** (≈22, ince yüz, tüysüz, dikkatli) halat yönlendirir; boy ≈ 520 px (y 760–1280), yüz ≥ 75 px, sakin ve işine dönük; kenar ışığı sol. **Kurulum burada tamam:** kapı, botlar görünür; simit P02b'de.
 - **Dokunuş BMC-D1:** yerel 30–258 (0.5–4.3 sn). Uçak güverteden iner, **şamandıralar suya değer = yerel 258 (abs 448)**, halat gevşer 258–282. Net ≥ 4.3 sn. kapanış: halkalar sönerken kamera pan'a başlar (yerel 282–290).
 - **Foley:** vinç-halat 30–250 (−9) · **samandıra-sap 258 (−7)** · halat-gevsek 270.
 - **Ekran yazısı:** üstte (y 240–400) → uçak orta bantta, yazıya binmez. Alt 1/3: güverte tahtası + halat kangalı + su kenarı (flu ön plan).
@@ -122,7 +122,8 @@ Not: "alt 1/3" = y 1280–1920. Altyazı alt bantta (1290–1490) iner → bu ba
 
 ### P05 · kare 1388–1627 · KIYI-BATARYA `tegmen` · bekle
 - **Ölçek:** göğüs/yakın profil; plan içi: el+namlu (insert-orta) → yüz. Yükseklik 1.5 m, `b`=100° (rel 135 sağ-arka: yüzde ve elde gül-altın kenar ışığı), sağ yüze bakış (güneye, gemiye). Kamera: yerel 0–20 namlu ucu (540, 900) → yerel 20–130 geri açılır → **130–190 elden yüze kayar**; cs 2.4→1.8.
-- **Konumlar:** namlu x 100–1000 y 880–960 (yatay, sağa uzanır, gövdesi kadraj dışı); **el** tek parça siluet x 420–720 y 780–1000 (≥ %15 = 290 px) namlunun üstünde; teğmen yüzü sağda x 600–900 y 500–860 (profil, yüz ≥ %17). Arkada flu katır başı/kulağı (ön plan sol-üst, flu), uzakta ada/gemi çizgisi.
+- **Erler (yüzlü, §4.2):** arka planda hafif flu (σ ≤ 2, yüz okunur): **E1** (nişan; gözler kısık, çark elinde) sol-arka x 60–340, **E3** (top çeken, halat omuzda, kısa sakal, kaşta yara izi) sağ-arka x 800–1050 (teğmenin yüzüne binmez, yüz y ≥ 520); yüz ≥ 110 px, ağırbaşlı, bakışlar teğmene/denize; güneş yanığı ve toz ayrıntıları kartlardaki gibi. E2 bu planda yok (P06 V1'de mermiyle girer).
+- **Konumlar:** namlu x 100–1000 y 880–960 (yatay, sağa uzanır, gövdesi kadraj dışı); **el** tek parça el siluetidir (iç dikiş yok; kişi yüzlü) x 420–720 y 780–1000 (≥ %15 = 290 px) namlunun üstünde; teğmen yüzü sağda x 600–900 y 500–860 (profil, yüz ≥ %17). Arkada flu katır başı/kulağı (ön plan sol-üst, flu), uzakta ada/gemi çizgisi.
 - **BMC-D4:** pat 1 yerel **87 (abs 1475)**, pat 2 **120 (abs 1508)**, el sabit 130–204; 'Mustafa Ertuğrul' (2.3–3.3 sn = 138–198) sırasında yüz kadrajda. Net ≥ 1.5 sn. kontrol_kare 122. Foley avuc-metal-pat ×2 (−9), kumaş kısık.
 - **Karakter:** teğmen yeni karakter: nötr kep, nötr haki, rütbe/arma yok (doğrulanamadı); yüz yakın planda detaylı (kaş, göz kapağı, ağız). Kaynak notu: yalnız anı (tek kaynak) → ekran yazısı atıf.
 - Ekran yazısı üstte yerel 20–225 (2 satır; yüz y ≥ 500 → binmez). Alt 1/3: namlu/top tekerleği gölgesi + taş zemin + katır kayışı (flu).
@@ -130,7 +131,7 @@ Not: "alt 1/3" = y 1280–1920. Altyazı alt bantta (1290–1490) iner → bu ba
 
 ### P06 · kare 1627–2174 · ★ ANAHTAR (3 görünüm)
 Zincir: atış → su sütunu → atış → su sütunu → atış → **sütun yok, isabet**. Tüm uçuş süreleri 60 kare. Olaylar yerel (abs = 1627 + yerel): atış1 186 (1813) · sütun1 246 (1873) · atış2 262 (1889, uzak ses) · sütun2 322 (1949) · atış3 404 (2031, uzak ses) · **isabet 464 (2091)**.
-**V1 · 1627–1867 (yerel 0–240), KIYI-BATARYA `top-onplan`, boy → itme, bekle.** Yükseklik 1.2 m (P01 noktası), `b`=190° (rel 45). Ön plan: **top namlusu + kundak** sol-alt x 0–560 y 1000–1500 (P01'deki kaya oyuğu = mevzi; kurulum→karşılık), arkada gemi x 190–890 y 880–1060 (P01 kadrajı, su yolu), üst bant: ışık biraz alçalmış (iki saat). 0–180 sakin gerilim (itme 0.04). **Atış 1 yerel 186:** geri tepme (namlu 24 px geri, 24 kare), E4 toz bulutu yükselir-yayılır-oturur (186–236); kapanış 236–240. Ekran yazısı yok bu çekimde.
+**V1 · 1627–1867 (yerel 0–240), KIYI-BATARYA `top-onplan`, boy → itme, bekle.** Yükseklik 1.2 m (P01 noktası), `b`=190° (rel 45). Ön plan: **top namlusu + kundak** sol-alt x 0–560 y 1000–1500 (P01'deki kaya oyuğu = mevzi; kurulum→karşılık), arkada gemi x 190–890 y 880–1060 (P01 kadrajı, su yolu; erler gemiyi örtmez: x ≥ 560 serbest), ışık biraz alçalmış (iki saat). **Top başında yüzlü erler (§4.2):** **E1 nişan** (kundak arkası x 40–300, ayak y 1280, boy ≈ 900, yüz ≥ 125 px, gözler kısık, bir eli yükseltme çarkında), **E2 mermi** (x 290–500, ayak y 1230, mermi sandığı + omuzda ip, yüz ≥ 110 px, yanakta toz), **E3 top** (sol-ön, yarı kadraj kesik x 0–190, halat omuzda, profil yüz ≥ 110 px). Ağırbaşlı, emek; gülme/zafer yok; atışta geri adım atmaz, kulaklarını örtmez (sakin). 0–180 sakin gerilim (itme 0.04). **Atış 1 yerel 186:** geri tepme (namlu 24 px geri, 24 kare), toz (efekt kodu KE-E4) bulutu yükselir-yayılır-oturur (186–236); kapanış 236–240. Ekran yazısı yok; altyazı bu çekimde **alt bantta** (ayaklar y ≤ 1280).
 **V2 · 1867–1999 (yerel 240–372), LIMAN `rihtim-yan`, orta, hizli.** Rıhtım ucu, `b`=210° (rel 25: sütunlar arkadan ışıklı, gemi hafif gölgede). Gemi gövdesi sağda x 480–1080 y 820–1080 (ölçek: su sütunu için yakın, ≈ 27 px/m); **sütun 1** yerel 246, x 300 (gemiden 30 m solda) yükselir 246–270, tutar 270–300, çöker 300–322 (**≥ %25 ekran = 480 px**, tepe y ≈ 520); **sütun 2** yerel 322, x 700 (gemi arkası) çöker 360–370 → **kapanış 372**. Ön plan: halka dalgaları. Ekran yazısı "1" 246 · "1 · 2" 322 (tepe y > 420). Foley: su-sutunu ×2 (−7); atış 2 uzak gümleme 262 (−12, görünmeyen kaynak). kontrol_kare yerel 326.
 **V3 · 1999–2174 (yerel 372–547), LIMAN `hangar-yakin`, orta-yakın, bekle.** `b`=205° (rel 30). Gemi arka bölüm: arka baca, **hangar kapısı kapalı** x 380–700 y 760–1080 (P02a'daki aynı kapı), kıç derrick; ön planda su, **iki halka sönerken**; üst bant: yazı "1 · 2" tutar. Atış 3 uzak ses 404 (görüntüde sütun yok: kare 404–464 sakin, tek hareket yok; **sütunun yokluğu = vuruş işareti**). **İsabet yerel 464 (abs 2091):** hangar bölgesinde `darbe {kare:464, x: kapı üstü, siddet 0.6, flas, sarsinti ≤3 px}` + ince duman başlar; kamera %4 itme (hangara). Yazı "1 · 2 · 3" 464, "3" kırmızı. Hold 464–547 (1.38 sn) + P07a ilk 40 kare aynı duman = **tutma ≥ 3.6 sn** (okuma 2.1 + 1.5). kontrol_kare yerel 470 (abs 2097). Foley: **isabet-tok 464** (yatağın 6–8 dB üstü), riser/whoosh yok.
 - Alt 1/3 (hepsi): V1 top kundağı + toz; V2 su + halkalar; V3 su yüzeyi + halkalar. Altyazı alt bantta; sütunlar/kapı bu bantta değil.
@@ -140,16 +141,16 @@ Zincir: atış → su sütunu → atış → su sütunu → atış → **sütun 
 ### P07 · kare 2174–2607 · 3 görünüm
 Hasar zinciri: dümen → hangar → dönemiyor. Abs = 2174 + yerel.
 **P07a · 2174–2324 (yerel 0–150), GEMI-INSERT `kic-su`, orta, nefes.** Yükseklik 2 m, `b`=300°, tilt aşağı (cy hareketi) gövdeden kıç suyuna; **kamera ilk karede duman sütunu** x aynı P06 V3 (taşıyıcı), sonra aşağıda **sapık duran dümen kanadı** + pervane köpüğü boşa dönüyor (köpük büyür, gemi yerinde). Dümen 'dümeni' 1.86 (yerel 112). Foley govde-inleme 112 (−9). Alt 1/3: kıç su + köpük + güverte dibi. Katman: ön plan flu halat, orta kıç/dümen, arka duman, atmosfer su buharı.
-**P07b · 2324–2444 (yerel 150–270), GEMI-INSERT `hangar-kapi`, insert, hizli.** `b`=270° (rel 325; kapı gölgede, mavi-mor; **ışık kaynağı = alev (tek), turuncu**, güneş yalnız sol kenar ışığı). Kapı x 260–820 y 560–1150 (**≥ %35**), P02a'daki aynı kapı. **BMC-D6:** kenar kızıl ışık 160–204 → **kapı itilir yerel 212 (abs 2386)** (`darbe {kare:212, siddet 0.5, duman:true}`, `alev` 3 katman) → bir kanat menteşede sallanır 212–262, öbürü yerinde; tayfa (yüzsüz) geri adım 220–245, kovaya uzanmaz. Hangar içi kor/koyu. Kapanış: kanat durur 262–270. Foley ates-tutus 212 · kapi-catirti 212 · mentese-gicirti 215–262 · yangın çıtırtı yatağı. **kontrol_kare yerel 214 (abs 2388).** Ekran yazısı 160–330 üstte (kapı y ≥ 560, binmez). Alt 1/3: güverte tahtası + yere yansıyan turuncu havuz + tayfa bacakları (flu).
+**P07b · 2324–2444 (yerel 150–270), GEMI-INSERT `hangar-kapi`, insert, hizli.** `b`=270° (rel 325; kapı gölgede, mavi-mor; **ışık kaynağı = alev (tek), turuncu**, güneş yalnız sol kenar ışığı). Kapı x 260–820 y 560–1150 (**≥ %35**), P02a'daki aynı kapı. **BMC-D6:** kenar kızıl ışık 160–204 → **kapı itilir yerel 212 (abs 2386)** (`darbe {kare:212, siddet 0.5, duman:true}`, `alev` 3 katman) → bir kanat menteşede sallanır 212–262, öbürü yerinde; **T3** (≈28, kemikli, kaşlarda toz) sağda x 830–1040 y 700–1260 (boy ≈ 560, yüz ≥ 75 px) bir adım geri çekilir 220–245: **kontrollü şaşkınlık**, korku maskesi yok, kovaya uzanmaz. Hangar içi kor/koyu. Kapanış: kanat durur 262–270. Foley ates-tutus 212 · kapi-catirti 212 · mentese-gicirti 215–262 · yangın çıtırtı yatağı. **kontrol_kare yerel 214 (abs 2388).** Ekran yazısı 160–330 üstte (kapı y ≥ 560, binmez). Alt 1/3: güverte tahtası + yere yansıyan turuncu havuz + T3'ün ayakları.
 **P07c · 2444–2607 (yerel 270–433), LIMAN `kiyidan-ada` (= P01 kadrajı), geniş, bekle.** Aynı kamera (b=190°, ufuk 800); gemi artık **yanan**: kalın duman sütunu kadrajın üstünden çıkar (fade yok), kıç köpüğü boşa, **baş çıpa zinciri gergin** (P03), gemi ekranda hareketsiz; kamera geri çekilir cs 1.12→1.0 (yerel 280–433). Okur: "dönemiyordu" 5.9–6.57 (yerel 354–394). Alt 1/3: ön plan kaya + oyukta (P01'deki yerde) dumansız karanlık; kuru ot. Işık: alev turuncusu gemide ikincil, güneş ana (rel 45).
 - **Taşıyıcı** a→b yukarı kıvrılan duman + tilt; b→c duman aynı x; P07→P08 duman perdesi.
 
 ### P08 · kare 2607–2990 · ★ ANAHTAR
 Abs = 2607 + yerel.
-**P08a · 2607–2812 (yerel 0–205), GEMI-INSERT `bot`, orta-yakın, nefes.** Yükseklik su hizası 0.8 m, `b`=300° (rel 295). Soldaki gövde duvarı (duman perdesi arka), **iki can botu yan yana** x 120–1000 y 840–1250 (bot+tayfa ≥ %18). **BMC-D7:** A botunda tayfa krank çevirir: **tık yerel 60 (abs 2667), 95 (2702), 130 (2737)**, motor tutmaz (sessiz), omuz çöker 140–165; pan sağa 150–200: tayfa B botuna geçer (adım gövde-bot boşluğu, ayak sağlam). Yaralı **sargılı siluetler** botlarda oturur (yüz yok, yakın yok; 5 kişi). Ekran yazısı yok (başlar 250'de).
-**P08b · 2812–2990 (yerel 205–383), GEMI-INSERT `bot`, orta-yakın → orta, bekle.** Pan sürer; B botu: **öksürük 228 (abs 2835) → tutuş 245 (abs 2852)**, bot gemiden açılır 245–340, **kadrajdan sağdan çıkar 360'a kadar**; kamera geri çekilir (cs 1.4→1.0, yerel 260–383): arkada duman perdeli gemi, su, **V iz halkaları** (`dalga_izi`). Ekran yazısı 250–375 üstte. "Kimse ölmedi" 4.75–5.73 (yerel 285–344) botta sargılı siluetler görünürken. **Tutma:** 2.97 sn ≥ 1.0 + 1.5 ✓. kontrol_kare yerel 248 (abs 2855). Foley: krank-tik ×3 (−9) · motor-tutus 245 (öksürük 228) · bot-su 245–340.
+**P08a · 2607–2812 (yerel 0–205), GEMI-INSERT `bot`, orta-yakın, nefes.** Yükseklik su hizası 0.8 m, `b`=300° (rel 295). Soldaki gövde duvarı (duman perdesi arka), **iki can botu yan yana** x 120–1000 y 840–1250 (bot+tayfa ≥ %18). **BMC-D7:** A botunda **T4** (≈33, çene sıkık, şakakta ter; yüz ≥ 75 px) krank çevirir: **tık yerel 60 (abs 2667), 95 (2702), 130 (2737)**, motor tutmaz (sessiz), omuz çöker 140–165; pan sağa 150–200: tayfa B botuna geçer (adım gövde-bot boşluğu, ayak sağlam). **5 yaralı** (§4.2b) botlarda oturur, **yüzleri sakin ve görünür** (≥ 60 px, gözler aşağıda ya da ufukta; sargı #d8c9ac, kan yok, biri ötekinin omzuna yaslı; acı/inleme yok); yakın plan yok. Ekran yazısı yok (başlar 250'de).
+**P08b · 2812–2990 (yerel 205–383), GEMI-INSERT `bot`, orta-yakın → orta, bekle.** Pan sürer; B botu: **öksürük 228 (abs 2835) → tutuş 245 (abs 2852)**, bot gemiden açılır 245–340, **kadrajdan sağdan çıkar 360'a kadar**; kamera geri çekilir (cs 1.4→1.0, yerel 260–383): arkada duman perdeli gemi, su, **V iz halkaları** (`dalga_izi`). Ekran yazısı 250–375 üstte. "Kimse ölmedi" 4.75–5.73 (yerel 285–344) botta yüzlü yaralılar görünürken. **Tutma:** 2.97 sn ≥ 1.0 + 1.5 ✓. kontrol_kare yerel 248 (abs 2855). Foley: krank-tik ×3 (−9) · motor-tutus 245 (öksürük 228) · bot-su 245–340.
 - Alt 1/3 (a/b): su + bot tabanı + yansıma; çevre geri çekilir (b'de duman/gemi flu).
-- Saklanan şey: botta kaç kişi/kim yaralı (yüzsüz; sayı yazıda). **Dramatizasyon:** hangi botun ölü olduğu, krank (açıklamada belirtilir). Motor tipi gösterilmez.
+- Saklanan şey: botta kaç kişi/kim yaralı (yüzlü, sakin; sayı yazıda). **Dramatizasyon:** hangi botun ölü olduğu, krank (açıklamada belirtilir). Motor tipi gösterilmez.
 
 ### P09 · kare 2990–3172 · GEMI-INSERT `korkuluk-su` · nefes
 - **Ölçek:** orta-yakın, tek çekim (3.04 sn). Yükseklik su hizası 1.5 m, `b`=320° (rel 275 sol-yan, ışık alçalmış 12°: sıcak). Odak çekmesi: yerel 0–60 gövde net, 60–110 simide kayar (`Flu`).
@@ -158,10 +159,17 @@ Abs = 2607 + yerel.
 - Konum: batan gövde sağ x 480–1080 y 560–1250 (kadraj keser: "yarım", tam hâli P10a'da), su sol; **saklanan:** gövdenin sudan görünen kısmı yarı. Alt 1/3: su yüzeyi + yağ/köpük halkaları + simit. Ekran yazısı yok.
 - **Taşıyıcı:** önceki plandan bot V izi halkası simit çevresine girer; çıkış: yatık gövde çizgisi (≈22° eğik) = P10a'da yatık enkaz çizgisi.
 
-### P10 · kare 3172–3636 (+30 opsiyonel) · ★ ANAHTAR
-**P10a · 3172–3406 (yerel 0–234), LIMAN `enkaz` (= P01 kadrajı), geniş, bekle.** b=190° (rel 45), ufuk 800, güneş 6° (gün batımı): gemi sığ suda **yarı yatık**, bacalar/direk sudan eğik çıkar x 220–880 y 900–1080, sakin su, kale solda, gökte 5 basamak turuncu→mor. Ön plan: aynı kaya oyuğu (P01) **artık görünür boş** (top geri çekilmiş değil, yalnız kaya; çizgi yok). Yavaş itme cs 1.0→1.08. "Birinci Dünya Savaşı'nda … bu oldu" 0.1–3.9. Yazı "1920'de yüzdürüldü" yerel 70–225. Alt 1/3: kaya + ot + su ışıltısı. Işık: gün batımı yan-ön, enkaz kontrajur, kenar ışığı gül-altın, gölge mor.
-**P10b · 3406–3636 (yerel 234–464), HARITA-MEIS (YENİ görünüm), geniş harita, nefes.** Parşömen, Meis + Kaş şeridi (ada solda-aşağıda, Kaş yukarıda-sağda; 2 km). "Ateş de denizden değil" 4.41–5.78 (yerel 265–347): kamera denizin boş yüzeyinde (sade dalga taraması, kıyı yok) → **"karadan"** (6.12–6.54 = 367–392): `kamera_takip` rota ucunda; `rota_ciz {bas:330, bit:412}` Kaş mevzii → Meis limanı (gemi ikonu: enkaz); **`igne {kare:426, dusme:14}`** gemi ikonunda, pirinç iğne batar (temas `igne-tak`, abs 3598). Çizgi = P01'deki mürekkep çizgisi (döngü: P10 son karesi ↔ P01 ilk karesi). Etiketler yazı katmanında (`svg_etiket:false`): "Kaş", "Meis / Kastellorizo", "2 km". Foley igne-tak 426 (−9), kısık dalga. kontrol_kare **yerel 430 (abs 3602)**.
-- **Tutma:** P10b 3.83 sn (okuma 2.7 + 1.5 = 4.2 → eksik 0.37). **+30 kare kuyruk önerilir** (4.33 sn ✓) ve konuşma sonrası 1.14 sn sessizlik = bölümün ≥1 sn dinlenmesi.
+### P10 · kare 3172–3666 (+30 kuyruk dahil) · ★ ANAHTAR
+**P10a · 3172–3406 (yerel 0–234), KIYI-BATARYA `saygi` (ön plan) + LIMAN `enkaz` (arka), orta grup, bekle — SAYGI ANI.** Kamera **sabit** (itme yok, titreme yok), tüm 3.9 sn. `b`=100° (rel 135, güneş 6° sağ-arkada: yüzlerde ve omuzlarda 2–3 px `#eec5a2` kenar ışığı, gölgede mavi-mor + kısa tarama; P05 ile aynı ışık modeli), yükseklik 1.5 m, ufuk y ≈ 800, gök 5 basamak turuncu→mor.
+- **Konumlar (ayakta, sessiz, sağa = güneye = denize/enkaza bakar, profil/¾ yüz görünür):** ön sıra ayak y 1280, boy ≈ 980 px (yüz ≈ 115 px): **teğmen** x 300–520, **E1** (usta er) x 540–750, **E4** (yaşlı er) x 760–960; arka sıra ayak y 1215, boy ≈ 940 px (yüz ≈ 110 px): **E2** (genç er) x 90–290, **E3** x 330–520 (teğmenin arkasında kısmen). **Top** solda yerinde x 0–280 y 1000–1260 (namlu denize, sakin; **aynı kaya oyuğu** P01/P04). Tepe y ≈ 300 (güvenli alan üstü 220'nin altında kalmaz). Yüzler 360 px'te ≥ 37 px.
+- **Arka plan:** deniz, **limanda batık gemi** (yarı yatık, bacalar/direk sudan eğik) sağ-arkada x 560–1040 y 820–930 (buğu, 3 buğu bandı, uzak), kale solda silüet. Kor, duman, ateş, selam, bayrak, tören, müzikal vurgu yok; gemi sakin.
+- **Hareket:** yalnız rüzgâr (kumaş, ot) ve çok hafif nefes; hiçbir figür jest yapmaz, gülme/acı/zafer yüzü yok (ağırbaşlı). Kesme taşıyıcısı: bakış yönü (sağa, denize) → P10b harita gemi ikonu. Net tutma ≥ 3.9 sn (şart ≥ 1.5 sn).
+- **Kaynak/saygı:** erler kaynaksız dramatizasyon (kimlik yok), kartlar §4.2; "Birinci Dünya Savaşı'nda … bu oldu" sesi sırasında yüzler okunur. Ekran yazısı yok bu çekimde (yazı bandı kafalara binmesin; "1920'de yüzdürüldü" P10b'ye taşındı). Altyazı alt bantta (ayaklar y ≤ 1280).
+- Alt 1/3: kaya zemin, ot, uzayan 6° gölgeler (sağ-ön yönünden, sola-öne), ayak ve temas gölgeleri.
+- Ölü alan: yok (grup + gökyüzü + enkaz + kaya). **Kurulum → karşılık:** P01 kaya oyuğu ve P04 namlu → aynı mevzi, artık içinde insanlar.
+
+**P10b · 3406–3666 (yerel 234–494), HARITA-MEIS (YENİ görünüm), geniş harita, nefes.** Parşömen, Meis + Kaş şeridi (ada solda-aşağıda, Kaş yukarıda-sağda; 2 km). "Ateş de denizden değil" 4.41–5.78 (yerel 265–347): kamera denizin boş yüzeyinde (sade dalga taraması, kıyı yok) → **"karadan"** (6.12–6.54 = 367–392): `kamera_takip` rota ucunda; `rota_ciz {bas:330, bit:412}` Kaş mevzii → Meis limanı (gemi ikonu: enkaz); **`igne {kare:426, dusme:14}`** gemi ikonunda, pirinç iğne batar (temas `igne-tak`, abs 3598). Çizgi = P01'deki mürekkep çizgisi (döngü: P10 son karesi ↔ P01 ilk karesi). Etiketler yazı katmanında (`svg_etiket:false`): "Kaş", "Meis / Kastellorizo", "2 km". Foley igne-tak 426 (−9), kısık dalga. Yazı "1920'de yüzdürüldü" yerel 245–350 üstte (P10a'dan taşındı). Kuyruk: iğne sonrası yerel 440–494 harita durur, sessiz (≥ 1 sn dinlenme). kontrol_kare **yerel 430 (abs 3602)**.
+- **Tutma:** P10b 4.33 sn (okuma 2.7 + 1.5 = 4.2 ✓, +30 kare kuyrukla) ve konuşma sonrası 1.14 sn sessizlik = bölümün ≥1 sn dinlenmesi. P10a saygı anı ayrıca ≥ 3.9 sn sabit.
 - Alt 1/3: harita altı (parşömen, pusula gülü, deniz taraması, ölçek çubuğu); sayaç kutusu yok.
 
 ## 5. Kurulum → karşılık (görüntü)
@@ -175,27 +183,28 @@ Abs = 2607 + yerel.
 | derrick + gemi başı çıpa/zincir | P02a, P03b | gemi dönemiyor (zincir gergin) | P07c |
 | 3 can botu | P02a | tek çalışan bot | P08 |
 | sancak simidi | P02b | suya düşer | P09 |
-| P01 kadrajı (sağlam) | P01 | yanan (P07c), enkaz (P10a) | |
+| P01 kadrajı (sağlam) | P01 | yanan (P07c) | |
+| kaya oyuğu / mevzi (P01, P04) | P01, P04 | erler topun yanında, sessiz; arkada enkaz | P10a |
 
 ## 6. Anahtar tutma payı (okuma + 1.5 sn)
 | plan | ifade | okuma | gereken | var |
 |---|---|---|---|---|
 | P06 | "Üçüncü mermi gemiye isabet etti" (6.40–8.50) | 2.1 | 3.6 | V3 2.92 + P07a'nın aynı dumanlı ilk 0.7 = **3.6** (kesme taşıyıcılı) |
 | P08 | "Kimse ölmedi" (4.75–5.73) | 1.0 | 2.5 | P08b **2.97** ✓ |
-| P10 | "Ateş de denizden değil, karadan gelmişti" (4.41–7.10) | 2.7 | 4.2 | P10b 3.83; **+30 kare ile 4.33** ✓ (önerilen) |
+| P10 | "Ateş de denizden değil, karadan gelmişti" (4.41–7.10) | 2.7 | 4.2 | P10b **4.33** ✓ (+30 kare kuyruk dahil) |
 Çevre geri çekilmesi: P06 V3 itme + yazı sade; P08b kamera geri çekilir, gemi flu; P10b kamera takip, çevre sakin.
 
 ## 7. Saklanan şey (halkalar, ~15–20 sn)
-P01 çizgi oyukta biter (0–18 sn) → P04 namlu ucu (18–23) → P05 top yarım, teğmen (23–27) → P06 sütun yok, kapı kapalı (27–36; hangar içi P07b'de bile gösterilmez) → P08 sargılı siluetler (yüzsüz, sayı yazıda) → P09 gövde yarım → P10a tam enkaz.
+P01 çizgi oyukta biter (0–18 sn) → P04 namlu ucu (18–23) → P05 top yarım, teğmen (23–27) → P06 sütun yok, kapı kapalı (27–36; hangar içi P07b'de bile gösterilmez) → P08 sargılı yaralılar (yüzlü, sayı yazıda) → P09 gövde yarım → P10a erler ve arkada tam enkaz.
 
 ## 8. Fizik / giriş-çıkış kontrolü
-Derrick ucu güvertede, uçak suya inerken gövdeye çarpmaz (sancak boşluğu); tayfa güverte tahtasında, ayaklar y ≤ 1480 (P02a'da ≈ 1250, P07b ≈ 1260); kapı dışa açılır (hasarlı kanat menteşede); simit sancak (su) tarafında; bot gemiden aşağı iner, sağdan kadrajı terk eder; yürüyüş yok (gait gerekmez). Gemi su hattı sabit, yalnız P09'da yatış (suya gömülen kenar P10a ile aynı). Gemi demirli: baş çıpa zinciri gergin (P03b → P07c). Katır görünmez (sadece izi, P04; P05 ön planda flu başı). **Kedi/köpek yok.**
+Derrick ucu güvertede, uçak suya inerken gövdeye çarpmaz (sancak boşluğu); tayfa (T1–T4, yüzlü) güverte tahtasında, ayaklar y ≤ 1480 (P02a'da ≈ 1250, P07b ≈ 1260); kapı dışa açılır (hasarlı kanat menteşede); simit sancak (su) tarafında; bot gemiden aşağı iner, sağdan kadrajı terk eder; yürüyüş yok (gait gerekmez). Gemi su hattı sabit, yalnız P09'da yatış (suya gömülen kenar P10a arka planı ile aynı). Gemi demirli: baş çıpa zinciri gergin (P03b → P07c). Katır görünmez (sadece izi, P04; P05 ön planda flu başı). **Kedi/köpek yok.**
 
 ## 9. Yeni şablonlar için en az gereken parametre listesi (motion)
 Ortak (üç şablon + harita): `dunya {isik_azimut:235, gun_yuksekligi (anahtarlı 22→6), seed}`, `kamera {yukseklik_m, yon_derece, cs, cx, cy, ufuk_y}`, `tarama`, `atmosfer {sis, tuz, buğu bantları}`, litografi gök (5 basamak), temas gölgeli figür. Işık yönü kamera yönünden hesaplanır (`rel = 235 − b`).
 
 **LIMAN** (kod: ada, gemi, su, gök, uzak kıyı): 
-- `gorunum`: `kiyidan-ada` (P01/P06 V1 arka/P07c) · `ada-rihtim` (P03a) · `karsi-kiyi` (P03c) · `rihtim-yan` (P06 V2) · `hangar-yakin` (P06 V3) · `enkaz` (P10a)
+- `gorunum`: `kiyidan-ada` (P01/P06 V1 arka/P07c) · `ada-rihtim` (P03a) · `karsi-kiyi` (P03c) · `rihtim-yan` (P06 V2) · `hangar-yakin` (P06 V3) · `enkaz` (P10a, arka plan; ön plan KIYI-BATARYA `saygi`)
 - `gemi_durum` (anahtarlı): `demirli | vurulmus | yanan | yatik | batik` (+ `yatis_derece`, `su_cizgisi_y`)
 - `gemi {hangar_kapi: kapali|acik, baca_sayisi 2, derrick, hangar_konum: arka-baca-gerisi}`; `zincir {gerilim 0..1}`
 - `su_sutunu[] {kare, x, yukseklik_px, yaricap, tutma_kare}` (yüksel 24 / tut / çök 22 + halka); `halkalar[]`
@@ -204,27 +213,28 @@ Ortak (üç şablon + harita): `dunya {isik_azimut:235, gun_yuksekligi (anahtarl
 - `ada {kale, bayrak: tricolore, ev_seed}`; `karsi_kiyi {sirt_katman: 3, taze_iz}`; `on_plan: kaya_oyugu` (ortak asset, KIYI-BATARYA ile aynı kaya)
 - `kamera_dil`/`itme` desteği
 
-**GEMI-INSERT** (güverte/borda/bot yakın planları, hepsi aynı gemi modeli; yüzsüz tayfa siluet):
+**GEMI-INSERT** (güverte/borda/bot yakın planları, hepsi aynı gemi modeli; yüzlü tayfa T1–T4 ve yaralılar; siluet yalnız < %5):
 - `gorunum`: `kic | korkuluk | bas-capa | kic-su | hangar-kapi | bot | korkuluk-su`
 - `derrick {bas, bit, ip}`; `ucak {tip: genel-short, durum: asili|iniyor|suda, samandira_temas_kare}`
 - `hangar_kapi {durum: kapali|isik_sizar|itilir|salinir, bas, kare}` (iç koyu/kor; içerik gösterilmez)
 - `simit {durum: asili|kancadan|suda, kare, boy_px}` (sancak); `botlar[] {id, durum, motor: olu|tutar, pozisyon}`; `krank {bot, tik[]}`; `bot_hareket {bas, bit, cikis: sag}`
 - `capa {durum: asili|iniyor|suda|gergin, kare...}`, `zincir {gerilme_kare}`
-- `gemi_yatis {derece, bas, bit}`; `tayfa[] {kim (yuzsuz), jest: halat|yonlendir|geri-adim|omuz-coker|krank|adim-gec|yarali-oturur, kare[]}`
+- `gemi_yatis {derece, bas, bit}`; `tayfa[] {kim (T1|T2|T3|T4|yarali-1..5; yüz kartı), jest: halat|yonlendir|geri-adim|omuz-coker|krank|adim-gec|yarali-oturur, kare[]}`
 - `su {halka[], kopuk, dalga_izi}`, `yangin {alev, duman, havuz}`
 
 **KIYI-BATARYA** (karşı kıyı, kaya oyuğu, top, teğmen):
-- `gorunum`: `yamac-oyuk` (P04) · `tegmen` (P05) · `top-onplan` (P06 V1)
+- `gorunum`: `yamac-oyuk` (P04) · `tegmen` (P05) · `top-onplan` (P06 V1) · `saygi` (P10a)
 - `kaya_oyugu {namlu_gorunur 0..1 (yalnız ucu | tam), parilti {kare, sure}}`
-- `top {atis[] {kare}, geri_tepme_px 24, toz {E4}, kundak}`; `ates_yonu`
-- `tegmen {poz: profil, bakis: [x,y], jest: avuc-pat {kare[]}, el: tek-parca-siluet}` (**yeni karakter**: nötr kep/haki, yüz yakın plan)
+- `top {atis[] {kare}, geri_tepme_px 24, toz {KE-E4}, kundak}`; `ates_yonu`
+- `tegmen {poz: profil, bakis: [x,y], jest: avuc-pat {kare[]}, el: tek-parca}` (**yeni karakter**: nötr kep/haki, yüz yakın plan)
+- `erler[] {kart: E1|E2|E3|E4, x, ayak_y, boy_px, poz: nisan|mermi|halat|dik-bakis, bakis, flu}` (**yüzlü er kuklası**, 4 kart parametresi: yüz kemiği, bıyık/sakal, kaş/yara izi, ten, yaş çizgisi; yüz ≥ 110 px)
 - `katir {goruntu: kulak|bas|yok, flu}`; `cevre {ot, tas, katir_izi}`; `gemi_uzak {x, y, olcek}` (P06 V1 gemi referansı LIMAN ile aynı)
 
 **HARITA-MEIS** (`harita_gorunum: "meis"`): kıyı çizgisi verisi kamu malı (Natural Earth 10m benzeri; Kaş + Meis + Ayios Stefanos), `rota_noktalar`, `rota_ciz`, `kamera_takip`, `igne`, ikonlar `{gemi: demirli|enkaz, top}`, 2 km ölçek, deniz taraması, etiketler yazı katmanında (`svg_etiket:false`, TR/EN).
 
 ## 10. Kalibrasyon (yön karesi) — en temsilî 2 kare
 1. **P01 yerel 124 (abs 124)** — LIMAN `kiyidan-ada` + ön plan kaya/çizgi: ışık (kontrajur, su yolu), sıcak–soğuk, derinlik, tarama, ölçek; aynı zamanda kapak. Dört çekimde (P01, P06 V1, P07c, P10a) tekrar eden kadraj olduğu için LIMAN'ı tek karede sınar.
-2. **P07b yerel 214 (abs 2388)** — GEMI-INSERT hangar kapısı + alev: tek ışık = alev, mavi-mor gölge, kapı/tayfa siluet, darbe/duman; savaş tonu "ölçülü". GEMI-INSERT şablonunun en zor ışık/figür kombinasyonu.
+2. **P07b yerel 214 (abs 2388)** — GEMI-INSERT hangar kapısı + alev: tek ışık = alev, mavi-mor gölge, kapı + T3 yüzü, darbe/duman; savaş tonu "ölçülü". GEMI-INSERT şablonunun en zor ışık/figür kombinasyonu.
 - **Yedek (Paris çıtası: yeni karakter yön karesi şart):** P05 yerel 150 (teğmen profil, yüz+el). Sayılan 2 kareye dahil değil; orkestra yön karesine ekler ya da P05 ayrı gider. HARITA-MEIS düşük risk (mevcut HARITA dili) → kalibrasyon kapsamında değil, ilk bölüm renderında kabul.
 
 ## 11. Kural ve doğrulayıcı notları
