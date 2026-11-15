@@ -152,3 +152,28 @@
 ## orkestra · 2026-11-16 · tur-2 eleştirisi kararları
 - 1. düzeltme (doygunluk): eleştirmenin hedefleri (gölge ailesi C* 18–24, h 285–300°; müzisyen zeytin-griler → mor-lacivert/sıcak kahve C* ≥16; kare C* medyanı ≥18) orkestra kararıyla motion'a doğrudan verildi; motion son hex'leri `LG`'ye yazar, tasarim.md paleti sonra tasarımcı tarafından bu değerlere eşitlenir (tek sahiplik).
 - 5. düzeltme: **push-in** (f80–96 davula yavaş yaklaşma, davul ≥60 px); kesme yok. Yönetmen sahne planına işler.
+
+## motion · 2026-11-16 · SALON `konser` kalibrasyon tur-3 (eleştiri tur-2 6/10 → D1–D5 + küçükler)
+- Ne yaptım:
+  - **D1 doygunluk:** `LG` hex'lerini Lab'da aynı L* ile C* 17–26'ya çektim (tablo: `kalibrasyon/tur-3/olcum.md`). Asıl kök nedeni de buldum: soğuk mor renkler sıcak hedeflere (buğu, sırt ışığı, çalgıcı ışık yarısı) karışınca tamamlayıcı tonlar griye düşüyordu. `sicakMi`/`isikla` ile ışık ve buğu artık rengin kendi ailesinde kalıyor: soğuk renk → `isikMor`/`uzak`, sıcak renk → havuz. Buğu hedefi yalnız sıcak aileden.
+  - **D2 hale ve tavan:** hale ve tavan lekeleri screen karışımında `#cf9a66`, α .40/.20 ve .35/.45. Arka duvar havuzu `ry` .78 → .5, merkez h 4.4 (kemer okuması gitti).
+  - **D3 çalgıcı:** kenar ofseti 1.5 px, ink kopyaları 1.5 px; ışık yarısı ton ailesinde; davulcu `#424561`.
+  - **D4 sütun:** gövde taraması kaldırıldı. Yaprak LOD eşiği 110 px; yapraklar sivri ve sarkık uçlu (push-in'de sütunlar büyüdüğü için bu gerekti).
+  - **D5:** f80–96 ışık süpürmesi: çalgıcıların ışık noktası davula kayıyor, yakın figürlerde kenar `havuz[0]`. Kasnak yayı 6 px, `LG.kenar`. Kalibrasyon yolunda push-in (dolly 3 m + F 1575 → 2150 + truck + pan). Dolly için yakın düzlem kırpması eklendi (zemin ve koltuklar).
+  - **Küçükler:** toz r ≤ 4, sahne bandı α .30, topuz %8 ve kontursuz, Eliasberg'e bel inceltmesi. Saçaklıktaki eski gri `#a9969e` → `sutOrta`.
+  - İki kendi yakalamam: dolly'nin ilk renderında zemin çokgeni kameranın arkasına düştü, izdüşüm ters dönüp orkestrayı kapattı (kırpma ile düzeltildi). En yakın kel başın ense şeridi büyük ölçekte "göz bağı" okunuyordu (hilale çevrildi).
+- Dokunduğum dosyalar: `/home/user/kosmos-vize-bot/src/kit/sablonlar/leningrad/salonDunya.ts` (`LG`, `KameraYol`, `prj` kamera z), `/home/user/kosmos-vize-bot/src/kit/sablonlar/leningrad/Salon.tsx`, `/home/user/kosmos-vize-bot/src/kit/sablonlar/leningrad/Kalibrasyon.tsx` (`kamera_yol`), `/home/user/kosmos-vize-bot/bolumler/leningrad-senfoni/kalibrasyon/tur-3/*`. Ortak kit yok; eski bölümler piksel-aynı.
+- Aldığım kararlar ve gerekçeleri: **Push-in f80–96 değil f40–96.** 0.27 sn'de davulu ≥ 60 px'e getirmek crash zoom olur, CLAUDE.md savaş ve ölüm konusunda bunu yasaklıyor. Dalga f30'da başladığı için kamera ışıkla birlikte yaklaşıyor. **Yönetmen sahne planındaki P12 çekim kartını (35 mm crane → crane + push-in, f96 ≈ 48 mm) güncellemeli.** Kalibrasyon karesi push-in sonunu gösteriyor. Hale için normal karışım yerine screen seçildi: lacivert üstünde sıcak saydam renk normal karışımda griye dönüyor.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: B10 (sütun gövdesinde tarama yok), B8 (LOD eşiği), A3 (net hale), A5 (bant α .30), imza tekilliği (kutu dışı 0 px, 2.16×), kırmızı 0, Omuz (deltoid başlık korundu), hareket kuralı (savaşta crash zoom yok).
+- Açık sorular / bir sonraki ajana notlar:
+  - **Öz puan 6.5/10.** Kabul ölçütlerinden ikisi tutmadı:
+    1. C* medyanı **16.7** (≥18 istendi). Kalan düşük-C* alanları: flu ön sıra başları ve koltuklar, avize pirinci, ışıklı krem sütunlar. Koltuklar C* ≤ 20 tavanında sıkışıyor.
+    2. Kasnak ışığı telefonda yalnız ince çizgi. Çubuk V'si net, ama "ışık davulda bitti" tek bakışta okunmuyor.
+  - Diğer eksikler: p95 L* 79.4 (<85); sıcak yüzlü çalgıcılar hâlâ ten-kahve karton gibi; tavan ve köşe avizeleri push-in'de çok büyüdü, tavan sıkışık; Eliasberg'in omuz başlıkları sırtında yuvarlak şişkinlik gibi.
+  - Tur-4 önerisi:
+    - Ön seyirci flu σ'sını 5 → 3'e indir; ışıklı sütunlarda C* 22.
+    - Kasnağa davul gövdesi üstünde sıcak kenar havuzu (elips, C* 24) ve sehpa tablasının alt kenarına kenar ışığı ekle.
+    - Ya da yönetmen f96'yı P01 davul insert'iyle eşleştir.
+
+## orkestra · 2026-11-16 · tur-3 değerlendirmesi
+- Tur-3 (öz puan 6.5): doygunluk ve sıcaklık ilerledi (C* medyan 16.7, sıcak %42) ama push-in kompozisyonu sıkıştırdı. Kota için tur-3 eleştirmen turu atlandı; orkestra teşhisiyle son kalibrasyon turu (tur-4) motion'a verildi: push-in kısalt (≈40–42 mm), figürlere iç kıvrım + gravür taraması, ön sıra flu kaldır, kâğıt dokusu, omuz, C* ≥18. Tur-4'ü eleştirmen puanlar; <7 ise kullanıcıya yön karesiyle dönülür (Paris çıtası 3).

@@ -5,19 +5,22 @@ import { interpolate } from "remotion";
 import type { P } from "../../../doku/sabitler";
 
 export type V3 = [number, number, number];
-export type SalonKam = { F: number; u: number; h: number; yaw: number; pitch: number };
+export type SalonKam = { F: number; u: number; h: number; yaw: number; pitch: number; z?: number };
 const R = Math.PI / 180;
 
 /** P12 crane + tilt (mekanlar §3): f0 h1.35/−1° → f96 h1.9/+3° → f208 h2.3/+4° (sınır). 35 mm → F 1575. */
-export const salonKamera = (p: number, yol?: { f: number[]; h: number[]; egim: number[] }): SalonKam => {
+export type KameraYol = { f: number[]; h: number[]; egim: number[]; F?: number[]; z?: number[]; u?: number[]; yaw?: number[] };
+/** P12 yolu; isteğe bağlı F (zoom), z (dolly), u (truck), yaw (pan) dizileri push-in için (tur-3, orkestra kararı 5) */
+export const salonKamera = (p: number, yol?: KameraYol): SalonKam => {
   const y = yol ?? { f: [0, 96, 208], h: [1.35, 1.9, 2.3], egim: [-1, 3, 4] };
   const o = { extrapolateLeft: "clamp" as const, extrapolateRight: "clamp" as const };
-  return { F: 1575, u: -1.0, yaw: 3, h: interpolate(p, y.f, y.h, o), pitch: interpolate(p, y.f, y.egim, o) };
+  const ip = (v: number[] | undefined, d: number) => (v ? interpolate(p, y.f, v, o) : d);
+  return { F: ip(y.F, 1575), u: ip(y.u, -1.0), yaw: ip(y.yaw, 3), h: interpolate(p, y.f, y.h, o), pitch: interpolate(p, y.f, y.egim, o), z: ip(y.z, 0) };
 };
 
 /** dünya → ekran [x, y, derinlik] */
 export const prj = (K: SalonKam, u: number, h: number, z: number): [number, number, number] => {
-  const dx = u - K.u, dy = h - K.h;
+  const dx = u - K.u, dy = h - K.h; z = z - (K.z ?? 0);
   const cy = Math.cos(K.yaw * R), sy = Math.sin(K.yaw * R);
   const x1 = dx * cy - z * sy, z1 = dx * sy + z * cy;
   const cp = Math.cos(K.pitch * R), sp = Math.sin(K.pitch * R);
@@ -41,20 +44,24 @@ export const SALON = {
 };
 
 // ---- palet (tasarım §2.1 / §2.5, mekanlar §5.1 / §6) — renk sahibi tasarım; burada yeni renk yok ----
+// tur-3 (eleştiri D1 "gri = düşük doygunluk"): gölge ailesi aynı L*, C* 19–22, h 288–300°; zeytin-griler mor-lacivert / sıcak kahveye;
+// sütun ışık/orta yüzü şeftali-gül C* 14–17; koltuk bordo-kahve C* 15–18 (h 20–32, kırmızı değil). Eski değerler olcum.md tablosunda.
 export const LG = {
-  gece: "#262a4e", golge: "#3e3b5c", derin: "#2f2d46", hacim: "#4a4062", orta: "#6d6384", uzak: "#b98a9e",
+  gece: "#262a4e", golge: "#3a3c5c", derin: "#292e4b", hacim: "#474163", orta: "#676588", uzak: "#948bb5",
+  isikMor: "#8488b6", // soğuk yüzeyin ışık alan yarısı (aynı ton ailesinde aydınlanma — sıcakla karışıp grileşmez)
+  duvar: ["#d1a18a", "#e8b799", "#f0cbae"], // arka duvar ışık havuzu 3 basamak (C* 22–26)
   kenar: "#f0c4a8", kenarLamba: "#e6b5a0", havuz: ["#efd0b6", "#e4bc98", "#c8a98e"], altin: "#e8c9a4",
-  sutIsik: "#e6cfba", sutOrta: "#b8a3a6", sutGolge: "#6d6384", sutDerin: "#3e3b5c",
-  metal: "#5a4638", filaman: "#d89a7a", cekirdek: "#efd0b6", toz: "#f0d2b8", tavanLeke: "#c8a98e",
-  sivaIsik: "#c9b3a4", sivaGolge: "#5b5575", cam: "#a9b7cc",
-  tahtaIsik: "#c8a98e", tahtaGolge: "#5b5575", derz: "#5b5575", sahneOn: "#4a3a44",
-  koltukIsik: "#8a6a68", koltukGolge: "#4a3a44", koltukDerin: "#3e2f38", cerceve: "#3a3550",
-  ten: "#d6b49c", tenGolge: "#8f7360", palto: ["#4f4668", "#5a5068", "#4f5a62"], kasket: "#4a4d44",
-  ceket: "#4a4668", ceketGolge: "#2f2d46", ceketIsik: "#6a6488", pantolon: "#34334a", gomlek: "#b8b09c", sac: "#2a2226",
-  muzisyen: ["#5a5068", "#4f5a62", "#625a52", "#4a4d44"], keman: "#7a4f45", sehpa: "#3a3d42", sehpaKenar: "#c4b5a8", nota: "#cdbfa8",
+  sutIsik: "#f3cdb4", sutOrta: "#c99f95", sutGolge: "#63658d", sutDerin: "#363e63",
+  metal: "#604637", filaman: "#d89a7a", cekirdek: "#efd0b6", toz: "#f0d2b8", tavanLeke: "#c8a98e",
+  sivaIsik: "#c9b3a4", sivaGolge: "#555678", cam: "#a9b7cc",
+  tahtaIsik: "#c8a98e", tahtaGolge: "#555678", derz: "#555678", sahneOn: "#4a3a44",
+  koltukIsik: "#8f6963", koltukGolge: "#593735", koltukDerin: "#4b2929", cerceve: "#373652",
+  ten: "#d6b49c", tenGolge: "#8f7360", palto: ["#46486d", "#575073", "#3b5c7b"], kasket: "#4d4860",
+  ceket: "#444867", ceketGolge: "#292e4b", ceketIsik: "#646689", pantolon: "#31344d", gomlek: "#b8b09c", sac: "#2a2226",
+  muzisyen: ["#505277", "#3b5c7d", "#7a5244", "#4d4769"], keman: "#7a4f45", sehpa: "#3a3d42", sehpaKenar: "#c4b5a8", nota: "#cdbfa8",
   davulGovde: "#4a3a44", kasnak: "#8f8aa8",
   cubuk: "#F0B14E", cubukGolge: "#B97F34", cubukKenar: "#FBDFA0", cubukSpek: "#FFF1CC", cubukKontur: "#7a4f2a",
-  tarama: "#2f2d46",
+  tarama: "#2a2e4a",
 };
 
 // ---- ışık: tek kaynak = yanan avizelerin ağırlık merkezi (mekanlar §5.1) ----
