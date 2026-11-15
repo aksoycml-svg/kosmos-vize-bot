@@ -1,167 +1,124 @@
-# Script v1 (EN): Zaro Agha — "They came for the number, not the man"
+# Script v5 (EN): Zaro Agha — "The first hundred years are the hardest"
 
-Source: `arastirma.md` only (PARTIAL VERIFICATION; period press and Turkish sources are search snippets only; strength labels respected). Channel: EN. Twin of `senaryo.md` (same 10 plans, same timings; on-screen text layer is separate per language, picture is rendered once without text).
-Format: 1080x1920 · **65.0 s** (plan length = longer of the two languages + tail; EN drives most plans, TR drives P03/P06/P09) · **10 plans** · EN 127 words (~60 s speech) · TR 114 words (~54 s) · locations: PIER (Istanbul + New York dock variant), TENT (outside + inside), DESK-INSERT (passport, X-ray, documents, map), FUNERAL (courtyard + doorstep).
+Full rewrite (senarist · Fable). Earlier drafts were not used; rejected hooks and endings do not appear.
+Source: `arastirma.md` only (PARTIAL VERIFICATION; strength labels respected). Twin of `senaryo.md`: same 10 plans, same timings, same picture (rendered once, textless; only the text layer, voice and mix differ). Visual descriptions live in `senaryo.md` §4 and are not repeated here.
+Format: 1080x1920 · **65.0 s** (plan length = longer language + hold; at the ceiling on paper, real audio decides) · **10 plans** · EN 124 words (≈56 s at 2.2 w/s) · TR 119 words (≈57 s at 2.1) · 4 locations: TENT (entrance + inside), DOCK (Istanbul + New York variant), DESK-INSERT (passport, X-ray, documents), STREET (New York).
 
 ## 0. Up front
 
-**Turn line:** Before: America goes to see a number, not a man who is said to be 156; the bigger the number gets, the smaller the man becomes. / After: the number splits into three values (certificate, gravestone, a statistician); his family remembers the man: "he left before he'd had enough of the world." Type: **mirror / contrast** (number vs. person; carrier vs. carried).
+**Turn line:** Before: America comes to watch a porter it calls a hundred fifty-six, and the porter jokes to reporters that the first hundred years are the hardest. / After: a statistician claims he died at ninety-seven; if so, he never finished those first hundred years. Type: **reversal** (the opening joke comes back as the possible truth; number vs. man).
 
-**Hero:** Zaro Agha, an Istanbul porter of many years. The viewer follows his pack-saddle and then the chair. His face is withheld until P05 (P01 curtain, P02 profile).
+**Hero:** Zaro Agha, an old man who spent years carrying loads in Istanbul. The viewer follows his hands, his face and the folded paper in his pocket.
 
 **Five-line spine**
-1. **Situation:** a former Istanbul porter whose age rests on one passport date (1774); no reliable birth record.
-2. **Want:** to have his age believed. (Inferred from the X-ray moment where he reportedly shows his papers; single source. The promoter's want is money.)
-3. **Obstacle:** one piece of paper as proof; doctors doubt it; the number now belongs to the show, not to him.
-4. **Change:** from the man who carried loads to a number on display; the bigger the number, the less visible the man.
-5. **Result:** after death the certificate says 157, the gravestone 160, a statistician about 97. At the funeral the family cries not about the number but about "not having had enough of the world."
+1. **Situation:** an old former porter from Istanbul; the birth date in his passport makes him a hundred fifty-six.
+2. **Want:** to have his word and his paper believed. (Inferred from the moment he pulls out his certificate for the doctors; single source, hedged in narration.)
+3. **Obstacle:** everyone looks at the number, not at him. Crowds watch it, doctors lower it, and after his death even his family cannot stop the autopsy.
+4. **Change:** the number leaves his hands and changes with whoever holds it: 156 in the passport, 120 at most for the doctors, 157 on the death certificate, 160 on the gravestone.
+5. **Outcome:** a statistician says 97. If so, Zaro Agha never finished the hundred years he called the hardest. His real age is still unknown.
 
-**Last line (written first):** "At his funeral, his family reportedly wept, 'He left before he'd had enough of the world.'"
-What the ending needs and where it is set up: "the number" P01 · "family" (young relative) P04 · "carrying / pack-saddle" P02 · "door and threshold" P08 · "three values of the number" P09. Set up in the first third (up to 21.7 s): number, saddle, passport date, relative. Loop: last frame empty saddle, match-cut to the lit 156 sign of P01.
+**Last line (written first):** "If the statistician was right, the porter America came to watch never finished those first hundred years."
+What it needs, set up in the first third (≤21.7 s): "America came to watch" P01 · "porter" P01 + P02 · 156 P01 + P03 · "the first hundred years are the hardest" P04. "A statistician" is set up in P09, right before.
+
+**Tone:** no mockery. The age is never presented as Zaro Agha's lie: the hook says America "called" him that, P03 says it came from the passport. The closing irony lands on the number; the joke is his own.
+
+**Written for the ear (tur-1g):** every sentence names who did what to whom (no bare "he/it/they/that" as subject or object across sentences); the situation is stated before the event. Nothing was shortened by dropping a subject; instead three events moved from narration to screen text and picture (autopsy, 157/160, Europe).
 
 ## 1. Accuracy decisions
-- **Age:** the number given on arrival in 1930 is **156** (passport, period press caption). "157" appears only on the death certificate (P09), "160" on the gravestone. Age is always "his passport said," "says," "claimed"; never stated as fact. Years are shown only on screen (1774, 1930, 1934).
-- **Direction:** Zaro was **invited and taken** to America ("reportedly invited him"), not "America came to watch." The inviter is "an American promoter, reportedly" (single origin); no name (Norden), no temperance-society alternative, no photo prices.
-- **Porter:** "he'd spent years as a porter" (medium). His later municipal job is not in the narration; the image shows a porter unloading a ship (P02) as a former trade.
-- **Quote:** "The first hundred years are the hardest" comes from a period press photo caption; through an interpreter, "reportedly said" (journalist may have shaped it). Interpreter = the young relative beside him; no name.
-- **X-ray "a hundred twenty at most":** single source (EN-WP), "reportedly." His angry showing of papers is **not narrated**; only in the picture (P07) and a screen label "anlatıldığına göre / reportedly."
-- **Exhibition:** "for months," "circus tents," "world's oldest man" (medium). "Eighth Wonder of the World" only as an on-screen poster label.
-- **Return/death:** "went home to Istanbul" (undated; 1931 vs 1932 conflicting). Death date 29 June 1934 on screen only. Place of death, cause, autopsy, organs-in-museum, "returned penniless" not used.
-- **Numbers:** death certificate 157 (medium), gravestone 160 (single snippet), "a statistician later claimed about ninety-seven" (Bowerman; method unseen; no name, no "confession"). No claim about which age is true; real age unknown.
-- **Funeral line:** from a popular source; speaker disputed (daughter or grandchild). "his family," "reportedly."
-- **Not used:** Ford, Ripley's, Ellis Island, ship name, Chrysler rooftop, Atatürk meeting, pituitary gland, "three kidneys," words like "fraud/charlatan." No mockery.
-- **Dramatization:** the empty saddle hanging on a nail, the chair, the ship deck and the picture of the quote are dramatized; stated in the caption.
+Same as `senaryo.md` §1. EN specifics:
+- Arrival age is **156**; 157 (death certificate) and 160 (gravestone) are on screen only.
+- "came to watch": people came to circus tents (first frame shows it). That he was invited is on screen in P04; the promoter is named as a role in P05, without name or nationality (single origin).
+- The quote is from a period press-photo caption, through an interpreter: "reporters quoted". The interpreter (his great-great-grandson) is on screen only.
+- "a hundred twenty at most" and showing the certificate: single source → "reportedly" plus screen tag. Narration says "Zaro Agha's bones", not "that X-ray" (same exam is not established).
+- "a statistician claimed" (an actuary, 1939; method unseen; no name). The last line is conditional. Screen: "~97" and "His real age is still unknown."
+- Not used: Ford, Ripley's, Ellis Island, ship name, Chrysler rooftop, funeral quote, "older than America", empty pack-saddle symbol, ticket prices, "fraud/charlatan".
 
-## 2. Hook (three layers)
+## 2. Hooks (three layers, three alternatives)
 
-| | Line | First frame | On-screen text |
+| | Line | First frame | Screen text |
 |---|---|---|---|
-| **K1 ★** | "In America, people went to see a number, not a man. His passport said a hundred fifty-six." | Night, circus tent entrance; a huge lit sign shows only **156** (language-neutral). Faceless silhouettes pour in; the entrance curtain is half-closed, a chair leg and a pair of feet visible inside. | **Zaro Agha · 1930** |
-| K2 | "His passport said a hundred fifty-six. His X-ray said a hundred twenty at most." | Passport page and an X-ray film side by side | Which one? |
-| K3 | "His gravestone says a hundred sixty. His death certificate, a hundred fifty-seven. So how old was he?" | Three numbers stacked | Nobody knows |
+| **E1 ★** (the user's idea, age 156) | "America came to watch a porter it called a hundred fifty-six years old." | TENT entrance, night. Silhouettes streaming in, mid-motion. Through the gap in the curtain only a seated man's knees and the large, calloused hands resting on them. Above, a bulb-lit, language-neutral number sign: 156. The face is behind the curtain. | **AMERICA · 1930** / *birth year in his passport: 1774* |
+| E2 (quote first) | "'The first hundred years are the hardest.' New York reporters wrote that they heard this from a porter from Istanbul." | New York DOCK. An old face in close-up, a young man leaning to his ear, a flash pops. | **156, according to his passport** |
+| E3 (doctors vs. paper) | "Doctors reportedly told a porter he was a hundred twenty at most. The porter was furious, because the porter's passport said a hundred fifty-six." | DESK-INSERT. A hand X-ray on a light box; an old hand slaps a paper down beside it. | **New York · 1930** |
 
-**Why K1:** a first sentence with a twist (number, not man), a second that gives the number and raises "who is he, why the number?"; the feet behind the curtain hide the man (answer P02 identity, P05 face). K2 spends the P07 contradiction and the closing numbers; K3 spends P09 and ends on a rhetorical question (nothing hidden on screen). K1 loops: the last frame (empty saddle) match-cuts into the lit 156.
+**Chosen: E1.** Three concrete things land in the first two seconds (America, 156, porter). The claim belongs to America ("it called"), not to the man. Two gaps open: in the line (how is a porter 156, why is he watched) and in the picture (the hidden face). The screen text (1774) gives the other half instead of repeating the line. The last line returns in the same words for the loop. E2 spends the joke that pays off at the end; E3 is the most surprising but puts a single-source moment in the hook and spends the peak (P07).
 
-## 3. Plan table
+## 3. Endings (two alternatives)
 
-On-screen text in the top band (y 240–400). No dialogue. No "touch" column (owned by the creative director in `dokunuslar.md`). Timings: longer language + tail; re-aligned once real voice is measured.
-
-| # | Time (s) | Location | Visual | Narration (EN) | On-screen text | Hidden thing |
-|---|---|---|---|---|---|---|
-| P01 | 0.0–8.2 (8.2) | TENT (outside, night) | K1 first frame. The 156 flickers once and stays lit; silhouettes enter one by one, heads tilted up at the sign. Behind the curtain: a chair leg and feet; the curtain never moves. Camera creeps in and cuts before reaching it. | "In America, people went to see a number, not a man. His passport said a hundred fifty-six." | **Zaro Agha · 1930** | The man behind the curtain (answer: P02 identity, P05 face). |
-| P02 | 8.2–12.6 (4.4) | PIER (Istanbul, morning) | Narrow gangplank from ship to quay; porters carry loads in a line. Foreground: an old worker (cap, short vest, wide trousers; neutral) with a flat pack-saddle and crates stacked high on his back, walking; the load runs past the top of frame. Profile, face in shadow. Feet on planks, contact shadow. | "Yet he'd spent years as a porter in Istanbul." | **Istanbul** | The top of the load (frame cuts it); the full face. |
-| P03 | 12.6–18.3 (5.7) | DESK-INSERT (passport) | Old passport page in light; the date line shows big digits **1774**; beside it, a ledger with torn and empty lines (patchy records). From the overlay "1930" slides in, a minus sign is drawn, then **156** is written below, same type as the lit sign. Stamp closes the passport. | "Birth records were patchy then; his age rested on one passport date." | **1930 − 1774 = 156** | Nothing but a single date supports it: the empty ledger lines. |
-| P04 | 18.3–24.0 (5.7) | DESK-INSERT (map) → ship | Old map: a dashed route from Istanbul to New York across the Atlantic; at its end a faceless man in a suit holds a card with "156". As the route is drawn, an unnamed 1–2 funnel liner crawls along it; on deck an old cap-wearing figure and a younger one beside him. The card turns in the hand and cuts before its back is seen. | "An American promoter reportedly invited him to turn that number into money." | *reportedly* | The back of the card (answer: P06 poster). |
-| P05 | 24.0–30.4 (6.4) | PIER (New York dock, day) | Disembarking; a neutral New York skyline in the distance (Chrysler spire finished, Empire State frame neutral). First clear look at Zaro's face: old, calm, not bewildered. Reporters around him (faceless, hats, notebooks). The young relative leans to his ear and interprets; one reporter writes, a flash pops. Close-up on the face. | "Through an interpreter, he reportedly said, 'The first hundred years are the hardest.'" | **New York · 18 July 1930** | What the interpreter whispers (no sound, mouth hidden). |
-| P06 | 30.4–37.1 (6.7) **key** | TENT (inside) | A small stage with a plain chair; Zaro sits, hands on his knees, back against the chair (the chair where the pack-saddle used to be). Behind him the P01 number, four times his height. Silhouettes file past: one points at the number, one takes a photo (flash); nobody looks at his face. The camera slowly pulls back; the number grows, the man shrinks. End: the last silhouette passes and Zaro raises his head. Hold: narration + 1.0. | "For months, circus tents showed him as the world's oldest man." | *on the posters: "Eighth Wonder of the World"* | No one looks at his face, and the pull-back makes it smaller still. |
-| P07 | 37.1–43.1 (6.0) | DESK-INSERT (X-ray) | Light box with an X-ray of arm and hand bones; a doctor's hand (cuff, faceless) points at the bone line; a card reads **120**. Opposite, Zaro in close-up (brow furrowed, jaw set) slaps a paper beside the film; the paper shades the film, its digits turning away from camera before the cut. | "Doctors doubted it. His X-rays reportedly said a hundred twenty at most." | *He showed his papers (reportedly)* | What the paper says; the light shades the film. |
-| P08 | 43.1–46.9 (3.8) | PIER (Istanbul, dusk) → FUNERAL (doorstep) | Istanbul pier at dusk: Zaro alone, no interpreter, no flashes, steps off; porters carry loads, none turns a head. At the end of a narrow street, a door; Zaro enters, the door closes; the light line under it goes out. Motion done ≥12 frames before plan end. | "He finally went home to Istanbul and died." | **29 June 1934** | What is behind the door (answer: the doorstep in P10). |
-| P09 | 46.9–57.1 (10.2) **key** | DESK-INSERT (documents) | Tabletop, three items in order: (1) a stamped doctor's paper with a big **157**; (2) an upright old gravestone silhouette with **160**; (3) a statistician's ledger with **~97**. Each slides over the previous; for a beat all three line up side by side. Camera circles them, then all slide into darkness while the P01 156 shows faintly behind. Hold: narration + 1.2. | "His death certificate says a hundred fifty-seven; his gravestone, a hundred sixty. A statistician later claimed about ninety-seven." | *certificate · stone · statistician* <br> **157 · 160 · ~97** | Who is under the numbers (answer: P10 funeral). |
-| P10 | 57.1–65.0 (7.9) **key** | FUNERAL (courtyard + doorstep) | A coffin carried on shoulders (close male relatives, plain, period-neutral), women behind, an imam silhouette; one woman covers her face. Camera tilts down: the P08 door ajar; on a nail by the doorframe a flat pack-saddle hangs with a cap on it; no light. The saddle's shadow stretches, a light like the P01 sign falls across it, match-cut to the P01 156. Hold: narration + 0.8. | "At his funeral, his family reportedly wept, 'He left before he'd had enough of the world.'" | *Eyüp, Istanbul* | None. The loop closes. |
-
-## 4. Setup → Payoff
-
-| Setup | Plan | Payoff | Plan |
-|---|---|---|---|
-| Lit sign 156 | P01 | Number four times his height; light on the saddle and the match-cut | P06, P10 |
-| Chair leg/feet behind the curtain | P01 | The same chair: Zaro sits in it | P06 |
-| Pack-saddle + stacked load | P02 | Man in a chair; empty saddle on a nail | P06, P10 |
-| Cap | P02 | Cap on the saddle | P10 |
-| Passport date 1774, 1930 − 1774 = 156 | P03 | Zaro slaps a paper beside the film | P07 |
-| Empty ledger lines | P03 | Paper still unread; certificate, stone, ledger split into three | P07, P09 |
-| Card "156" | P04 | The number behind him | P06 |
-| Young relative (interpreter) | P04 | Leans to his ear, interprets; flash | P05 |
-| "The first hundred years are the hardest" | P05 | Doctors: "a hundred twenty at most" | P07 |
-| Door + light under it | P08 | Same door ajar, saddle on a nail | P10 |
-| Three numbers (157 · 160 · ~97) | P09 | At the funeral no number: "he left before he'd had enough of the world" | P10 |
-
-No unpaid setups. Left out: car accident, Europe/Brooklands flight, Ford, Ripley's, ship name, Chrysler rooftop, autopsy, "returned penniless," child/wife counts, 1925 turban/hat joke, Getty newsreel.
-
-## 5. Transition check: "why from here to there?"
-
-| Transition | Why |
-|---|---|
-| P01 → P02 | The hook said "a number, not a man"; who is the man? A porter in Istanbul. |
-| P02 → P03 | Where did a porter's 156 come from? One passport date; records were patchy. |
-| P03 → P04 | If the number is one paper, why America? Someone invited him to turn it into money. |
-| P04 → P05 | He boarded; what happened on arrival? Reporters, via his interpreter, got "the first hundred years are the hardest." |
-| P05 → P06 | A quote, a number; then? Months in circus tents (quote, number, poster all sell the number). |
-| P06 → P07 | The more people looked at the number, the more others looked at his bones: doctors doubted. |
-| P07 → P08 | While the number was argued, his life ended: he went home and died (screen: 1934). |
-| P08 → P09 | He died; what happened to the number? 157, 160, ~97: it did not hold. |
-| P09 → P10 | The numbers fail; who remembered the man? His family, at the funeral. |
-
-## 6. First-time viewer test
-
-### Sound off (picture + on-screen text)
-```
-P01 Zaro Agha · 1930                      (lit 156 sign, crowd enters, feet behind curtain)
-P02 Istanbul                              (porter with saddle and load)
-P03 1930 − 1774 = 156                     (passport date, sum, stamp)
-P04 reportedly                            (map route, ship, man with a 156 card)
-P05 New York · 18 July 1930               (landing, interpreting, flash)
-P06 on the posters: "Eighth Wonder of the World"  (man shrinks, number grows)
-P07 He showed his papers (reportedly)     (X-ray, 120 card, paper slapped down)
-P08 29 June 1934                          (alone on the pier, door closes, light goes out)
-P09 157 · 160 · ~97                       (certificate, stone, statistician)
-P10 Eyüp, Istanbul                        (funeral, saddle on a nail, loop)
-```
-Sound-off summary: an Istanbul porter is billed as 156 and shown in circus tents, doctors doubt it, at his death three different numbers appear, his family cries for the man. Reads.
-
-### Sound on (narration only)
-"In America, people went to see a number, not a man. His passport said a hundred fifty-six. / Yet he'd spent years as a porter in Istanbul. / Birth records were patchy then; his age rested on one passport date. / An American promoter reportedly invited him to turn that number into money. / Through an interpreter, he reportedly said, 'The first hundred years are the hardest.' / For months, circus tents showed him as the world's oldest man. / Doctors doubted it. His X-rays reportedly said a hundred twenty at most. / He finally went home to Istanbul and died. / His death certificate says a hundred fifty-seven; his gravestone, a hundred sixty. A statistician later claimed about ninety-seven. / At his funeral, his family reportedly wept, 'He left before he'd had enough of the world.'"
-
-### "So what?" scan
-| Plan | Viewer question | Status |
+| | Line | Last image |
 |---|---|---|
-| P01 | Who is behind the curtain, why a number? | Left open on purpose; P02 identity, P05 face. |
-| P02 | Why is this porter "156"? | P03 answers. |
-| P03 | How was the number made? | One sum; empty ledger lines show "no proof." |
-| P04 | Why America? | A promoter, money; card back becomes the poster in P06. |
-| P05 | What did he say there? | The quote through the interpreter; the interpreter question closes with the young relative set up in P04. |
-| P06 | What did they do with him? | Showed him in circus tents; number grows, man shrinks (mirror). |
-| P07 | Did everyone believe it? | No; doctors said 120; paper content hidden but it is the P03 date. |
-| P08 | What happened next? | He went home and died; door. |
-| P09 | How old was he? | Unknown; three numbers, three values: the point. |
-| P10 | Who remembered the man? | His family; the last line mirrors the hook. |
+| **F1 ★** | "Later, a statistician claimed Zaro Agha died at ninety-seven. If the statistician was right, the porter America came to watch never finished those first hundred years." | In the tent the sign's bulbs go out one by one; only the man's face stays lit. Camera drops to his hands, match cut to P01. |
+| F2 | "Later, a statistician claimed Zaro Agha died at ninety-seven. Nobody knows Zaro Agha's real age. America came to watch a number; Istanbul buried a porter." | Number papers on the desk; a cap is set on them. |
 
-Remaining question: none. Weak spots: P08 short (3.8 s) and years are skipped between P07 and P08; screen text (1934) and "finally" carry the gap. P10 funeral quote is "reportedly" from a popular source.
+**Chosen: F1.** One beat, complete; it pays off the P04 quote, returns in the hook's words, and does not lean on a weak quote. "Unknown" goes to the screen text, so the voice ends on the beat and the screen on the honest note.
 
-## 7. Words and timing (EN)
+## 4. Plan table (EN layer)
 
-| Plan | Words | Speech (2.1 w/s) | Plan length |
+| # | Time (s) | Narration | Screen text (top band) | Hidden |
+|---|---|---|---|---|
+| P01 | 0.0–5.9 | "America came to watch a porter it called a hundred fifty-six years old." | **AMERICA · 1930** / *birth year in his passport: 1774* | The face behind the curtain |
+| P02 | 5.9–10.9 | "The porter, Zaro Agha, had carried loads in Istanbul for years." | **Zaro Agha · Istanbul** | Face still in shadow |
+| P03 | 10.9–14.7 | "That age came from Zaro Agha's passport." | **1930 − 1774 = 156** | The paper goes back in his pocket |
+| P04 ★ | 14.7–22.4 | "In New York, reporters quoted Zaro Agha: 'The first hundred years are the hardest.'" | **New York · 18 July 1930** / *he came by invitation · interpreter: his great-great-grandson* | The joke's payoff (P10) |
+| P05 | 22.4–26.9 | "For months a promoter showed Zaro Agha in circus tents." | *on the posters: "the world's oldest man"* / *reportedly · 1930–31, America and Europe* | No one looks at his face |
+| P06 | 26.9–33.6 | "One day a car hit Zaro Agha, but X-rays found no broken bones." | **New York · September 1930** | The impact; who is reading the film |
+| P07 ★ | 33.6–44.6 | "But doctors reportedly judged Zaro Agha's bones a hundred twenty at most. Furious, Zaro Agha showed the doctors his birth certificate." | *single source; reportedly* | The doctor never looks at the paper: who is right? |
+| P08 | 44.6–49.7 | "A few years later, Zaro Agha died in Istanbul." | **Istanbul · 29 June 1934** / *autopsied despite his family's objections · death certificate: 157 · gravestone: 160* | The blank sheet on the right |
+| P09 | 49.7–55.4 | "Later, a statistician claimed Zaro Agha died at ninety-seven." | *1939 · an actuary's estimate: ~97* | The man under the numbers |
+| P10 ★ | 55.4–65.0 | "If the statistician was right, the porter America came to watch never finished those first hundred years." | *"The first hundred years are the hardest."* → **His real age is still unknown.** | None. Loop to P01 |
+
+★ = `anahtar: true`. Holds: P04 7.7 s · P07 11.0 s · P10 9.6 s (plan lengths follow the longer language, see `senaryo.md` §9).
+
+## 5. Setup → Payoff
+Identical chain to `senaryo.md` §5: "came to watch" + "porter" P01 → P10 · hidden face P01 → P04, P10 · hands P01 → P02, P03, P05, P10 · lit 156 sign P01 → P05, P10 (bulbs go out) · folded paper P03 → P07 · the quote P04 → P10 · young relative P04 → the family hand P08 · X-ray film P06 → P07 · blank sheet P08 → P09 · "a statistician" P09 → P10. No unpaid setup.
+
+## 6. "Why from here to there?"
+Same chain as `senaryo.md` §6. EN link words: P02 "The porter" (picks up the hook's noun) · P03 "That age" (answers "how is a porter 156?") · P04 "In New York" (the hook already put him in America) · P05 "For months" (what happened after the headlines; answers the hook's "came to watch") · P06 "One day" · P07 "But doctors" (no fracture, yet the bones are doubted) · P08 "A few years later" (the dispute is never settled) · P09 "Later" · P10 "If the statistician was right".
+
+## 7. First-time viewer test
+
+### Sound off
+Screen texts as in §4. Summary reads: a porter from Istanbul, 156 by his passport, is shown in American circus tents; a car, an X-ray, a doctor's "120" and his own paper slapped on top; after his death 157, 160, then 97; nobody knows. The quote reaches the silent viewer in P10's screen text; the director may also add it as on-screen text in P04.
+
+### Sound on (narration only; the text for the cold listener)
+1. America came to watch a porter it called a hundred fifty-six years old.
+2. The porter, Zaro Agha, had carried loads in Istanbul for years.
+3. That age came from Zaro Agha's passport.
+4. In New York, reporters quoted Zaro Agha: "The first hundred years are the hardest."
+5. For months a promoter showed Zaro Agha in circus tents.
+6. One day a car hit Zaro Agha, but X-rays found no broken bones.
+7. But doctors reportedly judged Zaro Agha's bones a hundred twenty at most. Furious, Zaro Agha showed the doctors his birth certificate.
+8. A few years later, Zaro Agha died in Istanbul.
+9. Later, a statistician claimed Zaro Agha died at ninety-seven.
+10. If the statistician was right, the porter America came to watch never finished those first hundred years.
+
+Possible snags, stated plainly: sentence 3 "That age" leans on sentence 1 (the number is one sentence away); sentence 6 "no broken bones" does not repeat whose (same sentence names Zaro Agha); sentence 7 introduces a "birth certificate" not mentioned before (sentence 3 says passport; whether it is the same paper is a question for the researcher); sentence 10 "those first hundred years" leans on the quote in sentence 4, six sentences earlier, and the screen text repeats the quote there.
+
+No "so what?" plan remains. Weak points: P08's narration is short and the picture plus screen text carry the autopsy and the two numbers; the P06→P07 link (same exam or not) is not established in the sources and the picture implies it (`senaryo.md` §11, question 4).
+
+## 8. Word count and timing (EN)
+
+| Plan | Words | Speech (2.2 w/s) | Plan length |
 |---|---|---|---|
-| P01 | 17 | 8.1 | 8.2 |
-| P02 | 9 | 4.3 | 4.4 |
-| P03 | 12 | 5.7 | 5.7 |
-| P04 | 12 | 5.7 | 5.7 |
-| P05 | 13 | 6.2 | 6.4 |
-| P06 | 11 | 5.2 | 6.7 |
-| P07 | 12 | 5.7 | 6.0 |
-| P08 | 8 | 3.8 | 3.8 |
-| P09 | 18 | 8.6 | 10.2 |
-| P10 | 15 | 7.1 | 7.9 |
-| **Total** | **127** | **≈60.4 s** | **65.0 s** |
+| P01 | 13 | 5.9 | 5.9 |
+| P02 | 11 | 5.0 | 5.0 |
+| P03 | 7 | 3.2 | 3.8 |
+| P04 | 14 | 6.4 | 7.7 |
+| P05 | 10 | 4.5 | 4.5 |
+| P06 | 13 | 5.9 | 6.7 |
+| P07 | 21 | 9.5 | 11.0 |
+| P08 | 9 | 4.1 | 5.1 |
+| P09 | 9 | 4.1 | 5.7 |
+| P10 | 17 | 7.7 | 9.6 |
+| **Total** | **124** | **≈56.4 s** | **65.0 s** |
 
-- TR 114 words (~54 s); TR leads in P03, P06, P09 (TR 12/12/19 words vs EN 12/11/18). TR has ~11 s of slack across the film, filled with picture holds and foley.
-- Tightest plans: P01 (EN 8.1 of 8.2) and P02 (4.3 of 4.4). If they overrun: cut "In America," in P01 and "Yet" in P02; in P09 cut "later."
-- Key-moment hold: P06 narration + 1.0, P09 + 1.2, P10 + 0.8 (rule says +1.5; the 65 s ceiling allows less; open question 2).
-
-## 8. Key moments (`anahtar: true`)
-- **P06 (peak):** the man shrinks, the number grows; the camera pulls back. Surroundings recede (crowd blurred). Hold 6.7 s.
-- **P09 (peak 2):** certificate 157, stone 160, statistician ~97 side by side. Hold 10.2 s.
-- **P10 (payoff):** funeral, the saddle on its nail, the loop cut. Hold 7.9 s.
+- EN is the longer language in P01, P02, P05, P08; TR leads in P03, P04, P06, P07, P09, P10.
+- At 2.1 w/s EN would be ≈59.0 s; still inside the plan lengths except P01, P02 and P05, which have no tail.
+- If the real voice runs long, remove a whole sentence rather than a subject (tur-1g): first P03, then P05 (TR and EN together).
+- Numbers are written out for TTS (a hundred fifty-six, a hundred twenty, ninety-seven). No capitals or tags for emphasis.
 
 ## 9. Publishing
-- **Cover:** THEY CAME FOR THE NUMBER (5 words)
-- **Caption:** Zaro Agha is said to have worked for many years as a porter in Istanbul. In 1930 his passport reportedly gave a birth year of 1774, which made him 156. An American promoter reportedly invited him over, and he was shown in the press and in circus tents as "the world's oldest man." His real age is unknown: the death certificate says 157, the gravestone 160, and a statistician later claimed about 97. The X-ray remark and the funeral words come from single or popular sources, so the wording is hedged. Scenes, the chair, the empty saddle on a nail and the visual staging of the quotes are dramatized. Narration is AI-generated. Sources: Wikipedia (Zaro Aga), Wikimedia Commons archive photos, period press records.
-- **Hashtags:** #history #zaroagha #untoldhistory #istanbul #storytime
-- TR version: `senaryo.md`.
-
-## 10. Open questions for the user
-1. **Ending:** funeral + empty saddle on a nail (dramatized; Zaro was a municipal worker in 1930). Alternative: three numbers only. OK?
-2. **Key-moment hold:** +0.8–1.2 instead of +1.5 (65 s ceiling). Accept up to 66.5 s, or shorten P03–P04?
-3. **Accident:** the car accident (two period sources) was cut; its link to the X-ray is not certain. Add as a short plan?
-4. **X-ray 120 and "statistician ~97":** single/medium sources; softened with "reportedly" and "claimed." OK?
-5. **Funeral line:** popular source, speaker disputed; the last line rests on it. OK?
-6. **Interpreter:** unnamed, "young relative." OK?
+- **Cover:** THE "156-YEAR-OLD" PORTER (3 words)
+- **Description:** Zaro Agha is said to have worked for many years as a porter in Istanbul, later for the municipality. When he reached New York in 1930 his passport made him 156, and the press quoted him, through an interpreter, saying "the first hundred years are the hardest." For months he was shown in circus tents as "the world's oldest man," and in 1931 he was taken to Europe as well. Who invited him is uncertain; reportedly an American promoter. The doctors' "120 at most" and his showing a birth certificate rest on a single source. He died in Istanbul in 1934 and was autopsied despite his relatives' objections. His death certificate is reported to say 157 and his gravestone 160; in 1939 an actuary claimed he had died at about 97. Birth records of the time were unreliable, and his real age is unknown. Scenes, the number sign and gestures are dramatized. Voiceover is AI-generated. Sources: Wikipedia (Zaro Aga), Wikimedia Commons archive photos, period press records.
+- **Hashtags:** #history #zaroagha #untoldhistory #istanbul #truestory
+- Open questions for the user: see `senaryo.md` §11 (shared).
