@@ -10,7 +10,7 @@ import { param, Sablon, SablonProps } from "../../ortak";
 import { cl, GIRIS, CIKIS } from "../../zaman";
 import { izd, Kam25, kamera25, Kamera25, plaka, V3 } from "../../kamera25d";
 import { RenkKaydi } from "../../../doku/Tarama";
-import { BP, BulutSerit, egriYol, gokSutun, Gok5, Katman, kirik, P2, pts, rr, Tara } from "./bmcOrtak";
+import { BP, BulutSerit, egriYol, gokSutun, Gok5, Katman, kirik, P2, pts, rr, Tara, Isleme } from "./bmcOrtak";
 import { karisim as mix } from "./renk";
 import { TegmenSahne } from "./Tegmen";
 
@@ -55,7 +55,7 @@ const Blok: React.FC<{ x: number; y: number; w: number; h: number; seed: string;
   const kir: P2 = [x + w * (0.55 + 0.12 * u("f")), y - h * (0.62 + 0.1 * u("g"))];
   return (
     <g strokeLinejoin="round">
-      <path d={`M${pts(dis)} Z`} fill={mix(BP.tasOrta, BP.tasIsik, 0.35 + ton)} stroke="#5a5276" strokeWidth={2} />
+      <path d={`M${pts(dis)} Z`} fill={mix(BP.tasOrta, BP.tasIsik, 0.35 + ton)} stroke="#5e4c50" strokeWidth={2} />
       <path d={`M${pts([dis[3], dis[4], dis[5], [kir[0] + w * 0.05, y], kir])} Z`} fill={mix(BP.tasGolge, BP.tasOrta, 0.25)} />
       <path d={`M${pts([dis[1], dis[2], dis[3]])}`} stroke={BP.kenar} strokeWidth={2.5} fill="none" />
     </g>
@@ -73,7 +73,7 @@ const Maki: React.FC<{ x: number; y: number; r: number; seed: string }> = ({ x, 
   </g>;
 };
 // kesilmiş çam/maki dalı (mevzi örtüsü; tasarim §4.4, LoC 20341r): gövde + iğne kümeleri, uç ışıkta
-const Dal: React.FC<{ a: P2; b: P2; k: number; seed: string }> = ({ a, b, k, seed }) => {
+export const Dal: React.FC<{ a: P2; b: P2; k: number; seed: string }> = ({ a, b, k, seed }) => {
   const n = 9, L = Math.hypot(b[0] - a[0], b[1] - a[1]), t = Math.atan2(b[1] - a[1], b[0] - a[0]);
   return <g>
     <path d={`M${a[0]},${a[1]} Q${(a[0] + b[0]) / 2 + 20},${(a[1] + b[1]) / 2 - 15} ${b[0]},${b[1]}`} stroke="#5a4a40" strokeWidth={6 * k} fill="none" />
@@ -82,6 +82,19 @@ const Dal: React.FC<{ a: P2; b: P2; k: number; seed: string }> = ({ a, b, k, see
         return <line key={j} x1={c[0]} y1={c[1]} x2={c[0] + Math.cos(an) * r * s2} y2={c[1] + Math.sin(an) * r * s2} stroke={j % 3 === 0 ? "#7d8460" : "#5c6448"} strokeWidth={3.5 * k} strokeLinecap="round" />; })}
         <circle cx={c[0] - r * 0.3} cy={c[1] - r * 0.4} r={r * 0.25} fill={mix("#7d8460", BP.kenar, 0.4)} opacity={0.6} /></g>; })}
   </g>;
+};
+// mevzi örtüsü kütlesi: kesilmiş çam + maki dallarından yoğun yapraklı yığın (iğne kümeleri), uçlar ışıkta; ortası açık bırakılabilir
+const Ortu: React.FC<{ alan: P2[]; n: number; r: number; seed: string }> = ({ alan, n, r, seed }) => {
+  const [x0, y0] = [Math.min(...alan.map((q) => q[0])), Math.min(...alan.map((q) => q[1]))], [x1, y1] = [Math.max(...alan.map((q) => q[0])), Math.max(...alan.map((q) => q[1]))];
+  const ic = (q: P2) => { let c = false; for (let i = 0, j = alan.length - 1; i < alan.length; j = i++) { const a = alan[i], b = alan[j]; if ((a[1] > q[1]) !== (b[1] > q[1]) && q[0] < ((b[0] - a[0]) * (q[1] - a[1])) / (b[1] - a[1]) + a[0]) c = !c; } return c; };
+  const K: { c: P2; r: number; i: number }[] = [];
+  for (let i = 0; i < n * 4 && K.length < n; i++) { const c: P2 = [x0 + rr(`${seed}x${i}`) * (x1 - x0), y0 + rr(`${seed}y${i}`) * (y1 - y0)]; if (ic(c)) K.push({ c, r: r * (0.6 + 0.6 * rr(`${seed}r${i}`)), i }); }
+  K.sort((a, b) => a.c[1] - b.c[1]);
+  return <g>{K.map(({ c, r: rk, i }) => <g key={i}>
+    <circle cx={c[0]} cy={c[1]} r={rk * 0.85} fill={i % 3 ? "#4e5640" : "#5c6448"} />
+    {Array.from({ length: 14 }).map((_, j) => { const an = (j / 14) * Math.PI * 2 + rr(`${seed}a${i}`) * 3, L = rk * (0.9 + 0.4 * rr(`${seed}l${i}${j}`)); return <line key={j} x1={c[0]} y1={c[1]} x2={c[0] + Math.cos(an) * L} y2={c[1] + Math.sin(an) * L} stroke={an > 3.4 && an < 6 ? "#7d8460" : "#4a5238"} strokeWidth={3.2} strokeLinecap="round" />; })}
+    <path d={`M${c[0] - rk * 0.7},${c[1] - rk * 0.4} A${rk},${rk} 0 0 1 ${c[0] + rk * 0.1},${c[1] - rk * 0.9}`} stroke={mix("#7d8460", BP.kenar, 0.5)} strokeWidth={3} fill="none" />
+  </g>)}</g>;
 };
 const Ot: React.FC<{ x: number; y: number; L: number; ruz: number; t: number; seed: string; n?: number; w?: number }> = ({ x, y, L, ruz, t, seed, n = 6, w = 3 }) => (
   <g>{Array.from({ length: n }).map((_, j) => { const l = L * (0.6 + 0.5 * rr(`${seed}${j}`)), a = (j - n / 2) * 0.12 + ruz * 0.35 + Math.sin(t * 1.4 + j + rr(`${seed}f`) * 5) * 0.05;
@@ -121,13 +134,15 @@ const OyukYamaci: React.FC<{ t: number; bulut: number }> = ({ t, bulut }) => (
     <path d={`M${pts([[980, 920], [860, 880], [820, 1040], [850, 1200], [972, 1190]])} Z`} fill={mix(BP.tasGolge, BP.tasOrta, 0.35)} />
     <path d="M860,880 L820,1040 L850,1200" stroke={BP.kenar} strokeWidth={3} fill="none" opacity={0.7} />
     {/* sarkan saçak: ağzın üstünde öne taşan kalın kaya kütlesi; alt yüzü (alttan görünür) koyu taramalı, ön yüzü ışıkta */}
-    <path d={`M${pts([[40, 830], [110, 700], [300, 640], [560, 628], [800, 650], [990, 720], [1040, 860], [930, 830], [700, 790], [520, 778], [300, 792], [140, 850]])} Z`} fill={BP.tasIsik} stroke="#5a5276" strokeWidth={4} />
-    <path d={`M${pts([[140, 850], [300, 792], [520, 778], [700, 790], [930, 830], [1040, 860], [910, 880], [700, 846], [520, 836], [300, 848], [170, 900]])} Z`} fill="#4a4468" />
+    <path d={`M${pts([[40, 830], [110, 700], [300, 640], [560, 628], [800, 650], [990, 720], [1040, 860], [930, 830], [700, 790], [520, 778], [300, 792], [140, 850]])} Z`} fill={BP.tasIsik} stroke="#5e4c50" strokeWidth={4} />
+    <path d={`M${pts([[140, 850], [300, 792], [520, 778], [700, 790], [930, 830], [1040, 860], [910, 880], [700, 846], [520, 836], [300, 848], [170, 900]])} Z`} fill="#4e4048" />
     <Tara d={`M${pts([[140, 850], [300, 792], [520, 778], [700, 790], [930, 830], [1040, 860], [910, 880], [700, 846], [520, 836], [300, 848], [170, 900]])} Z`} aci={60} aralik={8} kalin={2.6} renk="#1c1a2c" alfa={0.55} kutu={[140, 778, 1040, 900]} />
     {[[260, 660, 120], [470, 640, 110], [720, 660, 120], [900, 710, 100]].map(([x, y, L], i) => <g key={`sk${i}`}><path d={`M${x - 8},${y} L${x + 4},${y + L} L${x + 9},${y} Z`} fill={BP.tasGolge} /><path d={`M${x + 9},${y} L${x + 6},${y + L}`} stroke={BP.kenar} strokeWidth={3} /></g>)}
     <path d="M110,700 L300,640 L560,628 L800,650 L990,720" stroke={BP.kenar} strokeWidth={5} fill="none" />
     {/* mevzi örtüsü: saçaktan sarkan ve yanlara dayanmış kesik dallar; ortada namlu görüş aralığı açık */}
-    {[[[150, 840], [210, 1180]], [[230, 820], [330, 1080]], [[320, 800], [380, 960]], [[980, 860], [900, 1180]], [[880, 830], [790, 1060]], [[760, 800], [700, 940]], [[60, 1260], [260, 1000]], [[1010, 1250], [850, 1020]], [[470, 790], [450, 900]], [[620, 790], [660, 905]]].map(([a, b], i) => <Dal key={`dal${i}`} a={a as P2} b={b as P2} k={1} seed={`dal${i}`} />)}
+    <Ortu alan={[[60, 820], [400, 790], [470, 900], [420, 1000], [330, 1290], [40, 1290]]} n={60} r={52} seed="or1" />
+    <Ortu alan={[[640, 790], [1040, 840], [1050, 1290], [760, 1290], [700, 1060], [690, 900]]} n={60} r={52} seed="or2" />
+    <Ortu alan={[[380, 780], [700, 780], [680, 860], [420, 860]]} n={18} r={40} seed="or3" />
     {/* üst dudak kenarı: ışıkta kırık çizgi */}
     <path d={`M${pts(AGIZ.slice(1, 11))}`} stroke={BP.kenar} strokeWidth={4} fill="none" />
     {/* alt dudak: seki kenarı ışıkta */}
@@ -147,14 +162,14 @@ const Namlu: React.FC<{ cik: number; parilti: number }> = ({ cik, parilti }) => 
   return (
     <g>
       {/* gölgedeyken (cik 0) namlu oyuk karanlığına karışır: "ilk 1.5 sn oyuk boş" */}
-      <path d={`M${x0},${y - 15} L${x0 - L},${y - 18} L${x0 - L},${y + 18} L${x0},${y + 15} Z`} fill={mix("#5a5670", BP.oyuk, 0.9 * (1 - cik))} stroke={mix("#2a2740", BP.oyuk, 0.6 * (1 - cik))} strokeWidth={3} />
+      <path d={`M${x0},${y - 15} L${x0 - L},${y - 18} L${x0 - L},${y + 18} L${x0},${y + 15} Z`} fill={mix("#5a5670", BP.oyuk, 0.9 * (1 - cik))} stroke={mix("#3d2f2c", BP.oyuk, 0.6 * (1 - cik))} strokeWidth={3} />
       <line x1={x0 - L} x2={x0} y1={y - 12} y2={y - 10} stroke={BP.demirIsik} strokeWidth={4} opacity={0.4 + 0.6 * cik} />
-      <ellipse cx={x0 - L} cy={y} rx={9} ry={19} fill={mix("#4c4a60", BP.oyuk, 0.9 * (1 - cik))} stroke={mix("#2a2740", BP.oyuk, 0.6 * (1 - cik))} strokeWidth={3} />
+      <ellipse cx={x0 - L} cy={y} rx={9} ry={19} fill={mix("#4c4a60", BP.oyuk, 0.9 * (1 - cik))} stroke={mix("#3d2f2c", BP.oyuk, 0.6 * (1 - cik))} strokeWidth={3} />
       <ellipse cx={x0 - L} cy={y} rx={4.5} ry={10} fill="#1d1a2c" />
       <path d={`M${x0 - L - 2},${y - 19} A9,19 0 0 1 ${x0 - L + 8},${y - 4}`} stroke={BP.demirIsik} strokeWidth={3} fill="none" opacity={cik} />
       {parilti > 0 && <g>
-        <ellipse cx={x0 - L * 0.62} cy={y - 12} rx={46 * parilti + 6} ry={16 * parilti + 3} fill="#f5b85a" />
-        <ellipse cx={x0 - L * 0.62} cy={y - 12} rx={32 * parilti + 3} ry={10 * parilti + 2} fill={BP.parilti} /><ellipse cx={x0 - L * 0.62} cy={y - 12} rx={12 * parilti + 2} ry={4 * parilti + 1} fill={BP.cakim} />
+        <ellipse cx={x0 - L * 0.62} cy={y - 12} rx={46 * parilti + 6} ry={16 * parilti + 3} fill="#ffae2e" />
+        <ellipse cx={x0 - L * 0.62} cy={y - 12} rx={32 * parilti + 3} ry={10 * parilti + 2} fill="#ffc44a" /><ellipse cx={x0 - L * 0.62} cy={y - 12} rx={12 * parilti + 2} ry={4 * parilti + 1} fill={BP.cakim} />
         <line x1={x0 - L * 0.62 - 80 * parilti} x2={x0 - L * 0.62 + 80 * parilti} y1={y - 12} y2={y - 12} stroke={BP.parilti} strokeWidth={3} strokeLinecap="round" />
       </g>}
     </g>
@@ -177,7 +192,7 @@ const YamacOyuk: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }
   kilit.push({ ad: "oyuk merkezi", p: plaka(ref, k, 30).T([540, 1020]), tur: "kurulum" }, { ad: "namlu ucu", p: np.T([520, 1000]), tur: "dokunus" });
   return (
     <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
-      <RenkKaydi>
+      <RenkKaydi><Isleme aci={60}>
         <Katman r={ref} k={k} z={1e7}><Gok5 sinir={[150, 300, 420, 510]} renk={gok} y0={-2400} x0={-1200} x1={2300} seed={193} />
           <BulutSerit x0={-200} x1={420} y={240} h={30} seed="kb1" /><BulutSerit x0={560} x1={1300} y={380} h={26} seed="kb2" /><BulutSerit x0={-300} x1={200} y={470} h={14} seed="kb3" /></Katman>
         <Katman r={ref} k={k} z={6000} ek={1.4}><SirtK x0={-1400} x1={2500} taban={700} tepeler={[[-300, 40, 260], [180, 70, 240], [640, 60, 200], [1050, 80, 260], [1600, 50, 300]]} renk={mix(BP.sirt[0], BP.bugu, 0.2)} bant={BP.sirtBant} seed="lk1" />
@@ -198,7 +213,7 @@ const YamacOyuk: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }
         {seritler.map((z, j) => {
           const y = refY(ref, zeminH(z), z), s = ref.F / z;
           const kenar: P2[] = []; const lam = (5 + 4 * rr(`zl${z}`)) * s, fz = rr(`zf${z}`) * 6.28;
-          for (let x = -3000; x <= 4000; x += Math.max(6, s * 0.25)) kenar.push([x, y + 0.22 * s * Math.sin((x / lam) * 6.28 + fz) + 0.08 * s * Math.sin((x / lam) * 17 + fz * 2) + (rr(`zk${z}${Math.round(x / Math.max(6, s * 0.25))}`) - 0.5) * 0.03 * s]);
+          for (let x = -3000; x <= 4000; x += Math.max(6, s * 0.25)) kenar.push([x, y + 0.07 * s * Math.sin((x / lam) * 6.28 + fz) + 0.05 * s * Math.sin((x / lam) * 17 + fz * 2) + (rr(`zk${z}${Math.round(x / Math.max(6, s * 0.25))}`) - 0.5) * 0.03 * s]);
           const ton = [mix(BP.tasOrta, BP.toprak, 0.3), BP.tasOrta, mix(BP.tasOrta, BP.tasIsik, 0.4), mix(BP.tasOrta, BP.tasGolge, 0.15)][Math.floor(rr(`zton${z}`) * 4)];
           return <Katman key={z} r={ref} k={k} z={z}>
             <path d={`M-3000,4000 L${pts(kenar)} L4000,4000 Z`} fill={ton} />
@@ -206,12 +221,12 @@ const YamacOyuk: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }
             <path d={`M-3000,4000 L${pts(kenar.map((q) => [q[0], q[1] + 0.13 * s] as P2))} L4000,4000 Z`} fill={ton} />
             {Array.from({ length: 14 }).map((_, i) => { const x = -1200 + i * 0.9 * s + rr(`zt2${z}${i}`) * 0.5 * s, yy = y + 0.07 * s; return <line key={`tz${i}`} x1={x} y1={yy} x2={x + 0.05 * s} y2={yy + 0.05 * s} stroke={BP.tasDerin} strokeWidth={Math.max(2, 0.008 * s)} opacity={0.45} />; })}
             <polyline points={pts(kenar)} stroke={BP.kenar} strokeWidth={Math.max(2, s * 0.012)} fill="none" opacity={0.85} />
-            {Array.from({ length: 9 }).map((_, i) => { const x = 540 + (i - 4) * 1.5 * s + (rr(`zb${z}${i}`) - 0.5) * 1.6 * s, tur = rr(`zt${z}${i}`);
+            {Array.from({ length: 15 }).map((_, i) => { const x = 540 + (i - 7) * 0.95 * s + (rr(`zb${z}${i}`) - 0.5) * 1.6 * s, tur = rr(`zt${z}${i}`);
               if (Math.abs(x - 540) < 1.2 * s && z > 18) return null; // ağzın önü açık (namlu görüş hattı)
               return tur < 0.25 ? <Maki key={i} x={x} y={y + 0.1 * s} r={(0.22 + 0.2 * rr(`zr${z}${i}`)) * s} seed={`zm${z}${i}`} />
                 : tur < 0.55 ? <Blok key={i} x={x} y={y + 0.08 * s} w={(0.3 + 0.35 * rr(`zw${z}${i}`)) * s} h={(0.12 + 0.12 * rr(`zh${z}${i}`)) * s} seed={`zk${z}${i}`} />
                 : <Ot key={i} x={x} y={y + 0.05 * s} L={0.22 * s} ruz={-0.64} t={t} seed={`zo${z}${i}`} w={Math.max(2, s * 0.01)} />; })}
-            {Array.from({ length: 10 }).map((_, i) => <ellipse key={`c${i}`} cx={540 + (rr(`zc${z}${i}`) - 0.5) * 9 * s} cy={y + (0.12 + rr(`zcy${z}${i}`) * 0.3) * s} rx={0.05 * s} ry={0.018 * s} fill={BP.tasGolge} opacity={0.45} />)}
+            {Array.from({ length: 26 }).map((_, i) => <ellipse key={`c${i}`} cx={540 + (rr(`zc${z}${i}`) - 0.5) * 9 * s} cy={y + (0.12 + rr(`zcy${z}${i}`) * 0.3) * s} rx={0.05 * s} ry={0.018 * s} fill={BP.tasGolge} opacity={0.45} />)}
             {/* taze katır izi (z 21–23): toz çizgisi + U toynak izleri — tekerlek yok */}
             {(z === 21 || z === 23) && <g>
               <path d={`M${540 - 2.2 * s},${y + 0.18 * s} Q${540},${y + 0.12 * s} ${540 + 2.4 * s},${y + 0.2 * s}`} stroke="#c9b09a" strokeWidth={0.09 * s} fill="none" opacity={0.85} />
@@ -221,7 +236,7 @@ const YamacOyuk: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }
         })}
         {/* yamaç tozu (z ≈ 15, sola sürüklenir; rüzgâr −0.64) */}
         <Katman r={ref} k={k} z={15}>{Array.from({ length: 25 }).map((_, i) => { const x = ((rr(`tz${i}`) * 1600 - t * (10 + rr(`tzv${i}`) * 10)) % 1600 + 1600) % 1600 - 260, y = 600 + rr(`tzy${i}`) * 900; return <circle key={i} cx={x} cy={y} r={2 + rr(`tzr${i}`) * 2} fill="#d9c3a0" opacity={0.3} />; })}</Katman>
-      </RenkKaydi>
+      </Isleme></RenkKaydi>
     </svg>
   );
 };

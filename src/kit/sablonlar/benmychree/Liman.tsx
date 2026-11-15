@@ -10,7 +10,7 @@ import { cl } from "../../zaman";
 import { izd, Kam25, kamera25, Kamera25, plaka } from "../../kamera25d";
 import { RenkKaydi } from "../../../doku/Tarama";
 import { KonturTitreme } from "../../../doku/KonturTitreme";
-import { Alev, BP, BulutSerit, Duman, gokSutun, Gok5, Katman, kirik, P2, pts, rr, Tara } from "./bmcOrtak";
+import { Alev, BP, BulutSerit, Duman, gokSutun, Gok5, Katman, kirik, P2, pts, rr, Tara, Isleme } from "./bmcOrtak";
 import { GemiDurum, GemiProfil, GemiYansima } from "./Gemi";
 import { karisim as mix } from "./renk";
 
@@ -153,7 +153,7 @@ const SuOn: React.FC<{ ref: Kam25; k: Kam25; t: number; seed: number; yolRenk: s
 const UST: P2[] = [[-60, 1078], ...kirik([-20, 1072], [150, 1080], 4, 7, "ok1"), ...kirik([150, 1080], [360, 1112], 4, 8, "ok2"), ...kirik([360, 1112], [520, 1196], 3, 8, "ok3"), [560, 1262]];
 const KAS: P2[] = [[560, 1262], [470, 1300], [330, 1306], [190, 1318], [40, 1312], [-60, 1320]]; // üst düzlem → ön yüz kırığı
 const ON_KAYA: P2[] = [...UST, [600, 1380], [628, 1560], [640, 1760], [668, 2000], [-60, 2000]];
-const OYUK: P2[] = [[30, 1196], [80, 1176], [150, 1168], [230, 1172], [300, 1184], [348, 1206], [330, 1226], [270, 1240], [190, 1252], [110, 1250], [56, 1232]];
+export const _OYUK: P2[] = [[30, 1196], [80, 1176], [150, 1168], [230, 1172], [300, 1184], [348, 1206], [330, 1226], [270, 1240], [190, 1252], [110, 1250], [56, 1232]];
 export const OYUK_MERKEZ: P2 = [190, 1205];
 const OnKaya: React.FC<{ t: number }> = ({ t }) => {
   // ön yüz: açılı kırık fasetler (kütük/varil okunmasın) — her faset farklı gölge değeri
@@ -167,7 +167,7 @@ const OnKaya: React.FC<{ t: number }> = ({ t }) => {
       <clipPath id="okKlip"><path d={`M${pts(ON_KAYA)} Z`} /></clipPath>
       <g clipPath="url(#okKlip)">{fas.map(([q, c], i) => <g key={i}><path d={`M${pts(q)} Z`} fill={c} />
         <path d={`M${pts(q.slice(0, 5))}`} stroke={mix(BP.tasOrta, BP.kenar, 0.35)} strokeWidth={5} fill="none" />
-        <path d={`M${pts(q.slice(0, 5).map((v) => [v[0], v[1] + 14] as P2))}`} stroke="#3e3858" strokeWidth={4} fill="none" opacity={0.7} /></g>)}</g>
+        <path d={`M${pts(q.slice(0, 5).map((v) => [v[0], v[1] + 14] as P2))}`} stroke="#4a3a36" strokeWidth={4} fill="none" opacity={0.7} /></g>)}</g>
       {/* üst düzlem (ışık) */}
       <path d={`M${pts([...UST, ...KAS.slice(1)])} Z`} fill={BP.tasOrta} />
       <path d={`M${pts([[300, 1110], [360, 1112], [450, 1150], [520, 1196], [560, 1262], [470, 1298], [400, 1236], [340, 1150]])} Z`} fill={BP.tasIsik} />
@@ -184,12 +184,9 @@ const OnKaya: React.FC<{ t: number }> = ({ t }) => {
       <path d="M210,1340 L232,1400 L214,1450 M410,1330 L392,1390 L420,1440 L408,1500" stroke="#3a3454" strokeWidth={3} fill="none" />
       <path d={`M${pts([[150, 1480], [214, 1470], [250, 1500], [206, 1520], [160, 1510]])} Z`} fill={BP.toprak} />
       <path d={`M${pts([[404, 1286], [446, 1280], [470, 1296], [430, 1302]])} Z`} fill={BP.toprak} />
-      {/* oyuk: en koyu leke, kırık kenarlı; üst dudak taramalı, alt dudak ışıkta */}
-      <path d={`M${pts(OYUK)} Z`} fill={BP.oyuk} stroke="#1d1a2c" strokeWidth={4} />
-      <path d={`M${pts([[20, 1150], [120, 1128], [240, 1132], [340, 1160], [360, 1196], [300, 1186], [200, 1172], [90, 1178], [24, 1196]])} Z`} fill={BP.tasIsik} stroke="#3e3858" strokeWidth={3} />
-      <path d={`M${pts([[24, 1196], [90, 1178], [200, 1172], [300, 1186], [360, 1196]])}`} stroke="#2a2640" strokeWidth={6} fill="none" />
-      <Tara d={`M${pts(OYUK)} Z`} aci={105} aralik={7.5} kalin={2.4} renk="#141220" alfa={0.6} kutu={[40, 1130, 340, 1190]} />
-      <path d={`M${pts([[120, 1262], [214, 1268], [296, 1250], [320, 1262], [220, 1286], [110, 1280]])} Z`} fill={BP.tasIsik} />
+      {/* keskin kırık kenarlar + karst gözenekleri (erime çukurcukları) */}
+      {Array.from({ length: 70 }).map((_, i) => { const x = rr(`gz${i}`) * 560, y = 1100 + rr(`gzy${i}`) * 760 + x * 0.2, r = 2 + rr(`gzr${i}`) * 4; return <g key={`gz${i}`}><ellipse cx={x} cy={y} rx={r} ry={r * 0.6} fill="#5e4c50" opacity={0.55} /><path d={`M${x - r},${y + r * 0.2} A${r},${r * 0.6} 0 0 0 ${x + r},${y + r * 0.2}`} stroke={BP.kenar} strokeWidth={1.6} fill="none" opacity={0.7} /></g>; })}
+      <path d="M200,1340 L240,1420 L215,1480 M380,1400 L355,1470 L392,1540 M100,1560 L140,1640" stroke="#4a3a36" strokeWidth={4} fill="none" />
       {/* ot sapları (geçen yazdan) + genç yeşil tutam; meltem sağa (rüzgâr +0.57) */}
       {Array.from({ length: 9 }).map((_, i) => { const bx = 10 + i * 64 + rr(`ots${i}`) * 26; const by = UST.reduce((m, q) => (Math.abs(q[0] - bx) < Math.abs(m[0] - bx) ? q : m), UST[0])[1] + 4;
         return <g key={i}>{[0, 1, 2, 3, 4].map((j) => { const L = 40 + rr(`otl${i}${j}`) * 70, a = -0.45 + j * 0.24 + Math.sin(t * 1.3 + i) * 0.05 + 0.22;
@@ -219,12 +216,11 @@ const KiyidanAda: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
   // mürekkep çizgi: oyuktan (kaya plakası, z 9) gemi gövdesine (gemi plakası) — iki uç da kendi plakasıyla hareket eder
   const kayaZ = 9, A = plaka(ref, k, kayaZ).T(OYUK_MERKEZ), Bq = plaka(ref, k, GEMI_Z).T([560, wl - 16]);
   const cT = cz ? interpolate(p, [cz.bas, cz.bit], [cz.ilk ?? 0.1, 1], { ...cl }) : 0;
-  const orta: P2 = [(A[0] + Bq[0]) / 2, (A[1] + Bq[1]) / 2 + 14];
-  const cizgiUz = Math.hypot(orta[0] - A[0], orta[1] - A[1]) + Math.hypot(Bq[0] - orta[0], Bq[1] - orta[1]);
-  kilit.push({ ad: "oyuk (mevzi)", p: A, tur: "kurulum" }, { ad: "çizgi ucu", p: Bq, tur: "kurulum" });
+  const KIYI: P2 = plaka(ref, k, kayaZ).T([500, 1230]); // ön kayanın denize bakan kırık kenarı (karşı kıyı)
+  kilit.push({ ad: "çizgi kıyı ucu", p: plaka(ref, k, 9).T([500, 1230]), tur: "kurulum" }, { ad: "çizgi gemi ucu", p: Bq, tur: "kurulum" });
   return (
     <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
-      <RenkKaydi>
+      <RenkKaydi><Isleme aci={105}>
         {/* 0–1 gök + bulut (sonsuz: kamera ötelemesinden etkilenmez) */}
         <Katman r={ref} k={k} z={1e7}><Gok5 sinir={[200, 330, 440, 525]} renk={gok} seed={seed} />
           <BulutSerit x0={-60} x1={560} y={350} h={34} seed="b1" /><BulutSerit x0={640} x1={1000} y={392} h={18} seed="b3" />
@@ -265,12 +261,13 @@ const KiyidanAda: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
         <Katman r={ref} k={k} z={8}><SagSeki t={t} /></Katman>
         {/* 14 mürekkep çizgi (P01 kanca; P10b haritada karşılık) */}
         {cz && <g>
-          <path d={`M${A[0]},${A[1]} Q${orta[0]},${orta[1] + 10} ${Bq[0]},${Bq[1]}`} stroke={BP.murekkep} strokeWidth={11} fill="none" strokeLinecap="round" strokeDasharray={`${cizgiUz * cT} ${cizgiUz * 2}`} />
-          {cT >= 0.999 && <circle cx={Bq[0]} cy={Bq[1] + 2} r={9} fill={BP.murekkep} />}
+          <path d={`M${Bq[0]},${Bq[1]} Q${(Bq[0] + KIYI[0]) / 2},${(Bq[1] + KIYI[1]) / 2 + 24} ${KIYI[0]},${KIYI[1]}`} stroke={BP.murekkep} strokeWidth={9} fill="none" strokeLinecap="round" strokeDasharray={`${(Math.hypot(KIYI[0] - Bq[0], KIYI[1] - Bq[1]) + 20) * cT} 4000`} />
+          <circle cx={Bq[0]} cy={Bq[1]} r={7} fill={BP.murekkep} />
+          {cT >= 0.999 && <circle cx={KIYI[0]} cy={KIYI[1]} r={9} fill={BP.murekkep} />}
         </g>}
         {/* 15 atmosfer: tuz zerresi (ışık tarafında, yavaş sağa) */}
         {Array.from({ length: 40 }).map((_, i) => { const x = 420 + ((rr(`tz${i}`) * 700 + t * (6 + rr(`tzv${i}`) * 8)) % 700), y = 560 + rr(`tzy${i}`) * 900 + Math.sin(t + i) * 4; return <circle key={i} cx={x} cy={y} r={1.2 + rr(`tzr${i}`) * 1.2} fill="#efe0cc" opacity={0.35} />; })}
-      </RenkKaydi>
+      </Isleme></RenkKaydi>
     </svg>
   );
 };

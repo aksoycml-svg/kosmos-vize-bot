@@ -12,21 +12,21 @@ import { param, Sablon, SablonProps } from "../../ortak";
 import { cl, GIRIS } from "../../zaman";
 import { izd, izdPoli, Kam25, kamera25, Kamera25, V3 } from "../../kamera25d";
 import { RenkKaydi } from "../../../doku/Tarama";
-import { Alev, BP, Duman, Flu, gokSutun, Gok5, kirik, P2, pts, rr, Tara } from "./bmcOrtak";
+import { Alev, BP, Duman, Flu, gokSutun, Gok5, kirik, P2, pts, rr, Tara, Isleme } from "./bmcOrtak";
 import { karisim as mix } from "./renk";
 import { KolOmuz, ProfilFigur, profilIskelet, YUZ_KART } from "./Figur";
 
 type Gorunum = "kic" | "korkuluk" | "bas-capa" | "kic-su" | "hangar-kapi" | "bot" | "korkuluk-su";
 const KURULU: Gorunum[] = ["hangar-kapi"];
 export const GI_KAYIT: Record<"hangar-kapi", Kamera25> = {
-  "hangar-kapi": { kare: [0], konum_yol: [[0.6, 1.2, 0]], yon_yol: [[-35, 3]], lens_mm: [33.3], odak_z: [2.7], diyafram: 4 },
+  "hangar-kapi": { kare: [0], konum_yol: [[0.3, 1.2, 0]], yon_yol: [[-16, 3]], lens_mm: [40], odak_z: [3.4], diyafram: 4 },
 };
-const DUVAR_X = -1.1, KAPI = { z0: 1.5, z1: 6.5, h: 4.2 }, HANGAR_H = 5.6, HANGAR_Z1 = 16;
-const ALEV: V3 = [-1.6, 0.2, 5.2]; // alev tabanı (hangar içinde, açıklığın uzak yarısında)
+const DUVAR_X = -1.1, KAPI = { z0: 2.0, z1: 7.0, h: 4.2 }, HANGAR_H = 5.6, HANGAR_Z1 = 16;
+const ALEV: V3 = [-1.7, 0.2, 5.9]; // alev tabanı (hangar içinde, açıklığın uzak yarısında)
 const EL_T = { isik: "#c9a88f", golge: "#8a6f7a", konturYuk: "#5a4438", konturIsik: "#a8836c", kenar: "#e4b296", tarama: "#6a4f40", manset: "#585870", mansetGolge: "#3f3e58" };
 
 const P = (k: Kam25, X: V3): P2 => { const q = izd(k, X, 0.02); return q ? [q.x, q.y] : [NaN, NaN]; };
-const poli = (k: Kam25, A: V3[]) => `M${pts(izdPoli(k, A))} Z`;
+const poli = (k: Kam25, A: V3[]) => { const q = izdPoli(k, A); return q.length > 2 ? `M${pts(q)} Z` : ""; };
 
 const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }> = ({ plan, p, kilit }) => {
   const k = kamera25(param<Partial<Kamera25>>(plan, "kamera25", {}), p, GI_KAYIT["hangar-kapi"]);
@@ -53,13 +53,13 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
   // havuz: güvertede alev tabanından 0.6 / 1.3 / 2.4 m (açıklıktan koridora yamuk), yalnız alevi gören yüzey
   const havuz = (m: number) => poli(k, [W(zm - m * 1.1, 0.002), W(KAPI.z1 + m * 0.3, 0.002), [DUVAR_X + Math.min(2.4, m * 1.1), 0.002, KAPI.z1 - m * 0.1], [DUVAR_X + Math.min(2.4, m * 1.1), 0.002, zm - m * 1.4]]);
   // T3: duvardan 0.7 m, z 2.9 → 2.55 (bir adım geri), boy 1.75 m
-  const t3Z = 2.35 + 0.3 * geri, t3X = -0.32 + 0.08 * geri; // adım geri = kapıdan uzağa (kameraya doğru değil, kıça)
+  const t3Z = 3.3 + 0.3 * geri, t3X = 0.05 + 0.08 * geri; // adım geri = kapıdan uzağa (kameraya doğru değil, kıça)
   const ayak = P(k, [t3X, 0, t3Z]), bas = P(k, [t3X, 1.75, t3Z]), H = ayak[1] - bas[1], s3 = H / 1.75;
   kilit.push({ ad: "T3 ayak", p: ayak, tur: "ayak" }, { ad: "T3 yüz", p: [bas[0] - 0.05 * s3, bas[1] + 0.13 * s3], tur: "yuz" }, { ad: "kapı (açılan kanat)", p: P(k, W(KAPI.z1, KAPI.h / 2)), tur: "dokunus" });
 
   return (
     <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
-      <RenkKaydi>
+      <RenkKaydi><Isleme aci={65}>
         {/* gök (sağ üst; duvar üst hattının üstü) + ada sırtı + liman suyu (korkuluğun ötesi) */}
         <Gok5 sinir={[160, 380, 600, 800]} renk={gok} x0={0} x1={1080} y0={-200} seed={191} />
         <Flu s={3}><path d={`M300,960 L${pts(kirik([300, 905], [1100, 915], 14, 10, "gia"))} L1100,960 Z`} fill={mix(BP.sirt[1], BP.bugu, 0.3)} /><rect x={300} y={940} width={800} height={30} fill={mix(BP.su, BP.bugu, 0.2)} /></Flu>
@@ -73,7 +73,7 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
         {/* levha ek çizgileri + perçin sıraları (seed'li eksik %8) */}
         {[-1.5, 0.0, 9, 11.5, 14].map((z, i) => <path key={`dk${i}`} d={poli(k, [W(z, 0), W(z + 0.015, 0), W(z + 0.015, HANGAR_H - 0.35), W(z, HANGAR_H - 0.35)])} fill={mix(BP.duvarGolge, BP.kontur, 0.45)} />)}
         {[1.4, 2.8, 4.6].map((y, i) => <path key={i} d={`M${pts([P(k, W(0.35, y)), P(k, W(HANGAR_Z1, y))])}`} stroke={mix(BP.duvarGolge, BP.kontur, 0.4)} strokeWidth={2} opacity={0.7} />)}
-        {Array.from({ length: 40 }).map((_, i) => { const z = -0.8 + i * 0.42; if (z > KAPI.z0 - 0.3 && z < KAPI.z1 + 0.3) return null; return [0.3, 2.95, 4.75].map((y, j) => rr(`pc${i}${j}`) < 0.08 ? null : (() => { const q = P(k, W(z, y)); return <circle key={`${i}${j}`} cx={q[0]} cy={q[1]} r={Math.max(1.4, izd(k, W(z, y))!.s * 0.012)} fill={mix(BP.duvarGolge, BP.kontur, 0.5)} />; })()); })}
+        {Array.from({ length: 40 }).map((_, i) => { const z = -0.8 + i * 0.42; if (z > KAPI.z0 - 0.3 && z < KAPI.z1 + 0.3) return null; return [0.3, 2.95, 4.75].map((y, j) => rr(`pc${i}${j}`) < 0.08 ? null : (() => { const iz = izd(k, W(z, y), 0.2); if (!iz) return null; return <circle key={`${i}${j}`} cx={iz.x} cy={iz.y} r={Math.max(1.4, iz.s * 0.012)} fill={mix(BP.duvarGolge, BP.kontur, 0.5)} />; })()); })}
         {yan > 0 && [[1.6, "#7d6d84"], [1.0, "#957a84"], [0.5, "#b08e8a"]].map(([m, c], i) => <path key={`dh${i}`} d={poli(k, [W(zm - (m as number) * 0.8, 0), W(KAPI.z1 + (m as number), 0), W(KAPI.z1 + (m as number) * 0.8, Math.min(HANGAR_H - 0.4, KAPI.h + (m as number))), W(zm - (m as number) * 0.5, Math.min(HANGAR_H - 0.4, KAPI.h + (m as number)))])} fill={c as string} opacity={alevBoy} />)}
         {[-1.2, 0.3, 7.6, 9.4, 12.2].map((z, i) => <path key={`pas${i}`} d={poli(k, [W(z, 4.55), W(z + 0.08, 4.55), W(z + 0.05 + rr(`ps${i}`) * 0.06, 2.6 + rr(`psy${i}`)), W(z + 0.02, 2.4 + rr(`psy${i}`))])} fill="#8a6a62" opacity={0.55} />)}
         {Array.from({ length: 60 }).map((_, i) => { const z = -2.6 + i * 0.3; if (z > KAPI.z0 - 0.2 && z < KAPI.z1 + 0.2) return null; return [1.35, 2.75, 4.55].map((y, j) => { const iz = izd(k, W(z, y), 0.2); if (!iz) return null; const q: P2 = [iz.x, iz.y], rq = Math.max(2, iz.s * 0.014); return <g key={`rv${i}${j}`}><circle cx={q[0]} cy={q[1]} r={rq} fill="#4a4660" /><circle cx={q[0] - rq * 0.35} cy={q[1] - rq * 0.35} r={rq * 0.45} fill="#a8a2b4" opacity={0.7} /></g>; }); })}
@@ -84,7 +84,7 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
           <path d={poli(k, acik)} fill="#4a2c34" />
           {darbe > 0 && <ellipse cx={AL[0]} cy={AL[1] - ekranS * 1.2} rx={ekranS * 1.4 * darbe} ry={ekranS * 1.8 * darbe} fill={BP.cakim} opacity={0.8 * darbe} />}
           <Alev taban={[AL[0] + ekranS * 0.3, AL[1] + ekranS * 0.2]} gen={ekranS * 3.4} boy={ekranS * 5.0 * alevBoy} t={t} ruz={0.91} seed="gia" n={9} kontur={4} konturRenk="#6e2618" />
-          <ellipse cx={AL[0] + ekranS * 0.3} cy={AL[1] - ekranS * 0.6} rx={ekranS * 0.9} ry={ekranS * 1.1} fill="#fff0c8" opacity={0.85} />
+          <ellipse cx={AL[0] + ekranS * 0.3} cy={AL[1] - ekranS * 0.5} rx={ekranS * 0.45} ry={ekranS * 0.7} fill="#ffe2a8" />
         </g>}
         {/* kapı çerçevesi (iç yüz alevden aydınlanır) */}
         <path d={`M${pts([P(k, W(KAPI.z0 - 0.15, 0)), P(k, W(KAPI.z0 - 0.15, KAPI.h + 0.15)), P(k, W(KAPI.z1 + 0.15, KAPI.h + 0.15)), P(k, W(KAPI.z1 + 0.15, 0))])}`} stroke={BP.kapiCerceve} strokeWidth={10} fill="none" strokeLinejoin="round" />
@@ -99,8 +99,8 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
 
         <path d={`M${pts([P(k, W(zm - 0.02, 0)), P(k, W(zm - 0.02, KAPI.h))])}`} stroke={siz > 0 ? BP.alevDis : BP.kontur} strokeWidth={yan ? 4 : 3 + 3 * siz} opacity={yan ? 0.9 : 0.4 + 0.6 * siz} />
         {/* duman: kapı üstünden ve saçaktan, sağa yatar, kadraj üstünden çıkar (fade yok); alt yüzleri alev ışığı */}
-        <Duman taban={P(k, W(zm + 1.6, KAPI.h + 0.15))} t={t + 3} hiz={95} genis0={55} genis1={190} ruz={0.91} seed="gid" boy={1400} isikSag={false} altIsik yogun={1.2} />
-        <Duman taban={P(k, W(zm + 1.8, HANGAR_H))} t={t + 2} hiz={80} genis0={40} genis1={150} ruz={0.91} seed="gid2" boy={1100} isikSag={false} yogun={0.9} />
+        <Duman taban={P(k, W(KAPI.z1 - 0.2, KAPI.h + 0.6))} t={t + 3} hiz={95} genis0={45} genis1={170} ruz={0.91} seed="gid" boy={1400} isikSag={false} altIsik yogun={1.2} />
+        <Duman taban={P(k, W(KAPI.z1 + 1.2, HANGAR_H))} t={t + 2} hiz={80} genis0={40} genis1={150} ruz={0.91} seed="gid2" boy={1100} isikSag={false} yogun={0.9} />
         {/* güverte: tahtalar kaçış noktasına (seed'li ek çizgisi) + alev havuzu 3 basamak */}
         <path d={poli(k, [[DUVAR_X, 0, -3], [DUVAR_X, 0, 40], [1.4, 0, 40], [1.4, 0, -3]])} fill={mix(BP.guverte, BP.guverteGolge, 0.45)} /> {/* koridor hangar gölgesinde (güneş duvarın ardında, h 18°); ahşap gölgede de sıcak kalır */}
         {/* havuz: 3 düz basamak (kenarları net), C* ≤ 28 */}
@@ -124,18 +124,21 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
           // 1917 denizci iş kıyafeti: açık V yakalı kazak (iç fanila), kollar sıvalı, baş açık; kemer/ceket yok
           const kiy = { tur: "kazak" as const, renk: "#5f6278", isik: mix("#7a7c92", BP.havuz, 0.5), golge: "#44465c", pantolon: "#545a6e", pantolonIsik: mix("#6e7488", BP.havuz, 0.45), cizme: "#2a2836" };
           // ön kol yüzü korur: el yüz hizasında öne, avuç aleve dönük; dirsek aşağıda
-          const onKol = <KolOmuz omuzR={0.048 * s3} omuzIsik={BP.havuz} kolluk={{ renk: kiy.renk, oran: 0.55 }} ad="T3 kol" omuz={sk.omuz} bilek={[sk.bas[0] - 0.2 * s3, sk.bas[1] + 0.02 * s3]} E={0.18 * s3} poz="avuc" elAci={-125} kolBoy={[0.29 * s3, 0.26 * s3]} bukum={-1} ayna palet={EL_T} kolRenk={mix(EL_T.isik, EL_T.golge, 0.3)} kolKontur="#24223a" gen={[0.095 * s3, 0.075 * s3, 0.06 * s3]} isik={[-0.9, -0.3]} taramaAci={65} kenar={{ renk: BP.havuz, alfa: 0.9 }} />;
-          const arkaKol = <path d={`M${sk.omuz[0] + 0.02 * s3},${sk.omuz[1]} q${0.06 * s3},${0.2 * s3} ${0.02 * s3},${0.36 * s3}`} stroke={mix(kiy.golge, "#1c1a24", 0.3)} strokeWidth={0.085 * s3} fill="none" strokeLinecap="round" />;
+          const onKol = <KolOmuz omuzR={0.048 * s3} omuzIsik={BP.havuz} kolluk={{ renk: kiy.renk, oran: 0.55 }} ad="T3 kol" omuz={sk.omuz} bilek={[sk.bas[0] - 0.2 * s3, sk.bas[1] + 0.02 * s3]} E={0.18 * s3} poz="avuc" elAci={-125} kolBoy={[0.29 * s3, 0.26 * s3]} bukum={-1} ayna palet={EL_T} kolRenk={mix(EL_T.isik, EL_T.golge, 0.3)} kolKontur="#3b2e2a" gen={[0.095 * s3, 0.075 * s3, 0.06 * s3]} isik={[-0.9, -0.3]} taramaAci={65} kenar={{ renk: BP.havuz, alfa: 0.9 }} />;
+          const arkaKol = <path d={`M${sk.omuz[0] + 0.02 * s3},${sk.omuz[1]} q${0.06 * s3},${0.2 * s3} ${0.02 * s3},${0.36 * s3}`} stroke={mix(kiy.golge, "#2a201c", 0.3)} strokeWidth={0.085 * s3} fill="none" strokeLinecap="round" />;
           return <ProfilFigur ayak={ayak} s={s3} yon={-1} boy={1.75} pz={pz} k={kiy} kart={YUZ_KART.T3} isik="on" sicak={BP.havuz} bakisY={-0.2} onKol={onKol} arkaKol={arkaKol} />;
         })()}
-        <Flu s={6}>{(() => { const c = P(k, [DUVAR_X + 0.45, 0, 0.55]), sc = izd(k, [DUVAR_X + 0.45, 0, 0.55])!.s; return <g>
+        <Flu s={6}>{(() => { const c = P(k, [0.55, 0, 1.0]), sc = izd(k, [0.55, 0, 1.0])!.s; return <g>
           {[0.32, 0.26, 0.2, 0.14].map((rr2, i) => <ellipse key={i} cx={c[0]} cy={c[1] - sc * 0.05 * i} rx={sc * rr2} ry={sc * rr2 * 0.42} fill="none" stroke={i % 2 ? BP.halat : "#8a7660"} strokeWidth={sc * 0.06} />)}
           <path d={`M${c[0] - sc * 0.3},${c[1] - sc * 0.1} a${sc * 0.3},${sc * 0.12} 0 0 1 ${sc * 0.5},${-sc * 0.06}`} stroke={BP.kenar} strokeWidth={sc * 0.015} fill="none" />
         </g>; })()}</Flu>
+        {/* ön plan: korkuluk dikmeleri + tırabzan (sancak tarafı x 1.4), flu */}
+        <Flu s={5}>{[0.6, 1.4, 2.2, 3.0].map((z, i) => { const a = P(k, [1.25, 0, z]), b = P(k, [1.25, 1.05, z]); return isNaN(a[0]) ? null : <line key={`kd${i}`} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="#4e4048" strokeWidth={Math.max(8, izd(k, [1.25, 0.5, z])!.s * 0.05)} />; })}
+          <path d={poli(k, [[1.25, 1.02, 0.4], [1.25, 1.02, 9], [1.25, 1.08, 9], [1.25, 1.08, 0.4]])} fill="#4e4048" /></Flu>
         {/* darbe çakımı (≤ 10 kare, ekranın %10'undan küçük; yıldız/şok halkası yok) */}
         {/* duman zerresi (sağa) */}
         {Array.from({ length: 30 }).map((_, i) => { const x = ((rr(`dz${i}`) * 1200 + t * (30 + rr(`dzv${i}`) * 30)) % 1200) - 60, y = 200 + rr(`dzy${i}`) * 900 - t * 10; return <circle key={i} cx={x} cy={y} r={2 + rr(`dzr${i}`) * 2} fill={BP.dumanGolge} opacity={0.3} />; })}
-      </RenkKaydi>
+      </Isleme></RenkKaydi>
     </svg>
   );
 };

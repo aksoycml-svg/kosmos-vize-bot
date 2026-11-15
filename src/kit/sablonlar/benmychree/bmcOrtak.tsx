@@ -3,7 +3,7 @@
 // Rüzgâr tek vektör: 335°'ye doğru → ekran bileşeni sin(335 − b) (+ sağa). Seed'ler plaka/dünya koordinatına bağlı (kare değil).
 // Sahne C* ≤ 28, L* ≤ 88; tek doygun sıcak = KOR (alev, parıltı, çakım).
 import React, { useId } from "react";
-import { random } from "remotion";
+import { random, staticFile } from "remotion";
 import { fluSigma, Kam25, plaka } from "../../kamera25d";
 
 export type P2 = [number, number];
@@ -23,7 +23,7 @@ export const BP = {
   kapi: "#7a768a", kapiCerceve: "#4b4a5a", bot: "#b79877", botIc: "#8a7260", demir: "#4c4a60", demirIsik: "#a8a2b4",
   duman: "#b5a9ae", dumanGolge: "#5e566e", dumanCekirdek: "#3a3450", dumanAlt: "#e0b090",
   alevDis: "#d9501f", alevOrta: "#f58a2e", alevCekirdek: "#ffd48a", alevKontur: "#3a2c36", havuz: "#e4b296", parilti: "#ffcf7a", cakim: "#ffe0a0",
-  murekkep: "#1c1915", kontur: "#2f2d46",
+  murekkep: "#1c1915", kontur: "#3e302b",
 };
 export const BMC_SEED = { liman: 181, gemiInsert: 191, kiyiBatarya: 193 };
 export const rr = (k: string | number) => random(`bmc:${k}`);
@@ -153,6 +153,44 @@ export const BulutSerit: React.FC<{ x0: number; x1: number; y: number; h: number
       <path d={`M${pts([...ust, ...alt])} Z`} fill={renk} />
       <path d={`M${pts([[x0 + (x1 - x0) * 0.04, y + h - 5], [x1 - (x1 - x0) * 0.06, y + h - 5], [x1 - (x1 - x0) * 0.03, y + h], [x0 + (x1 - x0) * 0.02, y + h]])} Z`} fill={golge} />
       <polyline points={pts(ust.slice(2, -2))} fill="none" stroke={BP.kenar} strokeWidth={2} />
+    </g>
+  );
+};
+
+// ===== İşleme dili (tur-3; Paris "basılı gravür + suluboya"): tüm sahne bu sarmalayıcıdan geçer =====
+// (1) kâğıt tonuna ısınma: renk %16 sepya-luminans karışımı (mavi-mor gölge kalır, kâğıda doğru ısınır)
+// (2) gölge taraması: sahnenin kendi parlaklığından maske → L < eşik bölgelerde TEK yönlü (ışıktan türeyen θ) sepya çizgi,
+//     2.6 px / 9 px (360 px'te ≈ 0.9 px / 3 px görünür); çok koyu (L < .2) küçük bölgelerde ikinci yön (çapraz) α düşük
+// (3) kâğıt lifi çarpma katmanı (public/doku/kagit-lif.png) α .32 — ArsivKatmani'nin .14'üne EK (eski bölümler etkilenmez)
+export const Isleme: React.FC<{ aci: number; children: React.ReactNode; tarama?: number }> = ({ aci, children, tarama = 0.5 }) => {
+  const id = useId().replace(/:/g, "");
+  const sep = (r: number, g: number, b: number) => `${r} ${g} ${b}`;
+  const k = 0.16, L = [0.2126, 0.7152, 0.0722];
+  const row = (i: number, tint: number) => sep(...(L.map((l, j) => (j === i ? 1 - k : 0) + k * tint * l) as [number, number, number])) + " 0 0";
+  return (
+    <g>
+      <defs>
+        <filter id={`s${id}`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={`${row(0, 1.08)}  ${row(1, 0.96)}  ${row(2, 0.78)}  0 0 0 1 0`} /></filter>
+        <filter id={`m${id}`} colorInterpolationFilters="sRGB">
+          <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" result="l" />
+          <feComponentTransfer in="l" result="a"><feFuncA type="table" tableValues="1 1 1 0.8 0.35 0 0 0 0 0" /></feComponentTransfer>
+          <feFlood floodColor="#ffffff" /><feComposite in2="a" operator="in" />
+        </filter>
+        <filter id={`d${id}`} colorInterpolationFilters="sRGB">
+          <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" result="l" />
+          <feComponentTransfer in="l" result="a"><feFuncA type="table" tableValues="1 0.6 0 0 0 0 0 0 0 0" /></feComponentTransfer>
+          <feFlood floodColor="#ffffff" /><feComposite in2="a" operator="in" />
+        </filter>
+        <pattern id={`p${id}`} patternUnits="userSpaceOnUse" width={9} height={9} patternTransform={`rotate(${aci})`}><rect x={0} y={0} width={2.6} height={9} fill="#3a2a22" /></pattern>
+        <pattern id={`q${id}`} patternUnits="userSpaceOnUse" width={9} height={9} patternTransform={`rotate(${aci + 70})`}><rect x={0} y={0} width={2.2} height={9} fill="#2e221c" /></pattern>
+        <g id={`g${id}`}>{children}</g>
+        <mask id={`k${id}`} maskUnits="userSpaceOnUse" x={0} y={0} width={1080} height={1920}><use href={`#g${id}`} filter={`url(#m${id})`} /></mask>
+        <mask id={`c${id}`} maskUnits="userSpaceOnUse" x={0} y={0} width={1080} height={1920}><use href={`#g${id}`} filter={`url(#d${id})`} /></mask>
+      </defs>
+      <g filter={`url(#s${id})`}><use href={`#g${id}`} /></g>
+      <rect x={0} y={0} width={1080} height={1920} fill={`url(#p${id})`} mask={`url(#k${id})`} opacity={tarama} />
+      <rect x={0} y={0} width={1080} height={1920} fill={`url(#q${id})`} mask={`url(#c${id})`} opacity={tarama * 0.6} />
+      <image href={staticFile("doku/kagit-lif.png")} x={0} y={0} width={1080} height={1920} preserveAspectRatio="none" style={{ mixBlendMode: "multiply" }} opacity={0.32} />
     </g>
   );
 };

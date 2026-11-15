@@ -39,7 +39,7 @@ serit K1_P01_cizgi_k0-28 0 4 8 12 16 20 24 28
 # ölçüm (kor kutuları --kirmizi ile ölçüm dışı: K2 alev, K4 parıltı)
 O="$KOK/tools/kalibrasyon_olcum.py"
 python3 -I "$O" "$OUT/K1_P01_k124.png" --json "$OUT/olcum_K1.json"
-python3 -I "$O" "$OUT/K2_P07b_y214.png" --kirmizi 700,0,1080,1250 --json "$OUT/olcum_K2.json"
+python3 -I "$O" "$OUT/K2_P07b_y214.png" --kirmizi 400,0,800,1350 --json "$OUT/olcum_K2.json"
 python3 -I "$O" "$OUT/K3_P05_k150.png" --json "$OUT/olcum_K3.json"
 python3 -I "$O" "$OUT/K4_P04_y200.png" --kirmizi 420,930,700,1060 --json "$OUT/olcum_K4.json"
 # kor tekilliği: kor kutusu içi en doygun/en parlak, dışı C* ≤ 28 ve L* ≤ 88
@@ -54,5 +54,19 @@ for f, kk in K.items():
     im = Image.open(f"{d}/{f}")
     for ad, (x0, y0, x1, y1) in kk.items():
         im.crop((x0, y0, x1, y1)).resize(((x1 - x0) * 2, (y1 - y0) * 2), Image.LANCZOS).save(f"{d}/kirpim2x_{ad}.png")
+PY
+# Paris karşılaştırma sayfası: her K karesi + Paris genel sayfasından 3 kare (aynı 360x640)
+python3 -I - "$OUT" "$KOK/bolumler/paris-kusatmasi/kalibrasyon/tam-render-3/genel-tr.jpg" <<'PY'
+import sys; from PIL import Image, ImageDraw
+d, g = sys.argv[1], Image.open(sys.argv[2]).convert("RGB"); W, H = g.size; tw, th = W / 8, H / 4
+par = [g.crop((int(c * tw), int(r * th), int((c + 1) * tw), int((r + 1) * th))).resize((360, 640)) for r, c in [(0, 1), (0, 7), (3, 1)]]
+ks = ["K1_P01_k124", "K2_P07b_y214", "K3_P05_k150", "K4_P04_y200"]
+o = Image.new("RGB", (4 * 360 + 30, 4 * 640 + 30), (20, 18, 26)); dr = ImageDraw.Draw(o)
+for i, k in enumerate(ks):
+    o.paste(Image.open(f"{d}/{k}.png").resize((360, 640)), (0, 30 + i * 640))
+    for j, p in enumerate(par): o.paste(p, (390 + j * 360, 30 + i * 640))
+    dr.text((8, 32 + i * 640), k, fill=(240, 230, 200))
+dr.text((8, 8), "sol: Ben-my-Chree tur · sag: Paris genel-tr (cati, balon, guvercin)", fill=(240, 230, 200))
+o.save(f"{d}/karsilastirma.png")
 PY
 echo "tamam → $OUT"

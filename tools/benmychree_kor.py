@@ -6,7 +6,7 @@ import numpy as np
 from PIL import Image
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from kalibrasyon_olcum import lab  # noqa: E402
-KUTU = {"K1_P01_k124.png": None, "K2_P07b_y214.png": (700, 0, 1080, 1250), "K3_P05_k150.png": None, "K4_P04_y200.png": (420, 930, 700, 1060)}
+KUTU = {"K1_P01_k124.png": None, "K2_P07b_y214.png": (400, 0, 800, 1350), "K3_P05_k150.png": None, "K4_P04_y200.png": (420, 930, 700, 1060)}
 d = sys.argv[1]; r = {}
 for f, k in KUTU.items():
     im = np.asarray(Image.open(os.path.join(d, f)).convert("RGB")); L, A, B = lab(im); C = np.hypot(A, B)

@@ -134,3 +134,14 @@
 - **Piksel-aynı:** Paris k300 ve Çiçero k1200'de farklı piksel 0 (`tur-2/pikselayni/`). Ortak `src/rig` ve `El40` dosyalarına dokunulmadı.
 - **Öz puan ≈ 5.5:** K1 6 · K2 5 · K3 5.5 · K4 6.
 - **Kalan zayıflıklar:** K3 kalkanı profilde "direk" gibi; omuz başlığı hâlâ top gibi okunabilir. K2'de alev duman altında küçük kalıyor ve p95 tutmuyor. K1 ön kaya çuval/ekmek gibi okunabilir. K4 dalları seyrek ve ince. E2, E4, T1, T2, T4 bu karelerde yok, 2× kırpımları alınamadı. Kıyafet tur-2'de kısmi: teğmende külot ve çizme, erlerde potin kadrajda görünmüyor.
+
+### motion · 2026-11-15 · kalibrasyon tur-3 (işleme dili + kare kusurları)
+- **İşleme dili:** Tüm Ben-my-Chree sahneleri yeni `Isleme` sarmalayıcısından geçiyor (`bmcOrtak.tsx`). (1) Renk %16 sepya-luminans karışımıyla kâğıt tonuna ısınıyor; mavi-mor gölge korunuyor. (2) Gölge taraması sahnenin kendi parlaklığından maskeleniyor: tek yön, θ görünümün ışığından (LIMAN 105°, KB 60°, teğmen 95°, hangar 65°), 2.6/9 px, sepya. Çapraz tarama yalnız çok koyu (L < .2) alanlarda. (3) `public/doku/kagit-lif.png` çarpma katmanı α .32; ArsivKatmani'ye ek, eski bölümler etkilenmiyor. Konturlar sepya mürekkebe çekildi (BP.kontur `#3e302b`, şablon ve figür kontur hex'leri).
+- **K3:** Teğmen z 2.2'ye alındı. Kol gövdenin yanından iner, dirsek kırık, ön kol öne-yukarı, el `dayali` ile yanındaki namluya dayalı. Namlu gerisinde (z 2.4). Kalkan kadraj dışı. Omuz başlığı kontursuz, omuz hattına eriyor. ¾ gövde dönüşü rig'de yok (kit_eksik); teğmen profilde, gözü gemi yönünde.
+- **K2:** Kamera kapıya daha açılı: pan −16°, 40 mm, kapı z 2–7. Duvar hızla kaçıyor; sağda gök ve duman. Duman lento üstünden yukarı-sağa çıkıyor, alevi örtmüyor. Ön planda korkuluk ve halat kangalı; korkuluk bu açıda büyük ölçüde kadraj dışı.
+- **K1:** Çizgi gemiden kayanın deniz kenarına (karşı kıyı) çekiliyor; oyuk "göz" kaldırıldı. Karst gözenekleri ve çatlaklar eklendi.
+- **K4:** Ağız yoğun çam/maki örtü kütlesiyle kaplı, namlu ucu ortadaki aralıktan görünüyor. Zemin dalga genliği düşürüldü; daha çok taş ve gözenek var.
+- **Ölçüm tur-3:** K1 %28.6/77.3 · K2 %35.7/76.4 · K3 %28.3/76.4 · K4 %46.1/76.0 — dördü de geçti. Kor tekil: K2 alev C* 65.3, K4 parıltı C* 65.6; kor dışında C*>28 ve L*>88 piksel yok. Kor kutuları yeni kompozisyona göre güncellendi.
+- **Piksel-aynı:** Paris k300 ve Çiçero k1200'de farklı piksel 0.
+- **Karşılaştırma:** `tur-3/karsilastirma.png` (her kare + Paris çatı/balon/güvercin). Palet ve kâğıt artık aynı aileye yakın; Paris'in kontur netliği ve ayrıntı yoğunluğu (pencere, perçin, kumaş) bizde düşük. Ön kaya (K1) ve gövdeler (K3) hâlâ düz alanlı.
+- **Öz puan ≈ 6:** K1 6 · K2 6 · K3 5.5 · K4 6. Eşik 7'nin altında.
