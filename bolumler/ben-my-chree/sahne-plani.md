@@ -19,7 +19,7 @@ Toplam: **3666 kare = 61.1 sn** (≤ 65; P10 sonunda +30 kare sessiz kuyruk dahi
 | sayaç | **KitSayac** (`ekran_yazisi.tur: "sayac"`, `{n} km`, hedef 2, sure 60) | P03c "2 km" |
 | ekran yazısı | `yazi.tsx` kâğıt şerit; `tur: formul` (Plex Mono) | tüm planlar; P02 formul |
 | altyazı | **`altyazi`** kelime kelime, `bant: "oto"`, grup 2, kaynak = `public/benmychree/ses/{tr,en}/Pxx.json` (`words`) | tüm bölüm; üst bant dolu planlarda alt bant (y 1290–1490) bilerek boş bırakıldı |
-| kamera dili | **`kamera_dil.itme`** 0.04 (bekle çekimlerinde), `titreme` yalnız P06 V3 / P07b ≤ 3 px; **`darbe`** P06 V3, P07b; `gecis`/whip **yok** (savaş konusu, aynı geçiş üst üste yok) | |
+| kamera dili | **`kamera_dil.itme`** yalnız düz insert/harita (P10b); diğer her çekimde **fiziksel kamera** (§12: dolly/truck/vinç/pan/tilt, yükseklik m, odak mm eşdeğeri). Gösteri sarsıntısı yok (`titreme` kullanılmaz); **`darbe`** yalnız P06 V3 isabeti ve P07b kapı (sarsıntı ≤ 2 px); `gecis`/whip yok |
 | plan içi kesme | **`devam_plan` + `kesme_2`** | P02, P03, P06, P07, P08, P10 |
 | efekt | `Efektler.tsx`: `Dust` (tuz/toz), `Fog` (ufuk sisi), `Glow` (parıltı), `Clouds`, `FilmLook`; `Impact` | atmosfer |
 | fizik | `hareket/motion.ts` **`asiliNesne`** (derrick halatı, çıpa zinciri, simit), `yayKare`, `meltem` (bayrak, kuru ot) | P02, P03, P09 |
@@ -85,6 +85,7 @@ Kaydırmalar ≤ plan süresi (en geç EN bitişi P06 8.07 < 9.12; P08 5.55 < 6.
 | P10 | 1920'de yüzdürüldü | Refloated in 1920 | 245–350 (P10b) | P10a'da yazı yok (yüzler) |
 
 ## 4. Plan plan
+Kamera: bu bölümdeki "itme / cs" ifadeleri **§12 fiziksel kamera tablosuyla** değiştirilir; çelişkide §12 geçerlidir (2.5D şablonlar, her katmanın gerçek z'si).
 
 Not: "alt 1/3" = y 1280–1920. Altyazı alt bantta (1290–1490) iner → bu bantta kritik nesne yok. Okunurluk: ekran oranı / net sn.
 
@@ -113,9 +114,9 @@ Not: "alt 1/3" = y 1280–1920. Altyazı alt bantta (1290–1490) iner → bu ba
 - **Taşıyıcı P03a→b** gemi başı hattı; **b→c** gergin zincirin açısı = ölçü çizgisi açısı; **P03→P04** kıyı silueti, kamera itme sürer.
 
 ### P04 · kare 1091–1388 · KIYI-BATARYA `yamac-oyuk` (YENİ) · nefes
-- **Ölçek:** geniş → insert (tek çekim, push-in cs 1.0→2.4 ease inout). Yükseklik 3 m (deniz hizası), `b`=15° (rel 220: güneş kamera arkasında → metal parıltısı mümkün). Hareket yerel 0–290.
-- **Konumlar:** yamaç x 0–1080 y 700–1500, kaya oyuğu P01'in aynı kayası (x 380–700, y 960–1180 başlangıçta; itmeyle merkeze 540,900'e gelir); ilk 1.5 sn tamamen boş kıyı. Namlu ucu insert'te ≥ %12 ekran (≈ 240 px), **yalnız ucu** görünür, gövde gölgede.
-- **BMC-D3:** parıltı yerel **190 (abs 1281)**, 186–232 net (≥ 1 sn), hemen gölgeye; kamera durur (yerel 236→). kontrol_kare yerel 200. Küçük jest değil, ışık olayı; yazıya binmez (yazı üst bant, parıltı y ≈ 900).
+- **Ölçek:** geniş → insert, **DOLLY ZOOM (bölümün tek kullanımı, §12)**: ön plan taşı ekranda sabit, karşı kıyı arkadan büyür. Yükseklik 3 m (deniz hizası), `b`=15° (rel 220: güneş kamera arkasında → metal parıltısı mümkün). Hareket yerel 0–250 (47 kare kuyruk).
+- **Konumlar:** yamaç x 0–1080 y 700–1500, kaya oyuğu P01'in aynı kayası (x 380–700, y 960–1180 başlangıçta; dolly zoom ile arka plan 2.4× büyüyerek merkeze 540,900'e gelir); ilk 1.5 sn tamamen boş kıyı. Namlu ucu insert'te ≥ %12 ekran (≈ 240 px), **yalnız ucu** görünür, gövde gölgede.
+- **BMC-D3:** parıltı yerel **190 (abs 1281)**, 186–232 net (≥ 1 sn), hemen gölgeye; kamera durur (yerel 250→, kuyruk). kontrol_kare yerel 200. Küçük jest değil, ışık olayı; yazıya binmez (yazı üst bant, parıltı y ≈ 900).
 - **Saklanan şey:** yalnız namlu ucu, kaç top/kim? (P05–P06). Kamuflaj/ot örtüsü yok; yalnız kaya gölgesi.
 - Ekran yazısı yerel 100–285 üstte (iki satır). Foley: kuru-ot rüzgârı; metal-tink-kisik 190 (−12). Alt 1/3: ön plan flu taş + kuru ot + taze katır izi (tekerlek yok), yamaç gölgesi mavi-mor. Katman: ön flu ot/taş, orta yamaç + oyuk, arka sırt + sis, atmosfer: yamaç tozu, ısı sisi.
 - **Taşıyıcı:** namlu ucu ekranda (540, 900), P05'in ilk karesinde aynı noktada.
@@ -201,7 +202,7 @@ P01 çizgi oyukta biter (0–18 sn) → P04 namlu ucu (18–23) → P05 top yar�
 Derrick ucu güvertede, uçak suya inerken gövdeye çarpmaz (sancak boşluğu); tayfa (T1–T4, yüzlü) güverte tahtasında, ayaklar y ≤ 1480 (P02a'da ≈ 1250, P07b ≈ 1260); kapı dışa açılır (hasarlı kanat menteşede); simit sancak (su) tarafında; bot gemiden aşağı iner, sağdan kadrajı terk eder; yürüyüş yok (gait gerekmez). Gemi su hattı sabit, yalnız P09'da yatış (suya gömülen kenar P10a arka planı ile aynı). Gemi demirli: baş çıpa zinciri gergin (P03b → P07c). Katır görünmez (sadece izi, P04; P05 ön planda flu başı). **Kedi/köpek yok.**
 
 ## 9. Yeni şablonlar için en az gereken parametre listesi (motion)
-Ortak (üç şablon + harita): `dunya {isik_azimut:235, gun_yuksekligi (anahtarlı 22→6), seed}`, `kamera {yukseklik_m, yon_derece, cs, cx, cy, ufuk_y}`, `tarama`, `atmosfer {sis, tuz, buğu bantları}`, litografi gök (5 basamak), temas gölgeli figür. Işık yönü kamera yönünden hesaplanır (`rel = 235 − b`).
+Ortak (üç şablon + harita): `dunya {isik_azimut:235, gun_yuksekligi (anahtarlı 22→6), seed}`, `kamera {z_yol [m], odak_yol [mm eşdeğer], yukseklik_yol [m], yon_derece, pan_tilt, kare[], egri}` (cs/cx/cy türetilir; kör 2D ölçek yok), `katman_z` (her katmanın gerçek mesafesi, m; paralaks ve dolly zoom buradan), `ufuk_y`, `tarama`, `atmosfer {sis, tuz, buğu bantları}`, litografi gök (5 basamak), temas gölgeli figür. Işık yönü kamera yönünden hesaplanır (`rel = 235 − b`).
 
 **LIMAN** (kod: ada, gemi, su, gök, uzak kıyı): 
 - `gorunum`: `kiyidan-ada` (P01/P06 V1 arka/P07c) · `ada-rihtim` (P03a) · `karsi-kiyi` (P03c) · `rihtim-yan` (P06 V2) · `hangar-yakin` (P06 V3) · `enkaz` (P10a, arka plan; ön plan KIYI-BATARYA `saygi`)
@@ -211,7 +212,8 @@ Ortak (üç şablon + harita): `dunya {isik_azimut:235, gun_yuksekligi (anahtarl
 - `isabet {kare, x, y}` → `darbe`; `hangar_alev {bas, siddet}`; `duman {bas, kaynak (hangar|baca), yogunluk}` (üstten çıkar, fade yok); `kic_kopugu {acik}`
 - `cizgi_mevzi {bas, bit, a, b}` (P01); `olcu_cizgisi {bas, bit, a, b}` (P03c); `bot[] {id, x, y, durum}` (uzak)
 - `ada {kale, bayrak: tricolore, ev_seed}`; `karsi_kiyi {sirt_katman: 3, taze_iz}`; `on_plan: kaya_oyugu` (ortak asset, KIYI-BATARYA ile aynı kaya)
-- `kamera_dil`/`itme` desteği
+- `katman_z` örnek: ön plan kaya/ot 12 m · su yolu 20–2000 · gemi 2000 · ada/kale 2100–2400 · sırt 3000 · gök sonsuz (P01); dolly zoom ve paralaks bunlardan hesaplanır
+- `kamera_dil`/`itme` yalnız HARITA-MEIS ve düz insert
 
 **GEMI-INSERT** (güverte/borda/bot yakın planları, hepsi aynı gemi modeli; yüzlü tayfa T1–T4 ve yaralılar; siluet yalnız < %5):
 - `gorunum`: `kic | korkuluk | bas-capa | kic-su | hangar-kapi | bot | korkuluk-su`
@@ -242,3 +244,28 @@ Ortak (üç şablon + harita): `dunya {isik_azimut:235, gun_yuksekligi (anahtarl
 - Dokunuş süreleri plan süresine ve ses zamanlarına göre kaydırıldı (BMC-D1 0.5–4.3; D2 2.5–4.25; D6 2.0–4.4; D8 1.1–2.8; kaynak: dokunuslar.md'deki aralıklar artık yerel konumlarla bağlı). Dokunuş sayısı 8 (değişmedi).
 - Okunurluk (≥%10 ve ≥1 sn): D1 uçak %30+ 4.3 sn · D2 çıpa %25+ 2.3 sn · D3 namlu ucu %12 1.3 sn · D4 el %15 2.0 sn · D5 su sütunu %25 ~1 sn her biri, isabet 1.4 sn · D6 kapı %35 2.0 sn · D7 bot %18+ 2.97 sn · D8 simit %10.4 1.9 sn.
 - Açık sorular: bkz. katkı raporu.
+
+## 12. Fiziksel kamera tablosu (tur-6 / kamera notu; her çekimde anlamlı hareket)
+Kamera 2.5D dünyada gerçek z (m) ile gezer; yükseklik m; odak = tam kare eşdeğer mm (300 mm ≈ 7° yatay görüş, 85 mm ≈ 24°, 50 mm ≈ 40°, 35 mm ≈ 55°). Hareketler yumuşak (inout), kısa tutma ile biter, **en az 12 kare kuyruk**; sarsıntı yok. Yalnız P10a ve anahtar okumaların son kısmı sabit (bilinçli tutma).
+| çekim | hareket | z / pan-tilt yolu | odak (mm) | yükseklik (m) | gerekçe (neyi açıyor/saklıyor) |
+|---|---|---|---|---|---|
+| P01 | dolly-in + hafif truck sola | z 0→+3, x 0→−0.6 (kıça); f0–175 | 300 | 1.2 | Ön plan kayası (12 m) paralaksla geriye kayar, bakış oyuktan çizgiyle gemiye süzülür; oyuğun içi saklı kalır |
+| P02a | truck sağa + yavaş dolly-in | x 0→+1.5, z 0→+1; f0–265 | 35 | 2.2 | Uçak inerken paralaks kapıyı ve botları geride kuran çizgiler olarak açar; kapı ve botlar yok sayılmadan ekranda kalır |
+| P02b | pan sola 25° (güverteden simide) + 0.7 sn tutma | pan 0→−25°; f290–385, tutma 385–413 | 50 | 1.4 | Pan, kapı ve botlardan simide taşır; simit kurulum nesnesi olarak sabit kadrajda biter |
+| P03a | truck (rıhtım boyunca, gemiyi takip) | x 0→+6, f0–95 (gemi durunca truck durur) | 35 | 3.0 | Gemi durağa oturana kadar takip, durunca kamera da durur: "demirledi"nin sakin kuruluşu |
+| P03b | vinç aşağı (jib) | y 2.0→1.2, hafif tilt aşağı 8°; f126–245 | 50 | 2.0→1.2 | Çıpanın makaradan suya inişini izler, zincirin gerildiği yeri kadraja alır |
+| P03c | yavaş dolly-in, ön planda flu korkuluk köşesi paralaksı | z 0→+6, f264–470 | 300 | 4.0 | Karşı kıyıya yaklaştıkça 2 km ölçü çizgisi kendini kanıtlar; kıyı boş, saklı olan gösterilmez |
+| **P04** | **DOLLY ZOOM (tek)** | kamera z **0 → −7 m (geri)**, f0–250 | **120 → 288** (2.4×) | 3.0 | **Bölümün en güçlü anı.** "Oysa toplar gizlice oraya taşınmıştı": ön plan taşı (z 5→12 m, ekranda sabit yükseklik **%14 = 270 px, y 1180–1450**) yerinde dururken boş kıyı arkadan büyür ve üstümüze gelir; hiçbir şey eklenmeden mekân "boş" olmaktan çıkar; sonda oyuk ve namlu ucu merkeze oturur. Kare aralığı f0–250, kuyruk 47 kare; parıltı f190 (ilerleme ≈ 0.85, namlu ucu ≥ %12 = 230 px; yetmezse odak_son 336 mm sınırı). Ease inout; z ve odak aynı eğriyle (z/odak = sabit) |
+| P05 | geri açılan dolly + hafif yay (omuz üstünden): namlu ucundan teğmenin omzu üstünden profile | z 0→−1.2, x 0→+0.8, pan sağa 10°; f0–190, tutma 190–239 | 85 | 1.5 | Aynı noktadan (540,900) açılarak önce eli, sonra yüzü ve arkadaki erleri tanıtır; yeni karakter birden belirmez |
+| P06 V1 | yavaş dolly-in (iki sn), **atışta sabit** | z 0→+2, f0–170; f170–240 sabit | 85 | 1.2 | Gerilim: erlerin omzu üstünden gemiye yaklaşır, atış anında kamera durur (sarsıntı yok) |
+| P06 V2 | truck sola (rıhtım boyunca) | x 0→−3, pan sola 6°; f240–360 | 50 | 1.8 | İki sütunu aynı kayma içinde ardı ardına gösterir; üçüncü sütunun yokluğuna çerçeveyi hazırlar |
+| P06 V3 | dolly-in, hangar kapısına | z 0→+3, f372–500; 500–547 tutma (isabet 464'te sürer; **darbe** ≤ 2 px) | 100 | 2.0 | Kapının üzerinde "sütun yok" boşluğunu büyütür; isabette kamera durmaz, yumuşak bitirir |
+| P07a | vinç aşağı + tilt aşağı | y 2.0→0.8, tilt −18°; f0–125 | 50 | 2.0→0.8 | Dumandan gövde boyunca kıç suyuna, bozulan dümene iner |
+| P07b | çok yavaş dolly-in, kapı itilirken sürer | z 0→+0.8, f150–245 (kanat sallanırken tutma 245–270) | 85 | 1.2 | Kapıya odaklar; hangarın içi saklı kalır |
+| P07c | dolly-out (P01 noktasından geri) | z 0→−3, f270–420 | 300 | 1.2 | Çevre açılır: gemi yerinde çakılı, duman büyüyor — "dönemiyordu" |
+| P08a | truck sağa (takip) | x 0→+3, f0–195 | 50 | 0.8 | Ölü motordan çalışan bota geçişi tek harekette bağlar |
+| P08b | truck sürer, sonra dolly-out + vinç yukarı | x +3→+4, sonra z 0→−6, y 0.8→2.5; f205–365 | 50 | 0.8→2.5 | Bot açılır, çevre geri çekilir; yanan gemi ve su görünür, "Kimse ölmedi" okunur |
+| P09 | vinç aşağı + rack focus (gemiden simide) | y 1.5→0.9, f0–165 | 85 | 1.5→0.9 | Gemi yatarken kamera su seviyesine iner, odak simitte durur |
+| **P10a** | **SABİT (bilinçli tutma: saygı anı)** | — | 85 | 1.5 | Hareket yok: yüzler ve enkaz tek kare, ağırbaşlı |
+| P10b | harita: `kamera_takip` + hafif `itme` (2D) | rota ucunu izler | — | — | "Karadan" çizgisinin ucunu takip eder |
+Doğrulama: her hareket plan sonundan ≥ 12 kare önce biter; paralaks için katmanlar gerçek z'de (§9); P04 dolly zoom'da ön plan taşı yüksekliği ±2 px sabit, ölçülür (kayma/kaynama yok); "itme" P04'te kullanılmaz.

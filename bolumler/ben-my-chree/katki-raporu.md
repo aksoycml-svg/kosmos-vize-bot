@@ -53,3 +53,9 @@
 - Dosyalar: tasarim.md, katki-raporu.md
 - Karar/kural: tur-4 "Askerler ve şehitler"; yüzsüz yalnız figür < %5 uzak planda; karikatür/koyu kütle/acı gösterisi yok. Saygı anı (P10a, erler topun yanında sessiz, alçak güneşte) **orkestra kararı**; sahne planındaki "boş kaya oyuğu"nu değiştirir.
 - Açık: kit_eksik **yüzlü er kuklası** (motion); yön karesine er yüzü eklenmeli (yeni karakter, Paris çıtası); sahne planı P05–P06'da erlerin yeri/yüz ölçeği yönetmene.
+
+## yonetmen · 2026-11-15 · revizyon (tur-4 yüzlü erler, saygı anı, tur-6 fiziksel kamera)
+- Ne yaptım: (1) "Yüzsüz" ibareleri kaldırıldı; P02a T1/T2, P05 E1+E3, P06 V1 E1 nişan/E2 mermi/E3 top, P07b T3, P08 T4 + 5 yüzlü yaralı kartlarla yazıldı; siluet yalnız < %5 figürde. (2) P10a saygı anına çevrildi: teğmen+E1–E4 topun yanında ayakta, 6° kenar ışığı, arkada batık gemi, kamera sabit; "1920'de yüzdürüldü" P10b'ye taşındı. P10 +30 kare kuyruk dahil, toplam 3666 kare (61.1 sn). (3) §12 fiziksel kamera tablosu: her çekimde dolly/truck/vinç/pan, yükseklik m, odak mm; **P04 tek dolly zoom** (z 0→−7 m, odak 120→288 mm, ön plan taşı %14 sabit, f0–250, 47 kare kuyruk); §9'a `katman_z`, `kamera {z_yol, odak_yol, yukseklik_yol}`, KIYI-BATARYA `erler[]`, `saygi` görünümü eklendi.
+- Dokunduğum dosyalar: bolumler/ben-my-chree/sahne-plani.md, katki-raporu.md
+- Kararlar: dolly zoom P04'e (kıyı "gizlice" büyür; P06'da dolly zoom yok, düz dolly). Efekt kodları KE-E3/KE-E4, er kartı E3/E4 ile karışmasın diye yeniden adlandırıldı. P10a'da yazı yok (yüzler üst banda yakın).
+- Açık notlar: P06 V1 erleri gemiyi örtmemeli (x ≥ 560 serbest), P05'te yüz ≥ 110 px sıkışık; P10a arka sıra yüz ≈ 110 px; motion doğrular. §4 içindeki eski "itme/cs" ifadeleri §12 ile geçersiz sayılır (metin başında not var).
