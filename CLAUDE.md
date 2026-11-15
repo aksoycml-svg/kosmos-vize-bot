@@ -111,6 +111,7 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - Tutulan nesne eli takip eder (kıstıran parmaklar görünür; tutulan kumaş/eldiven yumuşak sarkar, katı kalıp gibi durmaz). Gölgeler ışık kaynağının tersine.
 - **Tek ışık kaynağı:** huzme, ışık havuzu ve gölge yönü aynı kaynak tanımından türetilir; elle ayrı ayrı konmaz. Görünen her lamba/fener/pencere çevresine ışık düşürür.
 - **Ufuk–ölçek:** ön plan dahil her figür ufuk çizgisine göre ölçeklenir (ayakta yetişkinin başı göz hizasındaki ufka yakın). Bulanık ön plan figürü de bu kurala uyar.
+- **Askerler ve şehitler (kullanıcı kararı, Ben-my-Chree tur-4: "çoğu şehit onların ve değerliler… yeterli değeri çizimde verildiğine emin ol"):** Türk/Osmanlı askerleri **yüzsüz siluet çizilmez**; her biri kendi yüzüyle (göz, kaş, ağız; yaş ve yüz farkı), ağırbaşlı ve emek gösteren duruşla, bireysel bir ayrıntıyla (bıyık, sargı, yorgunluk, toz) çizilir. Ana karakterden ayrışma yüzsüzlükle değil farklı yüzle sağlanır. Karikatür, komik jest, kalabalık dolgusu, "düşman askeri" gibi okunan koyu kütle yok; kayıp ya da şehit varsa gösteri değil saygı (sessiz an, ölçülü ışık). Karşı tarafın askerleri de insan olarak, alay ve aşağılama olmadan çizilir. Eleştirmen bunu ayrı bir kontrol maddesi olarak sorar: "Bu askerin bir yüzü ve onuru var mı?"
 - **Kompars ana kadrodan ayrışır:** farklı yüz/şapka/kostüm ya da yüzsüz siluet; ana karakterin yüzü kopyalanmaz.
 
 ### Süreklilik
