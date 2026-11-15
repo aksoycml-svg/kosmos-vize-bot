@@ -129,3 +129,26 @@
     5. Köşe avizeleri büyük ve lamba "boncuk" tekrarı azaldı ama sürüyor.
   - Tur-3 önerisi: tavan lekelerini kaldırıp yerine kaset kirişlerinin alt kenarında kenar ışığı; z14 halesini tek opak sıcak disk + ince halka yap; ön koltuk bandını σ 2'ye indirip kenar ışığı ve dikiş ritmi ver; p95 için sahne havuzunu ve sütun ışık yüzlerini havuz çekirdeğine (`#efd0b6`) taşı.
   - Eleştirmen kalibrasyonu (≥7) bekleniyor; bu tur teslimi şablon kabulü değildir.
+
+## elestirmen · 2026-11-16 · SALON `konser` P12 f96 kalibrasyon tur-2
+- Ne yaptım: tur-2 karesini tur-1 ve Paris referansıyla yan yana puanladım. 2× kırpımla davul, Eliasberg, seyirci ve avizeye baktım. Bölge bölge L*/C* ölçtüm (Paris hedefi dahil). GORSEL-RECETE A/B/C'yi ve üç katmanı işaretledim. 5 düzeltmeyi teşhis + parametre + hedef değerle yazdım.
+- Dokunduğum dosyalar: `bolumler/leningrad-senfoni/kalibrasyon/tur-2/elestiri.md` (yeni), bu rapor.
+- Aldığım kararlar ve gerekçeleri:
+  - Puan 6, geçmez.
+  - "Gri" notunun kaynağı değer değil doygunluk: C* medyanı 12.2, Paris 19–22. Değer aralığı (p5 17.5 / p95 79) zaten açılmış, bu yüzden D1 palet doygunluğu.
+- Uyguladığım kurallar / yakaladığım ihlaller:
+  - B10 / mekanlar §6: sütun gövdesinde tarama (`Salon.tsx:103`), burgu okuması.
+  - mekanlar §5.1: tavan lekesi α .8/.85, şartname .35.
+  - Buğu bandı α .14, şartname .30.
+  - A3: hale gri disk.
+  - Dokunuş okunurluğu (≥20 px@360): kasnak yayı ve çubuklar.
+  - B8: Korint lobları kemer dizisi okunuyor.
+  - Dönem: arka duvar havuzu kemerli pencere gibi okunuyor.
+- Açık sorular / sonraki ajana notlar:
+  - D1'de hex sahibi tasarımcı: orkestra yeni doygun gölge değerlerini onaylasın, motion `LG`'ye geçirsin.
+  - D5'te `kamera_yol` push-in mi davul insertine kesme mi, yönetmen kararı.
+  - Tur-3 kabul ölçütü elestiri.md sonunda.
+
+## orkestra · 2026-11-16 · tur-2 eleştirisi kararları
+- 1. düzeltme (doygunluk): eleştirmenin hedefleri (gölge ailesi C* 18–24, h 285–300°; müzisyen zeytin-griler → mor-lacivert/sıcak kahve C* ≥16; kare C* medyanı ≥18) orkestra kararıyla motion'a doğrudan verildi; motion son hex'leri `LG`'ye yazar, tasarim.md paleti sonra tasarımcı tarafından bu değerlere eşitlenir (tek sahiplik).
+- 5. düzeltme: **push-in** (f80–96 davula yavaş yaklaşma, davul ≥60 px); kesme yok. Yönetmen sahne planına işler.
