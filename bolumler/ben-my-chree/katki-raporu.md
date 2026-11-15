@@ -19,3 +19,10 @@
 - Dokunduğum dosyalar: senaryo.md, senaryo-en.md, katki-raporu.md (aynı klasör)
 - Kural: yapay ikili paralellik yasağı ve tek kaynaklı bilgi çerçevesi (v1'de ihlal etmişim); süre hedefi.
 - Not: EN P01 16 kelime ile en sıkışık plan; ses ölçülünce P09 3.0→2.3 ile pay açılır.
+
+### senarist · 2026-11-15 · kısaltma önerisi (v4 → v4k)
+- Ne yaptım: Onaylı v4'ü (TR 147 / EN 190 kelime) TR 112 (≈57.7 sn @1.94) ve EN 146 (≈49.5 sn @2.95) olarak kısalttım; `onayli-anlatim.md`'ye dokunmadım.
+- Dokunduğum dosyalar: bolumler/ben-my-chree/kisaltma-onerisi.md, katki-raporu.md
+- Kararlar: yalnız bütün cümle ya da yan bilgi çıkarıldı, özne kırpılmadı; korunacaklar (müttefik, ada, teğmen önce, tek bot, batış, savaşın adı) duruyor; P09 kedi/köpek en büyük tasarruf olarak çıktı.
+- Yakalanan: v4 P09'da kurtarma sırası araştırmaya aykırı (batıştan önce). P05 anı atfı yalnız ekranda kalıyor (tek kaynak riski).
+- Açık sorular: kedi/köpek geri konsun mu (+≈4.5 sn); P05'e sesli "Anılarına göre" (+2 sn) eklensin mi.
