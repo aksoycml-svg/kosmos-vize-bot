@@ -65,8 +65,8 @@ Süre = `plan-sureleri.json` × 60 yuvarlanmış (P09 ve P12 dosyada zaten +1.5 
 - **Ölü alan:** alt üçte bir: defter altı, el + masa ahşabı (y 1650+ koyu ceviz + lamba gölgesi); y 1290–1490 el/kalem + sayfa karalamaları.
 - **Taşıyıcı:** kalem ucu (540,1130) ve yarım yarasa → P03 aynı konum/kamera.
 
-## P03 · 339 kare (5.65 sn) · bekle · D1 "Kalem durur, alev çatıya sıçrar"
-- **Ses:** TR 0.10–5.02: "Yarasa karanlık çatı altına tüner." 0.10–1.75+ · nefes · "Göğsüne yangın bağlasan," 2.53–3.38+ · "o çatı yanar." 4.23–5.02. EN 0.14–4.26 (Give one a fire 2.29; and the roof burns 3.3–4.26).
+## P03 · 433 kare (7.22 sn, tur 3) · bekle · D1 "Kalem durur, alev çatıya sıçrar"
+- **Ses (tur 3, yeniden üretildi):** TR "Yarasa karanlık çatı altına tüner." 0.29–2.2 (tüner 1.85) · nefes · "Göğsüne minik bir yangın bombası takarsan," Göğsüne 2.75, yangın 3.71, bombası 4.08, takarsan 4.52 · "o çatı yanar." o 5.71, çatı 5.88, yanar 6.23–6.82. EN "Bats roost under dark roofs. Strap a tiny firebomb to one, and the roof burns." (bolum.json zamanları TR kelimelerine bağlı: çatı 6–100, yarasa 100–146, durak 165–223 "Göğsüne", alev 223–271 "yangın bombası", alev çizgisi 275–330, tarama 345–395, kalem çıkışı 398–421; kontrol_kare p352).
 - **Mekân/ölçek:** MASA/defter, orta→yakın (göğüs+alev). **Kamera (P02 son durumundan devam, elle eşit):** p0 cs 1.02 (cx 0, cy 0) → p150 cs 1.35 → p204 cs 1.70 (göğüs ekran (540,1000)) → p338 cs 1.72. P02'deki asılı yarasa AYNI çizim: bu planda tamamlanır.
 - **Ana hareket (tek): kalem çizer.**
   - p6–76 (0.1–1.27) kalem yarasanın üstüne **ahşap taramalı çatı çizgisi** çizer (eğik çizgi + alt tarama, Japon üslubu iddiası yok; ekranda y≈700–780 @cs 1.7).

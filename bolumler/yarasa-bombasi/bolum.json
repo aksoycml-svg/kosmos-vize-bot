@@ -201,7 +201,7 @@
    "id": "P02",
    "tip": "document",
    "sablon": "MASA-YB",
-   "sure_kare": 163,
+   "sure_kare": 152,
    "tempo": "nefes",
    "olcek": "yakın (cs 1.40) → orta (1.02)",
    "parametreler": {
@@ -223,8 +223,8 @@
      },
      "gogus_bos": true,
      "durak": {
-      "bas": 118,
-      "bit": 162
+      "bas": 100,
+      "bit": 140
      }
     },
     "kalem": {
@@ -234,8 +234,8 @@
    "kamera": {
     "kare": [
      0,
-     100,
-     162
+     90,
+     151
     ],
     "cs": [
      1.4,
@@ -261,12 +261,12 @@
      "en": "Dr. Lytle Adams · dentist\nCarlsbad Caverns",
      "tur": "iddia",
      "bas": 8,
-     "bit": 150
+     "bit": 140
     }
    ],
    "temaslar": [
     {
-     "kare": 118,
+     "kare": 100,
      "olay": "kalem ucu göğse değer, durur",
      "ses": "kalem-tik",
      "db": -9
@@ -283,7 +283,7 @@
     "nesne_pct": 12,
     "net_sn": 0.7
    },
-   "kontrol_kare": 150,
+   "kontrol_kare": 135,
    "dokunus": null,
    "kit_eksik": [
     "KE-kalem-giris: kalem sağ-alttan girişi yok; kalem p0'dan göğüs üstünde havada (kamera geri çekilirken kadrajda), p118'de değer (durak)"
@@ -312,7 +312,7 @@
    "id": "P03",
    "tip": "document",
    "sablon": "MASA-YB",
-   "sure_kare": 339,
+   "sure_kare": 433,
    "tempo": "bekle",
    "olcek": "orta (cs 1.02) → yakın (göğüs+alev, cs 1.72)",
    "parametreler": {
@@ -324,46 +324,46 @@
     "alt_sayfa": {
      "cati": {
       "bas": 6,
-      "bit": 96,
+      "bit": 100,
       "q0": 0.3
      },
      "yarasa": {
       "bas": 100,
-      "bit": 140,
+      "bit": 146,
       "q0": 0.6
      },
      "gogus_bos": true,
      "durak": {
-      "bas": 180,
-      "bit": 204
+      "bas": 165,
+      "bit": 223
      },
      "alev": {
-      "bas": 204,
-      "bit": 254
+      "bas": 223,
+      "bit": 271
      },
      "alev_cizgi": {
-      "bas": 258,
-      "bit": 294
+      "bas": 275,
+      "bit": 330
      },
      "kirmizi": {
-      "bas": 276,
-      "bit": 318
+      "bas": 345,
+      "bit": 395
      }
     },
     "kalem": {
      "el": "adams",
      "cikis": {
-      "bas": 296,
-      "bit": 326
+      "bas": 398,
+      "bit": 421
      }
     }
    },
    "kamera": {
     "kare": [
      0,
-     150,
-     204,
-     338
+     130,
+     190,
+     432
     ],
     "cs": [
      1.02,
@@ -392,7 +392,7 @@
      "en": "Target: wooden Japanese cities",
      "tur": "iddia",
      "bas": 72,
-     "bit": 320
+     "bit": 410
     }
    ],
    "temaslar": [
@@ -409,26 +409,26 @@
      "db": -9
     },
     {
-     "kare": 204,
-     "olay": "kalem küçük alevi başlatır",
+     "kare": 223,
+     "olay": "kalem 'yangın bombası'nda alevi başlatır (durak 165–223 'Göğsüne')",
      "ses": "kalem-tik",
      "db": -6
     },
     {
-     "kare": 210,
+     "kare": 229,
      "olay": "alev çizilir",
      "ses": "kalem-kagit",
      "db": -9
     },
     {
-     "kare": 258,
-     "olay": "alev çizgisi göğüsten kirişe",
+     "kare": 277,
+     "olay": "alev çizgisi göğüsten kirişe ('takarsan')",
      "ses": "kalem-kagit",
      "db": -9
     },
     {
-     "kare": 278,
-     "olay": "çatı taraması kırmızıya döner",
+     "kare": 347,
+     "olay": "çatı taraması kırmızıya döner ('o çatı')",
      "ses": "kalem-kagit",
      "db": -10
     }
@@ -444,12 +444,12 @@
     "nesne_pct": 10.4,
     "net_sn": 1.9
    },
-   "kontrol_kare": 264,
+   "kontrol_kare": 352,
    "dokunus": {
     "id": "YB-D1",
     "ad": "Kalem durur, alev çatıya sıçrar",
-    "bas": 180,
-    "bit": 318
+    "bas": 165,
+    "bit": 395
    },
    "ses": [
     {
@@ -469,7 +469,7 @@
    "id": "P04",
    "tip": "map",
    "sablon": "HARITA",
-   "sure_kare": 361,
+   "sure_kare": 352,
    "tempo": "hizli",
    "olcek": "geniş (harita, cs 1.0→1.5) → orta/insert (masa)",
    "parametreler": {
@@ -575,7 +575,7 @@
     "kamera": {
      "kare": [
       228,
-      350
+      339
      ],
      "cs": [
       1.0,
@@ -639,7 +639,7 @@
      "en": "The president's note:\n\"This man is not a nut.\"",
      "tur": "iddia",
      "bas": 246,
-     "bit": 345
+     "bit": 340
     }
    ],
    "temaslar": [
@@ -696,7 +696,7 @@
    "id": "P05",
    "tip": "document",
    "sablon": "MASA-YB",
-   "sure_kare": 290,
+   "sure_kare": 297,
    "tempo": "nefes",
    "olcek": "orta (cs 1.0) → yakın (kapsül, cs 1.9)",
    "parametreler": {
@@ -732,7 +732,7 @@
     "kare": [
      0,
      130,
-     289
+     296
     ],
     "cs": [
      1.0,
@@ -820,7 +820,7 @@
    "id": "P06",
    "tip": "chart",
    "sablon": "MASA-YB",
-   "sure_kare": 339,
+   "sure_kare": 374,
    "tempo": "hizli",
    "olcek": "insert (bölme cs 2.6) → geniş (kovan 1.0) → yakın (bölme 2.0)",
    "parametreler": {
@@ -839,12 +839,12 @@
        "bit": 38
       },
       "ac": {
-       "bas": 170,
-       "bit": 262
+       "bas": 180,
+       "bit": 275
       },
       "titre": {
        "tepsi": 12,
-       "kare": 300
+       "kare": 325
       }
      }
     ]
@@ -852,10 +852,10 @@
    "kamera": {
     "kare": [
      0,
-     100,
-     215,
-     280,
-     327
+     110,
+     230,
+     300,
+     360
     ],
     "cs": [
      2.6,
@@ -887,7 +887,7 @@
      "en": "Chilled to sleep · ~1,000 bats per canister",
      "tur": "iddia",
      "bas": 30,
-     "bit": 250
+     "bit": 290
     }
    ],
    "temaslar": [
@@ -898,19 +898,19 @@
      "db": -12
     },
     {
-     "kare": 185,
+     "kare": 190,
      "olay": "kovan kapakları açılır",
      "ses": "kovan-ac",
      "db": -9
     },
     {
-     "kare": 225,
+     "kare": 245,
      "olay": "yarasalar dağılır",
      "ses": "kanat-uzak",
      "db": -12
     },
     {
-     "kare": 305,
+     "kare": 329,
      "olay": "tek bölmede kanat titrer",
      "ses": "kanat-titrek",
      "db": -10
@@ -927,7 +927,7 @@
     "nesne_pct": 45,
     "net_sn": 0.65
    },
-   "kontrol_kare": 305,
+   "kontrol_kare": 345,
    "dokunus": null,
    "kit_eksik": [
     "KE-kapak-kapanis: kovan kapağının yeniden kapanışı çıkarıldı (süre yok)"
@@ -956,7 +956,7 @@
    "id": "P07",
    "tip": "chart",
    "sablon": "MASA-YB",
-   "sure_kare": 209,
+   "sure_kare": 214,
    "tempo": "bekle",
    "olcek": "yakın/insert (cs 2.0 → 2.25)",
    "parametreler": {
@@ -972,12 +972,12 @@
       "bolme_n": 14,
       "odak": 3,
       "titre": [
-       30,
-       60
+       40,
+       75
       ],
       "bas_don": {
-       "bas": 84,
-       "bit": 144,
+       "bas": 110,
+       "bit": 170,
        "aci": -45
       }
      }
@@ -986,7 +986,7 @@
    "kamera": {
     "kare": [
      0,
-     208
+     213
     ],
     "cs": [
      2.6,
@@ -1009,18 +1009,18 @@
      "en": "Where it roosts: eaves, attics",
      "tur": "iddia",
      "bas": 21,
-     "bit": 190
+     "bit": 200
     }
    ],
    "temaslar": [
     {
-     "kare": 30,
+     "kare": 40,
      "olay": "kanat seğirir",
      "ses": "kanat-titrek",
      "db": -9
     },
     {
-     "kare": 60,
+     "kare": 75,
      "olay": "kanat ikinci kez seğirir",
      "ses": "kanat-titrek",
      "db": -9
@@ -1037,12 +1037,12 @@
     "nesne_pct": 12,
     "net_sn": 2.3
    },
-   "kontrol_kare": 120,
+   "kontrol_kare": 150,
    "dokunus": {
     "id": "YB-D3",
     "ad": "Kanat titrer, baş karanlığa döner",
-    "bas": 30,
-    "bit": 168
+    "bas": 40,
+    "bit": 170
    },
    "ses": [
     {
@@ -1062,7 +1062,7 @@
    "id": "P08",
    "tip": "tower",
    "sablon": "COL-US",
-   "sure_kare": 392,
+   "sure_kare": 394,
    "tempo": "nefes",
    "olcek": "geniş (cs 1.0) → orta-geniş (1.35, tank)",
    "parametreler": {
@@ -1071,8 +1071,8 @@
     "dolly": {
      "hedef": "tank-alti",
      "kare": [
-      340,
-      391
+      330,
+      382
      ],
      "k": [
       0,
@@ -1116,9 +1116,9 @@
    "kamera": {
     "kare": [
      0,
-     260,
-     340,
-     391
+     255,
+     330,
+     382
     ],
     "cs": [
      1.0,
@@ -1147,7 +1147,7 @@
      "en": "Carlsbad auxiliary field · New Mexico · by accident",
      "tur": "iddia",
      "bas": 30,
-     "bit": 372
+     "bit": 385
     }
    ],
    "temaslar": [
@@ -1194,7 +1194,7 @@
    "id": "P09",
    "tip": "tower",
    "sablon": "COL-US",
-   "sure_kare": 373,
+   "sure_kare": 352,
    "tempo": "bekle",
    "olcek": "orta (genis dolly) → yakın (tank altı, cs 2.53)",
    "parametreler": {
@@ -1202,7 +1202,7 @@
     "saat": "ikindi",
     "tunek_dalgasi": {
      "bas": 196,
-     "bit": 250,
+     "bit": 230,
      "adet": 4,
      "seed": 5,
      "olcek": 1.6,
@@ -1217,12 +1217,12 @@
       96,
       68
      ],
-     "bit": 372
+     "bit": 351
     },
     "vinyet": {
      "kare": [
       120,
-      258
+      250
      ],
      "deger": [
       0,
@@ -1245,8 +1245,8 @@
     "kare": [
      0,
      150,
-     220,
-     372
+     215,
+     351
     ],
     "cs": [
      1.35,
@@ -1275,7 +1275,7 @@
      "en": "Timers running",
      "tur": "iddia",
      "bas": 48,
-     "bit": 355
+     "bit": 345
     }
    ],
    "altyazi": false,
@@ -1287,13 +1287,13 @@
      "db": -9
     },
     {
-     "kare": 218,
+     "kare": 212,
      "olay": "ikinci yarasa tutunur",
      "ses": "tutun-uzak",
      "db": -9
     },
     {
-     "kare": 236,
+     "kare": 226,
      "olay": "üçüncü yarasa tutunur",
      "ses": "tutun-uzak",
      "db": -9
@@ -1311,16 +1311,16 @@
     "net_sn": 1.5
    },
    "tutma": {
-    "bas": 258,
-    "bit": 348,
+    "bas": 250,
+    "bit": 340,
     "not": "okuma 4.3 sn + 1.5 sn; vinyet çevreyi geri çeker; müzik tek nota"
    },
-   "kontrol_kare": 300,
+   "kontrol_kare": 290,
    "dokunus": {
     "id": "YB-D5",
     "ad": "Tünme dalgası + amber nabız",
     "bas": 196,
-    "bit": 348
+    "bit": 340
    },
    "ses": [
     {
@@ -1346,7 +1346,7 @@
    "id": "P10",
    "tip": "tower",
    "sablon": "COL-US",
-   "sure_kare": 224,
+   "sure_kare": 231,
    "tempo": "hizli",
    "olcek": "yakın (cs 2.53) → geniş (cs 1.12, cy −120)",
    "parametreler": {
@@ -1461,7 +1461,7 @@
      "en": "Test range burned · by one account,\nhangars, barracks, a general's car too",
      "tur": "iddia",
      "bas": 30,
-     "bit": 212
+     "bit": 219
     }
    ],
    "temaslar": [
@@ -1536,7 +1536,7 @@
    "id": "P11",
    "tip": "map",
    "sablon": "HARITA",
-   "sure_kare": 382,
+   "sure_kare": 370,
    "tempo": "nefes",
    "olcek": "geniş (cs 1.0) → orta (2.0, Dugway) → insert (masa belge)",
    "parametreler": {
@@ -1592,7 +1592,7 @@
      "n": 16
     },
     "plan_ici_kesme": {
-     "kare": 144,
+     "kare": 150,
      "sonraki_sablon": "MASA-YB"
     }
    },
@@ -1616,7 +1616,7 @@
     "egri": "inout"
    },
    "devam_plan": {
-    "kare_bas": 144,
+    "kare_bas": 150,
     "sablon": "MASA-YB",
     "parametreler": {
      "aci": "tepe",
@@ -1649,8 +1649,8 @@
        "cap": 340,
        "temas": 294,
        "giris": {
-        "bas": 144,
-        "bit": 200
+        "bas": 150,
+        "bit": 205
        },
        "cikis": {
         "bas": 302,
@@ -1661,7 +1661,7 @@
     },
     "kamera": {
      "kare": [
-      144
+      150
      ],
      "cs": [
       1.0
@@ -1688,7 +1688,7 @@
       840
      ],
      "bas": 14,
-     "bit": 143
+     "bit": 149
     }
    ],
    "ekran_yazisi": [
@@ -1706,7 +1706,7 @@
      "en": "ready mid-1945 at the earliest · about $2 million spent, it is said",
      "tur": "iddia",
      "bas": 236,
-     "bit": 366
+     "bit": 356
     }
    ],
    "temaslar": [
@@ -1723,7 +1723,7 @@
      "db": -10
     },
     {
-     "kare": 144,
+     "kare": 150,
      "olay": "kesme köprüsü: parşömen → belge",
      "ses": "kagit-hisirti",
      "db": -12
@@ -1781,7 +1781,7 @@
    "id": "P12",
    "tip": "document",
    "sablon": "MASA-YB",
-   "sure_kare": 387,
+   "sure_kare": 380,
    "tempo": "bekle",
    "olcek": "orta → yakın (A) · orta tank altı (B, yanik) · orta → yakın (C, döngü)",
    "parametreler": {
@@ -1878,13 +1878,13 @@
       "bit": 138
      },
      "cizime": {
-      "bas": 292,
-      "bit": 316
+      "bas": 285,
+      "bit": 309
      },
      "vinyet": {
       "kare": [
        138,
-       300
+       293
       ],
       "deger": [
        0,
@@ -1896,15 +1896,15 @@
       "sonraki_sablon": "COL-US"
      },
      "plan_ici_kesme_2": {
-      "kare": 318
+      "kare": 311
      }
     },
     "kamera": {
      "kare": [
       112,
       172,
-      282,
-      316
+      275,
+      309
      ],
      "cs": [
       1.0,
@@ -1915,7 +1915,7 @@
      "egri": "inout"
     },
     "kesme_2": {
-     "kare_bas": 318,
+     "kare_bas": 311,
      "sablon": "MASA-YB",
      "parametreler": {
       "aci": "tepe",
@@ -1923,7 +1923,7 @@
       "ust_sayfa": {
        "canli": true,
        "suru": {
-        "faz0": 0.0421
+        "faz0": 0.0513
        }
       },
       "alt_sayfa": {
@@ -1936,9 +1936,9 @@
      },
      "kamera": {
       "kare": [
-       318,
-       372,
-       386
+       311,
+       365,
+       379
       ],
       "cs": [
        1.9,
@@ -2019,7 +2019,7 @@
   }
  ],
  "ozet": {
-  "toplam_kare": 3760,
+  "toplam_kare": 3850,
   "sablonlar": [
    "MASA-YB",
    "COL-US",
