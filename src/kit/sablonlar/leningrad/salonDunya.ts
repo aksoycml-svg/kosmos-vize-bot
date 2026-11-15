@@ -58,7 +58,7 @@ export const LG = {
   koltukIsik: "#8f6963", koltukGolge: "#593735", koltukDerin: "#4b2929", cerceve: "#373652",
   ten: "#d6b49c", tenGolge: "#8f7360", palto: ["#46486d", "#575073", "#3b5c7b"], kasket: "#4d4860",
   ceket: "#444867", ceketGolge: "#292e4b", ceketIsik: "#646689", pantolon: "#31344d", gomlek: "#b8b09c", sac: "#2a2226",
-  muzisyen: ["#505277", "#3b5c7d", "#7a5244", "#4d4769"], keman: "#7a4f45", sehpa: "#3a3d42", sehpaKenar: "#c4b5a8", nota: "#cdbfa8",
+  muzisyen: ["#505277", "#3b5c7d", "#5f4a6e", "#4d4769"], keman: "#7a4f45", sehpa: "#3a3d42", sehpaKenar: "#c4b5a8", nota: "#cdbfa8",
   davulGovde: "#4a3a44", kasnak: "#8f8aa8",
   cubuk: "#F0B14E", cubukGolge: "#B97F34", cubukKenar: "#FBDFA0", cubukSpek: "#FFF1CC", cubukKontur: "#7a4f2a",
   tarama: "#2a2e4a",

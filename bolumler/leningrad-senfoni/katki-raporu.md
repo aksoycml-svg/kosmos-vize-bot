@@ -177,3 +177,19 @@
 
 ## orkestra · 2026-11-16 · tur-3 değerlendirmesi
 - Tur-3 (öz puan 6.5): doygunluk ve sıcaklık ilerledi (C* medyan 16.7, sıcak %42) ama push-in kompozisyonu sıkıştırdı. Kota için tur-3 eleştirmen turu atlandı; orkestra teşhisiyle son kalibrasyon turu (tur-4) motion'a verildi: push-in kısalt (≈40–42 mm), figürlere iç kıvrım + gravür taraması, ön sıra flu kaldır, kâğıt dokusu, omuz, C* ≥18. Tur-4'ü eleştirmen puanlar; <7 ise kullanıcıya yön karesiyle dönülür (Paris çıtası 3).
+
+## motion · 2026-11-16 · SALON `konser` kalibrasyon tur-4 (son tur; orkestra teşhisi 1–6)
+- Ne yaptım:
+  1. **Kompozisyon:** push-in kısaldı. f96'da F 1845 (~41 mm), dolly 1 m, truck u −0.6, pan 4.5°, eğim 2.5° (tablo `kalibrasyon/tur-4/olcum.md`). z10 avizeleri yalnız alt kenarıyla görünüyor; salon derinliği (sütun dizisi, galeri, uzaklaşan avize sırası) geri geldi. Davul ø 45 px.
+  2. **Figürler:** çalgıcılarda siluete kırpılı gölge yarısı yön taraması (aralık 6, çizgi 1.7), iç kıvrımlar (kol çizgisi, kalça kırığı; figürle aynı yerel dönüşüm, `non-scaling-stroke`). Çello belli gövdeli (iki lob + bel, sap, ayak çivisi), keman sapı ve kafası. Sıcak kahve çalgıcı rengi `#7a5244` → `#5f4a6e` (karton tonu gitti); ışık yarısı karışımı .32 → .20. Eliasberg'de kürek kemiği kıvrımları, pantolon kırığı, dirsek kıvrımı, yanlarda ve kol altında yön taraması.
+  3. **Seyirci:** flu σ 5/2.6/1.5 → 1.3/0.9/0.6 (net çizgi). Saç yönünde 4 kavisli tarama. Topuz tepe ortasında daire yerine ensede yassı elips.
+  4. **Baskı hissi:** yalnız şablon katmanında (ortak `ArsivKatmani` değişmedi): `RenkKaydi` 2.2/1.5, ek kâğıt lifi (multiply α .12), sabit gren (overlay α .14).
+  5. **Omuz:** ayrı deltoid elipsi kaldırıldı. Kollar gövdenin arkasında çiziliyor; gövdenin kalkan, genişletilmiş omuz köşesi kol kökünü örtüyor. 2× kırpımda sırtta top yok, omuz silüetin içinde yumuşak.
+- Dokunduğum dosyalar: `/home/user/kosmos-vize-bot/src/kit/sablonlar/leningrad/Salon.tsx`, `/home/user/kosmos-vize-bot/src/kit/sablonlar/leningrad/salonDunya.ts` (`muzisyen[2]`), `/home/user/kosmos-vize-bot/src/kit/sablonlar/leningrad/Kalibrasyon.tsx` (`kamera_yol`), `/home/user/kosmos-vize-bot/bolumler/leningrad-senfoni/kalibrasyon/tur-4/*`. Ortak kit yok; eski bölümler piksel-aynı.
+- Aldığım kararlar ve gerekçeleri: Push-in yine dalga ile f40–96 (crash zoom yasağı). Baskı dokusu şablon içinde ek katman olarak verildi; ortak `ArsivKatmani`ya Leningrad parametresi eklemek ortak dosyayı değiştirirdi. Omuz çözümü çizim sırasıyla yapıldı (kol arkada, gövde önde); CLAUDE.md "omuz başlığı gövde silüetinin parçası" kuralına doğrudan karşılık geliyor.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: Omuz (2× kontrol), Gravür telefonda okunur (seyirci ve figür taramaları), B10 korunuyor (sütun gövdesinde tarama yok), imza tekil (kutu dışı imza bandı 0), kırmızı 0, güvenli alan 0 ihlal.
+- Açık sorular / bir sonraki ajana notlar:
+  - **Öz puan 6.5/10.** Paris yanında çizgi dili, netlik ve renk ailesi artık aynı dilde.
+  - Kabul ölçütlerinde kalanlar: C* medyanı **15.8 < 18** (net mürekkep + tarama + kâğıt lifi koyu, düşük C* pikselleri artırdı); p95 L* 77.8 < 85; çubuk dışı C* > 28 olan 511 px (%0.02, gren tepeleri) ve L* > 88 olan 105 px (lamba çekirdekleri).
+  - Görsel eksikler: kasnak ışığı telefonda zayıf (çubuk V'si okunuyor); avize lambaları ve hale diskleri hâlâ tekrar eden "boncuk + baloncuk" etkisi veriyor; koltuk bandı geniş ve düz; Eliasberg'in sırtındaki açık enine şerit biraz yapay.
+  - Bu son kalibrasyon turuydu; eleştirmen puanı < 7 ise kullanıcıya bu kare ve bu eksik listesiyle dönülmeli.
