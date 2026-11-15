@@ -164,3 +164,10 @@
 - Dokunduğum dosyalar: `bolumler/yarasa-bombasi/{bolum.json, miks.json, temaslar.json (yeniden üretildi), sahne-plani.md, kontrol/*t3*.png, katki-raporu.md}`.
 - Doğrulama: `bolum_dogrula --tam --temas` 0 hata (2 bilinçli foley uyarısı). kontrol_kare'ler bakıldı: P03 p352 (alev çatıya uzanıyor), P06 p345, P09 p290, P02 p135.
 - Açık: planların `tasiyici`/`not` metinleri eski kare numaralarını anabilir (yalnız açıklama); EN kelime zamanları bu turda ayrı doğrulanmadı (görüntü TR'ye bağlı); P06 p345'te kamera hâlâ yaklaşıyor (son anahtar 360), yeni kıpırdama karesi p329; ses/miks yeniden üretimi teknisyende; commit edilmedi.
+
+## kurgucu · 2026-11-15 · Tur 3: yeni süreye (64.167 sn) müzik + miks
+- Ne yaptım: `tools/yarasa_muzik.py` ile müzik 64.17 sn'ye yeniden düzenlendi (plan-sureleri.json'dan; doruk P10 başında 47.82, son akor ≈61.6, bölüm sonundan 2.5 sn önce); betik yavaş convolve yüzünden zaman aşımına uğradı, hareketli ortalamaya çevrildi (çıktı eşdeğeri). `tools/yarasa_miks.py` yeniden çalıştırıldı: TR/EN final + 5 stem; `miks.md` §7 yeni dinleme saniyeleriyle eklendi.
+- Dokunduğum dosyalar: `tools/yarasa_muzik.py`, `public/yarasa/muzik/yarasa-raindrop-63.mp3`, `public/yarasa/miks/{tr,en}.wav`, `{tr,en}-dalga.png`, `public/yarasa/miks/stem/*.wav`, `bolumler/yarasa-bombasi/miks.md`, `bolumler/yarasa-bombasi/katki-raporu.md`.
+- Kararlar: Doruk "47.23" değil plan başına (47.82) oturdu, çünkü bolum.json P10 başı budur ve miks P09 tutmasını aynı değerden türetir; kesimler nota vuruşuna snap edilir (betik zaten yapıyor). Miks betiğine dokunulmadı (ateş kuyruğu/P09 tutma korunur, temaslar.json'dan okur). Müzik dosya adı eski (`-63`) kaldı, referanslar bozulmasın diye.
+- Kural: final TR −14.0 / TP −1.8, EN −14.0 / −1.7 (≤ −1.5 ✓); müzik −22.1/−23.1 konuşmada, −15.9 aralarda; plan sapması ≤ 1.7 LU (EN P10 −15.6, yatak ve tutma yüzünden); whoosh yok; ses_kenar temiz. Dalga png yeniden üretildi, görsel kontrol yalnız 62.667 sn sürümünde yapıldı, bu sürümde ses_kenar ve plan ölçümüne dayanıyor.
+- Açık: EN P10 −1.7 LU (kabul); kulakla 47.8 civarı doruk girişi ve 61.6 son akor.

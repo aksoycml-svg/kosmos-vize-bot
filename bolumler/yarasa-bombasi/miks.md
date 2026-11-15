@@ -74,3 +74,16 @@ Seviyeler (anlatım klipleri −18 LUFS = 0 dB ref):
 - Betik artık temas zamanlarını `temaslar.json`'dan (mutlak kare) okur; motion kaydırırsa yeniden çalıştırmak yeter. P10 `ates-yatak` temas karesinden başlayan **ortam yatağı** olarak kurulur (anlatıma göre −8 dB, ducking'siz), P10 boyunca sürer, kesmeden (P11 başı) sonra 0.2 sn tutup 0.8 sn'de söner. 49.25–49.75 sn çukuru: TR −45 → −26/−31 dB RMS, EN −41 → −25/−30.
 - P09 hold (44.63–46.12): müzik hold boyunca yükselir, P10 girişinde anlatıma göre −16.0 dB (≤ −16 ✓); hold RMS −34 → −30 (TR) / −29 (EN). Hold sonu → P10 konuşma tavanına 0.5 sn'de iniş (ff doruk hâlâ bastırılmış).
 - Final: TR −14.0 LUFS / TP −1.6; EN −14.0 / −1.7. Plan: P10 TR −14.6, EN −15.5 (yatak ve hold nedeniyle medyandan en çok 1.4 LU; 3 LU dışı yok). Müzik konuşmada −22.9/−22.3, aralarda −15.9.
+
+## 7. Tur 3 yeniden miks (64.167 sn, 3850 kare) — güncel değerler ve dinleme saniyeleri
+Müzik yatağı yeniden düzenlendi (`tools/yarasa_muzik.py`, 64.17 sn; betik artık plan-sureleri.json'dan hesaplar): J1 A→B ≈ 35.3 sn (kaynak onset'ine oturtulmuş), **ff doruk P10 başında = 47.82 sn** (bolum.json P10 başı; "47.23" değil, plan başı bu), J3 51.67, J4 57.83, **son akor ≈ 61.6 sn (bölüm sonundan 2.5 sn önce)**, yanki sona kadar söner. Kesimler plan sınırında ama nota vuruşunda. Betikteki yavaş `np.convolve` hareketli ortalamayla değiştirildi (çıktı aynı, 5 sn).
+Ölçüm (`tools/yarasa_miks.py`, ateş yatağı + P09 hold ayarları korunur): **TR −14.0 LUFS / TP −1.8 / LRA 2.6; EN −14.0 / −1.7 / 4.9.** Plan LUFS TR −14.0 −14.0 −13.7 −14.0 −13.8 −14.0 −13.8 −13.9 −14.0 −14.5 −13.9 −14.0 (medyan −14.0); EN −13.8 −13.4 −14.1 −14.2 −13.9 −13.5 −14.0 −13.4 −13.9 −15.6 −14.2 −13.7 (medyan −13.9). 3 LU dışı yok; en büyük sapma EN P10 −1.7 LU. Müzik konuşmada −22.1 (TR) / −23.1 (EN) dB, aralarda −15.9 dB. `ses_kenar` temiz, süre 64.167.
+Kulakla dinlenecek saniyeler (yeni):
+1. **0.0–1.0** ilk Ab notası; **2.2–2.4** ateş-tutuş + kanat köprüsü.
+2. **6.6–6.8** (P02 kalem-tik), **11.2–11.4** (P03 kalem-tik −6), **23.8–24.0** (pens-tik + kap-oturma −6): en yüksek küçük temaslar.
+3. **35.0–35.8:** müzik A→B kesimi (P07→P08), kanat-titrek 32.5/33.1 konuşmayla çakışıyor mu.
+4. **45.2–45.8** tütün sesleri; **46.3–47.8 P09 tutma:** müzik yükselişi (tavan −16), rüzgâr; **47.8–48.6** doruğun müzik girişi ("müzik akar": hold'dan konuşma tavanına 0.5 sn'de iniş).
+5. **48.0–49.1** kıvılcım ×3 + ateş-tutuş (48.8) + yatak; **51.2–52.7** P10→P11 kesmesi: ateş yatağı kuyruğu 52.7'ye dek sönüyor, çukur yok mu.
+6. **56.5–56.7** mühür-tok (−5, en yüksek foley) ve kâğıt hışırtısı.
+7. **57.6–58.2** P11→P12 kesimi; **61.3–64.2** son akor (≈61.6) kelime sonunu ("çıkardı"/"base") örtüyor mu, yanki doğal sönüyor mu, döngüde 0.0'daki notaya bağlanıyor mu.
+(Not: §6 ve §6b'deki eski saniyeler 62.667 sn'lik sürüme aittir, bu bölüm geçerlidir.)

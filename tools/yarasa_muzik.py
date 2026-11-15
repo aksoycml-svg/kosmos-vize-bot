@@ -8,6 +8,8 @@ Duzenleme: tempo 1.0 (rubato kayit, uzatma yok); 4 kesim, hepsi G# pedal uzerind
   J3 49.87 (P10 -> klimaksin B-major sonu), J4 56.23 (cozulme -> koda). Yavas kazanc zarfi (+-7 dB, 2 sn) yatagi dengeler.
 """
 import json, subprocess, numpy as np
+def mavg(v, h):  # hızlı hareketli ortalama (cumsum), np.convolve(v, ones/h, 'same') eşdeğeri
+    c = np.cumsum(np.concatenate([[0], np.pad(v, (h // 2, h - h // 2 - 1), mode='edge')])); return (c[h:] - c[:-h]) / h
 SR = 44100
 SRC = "muzik/kaynak/chopin-prelude-op28-no15-musopen.mp3"
 OUT = "public/yarasa/muzik/yarasa-raindrop-63.mp3"
@@ -67,12 +69,12 @@ pts = [(0, -27), (S["P08"], -27), (S["P08"] + 1, -29), (S["P09"] + 4.5, -29), (S
        (S["P11"] + 1.5, -24), (S["P11"] + 3.0, -29), (S["P12"], -30), (DUR, -30)]
 w = SR  # 1 sn RMS
 mono = y.mean(1)
-rms = np.sqrt(np.convolve(mono ** 2, np.ones(2 * w) / (2 * w), "same") + 1e-12)
+rms = np.sqrt(mavg(mono ** 2, 2 * w) + 1e-12)
 rdb = 20 * np.log10(rms)
 tt = np.arange(n) / SR
 tg = np.interp(tt, [p[0] for p in pts], [p[1] for p in pts])
 g = np.clip(tg - rdb, -7, 7)
-k = 2 * SR; g = np.convolve(np.pad(g, k // 2, mode="edge"), np.ones(k) / k, "valid")[:n]
+k = 2 * SR; g = mavg(g, k)
 # son akorun yankisi dogal kalsin (son 4 sn kazanc sabit)
 g[int((DUR - 4) * SR):] = g[int((DUR - 4) * SR)]
 y *= (10 ** (g / 20))[:, None]
