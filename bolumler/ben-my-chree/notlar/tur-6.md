@@ -16,3 +16,5 @@ Uygulama: yeni şablonlar 2.5D katman derinliği (her katmanın z mesafesi) ile 
 > kamera haraketleri
 
 Uygulama: kamera hareketi bu bölümün dilinin parçası; sabit kare yalnız bilinçli tutmada (saygı anı, anahtar okuma).
+
+> yönetmen bunları biliyor mu pek kullanmıyor gibi de: SİNEMATOGRAFİ TEKNİK TERİMLER SÖZLÜĞÜ … (tam metin: src/kit/SINEMATOGRAFI-SOZLUK.md)
