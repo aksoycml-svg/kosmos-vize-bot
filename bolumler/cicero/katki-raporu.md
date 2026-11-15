@@ -202,3 +202,32 @@
 - Aldığım kararlar ve gerekçeleri: (1) **Kendi miks.json'umda hata yakaladım:** müzik db'sini ortalama LUFS'e göre (−8/−14) hesaplamıştım; piyano tepeli olduğundan tepeler aralıkta −9.5, konuşmada −15 dB'e çıktı (kural ihlali). Momentary p99.5 (−20.72 LUFS) referansına geçildi; kit eşdeğeri `db −14.8`, `duck −20.8` olarak miks.json'a işlendi (kit kullanılacaksa bu değerler). (2) Referansı −19.5'e çektim (−18 ile aralık −14.8 çıkıyordu). (3) Foley'e global kazanç yok (dosyalar tepe −3 dBFS'e eşitli, seviyeler −6…−14).
 - Uyguladığım kurallar / yakaladığım ihlaller: ölçüm (0.4 sn pencere, anlatım −18 ref): TR müzik konuşmada medyan −34.3, en yüksek −22.1; aralıkta en yüksek −16.3 ✓. EN konuşmada en yüksek −21.9 (0.1 dB sınırda), **aralıkta −15.6 (0.4 dB aşım; EN'in uzun sessiz boşlukları, kabul/uyarı)**. Final TR −14.0 LUFS, EN −14.2 LUFS (dil başına ayrı ölçüldü; EN'i −14'e çekmek için `loudnorm` tekrar gerekir, fark 0.2 LU), tepe −2.0 dBTP (limiter sonrası ≈ −1.5). Plan başına LUFS (final): TR P01 −14.0 · P02 −14.0 · P03 −14.0 · P04 −13.9 · P05 −13.8 · P06 −14.0 · P07 −13.9 · P08 −13.8 · P09 −13.8 · P10 −14.0 (medyan −13.9); EN −14.1 −14.4 −14.6 −14.2 −13.7 −14.5 −14.1 −13.8 −13.9 −13.8 (medyan −14.1). **Medyandan 3 LU sapan plan yok.** (Planlar anlatım ağırlıklı, loudnorm tek geçiş: sapma yok beklenen.) Dalga formu bakıldı: ani kesik, sıçrama, üst üste binme yok; EN'de ~38.2 sn'de tek keskin sivri (çekmece tok, EN sessiz boşlukta duyulur).
 - Açık sorular / bir sonraki ajana notlar: (1) Müzik konuşma altında medyan −34 dB: tepe kuralına uydu ama ortalama çok kısık; "müzik hiç duyulmuyor" derlerse tepeyi −22'de bırakıp yalnız sessiz yarıyı +3 dB artırmak (cicero_muzik.py) tek yol. (2) EN aralık −15.6: kullanıcı onayıyla bırakılabilir ya da EN için referans −20. (3) **Dinleme notu (güncel, mutlak sn):** 0.7–1.0 kağıt + ilk nota · 8.07 kilit tıkı · 15.62 mum bası · 22.85–23.6 üç deklanşör · 24.4–25.9 müzik boşluğu + terlik + su dönüşü · 38.17 çekmece tok (EN'de en sivri an; çok yüksekse temas.db −9) · 43.97 çarpı fırçası duyuluyor mu · 48.23 fincan · 54.1–54.8 araba kapısı/gider · 56.5–58.4 lamba tıkı ve foley'siz sessizlik · 58.73 lamba · 60.3–64.8 yankı, son nota 63.54, banknot kayması 64.27 · 64.83→0 döngü · EN boşlukları (P06 ~35–40 sn, P10 ~62–64 sn): müzik/foley fazla öne çıkıyor mu · tüm ortam dikişleri (daktilo 0–7 sn, su 11–26 sn).
+
+## motion · 2026-11-15 · tur 3 (hedefli kit düzeltmesi, bolum.json üzerinde)
+- Ne yaptım (öncelik sırası):
+  1. Siluetler: opak koyu (elçi #3a3446, yetkili #36303e, P09a sekreter #2e2a3a), ışığın karşı yanında %38 koyu ikinci ton (net terminatör), ışık yanında sıcak kenar ışığı, ışık tanımından düşen gölge (Golge gravür) + temas elipsi. `yuru` jesti aralığında yol uzunluğundan bacak makası (kaymıyor). `poz[].lean` siluette gövdeyi kalçadan eğer; P08 yetkili açık kutuya 24° eğik.
+  2. Banyo kapısı: IC-ODA `kapi {acik: Sayi, kare, serit}`. Kanat banyoya döner (menteşe sağ), açıklıkta aydınlık banyo, zemine ışık kaması. z ≥ 4.94 figür yalnız açıklıktan görünür. Şerit `serit` karesinden sonra yanar. P02: elçi yürüyüp kapıdan girer; kapı p204–212 açılır (foley p210), p236–246 kapanır (foley p246), şerit p248.
+  3. P08: kamera p150–230 cs 2.2 → 1.9, cx 220 → 210, cy −28 → 190; Bazna'nın başı kadrajda, fincan yetkilinin elinde okunuyor. Bazna z 3.5 → 3.35 (örtüşme uyarısı kalktı).
+  4. P06 Berlin: koyu diz boşluğu yerine kapalı masa ön paneli + iki çekmeceli ayak dolabı; harita üstte İngiltere kıyısı, ortada Manş (dalga çizgileri), altta Cotentin + Normandiya dairesi; sıkışan köşe 160 × 84 dekor px (cs 1.5'te ≈ 240 × 126).
+  5. Komodin insert: lamba yeniden çizildi (kubbe kaide + parlama, mafsallı iki parça boyun, tepe halkalı koni abajur, abajur ağzı y 560). P02 kapak p0–14 elçinin anahtarlı eliyle kapanıyor (temas p14 = kapak oturur).
+  6. P09a: sokak daraltıldı (yol 1295–1500), bu yakada andezit bordür + taş kaldırım ön plan, araba gölgesi, yanık pencere ışığı yolda.
+  7. P10: el sağdan (P07 yönü) — bilek/açı anahtarları aynı kavrama noktalarına aynalandı; sızıntı 0.35 → 0.25; ikinci banknot `yuz: on` (kart değil, para okunur).
+  8. P05: kamera cs 1.8 → 1.45 (cx −198 → −130, cy −132 → −110).
+- Dokunduğum dosyalar: `src/kit/props/cicero/SiluetFigur40.tsx`, `src/kit/sablonlar/cicero/{ElciOda,MasaCicero,Araba}.tsx`, `src/kit/sinirlar.json` (IC-ODA z üst sınırı 4.0 → 5.5, yalnız gevşetme), `bolumler/cicero/bolum.json`, `bolumler/cicero/kontrol/KK_*.png` + `genel.png`.
+- bolum.json değişiklikleri (plan süreleri ve temas kareleri değişmedi):
+
+  | Plan | Alan | Eski → yeni |
+  |---|---|---|
+  | P02 | `kutu.kapak` | [1,1,0]@[0,14,28] → [1,0]@[0,14] (kapak temas p14'te oturur) |
+  | P02 | `el40[0].bilek[0..1]`, `aci[0..1]` | [1050,1330],[760,1010] / 185,190 → [780,900],[780,1180] / 180,185 (kapağı iten el) |
+  | P02 devam | elçi yolu | kare [150,160,205,238] z [4,4,4.85,4.85] u [−.2,−.2,1.1,2.7] → kare [150,160,204,214,232] z [4,4,4.85,4.95,5.35] u [−.2,−.2,1.15,1.3,1.35] + `yuru` 160–232 |
+  | P02 devam | `kapi` | {ayak: null} → {ayak: null, acik [0,0,1,1,0]@[150,204,212,236,246], serit 248} |
+  | P05 | kamera | cs [1.8,1.8,1.0] cx [−198,−198,0] cy [−132,−132,0] → cs [1.45,1.45,1.0] cx [−130,−130,0] cy [−110,−110,0] |
+  | P08 | kamera | cs [1.4,1.4,2.2,2.2,1.5,1.6] cx [40,40,220,220,40,40] cy [−120,−120,−28,−28,−120,−120] → cs [..,1.9,1.9,..] cx [..,210,210,..] cy [..,190,190,..] |
+  | P08 | `poz` | + {kim yetkili, lean 24} |
+  | P08 | bazna z | 3.5 → 3.35 |
+  | P10 | `el40[0]` | omuz [−350,900] → [1430,900], bilek/aci aynalı (aynı kavrama noktaları), bukum −1 → 1 |
+  | P10 | `bn.sizinti` | 0.35 → 0.25 · `bn2.yuz` arka → on |
+
+- Sonuç: doğrulayıcı 0 hata, 1 uyarı (kalan). Kontrol kareleri 10 plan yeniden render edildi, `kontrol/genel.png` güncel, bakıldı. Eski bölümler (Blanc ×3, Evliya, Paris) piksel farkı 0.
+- Bilinen kusurlar: elçi kapıyı elsiz açıyor (kapı kendi kanadıyla döner); yetkili eğilmesi tek parça gövde dönüşü (bükülme yok); P02/P03 insertte abajurun tepesi kadraj üst kenarında hafif kesik; P08'de Bazna p176'da sol kenara yakın (baş içerde); P05'te Bazna yüzü hâlâ büyük; Berlin haritası stilize (etiketsiz) ve ölçülmedi.

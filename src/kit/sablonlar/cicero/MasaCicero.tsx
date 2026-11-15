@@ -90,7 +90,7 @@ export const MasaCiceroSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const sonuk = 1 - Math.min(1, yanik * 1.5);
   const kisalma = masa === "komodin" ? 0.86 : masa === "berlin" ? 0.72 : 1;
   // ---- ışık geometrisi (tek kaynak) ----
-  const L = masa === "komodin" ? { kaide: [LP.x ?? 230, LP.y ?? 900] as P, agiz: [230, 400] as P }
+  const L = masa === "komodin" ? { kaide: [LP.x ?? 200, LP.y ?? 880] as P, agiz: [250, 560] as P } // v3: abajur aşağı → yakında bütün lamba (kaide + eklemli boyun + koni) kadrajda
     : masa === "berlin" ? { kaide: [LP.x ?? 900, LP.y ?? 600] as P, agiz: [840, 470] as P }
     : { kaide: [LP.x ?? 60, LP.y ?? 260] as P, agiz: [(LP.x ?? 60) + 190, (LP.y ?? 260) + 170] as P };
   const havuz = masa === "komodin" ? { c: L.kaide, rx: 280, ry: 280 * kisalma, rot: 0 }
@@ -205,11 +205,19 @@ export const MasaCiceroSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
       </g>;
     })();
     zemin = <>{zemin}<g>
-      <ellipse cx={kaide[0]} cy={kaide[1]} rx={130} ry={40} fill="#2a2a30" opacity={0.9} />
-      <ellipse cx={kaide[0]} cy={kaide[1] - 6} rx={120} ry={34} fill={CIC.kaide} stroke={CIC.murekkep} strokeWidth={3} />
-      <line x1={kaide[0]} y1={kaide[1] - 20} x2={agiz[0]} y2={agiz[1] + 120} stroke={CIC.kaide} strokeWidth={14} />
-      <polygon points={poly([[agiz[0] - 70, agiz[1] - 150], [agiz[0] + 70, agiz[1] - 150], [agiz[0] + 190, agiz[1]], [agiz[0] - 190, agiz[1]]])} fill={CIC.abajurDis} stroke={CIC.murekkep} strokeWidth={4} />
-      <Tarama sekil={[[agiz[0] + 10, agiz[1] - 150], [agiz[0] + 70, agiz[1] - 150], [agiz[0] + 190, agiz[1]], [agiz[0] + 30, agiz[1]]]} basamak="III" aci={TH} renk={CIC.tarama} derinlik="insert" seed={S + 3} />
+      {/* v3 tek parça okunur lamba: ağır kubbe kaide (gölgesi sağ-önde) · iki parçalı eklemli boyun (mafsal) · koni abajur gövdesi (tepe halkası) */}
+      <ellipse cx={kaide[0] + 26} cy={kaide[1] + 8} rx={140} ry={36} fill="#1e1a24" opacity={0.7} />
+      <path d={`M ${kaide[0] - 120} ${kaide[1]} Q ${kaide[0] - 118} ${kaide[1] - 78} ${kaide[0]} ${kaide[1] - 86} Q ${kaide[0] + 118} ${kaide[1] - 78} ${kaide[0] + 120} ${kaide[1]} Q ${kaide[0]} ${kaide[1] + 30} ${kaide[0] - 120} ${kaide[1]} Z`} fill={CIC.kaide} stroke={CIC.murekkep} strokeWidth={4} />
+      <path d={`M ${kaide[0] - 70} ${kaide[1] - 52} Q ${kaide[0] - 20} ${kaide[1] - 80} ${kaide[0] + 40} ${kaide[1] - 74}`} stroke={CIC.metalNokta} strokeWidth={5} fill="none" opacity={0.7} />
+      <Tarama sekil={[[kaide[0] + 40, kaide[1] - 70], [kaide[0] + 120, kaide[1] - 10], [kaide[0] + 110, kaide[1] + 10], [kaide[0] + 30, kaide[1] + 6]]} basamak="III" aci={TH} renk={CIC.tarama} derinlik="insert" seed={S + 5} />
+      {(() => { const mf: P = [kaide[0] - 60, agiz[1] + 190]; return <g>
+        <polyline points={poly([[kaide[0], kaide[1] - 84], mf, [agiz[0] - 20, agiz[1] - 120]])} stroke={CIC.kaide} strokeWidth={22} fill="none" strokeLinejoin="round" strokeLinecap="round" />
+        <polyline points={poly([[kaide[0] - 6, kaide[1] - 84], [mf[0] - 6, mf[1]], [agiz[0] - 26, agiz[1] - 120]])} stroke={CIC.metalNokta} strokeWidth={4} fill="none" opacity={0.6} />
+        <circle cx={mf[0]} cy={mf[1]} r={22} fill={CIC.kaide} stroke={CIC.murekkep} strokeWidth={4} /><circle cx={mf[0]} cy={mf[1]} r={7} fill={CIC.metalNokta} />
+      </g>; })()}
+      <polygon points={poly([[agiz[0] - 60, agiz[1] - 160], [agiz[0] + 60, agiz[1] - 160], [agiz[0] + 190, agiz[1]], [agiz[0] - 190, agiz[1]]])} fill={CIC.abajurDis} stroke={CIC.murekkep} strokeWidth={5} strokeLinejoin="round" />
+      <ellipse cx={agiz[0]} cy={agiz[1] - 160} rx={60} ry={14} fill="#2e3632" stroke={CIC.murekkep} strokeWidth={4} />
+      <Tarama sekil={[[agiz[0] + 10, agiz[1] - 160], [agiz[0] + 60, agiz[1] - 160], [agiz[0] + 190, agiz[1]], [agiz[0] + 40, agiz[1]]]} basamak="III" aci={TH} renk={CIC.tarama} derinlik="insert" seed={S + 3} />
       <ellipse cx={agiz[0]} cy={agiz[1]} rx={190} ry={34} fill={yanik > 0.05 ? CIC.abajurIc : "#4a4048"} stroke={CIC.murekkep} strokeWidth={3} />
     </g>{kutuCiz}</>;
   } else {

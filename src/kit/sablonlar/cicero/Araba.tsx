@@ -313,13 +313,21 @@ const DisSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           {/* kaldırım + yanık pencere yamukları */}
           <rect x={-200} y={DIP} width={1500} height={kald - DIP} fill="#55606e" />
           {/* sekreter (yürür) — biner karesinden sonra arabanın arkasında (önde olan arkadakini örter) */}
-          {SK && gorunur && <SiluetFigur40 kod="topuzlu" ayak={[sx, kald - 30 + (SK.biner !== undefined ? Math.max(0, Math.min(1, (p - (SK.biner - 14)) / 14)) * 90 : 0)]} pxm={PXC * 1.04} renk={CIC.sekreter} yon={1} adim={adim} kenar={{ renk: "#f0d0bc", dx: -2 }} />}
+          {SK && gorunur && <SiluetFigur40 isikX={-1} kod="topuzlu" ayak={[sx, kald - 30 + (SK.biner !== undefined ? Math.max(0, Math.min(1, (p - (SK.biner - 14)) / 14)) * 90 : 0)]} pxm={PXC * 1.04} renk="#2e2a3a" yon={1} adim={adim} kenar={{ renk: "#f0d0bc", dx: -2 }} />}
           {araba}
           {/* yol + karşı kaldırım (ön plan) */}
-          <rect x={-200} y={kald} width={1500} height={420} fill="#2f3550" />
-          <rect x={-200} y={kald + 260} width={1500} height={160} fill="#26283a" />
-          <rect x={-200} y={1700} width={1500} height={40} fill={CIC.andezit} stroke={mur} strokeWidth={3} />
-          <rect x={-200} y={1740} width={1500} height={400} fill="#3a3e50" />
+          {/* v3: dar sokak — yol 1295–1500, bu yakada andezit bordür + taş kaldırım (ön plan doku; alt üçte bir boş kalmaz) */}
+          <rect x={-200} y={kald} width={1500} height={210} fill="#2f3550" />
+          <rect x={-200} y={kald + 120} width={1500} height={90} fill="#2a2e46" />
+          {/* yanık pencerelerin ışığı yolda uzar (aynı yamuklar, sönük) + araba gölgesi */}
+          <polygon points={poly([[480, kald], [680, kald], [720, kald + 200], [440, kald + 200]])} fill="#5a4e5c" opacity={0.7} />
+          <ellipse cx={923 + ax} cy={kald + 10} rx={330} ry={18} fill="#1a1c2a" opacity={0.6} />
+          <rect x={-200} y={1505} width={1500} height={44} fill={CIC.andezit} stroke={mur} strokeWidth={3} />
+          <line x1={-200} y1={1511} x2={1300} y2={1511} stroke="#8a8494" strokeWidth={3} opacity={0.7} />
+          <rect x={-200} y={1549} width={1500} height={600} fill="#3e4254" />
+          {Array.from({ length: 5 }).map((_, r) => <g key={r}><line x1={-200} y1={1549 + (r + 1) * (70 + r * 18)} x2={1300} y2={1549 + (r + 1) * (70 + r * 18)} stroke="#2e3244" strokeWidth={3} />
+            {Array.from({ length: 9 }).map((__, c) => { const x = -120 + c * 170 + (r % 2) * 85 + rnd(SEED + 40, r * 10 + c) * 30; return <line key={c} x1={x} y1={1549 + r * (70 + (r - 1) * 18)} x2={x + 6} y2={1549 + (r + 1) * (70 + r * 18)} stroke="#2e3244" strokeWidth={3} />; })}</g>)}
+          <polygon points={poly([[-200, 1549], [270, 1549], [120, 1920], [-200, 1920]])} fill="#f0d0bc" opacity={0.08} />
         </g>
       </RenkKaydi>
     </svg>
