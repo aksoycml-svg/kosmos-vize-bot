@@ -1686,3 +1686,19 @@
 - Açık kararlar (kullanıcı/orkestra):
   1. Premiere ana kanal kazancı: final ile aynı seviye için +4 dB ve sınırlayıcı (−2 dBTP) mi, yoksa referans olarak final-miks.wav mı? Miks değiştirilmedi.
   2. EN finalin −14,3 LUFS olması (sınırda, log'da belirtilmişti) kabul mü?
+
+## senarist · 2026-11-15 · yayın metinleri (açıklama TR/EN, kapak)
+- Ne yaptım: `yayin/` altında Çiçero yapısında `aciklama-tr.txt`, `description-en.txt` ve `kapak.md` yazdım. Başlık satırı, kaynaklı açıklama paragrafı, "Sahneler ve jestler dramatizasyondur. Seslendirme yapay zekâ ile yapıldı.", Kaynaklar satırı, Chopin müzik bloğu, 5 hashtag (TR: #tarih #paris #kuşatma #fotoğraf #bilinmeyentarih; EN: #history #paris #siegeofparis #photography #untoldhistory). Kapak: TR "PARMAK / BOYUNDA / MEKTUP" (kırmızı PARMAK), EN "FINGER-SIZED / LETTERS" (kırmızı FINGER-SIZED); arka plan P01 f24 (0.40 sn) yazısız.
+- Dokunduğum dosyalar: bolumler/paris-kusatmasi/yayin/aciklama-tr.txt, bolumler/paris-kusatmasi/yayin/description-en.txt, bolumler/paris-kusatmasi/yayin/kapak.md, bolumler/paris-kusatmasi/katki-raporu.md
+- Aldığım kararlar ve gerekçeleri:
+  1. Açıklama senaryo.md §10 metninden türetildi ama iki yerde güncellendi: (a) kalkış yeri "Gare d'Orléans" (arastirma.md E3.1, orta-yüksek; videoda P06b/P07 hale zaten bu); (b) Dagron çıkışı için kaynak ayrışması açıkça yazıldı. Gerekçe: E3 Çelişki b'de "Niépce balast atıp kaçtı" (DASH) ile "ateş aldı, düşman topraklarına indi" (UCLA + fr. listeler) çelişiyor; onaylı anlatım "kum torbalarını atıp yükseldi" der, açıklama bunu "anlatılana göre" ve iki versiyonu yan yana vererek yumuşatıyor.
+  2. Daguerre balonunun adı, neyle vurulduğu, balon numarası, Vitry/Ferrières gibi köy adları yazılmadı (E3 Çelişki a, c, d). Yalnız "Prusya ateşiyle yere indi" (orta güven, "anlatılana göre" kapsamında).
+  3. Rakamlar aralıkla: 60–150 bin, ~66 balon, 4–4,5 ay; "iki milyon kadar" (E1 mertebe, 2.005.709 yazılmadı). Kuş sayıları yazılmadı, yalnız "çoğu dönmedi" (Çelişki 5 ortak).
+  4. Kaynak listesi: istenen dört kaynak + Dagron'un 1871 kitapçığı (anlatım ve açıklama ona dayandığı için; araştırmacı yalnız arama özetinden okudu).
+  5. Müzik bloğu: atıf zorunlu değil (CC0) ama kaynak, lisans ve değişiklikler yazıldı (kısaltıldı/kesilip birleştirildi, %6.4 yavaşlatıldı, perde korundu; miks.md §4b, lisanslar.md). Incompetech atfı EKLENMEDİ (Gymnopédie kullanılmıyor).
+  6. Kapak kırmızısı "PARMAK": sürpriz olan ölçü, P05 cümlesiyle aynı kelime; kılıf imza rengi ile yarışmaz. Kapak karesi f24: P01 `kontrol_kare`, kılıf ölçümleri kalibrasyondan (C* ≈ 67, ≈ %10).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri: Doğruluk (yalnız arastirma.md; tek kaynaklı/çelişkili bilgiler yumuşak). Yakaladığım: (a) `premiere/BENIOKU.txt` açıklamayı senaryo.md'den birebir almış ve eski ("kum torbalarını atıp yükseldi" kesin, Gare d'Orléans yok); yeni yayın metniyle uyuşmuyor. (b) `senaryo.md` §10 "Dagron çıkışı" cümlesi E3 sonrası güncellenmemişti (senaryo sahibi benim; metin/ses değişmediği için dokunmadım, açıklama ayrı dosyada güncel).
+- Açık sorular / bir sonraki ajana notlar:
+  1. Orkestra: BENIOKU.txt'deki açıklama bloğunu yeni `aciklama-tr.txt` ile hizalat (teknisyen); senaryo.md §10 bu dosyaya referansla güncellensin mi?
+  2. Teknisyen: kapak karesini P01 f24'ten çıkarırken (yazısız render) başlık bloğu alt-orta y ≈ 1080–1480; kılıf x 270–483 / y 919–1004 örtülmesin, 4:5 kırpmada kontrol edilsin. Render almadım.
+  3. Kullanıcı kararı (küçük): anlatımdaki "kum torbalarını atıp yükseldi" E3'e göre tek kaynaklı (DASH); açıklamada iki versiyon yan yana. İstenirse ileride anlatım "yükseldi"ye sadeleştirilir (ses yeniden üretimi gerekir).
