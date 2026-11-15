@@ -1,0 +1,31 @@
+# Yarasa bombası — ilk kurgu jürisi (eleştirmen, günlük mod, tek tur) · 2026-11-15
+Girdi: `out/yarasa/yarasa-{tr,en}.mp4` (62.67 sn). Kanıt kareleri bu klasörde: `serit-p01.png` (0–2.6 sn, 4 fps), `serit-p09-p10.png` (39.9–49.9, 2 fps), `serit-p11-p12.png` (49.85–62.6, 1.5 fps), `tr-31.5/47.6/54.4.png`, `tr-48.9-full.png`, `kirp-p10-yazi.png`, `kirp-p11-yazi.png`, `kirp-sol-dikdortgen.png`, `en-2.0/48.9/53.5/59.5.png`, `en-telefon-3.png` (360 px).
+Ses: 8 kHz mono RMS pencereleri (0.2–0.5 sn) + ebur128 (TR I −14.1, LRA 2.5, tepe −2.0).
+
+## Altı soru
+1. **Kanca (0.0–2.0):** Sürü defterde hareket ediyor ve "Hedef: Japonya" 0.25'te geliyor, ama ilk 2 sn yalnız "mağaradan çıkan yarasa çizimi"; merakı açan alev/"Yanan: ?" ancak 2.3–2.6'da geliyor.
+2. **Doruk (39.9–49.85):** P09 tünme ve kırmızı noktalar okunuyor (42.4–46.1); P10'da alev ancak 48.3'te görünür, "Üs tutuştu" doruğu ekranda yalnız ~1.5 sn kalıyor ve 46.3–48.3 arası kıvılcım haleli yarasalar "yarasa yanıyor" okunuyor (aşağıda KRİTİK 1).
+3. **Jenerik/AI duran kare:** 57.4–61.2 (P12 B) yanmış çatı koyu mavi ızgara paneller + önde dev tank: "güneş paneli" okunuyor, "yanmış saçak" okunmuyor; 29.9–33.4 (P07) tepsi bölmeleri üç koyu yastık/sosis zinciri gibi, "yuvarlak tepsi" okunmuyor.
+4. **En zayıf 5 sn (29.9–34.9):** P07 neredeyse duran üç bölme + P08 açılışında sürü henüz yok (sürü p200 = 36.7'de başlar), geniş planda yalnız boş çöl.
+5. **Üç büyük kesmenin sesi:** 2.25 (P01 A→B) −33 dB boşluktan ateş-tutuşla −20'ye temiz geçiyor; 46.12 (P09→P10) hold −34/−35 dB RMS'ten 0.5 sn'de −13'e sıçrıyor (hold neredeyse sessizlik gibi duyulur, doruk müzikle değil konuşmayla açılıyor); 49.85 (P10→P11) **önce** 49.25–49.75'te TR −45 dB / EN −41 dB çukur var: alev ekranda yanarken ateş yatağı susmuş.
+6. **AI gibi kelime/okuma:** EN P03 "Give one a fire, and the roof burns" (yapay/çeviri kokusu; "Strap fire to one…" daha doğal); TR P06 "havada açılınca" öznesi kayık (açılan kovan, cümlede özne yarasalar); TR ekran "Carlsbad yardımcı sahası" çeviri Türkçesi.
+
+## Hızlı tarama
+- **Ekran yazısı:** taşma yok (TR+EN). P10 (46.6–49.8) ve P11 ikinci yazı (≈53–56) metne sığdırmak için font küçülmüş; 360 px'te harf ≈9 px, okunur sınırda. P12 "Yanan: New **Mexico**" vurgusu yalnız "Mexico" kırmızı (kit `vurguIndeks` tek kelime) → "New" beyaz kalmış, bölük okunuyor.
+- **Güvenli alan:** bant ihlali görülmedi; kinetik kelime altyazısı y≈1380 civarı, alt 420 px dışında.
+- **Yarasa telefonda:** P05 (19.4–24.2) ve P09 hold büyük, okunur; P06 kesit noktaları "yarasa" değil "nokta" (bilinen, yönetmen notu); P08 sürüsü 360 px'te birkaç piksel, defter spiralinin "aynası" okunmuyor.
+- **Ton (KRİTİK):** 46.3–49.85 P10: tünemiş yarasalar kapsül halesiyle (amber daire, `Kivilcimlar` R=60/cs) yerinde kalıyor; geniş planda (48.4–49.85, `tr-48.9-full.png`, `en-48.9.png`) tank ayağında haleli yarasalar + çatıda alev **aynı karede** → senaryo §2 "yarasaların yanması gösterilmez" ihlali.
+- **Maske kenarı (KRİTİK, CLAUDE.md "katmanlar arasında maske kenarı/şerit kalmaz"):** ÇÖL-ÜS gökyüzünde sol yarıda açık renkli dikdörtgen panel, düz dikey sağ kenar ≈x 525 (1080'de) — 2.3–5.0 (P01 B), 33.4–39.9 (P08, EN 36.5'te açık seçik), 39.9–41 (P09 başı), 48.3–49.85 (P10 geniş). `kirp-sol-dikdortgen.png`.
+- **Ölü alan:** P08 alt üçte bir boş toprak + gölge (sınırda, kabul); P12 57.2 ve 61.2 geçişlerinde boş kâğıt üstünde "En bilinen" (yaklaşık 0.5 sn boş sayfa, kısa).
+- **P07 tepsi yakın planı:** "üç koyu bölme içinde sırtüstü yatan, karnında turuncu hap olan yarasa"; tepsinin yuvarlaklığı ve "bölme" fikri okunmuyor, baş dönüşü (dokunuş YB-D3) 360 px'te zor seçiliyor.
+- **P11 mühür eli (51.9–55.5):** el tek parça siluet, sap kavranmış okunuyor (kabul); ama mühür havadayken belgede ondan ≈200 px kopuk, büyük, sert kenarlı gri daire (gölge) "ikinci yuvarlak nesne / delik" okunuyor (`tr-54.4.png`).
+
+## En çok 3 düzeltme (önem sırasıyla)
+1. **KRİTİK — P10 yarasa + alev aynı karede.** Sahibi: motion (kit) → yönetmen (json). Neden: `ColUs.tsx` `Tunemis`, alev varken `stil` zorla "gomulu" ve tünekler plan sonuna dek yerinde; `Kivilcimlar` haleyi yarasa gövdesinin üstüne çiziyor. Düzeltme: kit'e `tunek_dalgasi.birak` (kıvılcım karesinde yarasa tünekten bırakıp sola-yukarı uçar, ≤40 kare, plan içinde biter) ekle; `bolum.json` P10 `parametreler.tunek_dalgasi.birak: true`, `kivilcim_dizisi` kareleri aynı; hale yarasadan ayrılan kapsülde kalsın. Kit gelene dek json geçici: P10 `kivilcim_dizisi[].kare` aynı kalsın ama `dolly.kare` [110,208] → [40,130] ve `alev[0].bas` 102 → 60 (temas `ates-tutus`/`ates-yatak` 102/105 → 60/63): geniş plana geçiş ve alev öne çekilir, doruk ≥2.5 sn görünür; tank ayağındaki haleler ise hâlâ görünür → kalıcı çözüm kit.
+2. **KRİTİK — ÇÖL-ÜS gök dikdörtgeni.** Sahibi: motion. Neden (şüphe, doğrulanmalı): `ColUs.tsx` gök bileşeni satır 69–70, `cuParilti` clipPath içinde `mixBlendMode: "screen"` grubu; angle compositor karışım grubunu dikdörtgen katman olarak birleştiriyor. Düzeltme: blend modunu kaldır, halkaları düz `fill` + opacity ile çiz (ya da sabit renkli dairelerle önceden harmanla); tek kare değil P08 0–60 kare şeridiyle doğrula; görüntü yeniden render (yalnız COL-US planları değişir).
+3. **ORTA — P10/P11 sınırında ateş sesi çukuru + P09 hold sessizliği.** Sahibi: kurgucu. Neden: `tools/yarasa_miks.py` ortam/foley plan sonu 0.4 sn fade + `ates-yatak` kuyruğu P10 son ~0.6 sn'de bitiyor (TR 49.25–49.75 −45 dB); P09 hold müzik zarfı −29 hedefi (RMS −34). Düzeltme: `ates-yatak` P10 sonundan P11'e 0.6 sn taşıyıp kesmeden sonra sönsün (P10 `tasiyici.cikis` zaten "ateş yatağı kuyruğu −14→−30" diyor, uygulanmamış); P09 hold müzik tavanı −17.5 → −16 (kuralın izin verdiği üst sınır).
+
+Sınır dışı (kritik değil, sıradaki tura): P12 B yanık çatı `yanik` dokusu "güneş paneli" okunuyor (mekan/motion: kurum lekesi + çökmüş saçak, mavi ızgara yerine kömür); P12 vurgu iki kelime (`vurgu: ["New Mexico"]` için kit `vurguIndeks` çok kelime desteği); P11 mühür gölgesi ofseti/yumuşaklığı; EN P03 "Give one a fire" (senarist; ses yeniden üretimi gerekir, kullanıcı kararı).
+
+## Puan: **6 (düzgün)**
+Yapı, döngü ve kanca mantığı sağlam; doruk ekranda çok kısa ve ton ihlali + görünür maske kenarı varken 7 verilemez. Kritik 1–2 düzelirse 7.
