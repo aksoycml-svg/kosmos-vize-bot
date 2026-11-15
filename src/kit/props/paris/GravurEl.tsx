@@ -15,7 +15,14 @@ import { rnd } from "../../../doku/sabitler";
 
 export type ParmakPoz = { a: number; b: number; k?: number; gizli?: boolean }; // a yayılma°, b PIP bükülmesi° (+ avuç yönü), k kısalma
 export type GravurPoz = { parmak: [ParmakPoz, ParmakPoz, ParmakPoz, ParmakPoz]; bas: { a: number; b: number; k?: number } };
-export const GRAVUR_POZ: Record<"olcu" | "tutus" | "gevsek" | "kistir" | "cimdik", GravurPoz> = {
+export const GRAVUR_POZ: Record<"olcu" | "tutus" | "gevsek" | "kistir" | "cimdik" | "avuc" | "dayali" | "jant", GravurPoz> = {
+  // Çiçero ARABA v2 (mekanlar §2.10, yalnız ekleme — mevcut pozlar değişmez, Paris piksel farkı 0):
+  // avuc: avuç yukarı, parmaklar düz ve hafif açık, başparmak yanda (almaya hazır)
+  avuc: { parmak: [{ a: -4, b: 8 }, { a: -1, b: 9 }, { a: 2, b: 11 }, { a: 5, b: 13, k: 0.97 }], bas: { a: -30, b: 6 } },
+  // dayali: avuç aşağı, parmaklar dize/kucağa uyacak biçimde 20–30° bükük (temas gölgesi şablonda)
+  dayali: { parmak: [{ a: -2, b: 32, k: 0.9 }, { a: 0, b: 36, k: 0.88 }, { a: 2, b: 40, k: 0.86 }, { a: 4, b: 44, k: 0.84 }], bas: { a: -16, b: 10 } },
+  // jant: direksiyon kavrayışı — 4 parmak jantın arkasına sarar (kısalır), başparmak önde jant boyunca (tutus türevi)
+  jant: { parmak: [{ a: -4, b: 74, k: 0.62 }, { a: 0, b: 80, k: 0.6 }, { a: 3, b: 84, k: 0.57 }, { a: 6, b: 88, k: 0.54 }], bas: { a: -10, b: 4, k: 1.05 } },
   // P05 ölçü (§15.1.5 / b.2): avuç masaya yatık, dört parmak düz yan yana; başparmak işaret ekseninden −50°, yatık, uç 6° işarete
   olcu: { parmak: [{ a: -1, b: 4 }, { a: 0, b: 5 }, { a: 1, b: 6 }, { a: 2, b: 8, k: 0.97 }], bas: { a: -50, b: 6 } },
   // P10 okuyan tutuşu: parmaklar kâğıdın arkasına kıvrık; başparmak kâğıt ön yüzünde (açı LanternOda'da ekran açısından: dikeyden 30°)

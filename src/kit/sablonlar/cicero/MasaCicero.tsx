@@ -17,6 +17,7 @@ import { param, SablonProps } from "../../ortak";
 import { propDurum } from "../../props";
 import { deger, ekranNokta, kameraHesapla } from "../../zaman";
 import { CIC, EL_BAZNA, EL_BERLIN } from "../../paletler/cicero";
+import { bilekSinirla, dirsekAcisi, elOlcumYaz, El40Poz } from "../../props/cicero/El40";
 import { Anahtar, Balmumu, Banknot, Belge, Carpi, Dosya40, FilmKutusu, Makine, Zarf } from "../../props/cicero/Esyalar40";
 
 export type MasaAd = "komodin" | "berlin" | "bazna";
@@ -26,19 +27,28 @@ const SEED: Record<MasaAd, number> = { komodin: 197, berlin: 199, bazna: 211 };
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const elipsY = (cx: number, cy: number, rx: number, ry: number, rot = 0, n = 48): P[] => Array.from({ length: n }, (_, i) => { const a = (i / n) * Math.PI * 2, r = (rot * Math.PI) / 180; const x = Math.cos(a) * rx, y = Math.sin(a) * ry; return [cx + x * Math.cos(r) - y * Math.sin(r), cy + x * Math.sin(r) + y * Math.cos(r)]; });
 
-type El40 = { tip: "bazna" | "berlin" | "elci"; kare: number[]; omuz: P[]; bilek: P[]; aci: number[]; poz?: "gevsek" | "kistir" | "tutus" | "cimdik" | "olcu"; E?: number; bukum?: 1 | -1; ayna?: boolean; tut?: { prop: string; bas: number; bit: number; dx?: number; dy?: number } };
+type El40 = { tip: "bazna" | "berlin" | "elci"; kare: number[]; omuz: P[]; bilek: P[]; aci: number[]; poz?: El40Poz | El40Poz[]; E?: number; bukum?: 1 | -1; ayna?: boolean; tut?: { prop: string; bas: number; bit: number; dx?: number; dy?: number } };
 const KOL_RENK: Record<El40["tip"], [string, string]> = { bazna: ["#3b3a4e", "#1e1c2a"], berlin: ["#4f4c58", "#26242e"], elci: ["#4f4a62", "#26242e"] };
 const anah = (arr: P[], kare: number[], p: number): P => [deger(arr.map((q) => q[0]), kare, p), deger(arr.map((q) => q[1]), kare, p)];
 
 /** Konik ceket kolu + manşet + GravurEl (katman "arka" … tutulan … "on"). Ekran 2B; isik = ışığa doğru birim vektör. */
-export const El40Ciz: React.FC<{ e: El40; p: number; isik: P; taramaAci: number; tutulan?: React.ReactNode; golge?: { renk: string; kay: P } }> = ({ e, p, isik, taramaAci, tutulan, golge }) => {
-  const omuz = anah(e.omuz, e.kare, p), bilek = anah(e.bilek, e.kare, p), aci = deger(e.aci, e.kare, p);
-  const E = e.E ?? 230, L = Math.hypot(bilek[0] - omuz[0], bilek[1] - omuz[1]) || 1;
+// tur-4 el-kol (mekanlar §2.10): E = 0.18 m × masa px/m (json E yalnız ±%10 içinde geçerli) · el açısı ön kolun ±30°'si içine
+// kırpılır (bilek kırılmaz) · poz anahtarlı olabilir (kare dizisiyle adım adım: ör. ["kistir", "dayali"] — bırakınca el masaya dayanır).
+const elE = (e: El40, pxm: number) => { const n = 0.18 * pxm; return Math.max(0.9 * n, Math.min(1.1 * n, e.E ?? n)); };
+const elPoz = (e: El40, p: number): El40Poz => { if (!Array.isArray(e.poz)) return e.poz ?? "dayali"; let v = e.poz[0]; e.kare.forEach((q, j) => { if (p >= q && e.poz![j]) v = (e.poz as El40Poz[])[j]; }); return v; };
+const el40Geo = (e: El40, p: number, pxm: number) => {
+  const omuz = anah(e.omuz, e.kare, p), bilek = anah(e.bilek, e.kare, p), E = elE(e, pxm), L = Math.hypot(bilek[0] - omuz[0], bilek[1] - omuz[1]) || 1;
   const nx = -(bilek[1] - omuz[1]) / L, ny = (bilek[0] - omuz[0]) / L, bk = (e.bukum ?? 1) * Math.min(0.18 * L, 0.5 * E);
   const dirsek: P = [lerp(omuz[0], bilek[0], 0.52) + nx * bk, lerp(omuz[1], bilek[1], 0.52) + ny * bk];
+  const kolAci = (Math.atan2(bilek[1] - dirsek[1], bilek[0] - dirsek[0]) * 180) / Math.PI;
+  return { omuz, bilek, E, dirsek, kolAci, aci: bilekSinirla(kolAci, deger(e.aci, e.kare, p)) };
+};
+export const El40Ciz: React.FC<{ e: El40; p: number; pxm: number; isik: P; taramaAci: number; tutulan?: React.ReactNode; golge?: { renk: string; kay: P } }> = ({ e, p, pxm, isik, taramaAci, tutulan, golge }) => {
+  const { omuz, bilek, E, dirsek, kolAci, aci } = el40Geo(e, p, pxm);
   const kol = konikKol(omuz, dirsek, bilek, [0.78 * E, 0.66 * E, 0.46 * E]);
   const pal = e.tip === "berlin" ? EL_BERLIN : EL_BAZNA;
-  const poz = GRAVUR_POZ[e.poz ?? "gevsek"];
+  const pz = elPoz(e, p), poz = GRAVUR_POZ[pz === "gevsek" ? "dayali" : pz];
+  if (!golge) elOlcumYaz(`el40 ${e.tip}`, { bilek: +Math.abs(aci - kolAci).toFixed(1), dirsek: +dirsekAcisi(omuz, dirsek, bilek).toFixed(1), E: +E.toFixed(1), poz: pz, x: Math.round(bilek[0]), y: Math.round(bilek[1]) });
   const elB = kol.ileri(-0.02 * E);
   if (golge) return <g transform={`translate(${golge.kay[0]} ${golge.kay[1]})`} fill={golge.renk}><path d={kol.d} /><GravurEl bilek={elB} aci={aci} E={E} poz={poz} ayna={e.ayna} isik={isik} taramaAci={taramaAci} golge={golge.renk} golgeKay={[0, 0]} /></g>;
   const [kr, kk] = KOL_RENK[e.tip];
@@ -55,7 +65,7 @@ export const El40Ciz: React.FC<{ e: El40; p: number; isik: P; taramaAci: number;
     </g>
   );
 };
-export const el40Uc = (e: El40, p: number): P => { const b = anah(e.bilek, e.kare, p), a = (deger(e.aci, e.kare, p) * Math.PI) / 180, E = e.E ?? 230; return [b[0] + Math.cos(a) * 0.62 * E, b[1] + Math.sin(a) * 0.62 * E]; };
+export const el40Uc = (e: El40, p: number, pxm: number): P => { const g = el40Geo(e, p, pxm), a = (g.aci * Math.PI) / 180; return [g.bilek[0] + Math.cos(a) * 0.62 * g.E, g.bilek[1] + Math.sin(a) * 0.62 * g.E]; };
 
 // prop çizimi (masa düzleminde; tepe-önden y kısalır)
 const PropCiz40: React.FC<{ pr: Prop; p: number; pxm: number; kisalma: number; golgeKay: P; havuzIci: (q: P) => number; sonuk: number; konum?: P }> = ({ pr, p, pxm, kisalma, golgeKay, havuzIci, sonuk, konum }) => {
@@ -112,7 +122,7 @@ export const MasaCiceroSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   for (const e of eller) if (e.tut && p >= e.tut.bas && p < e.tut.bit) tutulan.set(e.tut.prop, e);
   const serbest = props.filter((pr) => !pr.id || !tutulan.has(pr.id));
   for (const pr of serbest) kilit.push({ ad: pr.id ?? pr.tur, p: ekranNokta(k, [deger(pr.x, pr.kare, p), deger(pr.y, pr.kare, p)]), tur: "kurulum" });
-  for (const e of eller) kilit.push({ ad: `el ${e.tip}`, p: ekranNokta(k, el40Uc(e, p)), tur: "dokunus" });
+  for (const e of eller) kilit.push({ ad: `el ${e.tip}`, p: ekranNokta(k, el40Uc(e, p, pxm)), tur: "dokunus" });
   const propC = (pr: Prop, konum?: P) => <PropCiz40 key={pr.id ?? `${pr.tur}${deger(pr.x, pr.kare, 0)}`} pr={pr} p={p} pxm={pxm} kisalma={kisalma} golgeKay={golgeKay} havuzIci={havuzIci} sonuk={sonuk} konum={konum} />;
   // havuz bantları: kaynaktan radyal uzar (yanik ölçekler)
   const havuzBant = (renkler: [string, string, string], sert = false) => {
@@ -270,7 +280,7 @@ export const MasaCiceroSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   }
   // gölgeler (masa düzlemi; aynı kaynak → aynı kayma), multiply
   const golgeler = <g style={{ mixBlendMode: "multiply" }} opacity={0.55}>
-    {eller.map((e, i) => <El40Ciz key={i} e={e} p={p} isik={isikVek} taramaAci={TH} golge={{ renk: "#2a2230", kay: [golgeKay[0] * 3, golgeKay[1] * 3] }} />)}
+    {eller.map((e, i) => <El40Ciz key={i} e={e} p={p} pxm={pxm} isik={isikVek} taramaAci={TH} golge={{ renk: "#2a2230", kay: [golgeKay[0] * 3, golgeKay[1] * 3] }} />)}
   </g>;
   return (
     <svg width={1080} height={1920} viewBox="0 0 1080 1920">
@@ -297,8 +307,8 @@ export const MasaCiceroSahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
           {ust}
           {eller.map((e, i) => {
             const pr = e.tut ? props.find((q) => q.id === e.tut!.prop) : undefined;
-            const t = pr && tutulan.get(pr.id!) === e ? propC(pr, ((): P => { const u = el40Uc(e, p); return [u[0] + (e.tut!.dx ?? 0), u[1] + (e.tut!.dy ?? 0)]; })()) : undefined;
-            return <El40Ciz key={i} e={e} p={p} isik={isikVek} taramaAci={TH} tutulan={t} />;
+            const t = pr && tutulan.get(pr.id!) === e ? propC(pr, ((): P => { const u = el40Uc(e, p, pxm); return [u[0] + (e.tut!.dx ?? 0), u[1] + (e.tut!.dy ?? 0)]; })()) : undefined;
+            return <El40Ciz key={i} e={e} p={p} pxm={pxm} isik={isikVek} taramaAci={TH} tutulan={t} />;
           })}
         </g>
       </RenkKaydi>

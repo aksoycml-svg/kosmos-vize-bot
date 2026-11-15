@@ -1,0 +1,17 @@
+{
+ "dosya": "bolumler/cicero/kalibrasyon/araba-v2/P10_p389_son.png",
+ "sicak_yuzde": 65.2,
+ "p95_L": 70.2,
+ "max_L_disari": 94.9,
+ "p999_L_disari": 93.9,
+ "max_C_disari": 24.7,
+ "p999_C_disari": 23.3,
+ "C28_ustu_px": 0,
+ "L88_ustu_px": 7789,
+ "kirmizi_izinsiz_px": 0,
+ "kirmizi_izinli_px": 0,
+ "imza_px": 44487,
+ "imza_L_medyan": 92.8,
+ "imza_L_max": 94.9,
+ "imza_C_medyan": 7.5
+}

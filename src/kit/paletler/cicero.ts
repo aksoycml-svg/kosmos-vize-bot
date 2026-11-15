@@ -11,6 +11,8 @@ export const BAZNA: Palet = {
   hair: "#2a2226", hat: "#2a2830", hatBand: "#1c1a22",
   sideburn: 0.15, browHeavy: 0.85, biyik: "yok", sapka: "yok",
   kostum: "takim40", gozAk: "#d6cdc0", // göz akı L* ≈ 83 (banknot tek beyaz)
+  // tur-4 el-kol: rig eli GravurEl tek parça (EL_BAZNA ile aynı, L* ≤ 75, C* ≤ 20)
+  elPalet: { isik: "#c8a690", golge: "#87695a", konturYuk: "#5a4132", konturIsik: "#a07f66", kenar: "#f0c4a8", tarama: "#6a4f40", manset: "#b8b09c", mansetGolge: "#7e7868" },
 };
 export const BAZNA_YUZ: Partial<Palet> = { yuz: { genislik: 1.0, uzunluk: 1.02, burunTip: "duz", sac: "kisa", kasAci: 0, yasCizgi: 0 }, biyik: "yok", sakal: false, sapka: "yok", burun: 1.04 };
 
@@ -44,7 +46,20 @@ export const CIC = {
   elci: "#4f4a62", moyzisch: "#3c3a4c", yetkili: "#524a58",
 } as const;
 
-// el paletleri (GravurEl §15.1b; tek dış yol)
-export const EL_BAZNA = { isik: "#c9a58a", golge: "#8e6a52", konturYuk: "#5a4132", konturIsik: "#a07f66", kenar: "#f0c4a8", tarama: "#6a4f40", manset: "#b8b09c", mansetGolge: "#7e7868" };
-export const EL_MOYZISCH = { isik: "#b89a86", golge: "#7a6052", konturYuk: "#3e3030", konturIsik: "#8e7466", kenar: "#f0c4a8", tarama: "#5a4438", manset: "#5a4f48", mansetGolge: "#3a322e" };
-export const EL_BERLIN = { isik: "#dcb9a2", golge: "#8f7360", konturYuk: "#5a4438", konturIsik: "#a8836c", kenar: "#f0c4a8", tarama: "#6a4f40", manset: "#bdb5a2", mansetGolge: "#7e786a" };
+// el paletleri (GravurEl §15.1b; tek dış yol). Tur-4 el-kol (mekanlar §2.10 kural 5): ten L* ≤ 75, C* ≤ 20 (ölçüldü:
+// Bazna #c8a690 70.6/18.5 · gölge #87695a 47/16 · Moyzisch #cdb09e 73.9/15.2 / #7f6a64 · Berlin #d2b098 74.2/19.0). Moyzisch manşeti koyu.
+export const EL_BAZNA = { isik: "#c8a690", golge: "#87695a", konturYuk: "#5a4132", konturIsik: "#a07f66", kenar: "#f0c4a8", tarama: "#6a4f40", manset: "#b8b09c", mansetGolge: "#7e7868" };
+export const EL_MOYZISCH = { isik: "#cdb09e", golge: "#7f6a64", konturYuk: "#3e3030", konturIsik: "#8e7466", kenar: "#f0c4a8", tarama: "#5a4438", manset: "#2c2a38", mansetGolge: "#1e1c2a" };
+export const EL_BERLIN = { isik: "#d2b098", golge: "#8c7062", konturYuk: "#5a4438", konturIsik: "#a8836c", kenar: "#f0c4a8", tarama: "#6a4f40", manset: "#bdb5a2", mansetGolge: "#7e786a" };
+export const EL_YETKILI = { ...EL_BAZNA, isik: "#cfad96", golge: "#8c7062", manset: "#9a9488" };
+// ARABA v2 (mekanlar §2.8; hepsi L* ≤ 88, C* ≤ 28)
+export const ARAC = {
+  govde: "#262836", yansima: "#3e4262", altKivrim: "#1c1d2a", yesil: "#3d4640", yesilYansima: "#55605a",
+  krom: "#8e8e96", kromParlak: "#c4b5a8", lastik: "#1e1c26", basamak: "#2a2834", nervur: "#3a3848",
+  deriGolge: "#4f3a3a", deriBant: "#7a5a50", deriTepe: "#8c6f66", dikis: "#2e2634", oturakTepe: "#4a3a40", paspas: "#1e1c2c",
+  fener: "#efd0b6", haleIc: "#e4bc98", haleDis: "#e0c8b2", cepheHavuz: "#c8a98e", siva: "#6e6470", silme: "#7a707c",
+  kaldirim: "#4a4858", derz: "#2e2c3a", parilti: "#6f86ad", bordur: "#5e5a66", bordurUst: "#7a7684", yolUzak: "#55606e",
+  yolAksam: "#2f3550", yolYakin: "#26283a", kapiAhsap: "#3a3040", kapiIsik: "#6b5148", camYansima: "#6f86ad",
+  panel: "#2e2c3a", jant: "#2a2834", tavanIc: "#3a3d58", pantolonM: "#2c2a38", paltoM: "#3c3a4c", sapkaM: "#2a2830",
+  tenM: "#cdb09e", tenMG: "#7f6a64",
+} as const;

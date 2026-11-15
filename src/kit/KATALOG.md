@@ -337,16 +337,25 @@ Kod: `src/kit/sablonlar/cicero/{ElciOda,Araba,MasaCicero}.tsx`, `src/kit/props/c
 | karakterler | `bazna` (Kukla takim40) + yüzsüz siluetler `elci` (yasli), `moyzisch` (sapkali), `yetkili` (uzun-ince), `sekreter` (topuzlu) → SiluetFigur40 (aynı z/u) |
 | kamera önerisi | P04b K-A: cs 1.4, cx −140, cy −90 (lamba sol kenar · komodin+kutu · pencere önünde Bazna · kapı+şerit). cs 1.0'da tüm oda |
 
-### ARABA (yeni şablon; `gorunum: "ic"`, `saat: "gun"` — `dis` henüz KURULMADI → hata)
-Sedan yan kesiti, kukla tiyatrosu (yakın kapı yok), araba sola bakar. F 1265, kabin göz 1.05, ufuk 670, figür düzlemi Z 1.10 (1150 px/m), uzak cam Z 1.62, cephe Z 7.6 (zemin kat bandı: andezit subasman + düz lento pencereler; daktilo penceresinde sekreter silueti). Kabin iç yüksekliği 1.40 m. Işık: alçak güneş sol-ön (yon [0.85, 0.15]); arşiv `gunduzMineral`.
-| Parametre | Değer |
-|---|---|
-| karakterler | `bazna` (Kukla oturan, yüz sola, ön kolu ayrı: konik kol + GravurEl) · `moyzisch` (SiluetFigur40 sapkali profil, gövde sola baş sağa = geri dönük) |
-| `bazna` | `{x: Sayi (kalça, m; 0.5), lean: Sayi (12), bas: Sayi (baş eğimi), kare}` · `kuklaOlcek` (0.85; rig başı karikatür büyük) |
-| `moyzisch` | `{x (−0.24)}` |
-| `el` | `{moyzisch\|bazna: {kare, bilek [[x,y]], aci [], poz "kistir"\|"gevsek"\|"tutus"\|"cimdik", bukum ±1}}` — omuz figürden; kol derinlikte kısalır (dirsek sapması 0.16·L) |
-| `banknot` | `{kare, x[], y[], aci[], yuz "arka"\|"on", arkada [0/1] (basamaklı: 1 → ceket arkasında = iç cebe girer)}` — gerçek ölçü 211 mm (Z 1.0 → 267 px) |
-| `daktilo` | `{yaziyor}` (sekreter ±1 px tık; kaynak sayılmaz) · `motor` (true: ≤ 1.2 px dikey titreme, zamana sabit sinüs) |
+### ARABA v2 (Çiçero tur-4; `gorunum: "el" | "pencere" | "kucak" | "dis"`, `saat: "gece"` / dis `"alacakaranlik"`; v1 `ic` kaldırıldı → hata)
+Kod: `src/kit/sablonlar/cicero/Araba.tsx` · şartname `bolumler/cicero/mekanlar.md` §2-v2 · kalibrasyon `bolumler/cicero/kalibrasyon/araba-v2/`. Tek ışık: elçilik **duvar feneri** (net 2 basamak hale + cephe havuzu); içeride fenerden uzak camdan düşen **net kenarlı sıcak bant** (iç grubun kırpılmış "screen" kopyası, arka plan etkilenmez). Sedan40 tek model: Moyzisch `#262836`, kaçış arabası `#3d4640`.
+| Görünüm | Kamera / ölçü | Parametreler |
+|---|---|---|
+| `el` (P01a insert) | 2650 px/m (devir 0.48 m); dekor x −600…1700 | `banknot {kare, x, y, aci, olcek (derinlik: 0.5 = 0.96 m), tutan ["moyzisch"\|"bazna"\|null]}` · `el {moyzischSol (jant), moyzisch, bazna, baznaSag: ElA}` |
+| `pencere` (P01b, kaldırımdan yolcu kapısı) | F 1265, göz 1.25, ufuk 578; kapı Z 1.62, Bazna Z 2.07 (baş 215 px, çene y 735), Moyzisch Z 2.72, cephe Z 10.2 | `bazna {kare, lean[], bas[]}` · `el {bazna (ekran px; omuz gövdeden, E = 0.75 yüz), moyzisch (jant)}` · `banknot {kare, aci, tutan, cep [0..1] (kâğıt elden ceketin içine kayar), arkada 0/1/2 (2 = cepte, çizilmez)}` · `daktilo {yaziyor}` |
+| `kucak` (P05, tavandan 70°, ön = üst) | devir 2300 px/m; kol tepeden yarı boy (KOLK 0.5) | `el {moyzischSol, moyzisch, bazna, baznaSag}` · `nesneler [{tur zarf\|filmKutusu, kare, x, y, aci, olcek (kucak 0.73 … devir 1.0), tutan (el adı \| "cep" = görünmez \| null)}]` |
+| `dis` (P09a, karşı kaldırım) | F 1300, göz 1.5, ufuk 1000; cephe Z 9, araba yakın yüz Z 5.1 | `sekreter {kare, X[], Z[] (dünya m, doğrusal), pencereKalkis, kapidan, biner}` (iki basamak Z 8.7/8.4, h .30/.15) · `binaKapi {kare, acik[]}` · `araba {kare, x[] (px öteleme), uzakKapi[], uzakKapiKare[]}` (uzak arka kapı yakın camın içinden görünür) · `daktilo` |
+- **ElA** (bütün görünümler): `{kare, bilek [[x,y]], omuz?[], dirsek?[], aci?[] (verilmezse ön kol yönü), poz (avuc|dayali|jant|tutus|kistir; dizi = kare adımı), olcek?[] (derinlik → E ve kol), bukum ±1}`. El çizimi `props/cicero/El40` `ElKol40`.
+- Kamera sınırları görünüm başına `sinirlar.json` `ARABA.gorunum_sinirlari`.
+
+### El–kol kuralları (Çiçero tur-4; `src/kit/props/cicero/El40.tsx`, yalnız cicero yolu)
+- `bilekSinirla`: el ekseni ön kolun ±30°'si içine kırpılır (bilek kırılmaz). `kolIK`: dirsek iç açısı 70–160°; mesafe kısa kalırsa kol derinliğe kısalır (açı 70°'de kalır, sıçrama yok).
+- El boyu: insert/2B `E = 0.18 m × px/m` (MASA `el40.E` yalnız ±%10 içinde geçerli, dışı kırpılır); Kukla takim40 `KUKLA_EL40_E = 76` rig birimi ≈ 0.75 × yüz.
+- Yeni `GRAVUR_POZ` (ekleme; Paris pozları değişmedi): `avuc` (avuç yukarı, almaya hazır), `dayali` (dize/kucağa/masaya dayalı, parmaklar 30–45° bükük), `jant` (direksiyon kavrayışı). `gevsek` cicero'da `dayali`'ya eşlenir (havada sarkan el yok).
+- Kukla: `Palet.elPalet` verilirse (BAZNA) el GravurEl tek parça; `Poz.elPozF/elPozB` (+ `elAciF/B` ±30). `dirsek40(pz)`: takim40 ön kol −110…−20 (şablon elDunya'dan önce çağırır). ELÇİ-ODASI `poz[].elPozF` dizi (adım). Tutulan nesne ofseti `elDunya(…, [0, 24–30])` (yeni el boyuna göre).
+- MASA-INSERT `el40.poz` dizi olabilir (`["kistir", …, "dayali"]`: bırakınca masaya dayanır). ELÇİ-ODASI `siluetKol`: E 0.18, dirsek IK, palet `EL_YETKILI`.
+- Ten: `EL_BAZNA #c8a690` (70.6/18.5) · `EL_MOYZISCH #cdb09e` (73.9/15.2, manşet koyu) · `EL_BERLIN #d2b098` (74.2/19.0) — hepsi L* ≤ 75, C* ≤ 20.
+- Ölçüm: `node tools/kareler.mjs liste.json` + props `elOlcum: true` → her kare için `<kare>.el.json` (el adı, bilek°, dirsek°, E px, poz). Toplu still: tek paket + tek tarayıcı (`npx remotion still` yerine).
 
 ### MASA-INSERT `masa: "komodin" | "berlin" | "bazna"` (+ `isik: "lamba" | "lamba-kubbe"`)
 | Masa | Kurulum |
@@ -367,7 +376,7 @@ Sedan yan kesiti, kukla tiyatrosu (yakın kapı yok), araba sola bakar. F 1265, 
 - `bash tools/cicero_kalibrasyon.sh` → K-A/K-B/K-C tam + 360 + güvenli alan + 2 şerit + ölçüm json (`bolumler/cicero/kalibrasyon/`).
 
 ### Çiçero v2 + aşama 2 ekleri (motion, 2026-11-15) — test kareleri `bolumler/cicero/kalibrasyon/v2/test_*.png`
-**Değişen varsayılanlar (yalnız cicero yolu; eski bölümler piksel farkı 0):** ELÇİ-ODASI Kukla birimi `KUKLA40_M = 1.70/506` (Bazna 1.70 m; eski 0.00298 = 1.51 m) · V daraltıldı (dik ±16°, bükük −6/+22°), abajur çevresi duvar yayılması + komodin üstü yayılma (her boyunda), bükük boyunda zemine yalnız yayılma bandı, kapı aralığında 2 parlak basamak · ARABA `kuklaOlcek` 0.72 (taban KUKLA40_M), `arkaKanepe` 0.06 (ayak boşluğu −0.13…ARK; Bazna'nın baldır+ayağı boşlukta, taban h 0.24), kanepe dikiş hatları + biye, kapı paneli 2 ton, C direği güneş yaması · takim40 ceket eteği kalça boyu · BAZNA yüzü: yasCizgi 0, browHeavy .85, sideburn .15 · Moyzisch profil siluet: omuz ×0.75, göğüs/kürek asimetrisi, oturanda etek genişlemesi yok · zarf kapağında çapraz çizgi yok · `carpi` hedef banknotun kâğıdına otomatik kırpılır.
+**Değişen varsayılanlar (yalnız cicero yolu; eski bölümler piksel farkı 0):** ELÇİ-ODASI Kukla birimi `KUKLA40_M = 1.70/506` (Bazna 1.70 m; eski 0.00298 = 1.51 m) · V daraltıldı (dik ±16°, bükük −6/+22°), abajur çevresi duvar yayılması + komodin üstü yayılma (her boyunda), bükük boyunda zemine yalnız yayılma bandı, kapı aralığında 2 parlak basamak · (ARABA v1, tur-4'te kaldırıldı: `kuklaOlcek` 0.72, `arkaKanepe` 0.06 (ayak boşluğu −0.13…ARK; Bazna'nın baldır+ayağı boşlukta, taban h 0.24), kanepe dikiş hatları + biye, kapı paneli 2 ton, C direği güneş yaması) · takim40 ceket eteği kalça boyu · BAZNA yüzü: yasCizgi 0, browHeavy .85, sideburn .15 · Moyzisch profil siluet: omuz ×0.75, göğüs/kürek asimetrisi, oturanda etek genişlemesi yok · zarf kapağında çapraz çizgi yok · `carpi` hedef banknotun kâğıdına otomatik kırpılır.
 
 | Parametre (şablon) | Kullanım örneği | Not |
 |---|---|---|
@@ -387,7 +396,4 @@ Sedan yan kesiti, kukla tiyatrosu (yakın kapı yok), araba sola bakar. F 1265, 
 | prop `filmKutusu` (MASA) | `{"tur":"filmKutusu","x":…,"y":…}` | 35 mm kartuş, yazısız etiket |
 | `el40[].tut` anahtar bırakma (MASA komodin) | `"tut":{"prop":"anahtar","bas":0,"bit":74,"dx":-10}` + prop `{"tur":"anahtar","id":"anahtar","x":300,"y":1170}` | `bit` = bırakma (temas `cic_anahtar_komodin_cin`) |
 | `lamba.yanik` (MASA bazna, P10) | `"lamba":{"yanik":[0,1],"kare":[24,38]}` | havuz kaynaktan radyal uzar; 0'da masa #2f3450, banknot sönük ton |
-| `nesneler` (ARABA ic, P05) | `[{"tur":"filmKutusu","kare":[0,40,44,70],"x":[800,700,690,560],"y":[1070,985,985,1040],"aci":[0,0,0,10]},{"tur":"zarf","kare":[60,84,110,140],"x":[…],"y":[…],"aci":[…],"arkada":[0,0,0,0]}]` | elden ele; `arkada` 1 = ceket/kucak arkasında |
-| `el.<kim>.dirsek` (ARABA) | `"dirsek":[[352,900],[366,892],…]` | Moyzisch'in dirseği koltuk sırtı üstünde (eleştiri #4) |
-| `gorunum: "dis"`, `saat: "alacakaranlik"` (ARABA, P09a) | `"sekreter":{"kare":[56,74,108],"x":[407,430,800],"pencereKalkis":30,"kapidan":56,"biner":120},"araba":{"kare":[124,156],"x":[0,600],"kapi":[0,1,1,0],"kapiKare":[104,108,116,120]}` | elçilik cephesi (andezit, beton saçak, 3 yanık pencere + kaldırım yamuğu), park sedan; sekreter yürür (siluet `adim` bacak makası), `biner`'de arabanın arkasına iner; araba sağdan çıkar |
 | `SiluetFigur40.adim` | (şablon içi) | yürüme fazı → bacak makası ±22° |

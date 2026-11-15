@@ -285,3 +285,59 @@
   - El kuralları P04, P08, P09b ve P10'da da taranmalı.
 
 - (orkestra, ARABA v2 sonrası) mekanlar.md ARABA v2 tümüyle kabul: P01 = el-insert (p0–110) + pencere (p110–438); P05 = kucak (tepeden); P09a yeniden; iki renk sedan (Moyzisch lacivert-siyah, kaçış koyu yeşil); el-kol §2.10. Moyzisch ten #cdb09e ve el 0.18 m orkestra onaylı (tasarımcı yerine, kullanıcı yetki devri). P05 daktilo kurulumu yalnız P01b.
+
+## motion · 2026-11-15 · ARABA v2 + el-kol (tur-4: "Araba planları iyi değil", "El kol doğru değil özürlü gibi")
+- **Ne yaptım:**
+  - `Araba.tsx` baştan yazıldı. Dört görünüm var: `el`, `pencere`, `kucak`, `dis`. v1'deki `ic` artık hata veriyor.
+  - Tek ışık kaynağı duvar feneri. Fener uzak camdan net kenarlı sıcak bir bant düşürüyor. Bant, iç grubun kırpılmış "screen" kopyasıyla yapıldı; arka plan bundan etkilenmiyor.
+  - Sedan40 tek model, iki renk.
+  - Ortak el-kol modülü yazıldı: `props/cicero/El40.tsx`. İçinde `bilekSinirla` (≤30°), `kolIK` (dirsek 70–160°, kısa mesafede kol derinliğe kısalır), `ElKol40`, `elKolGeo` ve ölçüm günlüğü var.
+  - `GRAVUR_POZ`'a yalnız ekleme yapıldı: `avuc`, `dayali`, `jant`.
+  - Kukla `takim40` eli artık GravurEl tek parça: E = 76 rig birimi ≈ 0.75 × yüz. Yeni alanlar `Palet.elPalet` ve `Poz.elPozF/B`, `elAciF/B`. `dirsek40` takim40 dirseğini 70–160° aralığına kırpıyor.
+  - MASA `el40`:
+    - E = 0.18 m × px/m; json'daki E yalnız ±%10 içinde geçerli.
+    - Bilek kırpılıyor.
+    - Poz kare dizisiyle adım adım değişebiliyor.
+    - `gevsek` → `dayali`.
+  - ELÇİ-ODASI:
+    - `siluetKol`: E 0.18, dirsek IK ile, palet `EL_YETKILI`.
+    - Bazna'da poz kırpması ve `elPozF` adımları.
+    - Tutulan nesne ofsetleri yeni el boyuna göre ayarlandı.
+    - Makinedeki ek parmak lekesi kaldırıldı.
+  - Ten paletleri L* ≤ 75, C* ≤ 20 olacak biçimde düzeltildi.
+  - bolum.json'a işlenenler: P01 (el p0–110 → pencere p110–438), P05 kucak, P09a dis. P09b lambaya uzanan kol düzeltildi. P10 kuyruğunda el bırakınca masada dayalı kalıyor; P01 p0 ile eşleşme bu yüzden. Doğrulayıcı: 0 hata.
+  - `tools/kareler.mjs` yazıldı: toplu still, tek paket + tek tarayıcı, `elOlcum` ile `.el.json` çıkarıyor.
+  - Kalibrasyon kareleri, şeritler ve ölçümler `bolumler/cicero/kalibrasyon/araba-v2/` altında.
+- **Dokunduğum dosyalar:** `src/kit/sablonlar/cicero/{Araba,ElciOda,MasaCicero}.tsx`, `src/kit/props/cicero/El40.tsx` (yeni), `src/kit/props/paris/GravurEl.tsx` (yalnız 3 poz eklendi), `src/rig/Kukla.tsx` (yalnız `elPalet` dalı + `dirsek40`), `src/kit/paletler/cicero.ts`, `src/kit/sinirlar.json` (ARABA), `src/kit/KATALOG.md`, `bolumler/cicero/bolum.json` (P01, P05, P09, P10 el40), `tools/kareler.mjs` (yeni), `bolumler/cicero/kalibrasyon/araba-v2/*`.
+- **Aldığım kararlar ve gerekçeleri:**
+  - **P01 p0 eşleşmesi:** Banknot el görünümünde 0.96 m uzaktan başlıyor (olcek 0.5 = 280 px, −8°, ekran (500,965)). Moyzisch'in eliyle p30'a kadar 0.48 m'ye yaklaşıyor (561 px, −30°). Kamera zoom'u yerine fiziksel derinlik kullanıldı; P10 son karesiyle konum, açı ve boy eşleşiyor.
+  - Şartnamedeki "+30°" açı, uç noktalarına göre SVG'de −30° demek. Uçlar esas alındı.
+  - **P10:** El banknotu bıraktıktan sonra çıkmıyor, masada dayalı kalıyor. Böylece eşleşmede "banknot + el" ikisi de var.
+  - **Bazna (pencere):** Çene y 695 → 735 (+40). 695'te göğüs bel çıtasının altında kalıyor, iç cep okunmuyordu. Banknot elden alt ucundan tutuluyor; `cep` 0→1 ile ceketin içine kayıyor (p132–138).
+  - **Bazna'nın yakın kolu (pencere):** Rig kolu yerine ElKol40 kullanıldı. Profilde rig kolu, kırpma sınırı içinde göğse dönemiyor. Omuz gövdeden alınıyor.
+  - **Kucak:** Kol boyu yarıya indirildi (KOLK 0.5). Tepeden bakışta üst kol aşağı iniyor; tam boyda kollar katlanmış çubuk gibi okunuyordu.
+  - **Zamanlama ve kamera:**
+    - Zarf devri p84 → p104, kucağa konma p118 → p130. Kutu cebe giderken kadrajdan çıkıp el geri dönebilsin diye.
+    - P09a kamera cs 1.3 → 1.0. 1.3'te daktilo penceresi kadrajdan çıkıyordu.
+    - P09a sekreter yolu: dünya m, doğrusal. Her basamağa bir adım.
+  - **Kareye uyarlama değerleri (yönetmen plana işlesin):**
+
+    | Plan | Değer | Şartname | Uygulanan |
+    |---|---|---|---|
+    | P01b | Bazna çene y | 695 | 735 |
+    | P01b | cephe havuzu r / iç hale r | 300 / 170 | 480 / 340 + ikinci yanık pencere |
+    | P01a | direksiyon merkez / r | (990,50) / 310 | (930,−10) / 380 (Moyzisch sol eli saat 7–8, olcek 0.6) |
+    | P09a | cephe havuzu r / hale r | 330 / 190 | 400 / 235 (2 yanık pencere) |
+    | P09a | kamera | cs 1.3 cx −200 | cs 1.0 |
+    | P05 | temaslar | 2, 44, 84, 118 | 2, 44, 80, 104, 130 |
+- **Uyguladığım kurallar / yakaladığım kural ihlalleri:**
+  - Eski hâlde bilek kırıktı. P09b'de kol düz ve el çok küçüktü; el lambanın ötesinde boşluğa uzanıyordu. P08'de yetkilinin dirseği 166° idi. Hepsi düzeltildi.
+  - El ölçümü (bütün kontrol kareleri): bilek ≤30°, dirsek 70–160°.
+  - Eski bölümler (Blanc, Evliya, Paris, Yarasa; 51 kare) piksel farkı 0. Turdaki tek fark tarayıcının ilk-kare kararsızlığıydı; aynı kare yeniden render edilince 0 çıktı.
+- **Açık sorular / bir sonraki ajana notlar:**
+  1. **Yeni ses:** `cic_araba_kapi_ac` (P09 p100, uzak kapı açılır) foley.json'da yok, şu an sessiz.
+  2. **Ölçüt kalan kareler:** K-C2 p95 L* 74.4 (<75) · K-C4 (P05) p95 61.4 · P01 p0 p95 70.0. İzin mi düzeltme mi, orkestra kararı.
+  3. **Moyzisch (pencere):** Gövde bant kenarında karton levha gibi okunuyor; kol L biçiminde. Siluet `sapkali` profilinde gövde detayı az.
+  4. **Kucak (P05):** Kollar hâlâ uzun ve ağır, kare kalabalık. Eller büyük ama 0.18 m × 2300 doğru ölçü. Okunurluk eleştirmene.
+  5. **Kaçış arabası (dış):** Yeşil sedanın arkası biraz kutu gibi duruyor; fastback eğrisi kısa.
+  6. P08 yetkili ↔ Bazna örtüşme uyarısı eskiden kalma, bu tura ait değil.

@@ -1,5 +1,6 @@
 import React, { useId } from "react";
 import { Bolge, KuklaIsik, RigCtx, useInk, useRig, YuzTonu } from "./RigIsik";
+import { GravurEl, GRAVUR_POZ, type GravurPalet } from "../kit/props/paris/GravurEl";
 
 // ===== Vektör kukla düzeneği (rig) v2 =====
 // Karakter sağa bakan 3/4 pozda çizilir; facing=-1 ile aynalanır.
@@ -31,6 +32,8 @@ export type Poz = {
   // K3: hasta yüz (0–1: solgun ten, göz altı morluğu, yarı kapalı göz, yanak kızarıklığı yok) + ter damlaları
   hasta?: number; ter?: boolean;
   etekOto?: boolean; // kit/hareket (gait): uzun etek öndeki bacağa göre açılır-kapanır (bacaklar çaprazlanınca ön kenar öne geçen bacağı izler). Verilmezse eski davranış
+  // Çiçero tur-4 el-kol (yalnız palet.elPalet verilen takim40): el pozu + bilek bükümü (° ön kola göre, ±30'a kırpılır)
+  elPozF?: keyof typeof GRAVUR_POZ; elPozB?: keyof typeof GRAVUR_POZ; elAciF?: number; elAciB?: number;
   arka?: boolean; // Evliya R14: arka 3/4 görünüm (yüz yüzeyi yok; ense + saç/takke + kulak kenarı; kol/bacak katman sırası ters). Yalnız Osmanlı gövdesi
 };
 
@@ -64,6 +67,8 @@ export type Palet = {
   biyikKalin?: number; biyikTasma?: number; sakalKutle?: number;
   yuz?: YuzTip; // K3
   gozAk?: string; // Çiçero: göz akı tonu (verilmezse #f6efe3; imza nesnesi beyaz olan bölümde göz akı L* ≤ 88 tutulur, parıltı da bu tona iner)
+  // Çiçero tur-4: verilirse el GravurEl tek parça siluet (E = 0.75 × yüz ≈ 76 rig birimi, bilek ön kolun devamı); yoksa eski eldiven/el
+  elPalet?: GravurPalet;
   yuzsuz?: boolean; // kompars (A5r): yüz ayrıntısı (göz, kaş, ağız, bıyık, yanak) çizilmez — baş/saç/şapka/kostüm biçimi + ışık kalır
 };
 
@@ -152,10 +157,17 @@ const Baston: React.FC<{ aci: number }> = ({ aci }) => (
 );
 
 const UST_KOL = "M -17 -10 Q 0 -20 17 -10 Q 17 40 14 92 L -14 92 Q -17 40 -17 -10 Z", ON_KOL = "M -14 -2 L 14 -2 Q 13 40 12 76 L -12 76 Q -13 40 -14 -2 Z";
-const Kol: React.FC<{ x: number; sh: number; el: number; p: Palet; arka?: boolean; a0?: number; sadeceEl?: boolean; children?: React.ReactNode }> = ({ x, sh, el, p, arka, a0 = 0, sadeceEl, children }) => {
+// Çiçero el (palet.elPalet): yüz (çene–saç çizgisi) ≈ 102 rig birimi → E = 0.75 × 102 ≈ 76; bilek ön kol ucunda (0, 82)
+export const KUKLA_EL40_E = 76;
+const Kol: React.FC<{ x: number; sh: number; el: number; p: Palet; arka?: boolean; a0?: number; sadeceEl?: boolean; children?: React.ReactNode; el40?: { poz?: keyof typeof GRAVUR_POZ; aci?: number; olcek?: number } }> = ({ x, sh, el, p, arka, a0 = 0, sadeceEl, children, el40 }) => {
   const c = arka ? p.coatDark : p.coat;
   const { I } = useRig(); const ink = useInk(inkTemel);
-  const el_ = (
+  const el_ = p.elPalet ? (
+    <g>
+      <GravurEl bilek={[0, 80]} aci={90 + Math.max(-30, Math.min(30, el40?.aci ?? 0))} E={KUKLA_EL40_E} poz={GRAVUR_POZ[el40?.poz ?? "dayali"]} palet={arka ? { ...p.elPalet, isik: p.elPalet.golge, golge: shade(p.elPalet.golge, -0.2) } : p.elPalet} isik={[0.8, -0.6]} taramaAci={80} olcek={el40?.olcek ?? 1} />
+      <g transform="translate(0,90)">{children}</g>
+    </g>
+  ) : (
     <g transform="translate(0,90)">
       {/* el + başparmak: eldivenliyse sırt dikişi, çıplaksa (glove = skin) boğum çizgisi + parmak ayrımı */}
       <path d="M -12 -9 Q -15 9 -5 17 Q 9 21 14 8 Q 16 -5 10 -9 Z" fill={p.glove} stroke={p.glove === p.skin ? p.skinDark : ink(p.glove)} strokeWidth={SW} />
@@ -725,7 +737,7 @@ const KuklaGovde: React.FC<{ pz: Poz; p: Palet; louis?: boolean; golgesiz?: bool
   const lean = pz.lean ?? 0;
   const gov = `translate(0,${pz.bodyY ?? 0}) rotate(${lean},0,-226)`;
   // tutulan şapka (pz.hat): el şapka kenarının ÖNÜNDE — şapkadan sonra ön el yeniden çizilir (P04 p150)
-  const onKol = (sadeceEl?: boolean) => <Kol x={40 + (pz.sway ?? 0) * 3} sh={pz.shF} el={pz.elF} p={p} a0={lean} sadeceEl={sadeceEl}>
+  const onKol = (sadeceEl?: boolean) => <Kol x={40 + (pz.sway ?? 0) * 3} sh={pz.shF} el={pz.elF} p={p} a0={lean} sadeceEl={sadeceEl} el40={p.elPalet ? { poz: pz.elPozF, aci: pz.elAciF, olcek: s } : undefined}>
     {!sadeceEl && pz.cane !== null && pz.cane !== undefined && <Baston aci={pz.cane} />}
     {!sadeceEl && pz.bicak !== null && pz.bicak !== undefined && <Bicak aci={pz.bicak - pz.shF - pz.elF} p={p} />}
   </Kol>;
@@ -755,7 +767,7 @@ const KuklaGovde: React.FC<{ pz: Poz; p: Palet; louis?: boolean; golgesiz?: bool
     <g transform={`translate(${pz.x},${pz.y}) scale(${s * f},${s})`}>
       {!golgesiz && <ellipse cx={6} cy={8} rx={96} ry={15} fill="#000" opacity={0.4} />}
       <g transform={gov}>
-        <Kol x={-30 - (pz.sway ?? 0) * 3} sh={pz.shB} el={pz.elB} p={p} arka a0={lean}>
+        <Kol x={-30 - (pz.sway ?? 0) * 3} sh={pz.shB} el={pz.elB} p={p} arka a0={lean} el40={p.elPalet ? { poz: pz.elPozB, aci: pz.elAciB, olcek: s } : undefined}>
           {pz.caneArka !== null && pz.caneArka !== undefined && <g><Baston aci={pz.caneArka} />{/* kavrayan parmaklar bastonun önünde */}<path d="M -11 -4 Q 0 -10 12 -4 M -12 3 Q 0 -3 13 3 M -11 10 Q 0 4 12 10" stroke={p.glove === p.skin ? p.skinDark : ink(p.glove)} strokeWidth={1.6} fill="none" /></g>}
         </Kol>
         <Bacak x={-10} thigh={pz.thighB} knee={pz.kneeB} foot={pz.footB ?? 0} p={p} arka a0={lean} />
@@ -838,6 +850,10 @@ export const yuru = (phi: number, amt = 1) => {
     lean: 3.5 * amt,
   };
 };
+
+// Çiçero tur-4 (mekanlar §2.10 kural 4): takim40 dirsek iç açısı 70–160° → el (ön kol, rig) ∈ [−110, −20]. Şablon pz'yi
+// el noktası (elDunya) hesaplanmadan ÖNCE bununla kırpar (tutulan nesne eli izlesin). Yalnız cicero şablonları çağırır.
+export const dirsek40 = (pz: Poz) => { const c = (v: number) => Math.max(-110, Math.min(-20, v)); pz.elF = c(pz.elF); pz.elB = c(pz.elB); return pz; };
 
 export const visem = (ch: string): Agiz => {
   const c = ch.toLowerCase();

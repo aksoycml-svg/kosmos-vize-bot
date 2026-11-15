@@ -1,0 +1,17 @@
+{
+ "dosya": "bolumler/cicero/kalibrasyon/araba-v2/KC1_P01_p030.png",
+ "sicak_yuzde": 20.7,
+ "p95_L": 91.8,
+ "max_L_disari": 80.0,
+ "p999_L_disari": 78.6,
+ "max_C_disari": 22.0,
+ "p999_C_disari": 21.3,
+ "C28_ustu_px": 0,
+ "L88_ustu_px": 0,
+ "kirmizi_izinsiz_px": 0,
+ "kirmizi_izinli_px": 0,
+ "imza_px": 146751,
+ "imza_L_medyan": 93.2,
+ "imza_L_max": 95.2,
+ "imza_C_medyan": 7.5
+}

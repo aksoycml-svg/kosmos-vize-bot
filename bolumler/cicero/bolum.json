@@ -28,223 +28,327 @@
    "id": "P01",
    "sablon": "ARABA",
    "sure_kare": 438,
-   "kontrol_kare": 24,
+   "kontrol_kare": 30,
    "parametreler": {
-    "gorunum": "ic",
-    "saat": "gun",
-    "motor": false,
-    "daktilo": {
-     "yaziyor": true
-    },
-    "moyzisch": {
-     "x": -0.24
-    },
+    "gorunum": "el",
+    "saat": "gece",
     "banknot": {
      "kare": [
       0,
-      24,
+      30,
       42,
       70,
-      100,
-      124,
-      150
+      98
      ],
      "x": [
       500,
-      590,
-      660,
-      700,
-      790,
-      850,
-      870
+      540,
+      540,
+      470,
+      -260
      ],
      "y": [
       965,
-      958,
-      952,
-      940,
-      980,
-      1020,
-      1060
+      930,
+      930,
+      1010,
+      1800
      ],
      "aci": [
       -8,
-      -12,
-      -14,
-      -10,
-      60,
-      80,
-      82
+      -30,
+      -30,
+      -24,
+      -10
      ],
-     "yuz": "arka",
-     "arkada": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      1,
-      1
+     "olcek": [
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      1.05
+     ],
+     "tutan": [
+      "moyzisch",
+      "moyzisch",
+      "bazna",
+      "bazna",
+      "bazna"
      ],
      "sizinti": 0.12
     },
     "el": {
-     "moyzisch": {
+     "moyzischSol": {
       "kare": [
-       0,
-       24,
-       42,
-       70,
-       100
+       0
       ],
       "bilek": [
        [
-        330,
-        995
-       ],
-       [
-        400,
-        985
-       ],
-       [
-        450,
-        980
-       ],
-       [
-        410,
-        1000
-       ],
-       [
-        390,
-        1010
+        906,
+        413
        ]
       ],
       "dirsek": [
        [
-        352,
-        900
-       ],
-       [
-        366,
-        892
-       ],
-       [
-        380,
-        888
-       ],
-       [
-        372,
-        905
-       ],
-       [
-        362,
-        915
+        1257,
+        659
        ]
       ],
-      "aci": [
-       -6,
-       -10,
-       -12,
-       30,
-       60
+      "omuz": [
+       [
+        1377,
+        399
+       ]
       ],
-      "poz": "kistir",
-      "bukum": 1
+      "poz": "jant",
+      "aci": [
+       -150
+      ],
+      "olcek": [
+       0.6
+      ]
+     },
+     "moyzisch": {
+      "kare": [
+       0,
+       30,
+       42,
+       56,
+       96
+      ],
+      "bilek": [
+       [
+        712,
+        847
+       ],
+       [
+        931,
+        600
+       ],
+       [
+        931,
+        600
+       ],
+       [
+        1000,
+        520
+       ],
+       [
+        1310,
+        240
+       ]
+      ],
+      "dirsek": [
+       [
+        917,
+        554
+       ],
+       [
+        1342,
+        14
+       ],
+       [
+        1342,
+        14
+       ],
+       [
+        1390,
+        -80
+       ],
+       [
+        1700,
+        -360
+       ]
+      ],
+      "omuz": [
+       [
+        1097,
+        596
+       ],
+       [
+        1702,
+        99
+       ],
+       [
+        1702,
+        99
+       ],
+       [
+        1750,
+        5
+       ],
+       [
+        2060,
+        -275
+       ]
+      ],
+      "olcek": [
+       0.5,
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "poz": [
+       "kistir",
+       "kistir",
+       "dayali",
+       "dayali",
+       "dayali"
+      ],
+      "aci": [
+       130,
+       130,
+       130,
+       128,
+       128
+      ]
      },
      "bazna": {
       "kare": [
        0,
-       24,
+       30,
        42,
        70,
-       100,
-       124,
-       150,
-       200
+       98
       ],
       "bilek": [
        [
-        860,
-        1010
+        169,
+        1308
        ],
        [
-        830,
-        995
+        180,
+        1308
        ],
        [
-        770,
-        975
+        186,
+        1286
        ],
        [
-        790,
-        980
+        104,
+        1342
        ],
        [
-        810,
-        1010
-       ],
-       [
-        850,
-        1020
-       ],
-       [
-        860,
-        1010
-       ],
-       [
-        860,
-        1010
+        -655,
+        2090
        ]
       ],
-      "aci": [
-       195,
-       192,
-       188,
-       186,
-       170,
-       120,
-       100,
-       100
+      "dirsek": [
+       [
+        -222,
+        1773
+       ],
+       [
+        -230,
+        1894
+       ],
+       [
+        -224,
+        1872
+       ],
+       [
+        -307,
+        1928
+       ],
+       [
+        -1064,
+        2720
+       ]
       ],
-      "poz": "gevsek",
-      "bukum": -1
+      "omuz": [
+       [
+        -622,
+        1459
+       ],
+       [
+        -700,
+        1524
+       ],
+       [
+        -694,
+        1502
+       ],
+       [
+        -777,
+        1558
+       ],
+       [
+        -1558,
+        2332
+       ]
+      ],
+      "olcek": [
+       0.85,
+       1.0,
+       1.0,
+       1.0,
+       1.05
+      ],
+      "poz": [
+       "avuc",
+       "avuc",
+       "tutus",
+       "tutus",
+       "tutus"
+      ],
+      "aci": [
+       -55,
+       -60,
+       -60,
+       -60,
+       -62
+      ]
+     },
+     "baznaSag": {
+      "kare": [
+       0
+      ],
+      "bilek": [
+       [
+        -41,
+        1699
+       ]
+      ],
+      "dirsek": [
+       [
+        -825,
+        1767
+       ]
+      ],
+      "omuz": [
+       [
+        -975,
+        1307
+       ]
+      ],
+      "poz": "dayali",
+      "aci": [
+       -20
+      ],
+      "olcek": [
+       1.1
+      ]
      }
     },
-    "bazna": {
-     "lean": [
-      6,
-      6,
-      4
-     ],
-     "kare": [
-      0,
-      60,
-      150
-     ]
+    "plan_ici_kesme": {
+     "kare": 110,
+     "sonraki_sablon": "ARABA"
     }
    },
    "kamera": {
     "kare": [
-     0,
-     150,
-     438
+     0
     ],
     "cs": [
-     1.0,
-     1.0,
-     1.15
+     1.0
     ],
     "cx": [
-     0,
-     0,
-     -100
+     0
     ],
     "cy": [
-     0,
-     0,
-     20
-    ],
-    "egri": "lineer"
+     0
+    ]
    },
    "karakterler": [
     {
@@ -253,43 +357,34 @@
     },
     {
      "kim": "bazna",
-     "yon": -1,
-     "yuz": {
-      "bakis": [
-       0.9,
-       0.35
-      ],
-      "ifade": "M",
-      "kas": -0.15
-     }
+     "yon": 1
     }
    ],
    "temaslar": [
     {
      "kare": 42,
-     "olay": "Bazna banknotu kavrar",
+     "olay": "Bazna'nın başparmağı banknotun üstüne kapanır (el görünümü)",
      "ses": "cic_banknot_kavra"
     },
     {
      "kare": 138,
-     "olay": "banknot iç ceket cebine girer",
+     "olay": "banknot ceket iç cebine girer (pencere görünümü)",
      "ses": "cic_kagit_cep"
     }
    ],
    "dokunus": null,
    "lint": {
     "izin": [
-     "imzaDisiC28",
-     "p95L"
+     "imzaDisiC28"
     ],
-    "not": "Bazna dudak/yanak ≤100 px C* 28-33 (orkestra izni); gündüz ARABA p95 L* 72.1 (kalibrasyon ölçümü, motion bilinen kusur 1: büyük Kukla başı cepheyi örter)"
+    "not": "Bazna dudak/yanak ≤100 px C* 28-48 (61 px, orkestra izni). Gece ARABA v2: K-C1 p30 geçti; K-C2 p138 p95 L* 74.4 (< 75, sınırda), p0 eşleşme karesi p95 70.0 — izin orkestra kararı bekliyor."
    },
    "tip": "character",
    "metin": {
     "tr": "Bir uşak, patronunun sırlarını Almanlara sattı. Karşılığında aldığı paranın büyük kısmı da sahte çıktı.",
     "en": "A valet sold his boss's secrets to Germany. Most of his pay turned out fake."
    },
-   "olcek": "göğüs/orta: iki profil (oturan) + ön planda banknot (insert boyutu, uzun kenar ~270 px = %14); p150-438 yavaş push cs 1.0→1.15",
+   "olcek": "a) p0–110 insert (el): banknot devri, uzun kenar 280 → 561 px (Moyzisch'in eli 0.96 m'den 0.48 m'ye yaklaşır; P10 son karesi eşleşmesi) · b) p110–438 göğüs/bel (pencere): yolcu kapısı dışından iki kişi + elçilik penceresi; p140–420 push cs 1.0→1.15 (Bazna başı 215→247 px)",
    "tempo": "hizli",
    "ekran_yazisi": [
     {
@@ -333,14 +428,14 @@
    ],
    "okunurluk": {
     "nesne": "banknot (arka yüz)",
-    "nesne_pct": 14,
-    "net_sn": 1.4,
-    "not": "banknot uzun kenar ~270 px (gerçek 211 mm, Z 1.0); hareket p0-84 net"
+    "nesne_pct": 29,
+    "net_sn": 1.0,
+    "not": "el görünümü: el+banknot+manşet bbox ≥%25 (p30–42), banknot uzun kenar 561 px; pencere: banknot ≈150 px bant içinde p124–136"
    },
    "saklanan": "banknotun ön yüzü (kamera arka/boş yüzü görür; sızıntı 0.12 belli belirsiz)",
-   "alt_ucte_bir": "koltuk dikişi + kapı paneli + kol dayama + gölge (sahne-plani P01); banknot/eller y 870-1090",
+   "alt_ucte_bir": "a) deri oturak rulo/dikiş + Bazna'nın dizi ve dayalı eli · b) nervürlü basamak + gövde altı + ıslak parke/birikinti + andezit bordür + kaldırım",
    "tasiyici": {
-    "giris": "döngü: P10 sonu banknot (sol-alttan sağa, ekran ~(508,964), uzun kenar ~280 px) → P01 p0 aynı konum/yön/hız (banknot yolun ortasında, hareket ilk karede)",
+    "giris": "döngü eşleşmesi: P10 son karesi banknot ekran ~(500,965), −8°, ~280 px + solda Bazna'nın eli → P01 p0 aynı konum/açı/boy (banknot 0.96 m'de Moyzisch'in elinde), solda Bazna'nın eli; p0–30 banknot kameraya yaklaşır",
     "cikis": "ses: daktilo tıkırtısı (ortam, 0.4 sn) P02 başına taşar, anahtar tıkına dönüşür"
    },
    "sfx": [
@@ -349,7 +444,217 @@
     "ortam: cic_ortam_daktilo p0-438 (çok kısık)"
    ],
    "muzik_notu": "piyano nabzı sessiz yarı (0-32 sn); ilk nota ~0.89 sn; P10 yankısından döngü",
-   "baslangic_kare": 0
+   "baslangic_kare": 0,
+   "devam_plan": {
+    "kare_bas": 110,
+    "sablon": "ARABA",
+    "parametreler": {
+     "gorunum": "pencere",
+     "saat": "gece",
+     "daktilo": {
+      "yaziyor": true
+     },
+     "bazna": {
+      "kare": [
+       110,
+       150,
+       438
+      ],
+      "lean": [
+       4,
+       6,
+       4
+      ],
+      "bas": [
+       2,
+       4,
+       2
+      ]
+     },
+     "el": {
+      "bazna": {
+       "kare": [
+        110,
+        124,
+        132,
+        138,
+        150,
+        170,
+        192
+       ],
+       "bilek": [
+        [
+         400,
+         1010
+        ],
+        [
+         404,
+         900
+        ],
+        [
+         392,
+         870
+        ],
+        [
+         384,
+         862
+        ],
+        [
+         380,
+         858
+        ],
+        [
+         380,
+         860
+        ],
+        [
+         404,
+         1020
+        ]
+       ],
+       "aci": [
+        -100,
+        -105,
+        -112,
+        -118,
+        -125,
+        -125,
+        -100
+       ],
+       "poz": [
+        "tutus",
+        "tutus",
+        "tutus",
+        "tutus",
+        "dayali",
+        "dayali",
+        "dayali"
+       ],
+       "bukum": 1
+      },
+      "moyzisch": {
+       "kare": [
+        110
+       ],
+       "omuz": [
+        [
+         650,
+         650
+        ]
+       ],
+       "dirsek": [
+        [
+         640,
+         800
+        ]
+       ],
+       "bilek": [
+        [
+         735,
+         775
+        ]
+       ],
+       "aci": [
+        -20
+       ],
+       "poz": "jant",
+       "bukum": 1
+      }
+     },
+     "banknot": {
+      "kare": [
+       110,
+       128,
+       132,
+       138,
+       142
+      ],
+      "x": [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "y": [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "aci": [
+       -80,
+       -88,
+       -94,
+       -96,
+       -96
+      ],
+      "cep": [
+       0,
+       0,
+       0.1,
+       1,
+       1
+      ],
+      "tutan": [
+       "bazna",
+       "bazna",
+       "bazna",
+       "bazna",
+       null
+      ],
+      "arkada": [
+       0,
+       0,
+       1,
+       1,
+       2
+      ]
+     }
+    },
+    "kamera": {
+     "kare": [
+      110,
+      140,
+      420
+     ],
+     "cs": [
+      1.0,
+      1.0,
+      1.15
+     ],
+     "cx": [
+      0,
+      0,
+      35
+     ],
+     "cy": [
+      0,
+      0,
+      20
+     ],
+     "egri": "inout"
+    },
+    "karakterler": [
+     {
+      "kim": "moyzisch",
+      "yon": 1
+     },
+     {
+      "kim": "bazna",
+      "yon": 1,
+      "yuz": {
+       "bakis": [
+        0.9,
+        0.1
+       ],
+       "ifade": "M",
+       "kas": -0.15
+      }
+     }
+    ]
+   }
   },
   {
    "id": "P02",
@@ -1755,162 +2060,249 @@
     "tr": "Filmleri, Alman elçiliğindeki Moyzisch'e arabada sattı.",
     "en": "He sold the films to Moyzisch, a German embassy official."
    },
-   "olcek": "eller/insert cs 1.8 (film kutusu ≥130 px, zarf ≥350 px) → p120-232 pull-back cs 1.0 (iki figür + pencere + cephe + daktilo)",
+   "olcek": "insert-yakın (kucak, tavandan 70°): direksiyon tam halka + iki kucak; film kutusu 175 px, zarf 410→560 px; p150–232 hafif push cs 1.0→1.08 (zarf Bazna'nın kucağında)",
    "tempo": "nefes",
    "parametreler": {
-    "gorunum": "ic",
-    "saat": "gun",
-    "motor": false,
-    "daktilo": {
-     "yaziyor": true
-    },
-    "moyzisch": {
-     "x": -0.24
-    },
-    "bazna": {
-     "lean": [
-      0,
-      6
-     ],
-     "kare": [
-      0,
-      140
-     ]
-    },
+    "gorunum": "kucak",
+    "saat": "gece",
     "el": {
-     "bazna": {
+     "moyzischSol": {
       "kare": [
-       0,
-       20,
-       40,
-       60,
-       84,
-       110,
-       140
+       0
       ],
       "bilek": [
        [
-        870,
-        1030
-       ],
+        0,
+        697
+       ]
+      ],
+      "omuz": [
        [
-        800,
-        1000
-       ],
-       [
-        740,
-        985
-       ],
-       [
-        800,
-        1000
-       ],
-       [
-        790,
-        985
-       ],
-       [
-        850,
-        1010
-       ],
-       [
-        870,
-        1060
+        -260,
+        1780
        ]
       ],
       "aci": [
-       190,
-       190,
-       188,
-       190,
-       186,
-       120,
-       100
+       -95
       ],
-      "poz": "kistir",
-      "bukum": -1
+      "poz": "jant",
+      "bukum": 1
      },
      "moyzisch": {
       "kare": [
        0,
        30,
        44,
-       70,
-       84,
-       100,
+       64,
+       80,
+       96,
+       104,
        130
-      ],
-      "dirsek": [
-       [
-        352,
-        900
-       ],
-       [
-        366,
-        892
-       ],
-       [
-        380,
-        888
-       ],
-       [
-        372,
-        905
-       ],
-       [
-        380,
-        895
-       ],
-       [
-        372,
-        905
-       ],
-       [
-        362,
-        915
-       ]
       ],
       "bilek": [
        [
-        400,
-        1000
+        300,
+        1040
        ],
        [
-        440,
-        990
+        408,
+        968
        ],
        [
-        470,
-        985
+        414,
+        934
        ],
        [
-        420,
-        1010
+        -260,
+        1060
        ],
        [
-        470,
-        1000
+        106,
+        1377
        ],
        [
-        430,
-        1010
+        403,
+        1074
        ],
        [
-        400,
-        1010
+        403,
+        1074
+       ],
+       [
+        40,
+        1460
+       ]
+      ],
+      "omuz": [
+       [
+        200,
+        1820
+       ],
+       [
+        200,
+        1820
+       ],
+       [
+        200,
+        1820
+       ],
+       [
+        200,
+        1820
+       ],
+       [
+        200,
+        1820
+       ],
+       [
+        200,
+        1820
+       ],
+       [
+        200,
+        1820
+       ],
+       [
+        200,
+        1820
        ]
       ],
       "aci": [
-       -8,
-       -10,
-       -12,
-       10,
-       -10,
-       10,
-       5
+       -45,
+       -50,
+       -50,
+       -120,
+       -60,
+       -30,
+       -30,
+       -60
       ],
-      "poz": "kistir",
+      "poz": [
+       "avuc",
+       "avuc",
+       "tutus",
+       "tutus",
+       "tutus",
+       "tutus",
+       "dayali",
+       "dayali"
+      ],
       "bukum": 1
+     },
+     "bazna": {
+      "kare": [
+       0,
+       2,
+       30,
+       44,
+       70,
+       104,
+       130
+      ],
+      "bilek": [
+       [
+        1320,
+        1080
+       ],
+       [
+        1240,
+        1060
+       ],
+       [
+        721,
+        921
+       ],
+       [
+        721,
+        921
+       ],
+       [
+        800,
+        1130
+       ],
+       [
+        774,
+        1106
+       ],
+       [
+        1034,
+        1396
+       ]
+      ],
+      "omuz": [
+       [
+        1250,
+        1800
+       ],
+       [
+        1250,
+        1800
+       ],
+       [
+        1250,
+        1800
+       ],
+       [
+        1250,
+        1800
+       ],
+       [
+        1250,
+        1800
+       ],
+       [
+        1250,
+        1800
+       ],
+       [
+        1250,
+        1800
+       ]
+      ],
+      "aci": [
+       -150,
+       -150,
+       -135,
+       -135,
+       -140,
+       -140,
+       -140
+      ],
+      "poz": [
+       "kistir",
+       "kistir",
+       "kistir",
+       "avuc",
+       "avuc",
+       "tutus",
+       "dayali"
+      ],
+      "bukum": -1
+     },
+     "baznaSag": {
+      "kare": [
+       0
+      ],
+      "bilek": [
+       [
+        1026,
+        862
+       ]
+      ],
+      "omuz": [
+       [
+        1300,
+        1700
+       ]
+      ],
+      "aci": [
+       -100
+      ],
+      "poz": "dayali",
+      "olcek": [
+       0.9
+      ],
+      "bukum": -1
      }
     },
     "nesneler": [
@@ -1918,77 +2310,78 @@
       "tur": "filmKutusu",
       "kare": [
        0,
-       40,
+       2,
        44,
-       70,
-       71
+       64
       ],
       "x": [
-       840,
-       720,
-       710,
-       470,
-       470
+       0,
+       0,
+       0,
+       0
       ],
       "y": [
-       1010,
-       960,
-       960,
-       1060,
-       1060
+       0,
+       0,
+       0,
+       0
       ],
       "aci": [
-       0,
-       0,
-       0,
-       10,
-       10
+       -20,
+       -20,
+       -30,
+       -30
       ],
-      "arkada": [
-       0,
-       0,
-       0,
-       0,
-       1
-      ],
-      "olcek": 1.6
+      "tutan": [
+       "cep",
+       "bazna",
+       "moyzisch",
+       "cep"
+      ]
      },
      {
       "tur": "zarf",
       "kare": [
        0,
-       60,
-       84,
-       110,
-       140
+       80,
+       96,
+       104,
+       130
       ],
       "x": [
-       470,
-       470,
-       700,
-       840,
-       880
+       220,
+       220,
+       600,
+       600,
+       860
       ],
       "y": [
-       1075,
-       1075,
-       990,
-       1010,
-       1110
+       1180,
+       1180,
+       960,
+       960,
+       1250
       ],
       "aci": [
        0,
        0,
        -6,
-       4,
-       0
+       -6,
+       4
       ],
-      "arkada": [
-       0,
-       0,
-       0,
-       0,
-       0
+      "olcek": [
+       0.73,
+       0.73,
+       1.0,
+       1.0,
+       0.73
+      ],
+      "tutan": [
+       null,
+       "moyzisch",
+       "moyzisch",
+       "bazna",
+       null
       ]
      }
     ]
@@ -1996,23 +2389,23 @@
    "kamera": {
     "kare": [
      0,
-     120,
+     150,
      232
     ],
     "cs": [
-     1.8,
-     1.8,
-     1.0
+     1.0,
+     1.0,
+     1.08
     ],
     "cx": [
-     -198,
-     -198,
-     0
+     0,
+     0,
+     -40
     ],
     "cy": [
-     -132,
-     -132,
-     0
+     0,
+     0,
+     -40
     ],
     "egri": "inout"
    },
@@ -2041,36 +2434,34 @@
     },
     {
      "kim": "bazna",
-     "yon": -1,
-     "yuz": {
-      "bakis": [
-       0.9,
-       0.35
-      ],
-      "ifade": "M",
-      "kas": -0.15
-     }
+     "yon": 1
     }
    ],
    "temaslar": [
     {
      "kare": 2,
-     "olay": "el cepten film kutusunu çıkarır",
+     "olay": "Bazna'nın eli film kutusuyla cebinden çıkar (kadraja girer)",
      "ses": "cic_cep_kumas"
     },
     {
      "kare": 44,
-     "olay": "kompars film kutusunu kavrar",
+     "olay": "Moyzisch film kutusunu kavrar",
      "ses": "cic_kutu_tutus"
     },
     {
-     "kare": 84,
+     "kare": 80,
+     "olay": "Moyzisch zarfı kucağından alır",
+     "ses": "cic_zarf_tutus",
+     "db": -4
+    },
+    {
+     "kare": 104,
      "olay": "Bazna zarfı kavrar",
      "ses": "cic_zarf_tutus"
     },
     {
-     "kare": 118,
-     "olay": "zarf kucağa konur",
+     "kare": 130,
+     "olay": "zarf Bazna'nın kucağına konur",
      "ses": "cic_zarf_kucak"
     }
    ],
@@ -2087,35 +2478,30 @@
     }
    ],
    "dokunus": null,
-   "kontrol_kare": 80,
+   "kontrol_kare": 100,
    "okunurluk": {
     "nesne": "film kutusu ↔ zarf",
-    "nesne_pct": 12,
+    "nesne_pct": 15,
     "net_sn": 1.3,
-    "not": "cs 1.8: film kutusu ≥130 px, zarf ≥350 px"
+    "not": "kutu devri p30–44, zarf devri p96–104 (el+zarf bbox ≥%15)"
    },
    "saklanan": "zarfın içi (açılmaz; kraft/tütün, kalın)",
-   "alt_ucte_bir": "koltuk kenarı + kapı paneli + kucakta zarf gölgesi",
+   "alt_ucte_bir": "kanepe sırtı tabanı (dikişli) + iki kucak + Bazna'nın kucağındaki zarf (p130+)",
    "tasiyici": {
-    "giris": "eylem eşleşmesi: P04 p370 cebe giren el → P05 p0 cepten film kutusu çıkaran el (aynı ceket, aynı yön)",
-    "cikis": "yok: Ankara → Berlin mekân sıçraması (bölümün tek bilinçli yer değişimi; ses: araba/daktilo ortamı biter, Berlin odası girer; müzik akar)"
+    "giris": "eylem eşleşmesi: P04 p370 cebe giren el → P05 p2 cepten film kutusuyla çıkan el (aynı ceket, aynı el)",
+    "cikis": "yok: Ankara → Berlin mekân sıçraması (bölümün tek bilinçli yer değişimi; ses: araba ortamı biter, Berlin odası girer; müzik akar)"
    },
    "sfx": [
     "cic_cep_kumas p2",
     "cic_kutu_tutus p44",
-    "cic_zarf_tutus p84",
-    "cic_zarf_kucak p118"
+    "cic_zarf_tutus p80 (−4 dB) / p104",
+    "cic_zarf_kucak p130"
    ],
    "muzik_notu": "akar; ortam değişir",
-   "kit_eksik": [
-    "zarf başta Moyzisch'in dizinde görünür (kurulum; çıkış yeri 'kucak')"
-   ],
+   "kit_eksik": [],
    "lint": {
-    "izin": [
-     "imzaDisiC28",
-     "p95L"
-    ],
-    "not": "ARABA gün p95 L* 68-72 (motion bilinen kusur 1); Bazna dudak/yanak C* 28-33 (P01 ile aynı izin)"
+    "izin": [],
+    "not": "ARABA v2 kucak gece: K-C4 p95 L* 61.4 (< 75; sıcak %15.2 geçti). Banknot yok, en parlak yüzey zarf/eller. İzin ya da düzeltme orkestra kararı bekliyor (motion tur-4)."
    },
    "baslangic_kare": 1603
   },
@@ -3313,46 +3699,60 @@
     "tr": "Moyzisch'in sekreteri Amerikalılara kaçınca Bazna yakalanmaktan korkup işi bıraktı.",
     "en": "When Moyzisch's secretary fled to the Americans, Bazna quit, afraid of being caught."
    },
-   "olcek": "a) p0-170 geniş (elçilik cephesi + kapı + kaldırım + park araba) cs 1.1 + cy kırpması · b) p170-370 göğüs/bel cs 2.2 (lamba ≥ %12)",
+   "olcek": "a) p0–170 boy (elçilik zemin katı karşıdan, cs 1.0: sekreter 237–277 px ≥%12; daktilo penceresi + kapı + fener + yeşil sedanın arkası) · b) p170–370 göğüs/bel cs 2.2 (lamba ≥ %12)",
    "tempo": "hizli",
    "parametreler": {
     "gorunum": "dis",
     "saat": "alacakaranlik",
     "sekreter": {
      "kare": [
-      56,
+      50,
+      58,
+      66,
       74,
-      108
+      96,
+      100
      ],
-     "x": [
-      407,
-      430,
-      800
+     "X": [
+      0.15,
+      0.15,
+      0.15,
+      0.3,
+      1.85,
+      1.9
      ],
-     "pencereKalkis": 30,
-     "kapidan": 56,
-     "biner": 120
+     "Z": [
+      9.15,
+      8.85,
+      8.55,
+      8.2,
+      7.1,
+      7.05
+     ],
+     "pencereKalkis": 16,
+     "kapidan": 50,
+     "biner": 100
     },
     "araba": {
      "kare": [
-      124,
-      156
+      114,
+      154
      ],
      "x": [
       0,
-      600
+      620
      ],
-     "kapi": [
+     "uzakKapi": [
       0,
       1,
       1,
       0
      ],
-     "kapiKare": [
+     "uzakKapiKare": [
+      94,
+      100,
       104,
-      108,
-      116,
-      120
+      110
      ]
     },
     "daktilo": {
@@ -3361,26 +3761,35 @@
     "plan_ici_kesme": {
      "kare": 170,
      "sonraki_sablon": "IC-ODA"
+    },
+    "binaKapi": {
+     "kare": [
+      44,
+      52,
+      72,
+      80
+     ],
+     "acik": [
+      0,
+      1,
+      1,
+      0
+     ]
     }
    },
    "kamera": {
     "kare": [
-     0,
-     156
+     0
     ],
     "cs": [
-     1.3,
-     1.3
+     1.0
     ],
     "cx": [
-     -200,
-     -200
+     0
     ],
     "cy": [
-     -57,
-     -57
-    ],
-    "egri": "inout"
+     0
+    ]
    },
    "devam_plan": {
     "kare_bas": 170,
@@ -3446,16 +3855,16 @@
         -40,
         -40,
         -12,
-        -60,
-        -60
+        -38,
+        -38
        ],
        "elF": [
-        -112,
+        -100,
         -60,
         -60,
-        -112,
-        -20,
-        -20
+        -100,
+        -62,
+        -62
        ],
        "lean": [
         0,
@@ -3472,6 +3881,14 @@
         0,
         6,
         6
+       ],
+       "elPozF": [
+        "dayali",
+        "tutus",
+        "tutus",
+        "dayali",
+        "kistir",
+        "kistir"
        ]
       }
      ]
@@ -3527,43 +3944,60 @@
    ],
    "temaslar": [
     {
-     "kare": 30,
-     "olay": "sekreter sandalyeyi iter (uzak)",
+     "kare": 16,
+     "olay": "sekreter sandalyeyi iter (daktilo penceresinde kalkar)",
      "ses": "cic_sandalye_it"
     },
     {
-     "kare": 62,
-     "olay": "bina kapısı",
+     "kare": 52,
+     "olay": "bina kapısı açılır",
      "ses": "cic_bina_kapi"
     },
     {
-     "kare": 84,
-     "olay": "sekreter adım",
+     "kare": 58,
+     "olay": "sekreter üst basamağa iner",
      "ses": "cic_adim_kaldirim"
     },
     {
-     "kare": 92,
-     "olay": "sekreter adım",
+     "kare": 66,
+     "olay": "sekreter alt basamağa iner",
      "ses": "cic_adim_kaldirim"
+    },
+    {
+     "kare": 74,
+     "olay": "sekreter kaldırıma basar",
+     "ses": "cic_adim_kaldirim"
+    },
+    {
+     "kare": 80,
+     "olay": "bina kapısı kapanır",
+     "ses": "cic_bina_kapi",
+     "db": -6
+    },
+    {
+     "kare": 84,
+     "olay": "sekreter adım (kaldırım)",
+     "ses": "cic_adim_kaldirim"
+    },
+    {
+     "kare": 94,
+     "olay": "sekreter adım (kaldırım, bagajın ardında)",
+     "ses": "cic_adim_kaldirim",
+     "db": -4
     },
     {
      "kare": 100,
-     "olay": "sekreter adım",
-     "ses": "cic_adim_kaldirim"
+     "olay": "uzak arka kapı açılır (yakın camın içinden)",
+     "ses": "cic_araba_kapi_ac"
     },
     {
-     "kare": 108,
-     "olay": "sekreter adım",
-     "ses": "cic_adim_kaldirim"
-    },
-    {
-     "kare": 120,
-     "olay": "araba kapısı kapanır",
+     "kare": 110,
+     "olay": "uzak arka kapı kapanır",
      "ses": "cic_araba_kapi_tok"
     },
     {
-     "kare": 124,
-     "olay": "araba hızlanıp gider",
+     "kare": 114,
+     "olay": "araba kalkar, sağdan çıkar",
      "ses": "cic_araba_gider"
     },
     {
@@ -3603,24 +4037,24 @@
     "not": "cs 2.2: lamba ≈260 px; filaman p262-292 kızıl (≈20 px, küçük: kit kusuru 7)"
    },
    "saklanan": "sekreterin yüzü (hiç görünmez)",
-   "alt_ucte_bir": "a) yol asfalt + araba gölgesi (cs 1.1 + cy kırpması); b) komodin gövdesi + yorgan kenarı",
+   "alt_ucte_bir": "a) ıslak parke + fener yansıması + daktilo yansıması + yakın bordür/kaldırım; b) komodin gövdesi + yorgan kenarı",
    "tasiyici": {
     "giris": "ses: P08 Bazna çıkış adımı kuyruğu → daktilo tıkırtısı + uzak araba",
     "cikis": "ışık + ses: P09 son karede oda soluk mavi, lamba sönük → P10 p0 masa aynı soluk mavi; p24 lamba tık"
    },
    "sfx": [
-    "cic_sandalye_it p30",
-    "cic_bina_kapi p62",
-    "cic_adim_kaldirim p84-108",
-    "cic_araba_kapi_tok p120",
-    "cic_araba_gider p124",
+    "cic_sandalye_it p16",
+    "cic_bina_kapi p52 / p80 (−6 dB)",
+    "cic_adim_kaldirim p58, p66 (basamaklar), p74, p84, p94",
+    "cic_araba_kapi_ac p100 (YENİ SES)",
+    "cic_araba_kapi_tok p110",
+    "cic_araba_gider p114",
     "cic_cekmece_kucuk p222",
     "cic_lamba_dugme_tik p262; p290-370 SESSİZ"
    ],
    "muzik_notu": "p290-370 foley yok; müzik akar (sessizlik foley yokluğu)",
    "kit_eksik": [
-    "P09b filaman küçük (≈20 px)",
-    "KC-K2 elçilik penceresi gerçek ölçek: daktilo silueti ~160 px"
+    "P09b filaman küçük (≈20 px)"
    ],
    "lint": {
     "izin": [
@@ -3667,7 +4101,7 @@
        110,
        340,
        352,
-       380
+       376
       ],
       "omuz": [
        [
@@ -3700,7 +4134,7 @@
        ],
        [
         -350,
-        900
+        1100
        ]
       ],
       "bilek": [
@@ -3733,8 +4167,8 @@
         800
        ],
        [
-        -100,
-        1000
+        228,
+        1250
        ]
       ],
       "aci": [
@@ -3745,9 +4179,18 @@
        -20,
        -20,
        -20,
-       30
+       -40
       ],
-      "poz": "kistir",
+      "poz": [
+       "kistir",
+       "kistir",
+       "kistir",
+       "kistir",
+       "kistir",
+       "kistir",
+       "dayali",
+       "dayali"
+      ],
       "E": 250,
       "bukum": -1,
       "tut": {

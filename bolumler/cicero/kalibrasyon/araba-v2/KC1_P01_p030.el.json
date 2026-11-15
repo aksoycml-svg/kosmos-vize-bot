@@ -1,0 +1,38 @@
+[
+ {
+  "ad": "moyzisch sol (jant)",
+  "bilek": 5,
+  "dirsek": 79.8,
+  "E": 286.2,
+  "poz": "jant",
+  "x": 906,
+  "y": 413
+ },
+ {
+  "ad": "moyzisch sağ",
+  "bilek": 5,
+  "dirsek": 111.8,
+  "E": 477,
+  "poz": "kistir",
+  "x": 931,
+  "y": 600
+ },
+ {
+  "ad": "bazna sol",
+  "bilek": 5,
+  "dirsek": 86.8,
+  "E": 477,
+  "poz": "avuc",
+  "x": 180,
+  "y": 1308
+ },
+ {
+  "ad": "bazna sağ (diz)",
+  "bilek": 15,
+  "dirsek": 103.1,
+  "E": 524.7,
+  "poz": "dayali",
+  "x": -41,
+  "y": 1699
+ }
+]

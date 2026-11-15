@@ -1,0 +1,13 @@
+{
+ "dosya": "bolumler/cicero/kalibrasyon/araba-v2/KC2_P01_p138.png",
+ "sicak_yuzde": 14.9,
+ "p95_L": 74.4,
+ "max_L_disari": 86.2,
+ "p999_L_disari": 84.3,
+ "max_C_disari": 48.1,
+ "p999_C_disari": 24.5,
+ "C28_ustu_px": 61,
+ "L88_ustu_px": 0,
+ "kirmizi_izinsiz_px": 0,
+ "kirmizi_izinli_px": 0
+}
