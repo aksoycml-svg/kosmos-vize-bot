@@ -25,3 +25,9 @@ Yorum: A kancası + "hamal" kelimesi. Bölüme devam; kaynaklı olaylar (kaza/r�
 ## Tur 1e — A kancasına not (2026-11-15)
 
 > asaportuna göre bu İstanbullu hamal, Amerika’dan daha yaşlıydı. Amerika da onu görmek için bilet aldı. saçma
+
+## Tur 1f — (2026-11-15)
+
+> fable tekrar yazsın senaryoyu,
+
+Uygulama: senarist ajanı Fable modeliyle baştan çalıştırılır; önceki taslak yalnız "reddedilenler" olarak verilir.
