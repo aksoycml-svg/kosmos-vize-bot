@@ -14,3 +14,14 @@ Hedef: P01 kanca (TR+EN, söz + ilk kare + ekran yazısı) yeniden; P10 ile dön
 ## Tur 1c — kaza kancası önerisine not (2026-11-15)
 
 > New York’ta bir araba, 156 yaşında olduğu söylenen bir adama çarptı. kanca iyi değl
+
+## Tur 1d — kanca seçimi (2026-11-15)
+Orkestra kanca önerileri sundu (A "Amerika'dan yaşlı" önerilen, B sirk, C ilk yüz yıl). Kullanıcı:
+
+> hamal ı da ekle
+
+Yorum: A kancası + "hamal" kelimesi. Bölüme devam; kaynaklı olaylar (kaza/röntgen, sayının büyümesi, Avrupa turu, otopsi) geri gelir.
+
+## Tur 1e — A kancasına not (2026-11-15)
+
+> asaportuna göre bu İstanbullu hamal, Amerika’dan daha yaşlıydı. Amerika da onu görmek için bilet aldı. saçma

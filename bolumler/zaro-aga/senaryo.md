@@ -1,13 +1,13 @@
-# Senaryo v1 (TR): Zaro Ağa — "Amerika bir adamı değil, bir sayıyı izledi"
+# Senaryo v3 (TR): Zaro Ağa — "Yük taşıyan adam, sergilenen sayı"
 
 Kaynak: yalnız `arastirma.md` (KISMİ DOĞRULAMA; dönem basını ve TR kaynaklar yalnız arama özeti, güç etiketlerine uyuldu). Kanal: TR. Eşi: `senaryo-en.md` (aynı 10 plan, aynı süreler).
-Format: 1080x1920 · **65.0 sn** (plan süresi = iki dilin uzunu + kuyruk; EN belirler, P03/P06/P09'da TR) · **10 plan** · TR 118 kelime (≈56 sn konuşma) · EN 125 kelime (≈60 sn) · mekânlar: İSKELE (İstanbul + New York rıhtımı varyantı), ÇADIR (dış + iç), MASA-INSERT (pasaport, röntgen, belgeler, harita), EŞİK (ev kapısı + sokak ucu). (v2: P10 kapanışı kullanıcı notuyla değişti, bkz. §11.)
+Format: 1080x1920 · **65.0 sn** (plan süresi = iki dilin uzunu + kuyruk; EN belirler, P03/P06/P09'da TR) · **10 plan** · TR 118 kelime (≈56 sn konuşma) · EN 126 kelime (≈60 sn) · mekânlar: İSKELE (İstanbul + New York rıhtımı varyantı), ÇADIR (iç), MASA-INSERT (pasaport, röntgen, belgeler, harita), EŞİK (ev kapısı + sokak ucu). (v2: P10 kapanışı, v3: P01 kancası ve P02 kullanıcı notlarıyla (notlar/tur-1.md) değişti; alternatifler §11.)
 
 ## 0. Önce bunlar
 
-**Dönüş satırı:** Önce: Amerika, yaşı yüz elli altı denen bir adamı değil o sayıyı görmeye gidiyor; sayı büyüdükçe adam küçülüyor. / Sonra: sayı belgede, taşta, hesapta üç ayrı değere bölünüyor ve bugün hâlâ tartışılıyor; adamın kendi işi ise ölümünden iki yıl sonra sessizce kalkıyor, geriye çividen asılı boş bir semer kalıyor. Tür: **ayna / karşıtlık** (sayı ↔ insan; taşıyan ↔ taşınan).
+**Dönüş satırı:** Önce: yıllarca sırtında yük taşıyan bir hamal, Amerika'da bir sandalyeye oturtulup "dünyanın en yaşlı adamı" diye sergileniyor; sayı büyüdükçe adam küçülüyor. / Sonra: sayı belgede, taşta, hesapta üç ayrı değere bölünüyor ve bugün hâlâ tartışılıyor; adamın kendi işi ise ölümünden iki yıl sonra sessizce kalkıyor, geriye çividen asılı boş bir semer kalıyor. Tür: **ayna / karşıtlık** (sayı ↔ insan; taşıyan ↔ taşınan).
 
-**Kahraman:** Zaro Ağa, İstanbul'da yıllarca hamallık yapmış yaşlı işçi. İzleyici onun sırtındaki semeri ve ayağındaki sandalyeyi izler. Yüzü P05'e kadar saklı (P01 perde ardı, P02 profil).
+**Kahraman:** Zaro Ağa, İstanbul'da yıllarca hamallık yapmış yaşlı işçi. İzleyici onun sırtındaki semeri ve ayağındaki sandalyeyi izler. Yüzü P05'e kadar net görünmez (P01 profil, yüz gölgede; P02 profil).
 
 **Beş satırlık omurga**
 1. **Durum:** İstanbul'da hamallık yapmış bir işçi; yaşı yalnız pasaportundaki bir tarihe dayanıyor (1774), düzenli doğum kaydı yok.
@@ -17,18 +17,19 @@ Format: 1080x1920 · **65.0 sn** (plan süresi = iki dilin uzunu + kuyruk; EN be
 5. **Sonuç:** Ölümünden sonra belge 157, mezar taşı 160, bir hesap uzmanı ~97 diyor; yaş bugün hâlâ tartışılıyor. Adamın yaptığı iş ise iki yıl sonra kaldırılıyor; sayı konuşulmaya devam ediyor, işi ve semeri kimsenin gündeminde değil.
 
 **Son cümle (önce yazıldı):** "Ölümünden iki yıl sonra, sırtta yük taşıma işi de kaldırıldı."
-Son cümlenin gerektirdikleri ve nerede kurulduğu: "sayı" P01 · "sırtta yük/semer" P02 · "kasket" P02 · "kapı ve eşik" P08 · "sayının üç ayrı değeri" P09. Hepsi ilk üçte birde ya da öncesinde kurulu (semer, sayı, kasket P01–P02; kapı P08). Döngü: son kare çividen asılı boş semer, P01'in ışıklı sayı tabelasına eşleşen kesme: "bir adamı değil bir sayıyı" cümlesi, sayı ayakta kalıp adamın işi gidince tamamlanır.
+Son cümlenin gerektirdikleri ve nerede kurulduğu: "sayı" P01 · "sırtta yük/semer" P02 · "kasket" P02 · "kapı ve eşik" P08 · "sayının üç ayrı değeri" P09. Hepsi ilk üçte birde ya da öncesinde kurulu (semer, sayı, kasket P01–P02; kapı P08). Döngü: kanca iki şey söyler (yıllarca yük taşıyan + dünyanın en yaşlı adamı); kapanış ikisini kapatır (yaşı hâlâ tartışılıyor + taşıma işi kaldırıldı). Görsel: son kare çividen asılı boş semer, P01'in ilk karesine (sandalyedeki adamın yanında dikey yaslı semer, arkada 156) eşleşen kesme; semer P01'de dolu bir imge, P10'da boş.
 
 ## 1. Doğruluk kararları
 - **Yaş:** 1930 varışında söylenen sayı **156** (pasaport, dönem basın alt yazısı). "157" yalnız ölüm belgesinde (P09), "160" mezar taşında. Yaş her yerde "pasaportuna göre", "yazıyor", "öne sürdü"; hiçbir yerde kesin yaş yok. Yıl anlatıda **yok** (ekran yazısında: 1774, 1930, 1934).
+- **Kanca (v3, kullanıcı notu):** kanca pasif ("sergilendi"), Amerika'nın "izlemeye geldiği" ima edilmez; 156 yalnız P02'de, "pasaportuna göre"; 157 yalnız P09'da (ölüm belgesi). "Dünyanın en yaşlı adamı diye" ifadesi sergi dilidir, iddia değil.
 - **Yön:** Zaro Amerika'ya **davet edilip götürüldü** ("çağırdı"); "Amerika izlemeye geldi" değil. Davet eden "anlatılana göre bir Amerikalı organizatör" (tek köken); Norden adı, alkol karşıtı dernek alternatifi, fotoğraf ücretleri (10/15 $) anlatıya girmedi. Çıkış tarihi, Atina uğrağı yok.
-- **Hamal:** "yıllarca hamallık yapmış" (orta). Belediye serhademeliği ve 1930'da hamal olmadığı anlatıda yok; görselde gemiden yük taşıyan eski hamal olarak yalnız P02 (dönem: ömrünün çoğu).
+- **Hamal:** "yıllarca yük taşıyan bir hamal" (kanca) / "yıllarca hamallık yapmış" (orta). Belediye serhademeliği ve 1930'da hamal olmadığı anlatıda yok; kancada yalnız geçmiş iş olarak, görselde gemiden yük taşıyan eski hamal olarak P02'de. Kancadaki sandalye ve yanındaki semer dramatizasyon (semerin sahnede durduğuna dair kaynak yok).
 - **Replik:** "İlk yüz yıl en zorudur" dönem basın alt yazısından; tercüman aracılığıyla, "demiş" (gazete şekillendirmiş olabilir). Tercüman = yanındaki genç akraba (büyük-büyük-torun); adı (Ashuit Nussa) anılmaz.
 - **Röntgen "en fazla 120":** tek kaynak (EN-WP), "demiş". Zaro'nun öfkelenip belgesini göstermesi anlatıda **yok**; yalnız görselde (P07) ve ekran etiketinde "anlatıldığına göre". Otomobil kazası (iki dönem kaynağı) bilerek çıkarıldı: röntgenle bağı kaynakta kesin değil.
 - **Sergi:** "aylarca", "sirk çadırı", "dünyanın en yaşlı adamı" (orta). "Sekizinci Dünya Harikası" yalnız ekran yazısında afiş etiketi olarak.
 - **Dönüş/ölüm:** "İstanbul'a döndü" (tarihsiz; 1931 mi 1932 mi çelişkili). Ölüm tarihi 29 Haziran 1934 yalnız ekran yazısı. Ölüm yeri (Etfal/Çocuk), sebebi, otopsi, beyin/kalp müzesi, "beş parasız" dönüş anlatıya girmedi.
 - **Sayılar:** belge 157 (orta), mezar taşı 160 (tek özet), "bir hesap uzmanı yaklaşık 97 öne sürdü" (Bowerman, yöntem görülmedi; adı ve "itirafı" yok). "Hangisi doğru" iddiası yok, gerçek yaş bilinmiyor.
-- **Cenaze sözü:** "dünyasına doyamadan gitti" popüler kaynakta (BBN), söyleyen çelişkili (kızı/torun). "Yakınları", "anlatıldığına göre".
+- **Kapanış (v2):** "sırt hamallığı 4 Nisan 1936 tarihli Dahiliye Vekâleti tamimiyle kaldırıldı" (orta, arama özeti); anlatıda yıl yok, "ölümünden iki yıl sonra" (1934 + 1936); ekranda 1936. "Yaşı bugün hâlâ tartışılıyor": hiçbir kaynakta kesin yaş yok (çelişki 1–3). Cenaze sözü ("dünyasına doyamadan gitti"; popüler, söyleyen çelişkili) kullanıcı notuyla çıkarıldı.
 - **Yok:** Ford, Ripley's, Ellis Island, gemi adı, Chrysler çatısı, Atatürk görüşmesi, hipofiz, "üç böbrek", "yalan/şarlatan" sözleri. Alay yok.
 - **Dramatizasyon:** semerin son karede çividen asılı durması, sandalye, gemi güvertesi ve repliklerin görüntüsü dramatizasyondur; açıklamada belirtilir.
 
