@@ -145,3 +145,10 @@
 - **Piksel-aynı:** Paris k300 ve Çiçero k1200'de farklı piksel 0.
 - **Karşılaştırma:** `tur-3/karsilastirma.png` (her kare + Paris çatı/balon/güvercin). Palet ve kâğıt artık aynı aileye yakın; Paris'in kontur netliği ve ayrıntı yoğunluğu (pencere, perçin, kumaş) bizde düşük. Ön kaya (K1) ve gövdeler (K3) hâlâ düz alanlı.
 - **Öz puan ≈ 6:** K1 6 · K2 6 · K3 5.5 · K4 6. Eşik 7'nin altında.
+
+## elestirmen · 2026-11-15 · kalibrasyon tur-3 bağımsız teşhis
+- Ne yaptım: 4 kalibrasyon karesi (tam/360/güvenli), 4 hareket şeridi, 2× yüz/omuz kırpımları, ölçüm json'ları Paris `genel-tr.jpg` + `hedef-ozet.jpg` ve referans fotoğraf 20341r ile karşılaştırıldı; mekanlar §1.1/1.4/3.1–3.4/0.10, sahne-plani §12 kartlarıyla kare kare eşlendi. Render yapılmadı.
+- Dokunduğum dosyalar: bolumler/ben-my-chree/kalibrasyon/tur-3/elestiri.md (yeni), bolumler/ben-my-chree/katki-raporu.md
+- Kararlar: puanlar K1 5.5 · K2 4.5 · K3 4.5 · K4 4 (genel ≈ 4.6, geçmez; motion öz puanı 6 iyimser). Ölçümler geçiyor; kusurlar ölçülemeyen işleme/geometri/figürde.
+- Yakalanan ihlaller: global yatay tarama (tarama yeri kuralı, kafes yasağı); K4 arkada deniz (coğrafya/fizik), kamera spec'in üstünde, çalı örtüsü (§0.10), kapak/kapı okuması; K1 oyuk kaldırıldı (kurulum→karşılık kopuk); K3 el IG düğmeleri altında, yüzde kutu favori + bıçak gölge, omuz başlığı göğüs ortasında, low angle uygulanmadı, gülümseme "onur" değil; K2 yarı saydam katman, kanat koridora sığmıyor, korkuluk yok, MCU yerine boy plan, ön plan öğesi yok.
+- Açık sorular / sonraki ajana: tur-4 son tur; K4 için önce mekân sorumlusundan kroki önerildi. Yönetmen kartı (oyuk 900×520) ile mekanlar §3.3 (450×260) çelişkisi yönetmende çözülmeli. Tasarımcı ifade tablosuna `kararli` (nötr/sıkılmış dudak) eklemeli.
