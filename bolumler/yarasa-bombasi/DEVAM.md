@@ -16,8 +16,7 @@ Araştırma (+ Wikipedia tam metin doğrulama turu) → senaryo v1 (kullanıcı 
 - Kabul edilen kit eksikleri: P04 notu bırakan el yok, P02 kalem girişi yok, P05 damlalık yok, P06 kapak kapanışı yok, P10 kompars yok.
 
 ## Kulakla dinlenecek saniyeler
-- 2.2–2.4 (kanca kesmesi, ateş tutuşu) · 33–34 (müzik kesimi) · 44.6–46.8 (P09 tutma, müzik −16'ya çıkar, P10'a iner)
-- 48–50 (ateş yatağı anlatımı bastırıyor mu / P11'e kuyruk) · 49.5–50.5, 55.8–56.8 (müzik kesimleri) · 59.5–62.7 (son akor, döngü)
+- (tur 3 zamanları, ayrıntı `miks.md` §7) P09 tutma 46.3–47.8 · doruk girişi 47.8–48.6 · ateş kuyruğu kesmede 51.2–52.7 · mühür 56.57 · son akor 61.3–64.2
 - Foley ortalaması anlatım tepesinin ~4 dB altında (hedef ~7) — yüksek gelirse `tools/yarasa_miks.py` global foley kazancı.
 
 ## Jürinin açık bıraktıkları (düzeltilmedi)
