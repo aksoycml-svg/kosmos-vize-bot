@@ -1,65 +1,90 @@
 {
  "id": "P08",
  "lang": "tr",
- "text": "15 Mayıs 1943'te bir yardımcı hava üssünde silahlı yarasalar kazayla salındı.",
+ "text": "On beş Mayıs bin dokuz yüz kırk üçte bir yardımcı hava üssünde silahlı yarasalar kazayla salındı.",
  "words": [
   {
-   "t": "15",
-   "s": 0.13,
-   "e": 0.46
+   "t": "On",
+   "s": 0.0,
+   "e": 0.186
+  },
+  {
+   "t": "beş",
+   "s": 0.244,
+   "e": 0.441
   },
   {
    "t": "Mayıs",
-   "s": 0.58,
-   "e": 0.8
+   "s": 0.522,
+   "e": 0.743
   },
   {
-   "t": "1943'te",
-   "s": 0.88,
-   "e": 2.07
+   "t": "bin",
+   "s": 0.813,
+   "e": 0.964
+  },
+  {
+   "t": "dokuz",
+   "s": 1.022,
+   "e": 1.324
+  },
+  {
+   "t": "yüz",
+   "s": 1.37,
+   "e": 1.486
+  },
+  {
+   "t": "kırk",
+   "s": 1.544,
+   "e": 1.776
+  },
+  {
+   "t": "üçte",
+   "s": 2.055,
+   "e": 2.345
   },
   {
    "t": "bir",
-   "s": 2.3,
-   "e": 2.46
+   "s": 2.392,
+   "e": 2.496
   },
   {
    "t": "yardımcı",
-   "s": 2.49,
-   "e": 2.98
+   "s": 2.519,
+   "e": 2.961
   },
   {
    "t": "hava",
-   "s": 3.01,
-   "e": 3.19
+   "s": 2.984,
+   "e": 3.146
   },
   {
    "t": "üssünde",
-   "s": 3.25,
-   "e": 3.67
+   "s": 3.204,
+   "e": 3.599
   },
   {
    "t": "silahlı",
-   "s": 3.72,
-   "e": 4.1
+   "s": 3.646,
+   "e": 4.052
   },
   {
    "t": "yarasalar",
-   "s": 4.13,
-   "e": 4.62
+   "s": 4.098,
+   "e": 4.667
   },
   {
    "t": "kazayla",
-   "s": 4.98,
-   "e": 5.45
+   "s": 4.841,
+   "e": 5.352
   },
   {
    "t": "salındı.",
-   "s": 5.49,
-   "e": 5.92
+   "s": 5.41,
+   "e": 6.13
   }
  ],
- "dur": 6.165,
+ "dur": 6.06,
  "voice": "ctoYieZ4J7WwcdhujpMq",
  "model": "eleven_multilingual_v2",
  "ayar": {
@@ -80,5 +105,6 @@
  "cit_kaymasi": 0.0,
  "nefes_temizlendi": [
   36.76
- ]
+ ],
+ "not_": "tur 4: yıl yazıyla (TTS '1943'te' okuyuşu bozuktu); yalnız P08 ayrı çağrı, seed 7"
 }
