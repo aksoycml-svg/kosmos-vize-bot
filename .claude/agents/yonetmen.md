@@ -35,7 +35,7 @@ Görevini bitirince `bolumler/<slug>/katki-raporu.md` dosyasının SONUNA şu bi
 
 ## Dersler (Blanc Bölüm 1)
 - Her plana **çekim ölçeği** (geniş · boy · bel · göğüs · yakın · insert) ve plan içi ölçek değişimi yaz; önemli oyunculuk anları yakın/bel plan.
-- **Çekim kartı (kullanıcı kararı, Ben-my-Chree):** her çekimi `src/kit/SINEMATOGRAFI-SOZLUK.md` terimleriyle §9 biçiminde yaz: plan ölçeği · açı · hareket (kombinasyon) · sanal ekipman · lens mm · alan derinliği/netlik olayı (deep/shallow/rack focus) · hız karakteri (ease in/out, controlled…) · gerekçe. Bölümde çeşitlilik: aynı ölçek+hareket üst üste en çok 2; en az bir rack focus, bir paralaks hareketi, bir alçak/yüksek açı. "itme/zoom" tek başına hareket tarifi sayılmaz.
+- **Çekim kartı (kullanıcı kararı, Ben-my-Chree):** her çekimi `src/kit/SINEMATOGRAFI-SOZLUK.md` terimleriyle §9 biçiminde yaz: plan ölçeği · açı · hareket (kombinasyon) · sanal ekipman · lens mm · alan derinliği/netlik olayı (deep/shallow/rack focus) · hız karakteri (ease in/out, controlled…) · gerekçe. Bölümde çeşitlilik: aynı ölçek+hareket üst üste en çok 2; en az bir rack focus, bir paralaks hareketi, bir alçak/yüksek açı. "itme/zoom" tek başına hareket tarifi sayılmaz. Kartın ilk satırı **duygu**dur (`src/kit/SINEMATOGRAFI-DUYGU.md` §8); teknikler o duygudan türetilir, gerekçe §10'daki 7 sorudan 1, 5 ve 6'yı cevaplar.
 - Plan ≥2 sn (Blanc P09 1.8 sn idi). Toplam kare sabit tutulur, kaydırmalar tabloyla gösterilir.
 - Ayak/temas/kurulum nesnesi ve yazı bantları için y koordinatlarını hesapla (alt 420 px bandına ayak düşmez; replik ayakları örterse üst banda).
 - Ölü alan yok: her kadrajda alt üçte biri neyin dolduracağını yaz.

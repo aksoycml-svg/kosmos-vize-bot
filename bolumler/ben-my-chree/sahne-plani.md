@@ -202,7 +202,7 @@ P01 çizgi oyukta biter (0–18 sn) → P04 namlu ucu (18–23) → P05 top yar�
 Derrick ucu güvertede, uçak suya inerken gövdeye çarpmaz (sancak boşluğu); tayfa (T1–T4, yüzlü) güverte tahtasında, ayaklar y ≤ 1480 (P02a'da ≈ 1250, P07b ≈ 1260); kapı dışa açılır (hasarlı kanat menteşede); simit sancak (su) tarafında; bot gemiden aşağı iner, sağdan kadrajı terk eder; yürüyüş yok (gait gerekmez). Gemi su hattı sabit, yalnız P09'da yatış (suya gömülen kenar P10a arka planı ile aynı). Gemi demirli: baş çıpa zinciri gergin (P03b → P07c). Katır görünmez (sadece izi, P04; P05 ön planda flu başı). **Kedi/köpek yok.**
 
 ## 9. Yeni şablonlar için en az gereken parametre listesi (motion)
-Ortak (üç şablon + harita): `dunya {isik_azimut:235, gun_yuksekligi (anahtarlı 22→6), seed}`, `kamera {z_yol [m], odak_yol [mm eşdeğer], yukseklik_yol [m], yon_derece, pan_tilt, kare[], egri}` (cs/cx/cy türetilir; kör 2D ölçek yok), `katman_z` (her katmanın gerçek mesafesi, m; paralaks ve dolly zoom buradan), `ufuk_y`, `tarama`, `atmosfer {sis, tuz, buğu bantları}`, litografi gök (5 basamak), temas gölgeli figür. Işık yönü kamera yönünden hesaplanır (`rel = 235 − b`).
+Ortak (üç şablon + harita): `dunya {isik_azimut:235, gun_yuksekligi (anahtarlı 22→6), seed}`, `kamera {konum_yol [x,y,z m], yon_yol (pan/tilt/roll °), kare[], egri}` · **optik:** `lens_mm` yolu (zoom ve dolly zoom), `odak_z` yolu (rack focus: odak mesafesi z m, kare aralığı), `diyafram` (katman başına bulanıklık yarıçapı; z ile ölçeklenir, deep/shallow), `ekipman` etiketi (slider|dolly|jib|crane|steadicam|tripod → eğri karakteri) (cs/cx/cy türetilir; kör 2D ölçek yok), `katman_z` (her katmanın gerçek mesafesi, m; paralaks ve dolly zoom buradan), `ufuk_y`, `tarama`, `atmosfer {sis, tuz, buğu bantları}`, litografi gök (5 basamak), temas gölgeli figür. Işık yönü kamera yönünden hesaplanır (`rel = 235 − b`).
 
 **LIMAN** (kod: ada, gemi, su, gök, uzak kıyı): 
 - `gorunum`: `kiyidan-ada` (P01/P06 V1 arka/P07c) · `ada-rihtim` (P03a) · `karsi-kiyi` (P03c) · `rihtim-yan` (P06 V2) · `hangar-yakin` (P06 V3) · `enkaz` (P10a, arka plan; ön plan KIYI-BATARYA `saygi`)
@@ -245,27 +245,278 @@ Ortak (üç şablon + harita): `dunya {isik_azimut:235, gun_yuksekligi (anahtarl
 - Okunurluk (≥%10 ve ≥1 sn): D1 uçak %30+ 4.3 sn · D2 çıpa %25+ 2.3 sn · D3 namlu ucu %12 1.3 sn · D4 el %15 2.0 sn · D5 su sütunu %25 ~1 sn her biri, isabet 1.4 sn · D6 kapı %35 2.0 sn · D7 bot %18+ 2.97 sn · D8 simit %10.4 1.9 sn.
 - Açık sorular: bkz. katkı raporu.
 
-## 12. Fiziksel kamera tablosu (tur-6 / kamera notu; her çekimde anlamlı hareket)
-Kamera 2.5D dünyada gerçek z (m) ile gezer; yükseklik m; odak = tam kare eşdeğer mm (300 mm ≈ 7° yatay görüş, 85 mm ≈ 24°, 50 mm ≈ 40°, 35 mm ≈ 55°). Hareketler yumuşak (inout), kısa tutma ile biter, **en az 12 kare kuyruk**; sarsıntı yok. Yalnız P10a ve anahtar okumaların son kısmı sabit (bilinçli tutma).
-| çekim | hareket | z / pan-tilt yolu | odak (mm) | yükseklik (m) | gerekçe (neyi açıyor/saklıyor) |
-|---|---|---|---|---|---|
-| P01 | dolly-in + hafif truck sola | z 0→+3, x 0→−0.6 (kıça); f0–175 | 300 | 1.2 | Ön plan kayası (12 m) paralaksla geriye kayar, bakış oyuktan çizgiyle gemiye süzülür; oyuğun içi saklı kalır |
-| P02a | truck sağa + yavaş dolly-in | x 0→+1.5, z 0→+1; f0–265 | 35 | 2.2 | Uçak inerken paralaks kapıyı ve botları geride kuran çizgiler olarak açar; kapı ve botlar yok sayılmadan ekranda kalır |
-| P02b | pan sola 25° (güverteden simide) + 0.7 sn tutma | pan 0→−25°; f290–385, tutma 385–413 | 50 | 1.4 | Pan, kapı ve botlardan simide taşır; simit kurulum nesnesi olarak sabit kadrajda biter |
-| P03a | truck (rıhtım boyunca, gemiyi takip) | x 0→+6, f0–95 (gemi durunca truck durur) | 35 | 3.0 | Gemi durağa oturana kadar takip, durunca kamera da durur: "demirledi"nin sakin kuruluşu |
-| P03b | vinç aşağı (jib) | y 2.0→1.2, hafif tilt aşağı 8°; f126–245 | 50 | 2.0→1.2 | Çıpanın makaradan suya inişini izler, zincirin gerildiği yeri kadraja alır |
-| P03c | yavaş dolly-in, ön planda flu korkuluk köşesi paralaksı | z 0→+6, f264–470 | 300 | 4.0 | Karşı kıyıya yaklaştıkça 2 km ölçü çizgisi kendini kanıtlar; kıyı boş, saklı olan gösterilmez |
-| **P04** | **DOLLY ZOOM (tek)** | kamera z **0 → −7 m (geri)**, f0–250 | **120 → 288** (2.4×) | 3.0 | **Bölümün en güçlü anı.** "Oysa toplar gizlice oraya taşınmıştı": ön plan taşı (z 5→12 m, ekranda sabit yükseklik **%14 = 270 px, y 1180–1450**) yerinde dururken boş kıyı arkadan büyür ve üstümüze gelir; hiçbir şey eklenmeden mekân "boş" olmaktan çıkar; sonda oyuk ve namlu ucu merkeze oturur. Kare aralığı f0–250, kuyruk 47 kare; parıltı f190 (ilerleme ≈ 0.85, namlu ucu ≥ %12 = 230 px; yetmezse odak_son 336 mm sınırı). Ease inout; z ve odak aynı eğriyle (z/odak = sabit) |
-| P05 | geri açılan dolly + hafif yay (omuz üstünden): namlu ucundan teğmenin omzu üstünden profile | z 0→−1.2, x 0→+0.8, pan sağa 10°; f0–190, tutma 190–239 | 85 | 1.5 | Aynı noktadan (540,900) açılarak önce eli, sonra yüzü ve arkadaki erleri tanıtır; yeni karakter birden belirmez |
-| P06 V1 | yavaş dolly-in (iki sn), **atışta sabit** | z 0→+2, f0–170; f170–240 sabit | 85 | 1.2 | Gerilim: erlerin omzu üstünden gemiye yaklaşır, atış anında kamera durur (sarsıntı yok) |
-| P06 V2 | truck sola (rıhtım boyunca) | x 0→−3, pan sola 6°; f240–360 | 50 | 1.8 | İki sütunu aynı kayma içinde ardı ardına gösterir; üçüncü sütunun yokluğuna çerçeveyi hazırlar |
-| P06 V3 | dolly-in, hangar kapısına | z 0→+3, f372–500; 500–547 tutma (isabet 464'te sürer; **darbe** ≤ 2 px) | 100 | 2.0 | Kapının üzerinde "sütun yok" boşluğunu büyütür; isabette kamera durmaz, yumuşak bitirir |
-| P07a | vinç aşağı + tilt aşağı | y 2.0→0.8, tilt −18°; f0–125 | 50 | 2.0→0.8 | Dumandan gövde boyunca kıç suyuna, bozulan dümene iner |
-| P07b | çok yavaş dolly-in, kapı itilirken sürer | z 0→+0.8, f150–245 (kanat sallanırken tutma 245–270) | 85 | 1.2 | Kapıya odaklar; hangarın içi saklı kalır |
-| P07c | dolly-out (P01 noktasından geri) | z 0→−3, f270–420 | 300 | 1.2 | Çevre açılır: gemi yerinde çakılı, duman büyüyor — "dönemiyordu" |
-| P08a | truck sağa (takip) | x 0→+3, f0–195 | 50 | 0.8 | Ölü motordan çalışan bota geçişi tek harekette bağlar |
-| P08b | truck sürer, sonra dolly-out + vinç yukarı | x +3→+4, sonra z 0→−6, y 0.8→2.5; f205–365 | 50 | 0.8→2.5 | Bot açılır, çevre geri çekilir; yanan gemi ve su görünür, "Kimse ölmedi" okunur |
-| P09 | vinç aşağı + rack focus (gemiden simide) | y 1.5→0.9, f0–165 | 85 | 1.5→0.9 | Gemi yatarken kamera su seviyesine iner, odak simitte durur |
-| **P10a** | **SABİT (bilinçli tutma: saygı anı)** | — | 85 | 1.5 | Hareket yok: yüzler ve enkaz tek kare, ağırbaşlı |
-| P10b | harita: `kamera_takip` + hafif `itme` (2D) | rota ucunu izler | — | — | "Karadan" çizgisinin ucunu takip eder |
-Doğrulama: her hareket plan sonundan ≥ 12 kare önce biter; paralaks için katmanlar gerçek z'de (§9); P04 dolly zoom'da ön plan taşı yüksekliği ±2 px sabit, ölçülür (kayma/kaynama yok); "itme" P04'te kullanılmaz.
+## 12. Çekim kartları (SINEMATOGRAFI-SOZLUK.md §9 biçimi; 19 çekim)
+Kamera 2.5D dünyada gerçek z (m) ile gezer; lens tam kare eşdeğer mm (300 ≈ 7° yatay, 85 ≈ 24°, 50 ≈ 40°, 35 ≈ 55°, 24 ≈ 74°). Her hareket plan sonundan ≥ 12 kare önce biter. Shaky Cam, Crash Zoom, Whip/Swish Pan, Dutch Angle **yok**; `darbe` yalnız P06 V3 ve P07b (≤ 2 px). §4'teki eski "itme/cs/yükseklik" ifadelerinde çelişki olursa **bu kartlar geçerlidir**.
+
+**P01 · kare 0–190 · LIMAN**
+```
+WIDE SHOT (WS) — gemi ≈ %65 genişlik
+EYE LEVEL (1.2 m, kıyı kayası üstü)
+DOLLY IN + LATERAL TRACKING (Truck Left) + PARALLAX — z 0→+3 m, x 0→−0.6 m, f0–175, sonra Static Hold 15 kare
+DOLLY TRACK (kaya üstü kısa ray)
+300MM TELEPHOTO — LONG LENS COMPRESSION
+SHALLOW FOCUS: ön plan kaya (z 12 m) yumuşak σ4; gemi (z 2000 m), ada (z 2100–2400 m) net; sabit
+SLOW, SMOOTH, EASE OUT (decelerating)
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Kaya oyuğu paralaksla geride kalır, bakış çizgiyle gemiye süzülür; oyuğun içi saklı kalır. Kanca ilk karede hareketli.
+
+**P02a · kare 190–480 (yerel 0–290) · GEMI-INSERT `kic`**
+```
+MEDIUM WIDE SHOT (MWS) / THREE SHOT: T1, T2 + uçak
+EYE LEVEL, hafif yüksek (2.2 m güverte)
+LATERAL TRACKING (Truck Right) + DOLLY IN + PARALLAX — x 0→+1.5 m, z 0→+1 m, f0–265
+DOLLY TRACK (güverte boyunca ray)
+35MM WIDE-ANGLE LENS
+DEEP FOCUS: halat/tayfa (z 3 m), uçak/derrick (z 4 m), kapı (z 6 m), botlar (z 9 m) hepsi net; sabit
+SMOOTH, CONSTANT SPEED, sonra EASE OUT
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Paralaks kapıyı ve botları (kurulum) uçak inerken geride açar; tayfa yüzleri okunur; hareket şamandıra değdiğinde yavaşlar.
+
+**P02b · kare 480–603 (yerel 290–413) · GEMI-INSERT `korkuluk`**
+```
+INSERT SHOT (simit) → MEDIUM CLOSE-UP
+EYE LEVEL (1.4 m, sancak korkuluğu)
+PAN LEFT 25° (kapı ve botlardan simide), ardından STATIC HOLD 28 kare (f385–413)
+TRIPOD + FLUID HEAD
+50MM LENS
+DEEP FOCUS (simit z 2.5 m, bot z 8 m); sabit
+CONTROLLED, EASE IN / EASE OUT
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Pan kurulum nesnelerini sırayla gezer ve simidi merkezde bırakır; tutma, simidin P09'da hatırlanmasını sağlar.
+
+**P03a · kare 603–729 (yerel 0–126) · LIMAN `ada-rihtim`**
+```
+ESTABLISHING SHOT — EXTREME WIDE SHOT (EWS)
+HIGH ANGLE → EYE LEVEL (kale terasından 28 m → rıhtım hizası 6 m)
+CRANE DOWN + TILT UP — y 28→6 m, tilt −22°→−4°, f0–112, 14 kare tutma
+CRANE (Technocrane, sanal)
+24MM ULTRA WIDE LENS
+DEEP FOCUS: kale, liman, gemi (z 150–800 m) net
+SMOOTH, FLUID, DECELERATING
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Ada, kale, tricolore ve limanı tek harekette tanıtır; gemi son metresini kayarak durur; iniş kıyıya bakan göz hizasına bırakır (P03b baş insert'ine hazırlık).
+
+**P03b · kare 729–867 (yerel 126–264) · GEMI-INSERT `bas-capa`**
+```
+INSERT SHOT (çıpa, zincir)
+LOW ANGLE (güverte hizasından makaraya yukarı, 1.2 m)
+FOLLOW SHOT: PEDESTAL DOWN + TILT DOWN — y 2.0→1.2 m, f126–245, çıpayı takip; son 19 kare Static Hold
+JIB ARM (kısa)
+50MM LENS
+SHALLOW FOCUS: çıpa/zincir (z 2.0 m) net; su ve ufuk yumuşak; sabit
+CONTROLLED, ACCELERATING (düşüşle), sonra decelerating
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Çıpanın düşüşünü izler, gerilen zincirin çizgisini kadraja alır; ufku saklayıp 'bağlandı' hissini kurar.
+
+**P03c · kare 867–1091 (yerel 264–488) · LIMAN `karsi-kiyi`**
+```
+WIDE SHOT (WS) — POINT OF VIEW (geminin güvertesinden mürettebatın bakışı)
+EYE LEVEL (6 m, baş güvertesi)
+DOLLY IN + PARALLAX — z 0→+6 m (ön plan korkuluk köşesi), f264–470
+DOLLY TRACK (güverte rayı)
+300MM TELEPHOTO — LONG LENS COMPRESSION
+SHALLOW FOCUS: korkuluk (z 3 m) yumuşak σ5; karşı kıyı (z 2000 m) net; sabit
+VERY SLOW, CONSTANT SPEED
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Gemidekilerin gördüğünü gösterir: boş, sakin kıyı. 2 km ölçü çizgisi bu bakışın içinden çizilir; saklı olan henüz yok.
+
+**P04 · kare 1091–1388 · KIYI-BATARYA `yamac-oyuk` — DOLLY ZOOM (bölümün tek kullanımı)**
+```
+WIDE SHOT (WS) → INSERT SHOT (namlu ucu)
+EYE LEVEL (3.0 m, deniz hizası)
+DOLLY ZOOM / VERTIGO EFFECT — kamera z 0→−7 m (Dolly Out), zoom 120→288 mm, f0–250, Static Hold f250–297 (47 kare kuyruk)
+DOLLY TRACK + MOTORIZED ZOOM (aynı eğri: z ve odak oranı sabit)
+120→288MM ZOOM — arka plan 2.4× büyür
+DEEP FOCUS: ön plan taşı (z 5→12 m, ekranda sabit %14 = 270 px, y 1180–1450) ve kıyı net
+VERY SLOW, EASE IN / EASE OUT; parıltı f190'da (ilerleme ≈ 0.85; namlu ucu ≥ %12; yetmezse odak_son 336)
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: 'Oysa toplar gizlice oraya taşınmıştı': ön plan sabit dururken boş kıyı üstümüze büyür; hiçbir şey eklenmez ama kıyı artık boş değildir.
+
+**P05 · kare 1388–1627 · KIYI-BATARYA `tegmen`**
+```
+INSERT SHOT (el + namlu) → MEDIUM CLOSE-UP / PROFILE SHOT, DIRTY SINGLE (E1, E3 arkada)
+LOW ANGLE (0.5 m yer seviyesine yakın; teğmen ve top aşağıdan)
+ARC SHOT + PULL OUT (Dolly Out) + RACK FOCUS — z 0→−1.2 m, yay 0→+10°, f0–190; netlik f124–150; Static Hold f190–239
+DOLLY TRACK (kısa kavisli ray, sanal)
+85MM LENS
+SHALLOW FOCUS + RACK FOCUS: el/namlu (z 0.5 m) → teğmen yüzü (z 1.1 m) f124–150 ('Mustafa'); arka erler (z 4–6 m) σ2
+SLOW, CONTROLLED, EASE OUT
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Önce sakin eli ve namluyu (iki pat) gösterir, 'Mustafa Ertuğrul' denirken netlik yüze geçer; alçak açı genç subaya ağırlık verir.
+
+**P06 V1 · kare 1627–1867 (yerel 0–240) · KIYI-BATARYA `top-onplan`**
+```
+OVER-THE-SHOULDER (OTS) — E1'in omzu üstü, DIRTY SINGLE (E2 arkada, E3 sol-alt)
+HIP LEVEL (1.1 m)
+DOLLY IN + RACK FOCUS — z 0→+2 m, f0–170; netlik f100–150; Static Hold f170–240 (atışta kamera durur)
+DOLLY TRACK (steady)
+85MM LENS
+SHALLOW FOCUS + RACK FOCUS: E1 yanağı/omzu (z 2.2 m) → gemi (z 2000 m) f100–150 ('iki saat sonra … ateş açtı')
+SLOW, EASE IN, CONTROLLED; atış anında STATIC HOLD
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Gemi erin gözünden görünür: netlik erden hedefe geçer, gerilim kurulur; atışta kamera sarsılmaz (yalnız toz ve geri tepme).
+
+**P06 V2 · kare 1867–1999 (yerel 240–372) · LIMAN `rihtim-yan`**
+```
+MEDIUM WIDE SHOT (MWS)
+EYE LEVEL (1.8 m, rıhtım ucu)
+LATERAL TRACKING (Truck Left) + PARALLAX + PAN LEFT 6° — x 0→−3 m, f240–360
+DOLLY TRACK (rıhtım boyunca)
+50MM LENS
+DEEP FOCUS: sütunlar (z 30 m) ve gemi (z 45 m) net
+SMOOTH, CONSTANT SPEED
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Kayma iki sütunu arka arkaya taşır; çerçeveyi üçüncüde sütunun olmayacağı boşluğa hazırlar.
+
+**P06 V3 · kare 1999–2174 (yerel 372–547) · LIMAN `hangar-yakin`**
+```
+MEDIUM SHOT (MS) — arka baca, hangar kapısı
+LOW ANGLE (1.0 m, su hizasına yakın rıhtım; gemi yukarıda ağır)
+DOLLY IN — z 0→+3 m, f372–500; isabet f464'te kamera sürer (darbe ≤ 2 px); Static Hold f500–547
+DOLLY TRACK
+100MM LENS
+SHALLOW FOCUS: halkalar (z 10 m) yumuşak; kapı ve baca (z 45 m) net; sabit
+VERY SLOW, DECELERATING
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Kapının üstündeki 'sütun yok' boşluğunu büyütür; isabette gösteri yok, kamera yumuşak durur.
+
+**P07a · kare 2174–2324 (yerel 0–150) · GEMI-INSERT `kic-su`**
+```
+MEDIUM SHOT (MS)
+EYE LEVEL → HIGH ANGLE (kıç korkuluğundan suya bakış)
+CRANE DOWN + TILT DOWN — y 2.0→0.8 m, tilt −18°, f0–125; Static Hold f125–150
+JIB ARM / CRANE (sanal)
+50MM LENS
+SHALLOW FOCUS: dümen ve köpük (z 6 m) net; duman (z 15 m) yumuşak
+CONTROLLED, FLUID, DECELERATING
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Dumandan gövde boyunca kıç suyuna iner; bozuk dümeni ve boşa dönen köpüğü bulur.
+
+**P07b · kare 2324–2444 (yerel 150–270) · GEMI-INSERT `hangar-kapi`**
+```
+MEDIUM CLOSE-UP (MCU) — kapı + T3, DIRTY SINGLE
+EYE LEVEL (1.2 m)
+DOLLY IN (çok yavaş) + STATIC HOLD — z 0→+0.8 m f150–245; kanat sallanırken Static Hold f245–270
+SLIDER
+85MM LENS
+SHALLOW FOCUS: kapı (z 4 m) net; T3 (z 2.8 m) hafif σ1.5 (yüz okunur); sabit
+VERY SLOW, EASE OUT
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Kapıya yaklaşır, hangarın içini saklar; T3'ün kontrollü şaşkınlığı kenarda kalır.
+
+**P07c · kare 2444–2607 (yerel 270–433) · LIMAN `kiyidan-ada` (P01 noktası)**
+```
+WIDE SHOT (WS)
+EYE LEVEL (1.2 m)
+DOLLY OUT (Pull Out) — z 0→−3 m, f270–420; Static Hold f420–433
+DOLLY TRACK (kaya üstü, P01 ile aynı ray)
+300MM TELEPHOTO — LONG LENS COMPRESSION
+SHALLOW FOCUS: kaya (z 12 m) σ4; gemi net; sabit
+VERY SLOW, DECELERATING
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: P01'in aynı kadrajından geri çekilir: gemi yerinde çakılı, duman büyüyor; 'dönemiyordu'.
+
+**P08a · kare 2607–2812 (yerel 0–205) · GEMI-INSERT `bot`**
+```
+MEDIUM SHOT (MS) / GROUP SHOT (T4, yaralılar)
+LOW ANGLE (0.8 m, su hizası)
+SIDE TRACKING (Truck Right) + RACK FOCUS — x 0→+3 m, f0–195; netlik f150–195
+STEADICAM (botun yanında, süzülme)
+50MM LENS
+SHALLOW FOCUS + RACK FOCUS: A botu krank (z 2 m) → B botu (z 5 m) f150–195
+SMOOTH, FLUID, CONSTANT SPEED
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Ölü motordan çalışan bota geçişi tek harekette ve tek netlik geçişinde bağlar.
+
+**P08b · kare 2812–2990 (yerel 205–383) · GEMI-INSERT `bot`**
+```
+MEDIUM WIDE SHOT → WIDE SHOT, GROUP SHOT (yaralılar)
+EYE LEVEL → HIGH ANGLE (0.8→2.5 m)
+DOLLY OUT + CRANE UP (Pull Back) — x +3→+4 m, z 0→−6 m, y 0.8→2.5 m, f205–365; Static Hold f365–383
+JIB / CRANE (sanal)
+50MM LENS
+DEEP FOCUS (bot z 5→10 m, gemi z 25 m net)
+SMOOTH, FLUID, DECELERATING
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Bot açılırken kamera geri çekilir: yanan gemi ve su görünür; 'Kimse ölmedi' sırasında yaralıların yüzleri okunur.
+
+**P09 · kare 2990–3172 · GEMI-INSERT `korkuluk-su`**
+```
+INSERT SHOT (simit) → MEDIUM CLOSE-UP
+LOW ANGLE (su hizasına: 1.5→0.9 m)
+PEDESTAL DOWN + RACK FOCUS — y 1.5→0.9 m, f0–165; netlik f60–110
+JIB ARM (kısa)
+85MM LENS
+SHALLOW FOCUS + RACK FOCUS: yatan gövde (z 8 m) → simit (z 3 m) f60–110
+SLOW, CONTROLLED, EASE OUT
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Gemi yatarken kamera su seviyesine iner, netlik simitte durur; sessiz kapanış.
+
+**P10a · kare 3172–3406 · KIYI-BATARYA `saygi` + LIMAN `enkaz` — SAYGI ANI**
+```
+GROUP SHOT (teğmen + E1–E4) — arkada ESTABLISHING enkaz
+LOW ANGLE, hafif (1.1 m; yaklaşık 8° aşağıdan)
+LOCKED-OFF SHOT — STATIC HOLD (3.9 sn)
+TRIPOD (kilitli)
+50MM LENS (insan gözüne yakın, abartısız)
+DEEP FOCUS: erler (z 5–7 m) ve enkaz (z 2000 m) net; sabit
+STATIC HOLD
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: Alçak açı (hafif) figürlere anıtlık değil ağırlık verir, yüzler gök önünde kenar ışığıyla ayrılır; Eye Level insanidir ama alçak açı onurludur, abartılmadığı için gösteriş değil saygı. Hareket yok.
+
+**P10b · kare 3406–3666 · HARITA-MEIS**
+```
+TOP SHOT / OVERHEAD (harita) — ESTABLISHING
+TOP SHOT
+TRACKING (rota ucunu izler) + SLOW ZOOM IN — kit `kamera_takip` + `kamera_dil.itme` 0.04 (2D)
+MOTION CONTROL RIG (sanal, kit)
+LENS YOK (2D harita)
+DEEP FOCUS (harita düz)
+SLOW, CONSTANT SPEED, sonra STATIC HOLD (30 kare kuyruk)
+60 FPS
+9:16 ASPECT RATIO
+```
+- Gerekçe: 'Karadan' çizgisinin ucunu izler ve iğneyle kapanır; döngü P01'in çizgisine bağlanır.
+
+### Çeşitlilik denetimi
+- **Rack focus (4):** P05 (el/namlu → teğmen yüzü, f124–150), P06 V1 (E1 → gemi, f100–150), P08a (A botu → B botu, f150–195), P09 (gövde → simit, f60–110). Netlik olayı olmayan çekimlerde derinlik bilinçli: deep ya da sabit shallow.
+- **POV:** P03c (geminin güvertesinden mürettebatın bakışı). **OTS:** P06 V1 (E1'in omzu üstünden gemi; P05'te yüz okunması gerektiği için OTS orada değil).
+- **Alçak açı:** P03b, P05, P06 V3, P08a, P09, P10a. **Yüksek açı / Establishing EWS:** P03a (Crane Down), P07a sonu, P08b sonu, P10b (Top Shot).
+- **Dolly Zoom:** yalnız P04. **Paralaks:** P01, P02a, P03c, P06 V2. **Kilitli çekim:** yalnız P10a (bilinçli tutma).
+- Üst üste aynı ölçek+hareket yok (en çok 2): ardışık hareketler Dolly In · Truck+Dolly · Pan · Crane Down · Pedestal Down · Dolly In (POV) · Dolly Zoom · Arc+Pull Out · Dolly In · Truck · Dolly In · Crane Down · Dolly In · Dolly Out · Side Tracking · Dolly Out+Crane Up · Pedestal Down · Locked-Off · Tracking.

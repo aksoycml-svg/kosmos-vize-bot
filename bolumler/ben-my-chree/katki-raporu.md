@@ -59,3 +59,9 @@
 - Dokunduğum dosyalar: bolumler/ben-my-chree/sahne-plani.md, katki-raporu.md
 - Kararlar: dolly zoom P04'e (kıyı "gizlice" büyür; P06'da dolly zoom yok, düz dolly). Efekt kodları KE-E3/KE-E4, er kartı E3/E4 ile karışmasın diye yeniden adlandırıldı. P10a'da yazı yok (yüzler üst banda yakın).
 - Açık notlar: P06 V1 erleri gemiyi örtmemeli (x ≥ 560 serbest), P05'te yüz ≥ 110 px sıkışık; P10a arka sıra yüz ≈ 110 px; motion doğrular. §4 içindeki eski "itme/cs" ifadeleri §12 ile geçersiz sayılır (metin başında not var).
+
+## yonetmen · 2026-11-15 · §12 çekim kartları (SINEMATOGRAFI-SOZLUK §9)
+- Ne yaptım: §12'yi 19 çekim kartı olarak yeniden yazdım (ölçek, açı, hareket/kombinasyon, sanal ekipman, lens mm, alan derinliği + netlik olayı z/kare, hız karakteri, gerekçe, 60 fps, 9:16) + çeşitlilik denetimi. §9'a optik parametreler (`lens_mm`, `odak_z`, `diyafram`, `kamera {konum_yol, yon_yol}`, `ekipman`) eklendi.
+- Dokunduğum dosyalar: bolumler/ben-my-chree/sahne-plani.md, katki-raporu.md
+- Kararlar: rack focus 4 (P05, P06 V1, P08a, P09); POV P03c (gemiden kıyıya); OTS P06 V1 (P05'te yüz/isim okunsun diye); P03a Establishing EWS Crane Down; P04 Dolly Zoom korundu; P10a Locked-Off, hafif Low Angle (onur, gösterişsiz). Shaky/crash/whip/dutch yok. P06 V3 yükseklik 2.0→1.0 m (Low Angle), P05 1.5→0.5 m: eski değerler kartlarla geçersiz (§12 başında not).
+- Açık: P06 V1 yerleşimi OTS'ye göre değişti (E1 sol-ön omuz-yanak, E2 orta arka, E3 sol-alt); gemi x ≥ 560 serbest kalmalı, motion doğrular. P03c POV için gemi korkuluğu ön plan gerekli.

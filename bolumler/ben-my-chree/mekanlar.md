@@ -124,8 +124,12 @@ P01'de gemi 5.6 px/m (uzak-orta sınırı): kontur 2.5 px yalnız gövde silueti
 - Çapraz tarama yalnız ≤ 120 px derin gölgede: oyuk ağzının iç köşesi, kapı menteşe aralığı, can botu altı. Kafes deseni yok.
 
 ### 0.10 Ortak varlık: KAYA OYUĞU (`KayaOyugu`, LIMAN + KIYI-BATARYA aynı dünya nesnesi)
-- **Dünya:** mevzi noktası M = (−350, 48, 1 975) [T]. Oyuk, yamaçta doğal karst oyuğudur (tafoni/erime oyuğu) [G]. Ağız 2.6 m genişlikte, 1.5 m yükseklikte, 2.2 m derinlikte. Ağız biçimi basık, asimetrik, kırık kenarlı. **Yapı değildir**; düzgün kemer çizilmez.
-- **Görünüm:** P01, P07c ve P10a'da ön planda iç kısım `#2e2a44`. Ağzın üst dudağı ışıkta `#b89a86`, kenar ışığı sağda 2 px. P04'te orta mesafede görünür, ağzı güneye bakar ve ön ışık alır; içi yine karanlıktır, çünkü 2.2 m derinliğe güneş girmez (h 22°). P06 V1'de içinde top kundağı vardır.
+- **Dünya:** mevzi noktası M = (−350, 48, 1 975) [T]. Mevzi, yamaçtaki kireçtaşı çıkıntısının içinde doğal bir **kaya sığınağıdır** (karst oyuğu) [G]. Taban düz bir kaya sekisidir. Ağız güneye (denize) bakar: 4.5 m genişlik, sarkan üst dudağın altında 2.6 m yükseklik, 3 m derinlik. Dudak doğuya (P01/V1'de sola) doğru alçalır. Arkada (kuzeyde) yamaca tırmanan dar bir **yarık** vardır; katır ve top bu yoldan gelir [T]. Ağız biçimi basık, asimetrik, kırık kenarlıdır. **Yapı değildir**; düzgün kemer çizilmez.
+- **Gölge fiziği:** h 20–22°'de dudak gölgesi ağzın 7 m gerisine kadar uzanır; sığınağın içi bütünüyle gölgededir. Top ve erler gölgede, deniz ışıkta kalır. Bu, "gizli batarya"nın ışıkla anlatımıdır ([T]; kamuflaj yok).
+- **Görünüm:**
+  - P01 ve P07c: kamera çıkıntının üstünde, sığınağın arkasında. Oyuk, yarıktan aşağı bakılan karanlık bir çukur olarak ön plan kayasında görünür (iç `#2e2a44`). Dudak ışıkta `#b89a86`, sağda 2 px kenar ışığı.
+  - P04: aşağıdan, güneyden görünür. Ağız ön ışık alır, içi yine karanlıktır.
+  - P06 V1 ve P10a: kamera yarığın içinde, mevziin ≈ 20 m gerisindedir ve sığınağın içinden denize bakar. Telefoto (dikey 9.7°) yüzünden dudak ve duvarlar büyük ölçüde kadraj dışında kalır; yalnız alçalan dudağın doğu ucu sol-üst köşeye, doğu iç duvarı sol kenara girer.
 - **Kaya:** gri-beyaz kireçtaşı `#d9b99a` (ışık) / `#b89a86` (orta) / `#6f6488` (gölge) / `#4a4468` (derin). Yüzeyde dikey erime olukları (karren) vardır: yakında 3–5 oluk, her biri 2 çizgi (gölge kenarı `#6f6488` 4 px + ışık kenarı `#eec5a2` 2 px), seed +7. Ceplerde soluk kızıl toprak **[yeni] `#a07e6a`** (h ≈ 55°, C* ≈ 17; kırmızı bandı dışında).
 - **Doğrulama:** mevzi yeri, yüksekliği ve oyuk varlığı kaynakta yok [A §5: "mevzi gizleme doğrulanamadı"]. Oyuk hikâyenin görsel aracıdır ve kaynak iddiası değildir [T]. Kamuflaj ağı ve çalı örtüsü çizilmez (tasarım §4.4).
 
@@ -214,7 +218,17 @@ P01'de gemi 5.6 px/m (uzak-orta sınırı): kontur 2.5 px yalnız gövde silueti
 | `karsi-kiyi` (P03c) | gemi baş güvertesi 4 m, b 15, F 2 600, kıyı Z 2 000 (1.3 px/m) | Ufuk y 860. Karşı kıyı (Kaş yamacı) 3 katman sırt: en yakın kıyı kayası y 820–880, orta sırt tepe y 640–700, en uzak y 560–600. Sırtların hepsi ön ışıkta (rel 220): sıcak, sol yüzleri gül-altın. Ön su y 880–1 920: vuruşlar büyür. Sol altta flu gemi korkuluğu köşesi (x 0–360, y 1 560–1 920). Ölçü çizgisi gemi (sol alt) → kıyı (orta) | gök · 3 sırt (`#9aa4c0` → `#7886a8`, sol yüz bandı `#e0b898`) · buğu bandı (y 840–870) · kıyı kayası şeridi · su · korkuluk (σ 6) | **Kıyı bomboş** (saklanan şey): oyuk bu mesafede görünmez (2.6 m × 1.3 = 3 px) ve çizilmez. Yamaçta maki noktaları seed'li, %20'si açık kaya |
 | `rihtim-yan` (P06 V2) | rıhtım ucu 2 m, b 210, F 2 200, gemi Z 80 m (27 px/m) | Gemi x 480–1 080, y 820–1 080 (iskele bordası kameraya, koyu). Sütun 1 x 300, sütun 2 x 700 (gemi arkası). Taban su hattı y 1 040, tepe y 520 (480 px ✓). Sağ kenarda kısmi ışık yolu (§0.7). Ön plan: rıhtım taşı sol alt (x 0–380, y 1 500–1 920) + halkalar | gök · uzak sırt (ada batısı, b 210'da kadrajda) · buğu · gemi · sütunlar · su · rıhtım (σ 5) | Sütunlar arkadan ışıklı (rel 25): **sağ kenarı ve tacı** kenar ışıklı, gövdesi gölge yüzü taramalı. Sütun gemiden önce mi arkada mı: sütun 1 önde (Z 70), sütun 2 arkada (Z 110, ölçek ×0.73, gemi tarafından alttan kesilir) |
 | `hangar-yakin` (P06 V3) | rıhtım ucu 2 m, b 205, F 3 600, gemi Z 60 m (60 px/m) | Gemi arka bölüm: arka baca x 120–230 (tepe y 520), hangar x 260–820 y 700–1 080, **kapı x 380–700 y 760–1 080 kapalı**, kıç derrick x 860–980. Su hattı 1 090. Ön su y 1 090–1 920, iki halka söner | gök · sırt · buğu · gemi (yakın LOD: perçin sırası yok, lumbuz, korkuluk çizgisi) · su | İsabet noktası kapı üstü (540, 740): çakım ≤ 10 kare, çekirdek ≥ 110 px. Sonra ince duman sağa yatar. Hangar duvarı geniş yüzde taranmaz; yalnız saçak altı III (θ 110°) |
-| `enkaz` (P10a) | = `kiyidan-ada` | §2.4 `batik` | = §1.4, C ışığı | Oyuk görünür, boş, çizgi yok |
+| `enkaz` (P10a arka plakası) | = `kiyidan-ada` plakası (Z ≥ 2 000 katmanları 0–11), kamera mevziin 20 m gerisinde, 0.6° aşağı tilt: içerik 115 px yukarı (göz hizası y 643) | Enkaz x 190–860, su hattı y 925 (§2.4 `batik`). Kale x 80–420, tepe y 525. Gök y 0–505 | §1.4 katman 0–11, **C ışığı** | Ön plan KIYI-BATARYA `saygi`'dir (§3.6). Gemide duman ve kor yok. Su sakin: ışıltı ×1.5, yansımalar uzun |
+
+**Görünüm başına ışık olayı ve atmosfer (LIMAN; "boş gök" ve "düz panel" yasağının karşılığı):**
+| Görünüm | Ön / orta / arka (özet) | Atmosfer | Işık olayı (kadrajda neyin değiştiği) |
+|---|---|---|---|
+| `kiyidan-ada` P01 | flu kaya + oyuk + ot / gemi + su / kale, amfi kasaba, 3 sırt, 5 basamak gök + 2 bulut şeridi | 3 buğu bandı, tuz zerresi sağa, kâğıt | mürekkep çizgi ilerlerken sağdaki ışıltı vuruşları sırayla yanıp söner (faz seed'li); bulut şeridi (b) 3 sn'de 20 px sağa kayar |
+| `ada-rihtim` P03a | taş, baba, halat / gemi kayıp durur / kale (yakın), 2 derinlik ev sırası | gemi köpüğünün buharı, bayrak, rıhtımda 2 uzak siluet (< %5) | gemi dururken kıç köpüğü söner ve gövdenin yansıması parçalıdan bütüne toplanır |
+| `karsi-kiyi` P03c | flu korkuluk köşesi / ışıltılı su / ön ışıkta sıcak Kaş sırtları (3 kat) | buğu bandı kıyı ayağında, yükselen tek bulut gölgesi sırt üstünde soldan sağa geçer | bulut gölgesi kıyıyı geçerken yamaç önce kararır, sonra yeniden ısınır; ölçü çizgisi bu ışık değişimi sırasında çizilir |
+| `rihtim-yan` P06 V2 | rıhtım taşı + halkalar / iki su sütunu / gemi (gölgede) + ada batısı | sütun çöküşünden kalan su tozu (`#e6dac6` α .25, rüzgârla sağa) | sütunlar kontrajurda: tepe tacı kenar ışığıyla yanar, çökerken su tozu sağdaki ışık yolunu bir an örter |
+| `hangar-yakin` P06 V3 | su + sönen iki halka / hangar, kapı, arka baca / sırt + gök | tuz zerresi; isabetten sonra ince duman | 60 kare boyunca hiçbir şey olmaz (saklama); sonra çakım kapı üstünü ≤ 10 kare aydınlatır ve kararmış leke kalır |
+| `kiyidan-ada` P07c | aynı kaya / yanan gemi / aynı kasaba | kalın duman sütunu kadrajın üstünden sağa çıkar; duman gölgesi güneşin tersine, gemi ile kamera arasındaki suya ve sola düşer (koyu `#4c5780` bant, kırık kenarlı) | alev ikinci kaynak olur: suda dilimli sıcak yansıma, dumanın alt yüzü ısınır. Dolly zoom seçilirse ada kapanır (§0.11) |
 
 ### 1.7 360 px okunurluk (LIMAN)
 | Ne okunmalı | 1080'de | 360'ta | Biçim testi |
@@ -280,6 +294,7 @@ Bu durumlar arasında oran değişmez (Paris "aynı karakter tek rig").
 **`kic` (P02a)** — göz 2.2 m (güverte), b 320, rel 275 (soldan yan). İnsert-yakın ölçek: uçak 12.4 m → 440 px (≈ 35 px/m). 
 - Arka: gök (y 0–700, 5 basamak A). Ada batı sırtı y 640–720 (σ 6). Liman suyu y 720–860 (yan ışıltı sol tarafta yoğun; güneş sol kadraj dışında).
 - Orta: kapalı hangar kapısı (sol, x 60–330 y 760–1 120). Kapı yüzü gölgede `#7a768a`, çerçeve `#4b4a5a`, sol kenarında 3 px kenar ışığı; menteşe tarafında çapraz tarama (≤ 120 px). Botlar sağ üstte (davitte, `#b79877`), iç gölgeleri taramalı.
+- Figürler: **T2** (≈ 40, kırlaşmış gür bıyık) bumbanın halatına asılır, **T1** (≈ 22, tüysüz) uçağın kanat ucunu halatla yönlendirir. Boy ≈ 520 px (y 760–1 280), yüz ≥ 75 px. Soldan yan ışık: yüzlerin sol yarısı ve ön düzlemi sıcak, sağ yanak mavi-mor. Ayaklar güverte tahtasında, temas gölgesi sağa (güneşin tersi).
 - Eylem: derrick bumbası (koyu `#4b4a5a`, sol kenar ışıklı) + uçak. Uçak bezi `#d6c4a0`; kanat altı gölge `#8a7e8a`; kanat ön kenarında sıcak kenar ışığı 3 px; dikmeler 2 tane her yanda, kafes yok. Şamandıralar ahşap `#8a6f5a`.
 - Ön: güverte tahtası (y 1 250–1 920; tahtalar kameraya doğru kaçar, KN (420, 700), tahta eni 0.12 m, ek çizgileri seed'li). Halat kangalı sol alt (σ 5). Flu makara sağ alt (σ 7).
 - Su teması: şamandıralar yerel 258'de suya değer → halka + 2 sıçrama damlası. Su, gövdenin iskele/kıç kenarından görünür (x 640–1 080, y 980–1 120).
@@ -310,23 +325,34 @@ Bu durumlar arasında oran değişmez (Paris "aynı karakter tek rig").
   - 4 kapı çerçevesi `#4b4a5a`. Çerçevenin iç yüzü alevden aydınlanır (`#e4b296` α .45, 2 basamak).
   - 5 kapı kanatları: sol kanat yerinde, kapalı ve kararmış; sağ kanat menteşede dışa açılmış (yerel 212'den sonra 0 → 62°, yayKare ile sönümlü salınır, 262'de durur). Açık kanadın iç yüzü alevden aydınlanır.
   - 6 kapı içi: `#2e2a44` zemin üstünde alev (dış/orta/çekirdek). Kapı açıklığından ≥ 120 px yükselir, rüzgârla sağa kıvrılır. İçerideki uçak/eşya **gösterilmez** (saklanan şey).
-  - 7 tayfa (yüzsüz, `#585870`): x 760–940, y 820–1 260, geri adımda. Ön yüzü alev havuzu basamaklarını alır; sol omuz güneş kenar ışığı. Ayak teması güvertede y 1 260, temas gölgesi alevden dışa (sağ-alt) düşer.
+  - 7 **T3** (yüzlü, tasarım §4.2b; ≈ 28, kemikli, kaşlarda toz): x 830–1 040, y 700–1 260, boy 560 px, yüz ≥ 75 px, ¾ profil kapıya dönük, bir adım geri. Kıyafet `#585870` / gölge `#3f3e58`. Yüzün kapıya bakan yarısı alev havuzunun iki basamağını alır (`#e4b296` α .45 → ten `#c9a88f` üstünde); öbür yarı mavi-mor gölgede, gökten yansıma hilali `#b9a8b4`. Sol omuzda güneş kenar ışığı. İfade kontrollü şaşkınlıktır: kaş kalkık, ağız kapalı, korku maskesi yok. Ayak teması güvertede y 1 260; temas gölgesi alevden dışa (sağ-alt) düşer.
   - 8 güverte: tahtalar KN'ye kaçar (y 1 150–1 920). Kapı eşiğinden yayılan havuz 3 basamakta: eşikte α .45, 1.3 m'de .28, 2.4 m'de .14. Havuz elips değil, perspektife oturan yamuktur.
   - 9 ön plan: sağ alt flu korkuluk dikmesi + boru (σ 6), sol alt flu yangın kovası askısı (boş; tayfa kovaya uzanmaz) [T].
   - 10 atmosfer: duman zerresi (sağa), 2 kor zerresi değil (kıvılcım yağmuru yasak).
 - **Sıcak bütçe:** gök köşe %6 + alev/kor ≈ %3.5 + havuz basamakları (C* ≤ 28 ama sıcak hue) ≈ %6 → ≈ %15.5. p95 L*: alev çekirdeği 87 ve gök alt bandı.
 - **Kor tekilliği:** alev dışındaki her yüzey C* ≤ 28. Havuz renkleri `#e4b296` / `#e0b090` sınırda kalır.
 
-**`bot` (P08a/b)** — göz 0.8 m (su hizası), b 300. Sol: gemi gövde duvarı x 0–260 (dik koyu levha, perçin sırası yakın LOD). Arkada duman perdesi gemi üstünü örter (gök yalnız sağ üstte, y 0–520, B ışığı). İki bot yan yana x 120–1 000 y 840–1 250. Bot içleri gölgede, kenar ışığı sol küpeştede. Yaralılar sargılı (`#d8c9ac`), yüzsüz, oturur. Su: bot gövdesine vuran küçük dalga halkaları. P08b'de B botu sağdan kadrajı terk eder, V izi kalır (§0.7). Geri çekilmede gemi σ 4'e flulaşır. **Krank:** A botunun kıç tarafında, insert değil; elin dönüşü 3 tık (yerel 60/95/130).
+**`bot` (P08a/b)** — göz 0.8 m (su hizası), b 300. Sol: gemi gövde duvarı x 0–260 (dik koyu levha, perçin sırası yakın LOD). Arkada duman perdesi gemi üstünü örter (gök yalnız sağ üstte, y 0–520, B ışığı). İki bot yan yana x 120–1 000 y 840–1 250. Bot içleri gölgede, kenar ışığı sol küpeştede. **T4** (yüzlü, çene sıkık, şakakta ter) A botunun kıçında krankta. 5 yaralı (tasarım §4.2b) sargılı (`#d8c9ac`), yüzleri sakin ve görünür (≥ 60 px), biri ötekinin omzuna yaslı. Yüzler sol-ön güneşten (rel 295) yarı ışık alır: ön düzlem sıcak, kameraya bakan yanak gölgede. Su: bot gövdesine vuran küçük dalga halkaları. P08b'de B botu sağdan kadrajı terk eder, V izi kalır (§0.7). Geri çekilmede gemi σ 4'e flulaşır. **Krank:** A botunun kıç tarafında, insert değil; elin dönüşü 3 tık (yerel 60/95/130).
 
 **`korkuluk-su` (P09)** — göz 1.5 m, b 320, B ışığı (12°, gül-altın, rel 275 soldan). Gövde sağda x 480–1 080 y 560–1 250, 22°'ye yatar (yerel 10–150). Korkuluk çizgisi eğilir; su hattı gövdeye tırmanır. Simit kancadan çıkar (66), düşer (yerçekimi, 34 kare), suya değer (100): halka + sıçrama, sonra yüzer (döner, 168'de durur). Odak çekmesi: gövde σ 0 → 4, simit σ 4 → 0. Su sol yarıda, ışıltı yoğun (güneş solda). Kabarcık: gövde dibinde 6–10 küçük daire, `#9aa6c0`.
+
+**Görünüm başına ışık olayı ve atmosfer (GEMI-INSERT):**
+| Görünüm | Ön / orta / arka | Atmosfer | Işık olayı |
+|---|---|---|---|
+| `kic` P02a | halat kangalı + makara (flu) / bumba, uçak, T1–T2 / hangar kapısı, botlar, ada sırtı, gök | tuz buharı; şamandıra temasında su tozu | uçak inerken kanat ucundaki kenar ışığı kanat boyunca kayar (kanat güneşe göre döner); suya değince ışıltı halkası yayılır |
+| `korkuluk` P02b | flu güverte köşesi / korkuluk + simit / bot tabanı, kasaba şeridi, su | tuz zerresi | simit sallanırken üst kenar ışığı ±2° kayar; korkuluk borusu üstünde tek ışık çizgisi sabit kalır (taşıyıcı) |
+| `bas-capa` P03b | flu ırgat / çıpa + zincir / ön ışıkta Kaş kıyısı (sıcak) | zincirden fırlayan damlalar | gerilme anında damlaların her biri kısa bir ışık noktası olur (≤ 6 kare) |
+| `kic-su` P07a | flu halat / kıç, dümen kanadı, köpük / duman sütunu, gök | duman zerresi, su buharı | tilt boyunca ışık kayar: üstte dumanın alevli alt yüzü, altta kıç suyunun soğuk gölgesi |
+| `hangar-kapi` P07b | flu korkuluk, kova askısı / kapı, alev, T3 / gök köşesi, ada sırtı | duman perdesi, duman zerresi | kapı itilince alev havuzu 3 basamakta güverteye "açılır" (her basamak 2 kare arayla); ışınsal gölgeler belirir |
+| `bot` P08a/b | bot tabanı + su / iki bot, T4, yaralılar / gövde duvarı, duman perdesi, sağ üstte gök | duman zerresi rüzgârla sağa; su yüzünde ince yağ halkası (`#9aa6c0` α .3) | motor tutunca kıçtaki köpük beyazlaşır ve V izi açılır; bot duman gölgesinden ışığa çıkar (kenar ışığı yanar) |
+| `korkuluk-su` P09 | su + simit / yatan gövde, korkuluk / sağ üstte gök, buğulu kasaba | kabarcık, sakin buhar | yatış ilerledikçe güverte kenarındaki kenar ışığı söner (yüzey güneşten döner); simit suya düşünce ışıltı halkası |
 
 ### 2.6 360 px okunurluk (GEMI-INSERT)
 Uçak (P02a) 440 px → 147 px: iki kanat + iki şamandıra seçilir. Simit 200 → 67 px: bantlı halka. Çıpa 480 → 160 px: çıpa biçimi. Zincir halkası 18 → 6 px. Kapı 590 px yüksek → 197 px: çerçeve + açık kanat + içerideki alev. Bot 300 px → 100 px. Yasak benzerlik: simit "can simidi değil süs çelengi" okunmamalı; bant sayısı 4, düz renk.
 
 ---
 
-## 3. KIYI-BATARYA (P04, P05, P06 V1)
+## 3. KIYI-BATARYA (P04, P05, P06 V1, P10a `saygi`)
 
 ### 3.1 Duygusal amaç ve görsel dil
 - **Amaç:** boş, sessiz, sabırlı bir yamaç. Tehlike küçüktür ve gizlidir: tek parıltı, tek el, tek namlu.
@@ -349,15 +375,16 @@ Uçak (P02a) 440 px → 147 px: iki kanat + iki şamandıra seçilir. Simit 200 
 | Kameradan görünen | P04 (göz mevziin 6 m altında): oyuğun tavanı ve içi görünmez; ağzın alt dudağı ve önündeki toprak düzlüğü daralır. P06 V1 (göz mevzide, 1.2 m): kundak üstten, deniz aşağıda, ada karşıda | geometri |
 
 ### 3.3 Katman tablosu `yamac-oyuk` (P04; cs 1.0 başlangıç → 2.4 itme)
-Kamera: göz deniz +42 m (yerel 3 m, alt kaya basamağında), b 15, F 2 600. Oyuk Z 20 m (130 px/m cs 1 → 312 px/m cs 2.4). Bakış 8° yukarı: göz hizası y_g 1 250 (kadrajın alt yarısında; sırt yukarıda).
+Kamera: göz deniz +42 m (yerel 3 m, alt kaya basamağında), b 15, F 3 000. Oyuk Z 30 m (100 px/m cs 1 → 240 px/m cs 2.4). Bakış 8° yukarı: göz hizası y_g 1 250 (kadrajın alt yarısında; sırt yukarıda).
+Oyuk ağzı 4.5 × 2.6 m → cs 1'de ≈ 450 × 260 px (sahne planı 320 × 220'den biraz büyük; yönetmen kadrajı x 320–770 y 940–1 200 olarak günceller). Namlu ucu cs 2.4'te görünen 1.0 m → 240 px ✓, ağız çapı 29 px, parıltı çekirdeği ≥ 60 px ✓.
 | # | Katman | Z | Şekil | Hex | Tarama | σ |
 |---|---|---|---|---|---|---|
 | 0 | Gök | ∞ | y 0–520, 5 basamak A. Ön ışık (güneş kamera arkasında, rel 220) olduğundan gök **tepe tonu koyu, alt tonları sıcak** | §1.1 A | sınır çizgileri | 0 |
 | 1 | Uzak sırt (Likya) | 6 000+ | tepe y 380–460, 2 siluet | `#9aa4c0` / `#8f9bb8`, sol yüz bandı `#e0b898` | yok | 6 |
 | 2 | Buğu | — | y 480–540 | `#e2cfc6` α .45 | — | — |
 | 3 | Yamaç üstü | 60–200 | kırık kaya basamakları y 520–900, maki lobları %30 | kaya ışık `#d9b99a`, gölge `#6f6488`; maki `#8c9272` / `#5f6c90` | yok | 3 |
-| 4 | **Oyuk yamacı** | 20 | x 0–1 080, y 700–1 500. Oyuk x 380–700, y 960–1 180 (itmeyle merkeze 540, 900). Karren 6 oluk. Ağız üst dudağı III tarama | §0.10 | III θ 60° yalnız dudak altı; çapraz ≤ 120 px iç köşe | 0 |
-| 5 | Namlu ucu | 21 (oyukta 1 m geride) | Yalnız ucu görünür: x 520–760, y 880–940 (cs 2.4'te ≈ 240 px uzunluk). Ağız halkası `#4c5780`, üst kenarı `#a8a2b4`. Parıltı noktası yerel 190: `#ffcf7a` çekirdek ≥ 60 px (cs 2.4), 2 kısa yatay ışın (≤ 80 px; yıldız yok) | `#5a5670` | yok | 0 |
+| 4 | **Oyuk yamacı** | 30 | x 0–1 080, y 700–1 500. Oyuk x 320–770, y 940–1 200 (itmeyle merkeze 540, 900). Karren 6 oluk. Ağız üst dudağı III tarama | §0.10 | III θ 60° yalnız dudak altı; çapraz ≤ 120 px iç köşe | 0 |
+| 5 | Namlu ucu | 30.5 (ağızdan 0.5 m geride) | Yalnız ucu görünür: x 520–760, y 880–940 (cs 2.4'te ≈ 240 px uzunluk). Ağız halkası `#4c5780`, üst kenarı `#a8a2b4`. Parıltı noktası yerel 190: `#ffcf7a` çekirdek ≥ 60 px (cs 2.4), 2 kısa yatay ışın (≤ 80 px; yıldız yok) | `#5a5670` | yok | 0 |
 | 6 | Ön düzlük | 8–15 | taze katır izi: toz çizgisi + 3 toynak izi (U biçimli, 30 px) y 1 300–1 420 | toprak `#b89a86` / `#a07e6a` | yok | 2 |
 | 7 | Ön plan | 2–5 | sol alt taş (x −40–420, y 1 520–1 940) + sağ alt ot sapları (meltem, sola) | `#b89a86` / `#6f6488`, sap `#a39a78` | yok | 7 |
 | 8 | Atmosfer | — | yamaç tozu (ø 2–4, 25 tane, `#d9c3a0` α .30), ısı titremesi **yok** (kaynama yasağı; sahne planındaki "ısı sisi" yerine buğu bandı) | — | — | — |
@@ -370,13 +397,20 @@ Kamera: göz 1.5 m (yerel, mevzi önü), b 100, rel 135. Ölçek ≈ 1 580 px/m 
 - Orta: mevzi kaya duvarı (oyuğun iç yan duvarı), sol yarıda, gölgede `#6f6488`, karren kenar ışığı.
 - Ön: namlu yatay (x 100–1 000, y 870–1 060, kalınlık 190). Namlu üstü ışık şeridi `#a8a2b4`, sağ uçta rim. Namlu çeliğinde yansıma yalnız tek uzun şerittir; **kor rengi taşımaz**. El tek parça siluet (tasarım §4.1). Yüz profil sağda.
 - Sol üst: flu katır başı ve kulakları (σ 8, `#6e6068`, kulak kenarında ışık).
+- Arka figürler (σ ≤ 2, yüz okunur, Z 6–8 m): **E1** sol-arka x 60–340 (nişan, çark elinde), **E3** sağ-arka x 800–1 050 (halat omuzda). Yüzleri ≥ 110 px. Sağ-arka ışık (rel 135): ense, kulak ve elmacıkta 2–3 px kenar ışığı; yüzün ön düzlemi gölgede ama L* ≥ 50. Teğmenin yüzüne binmezler.
+- Işık olayı: el namluya iki kez değdiğinde namlu üstündeki ışık şeridi elin altında kesilip yeniden birleşir; teğmenin kirpik ve burun kenarındaki ışık çizgisi göz kırpmadan sabit kalır (sakinlik).
+- Atmosfer: katır nefesi yok (kanıtsız ayrıntı değil ama gösteri), ince yamaç tozu sola sürüklenir (rüzgâr −0.82).
 - Alt üçte bir: top tekerleği kenarı (ahşap `#8a6f5a`, çelik çember) + taş zemin + katır kayışı (flu).
 - Tarama: yanak gölgesi (4–6 kısa çizgi, θ 95°), namlu alt yüzü II (2.6 / 8), tekerlek gölge yüzü.
 
 ### 3.5 `top-onplan` (P06 V1)
-Kamera = P01 (`kiyidan-ada`, b 190, e 50 m). Arka plan LIMAN §1.4 katmanları 0–11 aynen; ışık A, h 20° (gök biraz daha sıcak: alt basamak `#dfc4c2` **[yeni]**). Ön plan kayası (katman 12) yerine:
-- Oyuk içi ve top: kundak sol alt x 0–560, y 1 000–1 500. Tekerlek ø 0.9 m. Ölçek ≈ 620 px/m (Z 1.8 m) [T]: tekerlek 560 px'e taşar, kadrajı keser. Namlu gemiye doğru sağa-yukarı (8°). Top tamamen oyuk gölgesinde `#2e2a44`/`#4a4468`; yalnız namlu üst kenarında rim (rel 45) ve tekerlek çember kenarında 2 px ışık.
-- Oyuk ağzının üst dudağı kadrajın üst-sol köşesinde koyu çerçeve olur (x 0–300, y 220–520 — yazı bandının arkası koyu, yazı kâğıt şeritte okunur). Bu, P01 kayasının içten görünüşüdür.
+Kamera b 190, F 11 270 (P01 ile aynı lens), ama **mevziin ≈ 20 m gerisinde**, mevzi zemininden 1.0 m yüksekte (sahne planı 1.2 m; fark ≤ 0.2 m, ayak y 1 280'i tutmak için). Arka plan LIMAN §1.4 katmanları 0–11 aynen (Z ≥ 2 000; 20 m fark ölçeği %1 değiştirir). Işık A, h 20° (gök alt basamak biraz daha sıcak: `#dfc4c2` **[yeni]**). Ön plan kayası (katman 12) yerine:
+- **Ölçek:** Z 20–22 m → 512–563 px/m. Tekerlek ø 0.9 m ≈ 500 px; kundak sol alt x 0–560, y 1 000–1 500 ✓. Erler 1.64–1.72 m ≈ 880–960 px ✓ (sahne planı boy ≈ 900).
+- **Sığınak çerçevesi:** sığınak 4.5 m ≈ 2 400 px genişliğindedir, kadrajdan büyüktür. Görünen parçalar: alçalan dudağın doğu ucu sol-üst köşede (x 0–420, y 220–560, koyu `#4a4468`, alt kenarında 2 px kenar ışığı; yazı kâğıt şeritte okunur), doğu iç duvarı sol kenarda (x 0–150, karren olukları), taban sekisi alt kenarda (y 1 280–1 920, gölgede `#6f6488`, kenarı ışıklı). Bu, P01 kayasının içten görünüşüdür: çerçeve içinde çerçeve, koyu sığınak → ışıklı liman.
+- **Top:** oyuk gölgesinde `#2e2a44`/`#4a4468`; yalnız namlu üst kenarında rim (rel 45) ve tekerlek çember kenarında 2 px ışık. Namlu gemiye doğru sağa-yukarı (8°).
+- **Erler (yüzlü, tasarım §4.2):** E1 kundak arkası x 40–300 (nişan, gözler kısık, eli yükseltme çarkında; yüz ≥ 125 px) · E2 x 290–500 (mermi sandığı, omuzda ip; yanakta toz) · E3 sol-ön x 0–190, yarı kadraj kesik, profil. Oyuğun gölgesindedirler: kıyafet gölge tonu `#615c70`; oyuk ağzından giren gök ışığı (gökten yansıma `#b9a8b4`) yüzlerin sağ düzlemine düşer; sağ kenarlarında güneşten 2 px kenar ışığı (oyuk ağzını geçen kısım). Yüzler L* ≥ 40 (tasarım §4.2).
+- **Kompozisyon:** sol yarı koyu, insanlı, ağır; sağ yarı ışıklı, uzak, sakin gemi. Erler gemiyi örtmez (x ≥ 560 serbest).
+- **Işık olayı:** atış anında (yerel 186) ağız parlaması ≤ 5 kare oyuğun içini bir an aydınlatır: yüzler ve tavan 2 kare boyunca `#e4b296` α .35 havuz alır (C* ≤ 28), sonra yeniden gölgeye döner. Toz bulutu oyuk ağzından ışığa çıkınca kenar ışığı kazanır.
 - Atış (yerel 186): namlu 24 px geri (24 kare); ağız parlaması ≤ 5 kare (tasarım önerisi, yönetmen onayı bekliyor), çekirdek `#ffe0a0` ≤ 90 px. E4 toz: `#c9b8b0` / gölge `#7a7090`, sağa-kameraya doğru (rüzgâr +0.57) sürüklenir, oturur.
 - Boyut ironisi (tasarım §4.4): top gölgede ve koyu, gemi ışıkta ve uzakta.
 
