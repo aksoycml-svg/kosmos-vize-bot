@@ -145,6 +145,11 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 - **Her kurulum karşılık bulur:** senaryoda "Kurulum → Karşılık" tablosu zorunlu; karşılıksız öğe çıkar ("Eldiven… çorap…" → "eee yani?").
 - **Son tamamlanır:** son cümle askıda kalmaz ("Sadece…" yok); döngü bir vuruşla kapanır.
 - **İlk kez izleyen testi:** senarist teslimden önce, ana oturum kullanıcıya göstermeden önce senaryoyu ses kapalı/açık izleyici gözüyle okur; "eee yani?" kalan plan geri gider.
+- **Kulak için yaz (kullanıcı kararı, Ben-my-Chree tur-2: "çok anlaşılmıyor", "gemiyi mi aldı?"):** anlatım okunmaz, bir kez duyulur; dinleyici geri dönemez.
+  1. **Özne açık:** "sonrakiler", "üçüncüsü", "onlar", "bunu" gibi yarım özne/nesne yok; her cümlede kim, neyi yaptığı adıyla yazılır ("Ardından gelen mermiler geminin dümenini bozdu").
+  2. **Önce durum, sonra olay:** bir şey kurtarılmadan, vurulmadan ya da bulunmadan önce orada olduğu söylenir ("Gemide bir kedi kalmıştı." → "Başmühendis onu kurtardı.").
+  3. **Kısaltma özneden yapılmaz:** süre taşarsa bir cümle ya da plan çıkar; cümlenin içinden özne/nesne kırpılmaz.
+  4. **Soğuk dinleyici (zorunlu adım):** senaryo kullanıcıya gitmeden önce, `arastirma.md`'yi ve senaryonun geri kalanını **görmemiş** ayrı bir ajan yalnız anlatım metnini (TR ve EN) cümle cümle okur; her cümle için "kim, ne yaptı, neye?" yazar. Cevaplayamadığı ya da yanlış cevapladığı cümle senariste geri döner. (İlk kez izleyen testini hikâyeyi bilen yapınca işlemedi: eksik parçayı kafasından tamamladı.)
 - Üç katmanlı kanca (ilk kare + söz + ekran yazısı). Önce ses kapalı izleyen için yaz; ekran yazısı anlatımı tekrar etmez, tamamlar. Döngülü son. Her 2–4 sn görsel değişim.
 - Güvenli alan (1080x1920): üst 220 px, alt 420 px, yan 80 px. Ayaklar, temas noktaları ve kurulum nesneleri de güvenli alanın içinde kalır (Instagram arayüzü altında kalmaz).
 - **Yazı bantları:** üst bant y 240–400 (anlatım ekran yazısı), alt bant y 1290–1490 (replik altyazısı). **Replik altyazısı ayakları, temas anını ya da kurulum nesnesini örtecekse üst banda alınır.** Yazı hiçbir zaman dokunuşun üstüne binmez.
