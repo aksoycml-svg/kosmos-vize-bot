@@ -12,7 +12,7 @@ import type { KolIsik } from "./RigIsik";
 // Poz "kistirSiki" (Paris eli, ince ip/kılıf): başparmak ucu + işaret parmağı ucu KISTIR_YEREL'de buluşur, orta/yüzük/serçe
 // avuca kıvrık (yumruk kütlesi) — açık el ya da serçe yukarıda "rock" okuması yok (A eleştirisi P10a).
 
-export type KolTip = "ceket" | "gomlek" | "parisManset" | "gorevli" | "yazici" | "louis" | "parisGri" | "dagronSepya";
+export type KolTip = "ceket" | "gomlek" | "parisManset" | "gorevli" | "yazici" | "louis" | "parisGri" | "dagronSepya" | "adams" | "lab" | "gorevliYB";
 // elSirt (isteğe bağlı): el sırtı tendon/damar çizgisi ölçeği — yoksa eski değerler (Blanc/Evliya değişmez)
 export type KolPalet = { kol: string; kolIsik: string; kolGolge: string; yama?: string; manset: string; mansetKir: string; ten: string; tenGolge: string; dugme?: string; elSirt?: { tendonAlfa: number; tendonKalin: number; damar: boolean } };
 export const KOL_PALET: Record<KolTip, KolPalet> = {
@@ -29,6 +29,10 @@ export const KOL_PALET: Record<KolTip, KolPalet> = {
   // Paris kuşatması C turu (mekanlar §3v2.9, tasarım §3.2): Dagron eli — koyu sepya manşet, DÜĞME/METAL YOK (parisManset'teki altın düğme
   // sarı metal yasağına aykırı), palto kolu §14.2 dagronIsik. Ten #c9a58a / gölge #8e6a52. Damar yok, tendon soluk (V4 dersi).
   dagronSepya: { kol: "#5a5068", kolIsik: "#7a6f86", kolGolge: "#3a3550", manset: "#4a3a2c", mansetKir: "#2e2318", ten: "#c9a58a", tenGolge: "#8e6a52", elSirt: { tendonAlfa: 0.26, tendonKalin: 0.9, damar: false } },
+  // Yarasa bombası (tasarım §5.1): Adams sivil yün kol + krem manşet; Fieser lab soğuk gri manşet; görevli koyu nötr (düğmesiz). Ten C* ≤ 28, metal yok.
+  adams: { kol: "#6b5d52", kolIsik: "#86766a", kolGolge: "#4a3f3a", manset: "#d6cdb8", mansetKir: "#b3aa96", ten: "#d6b49c", tenGolge: "#8f7360", elSirt: { tendonAlfa: 0.12, tendonKalin: 0.8, damar: false } },
+  lab: { kol: "#cfd2d4", kolIsik: "#dfe1e2", kolGolge: "#9a9da6", manset: "#cfd2d4", mansetKir: "#a9adb4", ten: "#d6b49c", tenGolge: "#8f7360", elSirt: { tendonAlfa: 0.12, tendonKalin: 0.8, damar: false } },
+  gorevliYB: { kol: "#3a3644", kolIsik: "#524c5c", kolGolge: "#25222c", manset: "#4a4552", mansetKir: "#36323d", ten: "#d6b49c", tenGolge: "#8f7360", elSirt: { tendonAlfa: 0.12, tendonKalin: 0.8, damar: false } },
   louis: { kol: "#74222f", kolIsik: "#9a3646", kolGolge: "#47131c", manset: "#e0d9c6", mansetKir: "#bfb7a2", ten: "#e0ae8a", tenGolge: "#b27b5f", dugme: "#3a1018" },
 };
 // El boyu (bilekten orta parmak ucuna), el yerel biriminde: ekranda = EL_BOY_YEREL × olcek. Eldiven ölçüsü buna bağlanır (Eldiven elBoyu).
