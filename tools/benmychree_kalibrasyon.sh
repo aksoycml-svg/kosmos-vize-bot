@@ -39,7 +39,7 @@ serit K1_P01_cizgi_k0-28 0 4 8 12 16 20 24 28
 # ölçüm (kor kutuları --kirmizi ile ölçüm dışı: K2 alev, K4 parıltı)
 O="$KOK/tools/kalibrasyon_olcum.py"
 python3 -I "$O" "$OUT/K1_P01_k124.png" --json "$OUT/olcum_K1.json"
-python3 -I "$O" "$OUT/K2_P07b_y214.png" --kirmizi 400,0,800,1350 --json "$OUT/olcum_K2.json"
+python3 -I "$O" "$OUT/K2_P07b_y214.png" --kirmizi 300,0,720,1500 --json "$OUT/olcum_K2.json"
 python3 -I "$O" "$OUT/K3_P05_k150.png" --json "$OUT/olcum_K3.json"
 python3 -I "$O" "$OUT/K4_P04_y200.png" --kirmizi 420,930,700,1060 --json "$OUT/olcum_K4.json"
 # kor tekilliği: kor kutusu içi en doygun/en parlak, dışı C* ≤ 28 ve L* ≤ 88

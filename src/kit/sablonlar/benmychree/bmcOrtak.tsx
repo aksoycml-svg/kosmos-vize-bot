@@ -171,7 +171,10 @@ export const Isleme: React.FC<{ aci: number; children: React.ReactNode; tarama?:
   return (
     <g>
       <defs>
-        <filter id={`s${id}`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={`${row(0, 1.08)}  ${row(1, 0.96)}  ${row(2, 0.78)}  0 0 0 1 0`} /></filter>
+        <filter id={`s${id}`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={`${row(0, 1.08)}  ${row(1, 0.96)}  ${row(2, 0.78)}  0 0 0 1 0`} />
+          {/* tur-4 kontrast (tur-8 notu): değer S-eğrisi — koyular koyulaşır, ışıklar korunur (p5 ≤ 22, p95 ≥ 78 hedefi) */}
+          <feComponentTransfer>{(["R", "G", "B"] as const).map((c) => { const T = "0 0.03 0.1 0.22 0.38 0.55 0.71 0.84 0.93 1"; return c === "R" ? <feFuncR key={c} type="table" tableValues={T} /> : c === "G" ? <feFuncG key={c} type="table" tableValues={T} /> : <feFuncB key={c} type="table" tableValues={T} />; })}</feComponentTransfer>
+          <feColorMatrix type="saturate" values="0.88" /></filter>
         <filter id={`m${id}`} colorInterpolationFilters="sRGB">
           <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" result="l" />
           <feComponentTransfer in="l" result="a"><feFuncA type="table" tableValues="1 1 1 0.8 0.35 0 0 0 0 0" /></feComponentTransfer>

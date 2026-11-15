@@ -152,3 +152,25 @@
 - Kararlar: puanlar K1 5.5 · K2 4.5 · K3 4.5 · K4 4 (genel ≈ 4.6, geçmez; motion öz puanı 6 iyimser). Ölçümler geçiyor; kusurlar ölçülemeyen işleme/geometri/figürde.
 - Yakalanan ihlaller: global yatay tarama (tarama yeri kuralı, kafes yasağı); K4 arkada deniz (coğrafya/fizik), kamera spec'in üstünde, çalı örtüsü (§0.10), kapak/kapı okuması; K1 oyuk kaldırıldı (kurulum→karşılık kopuk); K3 el IG düğmeleri altında, yüzde kutu favori + bıçak gölge, omuz başlığı göğüs ortasında, low angle uygulanmadı, gülümseme "onur" değil; K2 yarı saydam katman, kanat koridora sığmıyor, korkuluk yok, MCU yerine boy plan, ön plan öğesi yok.
 - Açık sorular / sonraki ajana: tur-4 son tur; K4 için önce mekân sorumlusundan kroki önerildi. Yönetmen kartı (oyuk 900×520) ile mekanlar §3.3 (450×260) çelişkisi yönetmende çözülmeli. Tasarımcı ifade tablosuna `kararli` (nötr/sıkılmış dudak) eklemeli.
+
+### motion · 2026-11-15 · kalibrasyon tur-4 (son tur; eleştiri tur-3 + tur-8 "kontrast" + çene/boyun notu)
+- **İşleme (eleştiri 1, tur-8):** `Isleme` içinde sepya %8, kâğıt lifi .12, global tarama kapalı (tarama yalnız `Tara` ile tarama yerlerinde; figür ve gökte yok). Katman flu ≤ 3. Değer S-eğrisi + doygunluk .88 eklendi; kontur sepya `#3e302b`.
+- **K4 (eleştiri 2, mekanlar §3.3):** lens 100→200 mm dolly zoom, oyuk ağzı ≈ 450 × 260 (ölçek .5). Sol-alttan sağ-üste yükselen karst yamaç (şeritler −0.32 yanal eğimli). Oyuğun üstünde karren kayası. Sarkan dudağın yalnız alt yüzü görünüyor, taramalı. Çalı örtüsü kaldırıldı; ağız kenarında yalnız 3 kesik dal kaldı. Toz belirginleşti. Katır izi geçici kapalı (düz çizgi okunuyordu).
+- **K1 (eleştiri 3):** oyuk (x 120–420, y 1260–1400) ve oyuktan gemiye çizgi geri geldi. Kaya küçük (x ≤ 610), koyu fasetli, net konturlu ve kenar ışıklı; karren olukları kısa ve kıvrık. Kadraj dışı güneşe 3 disk hale eklendi. Gemi gövdesi ve üstyapısı koyu siluet. Sağ alt "arı" tepesi maki lobuna döndü.
+- **K3 (eleştiri 4–5):** ufuk aşağı (+170 px), figürler gök önünde. Ağız nötr ya da sıkılmış dudak. El `tutus` ile namluda, namlu ağzı x ≤ 895. E1'in gri levhası ahşap mermi sandığına döndü. E3 sağa alındı.
+- **K2 (eleştiri 5–6):** 85 mm MCU, dirty single. T3 omzu ön planda, yüz ≈ 290 px. Ön kol yüzün önünde, el kapalı. Kanat ≤ 58°. Kurum, pas ve ışık katmanları opak. Yumurta çekirdek kaldırıldı.
+- **Figür:** çene açısı kulak memesinin altında (y ≈ .34u). Ramus yumuşak yayla yükseliyor. Boyun arka üst köşesi mastoide çıkıyor, çene arkasında boşluk yok. Çene altı ten gölgesi alanı. Gövdede kumaş hacmi tonu var, kayış inceltildi, figürde tarama yok.
+- **Ölçüm tur-4:**
+
+| kare | sıcak | p95 L* | renk ölçütü | kontrast p5 / p95 / aralık | konu ayrışması |
+|---|---|---|---|---|---|
+| K1 | %11.0 | 83.9 | **kaldı** | 14.4 / 83.9 / 69.5 ✓ | 13 |
+| K2 | %31.5 | 82.3 | geçti | 9.9 / 82.3 / 72.4 ✓ | 7 |
+| K3 | %26.3 | 80.6 | geçti | 18.4 / 80.6 / 62.2 ✓ | 6 |
+| K4 | %63.7 | 81.6 | geçti | 10.8 / 81.6 / 70.8 ✓ | **35 ✓** |
+
+  Konu ayrışması ≥ 25 yalnız K4'te tutuyor. S-eğrisinden sonra K1'de (gök) 35 619, K3'te 43 612 piksel C*>28; K2'de alev dışı 7 410. Kor: K2 alev C* 76, K4 parıltı C* 73.
+- **Piksel-aynı:** Paris k300 ve Çiçero k1200'de farklı piksel 0.
+- **Kart sapmaları (onay bekliyor):** P07b'de korkuluk bu kamerada geometrik olarak kadraj dışında kalıyor (kamera korkuluğun 0.2 m içinde), eklenemedi. K4'te katır izi kapalı. K3'te ¾ gövde dönüşü kit_eksik. K2'de T3'ün ayakları kadraj dışında (MCU).
+- **Reçete işaret tablosu:** `tur-4/recete-isaret.md`. Eksikler: A8 (K1), A11 (K2–K4), B9 `ink(dolgu)`.
+- **Öz puan ≈ 5.5** (`karsilastirma.png`'ye bakarak): K1 5.5 · K2 5.5 · K3 5 · K4 5.5. Değer yapısı Paris'e yaklaştı. Figür çizgisi, yüzey ayrıntı yoğunluğu ve konu ayrışması hâlâ geride. Eşik 7 tutmadı; Paris çıtası 3 gereği kullanıcıya yön karesiyle dönülmeli.

@@ -19,7 +19,7 @@ import { KolOmuz, ProfilFigur, profilIskelet, YUZ_KART } from "./Figur";
 type Gorunum = "kic" | "korkuluk" | "bas-capa" | "kic-su" | "hangar-kapi" | "bot" | "korkuluk-su";
 const KURULU: Gorunum[] = ["hangar-kapi"];
 export const GI_KAYIT: Record<"hangar-kapi", Kamera25> = {
-  "hangar-kapi": { kare: [0], konum_yol: [[0.3, 1.2, 0]], yon_yol: [[-16, 3]], lens_mm: [40], odak_z: [3.4], diyafram: 4 },
+  "hangar-kapi": { kare: [0], konum_yol: [[1.2, 1.5, -1]], yon_yol: [[-18.8, 0]], lens_mm: [85], odak_z: [1.6], diyafram: 4 }, // tur-4: kart 85 mm MCU, dirty single (T3 omzu ön planda)
 };
 const DUVAR_X = -1.1, KAPI = { z0: 2.0, z1: 7.0, h: 4.2 }, HANGAR_H = 5.6, HANGAR_Z1 = 16;
 const ALEV: V3 = [-1.7, 0.2, 5.9]; // alev tabanı (hangar içinde, açıklığın uzak yarısında)
@@ -31,7 +31,7 @@ const poli = (k: Kam25, A: V3[]) => { const q = izdPoli(k, A); return q.length >
 const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }> = ({ plan, p, kilit }) => {
   const k = kamera25(param<Partial<Kamera25>>(plan, "kamera25", {}), p, GI_KAYIT["hangar-kapi"]);
   const t = p / 60, gok = gokSutun(param<number>(plan, "gun_yuksekligi", 18));
-  const kp = param<{ sizinti: [number, number]; itilir: number; aci: number; oturma: number }>(plan, "kapi", { sizinti: [10, 54], itilir: 62, aci: 62, oturma: 112 });
+  const kp = param<{ sizinti: [number, number]; itilir: number; aci: number; oturma: number }>(plan, "kapi", { sizinti: [10, 54], itilir: 62, aci: 58, oturma: 112 });
   const tr = Math.max(0, p - kp.itilir) / 60;
   // sönümlü yay: hızla açılır, 62°'yi bir kez aşar, oturma karesinde durur (hareket tamamlanır)
   const aci = p < kp.itilir ? 0 : p >= kp.oturma ? kp.aci : kp.aci * (1 - Math.exp(-tr * 7) * Math.cos(tr * 11));
@@ -53,7 +53,7 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
   // havuz: güvertede alev tabanından 0.6 / 1.3 / 2.4 m (açıklıktan koridora yamuk), yalnız alevi gören yüzey
   const havuz = (m: number) => poli(k, [W(zm - m * 1.1, 0.002), W(KAPI.z1 + m * 0.3, 0.002), [DUVAR_X + Math.min(2.4, m * 1.1), 0.002, KAPI.z1 - m * 0.1], [DUVAR_X + Math.min(2.4, m * 1.1), 0.002, zm - m * 1.4]]);
   // T3: duvardan 0.7 m, z 2.9 → 2.55 (bir adım geri), boy 1.75 m
-  const t3Z = 3.3 + 0.3 * geri, t3X = 0.05 + 0.08 * geri; // adım geri = kapıdan uzağa (kameraya doğru değil, kıça)
+  const t3Z = 0.6 - 0.12 * geri, t3X = 0.85 + 0.04 * geri; // MCU: yüz ≥ 230 px; adım geri = kameraya doğru // adım geri = kapıdan uzağa (kameraya doğru değil, kıça)
   const ayak = P(k, [t3X, 0, t3Z]), bas = P(k, [t3X, 1.75, t3Z]), H = ayak[1] - bas[1], s3 = H / 1.75;
   kilit.push({ ad: "T3 ayak", p: ayak, tur: "ayak" }, { ad: "T3 yüz", p: [bas[0] - 0.05 * s3, bas[1] + 0.13 * s3], tur: "yuz" }, { ad: "kapı (açılan kanat)", p: P(k, W(KAPI.z1, KAPI.h / 2)), tur: "dokunus" });
 
@@ -75,7 +75,7 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
         {[1.4, 2.8, 4.6].map((y, i) => <path key={i} d={`M${pts([P(k, W(0.35, y)), P(k, W(HANGAR_Z1, y))])}`} stroke={mix(BP.duvarGolge, BP.kontur, 0.4)} strokeWidth={2} opacity={0.7} />)}
         {Array.from({ length: 40 }).map((_, i) => { const z = -0.8 + i * 0.42; if (z > KAPI.z0 - 0.3 && z < KAPI.z1 + 0.3) return null; return [0.3, 2.95, 4.75].map((y, j) => rr(`pc${i}${j}`) < 0.08 ? null : (() => { const iz = izd(k, W(z, y), 0.2); if (!iz) return null; return <circle key={`${i}${j}`} cx={iz.x} cy={iz.y} r={Math.max(1.4, iz.s * 0.012)} fill={mix(BP.duvarGolge, BP.kontur, 0.5)} />; })()); })}
         {yan > 0 && [[1.6, "#7d6d84"], [1.0, "#957a84"], [0.5, "#b08e8a"]].map(([m, c], i) => <path key={`dh${i}`} d={poli(k, [W(zm - (m as number) * 0.8, 0), W(KAPI.z1 + (m as number), 0), W(KAPI.z1 + (m as number) * 0.8, Math.min(HANGAR_H - 0.4, KAPI.h + (m as number))), W(zm - (m as number) * 0.5, Math.min(HANGAR_H - 0.4, KAPI.h + (m as number)))])} fill={c as string} opacity={alevBoy} />)}
-        {[-1.2, 0.3, 7.6, 9.4, 12.2].map((z, i) => <path key={`pas${i}`} d={poli(k, [W(z, 4.55), W(z + 0.08, 4.55), W(z + 0.05 + rr(`ps${i}`) * 0.06, 2.6 + rr(`psy${i}`)), W(z + 0.02, 2.4 + rr(`psy${i}`))])} fill="#8a6a62" opacity={0.55} />)}
+        {[-1.2, 0.3, 7.6, 9.4, 12.2].map((z, i) => <path key={`pas${i}`} d={poli(k, [W(z, 4.55), W(z + 0.08, 4.55), W(z + 0.05 + rr(`ps${i}`) * 0.06, 2.6 + rr(`psy${i}`)), W(z + 0.02, 2.4 + rr(`psy${i}`))])} fill="#76605e" />)}
         {Array.from({ length: 60 }).map((_, i) => { const z = -2.6 + i * 0.3; if (z > KAPI.z0 - 0.2 && z < KAPI.z1 + 0.2) return null; return [1.35, 2.75, 4.55].map((y, j) => { const iz = izd(k, W(z, y), 0.2); if (!iz) return null; const q: P2 = [iz.x, iz.y], rq = Math.max(2, iz.s * 0.014); return <g key={`rv${i}${j}`}><circle cx={q[0]} cy={q[1]} r={rq} fill="#4a4660" /><circle cx={q[0] - rq * 0.35} cy={q[1] - rq * 0.35} r={rq * 0.45} fill="#a8a2b4" opacity={0.7} /></g>; }); })}
         {/* kapı açıklığı: içeri koyu + alev (tek ışık), açılmadan önce yalnız aralıktan sızan kızıl çizgi */}
         <path d={kapiPoli} fill={BP.oyuk} />
@@ -84,7 +84,6 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
           <path d={poli(k, acik)} fill="#4a2c34" />
           {darbe > 0 && <ellipse cx={AL[0]} cy={AL[1] - ekranS * 1.2} rx={ekranS * 1.4 * darbe} ry={ekranS * 1.8 * darbe} fill={BP.cakim} opacity={0.8 * darbe} />}
           <Alev taban={[AL[0] + ekranS * 0.3, AL[1] + ekranS * 0.2]} gen={ekranS * 3.4} boy={ekranS * 5.0 * alevBoy} t={t} ruz={0.91} seed="gia" n={9} kontur={4} konturRenk="#6e2618" />
-          <ellipse cx={AL[0] + ekranS * 0.3} cy={AL[1] - ekranS * 0.5} rx={ekranS * 0.45} ry={ekranS * 0.7} fill="#ffe2a8" />
         </g>}
         {/* kapı çerçevesi (iç yüz alevden aydınlanır) */}
         <path d={`M${pts([P(k, W(KAPI.z0 - 0.15, 0)), P(k, W(KAPI.z0 - 0.15, KAPI.h + 0.15)), P(k, W(KAPI.z1 + 0.15, KAPI.h + 0.15)), P(k, W(KAPI.z1 + 0.15, 0))])}`} stroke={BP.kapiCerceve} strokeWidth={10} fill="none" strokeLinejoin="round" />
@@ -94,8 +93,8 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
         <path d={poli(k, kapali)} fill={BP.kapi} stroke={BP.kontur} strokeWidth={3} />
         {[1.3, 3.0].map((y, i) => <path key={i} d={poli(k, [W(KAPI.z0 + 0.05, y), W(zm - 0.05, y), W(zm - 0.05, y + 0.1), W(KAPI.z0 + 0.05, y + 0.1)])} fill={mix(BP.kapi, BP.kontur, 0.4)} />)}
         {[0.5, 2.1, 3.7].map((y, i) => <path key={i} d={poli(k, [W(KAPI.z0 + 0.02, y), W(KAPI.z0 + 0.12, y), W(KAPI.z0 + 0.12, y + 0.3), W(KAPI.z0 + 0.02, y + 0.3)])} fill={BP.demir} />)}
-        {[0.6, 0.3].map((m, i) => <path key={`kr${i}`} d={poli(k, [W(zm - m, KAPI.h * (0.45 + i * 0.2)), W(zm, KAPI.h * (0.3 + i * 0.2)), W(zm, KAPI.h), W(zm - m * 1.3, KAPI.h)])} fill={BP.dumanCekirdek} opacity={0.3 + i * 0.2} />)}
-        {yan > 0 && [1.4, 0.8, 0.35].map((m, i) => <path key={`kh${i}`} d={poli(k, [W(zm - m, 0.05), W(zm, 0.05), W(zm, KAPI.h - 0.05), W(zm - m, KAPI.h - 0.05)])} fill={BP.havuz} opacity={[0.12, 0.2, 0.3][i]} />)}
+        {[0.6, 0.3].map((m, i) => <path key={`kr${i}`} d={poli(k, [W(zm - m, KAPI.h * (0.45 + i * 0.2)), W(zm, KAPI.h * (0.3 + i * 0.2)), W(zm, KAPI.h), W(zm - m * 1.3, KAPI.h)])} fill={["#4a4458", "#3a3448"][i]} />)}
+        {yan > 0 && [1.4, 0.8, 0.35].map((m, i) => <path key={`kh${i}`} d={poli(k, [W(zm - m, 0.05), W(zm, 0.05), W(zm, KAPI.h - 0.05), W(zm - m, KAPI.h - 0.05)])} fill={["#8a7a88", "#a08890", "#b8988e"][i]} />)}
 
         <path d={`M${pts([P(k, W(zm - 0.02, 0)), P(k, W(zm - 0.02, KAPI.h))])}`} stroke={siz > 0 ? BP.alevDis : BP.kontur} strokeWidth={yan ? 4 : 3 + 3 * siz} opacity={yan ? 0.9 : 0.4 + 0.6 * siz} />
         {/* duman: kapı üstünden ve saçaktan, sağa yatar, kadraj üstünden çıkar (fade yok); alt yüzleri alev ışığı */}
@@ -124,7 +123,7 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
           // 1917 denizci iş kıyafeti: açık V yakalı kazak (iç fanila), kollar sıvalı, baş açık; kemer/ceket yok
           const kiy = { tur: "kazak" as const, renk: "#5f6278", isik: mix("#7a7c92", BP.havuz, 0.5), golge: "#44465c", pantolon: "#545a6e", pantolonIsik: mix("#6e7488", BP.havuz, 0.45), cizme: "#2a2836" };
           // ön kol yüzü korur: el yüz hizasında öne, avuç aleve dönük; dirsek aşağıda
-          const onKol = <KolOmuz omuzR={0.048 * s3} omuzIsik={BP.havuz} kolluk={{ renk: kiy.renk, oran: 0.55 }} ad="T3 kol" omuz={sk.omuz} bilek={[sk.bas[0] - 0.2 * s3, sk.bas[1] + 0.02 * s3]} E={0.18 * s3} poz="avuc" elAci={-125} kolBoy={[0.29 * s3, 0.26 * s3]} bukum={-1} ayna palet={EL_T} kolRenk={mix(EL_T.isik, EL_T.golge, 0.3)} kolKontur="#3b2e2a" gen={[0.095 * s3, 0.075 * s3, 0.06 * s3]} isik={[-0.9, -0.3]} taramaAci={65} kenar={{ renk: BP.havuz, alfa: 0.9 }} />;
+          const onKol = <KolOmuz omuzR={0.045 * s3} omuzIsik={BP.havuz} ad="T3 kol" omuz={sk.omuz} dirsek={[sk.omuz[0] + 0.04 * s3, sk.omuz[1] + 0.2 * s3]} bilek={[sk.bas[0] - 0.12 * s3, sk.bas[1] + 0.03 * s3]} E={0.18 * s3} poz="tutus" elAci={-175} ayna palet={EL_T} kolRenk={kiy.renk} kolKontur="#3b2e2a" gen={[0.095 * s3, 0.075 * s3, 0.06 * s3]} isik={[-0.9, -0.3]} taramaAci={65} kenar={{ renk: BP.havuz, alfa: 0.9 }} />;
           const arkaKol = <path d={`M${sk.omuz[0] + 0.02 * s3},${sk.omuz[1]} q${0.06 * s3},${0.2 * s3} ${0.02 * s3},${0.36 * s3}`} stroke={mix(kiy.golge, "#2a201c", 0.3)} strokeWidth={0.085 * s3} fill="none" strokeLinecap="round" />;
           return <ProfilFigur ayak={ayak} s={s3} yon={-1} boy={1.75} pz={pz} k={kiy} kart={YUZ_KART.T3} isik="on" sicak={BP.havuz} bakisY={-0.2} onKol={onKol} arkaKol={arkaKol} />;
         })()}

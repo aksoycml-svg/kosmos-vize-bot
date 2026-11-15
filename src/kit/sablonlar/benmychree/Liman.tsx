@@ -119,7 +119,7 @@ const suSatirlari = (ref: Kam25, zMin: number, zMax: number, seed: string): Vuru
     const xs = -600 / s - 100, xe = 600 / s + 100; let x = xs + rr(`${seed}o${i}`) * L * 2;
     while (x < xe) {
       const kx = Math.round(x * 10), sx = 540 + x * s, r0 = rr(`${seed}t${i}_${kx}`);
-      const oran = sx < 360 ? 0.05 : sx < 720 ? 0.17 : 0.42, isik = r0 < oran;
+      const oran = sx < 360 ? 0.06 : sx < 720 ? 0.22 : 0.55, isik = r0 < oran;
       const len = L * (isik ? 0.8 + 1.6 * rr(`${seed}l${i}_${kx}`) : 0.4 + 1.3 * rr(`${seed}l${i}_${kx}`));
       out.push({ x0: x, x1: x + len, z, tur: isik ? "isik" : r0 < oran + 0.22 + 0.3 * Math.max(0, Math.min(1, (900 - z) / 400)) ? "golge" : "taban", faz: rr(`${seed}f${i}_${kx}`) * 6.28, f: 0.4 + 0.5 * rr(`${seed}h${i}_${kx}`) });
       x += len + L * (0.6 + 2.2 * rr(`${seed}g${i}_${kx}`));
@@ -152,7 +152,6 @@ const SuOn: React.FC<{ ref: Kam25; k: Kam25; t: number; seed: number; yolRenk: s
 // Kireçtaşı blok: ışıkta üst düzlem (güneş yüksek, sağ-ön) + kameraya bakan gölge ön yüz (karren olukları); oyuk üst düzlemde koyu ağız.
 // tur-4 (eleştiri 3, mekanlar §1.4 katman 12): küçük, koyu, net kaya; üst kenar y 1170 → 1320 kırık; x ≤ 600; oyuk x 120–420 y 1260–1400
 const UST: P2[] = [[-40, 1176], [40, 1166], [110, 1186], [190, 1172], [260, 1196], [330, 1206], [400, 1232], [450, 1226], [520, 1270], [580, 1300], [600, 1322]];
-const ON_KAYA: P2[] = [...UST, [610, 1460], [596, 1640], [620, 1940], [-40, 1940]];
 const OYUK: P2[] = [[120, 1300], [170, 1270], [250, 1262], [330, 1268], [400, 1290], [420, 1330], [392, 1372], [320, 1398], [220, 1400], [150, 1384], [118, 1346]];
 export const OYUK_MERKEZ: P2 = [270, 1330];
 const OnKaya: React.FC<{ t: number }> = ({ t }) => {
@@ -174,7 +173,7 @@ const OnKaya: React.FC<{ t: number }> = ({ t }) => {
       <path d={`M${pts([[400, 1232], [450, 1226], [520, 1270], [500, 1278], [450, 1240]])} Z`} fill={BP.tasIsik} />
       <path d="M600,1322 L610,1460 L596,1640" stroke={BP.kenar} strokeWidth={4} fill="none" />
       {/* karren: net dikey erime olukları (koyu kenar + ışık kenarı) */}
-      {[[40, 1320, 1700], [170, 1420, 1820], [300, 1420, 1760], [470, 1460, 1880]].map(([x, a2, b2], i) => <g key={`kr${i}`}><path d={`M${x - 7},${a2} L${x + 4},${b2} L${x + 9},${a2} Z`} fill="#2e2a44" /><path d={`M${x + 9},${a2} L${x + 6},${b2}`} stroke={BP.kenar} strokeWidth={3} /></g>)}
+      {[[40, 1310, 150], [200, 1430, 120], [330, 1420, 170], [480, 1440, 140], [90, 1560, 110], [380, 1600, 130]].map(([x, a2, L], i) => <g key={`kr${i}`}><path d={`M${x - 8},${a2} Q${x - 12},${a2 + L * 0.5} ${x + 2},${a2 + L} Q${x + 2},${a2 + L * 0.5} ${x + 9},${a2} Z`} fill="#2e2a44" /><path d={`M${x + 9},${a2} Q${x + 4},${a2 + L * 0.5} ${x + 3},${a2 + L}`} stroke={BP.kenar} strokeWidth={2.5} fill="none" /></g>)}
       <path d={`M${pts([[200, 1520], [250, 1508], [290, 1530], [240, 1548]])} Z`} fill={BP.toprak} />
       {/* oyuk: en koyu leke, kırık kenarlı; üst dudak altı tarama (yerel), alt dudak ışıkta */}
       <path d={`M${pts(OYUK)} Z`} fill="#221e34" stroke="#3e302b" strokeWidth={3} />
@@ -192,9 +191,8 @@ const SagSeki: React.FC<{ t: number }> = ({ t }) => (
   <g>
     <path d={`M${pts([[740, 2000], [770, 1840], [860, 1770], [990, 1742], [1140, 1736], [1140, 2000]])} Z`} fill={BP.tasGolge} />
     <path d="M770,1840 L860,1770 L990,1742 L1140,1736" stroke={BP.kenar} strokeWidth={4} fill="none" />
-    {[0, 1, 2, 3, 4].map((i) => <ellipse key={i} cx={850 + i * 52 + rr(`mk${i}`) * 20} cy={1745 - rr(`mky${i}`) * 40} rx={50} ry={38} fill={i % 2 ? BP.maki : BP.makiGolge} />)}
-    {[0, 1, 2].map((i) => <path key={`k${i}`} d={`M${840 + i * 70},${1716 - i * 6} a46,34 0 0 1 64,-12`} stroke={BP.kenar} strokeWidth={3} fill="none" />)}
-    {Array.from({ length: 6 }).map((_, i) => { const bx = 820 + i * 46, L = 80 + rr(`sso${i}`) * 50, a = 0.3 + Math.sin(t * 1.1 + i) * 0.05; return <path key={`s${i}`} d={`M${bx},1760 Q${bx + a * 30},${1760 - L * 0.6} ${bx + a * L},${1760 - L}`} stroke={BP.ot} strokeWidth={3.5} fill="none" />; })}
+    {[0, 1, 2, 3, 4].map((i) => <ellipse key={i} cx={850 + i * 52 + rr(`mk${i}`) * 20} cy={1745 - rr(`mky${i}`) * 40} rx={50} ry={38} fill={i % 2 ? "#5a6048" : "#4c5240"} stroke="#3e302b" strokeWidth={2} />)}
+    <path d="M800,1730 A60,44 0 0 1 900,1690 A56,42 0 0 1 1000,1680 A60,40 0 0 1 1120,1690" stroke={BP.kenar} strokeWidth={3} fill="none" opacity={0.8 + 0 * t} />
   </g>
 );
 

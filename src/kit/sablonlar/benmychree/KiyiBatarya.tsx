@@ -23,7 +23,7 @@ const PHI = Math.atan2(6, 30) * 180 / Math.PI; // 11.31°
 const O: V3 = [0, 30 * Math.sin((PHI * Math.PI) / 180), 30 * Math.cos((PHI * Math.PI) / 180)];
 const geri = (d: number): V3 => [0, -d * Math.sin((PHI * Math.PI) / 180), -d * Math.cos((PHI * Math.PI) / 180)];
 export const KB_KAYIT: Record<"yamac-oyuk", { ref: Kamera25; b: number }> = {
-  "yamac-oyuk": { b: 15, ref: { kare: [0, 250], konum_yol: [[0, 0, 0], geri(30)], yon_yol: [[0, PHI]], lens_mm: [200], dolly_zoom: { konu: O }, odak_z: [30, 60], diyafram: 22, merkez: [540, 1020], egri: "inout", ekipman: "dolly" } },
+  "yamac-oyuk": { b: 15, ref: { kare: [0, 250], konum_yol: [[0, 0, 0], geri(30)], yon_yol: [[0, PHI]], lens_mm: [100], dolly_zoom: { konu: O }, odak_z: [30, 60], diyafram: 22, merkez: [540, 1020], egri: "inout", ekipman: "dolly" } },
 };
 
 // yamaç zemini: kameranın altında −3 m'den oyuk sekisine (+4.7 m, z 28) çıkan karst basamakları (eksen çerçevesine göre değil, dünya)
@@ -56,7 +56,7 @@ const Blok: React.FC<{ x: number; y: number; w: number; h: number; seed: string;
   return (
     <g strokeLinejoin="round">
       <path d={`M${pts(dis)} Z`} fill={mix(BP.tasOrta, BP.tasIsik, 0.35 + ton)} stroke="#5e4c50" strokeWidth={2} />
-      <path d={`M${pts([dis[3], dis[4], dis[5], [kir[0] + w * 0.05, y], kir])} Z`} fill={mix(BP.tasGolge, BP.tasOrta, 0.25)} />
+      <path d={`M${pts([dis[3], dis[4], dis[5], [kir[0] + w * 0.05, y], kir])} Z`} fill="#4a4468" />
       <path d={`M${pts([dis[1], dis[2], dis[3]])}`} stroke={BP.kenar} strokeWidth={2.5} fill="none" />
     </g>
   );
@@ -84,7 +84,7 @@ export const Dal: React.FC<{ a: P2; b: P2; k: number; seed: string }> = ({ a, b,
   </g>;
 };
 // mevzi örtüsü kütlesi: kesilmiş çam + maki dallarından yoğun yapraklı yığın (iğne kümeleri), uçlar ışıkta; ortası açık bırakılabilir
-const Ortu: React.FC<{ alan: P2[]; n: number; r: number; seed: string }> = ({ alan, n, r, seed }) => {
+export const Ortu: React.FC<{ alan: P2[]; n: number; r: number; seed: string }> = ({ alan, n, r, seed }) => {
   const [x0, y0] = [Math.min(...alan.map((q) => q[0])), Math.min(...alan.map((q) => q[1]))], [x1, y1] = [Math.max(...alan.map((q) => q[0])), Math.max(...alan.map((q) => q[1]))];
   const ic = (q: P2) => { let c = false; for (let i = 0, j = alan.length - 1; i < alan.length; j = i++) { const a = alan[i], b = alan[j]; if ((a[1] > q[1]) !== (b[1] > q[1]) && q[0] < ((b[0] - a[0]) * (q[1] - a[1])) / (b[1] - a[1]) + a[0]) c = !c; } return c; };
   const K: { c: P2; r: number; i: number }[] = [];
@@ -107,7 +107,6 @@ const YAMAC_UST: P2[] = [[-260, 860], ...kirik([-200, 850], [120, 760], 6, 12, "
 const OyukYamaci: React.FC<{ t: number; bulut: number }> = ({ t, bulut }) => (
   <g strokeLinejoin="round">
     {/* kaya yüzü (ön ışık, sıcak) */}
-    <path d={`M${pts([...YAMAC_UST, [1340, 1400], [-260, 1400]])} Z`} fill={BP.tasOrta} />
     {/* büyük fasetler: sol yüzler ışık, sağ yüzler gölge */}
     {[[[-260, 860], [-60, 820], [40, 930], [-10, 1200], [-260, 1250]], [[1020, 780], [1340, 850], [1340, 1300], [1080, 1250], [1000, 1000]]].map((q, i) =>
       <path key={i} d={`M${pts(q as P2[])} Z`} fill={i === 1 ? mix(BP.tasGolge, BP.tasOrta, 0.35) : BP.tasIsik} />)}
@@ -133,16 +132,12 @@ const OyukYamaci: React.FC<{ t: number; bulut: number }> = ({ t, bulut }) => (
     <path d={`M${pts([[120, 1010], [250, 900], [300, 1040], [270, 1200], [130, 1236]])} Z`} fill="#3c3658" />
     <path d={`M${pts([[980, 920], [860, 880], [820, 1040], [850, 1200], [972, 1190]])} Z`} fill={mix(BP.tasGolge, BP.tasOrta, 0.35)} />
     <path d="M860,880 L820,1040 L850,1200" stroke={BP.kenar} strokeWidth={3} fill="none" opacity={0.7} />
-    {/* sarkan saçak: ağzın üstünde öne taşan kalın kaya kütlesi; alt yüzü (alttan görünür) koyu taramalı, ön yüzü ışıkta */}
-    <path d={`M${pts([[40, 830], [110, 700], [300, 640], [560, 628], [800, 650], [990, 720], [1040, 860], [930, 830], [700, 790], [520, 778], [300, 792], [140, 850]])} Z`} fill={BP.tasIsik} stroke="#5e4c50" strokeWidth={4} />
-    <path d={`M${pts([[140, 850], [300, 792], [520, 778], [700, 790], [930, 830], [1040, 860], [910, 880], [700, 846], [520, 836], [300, 848], [170, 900]])} Z`} fill="#4e4048" />
-    <Tara d={`M${pts([[140, 850], [300, 792], [520, 778], [700, 790], [930, 830], [1040, 860], [910, 880], [700, 846], [520, 836], [300, 848], [170, 900]])} Z`} aci={60} aralik={8} kalin={2.6} renk="#1c1a2c" alfa={0.55} kutu={[140, 778, 1040, 900]} />
-    {[[260, 660, 120], [470, 640, 110], [720, 660, 120], [900, 710, 100]].map(([x, y, L], i) => <g key={`sk${i}`}><path d={`M${x - 8},${y} L${x + 4},${y + L} L${x + 9},${y} Z`} fill={BP.tasGolge} /><path d={`M${x + 9},${y} L${x + 6},${y + L}`} stroke={BP.kenar} strokeWidth={3} /></g>)}
-    <path d="M110,700 L300,640 L560,628 L800,650 L990,720" stroke={BP.kenar} strokeWidth={5} fill="none" />
+    {/* sarkan dudak: yalnız alt yüzü (alçak kameradan görünen), kırık kenarlı, taramalı */}
+    <path d={`M${pts([[120, 880], [250, 800], [400, 770], [560, 760], [720, 772], [880, 805], [980, 870], [900, 900], [700, 846], [520, 836], [300, 852], [170, 905]])} Z`} fill="#3e3858" stroke="#3e302b" strokeWidth={5} />
+    <Tara d={`M${pts([[120, 880], [250, 800], [400, 770], [560, 760], [720, 772], [880, 805], [980, 870], [900, 900], [700, 846], [520, 836], [300, 852], [170, 905]])} Z`} aci={60} aralik={9} kalin={3.2} renk="#1c1828" alfa={0.6} kutu={[120, 760, 980, 905]} />
+    <path d={`M${pts([[120, 880], [250, 800], [400, 770], [560, 760], [720, 772], [880, 805], [980, 870]])}`} stroke={BP.kenar} strokeWidth={6} fill="none" />
     {/* mevzi örtüsü: saçaktan sarkan ve yanlara dayanmış kesik dallar; ortada namlu görüş aralığı açık */}
-    <Ortu alan={[[60, 820], [400, 790], [470, 900], [420, 1000], [330, 1290], [40, 1290]]} n={60} r={52} seed="or1" />
-    <Ortu alan={[[640, 790], [1040, 840], [1050, 1290], [760, 1290], [700, 1060], [690, 900]]} n={60} r={52} seed="or2" />
-    <Ortu alan={[[380, 780], [700, 780], [680, 860], [420, 860]]} n={18} r={40} seed="or3" />
+    {[[[110, 900], [200, 1200]], [[970, 900], [880, 1210]], [[60, 1240], [230, 1080]]].map(([a2, b2], i) => <Dal key={`dal${i}`} a={a2 as P2} b={b2 as P2} k={1.6} seed={`dal${i}`} />)}
     {/* üst dudak kenarı: ışıkta kırık çizgi */}
     <path d={`M${pts(AGIZ.slice(1, 11))}`} stroke={BP.kenar} strokeWidth={4} fill="none" />
     {/* alt dudak: seki kenarı ışıkta */}
@@ -176,6 +171,25 @@ const Namlu: React.FC<{ cik: number; parilti: number }> = ({ cik, parilti }) => 
   );
 };
 
+// tur-4 (mekanlar §3.1/§3.3): sol-alttan sağ-üste yükselen karst yamaç diyagonali; oyuk (≤ 450 × 260 px) yamacın içinde, üstünde karren kayası
+const YAMAC_D: P2[] = [[-400, 1260], ...kirik([-300, 1240], [300, 1010], 10, 16, "yd1"), ...kirik([300, 1010], [760, 760], 9, 18, "yd2"), ...kirik([760, 760], [1400, 470], 10, 18, "yd3"), [1500, 2400], [-400, 2400]];
+const YamacDiyagonal: React.FC<{ t: number }> = ({ t }) => (
+  <g strokeLinejoin="round">
+    <path d={`M${pts(YAMAC_D)} Z`} fill={BP.tasOrta} stroke="#3e302b" strokeWidth={3} />
+    {/* basamaklı tabakalar: her basamağın üst (sol) yüzü ışıkta, sağ yüzü gölgede */}
+    {Array.from({ length: 9 }).map((_, i) => { const x0 = -300 + i * 190, y0 = 1250 - i * 92 + (rr(`yb${i}`) - 0.5) * 30, w = 150 + rr(`ybw${i}`) * 90, h = 46 + rr(`ybh${i}`) * 40; return <g key={`ys${i}`}>
+      <path d={`M${pts([[x0, y0 + 60], [x0 + 20, y0], [x0 + w, y0 - 30], [x0 + w + 16, y0 + h]])} Z`} fill={BP.tasIsik} stroke="#3e302b" strokeWidth={2.5} />
+      <path d={`M${pts([[x0 + w, y0 - 30], [x0 + w + 16, y0 + h], [x0 + w - 20, y0 + h + 20]])} Z`} fill="#3e3858" />
+      <path d={`M${x0 + 20},${y0} L${x0 + w},${y0 - 30}`} stroke={BP.kenar} strokeWidth={3} /></g>; })}
+    {/* karren kayası: oyuğun üstünde yükselen kütle */}
+    <path d={`M${pts([[300, 930], [350, 780], [420, 700], [520, 670], [610, 640], [700, 690], [770, 800], [790, 930]])} Z`} fill={mix(BP.tasOrta, BP.tasIsik, 0.35)} stroke="#3e302b" strokeWidth={3} />
+    <path d={`M${pts([[600, 610], [700, 660], [760, 780], [740, 900], [660, 900], [680, 760]])} Z`} fill={BP.tasGolge} />
+    <path d="M380,720 L470,640 L600,610" stroke={BP.kenar} strokeWidth={4} fill="none" />
+    <path d="M430,700 L445,760 L432,810 M520,650 L510,720 L528,770 M640,640 L655,700" stroke="#3e302b" strokeWidth={4} fill="none" />
+    {/* maki (%30) seed'li loblar halinde ağızdan uzakta */}
+    {Array.from({ length: 10 }).map((_, i) => { const x = -250 + i * 170 + rr(`ym${i}`) * 80, y = 1240 - (x + 250) * 0.42 + 40 + rr(`ymy${i}`) * 200; return Math.abs(x - 540) < 260 && y > 820 && y < 1300 ? null : rr(`ymt${i}`) < 0.6 ? <Maki key={`m${i}`} x={x} y={y} r={30 + rr(`ymr${i}`) * 26} seed={`ym${i}`} /> : <Ot key={`o${i}`} x={x} y={y} L={60} ruz={-0.64} t={t} seed={`yo${i}`} />; })}
+  </g>
+);
 const YamacOyuk: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }> = ({ plan, p, kilit }) => {
   const kayit = KB_KAYIT["yamac-oyuk"], ref = kamera25(undefined, 0, kayit.ref);
   const k = kamera25(param<Partial<Kamera25>>(plan, "kamera25", {}), p, kayit.ref);
@@ -189,7 +203,7 @@ const YamacOyuk: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }
   const seritler = [29, 27, 25, 23, 21, 19.5, 18, 16.5, 15, 13.5, 12, 10.5, 9, 7.5, 6, 5];
   const namluZ = 30.5 + (1 - cik) * 0.6;
   const np = plaka(ref, k, namluZ);
-  kilit.push({ ad: "oyuk merkezi", p: plaka(ref, k, 30).T([540, 1020]), tur: "kurulum" }, { ad: "namlu ucu", p: np.T([520, 1000]), tur: "dokunus" });
+  kilit.push({ ad: "oyuk merkezi", p: plaka(ref, k, 30).T([540, 1030]), tur: "kurulum" }, { ad: "namlu ucu", p: np.T([530, 1020]), tur: "dokunus" });
   return (
     <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
       <RenkKaydi><Isleme aci={60}>
@@ -206,18 +220,18 @@ const YamacOyuk: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }
           {Array.from({ length: 16 }).map((_, i) => { const x = -1300 + i * 240 + rr(`yb${z}${i}`) * 160, yy = 760 + j * 8; return rr(`ybt${z}${i}`) < 0.55 ? <Maki key={i} x={x} y={yy} r={(14 + rr(`ybr${z}${i}`) * 12) * (1 + j * 0.5)} seed={`yb${z}${i}`} /> : <Blok key={i} x={x} y={yy + 2} w={(36 + rr(`ybw${z}${i}`) * 30) * (1 + j * 0.5)} h={(14 + rr(`ybh${z}${i}`) * 12) * (1 + j * 0.5)} seed={`yk${z}${i}`} />; })}
         </Katman>)}
         {/* oyuk yamacı (konu, z 30) + namlu ucu (30.5–31.1) */}
-        <Katman r={ref} k={k} z={30}><OyukYamaci t={t} bulut={bulut} /></Katman>
-        <defs><clipPath id="kbAgiz"><path d={`M${pts(AGIZ.map((q) => plaka(ref, k, 30).T([540 + (q[0] - 540) * 0.94, 1040 + (q[1] - 1040) * 0.92])))} Z`} /></clipPath></defs>
-        <g clipPath="url(#kbAgiz)"><Katman r={ref} k={k} z={namluZ}><Namlu cik={cik} parilti={par} /></Katman></g>
+        <Katman r={ref} k={k} z={30}><YamacDiyagonal t={t} /><g transform="translate(540 1040) scale(0.5) translate(-540 -1040)"><OyukYamaci t={t} bulut={bulut} /></g></Katman>
+        <defs><clipPath id="kbAgiz"><path d={`M${pts(AGIZ.map((q) => plaka(ref, k, 30).T([540 + (q[0] - 540) * 0.47, 1040 + (q[1] - 1040) * 0.46])))} Z`} /></clipPath></defs>
+        <g clipPath="url(#kbAgiz)"><Katman r={ref} k={k} z={namluZ}><g transform="translate(540 1040) scale(0.5) translate(-540 -1040)"><Namlu cik={cik} parilti={par} /></g></Katman></g>
         {/* sekinin önü + yamaç zemin şeritleri (uzaktan yakına; her şerit kendinden sonrakini örter) */}
         {seritler.map((z, j) => {
           const y = refY(ref, zeminH(z), z), s = ref.F / z;
           const kenar: P2[] = []; const lam = (5 + 4 * rr(`zl${z}`)) * s, fz = rr(`zf${z}`) * 6.28;
-          for (let x = -3000; x <= 4000; x += Math.max(6, s * 0.25)) kenar.push([x, y + 0.07 * s * Math.sin((x / lam) * 6.28 + fz) + 0.05 * s * Math.sin((x / lam) * 17 + fz * 2) + (rr(`zk${z}${Math.round(x / Math.max(6, s * 0.25))}`) - 0.5) * 0.03 * s]);
+          for (let x = -3000; x <= 4000; x += Math.max(6, s * 0.25)) kenar.push([x, y - 0.32 * (x - 540) + 0.07 * s * Math.sin((x / lam) * 6.28 + fz) + 0.05 * s * Math.sin((x / lam) * 17 + fz * 2) + (rr(`zk${z}${Math.round(x / Math.max(6, s * 0.25))}`) - 0.5) * 0.03 * s]);
           const ton = [mix(BP.tasOrta, BP.toprak, 0.3), BP.tasOrta, mix(BP.tasOrta, BP.tasIsik, 0.4), mix(BP.tasOrta, BP.tasGolge, 0.15)][Math.floor(rr(`zton${z}`) * 4)];
           return <Katman key={z} r={ref} k={k} z={z}>
             <path d={`M-3000,4000 L${pts(kenar)} L4000,4000 Z`} fill={ton} />
-            <path d={`M-3000,4000 L${pts(kenar.map((q) => [q[0], q[1] + 0.06 * s] as P2))} L4000,4000 Z`} fill={BP.tasGolge} opacity={0.32} />
+            <path d={`M-3000,4000 L${pts(kenar.map((q) => [q[0], q[1] + 0.06 * s] as P2))} L4000,4000 Z`} fill="#3e3858" />
             <path d={`M-3000,4000 L${pts(kenar.map((q) => [q[0], q[1] + 0.13 * s] as P2))} L4000,4000 Z`} fill={ton} />
             {Array.from({ length: 14 }).map((_, i) => { const x = -1200 + i * 0.9 * s + rr(`zt2${z}${i}`) * 0.5 * s, yy = y + 0.07 * s; return <line key={`tz${i}`} x1={x} y1={yy} x2={x + 0.05 * s} y2={yy + 0.05 * s} stroke={BP.tasDerin} strokeWidth={Math.max(2, 0.008 * s)} opacity={0.45} />; })}
             <polyline points={pts(kenar)} stroke={BP.kenar} strokeWidth={Math.max(2, s * 0.012)} fill="none" opacity={0.85} />
@@ -228,14 +242,14 @@ const YamacOyuk: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }
                 : <Ot key={i} x={x} y={y + 0.05 * s} L={0.22 * s} ruz={-0.64} t={t} seed={`zo${z}${i}`} w={Math.max(2, s * 0.01)} />; })}
             {Array.from({ length: 26 }).map((_, i) => <ellipse key={`c${i}`} cx={540 + (rr(`zc${z}${i}`) - 0.5) * 9 * s} cy={y + (0.12 + rr(`zcy${z}${i}`) * 0.3) * s} rx={0.05 * s} ry={0.018 * s} fill={BP.tasGolge} opacity={0.45} />)}
             {/* taze katır izi (z 21–23): toz çizgisi + U toynak izleri — tekerlek yok */}
-            {(z === 21 || z === 23) && <g>
+            {false && (z === 21 || z === 23) && <g>
               <path d={`M${540 - 2.2 * s},${y + 0.18 * s} Q${540},${y + 0.12 * s} ${540 + 2.4 * s},${y + 0.2 * s}`} stroke="#c9b09a" strokeWidth={0.09 * s} fill="none" opacity={0.85} />
               {[-1.2, 0.2, 1.4].map((u, i) => <path key={i} d={`M${540 + u * s - 0.06 * s},${y + 0.2 * s} a${0.06 * s},${0.04 * s} 0 1 0 ${0.12 * s},0`} stroke="#8a7f98" strokeWidth={Math.max(2, 0.014 * s)} fill="none" />)}
             </g>}
           </Katman>;
         })}
         {/* yamaç tozu (z ≈ 15, sola sürüklenir; rüzgâr −0.64) */}
-        <Katman r={ref} k={k} z={15}>{Array.from({ length: 25 }).map((_, i) => { const x = ((rr(`tz${i}`) * 1600 - t * (10 + rr(`tzv${i}`) * 10)) % 1600 + 1600) % 1600 - 260, y = 600 + rr(`tzy${i}`) * 900; return <circle key={i} cx={x} cy={y} r={2 + rr(`tzr${i}`) * 2} fill="#d9c3a0" opacity={0.3} />; })}</Katman>
+        <Katman r={ref} k={k} z={15}>{Array.from({ length: 25 }).map((_, i) => { const x = ((rr(`tz${i}`) * 1600 - t * (10 + rr(`tzv${i}`) * 10)) % 1600 + 1600) % 1600 - 260, y = 600 + rr(`tzy${i}`) * 900; return <circle key={i} cx={x} cy={y} r={3 + rr(`tzr${i}`) * 3} fill="#e8d4b0" opacity={0.55} />; })}</Katman>
       </Isleme></RenkKaydi>
     </svg>
   );

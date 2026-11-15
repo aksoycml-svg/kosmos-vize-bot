@@ -1,0 +1,70 @@
+{
+ "K1_P01_k124.png": {
+  "kor_px": 0,
+  "kor_max_C": null,
+  "kor_max_L": null,
+  "disari_C28_px": 35619,
+  "disari_L88_px": 4723,
+  "disari_max_C": 36.3,
+  "kontrast": {
+   "p5_L": 14.4,
+   "p95_L": 83.9,
+   "aralik": 69.5,
+   "konu_L": 37.9,
+   "cevre_L": 51.2,
+   "ayrisma": 13.3,
+   "gecti": true
+  }
+ },
+ "K2_P07b_y214.png": {
+  "kor_px": 188458,
+  "kor_max_C": 76.4,
+  "kor_max_L": 90.4,
+  "disari_C28_px": 7410,
+  "disari_L88_px": 22,
+  "disari_max_C": 73.5,
+  "kontrast": {
+   "p5_L": 9.9,
+   "p95_L": 82.3,
+   "aralik": 72.4,
+   "konu_L": 41.5,
+   "cevre_L": 48.8,
+   "ayrisma": 7.3,
+   "gecti": true
+  }
+ },
+ "K3_P05_k150.png": {
+  "kor_px": 0,
+  "kor_max_C": null,
+  "kor_max_L": null,
+  "disari_C28_px": 43612,
+  "disari_L88_px": 130,
+  "disari_max_C": 33.3,
+  "kontrast": {
+   "p5_L": 18.4,
+   "p95_L": 80.6,
+   "aralik": 62.2,
+   "konu_L": 56.2,
+   "cevre_L": 61.9,
+   "ayrisma": 5.7,
+   "gecti": true
+  }
+ },
+ "K4_P04_y200.png": {
+  "kor_px": 557,
+  "kor_max_C": 73.2,
+  "kor_max_L": 85.8,
+  "disari_C28_px": 0,
+  "disari_L88_px": 3,
+  "disari_max_C": 27.9,
+  "kontrast": {
+   "p5_L": 10.8,
+   "p95_L": 81.6,
+   "aralik": 70.8,
+   "konu_L": 22.1,
+   "cevre_L": 56.9,
+   "ayrisma": 34.8,
+   "gecti": true
+  }
+ }
+}
