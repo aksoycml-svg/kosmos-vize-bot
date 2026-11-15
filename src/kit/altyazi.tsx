@@ -42,7 +42,7 @@ const sesDuzelt = (W: Kelime[], dil: Dil) => {
 // noktalamasız: harf/rakam/%; kelime içi kesme işareti (Tours'taydı) korunur; tire boşluk olur
 const temizle = (s: string, a: AltyaziAyar, dil: Dil) => {
   let q = s;
-  if (a.noktalamasiz) q = q.replace(/[-–—]/g, " ").replace(/(\p{L})['’](\p{L})/gu, "$1’$2").replace(/[^\p{L}\p{N}%’ ]/gu, "").replace(/\s+/g, " ").trim();
+  if (a.noktalamasiz) q = q.replace(/[-–—]/g, " ").replace(/([\p{L}\p{N}])['’](\p{L})/gu, "$1’$2").replace(/[^\p{L}\p{N}%’ ]/gu, "").replace(/\s+/g, " ").trim();
   if (a.kucuk) q = q.toLocaleLowerCase(dil === "tr" ? "tr" : "en");
   return q;
 };
