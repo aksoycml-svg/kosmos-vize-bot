@@ -185,3 +185,4 @@
   - (1) Yönetmen tam bolum.json'u KATALOG "Çiçero v2 + aşama 2 ekleri" tablosundan yazar. Test kareleri `kalibrasyon/v2/test_*.png`, test json'ları örnek olarak raporda.
   - (2) Orkestra: K-A p95 izin tabanı (70) kararı.
   - (3) Eleştirmen: v2 kareleri + iki yeni şerit.
+- (orkestra, v2 kapısı) v2 kalibrasyon kareleri orkestra gözüyle GEÇER: P01 banknot "para" okunuyor (sızıntı), Bazna boyu ve P04 eğilmesi düzeldi, lamba çevresine ışık düşüyor. Gece iç p95 L* tabanı 70 (lint izni; V'yi yeniden büyütmek spot itirazını geri getirirdi). 19 test karesi tek sayfada bakıldı, kit tam bölüm json'una yeterli. Yönetmen bolum.json yazıyor.
