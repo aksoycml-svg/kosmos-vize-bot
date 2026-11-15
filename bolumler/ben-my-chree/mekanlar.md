@@ -414,7 +414,39 @@ Kamera b 190, F 11 270 (P01 ile aynı lens), ama **mevziin ≈ 20 m gerisinde**,
 - Atış (yerel 186): namlu 24 px geri (24 kare); ağız parlaması ≤ 5 kare (tasarım önerisi, yönetmen onayı bekliyor), çekirdek `#ffe0a0` ≤ 90 px. E4 toz: `#c9b8b0` / gölge `#7a7090`, sağa-kameraya doğru (rüzgâr +0.57) sürüklenir, oturur.
 - Boyut ironisi (tasarım §4.4): top gölgede ve koyu, gemi ışıkta ve uzakta.
 
-### 3.6 360 px okunurluk (KIYI-BATARYA)
+- **P04 ışık olayı ve atmosfer:** ilk 1.5 sn kıyı bomboştur; tek hareket, sağdan geçen bulut gölgesinin yamacı karartıp bırakmasıdır (P03c ile aynı bulut, aynı yön). Ardından namlu ucu dudak gölgesinden yarım metre ışığa çıkar ve parıltı (yerel 190) gelir. Atmosfer: yamaç tozu, buğu bandı, sola eğilen ot sapları.
+
+### 3.6 `saygi` (P10a) — ön plan; arka plan LIMAN `enkaz` plakası
+**Duygusal amaç:** zafer değil, sessizlik. Batırılan geminin karşısında, gün batımında, işini bitirmiş insanlar ayakta durur. Kamera sabittir.
+**Görsel dil:** dikey figür ritmi (5 farklı boy ve yapı; ızgara değil, iki derinlikte) ↔ yatay deniz ve enkaz. Kadrajın en sıcak anı (ışık C). Kontrast yüksek: profiller ışıkta, gövdeler mavi-morda.
+
+**Kamera ve geometri (Özet 12):** b 190, F 11 270, yarıkta mevziin ≈ 20 m gerisinde. Figür zemininden göz 1.13 m (diz çökmüş kamera değil; yarık zemini mevzi sekisinden 0.5 m alçaktır [T]). 0.6° aşağı tilt → göz hizası y 643.
+| Öğe | Z (m) | px/m | Ekran (sahne planı ile) |
+|---|---|---|---|
+| Arka sıra: E2 x 90–290, E3 x 330–520 | 20.8 | 542 | ayak y 1 215, boy ≈ 930 px ✓ |
+| Ön sıra: teğmen x 300–520, E1 x 540–750, E4 x 760–960 | 19.8 | 569 | ayak y 1 280, boy ≈ 980 px, baş tepesi y ≈ 300 ✓ |
+| Top (sığınakta, namlu denize) | 23 | 490 | x 0–300, tekerlek ø 440 px, tabanı y 1 195. Sahne planındaki y 1 000–1 260 kutusu → **y 760–1 200** (yönetmene) |
+| Sığınak dudağı ve doğu duvarı | 21–24 | — | sol-üst köşe + sol kenar (§3.5 ile aynı) |
+| Enkaz (LIMAN plakası) | 2 000 | 5.6 | x 190–860, su hattı y 925; ön sıranın bel hizasında, **figürlerin arasından görünür** |
+| Kale | 2 200 | 5.1 | x 80–420, tepe y 525; E2–E3'ün başları arasında |
+| Gök | ∞ | — | y 0–505, C ışığı, 5 basamak + 2 bulut şeridi (bulutların alt yüzü `#cf9ea4`, kenarları `#eeb89c`) |
+
+**Yerleşim kuralı (ızgara yok, anlam var):** ön sıra üç kişi eşit aralıklı durmaz. Enkaz boşluğu önerisi (aşağıda, 360 px maddesi) uygulanırsa teğmen solda yalnız durur; E1 ve E4 sağda omuz omuzadır (aralık 20 px). E4 katırın yularını tutar; katırın yalnız başı ve kulakları sağ kenardan girer (x 960–1 080, flu σ 2). E2 arka sırada en uzundur ve en gençtir. E3 teğmenin arkasında kısmen kalır. Baş yükseklikleri seed'siz, kart boylarından gelir: 1.64 / 1.72 / 1.68 / 1.75 / 1.66 m.
+
+**Bakış ve ışık (hilesiz):**
+- Gövdeler profilde, sağa (≈ 270°, batıya, gün batımı denizine) döner. Başlar 0–15° arasında farklı açılarla döner: teğmen ve E4 tam profil, E1 başını hafif öne eğer (sessizlik), E2 ufka bakar. Gerçek bakış yönleri denizdir; enkaz kadrajda onların arkasında ve arasında durur. İzleyici "denize, gemiye bakıyorlar" diye okur ve geometri bozulmaz.
+- Güneş az 235, h 6°, yüzlerin bakış yönünden ≈ 35° solda ve önde. Bu yüzden **yüzün ön düzlemi** (alın, burun sırtı, üst dudak, çene, boyun önü, göğüs) gül-altın `#e4b496` ile aydınlanır. Kameraya bakan yanaklar ve kulaklar mavi-mor gölgededir: ten gölgesi `#8a6f7a`, yanak altında gökten yansıma hilali `#b9a8b4` vardır. Ön düzlem ile gölge arasında 3–5 px'lik keskin terminatör çizilir; terminatörde kısa tarama (4–6 çizgi, θ 105°, 2.2 px).
+- Kıyafet: ışık tarafı (göğüs önü, kol önü) `#8f8a6c` + kenar ışığı 3 px; gölge tarafı `#615c70`. Başlıkların üst-ön kenarında ışık çizgisi.
+- **Gölgeler:** güneşin tersine, kameraya ve sola, 6× yükseklik [T] (gerçekte 9.5×). Sığınak tabanında ön sıranın gölgeleri sola-aşağı uzanır ve alt kenardan çıkar; alt üçte biri doldururlar (gölgeler mavi-mor `#5f5a78`, kenarları net). Ayak temas gölgesi her figürde koyu elips `#4a4468`.
+
+**Katman yığını (arkadan öne):** gök C (0) → bulut (1) → uzak sırt + sıcak bant (2) → buğu (4) → yakın sırt (5) → kasaba (6; pencereler hâlâ ışıksız, gün batımında yalnız 2–3 cam parıltısı `#f3d9b6`) → kale (7) → rıhtım (8) → liman suyu + enkaz yansıması (9) → **enkaz** (10, `batik`) → ön su (11; ışıltı C ×1.5) → sığınak taban sekisi (Z 18–24, gölgede, ön kenarında kenar ışığı) → top (Z 23) → arka sıra erler (Z 20.8) → ön sıra (Z 19.8) → katır başı (Z 19, σ 2) → sığınak duvarı ve dudak çerçevesi (Z 21–24, sol) → ön plan ot sapları (Z 3–6, alt köşeler, σ 7; rüzgâr +0.57 sağa) → kâğıt.
+
+**Atmosfer:** kor, duman, ateş, bayrak, selam yok. Havada yalnız yavaş tuz zerresi (ışık tarafında `#efe0cc` α .3). Ufukta 3 buğu bandı, gün batımında daha sıcak (`#e8c9bc` **[yeni]**, C* ≈ 15).
+**Işık olayı (3.9 sn, kamera sabit):** güneş 6°'den 5.6°'ye iner. Yüz ön düzlemindeki ışık sınırı alından çeneye doğru 2–3 px yukarı çekilir; sırt bandı daralır. Bu ölçülü, neredeyse fark edilmeyen değişim zamanın aktığını söyler. Kumaş ve ot rüzgârla hafif oynar, figürler nefes alır (göğüs ±1.5 px, 0.25 Hz, faz kişi başına farklı).
+**Sıcak bütçe (≥ %20 hedef):** gök alt 3 basamak ≈ %12 + ışıltı ≈ %4 + yüz ve kıyafet ön düzlemleri ≈ %4 + sırt bantları ≈ %1.
+**360 px:** yüzler 110–115 px → 37–38 px ✓; enkaz 670 → 223 px; eğik iki baca 9 px ✓. **Kural:** ön sıranın hiçbir başı enkazın bacalarını örtmez. Bacalar x ≈ 480 ve x ≈ 585'tedir, su hattı y 925, baca tepeleri y ≈ 830. Teğmen x 300–520 ile E1 x 540–750'nin omuzları y ≈ 520–560'tadır; bacalar bel hizasında (y 830–925), iki gövde arasındaki 20 px'lik boşlukta ve kolların altında kalır. **Bu bir çakışmadır:** bacalar bel hizasında gövdelerin arkasında kalır. Öneri (yönetmene): ön sırayı x'te bölerek enkaz için boşluk aç: teğmen x 200–410, E1 x 640–850, E4 x 870–1 060. Böylece x 410–640 aralığı açılır; enkazın orta kısmı (iki eğik baca + hangarın baş köşesi) bu açıklıkta, figürlerin "arasında" görünür. Arka sıra E3 bu boşluğa girmez (x 90–290'a, E2 x 300–420'ye kayar).
+
+### 3.7 360 px okunurluk (KIYI-BATARYA)
 Oyuk (P04 cs 1) 320 × 220 → 107 × 73 px, en koyu leke. Parıltı 60 px → 20 px ✓. El 285 → 95 px. Yüz 380 → 127 px. Namlu kalınlığı 190 → 63 px. Katır kulakları flu ama çift uzun kulak biçimi okunur (at değil). Toynak izi 30 → 10 px (zayıf; destek olarak toz çizgisi 8 px). Yasak benzerlik: oyuk "kapı" okunmamalı (düz kenar yok); parıltı "yıldız/sihir" okunmamalı (4 köşeli ışın yok).
 
 ---
