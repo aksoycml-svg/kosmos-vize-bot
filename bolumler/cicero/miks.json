@@ -1,14 +1,14 @@
 {
   "fps": 60,
   "toplam_kare": 3890,
-  "referans": "Anlatım 0 dB (klip −18 LUFS). Müzik dosyası ölçümü: bölüm ortalaması −28.4 LUFS, en dolgun yer (P06–P08, 36–52 sn) ≈ −26.8 LUFS, sessiz yarı (0–32 sn) ≈ −30 LUFS. db −8 → dolgun yerde ≈ −34.8 LUFS = anlatımın 16.8 dB altı (aralık tavanı ≤ −16 ✓); duck −14 → dolgun yerde ≈ −40.8 LUFS = −22.8 dB (konuşma ≤ −22 ✓), sessiz yarıda −24…−26. Foley dosyaları tepe −3 dBFS'e eşitli (tools/cicero_sfx.py) → onerilen_db anlamlı; temas.db > istisnalar > onerilen_db > foley_varsayilan_db. Ortam yatakları (ortam.json) −18 LUFS'e eşitli, 'db' anlatıma göre, render ortam katmanı ayrı kanal.",
+  "referans": "DÜZELTME (miks ölçümü, tools/cicero_miks.py): müzik momentary p99.5 = −20.72 LUFS olduğundan kit eşdeğeri db −14.8 / duck −20.8 (tepeler aralıkta −16, konuşmada −22 dB). Önceki −8/−14 ortalama LUFS'e göre hesaplanmıştı, tepelerde 6 dB yüksek kalıyordu. Anlatım 0 dB (klip −18 LUFS). Müzik dosyası ölçümü: bölüm ortalaması −28.4 LUFS, en dolgun yer (P06–P08, 36–52 sn) ≈ −26.8 LUFS, sessiz yarı (0–32 sn) ≈ −30 LUFS. db −8 → dolgun yerde ≈ −34.8 LUFS = anlatımın 16.8 dB altı (aralık tavanı ≤ −16 ✓); duck −14 → dolgun yerde ≈ −40.8 LUFS = −22.8 dB (konuşma ≤ −22 ✓), sessiz yarıda −24…−26. Foley dosyaları tepe −3 dBFS'e eşitli (tools/cicero_sfx.py) → onerilen_db anlamlı; temas.db > istisnalar > onerilen_db > foley_varsayilan_db. Ortam yatakları (ortam.json) −18 LUFS'e eşitli, 'db' anlatıma göre, render ortam katmanı ayrı kanal.",
   "muzik": {
     "dosya": "cicero/muzik/cicero-measured-paces-65.mp3",
     "bas_kare": 0,
-    "db": -8,
+    "db": -14.8,
     "fade_in_kare": 1,
     "fade_out_kare": 1,
-    "duck": { "anlatim_db": -14, "atak_kare": 9, "birakma_kare": 24 },
+    "duck": { "anlatim_db": -20.8, "atak_kare": 9, "birakma_kare": 24 },
     "not": "Dosya 64.83 sn = 3890 kare (bölümle birebir), kendi giriş (0.3 sn) ve çıkış (63.6–64.83 sn) sönümü içinde; kit fade'i 1 kare (ek sönüm yok). Tek parça, tek tema: ~70 bpm piyano nabzı. Plan sınırında kesme/susma yok; nabız 4 vuruşluk ölçülerle (3.42 sn) akar. Final notası 63.54 sn (P10 p313: anlatım biter, banknot kayması p356 = 64.27 sn yankıda); dosya sonu P01'in 0.89 sn'deki ilk notasına döngü olur."
   },
   "foley_varsayilan_db": -7,
