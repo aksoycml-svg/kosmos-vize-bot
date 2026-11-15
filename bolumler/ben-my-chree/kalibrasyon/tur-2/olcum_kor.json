@@ -1,0 +1,34 @@
+{
+ "K1_P01_k124.png": {
+  "kor_px": 0,
+  "kor_max_C": null,
+  "kor_max_L": null,
+  "disari_C28_px": 235,
+  "disari_L88_px": 0,
+  "disari_max_C": 30.1
+ },
+ "K2_P07b_y214.png": {
+  "kor_px": 21048,
+  "kor_max_C": 74.7,
+  "kor_max_L": 93.9,
+  "disari_C28_px": 0,
+  "disari_L88_px": 255,
+  "disari_max_C": 25.2
+ },
+ "K3_P05_k150.png": {
+  "kor_px": 0,
+  "kor_max_C": null,
+  "kor_max_L": null,
+  "disari_C28_px": 0,
+  "disari_L88_px": 0,
+  "disari_max_C": 27.9
+ },
+ "K4_P04_y200.png": {
+  "kor_px": 2317,
+  "kor_max_C": 57.3,
+  "kor_max_L": 89.7,
+  "disari_C28_px": 0,
+  "disari_L88_px": 0,
+  "disari_max_C": 26.1
+ }
+}

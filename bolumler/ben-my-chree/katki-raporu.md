@@ -118,3 +118,19 @@
 - Kararlar: Kesin hiçbir madde yok; en yüksek güç "olası". Er = kabalak, subay = silindirik kalpak önerisi (olası, çıkarım etiketli). Rütbe/arma/dürbün/kılıç nötr. Hex değerleri çıkarım, kaynak değil. Kırmızı yaka kullanılmasın (KOR tekilliği + topçu rengi doğrulanamadı).
 - Kurallar: kaynaksız bilgi "çıkarım" etiketli; açılmayan kaynak "arama özeti".
 - Açık: ağ izniyle Commons/LoC/AWM fotoğrafı + Nicolle Men-at-Arms 269 okunursa kesinleşir. Kamu malı fotoğraf bulunamadı. Tasarımcı: tasarim.md §4.2 başlık tarifi güncellenmeli (sahibi tasarımcı).
+
+### motion · 2026-11-15 · kalibrasyon tur-2 (orkestra teşhisi + tur-7 omuz/yüz notları + üniforma)
+- **Ne yaptım (parametre/kod düzeyi):** Yüz: çift profil yapan kontura paralel ışık bandı → alın/elmacık/çene hacmini izleyen ışık düzlemi; elmacık, nazolabial ve kaz ayağı çizgileri kaldırıldı, yerine yumuşak ten gölgesi alanı ve göz altı tonu geldi; favori saç yönünde biçimli; burun ve bıyık ölçülü. Omuz: `profilIskelet` omuz eklemi boyundan 0.05·f geride, 0.08·f aşağıda; `OmuzBasi` (deltoid, kola göre döner, kavisli dikiş, koltuk altı kırışığı) ve `KolOmuz` (ElKol40 + başlık + sıvalı yen); yaka kavisli; gövde yuvarlak omuzlu ve gölge taraflı. Başlık ayrı bileşen `BaslikProfil`: teğmende `kabalak-subay` (çene kayışlı), E1–E3'te `kabalak-er`, E4'te `kasket-yumusak`; teğmende kemer, çapraz kayış ve dürbün; erlerde dolak. K3: teğmen 80 px aşağı (yüz üstü ≥ 640), kol dirsekli ve namluya dayalı, topa lafet, geri tepme silindiri ve kalkan eklendi. K2: T3 açık V yakalı kazak + iç fanila, kol sıvalı, kolu yüzünü koruyor, geri yaslanıyor; duvara alev ışığı (3 basamak), pas izleri, belirgin perçin sıraları; alev koyu kırmızı konturlu ve sıcak çekirdekli; duman kapı lentosundan çıkıyor. K4: sarkan kaya saçağı (alt yüzü taramalı), iç yan duvarlar, ağzı örten kesik dallar, daha yoğun zemin; parıltı opak. K1: ön kaya sağa alçalan tabakalı yamaç, oyuk dudak altında yarık; gemi dikey abartısı 1.4, gövde koyu, kenar ışıkları kalın; kale alçaltıldı.
+- **Ölçüm tur-2:**
+
+| kare | sıcak | p95 L* | sonuç |
+|---|---|---|---|
+| K1 | %27.9 | 80.8 | geçti |
+| K2 | %24.7 | **69.4** | **kaldı** |
+| K3 | %22.9 | 75.4 | geçti |
+| K4 | %50.0 | 79.0 | geçti |
+
+  Kor: K4 parıltı max C* 57.3 (≥ 55, geçti); K2 alev max C* 74.7. K2'de kor kutusu dışında L*>88: 255 px (sıcak çekirdek taşıyor).
+- **Piksel-aynı:** Paris k300 ve Çiçero k1200'de farklı piksel 0 (`tur-2/pikselayni/`). Ortak `src/rig` ve `El40` dosyalarına dokunulmadı.
+- **Öz puan ≈ 5.5:** K1 6 · K2 5 · K3 5.5 · K4 6.
+- **Kalan zayıflıklar:** K3 kalkanı profilde "direk" gibi; omuz başlığı hâlâ top gibi okunabilir. K2'de alev duman altında küçük kalıyor ve p95 tutmuyor. K1 ön kaya çuval/ekmek gibi okunabilir. K4 dalları seyrek ve ince. E2, E4, T1, T2, T4 bu karelerde yok, 2× kırpımları alınamadı. Kıyafet tur-2'de kısmi: teğmende külot ve çizme, erlerde potin kadrajda görünmüyor.

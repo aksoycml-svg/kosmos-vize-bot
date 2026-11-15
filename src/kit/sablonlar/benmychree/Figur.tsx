@@ -18,11 +18,11 @@ export type YuzKart = {
 const TEN_GOLGE = "#8a6f7a";
 // tasarim §4.1 teğmen (≈24, bıyıksız, temiz, genç) · §4.2 E1–E4 · §4.2b T1–T4 (kısa saç, başlıksız, kıyafet koyu nötr)
 export const YUZ_KART: Record<string, YuzKart> = {
-  tegmen: { ad: "Teğmen", yas: 24, uzun: 1.0, cene: 0.45, burun: 1.05, dudak: 0.9, elmacik: 0.5, boyun: 0.95, kas: 1.15, kasAci: 1, goz: 0.95, biyik: "yok", sakal: 0, yara: false, toz: 0, ter: false, kirisik: 0, ten: "#cba790", tenGolge: TEN_GOLGE, sac: "#3a2f2e", baslik: "yuvarlak-koyu", kulak: 1 },
-  E1: { ad: "E1 usta er", yas: 38, uzun: 0.95, cene: 0.95, burun: 1.0, dudak: 1.0, elmacik: 0.6, boyun: 1.25, kas: 1.35, kasAci: 4, goz: 0.55, biyik: "gur", sakal: 0, yara: false, toz: 0.6, ter: true, kirisik: 0.55, ten: "#c4a088", tenGolge: TEN_GOLGE, sac: "#2f2826", baslik: "yuvarlak-haki", kulak: 1 },
-  E2: { ad: "E2 genç er", yas: 19, uzun: 1.08, cene: 0.25, burun: 0.95, dudak: 0.85, elmacik: 0.9, boyun: 0.85, kas: 0.8, kasAci: -3, goz: 1.1, biyik: "yok", sakal: 0, yara: false, toz: 0.5, ter: true, kirisik: 0, ten: "#d0ae96", tenGolge: TEN_GOLGE, sac: "#2f2826", baslik: "yuvarlak-haki", kulak: 1 },
-  E3: { ad: "E3 orta yaşlı er", yas: 30, uzun: 0.92, cene: 0.7, burun: 0.92, dudak: 1.05, elmacik: 0.3, boyun: 1.1, kas: 1.1, kasAci: 2, goz: 0.85, biyik: "yok", sakal: 0.8, yara: true, toz: 0.4, ter: false, kirisik: 0.25, ten: "#b89480", tenGolge: TEN_GOLGE, sac: "#2f2826", baslik: "yuvarlak-haki", kulak: 1 },
-  E4: { ad: "E4 yaşlı er", yas: 45, uzun: 1.1, cene: 0.6, burun: 1.12, dudak: 0.8, elmacik: 0.8, boyun: 1.0, kas: 1.45, kasAci: 3, goz: 0.8, biyik: "seyrek-kir", sakal: 0, yara: false, toz: 0.3, ter: false, kirisik: 0.9, ten: "#c9a88f", tenGolge: TEN_GOLGE, sac: "#6e6662", baslik: "yuvarlak-haki", kulak: 1.25 },
+  tegmen: { ad: "Teğmen", yas: 24, uzun: 1.0, cene: 0.45, burun: 1.05, dudak: 0.9, elmacik: 0.5, boyun: 0.95, kas: 1.15, kasAci: 1, goz: 0.95, biyik: "yok", sakal: 0, yara: false, toz: 0, ter: false, kirisik: 0, ten: "#cba790", tenGolge: TEN_GOLGE, sac: "#3a2f2e", baslik: "kabalak-subay", kulak: 1 },
+  E1: { ad: "E1 usta er", yas: 38, uzun: 0.95, cene: 0.95, burun: 1.0, dudak: 1.0, elmacik: 0.6, boyun: 1.25, kas: 1.35, kasAci: 4, goz: 0.55, biyik: "gur", sakal: 0, yara: false, toz: 0.6, ter: true, kirisik: 0.55, ten: "#c4a088", tenGolge: TEN_GOLGE, sac: "#2f2826", baslik: "kabalak-er", kulak: 1 },
+  E2: { ad: "E2 genç er", yas: 19, uzun: 1.08, cene: 0.25, burun: 0.95, dudak: 0.85, elmacik: 0.9, boyun: 0.85, kas: 0.8, kasAci: -3, goz: 1.1, biyik: "yok", sakal: 0, yara: false, toz: 0.5, ter: true, kirisik: 0, ten: "#d0ae96", tenGolge: TEN_GOLGE, sac: "#2f2826", baslik: "kabalak-er", kulak: 1 },
+  E3: { ad: "E3 orta yaşlı er", yas: 30, uzun: 0.92, cene: 0.7, burun: 0.92, dudak: 1.05, elmacik: 0.3, boyun: 1.1, kas: 1.1, kasAci: 2, goz: 0.85, biyik: "yok", sakal: 0.8, yara: true, toz: 0.4, ter: false, kirisik: 0.25, ten: "#b89480", tenGolge: TEN_GOLGE, sac: "#2f2826", baslik: "kabalak-er", kulak: 1 },
+  E4: { ad: "E4 yaşlı er", yas: 45, uzun: 1.1, cene: 0.6, burun: 1.12, dudak: 0.8, elmacik: 0.8, boyun: 1.0, kas: 1.45, kasAci: 3, goz: 0.8, biyik: "seyrek-kir", sakal: 0, yara: false, toz: 0.3, ter: false, kirisik: 0.9, ten: "#c9a88f", tenGolge: TEN_GOLGE, sac: "#6e6662", baslik: "kasket-yumusak", kulak: 1.25 },
   T1: { ad: "T1", yas: 22, uzun: 1.06, cene: 0.3, burun: 0.95, dudak: 0.85, elmacik: 0.7, boyun: 0.9, kas: 0.8, kasAci: -2, goz: 1.0, biyik: "yok", sakal: 0, yara: false, toz: 0, ter: false, kirisik: 0, ten: "#d0ae96", tenGolge: TEN_GOLGE, sac: "#5a4636", baslik: "yok", kulak: 1 },
   T2: { ad: "T2", yas: 40, uzun: 0.95, cene: 0.85, burun: 1.05, dudak: 1.0, elmacik: 0.5, boyun: 1.2, kas: 1.2, kasAci: 2, goz: 0.8, biyik: "kir-gur", sakal: 0, yara: false, toz: 0, ter: false, kirisik: 0.6, ten: "#c4a088", tenGolge: TEN_GOLGE, sac: "#7a7068", baslik: "yok", kulak: 1.05 },
   T3: { ad: "T3", yas: 28, uzun: 1.08, cene: 0.55, burun: 1.08, dudak: 0.85, elmacik: 0.95, boyun: 0.95, kas: 1.0, kasAci: -6, goz: 1.15, biyik: "yok", sakal: 0.15, yara: false, toz: 0.8, ter: false, kirisik: 0.15, ten: "#c9a88f", tenGolge: TEN_GOLGE, sac: "#4a3a30", baslik: "yok", kulak: 1 },
@@ -141,7 +141,7 @@ export const _pts = pts;
 // Yerel birim m; s = px/m; ayak = iki ayağın ortası (zemin teması). yon +1 sağa bakar, −1 sola.
 // Kıyafet: "ceket" (Osmanlı haki ceket, kalça altına iner) · "kazak" (Royal Navy iş kazağı, belde biter). Rütbe/arma/rozet yok.
 export type FigurPoz = { egilme?: number; basEgim?: number; adim?: number; agirlik?: number; diz?: boolean; nefes?: number };
-export type Kiyafet = { tur: "ceket" | "kazak"; renk: string; isik: string; golge: string; pantolon: string; pantolonIsik: string; cizme: string };
+export type Kiyafet = { tur: "ceket" | "kazak"; renk: string; isik: string; golge: string; pantolon: string; pantolonIsik: string; cizme: string; kemer?: boolean; kayis?: boolean; durbun?: boolean; dolak?: boolean };
 const ik2 = (a: P2, b: P2, L1: number, L2: number, yon: number): P2 => {
   const d = Math.min(L1 + L2 - 1e-4, Math.hypot(b[0] - a[0], b[1] - a[1])), t = Math.atan2(b[1] - a[1], b[0] - a[0]);
   const c = Math.acos(Math.max(-1, Math.min(1, (L1 * L1 + d * d - L2 * L2) / (2 * L1 * d))));
@@ -190,6 +190,9 @@ export const ProfilFigur: React.FC<{ ayak: P2; s: number; yon: 1 | -1; boy?: num
       {bacak(kArka, arkaAyak, mix(k.pantolon, "#1c1a24", 0.25))}
       <path d={ayakB(arkaAyak, false)} fill={k.cizme} stroke="#1c1a24" strokeWidth={2} />
       {bacak(kOn, onAyak, k.pantolon)}
+      {k.dolak && [[kArka, arkaAyak], [kOn, onAyak]].map(([kk, aa], j) => { const a0 = kk as P2, a1 = aa as P2; return <g key={`dl${j}`}>
+        <path d={kapsul([a0[0] + (a1[0] - a0[0]) * 0.35, a0[1] + (a1[1] - a0[1]) * 0.35], [a1[0], a1[1] - 0.09 * s], 0.052 * f * s, 0.045 * f * s)} fill={mix(k.pantolon, "#9a9070", 0.35)} stroke="#24223a" strokeWidth={2} />
+        {[0.45, 0.58, 0.71, 0.84].map((q, i) => { const p: P2 = [a0[0] + (a1[0] - a0[0]) * q, a0[1] + (a1[1] - a0[1]) * q]; return <line key={i} x1={p[0] - 0.05 * s} y1={p[1] + 0.012 * s} x2={p[0] + 0.05 * s} y2={p[1] - 0.012 * s} stroke="#4a4436" strokeWidth={Math.max(1.5, 0.005 * s)} opacity={0.8} />; })}</g>; })}
       <path d={ayakB(onAyak, true)} fill={k.cizme} stroke="#1c1a24" strokeWidth={2} />
       {isik === "on" && <path d={`M${kalca[0] + yon * 0.07 * s},${kalca[1]} L${kOn[0] + yon * 0.05 * s},${kOn[1]} L${onAyak[0] + yon * 0.04 * s},${onAyak[1] - 0.1 * s}`} stroke={k.pantolonIsik} strokeWidth={Math.max(3, 0.02 * s)} fill="none" />}
       {/* boyun */}
@@ -210,6 +213,10 @@ export const ProfilFigur: React.FC<{ ayak: P2; s: number; yon: 1 | -1; boy?: num
       {/* kumaş kıvrımları + ceket alt kenarı */}
       {[0.12, 0.26].map((v, i) => <path key={i} d={`M${pts([R(-0.02 * f, v * f), R(0.06 * f, (v + 0.05) * f), R(0.1 * f, (v + 0.02) * f)])}`} stroke={mix(k.golge, "#1c1a24", 0.35)} strokeWidth={Math.max(2, 0.008 * s)} fill="none" opacity={0.7} />)}
       {k.tur === "ceket" && <path d={`M${pts([R(-0.13 * f, ceketBoy + 0.02), R(0.13 * f, ceketBoy + 0.04)])}`} stroke="#24223a" strokeWidth={Math.max(2, 0.008 * s)} />}
+      {k.kemer && <path d={`M${pts([R(-0.135 * f, 0.03 * f), R(0.125 * f, 0.04 * f), R(0.125 * f, 0.09 * f), R(-0.14 * f, 0.08 * f)])} Z`} fill="#5a4a3e" stroke="#24223a" strokeWidth={2} />}
+      {k.kayis && <path d={`M${pts([R(-0.05 * f, 0.53 * f), R(0.06 * f, 0.3 * f), R(0.11 * f, 0.08 * f)])}`} stroke="#5a4a3e" strokeWidth={Math.max(3, 0.022 * s)} fill="none" />}
+      {k.durbun && <g><path d={`M${pts([R(0.07 * f, 0.36 * f), R(0.16 * f, 0.34 * f), R(0.16 * f, 0.26 * f), R(0.07 * f, 0.27 * f)])} Z`} fill="#2e2c3a" stroke="#1c1a24" strokeWidth={2} />
+        <path d={`M${pts([R(0.155 * f, 0.34 * f), R(0.155 * f, 0.27 * f)])}`} stroke={BP.kenar} strokeWidth={2} /></g>}
       {!basYok && <BasProfil kart={kart} x={sk.bas[0]} y={sk.bas[1]} H={0.27 * f * s} ayna={yon === -1} egim={(pz.basEgim ?? 0) * yon + ((pz.egilme ?? 0) * yon) / 2} isik={isik} sicak={sicak} kenar={kenar} bakisY={bakisY} />}
       {onKol}
     </g>
@@ -252,6 +259,23 @@ export type BaslikTip = "yuvarlak-haki" | "yuvarlak-koyu" | "yok" | (string & {}
 export const BaslikProfil: React.FC<{ tip: BaslikTip; u: number; H: number; isik: "on" | "arka"; sicak: string; kenar: string }> = ({ tip, u, H, isik, sicak, kenar }) => {
   if (tip === "yok") return null;
   const sw = (px: number) => px / H;
+  if (tip === "kabalak-subay" || tip === "kabalak-er") {
+    // kabalak (tasarim §4.1–4.2; LoC 20341r): yüksek yuvarlak tepe (≈ 0.55 × yüz), kenarı dışa sarılı kalın simit, siperliksiz; subayda çene kayışı
+    const er = tip === "kabalak-er", bc = er ? "#8a8264" : "#8e8768", bk = mix(bc, "#1c1a24", 0.4), bi = mix(bc, isik === "on" ? sicak : kenar, 0.45);
+    const tepe = -0.3 * u - 0.44, ust = yol([[-0.42, -0.2 * u], [-0.44, -0.42 * u], [-0.32, tepe + 0.08], [-0.05, tepe], [0.2, tepe + 0.05], [0.33, -0.48 * u], [0.32, -0.32 * u], [0.1, -0.3 * u], [-0.2, -0.24 * u]]);
+    return <g>
+      <path d={ust} fill={bc} stroke={bk} strokeWidth={sw(3)} />
+      {[0, 1, 2, 3, 4].map((i) => { const y0 = (-0.36 - i * 0.075) * u, j = er ? (rr(`kb${i}`) - 0.5) * 0.05 : 0; return <path key={i} d={`M${-0.41 + i * 0.01},${y0 + 0.03 + j} Q${-0.05},${y0 - 0.05 - j} ${0.31 - i * 0.02},${y0 - 0.02}`} stroke={bk} strokeWidth={sw(2.2)} fill="none" opacity={0.65} />; })}
+      <path d={`M0.33,${-0.46 * u} Q0.27,${tepe + 0.06} 0.08,${tepe + 0.01}`} stroke={bi} strokeWidth={sw(6)} fill="none" />
+      <path d={`M-0.47,-0.13 Q-0.48,${-0.28 * u} -0.38,${-0.3 * u} L0.3,${-0.38 * u} Q0.37,${-0.36 * u} 0.36,${-0.29 * u} L0.33,${-0.25 * u} L-0.1,${-0.2 * u} L-0.44,-0.06 Z`} fill={mix(bc, "#ffffff", 0.06)} stroke={bk} strokeWidth={sw(3)} />
+      <path d={`M-0.38,${-0.3 * u} L0.3,${-0.38 * u}`} stroke={bi} strokeWidth={sw(4)} />
+      {er && Array.from({ length: 10 }).map((_, i) => <circle key={`t${i}`} cx={-0.35 + rr(`kt${i}`) * 0.6} cy={(-0.4 - rr(`kty${i}`) * 0.3) * u} r={sw(2)} fill="#c9b8b0" opacity={0.6} />)}
+      {!er && <path d={`M-0.1,${-0.18 * u} Q-0.08,${0.32 * u} 0.2,${0.5 * u}`} stroke="#4a3c34" strokeWidth={sw(3.5)} fill="none" />}
+    </g>;
+  }
+  if (tip === "kasket-yumusak") { const bc = "#77705a", bk = mix(bc, "#1c1a24", 0.4); return <g>
+    <path d={yol([[-0.42, -0.16], [-0.38, -0.46 * u], [-0.05, -0.58 * u], [0.3, -0.5 * u], [0.42, -0.36 * u], [0.3, -0.3 * u], [-0.1, -0.25 * u]])} fill={bc} stroke={bk} strokeWidth={sw(3)} />
+    <path d={`M0.28,${-0.33 * u} Q0.4,${-0.36 * u} 0.44,${-0.3 * u}`} stroke={bk} strokeWidth={sw(5)} fill="none" /></g>; }
  const bc = tip === "yuvarlak-koyu" ? "#55505e" : "#7a7458", bk = mix(bc, "#1c1a24", 0.35), bi = mix(bc, sicak, 0.35); return <g>
         <path d={`M-0.42,-0.14 L-0.43,${-0.52 * u} Q-0.42,${-0.6 * u} -0.33,${-0.61 * u} L0.22,${-0.61 * u} Q0.31,${-0.6 * u} 0.31,${-0.52 * u} L0.31,${-0.29 * u} L0.14,${-0.31 * u} L-0.1,${-0.25 * u} Z`} fill={bc} stroke={bk} strokeWidth={sw(3)} />
         <path d={`M-0.42,-0.14 L-0.42,-0.22 L-0.1,${-0.33 * u} L0.14,${-0.38 * u} L0.31,${-0.37 * u} L0.31,${-0.29 * u} L0.14,${-0.31 * u} L-0.1,${-0.25 * u} Z`} fill={bk} />

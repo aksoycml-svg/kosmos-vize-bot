@@ -73,6 +73,9 @@ const Namlu: React.FC<{ x0: number; x1: number; y0: number; y1: number; k0: numb
       {/* geri tepme silindiri (namlu altında, kısa) + beşik kelepçeleri */}
       <path d={`M${x0 + 120},${yA(x0 + 120, 0.45)} L${x1 - 260},${yA(x1 - 260, 0.45)} L${x1 - 260},${yA(x1 - 260, 0.45) + k1 * 0.42} L${x0 + 120},${yA(x0 + 120, 0.45) + k0 * 0.42} Z`} fill="#46445a" stroke="#2a2740" strokeWidth={4} />
       <path d={`M${x0 + 120},${yA(x0 + 120, 0.5)} L${x1 - 260},${yA(x1 - 260, 0.5)}`} stroke="#8a86a0" strokeWidth={4} />
+      <path d={`M${x0 + 250},${yA(x0 + 250, -0.5) - 420} L${x0 + 330},${yA(x0 + 330, -0.5) - 440} L${x0 + 360},${y0 + 420} L${x0 + 230},${y0 + 440} Z`} fill="#565268" stroke="#2a2740" strokeWidth={5} />
+      <path d={`M${x0 + 330},${yA(x0 + 330, -0.5) - 440} L${x0 + 360},${y0 + 420}`} stroke={BP.kenar} strokeWidth={5} />
+      {Array.from({ length: 8 }).map((_, i) => <circle key={i} cx={x0 + 300 + i * 2} cy={yA(x0 + 300, -0.5) - 400 + i * 100} r={6} fill="#3a3650" />)}
       <path d={d} fill="#5a5670" stroke="#2a2740" strokeWidth={5} />
       <path d={`M${x0},${yA(x0, -0.5)} L${x1},${yA(x1, -0.5)} L${x1},${yA(x1, -0.18)} L${x0},${yA(x0, -0.2)} Z`} fill="#6e6a86" />
       <path d={`M${x0},${yA(x0, -0.36)} L${x1 - 20},${yA(x1 - 20, -0.36)}`} stroke={BP.demirIsik} strokeWidth={10} strokeLinecap="round" />
@@ -110,7 +113,7 @@ export const TegmenSahne: React.FC<{ plan: Plan; p: number; kilit: SablonProps["
   // ekran yerleşimi (ref, k150): namlu y 1080–1290; teğmen başı kulak (690, 690), H 470; el namlu üstünde
   const nY0 = 1320, nY1 = 1262, nK0 = 232, nK1 = 196, nX0 = -120, nX1 = 1010;
   const nUst = (x: number) => nY0 + (nY1 - nY0) * ((x - nX0) / (nX1 - nX0)) - (nK0 + (nK1 - nK0) * ((x - nX0) / (nX1 - nX0))) / 2;
-  const skT = profilIskelet([778, 2633 + nefes], 1594, 1, 1.72, { diz: true, egilme: 4 });
+  const skT = profilIskelet([778, 2713 + nefes], 1594, 1, 1.72, { diz: true, egilme: 4 }); // yüz üst kenarı y ≥ 640 (kabalak yazı bandına binmez)
   // kol: omuz (gövde içinde) → dirsek namlu üstüne dayalı → ön kol namlu boyunca, el kamaya doğru; avuç namluyu kavrar (dayali)
   const omuz: P2 = skT.omuz, dirsek: P2 = [omuz[0] - 100, nUst(omuz[0] - 100) + 4], bilek: P2 = [dirsek[0] - 170, nUst(dirsek[0] - 170) + 2 - kalk];
   kilit.push({ ad: "teğmen yüz", p: plaka(ref, k, 1.6).T([skT.bas[0] + 120, skT.bas[1] + 40]), tur: "yuz" }, { ad: "el (pat)", p: plaka(ref, k, 1.35).T([430, nUst(430)]), tur: "dokunus" },
@@ -134,7 +137,7 @@ export const TegmenSahne: React.FC<{ plan: Plan; p: number; kilit: SablonProps["
         <Katman r={ref} k={k} z={5.2}>{(() => {
           const ay: P2 = [452, 1440], sE = 490, pz = { egilme: 10, basEgim: 4, adim: 0.3 };
           const sk = profilIskelet(ay, sE, 1, 1.68, pz);
-          const kiy = { tur: "ceket" as const, renk: ER_HAKI.orta, isik: ER_HAKI.isik, golge: ER_HAKI.golge, pantolon: "#6e6a58", pantolonIsik: "#8f8a6c", cizme: "#3a3446" };
+          const kiy = { tur: "ceket" as const, renk: ER_HAKI.orta, isik: ER_HAKI.isik, golge: ER_HAKI.golge, pantolon: "#6e6a58", pantolonIsik: "#8f8a6c", cizme: "#3a3446", dolak: true };
           const halat = <g><path d={`M${sk.omuz[0] - 0.12 * sE},${sk.omuz[1] - 0.02 * sE} Q${sk.omuz[0] + 0.05 * sE},${sk.omuz[1] + 0.25 * sE} ${sk.omuz[0] + 0.32 * sE},${sk.omuz[1] + 0.62 * sE}`} stroke={BP.halat} strokeWidth={0.035 * sE} fill="none" />
             <path d={`M${sk.omuz[0] - 0.11 * sE},${sk.omuz[1] - 0.03 * sE} Q${sk.omuz[0] + 0.06 * sE},${sk.omuz[1] + 0.23 * sE} ${sk.omuz[0] + 0.31 * sE},${sk.omuz[1] + 0.6 * sE}`} stroke="#a89070" strokeWidth={0.01 * sE} fill="none" /></g>;
           const kol = <KolOmuz omuzR={0.045 * sE} ad="E3 halat" omuz={sk.omuz} bilek={[sk.omuz[0] + 0.14 * sE, sk.omuz[1] + 0.3 * sE]} E={0.18 * sE} poz="tutus" elAci={55} kolBoy={[0.29 * sE, 0.26 * sE]} bukum={-1} palet={EL_ER} kolRenk={ER_HAKI.orta} kolKontur="#3a3650" gen={[0.09 * sE, 0.08 * sE, 0.062 * sE]} isik={[0.8, -0.6]} taramaAci={95} kenar={{ renk: BP.kenar, alfa: 0.9 }} />;
@@ -144,7 +147,7 @@ export const TegmenSahne: React.FC<{ plan: Plan; p: number; kilit: SablonProps["
         <Katman r={ref} k={k} z={4.6}>{(() => {
           const ay: P2 = [168, 1478], sE = 554, pz = { egilme: 6, basEgim: 2, adim: 0.2 };
           const sk = profilIskelet(ay, sE, 1, 1.72, pz);
-          const kiy = { tur: "ceket" as const, renk: ER_HAKI.orta, isik: ER_HAKI.isik, golge: ER_HAKI.golge, pantolon: "#6e6a58", pantolonIsik: "#8f8a6c", cizme: "#3a3446" };
+          const kiy = { tur: "ceket" as const, renk: ER_HAKI.orta, isik: ER_HAKI.isik, golge: ER_HAKI.golge, pantolon: "#6e6a58", pantolonIsik: "#8f8a6c", cizme: "#3a3446", dolak: true };
           const kol = <KolOmuz omuzR={0.045 * sE} ad="E1 kaya" omuz={sk.omuz} bilek={[sk.omuz[0] + 0.32 * sE, sk.omuz[1] + 0.2 * sE]} E={0.18 * sE} poz="dayali" elAci={20} kolBoy={[0.29 * sE, 0.26 * sE]} bukum={1} palet={EL_ER} kolRenk={ER_HAKI.orta} kolKontur="#3a3650" gen={[0.09 * sE, 0.08 * sE, 0.062 * sE]} isik={[0.8, -0.6]} taramaAci={95} kenar={{ renk: BP.kenar, alfa: 0.9 }} />;
           return <g>
             {/* dayandığı kaya çıkıntısı (mevzi iç duvarının basamağı) */}
@@ -157,8 +160,8 @@ export const TegmenSahne: React.FC<{ plan: Plan; p: number; kilit: SablonProps["
         <Katman r={ref} k={k} z={2.2}><Teker c={[40, 1640]} r={520} /></Katman>
         {/* teğmen (z 1.6): diz çökmüş, gövde dik, profil sağa (güneye); boştaki (uzak) kol gövdenin arkasında, görünmez */}
         <Katman r={ref} k={k} z={1.6}>{(() => {
-          const kiy = { tur: "ceket" as const, renk: HAKI.orta, isik: HAKI.isik, golge: HAKI.golge, pantolon: "#76705a", pantolonIsik: "#9a9274", cizme: "#3a3446" };
-          return <ProfilFigur ayak={[778, 2633 + nefes]} s={1594} yon={1} boy={1.72} pz={{ diz: true, egilme: 4, basEgim: 7 }} k={kiy} kart={YUZ_KART.tegmen} isik="on" />;
+          const kiy = { tur: "ceket" as const, renk: HAKI.orta, isik: HAKI.isik, golge: HAKI.golge, pantolon: "#76705a", pantolonIsik: "#9a9274", cizme: "#3a3446", kemer: true, kayis: true, durbun: true };
+          return <ProfilFigur ayak={[778, 2713 + nefes]} s={1594} yon={1} boy={1.72} pz={{ diz: true, egilme: 4, basEgim: 7 }} k={kiy} kart={YUZ_KART.tegmen} isik="on" />;
         })()}</Katman>
         {/* namlu + teğmenin eli (z 1.35): ön kol namlu üstünde, el geriye (kamaya) doğru dayalı; pat = 6 px kalkış */}
         <Katman r={ref} k={k} z={1.35}>

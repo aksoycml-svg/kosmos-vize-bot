@@ -1,0 +1,13 @@
+{
+ "dosya": "bolumler/ben-my-chree/kalibrasyon/tur-2/K4_P04_y200.png",
+ "sicak_yuzde": 50.0,
+ "p95_L": 79.0,
+ "max_L_disari": 89.7,
+ "p999_L_disari": 83.2,
+ "max_C_disari": 26.1,
+ "p999_C_disari": 24.6,
+ "C28_ustu_px": 0,
+ "L88_ustu_px": 20,
+ "kirmizi_izinsiz_px": 0,
+ "kirmizi_izinli_px": 0
+}

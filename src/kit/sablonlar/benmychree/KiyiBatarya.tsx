@@ -72,6 +72,17 @@ const Maki: React.FC<{ x: number; y: number; r: number; seed: string }> = ({ x, 
     {Array.from({ length: 6 }).map((_, i) => <circle key={`n${i}`} cx={x + (rr(`${seed}nx${i}`) - 0.5) * r * 1.6} cy={y - rr(`${seed}ny${i}`) * r * 0.7} r={Math.max(1.5, r * 0.05)} fill="#4c5470" opacity={0.6} />)}
   </g>;
 };
+// kesilmiş çam/maki dalı (mevzi örtüsü; tasarim §4.4, LoC 20341r): gövde + iğne kümeleri, uç ışıkta
+const Dal: React.FC<{ a: P2; b: P2; k: number; seed: string }> = ({ a, b, k, seed }) => {
+  const n = 9, L = Math.hypot(b[0] - a[0], b[1] - a[1]), t = Math.atan2(b[1] - a[1], b[0] - a[0]);
+  return <g>
+    <path d={`M${a[0]},${a[1]} Q${(a[0] + b[0]) / 2 + 20},${(a[1] + b[1]) / 2 - 15} ${b[0]},${b[1]}`} stroke="#5a4a40" strokeWidth={6 * k} fill="none" />
+    {Array.from({ length: n }).map((_, i) => { const q = (i + 1) / (n + 1), c: P2 = [a[0] + (b[0] - a[0]) * q, a[1] + (b[1] - a[1]) * q], r = (0.12 + 0.1 * rr(`${seed}${i}`)) * L * 0.5;
+      return <g key={i}>{Array.from({ length: 9 }).map((__, j) => { const an = t + Math.PI / 2 + (j - 4) * 0.32 + (rr(`${seed}${i}a${j}`) - 0.5) * 0.3, s2 = j % 2 ? 1 : -1;
+        return <line key={j} x1={c[0]} y1={c[1]} x2={c[0] + Math.cos(an) * r * s2} y2={c[1] + Math.sin(an) * r * s2} stroke={j % 3 === 0 ? "#7d8460" : "#5c6448"} strokeWidth={3.5 * k} strokeLinecap="round" />; })}
+        <circle cx={c[0] - r * 0.3} cy={c[1] - r * 0.4} r={r * 0.25} fill={mix("#7d8460", BP.kenar, 0.4)} opacity={0.6} /></g>; })}
+  </g>;
+};
 const Ot: React.FC<{ x: number; y: number; L: number; ruz: number; t: number; seed: string; n?: number; w?: number }> = ({ x, y, L, ruz, t, seed, n = 6, w = 3 }) => (
   <g>{Array.from({ length: n }).map((_, j) => { const l = L * (0.6 + 0.5 * rr(`${seed}${j}`)), a = (j - n / 2) * 0.12 + ruz * 0.35 + Math.sin(t * 1.4 + j + rr(`${seed}f`) * 5) * 0.05;
     return <path key={j} d={`M${x + j * w * 1.2},${y} Q${x + j * w * 1.2 + a * l * 0.3},${y - l * 0.6} ${x + j * w * 1.2 + a * l},${y - l}`} stroke={j % 3 ? BP.ot : mix(BP.ot, BP.kenar, 0.4)} strokeWidth={w} fill="none" strokeLinecap="round" />; })}</g>
@@ -115,6 +126,8 @@ const OyukYamaci: React.FC<{ t: number; bulut: number }> = ({ t, bulut }) => (
     <Tara d={`M${pts([[140, 850], [300, 792], [520, 778], [700, 790], [930, 830], [1040, 860], [910, 880], [700, 846], [520, 836], [300, 848], [170, 900]])} Z`} aci={60} aralik={8} kalin={2.6} renk="#1c1a2c" alfa={0.55} kutu={[140, 778, 1040, 900]} />
     {[[260, 660, 120], [470, 640, 110], [720, 660, 120], [900, 710, 100]].map(([x, y, L], i) => <g key={`sk${i}`}><path d={`M${x - 8},${y} L${x + 4},${y + L} L${x + 9},${y} Z`} fill={BP.tasGolge} /><path d={`M${x + 9},${y} L${x + 6},${y + L}`} stroke={BP.kenar} strokeWidth={3} /></g>)}
     <path d="M110,700 L300,640 L560,628 L800,650 L990,720" stroke={BP.kenar} strokeWidth={5} fill="none" />
+    {/* mevzi örtüsü: saçaktan sarkan ve yanlara dayanmış kesik dallar; ortada namlu görüş aralığı açık */}
+    {[[[150, 840], [210, 1180]], [[230, 820], [330, 1080]], [[320, 800], [380, 960]], [[980, 860], [900, 1180]], [[880, 830], [790, 1060]], [[760, 800], [700, 940]], [[60, 1260], [260, 1000]], [[1010, 1250], [850, 1020]], [[470, 790], [450, 900]], [[620, 790], [660, 905]]].map(([a, b], i) => <Dal key={`dal${i}`} a={a as P2} b={b as P2} k={1} seed={`dal${i}`} />)}
     {/* üst dudak kenarı: ışıkta kırık çizgi */}
     <path d={`M${pts(AGIZ.slice(1, 11))}`} stroke={BP.kenar} strokeWidth={4} fill="none" />
     {/* alt dudak: seki kenarı ışıkta */}
