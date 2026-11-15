@@ -67,7 +67,7 @@ const Gok: React.FC<{ pr: Proj; g: Gorunum }> = ({ pr, g }) => {
       <rect x={-1200} y={-2000} width={3480} height={U + 2042} fill={`url(#cuGok${g})`} />
       {/* güneş parıltısı: disk çizilmez; 4 düz halka (litografi basamağı, yumuşak gradyan yok) */}
       {g !== "yanik" && <><clipPath id="cuParilti"><rect x={-1200} y={U - 330 * f} width={3480} height={400} /></clipPath>
-        <g style={{ mixBlendMode: "screen" }} clipPath="url(#cuParilti)">{[520, 300, 140].map((dr, i) => <circle key={i} cx={sun[0]} cy={sun[1]} r={dist + dr} fill="#f6dcb8" opacity={0.14} />)}</g></>}
+        <g clipPath="url(#cuParilti)">{[520, 300, 140].map((dr, i) => <circle key={i} cx={sun[0]} cy={sun[1]} r={dist + dr} fill="#f6dcb8" opacity={0.1} />)}</g></>}
     </g>
   );
 };
@@ -209,13 +209,15 @@ const B1Ciz: React.FC<{ pr: Proj; kat: "duvar" | "sacak"; yanik: number; alevIsi
   // saçak: saçak altı (yatay h 3.0) + mertek uçları + alın tahtası + alın (gable) kenarı
   const alt: V3[] = [W(sMax, 0, B1.alinAlt), W(sMin, 0, B1.alinAlt), W(sMin, B1.sacak, B1.alinAlt), W(sMax, B1.sacak, B1.alinAlt)];
   const alin = kutu(sMax, sMin, B1.sacak, B1.sacak + 0.04, B1.alinAlt, B1.alinUst);
-  const mert = mertekS().map((s) => ({ s, Y: kutu(s + 0.025, s - 0.025, 0, B1.sacak, B1.alinAlt - B1.mertekH, B1.alinAlt).filter((y) => gorunur(y, k) && y.n[1] <= 0) }));
+  const mert = mertekS().filter((s, i) => !(yanik > 0 && Math.abs(s) < 2.8 && random(`mk${i}`) < 0.3)).map((s, i) => { const boy = yanik > 0 && Math.abs(s) < 2.8 ? 0.45 + 0.55 * random(`mb${i}`) : 1; return { s, Y: kutu(s + 0.025, s - 0.025, 0, B1.sacak * boy, B1.alinAlt - B1.mertekH, B1.alinAlt).filter((y) => gorunur(y, k) && y.n[1] <= 0) }; });
   const yanikRenk = (s: number, c: string) => (yanikMaske(s, yanik) ? CP.yanik : c);
   const gable = [W(sMin, B1.sacak, B1.alinUst), W(sMin, -B1.derin / 2, B1.mahya + 0.15), W(sMin, -B1.derin - B1.sacak, B1.alinUst)].map(pr.P);
   const altGor = k.goz < B1.alinAlt;
   return (
     <g>
-      {altGor && <polygon points={pts(alt.map(pr.P))} fill={CP.sacakAlti} />}
+      {altGor && <polygon points={pts(alt.map(pr.P))} fill={yanik > 0 ? CP.yanik : CP.sacakAlti} />}
+      {altGor && yanik > 0 && [[-1.6, 0.35], [0.4, 0.55], [1.9, 0.3], [-0.4, 0.75]].map(([s0, t0], i) => { const A: (P | null)[] = []; for (let j = 0; j < 9; j++) { const a = (j / 9) * 6.283, rr = (0.28 + 0.22 * random(`dl${i}${j}`)) * (i === 1 ? 1.4 : 1); A.push(pr.P(W(s0 + Math.cos(a) * rr, t0 + Math.sin(a) * rr * 0.45, B1.alinAlt + 0.01))); }
+        return A.every(Boolean) ? <polygon key={`dl${i}`} points={pts(A)} fill={CP.gok[1]} stroke="#4e4658" strokeWidth={2} /> : null; })}
       {altGor && <polygon points={pts(alt.map(pr.P))} fill="url(#cuTarama)" opacity={0.6} />}
       {mert.map(({ s, Y }) => Y.map((y, i) => { const q = y.k.map(pr.P); if (q.some((x) => !x)) return null;
         const c = y.n[1] < 0 ? CP.ahsap : isik(y.n) > 0 ? CP.catiKenar : CP.ahsapGolge;
@@ -330,7 +332,7 @@ const Golgeler: React.FC<{ pr: Proj; kat: "zemin" | "duvar" }> = ({ pr, kat }) =
 // ---------- tünek dalgası + köz nabzı ----------
 // olcek: gövde boyu = 0.11 m × olcek (kalibrasyon 3: 1.6, yakın birey 360 px'te ≥ 60 px); yuzey: tünek id öneki süzgeci (ör. ["semer0"]);
 // acik_n: en yakın n birey kanadı yarı açık (taraklı kenar + parmak çizgileri net)
-type TunekP = { bas: number; bit: number; adet: number; seed?: number; olcek?: number; yuzey?: string[]; acik_n?: number };
+type TunekP = { bas: number; bit: number; adet: number; seed?: number; olcek?: number; yuzey?: string[]; acik_n?: number; birak?: { bas: number; bit: number; ucus?: number } };
 const tunekU = (td: TunekP, pr: Proj, v: V3) => 0.11 * (td.olcek ?? 1.6) * pr.pxm(v);
 const tunekYon = (sd: number, i: number): 1 | -1 => (random(`ty${sd}${i}`) < 0.5 ? 1 : -1);
 type Nabiz = { bas: number; periyot?: [number, number]; bit?: number };
@@ -370,6 +372,14 @@ const Tunemis: React.FC<{ pr: Proj; plan: Plan; p: number; alev: boolean }> = ({
       return <Yarasa key={i} z={{ x, y: y + 0.52 * u * Math.min(1, (1 - q) * 3) + 0.6 * u, u, faz: (p / 10) % 1, kanat: 0.05, aci: -20 + 30 * q, stil, kenar: true, kapsul }} />;
     }
     // temas: ayak tünek alt yüzüne değer → profil asılı görünüş; 10 karede ters döner (dönüş ayak çevresinde), 16 karede kanat yerleşir
+    if (td.birak) { // bırakma: b_i'de ayak tünekten ayrılır, 8 karede ters döner + kanat açılır, sonra sola-yukarı (ucus kare) kadraj dışına
+      const B = td.birak, bi = B.bas + (B.bit - B.bas) * (L.length > 1 ? i / (L.length - 1) : 0), U2 = B.ucus ?? 26;
+      if (p >= bi) { const q = (p - bi) / U2; if (q > 1.05) return null;
+        const don2 = interpolate(p - bi, [0, 8], [180, 0], { ...cl, easing: GIRIS }), qq = Math.pow(Math.min(1, q), 1.6);
+        const x = e[0] - qq * (900 + 200 * random(`bx${i}`)), y = e[1] + 40 * Math.sin(Math.PI * Math.min(1, q * 2)) - qq * (900 + 200 * random(`by${i}`));
+        return don2 > 1 ? <g key={i} transform={`rotate(${don2 - 180} ${e[0]} ${e[1]})`}><Yarasa z={{ x: e[0], y: e[1], u, gorus: "profil", yonX: yx, kanat: 0.4, stil, kapsul, nabiz: nab }} /></g>
+          : <Yarasa key={i} z={{ x, y: y + 0.6 * u, u, faz: (p / 10) % 1, kanat: 0.05, aci: -35, stil, kapsul, nabiz: nab }} />; }
+    }
     const d = p - a, don = interpolate(d, [0, 10], [0, 180], { ...cl, easing: GIRIS }), kat = interpolate(d, [0, 16], [0.3, yakin.includes(t.id) ? 0.42 : 0.95], { ...cl, easing: GIRIS });
     const sallan = Math.sin(d / 9) * 5 * Math.exp(-d / 30);
     return <g key={i} transform={`rotate(${don - 180 + sallan} ${e[0]} ${e[1]})`}><Yarasa z={{ x: e[0], y: e[1], u, gorus: "profil", yonX: yx, kanat: kat, stil, kenar: stil === "gercek", kapsul, nabiz: nab, arkaIsik: true }} /></g>;
@@ -379,9 +389,12 @@ const Kivilcimlar: React.FC<{ pr: Proj; plan: Plan; p: number }> = ({ pr, plan, 
   const kv = param<{ kare: number; tunek: number; siddet?: number }[]>(plan, "kivilcim_dizisi", []), td = param<TunekP | null>(plan, "tunek_dalgasi", null);
   if (!kv.length || !td) return null;
   const L = tunekListesi(pr, td.adet, td), cs = kameraHesapla(plan.kamera, p).cs, sd = td.seed ?? 5;
-  return <g>{kv.map((q, i) => { const t = L[q.tunek]; if (!t || p < q.kare) return null;
-    const u = tunekU(td, pr, t.v), e: P = [t.e![0] + 0.15 * u * tunekYon(sd, q.tunek), t.e![1] + 0.62 * u]; // profil: yan-göğüs kapsülün baş ucu
-    const d = p - q.kare, sn = interpolate(d, [0, 10], [1, 0.5], cl), R = 60 / cs;
+  const OYUK: V3[] = [W(-1.2, TANK.t + 0.55, 0.58), W(-1.2, TANK.t - 0.35, 0.58), W(-1.2, TANK.t + 0.15, 0.6)]; // tank kabuğu–semer oyuğu (en karanlık yer)
+  return <g>{kv.map((q, i) => { const t = L[q.tunek]; if (p < q.kare) return null;
+    let e: P, u: number;
+    if (td.birak) { const o = pr.P(OYUK[q.tunek % 3]); if (!o) return null; e = o; u = 0; }
+    else { if (!t) return null; u = tunekU(td, pr, t.v); e = [t.e![0] + 0.15 * u * tunekYon(sd, q.tunek), t.e![1] + 0.62 * u]; } // profil: yan-göğüs kapsülün baş ucu
+    const d = p - q.kare, sn = interpolate(d, [0, 10, 40], [1, 0.5, 0], cl), R = 60 / cs; if (td.birak && sn <= 0) return null; // oyuktaki kıvılcım 40 karede söner (alev saçağa geçer)
     return <g key={i}>
       <circle cx={e[0]} cy={e[1] - 0.25 * u} r={R} fill={YR.amber} opacity={0.28 * sn} />
       <line x1={e[0]} y1={e[1]} x2={e[0] - 3 / cs} y2={e[1] - 14 / cs} stroke={YR.koz} strokeWidth={3 / cs} strokeLinecap="round" />
@@ -406,7 +419,7 @@ const Alev: React.FC<{ pr: Proj; plan: Plan; p: number; kat: "isik" | "alev" }> 
   });
   if (kat === "isik") {
     const m = dil.reduce((q, d) => [q[0] + d.b[0] / dil.length, q[1] + d.b[1] / dil.length], [0, 0]), H = Math.max(...dil.map((d) => d.h), 1);
-    return <g style={{ mixBlendMode: "screen" }} clipPath="url(#cuAlevKlip)"><circle cx={m[0]} cy={m[1]} r={H + 30} fill={CP.alevOrta} opacity={0.2} /></g>;
+    return <g clipPath="url(#cuAlevKlip)"><circle cx={m[0]} cy={m[1]} r={H + 30} fill={CP.alevOrta} opacity={0.2} /></g>;
   }
   const yaprak = (b: P, h: number, w: number, egim: number) => `M${b[0] - w},${b[1]} C${b[0] - w},${b[1] - h * 0.5} ${b[0] + egim * 0.5},${b[1] - h * 0.7} ${b[0] + egim},${b[1] - h} C${b[0] + w * 0.6},${b[1] - h * 0.55} ${b[0] + w},${b[1] - h * 0.3} ${b[0] + w},${b[1]} Z`;
   return <g>{dil.map((d) => { const w = d.h * 0.32, eg = d.h * 0.28;

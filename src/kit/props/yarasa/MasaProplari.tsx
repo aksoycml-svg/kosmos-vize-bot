@@ -128,7 +128,7 @@ const Muhur: React.FC<{ n: Nesne; p: number }> = ({ n, p }) => {
   const R = ((n.cap as number) ?? 340) / 2, temas = n.temas as number, gir = n.giris as Ar, cik = n.cikis as Ar;
   const iz = p >= temas;
   const yuk = p < temas ? interpolate(p, [gir.bas, gir.bit, temas - 12, temas], [1400, 260, 260, 0], { ...cl, easing: (t) => t }) : interpolate(p, [temas + 4, cik.bas, cik.bit], [0, 160, 1600], { ...cl, easing: CIKIS });
-  const g = golge(Math.min(40, yuk / PXCM) * 0.5 + 1.2);
+  const g = golge(Math.min(3.5, (yuk / PXCM) * 0.25) + 0.6); // gölge mühür yüksekliğiyle orantılı ama yakın (havadayken ≤ ~80 px)
   const ezil = p >= temas && p < temas + 4 ? 0.94 : 1;
   // tepe kamerası ≈8° önden eğik: sap yukarı-sola eğik izdüşer (tabanı, sapı, topuzu ayrı okunur — "yo-yo" değil)
   const sx = -R * 0.35, sy = -R * 1.25;
@@ -142,7 +142,7 @@ const Muhur: React.FC<{ n: Nesne; p: number }> = ({ n, p }) => {
   return <g>
     {iz && <g opacity={0.92}><circle r={R * 0.92} fill="none" stroke={MP.kirmizi} strokeWidth={18} /><path d={`M${-R * 0.55},${-R * 0.55} L${R * 0.55},${R * 0.55} M${R * 0.55},${-R * 0.55} L${-R * 0.55},${R * 0.55}`} stroke={MP.kirmizi} strokeWidth={30} strokeLinecap="round" /></g>}
     {yuk < 1500 && <g>
-      <g transform={`translate(${g[0]},${g[1]})`} opacity={0.5}><circle r={R * 0.95} fill={MP.golge} /></g>
+      <g transform={`translate(${g[0] - yuk * 0.15},${g[1] - yuk * 0.82})`} opacity={0.4}><circle r={R * 0.95 * (1 - Math.min(0.25, yuk / 2400))} fill={MP.golge} /></g>
       <g transform={`translate(${-yuk * 0.15},${-yuk}) scale(${(1 + yuk / 2600) * ezil})`}>{tutacak}
         <g transform={`translate(${sx},${sy + R * 0.5}) rotate(-62) scale(${PXCM * 0.95}) translate(-6,0)`}><ElSiluet tip="gorevliYB" isikY={-0.3} /></g></g>
     </g>}

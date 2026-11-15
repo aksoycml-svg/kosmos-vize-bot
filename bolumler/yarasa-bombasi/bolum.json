@@ -1355,8 +1355,8 @@
     "dolly": {
      "hedef": "genis",
      "kare": [
-      110,
-      208
+      40,
+      130
      ],
      "k": [
       0,
@@ -1372,7 +1372,12 @@
      "yuzey": [
       "semer0"
      ],
-     "acik_n": 2
+     "acik_n": 2,
+     "birak": {
+      "bas": 4,
+      "bit": 34,
+      "ucus": 26
+     }
     },
     "tunek_stil": "gomulu",
     "kapsul_nabiz": {
@@ -1398,7 +1403,7 @@
     ],
     "alev": [
      {
-      "bas": 102,
+      "bas": 60,
       "s0": -0.4,
       "hiz": 1.4,
       "boy": 1.4
@@ -1429,8 +1434,8 @@
    "kamera": {
     "kare": [
      0,
-     110,
-     208
+     40,
+     130
     ],
     "cs": [
      2.53,
@@ -1479,13 +1484,13 @@
      "db": -5
     },
     {
-     "kare": 102,
+     "kare": 60,
      "olay": "alev saçağa tutuşur",
      "ses": "ates-tutus",
      "db": -7
     },
     {
-     "kare": 105,
+     "kare": 63,
      "olay": "ateş yatağı",
      "ses": "ates-yatak",
      "db": -12
@@ -1524,7 +1529,8 @@
    "kit_eksik": [
     "KE-kompars-siluet: P10 geniş karede kompars yok (kurulmadı)"
    ],
-   "metin": ""
+   "metin": "",
+   "_not_motion": "Jüri KRİTİK 1 (motion, orkestra izni 2026-11-15): tunek_dalgasi.birak p4–34 (yarasalar kıvılcımdan önce tünekten bırakıp sola-yukarı kadraj dışına uçar, kapsül yarasayla gider; kıvılcımlar tank–semer oyuğunda); dolly [110,208]→[40,130], alev 102→60, ates-tutus/ates-yatak 102/105→60/63."
   },
   {
    "id": "P11",
