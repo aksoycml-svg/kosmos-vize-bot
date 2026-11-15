@@ -80,7 +80,7 @@ const Evler: React.FC<{ x0: number; x1: number; taban: (x: number) => number; hM
 const Kale: React.FC = () => {
   const tas = mix(BP.tasGolge, "#d0b392", 0.22), tasK = mix(BP.tasGolge, "#d0b392", 0.12), isik = "#d0b392";
   const burun: P2[] = [[20, 1004], ...kirik([30, 960], [90, 880], 4, 7, "bu1"), ...kirik([90, 880], [300, 858], 6, 6, "bu2"), ...kirik([300, 858], [440, 872], 3, 5, "bu3"), [500, 930], [540, 1004]];
-  const sur1 = "M96,872 L96,742 L318,742 L318,866 Z", sur2 = "M318,866 L318,782 L418,782 L418,874 Z", kule = "M176,742 L176,650 L246,650 L246,742 Z";
+  const sur1 = "M96,872 L96,772 L318,766 L318,866 Z", sur2 = "M318,866 L318,800 L418,804 L418,874 Z", kule = "M176,770 L176,682 L246,682 L246,768 Z";
   const dis = (x0: number, x1: number, y: number, n: number, c: string) => Array.from({ length: n }).map((_, i) => <rect key={`${x0}${i}`} x={x0 + i * ((x1 - x0) / n)} y={y - 11} width={(x1 - x0) / n / 2} height={11} fill={c} stroke={BP.kontur} strokeWidth={1.4} />);
   return (
     <g>
@@ -89,23 +89,23 @@ const Kale: React.FC = () => {
       <path d={`M${pts(kirik([90, 882], [300, 860], 6, 5, "bu2"))}`} stroke={BP.kenar} strokeWidth={2.5} fill="none" />
       <Tara d={`M${pts(burun)} Z`} aci={105} aralik={9} kalin={2} renk={BP.tasDerin} alfa={0.4} kutu={[20, 860, 540, 1004]} />
       {[[140, 900, 990], [230, 890, 1000], [330, 900, 980]].map(([x, a, b], i) => <path key={i} d={`M${x},${a} L${x - 8},${b}`} stroke={BP.tasDerin} strokeWidth={3} opacity={0.6} />)}
-      <path d={sur1} fill={tas} stroke={BP.kontur} strokeWidth={2} />{dis(96, 318, 742, 8, tas)}
-      <path d={sur2} fill={tasK} stroke={BP.kontur} strokeWidth={2} />{dis(318, 418, 782, 4, tasK)}
-      <path d="M318,742 L328,746 L328,782 L318,782 Z" fill={isik} />
-      <path d="M418,782 L430,787 L430,876 L418,874 Z" fill={isik} />
-      {Array.from({ length: 12 }).map((_, i) => i % 2 ? null : <line key={i} x1={98} x2={316} y1={752 + i * 9} y2={752 + i * 9} stroke={BP.tasDerin} strokeWidth={2} opacity={0.32} />)}
+      <path d={sur1} fill={tas} stroke={BP.kontur} strokeWidth={2} />{dis(96, 318, 770, 9, tas)}
+      <path d={sur2} fill={tasK} stroke={BP.kontur} strokeWidth={2} />{dis(318, 418, 802, 4, tasK)}
+      <path d="M318,766 L328,770 L328,800 L318,800 Z" fill={isik} />
+      <path d="M418,804 L430,808 L430,876 L418,874 Z" fill={isik} />
+      {Array.from({ length: 10 }).map((_, i) => i % 2 ? null : <line key={i} x1={98} x2={316} y1={782 + i * 9} y2={752 + i * 9} stroke={BP.tasDerin} strokeWidth={2} opacity={0.32} />)}
       <Tara d="M96,836 L318,830 L318,866 L96,872 Z" aci={105} aralik={9} kalin={2} renk={BP.tasDerin} alfa={0.5} kutu={[96, 830, 318, 872]} />
-      <path d={kule} fill={mix(BP.tasGolge, "#d0b392", 0.28)} stroke={BP.kontur} strokeWidth={2} />{dis(176, 246, 650, 3, mix(BP.tasGolge, "#d0b392", 0.28))}
-      <path d="M246,650 L256,654 L256,742 L246,742 Z" fill={isik} />
-      <line x1={176} x2={256} y1={639} y2={639} stroke={BP.kenar} strokeWidth={2} />
+      <path d={kule} fill={mix(BP.tasGolge, "#d0b392", 0.28)} stroke={BP.kontur} strokeWidth={2} />{dis(176, 246, 682, 3, mix(BP.tasGolge, "#d0b392", 0.28))}
+      <path d="M246,682 L256,686 L256,768 L246,768 Z" fill={isik} />
+      <line x1={176} x2={256} y1={671} y2={671} stroke={BP.kenar} strokeWidth={2} />
       <rect x={204} y={672} width={5} height={15} fill={BP.tasDerin} /><rect x={150} y={780} width={4} height={12} fill={BP.tasDerin} /><rect x={262} y={790} width={4} height={12} fill={BP.tasDerin} /><rect x={360} y={810} width={4} height={11} fill={BP.tasDerin} />
-      <line x1={238} y1={604} x2={238} y2={640} stroke={BP.direk} strokeWidth={2} />
+      <line x1={238} y1={636} x2={238} y2={672} stroke={BP.direk} strokeWidth={2} />
     </g>
   );
 };
 const Bayrak: React.FC<{ t: number }> = ({ t }) => {
   // tricolore, rüzgâr +0.57 → sağa dalgalanır (meltem): üç şerit, küçük (≤ 40×27)
-  const w = (u: number) => Math.sin(t * 5.2 - u * 4) * 2.2 * u;
+  const w = (u: number) => Math.sin(t * 5.2 - u * 4) * 2.2 * u + 32;
   const ser = (a: number, b: number, c: string) => <path key={c} d={`M${239 + a * 38},${607 + w(a)} L${239 + b * 38},${607 + w(b)} L${239 + b * 38},${629 + w(b)} L${239 + a * 38},${629 + w(a)} Z`} fill={c} />;
   return <g>{ser(0, 0.34, BP.bayrak[0])}{ser(0.33, 0.67, BP.bayrak[1])}{ser(0.66, 1, BP.bayrak[2])}</g>;
 };
@@ -153,35 +153,30 @@ const SuOn: React.FC<{ ref: Kam25; k: Kam25; t: number; seed: number; yolRenk: s
 const UST: P2[] = [[-60, 1078], ...kirik([-20, 1072], [150, 1080], 4, 7, "ok1"), ...kirik([150, 1080], [360, 1112], 4, 8, "ok2"), ...kirik([360, 1112], [520, 1196], 3, 8, "ok3"), [560, 1262]];
 const KAS: P2[] = [[560, 1262], [470, 1300], [330, 1306], [190, 1318], [40, 1312], [-60, 1320]]; // üst düzlem → ön yüz kırığı
 const ON_KAYA: P2[] = [...UST, [600, 1380], [628, 1560], [640, 1760], [668, 2000], [-60, 2000]];
-const OYUK: P2[] = [[46, 1172], [70, 1150], [104, 1146], [130, 1132], [176, 1140], [210, 1128], [252, 1146], [290, 1150], [322, 1170], [336, 1206], [318, 1232], [292, 1252], [240, 1258], [214, 1270], [160, 1262], [118, 1266], [80, 1246], [52, 1222]];
+const OYUK: P2[] = [[30, 1196], [80, 1176], [150, 1168], [230, 1172], [300, 1184], [348, 1206], [330, 1226], [270, 1240], [190, 1252], [110, 1250], [56, 1232]];
 export const OYUK_MERKEZ: P2 = [190, 1205];
 const OnKaya: React.FC<{ t: number }> = ({ t }) => {
   // ön yüz: açılı kırık fasetler (kütük/varil okunmasın) — her faset farklı gölge değeri
-  const fas: [P2[], string][] = [
-    [[[-60, 1320], [40, 1312], [120, 1420], [60, 1600], [-60, 1640]], "#655c84"],
-    [[[40, 1312], [190, 1318], [250, 1460], [170, 1560], [120, 1420]], BP.tasGolge],
-    [[[190, 1318], [330, 1306], [380, 1400], [300, 1520], [250, 1460]], "#7a6f92"],
-    [[[330, 1306], [470, 1300], [560, 1262], [600, 1380], [520, 1480], [380, 1400]], "#6a6189"],
-    [[[60, 1600], [120, 1420], [170, 1560], [140, 1760], [-60, 1800], [-60, 1640]], "#574f78"],
-    [[[170, 1560], [250, 1460], [300, 1520], [380, 1400], [520, 1480], [470, 1700], [300, 1760], [140, 1760]], "#5f577f"],
-    [[[520, 1480], [600, 1380], [628, 1560], [640, 1760], [470, 1700]], "#71678f"],
-    [[[-60, 1800], [140, 1760], [300, 1760], [470, 1700], [640, 1760], [668, 2000], [-60, 2000]], BP.tasDerin],
-  ];
+  // yamaç kayası: sağa-aşağı alçalan kireçtaşı tabakaları (her basamağın üst kenarı ışıkta), kütük/varil okunmaz
+  const tab = (dy: number, w: number): P2[] => [[-60, 1320 + dy], [150, 1330 + dy * 1.05], [330, 1350 + dy * 1.1], [520, 1420 + dy * 1.15], [700, 1520 + dy * 1.2]].map((q, i) => [q[0] + (rr(`tb${dy}${i}`) - 0.5) * 30, q[1] + (rr(`tby${dy}${i}`) - 0.5) * w] as P2);
+  const fas: [P2[], string][] = [0, 110, 230, 360, 500].map((dy, i) => { const u = tab(dy, 20), d = tab(dy + 120, 20); return [[...u, ...d.reverse()], ["#bea08c", "#b0947f", "#a08680", "#94797c", "#856e7a"][i]] as [P2[], string]; });
   return (
     <g strokeLinejoin="round">
-      <path d={`M${pts(ON_KAYA)} Z`} fill={BP.tasGolge} />
-      {fas.map(([q, c], i) => <path key={i} d={`M${pts(q)} Z`} fill={c} stroke="#3e3858" strokeWidth={3} />)}
-      {/* faset kenarlarında ışığa (sağ-üst) bakan ince kenar */}
-      <path d="M120,1420 L250,1460 M300,1520 L380,1400 L520,1480 M470,1700 L640,1760" stroke={mix(BP.tasOrta, BP.kenar, 0.25)} strokeWidth={3} fill="none" opacity={0.7} />
+      <path d={`M${pts(ON_KAYA)} Z`} fill={BP.tasOrta} />
+      <path d={`M${pts([[560, 1262], [600, 1380], [628, 1560], [640, 1760], [668, 2000], [600, 2000], [560, 1700], [520, 1480], [470, 1300]])} Z`} fill={BP.tasGolge} />
+      <clipPath id="okKlip"><path d={`M${pts(ON_KAYA)} Z`} /></clipPath>
+      <g clipPath="url(#okKlip)">{fas.map(([q, c], i) => <g key={i}><path d={`M${pts(q)} Z`} fill={c} />
+        <path d={`M${pts(q.slice(0, 5))}`} stroke={mix(BP.tasOrta, BP.kenar, 0.35)} strokeWidth={5} fill="none" />
+        <path d={`M${pts(q.slice(0, 5).map((v) => [v[0], v[1] + 14] as P2))}`} stroke="#3e3858" strokeWidth={4} fill="none" opacity={0.7} /></g>)}</g>
       {/* üst düzlem (ışık) */}
       <path d={`M${pts([...UST, ...KAS.slice(1)])} Z`} fill={BP.tasOrta} />
       <path d={`M${pts([[300, 1110], [360, 1112], [450, 1150], [520, 1196], [560, 1262], [470, 1298], [400, 1236], [340, 1150]])} Z`} fill={BP.tasIsik} />
-      <path d={`M${pts([[-60, 1200], [40, 1250], [190, 1290], [330, 1280], [470, 1298], [330, 1306], [190, 1318], [40, 1312], [-60, 1320]])} Z`} fill={mix(BP.tasOrta, BP.tasGolge, 0.35)} />
+
       <path d={`M${pts(UST.slice(1))}`} stroke={BP.kenar} strokeWidth={5} fill="none" />
-      <path d={`M${pts(KAS)}`} stroke="#3e3858" strokeWidth={5} fill="none" />
+
       <path d="M560,1262 L600,1380 L628,1560 L640,1760" stroke={BP.kenar} strokeWidth={4} fill="none" opacity={0.85} />
       {/* karren: üst kenardan inen kısa, sivrilen erime olukları (paralel değil) */}
-      {[[70, 1316, 90, -10], [160, 1318, 120, 8], [282, 1310, 70, -6], [420, 1302, 110, 12], [520, 1286, 80, 4]].map(([x, y, L, e], i) => <g key={i}>
+      {([] as number[][]).map(([x, y, L, e], i) => <g key={i}>
         <path d={`M${x - 7},${y} L${x + e},${y + L} L${x + 7},${y} Z`} fill={BP.tasDerin} />
         <path d={`M${x + 7},${y} L${x + e + 1},${y + L}`} stroke={mix(BP.tasOrta, BP.kenar, 0.3)} strokeWidth={3} />
       </g>)}
@@ -191,7 +186,8 @@ const OnKaya: React.FC<{ t: number }> = ({ t }) => {
       <path d={`M${pts([[404, 1286], [446, 1280], [470, 1296], [430, 1302]])} Z`} fill={BP.toprak} />
       {/* oyuk: en koyu leke, kırık kenarlı; üst dudak taramalı, alt dudak ışıkta */}
       <path d={`M${pts(OYUK)} Z`} fill={BP.oyuk} stroke="#1d1a2c" strokeWidth={4} />
-      <path d={`M${pts([[70, 1156], [130, 1138], [210, 1132], [290, 1154], [318, 1176], [250, 1170], [170, 1176], [96, 1180]])} Z`} fill="#3c3656" />
+      <path d={`M${pts([[20, 1150], [120, 1128], [240, 1132], [340, 1160], [360, 1196], [300, 1186], [200, 1172], [90, 1178], [24, 1196]])} Z`} fill={BP.tasIsik} stroke="#3e3858" strokeWidth={3} />
+      <path d={`M${pts([[24, 1196], [90, 1178], [200, 1172], [300, 1186], [360, 1196]])}`} stroke="#2a2640" strokeWidth={6} fill="none" />
       <Tara d={`M${pts(OYUK)} Z`} aci={105} aralik={7.5} kalin={2.4} renk="#141220" alfa={0.6} kutu={[40, 1130, 340, 1190]} />
       <path d={`M${pts([[120, 1262], [214, 1268], [296, 1250], [320, 1262], [220, 1286], [110, 1280]])} Z`} fill={BP.tasIsik} />
       {/* ot sapları (geçen yazdan) + genç yeşil tutam; meltem sağa (rüzgâr +0.57) */}

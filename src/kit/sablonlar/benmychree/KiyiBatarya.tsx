@@ -105,6 +105,16 @@ const OyukYamaci: React.FC<{ t: number; bulut: number }> = ({ t, bulut }) => (
     <Tara d="M150,900 L230,900 L240,1000 L160,1010 Z" aci={-30} aralik={8} kalin={2.6} renk="#15131f" alfa={0.5} kutu={[150, 900, 240, 1010]} />
     {/* sağa bakan iç yan duvar: arka duvarda gökten zayıf yansıma */}
     <path d={`M${pts([[880, 960], [946, 950], [960, 1180], [900, 1220], [860, 1120]])} Z`} fill="#3a3454" />
+    {/* iç yan duvarlar: sol iç duvar (sağa bakar) gölgede, sağ iç duvar (sola bakar, güneş sol-arkada) sıcak */}
+    <path d={`M${pts([[120, 1010], [250, 900], [300, 1040], [270, 1200], [130, 1236]])} Z`} fill="#3c3658" />
+    <path d={`M${pts([[980, 920], [860, 880], [820, 1040], [850, 1200], [972, 1190]])} Z`} fill={mix(BP.tasGolge, BP.tasOrta, 0.35)} />
+    <path d="M860,880 L820,1040 L850,1200" stroke={BP.kenar} strokeWidth={3} fill="none" opacity={0.7} />
+    {/* sarkan saçak: ağzın üstünde öne taşan kalın kaya kütlesi; alt yüzü (alttan görünür) koyu taramalı, ön yüzü ışıkta */}
+    <path d={`M${pts([[40, 830], [110, 700], [300, 640], [560, 628], [800, 650], [990, 720], [1040, 860], [930, 830], [700, 790], [520, 778], [300, 792], [140, 850]])} Z`} fill={BP.tasIsik} stroke="#5a5276" strokeWidth={4} />
+    <path d={`M${pts([[140, 850], [300, 792], [520, 778], [700, 790], [930, 830], [1040, 860], [910, 880], [700, 846], [520, 836], [300, 848], [170, 900]])} Z`} fill="#4a4468" />
+    <Tara d={`M${pts([[140, 850], [300, 792], [520, 778], [700, 790], [930, 830], [1040, 860], [910, 880], [700, 846], [520, 836], [300, 848], [170, 900]])} Z`} aci={60} aralik={8} kalin={2.6} renk="#1c1a2c" alfa={0.55} kutu={[140, 778, 1040, 900]} />
+    {[[260, 660, 120], [470, 640, 110], [720, 660, 120], [900, 710, 100]].map(([x, y, L], i) => <g key={`sk${i}`}><path d={`M${x - 8},${y} L${x + 4},${y + L} L${x + 9},${y} Z`} fill={BP.tasGolge} /><path d={`M${x + 9},${y} L${x + 6},${y + L}`} stroke={BP.kenar} strokeWidth={3} /></g>)}
+    <path d="M110,700 L300,640 L560,628 L800,650 L990,720" stroke={BP.kenar} strokeWidth={5} fill="none" />
     {/* üst dudak kenarı: ışıkta kırık çizgi */}
     <path d={`M${pts(AGIZ.slice(1, 11))}`} stroke={BP.kenar} strokeWidth={4} fill="none" />
     {/* alt dudak: seki kenarı ışıkta */}
@@ -130,8 +140,8 @@ const Namlu: React.FC<{ cik: number; parilti: number }> = ({ cik, parilti }) => 
       <ellipse cx={x0 - L} cy={y} rx={4.5} ry={10} fill="#1d1a2c" />
       <path d={`M${x0 - L - 2},${y - 19} A9,19 0 0 1 ${x0 - L + 8},${y - 4}`} stroke={BP.demirIsik} strokeWidth={3} fill="none" opacity={cik} />
       {parilti > 0 && <g>
-        <ellipse cx={x0 - L * 0.62} cy={y - 12} rx={46 * parilti + 6} ry={16 * parilti + 3} fill={BP.parilti} opacity={0.6} />
-        <ellipse cx={x0 - L * 0.62} cy={y - 12} rx={30 * parilti + 3} ry={9 * parilti + 2} fill={BP.cakim} />
+        <ellipse cx={x0 - L * 0.62} cy={y - 12} rx={46 * parilti + 6} ry={16 * parilti + 3} fill="#f5b85a" />
+        <ellipse cx={x0 - L * 0.62} cy={y - 12} rx={32 * parilti + 3} ry={10 * parilti + 2} fill={BP.parilti} /><ellipse cx={x0 - L * 0.62} cy={y - 12} rx={12 * parilti + 2} ry={4 * parilti + 1} fill={BP.cakim} />
         <line x1={x0 - L * 0.62 - 80 * parilti} x2={x0 - L * 0.62 + 80 * parilti} y1={y - 12} y2={y - 12} stroke={BP.parilti} strokeWidth={3} strokeLinecap="round" />
       </g>}
     </g>
@@ -181,8 +191,9 @@ const YamacOyuk: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }
             <path d={`M-3000,4000 L${pts(kenar)} L4000,4000 Z`} fill={ton} />
             <path d={`M-3000,4000 L${pts(kenar.map((q) => [q[0], q[1] + 0.06 * s] as P2))} L4000,4000 Z`} fill={BP.tasGolge} opacity={0.32} />
             <path d={`M-3000,4000 L${pts(kenar.map((q) => [q[0], q[1] + 0.13 * s] as P2))} L4000,4000 Z`} fill={ton} />
+            {Array.from({ length: 14 }).map((_, i) => { const x = -1200 + i * 0.9 * s + rr(`zt2${z}${i}`) * 0.5 * s, yy = y + 0.07 * s; return <line key={`tz${i}`} x1={x} y1={yy} x2={x + 0.05 * s} y2={yy + 0.05 * s} stroke={BP.tasDerin} strokeWidth={Math.max(2, 0.008 * s)} opacity={0.45} />; })}
             <polyline points={pts(kenar)} stroke={BP.kenar} strokeWidth={Math.max(2, s * 0.012)} fill="none" opacity={0.85} />
-            {Array.from({ length: 5 }).map((_, i) => { const x = 540 + (i - 2) * 2.6 * s + (rr(`zb${z}${i}`) - 0.5) * 1.6 * s, tur = rr(`zt${z}${i}`);
+            {Array.from({ length: 9 }).map((_, i) => { const x = 540 + (i - 4) * 1.5 * s + (rr(`zb${z}${i}`) - 0.5) * 1.6 * s, tur = rr(`zt${z}${i}`);
               if (Math.abs(x - 540) < 1.2 * s && z > 18) return null; // ağzın önü açık (namlu görüş hattı)
               return tur < 0.25 ? <Maki key={i} x={x} y={y + 0.1 * s} r={(0.22 + 0.2 * rr(`zr${z}${i}`)) * s} seed={`zm${z}${i}`} />
                 : tur < 0.55 ? <Blok key={i} x={x} y={y + 0.08 * s} w={(0.3 + 0.35 * rr(`zw${z}${i}`)) * s} h={(0.12 + 0.12 * rr(`zh${z}${i}`)) * s} seed={`zk${z}${i}`} />

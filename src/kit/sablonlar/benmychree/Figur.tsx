@@ -13,7 +13,7 @@ export type YuzKart = {
   uzun: number; cene: number; burun: number; dudak: number; elmacik: number; boyun: number;
   kas: number; kasAci: number; goz: number; // goz: açıklık (1 = normal, .55 kısık)
   biyik: "yok" | "gur" | "seyrek-kir" | "kir-gur"; sakal: number; yara: boolean; toz: number; ter: boolean; kirisik: number;
-  ten: string; tenGolge: string; sac: string; baslik: "yuvarlak-haki" | "yuvarlak-koyu" | "yok"; kulak: number;
+  ten: string; tenGolge: string; sac: string; baslik: BaslikTip; kulak: number;
 };
 const TEN_GOLGE = "#8a6f7a";
 // tasarim §4.1 teğmen (≈24, bıyıksız, temiz, genç) · §4.2 E1–E4 · §4.2b T1–T4 (kısa saç, başlıksız, kıyafet koyu nötr)
@@ -60,7 +60,6 @@ export const BasProfil: React.FC<{ kart: YuzKart; x: number; y: number; H: numbe
   const kd = yol(kafa), sw = (px: number) => px / H; // ekran px → birim
   const tenI = c.ten, tenG = mix(c.ten, c.tenGolge, 0.62), yansima = "#b9a8b4";
   const kontur = mix(c.tenGolge, "#2f2d46", 0.55);
-  const onYol = yol(g.on, false);
   const yasCizgi = Math.max(0, c.kirisik);
   return (
     <g transform={`translate(${x} ${y}) rotate(${egim}) scale(${ayna ? -H : H} ${H})`} strokeLinecap="round" strokeLinejoin="round">
@@ -114,13 +113,7 @@ export const BasProfil: React.FC<{ kart: YuzKart; x: number; y: number; H: numbe
       {c.toz > 0 && Array.from({ length: Math.round(14 * c.toz) }).map((_, i) => <circle key={i} cx={0.16 + rr(`tz${c.ad}${i}`) * 0.18} cy={(-0.3 + rr(`tzy${c.ad}${i}`) * 0.42) * u} r={sw(1.8)} fill="#c9b8b0" opacity={0.55} />)}
       {c.ter && <path d={`M0.16,${-0.2 * u} q0.008,0.02 0,0.03 q-0.008,-0.01 0,-0.03 Z`} fill="#e3d8c6" opacity={0.85} />}
       {/* başlık: alçak yuvarlak, siperliksiz; rozet/arma yok; ışık kenarı */}
-      {c.baslik !== "yok" && (() => { const bc = c.baslik === "yuvarlak-koyu" ? "#55505e" : "#7a7458", bk = mix(bc, "#1c1a24", 0.35), bi = mix(bc, sicak, 0.35); return <g>
-        <path d={`M-0.42,-0.14 L-0.43,${-0.52 * u} Q-0.42,${-0.6 * u} -0.33,${-0.61 * u} L0.22,${-0.61 * u} Q0.31,${-0.6 * u} 0.31,${-0.52 * u} L0.31,${-0.29 * u} L0.14,${-0.31 * u} L-0.1,${-0.25 * u} Z`} fill={bc} stroke={bk} strokeWidth={sw(3)} />
-        <path d={`M-0.42,-0.14 L-0.42,-0.22 L-0.1,${-0.33 * u} L0.14,${-0.38 * u} L0.31,${-0.37 * u} L0.31,${-0.29 * u} L0.14,${-0.31 * u} L-0.1,${-0.25 * u} Z`} fill={bk} />
-        <path d={`M0.31,${-0.37 * u} L0.31,${-0.52 * u} Q0.31,${-0.6 * u} 0.22,${-0.61 * u}`} stroke={isik === "on" ? bi : kenar} strokeWidth={sw(6)} fill="none" />
-        <path d={`M-0.33,${-0.61 * u} L0.22,${-0.61 * u}`} stroke={kenar} strokeWidth={sw(3)} opacity={0.7} />
-        {[-0.3, -0.16, -0.02, 0.12].map((xx, i) => <path key={i} d={`M${xx},${-0.59 * u} L${xx + 0.01},${(-0.4 + i * 0.01) * u}`} stroke={bk} strokeWidth={sw(2)} opacity={0.5} />)}
-      </g>; })()}
+      <BaslikProfil tip={c.baslik} u={u} H={H} isik={isik} sicak={sicak} kenar={kenar} />
     </g>
   );
 };
@@ -231,11 +224,12 @@ export const OmuzBasi: React.FC<{ omuz: P2; dirsek: P2; r: number; renk: string;
   const c: P2 = [omuz[0] + Math.cos(a) * r * 0.35, omuz[1] + Math.sin(a) * r * 0.35];
   return (
     <g transform={`translate(${c[0]} ${c[1]}) rotate(${d})`}>
-      <ellipse cx={0} cy={0} rx={r * 1.1} ry={r * 0.92} fill={renk} stroke="#24223a" strokeWidth={Math.max(2, r * 0.04)} />
+      <ellipse cx={0} cy={0} rx={r * 1.1} ry={r * 0.92} fill={renk} />
+      <path d={`M${-r * 1.1},0 A${r * 1.1},${r * 0.92} 0 0 1 ${r * 0.5},${-r * 0.82}`} stroke="#24223a" strokeWidth={Math.max(2, r * 0.04)} fill="none" />
       {isik && <path d={`M${-r * 0.9},${-r * 0.7} A${r * 1.2},${r} 0 0 1 ${r * 0.9},${-r * 0.75}`} stroke={isik} strokeWidth={Math.max(3, r * 0.12)} fill="none" opacity={0.85} />}
       <path d={`M${-r * 1.0},${-r * 0.75} A${r * 1.25},${r * 1.02} 0 0 1 ${r * 0.4},${-r * 1.0}`} stroke={kenar} strokeWidth={Math.max(2, r * 0.05)} fill="none" opacity={0.8} />
       {/* kol dikişi (gövde tarafında kavis) + koltuk altı kırışıkları */}
-      <path d={`M${r * 0.25},${-r * 0.98} Q${r * 0.75},0 ${r * 0.3},${r * 0.98}`} stroke={golge} strokeWidth={Math.max(2, r * 0.05)} fill="none" />
+      <path d={`M${r * 0.35},${-r * 0.85} Q${r * 0.7},0 ${r * 0.4},${r * 0.8}`} stroke={golge} strokeWidth={Math.max(2, r * 0.035)} fill="none" opacity={0.6} />
       <path d={`M${r * 0.55},${r * 0.55} q${r * 0.35},${r * 0.12} ${r * 0.6},${r * 0.05} M${r * 0.45},${r * 0.8} q${r * 0.3},${r * 0.15} ${r * 0.55},${r * 0.12}`} stroke={golge} strokeWidth={Math.max(2, r * 0.04)} fill="none" opacity={0.8} />
     </g>
   );
@@ -250,4 +244,19 @@ export const KolOmuz: React.FC<ElKol40Props & { omuzR: number; omuzIsik?: string
     {pr.kolluk && <g><line x1={pr.omuz[0]} y1={pr.omuz[1]} x2={u[0]} y2={u[1]} stroke={kr} strokeWidth={pr.gen[0] * 1.08} />
       <ellipse cx={u[0]} cy={u[1]} rx={pr.gen[0] * 0.16} ry={pr.gen[0] * 0.6} transform={`rotate(${a} ${u[0]} ${u[1]})`} fill={mix(kr, "#ffffff", 0.12)} stroke="#24223a" strokeWidth={2.5} /></g>}
     <OmuzBasi omuz={pr.omuz} dirsek={g.dirsek} r={pr.omuzR} renk={kr} golge={mix(kr, "#1c1a24", 0.4)} isik={pr.omuzIsik} /></g>;
+};
+
+/** Başlık AYRI bileşen (kıyafet araştırması sürüyor: kabalak/Enveriye/subay başlığı kesinleşince yeni `tip` eklenir, yüz kartı yalnız adı taşır).
+ *  Geçici nötr tip: "yuvarlak-haki" / "yuvarlak-koyu" = düz tepeli, siperliksiz, rozetsiz alçak başlık. Yerel birim baş H (BasProfil çerçevesi). */
+export type BaslikTip = "yuvarlak-haki" | "yuvarlak-koyu" | "yok" | (string & {});
+export const BaslikProfil: React.FC<{ tip: BaslikTip; u: number; H: number; isik: "on" | "arka"; sicak: string; kenar: string }> = ({ tip, u, H, isik, sicak, kenar }) => {
+  if (tip === "yok") return null;
+  const sw = (px: number) => px / H;
+ const bc = tip === "yuvarlak-koyu" ? "#55505e" : "#7a7458", bk = mix(bc, "#1c1a24", 0.35), bi = mix(bc, sicak, 0.35); return <g>
+        <path d={`M-0.42,-0.14 L-0.43,${-0.52 * u} Q-0.42,${-0.6 * u} -0.33,${-0.61 * u} L0.22,${-0.61 * u} Q0.31,${-0.6 * u} 0.31,${-0.52 * u} L0.31,${-0.29 * u} L0.14,${-0.31 * u} L-0.1,${-0.25 * u} Z`} fill={bc} stroke={bk} strokeWidth={sw(3)} />
+        <path d={`M-0.42,-0.14 L-0.42,-0.22 L-0.1,${-0.33 * u} L0.14,${-0.38 * u} L0.31,${-0.37 * u} L0.31,${-0.29 * u} L0.14,${-0.31 * u} L-0.1,${-0.25 * u} Z`} fill={bk} />
+        <path d={`M0.31,${-0.37 * u} L0.31,${-0.52 * u} Q0.31,${-0.6 * u} 0.22,${-0.61 * u}`} stroke={isik === "on" ? bi : kenar} strokeWidth={sw(6)} fill="none" />
+        <path d={`M-0.33,${-0.61 * u} L0.22,${-0.61 * u}`} stroke={kenar} strokeWidth={sw(3)} opacity={0.7} />
+        {[-0.3, -0.16, -0.02, 0.12].map((xx, i) => <path key={i} d={`M${xx},${-0.59 * u} L${xx + 0.01},${(-0.4 + i * 0.01) * u}`} stroke={bk} strokeWidth={sw(2)} opacity={0.5} />)}
+      </g>;
 };

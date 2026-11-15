@@ -10,7 +10,6 @@ import { param, SablonProps } from "../../ortak";
 import { cl, GIRIS } from "../../zaman";
 import { kamera25, Kamera25, plaka } from "../../kamera25d";
 import { RenkKaydi } from "../../../doku/Tarama";
-import { ElKol40 } from "../../props/cicero/El40";
 import { BP, BulutSerit, gokSutun, Gok5, Katman, kirik, P2, pts, rr, Tara } from "./bmcOrtak";
 import { karisim as mix } from "./renk";
 import { figurYol, KolOmuz, ProfilFigur, profilIskelet, YUZ_KART } from "./Figur";
@@ -68,6 +67,12 @@ const Namlu: React.FC<{ x0: number; x1: number; y0: number; y1: number; k0: numb
   const yA = (x: number, f: number) => { const t = (x - x0) / (x1 - x0); return y0 + (y1 - y0) * t + (k0 + (k1 - k0) * t) * f; };
   return (
     <g strokeLinejoin="round">
+      {/* lafet: muylu kulağı namlunun altından tekerlek göbeğine (sol alt) iner */}
+      <path d={`M${x0 + 300},${yA(x0 + 300, 0.4)} L${x0 + 480},${yA(x0 + 480, 0.4)} L${x0 + 190},${y0 + 470} L${x0 + 60},${y0 + 450} Z`} fill="#4c4a60" stroke="#2a2740" strokeWidth={5} />
+      <path d={`M${x0 + 300},${yA(x0 + 300, 0.4)} L${x0 + 60},${y0 + 450}`} stroke="#a8a2b4" strokeWidth={4} opacity={0.6} />
+      {/* geri tepme silindiri (namlu altında, kısa) + beşik kelepçeleri */}
+      <path d={`M${x0 + 120},${yA(x0 + 120, 0.45)} L${x1 - 260},${yA(x1 - 260, 0.45)} L${x1 - 260},${yA(x1 - 260, 0.45) + k1 * 0.42} L${x0 + 120},${yA(x0 + 120, 0.45) + k0 * 0.42} Z`} fill="#46445a" stroke="#2a2740" strokeWidth={4} />
+      <path d={`M${x0 + 120},${yA(x0 + 120, 0.5)} L${x1 - 260},${yA(x1 - 260, 0.5)}`} stroke="#8a86a0" strokeWidth={4} />
       <path d={d} fill="#5a5670" stroke="#2a2740" strokeWidth={5} />
       <path d={`M${x0},${yA(x0, -0.5)} L${x1},${yA(x1, -0.5)} L${x1},${yA(x1, -0.18)} L${x0},${yA(x0, -0.2)} Z`} fill="#6e6a86" />
       <path d={`M${x0},${yA(x0, -0.36)} L${x1 - 20},${yA(x1 - 20, -0.36)}`} stroke={BP.demirIsik} strokeWidth={10} strokeLinecap="round" />

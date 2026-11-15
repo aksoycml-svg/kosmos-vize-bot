@@ -44,4 +44,15 @@ python3 -I "$O" "$OUT/K3_P05_k150.png" --json "$OUT/olcum_K3.json"
 python3 -I "$O" "$OUT/K4_P04_y200.png" --kirmizi 420,930,700,1060 --json "$OUT/olcum_K4.json"
 # kor tekilliği: kor kutusu içi en doygun/en parlak, dışı C* ≤ 28 ve L* ≤ 88
 python3 -I "$KOK/tools/benmychree_kor.py" "$OUT"
+# 2× kırpımlar: yüzler ve omuzlar (tur-2 isteği; kare koordinatları ref kamerada)
+python3 -I - "$OUT" <<'PY'
+import sys; from PIL import Image
+d = sys.argv[1]
+K = {"K3_P05_k150.png": {"yuz_tegmen": (600, 380, 1020, 900), "yuz_E1": (60, 520, 300, 720), "yuz_E3": (370, 520, 600, 720), "omuz_tegmen": (380, 820, 900, 1300), "omuz_E1": (60, 640, 380, 960)},
+     "K2_P07b_y214.png": {"yuz_T3": (700, 720, 940, 920), "omuz_T3": (720, 820, 1000, 1120)}}
+for f, kk in K.items():
+    im = Image.open(f"{d}/{f}")
+    for ad, (x0, y0, x1, y1) in kk.items():
+        im.crop((x0, y0, x1, y1)).resize(((x1 - x0) * 2, (y1 - y0) * 2), Image.LANCZOS).save(f"{d}/kirpim2x_{ad}.png")
+PY
 echo "tamam → $OUT"

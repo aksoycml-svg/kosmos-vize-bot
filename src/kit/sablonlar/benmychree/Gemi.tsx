@@ -7,13 +7,13 @@ import React from "react";
 import { BP, pts, P2, rr, Tara } from "./bmcOrtak";
 
 export type GemiDurum = "demirli" | "vurulmus" | "yanan" | "yatik" | "batik";
-export const GEMI = { L: 118.9, borda: 6.2, abarti: 1.15 };
+export const GEMI = { L: 118.9, borda: 6.2, abarti: 1.4 }; // dikey abartı 1.15 → 1.4 (tiyatro; 360 px'te baca/direk/hangar okunsun)
 // konumlar (baştan, m) — tasarim §3 L oranları
 const K = { platform: [0, 17.8], onDirek: 23.8, kopru: [33.3, 45.2], onBaca: 51.1, arkaBaca: 70.2, hangar: [76.1, 104.6], arkaDirek: 107, botlar: [41, 58.5, 64.5] };
 
 export const GemiProfil: React.FC<{ pxm: number; durum?: GemiDurum; seed?: number; hangarKapi?: "kapali" | "acik" }> = ({ pxm, durum = "demirli", seed = 181 }) => {
   const X = (m: number) => m * pxm, Y = (m: number) => -m * pxm * GEMI.abarti;
-  const kw = Math.max(1.6, Math.min(3, pxm * 0.45)); // siluet kontur
+  const kw = Math.max(2.2, Math.min(3.5, pxm * 0.55)); // siluet kontur
   const sheer = (m: number) => 0.9 * ((m / GEMI.L - 0.5) * 2) ** 2; // baş/kıçta yükselen güverte çizgisi
   const deck = (m: number) => GEMI.borda + sheer(m);
   // gövde: baş eğik (≈ 70°), kıç yuvarlak (cruiser)
@@ -31,8 +31,8 @@ export const GemiProfil: React.FC<{ pxm: number; durum?: GemiDurum; seed?: numbe
     <g strokeLinejoin="round">
       {/* direkler (gövdenin arkasında başlar) */}
       {[K.onDirek, K.arkaDirek].map((m, i) => <g key={i}>
-        <line x1={X(m)} y1={Y(deck(m))} x2={X(m + 0.6)} y2={Y(i ? 24.6 : 25.4)} stroke={BP.direk} strokeWidth={Math.max(1.6, pxm * 0.5)} />
-        <line x1={X(m) + Math.max(1, pxm * 0.25)} y1={Y(deck(m) + 3)} x2={X(m + 0.6) + Math.max(1, pxm * 0.25)} y2={Y(i ? 24.6 : 25.4)} stroke={BP.kenar} strokeWidth={Math.max(1, pxm * 0.18)} />
+        <line x1={X(m)} y1={Y(deck(m))} x2={X(m + 0.6)} y2={Y(i ? 24.6 : 25.4)} stroke={BP.direk} strokeWidth={Math.max(2.4, pxm * 0.6)} />
+        <line x1={X(m) + Math.max(1, pxm * 0.25)} y1={Y(deck(m) + 3)} x2={X(m + 0.6) + Math.max(1, pxm * 0.25)} y2={Y(i ? 24.6 : 25.4)} stroke={BP.kenar} strokeWidth={Math.max(1.8, pxm * 0.3)} />
       </g>)}
       {/* iskuner arması: ince ip çizgileri (baş direk → baş, direkler arası anten) */}
       <path d={`M${X(K.onDirek + 0.6)},${Y(25.4)} L${X(1)},${Y(deck(0) + 1)} M${X(K.onDirek + 0.6)},${Y(24.4)} L${X(K.arkaDirek + 0.6)},${Y(23.6)} M${X(K.arkaDirek + 0.6)},${Y(24.6)} L${X(118)},${Y(deck(118) + 1)}`} stroke={BP.direk} strokeWidth={Math.max(0.8, pxm * 0.12)} fill="none" opacity={0.8} />
@@ -47,7 +47,7 @@ export const GemiProfil: React.FC<{ pxm: number; durum?: GemiDurum; seed?: numbe
       {[K.onBaca, K.arkaBaca].map((m, i) => <g key={i}>
         <path d={bacaD(m)} fill={BP.baca} stroke={BP.kontur} strokeWidth={kw} />
         <Tara d={bacaD(m)} aci={105} aralik={Math.max(4, pxm * 1.6)} kalin={Math.max(1.2, pxm * 0.35)} renk={BP.dumanCekirdek} alfa={0.55} kutu={[X(m - 3), Y(18), X(m + 3), Y(deck(m))]} />
-        <line x1={X(m + 2.3)} y1={Y(deck(m) + 2.6)} x2={X(m + 2.3 + 1.05)} y2={Y(17.7)} stroke={BP.kenar} strokeWidth={Math.max(1.5, pxm * 0.4)} />
+        <line x1={X(m + 2.3)} y1={Y(deck(m) + 2.6)} x2={X(m + 2.3 + 1.05)} y2={Y(17.7)} stroke={BP.kenar} strokeWidth={Math.max(2.5, pxm * 0.55)} />
         <line x1={X(m - 2.3 + 1.05)} y1={Y(17.7)} x2={X(m + 2.3 + 1.05)} y2={Y(17.7)} stroke={BP.kenar} strokeWidth={Math.max(1.2, pxm * 0.3)} />
       </g>)}
       {/* can botları (davitte) */}
@@ -56,15 +56,15 @@ export const GemiProfil: React.FC<{ pxm: number; durum?: GemiDurum; seed?: numbe
         <line x1={X(m - 3.7)} y1={Y(deck(m) + 3.4)} x2={X(m + 3.7)} y2={Y(deck(m) + 3.4)} stroke={BP.kenar} strokeWidth={Math.max(1, pxm * 0.2)} />
       </g>)}
       {/* hangar: düz çatılı yüksek kutu, arka bacanın hemen gerisi; iskele yan duvarında çift kanat kapı */}
-      <path d={kutu(K.hangar[0], K.hangar[1], deck(90), 11.6)} fill={BP.ustGolge} stroke={BP.kontur} strokeWidth={kw} />
-      <line x1={X(K.hangar[0])} y1={Y(11.6)} x2={X(K.hangar[1])} y2={Y(11.6)} stroke={BP.kenar} strokeWidth={Math.max(1.5, pxm * 0.4)} />
+      <path d={kutu(K.hangar[0], K.hangar[1], deck(90), 11.6)} fill="#7a7690" stroke={BP.kontur} strokeWidth={kw} />
+      <line x1={X(K.hangar[0])} y1={Y(11.6)} x2={X(K.hangar[1])} y2={Y(11.6)} stroke={BP.kenar} strokeWidth={Math.max(3, pxm * 0.6)} />
       <line x1={X(K.hangar[1])} y1={Y(11.6)} x2={X(K.hangar[1])} y2={Y(deck(104) + 0.4)} stroke={BP.kenar} strokeWidth={Math.max(1.3, pxm * 0.3)} />
       <path d={kutu(K.hangar[0], K.hangar[1], 10.9, 11.5)} fill={BP.dumanCekirdek} opacity={0.35} />
       <path d={kutu(91.5, 98.5, deck(95), deck(95) + 5)} fill="none" stroke={BP.kontur} strokeWidth={Math.max(1, kw * 0.6)} opacity={0.8} />
       <line x1={X(95)} y1={Y(deck(95))} x2={X(95)} y2={Y(deck(95) + 5)} stroke={BP.kontur} strokeWidth={Math.max(0.8, kw * 0.45)} opacity={0.7} />
       {yanik && <path d={`M${pts([[X(94), Y(deck(95) + 5.6)], [X(96.5), Y(deck(95) + 6.4)], [X(97.4), Y(deck(95) + 5.2)], [X(95.5), Y(deck(95) + 4.6)]])} Z`} fill={BP.dumanCekirdek} />}
       {/* gövde */}
-      <path d={gD} fill={BP.govdeGolge} stroke={BP.kontur} strokeWidth={kw} />
+      <path d={gD} fill="#47435f" stroke={BP.kontur} strokeWidth={kw} />
       {/* borda üst bandı biraz açık (gökten yansıma), alt gölge şeridi taramalı */}
       {/* üst borda kuşağı gökten aydınlanır (orta ton) — gövde siluetinin okunması için */}
       <path d={`M${pts(govde.slice(govde.length - 42).map((q) => [q[0], q[1]] as P2))} L${pts(govde.slice(govde.length - 42).reverse().map((q) => [q[0], q[1] + pxm * 1.5] as P2))} Z`} fill={BP.govdeOrta} />

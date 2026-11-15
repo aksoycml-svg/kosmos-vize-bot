@@ -12,7 +12,6 @@ import { param, Sablon, SablonProps } from "../../ortak";
 import { cl, GIRIS } from "../../zaman";
 import { izd, izdPoli, Kam25, kamera25, Kamera25, V3 } from "../../kamera25d";
 import { RenkKaydi } from "../../../doku/Tarama";
-import { ElKol40 } from "../../props/cicero/El40";
 import { Alev, BP, Duman, Flu, gokSutun, Gok5, kirik, P2, pts, rr, Tara } from "./bmcOrtak";
 import { karisim as mix } from "./renk";
 import { KolOmuz, ProfilFigur, profilIskelet, YUZ_KART } from "./Figur";
@@ -57,7 +56,7 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
   const t3Z = 2.35 + 0.3 * geri, t3X = -0.32 + 0.08 * geri; // adım geri = kapıdan uzağa (kameraya doğru değil, kıça)
   const ayak = P(k, [t3X, 0, t3Z]), bas = P(k, [t3X, 1.75, t3Z]), H = ayak[1] - bas[1], s3 = H / 1.75;
   kilit.push({ ad: "T3 ayak", p: ayak, tur: "ayak" }, { ad: "T3 yüz", p: [bas[0] - 0.05 * s3, bas[1] + 0.13 * s3], tur: "yuz" }, { ad: "kapı (açılan kanat)", p: P(k, W(KAPI.z1, KAPI.h / 2)), tur: "dokunus" });
-  const govdeRenk = "#585870", govdeGolge = "#3f3e58", govdeIsik = mix("#7a7a92", BP.havuz, 0.45);
+
   return (
     <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
       <RenkKaydi>
@@ -77,7 +76,7 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
         {Array.from({ length: 40 }).map((_, i) => { const z = -0.8 + i * 0.42; if (z > KAPI.z0 - 0.3 && z < KAPI.z1 + 0.3) return null; return [0.3, 2.95, 4.75].map((y, j) => rr(`pc${i}${j}`) < 0.08 ? null : (() => { const q = P(k, W(z, y)); return <circle key={`${i}${j}`} cx={q[0]} cy={q[1]} r={Math.max(1.4, izd(k, W(z, y))!.s * 0.012)} fill={mix(BP.duvarGolge, BP.kontur, 0.5)} />; })()); })}
         {yan > 0 && [[1.6, "#7d6d84"], [1.0, "#957a84"], [0.5, "#b08e8a"]].map(([m, c], i) => <path key={`dh${i}`} d={poli(k, [W(zm - (m as number) * 0.8, 0), W(KAPI.z1 + (m as number), 0), W(KAPI.z1 + (m as number) * 0.8, Math.min(HANGAR_H - 0.4, KAPI.h + (m as number))), W(zm - (m as number) * 0.5, Math.min(HANGAR_H - 0.4, KAPI.h + (m as number)))])} fill={c as string} opacity={alevBoy} />)}
         {[-1.2, 0.3, 7.6, 9.4, 12.2].map((z, i) => <path key={`pas${i}`} d={poli(k, [W(z, 4.55), W(z + 0.08, 4.55), W(z + 0.05 + rr(`ps${i}`) * 0.06, 2.6 + rr(`psy${i}`)), W(z + 0.02, 2.4 + rr(`psy${i}`))])} fill="#8a6a62" opacity={0.55} />)}
-        {Array.from({ length: 60 }).map((_, i) => { const z = -2.6 + i * 0.3; if (z > KAPI.z0 - 0.2 && z < KAPI.z1 + 0.2) return null; return [1.35, 2.75, 4.55].map((y, j) => { const q = P(k, W(z, y)), rq = Math.max(2, izd(k, W(z, y))!.s * 0.014); return <g key={`rv${i}${j}`}><circle cx={q[0]} cy={q[1]} r={rq} fill="#4a4660" /><circle cx={q[0] - rq * 0.35} cy={q[1] - rq * 0.35} r={rq * 0.45} fill="#a8a2b4" opacity={0.7} /></g>; }); })}
+        {Array.from({ length: 60 }).map((_, i) => { const z = -2.6 + i * 0.3; if (z > KAPI.z0 - 0.2 && z < KAPI.z1 + 0.2) return null; return [1.35, 2.75, 4.55].map((y, j) => { const iz = izd(k, W(z, y), 0.2); if (!iz) return null; const q: P2 = [iz.x, iz.y], rq = Math.max(2, iz.s * 0.014); return <g key={`rv${i}${j}`}><circle cx={q[0]} cy={q[1]} r={rq} fill="#4a4660" /><circle cx={q[0] - rq * 0.35} cy={q[1] - rq * 0.35} r={rq * 0.45} fill="#a8a2b4" opacity={0.7} /></g>; }); })}
         {/* kapı açıklığı: içeri koyu + alev (tek ışık), açılmadan önce yalnız aralıktan sızan kızıl çizgi */}
         <path d={kapiPoli} fill={BP.oyuk} />
         <defs><clipPath id="giAcik"><path d={poli(k, acik)} /></clipPath></defs>
@@ -100,7 +99,7 @@ const HangarKapi: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
 
         <path d={`M${pts([P(k, W(zm - 0.02, 0)), P(k, W(zm - 0.02, KAPI.h))])}`} stroke={siz > 0 ? BP.alevDis : BP.kontur} strokeWidth={yan ? 4 : 3 + 3 * siz} opacity={yan ? 0.9 : 0.4 + 0.6 * siz} />
         {/* duman: kapı üstünden ve saçaktan, sağa yatar, kadraj üstünden çıkar (fade yok); alt yüzleri alev ışığı */}
-        <Duman taban={P(k, W(zm + 1.4, KAPI.h - 0.4))} t={t + 3} hiz={95} genis0={85} genis1={200} ruz={0.91} seed="gid" boy={1400} isikSag={false} altIsik yogun={1.2} />
+        <Duman taban={P(k, W(zm + 1.6, KAPI.h + 0.15))} t={t + 3} hiz={95} genis0={55} genis1={190} ruz={0.91} seed="gid" boy={1400} isikSag={false} altIsik yogun={1.2} />
         <Duman taban={P(k, W(zm + 1.8, HANGAR_H))} t={t + 2} hiz={80} genis0={40} genis1={150} ruz={0.91} seed="gid2" boy={1100} isikSag={false} yogun={0.9} />
         {/* güverte: tahtalar kaçış noktasına (seed'li ek çizgisi) + alev havuzu 3 basamak */}
         <path d={poli(k, [[DUVAR_X, 0, -3], [DUVAR_X, 0, 40], [1.4, 0, 40], [1.4, 0, -3]])} fill={mix(BP.guverte, BP.guverteGolge, 0.45)} /> {/* koridor hangar gölgesinde (güneş duvarın ardında, h 18°); ahşap gölgede de sıcak kalır */}
