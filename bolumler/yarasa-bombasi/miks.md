@@ -47,3 +47,25 @@ Dosya yaklaşık plan RMS'leri (dBFS, dosya içi): P01–P09 −24…−28, P10 
 4. **49.5–50.5 ve 55.8–56.8:** diğer iki kesim.
 5. **59.5–62.7:** son akor kelime sonuyla örtüşüyor mu; yankı sessizliğe doğal iniyor mu; döngü yeniden başlarken ilk nota geliyor mu.
 6. P10 doruğu savaş/felaket konusunda "gösteri" gibi mi duyuluyor (ölçülü ton)? Fazla görkemliyse zarf P10'da −24'e çekilir.
+
+## 6. Final miks (kurgucu, 2026-11-15) — `tools/yarasa_miks.py`
+Çıktı: `public/yarasa/miks/{tr,en}.wav` (48 kHz, 24 bit, 62.667 sn = 3760 kare), `public/yarasa/miks/stem/{anlatim_tr,anlatim_en,foley,muzik,ortam}.wav` (48 kHz float32, kazançsız; final = 4 stem toplamı + G dB: TR +4.1, EN +5.1, sonra limiter 0.76), `{tr,en}-dalga.png`.
+Zamanlama: tüm klipler `bolum.json` plan başlarından (kare/60); EN anlatım TR ile aynı plan başlarında. Temaslar `bolum.json planlar[].temaslar` (temaslar.json ile aynı 35 olay), kare − `tepe_ms`.
+Seviyeler (anlatım klipleri −18 LUFS = 0 dB ref):
+- Foley: `db` değerleri + ducking (anlatım altında en çok −8 dB) + **global −3 dB** (ölçüm: −3 öncesi foley tepeleri anlatım tepesinin medyan −4 dB altındaydı, hedef −5/−9 → −7). Whoosh/riser yok.
+- Müzik: taban −7 dB, konuşmada ek −6 dB, mutlak tavan momentary: konuşmada −43 LUFS, aralarda −35.5 LUFS (anlatıma göre −25 / −17.5). Ölçülen: konuşmada en çok **−22.9 (TR) / −22.3 (EN) dB** (≤ −22 ✓), aralarda **−18.5 / −17.6 dB** (≤ −16 ✓). Giriş 0.3 sn fade, son 1.2 sn fade.
+- Ortam (anlatıma göre): oda-tonu −27 (P01–P07), rüzgâr-çöl −25 (P08, P09, P12), tank-inleme −26 (P09); rüzgâr 1.5 kHz lowpass; plan başında/sonunda 0.4 sn fade.
+- Final: **TR −14.0 LUFS / TP −2.0 dBTP / LRA 2.5; EN −14.0 / −2.1 / 4.8.**
+- Plan başına LUFS: TR P01–P12 −14.1 −14.1 −13.8 −14.0 −14.0 −14.1 −14.1 −13.9 −14.1 −13.9 −13.9 −14.0 (medyan −14.0); EN −13.8 −14.0 −14.4 −14.2 −13.7 −14.3 −14.5 −13.5 −14.4 −14.1 −13.9 −13.5 (medyan −14.1). Medyandan 3 LU sapan plan yok (en büyük 0.5 LU).
+- Dalga formu (tr/en-dalga.png) bakıldı: ani kesik, sıçrama, üst üste binme yok; plan aralarında nefes boşlukları görünür. `ses_kenar kontrol` her iki final: temiz.
+
+### Kulakla dinlenecek saniyeler (final)
+1. **0.0–1.0:** ilk Ab notası girişi (0.3 sn fade) anlatımdan önce, yumuşak mı.
+2. **2.2–2.4:** P01 kesme: ateş-tutuş + uzak kanat + ateş yatağı; anlatım ("yaptı." sonrası) boşluğunda mı, çok yüksek mi.
+3. **11.1–11.3 ve 22.5–22.8:** kalem-tik (−6) ve pens-tik + kap-oturma (−6) — en yüksek küçük temaslar (ducking −4 dB altında ama anlatım tepesinin üstünde olabilir).
+4. **33.0–34.0:** müzik A→B kesimi.
+5. **43.2–44.0 (P09 tütün sesleri) ve 44.6–46.1 (anahtar hold):** hold'da sadece müzik + rüzgâr; yükseliş hissi var mı (müzik tavanı −17.5 olduğundan ölçülü).
+6. **46.1–49.9 (P10 doruk):** kural gereği müzik burada −22/−17 altında tutuldu; Chopin ff doruğu **bastırıldı** — doruk yeterince hissediliyor mu, ateş-tutuş (47.8) ve kıvılcım (46.3, 46.8, 47.3) yatağın üstünde net mi? Zayıfsa P10 müzik tavanı −16'ya yaklaştırılır (CAP_ARA) ya da konuşma altı −22 kuralı kullanıcı kararıyla gevşetilir.
+7. **54.7–54.9:** mühür-tok (−5, en yüksek foley) + kâğıt hışırtısı.
+8. **59.5–62.7:** son akor ve yankı sönümü; rüzgâr ortamı; döngüde 0.0 notasına bağlanıyor mu.
+9. **EN:** aynı saniyeler; EN P06 (29–30) ve P07 (30.4–30.9) kanat-titrek foley'i konuşmayla çakışıyor mu.
