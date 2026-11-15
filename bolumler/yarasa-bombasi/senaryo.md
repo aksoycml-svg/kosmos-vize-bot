@@ -99,7 +99,7 @@ Işık: mağara çizimi defter sayfasında mürekkep (gerçek mekân değil; sü
 - **Doğruluk:** "Binalarda saçak, tavan arası ve karanlık girintilere tüner" (K1, K3 Wilkins) teyitli; "kimse seçemez" bunun çıkarımı. Uyanma saati iddiası kaldırıldı (kaynak yok).
 
 ### P08 · 35.6–41.1 · ÇÖL-ÜS
-- **Söz:** "On beş Mayıs bin dokuz yüz kırk üçte bir yardımcı hava üssünde silahlı yarasalar kazayla salındı."
+- **Söz:** "Sonra bir gün, bir yardımcı hava üssünde silahlı yarasalar kazayla salındı."
   - [GÖRSEL: geniş plan, ÇÖL-ÜS, geç ikindi; alçak, nötr yapılar, çıplak toprak. Defterdeki mürekkep spiralin aynısı, bu kez gerçek: yarasa bulutu yükselip üssün üstüne yayılıyor. Kazanın nedeni gösterilmez]
 - **Ekran:** Carlsbad yardımcı sahası · New Mexico · kaza (kaynakta neden yok)
 - **Saklanan şey:** Sürünün nereye ineceği: bulut kadrajın üstünde, binalar altta; hiçbir şey yere inmedi.
@@ -192,7 +192,7 @@ P12 Hedef: Japonya · Yanan: New Mexico    (çizim → yanmış çatı → defte
 Ses kapalı da hikâye çıkıyor: yarasalara yangın takıp Japonya'ya yollayacaklardı, ama kendi üssü yandı. Zayıf: P08 "kaza"nın nasıl olduğu belli değil (kaynakta da yok).
 
 ### Ses açık (yalnız anlatım)
-"Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı. / Her şey bir diş hekiminin fikriydi. / Yarasa karanlık çatı altına tüner. Göğsüne minik bir yangın bombası takarsan, o çatı yanar. / Pearl Harbor'dan bir ay sonra Adams Beyaz Saray'a yazdı. Başkan işe baktırdı. / Napalm'i geliştiren Fieser, yarasaya takılacak minik bir kapsül yaptı. / Kapsüllü yarasalar uyutulup kovana dizildi; havada açılınca uyanıp çatılara tüneyecekti. / Ama nereye tüneyeceğine yarasa kendi karar verir. / On beş Mayıs bin dokuz yüz kırk üçte bir yardımcı hava üssünde silahlı yarasalar kazayla salındı. / Karanlık köşe arayan yarasalar, yakıt tankının altına bile tünedi. / Kapsüller tek tek yandı. Üs tutuştu. / Yine de proje sürdü. Sonunda Amiral King, silah geç hazır olacağı için iptal etti. / Savaşta hiç kullanılmadı. En bilinen yangınını kendi üssünde çıkardı."
+"Yarasalar tam istenen şeyi yaptı. Ve Amerika kendi üssünü yaktı. / Her şey bir diş hekiminin fikriydi. / Yarasa karanlık çatı altına tüner. Göğsüne minik bir yangın bombası takarsan, o çatı yanar. / Pearl Harbor'dan bir ay sonra Adams Beyaz Saray'a yazdı. Başkan işe baktırdı. / Napalm'i geliştiren Fieser, yarasaya takılacak minik bir kapsül yaptı. / Kapsüllü yarasalar uyutulup kovana dizildi; havada açılınca uyanıp çatılara tüneyecekti. / Ama nereye tüneyeceğine yarasa kendi karar verir. / Sonra bir gün, bir yardımcı hava üssünde silahlı yarasalar kazayla salındı. / Karanlık köşe arayan yarasalar, yakıt tankının altına bile tünedi. / Kapsüller tek tek yandı. Üs tutuştu. / Yine de proje sürdü. Sonunda Amiral King, silah geç hazır olacağı için iptal etti. / Savaşta hiç kullanılmadı. En bilinen yangınını kendi üssünde çıkardı."
 
 ### "Eee yani?" taraması
 | Plan | Soru | Durum |
