@@ -11,7 +11,7 @@
   "acik": true,
   "grup": 2,
   "maks_harf": 14,
-  "bant": "oto",
+  "bant": "alt",
   "noktalamasiz": true
  },
  "_not": "Yönetmen, 2026-11-15. Plan süreleri sahne-plani.md §0 (3890 kare = 64.83 sn). Kaynak: kalibrasyon.json (P01/P04/P07 mutlak kareleri bölüm zamanına taşındı: plan karesi aynı), mekanlar.md §1.8-1.9 ve motion sapma tablosu üstün. Ses: TR görüntü zamanlaması; EN aynı zamanlama. Gait kullanılmadı (ELCI-ODASI/ARABA z-u yolları kitte kanıtsız). Çıplak kesme: P05→P06 (1). Anahtar planlar: P06, P07, P10.",
@@ -297,12 +297,6 @@
      "metin": "ANKARA · 1943",
      "en": "ANKARA · 1943",
      "tur": "iddia",
-     "vurgu": [
-      "1943"
-     ],
-     "vurgu_en": [
-      "1943"
-     ],
      "bas": 6,
      "bit": 170
     },
@@ -311,12 +305,6 @@
      "metin": "ELYESA BAZNA · KOD ADI ÇİÇERO",
      "en": "ELYESA BAZNA · CODE NAME CICERO",
      "tur": "iddia",
-     "vurgu": [
-      "ÇİÇERO"
-     ],
-     "vurgu_en": [
-      "CICERO"
-     ],
      "bas": 184,
      "bit": 426
     }
@@ -324,12 +312,10 @@
    "altyazi": {
     "vurgu": {
      "tr": [
-      "sahte",
-      "uşak"
+      "sahte"
      ],
      "en": [
-      "fake",
-      "valet"
+      "fake"
      ]
     }
    },
@@ -383,11 +369,13 @@
     "kutu": {
      "kapak": [
       1,
+      1,
       0
      ],
      "kare": [
       0,
-      14
+      14,
+      28
      ]
     },
     "el40": [
@@ -439,12 +427,12 @@
       ],
       "bilek": [
        [
-        780,
-        900
+        1050,
+        1330
        ],
        [
-        780,
-        1180
+        760,
+        1010
        ],
        [
         748,
@@ -472,8 +460,8 @@
        ]
       ],
       "aci": [
-       180,
        185,
+       190,
        180,
        175,
        180,
@@ -552,22 +540,7 @@
       "yanik": 1
      },
      "kapi": {
-      "ayak": null,
-      "acik": [
-       0,
-       0,
-       1,
-       1,
-       0
-      ],
-      "kare": [
-       150,
-       204,
-       212,
-       236,
-       246
-      ],
-      "serit": 248
+      "ayak": null
      },
      "kutu": {
       "kapak": 0
@@ -656,32 +629,22 @@
       "kare": [
        150,
        160,
-       204,
-       214,
-       232
+       205,
+       238
       ],
       "z": [
        4.0,
        4.0,
        4.85,
-       4.95,
-       5.35
+       4.85
       ],
       "u": [
        -0.2,
        -0.2,
-       1.15,
-       1.3,
-       1.35
+       1.1,
+       2.7
       ],
-      "yon": 1,
-      "jestler": [
-       {
-        "ad": "yuru",
-        "bas": 160,
-        "bit": 232
-       }
-      ]
+      "yon": 1
      }
     ]
    },
@@ -691,29 +654,10 @@
      "metin": "ELÇİ · SİR HUGHE KNATCHBULL-HUGESSEN",
      "en": "AMBASSADOR · SIR HUGHE KNATCHBULL-HUGESSEN",
      "tur": "iddia",
-     "vurgu": [
-      "ELÇİ"
-     ],
-     "vurgu_en": [
-      "AMBASSADOR"
-     ],
-     "zemin": "koyu",
      "bas": 156,
      "bit": 330
     }
    ],
-   "altyazi": {
-    "vurgu": {
-     "tr": [
-      "kilitli",
-      "kutuda"
-     ],
-     "en": [
-      "locked",
-      "box"
-     ]
-    }
-   },
    "temaslar": [
     {
      "kare": 14,
@@ -741,8 +685,8 @@
      "ses": "cic_banyo_kapi_ac"
     },
     {
-     "kare": 246,
-     "olay": "banyo kapısı kapanır",
+     "kare": 243,
+     "olay": "banyo kapısı kapanır (kapı oturur)",
      "ses": "cic_banyo_kapi_kapanis"
     },
     {
@@ -798,7 +742,7 @@
     "cic_kutu_kilit_tik p46",
     "cic_anahtar_komodin_cin p74",
     "cic_banyo_kapi_ac p210",
-    "cic_banyo_kapi_kapanis p246",
+    "cic_banyo_kapi_kapanis p243",
     "cic_adim_hafif p274/296/318"
    ],
    "muzik_notu": "tek nabız yatağı, değişmez",
@@ -1123,29 +1067,10 @@
      "metin": "KAYNAK: BAZNA VE MOYZİSCH'İN KENDİ ANLATISI",
      "en": "SOURCE: BAZNA'S AND MOYZISCH'S OWN ACCOUNTS",
      "tur": "iddia",
-     "vurgu": [
-      "ANLATISI"
-     ],
-     "vurgu_en": [
-      "ACCOUNTS"
-     ],
-     "zemin": "koyu",
      "bas": 60,
      "bit": 340
     }
    ],
-   "altyazi": {
-    "vurgu": {
-     "tr": [
-      "muma",
-      "bastırdı"
-     ],
-     "en": [
-      "wax",
-      "pressed"
-     ]
-    }
-   },
    "temaslar": [
     {
      "kare": 78,
@@ -1228,7 +1153,7 @@
     "tr": "Elçi dönmeden belgeleri yatağa serip fotoğrafladı, sonra her şeyi olduğu gibi yerine koydu.",
     "en": "Before the ambassador returned, Bazna photographed the papers and put everything back."
    },
-   "olcek": "a) p0-58 insert komodin cs 1.3 (kilit ağzı) · b) p58-382 bel→orta: cs 1.4 cx +200 (belge/çekim) → p200-240 cx -140 (komodin+kapı+şerit, K-A) ; gölge anı iki-kişi orta",
+   "olcek": "a) p0-58 insert komodin cs 1.3 (kilit ağzı) · b) p58-382 bel→orta: cs 1.4 cx +200 (belge/çekim) → p200-240 cx -140 (komodin+kapı+şerit, K-A) ; gölge anı iki-kişi orta; p310-340 kamera banyo kapısına kayar (cx -220, cs 1.45): komodin/kutu kadraj kenarında",
    "tempo": "hizli",
    "parametreler": {
     "aci": "tepe-onden",
@@ -1430,7 +1355,7 @@
      "makine": {
       "kim": "bazna",
       "bas": 140,
-      "bit": 328
+      "bit": 354
      },
      "poz": [
       {
@@ -1594,21 +1519,29 @@
       58,
       200,
       240,
+      310,
+      340,
       382
      ],
      "cs": [
       1.4,
       1.4,
       1.4,
-      1.4
+      1.4,
+      1.45,
+      1.45
      ],
      "cx": [
       200,
       200,
       -140,
-      -140
+      -140,
+      -220,
+      -220
      ],
      "cy": [
+      -90,
+      -90,
       -90,
       -90,
       -90,
@@ -1648,29 +1581,10 @@
      "metin": "EKİM 1943 → NİSAN 1944",
      "en": "OCT 1943 → APR 1944",
      "tur": "iddia",
-     "vurgu": [
-      "1944"
-     ],
-     "vurgu_en": [
-      "1944"
-     ],
-     "zemin": "koyu",
      "bas": 10,
      "bit": 210
     }
    ],
-   "altyazi": {
-    "vurgu": {
-     "tr": [
-      "fotoğrafladı",
-      "yerine"
-     ],
-     "en": [
-      "photographed",
-      "back"
-     ]
-    }
-   },
    "temaslar": [
     {
      "kare": 10,
@@ -1760,12 +1674,14 @@
     {
      "kare": 350,
      "olay": "belgeler kutuya",
-     "ses": "cic_belge_kutu_hisirti"
+     "ses": "cic_belge_kutu_hisirti",
+     "db": -6
     },
     {
      "kare": 358,
      "olay": "kutu kapağı kapanır",
-     "ses": "cic_kutu_kapak_tok"
+     "ses": "cic_kutu_kapak_tok",
+     "db": -6
     },
     {
      "kare": 366,
@@ -2084,18 +2000,18 @@
      232
     ],
     "cs": [
-     1.45,
-     1.45,
+     1.8,
+     1.8,
      1.0
     ],
     "cx": [
-     -130,
-     -130,
+     -198,
+     -198,
      0
     ],
     "cy": [
-     -110,
-     -110,
+     -132,
+     -132,
      0
     ],
     "egri": "inout"
@@ -2106,12 +2022,6 @@
      "metin": "MOYZİSCH · ALMAN ELÇİLİĞİNDE GÖREVLİ",
      "en": "MOYZISCH · GERMAN EMBASSY",
      "tur": "iddia",
-     "vurgu": [
-      "MOYZİSCH"
-     ],
-     "vurgu_en": [
-      "MOYZISCH"
-     ],
      "bas": 20,
      "bit": 146
     },
@@ -2120,28 +2030,10 @@
      "metin": "SÖYLENENE GÖRE İLK FİYAT ~20.000 £",
      "en": "REPORTEDLY FIRST PRICE ~£20,000",
      "tur": "iddia",
-     "vurgu": [
-      "~20.000"
-     ],
-     "vurgu_en": [
-      "~£20,000"
-     ],
      "bas": 152,
      "bit": 238
     }
    ],
-   "altyazi": {
-    "vurgu": {
-     "tr": [
-      "Filmleri",
-      "arabada"
-     ],
-     "en": [
-      "films",
-      "Moyzisch"
-     ]
-    }
-   },
    "karakterler": [
     {
      "kim": "moyzisch",
@@ -2649,18 +2541,6 @@
      "bit": 330
     }
    ],
-   "altyazi": {
-    "vurgu": {
-     "tr": [
-      "güvenmedi",
-      "kullanmadı"
-     ],
-     "en": [
-      "trust",
-      "unused"
-     ]
-    }
-   },
    "temaslar": [
     {
      "kare": 56,
@@ -3084,30 +2964,13 @@
    "ekran_yazisi": [
     {
      "bant": "ust",
-     "tur": "sayac",
-     "metin": "SÖZDE ~{n} £ · ÇOĞU SAHTE",
-     "en": "SO-CALLED ~£{n} · MOSTLY FAKE",
-     "zemin": "koyu",
+     "metin": "SÖZDE ~300.000 £ · ÇOĞU SAHTE",
+     "en": "SO-CALLED ~£300,000 · MOSTLY FAKE",
+     "tur": "iddia",
      "bas": 60,
-     "bit": 340,
-     "sayac": {
-      "hedef": 300000,
-      "baslangic": 0,
-      "bas": 0,
-      "sure": 100
-     }
+     "bit": 340
     }
    ],
-   "altyazi": {
-    "vurgu": {
-     "tr": [
-      "sahteydi"
-     ],
-     "en": [
-      "fake"
-     ]
-    }
-   },
    "temaslar": [
     {
      "kare": 30,
@@ -3268,17 +3131,6 @@
        14,
        14
       ]
-     },
-     {
-      "kim": "yetkili",
-      "kare": [
-       0,
-       378
-      ],
-      "lean": [
-       24,
-       24
-      ]
      }
     ]
    },
@@ -3294,24 +3146,24 @@
     "cs": [
      1.4,
      1.4,
-     1.9,
-     1.9,
+     2.2,
+     2.2,
      1.5,
      1.6
     ],
     "cx": [
      40,
      40,
-     210,
-     210,
+     220,
+     220,
      40,
      40
     ],
     "cy": [
      -120,
      -120,
-     190,
-     190,
+     -28,
+     -28,
      -120,
      -120
     ],
@@ -3340,10 +3192,10 @@
       226
      ],
      "z": [
-      3.35,
-      3.35,
-      3.35,
-      3.35
+      3.5,
+      3.5,
+      3.5,
+      3.5
      ],
      "u": [
       2.0,
@@ -3370,28 +3222,10 @@
      "metin": "1943 SONU: SIZINTI FARK EDİLDİ",
      "en": "LATE 1943: LEAK NOTICED",
      "tur": "iddia",
-     "vurgu": [
-      "SIZINTI"
-     ],
-     "vurgu_en": [
-      "LEAK"
-     ],
      "bas": 120,
      "bit": 340
     }
    ],
-   "altyazi": {
-    "vurgu": {
-     "tr": [
-      "bilmiyordu",
-      "sızıntıyı"
-     ],
-     "en": [
-      "know",
-      "leak"
-     ]
-    }
-   },
    "temaslar": [
     {
      "kare": 46,
@@ -3687,28 +3521,10 @@
      "metin": "1944 BAHARI",
      "en": "SPRING 1944",
      "tur": "iddia",
-     "vurgu": [
-      "1944"
-     ],
-     "vurgu_en": [
-      "1944"
-     ],
      "bas": 10,
      "bit": 160
     }
    ],
-   "altyazi": {
-    "vurgu": {
-     "tr": [
-      "kaçınca",
-      "bıraktı"
-     ],
-     "en": [
-      "fled",
-      "quit"
-     ]
-    }
-   },
    "temaslar": [
     {
      "kare": 30,
@@ -3855,85 +3671,85 @@
       ],
       "omuz": [
        [
-        1430,
+        -350,
         900
        ],
        [
-        1430,
+        -350,
         900
        ],
        [
-        1430,
+        -350,
         900
        ],
        [
-        1430,
+        -350,
         900
        ],
        [
-        1430,
+        -350,
         900
        ],
        [
-        1430,
+        -350,
         900
        ],
        [
-        1430,
+        -350,
         900
        ],
        [
-        1430,
+        -350,
         900
        ]
       ],
       "bilek": [
        [
-        1250,
+        -80,
         500
        ],
        [
-        445,
+        170,
         330
        ],
        [
-        511,
+        300,
         800
        ],
        [
-        815,
+        540,
         1170
        ],
        [
-        728,
+        470,
         700
        ],
        [
-        728,
+        470,
         700
        ],
        [
-        708,
+        450,
         800
        ],
        [
-        1250,
+        -100,
         1000
        ]
       ],
       "aci": [
-       160,
-       180,
-       140,
-       180,
-       200,
-       200,
-       200,
-       150
+       20,
+       0,
+       40,
+       0,
+       -20,
+       -20,
+       -20,
+       30
       ],
       "poz": "kistir",
       "E": 250,
-      "bukum": 1,
+      "bukum": -1,
       "tut": {
        "prop": "bn",
        "bas": 62,
@@ -3982,8 +3798,8 @@
       "sizinti": [
        0.12,
        0.12,
-       0.25,
-       0.25,
+       0.35,
+       0.35,
        0.12
       ],
       "kaldir": [
@@ -4014,7 +3830,7 @@
      "aci": 12,
      "olcek": 0.7,
      "durum": {
-      "yuz": "on"
+      "yuz": "arka"
      }
     }
    ],
@@ -4053,7 +3869,6 @@
      "vurgu_en": [
       "BERNHARD"
      ],
-     "zemin": "koyu",
      "bas": 90,
      "bit": 370
     }
@@ -4061,11 +3876,9 @@
    "altyazi": {
     "vurgu": {
      "tr": [
-      "sahte",
       "Almanlar"
      ],
      "en": [
-      "fake",
       "Germans"
      ]
     }

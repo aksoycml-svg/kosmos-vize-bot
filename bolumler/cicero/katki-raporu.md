@@ -252,3 +252,8 @@
   - P04 lamba V huzmesi boyun açısını izlemiyor (mekanlar.md §0.5).
   - Müzik ilk yarıda ≈−30 LUFS; kesmelerden önce 0.5 sn boşluk var. EN 4.85–6.05 ve 61.7–63.55 sn kulakla dinlenmeli.
   - P02 `kit_eksik` notu ("kapı statik") render'la çelişiyor, kapı oynuyor; json notu güncel değil.
+
+## yönetmen · jüri düzeltmeleri · 2026-11-15
+- Ne yaptım: (1) `zemin:"koyu"` tüm yazılardan silindi (P07 dahil). (2) Altyazı vurgusu yalnız P01 sahte/fake, P10 Almanlar/Germans; ekran yazısı vurgusu yalnız P06 TUZAK, P10 BERNHARD (TR+EN). (3) P07 tutar sabit `iddia` metin, `sayac` yok. (4) P04 kamera p310→p340: cs 1.4→1.45, cx −140→−220 (kapıya), makine p354'e kadar elde (kaybolmaz), belge/kapak temaslarına db −6. (5) Altyazı bandı bölüm düzeyinde sabit `alt`. (6) P02 kapı foley'i p246→p243.
+- Dosyalar: `bolumler/cicero/bolum.json`, bu rapor. Doğrulayıcı: 0 hata, 2 uyarı (eski).
+- Sapma: istenen `cx +250` hem IC-ODA sınırı (±220) dışında hem ters yön (kapı için cx negatif); −220 kullanıldı. Komodin/kutu sol kenarda kısmen (~150 px) kadrajda kalıyor, tam dışarı çıkmıyor (cs ↑ kapıyı da dışarı atar). Kontrol: P04 p300/340/352/366, P02 p243/330, P07 p300 bakıldı.
