@@ -14,9 +14,11 @@ import { Alev, BP, BulutSerit, Duman, gokSutun, Gok5, Katman, kirik, P2, pts, rr
 import { GemiDurum, GemiProfil, GemiYansima } from "./Gemi";
 import { karisim as mix } from "./renk";
 import { LimanYeniSahne } from "./LimanYeni";
+import { LimanBolumSahne } from "./LimanBolum";
 
-type Gorunum = "kiyidan-ada" | "ada-rihtim" | "karsi-kiyi" | "rihtim-yan" | "hangar-yakin" | "enkaz" | "gemi-orta" | "saygi";
-const KURULU: Gorunum[] = ["kiyidan-ada", "karsi-kiyi", "gemi-orta", "saygi"]; // tur-5: karsi-kiyi (P04), gemi-orta (P07a/b), saygi (P10a) → LimanYeni.tsx
+type Gorunum = "kiyidan-ada" | "ada-rihtim" | "karsi-kiyi" | "rihtim-yan" | "hangar-yakin" | "enkaz" | "gemi-orta" | "saygi" | "kiyidan-olay" | "gemi-sahne" | "batarya-genis" | "durbun-insert";
+const KURULU: Gorunum[] = ["kiyidan-ada", "karsi-kiyi", "gemi-orta", "saygi", "kiyidan-olay", "gemi-sahne", "batarya-genis", "durbun-insert"];
+const BOLUM_G: Gorunum[] = ["kiyidan-olay", "gemi-sahne", "batarya-genis", "durbun-insert"]; // tur-5: karsi-kiyi (P04), gemi-orta (P07a/b), saygi (P10a) → LimanYeni.tsx
 
 // görünüm kaydı: referans (dekor) kamera = sahne planı ekran konumlarının ölçüldüğü kamera (P01 kapak karesi)
 // P01: göz deniz +50 m, b 190°, 375 mm (F 11 250), tilt −1.03° → göz hizası y 758, su hattı (Z 2000) y ≈ 1040.
@@ -198,7 +200,10 @@ const SagSeki: React.FC<{ t: number }> = ({ t }) => (
 );
 
 // ---------- KAPAK: kiyidan-ada ----------
-const KiyidanAda: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] }> = ({ plan, p, kilit }) => {
+// tur-7 (bölüm): isteğe bağlı ek katmanlar (LimanYeni "kiyidan-olay": P06/P07c/P09). ek verilmezse çıktı K1 ile piksel-aynı (P01 kilit).
+export type KiyidanEk = { gemi?: React.ReactNode; gemiYerine?: React.ReactNode; kaya?: React.ReactNode; on?: React.ReactNode };
+export type KiyidanCtx = { k: Kam25; ref: Kam25; t: number; wl: number; pxm: number; p: number };
+export const KiyidanAda: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"]; ek?: (c: KiyidanCtx) => KiyidanEk }> = ({ plan, p, kilit, ek }) => {
   const kayit = LIMAN_KAYIT["kiyidan-ada"], ref = kamera25(undefined, 0, kayit.ref);
   const k = kamera25(param<Partial<Kamera25>>(plan, "kamera25", {}), p, kayit.ref);
   const t = p / 60, durum = param<GemiDurum>(plan, "gemi_durum", "demirli"), h = param<number>(plan, "gun_yuksekligi", 22);
@@ -209,6 +214,7 @@ const KiyidanAda: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
   const kayaZ = 9, A = plaka(ref, k, kayaZ).T(OYUK_MERKEZ), Bq = plaka(ref, k, GEMI_Z).T([560, wl - 16]);
   const cT = cz ? interpolate(p, [cz.bas, cz.bit], [cz.ilk ?? 0.1, 1], { ...cl }) : 0;
   kilit.push({ ad: "oyuk (mevzi)", p: A, tur: "kurulum" }, { ad: "çizgi gemi ucu", p: Bq, tur: "kurulum" });
+  const E: KiyidanEk = ek ? ek({ k, ref, t, wl, pxm, p }) : {};
   return (
     <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
       <RenkKaydi><Isleme aci={105}>
@@ -240,16 +246,17 @@ const KiyidanAda: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
         </Katman>
         {/* 10 gemi + yansıma */}
         <Katman r={ref} k={k} z={GEMI_Z}>
-          <g transform={`translate(${GEMI_X0} ${wl + 2})`}><GemiYansima pxm={pxm} seed={seed} /></g>
-          <g transform={`translate(${GEMI_X0} ${wl})`}><KonturTitreme derinlik="uzak" seed={seed + 2} olcek={0.8}><GemiProfil pxm={pxm} durum={durum} seed={seed} /></KonturTitreme></g>
+          {E.gemiYerine ?? <><g transform={`translate(${GEMI_X0} ${wl + 2})`}><GemiYansima pxm={pxm} seed={seed} /></g>
+          <g transform={`translate(${GEMI_X0} ${wl})`}><KonturTitreme derinlik="uzak" seed={seed + 2} olcek={0.8}><GemiProfil pxm={pxm} durum={durum} seed={seed} /></KonturTitreme></g></>}
           {(durum === "vurulmus" || durum === "yanan") && <g><Duman taban={[GEMI_X0 + 95 * pxm, wl - 12 * pxm]} t={t} hiz={durum === "yanan" ? 70 : 40} genis0={durum === "yanan" ? 30 : 7} genis1={durum === "yanan" ? 150 : 40} ruz={0.57} seed="lmd" boy={900} />
             {durum === "yanan" && <Alev taban={[GEMI_X0 + 95 * pxm, wl - 11.4 * pxm]} gen={80} boy={95} t={t} ruz={0.57} seed="lma" kontur={1.5} />}</g>}
+          {E.gemi}
         </Katman>
         {/* 11 ön su: taban (deniz düzlemi, ekranda izdüşümle) + dünya satırları */}
         {(() => { const y0 = izd(k, [0, 0, GEMI_Z])!.y; return <rect x={-10} y={y0 - 2} width={1100} height={1940 - y0} fill={mix(BP.su, BP.bugu, 0.1)} />; })()}
         <SuOn ref={ref} k={k} t={t} seed={seed} yolRenk={h >= 18 ? BP.suYol : h >= 12 ? "#eac3a2" : "#e4b496"} />
         {/* 12–13 ön plan kaya + ot (z 9 / sağ seki z 8) */}
-        <Katman r={ref} k={k} z={kayaZ}><OnKaya t={t} /></Katman>
+        <Katman r={ref} k={k} z={kayaZ}><OnKaya t={t} />{E.kaya}</Katman>
         <Katman r={ref} k={k} z={8}><SagSeki t={t} /></Katman>
         {/* 14 mürekkep çizgi (P01 kanca; P10b haritada karşılık) */}
         {cz && <g>
@@ -257,6 +264,7 @@ const KiyidanAda: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
           <path d={`M${A[0]},${A[1]} Q${(A[0] + Bq[0]) / 2},${(A[1] + Bq[1]) / 2 + 22} ${Bq[0]},${Bq[1]}`} stroke={BP.murekkep} strokeWidth={10} fill="none" strokeLinecap="round" strokeDasharray={`${(Math.hypot(Bq[0] - A[0], Bq[1] - A[1]) + 30) * cT} 4000`} />
           {cT >= 0.999 && <circle cx={Bq[0]} cy={Bq[1] + 2} r={9} fill={BP.murekkep} />}
         </g>}
+        {E.on}
         {/* 15 atmosfer: tuz zerresi (ışık tarafında, yavaş sağa) */}
         {Array.from({ length: 40 }).map((_, i) => { const x = 420 + ((rr(`tz${i}`) * 700 + t * (6 + rr(`tzv${i}`) * 8)) % 700), y = 560 + rr(`tzy${i}`) * 900 + Math.sin(t + i) * 4; return <circle key={i} cx={x} cy={y} r={1.2 + rr(`tzr${i}`) * 1.2} fill="#efe0cc" opacity={0.35} />; })}
       </Isleme></RenkKaydi>
@@ -267,6 +275,7 @@ const KiyidanAda: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
 const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const g = param<Gorunum>(plan, "gorunum", "kiyidan-ada");
   if (!KURULU.includes(g)) throw new Error(`[LIMAN] görünüm "${g}" kurulmadı (kurulu: ${KURULU.join(", ")}) — kalibrasyon turu 1`);
+  if (BOLUM_G.includes(g)) return <LimanBolumSahne g={g} plan={plan} p={p} kilit={kilit} />;
   if (g !== "kiyidan-ada") return <LimanYeniSahne g={g} plan={plan} p={p} kilit={kilit} />;
   return <KiyidanAda plan={plan} p={p} kilit={kilit} />;
 };

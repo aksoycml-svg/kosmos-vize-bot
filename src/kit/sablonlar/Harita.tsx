@@ -19,6 +19,7 @@ import { ParisCevreSahne } from "./harita/ParisCevre";
 import { BalonIkon, Golgeli, ToursIkon, YiginIkon } from "./harita/ikonlar";
 import { PK } from "./harita/parisCevreVeri";
 import { abdMi, abdPj, AbdHarita } from "./harita/Abd";
+import { meisMi, MeisSahne } from "./harita/Meis";
 
 const K = 70, X0 = -5.4, Y0 = 51.3, YS = 1.45, OX = 70, OY = 400;
 const pj = (lon: number, lat: number): [number, number] => [OX + (lon - X0) * K, OY + (Y0 - lat) * K * YS];
@@ -100,7 +101,7 @@ export const igneNokta = (plan: Plan): [number, number] | null => {
   const s = R[R.length - 1];
   return (abdMi(plan) ? abdPj(plan) : pj)(s[1], s[2]);
 };
-const IgneCiz: React.FC<{ x: number; y: number; ig: Igne; p: number }> = ({ x, y, ig, p }) => {
+export const IgneCiz: React.FC<{ x: number; y: number; ig: Igne; p: number }> = ({ x, y, ig, p }) => {
   const n = ig.dusme ?? 14, t = p - ig.kare;
   if (t < -n) return null;
   // düşüş: yerçekimi (in quad) 140 px yükseklikten; temas sonrası 8 karelik tek sekme (8 px)
@@ -259,6 +260,7 @@ export const haritaAdlari = (plan: Plan, p: number): HaritaAdi[] => {
 };
 
 const Sahne: React.FC<SablonProps> = (props) => {
+  if (meisMi(props.plan)) return <MeisSahne {...props} Igne={IgneCiz} />; // Ben-my-Chree (tur-7)
   if (param<string>(props.plan, "harita_gorunum", "") === "paris-cevre") return <ParisCevreKap {...props} />;
   if (abdMi(props.plan)) return <AbdSahne {...props} />;
   return <FransaSahne {...props} />;

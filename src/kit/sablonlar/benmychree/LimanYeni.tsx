@@ -20,12 +20,12 @@ import { Bayrak, Evler, Kale, Sirt, sirtNokta } from "./Liman";
 import { Dal, Ot, SirtK } from "./KiyiBatarya";
 
 type Kilit = SablonProps["kilit"];
-const kam = (C: V3, F: number, merkez: [number, number], odak = 2000, N = 16): Kam25 => ({ C, pan: 0, tilt: 0, F, odak, N, a: F / (30000 * N), merkez });
+export const kam = (C: V3, F: number, merkez: [number, number], odak = 2000, N = 16): Kam25 => ({ C, pan: 0, tilt: 0, F, odak, N, a: F / (30000 * N), merkez });
 
 // ---------- deniz: dünya satırları (genelleştirilmiş K1 suSatirlari; göz yüksekliği hg, ışıltı oranı ekran yanına göre) ----------
 type Vur = { x0: number; x1: number; z: number; isik: boolean; faz: number; f: number };
 const DENIZ = new Map<string, Vur[]>();
-const denizSatir = (anahtar: string, F: number, hg: number, zMin: number, zMax: number, oran: (u: number) => number, genis = 760): Vur[] => {
+export const denizSatir = (anahtar: string, F: number, hg: number, zMin: number, zMax: number, oran: (u: number) => number, genis = 760): Vur[] => {
   if (DENIZ.has(anahtar)) return DENIZ.get(anahtar)!;
   const out: Vur[] = []; let z = zMax, i = 0;
   while (z > zMin && i < 600) {
@@ -43,7 +43,7 @@ const denizSatir = (anahtar: string, F: number, hg: number, zMin: number, zMax: 
   DENIZ.set(anahtar, out);
   return out;
 };
-const DenizCiz: React.FC<{ V: Vur[]; k: Kam25; t: number; isik: string; golge: string; ymin?: number }> = ({ V, k, t, isik, golge, ymin = -1e9 }) => (
+export const DenizCiz: React.FC<{ V: Vur[]; k: Kam25; t: number; isik: string; golge: string; ymin?: number }> = ({ V, k, t, isik, golge, ymin = -1e9 }) => (
   <g strokeLinecap="round">
     {V.map((v, i) => {
       const a = izd(k, [v.x0, 0, v.z]), b = izd(k, [v.x1, 0, v.z]); if (!a || !b || b.x < -20 || a.x > 1100 || a.y < ymin || a.y > 1940) return null;
@@ -57,7 +57,7 @@ const DenizCiz: React.FC<{ V: Vur[]; k: Kam25; t: number; isik: string; golge: s
 
 // ---------- K1 arka planı (Meis: sırtlar, kasaba, kale, rıhtım) — K1 ref px, katman başına dönüşüm tr(zK1) ----------
 // Sırtlar K1 seed'leriyle aynı örnek noktalarından genişletildi (x0 6'nın katı kadar sola) → K1'deki tepeler aynı yerde.
-const MeisArka: React.FC<{ tr: (zK1: number) => string; t: number; seed: number; bugu?: number }> = ({ tr, t, seed, bugu = 0 }) => (
+export const MeisArka: React.FC<{ tr: (zK1: number) => string; t: number; seed: number; bugu?: number }> = ({ tr, t, seed, bugu = 0 }) => (
   <g>
     <Flu s={1.4}><g transform={tr(4000)}><Sirt A={sirtNokta(-760, 2060, 660, [[700, 50, 90], [860, 66, 110], [1040, 44, 80], [-300, 46, 180], [1500, 60, 200], [1900, 44, 160]], "s4", 2)} alt={1000} renk={mix(mix(BP.sirt[0], BP.bugu, 0.3), BP.bugu, bugu)} /></g></Flu>
     <Flu s={1.0}><g transform={tr(3000)}><Sirt A={sirtNokta(-720, 1980, 720, [[120, 40, 140], [420, 78, 170], [690, 92, 150], [960, 70, 130], [-360, 60, 200], [1400, 74, 180], [1800, 50, 160]], "s3", 3)} alt={1000} renk={BP.sirt[1]} golge={BP.sirt[2]} />
@@ -82,7 +82,7 @@ const MeisArka: React.FC<{ tr: (zK1: number) => string; t: number; seed: number;
 );
 
 // ---------- gök + güneş halesi (ekran) ----------
-const Gok: React.FC<{ sinir: number[]; renk: string[]; seed: number; hale: P2; haleR?: number; sicak?: number; t: number; bulut: [number, number, number, number, string][] }> = ({ sinir, renk, seed, hale, haleR = 1, sicak = 0, t, bulut }) => (
+export const Gok: React.FC<{ sinir: number[]; renk: string[]; seed: number; hale: P2; haleR?: number; sicak?: number; t: number; bulut: [number, number, number, number, string][] }> = ({ sinir, renk, seed, hale, haleR = 1, sicak = 0, t, bulut }) => (
   <g>
     <Gok5 sinir={sinir} renk={renk} seed={seed} />
     {[[330, "#ecc9b4", 0.35], [220, "#efd2b8", 0.5], [130, "#f3d9b6", 0.75]].map(([r, c, a], i) => <circle key={`hl${i}`} cx={hale[0]} cy={hale[1]} r={(r as number) * haleR} fill={mix(c as string, "#f0b890", sicak)} opacity={a as number} />)}
@@ -103,7 +103,7 @@ const dilYol = (bx: number, by: number, w: number, h: number, t: number, ruz: nu
   for (let i = 0; i <= n; i++) { const u = i / n, [x, y] = omurga(u), g = gen(u); sol.push([x - g, y]); sag.push([x + g * (0.85 + 0.3 * rr(`${sd}a${i}`)), y]); }
   const uc = omurga(1); return egriYol([...sol.slice(0, n), [uc[0] + ruz * 6, uc[1] - 4], ...sag.slice(0, n).reverse()]);
 };
-const Yangin: React.FC<{ x0: number; x1: number; yCati: number; yTaban: number; guc: number; t: number; ruz: number; cerceve: number[] }> = ({ x0, x1, yCati, yTaban, guc, t, ruz, cerceve }) => {
+export const Yangin: React.FC<{ x0: number; x1: number; yCati: number; yTaban: number; guc: number; t: number; ruz: number; cerceve: number[] }> = ({ x0, x1, yCati, yTaban, guc, t, ruz, cerceve }) => {
   const W = x1 - x0, N = 11, H = 330 * guc;
   const diller = Array.from({ length: N }).map((_, i) => ({ bx: x0 + W * (0.04 + 0.92 * (i + 0.5) / N) + (rr(`yd${i}`) - 0.5) * W * 0.05, w: W / N * (1.6 + 0.9 * rr(`yw${i}`)), h: H * (0.35 + 0.65 * rr(`yh${i}`) ** 0.7) * (i % 3 === 1 ? 1 : 0.8), sd: `yg${i}` }));
   return (
@@ -116,7 +116,7 @@ const Yangin: React.FC<{ x0: number; x1: number; yCati: number; yTaban: number; 
       <path d={`M${x0},${yTaban} L${x0},${yCati + (yTaban - yCati) * 0.45} ${cerceve.map((x, i) => `L${x},${yCati + (yTaban - yCati) * (0.42 + 0.12 * rr(`ycd${i}`))}`).join(" ")} L${x1},${yCati + (yTaban - yCati) * 0.5} L${x1},${yTaban} Z`} fill="#2a2232" />
       {cerceve.map((x, i) => <g key={i}><line x1={x} y1={yTaban} x2={x + (i % 3 === 2 ? 4 : 0)} y2={yCati + (i % 4 === 1 ? 26 : 2)} stroke="#241c2a" strokeWidth={7} /><line x1={x + 3} y1={yTaban - 4} x2={x + 3} y2={yCati + 30} stroke="#ffb84e" strokeWidth={1.6} opacity={0.6} /></g>)}
       <path d={`M${x0 - 4},${yCati + 4} L${x0 + W * 0.3},${yCati} L${x0 + W * 0.42},${yCati + 22} M${x0 + W * 0.6},${yCati + 14} L${x1 + 4},${yCati + 2}`} stroke="#241c2a" strokeWidth={6} fill="none" />
-      {cerceve.slice(0, -1).map((x, i) => i % 2 ? null : <rect key={`y${i}`} x={x + 8} y={yCati + (yTaban - yCati) * 0.6} width={(cerceve[i + 1] - x) - 16} height={4} fill="#ffb84e" opacity={0.85} />)}
+      {cerceve.slice(0, -1).map((x, i) => i % 2 ? null : <rect key={`y${i}`} x={x + 8} y={yCati + (yTaban - yCati) * 0.6} width={Math.max(0, (cerceve[i + 1] - x) - 16)} height={4} fill="#ffb84e" opacity={0.85} />)}
       {/* kıvılcımlar: seed'li, sürekli yaşam döngüsü (konum t'nin düzgün fonksiyonu; söner, belirmez) */}
       {Array.from({ length: 16 }).map((_, i) => { const L = 1.4 + rr(`yk${i}`) * 1.2, yas = ((t + rr(`yko${i}`) * L) % L) / L, bx = x0 + W * rr(`ykx${i}`);
         const x = bx + ruz * yas * (140 + 80 * rr(`ykv${i}`)) + Math.sin(yas * 7 + i) * 10, y = yCati - yas * (220 + 200 * rr(`yky${i}`)) * guc, r = (2.6 + 1.4 * rr(`ykr${i}`)) * (1 - yas);
@@ -374,7 +374,7 @@ const KarsiKiyi: React.FC<{ plan: Plan; p: number; kilit: Kilit }> = ({ plan, p,
 const SY = 725;
 // ---------- asker (tur-6): ~200 px boy, gün batımına karşı koyu ama YÜZLÜ profil (CLAUDE.md asker kuralı: %5 üstü figür yüzsüz çizilmez) ----------
 // birim figür: taban 0 → tepe 1, yüz +u yönüne; ekranda yon (+1 sağa / −1 sola). Kenar ışığı: aynı siluet sağa 2.5 px kaydırılıp ışık renginde alta çizilir (güneş sağda).
-type AskerTip = { ad: string; x: number; y: number; B: number; yon: 1 | -1; bas: "kabalak-subay" | "kabalak-er" | "kasket"; kol: "yan" | "kalkan"; hedef?: P2; basEgik?: number;
+export type AskerTip = { ad: string; x: number; y: number; B: number; yon: 1 | -1; bas: "kabalak-subay" | "kabalak-er" | "kasket"; kol: "yan" | "kalkan"; hedef?: P2; basEgik?: number;
   ek: ("durbun" | "tufek" | "battaniye" | "matara")[]; cizme?: boolean; biyik?: "dolu" | "ince" | "yok"; yas?: number };
 const AskerFigur: React.FC<{ a: AskerTip; renk?: string }> = ({ a, renk }) => {
   const { x, y, B, yon } = a;
@@ -440,7 +440,7 @@ const AskerFigur: React.FC<{ a: AskerTip; renk?: string }> = ({ a, renk }) => {
     </g>
   );
 };
-const Asker: React.FC<{ a: AskerTip }> = ({ a }) => (
+export const Asker: React.FC<{ a: AskerTip }> = ({ a }) => (
   <g>
     {/* uzun akşam gölgesi: güneş sağ-önde alçak (h 6°) → gölge sol-arkaya, kameraya doğru */}
     <path d={`M${pts([[a.x - 0.05 * a.B, a.y + 2], [a.x + 0.06 * a.B, a.y + 2], [a.x - 1.05 * a.B, a.y + 0.62 * a.B], [a.x - 1.22 * a.B, a.y + 0.56 * a.B]])} Z`} fill="#2a2440" opacity={0.45} />
@@ -449,7 +449,7 @@ const Asker: React.FC<{ a: AskerTip }> = ({ a }) => (
     <AskerFigur a={a} />
   </g>
 );
-const AnaTop: React.FC<{ t: number }> = () => {
+export const AnaTop: React.FC<{ t: number }> = () => {
   const demir = "#4a4762", demirK = "#363350", ahsap = "#5a4638", kn = BP.kenar;
   // teker: jant (kalınlık için sola kaydırılmış koyu ikiz) + 12 ispit + göbek; yakın teker sağ kenarı ışıkta
   const teker = (cx: number, cy: number, rx: number, ry: number, yakin: boolean) => <g>

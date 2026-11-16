@@ -1,0 +1,1063 @@
+{
+ "slug": "ben-my-chree",
+ "baslik": "Ben-my-Chree: uçak gemisini karadan batırdılar",
+ "fps": 60,
+ "dil_katmanlari": [
+  "tr",
+  "en"
+ ],
+ "gorsel_yazisiz": true,
+ "altyazi": {
+  "acik": true,
+  "grup": 2,
+  "maks_harf": 14,
+  "bant": "oto",
+  "noktalamasiz": true
+ },
+ "_not": "motion, 2026-11-16 (tur-7, tam bölüm). sahne-plani §12; kilitli kareler: P01 k124, P04 k1291 (yerel 200), P07 k2388 (yerel 214), P10 k3292 (yerel 120). Temaslar: kurgucu temaslar-taslak.json (P04 metal-tink yok; P09 oturma sesi var). Ekran yazıları onayli-anlatim.md sonundaki onaylı liste.",
+ "ozet": {
+  "toplam_kare": 3666,
+  "sablonlar": [
+   "LIMAN",
+   "HARITA"
+  ]
+ },
+ "planlar": [
+  {
+   "id": "P01",
+   "sablon": "LIMAN",
+   "tip": "mekan",
+   "sure_kare": 190,
+   "kontrol_kare": 124,
+   "tempo": "hizli",
+   "metin": {
+    "tr": "Bu uçak gemisini karadan batırdılar.",
+    "en": "They sank this aircraft carrier from dry land."
+   },
+   "parametreler": {
+    "gorunum": "kiyidan-ada",
+    "gemi_durum": "demirli",
+    "gun_yuksekligi": 22,
+    "seed": 181,
+    "cizgi_mevzi": {
+     "bas": 0,
+     "bit": 124,
+     "ilk": 0.1
+    },
+    "kamera25": {
+     "kare": [
+      0,
+      175
+     ],
+     "konum_yol": [
+      [
+       0,
+       50,
+       0
+      ],
+      [
+       -0.15,
+       50,
+       3
+      ]
+     ],
+     "yon_yol": [
+      [
+       0,
+       -1.027
+      ]
+     ],
+     "lens_mm": [
+      375
+     ],
+     "odak_z": [
+      2000
+     ],
+     "diyafram": 36,
+     "egri": "giris",
+     "ekipman": "dolly"
+    }
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "OCAK 1917 · MEİS",
+     "bas": 0,
+     "bit": 190,
+     "vurgu": [
+      "1917"
+     ],
+     "en": "JANUARY 1917 · KASTELLORIZO",
+     "vurgu_en": [
+      "1917"
+     ]
+    }
+   ],
+   "temaslar": [],
+   "okunurluk": {
+    "nesne": "oyuk + mürekkep çizgi + gemi",
+    "nesne_pct": 35,
+    "net_sn": 2.0,
+    "not": "K1 kilit (tur-4)"
+   },
+   "ses": [
+    {
+     "dosya": "benmychree/ses/tr/P01.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "benmychree/ses/en/P01.mp3",
+     "kare": 0
+    }
+   ],
+   "kilit": true
+  },
+  {
+   "id": "P02",
+   "sablon": "LIMAN",
+   "tip": "mekan",
+   "sure_kare": 413,
+   "kontrol_kare": 258,
+   "tempo": "nefes",
+   "metin": {
+    "tr": "Adı Ben-my-Chree'ydi. Hızlı bir İngiliz yolcu vapuruydu; savaşta uçak gemisine çevrilmişti.",
+    "en": "She was Ben-my-Chree, a fast British ferry rebuilt in the war as an aircraft carrier."
+   },
+   "parametreler": {
+    "gorunum": "gemi-sahne",
+    "gun_yuksekligi": 22,
+    "gemi_durum": "demirli",
+    "seed": 181,
+    "yol": {
+     "kare": [
+      0,
+      200,
+      413
+     ],
+     "Zd": [
+      150,
+      168,
+      330
+     ],
+     "F": [
+      4050,
+      3850,
+      2550
+     ],
+     "h": [
+      4,
+      4,
+      4
+     ],
+     "xc": [
+      39.5,
+      36,
+      -6.6
+     ],
+     "yh": [
+      1290,
+      1290,
+      1290
+     ]
+    },
+    "ucak": {
+     "in": [
+      30,
+      258
+     ],
+     "gevse": [
+      258,
+      282
+     ]
+    }
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "118 m · 24,5 knot",
+     "bas": 100,
+     "bit": 280,
+     "tur": "formul",
+     "en": "118 m · 24.5 knots"
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 50,
+     "olay": "D1 derrick uçağı indirir: halat/makara sürekli gıcırtı",
+     "ses": "bmc_vinc_halat",
+     "db": -12
+    },
+    {
+     "kare": 258,
+     "olay": "şamandıralar suya değer",
+     "ses": "bmc_samandira_su",
+     "db": -8
+    },
+    {
+     "kare": 270,
+     "olay": "halat gevşer",
+     "ses": "bmc_halat_gevsek",
+     "db": -11
+    }
+   ],
+   "okunurluk": {
+    "nesne": "deniz uçağı (derrick altında)",
+    "nesne_pct": 15,
+    "net_sn": 4.3
+   },
+   "ses": [
+    {
+     "dosya": "benmychree/ses/tr/P02.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "benmychree/ses/en/P02.mp3",
+     "kare": 0
+    }
+   ],
+   "dokunus": {
+    "id": "D1"
+   }
+  },
+  {
+   "id": "P03",
+   "sablon": "HARITA",
+   "tip": "harita",
+   "sure_kare": 488,
+   "kontrol_kare": 200,
+   "tempo": "nefes",
+   "metin": {
+    "tr": "O gün gemi, müttefik Fransızların elindeki Meis adasına demirledi. Karşıdaki kıyı Osmanlı'nındı, iki kilometre ötedeydi.",
+    "en": "That day she anchored at Kastellorizo, an island held by her French allies. The Ottoman shore was two kilometers away."
+   },
+   "parametreler": {
+    "rota": "ozel",
+    "harita_gorunum": "meis",
+    "meis_rota": {
+     "yon": "kiyiya",
+     "bas": 290,
+     "bit": 400
+    },
+    "igne": {
+     "kare": 200,
+     "dusme": 14
+    },
+    "svg_etiket": true
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "{n} km",
+     "bas": 368,
+     "bit": 470,
+     "tur": "sayac",
+     "sayac": {
+      "hedef": 2,
+      "baslangic": 0,
+      "bas": 0,
+      "sure": 60
+     },
+     "en": "{n} km"
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 200,
+     "olay": "harita iğnesi Meis'e batar, 'demirledi'",
+     "ses": "bmc_igne_tak",
+     "db": -9
+    },
+    {
+     "kare": 290,
+     "olay": "rota çizgisi Meis→Kaş çizilir",
+     "ses": "bmc_harita_cizgi",
+     "db": -14
+    }
+   ],
+   "okunurluk": {
+    "nesne": "iğne + rota çizgisi",
+    "nesne_pct": 20,
+    "net_sn": 3.0
+   },
+   "ses": [
+    {
+     "dosya": "benmychree/ses/tr/P03.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "benmychree/ses/en/P03.mp3",
+     "kare": 0
+    }
+   ],
+   "kamera": {
+    "kare": [
+     0,
+     488
+    ],
+    "cs": [
+     1.0,
+     1.16
+    ],
+    "cx": [
+     0,
+     -10
+    ],
+    "cy": [
+     0,
+     70
+    ],
+    "egri": "inout"
+   },
+   "harita_etiketleri": [
+    {
+     "tr": "MEİS",
+     "en": "KASTELLORIZO",
+     "x": 300,
+     "y": 1150,
+     "kutu": [
+      300,
+      1150
+     ],
+     "bas": 20,
+     "bit": 488
+    },
+    {
+     "tr": "KAŞ",
+     "en": "KAŞ",
+     "x": 330,
+     "y": 560,
+     "kutu": [
+      330,
+      560
+     ],
+     "bas": 300,
+     "bit": 488
+    }
+   ]
+  },
+  {
+   "id": "P04",
+   "sablon": "LIMAN",
+   "tip": "mekan",
+   "sure_kare": 297,
+   "kontrol_kare": 200,
+   "tempo": "bekle",
+   "metin": {
+    "tr": "O kıyı boş görünüyordu. Oysa toplar gizlice oraya taşınmıştı.",
+    "en": "That shore looked empty. But guns had been moved there in secret."
+   },
+   "parametreler": {
+    "gorunum": "karsi-kiyi",
+    "gun_yuksekligi": 22,
+    "seed": 193,
+    "parilti": {
+     "kare": 190,
+     "giris": [
+      184,
+      190
+     ],
+     "cikis": [
+      232,
+      244
+     ]
+    }
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "İngiliz kayıtları: 16 top · Ertuğrul: 4 dağ topu",
+     "bas": 100,
+     "bit": 285,
+     "vurgu": [
+      "16"
+     ],
+     "en": "British records: 16 guns · Ertuğrul: 4 mountain guns",
+     "vurgu_en": [
+      "16"
+     ]
+    }
+   ],
+   "temaslar": [],
+   "okunurluk": {
+    "nesne": "KOR parıltı (hale)",
+    "nesne_pct": 6,
+    "net_sn": 0.8,
+    "not": "kilit (tur-5); hale ≥ 60 px"
+   },
+   "ses": [
+    {
+     "dosya": "benmychree/ses/tr/P04.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "benmychree/ses/en/P04.mp3",
+     "kare": 0
+    }
+   ],
+   "dokunus": {
+    "id": "D3"
+   },
+   "kilit": true,
+   "lint": {
+    "izin": [
+     "okunurluk_pct"
+    ],
+    "not": "parıltı halesi ≥60 px kilitli karede onaylı"
+   }
+  },
+  {
+   "id": "P05",
+   "sablon": "LIMAN",
+   "tip": "mekan",
+   "sure_kare": 239,
+   "kontrol_kare": 60,
+   "tempo": "nefes",
+   "metin": {
+    "tr": "Topların komutanı genç bir teğmendi, Mustafa Ertuğrul.",
+    "en": "Their commander was a young lieutenant, Mustafa Ertuğrul."
+   },
+   "parametreler": {
+    "gorunum": "batarya-genis",
+    "gun_yuksekligi": 22,
+    "plan_ici_kesme": {
+     "kare": 119,
+     "sonraki_sablon": "LIMAN"
+    }
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Topçu Teğmen Mustafa Ertuğrul · Anıları: Ben Bir Türk Zabitiyim",
+     "bas": 20,
+     "bit": 225,
+     "en": "Artillery Lt. Mustafa Ertuğrul · Memoir: Ben Bir Türk Zabitiyim"
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 179,
+     "olay": "dürbünün odak halkası bir tık döner",
+     "ses": "bmc_halka_tik",
+     "db": -9
+    }
+   ],
+   "okunurluk": {
+    "nesne": "ön top (a) · el + dürbün (b)",
+    "nesne_pct": 35,
+    "net_sn": 1.5
+   },
+   "ses": [
+    {
+     "dosya": "benmychree/ses/tr/P05.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "benmychree/ses/en/P05.mp3",
+     "kare": 0
+    }
+   ],
+   "dokunus": {
+    "id": "D4′"
+   },
+   "devam_plan": {
+    "kare_bas": 119,
+    "sablon": "LIMAN",
+    "parametreler": {
+     "gorunum": "durbun-insert",
+     "insert_bas": 119,
+     "halka": {
+      "bas": 20,
+      "bit": 70,
+      "tik": 60
+     }
+    }
+   }
+  },
+  {
+   "id": "P06",
+   "sablon": "LIMAN",
+   "tip": "mekan",
+   "sure_kare": 547,
+   "kontrol_kare": 470,
+   "tempo": "bekle",
+   "metin": {
+    "tr": "Gemi demirledikten iki saat sonra toplar ateş açtı. İlk iki mermi denize düştü. Üçüncü mermi gemiye isabet etti.",
+    "en": "Two hours after she anchored, the guns opened fire. The first two shells fell into the sea. The third shell hit the ship."
+   },
+   "parametreler": {
+    "gorunum": "kiyidan-olay",
+    "olay": "atis",
+    "gun_yuksekligi": 20,
+    "gemi_durum": "demirli",
+    "seed": 181,
+    "atislar": [
+     186,
+     262,
+     404
+    ],
+    "sutunlar": [
+     246,
+     322
+    ],
+    "isabet": 464,
+    "kamera25": {
+     "kare": [
+      0,
+      500
+     ],
+     "konum_yol": [
+      [
+       -0.15,
+       50,
+       0
+      ],
+      [
+       -0.15,
+       50,
+       4
+      ]
+     ],
+     "yon_yol": [
+      [
+       0,
+       -1.027
+      ]
+     ],
+     "lens_mm": [
+      375
+     ],
+     "odak_z": [
+      14,
+      2000
+     ],
+     "odak_kare": [
+      100,
+      150
+     ],
+     "diyafram": 36,
+     "egri": "lineer",
+     "odak_egri": "inout",
+     "ekipman": "dolly"
+    }
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "1",
+     "bas": 246,
+     "bit": 322,
+     "en": "1"
+    },
+    {
+     "bant": "ust",
+     "metin": "1 · 2",
+     "bas": 322,
+     "bit": 464,
+     "en": "1 · 2"
+    },
+    {
+     "bant": "ust",
+     "metin": "1 · 2 · 3",
+     "bas": 464,
+     "bit": 535,
+     "vurgu": [
+      "3"
+     ],
+     "en": "1 · 2 · 3",
+     "vurgu_en": [
+      "3"
+     ]
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 186,
+     "olay": "atış 1: ön plan kalkanlı top, namlu 24 px geri",
+     "ses": "bmc_top_atis",
+     "db": -6
+    },
+    {
+     "kare": 246,
+     "olay": "su sütunu 1 yükselir",
+     "ses": "bmc_su_sutunu",
+     "db": -10
+    },
+    {
+     "kare": 262,
+     "olay": "atış 2: görünmeyen top, uzak",
+     "ses": "bmc_top_uzak",
+     "db": -12
+    },
+    {
+     "kare": 322,
+     "olay": "su sütunu 2 yükselir",
+     "ses": "bmc_su_sutunu",
+     "db": -10
+    },
+    {
+     "kare": 404,
+     "olay": "atış 3: görünmeyen top, uzak",
+     "ses": "bmc_top_uzak",
+     "db": -13
+    },
+    {
+     "kare": 464,
+     "olay": "ISABET: hangar bölgesinde krem flaş + KOR çekirdek",
+     "ses": "bmc_isabet_tok",
+     "db": -6
+    }
+   ],
+   "okunurluk": {
+    "nesne": "su sütunları + isabet çakımı",
+    "nesne_pct": 8,
+    "net_sn": 1.4
+   },
+   "ses": [
+    {
+     "dosya": "benmychree/ses/tr/P06.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "benmychree/ses/en/P06.mp3",
+     "kare": 0
+    }
+   ],
+   "dokunus": {
+    "id": "D5"
+   },
+   "anahtar": true
+  },
+  {
+   "id": "P07",
+   "sablon": "LIMAN",
+   "tip": "mekan",
+   "sure_kare": 433,
+   "kontrol_kare": 214,
+   "tempo": "nefes",
+   "metin": {
+    "tr": "Ardından gelen mermiler dümeni bozdu, hangarı yaktı. O hızlı vapur artık dönemiyordu.",
+    "en": "Later shells wrecked her steering and set the hangar on fire. The fast ferry could no longer turn."
+   },
+   "parametreler": {
+    "gorunum": "gemi-orta",
+    "gun_yuksekligi": 18,
+    "seed": 181,
+    "alev": {
+     "isik": [
+      160,
+      204
+     ],
+     "kare": 212,
+     "siddet": 0.5
+    },
+    "plan_ici_kesme": {
+     "kare": 270,
+     "sonraki_sablon": "LIMAN"
+    }
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "Hangar arka bacanın gerisindeydi",
+     "bas": 160,
+     "bit": 330,
+     "en": "The hangar sat behind the rear funnel"
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 112,
+     "olay": "gemi gövdesi inler, kıç köpüğü boşa döner",
+     "ses": "bmc_govde_inleme",
+     "db": -9
+    },
+    {
+     "kare": 212,
+     "olay": "hangar alevi tutuşur",
+     "ses": "bmc_ates_tutus",
+     "db": -7
+    }
+   ],
+   "okunurluk": {
+    "nesne": "hangar alevi",
+    "nesne_pct": 22,
+    "net_sn": 1.5,
+    "not": "P07b kilit (tur-6, k2388)"
+   },
+   "ses": [
+    {
+     "dosya": "benmychree/ses/tr/P07.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "benmychree/ses/en/P07.mp3",
+     "kare": 0
+    }
+   ],
+   "dokunus": {
+    "id": "D6"
+   },
+   "devam_plan": {
+    "kare_bas": 270,
+    "sablon": "LIMAN",
+    "parametreler": {
+     "gorunum": "kiyidan-olay",
+     "olay": "duman",
+     "gemi_durum": "demirli",
+     "gun_yuksekligi": 18,
+     "seed": 181,
+     "yangin_guc": 0.35,
+     "kamera25": {
+      "kare": [
+       270,
+       420
+      ],
+      "konum_yol": [
+       [
+        -0.15,
+        50,
+        3
+       ],
+       [
+        -0.15,
+        50,
+        0
+       ]
+      ],
+      "yon_yol": [
+       [
+        0,
+        -1.027
+       ]
+      ],
+      "lens_mm": [
+       375
+      ],
+      "odak_z": [
+       2000
+      ],
+      "diyafram": 36,
+      "egri": "giris",
+      "ekipman": "dolly"
+     }
+    }
+   },
+   "kilit": true
+  },
+  {
+   "id": "P08",
+   "sablon": "LIMAN",
+   "tip": "mekan",
+   "sure_kare": 383,
+   "kontrol_kare": 248,
+   "tempo": "nefes",
+   "metin": {
+    "tr": "Ateş başladıktan kırk dakika sonra mürettebat gemiyi terk etti. Kimse ölmedi.",
+    "en": "Forty minutes into the shelling, the crew abandoned ship. Nobody died."
+   },
+   "parametreler": {
+    "gorunum": "gemi-sahne",
+    "gun_yuksekligi": 16,
+    "gemi_durum": "yanan",
+    "seed": 181,
+    "yangin_guc": 0.75,
+    "yol": {
+     "kare": [
+      0,
+      195,
+      205,
+      365
+     ],
+     "Zd": [
+      220,
+      220,
+      220,
+      340
+     ],
+     "F": [
+      3000,
+      3000,
+      3000,
+      1500
+     ],
+     "h": [
+      2,
+      2,
+      2,
+      25
+     ],
+     "xc": [
+      -20,
+      5,
+      5,
+      12
+     ],
+     "yh": [
+      1250,
+      1250,
+      1250,
+      1000
+     ]
+    },
+    "bot": {
+     "motor": 245,
+     "cikis": 360
+    }
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "5 yaralı · ölen yok",
+     "bas": 250,
+     "bit": 375,
+     "en": "5 wounded · none dead"
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 245,
+     "olay": "küçük bot motoru tutar, gemiden ayrılır",
+     "ses": "bmc_bot_motor",
+     "db": -10
+    }
+   ],
+   "okunurluk": {
+    "nesne": "motorbot + V iz",
+    "nesne_pct": 6,
+    "net_sn": 1.9
+   },
+   "ses": [
+    {
+     "dosya": "benmychree/ses/tr/P08.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "benmychree/ses/en/P08.mp3",
+     "kare": 0
+    }
+   ],
+   "dokunus": {
+    "id": "D7′"
+   },
+   "anahtar": true
+  },
+  {
+   "id": "P09",
+   "sablon": "LIMAN",
+   "tip": "mekan",
+   "sure_kare": 182,
+   "kontrol_kare": 104,
+   "tempo": "nefes",
+   "metin": {
+    "tr": "Gemi birkaç saat sonra limanda battı.",
+    "en": "A few hours later, the ship sank in the harbor."
+   },
+   "parametreler": {
+    "gorunum": "kiyidan-olay",
+    "olay": "batis",
+    "gun_yuksekligi": 12,
+    "seed": 181,
+    "gemi_durum": "demirli",
+    "kamera25": {
+     "kare": [
+      0,
+      150
+     ],
+     "konum_yol": [
+      [
+       -0.15,
+       50,
+       3
+      ],
+      [
+       -0.15,
+       50,
+       1
+      ]
+     ],
+     "yon_yol": [
+      [
+       0,
+       -1.027
+      ]
+     ],
+     "lens_mm": [
+      375
+     ],
+     "odak_z": [
+      2000
+     ],
+     "diyafram": 36,
+     "egri": "giris",
+     "ekipman": "dolly"
+    }
+   },
+   "ekran_yazisi": [],
+   "temaslar": [
+    {
+     "kare": 10,
+     "olay": "gemi sancağa yatmaya başlar: gövde inlemesi",
+     "ses": "bmc_govde_inleme_uzun",
+     "db": -9
+    },
+    {
+     "kare": 110,
+     "olay": "su hattı güverteye tırmanırken kabarcıklar",
+     "ses": "bmc_kabarcik",
+     "db": -11
+    },
+    {
+     "kare": 140,
+     "olay": "gövde sığ dibe oturur",
+     "ses": "bmc_govde_oturma",
+     "db": -9
+    }
+   ],
+   "okunurluk": {
+    "nesne": "yatan gövde",
+    "nesne_pct": 30,
+    "net_sn": 2.0
+   },
+   "ses": [
+    {
+     "dosya": "benmychree/ses/tr/P09.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "benmychree/ses/en/P09.mp3",
+     "kare": 0
+    }
+   ],
+   "dokunus": {
+    "id": "D8′"
+   }
+  },
+  {
+   "id": "P10",
+   "sablon": "LIMAN",
+   "tip": "mekan",
+   "sure_kare": 494,
+   "kontrol_kare": 120,
+   "tempo": "bekle",
+   "metin": {
+    "tr": "Birinci Dünya Savaşı'nda düşman ateşiyle batan tek uçak gemisi bu oldu. Ateş de denizden değil, karadan gelmişti.",
+    "en": "She was the only aircraft carrier sunk by enemy fire in the First World War. And the fire came from land."
+   },
+   "parametreler": {
+    "gorunum": "saygi",
+    "gun_yuksekligi": 6,
+    "seed": 181,
+    "plan_ici_kesme": {
+     "kare": 234,
+     "sonraki_sablon": "HARITA"
+    }
+   },
+   "ekran_yazisi": [
+    {
+     "bant": "ust",
+     "metin": "1920'de yüzdürüldü",
+     "bas": 245,
+     "bit": 350,
+     "en": "Refloated in 1920"
+    }
+   ],
+   "temaslar": [
+    {
+     "kare": 330,
+     "olay": "rota çizgisi Kaş mevzii→Meis çizilir",
+     "ses": "bmc_harita_cizgi_kisa",
+     "db": -14
+    },
+    {
+     "kare": 426,
+     "olay": "iğne gemi ikonuna batar",
+     "ses": "bmc_igne_tak",
+     "db": -9
+    }
+   ],
+   "okunurluk": {
+    "nesne": "askerler + batık (a) · rota + iğne (b)",
+    "nesne_pct": 22,
+    "net_sn": 3.9,
+    "not": "P10a v2 kilit (tur-6)"
+   },
+   "ses": [
+    {
+     "dosya": "benmychree/ses/tr/P10.mp3",
+     "kare": 0
+    }
+   ],
+   "ses_en": [
+    {
+     "dosya": "benmychree/ses/en/P10.mp3",
+     "kare": 0
+    }
+   ],
+   "devam_plan": {
+    "kare_bas": 234,
+    "sablon": "HARITA",
+    "parametreler": {
+     "rota": "ozel",
+     "harita_gorunum": "meis",
+     "meis_rota": {
+      "yon": "limana",
+      "bas": 330,
+      "bit": 412
+     },
+     "igne": {
+      "kare": 426,
+      "dusme": 14
+     },
+     "svg_etiket": true
+    },
+    "kamera": {
+     "kare": [
+      234,
+      494
+     ],
+     "cs": [
+      1.12,
+      1.2
+     ],
+     "cx": [
+      0,
+      0
+     ],
+     "cy": [
+      60,
+      40
+     ],
+     "egri": "inout"
+    }
+   },
+   "anahtar": true,
+   "kilit": true,
+   "lint": {
+    "izin": [
+     "katman_odak_farki",
+     "kirmizi"
+    ],
+    "not": "P10a arka plan tiyatro ×2; kırmızı = kale bayrağı"
+   }
+  }
+ ]
+}

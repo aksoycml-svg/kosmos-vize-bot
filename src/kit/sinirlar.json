@@ -10,6 +10,7 @@
   },
   "planSureMinKare": 60,
   "sablonlar": {
+    "LIMAN": {"parametreler": {"gorunum": ["kiyidan-ada", "karsi-kiyi", "gemi-orta", "saygi", "kiyidan-olay", "gemi-sahne", "batarya-genis", "durbun-insert"]}, "zorunlu": ["gorunum"], "kamera": {"cs": [1.0, 1.0], "cx": [0, 0], "cy": [0, 0]}, "karakterMaks": 0, "not": "BEN-MY-CHREE (motion 2026-11-16; src/kit/sablonlar/benmychree/Liman.tsx + LimanYeni.tsx + LimanBolum.tsx). 2.5D fiziksel kamera (kamera25d.ts; parametreler.kamera25 / yol), plan.kamera 2B kırpma KULLANILMAZ. kiyidan-ada = K1 (P01 kilit); karsi-kiyi (P04 dolly zoom), gemi-orta (P07a/b), saygi (P10a), kiyidan-olay {olay: atis|duman|batis}, gemi-sahne {yol, ucak, bot, yangin_guc}, batarya-genis, durbun-insert."},
     "SOKAK": {
       "parametreler": {
         "sehir": [
@@ -173,7 +174,7 @@
           "paris-bordeaux",
           "ozel"
         ],
-        "harita_gorunum": ["fransa", "paris-cevre", "abd"],
+        "harita_gorunum": ["fransa", "paris-cevre", "abd", "meis"],
         "bolge": ["ulusal", "dogu"]
       },
       "zorunlu": [

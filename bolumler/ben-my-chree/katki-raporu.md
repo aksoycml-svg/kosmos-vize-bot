@@ -243,3 +243,36 @@
 - **Piksel-aynı denetimi:** K1 k124 ve P07b k2388 tur-6 karelerine karşı 0 farklı piksel; P04 koduna dokunulmadı.
 - **Kararlar:** Yüz kuralı gereği askerler profil yüzlü (burun, çene, kaş, bıyık), koyu siluet üstünde kenar ışığıyla çizildi. E1 batığa değil topa dönük, çünkü eli kalkanda.
 - **Öz puan:** ≈6.5–7. Zayıf kalan yerler: top sol kenarda kesiliyor; E4 topun önünde durduğu için sol grup sıkışık görünüyor.
+
+## motion · 2026-11-16 · tur-7: tam bölüm (bolum.json + kalan planlar + TR/EN taslak render)
+- **Ne yaptım:**
+  - `bolum.json` yazıldı: 10 plan, 3666 kare. Plan içi kesmeler `devam_plan` ile: P05 a→b, P07 a+b→c, P10 a→b.
+  - Kilitli planlar `kilit: true`: P01, P04, P07, P10. Gorsel modda tur-4/5/6 kilit karelerine karşı **0 farklı piksel** (k124, k1291, k2388, k3292).
+  - Doğrulayıcı `--tam`: 0 hata, 0 uyarı.
+  - Yeni görünümler: P02 `gemi-sahne` (derrick + genel deniz uçağı, dolly out + zoom out), P05a `batarya-genis` (alçak açı, top hattı, truck paralaks, figürler < %5), P05b `durbun-insert` (el + manşet + dürbün, odak halkası tık 60), P06 `kiyidan-olay atis` (oyukta namlu ve geri tepme, KOR çakım, toz, iki su sütunu, isabet çakımı + ince duman, rack focus 14→2000 m), P07c `kiyidan-olay duman` (uzak yangın, kalın duman, kıç köpüğü, dolly out), P08 `gemi-sahne` bot (truck, sonra crane up + dolly out; motorbot 245'te ayrılır, 360'ta sağdan çıkar), P09 `kiyidan-olay batis` (yatış 22°, batma, halkalar).
+  - Harita: HARITA `harita_gorunum: "meis"` (P03, P10b).
+  - Ses: kurgucu dosyalarından miks (`tools/benmychree_miks.py`, cicero_miks türevi): TR −14.0 LUFS / −2.0 dBTP, EN −14.2 / −1.9; plan sapması ±3 LU içinde.
+  - Render: `tools/benmychree_render.sh` (görüntü bir kez, yazı katmanı dil başına).
+  - Kontrol: `tools/benmychree_kontrol.sh` → `bolumler/ben-my-chree/kontrol/` (genel-{tr,en}.jpg 32 kare; kontrol-kareleri{,-tr}.jpg; serit/ altında 8 hareket şeridi).
+- **Dokunduğum dosyalar:**
+  - Liman kiti: `src/kit/sablonlar/benmychree/LimanBolum.tsx` (yeni), `Liman.tsx` (KiyidanAda'ya isteğe bağlı `ek` yuvaları; verilmezse K1 aynı), `LimanYeni.tsx` (yalnız export + Yangin'de negatif genişlik koruması).
+  - Harita: `src/kit/sablonlar/harita/Meis.tsx` (yeni), `Harita.tsx` (meis yönlendirmesi + IgneCiz export).
+  - Şema: `src/kit/sinirlar.json` (LIMAN girdisi + harita_gorunum "meis"; yalnız ekleme, biçim korundu).
+  - Bölüm: `bolumler/ben-my-chree/{bolum.json, lisanslar.md, kontrol/}`.
+  - Araçlar: `tools/benmychree_{miks.py,render.sh,kontrol.sh}`.
+- **Kurgucu notlarının uygulanışı:** Temaslar `temaslar-taslak.json`'dan plan-yerel karelere aynen taşındı (20 temas). P04 metal-tink temas olarak yok, kararı müzikteki Bb akoruna bırakıldı. P09'da gövde oturma sesi 140'ta. Ortam yatakları `ortam.json`'dan (lp_hz null destekli), müzik `miks.json`'dan; son 30 kare sessiz.
+- **Kararlar:**
+  - P05a figürleri fiziksel ölçekte (Z 42–58, 72–100 px; < %5, siluet + kenar ışığı). Kartın Z 24'teki 85 px figürü 80 mm'de ≈175 px eder; çelişki bu şekilde çözüldü.
+  - P05a truck 1.5 m yerine 1.0 m (ön planda 300 px kayma fazlaydı).
+  - P08'in a/b bölümleri tek sürekli çekim: tek görünüm, kamera yolu anahtarlı.
+  - P07c ve P09'da `gemi_durum` demirli: kitin ince duman "boncuk dizisi" kapandı, yanık izi yerine yangın/duman ve batış katmanları kullanıldı.
+  - Harita kıyısı stilize çizildi, dış veri yok (`lisanslar.md`).
+  - Haritada Fransız şehir adları (PARIS/TOURS/BORDEAUX) kitin `haritaAdlari` varsayılanından yazı katmanına sızmıştı. Bunu genel bakışta kendim yakaladım: `svg_etiket: true` ile kapandı ve yazı katmanları yeniden render edildi.
+- **Kendi gözümle zayıf bulduklarım (jüri için):**
+  1. P08: motorbot küçük, figürleri zor okunuyor. P08 başında duman, P07c'nin kalın duman sütunuyla süreklilik kurmuyor, ince başlayıp büyüyor.
+  2. P05b dürbün/el insert'i sade; el çizgi film tonunda.
+  3. Harita (P03/P10b) düz ve boş; kara/deniz ayrımı zayıf.
+  4. P02'de deniz uçağı ≈250–300 px; sudaki yakın satırlar geniş bantlar gibi duruyor.
+  5. P06'da kartın istediği ≤2 px darbe sarsıntısı yok (kamera sabit tutuldu).
+  - Kilitli karelerin dili (K1 gök, Meis, kaya, işleme) bütün planlarda aynı; görsel olarak en zayıf plan P08.
+- **Açık sorular:** P10 notu (sol grubu yaklaştır, top kesilmesin) kilitli kareyi değiştireceği için uygulanmadı. Git yapılmadı.
