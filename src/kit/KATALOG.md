@@ -436,3 +436,8 @@ Kod içi araçlardır (bolum.json parametresi değil): şablon yazan motion kull
   - Telefon: varsayılan 6.5 px / 2 px → 360 px'te ~0.65 px; yüzde 3.5–4.5 px aralık, 1.3–1.6 px çizgi, α ≤ .6 (yüzde iç çizgi yok kuralı: tarama yalnız gölge yanında, kısa ve yarı saydam).
 - Figür kitinde isteğe bağlı mürekkep modu (varsayılan kapalı → T3 piksel-aynı): `IncEl murekkep={{ ton, seed }}`, `LgYuz3 murekkep={{ isik, ton }}`, `LgBasProfil konturAlfa={0}` (+ dışarıdan MurekkepKontur).
 - Kullanım örneği: `src/kit/sablonlar/leningrad/BodrumT4.tsx`, `SokakT4.tsx` (Leningrad `p08`, `p03a` tur-4).
+
+## Işık çokgeni (`src/kit/isik/`, kalıcı; Leningrad kit kararı, 2026-11-16)
+Kod içi araç (bolum.json parametresi değil). "Işığın yolu" kuralı: huzme, aydınlık havuz, kenar ışığı ve gölge yönü tek `IsikTanim` + tek görünürlük hesabından; engeller (figür, sedye, mobilya) ışığı kırpar.
+- `gorunurlukCokgeni({ kaynak, engeller, parcalar?, sinir, koni? })` (saf TS, ~0.8 ms / 200 kenar) · `<IsikKaynagi tanim engeller sinir aydinlik huzme toz />` · `<IsikClip>` (kenar ışığı) · `golgeYonu`, `zeminGolgeUcu`, `icinde`.
+- Ayrıntı: `src/kit/isik/README.md`. Sınama: `npx remotion still IsikTest` → `bolumler/leningrad-senfoni/kalibrasyon/isik-test/`. Sınır: 2D ekran düzlemi (derinlikteki kaynak için zemin izdüşümü çokgeni ver).

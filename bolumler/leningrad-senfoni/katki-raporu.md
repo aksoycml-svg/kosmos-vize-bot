@@ -470,3 +470,24 @@
 - Kararlar: SSIM gri + gauss pencere; kenar = Canny σ1.5; uzaklık = 0.4(1−SSIM)+0.3(1−hist kesişimi)+0.3·min(1,|log2 kenar oranı|) (kaba sıralama ölçüsü, kalibre edilmedi); bölge koordinatları 360x640 uzayında; `scikit-image` kuruldu.
 - Deneme uyumu: bodrum tur-4'te araç hedefe göre render'ı karanlık (L* p50 −16, p95 −22; p95 eşiği KALDI), sıcak oran fazla ve dağılımı farklı, kenar yoğunluğu düşük; bu, bodrum-tur-2 eleştirisindeki "sıcak alan düz levha, hedefte gölgede" teşhisiyle uyumlu. Alt satır (y 480–640) en uzak: zemin/ışık. Sokakta sıcak %35 vs %17.4 (aşırı sıcak), kenar 0.54 oran.
 - Açık sorular: uzaklık ağırlıkları ve "yakın/uzak" eşikleri birkaç turda eleştirmen geri bildirimiyle ayarlanmalı; SSIM hedefle kompozisyon kayması olduğunda (hedef AI üretimi, birebir değil) düşük çıkar, bu yüzden histogram/renk ölçüleri öncelikli okunmalı.
+
+## motion · 2026-11-16 · kit: ışık çokgeni (2D görünürlük) — `src/kit/isik/`
+- Ne yaptım:
+  - `gorunurluk.ts`: bağımlılıksız görünürlük çokgeni (Red Blob Games açısal tarama; olay açılarında a−ε/a/a+ε ışını, en yakın kesişim → birbirine giren engellerde de doğru), koni (pencere/abajur huzmesi), gölge yardımcıları (`golgeYonu`, `golgeCokgeni`, `zeminGolgeUcu`, `icinde`, `elipsCokgen`).
+  - `IsikKaynagi.tsx`: tek `IsikTanim`'dan aydınlık sürüm katmanı (clipPath + menzil maskesi + yumuşak kenar), havadaki huzme (radyal gradyan, kırpılmış, blur, screen), seed'li toz; `IsikClip` (kenar ışığı), `isikHesapla`/`useIsik`, `useSvgId` (çakışmasız id).
+  - `IsikTest.tsx` (150 kare, 60 fps): bodrum, sallanan abajurlu lamba, sedye + ayakta figür; Root'a yalnız `IsikTest` kompozisyonu eklendi. Kareler `kalibrasyon/isik-test/kare-38.png` (lamba sağda), `kare-112.png` (lamba solda).
+  - `src/kit/isik/README.md`, `KATALOG.md` sonuna giriş.
+- Dokunduğum dosyalar: `src/kit/isik/{gorunurluk.ts, IsikKaynagi.tsx, IsikTest.tsx, README.md}` (yeni), `src/Root.tsx` (+1 import, +1 Composition), `src/kit/KATALOG.md` (sona ekleme), `bolumler/leningrad-senfoni/kalibrasyon/isik-test/` (yeni).
+- Aldığım kararlar ve gerekçeleri:
+  - Red Blob'un "açık kenar sırası" yerine her olay açısında kaba kuvvet en yakın kesişim: figür–sedye–kol çokgenleri birbirine girdiğinde sıralama yöntemi hata verir; maliyet yine küçük (196 kenar: 0.81 ms/çokgen, Node; deterministik = aynı girdi aynı çıktı doğrulandı).
+  - Temas gölgesi uzanımı yalnız nesne ışıktaysa (`icinde`); karanlıktaki sedye ayağı uzun gölge atmaz (ilk karede yanlış uzanım görüldü, düzeltildi).
+  - Kenar ışığı engel konturunun çokgenle kırpılmasıyla: kontur yarısı çokgen sınırına denk geldiğinden yalnız lambayı gören kenar yanar; ayrı elle kenar ışığı yok.
+  - Sahneye karartma katmanı eklenmedi (ders listesi); karanlık taban + ışıklı sürüm iki renk takımı.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Işığın yolu: iki karede gözle doğrulandı — huzme sedye tablasında ve figürde kesiliyor, sedye altı ve figür arkasındaki duvar/zemin karanlık, kaynak → toz → aydınlık yüzey yolu okunuyor.
+  - Tek ışık kaynağı: huzme, havuz, kenar ışığı, temas gölgesi aynı `hesap`tan.
+  - Eski bölümler piksel-aynı: `git diff --stat` yalnız `src/Root.tsx` (+2); LeningradBodrum k120 değişiklik öncesi/sonrası 0 farklı piksel. `tsc --noEmit` temiz.
+- Açık sorular / bir sonraki ajana notlar:
+  - Araç 2D ekran düzleminde; "kaynak figürün arkasında → kameraya yakın zemin karanlık" durumu için zemin izdüşümü çokgeni verilmeli (üstten görünüş hesabı) — gerekirse `kit_eksik` olarak yazılsın.
+  - Penumbra yok (blur ile taklit). Bodrum/morg şablonlarına (BodrumT4) bağlanması ayrı iş; şablon sahibinin onayıyla.
+  - Test karesi kalibrasyon değil araç sınamasıdır; Paris çıtasıyla puanlanmaz.
