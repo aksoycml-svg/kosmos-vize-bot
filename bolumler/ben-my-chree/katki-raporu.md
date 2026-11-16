@@ -313,3 +313,10 @@
   - Yalnız P03 (603–1090) ve P10b (3406–3665) yeniden render edildi. ProRes parçaları gorsel.mov'a akış kopyasıyla eklendi; 1091. kare hizası piksel olarak denetlendi.
   - TR/EN yeniden mikslendi: 3666 kare, I −14.0 / −14.2 LUFS, TP −2.0 / −1.8.
   - Genel bakış ve şeritler güncellendi (`kontrol/`).
+
+## elestirmen · 2026-11-16 · jüri-2 (günlük mod, ikinci taslak)
+- Ne yaptım: yeniden render'dan ~30 kare + 2 büyük kırpım (P05b, P08), L*/sıcak ve kesme RMS ölçümü; juri-1 maddelerini tek tek kapattım/açık bıraktım.
+- Dokunduğum dosyalar: bolumler/ben-my-chree/kalibrasyon/juri-2.md (yeni), bu rapor.
+- Kararlar: puan 7; kanca, tire, P06 doruk, P08 bot kapandı; harita kısmen; P05b dürbün yönü hâlâ kritik.
+- Kurallar/ihlaller: P05b süreklilik/fizik (dürbün göze değmiyor, objektif kameraya dönük); harita p95 72 / sıcak %5 (Paris dersi ölçütü); P10b etiketsiz; P08 iki yazı yığılması; P08 alev tekdüze (tur-11 notu kısmen).
+- Açık sorular: P10a asker yüzü ↔ kullanıcı kilidi (juri-1'den devam).
