@@ -301,3 +301,51 @@
     - BODRUM: ışıklı örtü bandı ve sedye çevresindeki yansıma alanı büyütülsün (yüz çene altı dahil). Yüzün göz yuvası tonları açılsın.
     - SOKAK: daha geniş bir sokak ya da 35 mm ile gök ve korniş görünsün (yönetmen kararı). Yakın kar sırtı ve kırıntı büyütülsün.
   - Kullanıcıya yön karesi olarak gidebilir. Ölçüt kaçakları açıkça yazılı; "bitti" değil.
+
+## motion · 2026-11-16 · BODRUM P08 + SOKAK-LG P03a hedef görsellere göre yeniden kurulum (tur-2)
+- Ne yaptım:
+  - Kullanıcının reddettiği tur-1 kareleri (notlar/tur-3) yerine onaylı hedeflere göre iki yeni görünüm kurdum: `hedef/hedef-morg.png`, `hedef/hedef-sokak.png`.
+  - **MORG:** Kapı sol üstte yarı açık. Tek nokta kaynağın ekran izdüşümünden yelpaze ışık kuruldu; yüze, omza ve sarkan ele ışık iniyor. Ele giden ışın Eliasberg'in solundan geçiyor, arada engel yok. Kurulanlar:
+    - Eliasberg yarı diz çökmüş: sağ dizi kalkık, el dizde, atkılı.
+    - Yüz ¾ ve ışıkta (aynalı `LgYuz`, ışık soldan). Boyun çene altından kulak arkasına kadar, delik yok.
+    - Yan bölmede örtülü biçimler gölgede.
+    - Tonozlu tavan ve tuğla döküntüsü.
+    - Sedye alt üçte biri dolduruyor; çubuk ve çerçeve yok.
+  - **SOKAK:** Kurulanlar:
+    - 22 m Petersburg sokağı (granit kaide, rustika, kat silmesi, X kağıt bantlı camlar, yağmur boruları, karlı pervaz, korniş).
+    - Bantlı gök (~%20), sağdaki çapraz sokaktan alçak güneşin pembe şeridi (karda ve ellerde).
+    - Sağ omuz üstü kamera, müzisyen profili (BMC `BasProfil` yeniden kullanıldı), bir elde ekmek, öbür avuçta kırıntı.
+    - Solda kızak ve kova, uzakta tek küçük figür.
+  - Ölçüm, 360 px kare, güvenli alan karesi ve hedef-yanında karesi her iki klasörde.
+- Dokunduğum dosyalar:
+  - Yeni: `/home/user/kosmos-vize-bot/src/kit/sablonlar/leningrad/BodrumHedef.tsx`, `/home/user/kosmos-vize-bot/src/kit/sablonlar/leningrad/SokakHedef.tsx`.
+  - Görünüm yönlendirme: `Bodrum.tsx` (`p08` → yeni, `p08-3` → tur-1), `Sokak.tsx` (`p03a` → yeni, `p03a-t1` → tur-1), `YonKaresi.tsx`.
+  - `/home/user/kosmos-vize-bot/bolumler/leningrad-senfoni/kalibrasyon/bodrum-tur-2/*`, `/home/user/kosmos-vize-bot/bolumler/leningrad-senfoni/kalibrasyon/sokak-tur-2/*`.
+  - Ortak kit değişmedi; eski bölümler piksel-aynı.
+- Aldığım kararlar ve gerekçeleri:
+  - Morg ekran-plakası olarak kuruldu (hedef kompozisyonu birebir); ışık nokta kaynağın izdüşümü s'den türetiliyor (kural: elle şerit yok). Kapı ele yakın derinlikte varsayıldı; ışın sağa ve hafif içeri gidiyor. Bu yüzden kameraya bakan sarkma ışıksız, el ve yüzün sola bakan yüzleri ışıkta.
+  - Morg dekoru 150 px yukarı kaydırıldı. Hedefteki el y ≈ 1590'da IG alt arayüzüne düşüyordu.
+  - Tonozlu tavan hedefte onaylı olduğu için çizildi. mekanlar §13.1 "tonoz çizilmez" diyordu; mekân sorumlusuna not.
+  - Sokakta "çapraz sokaktan şerit" tek bir koşulla türetiliyor ve hem karı hem elleri aydınlatıyor.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Uygulanan: Kontrast (yeni kural, iki karede geçti), tek ışık, ışık yolu kadrajda (kaynak → toz → yüzey), yüzde iç çizgi yok, çene–boyun deliksiz, omuz (kollar gövde arkasında), saygı (örtülü, yüzsüz), uzak figür < %5 (siluet istisnası), kırmızı 0.
+  - Kalan ihlaller:
+    - Sahne maks C* > 28 (iki kare).
+    - Sokak C* medyanı 16.1 < 18.
+    - Morg parmak uçları y > 1500.
+    - Morg başı üst yazı bandında.
+- Açık sorular / bir sonraki ajana notlar:
+  - **Öz puan: MORG 5.5/10, SOKAK 5.5/10.** Kompozisyon ve ışık hedefle eşleşiyor, ama hedef yanında çizim yoğunluğu çok geride.
+  - MORG eksikleri:
+    - Eliasberg gövdesi kutu gibi, palto kıvrımları az.
+    - Atkı ve uç "boyun yastığı" okuyor.
+    - Sedye sarkmasındaki kıvrımlar düzenli şerit gibi.
+    - Sol örtü yastık gibi.
+    - Duvar ışık yaması düz levha gibi.
+  - SOKAK eksikleri:
+    - Ekmeği tutan başparmak çubuk gibi; tutuş hedefteki kadar okunmuyor.
+    - Profil yüzde BMC'den gelen dikey ton sınırı var (bıçak çizgisi riski).
+    - Cepheler hedefe göre soluk ve gri-mor.
+    - Gök tepesinde ince koyu bir çizgi var (RenkKaydi mürekkep eşiği).
+    - Kar yüzeyi düz, yığın ve iz dokusu az.
+  - Bu yön kareleriyle eleştirmen kalibrasyonu yapılmalı. 7 için önce el/tutuş ve figür detayı (palto kıvrımı, atkı) düzeltilmeli.

@@ -9,7 +9,7 @@ import type { Sablon } from "../../ortak";
 import { BODRUM_SABLON } from "./Bodrum";
 import { SOKAK_LG_SABLON } from "./Sokak";
 
-export const LENINGRAD_P08_3: Plan = { id: "P08-3", sablon: "BODRUM", sure_kare: 300, parametreler: { gorunum: "p08-3" } };
+export const LENINGRAD_P08_3: Plan = { id: "P08-3", sablon: "BODRUM", sure_kare: 300, parametreler: { gorunum: "p08" } };
 export const LENINGRAD_P03A: Plan = { id: "P03a", sablon: "SOKAK-LG", sure_kare: 180, parametreler: { gorunum: "p03a", mevsim: "kis" } };
 
 const Kare: React.FC<{ S: Sablon; plan: Plan; guvenli?: boolean; baslik: string }> = ({ S, plan, guvenli, baslik }) => {
