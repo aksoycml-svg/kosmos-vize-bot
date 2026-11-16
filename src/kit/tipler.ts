@@ -7,7 +7,8 @@ export type SablonAdi = "SOKAK" | "IC-ODA" | "MASA-INSERT" | "KULE-DIS" | "HARIT
   | "ARABA" // Çiçero (1940'lar kiti): sedan kesiti (ic) / sokak (dis)
   | "COL-US" | "MASA-YB" // Yarasa bombası: çöl üssü / tepeden masa-defter
   | "LIMAN" | "GEMI-INSERT" | "KIYI-BATARYA" // Ben-my-Chree (1917 kiti, 2.5D kamera25d) — kalibrasyon turu 1
-  | "SALON"; // Leningrad 1942 (Filarmoni konser salonu) — kalibrasyon turu 1
+  | "SALON" // Leningrad 1942 (Filarmoni konser salonu) — kalibrasyon turu 1
+  | "BODRUM" | "SOKAK-LG"; // Leningrad 1942 (Radyo Evi bodrumu, kuşatma sokağı) — yön karesi turu 1
 export type Bant = "ust" | "alt";
 export type P = [number, number];
 

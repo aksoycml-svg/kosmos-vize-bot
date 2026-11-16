@@ -249,3 +249,55 @@
 - Kızak: boş çocuk kızağı + su kovası kabul (P13 kova kurulumu); ölü taşıma hiçbir planda yok.
 - P13 saati ~19:30 akşam kabul; prova'da ikincil kapı şeridi kaldırıldı (tek kaynak) kabul; gri hex'lerin C* ≥16'ya çekilmesi kabul. Tasarımcı tasarim.md'yi topluca eşitleyecek (SALON tur-3/4 renkleriyle birlikte).
 - mm sözleşmesi: yönetmen çekim kartlarında F (piksel odak) değerini yazar; mm yalnız açıklama.
+
+## motion · 2026-11-16 · BODRUM P08-3 f252 + SOKAK-LG P03a p114 yön kareleri (tur-1)
+- Ne yaptım:
+  - İki yeni şablon: BODRUM (`p08-3` görünümü) ve SOKAK-LG (`p03a`, kış).
+  - Tek dünya + `kamera25d`. BODRUM'da dolly zoom f177–252, F türetilmiş, `merkez [540, 640]`. SOKAK'ta itme ve eğim.
+  - Işık tek kaynaktan türetiliyor:
+    - BODRUM: S → yarık levhası. Levha düzleminde ışın izleme yapılıyor; basamak, örtü, el ve zemin şeritleri buradan hesaplanıyor. Toz seed 707.
+    - SOKAK: güneş vektörü G (10°, az 185°). Işıklı bölge = sağ cephe boşluğundan geçen ışın; karda ve cephede yamalar buradan.
+  - Yeni yakın yüz: `LgYuz` (¾ cephe, gravür dili). İç çizgi yok; hacim düz ton alanı ve ince tarama ile. Kenar ışığı ve alttan yansıma hilal maskesiyle.
+  - Ortak yardımcılar `lgOrtak.tsx` içinde: `LgBaski` (SALON tur-4 baskı zinciri), `Hilal`, `Kirp`, `dunya`.
+  - El için `GravurEl` kullanıldı. BODRUM'da iki paletle çizilip levha kesitiyle kırpılıyor. SOKAK'ta el ekseni boyunca izdüşüm kısaltması var.
+  - Diğer parçalar: kar yükseklik alanı ile satır satır ressam algoritması, Petersburg cephe sırası (seed 1941), boş kızak ve tahta kova, OTS palto kolu, keman kutusu kayışı.
+  - Ölçüm ve kareler: `kalibrasyon/bodrum-tur-1/`, `kalibrasyon/sokak-tur-1/` (her biri png, -360, -guvenli, paris-yaninda.jpg, olcum.md).
+- Dokunduğum dosyalar:
+  - Yeni: `/home/user/kosmos-vize-bot/src/kit/sablonlar/leningrad/Bodrum.tsx`, `Sokak.tsx`, `lgYuz.tsx`, `lgOrtak.tsx`, `YonKaresi.tsx`.
+  - Yalnız ekleme: `/home/user/kosmos-vize-bot/src/kit/tipler.ts`, `src/kit/sablonlar/kayit.ts`, `src/Root.tsx` (`LeningradBodrum`, `LeningradSokak`).
+  - `bolumler/leningrad-senfoni/kalibrasyon/bodrum-tur-1/*`, `sokak-tur-1/*`.
+  - Ortak kit dosyası değişmedi; eski bölümler piksel-aynı.
+- Aldığım kararlar ve gerekçeleri (değer tabloları olcum.md'de):
+  - BODRUM `merkez` 780 → 640. Çubuk ancak sırığın altından görünüyor; 780'de güvenli alan dışına düşüyordu.
+  - Rıhtlar ışık almaz (fizik). Zikzak, basamak burnu önlerindeki ışıklı yüzlerle kuruldu.
+  - Örtü bacakları da örtüyor (O7: ayak yok).
+  - Levha kameradan 3 cm geçiyor, bu yüzden ışık hacmi dolgusu kaldırıldı (cam pano gibi okunuyordu). Yalnız toz çizgisi var.
+  - SOKAK'ta güneş girişi için boşlukların ardında güneye açık alan (nehir/rıhtım) varsayıldı [G]. Fiziksel gerekçe: 10° güneş ve 20 m bina.
+  - SOKAK'ta gök yalnız dar kama. Bu kamera ve sokak eniyle şartnamedeki geniş gök fiziksel değil.
+  - Kızak orkestra kararıyla: boş, üstünde yalnız kova.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Uygulanan: tek ışık, yüzde iç çizgi yok, omuz (kol kökü gövde silüetinde, kavisli dikiş), kırmızı 0, imza tekil (çubuk dışı imza bandı 0 px), güvenli alan 0 ihlal, flu yok, dil-nötr.
+  - Şartname çelişkileri:
+    1. §13.7 çubuk konumu levhanın dışındaydı.
+    2. §13.10 çubuk y ≈ 1620 güvenli alan dışındaydı.
+    3. "Rıhtta dikey ışık parçası" fiziksel değil.
+    4. §14.2 boşluktan güneş, arkada açık alan olmadan yere ulaşmıyor.
+    5. §14.9 geniş gök + yalnız zemin katlar bu kamerayla mümkün değil.
+  - Not: P08-3'te alt altyazı bandı (y 1290–1490) çubukların üstüne biner. Replik varsa üst banda alınmalı (yönetmen).
+- Açık sorular / bir sonraki ajana notlar:
+  - **Öz puan: BODRUM 5.5/10, SOKAK 5/10.** Paris'in yanında ikisi de geri kalıyor.
+  - BODRUM eksikleri:
+    - Sıcak %8.1 ve p95 60.9; lint tabanlarının (%10 / 70) da altında.
+    - Çubuk sahne maksimumunun yalnız 1.73 katı.
+    - Yüz okunuyor ama karikatüre yakın (iri göz, koyu göz yuvası). Saç kask gibi.
+    - Sırık tam genişlikte koyu bir "masa kenarı" bandı.
+    - Ön sağ boru ve sönük ampul yok.
+  - SOKAK eksikleri:
+    - Sıcak %13.5.
+    - Gök çok dar; cepheler tekdüze mor, granit ve rustika uzakta okunmuyor. "Petersburg" okuması zayıf.
+    - El eldiven gibi düz; kar satırlarında hafif dikiş çizgileri var.
+    - Kol kadrajın sol-altını dolduruyor (OTS'ta fiziksel); spec'teki "kar sırtında kırıntı toplama" anı küçük.
+  - Önerilen sonraki tur:
+    - BODRUM: ışıklı örtü bandı ve sedye çevresindeki yansıma alanı büyütülsün (yüz çene altı dahil). Yüzün göz yuvası tonları açılsın.
+    - SOKAK: daha geniş bir sokak ya da 35 mm ile gök ve korniş görünsün (yönetmen kararı). Yakın kar sırtı ve kırıntı büyütülsün.
+  - Kullanıcıya yön karesi olarak gidebilir. Ölçüt kaçakları açıkça yazılı; "bitti" değil.
