@@ -491,3 +491,10 @@
   - Araç 2D ekran düzleminde; "kaynak figürün arkasında → kameraya yakın zemin karanlık" durumu için zemin izdüşümü çokgeni verilmeli (üstten görünüş hesabı) — gerekirse `kit_eksik` olarak yazılsın.
   - Penumbra yok (blur ile taklit). Bodrum/morg şablonlarına (BodrumT4) bağlanması ayrı iş; şablon sahibinin onayıyla.
   - Test karesi kalibrasyon değil araç sınamasıdır; Paris çıtasıyla puanlanmaz.
+
+## teknisyen — `tools/poz_cikar.py` (MediaPipe poz çıkarma)
+- Yaptı: `tools/poz_cikar.py` (Pose+Hand+Face Landmarker → JSON, `--sayfa` kontrol görüntüsü, `--kisi`, el/yüz için kırp-büyüt yedeği); modeller `tools/modeller/` (4 `.task`, ~51.6 MB, gitignore'a EKLENMEDİ); `tools/README.md` 3 satır; deneme `kalibrasyon/poz-test/` (poz-morg/sokak .json/.jpg).
+- Karar: yaw/pitch/roll yüz dönüşüm matrisinden; roll işareti göz çizgisi eğimiyle, yaw/roll işareti yatay çevirme testiyle doğrulandı (çevirince ters işaret). Yaw ve pitch işareti profilli/eğik yüzde ölçülemedi (morg yüzü neredeyse cepheden).
+- Kural/ihlal: sistemde libEGL yoktu (`apt install libegl1 libgles2`); yeni ortamda gerekir.
+- Bulgu: hedef-morg'da gövde/kollar doğru, bacaklar (diz/ayak) örtünün içinde yanlış; hedef-sokak (omuz üstü, kırpık figür) varsayılan kişide yanlış: iskelet kolu gövde sanıyor, yüz/el bulunamadı. Bu görselde poz elle verilmeli.
+- Açık: modeller repoya girsin mi (gitignore) kararı yapımcıda.
