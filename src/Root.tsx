@@ -18,6 +18,7 @@ import { LeningradBodrum, LeningradSokak } from "./kit/sablonlar/leningrad/YonKa
 import { CizimTest } from "./kit/cizim/CizimTest";
 import { IsikTest, ISIK_TEST_SURE } from "./kit/isik/IsikTest";
 import { FigurTest, FIGUR_TEST_SURE } from "./kit/figur/FigurTest";
+import { LeningradBodrumT5 } from "./kit/sablonlar/leningrad/BodrumT5";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -41,6 +42,7 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="SB2-SOKAK-FARE" component={Sb2SokakFare} durationInFrames={SB2_SOKAK_SURE} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
     <Composition id="LeningradKalibrasyon" component={LeningradKalibrasyon} durationInFrames={209} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
     <Composition id="LeningradBodrum" component={LeningradBodrum} durationInFrames={300} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
+    <Composition id="LeningradBodrumT5" component={LeningradBodrumT5} durationInFrames={300} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
     {/* kalıcı çizim araçları sınaması (src/kit/cizim) */}
     <Still id="CizimTest" component={CizimTest} width={1080} height={1920} />
     <Composition id="IsikTest" component={IsikTest} durationInFrames={ISIK_TEST_SURE} fps={60} width={1080} height={1920} />

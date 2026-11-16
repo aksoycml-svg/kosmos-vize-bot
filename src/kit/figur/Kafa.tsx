@@ -25,6 +25,9 @@ export type KafaIfade = {
   /** bakış (−1..1, −1..1): göz içinde iris kayması */ bakis?: P2;
   /** yaş/açlık 0..1: yanak çukuru, göz torbası, alın ton bantları */ yas?: number;
   /** sakal izi 0..1 */ sakal?: number;
+  /** zayıflık/açlık 0..1: yanak ve çene açısı içe, elmacık çıkık, yanak çukuru ve şakak çukuru koyu (ton alanı; iç çizgi yok) */ zayif?: number;
+  /** saç dağınıklığı 0..1: düzensiz tutam siluet + saç yönünde tel çizgileri + gerileyen alın çizgisi (kask okunmasın) */ sacDagin?: number;
+  /** şakaklarda kır saç rengi (verilirse) */ sacKir?: string;
 };
 export type KafaPalet = {
   ten: string; tenGolge: string; tenDerin: string; kenar: string; yansima?: string;
@@ -71,8 +74,13 @@ const birim = (v: V3): V3 => { const l = Math.hypot(...v) || 1; return [v[0] / l
 
 export type KafaGeo = ReturnType<typeof kafaGeo>;
 /** Kafa geometrisi (ekran): merkez = kafatası küresi merkezi (px), H = baş boyu (px). */
-export function kafaGeo(merkez: P2, H: number, d: KafaDonus) {
+export function kafaGeo(merkez: P2, H: number, d: KafaDonus, zayif = 0) {
   const don = (v: V3) => dondur(v, d);
+  // zayıflık: yanak (halka 7) ve alt çene (çene zarfı 1–3) içe; elmacık (halka 6) yerinde → çıkık okunur
+  const zx = (v: V3, k: number): V3 => [v[0] * (1 - k * zayif), v[1], v[2]];
+  const HALKA_Z: V3[] = zayif ? [...HALKA_SAG.map((v, i) => (i === 7 ? zx(v, 0.12) : v)), [0, 0.42, 0.3], ...HALKA_SAG.slice(1).reverse().map((v, j) => ayna(HALKA_SAG.length - 1 - j === 7 ? zx(v, 0.12) : v))] : HALKA;
+  // + alt yüz uzar (çene 0.04 H aşağı): uzun, çökük yüz
+  const CENE_Z: V3[] = zayif ? (() => { const r = CENE_SAG.map((v, i) => { const w = i <= 3 ? zx(v, [0.12, 0.1, 0.09, 0.12][i]) : v; return [w[0], w[1] + (w[1] > 0.5 ? 0.04 * zayif : 0), w[2]] as V3; }); return [...r, ...r.map(ayna)]; })() : CENE;
   const pr = (v: V3): P2 => { const q = don(v); return [merkez[0] + q[0] * H, merkez[1] + q[1] * H]; };
   /** normalin kameraya bakışı (−1..1) */
   const bakar = (n: V3) => don(birim(n))[2];
@@ -84,9 +92,10 @@ export function kafaGeo(merkez: P2, H: number, d: KafaDonus) {
   }
   kafatasi.push(pr([KAFATASI.c[0], KAFATASI.c[1] - KAFATASI.r[1], KAFATASI.c[2]]), pr([KAFATASI.c[0], KAFATASI.c[1] + KAFATASI.r[1], KAFATASI.c[2]]));
   const kafatasiZarf = zarf(kafatasi);
-  const halka = HALKA.map(pr);
-  const ceneZarf = zarf(CENE.map(pr));
-  const burun3: V3[] = [[0.03, 0.08, 0.285], [-0.03, 0.08, 0.285], [0, 0.2, 0.34], [0, 0.3, 0.4], [0.02, 0.33, 0.37], [-0.02, 0.33, 0.37], [0, 0.345, 0.345], [0.062, 0.315, 0.295], [-0.062, 0.315, 0.295]];
+  const halka = HALKA_Z.map(pr);
+  const ceneZarf = zarf(CENE_Z.map(pr));
+  const bz = 1 + 0.12 * zayif; // zayıf yüzde burun belirgin (uzun, ince sırt)
+  const burun3: V3[] = ([[0.03, 0.08, 0.285], [-0.03, 0.08, 0.285], [0, 0.2, 0.34], [0, 0.3, 0.4], [0.02, 0.33, 0.37], [-0.02, 0.33, 0.37], [0, 0.345, 0.345], [0.062, 0.315, 0.295], [-0.062, 0.315, 0.295]] as V3[]).map((v) => [v[0], 0.08 + (v[1] - 0.08) * bz, 0.285 + (v[2] - 0.285) * bz] as V3);
   const burunZarf = zarf(burun3.map(pr));
   const boyunUst = BOYUN_UST.map(pr);
   const parcalar = [egriD(kafatasiZarf), egriD(halka), egriD(ceneZarf), egriD(burunZarf)];
@@ -119,7 +128,8 @@ export type KafaProps = {
 export const Kafa: React.FC<KafaProps> = ({ merkez: m0, atlas, H, donus, ifade = {}, P = KAFA_PALET_ORNEK, isik = [0.75, 0.66], isikOn = 0.55, seed = 31, boyunD, isikClipId, ayrinti }) => {
   const uid = "kf" + useId().replace(/[^a-zA-Z0-9]/g, "");
   const merkez = m0 ?? kafaMerkezi(atlas ?? [0, 0], H, donus);
-  const g = kafaGeo(merkez, H, donus);
+  const zayif = ifade.zayif ?? 0, dagin = ifade.sacDagin ?? 0;
+  const g = kafaGeo(merkez, H, donus, zayif);
   const { pr, bakar, don } = g;
   const k = H / 500;
   const ay = ayrinti ?? (H >= 260 ? "yakin" : H >= 90 ? "orta" : "uzak");
@@ -150,14 +160,17 @@ export const Kafa: React.FC<KafaProps> = ({ merkez: m0, atlas, H, donus, ifade =
       {ay === "yakin" && <MurekkepCizgi q={[q[2], q[3], q[4], q[5]].map((p) => [p[0] + (ic[0] - p[0]) * 0.3, p[1] + (ic[1] - p[1]) * 0.3] as P2)} egri renk={P.tenGolge} kalinlik={2.2 * k} seed={seed + 9} />}
     </g>
   );
+  // gerileyen saç çizgisi (yaş): şakaklarda (x ≈ ±0.2) geri ve yukarı çekilir, ortada hafif sivri (dul tepesi)
+  const sacCizgi: V3[] = SAC_CIZGI.map((v) => { const ax = Math.abs(v[0]); if (v[2] < 0.05 || ax > 0.31) return v; const w = Math.exp(-(((ax - 0.21) / 0.06) ** 2)) * dagin * 0.3; return [v[0] * (1 - 0.05 * w), v[1] - 0.05 * w, v[2] - 0.04 * w]; });
   // ---------------- saç: kafatası × 1.06 zarfı (seed'li tutam) ∩ görünür saç çizgisinin üstü ----------------
   const sacZarf = (() => {
     const pts: P2[] = [];
     for (let i = 0; i < 22; i++) for (let j = 1; j < 10; j++) {
       const th = (i / 22) * Math.PI * 2, ph = (j / 10) * Math.PI * 0.62;
-      pts.push(pr([KAFATASI.c[0] + Math.sin(ph) * Math.cos(th) * KAFATASI.r[0] * 1.045, KAFATASI.c[1] - Math.cos(ph) * KAFATASI.r[1] * 1.04 + (ph > 1.3 ? 0.06 : 0), KAFATASI.c[2] + Math.sin(ph) * Math.sin(th) * KAFATASI.r[2] * 1.045]));
+      const hac = 1 + 0.05 * dagin * (1 - ph / Math.PI); // dağınık saçta tepe hacmi
+      pts.push(pr([KAFATASI.c[0] + Math.sin(ph) * Math.cos(th) * KAFATASI.r[0] * 1.045 * hac, KAFATASI.c[1] - Math.cos(ph) * KAFATASI.r[1] * 1.04 * hac + (ph > 1.3 ? 0.06 : 0), KAFATASI.c[2] + Math.sin(ph) * Math.sin(th) * KAFATASI.r[2] * 1.045 * hac]));
     }
-    const z = zarf([...pts, ...SAC_CIZGI.map(pr)]);
+    const z = zarf([...pts, ...sacCizgi.map(pr)]);
     const cx = z.reduce((a, p) => a + p[0], 0) / z.length, cy = z.reduce((a, p) => a + p[1], 0) / z.length;
     // tutam: zarf kenarında seed'li düzensiz şişkinlik (±0.02 H), 8–12 tutam
     const out: P2[] = [];
@@ -165,13 +178,13 @@ export const Kafa: React.FC<KafaProps> = ({ merkez: m0, atlas, H, donus, ifade =
       const b = z[(i + 1) % z.length];
       out.push(p);
       const m: P2 = [(p[0] + b[0]) / 2, (p[1] + b[1]) / 2], dx = m[0] - cx, dy = m[1] - cy, l = Math.hypot(dx, dy) || 1;
-      const a = (rnd(seed, `tt${i}`) - 0.35) * 0.04 * H;
+      const a = (rnd(seed, `tt${i}`) - 0.3) * (0.04 + 0.035 * dagin) * H;
       out.push([m[0] + (dx / l) * a, m[1] + (dy / l) * a]);
     });
     return out;
   })();
   const sacBolge = (() => {
-    const q = SAC_CIZGI.map((v) => ({ p: pr(v), g: bakar([v[0] - KAFATASI.c[0], v[1] - KAFATASI.c[1], v[2] - KAFATASI.c[2]]) > -0.05 }));
+    const q = sacCizgi.map((v) => ({ p: pr(v), g: bakar([v[0] - KAFATASI.c[0], v[1] - KAFATASI.c[1], v[2] - KAFATASI.c[2]]) > -0.05 }));
     const n = q.length; let bas = q.findIndex((x) => !x.g);
     if (bas < 0) bas = 0;
     let en: P2[] = [], cur: P2[] = [];
@@ -213,7 +226,7 @@ export const Kafa: React.FC<KafaProps> = ({ merkez: m0, atlas, H, donus, ifade =
   return (
     <g>
       <defs>
-        {[1, 2, 3, 5].map((s) => <filter key={s} id={`${uid}b${s}`} x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation={s * k} /></filter>)}
+        {[1, 2, 3, 5, 12].map((s) => <filter key={s} id={`${uid}b${s}`} x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation={s * k} /></filter>)}
         <clipPath id={`${uid}yuz`}>{yuzD.map((x, i) => <path key={i} d={x} />)}</clipPath>
         <mask id={`${uid}golge`} maskUnits="userSpaceOnUse" x={merkez[0] - 3 * H} y={merkez[1] - 3 * H} width={6 * H} height={6 * H}>
           <rect x={merkez[0] - 3 * H} y={merkez[1] - 3 * H} width={6 * H} height={6 * H} fill="#fff" />
@@ -236,17 +249,23 @@ export const Kafa: React.FC<KafaProps> = ({ merkez: m0, atlas, H, donus, ifade =
         <g mask={`url(#${uid}golge)`}>{yuzD.map((x, i) => <path key={i} d={x} fill={P.tenGolge} opacity={0.82} />)}</g>
         {ay !== "uzak" && <g>
           {/* göz çukurları (kaş çıkıntısının altı) */}
-          {gozler.map((e) => <ellipse key={e.s} cx={e.cukur[0]} cy={e.cukur[1]} rx={0.075 * H * Math.max(0.35, e.v)} ry={0.05 * H} fill={P.tenGolge} opacity={0.5 + 0.2 * (aydin([e.s * 0.3, 0.2, 1]) < 0.3 ? 1 : 0)} filter={blur(3)} />)}
+          {gozler.map((e) => <ellipse key={e.s} cx={e.cukur[0]} cy={e.cukur[1]} rx={0.075 * H * Math.max(0.35, e.v)} ry={0.05 * H} fill={P.tenGolge} opacity={Math.min(0.92, 0.5 + 0.2 * (aydin([e.s * 0.3, 0.2, 1]) < 0.3 ? 1 : 0) + 0.25 * zayif)} filter={blur(3)} />)}
           {/* burun yan düzlemi: ışığa bakmayan yan */}
           {burunYan.filter((b) => b.a < 0.25).map((b) => <path key={b.s} d={egriD(b.q)} fill={P.tenGolge} opacity={0.38} filter={blur(2)} />)}
           {/* burun altı düşen gölge, alt dudak altı, çene altı */}
           {(() => { const c = pr([0.0, 0.37, 0.33]); return <ellipse cx={c[0] + lx * 0.012 * H} cy={c[1] + ly * 0.01 * H} rx={0.05 * H} ry={0.016 * H} fill={P.tenDerin} opacity={0.45} filter={blur(2)} />; })()}
           {(() => { const c = pr([0.0, 0.508, 0.3]); return <ellipse cx={c[0]} cy={c[1]} rx={0.045 * H} ry={0.014 * H} fill={P.tenGolge} opacity={0.6} filter={blur(2)} />; })()}
           {/* burun–dudak oluğu ve yanak çukuru (yaş/açlık): ton alanı, çizgi değil */}
-          {([1, -1] as const).map((s) => { const a = pr([s * 0.075, 0.33, 0.29]), b = pr([s * 0.1, 0.43, 0.26]); const gl = aydin([s, 0, 0.6]) < 0.2; return <path key={s} d={yolD(elipsNokta([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], 0.012 * H, Math.hypot(b[0] - a[0], b[1] - a[1]) * 0.55, (Math.atan2(b[1] - a[1], b[0] - a[0]) * 180) / Math.PI - 90, 16))} fill={P.tenGolge} opacity={(gl ? 0.45 : 0.22) * (0.5 + yas * 0.6)} filter={blur(2)} />; })}
-          {([1, -1] as const).map((s) => { const c = pr([s * 0.225, 0.37, 0.12]); const gl = aydin([s, 0, 0.5]) < 0.25; return bakar([s, 0, 0.6]) > -0.2 ? <ellipse key={s} cx={c[0]} cy={c[1]} rx={0.04 * H} ry={0.07 * H} fill={golgeS} opacity={(gl ? 0.26 : 0.06) + 0.18 * yas} filter={blur(5)} /> : null; })}
-          {yas > 0 && [0, 1].map((i) => { const a = pr([-0.09, -0.12 + i * 0.045, 0.315]), b = pr([0.09, -0.12 + i * 0.045, 0.315]); return <path key={i} d={yolD(qOrnek(a, pr([0, -0.13 + i * 0.045, 0.325]), b, 8), false)} stroke={P.tenGolge} strokeWidth={0.012 * H} strokeLinecap="round" fill="none" opacity={0.3 * yas} filter={blur(2)} />; })}
-          {yas > 0 && gozler.filter((e) => e.v > 0.2).map((e) => <ellipse key={e.s} cx={e.torba[0]} cy={e.torba[1]} rx={0.045 * H * e.v} ry={0.014 * H} fill={P.tenGolge} opacity={0.4 * yas} filter={blur(2)} />)}
+          {([1, -1] as const).map((s) => { const a = pr([s * 0.075, 0.33, 0.29]), b = pr([s * 0.1, 0.43, 0.26]); const gl = aydin([s, 0, 0.6]) < 0.2; return <path key={s} d={yolD(elipsNokta([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], 0.012 * H, Math.hypot(b[0] - a[0], b[1] - a[1]) * 0.55, (Math.atan2(b[1] - a[1], b[0] - a[0]) * 180) / Math.PI - 90, 16))} fill={P.tenGolge} opacity={Math.min(0.85, (gl ? 0.45 : 0.3) * (0.5 + yas * 0.6) + 0.15 * zayif)} filter={blur(2)} />; })}
+          {([1, -1] as const).map((s) => { const c = pr([s * 0.225, 0.37, 0.12]); const gl = aydin([s, 0, 0.5]) < 0.25; return bakar([s, 0, 0.6]) > -0.2 ? <ellipse key={s} cx={c[0]} cy={c[1]} rx={(0.04 - 0.01 * zayif) * H} ry={(0.07 + 0.03 * zayif) * H} fill={zayif ? P.tenGolge : golgeS} opacity={((gl ? 0.26 : 0.06) + 0.18 * yas) * (1 - 0.35 * zayif) + 0.12 * zayif} filter={blur(zayif ? 12 : 5)} /> : null; })}
+          {/* zayıflık: elmacık altı çukur (ışık tarafında da) + şakak çukuru + elmacık sırtı ışığı */}
+          {zayif > 0 && ([1, -1] as const).map((s) => { const c = pr([s * 0.2, 0.3, 0.2]), t = pr([s * 0.27, -0.02, 0.15]), e = pr([s * 0.24, 0.2, 0.2]); const v = bakar([s, 0, 0.7]); return v > -0.1 ? <g key={`z${s}`}>
+            <ellipse cx={c[0]} cy={c[1]} rx={0.05 * H} ry={0.03 * H} fill={P.tenGolge} opacity={0.2 * zayif} filter={blur(12)} />
+            <ellipse cx={t[0]} cy={t[1]} rx={0.03 * H} ry={0.06 * H} fill={P.tenGolge} opacity={0.35 * zayif} filter={blur(12)} />
+            {aydin([s, 0.1, 0.7]) > 0.2 && <ellipse cx={e[0]} cy={e[1]} rx={0.04 * H} ry={0.014 * H} fill={P.kenar} opacity={0.35 * zayif} filter={blur(2)} />}
+          </g> : null; })}
+          {yas > 0 && [0, 1, 2].map((i) => { const a = pr([-0.11 + i * 0.01, -0.13 + i * 0.04, 0.31]), b = pr([0.11 - i * 0.015, -0.13 + i * 0.04, 0.31]); return <path key={i} d={yolD(qOrnek(a, pr([0, -0.142 + i * 0.04 - (i === 2 ? kas * 0.01 : 0), 0.322]), b, 8), false)} stroke={P.tenGolge} strokeWidth={0.012 * H} strokeLinecap="round" fill="none" opacity={0.42 * yas} filter={blur(1)} />; })}
+          {yas > 0 && gozler.filter((e) => e.v > 0.2).map((e) => <ellipse key={e.s} cx={e.torba[0]} cy={e.torba[1]} rx={0.045 * H * e.v} ry={0.014 * H} fill={P.tenGolge} opacity={0.55 * yas} filter={blur(2)} />)}
           {/* burun ucu ışığı */}
           {(() => { const c = pr([-uzakS * 0.012, 0.29, 0.4]); return <ellipse cx={c[0] - lx * 0.01 * H} cy={c[1] - ly * 0.01 * H} rx={0.016 * H} ry={0.012 * H} fill={P.kenar} opacity={0.5} filter={blur(1)} />; })()}
         </g>}
@@ -294,7 +313,7 @@ export const Kafa: React.FC<KafaProps> = ({ merkez: m0, atlas, H, donus, ifade =
         );
       })}
       {/* ---- kaşlar ---- */}
-      {ay !== "uzak" && kaslar.filter((b) => b.v > 0.05).map((b) => <MurekkepCizgi key={b.s} q={b.q} egri renk={P.kas} kalinlik={0.03 * H} basinc={(t) => 0.95 - 0.55 * t} ucBas={4 * k} ucSon={0.05 * H} seed={seed + 20 + b.s} />)}
+      {ay !== "uzak" && kaslar.filter((b) => b.v > 0.05).map((b) => <MurekkepCizgi key={b.s} q={b.q} egri renk={P.kas} kalinlik={(0.03 + 0.012 * yas) * H} basinc={(t) => 0.95 - 0.55 * t} ucBas={4 * k} ucSon={0.05 * H} seed={seed + 20 + b.s} />)}
       {/* kenar ışığı: ışık tarafında ince sıcak hilal (saçtan önce: saç örter) (sahne çokgeniyle kırpılabilir) */}
       <g clipPath={isikClipId ? `url(#${isikClipId})` : undefined}>
         <KenarHilal d={yuzD} renk={P.kenar} dx={lx * 0.014 * H} dy={ly * 0.014 * H} alfa={0.75} />
@@ -309,6 +328,13 @@ export const Kafa: React.FC<KafaProps> = ({ merkez: m0, atlas, H, donus, ifade =
           return <MurekkepCizgi key={i} q={q} egri renk={P.sacIsik} alfa={0.45} kalinlik={(6 - i * 1.5) * k} seed={seed + 50 + i} />;
         })}
         <g mask={`url(#${uid}golge)`}><path d={egriD(sacZarf)} fill={murekkepRenk(P.sac, 0.35)} opacity={0.55} /></g>
+        {/* dağınık saç: alından geriye taranmış tel demetleri (saç yönünde, sivrilen) + şakakta kır saç */}
+        {dagin > 0 && ay !== "uzak" && Array.from({ length: 11 }, (_, i) => {
+          const x0 = -0.26 + (i / 10) * 0.52 + (rnd(seed, `sx${i}`) - 0.5) * 0.04, uz = 0.16 + rnd(seed, `sl${i}`) * 0.1;
+          const q = ([[x0, -0.2 + Math.abs(x0) * 0.4, 0.24], [x0 * 1.08, -0.3 + Math.abs(x0) * 0.2, 0.1], [x0 * 1.12 + (rnd(seed, `sk${i}`) - 0.5) * 0.04, -0.34 - uz * 0.3, -0.06 - uz]] as V3[]).map(pr);
+          return <MurekkepCizgi key={`t${i}`} q={q} egri renk={i % 3 === 0 ? P.sacIsik : murekkepRenk(P.sac, 0.5)} alfa={0.55 * dagin} kalinlik={(i % 3 === 0 ? 3.4 : 2.6) * k} seed={seed + 60 + i} />;
+        })}
+        {ifade.sacKir && ([1, -1] as const).map((s) => { const c = pr([s * 0.29, -0.02, 0.06]); return <ellipse key={`k${s}`} cx={c[0]} cy={c[1]} rx={0.05 * H} ry={0.09 * H} fill={ifade.sacKir} opacity={0.7} filter={blur(3)} />; })}
       </g>}
       {/* öndeki (yakın) kulak saçın üstünde */}
       {kulaklar.filter((q) => q.nz > 0.05).map((q) => <Kulak key={q.s} {...q} />)}

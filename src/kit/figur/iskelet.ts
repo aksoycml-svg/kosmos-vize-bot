@@ -93,8 +93,14 @@ export type KolPoz = {
   /** gövdenin önünde mi çizilir (varsayılan: yakın taraf önde; karşıdan bakışta ikisi de) */
   onde?: boolean;
   el?: ElPozAdi; elAyna?: boolean;
+  /** kısalma (foreshortening): [üst kol, ön kol] ekran boyu çarpanı (1 = ekran düzleminde; kameraya/derinliğe uzanan uzuv < 1) */
+  kisalt?: P2;
 };
-export type BacakPoz = { kalca?: number; diz?: number; ayak?: number; hedef?: P2; onde?: boolean };
+export type BacakPoz = {
+  kalca?: number; diz?: number; ayak?: number; hedef?: P2; onde?: boolean;
+  /** kısalma (foreshortening): [uyluk, baldır] ekran boyu çarpanı (ör. kameraya doğru kalkık diz → uyluk 0.75; geriye uzanan incik 0.5) */
+  kisalt?: P2;
+};
 export type Poz = {
   /** pelvis ekran konumu (zemin verilirse yalnız x bağlayıcı; y zemine oturtulur) */
   kok: P2;
@@ -163,12 +169,13 @@ export function iskeletKur(pz: Poz): Iskelet {
     const kalca = govdeIzdus({ B, yon, yaw }, pel, fr0, yanIsaret(t) * ORAN.kalcaYari, 0);
     let uA = 90 - yon * kis(bp.kalca ?? 0, SINIR.kalca);
     let bA = uA + yon * kis(bp.diz ?? 4, SINIR.diz);
-    let diz = ekle(kalca, yonV(uA), ORAN.uyluk * B), bilek = ekle(diz, yonV(bA), ORAN.baldir * B), hata = 0;
+    const LU = ORAN.uyluk * B * (bp.kisalt?.[0] ?? 1), LB = ORAN.baldir * B * (bp.kisalt?.[1] ?? 1);
+    let diz = ekle(kalca, yonV(uA), LU), bilek = ekle(diz, yonV(bA), LB), hata = 0;
     if (bp.hedef) {
       const sinirK: P2 = yon > 0 ? [-SINIR.kalca[1], -SINIR.kalca[0]] : SINIR.kalca;
       const sinirD: P2 = yon > 0 ? SINIR.diz : [-SINIR.diz[1], -SINIR.diz[0]];
       // başlangıç: dizi hafif bükük (doğru yön)
-      const d0 = ekle(kalca, yonV(90 - yon * 25), ORAN.uyluk * B), b0 = ekle(d0, yonV(90 + yon * 20), ORAN.baldir * B);
+      const d0 = ekle(kalca, yonV(90 - yon * 25), LU), b0 = ekle(d0, yonV(90 + yon * 20), LB);
       const s = fabrik([kalca, d0, b0], hd(bp.hedef, pel), { sinir: [sinirK, sinirD], refAci: 90 });
       [, diz, bilek] = s.nokta; hata = s.hata; uA = aciV(kalca, diz); bA = aciV(diz, bilek);
     }
@@ -215,9 +222,10 @@ export function iskeletKur(pz: Poz): Iskelet {
       let uA = asagi - yon * kis(kp.ust ?? 4, SINIR.ust);
       let oA = uA - yon * kis(kp.dirsek ?? 14, SINIR.dirsek);
       let eA = oA - yon * kis(kp.bilek ?? 0, SINIR.bilek);
-      let dirsek = ekle(omuz, yonV(uA), ORAN.ustKol * B), bilek = ekle(dirsek, yonV(oA), ORAN.onKol * B), hata = 0;
+      const LU = ORAN.ustKol * B * (kp.kisalt?.[0] ?? 1), LO = ORAN.onKol * B * (kp.kisalt?.[1] ?? 1);
+      let dirsek = ekle(omuz, yonV(uA), LU), bilek = ekle(dirsek, yonV(oA), LO), hata = 0;
       if (kp.hedef) {
-        const d0 = ekle(omuz, yonV(asagi - yon * 30), ORAN.ustKol * B), b0 = ekle(d0, yonV(asagi - yon * 75), ORAN.onKol * B);
+        const d0 = ekle(omuz, yonV(asagi - yon * 30), LU), b0 = ekle(d0, yonV(asagi - yon * 75), LO);
         if ((kp.hedefNokta ?? "el") === "bilek") {
           const s = fabrik([omuz, d0, b0], hd(kp.hedef, pelvis), { sinir: [sinirU, sinirD], refAci: asagi });
           [, dirsek, bilek] = s.nokta; hata = s.hata; uA = aciV(omuz, dirsek); oA = aciV(dirsek, bilek); eA = oA - yon * kis(kp.bilek ?? 0, SINIR.bilek);

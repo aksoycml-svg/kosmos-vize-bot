@@ -522,3 +522,35 @@
   - Kalan zayıflıklar (gözle): gövde hâlâ kukla-kutu (bel daralması zayıf, kumaş kıvrımı yok); kollar tüp gibi, öndeki kolun dikişi boyunca koyu gölge bandı; kalkık kolda koltuk altı köşeli; ¾ yüzde uzak yanak silüetinde hafif kırık, yanak gölgeleri allık sınırında; saç kask + ışık şeritleri tarak gibi; el tek siluet olduğu için küçük ölçekte eldiven gibi; ayakta pozda ayaklar üst üste.
   - Sınır: uzuvlar ekran düzleminde (¾'te kameraya uzanan kolun kısalması yok); sırt görünümü yok. 360 px okunurluk ölçümü yapılmadı.
   - Morg P08'e bağlanması ayrı iş (şablon sahibi + yön karesi). Araç aşaması; Paris çıtasıyla puanlanmadı (öz değerlendirme: anatomi bağlantıları doğru, yüzey ~5/10).
+
+## motion · 2026-11-16 · BODRUM P08 kalibrasyon bodrum-tur-5 (yeni kit araçlarıyla)
+- Ne yaptım:
+  - Yeni şablon dosyası `BodrumT5.tsx` + kompozisyon `LeningradBodrumT5` (300 kare, kontrol f252; ArsivKatmani litografi sarması; `guvenli` prop). BodrumT4 değişmedi.
+  - Hedef-morg kompozisyonu (×1.4, y −140): sol üstte aralık kapı, tonozlu tavan + kaburgalar, sıvası dökük tuğla yamaları, arka ve yan örtülü sedyeler (sade, yüzsüz), önde çapraz sedye (tahta + ayaklar + baş/göğüs/diz tümsekli örtü + V kıvrımlı sarkma), örtünün altından sarkan ölü el.
+  - TEK ışık: koridor penceresi `KAYNAK (−700,−342)`, koni = yarığın iki köşesi (eğim 0.42–1.56), `isikHesapla` ile üç çokgen: duvar/zemin (engel: önde sedye → önündeki zemin karanlık), örtü (engel: Eliasberg → gölgesi örtüye düşer), figür kenar ışığı (engelsiz). Duvar/zemin ışıklı sürümü `IsikKaynagi aydinlik` (aynı geometri, sıcak palet + menzil sönümü) + huzme + toz; 3 toz bandı aynı kaynaktan alt-koni. Elle huzme/şerit yok.
+  - Figür `kit/figur` ile: `pozdan(poz-morg.json)` → gövde/omuz/yüz açıları; bacaklar FK + yeni `kisalt` (kalkık uyluk 0.62, incik 1.15; yerdeki diz derinde 0.8/0.5); sol el dizde, sağ el örtüde (örtüden sonra `sadeceKol` ile yeniden çizilir + temas gölgesi).
+  - Kit düzeltmeleri (yalnız FigurTest etkilenir): `iskelet.ts` kısalma (foreshortening) `kisalt`; `Govde.tsx` palto (`giysi: {tur:"palto", boy, basOlcek, zayif}`: geniş kesit + bel/kalça, alçak omuz tepesi, etek kalkık uyluğun %36'sına kadar dolanır, bel üstünde etek konturu yok, çentikli klapa, atkı sarma + iki uç + örgü çizgisi, etek yerçekimi/gerilim kıvrımları), dirsek kıvrımı (bükümün iç yanında 4 MurekkepCizgi), el artık `IncEl` (parmak ayrım konturu, kol ağzının altında), `paltoOnunde`, `sadeceKol`; `Kafa.tsx` `zayif` (yanak/çene içe, alt yüz uzun, burun uzun, derin göz çukuru, şakak çukuru yumuşak ton), `sacDagin` (tel demetleri, tepe hacmi, hafif gerileyen alın), `sacKir`, 3 alın bandı, kalın kaş.
+  - Render: `bodrum-tur-5/p08.png` (f252), `p08-360.png`, `p08-guvenli.png`, `hedef-yaninda.jpg` (hedef | tur-4 | tur-5), `kiyas.json/.jpg`.
+- Dokunduğum dosyalar: `src/kit/sablonlar/leningrad/BodrumT5.tsx` (yeni), `src/kit/sablonlar/leningrad/poz-morg.json` (kopya), `src/Root.tsx`, `src/kit/figur/iskelet.ts`, `src/kit/figur/Govde.tsx`, `src/kit/figur/Kafa.tsx`, `bolumler/leningrad-senfoni/kalibrasyon/bodrum-tur-5/*`.
+- Ölçüm (hedef_kiyas, tur-4 → tur-5): L* p95 74 → **79.2** (≥78 geçti), p5 11.2, aralık 68; sıcak %13.4 → **13.8** (≥14'e 0.2 eksik); kenar oranı 0.55 → **0.56**; hist kesişimi 0.67.
+- Kareye uyarlanan değerler (yönetmen plana işlesin):
+  | Değer | Tur-4 | Tur-5 | Neden |
+  |---|---|---|---|
+  | Kadraj kaydırması | 170 | 140 (hedef ×1.4) | ölü el parmak ucu y ≈ 1480 (alt bant üstü) |
+  | Eliasberg B / baş | elle | B 185, baş ×1.12, pelvis ≈ (600,1077) | hedefteki baş/gövde oranı |
+  | Zemin (figür) | 1670 | ZF 1395 (kalkık ayak); yerdeki diz ≈ 1350 (derinde) | sedyenin arkasında diz çöküş |
+  | Işık kaynağı | S (−260,−260) izdüşüm | KAYNAK (−700,−342), koni 0.42–1.56 | yarığın iki ucu; çokgen kit aracıyla |
+  | Sedye | düz, x 36–930 | çapraz (ön kenar eğimi 0.19), örtü sağda y 1790'a sarkar | hedefin çaprazı + alt üçte bir dolu |
+- Aldığım kararlar ve gerekçeleri:
+  - Arka duvar/zemin ışığına figür engel değil (kapı derinde, figür önde → gölgesi kameraya, örtüye düşer); 2B çokgende figürü engel saymak sağ duvarı yanlışlıkla karartıyordu. Arka sedyeler engel değil (alçak; gölgeleri ihmal) — onay bekliyor.
+  - Ölü el soğuk ortam ışığında: kapı ışığı sedyenin ön yüzüne fiziksel olarak ulaşamaz (K1 dersi); okunurluk değer farkıyla (soluk el / koyu tahta).
+  - Soldaki örtülü sedye kapı kanadının önünde (hedefteki gibi), ışık konisinin dışında.
+- Uyguladığım kurallar / yakaladığım ihlaller: Işığın yolu (çokgen kırpma, sedye önündeki zemin karanlık), tek kaynak, omuz başlığı (palto için alçak T), yüzde iç çizgi yok (zayıflık ton alanıyla), el parmaklı. **İhlal (açık):** kalkık ayağın ve yerdeki dizin zemin teması sedyenin arkasında, görünmüyor; yerdeki diz ZF'den ~45 px yukarıda (derinlik farkı varsayımı) — temas gölgesi görünmez.
+- Öz değerlendirme: **~5/10** — Paris'in yanında geri kalır. Mekân ışığı ve değer yapısı tur-4'ten iyi (sıcak duvar, p95 geçti, alt üçte bir dolu), figür ise hedefin gerisinde ve tur-4'ün yüzünden bile daha az karakterli.
+- Açık sorular / bir sonraki ajana notlar (kalan kusurlar, önem sırasıyla):
+  1. Diz çöküşü okunmuyor: kalkık diz kolun ve örtünün arkasında kalıyor, adam "masada oturan" gibi; uyluk kısaltılınca düz gri kutu. Diz kapağı hacmi + pantolon kıvrımı + dizin örtü üstünde görünmesi gerek (diz y ≈ 900'e, ya da örtü üst silueti 40–60 px aşağı).
+  2. Yüz genç/oyuncak: kafatası geniş, yüz düz ışıkta, gözler yuvarlak; zayıflık ton alanları 360 px'te kayboluyor. Kit Kafa'ya uzun yüz kanonu (kafatası x 0.92, çene uzun) ve yaşlı göz kapağı (üst kapak kıvrımı + düşük dış köşe) gerekiyor.
+  3. Örtü: yatay ton taraması hâlâ "çizgili şilte"; ışıklı alan figür gölgesiyle keskin yamuk. Tarama beden boyunca eğri (mod egri, tümsekleri izleyen) olmalı; aydınlık kenarı daha yumuşak.
+  4. Atkı yaka gibi düz bant; palto gövdesinde kumaş tonu tek düz (gölge yanı tarama zayıf); kenar yoğunluğu hedefin yarısı (0.56).
+  5. Sıcak piksel %13.8 (eşik 14): huzme bantları biraz güçlendirilebilir.
+- Eski bölümler: `npx tsc --noEmit` temiz; LeningradBodrum f120 değişiklik öncesi/sonrası **0** farklı piksel; FigurTest k5 render edildi, kırılma yok (dirsek kıvrımları + parmaklı el görünüyor). Commit yapılmadı.
