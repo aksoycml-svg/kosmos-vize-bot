@@ -33,14 +33,14 @@ import { crP, daire, HilalB, INC_POZ, IncEl, kapsul, Kivrim, KirpB, LgBasProfil,
 import { cr, dunya, Dunya, Hilal, Kirp, LgBaski, P2, pS } from "./lgOrtak";
 import { LH } from "./SokakHedef";
 
-const SD = 1941;
-const BOSLUK: [number, number] = [6, 11];
-const K_ISIK = 0.8 / 0.6;
-const BUGU = "#e8c6bc", GOLGE_K = "#5a4a78";
+export const SD = 1941;
+export const BOSLUK: [number, number] = [6, 11];
+export const K_ISIK = 0.8 / 0.6;
+export const BUGU = "#e8c6bc", GOLGE_K = "#5a4a78";
 // Petersburg cephe boyaları (hedef: okra, gül, krem, somon; tur-2'deki yeşilimsi gri yok)
-const CEPHE = ["#d8ae7c", "#d4a094", "#dcc29e", "#c99aa2", "#e0b48a"] as const;
+export const CEPHE = ["#d8ae7c", "#d4a094", "#dcc29e", "#c99aa2", "#e0b48a"] as const;
 
-type Bina = { s: 1 | -1; z0: number; z1: number; H: number; c: number; zk: number; adim: number; n: number };
+export type Bina = { s: 1 | -1; z0: number; z1: number; H: number; c: number; zk: number; adim: number; n: number };
 const binalar = (): Bina[] => {
   const out: Bina[] = [];
   for (const s of [-1, 1] as const) {
@@ -58,16 +58,16 @@ const binalar = (): Bina[] => {
   }
   return out;
 };
-const BINA = binalar();
+export const BINA = binalar();
 const SAG = BINA.filter((b) => b.s > 0);
 /** sağ cephenin z'deki yüksekliği (boşlukta 0) */
 const hSag = (z: number) => { if (z > BOSLUK[0] && z < BOSLUK[1]) return 0; const b = SAG.find((q) => z >= q.z0 && z < q.z1); return b ? b.H : 20; };
 const D_SAG = 22 * K_ISIK; // sol cepheden sağ cepheye ışın boyunca z farkı (29.3 m)
 const isikH = (z: number) => hSag(z + D_SAG) - 3.9;
 const ss = (a: number, b: number, x: number) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
-const bugu = (renk: string, z: number) => karistir(renk, BUGU, Math.max(0, Math.min(0.72, (z - 30) / 200)));
+export const bugu = (renk: string, z: number) => karistir(renk, BUGU, Math.max(0, Math.min(0.72, (z - 30) / 200)));
 
-const Cephe: React.FC<{ W: Dunya; b: Bina; vp: P2 }> = ({ W, b, vp }) => {
+export const Cephe: React.FC<{ W: Dunya; b: Bina; vp: P2 }> = ({ W, b, vp }) => {
   const u = b.s * 11, { z0, z1, H } = b, zm = (z0 + z1) / 2;
   const q = (za: number, zb: number, h0: number, h1: number, uu = u): V3[] => [[uu, h0, za], [uu, h0, zb], [uu, h1, zb], [uu, h1, za]];
   const boya = bugu(karistir(CEPHE[b.c], "#fff0d8", 0.2), zm); // güneşte: tam doygun + sıcak
@@ -136,7 +136,7 @@ const Cephe: React.FC<{ W: Dunya; b: Bina; vp: P2 }> = ({ W, b, vp }) => {
 /** zemin karı: ışık şeridi (tek kaynak) üç basamak; iki çiğnenmiş patika; tümsekli yığınlar (gölge yüzünde tarama); kızak izi; ön plan topakları */
 // tur-4 yürüyüş izleri: 5 yürüyen, seed'li sapan rota (rastgele yürüyüş), sol/sağ ayak, %15 boşluk, ara ara çiğnenmiş leke
 type Iz = { u: number; z: number; aci: number; leke?: number };
-const IZLER: Iz[] = (() => {
+export const IZLER: Iz[] = (() => {
   const out: Iz[] = [];
   [[-3.4, 1.4], [-1.6, 2.2], [0.6, 1.6], [2.4, 3.0], [-4.8, 6.0]].forEach(([u0, z0], k) => {
     let u = u0, du = (rnd(SD + 70, `d${k}`) - 0.5) * 0.06, z = z0;

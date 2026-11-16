@@ -554,3 +554,52 @@
   4. Atkı yaka gibi düz bant; palto gövdesinde kumaş tonu tek düz (gölge yanı tarama zayıf); kenar yoğunluğu hedefin yarısı (0.56).
   5. Sıcak piksel %13.8 (eşik 14): huzme bantları biraz güçlendirilebilir.
 - Eski bölümler: `npx tsc --noEmit` temiz; LeningradBodrum f120 değişiklik öncesi/sonrası **0** farklı piksel; FigurTest k5 render edildi, kırılma yok (dirsek kıvrımları + parmaklı el görünüyor). Commit yapılmadı.
+
+## motion · 2026-11-16 · SOKAK-LG P03a kalibrasyon sokak-tur-5 (yeni kit araçlarıyla)
+- Ne yaptım:
+  - `SokakT5.tsx` + `LeningradSokakT5` kompozisyonu (180 kare, kontrol f114). Mekân parçaları T4'ten (Cephe, BINA, IZLER, bugu) çağrılıyor. T4'e yalnız `export` eklendi, çizim değişmedi.
+  - Işık şeridi elle konmadı. Üstten görünüşte (u, z) `gorunurlukCokgeni` hesaplanıyor: kaynak güneş yönünde 1500 m uzakta, engeller sağ bloklar + sol sıra + sokak sonu binası + figür + kızak. Sonuç sokağa kırpılıp zemine izdüşürülüyor. Yarı gölge için aynı hesap üç basamakta (boşluk 0 / 0.9 / 2 m daraltılarak) yapılıyor. Yığın üstü de aynı levhayla aydınlanıyor.
+  - Kamera 4 m geri alındı (z −4). Kamera ışık levhasının arkasında kalıyor; şerit kadrajı çaprazlama geçiyor, ön plandaki kar gölgede.
+  - Gök yumuşak gradyan bantlı; güneş tarafında (sağ ufuk, kadraj dışı) ışıma var. Ayrıca baca dumanı (bulanık, güneşe bakan yanı sıcak), sokak sonunda pencereli karşı bina, uzakta yürüyen siluet (temas gölgeli), kızak + tahta kova + kızak izi, düşen kar ve nefes buğusu eklendi.
+  - Kit eklemesi `src/kit/figur/Sirt.tsx`: arkadan ¾ / omuz üstü görünüm (`sirtGeo`, `SirtFigur`). İçeriği: sırt silüeti + omuz başlığı (tek siluet), kol omuzdan dirseğe ve bileğe (uzuv profili, dirsek kıvrımları, kavisli kol dikişi, manşet), kalkık yaka, kayıp profil `Kafa`, katman yuvaları (`uzakEl/govde/ust/yakinEl`), sekme ışığı hilali. Govde, Kafa ve iskelet değişmedi.
+  - Eller IncEl ile çizildi. Sol el çanak avuç, içinde 10 kırıntı; 3 kırıntı avuç kenarından yerçekimiyle düşüyor (p 96/104/112). Sağ el ekmeği tutuyor: dört parmak dilimin alt-sağını önden sarıyor, ekmekte temas gölgesi var. Ekmek kalıp ekmeği dilimi (≈ el boyunun %58'i, kubbeli üst kabuk, 1.5 cm kalınlık, gözenekli iç). Askı omuzda kırılıyor ve tokalı.
+- Dokunduğum dosyalar: `src/kit/sablonlar/leningrad/SokakT5.tsx` (yeni), `src/kit/figur/Sirt.tsx` (yeni), `src/kit/sablonlar/leningrad/SokakT4.tsx` (yalnız export), `src/Root.tsx` (yalnız ekleme), `bolumler/leningrad-senfoni/kalibrasyon/sokak-tur-5/` (p03a.png, p03a-360.png, p03a-guvenli.png, hedef-yaninda.jpg, kiyas.json, kiyas.jpg).
+- Aldığım kararlar ve gerekçeleri:
+  - **Güneş diski sokak sonunda çizilmedi.** Hedefteki çapraz şeridin kaçış noktası kadrajın sağ dışında. Diskin sokak sonunda görünmesi ikinci bir ışık kaynağı demek olurdu ("tek kaynak" ihlali). Sokak sonunda yalnız gök ışıması var. Mekânlar §14.3 de "disk yok" diyor. → Yön kararı kullanıcıya/orkestraya ait; **onay bekliyor**.
+  - Sağ bloklar güneş yönünde paralelkenar çizildi, çapraz sokak kenarları ±1.5° saptırıldı. Dik ve derin tabanda güneş boşluktan geçemiyordu. Işına tam paralel kenar da algoritmada dejenere oluyor, tüm sokak "ışıkta" çıkıyordu.
+  - Figür ışık levhasının dışında kalıyor. Bu yüzden ellere doğrudan güneş düşmüyor; elleri aydınlık şeritten gelen zayıf sıcak sekme ve soğuk gök aydınlatıyor (aynı güneşten türüyor, ayrı kaynak değil).
+  - Tahta kova kullanıldı (mekânlar §14.5 kış paleti). Hedefteki galvaniz kova ile çelişiyor → **onay bekliyor**.
+
+  | Değer | Tur-4 | Tur-5 | Neden |
+  |---|---|---|---|
+  | Kamera | C (6.2, 1.65, 0→0.1) | C (6.2, 1.7, −4→−3.92), pan −16, tilt −3.5, 35 mm | levhanın arkasında; şerit çapraz, ön kar gölgede |
+  | Kızak | u 1.2, z 9.5 | u 0.2, z 14 | başın arkasında kalıyordu |
+  | Figür | elle koordinat | Sirt: C7 (−58, 1238), B 360, omuz açısı 9°, dirsek (566, 2085), bilek (700, 1436); uzak kol bilek (452, 1506); baş yaw 93 / pitch 24 | kit |
+  | Eller | E 196 | sağ E 206 açı −50 · sol E 200 açı −10 (çanak poz) | — |
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Tek ışık + ışığın yolu: şerit ve yığın üstü görünürlük çokgeninden geliyor. Güneşe sırtını dönen yığın yüzü gölgede.
+  - Hareket tamamlanır: kırıntılar kadrajın altından çıkıyor.
+  - Güvenli alan: 3 kilit (yüz, ekmek, avuç), ihlal 0. Avuç y ≈ 1478 ≤ 1500.
+  - Kırmızı yok.
+  - Bodrum için önce/sonra kontrolü (yalnız SokakT5/Sirt/Root değişikliği): LeningradBodrum f120 ve LeningradBodrumT5 f252 → **0 piksel fark**. `tsc` temiz.
+  - Reçete:
+    - A1 ✓, A2 ✓ (yumuşak bantlar), A3 ✓ (üç basamak), A5 ✓, A7 ~ (kenar ışığı zayıf), A9 ~ (kar ve kumaş taraması var, cephe T4'ten).
+    - A8 ✓ sıcak %25.8, ama hedef ~%17 → fazla.
+    - B1–B4, B7: T4 cephesi (söve, sandrik, bant, boru, korniş karı). B ayrıntısı hedefin gerisinde.
+  - Sayılar (tur-4 → tur-5 → hedef):
+
+    | Ölçüt | Tur-4 | Tur-5 | Hedef |
+    |---|---|---|---|
+    | Sıcak piksel | %35 | %25.8 | %17.4 |
+    | C* p95 | 34 | 31.1 | 27.3 |
+    | Kenar oranı | 0.54 | 0.542 | — |
+    | L* p5 / p95 | — | 12.8 / 81.7 | — |
+    | SSIM | — | 0.325 | — |
+    | En uzak bölgeler | — | g30, g10, g20 (sol kenar: figür) | — |
+- Açık sorular / bir sonraki ajana notlar:
+  - **Öz puan 5.** Eleştirmenden ~1 düşük bekliyorum. Kritik kalanlar:
+    - (1) Kayıp profil baş hâlâ düz ve "maske" gibi okunuyor: yanakta mor leke, yüzde çift kontur, saç kapak gibi. Kafa yaw > 90'da saç bölgesi ve yüz halkası bozuluyor. Kit işi: Kafa'ya arka-¾ desteği.
+    - (2) Eller IncEl sınırında: düz parmaklı, hâlâ "eldiven" okunuyor. Ekmek tutuşu düzlemsel, parmaklar 3B kıvrılmıyor.
+    - (3) Sıcak %25.8 > %17. Levha geniş: boşluk 5 m (T4 BINA). Daraltmak için T4 bina üretimine parametre gerekiyor.
+    - (4) Cephe süslemesi ve kar dokusu hedefin gerisinde. Sağdaki yığın üstündeki aydınlık parça kopuk duruyor (fiziksel olarak doğru, okunuşu zayıf).
+  - İterasyon: 2 iç iterasyon yapıldı: (a) şerit hatası + figür + el; (b) baş, tutuş ve kar taraması. Ardından 1 hata düzeltme geçişi geldi (görünürlük dejenerasyonu + el sırası). Kurala göre burada durdum.
