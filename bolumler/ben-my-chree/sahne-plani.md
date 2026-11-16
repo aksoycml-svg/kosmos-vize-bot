@@ -1,4 +1,6 @@
-# Sahne planı — Ben-my-Chree (yönetmen, 2026-11-15)
+# Sahne planı — Ben-my-Chree (yönetmen, 2026-11-15; yön değişikliği 2026-11-16)
+
+> **YÖN DEĞİŞİKLİĞİ (kullanıcı, notlar/tur-9, tur-10):** bölüm P01 K1 karesinin manzara diliyle kurulur. **Geçerli plan = §12 (yeni)**. §2, §3 (ekran yazıları geçerli), §4, §5–§11 ve "12-ESKİ" yalnız tarihçedir; §0 (ışık, rüzgâr, lint) ve §1 (kit eşleme, yeni mekân listesiyle) geçerlidir. Mekân yalnız **LIMAN, KIYI, HARITA**; GEMI-INSERT ve yakın figür yok. Süreler (3666 kare = 61.1 sn) değişmedi.
 
 Girdiler: `onayli-anlatim.md` (v5 kilit) · `public/benmychree/ses/plan-sureleri.json` + `{tr,en}/Pxx.json` · `dokunuslar.md` · `arastirma.md` · `src/kit/KATALOG.md`, `GORSEL-RECETE.md`.
 **Bu belge bolum.json değildir.** Deniz/liman/gemi/batarya şablonları kitte yok; kurulum ekibi kurar, sonra json yazılır. 1080x1920, **60 fps**. Kare = mutlak (bölüm başı 0). `yerel` = plan içi kare (bolum.json `kare` alanı bunu kullanır).
@@ -250,7 +252,7 @@ HARITA-MEIS düşük risk (mevcut HARITA dili) → ilk bölüm renderında kabul
 - Okunurluk (≥%10 ve ≥1 sn): D1 uçak %30+ 4.3 sn · D2 çıpa %25+ 2.3 sn · D3 namlu ucu %12 1.3 sn · D4 el %15 2.0 sn · D5 su sütunu %25 ~1 sn her biri, isabet 1.4 sn · D6 kapı %35 2.0 sn · D7 bot %18+ 2.97 sn · D8 simit %10.4 1.9 sn.
 - Açık sorular: bkz. katkı raporu.
 
-## 12. Çekim kartları (SINEMATOGRAFI-SOZLUK.md §9 biçimi; 19 çekim)
+## 12-ESKİ. Çekim kartları — GEÇERSİZ (tur-9/10 yön değişikliği ile arşivlendi; yalnız tarihçe) (SINEMATOGRAFI-SOZLUK.md §9 biçimi; 19 çekim)
 Kamera 2.5D dünyada gerçek z (m) ile gezer; lens tam kare eşdeğer mm (300 ≈ 7° yatay, 85 ≈ 24°, 50 ≈ 40°, 35 ≈ 55°, 24 ≈ 74°). Her hareket plan sonundan ≥ 12 kare önce biter. Shaky Cam, Crash Zoom, Whip/Swish Pan, Dutch Angle **yok**; `darbe` yalnız P06 V3 ve P07b (≤ 2 px). §4'teki eski "itme/cs/yükseklik" ifadelerinde çelişki olursa **bu kartlar geçerlidir**.
 
 **P01 · kare 0–190 · LIMAN**
@@ -550,3 +552,291 @@ P01 merak/tehdit → P02a hayranlık, P02b merak/önem → P03 güven → keşif
 - **Alçak açı:** P02a, P03b, P05, P06 V3, P09 (P10a Eye Level: telefoto 20 m). **Yüksek açı / Establishing EWS:** P03a (Crane Down), P07a sonu, P08b sonu, P10b (Top Shot).
 - **Dolly Zoom:** yalnız P04. **Paralaks:** P01, P02a, P03c, P06 V2. **Kilitli çekim:** yalnız P10a (bilinçli tutma).
 - Üst üste aynı ölçek+hareket yok (en çok 2): ardışık hareketler Dolly In · Truck+Dolly · Pan · Crane Down · Pedestal Down · Dolly In (POV) · Dolly Zoom · Arc+Pull Out · Dolly In · Truck · Dolly In · Crane Down · Dolly In · Dolly Out · Side Tracking · Dolly Out+Crane Up · Pedestal Down · Locked-Off · Tracking.
+
+---
+
+## 12. YENİ YÖN — geçerli sahne planı (tur-10; 15 çekim, 3666 kare = 61.1 sn, 60 fps, 9:16)
+
+**Kurallar:** mekân yalnız **LIMAN** (K1 dili, kilit), **KIYI** (batarya/yamaç; uzak figür, nesne insert) ve **HARITA** (mevcut kit). Yüz yakın planı yok. Askerler yalnız figür < ekran yüksekliğinin %5'i olduğunda **siluet**; dimdik, ağırbaşlı, yerleşimi anlamlı (dolgu/kuşatan kütle değil). Her çekimde duygu, kamera hareketi, lens ve katman notu (ön plan · ışık olayı · atmosfer). Işık, rüzgâr (335°), `sirt_sikistirma` lint'i §0'daki gibi. Katman odak farkı (ön plan ve arka plan farklı F, "tiyatro telefoto") bilinçli sapma: `lint: {izin:["katman_odak_farki"], not:"K1 kilit dili: ön plan flu kaya, uzak gemi telefoto"}`. Dal örtüsü (kıyıda) kanıtsız dramatizasyon: `lint: {izin:["dal_ortusu"], not:"kullanıcı yönü tur-10; mevzi gizleme kaynakta yok"}`.
+
+### 12.1 Zaman tablosu
+| çekim | kare | sn | şablon / görünüm | duygu | tempo |
+|---|---|---|---|---|---|
+| P01 | 0–190 | 3.17 | LIMAN `kiyidan-ada` — **KİLİT (K1)** | merak/tehdit | hizli |
+| P02 | 190–603 | 6.88 | LIMAN `gemi-orta` (tek çekim) | hayranlık | nefes |
+| P03 | 603–1091 | 8.13 | HARITA `meis` (tek çekim, kamera_takip) | güven → keşif | nefes |
+| P04 | 1091–1388 | 4.95 | LIMAN `karsi-kiyi` (gemi güvertesinden) — **DOLLY ZOOM** | şaşkınlık | bekle |
+| P05a | 1388–1507 | 1.98 | KIYI `batarya-genis` | kararlılık (gösterişsiz) | nefes |
+| P05b | 1507–1627 | 2.00 | KIYI `durbun-insert` (El40, yüz yok) | dikkat | bekle |
+| P06 | 1627–2174 | 9.12 | LIMAN `kiyidan-ada` + ön plan KIYI top (tek long take) | gerilim → fark ediş | bekle |
+| P07a | 2174–2324 | 2.50 | LIMAN `gemi-orta` (kıç) | kontrol kaybı | nefes |
+| P07b | 2324–2444 | 2.00 | LIMAN `gemi-orta` (hangar) | şok (kontrollü) | hizli |
+| P07c | 2444–2607 | 2.72 | LIMAN `kiyidan-ada` (P01 kadrajı) | çaresizlik | bekle |
+| P08a | 2607–2812 | 3.42 | LIMAN `gemi-orta` (botlar) | hüzün/gerilim | nefes |
+| P08b | 2812–2990 | 2.97 | LIMAN `gemi-orta` → geniş | rahatlama/hüzün | bekle |
+| P09 | 2990–3172 | 3.04 | LIMAN `kiyidan-ada` (aynı kadraj) | kayıp/kaçınılmazlık | nefes |
+| P10a | 3172–3406 | 3.90 | LIMAN `kiyidan-ada` + KIYI ön plan top — **saygı anı** | saygı/sükûnet | bekle |
+| P10b | 3406–3666 | 4.33 | HARITA `meis` | kader → döngü | nefes |
+Sürekli ritim: tempo bekle/nefes/hizli üst üste en çok 2; çekim süreleri 1.98–9.12. Patlama: P06 isabeti (kare 2091) ve P07b alevi (2386). ≥1 sn ses dinlenmesi: P10 sonu (+30 kare sessiz kuyruk, konuşma 7.10'da biter → 1.14 sn). Çıplak kesme: P08b→P09 (zaman atlaması), P05a→P05b (aynı eylem, el insert'i; taşıyıcı dürbün yönü). EN ses cümle ofsetleri: §2 tablosu aynen (P06 s2 +1.20, s3 +1.76; P07 s1b +0.75, s2 +0.81; P08 s1 +0.70, s2 +1.38; P10 s2 −0.12).
+
+### 12.2 Dokunuşların yeni durumu (yaratıcı yönetmene not için)
+| dokunuş | durum | yeni biçim |
+|---|---|---|
+| D1 derrick/uçak (P02) | **kalır** | orta plan; uçak ≥ %10 (≈ 300 px) 4.3 sn |
+| D2 çıpa/zincir | **çıkar** (insert yok) | P03 haritada anlatılır |
+| D3 namlu parıltısı (P04) | **kalır, uyarlandı** | çalılar arasında KOR parıltısı, halesi ≥ 60 px; oyuk/namlu gövdesi yok |
+| D4 teğmen pat | **çıkar** (yüz/el yakın planı yok) | yerine D4′: dürbün tutan el insert'i, başparmak odak halkasını bir tık çevirir (El40, yüz yok) |
+| D5 su sütunları (P06) | **kalır, uyarlandı** | uzak plan; sütun ≈ %7–8 ekran yüksekliği (stilize ×1.8), 360 px'te ≥ 28 px; "≥ %25" beyanı bu planda geçersiz |
+| D6 hangar kapısı | **uyarlandı** | kapı yok; hangar yapısından alev + duman (orta plan, alev ≥ %10) |
+| D7 bot motoru (ölü/tutan) | **uyarlandı** | krank çıkar; küçük bot gemiden ayrılır, köpük ve açılma |
+| D8 simit | **çıkar** (orta planda ≈ 6 px) | yerine D8′: gemi sancağa yatar ve batar (aynı kadraj) |
+Toplam 7 dokunuş (D1, D3, D4′, D5, D6, D7′, D8′).
+
+### 12.3 Çekim kartları (SINEMATOGRAFI-SOZLUK §9 + DUYGU)
+**P01 · 0–190 · LIMAN `kiyidan-ada` — KİLİT (K1, kalibrasyon/tur-4/K1_P01_k124.png)**
+```
+DUYGU: MERAK / TEHDİT
+WIDE SHOT (WS)
+EYE LEVEL (kayanın 1.2 m üstü, deniz +50 m)
+DOLLY IN + LATERAL TRACKING + PARALLAX — z 0→+3 m, x 0→−0.6 m, f0–175, Static Hold 15 kare
+DOLLY TRACK
+375MM TELEPHOTO (F 11 270)
+SHALLOW FOCUS: ön plan kaya (z 12 m) flu; gemi ve ada net
+SLOW, EASE OUT
+60 FPS / 9:16
+```
+- Katman: ön plan kaya + oyuk + çizgi; ışık olayı: kontrajur alçak güneş, dalga sırtlarında gül-altın vuruşlar; atmosfer: ufuk buğu bandı, hale. **Kilit: kare, kompozisyon ve parametreler değişmez**; yalnız `kamera` yolu eklenir. Gerekçe: Q1 merak; Q5 yavaş dolly gözü oyuktan gemiye taşır; Q6 oyuğun içi saklı. kontrol_kare 124.
+
+**P02 · 190–603 · LIMAN `gemi-orta` (tek çekim, 6.88 sn)**
+```
+DUYGU: HAYRANLIK
+MEDIUM WIDE SHOT (kıç + derrick + uçak) → WIDE SHOT (tüm gemi)
+EYE LEVEL (deniz +4 m, rıhtım ucu; ≈ 150 m → 330 m)
+DOLLY OUT (Pull Out) + PAN LEFT — z 0→−180 m, pan −12°, f0–413; EASE IN: ilk 260 karede ölçek değişimi ≤ %20
+DOLLY TRACK (rıhtım rayı, sanal)
+135MM TELEPHOTO (başlangıç, F 5 600) → 85 mm görünümü
+DEEP FOCUS (derrick, uçak, gemi, ada net)
+VERY SLOW → decelerating, FLUID
+60 FPS / 9:16
+```
+- Katman: ön plan flu rıhtım halatı/ark taşı (z 6 m); ışık olayı: alçak güneş kanat kenarında, şamandıra altında su ışıltısı; atmosfer: tuz buharı, uzakta kale. **D1:** derrick uçağı indirir f30–258, şamandıralar suya değer **f258 (abs 448)**, halat gevşer 258–282. Uçak ≈ 300 px (%15) f0–260. Pull Out son 150 karede tüm gemiyi (arka bacanın gerisinde hangar yapısı, can botları küçük) kurar; yazı "118 m · 24,5 knot" f100–280.
+- Gerekçe: Q1 gemiye hayranlık/güven; Q5 geri çekilme önce derrick işini sonra gemi boyunu açıyor (süs değil); Q6 hangar yapısı görünür (P07 kurulumu), alev yok. Foley: vinç-halat 30–250, samandıra-sap 258, halat-gevsek 270. kontrol_kare 258.
+- **Okunurluk:** uçak %15, net 4.3 sn; derrick ve halat ≥ %20.
+
+**P03 · 603–1091 · HARITA `meis` (tek çekim, 8.13 sn)** — mevcut kit HARITA, yeni `harita_gorunum: "meis"` (kıyı verisi: GSHHG/OSM, orkestra kararı)
+```
+DUYGU: GÜVEN → KEŞİF
+ESTABLISHING SHOT (harita) — TOP SHOT
+TOP SHOT (overhead)
+TRACKING (kamera_takip: Meis limanından Kaş kıyısına) + SLOW ZOOM IN (kit itme, 2D) — f0–488
+MOTION CONTROL RIG (sanal, kit)
+LENS YOK (2D)
+DEEP FOCUS
+SMOOTH, SLOW, CONSTANT SPEED
+60 FPS / 9:16
+```
+- Olaylar: Meis ada ikonu + liman; `igne {kare:200}` ("demirledi", abs 803, temas igne-tak); `rota_ciz {bas:290, bit:400}` Meis → Kaş (iki kıyı arası 2 km çizgisi); KitSayac "2 km" f368–470; etiketler yazı katmanında ("Meis / Kastellorizo", "Kaş"). Harita kısıtı: gemi ikonu yok (iğne gemiyi temsil eder).
+- Gerekçe: Q1 güven sonra keşif; Q5 takip çizgiyi karşı kıyıya taşır; Q6 Kaş kıyısı boş bırakılır (P04'te cevap). kontrol_kare 200.
+- `kit_eksik` (küçük): Meis–Kaş kıyı çizgisi verisi.
+
+**P04 · 1091–1388 · LIMAN `karsi-kiyi` — DOLLY ZOOM (bölümün tek kullanımı)**
+```
+DUYGU: ŞAŞKINLIK (boş kıyı arkadan üstümüze gelir)
+WIDE SHOT (WS), POINT OF VIEW (geminin baş güvertesinden)
+EYE LEVEL (deniz +6 m, güverte)
+DOLLY ZOOM / VERTIGO — kamera z 0→−12 m (Dolly Out, güverte boyunca), zoom 150→300 mm (F 5 400→10 800), f0–250, Static Hold f250–297 (47 kare kuyruk)
+DOLLY TRACK (güverte rayı) + MOTORIZED ZOOM (konu mesafesi/odak sabit)
+150→300MM ZOOM
+DEEP FOCUS: baş direği (konu, z 12→24 m) ve karşı kıyı (z 2000 m) net
+VERY SLOW, EASE IN / EASE OUT
+60 FPS / 9:16
+```
+- **Konu (ekranda sabit):** geminin baş direği + gergi halatı (sol kenar, ön plan): direk genişliği **90 px sabit (±2 px)**, x 40–130; korkuluk üst çubuğu y 1620 sabit. **Arka plan:** Kaş yamacı (kireçtaşı basamak, koyu-zeytin maki lobları) **×2 büyür**: yamaç yüksekliği ≈ 400 px → 800 px, kadrajı doldurur; ufuk ve gök üstte. Ön plan alt kenarda: güverte tahtası ve halat kangalı (flu).
+- **KOR parıltısı (D3):** maki lobları arasında kaya basamağında tek parlak nokta, **yerel 190** (abs 1281); halesi ≥ 60 px (2 km'de metal yansıması; ışık güneş kamera arkasında, rel 220); 186–232 net; sonra gölgeye. Kor rengi sahnenin en doygun/parlak noktası, başka nesnede yok.
+- **Okunurluk (kalibrasyon beyanı):** 360 px'te "yamaç + parıltı" okunur: yamaç ≥ %55 ekran yüksekliği, parıltı halesi ≥ 60 px (360'ta ≥ 20 px), net ≥ 1.0 sn; yamaç ile parıltı L* farkı ≥ 35. Namlu gövdesi çizilmez (yalnız KOR).
+- Atmosfer: buğu bandı, yamaç tozu yok; ışık olayı: parıltı; ön plan: direk. Yazı üstte f100–285 ("İngiliz kayıtları: 16 top · Ertuğrul: 4 dağ topu").
+- Gerekçe: Q1 şaşkınlık: gemi güvende sanıyor, kıyı birden ağırlaşıyor (dolly zoom bölümün en güçlü anı); Q5 duyguya doğrudan hizmet, tek kullanım; Q6 yamaç ve parıltı görünür, kimin ve kaç topun olduğu saklı. Hareket şeridi f0, 62, 125, 187, 250. kontrol_kare 200. Foley: kuru rüzgâr; metal-tink-kisik 190 (−12).
+
+**P05a · 1388–1507 · KIYI `batarya-genis` (≈ 2.0 sn)**
+```
+DUYGU: KARARLILIK (gösterişsiz, onurlu)
+WIDE SHOT (WS); top hattı derinlikte: Z 12 m'de kalkanlı top, arkada Z 24–48 m'de üç top ve yanlarında figürler
+LOW ANGLE (0.6 m yamaç, yukarı bakış)
+LATERAL TRACKING (Truck Right) + PARALLAX — x 0→+1.5 m, f0–105; Static Hold f105–119
+DOLLY TRACK (kısa)
+80MM (F 2 400)
+DEEP FOCUS: top ve figürler net; ön plan dal (z 3 m) yumuşak
+SLOW, SMOOTH, EASE OUT
+60 FPS / 9:16
+```
+- Konumlar: ön plan top (kalkan ≈ 240 px genişlik, ≈ %16) sağ-alt x 420–880 y 1000–1300; **dal örtüsü** (kesik dal ve yaprak, flu, top çevresinde ve üstünde); arkada top hattı perspektifle küçülür; **figürler < %5** (85–95 px; siluet kabul): 4 kişi, ikişer top yanında, dimdik, ağırbaşlı; teğmen de aralarında (ayırt: biraz öne, sakin duruş). Arkada deniz + ada + uzak gemi (x ≈ 700 sağ-üst, küçük). Işık: rel 65 sağ-ön, kalkan kenarında rim; atmosfer: yamaç tozu, buğu.
+- Gerekçe: Q1 sakin güç; Q5 paralaks dallar arasından topu bulur, alçak açı ağırlık verir; Q6 top ve figürler görünür, hedef (gemi) uzak ve küçük. Yazı üstte f20–225 (iki satır, devam P05b). Alt 1/3: yamaç kayası + ot + gölge.
+- Okunurluk: top ≥ %16, figürler siluet < %5 (≥ 30 px 360'ta).
+
+**P05b · 1507–1627 · KIYI `durbun-insert` (2.0 sn)**
+```
+DUYGU: DİKKAT (gözlem, hedef)
+INSERT SHOT / DETAIL — El40 (yüz yok), el + kol manşeti + dürbün, ≥ %35 ekran
+EYE LEVEL (el hizası, yandan)
+SLOW PUSH IN — z 0→+0.3 m, f0–90; Static Hold f90–120
+SLIDER
+135MM
+SHALLOW FOCUS: dürbün ve el (z 0.8 m) net; arka plan deniz/ufuk yumuşak (σ 8)
+SLOW, EASE OUT
+60 FPS / 9:16
+```
+- **D4′:** başparmak dürbünün odak halkasını bir tık çevirir f20–70 (el tek parça siluet; iç dikiş yok); dürbün karakter yönünde sağa (güneye). Foley: halka-tık (−9). Yüz kadrajda yok (omuz/çene dahi yok). kontrol_kare yerel 65. Işık: sağ-arka kenar ışığı; lens parıltısı yok (KOR tekil).
+- Gerekçe: Q1 dikkat; Q5 push-in elin kararlılığını gösterir; Q6 yüz ve hedef görünmez. Alt 1/3: dürbün kayışı + kumaş + yamaç.
+
+**P06 · 1627–2174 · LIMAN `kiyidan-ada` + ön plan KIYI top — LONG TAKE (9.12 sn) ★**
+```
+DUYGU: GERİLİM → FARK EDİŞ
+WIDE SHOT (WS), uzak gemi (P01 kadrajı); ön planda kalkanlı top namlusu (alt-sol)
+EYE LEVEL (kayanın 1.2 m üstü, deniz +50 m; P01 noktası)
+DOLLY IN + RACK FOCUS (LONG TAKE) — z 0→+4 m, f0–500 sabit hız; netlik f100–150; Static Hold f500–547
+DOLLY TRACK (P01 rayı)
+375MM TELEPHOTO (F 11 270)
+SHALLOW FOCUS + RACK FOCUS: ön plan top ucu/dal (z 14 m) → gemi (z 2000 m) f100–150 ('iki saat sonra … ateş açtı')
+VERY SLOW, CONTROLLED; atışta ve isabette kamera sarsılmaz
+60 FPS / 9:16
+```
+- **Olaylar (yerel):** atış 1 **186** (namlu ağzı küçük KOR parlaması ≤ 5 kare + toz, namlu 24 px geri) · sütun 1 **246** · atış 2 262 (görünmeyen: sesi uzak) · sütun 2 **322** · atış 3 404 (ses) · **isabet 464** (abs 2091): hangar bölgesinde `darbe {siddet 0.5, sarsinti ≤ 2 px}` krem flaş + KOR çekirdek + ince duman. Hold 464–547 (1.38 sn) + P07a ilk 40 kare aynı duman ≈ tutma 3.6 sn.
+- **Su sütunları (uzak plan, stilize ×1.8):** ≈ 150 px yükseklik (≈ %7.8), genişlik ≥ 60 px, 360'ta ≥ 28 px; beyaz kenar ışığı; yükselir 24 / tutar / çöker 22 kare. Ekran yazısı "1 · 2 · 3" f246 / 322 / 464 üst bantta; sütun tepeleri y ≥ 700 (yazı bandına binmez).
+- **Okunurluk:** isabet çakımı ≥ %5 (≥ 100 px, KOR halesi) 1.4 sn; sütunlar 1.0 sn her biri; gemi 670 px.
+- **Ön plan (katman notu):** kalkanlı top namlusu ve dal sol-altta (flu → rack focus ile netleşir/kaybolur), kaya; **ışık olayı:** KOR atış/çakım, dalga vuruşları; **atmosfer:** toz, duman (rüzgâr 335°, ekranda sağa), buğu.
+- Gerekçe: Q1 gerilim, sonra "bu sefer su yok" fark edişi; Q5 tek long take sabır/gerilim verir, rack focus dikkati topa sonra gemiye taşır, gösteri yok; Q6 gemi hedefi görünür, merminin düşeceği yer saklı. Slow motion yok. kontrol_kare 470 (abs 2097).
+- Foley: top-gum 186 (−7), su-sutunu 246, 322 (−7), uzak gümleme 262, 404 (−12), isabet-tok 464 (yatağın 6–8 dB üstü).
+
+**P07a · 2174–2324 · LIMAN `gemi-orta` (kıç)**
+```
+DUYGU: KONTROL KAYBI (sessiz, ölçekle)
+MEDIUM WIDE SHOT (kıç + hangar yapısı + kıç köpüğü)
+EYE LEVEL (deniz +4 m)
+DOLLY IN (çok yavaş) + PAN RIGHT — z 0→+8 m, pan +4°, f0–125; Static Hold f125–150
+DOLLY TRACK
+135MM
+DEEP FOCUS
+VERY SLOW, DECELERATING
+60 FPS / 9:16
+```
+- Olay: P06'dan taşınan **ince duman** hangardan yükselir; kıç suyunda **boşa dönen köpük** büyür (dümen bozuk; gemi yerinde), ağır gövde. Katman: ön plan flu ark/halat; ışık: kontrajur h 18°; atmosfer: duman, su buharı. Foley govde-inleme yerel 112 (−9).
+- Gerekçe: Q1 gemi yönetilmiyor; Q5 yavaş dolly ağırlık, sessizlik; Q6 köpük görünür, hasarın boyu saklı. Yazı yok (P07b'de).
+
+**P07b · 2324–2444 · LIMAN `gemi-orta` (hangar) ★ kalibrasyon**
+```
+DUYGU: ŞOK (kontrollü)
+MEDIUM SHOT (hangar yapısı + arka baca, alev ve duman)
+EYE LEVEL (deniz +4 m)
+DOLLY IN (yavaş) — z 0→+4 m, f150–245; Static Hold f245–270
+DOLLY TRACK
+135MM
+SHALLOW FOCUS: hangar ve alev (z 150 m) net; ön plan halka/su (z 8 m) yumuşak
+SLOW, EASE OUT
+60 FPS / 9:16
+```
+- **D6:** hangar yapısı gri-kum, yan duvarda koyu panel; **kenar kızıl ışık f160–204 → alev patlaması f212 (abs 2386)**, alev dilleri hangar çatı kenarından ve panel aralığından (COL-US `alev` 3 katman), duman yukarı-sağa (rüzgâr 335°); `darbe {kare:212, siddet 0.5, duman:true}` (≤ 2 px sarsıntı). Alev ≥ %10 ekran (≥ 192 px) 1.5 sn net. KOR tek: alev. Kapı/tayfa yok.
+- Gerekçe: Q1 şok ama panik gösterisi yok; Q5 yavaş dolly alevi büyütür; Q6 alev ve duman görünür, hangarın içi saklı. Yazı üstte f160–330. Foley ates-tutus 212, yangın çıtırtısı. kontrol_kare yerel 214 (abs 2388).
+- **Okunurluk:** alev ≥ %10, duman sütunu ≥ %25 yüksekliğinde; 360 px'te alev ≥ 35 px; alev–gemi L* farkı ≥ 30.
+
+**P07c · 2444–2607 · LIMAN `kiyidan-ada` (P01 kadrajı)**
+```
+DUYGU: ÇARESİZLİK
+WIDE SHOT (WS)
+EYE LEVEL (P01 noktası)
+DOLLY OUT — z 0→−3 m, f270–420; Static Hold f420–433
+DOLLY TRACK (P01 rayı)
+375MM TELEPHOTO
+SHALLOW FOCUS (kaya flu, gemi net)
+VERY SLOW, DECELERATING
+60 FPS / 9:16
+```
+- Gemi yerinde çakılı, kalın duman sütunu kadrajın üstünden çıkar (fade yok), kıç köpüğü boşa, gergin çıpa zinciri uzaktan ince çizgi. Gerekçe: Q1 çaresizlik; Q5 geri çekilme büyük resmi açar; Q6 gemi ve duman, kimin ne yaptığı saklı.
+
+**P08a · 2607–2812 · LIMAN `gemi-orta` (botlar)**
+```
+DUYGU: HÜZÜN / GERİLİM (yavaş umut)
+MEDIUM WIDE SHOT (borda ve botlar)
+EYE LEVEL (deniz +2 m)
+LATERAL TRACKING (Truck Right) — x 0→+25 m, f0–195; Static Hold f195–205
+STEADICAM (süzülme, sanal)
+100MM
+DEEP FOCUS
+SMOOTH, FLUID, CONSTANT SPEED
+60 FPS / 9:16
+```
+- Borda yanında 3 bot, tayfa ve yaralılar küçük siluetler (< %5, oturan/ayakta, sargılar gri-kum), arkada duman perdesi. Gerekçe: Q1 çabanın ağırlığı; Q5 yan takip akış ve ritim verir; Q6 botlar görünür, hangisinin çalışacağı saklı. Yazı üstte f250–375 ("5 yaralı · ölen yok").
+
+**P08b · 2812–2990 · LIMAN `gemi-orta` → geniş (D7′)**
+```
+DUYGU: RAHATLAMA / HÜZÜN
+MEDIUM WIDE SHOT → WIDE SHOT
+EYE LEVEL → HIGH ANGLE (deniz +2 m → +25 m)
+DOLLY OUT + CRANE UP — x +25→+32 m, z 0→−120 m, y 2→25 m, f205–365; Static Hold f365–383
+CRANE (sanal)
+100MM → 50 mm görünümü
+DEEP FOCUS
+SMOOTH, FLUID, DECELERATING
+60 FPS / 9:16
+```
+- **D7′:** tek küçük bot gemiden ayrılır (motor tutar yerel 245 = abs 2852, köpük izi), açılır, **sağ kenardan çıkar f360**; arkada yanan gemi, V iz halkaları. Foley motor-tutus 245, bot-su 245–340. Gerekçe: Q1 kurtuluş ve ağırlık; Q5 geri çekilme ve yükselme büyük resmi/hüznü verir; Q6 bot ve gemi görünür, kayıp yok. kontrol_kare 248.
+
+**P09 · 2990–3172 · LIMAN `kiyidan-ada` (aynı kadraj, D8′)**
+```
+DUYGU: KAYIP / KAÇINILMAZLIK
+WIDE SHOT (WS)
+EYE LEVEL (P01 noktası; güneş h 12°)
+DOLLY OUT (çok yavaş) — z 0→−2 m, f0–150; Static Hold f150–182
+DOLLY TRACK (P01 rayı)
+375MM TELEPHOTO
+DEEP FOCUS (kaya yumuşak)
+VERY SLOW, DECELERATING
+60 FPS / 9:16
+```
+- **D8′:** gemi sancağa yatar f10–140 (≈ 22°), su hattı gövdeye tırmanır, duman söner; sığ suda yarı yatık durur; halkalar f100–150. Foley govde-inleme 10–150 (−9), kabarcık 110–150. Gerekçe: Q1 sessiz kayıp; Q5 yavaş geri çekilme "uzaklaşan" his, süs yok; Q6 yarı yatık gövde görünür, tam enkaz P10a'da. kontrol_kare 104.
+
+**P10a · 3172–3406 · LIMAN `kiyidan-ada` + KIYI ön plan top — SAYGI ANI ★ kalibrasyon**
+```
+DUYGU: SAYGI / SÜKÛNET
+WIDE SHOT (WS) — GROUP (siluetler), arkada batık
+EYE LEVEL (kamera P01 noktası, h 6°)
+LOCKED-OFF SHOT — STATIC HOLD (3.9 sn)
+TRIPOD (kilitli)
+133MM (F 4 000); arka plan katmanı tiyatro telefoto ×2 (F 8 000) — batık okunsun (lint katman_odak_farki)
+DEEP FOCUS (top ve siluetler net; dal z 3 m yumuşak)
+STATIC HOLD
+60 FPS / 9:16
+```
+- **Konumlar:** ön plan (Z 14 m): **kalkanlı top** sol-orta x 60–520 y 980–1330 (kalkan ≈ 340 px), yanında **dal** (flu, kesik dal ve yaprak, sol-üst köşe ve alt kenar). Mevzi hattında üst yamaçta (Z 70–80 m) **5 dimdik siluet** (teğmen + 4 er), 85–92 px (≈ %4.7), iki grup halinde, yüzler denize/batığa dönük, omuz omuza değil (aralıklı); ikinci top onların yanında küçük. Arkada limanda **batık gemi** (yarı yatık, bacalar eğik; su hattı y ≈ 925, x 190–860 tiyatro ölçeği) ve kale siluetini; **alçak güneş (h 6°)** sağ-arkadan: siluetlerin ve top kalkanının sağ kenarında 2–3 px sıcak kenar ışığı (`#eec5a2`), gökte turuncu→mor basamaklar, su ışıltısı. Kor, duman, ateş, selam, bayrak, tören yok; yalnız rüzgâr (ot, dal) ve çok hafif tuz zerresi.
+- **Okunurluk (kalibrasyon beyanı):** siluet boyu ≥ 85 px (360'ta ≥ 30 px) ve dimdik, ışık kenarıyla ayrışır (L* farkı ≥ 25); kalkanlı top ≥ 300 px (okunur "top"); batık ≥ 470 px genişlik (360'ta ≥ 157), eğik bacalar görünür; net 3.9 sn.
+- Gerekçe: Q1 sükûnet ve saygı; Q5 hareket yok, süs yok (ağırbaşlılık kalıyla, yüzsüz kalabalık "dolgu" değil: sayılı, aralıklı, dimdik); Q6 batık, top ve insanlar görünür, ölüm gösterisi yok. Eye Level ve locked-off: onur abartısız. Alt 1/3: mevzi kayası, dal, ot sapları, uzayan gölgeler. kontrol_kare yerel 120 (abs 3292). Yazı yok (altyazı alt bantta).
+
+**P10b · 3406–3666 · HARITA `meis`**
+```
+DUYGU: KADER → DÖNGÜ
+ESTABLISHING — TOP SHOT
+TOP SHOT
+TRACKING (rota ucu) + SLOW ZOOM IN (kit 2D) — Static Hold son 30 kare
+MOTION CONTROL RIG (sanal, kit)
+LENS YOK
+DEEP FOCUS
+SLOW, CONSTANT SPEED
+60 FPS / 9:16
+```
+- `rota_ciz {bas:330, bit:412}` Kaş mevzii → Meis limanı, `igne {kare:426, dusme:14}` (abs 3598, igne-tak), "1920'de yüzdürüldü" yerel 245–350 üstte; son 30 kare sessiz. Çizgi P01'in çizgisidir (döngü). Gerekçe: Q1 kaçınılmazlık; Q5 rota ucu takibi "karadan" der; Q6 çizgi ve iğne görünür, soru kapanır. kontrol_kare yerel 430 (abs 3602).
+
+### 12.4 Çeşitlilik ve kural denetimi
+- Rack focus: P06 (top → gemi). POV: P04 (geminin güvertesinden). Alçak açı: P05a. Yüksek açı/Establishing: P03 ve P10b (Top Shot), P08b sonu (Crane Up). Dolly zoom: yalnız P04. Locked-off: P10a (bilinçli). Long take: P06. Shaky/crash/whip/dutch/slow motion: yok.
+- Üst üste aynı ölçek+hareket ≤ 2: WS Dolly In (P01) · MWS Dolly Out (P02) · harita tracking (P03) · WS dolly zoom (P04) · WS truck (P05a) · Insert push-in (P05b) · WS long take dolly in (P06) · MWS dolly in (P07a, P07b) · WS dolly out (P07c) · MWS truck (P08a) · crane up (P08b) · WS dolly out (P09) · locked (P10a) · harita (P10b).
+- Yazı bantları: üstte ekran yazısı, altyazı altta; kurulum nesnesi (oyuk, derrick, top) y 1280'in üstünde ya da bandın dışında; hiçbir yazı nesneye binmez. Ölü alan yok: her kadrajda alt 1/3 = su/kaya/ot/gölge.
+- Fizik: gemi demirli ve hareketsiz (P06–P07), bot kadrajdan sağdan çıkar, yatış P09'da başlar-biter (≥ 12 kare pay), dolly zoom ve dolly'ler plan sonundan ≥ 12 kare önce biter.
+
+### 12.5 Kalibrasyon — 3 yeni kare (yön karesi)
+1. **P04 dolly zoom** — hareket şeridi f0, 62, 125, 187, 250 (abs 1091, 1153, 1216, 1278, 1341) + kontrol karesi yerel 200 (abs 1291). Beyan: 360 px'te yamaç + KOR parıltısı okunur (yamaç ≥ %55, hale ≥ 60 px, net ≥ 1 sn); direk genişliği ±2 px sabit.
+2. **P07 yanan gemi** — P07b yerel 214 (abs 2388): alev ≥ %10 ekran, duman sütunu, orta plan, KOR tekil, gövde net.
+3. **P10a saygı anı** — yerel 120 (abs 3292): siluetler ≥ 85 px dimdik, kalkanlı top ≥ 300 px, batık ≥ 470 px, 6° kenar ışığı, locked-off.
+K1 (P01) kilitli, yeniden kalibre edilmez.
+
+### 12.6 Yeni şablon parametreleri (motion; yalnız fark)
+- **LIMAN:** `gorunum`: `kiyidan-ada` (K1, kilit) · `gemi-orta` (P02, P07a/b, P08a/b; `kamera_konum_yol`, `lens_mm` yolu) · `karsi-kiyi` (P04; `on_plan: baş direği + gergi halatı`, `kamera {z_yol, odak_yol}`, sabit genişlik ölçümü) · `gemi_durum` (demirli|yanan|yatik|batik, `yatis_derece`), `hangar {panel, alev {bas, siddet}, duman}`, `su_sutunu[]`, `isabet {kare, x, y}`, `bot {id, bas, bit, cikis: sag}`, `derrick {bas, bit}`, `ucak {durum}`, `parilti_kor {kare, x, y, hale_px}` (kıyı yamacı), `katman_z`, `diyafram`, `odak_z` yolu.
+- **KIYI:** `gorunum`: `batarya-genis` (P05a; `toplar[] {z, kalkan: true, dal_ortusu}`, `siluetler[] {z, x, kim: tegmen|er, poz: dimdik}` yalnız < %5) · `durbun-insert` (P05b; `El40` + `durbun`, `jest: odak-halkasi {bas, bit}`) · ön plan top + dal modülü LIMAN `kiyidan-ada` ve `saygi` için aynı varlık.
+- **HARITA:** `harita_gorunum: "meis"` (kit_eksik: kıyı verisi), `igne`, `rota_ciz`, `kamera_takip`, KitSayac.
