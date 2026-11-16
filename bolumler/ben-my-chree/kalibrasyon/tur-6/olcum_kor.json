@@ -1,0 +1,94 @@
+{
+ "K1_P01_k124.png": {
+  "kor_px": 0,
+  "kor_max_C": null,
+  "kor_max_L": null,
+  "disari_C28_px": 35619,
+  "disari_L88_px": 4723,
+  "disari_max_C": 36.3,
+  "kontrast": {
+   "p5_L": 14.4,
+   "p95_L": 83.9,
+   "aralik": 69.5,
+   "konu_L": 37.9,
+   "cevre_L": 51.2,
+   "ayrisma": 13.3,
+   "gecti": true
+  }
+ },
+ "P04_k1291.png": {
+  "kor_px": 1676,
+  "kor_max_C": 49.4,
+  "kor_max_L": 97.7,
+  "disari_C28_px": 11060,
+  "disari_L88_px": 696,
+  "disari_max_C": 32.6,
+  "kontrast": {
+   "p5_L": 12.0,
+   "p95_L": 78.8,
+   "aralik": 66.8,
+   "konu_L": 69.4,
+   "cevre_L": 49.8,
+   "ayrisma": 19.6,
+   "gecti": true
+  },
+  "ozel": {
+   "tur": "kor-cevre",
+   "kor_L": 77.8,
+   "cevre_L": 52.0,
+   "fark": 25.7,
+   "kor_yukseklik_px": 58,
+   "cekirdek_L": 91.0,
+   "cekirdek_fark": 39.0
+  }
+ },
+ "P07b_k2388.png": {
+  "kor_px": 51654,
+  "kor_max_C": 71.2,
+  "kor_max_L": 90.9,
+  "disari_C28_px": 9499,
+  "disari_L88_px": 3061,
+  "disari_max_C": 41.2,
+  "kontrast": {
+   "p5_L": 20.1,
+   "p95_L": 83.7,
+   "aralik": 63.6,
+   "konu_L": 65.1,
+   "cevre_L": 60.3,
+   "ayrisma": 4.9,
+   "gecti": true
+  },
+  "ozel": {
+   "tur": "kor-cevre",
+   "kor_L": 56.8,
+   "cevre_L": 19.9,
+   "fark": 36.9,
+   "kor_yukseklik_px": 743,
+   "cekirdek_L": 86.4,
+   "cekirdek_fark": 66.5
+  }
+ },
+ "P10a_k3292.png": {
+  "kor_px": 0,
+  "kor_max_C": null,
+  "kor_max_L": null,
+  "disari_C28_px": 616,
+  "disari_L88_px": 1748,
+  "disari_max_C": 35.5,
+  "kontrast": {
+   "p5_L": 15.5,
+   "p95_L": 78.9,
+   "aralik": 63.4,
+   "konu_L": 32.7,
+   "cevre_L": 52.7,
+   "ayrisma": 20.0,
+   "gecti": true
+  },
+  "ozel": {
+   "tur": "siluet-zemin",
+   "siluet_L": 10.3,
+   "zemin_L": 59.6,
+   "fark": 49.4
+  }
+ }
+}

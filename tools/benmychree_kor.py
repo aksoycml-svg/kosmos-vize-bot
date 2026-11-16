@@ -11,9 +11,9 @@ KUTU = {"K1_P01_k124.png": None, "K2_P07b_y214.png": (300, 0, 720, 1500), "K3_P0
         "P04_k1291.png": (560, 960, 800, 1120), "P07b_k2388.png": (560, 700, 1000, 1700), "P10a_k3292.png": None}
 d = sys.argv[1]; r = {}
 # özel ölçüm: kor → (çevre kutusu) ; siluet → (kutu: koyu < 42 L* siluet, gerisi zemin)
-OZEL = {"P04_k1291.png": ("kor", (560, 960, 800, 1120)), "P07b_k2388.png": ("kor", (0, 1240, 640, 1330)), "P10a_k3292.png": ("siluet", (820, 600, 1010, 728))}
+OZEL = {"P04_k1291.png": ("kor", (560, 960, 800, 1120)), "P07b_k2388.png": ("kor", (0, 1240, 640, 1330)), "P10a_k3292.png": ("siluet", (790, 780, 940, 1008))}
 KONU = {"K1_P01_k124.png": (190, 880, 890, 1050), "K2_P07b_y214.png": (680, 520, 1000, 1000), "K3_P05_k150.png": (480, 700, 720, 1010), "K4_P04_y200.png": (330, 900, 750, 1160),
-        "P04_k1291.png": (640, 1010, 720, 1070), "P07b_k2388.png": (600, 880, 900, 1170), "P10a_k3292.png": (820, 620, 1010, 735)}
+        "P04_k1291.png": (640, 1010, 720, 1070), "P07b_k2388.png": (600, 880, 900, 1170), "P10a_k3292.png": (790, 780, 940, 1008)}
 for f, k in KUTU.items():
     if not os.path.exists(os.path.join(d, f)): continue
     im = np.asarray(Image.open(os.path.join(d, f)).convert("RGB")); L, A, B = lab(im); C = np.hypot(A, B)

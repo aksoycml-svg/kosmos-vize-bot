@@ -1,0 +1,31 @@
+{
+ "fps": 60,
+ "toplam_kare": 3666,
+ "referans": "Anlatım 0 dB (klip −18 LUFS). Müzik dosyası ölçümü (tools/benmychree_muzik.py sonrası, ebur128): momentary p99.5 = −17.5 LUFS, bölüm ort. −20.4 LUFS integrated, tepe −7.8 dBTP; ilk 10 sn (seyrek piyano) momentary ort. −25, geri kalan −19…−23. db −17.5 → tepeler −35.0 LUFS = anlatımın 17.0 dB altı (aralık tavanı ≤ −16 ✓); duck −23.5 → konuşmada tepeler −41.0 LUFS = −23.0 dB (≤ −22 ✓); yatak ortalaması konuşmada ≈ −26…−28. TR/EN ayrı ölçülüp −14 LUFS'e eşitlenir; plan başına loudness ölç, medyandan 3 LU sapanı işaretle. Foley dosyaları tepe −3.3 dBFS'e eşitli (tools/cicero_sfx.py esitle) → onerilen_db anlamlı; öncelik temas.db > istisnalar > onerilen_db > foley_varsayilan_db.",
+ "muzik": {
+  "dosya": "benmychree/muzik/bmc-muzik-61.mp3",
+  "bas_kare": 0,
+  "db": -17.5,
+  "fade_in_kare": 1,
+  "fade_out_kare": 1,
+  "duck": {
+   "anlatim_db": -23.5,
+   "atak_kare": 9,
+   "birakma_kare": 24
+  },
+  "not": "Dosya 61.10 sn = 3666 kare (bölümle birebir), kendi girişi (0.25 sn) ve çıkışı (60.45–61.10) içinde; kit fade'i 1 kare. İKİ TEMA (≤2 ✓): A 'SCP-x6x (Hopes)' piyano+viyolonsel (0–22 sn ve 56.4–61.1 bookend), B 'Lost Time' yaylılar (21.7–57.05). Akor çapaları ölçüldü: Bb 21.99 · C 26.24 · D 30.69 · Gm 34.94 (isabet 34.85) · Bb 48.19 ('Kimse', 48.2) · C 52.79 (P10a kesmesi 52.87) · final Dm notası 60.39 (anlatım 59.97'de biter). Plan sınırında kesme/susma yok."
+ },
+ "foley_varsayilan_db": -7,
+ "istisnalar": {},
+ "muzik_istisnalari": [],
+ "ortam": "ortam.json (temasla çalmaz; kullanim[] kare aralıkları; son 30 kare sessiz)",
+ "kurgucu_notlari": [
+  "Yön: büyük yüz/yakın plan yok; müzik 'zafer' değil 'ağırbaşlı yük' taşır: seyrek piyano → yaylı yatak → aynı piyanonun dönüşü.",
+  "P06 isabeti (34.85): gerilim 3 ölçüde (Bb→C→D, +2 dB crescendo 26.0–34.9) kurulur, sol minör 34.94'te varır; müzik sert vurmaz, ağırlığı foley (isabet_tok −6) verir; sonra 2 sn'de −2 dB bırakır (dip ses yok).",
+  "P08 'Kimse ölmedi' (48.2–49.2 TR; EN aynı başlangıç): yatak minörün içinde Bb'ye açılır (rahatlama/yas), seviye artmaz (konuşma altı −23 dB).",
+  "P10a saygı (52.87–56.77): C akoru + hiç foley, hiç ortam hareketi dışında şey yok; en sade ve en tutulu bölge. P10b: B → A' çapraz sönüm 56.45–57.05; A' Hopes'un kendi bitişi (Bb–F–Dm) — ilk plandaki aynı piyano, bookend.",
+  "Döngü: son nota (Dm 60.39) yankıyla söner; P01'in ilk notası (0.7 sn) da Re minör (Hopes başı) → dikişsiz.",
+  "EN: anlatım plan sonundan önce biter (P06 EN ≈ 4.1 sn, P10 EN ≈ 3.2 sn boşluk, P08 ≈ 2.5 sn); bu boşluklarda müzik duck'tan çıkar, tavan −17 dB'de kalır. TR/EN ayrı ölçülüp eşitlenir.",
+  "Geçiş sesi bütçesi: 0 (savaş/felaket: riser/whoosh yok). Kesmeler: ses köprüsü yok; P05b→P06 gibi çıplak kesmelerde ortam (rüzgâr→deniz) değişir, müzik sürer."
+ ]
+}

@@ -1,0 +1,206 @@
+{
+ "fps": 60,
+ "_not": "TASLAK (kurgucu): sahne-plani.md §12 olaylarından. kare = MUTLAK kare (plan başları: P01 0 · P02 190 · P03 603 · P04 1091 · P05 1388 · P06 1627 · P07 2174 · P08 2607 · P09 2990 · P10 3172). bolum.json temaslar[] yazılınca (plan-yerel kare = kare − plan başı) o esas; db yoksa foley.json onerilen_db. ATLANAN: P04 KOR parıltısı 'metal-tink' (yerel 190) — parıltı ışık olayı, temas değil; 2 km'den duyulmaz, 'anlamsız efekt' olur → yerine müzikte Bb akoru 21.95 sn'de (parıltıdan 0.6 sn sonra) girer.",
+ "temaslar": [
+  {
+   "plan": "P02",
+   "p": 50,
+   "kare": 240,
+   "sn": 4.0,
+   "olay": "D1 derrick uçağı indirir: halat/makara sürekli gıcırtı (yerel 30–250; ses dosyası 3.85 sn, tepe_ms 498 = ilk net gıcırtı)",
+   "ses": "bmc_vinc_halat",
+   "db": -12,
+   "not": "derrick ekranda ≥%20: görünür kaynak"
+  },
+  {
+   "plan": "P02",
+   "p": 258,
+   "kare": 448,
+   "sn": 7.467,
+   "olay": "şamandıralar suya değer (yerel 258)",
+   "ses": "bmc_samandira_su",
+   "db": -8,
+   "not": ""
+  },
+  {
+   "plan": "P02",
+   "p": 270,
+   "kare": 460,
+   "sn": 7.667,
+   "olay": "halat gevşer (yerel 270)",
+   "ses": "bmc_halat_gevsek",
+   "db": -11,
+   "not": "şamandıra suyundan sonra, kısa"
+  },
+  {
+   "plan": "P03",
+   "p": 200,
+   "kare": 803,
+   "sn": 13.383,
+   "olay": "harita iğnesi Meis'e batar, 'demirledi' (yerel 200)",
+   "ses": "bmc_igne_tak",
+   "db": -9,
+   "not": "harita 2D; ekran oranı küçük ama insert gibi okunur"
+  },
+  {
+   "plan": "P03",
+   "p": 290,
+   "kare": 893,
+   "sn": 14.883,
+   "olay": "rota çizgisi Meis→Kaş çizilir (rota_ciz yerel 290–400; ses 1.88 sn = 113 kare)",
+   "ses": "bmc_harita_cizgi",
+   "db": -14,
+   "not": "çizim hızıyla eşit uzunlukta; kenar ses, kısık"
+  },
+  {
+   "plan": "P05",
+   "p": 179,
+   "kare": 1567,
+   "sn": 26.117,
+   "olay": "dürbünün odak halkası bir tık döner (D4′; yerel ~60, motion temaslar karesi esas)",
+   "ses": "bmc_halka_tik",
+   "db": -9,
+   "not": "el insert ≥%35"
+  },
+  {
+   "plan": "P06",
+   "p": 186,
+   "kare": 1813,
+   "sn": 30.217,
+   "olay": "atış 1: ön plan kalkanlı top, namlu 24 px geri (yerel 186)",
+   "ses": "bmc_top_atis",
+   "db": -6,
+   "not": "yatağın 6–8 dB üstü; tek kısa vuruş, gösteri yok"
+  },
+  {
+   "plan": "P06",
+   "p": 246,
+   "kare": 1873,
+   "sn": 31.217,
+   "olay": "su sütunu 1 yükselir (yerel 246; 2 km uzak)",
+   "ses": "bmc_su_sutunu",
+   "db": -10,
+   "not": ""
+  },
+  {
+   "plan": "P06",
+   "p": 262,
+   "kare": 1889,
+   "sn": 31.483,
+   "olay": "atış 2: görünmeyen top, uzak (yerel 262)",
+   "ses": "bmc_top_uzak",
+   "db": -12,
+   "not": "görünürlük-ses: kadrajda değil → uzak ve kısık"
+  },
+  {
+   "plan": "P06",
+   "p": 322,
+   "kare": 1949,
+   "sn": 32.483,
+   "olay": "su sütunu 2 yükselir (yerel 322)",
+   "ses": "bmc_su_sutunu",
+   "db": -10,
+   "not": "aynı klip; tekrar farkedilmesin diye 1. kullanıma göre −1 dB düşülebilir"
+  },
+  {
+   "plan": "P06",
+   "p": 404,
+   "kare": 2031,
+   "sn": 33.85,
+   "olay": "atış 3: görünmeyen top, uzak (yerel 404)",
+   "ses": "bmc_top_uzak",
+   "db": -13,
+   "not": ""
+  },
+  {
+   "plan": "P06",
+   "p": 464,
+   "kare": 2091,
+   "sn": 34.85,
+   "olay": "ISABET: hangar bölgesinde krem flaş + KOR çekirdek (yerel 464; kelime 'isabet' 34.83 sn)",
+   "ses": "bmc_isabet_tok",
+   "db": -6,
+   "not": "yatağın 6–8 dB üstü; bölümün ilk ve en güçlü vuruşu; kamera sarsılmaz"
+  },
+  {
+   "plan": "P07",
+   "p": 112,
+   "kare": 2286,
+   "sn": 38.1,
+   "olay": "gemi gövdesi inler, kıç köpüğü boşa döner (yerel 112)",
+   "ses": "bmc_govde_inleme",
+   "db": -9,
+   "not": "P07a"
+  },
+  {
+   "plan": "P07",
+   "p": 212,
+   "kare": 2386,
+   "sn": 39.767,
+   "olay": "hangar alevi tutuşur (yerel 212, darbe ≤2 px)",
+   "ses": "bmc_ates_tutus",
+   "db": -7,
+   "not": "P07b; arkasından ortam yangın yatağı"
+  },
+  {
+   "plan": "P08",
+   "p": 245,
+   "kare": 2852,
+   "sn": 47.533,
+   "olay": "küçük bot motoru tutar, gemiden ayrılır (yerel 245); sağ kenardan çıkış 2967'de ses uzaklaşır",
+   "ses": "bmc_bot_motor",
+   "db": -10,
+   "not": "klip kendi içinde uzaklaşıp söner (2.85 sn → ~3023)"
+  },
+  {
+   "plan": "P09",
+   "p": 10,
+   "kare": 3000,
+   "sn": 50.0,
+   "olay": "gemi sancağa yatmaya başlar: gövde inlemesi (yerel 10–150)",
+   "ses": "bmc_govde_inleme_uzun",
+   "db": -9,
+   "not": "3.09 sn → 3185; P10a başında kuyruk 13 kare, ortam ile örtülür"
+  },
+  {
+   "plan": "P09",
+   "p": 110,
+   "kare": 3100,
+   "sn": 51.667,
+   "olay": "su hattı güverteye tırmanırken kabarcıklar (yerel 110–150)",
+   "ses": "bmc_kabarcik",
+   "db": -11,
+   "not": ""
+  },
+  {
+   "plan": "P09",
+   "p": 140,
+   "kare": 3130,
+   "sn": 52.167,
+   "olay": "gövde sığ dibe oturur (yerel ~140; EKLENDİ: sahne planında yoktu, ama görünür temas)",
+   "ses": "bmc_govde_oturma",
+   "db": -9,
+   "not": "yatış P09 yerel 10–140'ta biter; motion karesi esas"
+  },
+  {
+   "plan": "P10",
+   "p": 330,
+   "kare": 3502,
+   "sn": 58.367,
+   "olay": "rota çizgisi Kaş mevzii→Meis çizilir (rota_ciz yerel 330–412; döngü: P01'in çizgisi)",
+   "ses": "bmc_harita_cizgi_kisa",
+   "db": -14,
+   "not": "1.40 sn klip = çizim 82 kare (1.37 sn); P03'te uzun klip (1.88 sn = 113 kare)"
+  },
+  {
+   "plan": "P10",
+   "p": 426,
+   "kare": 3598,
+   "sn": 59.967,
+   "olay": "iğne gemi ikonuna batar (yerel 426, dusme 14)",
+   "ses": "bmc_igne_tak",
+   "db": -9,
+   "not": "anlatım 59.97'de biter (3598 = 59.97 sn); sonrası 0.5 sn sessiz kuyruk"
+  }
+ ]
+}

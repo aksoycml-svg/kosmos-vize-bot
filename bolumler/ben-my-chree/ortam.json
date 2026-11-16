@@ -1,0 +1,196 @@
+{
+ "_not": "Ortam yatakları (foley.json'da DEĞİL: temasla çalmaz). Hepsi anlatıma göre çok kısık (db −24…−33); kısa klipler (6 sn) çapraz sönümle döngülenir; plan sınırında sert kesilmez (giriş/çıkış 0.4 sn). Son 30 kare (3636–3666) ortam dahil TAM SESSİZ: tek ≥1 sn dinlenme. Harita planlarında (P03, P10b) deniz yatağı daha kısık (ekran grafik). Savaş/ölüm konusu: gösteri sesi yok. Yangın yatağı sonunda kendiliğinden sönüyor (ses_kenar KESIK ikinci çekimde geçti) → kullanım parçaları ≤ 330 kare, art arda, 0.4 sn örtüşmeyle.",
+ "yataklar": {
+  "bmc_ortam_deniz": {
+   "dosya": "benmychree/foley/bmc_ortam_deniz.mp3",
+   "sure_ms": 6090,
+   "tepe_dbfs": -2.9,
+   "kullanim": [
+    {
+     "plan": "P01",
+     "p_bas": 0,
+     "p_bit": 190,
+     "kare_bas": 0,
+     "kare_bit": 190,
+     "db": -26,
+     "lp_hz": null,
+     "not": "P01: kanca; müzikten ÖNCE duyulur (ilk piyano notası 0.7 sn); dalga kıyıya vurur"
+    },
+    {
+     "plan": "P02",
+     "p_bas": 0,
+     "p_bit": 413,
+     "kare_bas": 190,
+     "kare_bit": 603,
+     "db": -27,
+     "lp_hz": null,
+     "not": "P02: rıhtım ucu, derrick'in ardından su"
+    },
+    {
+     "plan": "P03",
+     "p_bas": 0,
+     "p_bit": 488,
+     "kare_bas": 603,
+     "kare_bit": 1091,
+     "db": -33,
+     "lp_hz": null,
+     "not": "P03 HARİTA: ekran grafik; yalnız süreklilik"
+    },
+    {
+     "plan": "P04",
+     "p_bas": 0,
+     "p_bit": 297,
+     "kare_bas": 1091,
+     "kare_bit": 1388,
+     "db": -26,
+     "lp_hz": null,
+     "not": "P04: geminin güvertesinden; direk altı su"
+    },
+    {
+     "plan": "P06",
+     "p_bas": 0,
+     "p_bit": 547,
+     "kare_bas": 1627,
+     "kare_bit": 2174,
+     "db": -27,
+     "lp_hz": null,
+     "not": "P06: uzak deniz; atış ve sütun foley'i üstünde"
+    },
+    {
+     "plan": "P07",
+     "p_bas": 0,
+     "p_bit": 150,
+     "kare_bas": 2174,
+     "kare_bit": 2324,
+     "db": -25,
+     "lp_hz": 1800,
+     "not": "P07a: kıç köpüğü boşa dönüyor (dümen bozuk) — su gövde dibinde daha belirgin"
+    },
+    {
+     "plan": "P07",
+     "p_bas": 150,
+     "p_bit": 816,
+     "kare_bas": 2324,
+     "kare_bit": 2990,
+     "db": -27,
+     "lp_hz": null,
+     "not": "P07b–P08: yangın yatağının altında; P08a/b bot suyu"
+    },
+    {
+     "plan": "P09",
+     "p_bas": 0,
+     "p_bit": 182,
+     "kare_bas": 2990,
+     "kare_bit": 3172,
+     "db": -26,
+     "lp_hz": null,
+     "not": "P09: batışta su yükselir"
+    },
+    {
+     "plan": "P10",
+     "p_bas": 0,
+     "p_bit": 234,
+     "kare_bas": 3172,
+     "kare_bit": 3406,
+     "db": -28,
+     "lp_hz": null,
+     "not": "P10a: saygı anı; yalnız rüzgâr + dalga + müzik"
+    },
+    {
+     "plan": "P10",
+     "p_bas": 234,
+     "p_bit": 464,
+     "kare_bas": 3406,
+     "kare_bit": 3636,
+     "db": -32,
+     "lp_hz": null,
+     "not": "P10b HARİTA; son 30 kare (3636–3666) sessiz"
+    }
+   ]
+  },
+  "bmc_ortam_ruzgar": {
+   "dosya": "benmychree/foley/bmc_ortam_ruzgar.mp3",
+   "sure_ms": 6090,
+   "tepe_dbfs": -1.3,
+   "kullanim": [
+    {
+     "plan": "P04",
+     "p_bas": 0,
+     "p_bit": 297,
+     "kare_bas": 1091,
+     "kare_bit": 1388,
+     "db": -28,
+     "lp_hz": null,
+     "not": "P04: karşı kıyıdan kuru rüzgâr (makiler); direk gerisi"
+    },
+    {
+     "plan": "P05",
+     "p_bas": 0,
+     "p_bit": 239,
+     "kare_bas": 1388,
+     "kare_bit": 1627,
+     "db": -24,
+     "lp_hz": null,
+     "not": "P05a/b: yamaçta ot ve dal; dürbün insert'inde yakın"
+    },
+    {
+     "plan": "P06",
+     "p_bas": 0,
+     "p_bit": 273,
+     "kare_bas": 1627,
+     "kare_bit": 1900,
+     "db": -30,
+     "lp_hz": null,
+     "not": "P06 başı: ön plan dal sallanır; atıştan sonra azalır"
+    },
+    {
+     "plan": "P10",
+     "p_bas": 0,
+     "p_bit": 234,
+     "kare_bas": 3172,
+     "kare_bit": 3406,
+     "db": -26,
+     "lp_hz": null,
+     "not": "P10a: ot ve dal, çok hafif; bu planın tek 'hareket'i"
+    }
+   ]
+  },
+  "bmc_ortam_yangin": {
+   "dosya": "benmychree/foley/bmc_ortam_yangin.mp3",
+   "sure_ms": 6090,
+   "tepe_dbfs": -2.9,
+   "kullanim": [
+    {
+     "plan": "P07",
+     "p_bas": 212,
+     "p_bit": 542,
+     "kare_bas": 2386,
+     "kare_bit": 2716,
+     "db": -22,
+     "lp_hz": 1600,
+     "not": "P07b alevinden (2386) P09'da duman sönene kadar; lowpass: uzak/rıhtım ötesi; ses_kenar: bitişte sönüyor, parçalar art arda 0.4 sn örtüşür"
+    },
+    {
+     "plan": "P08",
+     "p_bas": 109,
+     "p_bit": 439,
+     "kare_bas": 2716,
+     "kare_bit": 3046,
+     "db": -26,
+     "lp_hz": 1600,
+     "not": "P07b alevinden (2386) P09'da duman sönene kadar; lowpass: uzak/rıhtım ötesi; ses_kenar: bitişte sönüyor, parçalar art arda 0.4 sn örtüşür"
+    },
+    {
+     "plan": "P09",
+     "p_bas": 56,
+     "p_bit": 182,
+     "kare_bas": 3046,
+     "kare_bit": 3172,
+     "db": -31,
+     "lp_hz": 1600,
+     "not": "P07b alevinden (2386) P09'da duman sönene kadar; lowpass: uzak/rıhtım ötesi; ses_kenar: bitişte sönüyor, parçalar art arda 0.4 sn örtüşür"
+    }
+   ]
+  }
+ }
+}
