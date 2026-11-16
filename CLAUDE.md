@@ -119,6 +119,8 @@ Ajanlar aynı anda değil, **bağımlılık sırasıyla** çalışır. Bir ajan,
 ### Süreklilik
 - Yakın planda ilk kez görülen hiçbir şey birden belirmez: önceki planda kurulur ya da girişi gösterilir (kurulum → karşılık).
 - Konum, yön, durum planlar arası tutarlı.
+- **Aynı kadraj tekrar etmez (kullanıcı notu, Ben-my-Chree tur-13: "aynı plan bir yerde daha var"):** aynı kamera konumu + yön + ön plan bölümde en çok iki kez kullanılır ve yalnız bilinçli kurulum → karşılık için (ör. sağlam gemi → batan gemi). Eleştirmen genel bakışta kadraj tekrarını sayar; üçüncü tekrar teslim edilmez.
+- **Kıyı karadır:** kıyıdan çekilen planda ön plan kara kadrajın alt kenarı boyunca kesintisiz iner; su yalnız kıyı çizgisinin ötesinde görünür. Ön plan kara, denizin içinde duran tek kütle gibi çizilmez (Ben-my-Chree tur-13: "kara denizin içinde gibi gözüküyor").
 
 ### Hareket tamamlanır
 - Başlayan her hareket ekranda tamamlanır ya da açıkça kadrajdan çıkar. Kesme hareketin ortasına gelmez. Nesneler fade ile kaybolmaz; fiziksel olarak girer/çıkar. Kısa kapanış anı olur.
