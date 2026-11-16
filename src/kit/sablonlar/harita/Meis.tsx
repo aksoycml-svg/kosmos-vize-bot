@@ -63,8 +63,8 @@ export const MeisSahne: React.FC<SablonProps & { Igne: React.FC<{ x: number; y: 
           {Array.from({ length: 90 }).map((_, i) => <line key={`dl${i}`} x1={-300 + (i % 5) * 37} x2={1380} y1={200 + i * 17} y2={200 + i * 17} stroke="#9fb0c4" strokeWidth={2} strokeDasharray={`${26 + (i % 4) * 14} ${18 + (i % 3) * 12}`} opacity={0.32} />)}
           {[0, 1, 2, 3, 4, 5].map((i) => <path key={`dg${i}`} d={adaD} fill="none" stroke="#9fb0c4" strokeWidth={2.4} opacity={0.45 - i * 0.06} transform={`translate(540 960) scale(${1.05 + i * 0.045}) translate(-540 -960)`} />)}
           {/* anakara: kara + tarama + iç tepe gölgeleri (yamaç), kıyı mürekkep */}
-          <path d={karaD} fill="#dcb47a" />
-          <path d={karaD} fill="url(#mTar)" opacity={0.55} />
+          <path d={karaD} fill="#fcca96" />
+          <path d={karaD} fill="url(#mTar)" opacity={0.28} />
           {/* tepe gölgesi (güneydoğu ışığı) + maki noktaları */}
           {Array.from({ length: 70 }).map((_, i) => { const c = meisNokta(-3 + rr2(i, 1) * 7, 2.3 + rr2(i, 2) * 3.2); return <g key={`mk${i}`}><ellipse cx={c[0]} cy={c[1]} rx={9} ry={7} fill="#6a5a3c" opacity={0.75} /><ellipse cx={c[0] - 2} cy={c[1] - 2} rx={5} ry={3.5} fill="#8a7a54" /></g>; })}
           {Array.from({ length: 26 }).map((_, i) => { const c = meisNokta(-3.2 + i * 0.27, 2.55 + Math.sin(i * 0.9) * 0.18); return <path key={`th${i}`} d={`M${c[0]},${c[1]} l${-8},${26} M${c[0] + 9},${c[1] + 2} l${-8},${24}`} stroke="#6a5a40" strokeWidth={2.5} opacity={0.55} />; })}
@@ -73,11 +73,11 @@ export const MeisSahne: React.FC<SablonProps & { Igne: React.FC<{ x: number; y: 
           <path d={karaD} fill="none" stroke="#2b2f45" strokeWidth={4} />
           {[1, 2].map((i) => <path key={`kd${i}`} d={karaD} fill="none" stroke="#5d6b86" strokeWidth={2} opacity={0.3 - i * 0.08} transform={`translate(0 ${i * 16})`} />)}
           {/* ada + adacık */}
-          <path d={adaD} fill="#dcb47a" /><path d={adaD} fill="url(#mTar)" opacity={0.55} />
+          <path d={adaD} fill="#fcca96" /><path d={adaD} fill="url(#mTar)" opacity={0.28} />
           {Array.from({ length: 30 }).map((_, i) => { const c = meisNokta(-2.4 + rr2(i, 3) * 2.8, -1.3 + rr2(i, 4) * 1.4); return <ellipse key={`am${i}`} cx={c[0]} cy={c[1]} rx={8} ry={6} fill="#6a5a3c" opacity={0.7} />; })}
           {[0.82, 0.64].map((k2, i) => <path key={`ae${i}`} d={adaD} fill="none" stroke="#8a7a5c" strokeWidth={2} opacity={0.45 - i * 0.1} transform={`translate(${meisNokta(-1.0, -0.6)[0]} ${meisNokta(-1.0, -0.6)[1]}) scale(${k2}) translate(${-meisNokta(-1.0, -0.6)[0]} ${-meisNokta(-1.0, -0.6)[1]})`} />)}
           <path d={adaD} fill="none" stroke="#2b2f45" strokeWidth={4} />
-          <path d={adacikD} fill="#dcb47a" stroke="#2b2f45" strokeWidth={3} />
+          <path d={adacikD} fill="#fcca96" stroke="#2b2f45" strokeWidth={3} />
           {/* Meis kasabası: liman koyu çevresinde ev blokları + kale (küçük ikon); bayrak yok (renk yalnız mühür/vurgu) */}
           {Array.from({ length: 16 }).map((_, i) => { const u = i / 15, c = meisNokta(-0.28 + u * 0.62 + (i % 3) * 0.02, -0.22 - (i % 4) * 0.07 + Math.sin(u * 3) * 0.05); return <rect key={i} x={c[0] - 6} y={c[1] - 5} width={11 + (i % 3) * 2} height={9} fill="#6b5a44" />; })}
           {(() => { const c = meisNokta(0.42, -0.05); return <g><rect x={c[0] - 16} y={c[1] - 18} width={30} height={20} fill="#4c3e2c" /><rect x={c[0] - 8} y={c[1] - 32} width={12} height={14} fill="#4c3e2c" /></g>; })()}

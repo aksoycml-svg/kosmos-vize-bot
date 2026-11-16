@@ -83,7 +83,7 @@ export const altyaziBant = (plan: Plan, a: AltyaziAyar, p: number, kilit: KilitN
   if (!dolu[tercih]) return tercih;
   const obur = tercih === "alt" ? "ust" : "alt";
   if (a.bant === "oto" || a.bant === undefined) return dolu[obur] ? (a.dolu_ise === "ust_alti" ? "ust_alti" : null) : obur;
-  return null; // bant elle sabitlendi ve dolu
+  return a.dolu_ise === "ust_alti" && tercih === "ust" ? "ust_alti" : null; // bant elle sabitlendi ve dolu (dolu_ise yoksa gizlenir — eski davranış)
 };
 
 const KAGIT = "#f3ead6", MUREKKEP = "#1c1915", KIRMIZI = "#e5483c";

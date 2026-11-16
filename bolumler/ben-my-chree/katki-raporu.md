@@ -320,3 +320,29 @@
 - Kararlar: puan 7; kanca, tire, P06 doruk, P08 bot kapandı; harita kısmen; P05b dürbün yönü hâlâ kritik.
 - Kurallar/ihlaller: P05b süreklilik/fizik (dürbün göze değmiyor, objektif kameraya dönük); harita p95 72 / sıcak %5 (Paris dersi ölçütü); P10b etiketsiz; P08 iki yazı yığılması; P08 alev tekdüze (tur-11 notu kısmen).
 - Açık sorular: P10a asker yüzü ↔ kullanıcı kilidi (juri-1'den devam).
+
+## motion · 2026-11-16 · jüri-2 düzeltmeleri (tur-9)
+- Ne yaptım:
+  - P05b dürbününü OTS olarak yeniden kurdum: göz mercekleri subayın kabalak/baş siluetine göz hizasında değiyor (baş tüplerin önünde, onları kapatıyor). Objektif uçları perspektifle küçülüyor (54→40, 62→46 px) ve Meis'e bakıyor. Objektif halkası çizilmiyor, yalnız dış yay var. Odak tekerine sağ işaret parmağı değiyor. 2× kırpımla kontrol ettim.
+  - P10b'de MEİS/KAŞ etiketlerini dil katmanına aldım (EN: KASTELLORIZO / KAŞ). Harita karası #fcca96, tarama 0.28. Ölçüm (k803 ve k3602): p5 19.6, p95 79.2, sıcak piksel %47/%46.
+  - P08 alevleri: `Yangin` bileşenine `duzensiz` parametresi ekledim (seed'li boy, aralık ve genişlik). P08 bu parametreyi 1, n 9 ile kullanıyor. Varsayılanlar P07b'yi değiştirmiyor.
+  - P08'de "5 yaralı · ölen yok" kutusunu 90–198. karelere aldım. Kutu ile "Kimse ölmedi" altyazısı iki dilde de çakışmıyor.
+  - P01'de altyazı için `bant: "ust"` verdim. altyazi.tsx'te tercih edilen bant doluysa `ust_alti` kullanılıyor. Böylece "Bu uçak" ilk kelimeden itibaren tek bantta kalıyor.
+- Dokunduğum dosyalar:
+  - src/kit/sablonlar/benmychree/LimanBolum.tsx
+  - src/kit/sablonlar/benmychree/LimanYeni.tsx
+  - src/kit/sablonlar/harita/Meis.tsx
+  - src/kit/altyazi.tsx
+  - bolumler/ben-my-chree/bolum.json (P01 altyazi, P08 ekran_yazisi, P10 harita_etiketleri)
+  - out/benmychree/*
+  - bolumler/ben-my-chree/kontrol/*
+- Aldığım kararlar ve gerekçeleri:
+  - P08 kutusunu 300. kareye ertelemek yerine öne aldım (90–198). 300'de EN altyazısı hâlâ sürüyordu; bu aralık iki dilde de boş.
+  - bolum.json parametrelerini orkestra kararıyla ben değiştirdim.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Kilitli 4 kare 0 piksel farkla korundu: P01 k124, P04 k1291, P07b k2388, P10a k3292.
+  - Eski bölümler piksel-özdeş: Paris k300 ve Çiçero k1200, 0 piksel fark.
+  - Doğrulayıcı geçti: 0 hata, 0 uyarı.
+  - Kit değişiklikleri yalnız ekleme.
+- Açık sorular / bir sonraki ajana notlar:
+  - `src/kit/cizim/MurekkepCizgi.tsx` başka bir ajanın dosyası ve `perfect-freehand` paketi istiyor. Paketi `--no-save` ile ortama kurdum, package.json'a eklemedim. Sahibi bağımlılığı eklemeli.

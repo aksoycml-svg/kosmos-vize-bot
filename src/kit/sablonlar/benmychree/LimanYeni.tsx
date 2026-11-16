@@ -103,9 +103,12 @@ const dilYol = (bx: number, by: number, w: number, h: number, t: number, ruz: nu
   for (let i = 0; i <= n; i++) { const u = i / n, [x, y] = omurga(u), g = gen(u); sol.push([x - g, y]); sag.push([x + g * (0.85 + 0.3 * rr(`${sd}a${i}`)), y]); }
   const uc = omurga(1); return egriYol([...sol.slice(0, n), [uc[0] + ruz * 6, uc[1] - 4], ...sag.slice(0, n).reverse()]);
 };
-export const Yangin: React.FC<{ x0: number; x1: number; yCati: number; yTaban: number; guc: number; t: number; ruz: number; cerceve: number[]; n?: number; olcek?: number }> = ({ x0, x1, yCati, yTaban, guc, t, ruz, cerceve, n = 11, olcek = 1 }) => {
+export const Yangin: React.FC<{ x0: number; x1: number; yCati: number; yTaban: number; guc: number; t: number; ruz: number; cerceve: number[]; n?: number; olcek?: number; duzensiz?: number }> = ({ x0, x1, yCati, yTaban, guc, t, ruz, cerceve, n = 11, olcek = 1, duzensiz = 0 }) => {
   const W = x1 - x0, N = n, H = 330 * guc * olcek; // n/olcek varsayılanı P07b kilit (11, 1)
-  const diller = Array.from({ length: N }).map((_, i) => ({ bx: x0 + W * (0.04 + 0.92 * (i + 0.5) / N) + (rr(`yd${i}`) - 0.5) * W * 0.05, w: W / N * (1.6 + 0.9 * rr(`yw${i}`)), h: H * (0.35 + 0.65 * rr(`yh${i}`) ** 0.7) * (i % 3 === 1 ? 1 : 0.8), sd: `yg${i}` }));
+  const diller0 = Array.from({ length: N }).map((_, i) => ({ bx: x0 + W * (0.04 + 0.92 * (i + 0.5) / N) + (rr(`yd${i}`) - 0.5) * W * 0.05, w: W / N * (1.6 + 0.9 * rr(`yw${i}`)), h: H * (0.35 + 0.65 * rr(`yh${i}`) ** 0.7) * (i % 3 === 1 ? 1 : 0.8), sd: `yg${i}` }));
+  // duzensiz > 0 (P08): seed'li küme — konum/boy/genişlik dağınık, bazı diller birleşik geniş gövde, bazıları kısa kor dili (P07b varsayılanı 0 = aynı)
+  const diller = duzensiz > 0 ? Array.from({ length: N }).map((_, i) => { const u = rr(`zd${i}`), k = rr(`zk${i}`);
+    return { bx: x0 + W * (0.06 + 0.88 * ((i + 0.5) / N + (u - 0.5) * 0.18 * duzensiz)), w: (W / N) * (1.2 + 2.2 * rr(`zw${i}`) * duzensiz), h: H * (k < 0.25 ? 0.22 + 0.2 * rr(`zh${i}`) : k < 0.8 ? 0.45 + 0.4 * rr(`zh${i}`) : 0.95 + 0.25 * rr(`zh${i}`)), sd: `zg${i}` }; }) : diller0;
   return (
     <g>
       {/* dipte kor: hangar içi akkor (çatı hattının altında, ön duvar onu kısmen örter) */}
