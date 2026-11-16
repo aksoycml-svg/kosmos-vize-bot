@@ -415,3 +415,7 @@ Kalibrasyon: `bolumler/ben-my-chree/kalibrasyon.json` + `tools/benmychree_kalibr
 | `GEMI-INSERT` | `hangar-kapi` (P07b; 3B koridor, 33 mm) | `kapi {sizinti [a,b], itilir, aci, oturma}` (uzak kanat sönümlü açılır; itilir = temas), `t3 {geri [a,b]}`, `gun_yuksekligi` | kic, korkuluk, bas-capa, kic-su, bot, korkuluk-su |
 | `KIYI-BATARYA` | `yamac-oyuk` (P04 dolly zoom), `tegmen` (P05) | yamac-oyuk: `parilti {kare, cikis [a,b], donus [a,b]}`, `bulut_golgesi {bas, bit}` · tegmen: `tegmen {pat: kare[]}` | top-onplan, saygi |
 Ortak: `GemiProfil` (tek rig, `Gemi.tsx`), `Duman`, `Alev` (imza KOR), `Gok5`, `BulutSerit`, `Tara`, `Katman/Flu` (`bmcOrtak.tsx`), yüzlü figür `BasProfil` + `ProfilFigur` + `YUZ_KART` (teğmen, E1–E4, T1–T4; `Figur.tsx`, yalnız PROFİL — ¾ görünüm kit_eksik). Kollar `props/cicero/El40.tsx` (`ElKol40`: dirsek 70–160°, bilek ≤ 30°).
+
+### Ben-my-Chree tur-5 (yön değişikliği) — KALİBRE EDİLMEDİ
+- LIMAN `karsi-kiyi` (P04 dolly zoom, `KARSI_KIYI_KAYIT`; parametre `parilti {kare, giris, cikis}`), `gemi-orta` (P07a/b; `alev {isik, kare, siddet}`, `arka_olcek`, `arka_kayma`), `saygi` (P10a; kilitli). Kod: `sablonlar/benmychree/LimanYeni.tsx`. `kiyidan-ada` (K1) değişmedi.
+- GemiProfil `batik`: çökmüş hangar + bot yok (diğer durumlar aynı). Duman: `tara`, `isikRenk` seçenekleri (varsayılan eski davranış).

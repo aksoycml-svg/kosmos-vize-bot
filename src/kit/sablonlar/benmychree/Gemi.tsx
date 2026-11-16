@@ -11,6 +11,8 @@ export const GEMI = { L: 118.9, borda: 6.2, abarti: 1.4 }; // dikey abartı 1.15
 // konumlar (baştan, m) — tasarim §3 L oranları
 const K = { platform: [0, 17.8], onDirek: 23.8, kopru: [33.3, 45.2], onBaca: 51.1, arkaBaca: 70.2, hangar: [76.1, 104.6], arkaDirek: 107, botlar: [41, 58.5, 64.5] };
 
+// batık hangar üst hattı (m, yükseklik m; −1 = güverte)
+const HANGAR_KIRIK: [number, number][] = [[76.1, -1], [76.1, 9.8], [78.5, 10.4], [80.8, 8.1], [83.6, 9.5], [86.8, 6.6], [89.7, 8.7], [92.9, 5.4], [96.6, 7.5], [99.8, 5.9], [102.4, 7.6], [104.6, 6.9], [104.6, -1]];
 export const GemiProfil: React.FC<{ pxm: number; durum?: GemiDurum; seed?: number; hangarKapi?: "kapali" | "acik" }> = ({ pxm, durum = "demirli", seed = 181 }) => {
   const X = (m: number) => m * pxm, Y = (m: number) => -m * pxm * GEMI.abarti;
   const kw = Math.max(2.2, Math.min(3.5, pxm * 0.55)); // siluet kontur
@@ -51,17 +53,23 @@ export const GemiProfil: React.FC<{ pxm: number; durum?: GemiDurum; seed?: numbe
         <line x1={X(m - 2.3 + 1.05)} y1={Y(17.7)} x2={X(m + 2.3 + 1.05)} y2={Y(17.7)} stroke={BP.kenar} strokeWidth={Math.max(1.2, pxm * 0.3)} />
       </g>)}
       {/* can botları (davitte) */}
-      {K.botlar.map((m, i) => <g key={i}>
+      {durum !== "batik" && K.botlar.map((m, i) => <g key={i}>
         <path d={`M${X(m - 3.7)},${Y(deck(m) + 3.4)} Q${X(m)},${Y(deck(m) + 1.6)} ${X(m + 3.7)},${Y(deck(m) + 3.4)} Z`} fill={BP.bot} stroke={BP.kontur} strokeWidth={kw * 0.7} opacity={0.9} />
         <line x1={X(m - 3.7)} y1={Y(deck(m) + 3.4)} x2={X(m + 3.7)} y2={Y(deck(m) + 3.4)} stroke={BP.kenar} strokeWidth={Math.max(1, pxm * 0.2)} />
       </g>)}
       {/* hangar: düz çatılı yüksek kutu, arka bacanın hemen gerisi; iskele yan duvarında çift kanat kapı */}
+      {durum === "batik" ? <g>{/* tur-5 batık: yanıp çökmüş hangar — kırık duvar üst hattı + ayakta kalan çatı kaburgaları (yalnız "batik"; diğer durumlar değişmez) */}
+        <path d={`M${pts(HANGAR_KIRIK.map(([m, h]) => [X(m), Y(h < 0 ? deck(m) : h)] as P2))} Z`} fill="#3a3448" stroke={BP.kontur} strokeWidth={kw} />
+        {[78, 82, 86, 90, 94, 98, 102].map((m, i) => <line key={i} x1={X(m)} y1={Y(deck(m) + 1)} x2={X(m + (i % 3 === 1 ? 1.6 : 0.3))} y2={Y(i % 3 === 1 ? 9.4 : 11.2 - (i % 2) * 0.8)} stroke="#2e2a3e" strokeWidth={Math.max(1.4, pxm * 0.3)} />)}
+        <path d={`M${pts(HANGAR_KIRIK.slice(1, -1).map(([m, h]) => [X(m), Y(h)] as P2))}`} stroke={BP.kenar} strokeWidth={Math.max(1.4, pxm * 0.3)} fill="none" opacity={0.85} />
+      </g> : <>
       <path d={kutu(K.hangar[0], K.hangar[1], deck(90), 11.6)} fill="#55516b" stroke={BP.kontur} strokeWidth={kw} />
       <line x1={X(K.hangar[0])} y1={Y(11.6)} x2={X(K.hangar[1])} y2={Y(11.6)} stroke={BP.kenar} strokeWidth={Math.max(3, pxm * 0.6)} />
       <line x1={X(K.hangar[1])} y1={Y(11.6)} x2={X(K.hangar[1])} y2={Y(deck(104) + 0.4)} stroke={BP.kenar} strokeWidth={Math.max(1.3, pxm * 0.3)} />
       <path d={kutu(K.hangar[0], K.hangar[1], 10.9, 11.5)} fill={BP.dumanCekirdek} opacity={0.35} />
       <path d={kutu(91.5, 98.5, deck(95), deck(95) + 5)} fill="none" stroke={BP.kontur} strokeWidth={Math.max(1, kw * 0.6)} opacity={0.8} />
       <line x1={X(95)} y1={Y(deck(95))} x2={X(95)} y2={Y(deck(95) + 5)} stroke={BP.kontur} strokeWidth={Math.max(0.8, kw * 0.45)} opacity={0.7} />
+      </>}
       {yanik && <path d={`M${pts([[X(94), Y(deck(95) + 5.6)], [X(96.5), Y(deck(95) + 6.4)], [X(97.4), Y(deck(95) + 5.2)], [X(95.5), Y(deck(95) + 4.6)]])} Z`} fill={BP.dumanCekirdek} />}
       {/* gövde */}
       <path d={gD} fill="#3c3854" stroke={BP.kontur} strokeWidth={kw} />

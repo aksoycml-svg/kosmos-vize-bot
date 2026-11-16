@@ -32,7 +32,7 @@ const zeminH = (z: number) => -3 + (7.7 * z) / 30 + Math.sin(z * 0.9) * 0.12;
 const refY = (ref: Kam25, h: number, z: number) => izd(ref, [0, h, z])!.y;
 
 // ---------- Likya sırtları + yamaç üstü (uzak plakalar, ref px) ----------
-const SirtK: React.FC<{ x0: number; x1: number; taban: number; tepeler: [number, number, number][]; renk: string; bant?: string; seed: string }> = ({ x0, x1, taban, tepeler, renk, bant, seed }) => {
+export const SirtK: React.FC<{ x0: number; x1: number; taban: number; tepeler: [number, number, number][]; renk: string; bant?: string; seed: string }> = ({ x0, x1, taban, tepeler, renk, bant, seed }) => {
   const A: P2[] = [];
   for (let x = x0; x <= x1; x += 8) { let y = taban; for (const [c, h, w] of tepeler) y -= h * Math.exp(-(((x - c) / w) ** 2)); y += Math.sin(x * 0.05 + rr(`${seed}`) * 6) * 2.5; A.push([x, y]); }
   // ön ışık (güneş kamera arkasında, sol): sola bakan (yükselen) yamaçlar sıcak bant — sürekli parçalar (min 5 nokta)
@@ -49,7 +49,7 @@ const SirtK: React.FC<{ x0: number; x1: number; taban: number; tepeler: [number,
   );
 };
 // karst kaya bloğu (ön ışık: üst + sol yüz ışıkta, sağ yüz gölgede) — yamaç plakalarında tekrar kullanılır
-const Blok: React.FC<{ x: number; y: number; w: number; h: number; seed: string; ton?: number }> = ({ x, y, w, h, seed, ton = 0 }) => {
+export const Blok: React.FC<{ x: number; y: number; w: number; h: number; seed: string; ton?: number }> = ({ x, y, w, h, seed, ton = 0 }) => {
   const u = (k: string) => rr(`${seed}${k}`);
   const dis: P2[] = [[x, y], [x + w * 0.04, y - h * (0.55 + 0.2 * u("a"))], [x + w * (0.22 + 0.1 * u("b")), y - h * (0.92 + 0.08 * u("c"))], [x + w * (0.6 + 0.1 * u("d")), y - h], [x + w * 0.92, y - h * (0.6 + 0.2 * u("e"))], [x + w, y]];
   const kir: P2 = [x + w * (0.55 + 0.12 * u("f")), y - h * (0.62 + 0.1 * u("g"))];
@@ -61,7 +61,7 @@ const Blok: React.FC<{ x: number; y: number; w: number; h: number; seed: string;
     </g>
   );
 };
-const Maki: React.FC<{ x: number; y: number; r: number; seed: string }> = ({ x, y, r, seed }) => {
+export const Maki: React.FC<{ x: number; y: number; r: number; seed: string }> = ({ x, y, r, seed }) => {
   const lob: P2[] = []; const n = 9;
   for (let i = 0; i <= n; i++) { const a = Math.PI + (i / n) * Math.PI, rr2 = r * (0.75 + 0.35 * rr(`${seed}${i}`)); lob.push([x + Math.cos(a) * r * 1.15, y + Math.sin(a) * rr2 * 0.85]); }
   const d = `M${x - r * 1.15},${y} ` + lob.slice(1).map((q, i) => `A${r * 0.32},${r * 0.32} 0 0 1 ${q[0].toFixed(1)},${q[1].toFixed(1)}`).join(" ") + " Z";
@@ -96,7 +96,7 @@ export const Ortu: React.FC<{ alan: P2[]; n: number; r: number; seed: string }> 
     <path d={`M${c[0] - rk * 0.7},${c[1] - rk * 0.4} A${rk},${rk} 0 0 1 ${c[0] + rk * 0.1},${c[1] - rk * 0.9}`} stroke={mix("#7d8460", BP.kenar, 0.5)} strokeWidth={3} fill="none" />
   </g>)}</g>;
 };
-const Ot: React.FC<{ x: number; y: number; L: number; ruz: number; t: number; seed: string; n?: number; w?: number }> = ({ x, y, L, ruz, t, seed, n = 6, w = 3 }) => (
+export const Ot: React.FC<{ x: number; y: number; L: number; ruz: number; t: number; seed: string; n?: number; w?: number }> = ({ x, y, L, ruz, t, seed, n = 6, w = 3 }) => (
   <g>{Array.from({ length: n }).map((_, j) => { const l = L * (0.6 + 0.5 * rr(`${seed}${j}`)), a = (j - n / 2) * 0.12 + ruz * 0.35 + Math.sin(t * 1.4 + j + rr(`${seed}f`) * 5) * 0.05;
     return <path key={j} d={`M${x + j * w * 1.2},${y} Q${x + j * w * 1.2 + a * l * 0.3},${y - l * 0.6} ${x + j * w * 1.2 + a * l},${y - l}`} stroke={j % 3 ? BP.ot : mix(BP.ot, BP.kenar, 0.4)} strokeWidth={w} fill="none" strokeLinecap="round" />; })}</g>
 );

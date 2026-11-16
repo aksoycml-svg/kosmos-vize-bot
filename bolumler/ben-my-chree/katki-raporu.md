@@ -182,3 +182,24 @@
 - Sapmalar / lint: `katman_odak_farki` (ön plan ve arka plan farklı F, K1 dili), `dal_ortusu` (kanıtsız dramatizasyon, kullanıcı yönü), D5 sütun ≥%25 beyanı uzak planda ≈ %7–8 (stilize ×1.8). Askerler yalnız < %5 siluet (kural), dimdik ve aralıklı.
 - Açık: `kit_eksik` Meis–Kaş kıyı verisi (orkestra: GSHHG/OSM). Mekân sorumlusu mekanlar.md'yi yeni yöne göre güncellemeli (GEMI-INSERT/yakın figür bölümleri geçersiz; P04 gemi güvertesi bakışı, P10a ön plan top ve siluet, `gemi-orta` görünümü).
 - Dokunduğum dosyalar: bolumler/ben-my-chree/sahne-plani.md, katki-raporu.md
+
+## motion · 2026-11-16 · kalibrasyon tur-5 (yön değişikliği: P04, P07b, P10a — K1 dilinde)
+- **Ne yaptım:** §12 kartlarından üç yeni LIMAN görünümü kurdum. `karsi-kiyi` (P04): geminin baş güvertesinden Kaş yamacına dolly zoom. Direk 90 px'te sabit kalıyor, pin rayı y≈1620'de sabit, yamaç ×1.9 büyüyor, parıltı vadide ve kilit karesi 1291. `gemi-orta` (P07a/b): yanan gemi orta planda; iki baca, iki direk ve hangar görünüyor, alev 212'de patlıyor, duman rüzgârla sağa yatıyor, alevin yansıması suda. `saygi` (P10a): kilitli kamera. Ön planda kalkanlı top ve dal var, platoda gökyüzüne karşı 5 dimdik siluet (kabalak; tüfek, battaniye, matara ve dürbün ayrıntılı), limanda batık (≈477 px) ve gün batımı halesi. Ayrıca `tur-5/` çıktılarını ürettim: tam boy, 360 ve güvenli alan kareleri, 6 şerit, ölçümler, kare başına `karsilastirma_*.png` (kare | K1 | Paris) ve `recete-isaret.md`.
+- **Dokunduğum dosyalar:** `src/kit/sablonlar/benmychree/LimanYeni.tsx` (yeni), `Liman.tsx` (yalnız `export` ve görünüm yönlendirmesi; K1 yolu değişmedi), `Gemi.tsx` (yalnız `batik` dalı), `bmcOrtak.tsx` (gokC üst 3 ton desatüre; Duman'a `tara` ve `isikRenk` eklendi, varsayılanlar eski), `KiyiBatarya.tsx` (yalnız `export`), `bolumler/ben-my-chree/kalibrasyon.json` (bölüm mutlak kareleri + `_dolgu` planlar; eski sürüm `tur-4/kalibrasyon-tur4.json`), `tools/benmychree_kalibrasyon_t5.sh` (yeni), `tools/benmychree_kor.py` (tur-5 kutuları + özel ayrışma ölçümü), `src/kit/KATALOG.md`, `kalibrasyon/tur-5/*`.
+- **Kararlar ve sapmalar:**
+
+| plan | kart | uygulanan | gerekçe |
+|---|---|---|---|
+| P04 | göz deniz +6 m | +8.35 m | Güverte suyun 6.5 m üstünde; göz güverte + 1.8 m. Pin rayının y 1620'de durması için gerekli. |
+| P04 | 150→300 mm | 150 mm başlangıç; F kamera yolundan türetiliyor (konu eksende z 12) | Konu ekranda sabit kalıyor. |
+| P04 | yamaç 400→800 px, ≥ %55 | ≈430→820 px | Kartın iki değeri birbiriyle çelişiyor. Gökyüzünü yazı bandına bıraktım. |
+| P04 | "korkuluk üst çubuğu" | direk dibindeki pin rayı (z 11.7) | Gemi küpeştesi 150 mm'de yassı V oluyor ve sabit kalmıyor. Pin rayı direkle aynı düzlemde olduğu için sabit. Ön planda halat kangalları ve çıpa zincirleri var. |
+| P07b | z 150 m | gemi Z 389 m, pxm 10.4 | Koordinatörün "iki baca + iki direk" şartı için. Arka plan K1 tiyatro ölçeğinde ×0.8 (lint katman_odak_farki). |
+| P07b | ön plan halka z 8 | şamandıra Z 34 | Göz +4 m'de z 8'deki su kadraj dışında kalıyor. |
+| P10a | top x 60–520 | x 80–570 (namlu limana) | 3/4 arka görünüş; "top" okunsun diye. |
+| P10a | siluetler Z 70–80 | sağdaki plato mahmuzunda, başlar gökyüzüne karşı | Ayrışma 60 L*. Mahmuz batığın kıç ucunu ≈10 px kesiyor. |
+
+- **Ölçümler:** P04 sıcak %18.6, p95 78.8, p5 12, parıltı çekirdeği ile yamaç farkı 39 (kor ortalaması 26), hale ≈120 px. P07b sıcak %18.8, p95 83.1, alev 430 px (%22), alev–gemi farkı 68. P10a sıcak %15.5, p95 78.9, p5 11.6, siluet–gök farkı 60, siluet ≈84–91 px. Üç kare de genel ölçütten geçti. Piksel-aynı denetimi: Paris k300 = 0, Çiçero k1200 = 0, K1 k124 (tur-4'e karşı) = 0 farklı piksel.
+- **Uyguladığım kurallar ve kendi yakaladığım ihlaller:** Tek ışık (rel 220 / 45 / 45). Rüzgâr 335°. Temas listesi: 190 parıltı sesi, 212 ateş tutuşması. Duman fade olmuyor, kadraj üstünden çıkıyor. Yakın figür yok. KOR yalnız parıltıda ve alevde. gokC C* 30'dan 18'e indi (**tasarımcı onayı bekliyor**). Şamandıra, pin rayı, halat kangalları ve zincirler şartnamede tam tanımlı değil (**onay bekliyor**).
+- **Öz puan (kritik maddeler):** P10a ≈6.5: K1 ile aynı film duruyor; mahmuz ağır, ön zemin sade. P07b ≈6: alev hâlâ çizgi film diliyle, sol üst gök boş (rüzgâr fiziği). P04 ≈5.5: yamaç K1'den soluk ve düz, iki mandar 360 px'te dikey çizgi gibi okunuyor.
+- **Açık sorular / sonraki ajana notlar:** Eleştirmen öncelikle P04 yamaç değerine ve P07b alev biçimine baksın. P10a'daki sayılı siluetlerin yüzü yok; bu, CLAUDE.md "askerler" kuralıyla tur-10 kararı arasında bir gerilim, orkestranın teyidi gerekiyor. Git işlemi yapılmadı.

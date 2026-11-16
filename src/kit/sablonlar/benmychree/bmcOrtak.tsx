@@ -11,7 +11,7 @@ export const BP = {
   gokA: ["#7389b2", "#8fa3c8", // tepe #6c86b8 → #7389b2 (C* 30 → 26; sahne C* ≤ 28)
     "#b3bcd2", "#e4c4b8", "#ecc9b4"], // alt basamak #dbc6cc → #e4c4b8 (h≈45°, sıcak ölçüt; C* ≈ 13)
   gokB: ["#6679ae", "#8c93bd", "#b5aec6", "#e0c0c2", "#efc0a6"],
-  gokC: ["#4a4e7a", "#6f6a9c", "#a88aa6", "#cf9ea4", "#eeb89c"],
+  gokC: ["#4d4f69", "#6f6c8a", "#a48ca2", "#cf9ea4", "#eeb89c"], // tur-5: üst üç basamak C* 27–30 → 15–18 (işleme sonrası sahne C* ≤ 28); yalnız h < 12 planları (P10) kullanır
   bulut: "#ecd4c8", bulutGolge: "#9a94b4", kenar: "#eec5a2", kenarC: "#e4b496",
   suYol: "#e6c498",  su: "#5f7fa6", suGolge: "#4c5780", suDerin: "#46628a", kopuk: "#e6dac6", kopukGolge: "#9aa6c0", siçrama: "#f3d9b6",
   tasIsik: "#d9b99a", tasOrta: "#b89a86", tasGolge: "#6f6488", tasDerin: "#4a4468", oyuk: "#2e2a44", toprak: "#a07e6a",
@@ -101,8 +101,9 @@ export const Tara: React.FC<{ d: string; aci: number; aralik: number; kalin: num
 };
 
 // ---------- duman sütunu (gravür lob kümesi; yükselir, rüzgârla yatar, kadraj üstünden çıkar — fade yok) ----------
-export type DumanAyar = { taban: P2; t: number; hiz: number; genis0: number; genis1: number; ruz: number; seed: string; boy: number; isikSag?: boolean; altIsik?: boolean; yogun?: number };
-export const Duman: React.FC<DumanAyar> = ({ taban, t, hiz, genis0, genis1, ruz, seed, boy, isikSag = true, altIsik, yogun = 1 }) => {
+// tara (varsayılan true): lob içi gölge çizgileri; false → yalnız ışık yayı (tur-5 P07b büyük duman; eski kullanımlar değişmez)
+export type DumanAyar = { taban: P2; t: number; hiz: number; genis0: number; genis1: number; ruz: number; seed: string; boy: number; isikSag?: boolean; altIsik?: boolean; yogun?: number; tara?: boolean; isikRenk?: string };
+export const Duman: React.FC<DumanAyar> = ({ taban, t, hiz, genis0, genis1, ruz, seed, boy, isikSag = true, altIsik, yogun = 1, tara = true, isikRenk = BP.duman }) => {
   // loblar sabit aralıkla taban'dan doğar (dünyaya bağlı dizi: lob i'nin doğum zamanı i·dt), yaşlandıkça yükselir ve büyür
   const dt = 0.22 / yogun, n = Math.ceil((t + boy / hiz) / dt) + 1, L: { c: P2; r: number; i: number }[] = [];
   for (let i = 0; i < n; i++) {
@@ -118,9 +119,9 @@ export const Duman: React.FC<DumanAyar> = ({ taban, t, hiz, genis0, genis1, ruz,
     <g>
       {L.map((l) => <circle key={`o${l.i}`} cx={l.c[0]} cy={l.c[1]} r={l.r + 3} fill={BP.dumanCekirdek} />)}
       {L.map((l) => <circle key={`g${l.i}`} cx={l.c[0]} cy={l.c[1]} r={l.r} fill={BP.dumanGolge} />)}
-      {L.map((l) => <circle key={`i${l.i}`} cx={l.c[0] + sx * l.r * 0.28} cy={l.c[1] - l.r * 0.3} r={l.r * 0.66} fill={BP.duman} />)}
-      {L.map((l) => <path key={`k${l.i}`} d={`M${l.c[0] + sx * l.r * 0.2},${l.c[1] - l.r * 0.94} A${l.r * 0.95},${l.r * 0.95} 0 0 ${isikSag ? 1 : 0} ${l.c[0] + sx * l.r * 0.93},${l.c[1] - l.r * 0.12}`} stroke={BP.kenar} strokeWidth={Math.max(2, l.r * 0.05)} fill="none" />)}
-      {L.map((l) => [0, 1, 2].map((j) => <line key={`t${l.i}${j}`} x1={l.c[0] - sx * l.r * (0.75 - j * 0.12)} y1={l.c[1] + l.r * (0.05 + j * 0.2)} x2={l.c[0] - sx * l.r * (0.2 - j * 0.1)} y2={l.c[1] + l.r * (0.35 + j * 0.2)} stroke={BP.dumanCekirdek} strokeWidth={Math.max(1.6, l.r * 0.04)} opacity={0.6} />))}
+      {L.map((l) => <circle key={`i${l.i}`} cx={l.c[0] + sx * l.r * 0.28} cy={l.c[1] - l.r * 0.3} r={l.r * 0.66} fill={isikRenk} />)}
+      {L.filter((l) => tara || l.i % 3 === 0).map((l) => <path key={`k${l.i}`} d={`M${l.c[0] + sx * l.r * 0.2},${l.c[1] - l.r * 0.94} A${l.r * 0.95},${l.r * 0.95} 0 0 ${isikSag ? 1 : 0} ${l.c[0] + sx * l.r * 0.93},${l.c[1] - l.r * 0.12}`} stroke={BP.kenar} strokeWidth={Math.max(2, l.r * 0.05)} fill="none" />)}
+      {tara && L.map((l) => [0, 1, 2].map((j) => <line key={`t${l.i}${j}`} x1={l.c[0] - sx * l.r * (0.75 - j * 0.12)} y1={l.c[1] + l.r * (0.05 + j * 0.2)} x2={l.c[0] - sx * l.r * (0.2 - j * 0.1)} y2={l.c[1] + l.r * (0.35 + j * 0.2)} stroke={BP.dumanCekirdek} strokeWidth={Math.max(1.6, l.r * 0.04)} opacity={0.6} />))}
       {altIsik && L.filter((l) => l.c[1] > taban[1] - boy * 0.5).map((l) => <path key={`a${l.i}`} d={`M${l.c[0] - l.r * 0.85},${l.c[1] + l.r * 0.25} A${l.r},${l.r} 0 0 0 ${l.c[0] + l.r * 0.85},${l.c[1] + l.r * 0.25}`} stroke={BP.dumanAlt} strokeWidth={Math.max(3, l.r * 0.16)} fill="none" opacity={0.85} />)}
     </g>
   );

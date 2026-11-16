@@ -13,9 +13,10 @@ import { KonturTitreme } from "../../../doku/KonturTitreme";
 import { Alev, BP, BulutSerit, Duman, gokSutun, Gok5, Katman, kirik, P2, pts, rr, Tara, Isleme } from "./bmcOrtak";
 import { GemiDurum, GemiProfil, GemiYansima } from "./Gemi";
 import { karisim as mix } from "./renk";
+import { LimanYeniSahne } from "./LimanYeni";
 
-type Gorunum = "kiyidan-ada" | "ada-rihtim" | "karsi-kiyi" | "rihtim-yan" | "hangar-yakin" | "enkaz";
-const KURULU: Gorunum[] = ["kiyidan-ada"];
+type Gorunum = "kiyidan-ada" | "ada-rihtim" | "karsi-kiyi" | "rihtim-yan" | "hangar-yakin" | "enkaz" | "gemi-orta" | "saygi";
+const KURULU: Gorunum[] = ["kiyidan-ada", "karsi-kiyi", "gemi-orta", "saygi"]; // tur-5: karsi-kiyi (P04), gemi-orta (P07a/b), saygi (P10a) → LimanYeni.tsx
 
 // görünüm kaydı: referans (dekor) kamera = sahne planı ekran konumlarının ölçüldüğü kamera (P01 kapak karesi)
 // P01: göz deniz +50 m, b 190°, 375 mm (F 11 250), tilt −1.03° → göz hizası y 758, su hattı (Z 2000) y ≈ 1040.
@@ -26,7 +27,7 @@ const GEMI_Z = 2000, GEMI_X0 = 190; // baş ekran x (ref)
 
 // ---------- uzak dekor (ref px) ----------
 // sırt profili: seed'li tepe kümeleri (Gauss tümsekleri) + küçük pürüz; dünyaya (plaka px) bağlı
-const sirtNokta = (x0: number, x1: number, taban: number, tepeler: [number, number, number][], seed: string, puruz = 3): P2[] => {
+export const sirtNokta = (x0: number, x1: number, taban: number, tepeler: [number, number, number][], seed: string, puruz = 3): P2[] => {
   const A: P2[] = [];
   for (let x = x0; x <= x1; x += 6) {
     let y = taban; for (const [c, h, w] of tepeler) y -= h * Math.exp(-(((x - c) / w) ** 2));
@@ -35,7 +36,7 @@ const sirtNokta = (x0: number, x1: number, taban: number, tepeler: [number, numb
   }
   return A;
 };
-const Sirt: React.FC<{ A: P2[]; alt: number; renk: string; golge?: string; bant?: number }> = ({ A, alt, renk, golge, bant = 3 }) => (
+export const Sirt: React.FC<{ A: P2[]; alt: number; renk: string; golge?: string; bant?: number }> = ({ A, alt, renk, golge, bant = 3 }) => (
   <g>
     <path d={`M${A[0][0]},${alt} L${pts(A)} L${A[A.length - 1][0]},${alt} Z`} fill={renk} />
     {/* güneş sağda: sağa bakan (inen) yamaçlarda sıcak bant, sola bakan yamaçlarda koyu yüz */}
@@ -44,7 +45,7 @@ const Sirt: React.FC<{ A: P2[]; alt: number; renk: string; golge?: string; bant?
   </g>
 );
 // Meis evleri: bitişik, farklı yükseklik/genişlik/renk; kontrajur → cephe gölgede (buğulu), sağ yan duvar ışık şeridi, çatı ışıkta
-const Evler: React.FC<{ x0: number; x1: number; taban: (x: number) => number; hMin: number; hMax: number; seed: string; bugu: number; bosluk?: number }> = ({ x0, x1, taban, hMin, hMax, seed, bugu, bosluk = 0.12 }) => {
+export const Evler: React.FC<{ x0: number; x1: number; taban: (x: number) => number; hMin: number; hMax: number; seed: string; bugu: number; bosluk?: number }> = ({ x0, x1, taban, hMin, hMax, seed, bugu, bosluk = 0.12 }) => {
   const ev: React.ReactNode[] = []; let x = x0, i = 0, oncekiH = 0;
   while (x < x1) {
     const w = 26 + rr(`${seed}w${i}`) * 30; let h = hMin + rr(`${seed}h${i}`) * (hMax - hMin);
@@ -77,7 +78,7 @@ const Evler: React.FC<{ x0: number; x1: number; taban: (x: number) => number; hM
   return <g>{ev}</g>;
 };
 // Kale (14. yy Şövalyeler): kayalık burun + iki kütleli dikdörtgen sur + tek kare kule; mazgal dişi; kemer yok. Işık sağdan (batı yüzleri)
-const Kale: React.FC = () => {
+export const Kale: React.FC = () => {
   const tas = mix(BP.tasGolge, "#d0b392", 0.22), tasK = mix(BP.tasGolge, "#d0b392", 0.12), isik = "#d0b392";
   const burun: P2[] = [[20, 1004], ...kirik([30, 960], [90, 880], 4, 7, "bu1"), ...kirik([90, 880], [300, 858], 6, 6, "bu2"), ...kirik([300, 858], [440, 872], 3, 5, "bu3"), [500, 930], [540, 1004]];
   const sur1 = "M96,872 L96,772 L318,766 L318,866 Z", sur2 = "M318,866 L318,800 L418,804 L418,874 Z", kule = "M176,770 L176,682 L246,682 L246,768 Z";
@@ -103,7 +104,7 @@ const Kale: React.FC = () => {
     </g>
   );
 };
-const Bayrak: React.FC<{ t: number }> = ({ t }) => {
+export const Bayrak: React.FC<{ t: number }> = ({ t }) => {
   // tricolore, rüzgâr +0.57 → sağa dalgalanır (meltem): üç şerit, küçük (≤ 40×27)
   const w = (u: number) => Math.sin(t * 5.2 - u * 4) * 2.2 * u + 32;
   const ser = (a: number, b: number, c: string) => <path key={c} d={`M${239 + a * 38},${607 + w(a)} L${239 + b * 38},${607 + w(b)} L${239 + b * 38},${629 + w(b)} L${239 + a * 38},${629 + w(a)} Z`} fill={c} />;
@@ -266,6 +267,7 @@ const KiyidanAda: React.FC<{ plan: Plan; p: number; kilit: SablonProps["kilit"] 
 const Sahne: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   const g = param<Gorunum>(plan, "gorunum", "kiyidan-ada");
   if (!KURULU.includes(g)) throw new Error(`[LIMAN] görünüm "${g}" kurulmadı (kurulu: ${KURULU.join(", ")}) — kalibrasyon turu 1`);
+  if (g !== "kiyidan-ada") return <LimanYeniSahne g={g} plan={plan} p={p} kilit={kilit} />;
   return <KiyidanAda plan={plan} p={p} kilit={kilit} />;
 };
 export const LIMAN: Sablon = { Sahne, arsiv: () => "litografi" };

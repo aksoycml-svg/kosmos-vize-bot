@@ -1,10 +1,10 @@
 {
  "slug": "ben-my-chree",
- "baslik": "Ben-my-Chree — kalibrasyon turu 1 (K1 P01, K2 P07b, K3 P05, K4 P04)",
+ "baslik": "Ben-my-Chree — kalibrasyon turu 5 (yön değişikliği: P04 dolly zoom, P07b yanan gemi, P10a saygı anı; P01 kilit)",
  "fps": 60,
  "dil": "tr",
  "gorsel_yazisiz": true,
- "_not": "motion kalibrasyon json'u (bolum.json değil). Mutlak kareler bu dosyada: P01 0–190 · P04 190–487 · P05 487–726 · P07b 726–846 (P07b plan içi kare 150–270 → burada 0–120). K1 = 124, K2 = 726+64 = 790 (yerel 214), K3 = 487+150 = 637, K4 şeridi 190+{0,62,125,187,250}.",
+ "_not": "motion kalibrasyon json'u (bolum.json değil). Mutlak kareler BÖLÜMLE AYNI: P01 0–190 (kilit, K1=124) · P04 1091–1388 (k1291 = yerel 200) · P07a+b 2174–2444 (k2388 = yerel 214) · P10a 3172–3406 (k3292 = yerel 120). _dolgu planları render edilmez.",
  "planlar": [
   {
    "id": "P01",
@@ -57,204 +57,116 @@
    }
   },
   {
+   "id": "_dolgu1",
+   "sablon": "LIMAN",
+   "sure_kare": 901,
+   "_not": "kalibrasyon dolgusu (render edilmez); mutlak kareleri bölümle eşlemek için",
+   "parametreler": {
+    "gorunum": "kiyidan-ada",
+    "gemi_durum": "demirli",
+    "gun_yuksekligi": 22,
+    "seed": 181
+   }
+  },
+  {
    "id": "P04",
-   "sablon": "KIYI-BATARYA",
+   "sablon": "LIMAN",
    "sure_kare": 297,
    "kontrol_kare": 200,
+   "_not": "karsi-kiyi DOLLY ZOOM (bölümün tek kullanımı); kamera görünüm kaydından (KARSI_KIYI_KAYIT: göz +8.35, 150→300 mm türetilir, z 0→−12, f0–250 inout, hold 250–297)",
    "parametreler": {
-    "gorunum": "yamac-oyuk",
+    "gorunum": "karsi-kiyi",
     "gun_yuksekligi": 22,
     "seed": 193,
     "parilti": {
      "kare": 190,
+     "giris": [
+      184,
+      190
+     ],
      "cikis": [
-      168,
-      186
-     ],
-     "donus": [
       232,
-      250
+      244
      ]
-    },
-    "bulut_golgesi": {
-     "bas": 0,
-     "bit": 90
-    },
-    "kamera25": {
-     "kare": [
-      0,
-      250
-     ],
-     "lens_mm": [
-      100
-     ],
-     "odak_z": [
-      30,
-      60
-     ],
-     "diyafram": 22,
-     "egri": "inout",
-     "ekipman": "dolly"
-    }
-   },
-   "_not": "dolly zoom: konum_yol ve dolly_zoom.konu şablon kaydından (eksen boyunca −30 m, F = F0·mesafe/mesafe0)"
-  },
-  {
-   "id": "P05",
-   "sablon": "KIYI-BATARYA",
-   "sure_kare": 239,
-   "kontrol_kare": 150,
-   "parametreler": {
-    "gorunum": "tegmen",
-    "gun_yuksekligi": 22,
-    "seed": 195,
-    "tegmen": {
-     "pat": [
-      87,
-      120
-     ]
-    },
-    "kamera25": {
-     "kare": [
-      0,
-      190
-     ],
-     "konum_kare": [
-      0,
-      60,
-      110,
-      150,
-      190
-     ],
-     "konum_yol": [
-      [
-       -0.62,
-       0.5,
-       -0.5
-      ],
-      [
-       -0.25,
-       0.5,
-       -0.42
-      ],
-      [
-       -0.02,
-       0.5,
-       -0.3
-      ],
-      [
-       0,
-       0.5,
-       0
-      ],
-      [
-       0,
-       0.5,
-       0.05
-      ]
-     ],
-     "yon_kare": [
-      0,
-      110
-     ],
-     "yon_yol": [
-      [
-       -25,
-       0
-      ],
-      [
-       0,
-       0
-      ]
-     ],
-     "lens_mm": [
-      85
-     ],
-     "odak_kare": [
-      124,
-      150
-     ],
-     "odak_z": [
-      1.35,
-      1.6
-     ],
-     "diyafram": 18,
-     "egri": "inout",
-     "ekipman": "dolly"
-    }
-   }
-  },
-  {
-   "id": "P07b",
-   "sablon": "GEMI-INSERT",
-   "sure_kare": 120,
-   "kontrol_kare": 64,
-   "_not": "P07b plan içi kare 150–270 → burada 0–120 (yerel 214 = 64). darbe/temas: kapı itilir 62 (yerel 212).",
-   "parametreler": {
-    "gorunum": "hangar-kapi",
-    "gun_yuksekligi": 18,
-    "seed": 191,
-    "kapi": {
-     "sizinti": [
-      10,
-      54
-     ],
-     "itilir": 62,
-     "aci": 58,
-     "oturma": 112
-    },
-    "t3": {
-     "geri": [
-      70,
-      95
-     ]
-    },
-    "kamera25": {
-     "kare": [
-      0,
-      95
-     ],
-     "konum_yol": [
-      [
-       1.2,
-       1.5,
-       -1.5
-      ],
-      [
-       1.2,
-       1.5,
-       -1.0
-      ]
-     ],
-     "yon_yol": [
-      [
-       -18.8,
-       0
-      ]
-     ],
-     "lens_mm": [
-      85
-     ],
-     "odak_z": [
-      1.6
-     ],
-     "diyafram": 4,
-     "egri": "inout",
-     "ekipman": "slider"
     }
    },
    "temaslar": [
     {
-     "kare": 62,
-     "olay": "kapı itilir + alev tutuşur",
-     "ses": "bmc-ates-tutus"
-    },
-    {
-     "kare": 62,
-     "olay": "kanat çarpar",
-     "ses": "bmc-kapi-catirti"
+     "kare": 190,
+     "olay": "namlu parıltısı (uzak, kısık)",
+     "ses": "metal-tink-kisik"
     }
    ]
+  },
+  {
+   "id": "_dolgu2",
+   "sablon": "LIMAN",
+   "sure_kare": 786,
+   "_not": "kalibrasyon dolgusu (render edilmez); mutlak kareleri bölümle eşlemek için",
+   "parametreler": {
+    "gorunum": "kiyidan-ada",
+    "gemi_durum": "demirli",
+    "gun_yuksekligi": 22,
+    "seed": 181
+   }
+  },
+  {
+   "id": "P07ab",
+   "sablon": "LIMAN",
+   "sure_kare": 270,
+   "kontrol_kare": 214,
+   "_not": "gemi-orta tek çekim: P07a yerel 0–150, P07b yerel 150–270 (bölüm 2174–2444). Alev yerel 212 = mutlak 2386; kontrol 214 = 2388.",
+   "parametreler": {
+    "gorunum": "gemi-orta",
+    "gun_yuksekligi": 18,
+    "seed": 181,
+    "alev": {
+     "isik": [
+      160,
+      204
+     ],
+     "kare": 212,
+     "siddet": 0.5
+    }
+   },
+   "temaslar": [
+    {
+     "kare": 212,
+     "olay": "hangar alevi patlar (darbe 0.5, ≤2 px)",
+     "ses": "bmc-ates-tutus"
+    }
+   ]
+  },
+  {
+   "id": "_dolgu3",
+   "sablon": "LIMAN",
+   "sure_kare": 728,
+   "_not": "kalibrasyon dolgusu (render edilmez); mutlak kareleri bölümle eşlemek için",
+   "parametreler": {
+    "gorunum": "kiyidan-ada",
+    "gemi_durum": "demirli",
+    "gun_yuksekligi": 22,
+    "seed": 181
+   }
+  },
+  {
+   "id": "P10a",
+   "sablon": "LIMAN",
+   "sure_kare": 234,
+   "kontrol_kare": 120,
+   "_not": "saygi — kilitli; arka plan tiyatro ×2 (lint katman_odak_farki)",
+   "lint": {
+    "izin": [
+     "katman_odak_farki",
+     "kirmizi"
+    ],
+    "not": "batık okunsun diye arka plan F 8000 / ön plan F 3990; kırmızı = kale bayrağı (kimlik)"
+   },
+   "parametreler": {
+    "gorunum": "saygi",
+    "gun_yuksekligi": 6,
+    "seed": 181
+   }
   }
  ]
 }
