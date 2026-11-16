@@ -276,3 +276,10 @@
   5. P06'da kartın istediği ≤2 px darbe sarsıntısı yok (kamera sabit tutuldu).
   - Kilitli karelerin dili (K1 gök, Meis, kaya, işleme) bütün planlarda aynı; görsel olarak en zayıf plan P08.
 - **Açık sorular:** P10 notu (sol grubu yaklaştır, top kesilmesin) kilitli kareyi değiştireceği için uygulanmadı. Git yapılmadı.
+
+## elestirmen · 2026-11-16 · jüri-1 (günlük mod, ilk kurgu taslağı)
+- Ne yaptım: TR/EN taslağı 6 soruyla taradım; 20+ kare çıkardım (kanca 0–3 sn, harita, P05b, isabet, P08, P10a), L*/sıcak ölçtüm, ebur128 + kesme çevresi RMS ölçtüm; Paris genel/hedef ile karşılaştırdım; altyazı kitinin kodunu okudum.
+- Dokunduğum dosyalar: bolumler/ben-my-chree/kalibrasyon/juri-1.md (yeni), bu rapor. Kod/json değişmedi.
+- Kararlar: puan 6 (geçmez). Düzeltme sırası harita > P06 doruk > P05b; altyazı kiti hatası (tire + P01 kanca altyazısının gizlenmesi) 3 sınırının dışında kritik.
+- Kurallar/ihlaller: kanca ekranda yok (üç katmanlı kanca); harita kontrast L* p5 51 (≤22 kuralı), sıcak %0; P05b dürbün yön sürekliliği + tek kalkık parmak; P08 bot okunurluk ~%1–2 (beyan %6); P08 alev tur-11 notunun tekrarı (süreç hatası); P10a askerler >%5 ve yüzsüz (kilit, öneri yok); kesme öncesi müzik çukurları (duck bırakma 24 kare > boşluk).
+- Açık sorular: P10a asker yüzü kuralı ile kullanıcı kilidi çelişiyor — kullanıcıya bildirilmeli. P01 ekran yazısı zamanlaması yazı katmanı olduğu için kilidi bozmuyor sayılabilir mi? Orkestra karar versin.
