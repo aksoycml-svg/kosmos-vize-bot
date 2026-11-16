@@ -47,3 +47,7 @@ Açık kararlar: P11 topçu harita üstünde (CEPHE mekânı yok); süre ~87 sn 
 - Render: `--gl=angle --browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell` (bulut). Sokak karesi ~30 sn/kare.
 - `src/kit/sablonlar/benmychree/Liman.tsx`'te kullanılmayan sabit tsc hatası (Ben-my-Chree'nin; dokunma).
 - Paralel oturumlar aynı branch'te: her push öncesi `git pull --rebase origin instagram-kanal`.
+
+## Figma vektör denemesi (kullanıcı seçimi, notlar/tur-5 sonrası)
+- Plan: Starter, koltuk **View**. Metinden vektör ~19 Figma AI kredisi (Starter: 500/ay, 150/gün; dış para yok). Şartlar: çıktı "müşteri içeriği", sorumluluk bizde (figma.com/legal/ai-terms).
+- Dosya: https://www.figma.com/design/2qIdYFqNm2OnuPAe3skqZD — `generate_vector_illustration` iki kez 60 sn'de zaman aşımı, sayfa boş kaldı. Muhtemel neden View koltuk (AI/düzenleme hakkı yok) ya da uzun üretim. Üçüncü deneme yapılmadı.
