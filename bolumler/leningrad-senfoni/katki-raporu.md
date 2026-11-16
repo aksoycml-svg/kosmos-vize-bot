@@ -193,3 +193,23 @@
   - Kabul ölçütlerinde kalanlar: C* medyanı **15.8 < 18** (net mürekkep + tarama + kâğıt lifi koyu, düşük C* pikselleri artırdı); p95 L* 77.8 < 85; çubuk dışı C* > 28 olan 511 px (%0.02, gren tepeleri) ve L* > 88 olan 105 px (lamba çekirdekleri).
   - Görsel eksikler: kasnak ışığı telefonda zayıf (çubuk V'si okunuyor); avize lambaları ve hale diskleri hâlâ tekrar eden "boncuk + baloncuk" etkisi veriyor; koltuk bandı geniş ve düz; Eliasberg'in sırtındaki açık enine şerit biraz yapay.
   - Bu son kalibrasyon turuydu; eleştirmen puanı < 7 ise kullanıcıya bu kare ve bu eksik listesiyle dönülmeli.
+
+## elestirmen · 2026-11-16 · SALON `konser` P12 f96 kalibrasyon tur-4 (son tur)
+- Ne yaptım:
+  - Tur-4 karesini Paris referansıyla yan yana puanladım.
+  - Tur-2'deki D1–D5'in karşılanıp karşılanmadığını işaretledim.
+  - Bölge bölge C* ölçtüm (hale, tavan lekesi, arka duvar, koltuk; mürekkep pikselleri hariç medyan, Paris dahil).
+  - Kalan 3 düzeltmeyi parametreyle yazdım.
+- Dokunduğum dosyalar: `kalibrasyon/tur-4/elestiri.md` (yeni), bu rapor.
+- Aldığım kararlar ve gerekçeleri:
+  - **7/10, şablon kabul.**
+  - C* açığı (15.8) yerel: yalnız üst üçte bir (hale 12.3, tavan lekesi 8.4) gri. Arka duvar Paris'le eşit (22.4).
+  - p95 77.8 kanal ölçütünü (≥75) geçiyor; 85 tasarım hedefi. İkisi de puanı 7'nin altına çekmiyor.
+- Uyguladığım kurallar / yakaladığım ihlaller:
+  - Şartname §5.1: tavan lekesi saydamlığı hâlâ .8/.85 (tur-2 D2 uygulanmadı).
+  - "Kemer çizilmez": arka duvar havuzu kemerli pencere okutuyor.
+  - Simit okuması (topuz): tur-2'den taşındı.
+  - `lint okunurluk_cubuk_P12` yeniden açılmadı.
+- Açık sorular / bir sonraki ajana notlar:
+  - 3 düzeltme sonraki SALON planlarında (P01, P14, P15) uygulanır.
+  - Tasarımcı tur-3 hex'lerini `tasarim.md`'ye eşitlemeli.
