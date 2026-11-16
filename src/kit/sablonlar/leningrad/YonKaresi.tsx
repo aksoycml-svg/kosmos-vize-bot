@@ -22,5 +22,7 @@ const Kare: React.FC<{ S: Sablon; plan: Plan; guvenli?: boolean; baslik: string 
     </AbsoluteFill>
   );
 };
-export const LeningradBodrum: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => <Kare S={BODRUM_SABLON} plan={LENINGRAD_P08_3} guvenli={guvenli} baslik="P08-3 BODRUM" />;
-export const LeningradSokak: React.FC<{ guvenli?: boolean }> = ({ guvenli }) => <Kare S={SOKAK_LG_SABLON} plan={LENINGRAD_P03A} guvenli={guvenli} baslik="P03a SOKAK-LG kış" />;
+// gorunum (isteğe bağlı): tur kaydını render etmek için (ör. "p08-t3", "p03a-t3"); verilmezse plan varsayılanı
+const ile = (plan: Plan, g?: string): Plan => (g ? { ...plan, parametreler: { ...plan.parametreler, gorunum: g } } : plan);
+export const LeningradBodrum: React.FC<{ guvenli?: boolean; gorunum?: string }> = ({ guvenli, gorunum }) => <Kare S={BODRUM_SABLON} plan={ile(LENINGRAD_P08_3, gorunum)} guvenli={guvenli} baslik="P08-3 BODRUM" />;
+export const LeningradSokak: React.FC<{ guvenli?: boolean; gorunum?: string }> = ({ guvenli, gorunum }) => <Kare S={SOKAK_LG_SABLON} plan={ile(LENINGRAD_P03A, gorunum)} guvenli={guvenli} baslik="P03a SOKAK-LG kış" />;

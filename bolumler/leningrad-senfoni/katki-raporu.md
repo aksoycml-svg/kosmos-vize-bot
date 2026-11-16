@@ -438,3 +438,29 @@
   - Sokak patikaları için düzensiz iz kümeleri gerekiyor; uzun bant kaçınılmaz olarak ray okutuyor.
   - Morg kaydırması tonozu kırpıyor. Yönetmen dolly zoom tepesinde 150 px'e dönmeyi düşünebilir; o durumda parmak uçları y ≈ 1480 olur.
   - `kit_eksik`: profil başa "kayıp profil" dönüşü.
+
+## motion · 2026-11-16 · kit: kalıcı çizim araçları (MurekkepCizgi + TonTarama) + BODRUM p08 / SOKAK p03a tur-4
+- Ne yaptım:
+  - `perfect-freehand` (MIT) eklendi (package.json/lock, tek ortak değişiklik).
+  - `src/kit/cizim/MurekkepCizgi.tsx`: incelip kalınlaşan açık çizgi (`murekkepYol`), ışığa göre ince→kalın kapalı kontur (`konturYol`, kayıp kenar), çok parçalı tek siluet (`BirlesikM`), `murekkepRenk`, path örnekleyici. Titreme seed'li, yay uzunluğuna bağlı (kaynamaz).
+  - `src/kit/cizim/TonTarama.tsx`: eşikli gravür taraması (ton arttıkça çizgi sayısı + kalınlığı artar, ışığa doğru incelip biter); modlar `duz` / `egri` (biçimi izleyen) / `isinsal` (kaçış noktasına perspektif); çapraz yalnız ≤120 px şekilde; ekran sınırı kırpması.
+  - `CizimTest` (Still): küre/silindir/kumaş/el, eski dil ↔ yeni araçlar → `kalibrasyon/cizim-test/`.
+  - `BodrumT4.tsx`, `SokakT4.tsx` (T3 kopyası üstüne): tüm kontur/gölge araçlara geçti; tur-3 kalanları (diz çökme ayrımı, ölü el dayanması, sokak kol açısı, ekmek tutuşu, ray patikalar) düzeltildi. Kareler `bodrum-tur-4/`, `sokak-tur-4/` (png, -360, -guvenli, hedef-yaninda.jpg [hedef | t3 | t4], olcum.md).
+- Dokunduğum dosyalar: `package.json`, `package-lock.json`, `src/kit/cizim/MurekkepCizgi.tsx` (yeni), `src/kit/cizim/TonTarama.tsx` (yeni), `src/kit/cizim/CizimTest.tsx` (yeni), `src/Root.tsx` (CizimTest Still kaydı), `src/kit/sablonlar/leningrad/BodrumT4.tsx` (yeni), `SokakT4.tsx` (yeni), `lgFigur.tsx` (isteğe bağlı `murekkep` / `konturAlfa` propları; varsayılan davranış aynı), `Bodrum.tsx` / `Sokak.tsx` (görünüm yönlendirme: `p08`/`p03a` → T4, `p08-t3`/`p03a-t3` kayıt), `YonKaresi.tsx` (isteğe bağlı `gorunum` prop'u), `src/kit/KATALOG.md`, `bolumler/leningrad-senfoni/kalibrasyon/{cizim-test,bodrum-tur-4,sokak-tur-4}/`.
+- Aldığım kararlar ve gerekçeleri:
+  - `src/doku/Tarama.tsx` ve benmychree/paris/ortak dosyalara dokunmadım; yeni araçlar ayrı klasörde, yalnız sabitleri (CAPRAZ_MAKS/ACI) okur. Kanıt: değişiklik öncesi/sonrası piksel karşılaştırması — Paris Bolum k400, Ben-my-Chree k2388, Leningrad bodrum `p08-t3` ve sokak `p03a-t3`: **4/4 karede 0 farklı piksel**.
+  - Kapalı kontur için perfect-freehand yerine kendi değişken genişlikli şeridim: kapalı halkada uç kapakları/dikiş oluşmasın, ışık yönüne göre genişlik nokta başına hesaplansın. Açık çizgiler ve tüm tarama çizgileri perfect-freehand.
+  - `egri` modunda kopyalar normal ofset değil öteleme: büyük kavislerde normal ofset ters dönüp sahte çapraz tarama üretiyordu (test karesinde silindirde görüldü).
+  - Morg: sedye x 930'da bitirildi, örtü ucu inciğin önüne sarkıyor (örtme ile derinlik); çizme sedyenin arka kenarı derinliğindeki zeminde (y 1670 < ön ayaklar 1800). Sedye altına arka diz çizmeyi denedim → "sedyede oturan" okumasını artırdı, geri aldım.
+  - Sokak: sağ kol OTS'ta uzak kol → üst kol sırtın arkasında, yalnız önkol görünür (uzun düz kol kalktı). El ekmekten önce + dört parmak ekmeğin önünde (gerçek kavrama). Patikalar 5 yürüyenin seed'li izleri.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Gravür telefonda okunur: tarama ≥ 1.5 px (yüzde 1.3–1.5 px, α ≤ .6), çapraz yalnız küçük şekilde; geniş alanda kafes yok.
+  - Yüzde iç çizgi yok: yüz taraması yalnız gölge yanında kısa eğri çizgi; ilk denemede uzun dikey çizgiler "parmaklık" okundu → gölge üçte birine indirildi.
+  - Işığın yolu: tarama tonu ışık yelpazesine bağlı (`fanda()`), yelpazedeki yüzeyler taramasız.
+  - Tek rig: LgYuz3/IncEl/LgBasProfil yeni modla genişletildi, ayrı poz çizilmedi.
+  - Ölçüm ihlali (açık): bodrum sıcak %13.7 (<14), p95 73.8 (<78; tur-3'te de kalmıştı). Sokak geçti.
+- Açık sorular / bir sonraki ajana notlar:
+  - **Öz puan: bodrum 5.5, sokak 5.5** (eleştirmen ~1 puan düşük verirse 4.5). Doku yoğunluğu arttı (komşu ΔL*: bodrum +%33, sokak +%16), tur-3 maddeleri düzeldi; ama iki kare de hedefin belirgin gerisinde. Kalan kök nedenler kitle ilgili değil kompozisyon/figür çiziminde: (1) morgda sedye kameraya paralel ve figür sedyeye göre büyük → "arkada çömelmiş" hedefteki kadar net değil (sedyeyi çapraza döndürmek ya da figürü ~%15 küçültmek yönetmen kararı); (2) ¾ yüz şablonu düz ton bloğu, maske hissi azaldı ama gitmedi; (3) sokakta kar yığınları ve cephe süslemesi hedeften fakir.
+  - Eleştirmen için: 2× kırpım önerisi — bodrum yüz (480–960 × 280–760), ölü el (300–700 × 1040–1360); sokak eller (400–880 × 1180–1560), baş (0–400 × 780–1300).
+  - `Onay bekliyor`: yeni öğe eklenmedi; sedye kısalması ve palto eteğinin yere inmesi kompozisyon değişikliğidir (tablo olcum.md'de).
+  - Render: sokak T4 tek kare ~30 sn (TonTarama ağır); tam plan render'ında kare başına maliyet yüksek olabilir — gerekirse statik katmanlar (cephe/zemin taraması) önbelleğe alınmalı (`useMemo` + sabit kamera).

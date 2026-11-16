@@ -16,6 +16,7 @@ import { param, Sablon, SablonProps } from "../../ortak";
 import { cr, dunya, Dunya, Hilal, Kirp, LgBaski, P2, pS } from "./lgOrtak";
 import { SokakP03a } from "./SokakHedef";
 import { SokakP03aT3 } from "./SokakT3";
+import { SokakP03aT4 } from "./SokakT4";
 
 const SD = 1941;
 export const LS = {
@@ -319,6 +320,6 @@ const P03a: React.FC<SablonProps> = ({ plan, p, kilit }) => {
   );
 };
 
-const Sahne: React.FC<SablonProps> = (pr) => { const g = param<string>(pr.plan, "gorunum", "p03a"); return g === "p03a-t1" ? <P03a {...pr} /> : g === "p03a-t2" ? <SokakP03a {...pr} /> : <SokakP03aT3 {...pr} />; }; // p03a: onaylı hedef (tur-3); p03a-t2: tur-2 kaydı; p03a-t1: tur-1 (reddedildi)
+const Sahne: React.FC<SablonProps> = (pr) => { const g = param<string>(pr.plan, "gorunum", "p03a"); return g === "p03a-t1" ? <P03a {...pr} /> : g === "p03a-t2" ? <SokakP03a {...pr} /> : g === "p03a-t3" ? <SokakP03aT3 {...pr} /> : <SokakP03aT4 {...pr} />; }; // p03a: onaylı hedef (tur-4, çizim araçları); p03a-t3 / p03a-t2: tur kayıtları; p03a-t1: tur-1 (reddedildi)
 /** SOKAK-LG — kuşatma sokağı (`mevsim: "kis"`; yaz P13 sonraki tur). Arşiv: litografi. Görünüm: `p03a` (yön karesi). */
 export const SOKAK_LG_SABLON: Sablon = { Sahne, arsiv: () => "litografi" };

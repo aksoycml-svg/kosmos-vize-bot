@@ -15,6 +15,7 @@ import { Sb2BorsaHibrit, SB2_BORSA_HIBRIT_SURE } from "./bolumler/blanc/sb2/Sb2B
 import { PropTest } from "./bolumler/blanc/sb2/PropTest";
 import { LeningradKalibrasyon } from "./kit/sablonlar/leningrad/Kalibrasyon";
 import { LeningradBodrum, LeningradSokak } from "./kit/sablonlar/leningrad/YonKaresi";
+import { CizimTest } from "./kit/cizim/CizimTest";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -38,6 +39,8 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="SB2-SOKAK-FARE" component={Sb2SokakFare} durationInFrames={SB2_SOKAK_SURE} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
     <Composition id="LeningradKalibrasyon" component={LeningradKalibrasyon} durationInFrames={209} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
     <Composition id="LeningradBodrum" component={LeningradBodrum} durationInFrames={300} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
+    {/* kalıcı çizim araçları sınaması (src/kit/cizim) */}
+    <Still id="CizimTest" component={CizimTest} width={1080} height={1920} />
     <Composition id="LeningradSokak" component={LeningradSokak} durationInFrames={180} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
   </>
 );

@@ -15,6 +15,8 @@ import { Tarama } from "../../../doku/Tarama";
 import { karistir, rnd } from "../../../doku/sabitler";
 import { cr, Hilal, Kirp, P2 } from "./lgOrtak";
 import type { YuzKart } from "../benmychree/Figur";
+import { BirlesikM, MurekkepKontur, murekkepRenk } from "../../cizim/MurekkepCizgi";
+import { TonTarama } from "../../cizim/TonTarama";
 
 // ---------------- yardımcılar ----------------
 /** Catmull-Rom (hassasiyetli: birim uzayda çizilen baş için 4 basamak; lgOrtak.cr 1 basamak yuvarlar → blok blok olurdu) */
@@ -71,7 +73,9 @@ export type YuzPalet3 = {
   ten: string; tenOrta: string; tenDerin: string; yansima: [string, string]; kenar: string; kontur: string; tarama: string;
   sac: string; sacIsik: string; sacKontur: string; sacKir: string; dudak: string; agizIc: string; gozAk: string; iris: string; bebek: string; kas: string; parilti: string;
 };
-export const LgYuz3: React.FC<{ x: number; y: number; H: number; rol?: number; ifade: YuzIfade3; P: YuzPalet3; seed?: number; isikX?: 1 | -1 }> = ({ x, y, H, rol = 0, ifade, P, seed = 1942, isikX = 1 }) => {
+/** murekkep (tur-4, isteğe bağlı; verilmezse T3 piksel-aynı): yüz/saç/kulak konturu MurekkepKontur (ışık tarafı ince, gölge tarafı kalın),
+ *  gölge yanı TonTarama (ince ton taraması; yüzde İÇ ÇİZGİ YOK). isik: bileşenin kendi koordinatında ışığın gittiği yön. */
+export const LgYuz3: React.FC<{ x: number; y: number; H: number; rol?: number; ifade: YuzIfade3; P: YuzPalet3; seed?: number; isikX?: 1 | -1; murekkep?: { isik: P2; ton?: number } }> = ({ x, y, H, rol = 0, ifade, P, seed = 1942, isikX = 1, murekkep: MK }) => {
   const c = Math.cos((rol * Math.PI) / 180), s = Math.sin((rol * Math.PI) / 180);
   const M = (q: P2): P2 => [x + H * (q[0] * c - q[1] * s), y + H * (q[0] * s + q[1] * c)];
   const Y = (a: P2[], k = true) => cr(a.map(M), k);
@@ -132,9 +136,11 @@ export const LgYuz3: React.FC<{ x: number; y: number; H: number; rol?: number; i
   return (
     <g strokeLinejoin="round" strokeLinecap="round">
       {/* uzak kulak: yalnız ~%30'u konturun dışında */}
-      <path d={Y(kulakUzak)} fill={P.tenOrta} stroke={P.kontur} strokeWidth={2 * px} />
+      <path d={Y(kulakUzak)} fill={P.tenOrta} stroke={MK ? undefined : P.kontur} strokeWidth={2 * px} />
+      {MK && <MurekkepKontur d={Y(kulakUzak)} renk={P.kontur} isik={MK.isik} kalinlik={[1.2 * px, 3.2 * px]} kayip={0.4} seed={seed + 21} />}
       {/* yakın kulak: iç kıvrım düz koyu alan */}
-      <path d={Y(kulakYakin)} fill={P.tenOrta} stroke={P.kontur} strokeWidth={2.2 * px} />
+      <path d={Y(kulakYakin)} fill={P.tenOrta} stroke={MK ? undefined : P.kontur} strokeWidth={2.2 * px} />
+      {MK && <MurekkepKontur d={Y(kulakYakin)} renk={P.kontur} isik={MK.isik} kalinlik={[1.2 * px, 3.6 * px]} kayip={0.4} seed={seed + 22} />}
       <path d={Y([[-0.348, -0.06], [-0.388, -0.075], [-0.395, -0.01], [-0.378, 0.07], [-0.352, 0.072], [-0.366, 0.0]])} fill={P.tenDerin} />
       <path d={yuzD} fill={P.ten} />
       <Kirp d={yuzD}>
@@ -168,7 +174,12 @@ export const LgYuz3: React.FC<{ x: number; y: number; H: number; rol?: number; i
         <path d={Y([[mx0 - 0.01, mY - 0.02], [0.04, mY - 0.03], [mx1 + 0.012, mY - 0.022], [mx1 + 0.02, mY - 0.002], [mx0 - 0.02, mY + 0.002]])} fill={P.tenOrta} />
         <path d={Y([[mx0 + 0.005, mY + 0.05], [0.05, mY + 0.044], [mx1 - 0.01, mY + 0.05], [mx1 - 0.03, mY + 0.074], [0.05, mY + 0.082], [mx0 + 0.02, mY + 0.072]])} fill={P.tenDerin} opacity={0.7} />
         {/* gölge yanında ince gravür taraması */}
-        <Tarama sekil={([[-0.42, -0.3], [-0.29, -0.3], [-0.262, -0.2], [-0.235, -0.06], [-0.2, 0.06], [-0.14, 0.16], [-0.1, 0.27], [-0.06, 0.45], [-0.42, 0.45]] as P2[]).map(M)} basamak="III" aci={70} renk={P.tarama} aralik={6.5 * px} kalinlik={1.5 * px} seed={seed + 3} alfaCarpan={0.7} ton={0} />
+        {!MK && <Tarama sekil={([[-0.42, -0.3], [-0.29, -0.3], [-0.262, -0.2], [-0.235, -0.06], [-0.2, 0.06], [-0.14, 0.16], [-0.1, 0.27], [-0.06, 0.45], [-0.42, 0.45]] as P2[]).map(M)} basamak="III" aci={70} renk={P.tarama} aralik={6.5 * px} kalinlik={1.5 * px} seed={seed + 3} alfaCarpan={0.7} ton={0} />}
+        {/* tur-4: ince ton taraması — gölge yanı + çene altı + göz yuvası (yüzü saran eğri: elmacık yayı) */}
+        {/* gölge yanı: yanağı saran kısa eğri çizgiler (elmacıktan çeneye), yalnız ışıktan uzak üçte birde; ince ve yarı saydam */}
+        {MK && <TonTarama d={yuzD} isik={MK.isik} ton={MK.ton ?? 0.8} renk={P.tarama} seed={seed + 3} aralik={3.6 * px} kalinlik={1.5 * px} gecis={[0.05, 0.9]} mod="egri"
+          eksen={([[-0.36, -0.12], [-0.2, 0.0], [0.0, 0.08]] as P2[]).map(M)} alfa={0.5} yumusak={0.35} />}
+        {MK && <TonTarama d={Y([[-0.3, 0.36], [0.0, 0.42], [0.26, 0.3], [0.3, 0.5], [-0.3, 0.5]])} isik={MK.isik} ton={0.6} renk={P.tarama} seed={seed + 4} aralik={3.4 * px} kalinlik={1.3 * px} gecis={[-0.6, 0.6]} alfa={0.4} yumusak={0.35} />}
         {/* kirli sakal */}
         <path d={Y([[-0.2, 0.34], [0.0, 0.358], [0.2, 0.33], [0.17, 0.42], [0.05, 0.47], [-0.08, 0.46], [-0.18, 0.4]])} fill={P.tenOrta} opacity={0.28} />
         <path d={Y([[-0.035, 0.256], [0.06, 0.25], [0.145, 0.258], [0.135, 0.282], [-0.025, 0.282]])} fill={P.tenOrta} opacity={0.3} />
@@ -203,7 +214,8 @@ export const LgYuz3: React.FC<{ x: number; y: number; H: number; rol?: number; i
       <path d={Y([[mx0, mY - 0.004], [0.0, mY - 0.012 - 0.004 * ag], [0.05, mY - 0.008 - 0.004 * ag], [0.095, mY - 0.012 - 0.004 * ag], [mx1, mY], [0.095, mY + 0.01 + 0.01 * ag], [0.05, mY + 0.013 + 0.012 * ag], [0.0, mY + 0.01 + 0.01 * ag]])} fill={P.agizIc} />
       <path d={Y([[mx0 + 0.01, mY - 0.006], [0.0, mY - 0.026], [0.04, mY - 0.023], [0.055, mY - 0.027], [0.1, mY - 0.023], [mx1 - 0.006, mY - 0.003], [0.095, mY - 0.012], [0.05, mY - 0.01], [0.0, mY - 0.012]])} fill={P.dudak} />
       {/* kontur + ışık yönünde sıcak kenar */}
-      <path d={yuzD} fill="none" stroke={P.kontur} strokeWidth={2.6 * px} />
+      {MK ? <MurekkepKontur d={yuzD} renk={P.kontur} isik={MK.isik} kalinlik={[1.1 * px, 4.6 * px]} kayip={0.55} seed={seed + 23} />
+        : <path d={yuzD} fill="none" stroke={P.kontur} strokeWidth={2.6 * px} />}
       <Hilal d={yuzD} renk={P.kenar} dx={-ISIK * 3.2 * px} dy={-1 * px} />
       {/* saç: tutamlı kütle + kır şakaklar + 3 sivrilen açık tutam (eşit aralıksız) */}
       <path d={sacD} fill={P.sac} />
@@ -217,7 +229,9 @@ export const LgYuz3: React.FC<{ x: number; y: number; H: number; rol?: number; i
         <path d={SR([[-0.2, -0.42], [-0.3, -0.41], [-0.37, -0.32]], 0.02, "tek")} fill={P.sacIsik} opacity={0.8} />
         <path d={SR([[0.04, -0.41], [-0.08, -0.47], [-0.22, -0.47]], 0.016)} fill={P.sacKontur} opacity={0.7} />
       </Kirp>
-      <path d={sacD} fill="none" stroke={P.sacKontur} strokeWidth={2.2 * px} />
+      {MK && <TonTarama d={sacD} isik={MK.isik} ton={0.9} renk={P.sacKontur} seed={seed + 5} aralik={4.2 * px} kalinlik={1.8 * px} mod="egri" eksen={([[0.3, -0.3], [0.1, -0.55], [-0.2, -0.56], [-0.38, -0.3]] as P2[]).map(M)} gecis={[-0.5, 0.6]} />}
+      {MK ? <MurekkepKontur d={sacD} renk={P.sacKontur} isik={MK.isik} kalinlik={[1.2 * px, 4 * px]} kayip={0.3} seed={seed + 24} />
+        : <path d={sacD} fill="none" stroke={P.sacKontur} strokeWidth={2.2 * px} />}
       <Hilal d={sacD} renk={P.kenar} dx={-ISIK * 3 * px} dy={2 * px} />
     </g>
   );
@@ -238,7 +252,8 @@ export const lgProfilGeo = (c: YuzKart) => {
   return { on, cene, arka, goz: [0.272, -0.045 * u] as P2, kulak: [-0.06, -0.01] as P2 };
 };
 /** profil baş (sağa bakar). x,y = kulak merkezi; H = tepe→çene px. Işık önden (yüzün baktığı yandan). */
-export const LgBasProfil: React.FC<{ kart: YuzKart; x: number; y: number; H: number; egim?: number; sicak: string; kenar: string; bakisY?: number; seed?: number }> = ({ kart: c, x, y, H, egim = 0, sicak, kenar, bakisY = 0, seed = 1950 }) => {
+/** konturAlfa (tur-4, varsayılan 1 = T3 piksel-aynı): 0 verilirse kafa dış konturu çizilmez (dışarıdan MurekkepKontur bindirilir; lgProfilEkran) */
+export const LgBasProfil: React.FC<{ kart: YuzKart; x: number; y: number; H: number; egim?: number; sicak: string; kenar: string; bakisY?: number; seed?: number; konturAlfa?: number }> = ({ kart: c, x, y, H, egim = 0, sicak, kenar, bakisY = 0, seed = 1950, konturAlfa = 1 }) => {
   const id = useId().replace(/:/g, "");
   const g = lgProfilGeo(c), u = c.uzun;
   const kd = yolB([...g.on, ...g.cene, ...g.arka]), sw = (px: number) => px / H;
@@ -262,7 +277,7 @@ export const LgBasProfil: React.FC<{ kart: YuzKart; x: number; y: number; H: num
       </g>
       <path d={`M${0.15},${0.47 * u} Q0.0,${0.44 * u} -0.1,${0.36 * u} L-0.12,${0.46 * u} Q0.02,${0.56 * u} ${0.16},${0.52 * u} Z`} fill={karistir(tenG, c.tenGolge, 0.5)} opacity={0.6} />
       {/* kafa: gölge tabanı */}
-      <path d={kd} fill={tenG} stroke={kontur} strokeWidth={sw(3.5)} />
+      <path d={kd} fill={tenG} stroke={kontur} strokeWidth={sw(3.5)} strokeOpacity={konturAlfa} />
       <g clipPath={`url(#k${id})`}>
         {/* ön düzlem ışığı: iki basamak; sınır alından elmacığa, elmacıktan ağız köşesine kavisli (yüz hacmini izler, bıçak yok) */}
         <path d={yolB([[0.2, -0.62], [0.18, -0.36 * u], [0.15, -0.2 * u], [0.13, -0.05 * u], [0.15, 0.06 * u], [0.2, 0.16 * u], [0.25, 0.25 * u], [0.22, 0.36 * u], [0.16, 0.48 * u], [0.12, 0.66], [0.7, 0.66], [0.7, -0.62]])} fill={tenM} />
@@ -351,20 +366,24 @@ export const incElGeo = (bilek: P2, aci: number, E: number, poz: IncElPoz, ayna 
   return { M, parmak, bas, avuc };
 };
 const parcaD = (p: { q: P2[]; w: number[] }) => p.q.slice(0, -1).map((a, j) => kapsul(a, p.q[j + 1], p.w[j], p.w[j + 1]));
-export const IncEl: React.FC<{ bilek: P2; aci: number; E: number; poz: IncElPoz; ayna?: boolean; ten: string; golge: string; kontur: string; ayrim?: string; kenar?: string; isik: P2; sira?: "isaretOnde" | "sercOnde"; golgeRenk?: string; golgeKay?: P2 }> = ({ bilek, aci, E, poz, ayna, ten, golge, kontur, ayrim, kenar, isik, sira = "isaretOnde", golgeRenk, golgeKay }) => {
+/** murekkep (tur-4, isteğe bağlı; verilmezse T3 piksel-aynı): dış kontur BirlesikM (ışığa göre ince→kalın) + avuç/parmak boyu ton taraması */
+export const IncEl: React.FC<{ bilek: P2; aci: number; E: number; poz: IncElPoz; ayna?: boolean; ten: string; golge: string; kontur: string; ayrim?: string; kenar?: string; isik: P2; sira?: "isaretOnde" | "sercOnde"; golgeRenk?: string; golgeKay?: P2; murekkep?: { ton?: number; seed?: number } }> = ({ bilek, aci, E, poz, ayna, ten, golge, kontur, ayrim, kenar, isik, sira = "isaretOnde", golgeRenk, golgeKay, murekkep: MK }) => {
   const g = incElGeo(bilek, aci, E, poz, ayna);
   const sirali = sira === "isaretOnde" ? [3, 2, 1, 0] : [0, 1, 2, 3];
   const tum = [g.avuc, ...parcaD(g.bas), ...g.parmak.flatMap(parcaD)];
   if (golgeRenk) return <g transform={`translate(${golgeKay?.[0] ?? 0} ${golgeKay?.[1] ?? 0})`} fill={golgeRenk}>{tum.map((d, i) => <path key={i} d={d} />)}</g>;
   const L = Math.hypot(isik[0], isik[1]) || 1, lx = isik[0] / L, ly = isik[1] / L, k = 0.06 * E;
+  const isikYon: P2 = [-lx, -ly]; // IncEl.isik ışığın GELDİĞİ yön; araçlar gittiği yönü ister
   return <g strokeLinejoin="round">
-    <Birlesik d={tum} dolgu={ten} kontur={kontur} k={1.3} />
+    {MK ? <BirlesikM d={tum} dolgu={ten} kontur={kontur} ayar={{ isik: isikYon, kalinlik: [0.9, Math.max(2.6, E * 0.022)], kayip: 0.35, seed: MK.seed ?? 77 }} />
+      : <Birlesik d={tum} dolgu={ten} kontur={kontur} k={1.3} />}
     <HilalB d={tum} renk={golge} dx={lx * k} dy={ly * k} />
     {kenar && <HilalB d={tum} renk={kenar} dx={-lx * 3} dy={-ly * 3} alfa={0.8} />}
     {/* parmak ayrımı: arkadaki parmağın üstüne öndekinin ince konturu */}
-    {sirali.map((i) => <g key={i}><Birlesik d={parcaD(g.parmak[i])} dolgu={ten} kontur={ayrim ?? golge} k={0.85} />
+    {sirali.map((i) => <g key={i}>{MK ? <BirlesikM d={parcaD(g.parmak[i])} dolgu={ten} kontur={ayrim ?? golge} ayar={{ isik: isikYon, kalinlik: [0, 1.8], kayip: 1, seed: (MK.seed ?? 77) + 10 + i }} /> : <Birlesik d={parcaD(g.parmak[i])} dolgu={ten} kontur={ayrim ?? golge} k={0.85} />}
       <Kirp d={parcaD(g.parmak[i]).join(" ")}><HilalB d={parcaD(g.parmak[i])} renk={golge} dx={lx * k * 0.6} dy={ly * k * 0.6} /></Kirp></g>)}
     {/* boğumda tek ton işareti */}
-    {g.parmak.map((p, i) => <ellipse key={`b${i}`} cx={p.q[1][0]} cy={p.q[1][1]} rx={p.w[1] * 0.55} ry={p.w[1] * 0.35} fill={golge} opacity={0.4} />)}
+    {!MK && g.parmak.map((p, i) => <ellipse key={`b${i}`} cx={p.q[1][0]} cy={p.q[1][1]} rx={p.w[1] * 0.55} ry={p.w[1] * 0.35} fill={golge} opacity={0.4} />)}
+    {MK && <TonTarama d={tum} isik={isikYon} ton={MK.ton ?? 0.7} renk={murekkepRenk(golge, 0.55)} seed={(MK.seed ?? 77) + 1} aralik={Math.max(3.6, E * 0.028)} kalinlik={Math.max(1.4, E * 0.011)} mod="egri" eksen={[g.parmak[1].q[0], g.parmak[1].q[2], g.parmak[1].q[3]]} gecis={[-0.2, 0.8]} alfa={0.7} />}
   </g>;
 };

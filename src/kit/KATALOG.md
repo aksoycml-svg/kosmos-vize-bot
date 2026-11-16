@@ -419,3 +419,20 @@ Ortak: `GemiProfil` (tek rig, `Gemi.tsx`), `Duman`, `Alev` (imza KOR), `Gok5`, `
 ### Ben-my-Chree tur-5 (yön değişikliği) — KALİBRE EDİLMEDİ
 - LIMAN `karsi-kiyi` (P04 dolly zoom, `KARSI_KIYI_KAYIT`; parametre `parilti {kare, giris, cikis}`), `gemi-orta` (P07a/b; `alev {isik, kare, siddet}`, `arka_olcek`, `arka_kayma`), `saygi` (P10a; kilitli). Kod: `sablonlar/benmychree/LimanYeni.tsx`. `kiyidan-ada` (K1) değişmedi.
 - GemiProfil `batik`: çökmüş hangar + bot yok (diğer durumlar aynı). Duman: `tara`, `isikRenk` seçenekleri (varsayılan eski davranış).
+
+## Çizim araçları (`src/kit/cizim/`, kalıcı; Leningrad tur-3g kit kararı, 2026-11-16)
+Kod içi araçlardır (bolum.json parametresi değil): şablon yazan motion kullanır. Eski `src/doku/Tarama.tsx` değişmedi (eski bölümler piksel-aynı); yeni şablonlar bunları kullanır. Sınama karesi: `npx remotion still CizimTest` (küre, silindir, kumaş, el; üst sıra eski dil, alt sıra yeni) → `bolumler/leningrad-senfoni/kalibrasyon/cizim-test/`.
+- **MurekkepCizgi** (`MurekkepCizgi.tsx`, perfect-freehand MIT) — incelip kalınlaşan mürekkep.
+  - `murekkepYol(q: P2[], { kalinlik, ucBas?, ucSon?, basinc?: (t)=>0..1 | number[], incelme?, titreme?, kalinlikOyna?, seed?, egri? })` → dolgu path d. `<MurekkepCizgi q renk … />` (kıvrım oluğu, ince ayrıntı çizgisi). `<MurekkepYolCizgi d=… />` açık SVG path için.
+  - `konturYol(d, { kalinlik: [ışık, gölge], isik?: [dx,dy] (ışığın EKRANDA gittiği yön), kayip?: 0..1 (ışık tarafında kayıp kenar), konum?: "orta"|"dis"|"alt", seed? })` → kapalı şeklin çevresinde değişken kalınlıkta şerit. `<MurekkepKontur d renk … />` dolgunun ÜSTÜNE (stroke yerine).
+  - `<BirlesikM d={[gövde, kol, omuz…]} dolgu kontur ayar={KonturAyar} />` çok parçalı tek siluet (önce şeritler, sonra dolgular → iç dikiş yok). `Birlesik`'in mürekkep sürümü.
+  - `murekkepRenk(dolgu, koyuluk=.78)` → kontur rengi = dolgunun koyu tonu (#000 yok). `yolNoktalari(d, adim)` path örnekleyici (DOM, önbellekli).
+  - Titreme seed'li ve yay uzunluğuna bağlı: kareye/kameraya bağlı değil (kaynamaz). Ölçü: kalınlık px; ölçekli `<g scale>` içinde değil ekran koordinatında kullan (ör. `lgProfilEkran` yolu).
+- **TonTarama** (`TonTarama.tsx`) — bir şekli ışık yönü ve tonla tarar; gölgede sık/kalın, ışığa doğru incelip biter (eşikli gravür; çizgiler MurekkepCizgi uçlu).
+  - `<TonTarama d={string | string[]} isik={[dx,dy]} ton={0..1} renk seed aralik?=6.5 kalinlik?=2 mod?="duz"|"egri"|"isinsal" … />`
+  - `duz`: `aci` (varsayılan ışığa dik). `egri`: `eksen: P2[]` (kopyalar öteleme ile; `kayma` yönü) → silindir kesiti, kumaş kıvrımı, küre yayı, kol boyu. `isinsal`: `merkez` (kaçış noktası) → perspektif cephe/kar taraması.
+  - Ton alanı: `gecis: [a, b]` (ışık ekseninde −1 ışık ucu … +1 gölge ucu) ya da `tonFn: (p) => 0..1` (ör. ışık yelpazesi içinde 0). `yumusak` eşik yumuşaklığı, `tonBlok` altına ton bloğu, `alfa`.
+  - Çapraz (`capraz`) YALNIZ şeklin kutusu ≤ 120 px ise ve ton > .75 yerlerde; büyük şekilde yok sayılır (kafes yasağı). `sinir` (varsayılan kare + 40 px) perspektifte ekran dışı çokgenleri kırpar.
+  - Telefon: varsayılan 6.5 px / 2 px → 360 px'te ~0.65 px; yüzde 3.5–4.5 px aralık, 1.3–1.6 px çizgi, α ≤ .6 (yüzde iç çizgi yok kuralı: tarama yalnız gölge yanında, kısa ve yarı saydam).
+- Figür kitinde isteğe bağlı mürekkep modu (varsayılan kapalı → T3 piksel-aynı): `IncEl murekkep={{ ton, seed }}`, `LgYuz3 murekkep={{ isik, ton }}`, `LgBasProfil konturAlfa={0}` (+ dışarıdan MurekkepKontur).
+- Kullanım örneği: `src/kit/sablonlar/leningrad/BodrumT4.tsx`, `SokakT4.tsx` (Leningrad `p08`, `p03a` tur-4).
