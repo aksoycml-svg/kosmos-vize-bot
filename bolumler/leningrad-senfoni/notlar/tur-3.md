@@ -28,3 +28,8 @@ Soru: kodla çizilen morg/sokak hedefin çok gerisinde; yakın plan figürlü pl
 
 ## Tur 3g — yol kararı (2026-11-16)
 Soru: "Leningrad'da nasıl ilerleyelim?" → Kullanıcı: **Önce kiti iyileştir** (kalıcı gravür tarama üreticisi + incelip kalınlaşan mürekkep çizgisi; sonra morg ve sokak tur-4).
+
+## Tur 3h — araç planı (2026-11-16)
+> devir notunu yaz, yeni oturumda başlat sohbeti sen aç önerilerin kabul
+
+Uygulama: `DEVAM.md` yazıldı; araç planı (ışık çokgeni → kıyas betiği → iskelet+IK+kafa → MediaPipe poz → morg kalibrasyonu → kumaş/tarama) kabul. Yeni oturum açıldı.

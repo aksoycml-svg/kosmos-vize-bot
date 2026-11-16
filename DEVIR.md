@@ -87,3 +87,6 @@ Ayrıca gerekenler:
 - Instagram kiti artık repoda: `marka/instagram-kurulum-kiti.md`.
 - **Mac büyük/küçük harf ayırmaz:** `parisCevre.ts` ile `ParisCevre.tsx` çakışıp paketlemeyi bozuyordu; veri dosyası `parisCevreVeri.ts` oldu. Aynı klasörde yalnız harf büyüklüğüyle ayrılan dosya adı açma.
 - Mac'te Çiçero'dan tek kare üretildi (kare 600). Tam render denenmedi; miks wav'ları ve anahtarlar bu bilgisayarda yok.
+
+## 7. Leningrad'da 7. Senfoni (2026-11-16)
+Devir notu: `bolumler/leningrad-senfoni/DEVAM.md`. Senaryo + ses onaylı; SALON şablonu kabul (7/10); morg/sokak yakın planları takıldı → sıradaki iş kit araçları (ışık çokgeni, hedef kıyas betiği, iskelet+IK+kafa kurgusu, MediaPipe poz). Zaro Ağa bırakıldı (FIKIR-HAVUZU #25).
