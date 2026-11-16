@@ -69,17 +69,36 @@ for dil in (sys.argv[1:] or ["tr", "en"]):
     fol *= np.interp(np.arange(len(fol)), (np.arange(nb) + .5) * hb, k)[:, None]
     fol *= g(FOLEY_KAZANC_DB)
     amb = np.zeros((N, 2))
+    # tur-8: ortam yatakları kesmede komşu yatakla tam örtüşür (n +0.8 sn; çapraz geçişte çukur yok)
     for ad, o in ORT.items():
         x = oku(PUB + o["dosya"]); x = x * g(-18 - lufs(x))
         for u in o["kullanim"]:
-            n = int((u["kare_bit"] - u["kare_bas"]) / FPS * SR) + int(.4 * SR); y = np.resize(x, (n, 2)) if n > len(x) else x[:n]
+            n = int((u["kare_bit"] - u["kare_bas"]) / FPS * SR) + int(.8 * SR); y = np.resize(x, (n, 2)) if n > len(x) else x[:n]
             y = (lp(y, u["lp_hz"]) if u.get("lp_hz") else y) * g(u["db"]); f = int(.4 * SR); y[:f] *= np.linspace(0, 1, f)[:, None]; y[-f:] *= np.linspace(1, 0, f)[:, None]
             koy(amb, y, u["kare_bas"] / FPS - .2)
     # müzik (miks.json): aralarda db, konuşmada duck (mutlak, dosya seviyesine göre); atak/bırakma
     m = oku(MUZIK)[:N]; m = np.vstack([m, np.zeros((N - len(m), 2))]) if len(m) < N else m
     e = env(ses, MK["muzik"]["duck"]["atak_kare"] / FPS, MK["muzik"]["duck"]["birakma_kare"] / FPS)
+    # tur-8 (jüri-1): plan kesmesindeki kısa konuşma boşluğu (≤ 0.9 sn) müzikle köprülenir — duck bırakması (24 kare) boşluktan uzun
+    # olduğu için müzik çukurda kalıyordu (18.18 / 27.12 sn). Boşluk içinde duck 0.25'e iner (müzik ≈ +4.5 dB), 60 ms yumuşak.
+    akt = np.abs(ses).max(axis=1) > g(-45); hs2 = int(.01 * SR); nb2 = len(akt) // hs2; ak = akt[:nb2 * hs2].reshape(nb2, hs2).any(1)
+    sinir = []; t0b = 0
+    for pl in bolum["planlar"]: t0b += pl["sure_kare"]; sinir.append(t0b / FPS)
+    hedef = np.ones(nb2)
+    i = 0
+    while i < nb2:
+        if not ak[i]:
+            j = i
+            while j < nb2 and not ak[j]: j += 1
+            a0, a1 = i * hs2 / SR, j * hs2 / SR
+            if 0.1 < a1 - a0 <= 1.1 and any(a0 - 0.05 <= b <= a1 + 0.05 for b in sinir): hedef[i:j] = 0.25
+            i = j
+        else: i += 1
+    hedef = np.convolve(hedef, np.ones(6) / 6, "same")
+    e = np.minimum(e, np.interp(np.arange(len(e)), (np.arange(nb2) + .5) * hs2, hedef))
     X = mom98(m); m = m * g(-19.5 - X)   # müzik momentary %99.5 tepesi = anlatım referansı (0 dB); sonra aralık -16, konuşma -22 (tepelere de uyar)
-    m = m * g(-16 * (1 - e) + -22 * e)[:, None]; print("müzik dosyası momentary p99.5:", round(X, 2), "LUFS -> kit eşdeğeri db", round(-35.5 - X, 1), "duck", round(-41.5 - X, 1))
+    kopru = np.interp(np.arange(len(e)), (np.arange(nb2) + .5) * hs2, 1 - hedef)  # köprü boşluğunda müzik +6 dB (aralık tavanı −16 dB'yi aşmaz: seyrek piyano bölümü)
+    m = m * g(-16 * (1 - e) + -22 * e + 5.5 * kopru)[:, None]; amb = amb * g(7 * kopru)[:, None]  # ortam da köprüde +7 dB (yatak −24…−33'ten) print("müzik dosyası momentary p99.5:", round(X, 2), "LUFS -> kit eşdeğeri db", round(-35.5 - X, 1), "duck", round(-41.5 - X, 1))
     nf = int(.6 * SR)
     for x in (amb, fol): x[-nf:] *= np.linspace(1, 0, nf)[:, None]
     for nm, x in (("anlatim", ses), ("foley", fol), ("muzik", m), ("ortam", amb)): yaz(f"{OUT}{dil}/{nm}.wav", x)

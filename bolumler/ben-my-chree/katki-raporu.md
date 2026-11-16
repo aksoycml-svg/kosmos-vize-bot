@@ -283,3 +283,33 @@
 - Kararlar: puan 6 (geçmez). Düzeltme sırası harita > P06 doruk > P05b; altyazı kiti hatası (tire + P01 kanca altyazısının gizlenmesi) 3 sınırının dışında kritik.
 - Kurallar/ihlaller: kanca ekranda yok (üç katmanlı kanca); harita kontrast L* p5 51 (≤22 kuralı), sıcak %0; P05b dürbün yön sürekliliği + tek kalkık parmak; P08 bot okunurluk ~%1–2 (beyan %6); P08 alev tur-11 notunun tekrarı (süreç hatası); P10a askerler >%5 ve yüzsüz (kilit, öneri yok); kesme öncesi müzik çukurları (duck bırakma 24 kare > boşluk).
 - Açık sorular: P10a asker yüzü kuralı ile kullanıcı kilidi çelişiyor — kullanıcıya bildirilmeli. P01 ekran yazısı zamanlaması yazı katmanı olduğu için kilidi bozmuyor sayılabilir mi? Orkestra karar versin.
+
+## motion · 2026-11-16 · tur-8: jüri-1 düzeltmeleri (6/10 → düzeltme turu)
+- **bolum.json parametreleri orkestra kararıyla motion tarafından değiştirildi** (yönetmen yerine, kota):
+  - P03: kamera cs 1.7→1.9, cx 34→38, cy 20→30 (Meis–Kaş boğazına ortalı). Sayaç kaldırıldı, sabit "2 km" ekran yazısı 400–488 (çizgi bittikten sonra). Etiketler yeni kadraja taşındı.
+  - P10b: kamera cs 1.8→1.9, aynı merkez.
+  - P06 kamera25: lens 375→650 mm (lens_kare 400→470, inout; isabet anına doğru zoom). Okunurluk beyanı güncellendi.
+  - P08 yol: Zd 230→260, F 3000→2700, h 2→6, xc 19.5→30 (hangar ortada, duman P07c'nin sütununu sürdürür). yangin_guc 0.6, `bot_x0` 10.
+  - Altyazı bayrakları (yalnız bu bölüm): `altyazi.tire_koru: true`, `altyazi.dolu_ise: "ust_alti"`.
+- **Kit (yalnız ekleme; varsayılan davranış aynı):**
+  - `altyazi.tsx` + `tipler.ts`: `tire_koru` kelime içi tireyi korur ("Ben-my-Chree'ydi"). `dolu_ise: "ust_alti"` iki bant doluyken altyazıyı gizlemek yerine üst yazının altında (y≈480) gösterir: P01 kanca iddiası artık ekranda.
+  - `Meis.tsx` (harita): koyu lacivert deniz (kâğıt dokusu arkadan sızar), sığ kıyı bandı, yatay gravür taraması, kıyıya paralel dalga çizgileri; kara sıcak kâğıt + %55 tarama, maki noktaları, tepe çizgileri.
+  - `LimanBolum.tsx`:
+    - P06 isabet: göz gibi okunan eşmerkezli halkalar yerine düzensiz krem çakım + düzensiz kor lekesi, 80 kare (≥1 sn); duman lekenin altından başlar; ≤2 px darbe (14 kare; kenar için %0.4 büyütme).
+    - P05b: omuz üstünden çekime çevrildi. İki tüp perspektifte Meis'e (derinliğe) bakar, sağ el tüpü sarar, işaret parmağı odak halkasında, tek kalkık başparmak yok. Baş arkası ve omuz flu, yüz yok. Ölçek ×1.55.
+    - P08 alevleri P07b'nin kilitli yangın diliyle (`Yangin`, n 9, ölçek pxm/10.4).
+    - P08 motorbotu ahşap gövdeli, kameraya 110 m daha yakın: 360 px'te ≈80 px, figürler okunur.
+  - `LimanYeni.tsx` Yangin: `n` ve `olcek` seçenekleri (varsayılan 11 ve 1 = P07b kilit).
+- **Ses (`tools/benmychree_miks.py`):** Plan kesmesini içeren ≤1.1 sn konuşma boşluklarında duck 0.25'e iner, müzik +5.5 dB ve ortam +7 dB köprü uygulanır. Ortam yatakları kesmede tam örtüşür (+0.8 sn).
+  - Kesme önü çukuru: 18.18 sn −36→−31.5 dB, 27.12 sn −40→−35 dB (TR); EN −31 / −34.4.
+  - Final TR −13.9, EN −14.2 LUFS, TP −2.0. Aralarda müzik en yüksek −16.4 / −16.2 dB (tavan −16'ya ≤0.4 dB yakın). Foley seviyeleri değişmedi.
+- **Piksel-özdeşlik:** P01 k124, P04 k1291, P07b k2388, P10a k3292 (görsel mod), Paris k300 ve Çiçero k1200: hepsi 0 fark.
+- **Doğrulayıcı:** `--tam` 0 hata, 0 uyarı.
+- **Hâlâ zayıf (kendi gözümle):**
+  - P06'nın açılışı P01 kompozisyonuyla aynı; ayrışma ancak zoom'la geliyor.
+  - P05b el biçimi sade.
+  - Haritada figür ya da gemi ikonu yok (kart gereği).
+- **tur-8 ek:** Harita ölçümünde p5 27.9 ve sıcak %3.8 çıktı, kural dışıydı. Deniz koyulaştırıldı (#151b2c), kara sıcak okra yapıldı (#dcb47a). Sonuç: k803 ve k3602'de p5 19.6, p95 71.8, sıcak %32.
+  - Yalnız P03 (603–1090) ve P10b (3406–3665) yeniden render edildi. ProRes parçaları gorsel.mov'a akış kopyasıyla eklendi; 1091. kare hizası piksel olarak denetlendi.
+  - TR/EN yeniden mikslendi: 3666 kare, I −14.0 / −14.2 LUFS, TP −2.0 / −1.8.
+  - Genel bakış ve şeritler güncellendi (`kontrol/`).

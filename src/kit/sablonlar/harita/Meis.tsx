@@ -29,6 +29,7 @@ const ADACIK: XY[] = [[0.95, 0.42], [1.18, 0.5], [1.26, 0.36], [1.08, 0.28]];
 // anakara (kuzey): Çukurbağ yarımadası güney kıyısı → doğuda Kaş koyu; kuzey kenar kadraj dışı
 const KARA: XY[] = [[-5, 1.7], [-3.9, 1.95], [-3.0, 2.05], [-2.1, 1.92], [-1.3, 2.02], [-0.6, 2.1], [0.05, 2.0], [0.6, 2.06], [1.3, 2.2], [1.95, 2.42], [2.45, 2.85], [2.6, 3.35], [2.95, 3.6], [3.5, 3.55], [4.2, 3.3], [5, 3.2], [5, 8], [-5, 8]];
 const INK = "#2b1d10";
+const rr2 = (i: number, k: number) => { const x = Math.sin(i * 12.9898 + k * 78.233) * 43758.5453; return x - Math.floor(x); }; // seed'li, sabit
 export const meisMi = (plan: Plan) => param<string>(plan, "harita_gorunum", "") === "meis";
 const LIMAN: XY = [0.1, 0.0], MEVZI: XY = [0.32, 2.03];
 export const meisIgneNokta = (plan: Plan): XY | null => { const r = param<{ yon: string } | null>(plan, "meis_rota", null); return meisNokta(...(r?.yon === "kiyiya" ? LIMAN : LIMAN)); };
@@ -45,7 +46,6 @@ export const MeisSahne: React.FC<SablonProps & { Igne: React.FC<{ x: number; y: 
   const IG = meisNokta(...LIMAN);
   if (r) kilit.push({ ad: "rota ucu", p: [540 + k.cx + (uc[0] - 540) * k.cs, 960 + k.cy + (uc[1] - 960) * k.cs], tur: "dokunus" });
   const adaD = yumusat(km(ADA)), karaD = yumusat(km(KARA)), adacikD = yumusat(km(ADACIK));
-  const dalga = (d: string, n: number, id: string) => Array.from({ length: n }).map((_, i) => <path key={`${id}${i}`} d={d} fill="none" stroke="#5d6b86" strokeWidth={2.2} opacity={0.38 - i * 0.07} transform={`translate(540 ${960}) scale(${1 + (i + 1) * 0.035}) translate(-540 -960)`} />);
   return (
     <div style={{ position: "absolute", inset: 0, backgroundColor: "#1a120b", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, transform: `translate(${k.cx}px,${k.cy}px) scale(${k.cs})` }}>
@@ -56,21 +56,28 @@ export const MeisSahne: React.FC<SablonProps & { Igne: React.FC<{ x: number; y: 
             <pattern id="mTep" patternUnits="userSpaceOnUse" width={7} height={7} patternTransform="rotate(55)"><rect width={2.2} height={7} fill="#6a5a40" /></pattern>
           </defs>
           {/* deniz: soluk mavi-gri yıkama + kıyıya paralel dalga çizgileri (litografi) */}
-          <rect x={-1400} y={-1500} width={3880} height={4920} fill="#7d90a4" opacity={0.55} />
-          {Array.from({ length: 34 }).map((_, i) => <line key={`dl${i}`} x1={-200 + (i % 3) * 60} x2={1280} y1={300 + i * 48} y2={300 + i * 48} stroke="#6a7a90" strokeWidth={2} strokeDasharray={`${40 + (i % 4) * 20} ${30 + (i % 3) * 18}`} opacity={0.35} />)}
-          {dalga(adaD, 4, "da")}
+          {/* tur-8 (jüri-1): koyu deniz (litografi lacivert-çelik; kâğıt dokusu arkadan sızar), sığ kıyı bandı açık, yatay gravür taraması */}
+          <rect x={-1400} y={-1500} width={3880} height={4920} fill="#151b2c" opacity={0.93} />
+          <path d={karaD} fill="none" stroke="#5f7894" strokeWidth={70} opacity={0.45} /><path d={adaD} fill="none" stroke="#5f7894" strokeWidth={70} opacity={0.45} />
+          <path d={karaD} fill="none" stroke="#7d93ac" strokeWidth={30} opacity={0.5} /><path d={adaD} fill="none" stroke="#7d93ac" strokeWidth={30} opacity={0.5} />
+          {Array.from({ length: 90 }).map((_, i) => <line key={`dl${i}`} x1={-300 + (i % 5) * 37} x2={1380} y1={200 + i * 17} y2={200 + i * 17} stroke="#9fb0c4" strokeWidth={2} strokeDasharray={`${26 + (i % 4) * 14} ${18 + (i % 3) * 12}`} opacity={0.32} />)}
+          {[0, 1, 2, 3, 4, 5].map((i) => <path key={`dg${i}`} d={adaD} fill="none" stroke="#9fb0c4" strokeWidth={2.4} opacity={0.45 - i * 0.06} transform={`translate(540 960) scale(${1.05 + i * 0.045}) translate(-540 -960)`} />)}
           {/* anakara: kara + tarama + iç tepe gölgeleri (yamaç), kıyı mürekkep */}
-          <path d={karaD} fill="#e0d3b4" />
-          <path d={karaD} fill="url(#mTar)" opacity={0.3} />
+          <path d={karaD} fill="#dcb47a" />
+          <path d={karaD} fill="url(#mTar)" opacity={0.55} />
+          {/* tepe gölgesi (güneydoğu ışığı) + maki noktaları */}
+          {Array.from({ length: 70 }).map((_, i) => { const c = meisNokta(-3 + rr2(i, 1) * 7, 2.3 + rr2(i, 2) * 3.2); return <g key={`mk${i}`}><ellipse cx={c[0]} cy={c[1]} rx={9} ry={7} fill="#6a5a3c" opacity={0.75} /><ellipse cx={c[0] - 2} cy={c[1] - 2} rx={5} ry={3.5} fill="#8a7a54" /></g>; })}
+          {Array.from({ length: 26 }).map((_, i) => { const c = meisNokta(-3.2 + i * 0.27, 2.55 + Math.sin(i * 0.9) * 0.18); return <path key={`th${i}`} d={`M${c[0]},${c[1]} l${-8},${26} M${c[0] + 9},${c[1] + 2} l${-8},${24}`} stroke="#6a5a40" strokeWidth={2.5} opacity={0.55} />; })}
           {/* kabartma: kıyıya paralel iç eşyükselti çizgileri (gravür) */}
           {[1, 2, 3].map((i) => <path key={`ek${i}`} d={karaD} fill="none" stroke="#8a7a5c" strokeWidth={2} opacity={0.5 - i * 0.1} transform={`translate(0 ${-i * 34})`} />)}
           <path d={karaD} fill="none" stroke="#2b2f45" strokeWidth={4} />
           {[1, 2].map((i) => <path key={`kd${i}`} d={karaD} fill="none" stroke="#5d6b86" strokeWidth={2} opacity={0.3 - i * 0.08} transform={`translate(0 ${i * 16})`} />)}
           {/* ada + adacık */}
-          <path d={adaD} fill="#e0d3b4" /><path d={adaD} fill="url(#mTar)" opacity={0.3} />
+          <path d={adaD} fill="#dcb47a" /><path d={adaD} fill="url(#mTar)" opacity={0.55} />
+          {Array.from({ length: 30 }).map((_, i) => { const c = meisNokta(-2.4 + rr2(i, 3) * 2.8, -1.3 + rr2(i, 4) * 1.4); return <ellipse key={`am${i}`} cx={c[0]} cy={c[1]} rx={8} ry={6} fill="#6a5a3c" opacity={0.7} />; })}
           {[0.82, 0.64].map((k2, i) => <path key={`ae${i}`} d={adaD} fill="none" stroke="#8a7a5c" strokeWidth={2} opacity={0.45 - i * 0.1} transform={`translate(${meisNokta(-1.0, -0.6)[0]} ${meisNokta(-1.0, -0.6)[1]}) scale(${k2}) translate(${-meisNokta(-1.0, -0.6)[0]} ${-meisNokta(-1.0, -0.6)[1]})`} />)}
           <path d={adaD} fill="none" stroke="#2b2f45" strokeWidth={4} />
-          <path d={adacikD} fill="#e0d3b4" stroke="#2b2f45" strokeWidth={3} />
+          <path d={adacikD} fill="#dcb47a" stroke="#2b2f45" strokeWidth={3} />
           {/* Meis kasabası: liman koyu çevresinde ev blokları + kale (küçük ikon); bayrak yok (renk yalnız mühür/vurgu) */}
           {Array.from({ length: 16 }).map((_, i) => { const u = i / 15, c = meisNokta(-0.28 + u * 0.62 + (i % 3) * 0.02, -0.22 - (i % 4) * 0.07 + Math.sin(u * 3) * 0.05); return <rect key={i} x={c[0] - 6} y={c[1] - 5} width={11 + (i % 3) * 2} height={9} fill="#6b5a44" />; })}
           {(() => { const c = meisNokta(0.42, -0.05); return <g><rect x={c[0] - 16} y={c[1] - 18} width={30} height={20} fill="#4c3e2c" /><rect x={c[0] - 8} y={c[1] - 32} width={12} height={14} fill="#4c3e2c" /></g>; })()}

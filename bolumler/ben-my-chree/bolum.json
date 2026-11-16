@@ -12,7 +12,9 @@
   "grup": 2,
   "maks_harf": 14,
   "bant": "oto",
-  "noktalamasiz": true
+  "noktalamasiz": true,
+  "tire_koru": true,
+  "dolu_ise": "ust_alti"
  },
  "_not": "motion, 2026-11-16 (tur-7, tam bölüm). sahne-plani §12; kilitli kareler: P01 k124, P04 k1291 (yerel 200), P07 k2388 (yerel 214), P10 k3292 (yerel 120). Temaslar: kurgucu temaslar-taslak.json (P04 metal-tink yok; P09 oturma sesi var). Ekran yazıları onayli-anlatim.md sonundaki onaylı liste.",
  "ozet": {
@@ -252,17 +254,10 @@
    "ekran_yazisi": [
     {
      "bant": "ust",
-     "metin": "{n} km",
-     "bas": 368,
-     "bit": 470,
-     "tur": "sayac",
-     "sayac": {
-      "hedef": 2,
-      "baslangic": 0,
-      "bas": 0,
-      "sure": 60
-     },
-     "en": "{n} km"
+     "metin": "2 km",
+     "en": "2 km",
+     "bas": 400,
+     "bit": 488
     }
    ],
    "temaslar": [
@@ -302,16 +297,16 @@
      488
     ],
     "cs": [
-     1.0,
-     1.16
+     1.7,
+     1.9
     ],
     "cx": [
-     0,
-     -10
+     34,
+     38
     ],
     "cy": [
-     0,
-     70
+     20,
+     30
     ],
     "egri": "inout"
    },
@@ -319,11 +314,11 @@
     {
      "tr": "MEİS",
      "en": "KASTELLORIZO",
-     "x": 300,
-     "y": 1150,
+     "x": 430,
+     "y": 1080,
      "kutu": [
-      300,
-      1150
+      430,
+      1080
      ],
      "bas": 20,
      "bit": 488
@@ -331,11 +326,11 @@
     {
      "tr": "KAŞ",
      "en": "KAŞ",
-     "x": 330,
-     "y": 560,
+     "x": 430,
+     "y": 700,
      "kutu": [
-      330,
-      560
+      430,
+      700
      ],
      "bas": 300,
      "bit": 488
@@ -535,7 +530,9 @@
       ]
      ],
      "lens_mm": [
-      375
+      375,
+      375,
+      650
      ],
      "odak_z": [
       14,
@@ -546,9 +543,14 @@
       150
      ],
      "diyafram": 36,
-     "egri": "lineer",
+     "egri": "inout",
      "odak_egri": "inout",
-     "ekipman": "dolly"
+     "ekipman": "dolly",
+     "lens_kare": [
+      0,
+      400,
+      470
+     ]
     }
    },
    "ekran_yazisi": [
@@ -619,9 +621,9 @@
     }
    ],
    "okunurluk": {
-    "nesne": "su sütunları + isabet çakımı",
-    "nesne_pct": 8,
-    "net_sn": 1.4
+    "nesne": "isabet çakımı + KOR çekirdek + duman (zoom 375→650 mm)",
+    "nesne_pct": 12,
+    "net_sn": 1.3
    },
    "ses": [
     {
@@ -775,7 +777,7 @@
     "gun_yuksekligi": 16,
     "gemi_durum": "yanan",
     "seed": 181,
-    "yangin_guc": 0.75,
+    "yangin_guc": 0.6,
     "yol": {
      "kare": [
       0,
@@ -784,40 +786,41 @@
       365
      ],
      "Zd": [
-      220,
-      220,
-      220,
-      340
+      230,
+      230,
+      230,
+      260
      ],
      "F": [
       3000,
       3000,
       3000,
-      1500
+      2700
      ],
      "h": [
       2,
       2,
       2,
-      25
+      6
      ],
      "xc": [
-      -20,
-      5,
-      5,
-      12
+      19.5,
+      27,
+      27,
+      30
      ],
      "yh": [
       1250,
       1250,
       1250,
-      1000
+      1180
      ]
     },
     "bot": {
      "motor": 245,
      "cikis": 360
-    }
+    },
+    "bot_x0": 10
    },
    "ekran_yazisi": [
     {
@@ -837,9 +840,9 @@
     }
    ],
    "okunurluk": {
-    "nesne": "motorbot + V iz",
-    "nesne_pct": 6,
-    "net_sn": 1.9
+    "nesne": "motorbot + figürler + V iz",
+    "nesne_pct": 10,
+    "net_sn": 2.0
    },
    "ses": [
     {
@@ -1035,16 +1038,16 @@
       494
      ],
      "cs": [
-      1.12,
-      1.2
+      1.8,
+      1.9
      ],
      "cx": [
-      0,
-      0
+      36,
+      38
      ],
      "cy": [
-      60,
-      40
+      25,
+      30
      ],
      "egri": "inout"
     }

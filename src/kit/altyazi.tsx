@@ -42,7 +42,8 @@ const sesDuzelt = (W: Kelime[], dil: Dil) => {
 // noktalamasız: harf/rakam/%; kelime içi kesme işareti (Tours'taydı) korunur; tire boşluk olur
 const temizle = (s: string, a: AltyaziAyar, dil: Dil) => {
   let q = s;
-  if (a.noktalamasiz) q = q.replace(/[-–—]/g, " ").replace(/([\p{L}\p{N}])['’](\p{L})/gu, "$1’$2").replace(/[^\p{L}\p{N}%’ ]/gu, "").replace(/\s+/g, " ").trim();
+  if (a.noktalamasiz && a.tire_koru) q = q.replace(/(^|\s)[-–—]+|[-–—]+(?=\s|$)/g, " ").replace(/([\p{L}\p{N}])['’](\p{L})/gu, "$1’$2").replace(/[^\p{L}\p{N}%’\- ]/gu, "").replace(/\s+/g, " ").trim();
+  else if (a.noktalamasiz) q = q.replace(/[-–—]/g, " ").replace(/([\p{L}\p{N}])['’](\p{L})/gu, "$1’$2").replace(/[^\p{L}\p{N}%’ ]/gu, "").replace(/\s+/g, " ").trim();
   if (a.kucuk) q = q.toLocaleLowerCase(dil === "tr" ? "tr" : "en");
   return q;
 };
@@ -74,25 +75,25 @@ export const altyaziGruplari = (plan: Plan, a: AltyaziAyar, sesler: PlanSes[], k
 // Bant seçimi (öncelik): replik > ekran yazısı > altyazı. Altyazı alt bantta (y 1290–1490); alt bantta ayak/temas/dokunuş/kurulum
 // kilidi ya da alt bant ekran yazısı varsa üst banda çıkar; gittiği bantta ekran yazısı varsa öteki banda, o da doluysa GÖSTERİLMEZ.
 const ALT_KILIT = (k: KilitNokta) => k.tur !== "yuz" && k.tur !== "yazi" && k.p[1] > YAZI.altY - 20 && k.p[1] < YAZI.altAlt + 20;
-export const altyaziBant = (plan: Plan, a: AltyaziAyar, p: number, kilit: KilitNokta[], dil: Dil, ana: Dil): "ust" | "alt" | null => {
+export const altyaziBant = (plan: Plan, a: AltyaziAyar, p: number, kilit: KilitNokta[], dil: Dil, ana: Dil): "ust" | "alt" | "ust_alti" | null => {
   if (replikCoz(plan, dil, ana).some((r) => p >= r.bas && p < r.bit)) return null;
   const ek = ekranCoz(plan, dil, ana).filter((y) => p >= y.bas && p < y.bit);
   const dolu = { ust: ek.some((y) => y.bant === "ust"), alt: ek.some((y) => y.bant === "alt") || kilit.some(ALT_KILIT) };
   const tercih = a.bant === "ust" ? "ust" : "alt";
   if (!dolu[tercih]) return tercih;
   const obur = tercih === "alt" ? "ust" : "alt";
-  if (a.bant === "oto" || a.bant === undefined) return dolu[obur] ? null : obur;
+  if (a.bant === "oto" || a.bant === undefined) return dolu[obur] ? (a.dolu_ise === "ust_alti" ? "ust_alti" : null) : obur;
   return null; // bant elle sabitlendi ve dolu
 };
 
 const KAGIT = "#f3ead6", MUREKKEP = "#1c1915", KIRMIZI = "#e5483c";
-export const KitAltyazi: React.FC<{ g: AltyaziGrup; p: number; bant: "ust" | "alt"; a: AltyaziAyar; vurgu?: string[]; dil: Dil }> = ({ g, p, bant, a, vurgu, dil }) => {
+export const KitAltyazi: React.FC<{ g: AltyaziGrup; p: number; bant: "ust" | "alt" | "ust_alti"; a: AltyaziAyar; vurgu?: string[]; dil: Dil }> = ({ g, p, bant, a, vurgu, dil }) => {
   const t = GIRIS(interpolate(p, [g.bas, g.bas + 6], [0, 1], cl));
   const cik = interpolate(p, [g.bit - 3, g.bit], [1, 0], cl); // hızlı çıkış (3 kare)
   const k = g.metin.split(" ").filter(Boolean);
   const vi = vurguIndeks(k, vurgu, dil);
   const px = Math.min(a.boyut ?? 84, (YAZI.kutuW - 40) / Math.max(1, g.metin.length * 0.6));
-  const merkezY = bant === "alt" ? (YAZI.altY + YAZI.altAlt) / 2 : (YAZI.ustY + YAZI.ustAlt) / 2;
+  const merkezY = bant === "alt" ? (YAZI.altY + YAZI.altAlt) / 2 : bant === "ust_alti" ? YAZI.ustAlt + 80 : (YAZI.ustY + YAZI.ustAlt) / 2;
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       <div lang={dil} style={{ position: "absolute", left: YAZI.yan, right: YAZI.yan, top: merkezY - px * 0.62, textAlign: "center", whiteSpace: "nowrap",
