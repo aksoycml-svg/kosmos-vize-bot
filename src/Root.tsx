@@ -17,6 +17,7 @@ import { LeningradKalibrasyon } from "./kit/sablonlar/leningrad/Kalibrasyon";
 import { LeningradBodrum, LeningradSokak } from "./kit/sablonlar/leningrad/YonKaresi";
 import { CizimTest } from "./kit/cizim/CizimTest";
 import { IsikTest, ISIK_TEST_SURE } from "./kit/isik/IsikTest";
+import { FigurTest, FIGUR_TEST_SURE } from "./kit/figur/FigurTest";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -43,6 +44,7 @@ export const RemotionRoot: React.FC = () => (
     {/* kalıcı çizim araçları sınaması (src/kit/cizim) */}
     <Still id="CizimTest" component={CizimTest} width={1080} height={1920} />
     <Composition id="IsikTest" component={IsikTest} durationInFrames={ISIK_TEST_SURE} fps={60} width={1080} height={1920} />
+    <Composition id="FigurTest" component={FigurTest} durationInFrames={FIGUR_TEST_SURE} fps={60} width={1080} height={1920} />
     <Composition id="LeningradSokak" component={LeningradSokak} durationInFrames={180} fps={60} width={1080} height={1920} defaultProps={{ guvenli: false }} />
   </>
 );

@@ -498,3 +498,27 @@
 - Kural/ihlal: sistemde libEGL yoktu (`apt install libegl1 libgles2`); yeni ortamda gerekir.
 - Bulgu: hedef-morg'da gövde/kollar doğru, bacaklar (diz/ayak) örtünün içinde yanlış; hedef-sokak (omuz üstü, kırpık figür) varsayılan kişide yanlış: iskelet kolu gövde sanıyor, yüz/el bulunamadı. Bu görselde poz elle verilmeli.
 - Açık: modeller repoya girsin mi (gitignore) kararı yapımcıda.
+
+## motion · 2026-11-16 · Figür kiti (`src/kit/figur/`: iskelet + IK + gövde + Loomis kafa + poz adaptörü)
+- Ne yaptım:
+  - `iskelet.ts`: 7.5 baş oran tablosu, eklem sınırları, kısıtlı FABRIK (n kemik, göreli açı kıstırma; birim sınaması: erişilemeyen hedefte düz uzanır, erişilende 0.09 px), `iskeletKur` (FK + IK, zemine oturtma + temas noktaları, kol 70°'den sonra omuz kalkması), `capalar`, `derinlikOlcek` (z, u → zemin noktası + B).
+  - `Govde.tsx`: gövde kesitlerinden (genişlik/ön/arka derinlik × yaw) siluet; omuz başlığı gövde zarfının parçası, öndeki kolda deltoid yayı + kavisli dikiş (omuz bölgesinde gövdeye düşen kontur maskeli), arkadaki kolun omzunda gövde konturu yok; dirsekli kol; el `lgFigur.incElGeo` parçaları tek siluet; boyun gövdenin arkasında + yaka U'su içinde, tepesi baş silüetinin içinden (delik yok), çene altı gölgesi ton alanı; öndeki bacak ceket eteğinin arkasında; giyim yuvası `katman.{arka,govde,ust,on}`.
+  - `Kafa.tsx`: Loomis kurgusu (basık kafatası elipsoidi + üst yüz halkası + dışbükey çene zarfı + burun), yaw/pitch/roll ortografik; göz/kaş/burun/ağız/kulak 3B kurgu noktalarından; gölge sınırı ışık vektörüne dik büyük dairenin izdüşümü (bıçak çizgisi yok); göz kapağı, kirpik hattı, kaş, dudak, yaş/sakal parametreleri.
+  - `pozdan.ts`: MediaPipe JSON → Poz (yalnız açılar; boylar tablodan; görünmeyen eklem bilek/ayak hedefli IK ile). Gerçek `poz-test/poz-morg.json` ve `poz-sokak.json` ile hatasız çalıştı (IK hata ≤ 0.2 px).
+  - `FigurTest` kompozisyonu (kare 0–5) ve kareler.
+- Dokunduğum dosyalar: `src/kit/figur/{iskelet.ts, pozdan.ts, Govde.tsx, Kafa.tsx, geo.tsx, FigurTest.tsx, ornek-poz.json, README.md}` (yeni), `src/Root.tsx` (+1 import, +1 Composition), `src/kit/KATALOG.md` (sona ekleme), `bolumler/leningrad-senfoni/kalibrasyon/figur-test/k0..k5.png` (yeni).
+- Aldığım kararlar ve gerekçeleri:
+  - `kinematik.ts`'ten import yok: oradaki `kolIK` Kukla dönüşüm zincirine bağlı kaba ızgara araması; yeni iskelet ondan bağımsız. `KolEl` eli yerine `lgFigur.incElGeo` (aynı el geometrisi, tırnak/iç çizgi yok) yeniden kullanıldı; kontur `MurekkepCizgi.konturYol`, ışık hilali `KenarHilal`, tarama `TonTarama`.
+  - Gövde ekran eğiminde yanal eksen yatay ile gövde dikinin cos²(yaw) karışımı: yalnız gövde dikiyle döndürülünce öne eğik ¾ figürde uzak omuz göğüs hizasına iniyor, "göğüs çıkıntısı" okunuyordu.
+  - Omuz için ayrı gövde dairesi kaldırıldı (top/yastık gibi okundu); omuz dış noktaları gövde zarfına girdi.
+  - `pozdan` yüz işaretleri `poz_cikar.py` ile hizalandı (pitch + yukarı, roll + kişinin sağ omzu → Kafa'da terslenir). Hedefler kök-göreli (`hedefGoreli`), yoksa zemine oturtma IK hedefini kaçırıyordu (ilk karede kol arkaya uzanmıştı).
+  - Palto eteği yalnız yuvanın kanıtı (düz A kesim); kumaş kıvrımı kapsam dışı. Sandık sınama propu (IK hedefi), şartnamede yok: yalnız test karesinde.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Omuz (2× kırpım `k0`, `k2`): ilk turda kol ucu "apolet" ve uzak omuz "top" okunuyordu, omuz tepesinde basamak vardı → aynı turda düzeltildi (yarıçap T'den yumuşak açılım, zarf, kontur maskesi).
+  - Çene–boyun (2× kırpım `k4`): ilk turda boyun gövde üstüne biniyor, yaka içinde gövde rengi şerit + üstünde ışık çizgisi vardı → boyun arkaya, yaka U'su; delik yok, çene altı ton alanı.
+  - Yüzde iç çizgi: yalnız kirpik hattı, ağız yarığı, uzak burun kenarı (kısa, ten gölgesi rengi); yanak/elmacık ton alanı. Karşıdan burnun gölge kaması ilk turda koyuydu → α .38'e indi.
+  - Eski bölümler piksel-aynı: LeningradBodrum k120 değişiklik öncesi/sonrası **0** farklı piksel; `git status` yalnız `src/Root.tsx` değişik. `npx tsc --noEmit` temiz.
+- Açık sorular / bir sonraki ajana notlar:
+  - Kalan zayıflıklar (gözle): gövde hâlâ kukla-kutu (bel daralması zayıf, kumaş kıvrımı yok); kollar tüp gibi, öndeki kolun dikişi boyunca koyu gölge bandı; kalkık kolda koltuk altı köşeli; ¾ yüzde uzak yanak silüetinde hafif kırık, yanak gölgeleri allık sınırında; saç kask + ışık şeritleri tarak gibi; el tek siluet olduğu için küçük ölçekte eldiven gibi; ayakta pozda ayaklar üst üste.
+  - Sınır: uzuvlar ekran düzleminde (¾'te kameraya uzanan kolun kısalması yok); sırt görünümü yok. 360 px okunurluk ölçümü yapılmadı.
+  - Morg P08'e bağlanması ayrı iş (şablon sahibi + yön karesi). Araç aşaması; Paris çıtasıyla puanlanmadı (öz değerlendirme: anatomi bağlantıları doğru, yüzey ~5/10).

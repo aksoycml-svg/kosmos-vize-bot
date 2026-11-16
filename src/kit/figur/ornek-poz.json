@@ -1,0 +1,18 @@
+{
+  "kaynak": "elle kurulmuş sınama pozu (MediaPipe sözleşmesi): diz çökmüş, öne eğik, ¾ sağa; sol dirsek görünmüyor",
+  "w": 1080, "h": 1920,
+  "pose": {
+    "nose": [775, 712, -0.3, 0.98],
+    "left_ear": [700, 700, -0.05, 0.4], "right_ear": [668, 690, -0.2, 0.95],
+    "left_shoulder": [723, 854, 0.1, 0.9], "right_shoulder": [545, 772, -0.2, 0.99],
+    "left_elbow": [790, 1010, 0.1, 0.15], "right_elbow": [585, 985, -0.25, 0.95],
+    "left_wrist": [805, 1150, 0.0, 0.8], "right_wrist": [705, 1120, -0.3, 0.92],
+    "right_index": [760, 1170, -0.3, 0.8],
+    "left_hip": [560, 1125, 0.05, 0.95], "right_hip": [440, 1075, -0.05, 0.95],
+    "left_knee": [800, 1150, 0.0, 0.9], "right_knee": [455, 1370, -0.1, 0.9],
+    "left_ankle": [800, 1420, 0.0, 0.85], "right_ankle": [262, 1300, -0.1, 0.8],
+    "left_heel": [775, 1452, 0.0, 0.8], "left_foot_index": [880, 1460, 0.0, 0.8],
+    "right_heel": [235, 1280, -0.1, 0.7], "right_foot_index": [250, 1415, -0.1, 0.7]
+  },
+  "yuz": { "yaw": 40, "pitch": -28, "roll": -4 }
+}
