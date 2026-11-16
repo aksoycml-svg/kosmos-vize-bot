@@ -199,6 +199,91 @@ const SagSeki: React.FC<{ t: number }> = ({ t }) => (
   </g>
 );
 
+
+// ---------- tur-13: kıyı ön planı (on_plan "kiyi"; P01/P09) — kaya Anadolu kıyısına bağlı, kara alt kenar boyunca kesintisiz ----------
+// Kıyı çizgisi kayanın sağ dibinden sağ-alta çapraz iner; su yalnız kıyı çizgisi ile gemi arasında. Güneş sağ-üst-ön → gölgeler sola.
+const KIYI_S: P2[] = [[560, 1338], ...kirik([600, 1352], [760, 1418], 4, 6, "ks1").slice(1), ...kirik([760, 1418], [930, 1494], 4, 7, "ks2").slice(1), ...kirik([930, 1494], [1140, 1586], 5, 7, "ks3").slice(1), ...kirik([1140, 1586], [1900, 1930], 6, 9, "ks4").slice(1)];
+const kiyiY = (x: number) => { for (let i = 1; i < KIYI_S.length; i++) if (x <= KIYI_S[i][0]) { const a = KIYI_S[i - 1], b = KIYI_S[i]; return a[1] + ((x - a[0]) / (b[0] - a[0] || 1)) * (b[1] - a[1]); } return KIYI_S[KIYI_S.length - 1][1]; };
+const ON_KENAR: P2[] = [[-700, 1720], ...kirik([-700, 1720], [300, 1676], 5, 10, "ok1").slice(1), ...kirik([300, 1676], [620, 1640], 5, 10, "ok2").slice(1)];
+const Tas: React.FC<{ x: number; y: number; r: number; seed: string }> = ({ x, y, r, seed }) => {
+  const e = 0.45 + 0.2 * rr(`${seed}e`);
+  return <g>
+    <ellipse cx={x - r * 0.35} cy={y + r * e * 0.45} rx={r * 1.15} ry={r * e * 0.5} fill="#3a3046" opacity={0.55} />
+    <ellipse cx={x} cy={y} rx={r} ry={r * e} fill={mix(BP.tasOrta, BP.tasGolge, 0.25 + 0.4 * rr(`${seed}c`))} />
+    <path d={`M${x - r * 0.3},${y - r * e * 0.85} Q${x + r * 0.7},${y - r * e * 0.9} ${x + r * 0.92},${y - r * e * 0.1}`} stroke={BP.tasIsik} strokeWidth={Math.max(1.5, r * 0.22)} fill="none" strokeLinecap="round" />
+  </g>;
+};
+const Maki: React.FC<{ x: number; y: number; r: number; seed: string }> = ({ x, y, r, seed }) => (
+  <g>
+    <ellipse cx={x - r * 0.5} cy={y + r * 0.1} rx={r * 1.5} ry={r * 0.32} fill="#3a3046" opacity={0.5} />
+    {[0, 1, 2, 3, 4].map((i) => <ellipse key={i} cx={x + (i - 2) * r * 0.42 + rr(`${seed}x${i}`) * r * 0.2} cy={y - r * (0.35 + 0.4 * rr(`${seed}y${i}`))} rx={r * 0.5} ry={r * 0.4} fill={i % 2 ? "#5a6048" : "#4c5240"} stroke="#3e302b" strokeWidth={2} />)}
+    <path d={`M${x - r * 0.6},${y - r * 0.95} A${r * 0.55},${r * 0.4} 0 0 1 ${x + r * 0.4},${y - r * 1.05} A${r * 0.5},${r * 0.38} 0 0 1 ${x + r * 1.1},${y - r * 0.6}`} stroke={BP.kenar} strokeWidth={3} fill="none" opacity={0.8} />
+  </g>
+);
+const KiyiOn: React.FC<{ t: number }> = ({ t }) => {
+  const fas: [P2[], string][] = [
+    [[[-700, 1190], [-300, 1170], [40, 1166], [110, 1186], [80, 1290], [-700, 1300]], "#7a6e90"],
+    [[[110, 1186], [190, 1172], [260, 1196], [230, 1250], [120, 1262], [80, 1290]], "#857a9a"],
+    [[[260, 1196], [330, 1206], [400, 1232], [450, 1226], [430, 1280], [330, 1266], [230, 1250]], "#7d7294"],
+    [[[450, 1226], [520, 1270], [580, 1300], [600, 1322], [610, 1460], [500, 1420], [430, 1280]], "#5a5276"],
+    [[[-700, 1300], [80, 1290], [118, 1346], [150, 1384], [60, 1520], [-700, 1560]], "#5e5578"],
+    [[[392, 1372], [430, 1280], [500, 1420], [610, 1460], [620, 1660], [450, 1640]], "#4e4670"],
+    [[[-700, 1560], [60, 1520], [150, 1384], [220, 1400], [320, 1398], [392, 1372], [450, 1640], [620, 1660], [620, 1760], [-700, 1760]], "#463f64"],
+  ];
+  const S = KIYI_S, Sw = S.map((q) => [q[0], q[1] + 16 + (q[0] - 560) * 0.03] as P2);
+  const zem = `M${pts(S)} L1900,2900 L-700,2900 L-700,1600 L560,1600 Z`;
+  // çakıl: kıyıdan kameraya büyür (derinlik); seed sabit
+  const cakil = Array.from({ length: 90 }).map((_, i) => { const x = 600 + rr(`kc${i}`) * 1100, d = rr(`kcd${i}`) ** 1.4, y0 = kiyiY(x) + 30; const y = y0 + d * (2300 - y0); return { x, y, r: 3 + d * 16 + rr(`kcr${i}`) * 3, k: `kc${i}` }; }).filter((c) => c.y < 2300 && c.y > kiyiY(c.x) + 26).sort((a, b) => a.y - b.y);
+  const ruz = 0.57;
+  return (
+    <g strokeLinejoin="miter">
+      {/* kara zemini (çakıllı kıyı): kıyı çizgisinden alt kenara kesintisiz */}
+      <defs><linearGradient id="kiyiZem" x1="0" y1="1340" x2="0" y2="1960" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#9c8478" /><stop offset="0.5" stopColor="#b2947c" /><stop offset="1" stopColor="#9a7c6a" /></linearGradient></defs>
+      <path d={zem} fill="url(#kiyiZem)" stroke="#3e302b" strokeWidth={2} />
+      <Tara d={zem} aci={160} aralik={11} kalin={2} renk={BP.tasDerin} alfa={0.18} kutu={[560, 1340, 1900, 2900]} />
+      {/* ıslak taş şeridi + köpük (dalga kıyıya vurur, geri çekilir) */}
+      <path d={`M${pts(S)} L${pts(Sw.slice().reverse())} Z`} fill="#5c5068" />
+      <polyline points={pts(Sw)} fill="none" stroke={mix("#5c5068", BP.tasIsik, 0.35)} strokeWidth={2.5} />
+      {(() => { const g = 0.5 + 0.5 * Math.sin(t * 1.6); return <g>
+        <polyline points={pts(S.map((q) => [q[0], q[1] - 2 + g * 3] as P2))} fill="none" stroke={BP.kopuk} strokeWidth={5} strokeLinecap="round" />
+        <polyline points={pts(S.map((q, i) => [q[0] + 8, q[1] - 12 - g * 4 - rr(`kf${i}`) * 4] as P2))} fill="none" stroke={BP.kopuk} strokeWidth={2.5} strokeDasharray="34 18" opacity={0.75} />
+      </g>; })()}
+      {cakil.map((c) => <Tas key={c.k} x={c.x} y={c.y} r={c.r} seed={c.k} />)}
+      {/* kıyı kayaları (karada, ıslak şeridin üstünde) */}
+      {[[700, 1412, 22], [880, 1488, 30], [1050, 1556, 26]].map(([x, y, r], i) => <Tas key={`kk${i}`} x={x} y={y} r={r} seed={`kk${i}`} />)}
+      {/* kaya (kıyıya bağlı burun): yüzler; tabanı zemine oturur */}
+      {fas.map(([q, c], i) => <path key={i} d={`M${pts(q)} Z`} fill={c} stroke="#3e302b" strokeWidth={2} />)}
+      <path d={`M${pts(UST)}`} stroke={BP.kenar} strokeWidth={5} fill="none" />
+      <path d={`M${pts([[110, 1186], [190, 1172], [260, 1196], [250, 1210], [190, 1188], [120, 1200]])} Z`} fill={BP.tasIsik} />
+      <path d={`M${pts([[400, 1232], [450, 1226], [520, 1270], [500, 1278], [450, 1240]])} Z`} fill={BP.tasIsik} />
+      <path d="M600,1322 L610,1460 L620,1660" stroke={BP.kenar} strokeWidth={4} fill="none" />
+      {/* kayanın kıyı gölgesi: sağ dibinde zemine düşen koyu temas şeridi */}
+      <path d={`M${pts([[612, 1360], [640, 1380], [660, 1520], [650, 1680], [620, 1700], [618, 1460]])} Z`} fill="#3a3046" opacity={0.55} />
+      {/* çatlaklar (dikey karren çubukları yerine): ince kırık çizgi + gölge yüzde gravür taraması */}
+      {[[[60, 1330], [90, 1400], [70, 1470]], [[210, 1440], [240, 1500], [222, 1560], [250, 1610]], [[350, 1430], [330, 1500], [362, 1570]], [[500, 1450], [520, 1520], [505, 1600]]].map((q, i) => <polyline key={`ct${i}`} points={pts(q as P2[])} fill="none" stroke="#2a2440" strokeWidth={3} strokeLinecap="round" />)}
+      <Tara d={`M${pts(fas[6][0])} Z`} aci={110} aralik={10} kalin={2} renk="#2a2440" alfa={0.32} kutu={[-700, 1372, 620, 1760]} />
+      <path d={`M${pts([[200, 1520], [250, 1508], [290, 1530], [240, 1548]])} Z`} fill={BP.toprak} />
+      {/* oyuk (mevzi) — K1 ile aynı */}
+      <path d={`M${pts(OYUK)} Z`} fill="#221e34" stroke="#3e302b" strokeWidth={3} />
+      <Tara d={`M${pts(OYUK)} Z`} aci={105} aralik={7.5} kalin={2.4} renk="#120f1c" alfa={0.7} kutu={[118, 1262, 422, 1320]} />
+      <path d={`M${pts([[150, 1384], [220, 1400], [320, 1398], [392, 1372], [400, 1386], [320, 1414], [220, 1416], [150, 1398]])} Z`} fill={BP.tasIsik} />
+      <path d={`M${pts([[170, 1270], [250, 1262], [330, 1268], [400, 1290]])}`} stroke={BP.kenar} strokeWidth={3} fill="none" />
+      {Array.from({ length: 7 }).map((_, i) => { const bx = 20 + i * 82 + rr(`ots${i}`) * 26; const by = UST.reduce((m, q) => (Math.abs(q[0] - bx) < Math.abs(m[0] - bx) ? q : m), UST[0])[1] + 4;
+        return <g key={`o${i}`}>{[0, 1, 2, 3].map((j) => { const L = 34 + rr(`otl${i}${j}`) * 46, a2 = -0.4 + j * 0.24 + Math.sin(t * 1.3 + i) * 0.05 + 0.22;
+          return <path key={j} d={`M${bx + j * 3},${by} Q${bx + j * 3 + a2 * L * 0.3},${by - L * 0.6} ${bx + j * 3 + a2 * L},${by - L}`} stroke={j % 2 ? BP.ot : "#6e7458"} strokeWidth={3} fill="none" strokeLinecap="round" />; })}</g>; })}
+      {/* ön zemin: kayanın önünde alt kenar boyunca kara (ışıkta toprak + maki + ot) */}
+      <path d={`M${pts(ON_KENAR)} L700,1700 L1140,1760 L1900,1900 L1900,2900 L-700,2900 Z`} fill="#a08470" stroke="#3e302b" strokeWidth={2} />
+      <polyline points={pts(ON_KENAR)} fill="none" stroke="#3a3046" strokeWidth={7} opacity={0.55} />
+      <polyline points={pts(ON_KENAR.map((q) => [q[0], q[1] + 6] as P2))} fill="none" stroke={BP.kenar} strokeWidth={3} opacity={0.85} />
+      <Tara d={`M${pts(ON_KENAR)} L700,1700 L1140,1760 L1900,1900 L1900,2900 L-700,2900 Z`} aci={165} aralik={12} kalin={2} renk={BP.tasDerin} alfa={0.2} kutu={[-700, 1640, 1900, 2900]} />
+      {[[80, 1800, 18], [330, 1760, 14], [520, 1850, 22], [760, 1790, 16], [960, 1880, 24]].map(([x, y, r], i) => <Tas key={`ot${i}`} x={x} y={y} r={r} seed={`ont${i}`} />)}
+      <Maki x={180} y={1730} r={58} seed="mk1" /><Maki x={-300} y={1780} r={64} seed="mk4" /><Maki x={1400} y={1900} r={66} seed="mk5" /><Maki x={600} y={2120} r={80} seed="mk6" /><Maki x={880} y={1760} r={70} seed="mk2" /><Maki x={1080} y={1660} r={52} seed="mk3" />
+      {[[30, 1712], [420, 1700], [640, 1712], [720, 1820], [1000, 1700]].map(([x, y], i) => <g key={`ott${i}`}>{[0, 1, 2, 3, 4].map((j) => { const L = 40 + rr(`otz${i}${j}`) * 40, a2 = (j - 2) * 0.12 + ruz * 0.35 + Math.sin(t * 1.4 + j + i) * 0.05;
+        return <path key={j} d={`M${x + j * 4},${y} Q${x + j * 4 + a2 * L * 0.3},${y - L * 0.6} ${x + j * 4 + a2 * L},${y - L}`} stroke={j % 3 ? BP.ot : mix(BP.ot, BP.kenar, 0.4)} strokeWidth={3.5} fill="none" strokeLinecap="round" />; })}</g>)}
+    </g>
+  );
+};
+
 // ---------- KAPAK: kiyidan-ada ----------
 // tur-7 (bölüm): isteğe bağlı ek katmanlar (LimanYeni "kiyidan-olay": P06/P07c/P09). ek verilmezse çıktı K1 ile piksel-aynı (P01 kilit).
 export type KiyidanEk = { gemi?: React.ReactNode; gemiYerine?: React.ReactNode; kaya?: React.ReactNode; on?: React.ReactNode };
@@ -210,6 +295,7 @@ export const KiyidanAda: React.FC<{ plan: Plan; p: number; kilit: SablonProps["k
   const gok = gokSutun(h), seed = param<number>(plan, "seed", 181);
   const pxm = ref.F / GEMI_Z, wl = izd(ref, [0, 0, GEMI_Z])!.y;
   const cz = param<{ bas: number; bit: number; ilk?: number } | null>(plan, "cizgi_mevzi", null);
+  const onPlan = param<"kaya" | "kiyi">(plan, "on_plan", "kaya"); // tur-13: "kiyi" = kıyıya bağlı kara ön planı (varsayılan K1 kayası)
   // mürekkep çizgi: oyuktan (kaya plakası, z 9) gemi gövdesine (gemi plakası) — iki uç da kendi plakasıyla hareket eder
   const kayaZ = 9, A = plaka(ref, k, kayaZ).T(OYUK_MERKEZ), Bq = plaka(ref, k, GEMI_Z).T([560, wl - 16]);
   const cT = cz ? interpolate(p, [cz.bas, cz.bit], [cz.ilk ?? 0.1, 1], { ...cl }) : 0;
@@ -256,8 +342,9 @@ export const KiyidanAda: React.FC<{ plan: Plan; p: number; kilit: SablonProps["k
         {(() => { const y0 = izd(k, [0, 0, GEMI_Z])!.y; return <rect x={-10} y={y0 - 2} width={1100} height={1940 - y0} fill={mix(BP.su, BP.bugu, 0.1)} />; })()}
         <SuOn ref={ref} k={k} t={t} seed={seed} yolRenk={h >= 18 ? BP.suYol : h >= 12 ? "#eac3a2" : "#e4b496"} />
         {/* 12–13 ön plan kaya + ot (z 9 / sağ seki z 8) */}
+        {onPlan === "kiyi" ? <Katman r={ref} k={k} z={kayaZ}><KiyiOn t={t} />{E.kaya}</Katman> : <>
         <Katman r={ref} k={k} z={kayaZ}><OnKaya t={t} />{E.kaya}</Katman>
-        <Katman r={ref} k={k} z={8}><SagSeki t={t} /></Katman>
+        <Katman r={ref} k={k} z={8}><SagSeki t={t} /></Katman></>}
         {/* 14 mürekkep çizgi (P01 kanca; P10b haritada karşılık) */}
         {cz && <g>
           {/* mürekkep çizgi: karanlık oyuktan gemi gövdesine (mekanlar §1.1); P10b harita rotasında karşılık */}

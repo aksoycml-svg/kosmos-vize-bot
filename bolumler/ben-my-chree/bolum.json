@@ -78,7 +78,8 @@
      "diyafram": 36,
      "egri": "giris",
      "ekipman": "dolly"
-    }
+    },
+    "on_plan": "kiyi"
    },
    "ekran_yazisi": [
     {
@@ -494,7 +495,7 @@
     "en": "Two hours after she anchored, the guns opened fire. The first two shells fell into the sea. The third shell hit the ship."
    },
    "parametreler": {
-    "gorunum": "kiyidan-olay",
+    "gorunum": "gemi-sahne",
     "olay": "atis",
     "gun_yuksekligi": 20,
     "gemi_durum": "demirli",
@@ -509,50 +510,45 @@
      322
     ],
     "isabet": 464,
-    "kamera25": {
+    "arka": "anadolu",
+    "ayna": true,
+    "on": "kayik",
+    "yol": {
      "kare": [
       0,
-      500
-     ],
-     "konum_yol": [
-      [
-       -0.15,
-       50,
-       0
-      ],
-      [
-       -0.15,
-       50,
-       4
-      ]
-     ],
-     "yon_yol": [
-      [
-       0,
-       -1.027
-      ]
-     ],
-     "lens_mm": [
-      375,
-      375,
-      650
-     ],
-     "odak_z": [
-      14,
-      2000
-     ],
-     "odak_kare": [
-      100,
-      150
-     ],
-     "diyafram": 36,
-     "egri": "inout",
-     "odak_egri": "inout",
-     "ekipman": "dolly",
-     "lens_kare": [
-      0,
       400,
-      470
+      470,
+      547
+     ],
+     "Zd": [
+      520,
+      520,
+      520,
+      520
+     ],
+     "F": [
+      3400,
+      3700,
+      6300,
+      6300
+     ],
+     "h": [
+      1.5,
+      1.5,
+      1.5,
+      1.5
+     ],
+     "xc": [
+      -4,
+      6,
+      24,
+      24
+     ],
+     "yh": [
+      1180,
+      1180,
+      1180,
+      1180
      ]
     }
    },
@@ -588,9 +584,9 @@
    "temaslar": [
     {
      "kare": 186,
-     "olay": "atış 1: ön plan kalkanlı top, namlu 24 px geri",
-     "ses": "bmc_top_atis",
-     "db": -6
+     "olay": "atış 1: uzak Anadolu kıyısında namlu çakımı (küçük)",
+     "ses": "bmc_top_uzak",
+     "db": -11
     },
     {
      "kare": 246,
@@ -624,7 +620,7 @@
     }
    ],
    "okunurluk": {
-    "nesne": "isabet çakımı + KOR çekirdek + duman (zoom 375→650 mm)",
+    "nesne": "isabet çakımı + KOR çekirdek + duman (telefoto, F 3400→6300)",
     "nesne_pct": 12,
     "net_sn": 1.3
    },
@@ -643,7 +639,8 @@
    "dokunus": {
     "id": "D5"
    },
-   "anahtar": true
+   "anahtar": true,
+   "_not13": "tur-13: K1 tekrarı kaldırıldı; Meis tarafından su seviyesinde telefoto (kayık bordası), arkada Anadolu kıyısı"
   },
   {
    "id": "P07",
@@ -721,44 +718,37 @@
     "kare_bas": 270,
     "sablon": "LIMAN",
     "parametreler": {
-     "gorunum": "kiyidan-olay",
-     "olay": "duman",
-     "gemi_durum": "demirli",
+     "gorunum": "gemi-sahne",
      "gun_yuksekligi": 18,
      "seed": 181,
-     "yangin_guc": 0.35,
-     "kamera25": {
+     "gemi_durum": "yanan",
+     "yangin_guc": 0.45,
+     "kic_kopuk": true,
+     "yol": {
       "kare": [
        270,
-       420
+       433
       ],
-      "konum_yol": [
-       [
-        -0.15,
-        50,
-        3
-       ],
-       [
-        -0.15,
-        50,
-        0
-       ]
+      "Zd": [
+       700,
+       660
       ],
-      "yon_yol": [
-       [
-        0,
-        -1.027
-       ]
+      "F": [
+       3400,
+       3400
       ],
-      "lens_mm": [
-       375
+      "h": [
+       11,
+       9
       ],
-      "odak_z": [
-       2000
+      "xc": [
+       -2,
+       -6
       ],
-      "diyafram": 36,
-      "egri": "giris",
-      "ekipman": "dolly"
+      "yh": [
+       1180,
+       1180
+      ]
      }
     }
    },
@@ -913,7 +903,8 @@
      "diyafram": 36,
      "egri": "giris",
      "ekipman": "dolly"
-    }
+    },
+    "on_plan": "kiyi"
    },
    "ekran_yazisi": [],
    "temaslar": [

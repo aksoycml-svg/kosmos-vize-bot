@@ -346,3 +346,42 @@
   - Kit değişiklikleri yalnız ekleme.
 - Açık sorular / bir sonraki ajana notlar:
   - `src/kit/cizim/MurekkepCizgi.tsx` başka bir ajanın dosyası ve `perfect-freehand` paketi istiyor. Paketi `--no-save` ile ortama kurdum, package.json'a eklemedim. Sahibi bağımlılığı eklemeli.
+
+## motion · 2026-11-16 · tur-13 (kıyı karadır + K1 kadraj tekrarı)
+- Ne yaptım:
+  - **P01/P09 ön planı yeniden kuruldu.** `on_plan: "kiyi"` ile kaya artık denizde duran kütle değil, Anadolu kıyısına bağlı bir burun. Kara alt kenar boyunca kesintisiz uzanıyor.
+    - Kıyı çizgisi kayanın sağ dibinden sağ-alta çapraz iniyor: köpük, ıslak taş şeridi, çakıl, kıyı kayaları.
+    - Ön zeminde maki ve ot var; kayanın kıyıya düşen gölgesi çizildi.
+    - Dikey karren çubukları kaldırıldı; yerine çatlak çizgisi ve gravür taraması konuldu.
+    - Oyuk, mürekkep çizgi, gemi, ada ve yazı yerleşimi değişmedi.
+    - Kamera dolly'sinde z 9 plakası 0.67× küçüldüğü için zemin plakanın dışına (−700…1900, 2900) uzatıldı.
+  - **P06 yeni açı.** `gemi-sahne` görünümüne `arka: "anadolu"`, `ayna`, `on: "kayik"` ve atış olayları eklendi.
+    - Kamera Meis tarafında, su seviyesinden 1.5 m yükseklikte; ön planda flu kayık bordası var.
+    - Gemi diğer bordasından görünüyor (ayna). Arkasında dünya metresiyle izdüşürülen Anadolu sırtı var.
+    - Uzak kıyıda küçük namlu çakımları ve barut dumanı görünüyor. İki su sütunu geminin baş önünde ve kıç ötesinde yükseliyor.
+    - Hangar isabetinde krem çakım, KOR çekirdek ve duman var.
+    - Telefoto F 3400→6300 ve hangara pan, kare 400–470 arasında. İsabet 464'te, net süre yaklaşık 1.4 sn. Sayaç ve temas kareleri aynı.
+  - **P07c yeni açı.** `gemi-sahne` (Meis arkası) geniş ve yüksek çekim; P07b'den farklı kamera konumu.
+    - Zd 700→660, F 3400, h 11→9 (crane aşağı).
+    - Yanan hangar, duman sütunu ve `kic_kopuk` (dümen bozuk, pervane boşa dönüyor). P07b kilitli karesi aynı.
+  - **Sayım.** K1 artık yalnız P01 (kurulum) ve P09'da (karşılık) kullanılıyor.
+- Dokunduğum dosyalar:
+  - src/kit/sablonlar/benmychree/Liman.tsx (KiyiOn, `on_plan`; varsayılan K1 kayası korunur)
+  - src/kit/sablonlar/benmychree/LimanBolum.tsx (AnadoluArka; GemiSahne `arka`/`ayna`/`on`/`kic_kopuk`/atış; varsayılanlar P02/P08'i değiştirmez)
+  - bolumler/ben-my-chree/bolum.json (P01/P09 `on_plan`, P06 parametre+temas notları, P07 devam_plan)
+  - bolumler/ben-my-chree/kalibrasyon/tur-13/P01_k124.png (yeni P01 kilit referansı)
+  - out/benmychree/*
+  - bolumler/ben-my-chree/kontrol/*
+- Aldığım kararlar ve gerekçeleri:
+  - **P06 atış 1 foley'i.** Top artık uzak kıyıda küçük göründüğü için atış 1 temasının sesi `bmc_top_atis` −6 dB'den `bmc_top_uzak` −11 dB'e çekildi (görünürlük–ses kuralı). Kare aynı.
+  - **Ayna.** Gemi diğer bordasından görüldüğü için kenar ışıkları da aynalandı. Bu planda güneş kameranın arkasında olduğundan yamaçlar önden ışıkta, sıcak tonda.
+  - bolum.json parametrelerini orkestra kararıyla ben değiştirdim.
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - Kilitli P04 k1291, P07b k2388 ve P10a k3292 ile Paris k300 ve Çiçero k1200: 0 piksel fark.
+  - P01 kilidi yeniden kapalı; yeni referansı `tur-13/P01_k124.png`.
+  - Doğrulayıcı geçti: 0 hata, 1 uyarı. Uyarı: `bmc_top_atis` artık kullanılmıyor; foley.json kurgucunun dosyası, dokunmadım.
+  - Aynı kadraj en çok iki kez.
+- Açık sorular / bir sonraki ajana notlar:
+  - Kurgucu: foley.json'dan `bmc_top_atis` çıkarılmalı ya da başka yerde kullanılmalı.
+  - P06 Anadolu sırtı sade kaldı (maki, kaya çıkıntısı, tarama). Eleştirmen Paris çıtasına göre bakmalı.
+  - P07c'de alt üçte bir su + halattan oluşuyor.
