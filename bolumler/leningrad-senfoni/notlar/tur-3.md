@@ -7,3 +7,8 @@ Teşhis (orkestra): P08'de ışık kaynağı (kapı) Eliasberg'in ve sedyenin ar
 ## Tur 3b — yön kararı (2026-11-16)
 Soru: "Leningrad'da nasıl devam edelim?" → Kullanıcı seçimi: **Gemini hedef görsel** (dış maliyet onayı, bölüm ≤ $1).
 Üretilen: `hedef/hedef-morg.png`, `hedef/hedef-sokak.png` (gemini-3-pro-image, 1K, referans: Paris hedef-kus + SALON tur-4). Promptlar `hedef/prompt-*.txt`.
+
+## Tur 3c — hedef görsellere kullanıcı kararı (2026-11-16)
+> evet, ışığı ele indir ve kodla
+
+Uygulama: iki hedef yön olarak onaylı. Morgda huzme Aydarov'un eline kadar iner (el ışıkta); çerçeve çizgisi kullanılmaz; çubuklar P08'den çıktı. Motion iki şablonu hedeflere göre yeniden kurar.
