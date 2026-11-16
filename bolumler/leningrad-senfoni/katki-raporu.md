@@ -349,3 +349,37 @@
     - Gök tepesinde ince koyu bir çizgi var (RenkKaydi mürekkep eşiği).
     - Kar yüzeyi düz, yığın ve iz dokusu az.
   - Bu yön kareleriyle eleştirmen kalibrasyonu yapılmalı. 7 için önce el/tutuş ve figür detayı (palto kıvrımı, atkı) düzeltilmeli.
+
+## elestirmen · 2026-11-16 · BODRUM P08 + SOKAK P03a tur-2 kalibrasyonu (hedef karşılaştırması)
+- **Ne yaptım:**
+  - İki kareyi hedef görseller ve Paris çıtasıyla karşılaştırdım (`tam-render-3/genel-tr.jpg`, `hedef-ozet.jpg`).
+  - Yüz, el ve atkı bölgelerini 2× kırpıp inceledim.
+  - Hedef ile bizim kareyi Lab ölçümüyle karşılaştırdım: cephe C* 2.4 ↔ ≈10; kar L* aralığı 16 ↔ 55; örtü L* medyanı 79 ↔ 47.
+  - Kusurları kod düzeyinde teşhis ettim (`BodrumHedef.tsx`, `SokakHedef.tsx`, `lgYuz.tsx`, `GravurEl.konikKol`, `Figur.BasProfil`).
+- **Dokunduğum dosyalar:**
+  - `kalibrasyon/bodrum-tur-2/elestiri.md` (yeni)
+  - `kalibrasyon/sokak-tur-2/elestiri.md` (yeni)
+  - bu rapor
+  - Kod değiştirmedim.
+- **Aldığım kararlar ve gerekçeleri:**
+  - Puanlar: BODRUM **4.5**, SOKAK **4.5**; ikisi de geçmez.
+  - Kompozisyon ve ışık hedefe yakın; puanı figür (gövde, el, yüz) ve yüzey dokusu (örtü, cephe, kar) düşürüyor.
+  - Fizik, omuz ve yüz kuralı ihlallerini 6 maddelik sınırın dışında KRİTİK olarak yazdım.
+- **Uyguladığım kurallar / yakaladığım ihlaller:**
+  - **Tekrar eden kullanıcı notu (tur-3, ışık yolu):** P08'de sedyenin önündeki zemin ışıklı (`IsikliArka` zemin kırpması y 1940'a kadar). Süreç hatası.
+  - **Fizik:**
+    - P08'de ölü el örtü sarkmasının içinden çıkıyor.
+    - P03a'da sağ kol omuza bağlı değil, kadraj tabanından çıkıyor.
+  - **Omuz:** `konikKol` düz kesik ucu gövde silüetinin dışına taşıyor (P08 iki omuz).
+  - **Yüzde iç çizgi / favori:** `BasProfil` `isik="on"` bandı dikey bıçak sınırı çiziyor; favori kutu takoz.
+  - **El:** P03a'da ekmeği tutan el görünmüyor (yalnız başparmak). Avuçta eşit olmayan ölçek (`scale(1 0.62)`) var. P08 elinde tırnak/yüzük çizgisi (T #11).
+  - **Reçete:** A9 tarama, A11 kontur titremesi, A5/A6 buğu (sokak), B3 pencere ayrımı eksik.
+  - **Küçük geometri hatası:** gökteki koyu çizgi RenkKaydi değil, `rect` aralık boşluğu (`ufuk-660` ↔ `ufuk-655`).
+- **Açık sorular / bir sonraki ajana notlar:**
+  - Motion önce KRİTİK maddeleri düzeltsin (B-K1..K3, S-K1..K3), sonra her karede ilk 3 maddeyi.
+  - Bu yapılırsa tahminim ≈ 6–6.5. 7 için örtü, palto kıvrımı ve cephe/kar dokusu da gerekiyor.
+  - Kit işi (`kit_eksik` adayları), bölüm kodu değil:
+    - `GravurEl` ön parmak katmanı (nesneyi saran parmak uçları)
+    - avuç perspektifi (eşit olmayan ölçek yerine)
+    - `BasProfil` "kayıp profil" dönüşü
+  - Kural adayı (orkestra karar versin): "Işık havuzu/şeridi yalnız kaynağa görüşü açık yüzeye düşer; ışık çokgeni, kaynak ile kamera arasındaki her kütleyle kırpılır." tur-3 notu bu turda ikinci kez geldi.
