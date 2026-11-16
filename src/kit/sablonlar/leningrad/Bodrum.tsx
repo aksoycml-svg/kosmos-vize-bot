@@ -16,6 +16,7 @@ import { cr, dunya, Dunya, Hilal, Kirp, LgBaski, P2, pS } from "./lgOrtak";
 import { LgYuz } from "./lgYuz";
 import { LG } from "./salonDunya";
 import { BodrumP08 } from "./BodrumHedef";
+import { BodrumP08T3 } from "./BodrumT3";
 
 const SD = 455; // seed (mekanlar §13.5)
 // ---- palet (tasarım §2.3 + mekanlar §13.6 O1 düzeltmeleri) ----
@@ -415,7 +416,7 @@ const P08_3: React.FC<SablonProps> = ({ plan, p, kilit }) => {
 
 const Sahne: React.FC<SablonProps> = (pr) => {
   const g = param<string>(pr.plan, "gorunum", "p08-3");
-  return g === "p08" ? <BodrumP08 {...pr} /> : <P08_3 {...pr} />; // p08: onaylı hedef (tur-2); p08-3: tur-1 (reddedildi, kayıt için)
+  return g === "p08" ? <BodrumP08T3 {...pr} /> : g === "p08-t2" ? <BodrumP08 {...pr} /> : <P08_3 {...pr} />; // p08: onaylı hedef (tur-3); p08-t2: tur-2 kaydı; p08-3: tur-1 (reddedildi)
 };
 /** BODRUM — Radyo Evi bodrumu (morg). Arşiv: litografi (SALON ile aynı zincir). Görünüm: `p08-3` (yön karesi). */
 export const BODRUM_SABLON: Sablon = { Sahne, arsiv: () => "litografi" };

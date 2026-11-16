@@ -383,3 +383,58 @@
     - avuç perspektifi (eşit olmayan ölçek yerine)
     - `BasProfil` "kayıp profil" dönüşü
   - Kural adayı (orkestra karar versin): "Işık havuzu/şeridi yalnız kaynağa görüşü açık yüzeye düşer; ışık çokgeni, kaynak ile kamera arasındaki her kütleyle kırpılır." tur-3 notu bu turda ikinci kez geldi.
+
+## motion · 2026-11-16 · BODRUM P08 + SOKAK P03a kalibrasyon tur-3 (tur-2 eleştirisi, 4.5 → hedef ≥ 7)
+- **Ne yaptım:**
+  - Yeni figür kiti `lgFigur.tsx`. Hepsi ekleme; BMC dilinden kopyalanıp uyarlandı.
+    - `serit`/`Kivrim`: kıvrımı çizgiyle değil, oluk + sırt ton şekliyle çizer.
+    - `Birlesik`/`HilalB`/`KirpB`: gövde, kol ve omuz başlığını tek silüet yapar; kenar hilali yalnız dış sınırda çıkar.
+    - `LgYuz3`: ¾ yüz.
+    - `LgBasProfil`: BMC `BasProfil` kopyası + K3 düzeltmeleri.
+    - `IncEl`: ince, kemikli el. Parmaklar ayrı, boğumlu ve kıvrık; ölçek eşit; tırnak çizgisi yok.
+    - `crP`: hassas yol. `cr` birim uzayda 1 ondalığa yuvarlıyor, baş blok blok çıkıyordu.
+  - `BodrumT3.tsx` (görünüm `p08`) ve `SokakT3.tsx` (görünüm `p03a`) yazıldı. Tur-2 karesi `p08-t2` / `p03a-t2` adıyla kayıtta kaldı.
+  - Kare başına 2 iç tur yapıldı. Hedefin yanında, yüz/el 2× kırpımla kontrol edildi.
+  - Çıktılar: `kalibrasyon/bodrum-tur-3/`, `kalibrasyon/sokak-tur-3/` (png, -360, -guvenli, hedef-yaninda.jpg, olcum.md).
+- **Dokunduğum dosyalar:**
+  - Yeni: `src/kit/sablonlar/leningrad/lgFigur.tsx`, `BodrumT3.tsx`, `SokakT3.tsx`.
+  - Değişen: `Bodrum.tsx`, `Sokak.tsx`. Yalnız görünüm dağıtıcısı satırı değişti.
+  - Değişmeyen: benmychree, ortak kit ve eski bölüm dosyaları.
+- **Aldığım kararlar ve gerekçeleri:**
+  - **Eller GravurEl yerine IncEl ile çizildi.** GravurEl avucu E 220'de geniş ve kısa kalıyor, "pati / eldiven" okunuyordu. Ekmek tutuşu IncEl + kırpma ile çözüldü; `kit_eksik: GravurEl ön parmak katmanı` gerekmedi.
+  - **Morgda palto sıcak kahveye çekildi (#6a5248).** Hedefteki palto bu renkte. Önde zemin ışığı kalkınca sıcak piksel %11'e düşmüştü; palto rengiyle ölçüt tekrar geçti.
+  - **Kadraj kaydırması 150 → 170 px.** Ölü elin parmak uçları IG alt arayüzünün üstüne çıkıyor. Bedeli: tonoz tavan büyük ölçüde kırpılıyor.
+  - **Sokakta dirsek (482, 1652); eleştiri y ≈ 1560 istiyordu.** Daha aşağı alınmazsa sol avuç, sağ kolun kıvrımına sığmıyordu. Avuç E 196 oldu (eleştiri 220).
+  - **Cephe boyası yerel `CEPHE` paletinden.** Tur-2'deki `LH.cephe[2]` yeşilimsi griydi, kullanılmadı. Güneşteki cephe %20 sıcak açıldı.
+  - **Sokak profil başı tam profil kaldı.** "Kayıp profil" dönüşü için `kit_eksik`.
+- **Kare uyarlama değerleri:** iki olcum.md'deki tablolarda (kaydırma, yüz/el konumları, kol eklemleri, ekmek, sedye kenarı).
+- **Uyguladığım kurallar / maddeler:**
+  - BODRUM:
+    - K1 ✓: zemin ışığı yalnız sedyenin arkasında; huzme ve toz kırpılı; elin altında koyu temas lekesi.
+    - K2 ✓: sağda kısa sarkma, V kırıklı etek. Solda örtü tahtanın üstünde biter. Tahta ön yüzü ve ayaklar görünür. Önkol ≈ 85 px görünür, bilek kenarda kırılır, el sarkar.
+    - K3 ✓: eklemler silüetin içinde (588, 850) / (828, 822); birleşik silüet; kavisli dikiş.
+    - 1 ✓/~: eksen ≈ 13°; uzak omuz 28 px yüksek; belde %10 daralma; diz önde, kaval sedyenin arkasına iner; temas gölgesi var. Palto eteği dizin üstüne yalnız küçük bir panelle biniyor.
+    - 2 ✓: çentikli yaka (düz kenar), 8 kıvrım, hacmi izleyen gölge sınırı, 4 düğme.
+    - 3 ~: göz 0.72, bakış ele, uzak kulak arkada, baş eğik, yaş tonları, kanatlı burun + sırt hilali, sakal izi. Yüz hâlâ maskeye yakın.
+    - 4 ✓: tutamlı saç, kır tutamlar, 3 açık tutam.
+    - 5 ~: atkı 3 parça, püskül ve örgü var; sarma hâlâ simit gibi.
+    - 6 ✓/~: örtüde beden tümsekleri; gerilim ve asılı kıvrımlar; örtü L* medyanı 44.8 (hedef 47). El ince, tırnaksız, E 205.
+    - Ek: tuğla yaması kırık kenarlı; tonozda tarama var ama kaydırma yüzünden çoğu kırpılıyor.
+  - SOKAK:
+    - K1 ✓, K2 ✓, K3 ✓ (kayıp profil hariç).
+    - 1 ✓ (E 196).
+    - 2 ✓: yaka, dikiş, kayış kırığı, toka kenarı, kıvrımlar.
+    - 3 ✓: karışım 0.22, korniş taraması, söve/sandrik, bant, %10 tahta pencere, kat farkı, basamaklı ışık sınırı.
+    - 4 ~: patikalar hâlâ ray gibi okunuyor; kar L* aralığı 41.
+    - 5 ✓: gök boşluğu kapandı; ışıma ve buğu var.
+    - 6 ✓: kare kalıp ekmek, gözenekler.
+  - Yakaladığım ihlaller:
+    - Morg p95 L* 75.2. CLAUDE kontrast ölçütü (≥ 78) kaldı; betiğin kendi eşiği geçti.
+    - Morg yüz ayrışması +24.5 (eşik 25).
+    - Dizdeki el IG düğme sütununda (tur-2'deki gibi).
+- **Öz puan (ders: öz puan eleştirmenden ~1–1.5 yüksek çıkıyor; buna göre düşürüldü):** BODRUM **5.5**, SOKAK **5.5**. Tur-2'ye göre fizik ve okunurluk düzeldi. Hedefin mürekkep gravür dokusu, yüz ve kumaş zenginliği hâlâ çok geride. **7'ye ulaşıldığını düşünmüyorum.**
+- **Açık sorular / sonraki ajana notlar:**
+  - Eleştirmen yüzü ve kumaşı 2× kırpımla puanlasın. Kalan en büyük açık: ¾ yüzün hacmi ve hedefteki ince kontur/tarama yoğunluğu (A11 kontur titremesi hiç yok).
+  - Sokak patikaları için düzensiz iz kümeleri gerekiyor; uzun bant kaçınılmaz olarak ray okutuyor.
+  - Morg kaydırması tonozu kırpıyor. Yönetmen dolly zoom tepesinde 150 px'e dönmeyi düşünebilir; o durumda parmak uçları y ≈ 1480 olur.
+  - `kit_eksik`: profil başa "kayıp profil" dönüşü.
