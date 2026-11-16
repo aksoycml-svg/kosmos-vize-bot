@@ -20,3 +20,8 @@ Soru: kodla çizilen morg/sokak hedefin çok gerisinde; yakın plan figürlü pl
 > sokakta kötü gö<ükğyro
 
 ("sokak da kötü görünüyor" — sokak tur-2 karesi için.)
+
+## Tur 3f — vektörleştirme önerisine (2026-11-16)
+> denemeyelim.
+
+(Gemini hedefini vtracer/potrace ile vektöre çevirme deneyi yapılmayacak.)
