@@ -12,3 +12,6 @@ Soru: "Leningrad'da nasıl devam edelim?" → Kullanıcı seçimi: **Gemini hede
 > evet, ışığı ele indir ve kodla
 
 Uygulama: iki hedef yön olarak onaylı. Morgda huzme Aydarov'un eline kadar iner (el ışıkta); çerçeve çizgisi kullanılmaz; çubuklar P08'den çıktı. Motion iki şablonu hedeflere göre yeniden kurar.
+
+## Tur 3d — yöntem kararı (2026-11-16)
+Soru: kodla çizilen morg/sokak hedefin çok gerisinde; yakın plan figürlü planlar nasıl yapılsın? → Kullanıcı seçimi: **Kodla devam** (2–3 kalibrasyon turu daha; kota yüksek, sonuç belirsiz — kullanıcıya bildirildi).
