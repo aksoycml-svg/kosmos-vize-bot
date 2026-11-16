@@ -15,3 +15,8 @@ Uygulama: iki hedef yön olarak onaylı. Morgda huzme Aydarov'un eline kadar ine
 
 ## Tur 3d — yöntem kararı (2026-11-16)
 Soru: kodla çizilen morg/sokak hedefin çok gerisinde; yakın plan figürlü planlar nasıl yapılsın? → Kullanıcı seçimi: **Kodla devam** (2–3 kalibrasyon turu daha; kota yüksek, sonuç belirsiz — kullanıcıya bildirildi).
+
+## Tur 3e (2026-11-16)
+> sokakta kötü gö<ükğyro
+
+("sokak da kötü görünüyor" — sokak tur-2 karesi için.)
