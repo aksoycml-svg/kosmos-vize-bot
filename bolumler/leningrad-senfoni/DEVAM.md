@@ -22,6 +22,10 @@ Kullanıcı notları kelimesi kelimesine: `notlar/tur-0…3.md`. Kullanıcı kar
 - "Kodla devam" → kod turları yakınsamadı → kullanıcı "önce kiti iyileştir" dedi → açık kaynak taraması yapıldı (`arac-taramasi.md`) → **önerilen araç planı kabul edildi**.
 - Işık notu kurala çevrildi: CLAUDE.md "Işığın yolu".
 
+## Güncelleme (2026-11-16, ikinci oturum)
+Kit araçları kuruldu ve push edildi (eski bölümler 0 piksel fark): `src/kit/isik/` (görünürlük çokgeni), `tools/hedef_kiyas.py`, `src/kit/figur/` (iskelet + FABRIK + pozdan + Kafa ¾ + palto), `tools/poz_cikar.py` (MediaPipe; modeller `tools/modeller/`, gitignore, yeniden indirilir; libegl1/libgles2 apt gerekir).
+**bodrum-tur-5** (yeni araçlarla P08): ~5/10. Işık doğru kırpılıyor, değer eşikleri geçti; ama figür (diz çöküşü, yaşlı yüz, örtü, atkı) hedefin çok gerisinde. 5 tur yakın plan figürde yakınsamadı → CLAUDE.md gereği **kullanıcıya yön kararı soruldu** (yakın plan figür yerine ışık/insert/siluet çekimi mi, devam mı). Karar gelmeden tur-6 açma.
+
 ## Teşhis (neden kalite düştü)
 Salon (mimari, küçük figür) kodla iyi; morg/sokak yakın plan insan (yüz ¾, el, palto, kumaş, poz) istiyor. Ajan figürü elle koordinat yazarak çiziyor; iskelet/anatomi yok, ışık elle "boyanıyor". Bkz. `kalibrasyon/*-tur-2/elestiri.md` (teşhis listeleri).
 
