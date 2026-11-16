@@ -25,3 +25,6 @@ Soru: kodla çizilen morg/sokak hedefin çok gerisinde; yakın plan figürlü pl
 > denemeyelim.
 
 (Gemini hedefini vtracer/potrace ile vektöre çevirme deneyi yapılmayacak.)
+
+## Tur 3g — yol kararı (2026-11-16)
+Soru: "Leningrad'da nasıl ilerleyelim?" → Kullanıcı: **Önce kiti iyileştir** (kalıcı gravür tarama üreticisi + incelip kalınlaşan mürekkep çizgisi; sonra morg ve sokak tur-4).
