@@ -231,3 +231,15 @@
 - **Açık sorular:**
   - "Askerler gün batımına karşı" isteği bu kamerayla yalnız kenar ışığı ve haleyle sağlanabildi. Tam gökyüzüne karşı siluet istenirse kamera alçalmalı; bu da batığı uçurumun arkasına saklar. Yönetmen kararı gerekiyor.
   - Cephane sandığı onay bekliyor.
+
+## motion · 2026-11-16 · kalibrasyon tur-6b (yalnız P10a kompozisyonu)
+- **Ne yaptım:** Kamerayı düzlüğün kenarına yaklaştırdım; aşağı tilt yok (ufuk 725, göz zeminden ≈2.3 m). Düzlük kenarı artık diyagonal: solda y≈1108 (top tarafı, Z≈24), sağda y≈1280 (Z≈17).
+  - Sağ grup (teğmen, E2, E3) 398–440 px; başlar y≈840–880, ayaklar y≈1264–1282.
+  - Sol grup: top ölçek 0.73, kalkan ≈200 px. Yanında E1 (300 px, eli kalkanda, başı hafif eğik, topa dönük) ve E4 (350 px) duruyor; cephane sandıkları da topun yanında.
+  - Batık iki grubun arasından okunuyor.
+  - Alt üçte birde boş kaya kütlesi yok: sıcak düzlük, uzun akşam gölgeleri, ot, tek taş ve flu dal var. Sol üstte de flu bir dal kenarda kalıyor.
+- **Dosyalar:** `src/kit/sablonlar/benmychree/LimanYeni.tsx` (yalnız `saygi` yerleşimi). Çıktılar `kalibrasyon/tur-6/` içinde: `P10a_v2_k3292{,_360,_guvenli}.png`, `olcum_P10a_v2.json`, `karsilastirma_P10a_v2.png` (v1 | v2 | K1).
+- **Ölçümler:** sıcak %31.9, p5 10.6, p95 78.9, siluet–zemin farkı 53 L*, C*>28 olan piksel 1637.
+- **Piksel-aynı denetimi:** K1 k124 ve P07b k2388 tur-6 karelerine karşı 0 farklı piksel; P04 koduna dokunulmadı.
+- **Kararlar:** Yüz kuralı gereği askerler profil yüzlü (burun, çene, kaş, bıyık), koyu siluet üstünde kenar ışığıyla çizildi. E1 batığa değil topa dönük, çünkü eli kalkanda.
+- **Öz puan:** ≈6.5–7. Zayıf kalan yerler: top sol kenarda kesiliyor; E4 topun önünde durduğu için sol grup sıkışık görünüyor.

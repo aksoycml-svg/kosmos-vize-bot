@@ -494,29 +494,17 @@ const AnaTop: React.FC<{ t: number }> = () => {
     </g>
   );
 };
-const ZEMIN_Y = 1010; // uçurum kenarı (askerler + top aynı zeminde, Z ≈ 33 m)
-const TOP_X = 300, TOP_S = 0.52; // AnaTop (Z 12 tasarımı) → Z ≈ 33: ölçek 0.52, yakın teker tabanı (TOP_X, ZEMIN_Y)
-const topT = (q: P2): P2 => [TOP_X + (q[0] - 432) * TOP_S, ZEMIN_Y + (q[1] - 1331) * TOP_S];
+// tur-6b: kamera düzlük kenarına yakın (göz zeminden ≈2.3 m; ufuk 725, F 3990). Düzlük kenarı diyagonal: solda top tarafı Z≈24 (y≈1105), sağda Z≈17 (y≈1280).
+// Askerler Z 17–23 → 300–440 px; batık iki grubun arasından görünür.
+const kenarY = (x: number) => 1108 + Math.max(0, Math.min(1, (x - 300) / 480)) * 172;
+const TOP_X = 236, TOP_Y = 1104, TOP_S = 0.73; // AnaTop (Z 12 tasarımı) → Z≈24: ölçek 0.73, yakın teker tabanı (TOP_X, TOP_Y)
+const topT = (q: P2): P2 => [TOP_X + (q[0] - 432) * TOP_S, TOP_Y + (q[1] - 1331) * TOP_S];
 const ASKERLER: AskerTip[] = [
-  { ad: "E4", x: 86, y: ZEMIN_Y - 4, B: 200, yon: 1, bas: "kasket", kol: "yan", ek: ["battaniye"], biyik: "ince" },
-  { ad: "E1", x: 128, y: ZEMIN_Y - 2, B: 206, yon: 1, bas: "kabalak-er", kol: "kalkan", hedef: topT([150, 1080]), ek: ["matara"], biyik: "dolu", yas: 0.7 },
-  { ad: "teğmen", x: 818, y: ZEMIN_Y - 4, B: 218, yon: -1, bas: "kabalak-subay", kol: "yan", ek: ["durbun"], cizme: true, biyik: "ince" },
-  { ad: "E2", x: 868, y: ZEMIN_Y - 2, B: 196, yon: -1, bas: "kabalak-er", kol: "yan", basEgik: 22, ek: ["matara"], biyik: "dolu" },
-  { ad: "E3", x: 914, y: ZEMIN_Y - 5, B: 208, yon: -1, bas: "kabalak-er", kol: "yan", ek: ["tufek"], biyik: "yok" },
-];
-const ZEMIN2: [P2[], string][] = [
-  [[[-20, 1030], [300, 1018], [430, 1110], [180, 1180], [-20, 1160]], "#b0927e"],
-  [[[430, 1024], [760, 1012], [800, 1120], [560, 1170], [430, 1110]], "#b89a86"],
-  [[[760, 1018], [1100, 1014], [1100, 1140], [900, 1170], [800, 1120]], "#a68c80"],
-  [[[-20, 1160], [180, 1180], [430, 1110], [560, 1170], [480, 1380], [200, 1400], [-20, 1380]], "#7a6680"],
-  [[[560, 1170], [800, 1120], [900, 1170], [1100, 1140], [1100, 1400], [820, 1420], [480, 1380]], "#6e5c78"],
-  [[[-20, 1380], [200, 1400], [480, 1380], [820, 1420], [1100, 1400], [1100, 1960], [-20, 1960]], "#4a445e"],
-];
-const ON_KAYA: [P2[], string][] = [
-  [[[-20, 1560], [120, 1528], [260, 1546], [230, 1640], [90, 1660], [-20, 1650]], "#7d7294"],
-  [[[260, 1546], [380, 1590], [470, 1650], [420, 1740], [300, 1720], [230, 1640]], "#5a536e"],
-  [[[-20, 1650], [90, 1660], [230, 1640], [300, 1720], [420, 1740], [520, 1960], [-20, 1960]], "#4a445e"],
-  [[[720, 1760], [860, 1720], [1100, 1706], [1100, 1960], [680, 1960]], "#524b68"],
+  { ad: "E1", x: 300, y: 1118, B: 300, yon: -1, bas: "kabalak-er", kol: "kalkan", hedef: topT([448, 1090]), basEgik: 10, ek: ["matara"], biyik: "dolu", yas: 0.7 },
+  { ad: "E4", x: 112, y: 1182, B: 350, yon: 1, bas: "kasket", kol: "yan", ek: ["battaniye"], biyik: "ince" },
+  { ad: "teğmen", x: 790, y: 1276, B: 440, yon: -1, bas: "kabalak-subay", kol: "yan", ek: ["durbun"], cizme: true, biyik: "ince" },
+  { ad: "E2", x: 852, y: 1264, B: 398, yon: -1, bas: "kabalak-er", kol: "yan", basEgik: 22, ek: ["matara"], biyik: "dolu" },
+  { ad: "E3", x: 912, y: 1282, B: 424, yon: -1, bas: "kabalak-er", kol: "yan", ek: ["tufek"], biyik: "yok" },
 ];
 const Saygi: React.FC<{ plan: Plan; p: number; kilit: Kilit }> = ({ plan, p, kilit }) => {
   const t = p / 60, h = param<number>(plan, "gun_yuksekligi", 6), seed = param<number>(plan, "seed", 181), ruz = ruzgar(190);
@@ -525,7 +513,7 @@ const Saygi: React.FC<{ plan: Plan; p: number; kilit: Kilit }> = ({ plan, p, kil
   const V = denizSatir("sy", 8000, 50, 560, 2000, (u) => (u < -0.4 ? 0.05 : u < 0.2 ? 0.2 : 0.6));
   const pxm = 11250 / 2000, wlK1 = 1040; // K1 ref gemi (Z 2000)
   const bt = param<{ trim: number; yat: number; bat: number }>(plan, "batik", { trim: 3.4, yat: 26, bat: 4.3 });
-  const kenarCizgi: P2[] = [...kirik([-20, ZEMIN_Y + 14], [300, ZEMIN_Y + 8], 8, 4, "sk1"), ...kirik([300, ZEMIN_Y + 8], [700, ZEMIN_Y + 2], 9, 5, "sk2"), ...kirik([700, ZEMIN_Y + 2], [1100, ZEMIN_Y + 6], 8, 4, "sk3")];
+  const kenarCizgi: P2[] = [...kirik([-20, kenarY(-20)], [300, kenarY(300)], 8, 4, "sk1"), ...kirik([300, kenarY(300)], [780, kenarY(780)], 10, 5, "sk2"), ...kirik([780, kenarY(780)], [1100, kenarY(1100)], 8, 4, "sk3")];
   kilit.push({ ad: "kalkanlı top", p: topT([300, 1100]), tur: "kurulum" }, ...ASKERLER.map((a) => ({ ad: `${a.ad} ayak`, p: [a.x, a.y] as P2, tur: "ayak" as const })), { ad: "batık", p: [530, 880], tur: "kurulum" });
   return (
     <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
@@ -550,29 +538,24 @@ const Saygi: React.FC<{ plan: Plan; p: number; kilit: Kilit }> = ({ plan, p, kil
         {/* deniz: tiyatro kamerasıyla (F 8000) Z 560–2000 satırları */}
         <rect x={-10} y={SY + (50 * 8000) / 2000 + 14} width={1100} height={1400} fill={mix(BP.su, BP.bugu, 0.1)} />
         <DenizCiz V={V} k={kArka} t={t} isik={"#eac3a2"} golge={BP.suGolge} ymin={SY + 216} />
-        {/* mevzi zemini (Z ≈ 33 → kamera): uçurum kenarı y ≈ 1010, alçak güneşle sıcak üst fasetler, kameraya doğru koyulaşır */}
-        <path d={`M${pts(kenarCizgi)} L1100,1960 L-20,1960 Z`} fill="#5a536e" stroke={BP.kontur} strokeWidth={2.5} />
-        {ZEMIN2.map(([q, cl2], i) => <path key={`zf${i}`} d={`M${pts(q)} Z`} fill={cl2} stroke={BP.kontur} strokeWidth={2} />)}
-        {ZEMIN2.slice(0, 3).map(([q], i) => <polyline key={`zk${i}`} points={pts(q.slice(0, 2))} fill="none" stroke={mix(BP.tasIsik, BP.kenar, 0.5)} strokeWidth={4} />)}
+        {/* düzlük (kenar → kamera): kenarda alçak güneşle sıcak şerit, kameraya doğru koyulaşan tek yüzey; boş kaya kütlesi yok — uzun akşam gölgeleri, ot, tek taş, dal */}
+        <path d={`M${pts(kenarCizgi)} L1100,1960 L-20,1960 Z`} fill="#8a7482" />
+        <defs><linearGradient id="syZem" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#b0927e" /><stop offset="0.4" stopColor="#a08472" /><stop offset="1" stopColor="#5a4c5c" /></linearGradient></defs>
+        <path d={`M${pts(kenarCizgi)} L1100,1960 L-20,1960 Z`} fill="url(#syZem)" />
         <polyline points={pts(kenarCizgi)} fill="none" stroke={BP.kenar} strokeWidth={4} />
-        {[[60, 1240, 90], [560, 1230, 70], [300, 1460, 110], [860, 1260, 80], [980, 1480, 120], [700, 1520, 100], [140, 1560, 130]].map(([x, y, L], i) => <g key={`kr${i}`}><path d={`M${x - 7},${y} Q${x - 10},${y + L * 0.5} ${x + 2},${y + L} Q${x + 3},${y + L * 0.5} ${x + 8},${y} Z`} fill="#2e2a44" opacity={0.8} /><path d={`M${x + 8},${y} Q${x + 4},${y + L * 0.5} ${x + 3},${y + L}`} stroke={BP.kenar} strokeWidth={2} fill="none" opacity={0.7} /></g>)}
-        {[[620, 1300], [400, 1700], [880, 1640]].map(([x, y], i) => <path key={`ct${i}`} d={`M${pts([[x - 40, y], [x + 46, y - 6], [x + 60, y + 14], [x - 30, y + 18]])} Z`} fill={BP.toprak} opacity={0.75} />)}
-        {/* cephane sandıkları (topun arkasında, Z ≈ 34; batarya donanımı — onay bekliyor) */}
-        {[[372, ZEMIN_Y - 2, 46, 26], [402, ZEMIN_Y - 26, 38, 24]].map(([x, y, w, hh], i) => <g key={`cs${i}`}><path d={`M${x},${y} L${x + w},${y} L${x + w},${y - hh} L${x},${y - hh} Z`} fill="#4a3c38" stroke={BP.kontur} strokeWidth={2} /><line x1={x} x2={x + w} y1={y - hh} y2={y - hh} stroke={BP.kenar} strokeWidth={2.5} /><line x1={x + w} x2={x + w} y1={y - hh} y2={y} stroke={BP.kenar} strokeWidth={2} /><line x1={x + 4} x2={x + w - 4} y1={y - hh / 2} y2={y - hh / 2} stroke="#2e2630" strokeWidth={2} /></g>)}
-        {/* kalkanlı top (Z ≈ 33) */}
-        <g transform={`translate(${TOP_X} ${ZEMIN_Y}) scale(${TOP_S}) translate(-432 -1331)`}><AnaTop t={t} /></g>
-        {/* askerler (teğmen + E1–E4): topun yanında, aynı zeminde; dimdik, biri kalkana el koymuş, biri başı eğik */}
+        {[[620, 1300], [400, 1560], [930, 1500]].map(([x, y], i) => <path key={`ct${i}`} d={`M${pts([[x - 40, y], [x + 46, y - 6], [x + 60, y + 14], [x - 30, y + 18]])} Z`} fill={BP.toprak} opacity={0.6} />)}
+        {/* cephane sandıkları (topun yanında, Z≈24) */}
+        {[[352, 1130, 66, 36], [392, 1094, 52, 32]].map(([x, y, w, hh], i) => <g key={`cs${i}`}><path d={`M${x},${y} L${x + w},${y} L${x + w},${y - hh} L${x},${y - hh} Z`} fill="#4a3c38" stroke={BP.kontur} strokeWidth={2} /><line x1={x} x2={x + w} y1={y - hh} y2={y - hh} stroke={BP.kenar} strokeWidth={2.5} /><line x1={x + w} x2={x + w} y1={y - hh} y2={y} stroke={BP.kenar} strokeWidth={2} /><line x1={x + 5} x2={x + w - 5} y1={y - hh / 2} y2={y - hh / 2} stroke="#2e2630" strokeWidth={2} /></g>)}
+        {/* kalkanlı top (Z≈24) */}
+        <g transform={`translate(${TOP_X} ${TOP_Y}) scale(${TOP_S}) translate(-432 -1331)`}><AnaTop t={t} /></g>
+        {/* askerler: E1 eli kalkanda (başı hafif eğik, topa dönük), E4 dimdik; sağda teğmen (dürbün, çizme), E2 başı eğik, E3 dimdik — hepsi batığa bakar (E1 hariç) */}
         {ASKERLER.map((a) => <Asker key={a.ad} a={a} />)}
-        {/* ot sapları (rüzgâr sağa, çok hafif) */}
-        {[[40, 1020], [400, 1016], [520, 1014], [700, 1012], [960, 1016], [60, 1400], [700, 1360], [330, 1820], [900, 1840], [520, 1560], [180, 1240], [1000, 1300]].map(([x, y], i) => <Ot key={i} x={x} y={y} L={40 + rr(`syo${i}`) * 30} ruz={ruz} t={t} seed={`syo${i}`} n={6} w={3} />)}
-        {/* ön kaya (Z 6–8; K1 ön kaya dili): sol alt büyük fasetli blok, sağ alt alçak sekiler */}
-        {ON_KAYA.map(([q, cl2], i) => <path key={`ok${i}`} d={`M${pts(q)} Z`} fill={cl2} stroke={BP.kontur} strokeWidth={2.2} />)}
-        <polyline points={pts([[-20, 1560], [120, 1528], [260, 1546], [380, 1590], [470, 1650]])} fill="none" stroke={BP.kenar} strokeWidth={5} />
-        <polyline points={pts([[720, 1760], [860, 1720], [1100, 1706]])} fill="none" stroke={BP.kenar} strokeWidth={4} />
-        {[[60, 1640, 150], [220, 1660, 120], [380, 1700, 170], [900, 1790, 110]].map(([x, y, L], i) => <g key={`ko${i}`}><path d={`M${x - 8},${y} Q${x - 12},${y + L * 0.5} ${x + 2},${y + L} Q${x + 2},${y + L * 0.5} ${x + 9},${y} Z`} fill="#2e2a44" /><path d={`M${x + 9},${y} Q${x + 4},${y + L * 0.5} ${x + 3},${y + L}`} stroke={BP.kenar} strokeWidth={2.5} fill="none" /></g>)}
-        {[[40, 1534], [180, 1534], [330, 1566], [800, 1736], [980, 1712]].map(([x, y], i) => <Ot key={`oo${i}`} x={x} y={y} L={60 + rr(`soo${i}`) * 40} ruz={ruz} t={t} seed={`soo${i}`} n={7} w={3.5} />)}
-        {/* dal (Z 3, flu): sol-üst köşede kesik çam dalı + sağ alt kenarda yaprak */}
-        <Flu s={6}><Dal a={[-40, 120]} b={[260, 300]} k={1.8} seed="syd1" /><Dal a={[-40, 240]} b={[150, 460]} k={1.5} seed="syd2" /><Dal a={[1120, 1960]} b={[820, 1780]} k={1.8} seed="syd3" /></Flu>
+        {[[40, 0], [470, 0], [560, 0], [690, 0], [1010, 0], [600, 1460], [200, 1400], [990, 1560]].map(([x, y0], i) => [x, y0 || kenarY(x) + 6]).map(([x, y], i) => <Ot key={i} x={x} y={y} L={50 + rr(`syo${i}`) * 40} ruz={ruz} t={t} seed={`syo${i}`} n={6} w={3.5} />)}
+        {/* ön plan: alt güvenli bantta tek taş (sol) + dal (sağ alt, flu); sol üst dal kenarda */}
+        <g><path d={`M${pts([[-20, 1760], [110, 1716], [230, 1730], [280, 1800], [250, 1960], [-20, 1960]])} Z`} fill="#5a536e" stroke={BP.kontur} strokeWidth={2.2} />
+          <polyline points={pts([[-20, 1760], [110, 1716], [230, 1730], [280, 1800]])} fill="none" stroke={BP.kenar} strokeWidth={5} />
+          <path d="M120,1770 Q114,1850 132,1930 Q132,1850 140,1770 Z" fill="#2e2a44" /></g>
+        <Flu s={6}><Dal a={[-40, 120]} b={[220, 280]} k={1.8} seed="syd1" /><Dal a={[1120, 1960]} b={[800, 1760]} k={2} seed="syd3" /><Dal a={[1120, 1880]} b={[900, 1640]} k={1.6} seed="syd4" /></Flu>
         {Array.from({ length: 34 }).map((_, i) => { const x = 420 + ((rr(`yz${i}`) * 680 + t * (5 + rr(`yzv${i}`) * 6)) % 680), y = 520 + rr(`yzy${i}`) * 700 + Math.sin(t + i) * 3; return <circle key={i} cx={x} cy={y} r={1.1 + rr(`yzr${i}`) * 1.2} fill="#f2dcc4" opacity={0.32} />; })}
       </Isleme></RenkKaydi>
     </svg>
