@@ -464,3 +464,9 @@
   - Eleştirmen için: 2× kırpım önerisi — bodrum yüz (480–960 × 280–760), ölü el (300–700 × 1040–1360); sokak eller (400–880 × 1180–1560), baş (0–400 × 780–1300).
   - `Onay bekliyor`: yeni öğe eklenmedi; sedye kısalması ve palto eteğinin yere inmesi kompozisyon değişikliğidir (tablo olcum.md'de).
   - Render: sokak T4 tek kare ~30 sn (TonTarama ağır); tam plan render'ında kare başına maliyet yüksek olabilir — gerekirse statik katmanlar (cephe/zemin taraması) önbelleğe alınmalı (`useMemo` + sabit kamera).
+
+## teknisyen — `tools/hedef_kiyas.py` (hedef/render sayısal kıyas aracı)
+- Yaptı: kalıcı araç yazıldı; `kalibrasyon_olcum.py`'den `lab()` import edilir, sıcak piksel tanımı aynı (h 20–80°, C* ≥ 10). Dokunulan: `tools/hedef_kiyas.py` (yeni), `tools/README.md` (ekleme), `kalibrasyon/kiyas-test/` (bodrum/sokak tur-4 json + jpg).
+- Kararlar: SSIM gri + gauss pencere; kenar = Canny σ1.5; uzaklık = 0.4(1−SSIM)+0.3(1−hist kesişimi)+0.3·min(1,|log2 kenar oranı|) (kaba sıralama ölçüsü, kalibre edilmedi); bölge koordinatları 360x640 uzayında; `scikit-image` kuruldu.
+- Deneme uyumu: bodrum tur-4'te araç hedefe göre render'ı karanlık (L* p50 −16, p95 −22; p95 eşiği KALDI), sıcak oran fazla ve dağılımı farklı, kenar yoğunluğu düşük; bu, bodrum-tur-2 eleştirisindeki "sıcak alan düz levha, hedefte gölgede" teşhisiyle uyumlu. Alt satır (y 480–640) en uzak: zemin/ışık. Sokakta sıcak %35 vs %17.4 (aşırı sıcak), kenar 0.54 oran.
+- Açık sorular: uzaklık ağırlıkları ve "yakın/uzak" eşikleri birkaç turda eleştirmen geri bildirimiyle ayarlanmalı; SSIM hedefle kompozisyon kayması olduğunda (hedef AI üretimi, birebir değil) düşük çıkar, bu yüzden histogram/renk ölçüleri öncelikli okunmalı.
