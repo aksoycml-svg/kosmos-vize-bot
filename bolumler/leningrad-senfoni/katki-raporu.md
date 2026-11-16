@@ -213,3 +213,39 @@
 - Açık sorular / bir sonraki ajana notlar:
   - 3 düzeltme sonraki SALON planlarında (P01, P14, P15) uygulanır.
   - Tasarımcı tur-3 hex'lerini `tasarim.md`'ye eşitlemeli.
+
+## mekan-sorumlusu · 2026-11-16 · BODRUM, SOKAK-LG, HARİTA `leningrad`, SALON `prova` şartnamesi
+- Ne yaptım:
+  - `mekanlar.md`'ye 2. tur bölümü ekledim (§12–18), SALON bölümüyle aynı biçimde.
+  - Ortak kuralları SALON tur-1…4 derslerinden çıkardım: gri yok, flu yok, hale C* ≥ 18, kemer yok, iki kamera sözleşmesi.
+  - BODRUM: mimari kart; tek ışık modeli (koridor penceresi S + kapı yarığı = ışık levhası; basamaklarda zikzak, sedyede bant); P07/P08-1/2/3/P09a/b kameraları; dolly zoom değerleri; 6 katman; palet düzeltmeleri; reçete; **P08-3 yön karesi** (yüz + ön planda el + çubuk tek karede).
+  - SOKAK-LG: Petersburg kira evi mimari kartı; kış/yaz güneş vektörü (aynı kamera yönünde sağ-arka/sol-arka); P03a/P04a/P13a/b kameraları; 7 katman; doku ve palet; reçete; **P03a yön karesi**.
+  - HARİTA `leningrad`: Natural Earth verisi, açık kuşatma yayı (güney-doğu Alman, kuzey Fin kesik hattı), ikonlar, iki ışık modu.
+  - SALON `prova`: pencere ışığı vektörleri (kış/bahar/yaz), pencere konumunun hedeften türetilmesi, perde, katmanlar.
+  - Ekran noktalarını `kamera25d` formülüyle betikle hesapladım (scratchpad, render değil).
+- Dokunduğum dosyalar: `bolumler/leningrad-senfoni/mekanlar.md` (ekleme), bu rapor.
+- Aldığım kararlar ve gerekçeleri:
+  - Işık kaynağı BODRUM'da yarığın arkasındaki nokta kaynak. Paralel ışık hem basamakları hem sedyeyi aynı anda aydınlatamıyor: basamak eğimi 0.64, sedyeye ulaşmak için ≤ 0.62 gerekiyor. Nokta kaynakla eğimler 1.08–0.27 aralığına yayılıyor.
+  - Kapı dışa açılıyor. Eliasberg kanadı kendine çekiyor (P07), taşıyıcı sırtıyla itiyor (P09b); ikisi de sahne planıyla tutarlı.
+  - P08-3'te yüz önden aydınlatılmıyor: ışık arkadan geliyor. Yüz kenar ışığı ve örtüden gelen yansımayla okunuyor. El ve çubuk, levhanın içinde aynı ışıkta.
+  - Gri tasarım hex'leri (örtü, hoparlör, kova, cephe) C* ≥ 16'ya çekildi. Tasarımcı onayına.
+  - Kuşatma halkası tam daire değil: güneyde Alman yayı, kuzeyde bloksuz Fin hattı, Ladoga açık.
+  - P13 saati ~19:30 akşam: SALON §0.2 ile tutarlılık için. Tasarım "öğleden sonra" diyor; ışık yönü aynı.
+  - Prova'da kapıdan gelen ikincil şerit kaldırıldı (tek kaynak).
+- Uyguladığım kurallar / yakaladığım kural ihlalleri:
+  - GORSEL-RECETE A/B/C dört mekân için madde madde işaretlendi.
+  - Askerler ve şehitler: morgda ayak, el, yüz yok; ölü taşıma yok.
+  - Kemer yalnız podvorotnya basık kemeri olarak yazıldı; bodrum tavanı düz.
+  - Tek ışık kaynağı ihlali yakalandı: tasarım §0 prova satırındaki "kapıdan sıcak şerit".
+  - Tasarım §1 ile orkestra brifi arasındaki kızak çelişkisi yakalandı.
+- Açık sorular / bir sonraki ajana notlar:
+  - Kullanıcıya iki yön karesi: §13.10 (P08-3) ve §14.9 (P03a).
+  - Tasarımcıya: palet düzeltmeleri (§13.6, §14.5), kızak, P13 saati, prova ikincil şeridi.
+  - Araştırmacıya: Petersburg cephe düzeni, 1941–42 kış sokak ayrıntıları, Radyo Evi bodrumu, kuşatma hattı haritası.
+  - Yönetmene: mm sözleşmesi (SALON F 1575 ↔ kamera25d F 1050); P03a kar yığını konumu; P08-3 ön planda el.
+  - Motion'a: `IsikLevhasi`, `Merdiven`, `OrtuluBicim`, `CepheKlasik`, `KarZemin`, `GunesSeridi`, `Hoparlor` modül önerileri; BODRUM'un sıcak oranı ilk kalibrasyonda ölçülmeli.
+
+## orkestra · 2026-11-16 · BODRUM/SOKAK şartnamesi kararları
+- Kızak: boş çocuk kızağı + su kovası kabul (P13 kova kurulumu); ölü taşıma hiçbir planda yok.
+- P13 saati ~19:30 akşam kabul; prova'da ikincil kapı şeridi kaldırıldı (tek kaynak) kabul; gri hex'lerin C* ≥16'ya çekilmesi kabul. Tasarımcı tasarim.md'yi topluca eşitleyecek (SALON tur-3/4 renkleriyle birlikte).
+- mm sözleşmesi: yönetmen çekim kartlarında F (piksel odak) değerini yazar; mm yalnız açıklama.
